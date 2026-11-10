@@ -1,0 +1,701 @@
+{
+  "date": "2026-11-10",
+  "status": "passed_with_visual_review_pending",
+  "checks": {
+    "pngCount": 134,
+    "animationGroups": 18,
+    "animationFrames": 72,
+    "atlasPages": 2,
+    "allFilesAndHashesMatch": true,
+    "allAtlasRectanglesAndPixelsMatch": true,
+    "noVisibleOuterEdgePixels": true
+  },
+  "errors": [],
+  "warnings": [],
+  "alphaSummary": [
+    {
+      "id": "building_house_thatched",
+      "transparentPixels": 6329,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "building_house_terracotta",
+      "transparentPixels": 5818,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "building_farm",
+      "transparentPixels": 6863,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "building_lumber_shed",
+      "transparentPixels": 6331,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "building_tower_arrow",
+      "transparentPixels": 8539,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "building_tower_stone",
+      "transparentPixels": 7916,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "building_tower_slow",
+      "transparentPixels": 7736,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "building_tower_pad",
+      "transparentPixels": 8378,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "building_gate_closed",
+      "transparentPixels": 11512,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "building_gate_damaged",
+      "transparentPixels": 11682,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "building_hearth_unlit",
+      "transparentPixels": 5571,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "building_hearth_lit",
+      "transparentPixels": 5447,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "tile_ground_grass",
+      "transparentPixels": 0,
+      "edgeMaxAlpha": 255
+    },
+    {
+      "id": "tile_ground_dirt",
+      "transparentPixels": 0,
+      "edgeMaxAlpha": 255
+    },
+    {
+      "id": "tile_ground_soil",
+      "transparentPixels": 0,
+      "edgeMaxAlpha": 255
+    },
+    {
+      "id": "tile_ground_stone",
+      "transparentPixels": 0,
+      "edgeMaxAlpha": 255
+    },
+    {
+      "id": "deco_tree_oak",
+      "transparentPixels": 7863,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "deco_tree_pine",
+      "transparentPixels": 10130,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "deco_bush",
+      "transparentPixels": 6322,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "deco_rocks",
+      "transparentPixels": 6364,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "deco_fence_straight",
+      "transparentPixels": 11083,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "deco_fence_corner",
+      "transparentPixels": 10810,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "deco_torch",
+      "transparentPixels": 7578,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "deco_log_pile",
+      "transparentPixels": 5943,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_food",
+      "transparentPixels": 1273,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_wood",
+      "transparentPixels": 1098,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_population",
+      "transparentPixels": 951,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_build",
+      "transparentPixels": 1322,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_house",
+      "transparentPixels": 923,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_logging",
+      "transparentPixels": 1274,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_family",
+      "transparentPixels": 773,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_heart",
+      "transparentPixels": 995,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_arrow",
+      "transparentPixels": 1586,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_stone",
+      "transparentPixels": 1127,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_slow",
+      "transparentPixels": 847,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_bell",
+      "transparentPixels": 1207,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_pause",
+      "transparentPixels": 643,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_play",
+      "transparentPixels": 1184,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_settings",
+      "transparentPixels": 953,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_close",
+      "transparentPixels": 820,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_spring",
+      "transparentPixels": 1272,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_summer",
+      "transparentPixels": 1243,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_autumn",
+      "transparentPixels": 1108,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_winter",
+      "transparentPixels": 1015,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_upgrade",
+      "transparentPixels": 977,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_shield",
+      "transparentPixels": 947,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_baby",
+      "transparentPixels": 970,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "icon_view",
+      "transparentPixels": 1384,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "fx_arrow",
+      "transparentPixels": 2082,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "fx_stone",
+      "transparentPixels": 2003,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "fx_ice",
+      "transparentPixels": 1925,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "fx_hit",
+      "transparentPixels": 2065,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "fx_slow_ring",
+      "transparentPixels": 1949,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "fx_hearts",
+      "transparentPixels": 2057,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "fx_sound_wave",
+      "transparentPixels": 1950,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "fx_level_up",
+      "transparentPixels": 1983,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "panel_parchment",
+      "transparentPixels": 1853,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "panel_card",
+      "transparentPixels": 1775,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "panel_button_gold",
+      "transparentPixels": 1052,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "panel_button_green",
+      "transparentPixels": 1001,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "panel_button_disabled",
+      "transparentPixels": 1020,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "panel_portrait_frame",
+      "transparentPixels": 2518,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_male_a_walk_00",
+      "transparentPixels": 4415,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_male_a_walk_01",
+      "transparentPixels": 4384,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_male_a_walk_02",
+      "transparentPixels": 4410,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_male_a_walk_03",
+      "transparentPixels": 4393,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_male_b_walk_00",
+      "transparentPixels": 4276,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_male_b_walk_01",
+      "transparentPixels": 4225,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_male_b_walk_02",
+      "transparentPixels": 4291,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_male_b_walk_03",
+      "transparentPixels": 4261,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_female_a_walk_00",
+      "transparentPixels": 4470,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_female_a_walk_01",
+      "transparentPixels": 4500,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_female_a_walk_02",
+      "transparentPixels": 4465,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_female_a_walk_03",
+      "transparentPixels": 4443,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_female_b_walk_00",
+      "transparentPixels": 4423,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_female_b_walk_01",
+      "transparentPixels": 4301,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_female_b_walk_02",
+      "transparentPixels": 4398,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_female_b_walk_03",
+      "transparentPixels": 4305,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_boy_walk_00",
+      "transparentPixels": 2811,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_boy_walk_01",
+      "transparentPixels": 2890,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_boy_walk_02",
+      "transparentPixels": 2841,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_boy_walk_03",
+      "transparentPixels": 2848,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_girl_walk_00",
+      "transparentPixels": 2734,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_girl_walk_01",
+      "transparentPixels": 2818,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_girl_walk_02",
+      "transparentPixels": 2808,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_girl_walk_03",
+      "transparentPixels": 2806,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_baby_idle_00",
+      "transparentPixels": 1600,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_baby_idle_01",
+      "transparentPixels": 1657,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_baby_idle_02",
+      "transparentPixels": 1612,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_baby_idle_03",
+      "transparentPixels": 1652,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_elder_idle_00",
+      "transparentPixels": 3904,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_elder_idle_01",
+      "transparentPixels": 4035,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_elder_idle_02",
+      "transparentPixels": 4002,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "villager_elder_idle_03",
+      "transparentPixels": 3941,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_male_a_farm_00",
+      "transparentPixels": 3693,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_male_a_farm_01",
+      "transparentPixels": 3790,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_male_a_farm_02",
+      "transparentPixels": 3630,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_male_a_farm_03",
+      "transparentPixels": 3844,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_female_a_harvest_00",
+      "transparentPixels": 3960,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_female_a_harvest_01",
+      "transparentPixels": 3744,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_female_a_harvest_02",
+      "transparentPixels": 4040,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_female_a_harvest_03",
+      "transparentPixels": 3979,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_male_b_chop_00",
+      "transparentPixels": 3436,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_male_b_chop_01",
+      "transparentPixels": 3509,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_male_b_chop_02",
+      "transparentPixels": 3377,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_male_b_chop_03",
+      "transparentPixels": 3560,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_female_b_carry_00",
+      "transparentPixels": 3641,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_female_b_carry_01",
+      "transparentPixels": 3620,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_female_b_carry_02",
+      "transparentPixels": 3593,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "villager_female_b_carry_03",
+      "transparentPixels": 3609,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_raider_walk_00",
+      "transparentPixels": 2690,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_raider_walk_01",
+      "transparentPixels": 2808,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_raider_walk_02",
+      "transparentPixels": 2796,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_raider_walk_03",
+      "transparentPixels": 2869,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_runner_walk_00",
+      "transparentPixels": 4460,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_runner_walk_01",
+      "transparentPixels": 4522,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_runner_walk_02",
+      "transparentPixels": 4471,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_runner_walk_03",
+      "transparentPixels": 4502,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_armored_walk_00",
+      "transparentPixels": 3276,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_armored_walk_01",
+      "transparentPixels": 3424,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_armored_walk_02",
+      "transparentPixels": 3374,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_armored_walk_03",
+      "transparentPixels": 3451,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_disruptor_walk_00",
+      "transparentPixels": 4304,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "enemy_disruptor_walk_01",
+      "transparentPixels": 4378,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_disruptor_walk_02",
+      "transparentPixels": 4363,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "enemy_disruptor_walk_03",
+      "transparentPixels": 4427,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "enemy_chief_walk_00",
+      "transparentPixels": 4492,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_chief_walk_01",
+      "transparentPixels": 4486,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_chief_walk_02",
+      "transparentPixels": 4544,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "enemy_chief_walk_03",
+      "transparentPixels": 4622,
+      "edgeMaxAlpha": 1
+    },
+    {
+      "id": "enemy_raider_guard_walk_00",
+      "transparentPixels": 2982,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "enemy_raider_guard_walk_01",
+      "transparentPixels": 3040,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "enemy_raider_guard_walk_02",
+      "transparentPixels": 3021,
+      "edgeMaxAlpha": 0
+    },
+    {
+      "id": "enemy_raider_guard_walk_03",
+      "transparentPixels": 3027,
+      "edgeMaxAlpha": 0
+    }
+  ],
+  "scope": "Local asset files only. No Laya import, real-time animation playback or WeChat package/device validation.",
+  "previewValidation": {
+    "surface": "local HTML preview",
+    "imageElementsLoaded": 19,
+    "animationGroups": 18,
+    "observedControls": [
+      "play",
+      "pause",
+      "restFrame",
+      "nextFrame",
+      "2x speed"
+    ],
+    "scope": "Browser preview of PNG sequences; not Laya or WeChat"
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "date": "2026-11-10",
+  "generator": "image_gen",
+  "records": [
+    {
+      "key": "buildings",
+      "path": "source/static/buildings.png",
+      "spec": {
+        "key": "buildings",
+        "cols": 4,
+        "rows": 3,
+        "transparent": true,
+        "prompt": "Generate a production SPRITE SHEET for a small original 2D human village / family inheritance / tower-defense game. A genuine transparent RGBA background, not a checkerboard drawing. Cozy Chinese countryside-inspired pixel-art style, top-down three-quarter view facing down, warm ochre thatch, terracotta, muted forest/olive greens, cream, dark brown outlines. Clear chunky pixel clusters, restrained flat colors and tiny highlights, no photorealism, no 3D, no fine noise, no glossy gradients. The final sprites are small mobile-game assets so prioritize strong readable silhouettes. No text, numbers, labels, grid lines, UI scene, watermark or ground landscape. Each cell contains exactly ONE isolated requested sprite. Strict uniform grid aligned to the full canvas, equal square cells. Every sprite must have generous TRANSPARENT gutters of at least 15% of the cell width on all sides, including between adjacent sprites; never cross a cell boundary. Keep feet or object base at about 82% of cell height. No external shadow extending into the gutters.\nCanvas aspect ratio 4:3, exactly FOUR columns and THREE rows = 12 cells, in this exact left-to-right row-major order:\nRow 1: (1) small thatched cottage with simple wooden door; (2) a second small cottage of the same size with terracotta roof and round window, only a cosmetic variant; (3) small farm plot with two rows of ripe golden wheat and low fence; (4) compact lumber shed with stacked cut logs.\nRow 2: (5) empty wooden arrow tower with small bow launcher, no human operator; (6) squat stone slingshot tower with wooden sling arm; (7) simple wood-and-stone slowing tower with a small pale-blue crystal; (8) empty circular stone tower foundation.\nRow 3: (9) closed wooden village gate between two short log posts, a freestanding sprite; (10) the same village gate with a broken plank and small cracks but the exact same footprint, no rubble outside its cell; (11) small unlit stone-ring hearth with stacked logs; (12) the same hearth lit with a modest warm flame.\nCottages and towers use consistent scale. Gate may be wider but never exceeds 70% of its cell. No character in any sprite. Exactly twelve objects, no duplicated or missing cells."
+      },
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-61967314-62e9-431c-8ba1-986027b967f4.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "sha256": "a7a3730b77b4666c75e4a0859211e1c6863b7fe4629327d62dadd07779f320e1",
+      "bytes": 1546087,
+      "brief": "Generate a production SPRITE SHEET for a small original 2D human village / family inheritance / tower-defense game. A genuine transparent RGBA background, not a checkerboard drawing. Cozy Chinese countryside-inspired pixel-art style, top-down three-quarter view facing down, warm ochre thatch, terracotta, muted forest/olive greens, cream, dark brown outlines. Clear chunky pixel clusters, restrained flat colors and tiny highlights, no photorealism, no 3D, no fine noise, no glossy gradients. The final sprites are small mobile-game assets so prioritize strong readable silhouettes. No text, numbers, labels, grid lines, UI scene, watermark or ground landscape. Each cell contains exactly ONE isolated requested sprite. Strict uniform grid aligned to the full canvas, equal square cells. Every sprite must have generous TRANSPARENT gutters of at least 15% of the cell width on all sides, including between adjacent sprites; never cross a cell boundary. Keep feet or object base at about 82% of cell height. No external shadow extending into the gutters.\nCanvas aspect ratio 4:3, exactly FOUR columns and THREE rows = 12 cells, in this exact left-to-right row-major order:\nRow 1: (1) small thatched cottage with simple wooden door; (2) a second small cottage of the same size with terracotta roof and round window, only a cosmetic variant; (3) small farm plot with two rows of ripe golden wheat and low fence; (4) compact lumber shed with stacked cut logs.\nRow 2: (5) empty wooden arrow tower with small bow launcher, no human operator; (6) squat stone slingshot tower with wooden sling arm; (7) simple wood-and-stone slowing tower with a small pale-blue crystal; (8) empty circular stone tower foundation.\nRow 3: (9) closed wooden village gate between two short log posts, a freestanding sprite; (10) the same village gate with a broken plank and small cracks but the exact same footprint, no rubble outside its cell; (11) small unlit stone-ring hearth with stacked logs; (12) the same hearth lit with a modest warm flame.\nCottages and towers use consistent scale. Gate may be wider but never exceeds 70% of its cell. No character in any sprite. Exactly twelve objects, no duplicated or missing cells."
+    },
+    {
+      "key": "characters",
+      "path": "source/static/characters.png",
+      "spec": {
+        "key": "characters",
+        "cols": 4,
+        "rows": 3,
+        "transparent": true,
+        "prompt": "Generate a production SPRITE SHEET for a small original 2D human village / family inheritance / tower-defense game. A genuine transparent RGBA background, not a checkerboard drawing. Cozy Chinese countryside-inspired pixel-art style, top-down three-quarter view facing down, warm ochre thatch, terracotta, muted forest/olive greens, cream, dark brown outlines. Clear chunky pixel clusters, restrained flat colors and tiny highlights, no photorealism, no 3D, no fine noise, no glossy gradients. The final sprites are small mobile-game assets so prioritize strong readable silhouettes. No text, numbers, labels, grid lines, UI scene, watermark or ground landscape. Each cell contains exactly ONE isolated requested sprite. Strict uniform grid aligned to the full canvas, equal square cells. Every sprite must have generous TRANSPARENT gutters of at least 15% of the cell width on all sides, including between adjacent sprites; never cross a cell boundary. Keep feet or object base at about 82% of cell height. No external shadow extending into the gutters.\nCanvas aspect ratio 4:3, exactly FOUR columns and THREE rows = 12 cells. This sheet contains COMPLETE WHOLE HUMAN CHARACTER SPRITES, not detachable body parts, and not portraits. Friendly chibi villagers with heads about one third of body height, simple 2D pixel sprites, two feet visible on all standing adults. All standing characters face down toward viewer at a mild three-quarter angle. Same drawing scale; children are smaller than adults. No buildings. Exact row-major order:\nRow 1: (1) adult male A, short dark hair/topknot, cream shirt and brown trousers, neutral standing; (2) adult male B, straw hat and muted green work clothes, neutral standing; (3) adult female A, dark hair bun, cream blouse and terracotta skirt, neutral standing; (4) adult female B, dark ponytail and muted green skirt, neutral standing.\nRow 2: (5) young boy, short hair, ochre tunic, standing; (6) young girl, two small buns, terracotta tunic, standing; (7) a smiling swaddled infant wrapped in cream cloth, entirely isolated; (8) kindly grey-haired elder villager with short walking stick, neutral standing.\nRow 3: (9) adult male farmer in a single working pose holding a small hoe; (10) adult female farmer in a single working pose holding a small basket; (11) adult male woodworker in a single working pose holding a small hand axe; (12) adult female woodworker in a single working pose carrying a small bundle of logs.\nNo weapons except the small utilitarian hand axe, no action sequences, no animation strip, exactly one whole body per cell. No ground circles. Maintain huge transparent separation."
+      },
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-ce4be2ea-88e7-4478-87f7-9ea832356412.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "sha256": "e5e6152b9e232b3c17c63c655dd1756cb8a15e887522308cee064174384ef13f",
+      "bytes": 852777,
+      "brief": "Generate a production SPRITE SHEET for a small original 2D human village / family inheritance / tower-defense game. A genuine transparent RGBA background, not a checkerboard drawing. Cozy Chinese countryside-inspired pixel-art style, top-down three-quarter view facing down, warm ochre thatch, terracotta, muted forest/olive greens, cream, dark brown outlines. Clear chunky pixel clusters, restrained flat colors and tiny highlights, no photorealism, no 3D, no fine noise, no glossy gradients. The final sprites are small mobile-game assets so prioritize strong readable silhouettes. No text, numbers, labels, grid lines, UI scene, watermark or ground landscape. Each cell contains exactly ONE isolated requested sprite. Strict uniform grid aligned to the full canvas, equal square cells. Every sprite must have generous TRANSPARENT gutters of at least 15% of the cell width on all sides, including between adjacent sprites; never cross a cell boundary. Keep feet or object base at about 82% of cell height. No external shadow extending into the gutters.\nCanvas aspect ratio 4:3, exactly FOUR columns and THREE rows = 12 cells. This sheet contains COMPLETE WHOLE HUMAN CHARACTER SPRITES, not detachable body parts, and not portraits. Friendly chibi villagers with heads about one third of body height, simple 2D pixel sprites, two feet visible on all standing adults. All standing characters face down toward viewer at a mild three-quarter angle. Same drawing scale; children are smaller than adults. No buildings. Exact row-major order:\nRow 1: (1) adult male A, short dark hair/topknot, cream shirt and brown trousers, neutral standing; (2) adult male B, straw hat and muted green work clothes, neutral standing; (3) adult female A, dark hair bun, cream blouse and terracotta skirt, neutral standing; (4) adult female B, dark ponytail and muted green skirt, neutral standing.\nRow 2: (5) young boy, short hair, ochre tunic, standing; (6) young girl, two small buns, terracotta tunic, standing; (7) a smiling swaddled infant wrapped in cream cloth, entirely isolated; (8) kindly grey-haired elder villager with short walking stick, neutral standing.\nRow 3: (9) adult male farmer in a single working pose holding a small hoe; (10) adult female farmer in a single working pose holding a small basket; (11) adult male woodworker in a single working pose holding a small hand axe; (12) adult female woodworker in a single working pose carrying a small bundle of logs.\nNo weapons except the small utilitarian hand axe, no action sequences, no animation strip, exactly one whole body per cell. No ground circles. Maintain huge transparent separation."
+    },
+    {
+      "key": "enemies",
+      "path": "source/static/enemies.png",
+      "spec": {
+        "key": "enemies",
+        "cols": 3,
+        "rows": 2,
+        "transparent": true,
+        "prompt": "Generate a production SPRITE SHEET for a small original 2D human village / family inheritance / tower-defense game. A genuine transparent RGBA background, not a checkerboard drawing. Cozy Chinese countryside-inspired pixel-art style, top-down three-quarter view facing down, warm ochre thatch, terracotta, muted forest/olive greens, cream, dark brown outlines. Clear chunky pixel clusters, restrained flat colors and tiny highlights, no photorealism, no 3D, no fine noise, no glossy gradients. The final sprites are small mobile-game assets so prioritize strong readable silhouettes. No text, numbers, labels, grid lines, UI scene, watermark or ground landscape. Each cell contains exactly ONE isolated requested sprite. Strict uniform grid aligned to the full canvas, equal square cells. Every sprite must have generous TRANSPARENT gutters of at least 15% of the cell width on all sides, including between adjacent sprites; never cross a cell boundary. Keep feet or object base at about 82% of cell height. No external shadow extending into the gutters.\nCanvas aspect ratio 3:2, exactly THREE columns and TWO rows = 6 cells. Cute readable forest intruders for a NON-GRAPHIC cozy tower defense game. All creatures walk down toward the viewer at three-quarter angle. Consistent outlines and small-sprite scale. No scene backgrounds.\nRow 1: (1) small grey-purple mischievous forest imp raider carrying a tiny wooden club; (2) lean dark-grey running wolf with pointed ears and readable four-legged silhouette; (3) stout brown boar-like intruder with chunky dark stone shoulder armor.\nRow 2: (4) small forest shaman/disruptor wearing an olive hood with a wooden staff topped by a tiny amber charm; (5) a larger boar/ogre forest chief with a red cloth sash and simple wooden head crest, clearly recognizable as boss, no gore; (6) a guard cosmetic variant of the small grey-purple imp from cell 1, wearing a little ochre shoulder scarf, same body proportions and no new equipment.\nThe sixth creature is only a visual variant of the basic raider, not a sixth gameplay type. Each entire character, including staff, ears and feet, must stay inside the inner 70% of the cell. No labels, no extra creature, no health bars."
+      },
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-daab1e60-d5ec-4e24-ab6c-385c63a03145.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "5fda83c090bbfe04a7d6d40b57520509a275cc2bb0c435d384b933d1664e6161",
+      "bytes": 1728802,
+      "brief": "Generate a production SPRITE SHEET for a small original 2D human village / family inheritance / tower-defense game. A genuine transparent RGBA background, not a checkerboard drawing. Cozy Chinese countryside-inspired pixel-art style, top-down three-quarter view facing down, warm ochre thatch, terracotta, muted forest/olive greens, cream, dark brown outlines. Clear chunky pixel clusters, restrained flat colors and tiny highlights, no photorealism, no 3D, no fine noise, no glossy gradients. The final sprites are small mobile-game assets so prioritize strong readable silhouettes. No text, numbers, labels, grid lines, UI scene, watermark or ground landscape. Each cell contains exactly ONE isolated requested sprite. Strict uniform grid aligned to the full canvas, equal square cells. Every sprite must have generous TRANSPARENT gutters of at least 15% of the cell width on all sides, including between adjacent sprites; never cross a cell boundary. Keep feet or object base at about 82% of cell height. No external shadow extending into the gutters.\nCanvas aspect ratio 3:2, exactly THREE columns and TWO rows = 6 cells. Cute readable forest intruders for a NON-GRAPHIC cozy tower defense game. All creatures walk down toward the viewer at three-quarter angle. Consistent outlines and small-sprite scale. No scene backgrounds.\nRow 1: (1) small grey-purple mischievous forest imp raider carrying a tiny wooden club; (2) lean dark-grey running wolf with pointed ears and readable four-legged silhouette; (3) stout brown boar-like intruder with chunky dark stone shoulder armor.\nRow 2: (4) small forest shaman/disruptor wearing an olive hood with a wooden staff topped by a tiny amber charm; (5) a larger boar/ogre forest chief with a red cloth sash and simple wooden head crest, clearly recognizable as boss, no gore; (6) a guard cosmetic variant of the small grey-purple imp from cell 1, wearing a little ochre shoulder scarf, same body proportions and no new equipment.\nThe sixth creature is only a visual variant of the basic raider, not a sixth gameplay type. Each entire character, including staff, ears and feet, must stay inside the inner 70% of the cell. No labels, no extra creature, no health bars.",
+      "revisionNote": "当前路径为 image_gen 清理背景后的静态参考；运行敌人使用 animations 母版。"
+    },
+    {
+      "key": "terrain",
+      "path": "source/static/terrain.png",
+      "spec": null,
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-ef1af9dc-6403-484f-9b22-89165bd9a263.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "c812a7a88319a4972467f8719eb32908f8a650680b67816930fea5dbd3b7b7cb",
+      "bytes": 1328188,
+      "brief": "2 × 2 不透明地表：草地、土路、耕地、石地；无文字；俯视像素材质。"
+    },
+    {
+      "key": "decorations",
+      "path": "source/static/decorations.png",
+      "spec": null,
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-9420581c-64ad-4424-8ac2-8395ac1b2193.png",
+      "size": [
+        1774,
+        887
+      ],
+      "sha256": "1b094326fe722e0e4b4b31c5293a6eebf6b5b86672a45cd37334ded66007d0b8",
+      "bytes": 886861,
+      "brief": "4 × 2 透明装饰：橡树、松树、灌木、岩石、直围栏、转角围栏、火把、木堆。"
+    },
+    {
+      "key": "ui_icons",
+      "path": "source/static/ui_icons.png",
+      "spec": null,
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-6cdfb90a-2a2b-4c1e-8440-0d2fd6686b9a.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "dbfeb75a9e761d4dee2640d059731914d24f3872d2c302bddffe8d1bb8b97de7",
+      "bytes": 1819324,
+      "brief": "4 × 6 透明图标；资源、人口、建筑、家谱、塔型、控制与四季等 24 项，实际行裁切按 manifest。"
+    },
+    {
+      "key": "ui_panels",
+      "path": "source/static/ui_panels.png",
+      "spec": {
+        "key": "ui_panels",
+        "cols": 3,
+        "rows": 2,
+        "transparent": true,
+        "prompt": "Production game sprite sheet for warm cozy Chinese village pixel-art game, ochre cream olive terracotta, dark brown crisp outlines. Exact uniform equal-cell grid filling canvas. No text, letters, numbers, labels, watermark, grid lines or interface layouts. GENUINE TRANSPARENT RGBA background, NOT a colored or checkerboard background. No backdrop, shadows or glow outside each asset. Keep every asset completely isolated in its cell with generous 15 percent transparent gutters, no overlap. Landscape 3:2 canvas with 3 columns and 2 rows, EXACTLY 6 complete separate blank UI elements. Front view, no perspective. Flat quiet centers with no decorative patterns, modest pixel-corner border, no cracks or stray pixels. Row1: large square cream parchment panel with brown frame; cream parchment vertical character card with simple thin golden-brown frame (no portrait); wide golden yellow button with brown pixel border, blank. Row2: wide muted green button with brown pixel border, blank; wide desaturated grey-beige disabled button with brown pixel border, blank; small square empty portrait frame brown and gold, transparent center. All button proportions 2.5:1. Panel corners and edges should be designed for nine-slice stretching."
+      },
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-814d50df-e140-4045-a494-aa22147cea8a.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "921528cf90e20c6d1817d905411586101753360c46f09b8434669b4087b82f1e",
+      "bytes": 1248009,
+      "brief": "Production game sprite sheet for warm cozy Chinese village pixel-art game, ochre cream olive terracotta, dark brown crisp outlines. Exact uniform equal-cell grid filling canvas. No text, letters, numbers, labels, watermark, grid lines or interface layouts. GENUINE TRANSPARENT RGBA background, NOT a colored or checkerboard background. No backdrop, shadows or glow outside each asset. Keep every asset completely isolated in its cell with generous 15 percent transparent gutters, no overlap. Landscape 3:2 canvas with 3 columns and 2 rows, EXACTLY 6 complete separate blank UI elements. Front view, no perspective. Flat quiet centers with no decorative patterns, modest pixel-corner border, no cracks or stray pixels. Row1: large square cream parchment panel with brown frame; cream parchment vertical character card with simple thin golden-brown frame (no portrait); wide golden yellow button with brown pixel border, blank. Row2: wide muted green button with brown pixel border, blank; wide desaturated grey-beige disabled button with brown pixel border, blank; small square empty portrait frame brown and gold, transparent center. All button proportions 2.5:1. Panel corners and edges should be designed for nine-slice stretching."
+    },
+    {
+      "key": "effects",
+      "path": "source/static/effects.png",
+      "spec": {
+        "key": "effects",
+        "cols": 4,
+        "rows": 2,
+        "transparent": true,
+        "prompt": "Production game sprite sheet for warm cozy Chinese village pixel-art game, ochre cream olive terracotta, dark brown crisp outlines. Exact uniform equal-cell grid filling canvas. No text, letters, numbers, labels, watermark, grid lines or interface layouts. GENUINE TRANSPARENT RGBA background, NOT a colored or checkerboard background. No backdrop, shadows or glow outside each asset. Keep every asset completely isolated in its cell with generous 15 percent transparent gutters, no overlap. WIDE aspect 2:1, 4 columns by 2 rows EXACTLY 8 static visual effect sprites. Center each in inner 60 percent cell. No diffuse glow, crisp opaque graphic cores, no shadow. Row1: small wooden arrow pointing horizontally right; single round grey stone projectile; small round blue icy magic projectile; simple golden four-point impact spark. Row2: thin blue elliptical slow-effect ground ring, empty transparent center; two red tiny hearts together; golden three curved sound wave arcs facing right; golden upward level-up burst of three short rays and one diamond. These are eight individual static sprites, not an animation sequence."
+      },
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-022de607-3193-4b72-9468-519e49434839.png",
+      "size": [
+        1774,
+        887
+      ],
+      "sha256": "e84e5ff01763f754994e796e0f1ddf3b7f0d830fb5c200f33daf6b70aedb425a",
+      "bytes": 370764,
+      "brief": "Production game sprite sheet for warm cozy Chinese village pixel-art game, ochre cream olive terracotta, dark brown crisp outlines. Exact uniform equal-cell grid filling canvas. No text, letters, numbers, labels, watermark, grid lines or interface layouts. GENUINE TRANSPARENT RGBA background, NOT a colored or checkerboard background. No backdrop, shadows or glow outside each asset. Keep every asset completely isolated in its cell with generous 15 percent transparent gutters, no overlap. WIDE aspect 2:1, 4 columns by 2 rows EXACTLY 8 static visual effect sprites. Center each in inner 60 percent cell. No diffuse glow, crisp opaque graphic cores, no shadow. Row1: small wooden arrow pointing horizontally right; single round grey stone projectile; small round blue icy magic projectile; simple golden four-point impact spark. Row2: thin blue elliptical slow-effect ground ring, empty transparent center; two red tiny hearts together; golden three curved sound wave arcs facing right; golden upward level-up burst of three short rays and one diamond. These are eight individual static sprites, not an animation sequence.",
+      "revisionNote": "通过 image_gen 编辑移除白色纹理、半透明底色及投影；当前路径指向清理后的透明母版。"
+    },
+    {
+      "key": "anim_villagers_civilian",
+      "path": "source/animations/anim_villagers_civilian.png",
+      "spec": {
+        "key": "anim_villagers_civilian",
+        "cols": 4,
+        "rows": 4,
+        "transparent": true,
+        "prompt": "Create a production pixel-art CHARACTER ANIMATION SPRITE SHEET based on the supplied village characters. True transparent RGBA background, no checkerboard, no backdrop, no shadows, no glow, no text or labels. Warm cream/terracotta/olive Chinese village style with crisp dark brown pixel outlines. EXACT grid: FOUR COLUMNS and FOUR ROWS, square canvas. Each ROW is ONE character. Each of its FOUR columns is a distinct frame of ONE looping animation in order. Character size, face, outfit, outline color and foot baseline must stay consistent across all four frames. Each frame centered in its cell with at least 15 percent transparent padding, foot baseline at 84 percent cell height. No feet or tools cross cells. Animation motion must be visible at 64 pixels, not four copies. Pixel-art game asset, not a poster. Four-frame walk-in-place cycles facing camera at slight three-quarter top-down angle: frame1 left foot forward right arm forward; frame2 feet pass center body rises; frame3 right foot forward left arm forward; frame4 opposite feet pass center. Do not rotate camera between frames. Row1 reference top-row first man: cream shirt brown trousers topknot. Row2 reference top-row second man: olive shirt straw hat. Row3 reference top-row third woman: cream shirt terracotta skirt high bun. Row4 reference top-row fourth woman: olive dress ponytail. EXACTLY 16 full body sprites, four walking frames for each of these four adult characters."
+      },
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-c6274bd3-0eee-4111-b36b-03be28585a0c.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "a8e2f6911764c0a596817208364a94d95ef286a30c762a76d500f4f843c3e0ff",
+      "bytes": 1045383,
+      "brief": "Create a production pixel-art CHARACTER ANIMATION SPRITE SHEET based on the supplied village characters. True transparent RGBA background, no checkerboard, no backdrop, no shadows, no glow, no text or labels. Warm cream/terracotta/olive Chinese village style with crisp dark brown pixel outlines. EXACT grid: FOUR COLUMNS and FOUR ROWS, square canvas. Each ROW is ONE character. Each of its FOUR columns is a distinct frame of ONE looping animation in order. Character size, face, outfit, outline color and foot baseline must stay consistent across all four frames. Each frame centered in its cell with at least 15 percent transparent padding, foot baseline at 84 percent cell height. No feet or tools cross cells. Animation motion must be visible at 64 pixels, not four copies. Pixel-art game asset, not a poster. Four-frame walk-in-place cycles facing camera at slight three-quarter top-down angle: frame1 left foot forward right arm forward; frame2 feet pass center body rises; frame3 right foot forward left arm forward; frame4 opposite feet pass center. Do not rotate camera between frames. Row1 reference top-row first man: cream shirt brown trousers topknot. Row2 reference top-row second man: olive shirt straw hat. Row3 reference top-row third woman: cream shirt terracotta skirt high bun. Row4 reference top-row fourth woman: olive dress ponytail. EXACTLY 16 full body sprites, four walking frames for each of these four adult characters."
+    },
+    {
+      "key": "anim_villagers_family",
+      "path": "source/animations/anim_villagers_family.png",
+      "spec": {
+        "key": "anim_villagers_family",
+        "cols": 4,
+        "rows": 4,
+        "transparent": true,
+        "prompt": "Create a production pixel-art CHARACTER ANIMATION SPRITE SHEET based on the supplied village characters. True transparent RGBA background, no checkerboard, no backdrop, no shadows, no glow, no text or labels. Warm cream/terracotta/olive Chinese village style with crisp dark brown pixel outlines. EXACT grid: FOUR COLUMNS and FOUR ROWS, square canvas. Each ROW is ONE character. Each of its FOUR columns is a distinct frame of ONE looping animation in order. Character size, face, outfit, outline color and foot baseline must stay consistent across all four frames. Each frame centered in its cell with at least 15 percent transparent padding, foot baseline at 84 percent cell height. No feet or tools cross cells. Animation motion must be visible at 64 pixels, not four copies. Pixel-art game asset, not a poster. Row1: reference small ochre-clothed boy, FOUR walk-in-place frames left contact, passing, right contact, passing. Row2: reference terracotta-dressed girl with two small hair buns, FOUR walk-in-place frames. Row3: reference swaddled baby in cream wrap, FOUR gentle idle frames: centered, tilted a little left eyes blink, centered smile, tilted a little right; maintain wrap shape and size. Row4: reference elderly grey-haired man in brown with walking stick, FOUR idle frames breathing and moving free hand, fixed cane. Children smaller than adults, baby smaller again, but each row's scale is perfectly consistent. EXACTLY 16 full-body sprites."
+      },
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-947e51ff-fb2b-48a6-8da9-63fd824a6912.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "7890d543685be9b385e447bbaf4ebd20a852b642614d647499ed3cdb39388492",
+      "bytes": 1032906,
+      "brief": "Create a production pixel-art CHARACTER ANIMATION SPRITE SHEET based on the supplied village characters. True transparent RGBA background, no checkerboard, no backdrop, no shadows, no glow, no text or labels. Warm cream/terracotta/olive Chinese village style with crisp dark brown pixel outlines. EXACT grid: FOUR COLUMNS and FOUR ROWS, square canvas. Each ROW is ONE character. Each of its FOUR columns is a distinct frame of ONE looping animation in order. Character size, face, outfit, outline color and foot baseline must stay consistent across all four frames. Each frame centered in its cell with at least 15 percent transparent padding, foot baseline at 84 percent cell height. No feet or tools cross cells. Animation motion must be visible at 64 pixels, not four copies. Pixel-art game asset, not a poster. Row1: reference small ochre-clothed boy, FOUR walk-in-place frames left contact, passing, right contact, passing. Row2: reference terracotta-dressed girl with two small hair buns, FOUR walk-in-place frames. Row3: reference swaddled baby in cream wrap, FOUR gentle idle frames: centered, tilted a little left eyes blink, centered smile, tilted a little right; maintain wrap shape and size. Row4: reference elderly grey-haired man in brown with walking stick, FOUR idle frames breathing and moving free hand, fixed cane. Children smaller than adults, baby smaller again, but each row's scale is perfectly consistent. EXACTLY 16 full-body sprites."
+    },
+    {
+      "key": "anim_villagers_work",
+      "path": "source/animations/anim_villagers_work.png",
+      "spec": {
+        "key": "anim_villagers_work",
+        "cols": 4,
+        "rows": 4,
+        "transparent": true,
+        "prompt": "Create a production pixel-art CHARACTER ANIMATION SPRITE SHEET based on the supplied village characters. True transparent RGBA background, no checkerboard, no backdrop, no shadows, no glow, no text or labels. Warm cream/terracotta/olive Chinese village style with crisp dark brown pixel outlines. EXACT grid: FOUR COLUMNS and FOUR ROWS, square canvas. Each ROW is ONE character. Each of its FOUR columns is a distinct frame of ONE looping animation in order. Character size, face, outfit, outline color and foot baseline must stay consistent across all four frames. Each frame centered in its cell with at least 15 percent transparent padding, foot baseline at 84 percent cell height. No feet or tools cross cells. Animation motion must be visible at 64 pixels, not four copies. Pixel-art game asset, not a poster. Row1: reference cream-shirt topknot male farmer with hoe, FOUR visible farming frames: hoe low/front, lift halfway, hoe raised, hoe comes down; same body anchor, no soil/background. Row2: reference terracotta-skirt bun-haired female farmer with basket, FOUR visible harvesting frames: standing with basket, reach down, pull hand to basket, drop imaginary crop into basket. Row3: reference olive-shirt straw-hat male logger with axe, FOUR chopping frames: axe low, axe rising, axe high, axe swings down; no tree, no logs outside character. Row4: reference olive-dress ponytail female logger carrying a stack of three logs, FOUR walking-in-place frames alternating feet and slight body bob, logs remain same. EXACTLY 16 full-body sprites. Preserve reference clothing and recognizable characters; tools stay within cell."
+      },
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-e55d3b76-98a6-4f06-be42-84f5de90867f.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "8293a7829ca3d9f4c67bd5a76ccb66b1e7fd88e1a870ac013dee907716c69440",
+      "bytes": 1287315,
+      "brief": "Create a production pixel-art CHARACTER ANIMATION SPRITE SHEET based on the supplied village characters. True transparent RGBA background, no checkerboard, no backdrop, no shadows, no glow, no text or labels. Warm cream/terracotta/olive Chinese village style with crisp dark brown pixel outlines. EXACT grid: FOUR COLUMNS and FOUR ROWS, square canvas. Each ROW is ONE character. Each of its FOUR columns is a distinct frame of ONE looping animation in order. Character size, face, outfit, outline color and foot baseline must stay consistent across all four frames. Each frame centered in its cell with at least 15 percent transparent padding, foot baseline at 84 percent cell height. No feet or tools cross cells. Animation motion must be visible at 64 pixels, not four copies. Pixel-art game asset, not a poster. Row1: reference cream-shirt topknot male farmer with hoe, FOUR visible farming frames: hoe low/front, lift halfway, hoe raised, hoe comes down; same body anchor, no soil/background. Row2: reference terracotta-skirt bun-haired female farmer with basket, FOUR visible harvesting frames: standing with basket, reach down, pull hand to basket, drop imaginary crop into basket. Row3: reference olive-shirt straw-hat male logger with axe, FOUR chopping frames: axe low, axe rising, axe high, axe swings down; no tree, no logs outside character. Row4: reference olive-dress ponytail female logger carrying a stack of three logs, FOUR walking-in-place frames alternating feet and slight body bob, logs remain same. EXACTLY 16 full-body sprites. Preserve reference clothing and recognizable characters; tools stay within cell."
+    },
+    {
+      "key": "anim_enemies_a",
+      "path": "source/animations/anim_enemies_a.png",
+      "spec": {
+        "key": "anim_enemies_a",
+        "cols": 4,
+        "rows": 3,
+        "transparent": true,
+        "prompt": "Make a production pixel-art sprite animation sheet using the supplied enemy characters as appearance references. GENUINELY TRANSPARENT RGBA background. REMOVE all dark background, glow and ground shadow. Crisp isolated full-body sprites, warm brown/dark outline consistent with reference, no gore, no text/labels/checkerboard. Exact grid: FOUR COLUMNS by THREE ROWS, wide aspect 4:3. Each row ONE character, four columns FOUR successive WALK IN PLACE animation frames. Frame1 left contact, frame2 feet passing body raised, frame3 right contact, frame4 opposite feet passing. Front-facing/slight three-quarter top-down camera unchanged. Visible alternating limb motion, NOT four duplicates. Same character size/outfit/color/foot baseline across its four frames, centered in each equal cell with 16 percent transparent padding. No body or held weapon crosses a cell boundary. Row1 grey-purple little imp with topknot, cream fur collar, brown cloth and wooden club (reference top left). Row2 dark-grey wolf with cream mane and tail tip (reference top middle), four quadruped trotting frames with visibly alternating front legs and rear legs. Row3 armored brown boar with grey shoulder plates and tan ties (reference top right), four heavy quadruped walking frames. EXACTLY 12 sprites."
+      },
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-b7a025dd-e496-4c83-902d-1b6a0d5100c4.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "sha256": "f25ed144a0feda59e6aa50aa55951cb0c6bfd012f142e7c0181b758ad8e67715",
+      "bytes": 1183624,
+      "brief": "Make a production pixel-art sprite animation sheet using the supplied enemy characters as appearance references. GENUINELY TRANSPARENT RGBA background. REMOVE all dark background, glow and ground shadow. Crisp isolated full-body sprites, warm brown/dark outline consistent with reference, no gore, no text/labels/checkerboard. Exact grid: FOUR COLUMNS by THREE ROWS, wide aspect 4:3. Each row ONE character, four columns FOUR successive WALK IN PLACE animation frames. Frame1 left contact, frame2 feet passing body raised, frame3 right contact, frame4 opposite feet passing. Front-facing/slight three-quarter top-down camera unchanged. Visible alternating limb motion, NOT four duplicates. Same character size/outfit/color/foot baseline across its four frames, centered in each equal cell with 16 percent transparent padding. No body or held weapon crosses a cell boundary. Row1 grey-purple little imp with topknot, cream fur collar, brown cloth and wooden club (reference top left). Row2 dark-grey wolf with cream mane and tail tip (reference top middle), four quadruped trotting frames with visibly alternating front legs and rear legs. Row3 armored brown boar with grey shoulder plates and tan ties (reference top right), four heavy quadruped walking frames. EXACTLY 12 sprites."
+    },
+    {
+      "key": "anim_enemies_b",
+      "path": "source/animations/anim_enemies_b.png",
+      "spec": {
+        "key": "anim_enemies_b",
+        "cols": 4,
+        "rows": 3,
+        "transparent": true,
+        "prompt": "Make a production pixel-art sprite animation sheet using the supplied enemy characters as appearance references. GENUINELY TRANSPARENT RGBA background. REMOVE all dark background, glow and ground shadow. Crisp isolated full-body sprites, warm brown/dark outline consistent with reference, no gore, no text/labels/checkerboard. Exact grid: FOUR COLUMNS by THREE ROWS, wide aspect 4:3. Each row ONE character, four columns FOUR successive WALK IN PLACE animation frames. Frame1 left contact, frame2 feet passing body raised, frame3 right contact, frame4 opposite feet passing. Front-facing/slight three-quarter top-down camera unchanged. Visible alternating limb motion, NOT four duplicates. Same character size/outfit/color/foot baseline across its four frames, centered in each equal cell with 16 percent transparent padding. No body or held weapon crosses a cell boundary. Row1 green hooded small shaman with crooked wooden staff and amber hanging charm (reference bottom left), four shuffling steps while holding staff. Row2 large heavy brown boar/ogre chief with grey shoulder plates, wood crown and red waist sash (reference bottom middle), four lumbering biped walking frames. Row3 grey-purple little imp guard with topknot and ochre scarf (reference bottom right), four walking frames alternating limbs. EXACTLY 12 sprites. Chief has same scale within row and visually larger silhouette than shaman and imp."
+      },
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-8094b3ad-0eb9-453c-8104-e1982f855499.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "sha256": "81b1733032e86831d6f67cc0631f4ebf81d0fb0b1d8ef300363117abc18d944c",
+      "bytes": 1388599,
+      "brief": "Make a production pixel-art sprite animation sheet using the supplied enemy characters as appearance references. GENUINELY TRANSPARENT RGBA background. REMOVE all dark background, glow and ground shadow. Crisp isolated full-body sprites, warm brown/dark outline consistent with reference, no gore, no text/labels/checkerboard. Exact grid: FOUR COLUMNS by THREE ROWS, wide aspect 4:3. Each row ONE character, four columns FOUR successive WALK IN PLACE animation frames. Frame1 left contact, frame2 feet passing body raised, frame3 right contact, frame4 opposite feet passing. Front-facing/slight three-quarter top-down camera unchanged. Visible alternating limb motion, NOT four duplicates. Same character size/outfit/color/foot baseline across its four frames, centered in each equal cell with 16 percent transparent padding. No body or held weapon crosses a cell boundary. Row1 green hooded small shaman with crooked wooden staff and amber hanging charm (reference bottom left), four shuffling steps while holding staff. Row2 large heavy brown boar/ogre chief with grey shoulder plates, wood crown and red waist sash (reference bottom middle), four lumbering biped walking frames. Row3 grey-purple little imp guard with topknot and ochre scarf (reference bottom right), four walking frames alternating limbs. EXACTLY 12 sprites. Chief has same scale within row and visually larger silhouette than shaman and imp."
+    }
+  ],
+  "exportMethod": "ImageMagick mechanical crop/nearest-neighbor size export/atlas packing; animation frames retain uniform per-action canvas and no atlas trim."
+}

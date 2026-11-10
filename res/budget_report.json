@@ -1,0 +1,101 @@
+{
+  "generatedAt": "2026-11-10",
+  "runtimeAssetCount": 134,
+  "animationCount": 18,
+  "animationFrames": 72,
+  "categoryStats": {
+    "buildings": {
+      "count": 12,
+      "bytes": 236318
+    },
+    "terrain": {
+      "count": 4,
+      "bytes": 26531
+    },
+    "decorations": {
+      "count": 8,
+      "bytes": 91386
+    },
+    "ui/icons": {
+      "count": 24,
+      "bytes": 87784
+    },
+    "effects": {
+      "count": 8,
+      "bytes": 10864
+    },
+    "ui/panels": {
+      "count": 6,
+      "bytes": 54701
+    },
+    "characters": {
+      "count": 48,
+      "bytes": 296679
+    },
+    "enemies": {
+      "count": 24,
+      "bytes": 178655
+    }
+  },
+  "atlasPages": [
+    {
+      "id": "world_0",
+      "path": "atlases/world_0.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 838222,
+      "sha256": "8cb164bd8d4239b34c3348cfa7c708873f43317b52ad20997144cb70980d5770",
+      "group": "world"
+    },
+    {
+      "id": "ui_0",
+      "path": "atlases/ui_0.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 159527,
+      "sha256": "25a8ce57cd2fa8534396027b2761b53635cdde32f96f39df3f6c729e956a955e",
+      "group": "ui"
+    }
+  ],
+  "selectedRuntime": {
+    "mode": "atlas_only",
+    "pngBytes": 997749,
+    "metadataBytes": 64673,
+    "totalBytes": 1062422,
+    "files": [
+      "atlases/world_0.png",
+      "atlases/ui_0.png",
+      "atlases/frames.json",
+      "animations.json"
+    ]
+  },
+  "budgets": {
+    "worldPng": 900000,
+    "uiAndEffectsPng": 200000,
+    "fullPackageTarget": 3500000
+  },
+  "sourceBytes": 15718639,
+  "preservedExistingIcon": {
+    "path": "icon.png",
+    "bytes": 1457791,
+    "excludedFromRuntime": true
+  },
+  "limitations": [
+    "Candidate art, not yet imported into Laya or tested on device",
+    "Terrain patches have not been certified seamless",
+    "Generated static references and preview media are excluded from package"
+  ],
+  "budgetComparison": {
+    "worldPngBytes": 838222,
+    "uiAndEffectsPngBytes": 159527
+  },
+  "brandingIcon": {
+    "path": "branding/app_icon_144.png",
+    "width": 144,
+    "height": 144,
+    "bytes": 37432,
+    "sha256": "cc127b59585dc38ac8fe4dcc7747c46775ca62160860d484bf383eeaf2cf91e3",
+    "usage": "platform upload icon; excluded from runtime",
+    "source": "doc/design/assets/游戏图标_144.png"
+  }
+}

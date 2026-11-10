@@ -1,0 +1,3056 @@
+{
+  "format": "daidai-village-rects",
+  "version": 1,
+  "coordinateSystem": "top-left pixels",
+  "padding": 2,
+  "rotated": false,
+  "trimmed": false,
+  "pages": [
+    {
+      "id": "world_0",
+      "path": "atlases/world_0.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 838222,
+      "sha256": "8cb164bd8d4239b34c3348cfa7c708873f43317b52ad20997144cb70980d5770",
+      "group": "world"
+    },
+    {
+      "id": "ui_0",
+      "path": "atlases/ui_0.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 159527,
+      "sha256": "25a8ce57cd2fa8534396027b2761b53635cdde32f96f39df3f6c729e956a955e",
+      "group": "ui"
+    }
+  ],
+  "frames": {
+    "building_gate_closed": {
+      "page": "world_0",
+      "rect": {
+        "x": 2,
+        "y": 2,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 80,
+        "y": 150
+      },
+      "nineSlice": null
+    },
+    "building_gate_damaged": {
+      "page": "world_0",
+      "rect": {
+        "x": 166,
+        "y": 2,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 80,
+        "y": 150
+      },
+      "nineSlice": null
+    },
+    "building_farm": {
+      "page": "world_0",
+      "rect": {
+        "x": 330,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 120
+      },
+      "nineSlice": null
+    },
+    "building_house_terracotta": {
+      "page": "world_0",
+      "rect": {
+        "x": 462,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 120
+      },
+      "nineSlice": null
+    },
+    "building_house_thatched": {
+      "page": "world_0",
+      "rect": {
+        "x": 594,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 120
+      },
+      "nineSlice": null
+    },
+    "building_lumber_shed": {
+      "page": "world_0",
+      "rect": {
+        "x": 726,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 120
+      },
+      "nineSlice": null
+    },
+    "building_tower_arrow": {
+      "page": "world_0",
+      "rect": {
+        "x": 858,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 120
+      },
+      "nineSlice": null
+    },
+    "building_tower_pad": {
+      "page": "world_0",
+      "rect": {
+        "x": 330,
+        "y": 134,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 120
+      },
+      "nineSlice": null
+    },
+    "building_tower_slow": {
+      "page": "world_0",
+      "rect": {
+        "x": 2,
+        "y": 166,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 120
+      },
+      "nineSlice": null
+    },
+    "building_tower_stone": {
+      "page": "world_0",
+      "rect": {
+        "x": 134,
+        "y": 166,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 120
+      },
+      "nineSlice": null
+    },
+    "deco_fence_corner": {
+      "page": "world_0",
+      "rect": {
+        "x": 462,
+        "y": 134,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 120
+      },
+      "nineSlice": null
+    },
+    "deco_fence_straight": {
+      "page": "world_0",
+      "rect": {
+        "x": 594,
+        "y": 134,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 120
+      },
+      "nineSlice": null
+    },
+    "deco_tree_oak": {
+      "page": "world_0",
+      "rect": {
+        "x": 726,
+        "y": 134,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 120
+      },
+      "nineSlice": null
+    },
+    "deco_tree_pine": {
+      "page": "world_0",
+      "rect": {
+        "x": 858,
+        "y": 134,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 120
+      },
+      "nineSlice": null
+    },
+    "building_hearth_lit": {
+      "page": "world_0",
+      "rect": {
+        "x": 2,
+        "y": 298,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 90
+      },
+      "nineSlice": null
+    },
+    "building_hearth_unlit": {
+      "page": "world_0",
+      "rect": {
+        "x": 2,
+        "y": 398,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 90
+      },
+      "nineSlice": null
+    },
+    "deco_bush": {
+      "page": "world_0",
+      "rect": {
+        "x": 2,
+        "y": 498,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 90
+      },
+      "nineSlice": null
+    },
+    "deco_log_pile": {
+      "page": "world_0",
+      "rect": {
+        "x": 2,
+        "y": 598,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 90
+      },
+      "nineSlice": null
+    },
+    "deco_rocks": {
+      "page": "world_0",
+      "rect": {
+        "x": 2,
+        "y": 698,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 90
+      },
+      "nineSlice": null
+    },
+    "deco_torch": {
+      "page": "world_0",
+      "rect": {
+        "x": 2,
+        "y": 798,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 90
+      },
+      "nineSlice": null
+    },
+    "enemy_chief_walk_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 2,
+        "y": 898,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_chief_walk_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 102,
+        "y": 298,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_chief_walk_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 102,
+        "y": 398,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_chief_walk_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 102,
+        "y": 498,
+        "w": 96,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_armored_walk_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 102,
+        "y": 598,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_armored_walk_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 102,
+        "y": 682,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_armored_walk_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 102,
+        "y": 766,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_armored_walk_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 102,
+        "y": 850,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_disruptor_walk_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 102,
+        "y": 934,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_disruptor_walk_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 186,
+        "y": 598,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_disruptor_walk_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 202,
+        "y": 298,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_disruptor_walk_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 202,
+        "y": 382,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_runner_walk_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 202,
+        "y": 466,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_runner_walk_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 186,
+        "y": 682,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_runner_walk_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 186,
+        "y": 766,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_runner_walk_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 186,
+        "y": 850,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_idle_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 186,
+        "y": 934,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_idle_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 270,
+        "y": 550,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_idle_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 286,
+        "y": 266,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_idle_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 286,
+        "y": 350,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_harvest_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 286,
+        "y": 434,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_harvest_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 270,
+        "y": 634,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_harvest_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 270,
+        "y": 718,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_harvest_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 270,
+        "y": 802,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 270,
+        "y": 886,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 354,
+        "y": 518,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 370,
+        "y": 266,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 370,
+        "y": 350,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_b_carry_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 370,
+        "y": 434,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_b_carry_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 354,
+        "y": 602,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_b_carry_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 354,
+        "y": 686,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_b_carry_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 354,
+        "y": 770,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_b_walk_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 354,
+        "y": 854,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_b_walk_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 354,
+        "y": 938,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_b_walk_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 438,
+        "y": 518,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_b_walk_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 454,
+        "y": 266,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_farm_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 454,
+        "y": 350,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_farm_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 454,
+        "y": 434,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_farm_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 438,
+        "y": 602,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_farm_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 438,
+        "y": 686,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 438,
+        "y": 770,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 438,
+        "y": 854,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 438,
+        "y": 938,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 538,
+        "y": 266,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_b_chop_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 622,
+        "y": 266,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_b_chop_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 706,
+        "y": 266,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_b_chop_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 790,
+        "y": 266,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_b_chop_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 874,
+        "y": 266,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_b_walk_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 538,
+        "y": 350,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_b_walk_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 622,
+        "y": 350,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_b_walk_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 706,
+        "y": 350,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_b_walk_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 790,
+        "y": 350,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_guard_walk_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 958,
+        "y": 266,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_guard_walk_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 958,
+        "y": 334,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_guard_walk_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 874,
+        "y": 350,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_guard_walk_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 942,
+        "y": 402,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_walk_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 874,
+        "y": 418,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_walk_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 942,
+        "y": 470,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_walk_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 538,
+        "y": 434,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_walk_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 606,
+        "y": 434,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "tile_ground_dirt": {
+      "page": "world_0",
+      "rect": {
+        "x": 674,
+        "y": 434,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 32
+      },
+      "nineSlice": null
+    },
+    "tile_ground_grass": {
+      "page": "world_0",
+      "rect": {
+        "x": 742,
+        "y": 434,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 32
+      },
+      "nineSlice": null
+    },
+    "tile_ground_soil": {
+      "page": "world_0",
+      "rect": {
+        "x": 810,
+        "y": 486,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 32
+      },
+      "nineSlice": null
+    },
+    "tile_ground_stone": {
+      "page": "world_0",
+      "rect": {
+        "x": 878,
+        "y": 538,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 32
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 946,
+        "y": 538,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 538,
+        "y": 502,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 606,
+        "y": 502,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 674,
+        "y": 502,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 742,
+        "y": 502,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 810,
+        "y": 554,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 878,
+        "y": 606,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 946,
+        "y": 606,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_baby_idle_00": {
+      "page": "world_0",
+      "rect": {
+        "x": 810,
+        "y": 434,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 46
+      },
+      "nineSlice": null
+    },
+    "villager_baby_idle_01": {
+      "page": "world_0",
+      "rect": {
+        "x": 878,
+        "y": 486,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 46
+      },
+      "nineSlice": null
+    },
+    "villager_baby_idle_02": {
+      "page": "world_0",
+      "rect": {
+        "x": 270,
+        "y": 970,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 46
+      },
+      "nineSlice": null
+    },
+    "villager_baby_idle_03": {
+      "page": "world_0",
+      "rect": {
+        "x": 266,
+        "y": 166,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 46
+      },
+      "nineSlice": null
+    },
+    "panel_parchment": {
+      "page": "ui_0",
+      "rect": {
+        "x": 2,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 64
+      },
+      "nineSlice": {
+        "top": 20,
+        "right": 20,
+        "bottom": 20,
+        "left": 20,
+        "repeat": 0,
+        "order": [
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "repeat"
+        ]
+      }
+    },
+    "panel_card": {
+      "page": "ui_0",
+      "rect": {
+        "x": 2,
+        "y": 134,
+        "w": 96,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 128
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 64
+      },
+      "nineSlice": {
+        "top": 12,
+        "right": 12,
+        "bottom": 12,
+        "left": 12,
+        "repeat": 0,
+        "order": [
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "repeat"
+        ]
+      }
+    },
+    "panel_button_disabled": {
+      "page": "ui_0",
+      "rect": {
+        "x": 2,
+        "y": 266,
+        "w": 128,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 24
+      },
+      "nineSlice": {
+        "top": 12,
+        "right": 12,
+        "bottom": 12,
+        "left": 12,
+        "repeat": 0,
+        "order": [
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "repeat"
+        ]
+      }
+    },
+    "panel_button_gold": {
+      "page": "ui_0",
+      "rect": {
+        "x": 102,
+        "y": 134,
+        "w": 128,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 24
+      },
+      "nineSlice": {
+        "top": 12,
+        "right": 12,
+        "bottom": 12,
+        "left": 12,
+        "repeat": 0,
+        "order": [
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "repeat"
+        ]
+      }
+    },
+    "panel_button_green": {
+      "page": "ui_0",
+      "rect": {
+        "x": 102,
+        "y": 186,
+        "w": 128,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 64,
+        "y": 24
+      },
+      "nineSlice": {
+        "top": 12,
+        "right": 12,
+        "bottom": 12,
+        "left": 12,
+        "repeat": 0,
+        "order": [
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "repeat"
+        ]
+      }
+    },
+    "panel_portrait_frame": {
+      "page": "ui_0",
+      "rect": {
+        "x": 134,
+        "y": 2,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 32
+      },
+      "nineSlice": {
+        "top": 14,
+        "right": 14,
+        "bottom": 14,
+        "left": 14,
+        "repeat": 0,
+        "order": [
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "repeat"
+        ]
+      }
+    },
+    "fx_arrow": {
+      "page": "ui_0",
+      "rect": {
+        "x": 134,
+        "y": 70,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "fx_hearts": {
+      "page": "ui_0",
+      "rect": {
+        "x": 186,
+        "y": 70,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "fx_hit": {
+      "page": "ui_0",
+      "rect": {
+        "x": 202,
+        "y": 2,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "fx_ice": {
+      "page": "ui_0",
+      "rect": {
+        "x": 2,
+        "y": 318,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "fx_level_up": {
+      "page": "ui_0",
+      "rect": {
+        "x": 2,
+        "y": 370,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "fx_slow_ring": {
+      "page": "ui_0",
+      "rect": {
+        "x": 2,
+        "y": 422,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "fx_sound_wave": {
+      "page": "ui_0",
+      "rect": {
+        "x": 54,
+        "y": 318,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "fx_stone": {
+      "page": "ui_0",
+      "rect": {
+        "x": 54,
+        "y": 370,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_arrow": {
+      "page": "ui_0",
+      "rect": {
+        "x": 54,
+        "y": 422,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_autumn": {
+      "page": "ui_0",
+      "rect": {
+        "x": 106,
+        "y": 318,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_baby": {
+      "page": "ui_0",
+      "rect": {
+        "x": 134,
+        "y": 238,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_bell": {
+      "page": "ui_0",
+      "rect": {
+        "x": 106,
+        "y": 370,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_build": {
+      "page": "ui_0",
+      "rect": {
+        "x": 106,
+        "y": 422,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_close": {
+      "page": "ui_0",
+      "rect": {
+        "x": 158,
+        "y": 290,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_family": {
+      "page": "ui_0",
+      "rect": {
+        "x": 186,
+        "y": 238,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_food": {
+      "page": "ui_0",
+      "rect": {
+        "x": 234,
+        "y": 122,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_heart": {
+      "page": "ui_0",
+      "rect": {
+        "x": 234,
+        "y": 174,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_house": {
+      "page": "ui_0",
+      "rect": {
+        "x": 238,
+        "y": 54,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_logging": {
+      "page": "ui_0",
+      "rect": {
+        "x": 254,
+        "y": 2,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_pause": {
+      "page": "ui_0",
+      "rect": {
+        "x": 158,
+        "y": 342,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_play": {
+      "page": "ui_0",
+      "rect": {
+        "x": 158,
+        "y": 394,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_population": {
+      "page": "ui_0",
+      "rect": {
+        "x": 158,
+        "y": 446,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_settings": {
+      "page": "ui_0",
+      "rect": {
+        "x": 306,
+        "y": 2,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_shield": {
+      "page": "ui_0",
+      "rect": {
+        "x": 358,
+        "y": 2,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_slow": {
+      "page": "ui_0",
+      "rect": {
+        "x": 410,
+        "y": 2,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_spring": {
+      "page": "ui_0",
+      "rect": {
+        "x": 462,
+        "y": 2,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_stone": {
+      "page": "ui_0",
+      "rect": {
+        "x": 290,
+        "y": 54,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_summer": {
+      "page": "ui_0",
+      "rect": {
+        "x": 342,
+        "y": 54,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_upgrade": {
+      "page": "ui_0",
+      "rect": {
+        "x": 394,
+        "y": 54,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_view": {
+      "page": "ui_0",
+      "rect": {
+        "x": 446,
+        "y": 54,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_winter": {
+      "page": "ui_0",
+      "rect": {
+        "x": 210,
+        "y": 290,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "icon_wood": {
+      "page": "ui_0",
+      "rect": {
+        "x": 238,
+        "y": 226,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    }
+  }
+}
