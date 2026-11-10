@@ -1,12 +1,12 @@
 {
   "generatedAt": "2026-11-10",
-  "runtimeAssetCount": 134,
-  "animationCount": 18,
-  "animationFrames": 72,
+  "runtimeAssetCount": 184,
+  "animationCount": 30,
+  "animationFrames": 120,
   "categoryStats": {
     "buildings": {
-      "count": 12,
-      "bytes": 236318
+      "count": 13,
+      "bytes": 256543
     },
     "terrain": {
       "count": 4,
@@ -25,12 +25,12 @@
       "bytes": 10864
     },
     "ui/panels": {
-      "count": 6,
-      "bytes": 54701
+      "count": 7,
+      "bytes": 48757
     },
     "characters": {
-      "count": 48,
-      "bytes": 296679
+      "count": 96,
+      "bytes": 606351
     },
     "enemies": {
       "count": 24,
@@ -41,27 +41,39 @@
     {
       "id": "world_0",
       "path": "atlases/world_0.png",
+      "runtimeFile": "world_0.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 838222,
-      "sha256": "8cb164bd8d4239b34c3348cfa7c708873f43317b52ad20997144cb70980d5770",
+      "bytes": 1158851,
+      "sha256": "f9437a1758a95c4ffb160a59c3a7e761d1bb1465532c80d7da8e3058173a2d75",
       "group": "world"
     },
     {
       "id": "ui_0",
       "path": "atlases/ui_0.png",
+      "runtimeFile": "ui_0.png",
       "width": 512,
       "height": 512,
-      "bytes": 159527,
-      "sha256": "25a8ce57cd2fa8534396027b2761b53635cdde32f96f39df3f6c729e956a955e",
+      "bytes": 150994,
+      "sha256": "65680c3a4d8e512528963c395f1f73d4af742d05fd15f56a65d44f7776e17663",
       "group": "ui"
     }
   ],
+  "packing": {
+    "sourceCanvasPixels": 1171456,
+    "atlasContentPixels": 982957,
+    "savedContentPixels": 188499,
+    "savedContentPercent": 16.09,
+    "trimmedAssetCount": 159,
+    "alphaThreshold": 0,
+    "nineSlicePreserved": true,
+    "paddingPerSide": 2
+  },
   "selectedRuntime": {
     "mode": "atlas_only",
-    "pngBytes": 997749,
-    "metadataBytes": 64673,
-    "totalBytes": 1062422,
+    "pngBytes": 1309845,
+    "metadataBytes": 96255,
+    "totalBytes": 1406100,
     "files": [
       "atlases/world_0.png",
       "atlases/ui_0.png",
@@ -70,32 +82,15 @@
     ]
   },
   "budgets": {
-    "worldPng": 900000,
-    "uiAndEffectsPng": 200000,
     "fullPackageTarget": 3500000
   },
-  "sourceBytes": 15718639,
-  "preservedExistingIcon": {
-    "path": "icon.png",
-    "bytes": 1457791,
-    "excludedFromRuntime": true
+  "sourceBytes": 22081735,
+  "budgetComparison": {
+    "worldPngBytes": 1158851,
+    "uiAndEffectsPngBytes": 150994
   },
   "limitations": [
-    "Candidate art, not yet imported into Laya or tested on device",
-    "Terrain patches have not been certified seamless",
-    "Generated static references and preview media are excluded from package"
-  ],
-  "budgetComparison": {
-    "worldPngBytes": 838222,
-    "uiAndEffectsPngBytes": 159527
-  },
-  "brandingIcon": {
-    "path": "branding/app_icon_144.png",
-    "width": 144,
-    "height": 144,
-    "bytes": 37432,
-    "sha256": "cc127b59585dc38ac8fe4dcc7747c46775ca62160860d484bf383eeaf2cf91e3",
-    "usage": "platform upload icon; excluded from runtime",
-    "source": "doc/design/assets/游戏图标_144.png"
-  }
+    "Atlas content-pixel savings are not identical to PNG byte savings",
+    "No real phone or platform upload measurement"
+  ]
 }

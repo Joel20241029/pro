@@ -14,7 +14,11 @@
       "~/packages/*": [
         "./library/packages/*"
       ]
-    }
+    },
+    "lib": [
+      "es2017",
+      "dom"
+    ]
   },
   "include": [
     "./assets",

@@ -2,7 +2,7 @@
 
 日期：2026-11-10。候选资源版本：v0.2。技术文档见 [图片与序列帧规范](../doc/tech/02_图片与序列帧资源规范.md)。
 
-已生成 134 张候选运行 PNG，包含 18 组、72 张人物与敌人动画帧，每组 4 帧。已分类、切片并合成 2 页图集，尚未导入 Laya。
+已生成 134 张候选运行 PNG，包含 18 组、72 张人物与敌人动画帧，每组 4 帧。已分类、切片并合成 2 页图集，现已按运行白名单导入 Laya，并在微信开发者工具实际显示。
 
 ## 先看效果
 
@@ -56,4 +56,4 @@ frames.json 是本项目自定义表，不是 Laya 原生 atlas 格式。按 PNG
 - [source/generation_records.json](source/generation_records.json)：生成来源与母版信息。
 - [144 × 144 上传图标](branding/app_icon_144.png)：PNG，37,432 字节，小于 2 MB；复制自已有设计资源。
 
-原有 icon.png 保持原样。branding 图标用于平台上传，不在运行白名单中。所有新资源状态为 generated_candidate_not_imported；地表尚未按严格无缝纹理验收，AI 动作细节仍需在实际尺寸检查。
+原有 icon.png 保持原样。branding 图标用于平台上传，不在运行白名单中。运行帧状态为 imported_via_atlas，散图仅保留为资源源文件；地表尚未按严格无缝纹理验收，AI 动作细节仍需在实际尺寸检查。

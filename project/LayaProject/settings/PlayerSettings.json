@@ -1,9 +1,14 @@
 {
-    "modules": {
-        "laya.ui": true,
-        "laya.d3": true
-    },
-    "addons": {
-        "laya.ui": "ui2"
-    }
+  "modules": {
+    "laya.ui": false,
+    "laya.d3": false
+  },
+  "resolution": {
+    "designWidth": 720,
+    "designHeight": 1280,
+    "scaleMode": "fixedwidth",
+    "screenMode": "vertical",
+    "alignH": "center",
+    "alignV": "middle"
+  }
 }

@@ -1,4 +1,17 @@
 {
-  "name": "LayaProject1",
-  "startupScene": "res://9b931ecf-fde9-44dd-acf3-15f8dc807965"
+  "name": "DaiDaiVillage",
+  "startupScene": "res://9b931ecf-fde9-44dd-acf3-15f8dc807965",
+  "displayName": "代代守村",
+  "useCompressedEngine": true,
+  "minifyJS": true,
+  "sourcemap": false,
+  "enableSubpackages": false,
+  "enableWasmSubpackage": false,
+  "copyBinFiles": false,
+  "wxgame": {
+    "appid": "wx46e59dc5dc95b52f",
+    "renderMode": "webgl",
+    "enginePlugin": false,
+    "openDataContext": false
+  }
 }
