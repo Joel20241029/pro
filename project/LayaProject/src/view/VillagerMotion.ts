@@ -6,6 +6,7 @@ interface Visit { at: GroundPoint; seconds: number; working: boolean; }
 export type WalkDirection = "UP" | "DOWN" | "LEFT" | "RIGHT";
 /** 斜向拐弯时使用 15% 主轴滞回，减少方向反复切换；只影响朝向，不改速度与路线。 */
 export function walkDirection(dx: number, dy: number, previous: WalkDirection): WalkDirection {
+    if (dx === 0 && dy === 0) return previous;
     const horizontal = previous === "LEFT" || previous === "RIGHT", threshold = 1.15;
     if (horizontal ? Math.abs(dy) > Math.abs(dx) * threshold : Math.abs(dy) >= Math.abs(dx) / threshold) return dy < 0 ? "UP" : "DOWN";
     return dx < 0 ? "LEFT" : "RIGHT";

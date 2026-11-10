@@ -26,7 +26,7 @@
     },
     "ui/panels": {
       "count": 7,
-      "bytes": 48757
+      "bytes": 90511
     },
     "characters": {
       "count": 96,
@@ -54,8 +54,8 @@
       "runtimeFile": "ui_0.png",
       "width": 512,
       "height": 512,
-      "bytes": 150994,
-      "sha256": "65680c3a4d8e512528963c395f1f73d4af742d05fd15f56a65d44f7776e17663",
+      "bytes": 195342,
+      "sha256": "a4132d33e4e29d7ea0b0ea5a1f12b3e7c306be2d5c23ca110e395b38166db52f",
       "group": "ui"
     }
   ],
@@ -71,9 +71,9 @@
   },
   "selectedRuntime": {
     "mode": "atlas_only",
-    "pngBytes": 1309845,
-    "metadataBytes": 96255,
-    "totalBytes": 1406100,
+    "pngBytes": 1354193,
+    "metadataBytes": 96132,
+    "totalBytes": 1450325,
     "files": [
       "atlases/world_0.png",
       "atlases/ui_0.png",
@@ -87,7 +87,7 @@
   "sourceBytes": 22081735,
   "budgetComparison": {
     "worldPngBytes": 1158851,
-    "uiAndEffectsPngBytes": 150994
+    "uiAndEffectsPngBytes": 195342
   },
   "limitations": [
     "Atlas content-pixel savings are not identical to PNG byte savings",

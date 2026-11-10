@@ -25,7 +25,7 @@ for (const a of recipe.assets) {
     const out = path.join(root, a.path); fs.mkdirSync(path.dirname(out), { recursive: true });
     const crop = a.sourceCropWithinCell;
     run([path.join(root, a.sourceSheet), '-crop', geometry(a.sourceRect), '+repage', '-crop', geometry(crop), '+repage',
-        '-filter', 'point', '-resize', `${a.width - a.fitPadding}x${a.height - a.fitPadding}`,
+        '-filter', 'point', '-resize', `${a.width - a.fitPadding}x${a.height - a.fitPadding}${a.resizeMode === 'stretch' ? '!' : ''}`,
         '-background', 'none', '-gravity', 'center', '-extent', `${a.width}x${a.height}`, '-strip', out]);
     const pixels = decode(out);
     if (pixels.length !== a.width * a.height * 4) throw new Error(`画布尺寸不符：${a.id}`);
@@ -111,13 +111,18 @@ for (const clip of recipe.animations.animations) {
     if (!clip.frameIds.includes(clip.restFrame)) throw new Error('静止帧不在动作中：' + clip.id);
     if (new Set(list.map(a => a.sha256)).size < 2) throw new Error('动画帧完全相同：' + clip.id);
 }
-for (const map of Object.values(recipe.animations.walkDirections)) for (const value of Object.values(map)) if (!recipe.animations.animations.some(a => a.id === value.clip)) throw new Error('方向引用不存在：' + value.clip);
+for (const [character, map] of Object.entries(recipe.animations.walkDirections)) {
+    const directionClips = ['DOWN', 'UP', 'RIGHT', 'LEFT'].map(direction => recipe.animations.animations.find(a => a.id === map[direction]?.clip));
+    if (directionClips.some(c => !c)) throw new Error('四方向引用不完整：' + character);
+    const first = directionClips[0];
+    if (directionClips.some(c => c.canvas.w !== first.canvas.w || c.canvas.h !== first.canvas.h || c.pivot.x !== first.pivot.x || c.pivot.y !== first.pivot.y || c.frameCount !== first.frameCount)) throw new Error('四方向画布/足底/帧数不一致：' + character);
+}
 write('atlases/frames.json', { format: 'daidai-village-rects', version: 2, coordinateSystem: 'top-left pixels', padding, rotated: false, trimmed: true, trimAlphaThreshold: 0, pages, frames });
 write('animations.json', recipe.animations);
 const publicAssets = assets.map(({ _trim, _pixels, _packedFile, ...a }) => a);
 const runtimeFiles = [...pages.map(p => p.path), 'atlases/frames.json', 'animations.json'];
 write('manifest.json', { version: 2, status: 'imported_in_wechat_prototype', preferredRuntimeMode: 'atlas_only', runtimeWhitelist: runtimeFiles, assetCount: assets.length, assets: publicAssets,
-    externalAssets: recipe.externalAssets, engineImport: { directory: 'project/LayaProject/assets/resources/village', mode: 'trimmed_shared_atlas', runtime: 'WeChat Mini Game', verification: 'visual_v2_devtools_pending; device_pending' } });
+    externalAssets: recipe.externalAssets, engineImport: { directory: 'project/LayaProject/assets/resources/village', mode: 'trimmed_shared_atlas', runtime: 'WeChat Mini Game', verificationReport: 'doc/tech/06_视觉升级与资源管线.md' } });
 const categoryStats = {}; for (const a of assets) { const c = categoryStats[a.category] ??= { count: 0, bytes: 0 }; c.count++; c.bytes += a.bytes; }
 const pngBytes = pages.reduce((sum, p) => sum + p.bytes, 0), metadataBytes = runtimeFiles.filter(p => p.endsWith('.json')).reduce((sum, p) => sum + fs.statSync(path.join(root, p)).size, 0);
 const packing = { sourceCanvasPixels: originalArea, atlasContentPixels: trimmedArea, savedContentPixels: originalArea - trimmedArea, savedContentPercent: +(100 * (originalArea - trimmedArea) / originalArea).toFixed(2), trimmedAssetCount: trimmedCount, alphaThreshold: 0, nineSlicePreserved: true, paddingPerSide: padding };

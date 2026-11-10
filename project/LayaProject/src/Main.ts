@@ -12,7 +12,7 @@ export class Main extends Laya.Script {
     private frames = new SpriteFrames();
     private disposed = false;
     async onStart() {
-        const loading = new Laya.Text(); loading.text = "村里的灯火正在亮起…"; loading.fontSize = 28; loading.color = "#f7e7be"; loading.pos(150, 580); Laya.stage.addChild(loading);
+        const loading = new Laya.Text(); loading.text = "村里的灯火正在亮起…"; loading.fontSize = 28; loading.color = "#f7e7be"; loading.stroke = 2; loading.strokeColor = "#493420"; loading.pos(40, 580); loading.size(640, 64); loading.align = "center"; loading.valign = "middle"; Laya.stage.addChild(loading);
         Laya.stage.bgColor = "#354c3e";
         try {
             this.platform = new WechatPlatform();

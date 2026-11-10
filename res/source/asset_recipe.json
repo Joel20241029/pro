@@ -37,7 +37,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "building_house_terracotta",
@@ -67,7 +68,8 @@
       "nineSlice": null,
       "mapping": "cosmetic:house",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "building_farm",
@@ -97,7 +99,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "building_lumber_shed",
@@ -127,7 +130,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "building_tower_arrow",
@@ -157,7 +161,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "building_tower_stone",
@@ -187,7 +192,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "building_tower_slow",
@@ -217,7 +223,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "building_tower_pad",
@@ -247,7 +254,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "building_gate_closed",
@@ -277,7 +285,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "building_gate_damaged",
@@ -307,7 +316,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "building_hearth_unlit",
@@ -337,7 +347,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "building_hearth_lit",
@@ -367,7 +378,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "tile_ground_grass",
@@ -397,7 +409,8 @@
       "nineSlice": null,
       "mapping": "ground_patch; seamless_edges_not_guaranteed",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "tile_ground_dirt",
@@ -427,7 +440,8 @@
       "nineSlice": null,
       "mapping": "ground_patch; seamless_edges_not_guaranteed",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "tile_ground_soil",
@@ -457,7 +471,8 @@
       "nineSlice": null,
       "mapping": "ground_patch; seamless_edges_not_guaranteed",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "tile_ground_stone",
@@ -487,7 +502,8 @@
       "nineSlice": null,
       "mapping": "ground_patch; seamless_edges_not_guaranteed",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "deco_tree_oak",
@@ -517,7 +533,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "deco_tree_pine",
@@ -547,7 +564,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "deco_bush",
@@ -577,7 +595,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "deco_rocks",
@@ -607,7 +626,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "deco_fence_straight",
@@ -637,7 +657,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "deco_fence_corner",
@@ -667,7 +688,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "deco_torch",
@@ -697,7 +719,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "deco_log_pile",
@@ -727,7 +750,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_food",
@@ -757,7 +781,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_wood",
@@ -787,7 +812,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_population",
@@ -817,7 +843,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_build",
@@ -847,7 +874,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_house",
@@ -877,7 +905,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_logging",
@@ -907,7 +936,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_family",
@@ -937,7 +967,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_heart",
@@ -967,7 +998,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_arrow",
@@ -997,7 +1029,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_stone",
@@ -1027,7 +1060,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_slow",
@@ -1057,7 +1091,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_bell",
@@ -1087,7 +1122,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_pause",
@@ -1117,7 +1153,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_play",
@@ -1147,7 +1184,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_settings",
@@ -1177,7 +1215,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_close",
@@ -1207,7 +1246,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_spring",
@@ -1237,7 +1277,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_summer",
@@ -1267,7 +1308,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_autumn",
@@ -1297,7 +1339,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_winter",
@@ -1327,7 +1370,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_upgrade",
@@ -1357,7 +1401,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_shield",
@@ -1387,7 +1432,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_baby",
@@ -1417,7 +1463,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "icon_view",
@@ -1447,7 +1494,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "fx_arrow",
@@ -1477,7 +1525,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "fx_stone",
@@ -1507,7 +1556,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "fx_ice",
@@ -1537,7 +1587,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "fx_hit",
@@ -1567,7 +1618,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "fx_slow_ring",
@@ -1597,7 +1649,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "fx_hearts",
@@ -1627,7 +1680,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "fx_sound_wave",
@@ -1657,7 +1711,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "fx_level_up",
@@ -1687,7 +1742,8 @@
       "nineSlice": null,
       "mapping": "",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "panel_parchment",
@@ -1709,28 +1765,23 @@
         "h": 512
       },
       "sourceCropWithinCell": {
-        "x": 0,
-        "y": 39,
-        "w": 490,
-        "h": 473
+        "x": 47,
+        "y": 77,
+        "w": 436,
+        "h": 435
       },
       "nineSlice": {
-        "top": 30,
-        "right": 30,
-        "bottom": 30,
-        "left": 30,
-        "repeat": 0,
-        "order": [
-          "top",
-          "right",
-          "bottom",
-          "left",
-          "repeat"
-        ]
+        "top": 48,
+        "right": 48,
+        "bottom": 48,
+        "left": 48,
+        "repeat": 0
       },
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "cropNote": "人工核对可见外轮廓；排除格内半透明辉光与零散像素，九宫格固定尺寸拉伸导出，不用整格alpha外接框。"
     },
     {
       "id": "panel_card",
@@ -1752,10 +1803,10 @@
         "h": 512
       },
       "sourceCropWithinCell": {
-        "x": 11,
-        "y": 27,
-        "w": 501,
-        "h": 479
+        "x": 49,
+        "y": 97,
+        "w": 412,
+        "h": 398
       },
       "nineSlice": {
         "top": 14,
@@ -1773,7 +1824,9 @@
       },
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "cropNote": "人工核对可见外轮廓；排除格内半透明辉光与零散像素，九宫格固定尺寸拉伸导出，不用整格alpha外接框。"
     },
     {
       "id": "panel_button_gold",
@@ -1795,10 +1848,10 @@
         "h": 512
       },
       "sourceCropWithinCell": {
-        "x": 0,
-        "y": 7,
-        "w": 503,
-        "h": 505
+        "x": 19,
+        "y": 214,
+        "w": 456,
+        "h": 172
       },
       "nineSlice": {
         "top": 14,
@@ -1816,7 +1869,9 @@
       },
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "cropNote": "人工核对可见外轮廓；排除格内半透明辉光与零散像素，九宫格固定尺寸拉伸导出，不用整格alpha外接框。"
     },
     {
       "id": "panel_button_green",
@@ -1838,10 +1893,10 @@
         "h": 512
       },
       "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 512,
-        "h": 504
+        "x": 45,
+        "y": 179,
+        "w": 445,
+        "h": 172
       },
       "nineSlice": {
         "top": 14,
@@ -1859,7 +1914,9 @@
       },
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "cropNote": "人工核对可见外轮廓；排除格内半透明辉光与零散像素，九宫格固定尺寸拉伸导出，不用整格alpha外接框。"
     },
     {
       "id": "panel_button_disabled",
@@ -1881,10 +1938,10 @@
         "h": 512
       },
       "sourceCropWithinCell": {
-        "x": 0,
-        "y": 7,
-        "w": 512,
-        "h": 505
+        "x": 36,
+        "y": 179,
+        "w": 444,
+        "h": 172
       },
       "nineSlice": {
         "top": 14,
@@ -1902,7 +1959,9 @@
       },
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "cropNote": "人工核对可见外轮廓；排除格内半透明辉光与零散像素，九宫格固定尺寸拉伸导出，不用整格alpha外接框。"
     },
     {
       "id": "panel_portrait_frame",
@@ -1945,7 +2004,8 @@
       },
       "mapping": "",
       "animation": null,
-      "fitPadding": 4
+      "fitPadding": 4,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_walk_00",
@@ -1980,7 +2040,8 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_walk_01",
@@ -2015,7 +2076,8 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_walk_02",
@@ -2050,7 +2112,8 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_walk_03",
@@ -2085,7 +2148,8 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_walk_00",
@@ -2120,7 +2184,8 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_walk_01",
@@ -2155,7 +2220,8 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_walk_02",
@@ -2190,7 +2256,8 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_walk_03",
@@ -2225,7 +2292,8 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_walk_00",
@@ -2260,7 +2328,8 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_walk_01",
@@ -2295,7 +2364,8 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_walk_02",
@@ -2330,7 +2400,8 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_walk_03",
@@ -2365,7 +2436,8 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_walk_00",
@@ -2400,7 +2472,8 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_walk_01",
@@ -2435,7 +2508,8 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_walk_02",
@@ -2470,7 +2544,8 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_walk_03",
@@ -2505,7 +2580,8 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_boy_walk_00",
@@ -2540,7 +2616,8 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_boy_walk_01",
@@ -2575,7 +2652,8 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_boy_walk_02",
@@ -2610,7 +2688,8 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_boy_walk_03",
@@ -2645,7 +2724,8 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_girl_walk_00",
@@ -2680,7 +2760,8 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_girl_walk_01",
@@ -2715,7 +2796,8 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_girl_walk_02",
@@ -2750,7 +2832,8 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_girl_walk_03",
@@ -2785,7 +2868,8 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_baby_idle_00",
@@ -2820,7 +2904,8 @@
         "actionId": "idle",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_baby_idle_01",
@@ -2855,7 +2940,8 @@
         "actionId": "idle",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_baby_idle_02",
@@ -2890,7 +2976,8 @@
         "actionId": "idle",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_baby_idle_03",
@@ -2925,7 +3012,8 @@
         "actionId": "idle",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_elder_idle_00",
@@ -2960,7 +3048,8 @@
         "actionId": "idle",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_elder_idle_01",
@@ -2995,7 +3084,8 @@
         "actionId": "idle",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_elder_idle_02",
@@ -3030,7 +3120,8 @@
         "actionId": "idle",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_elder_idle_03",
@@ -3065,7 +3156,8 @@
         "actionId": "idle",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_farm_00",
@@ -3100,7 +3192,8 @@
         "actionId": "farm",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_farm_01",
@@ -3135,7 +3228,8 @@
         "actionId": "farm",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_farm_02",
@@ -3170,7 +3264,8 @@
         "actionId": "farm",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_farm_03",
@@ -3205,7 +3300,8 @@
         "actionId": "farm",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_harvest_00",
@@ -3240,7 +3336,8 @@
         "actionId": "harvest",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_harvest_01",
@@ -3275,7 +3372,8 @@
         "actionId": "harvest",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_harvest_02",
@@ -3310,7 +3408,8 @@
         "actionId": "harvest",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_harvest_03",
@@ -3345,7 +3444,8 @@
         "actionId": "harvest",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_chop_00",
@@ -3380,7 +3480,8 @@
         "actionId": "chop",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_chop_01",
@@ -3415,7 +3516,8 @@
         "actionId": "chop",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_chop_02",
@@ -3450,7 +3552,8 @@
         "actionId": "chop",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_chop_03",
@@ -3485,7 +3588,8 @@
         "actionId": "chop",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_carry_00",
@@ -3520,7 +3624,8 @@
         "actionId": "carry",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_carry_01",
@@ -3555,7 +3660,8 @@
         "actionId": "carry",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_carry_02",
@@ -3590,7 +3696,8 @@
         "actionId": "carry",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_carry_03",
@@ -3625,7 +3732,8 @@
         "actionId": "carry",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_raider_walk_00",
@@ -3660,7 +3768,8 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_raider_walk_01",
@@ -3695,7 +3804,8 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_raider_walk_02",
@@ -3730,7 +3840,8 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_raider_walk_03",
@@ -3765,7 +3876,8 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_runner_walk_00",
@@ -3800,7 +3912,8 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_runner_walk_01",
@@ -3835,7 +3948,8 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_runner_walk_02",
@@ -3870,7 +3984,8 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_runner_walk_03",
@@ -3905,7 +4020,8 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_armored_walk_00",
@@ -3940,7 +4056,8 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_armored_walk_01",
@@ -3975,7 +4092,8 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_armored_walk_02",
@@ -4010,7 +4128,8 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_armored_walk_03",
@@ -4045,7 +4164,8 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_disruptor_walk_00",
@@ -4080,7 +4200,8 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_disruptor_walk_01",
@@ -4115,7 +4236,8 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_disruptor_walk_02",
@@ -4150,7 +4272,8 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_disruptor_walk_03",
@@ -4185,7 +4308,8 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_chief_walk_00",
@@ -4220,7 +4344,8 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_chief_walk_01",
@@ -4255,7 +4380,8 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_chief_walk_02",
@@ -4290,7 +4416,8 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_chief_walk_03",
@@ -4325,7 +4452,8 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_raider_guard_walk_00",
@@ -4360,7 +4488,8 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_raider_guard_walk_01",
@@ -4395,7 +4524,8 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_raider_guard_walk_02",
@@ -4430,7 +4560,8 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "enemy_raider_guard_walk_03",
@@ -4465,7 +4596,8 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_walk_up_00",
@@ -4500,7 +4632,8 @@
         "actionId": "walk_up",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_walk_up_01",
@@ -4535,7 +4668,8 @@
         "actionId": "walk_up",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_walk_up_02",
@@ -4570,7 +4704,8 @@
         "actionId": "walk_up",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_walk_up_03",
@@ -4605,7 +4740,8 @@
         "actionId": "walk_up",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_walk_up_00",
@@ -4640,7 +4776,8 @@
         "actionId": "walk_up",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_walk_up_01",
@@ -4675,7 +4812,8 @@
         "actionId": "walk_up",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_walk_up_02",
@@ -4710,7 +4848,8 @@
         "actionId": "walk_up",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_walk_up_03",
@@ -4745,7 +4884,8 @@
         "actionId": "walk_up",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_walk_up_00",
@@ -4780,7 +4920,8 @@
         "actionId": "walk_up",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_walk_up_01",
@@ -4815,7 +4956,8 @@
         "actionId": "walk_up",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_walk_up_02",
@@ -4850,7 +4992,8 @@
         "actionId": "walk_up",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_walk_up_03",
@@ -4885,7 +5028,8 @@
         "actionId": "walk_up",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_walk_up_00",
@@ -4920,7 +5064,8 @@
         "actionId": "walk_up",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_walk_up_01",
@@ -4955,7 +5100,8 @@
         "actionId": "walk_up",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_walk_up_02",
@@ -4990,7 +5136,8 @@
         "actionId": "walk_up",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_walk_up_03",
@@ -5025,7 +5172,8 @@
         "actionId": "walk_up",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_boy_walk_up_00",
@@ -5060,7 +5208,8 @@
         "actionId": "walk_up",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_boy_walk_up_01",
@@ -5095,7 +5244,8 @@
         "actionId": "walk_up",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_boy_walk_up_02",
@@ -5130,7 +5280,8 @@
         "actionId": "walk_up",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_boy_walk_up_03",
@@ -5165,7 +5316,8 @@
         "actionId": "walk_up",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_girl_walk_up_00",
@@ -5200,7 +5352,8 @@
         "actionId": "walk_up",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_girl_walk_up_01",
@@ -5235,7 +5388,8 @@
         "actionId": "walk_up",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_girl_walk_up_02",
@@ -5270,7 +5424,8 @@
         "actionId": "walk_up",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_girl_walk_up_03",
@@ -5305,7 +5460,8 @@
         "actionId": "walk_up",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_walk_right_00",
@@ -5340,7 +5496,8 @@
         "actionId": "walk_right",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_walk_right_01",
@@ -5375,7 +5532,8 @@
         "actionId": "walk_right",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_walk_right_02",
@@ -5410,7 +5568,8 @@
         "actionId": "walk_right",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_a_walk_right_03",
@@ -5445,7 +5604,8 @@
         "actionId": "walk_right",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_walk_right_00",
@@ -5480,7 +5640,8 @@
         "actionId": "walk_right",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_walk_right_01",
@@ -5515,7 +5676,8 @@
         "actionId": "walk_right",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_walk_right_02",
@@ -5550,7 +5712,8 @@
         "actionId": "walk_right",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_male_b_walk_right_03",
@@ -5585,7 +5748,8 @@
         "actionId": "walk_right",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_walk_right_00",
@@ -5620,7 +5784,8 @@
         "actionId": "walk_right",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_walk_right_01",
@@ -5655,7 +5820,8 @@
         "actionId": "walk_right",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_walk_right_02",
@@ -5690,7 +5856,8 @@
         "actionId": "walk_right",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_a_walk_right_03",
@@ -5725,7 +5892,8 @@
         "actionId": "walk_right",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_walk_right_00",
@@ -5760,7 +5928,8 @@
         "actionId": "walk_right",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_walk_right_01",
@@ -5795,7 +5964,8 @@
         "actionId": "walk_right",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_walk_right_02",
@@ -5830,7 +6000,8 @@
         "actionId": "walk_right",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_female_b_walk_right_03",
@@ -5865,7 +6036,8 @@
         "actionId": "walk_right",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_boy_walk_right_00",
@@ -5900,7 +6072,8 @@
         "actionId": "walk_right",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_boy_walk_right_01",
@@ -5935,7 +6108,8 @@
         "actionId": "walk_right",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_boy_walk_right_02",
@@ -5970,7 +6144,8 @@
         "actionId": "walk_right",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_boy_walk_right_03",
@@ -6005,7 +6180,8 @@
         "actionId": "walk_right",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_girl_walk_right_00",
@@ -6040,7 +6216,8 @@
         "actionId": "walk_right",
         "frameIndex": 0
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_girl_walk_right_01",
@@ -6075,7 +6252,8 @@
         "actionId": "walk_right",
         "frameIndex": 1
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_girl_walk_right_02",
@@ -6110,7 +6288,8 @@
         "actionId": "walk_right",
         "frameIndex": 2
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "villager_girl_walk_right_03",
@@ -6145,7 +6324,8 @@
         "actionId": "walk_right",
         "frameIndex": 3
       },
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     },
     {
       "id": "panel_button_red",
@@ -6169,12 +6349,12 @@
         "h": 512
       },
       "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 474,
-        "h": 494
+        "x": 23,
+        "y": 179,
+        "w": 447,
+        "h": 172
       },
-      "fitPadding": 4,
+      "fitPadding": 0,
       "nineSlice": {
         "top": 14,
         "right": 14,
@@ -6188,7 +6368,9 @@
           "left",
           "repeat"
         ]
-      }
+      },
+      "resizeMode": "stretch",
+      "cropNote": "人工核对可见外轮廓；排除格内半透明辉光与零散像素，九宫格固定尺寸拉伸导出，不用整格alpha外接框。"
     },
     {
       "id": "building_palisade",
@@ -6218,7 +6400,8 @@
       "nineSlice": null,
       "mapping": "visual wall; shared current gate HP only",
       "animation": null,
-      "fitPadding": 0
+      "fitPadding": 0,
+      "resizeMode": "contain"
     }
   ],
   "animations": {

@@ -2,13 +2,31 @@ import { applyCommand, createGame } from "../src/game/VillageRules";
 import { clone } from "../src/game/GameState";
 import { BattleSimulation } from "../src/game/BattleSimulation";
 import { compareDepth, distance, MOTION, VillageNavigation, VILLAGE_PROPS, VILLAGE_STOPS } from "../src/view/VillageScene";
-import { VillagerMotion } from "../src/view/VillagerMotion";
+import { VillagerMotion, walkDirection, WalkDirection } from "../src/view/VillagerMotion";
 
 let passed = 0;
 function ok(v: unknown, reason = "assertion failed"): asserts v { if (!v) throw new Error(reason); }
 function equal(a: unknown, b: unknown) { ok(JSON.stringify(a) === JSON.stringify(b), `${JSON.stringify(a)} != ${JSON.stringify(b)}`); }
 function test(name: string, f: () => void) { f(); passed++; console.log("PASS", name); }
 const navigation = new VillageNavigation();
+
+test("Walking faces the actual travel axis, keeps diagonal hysteresis and holds at rest", () => {
+    for (const previous of ["UP", "DOWN", "LEFT", "RIGHT"] as WalkDirection[]) {
+        equal(walkDirection(0, -4, previous), "UP"); equal(walkDirection(0, 4, previous), "DOWN");
+        equal(walkDirection(-4, 0, previous), "LEFT"); equal(walkDirection(4, 0, previous), "RIGHT");
+        equal(walkDirection(0, 0, previous), previous);
+    }
+    equal(walkDirection(10, -10.5, "RIGHT"), "RIGHT"); equal(walkDirection(10, -12, "RIGHT"), "UP");
+    equal(walkDirection(10.5, -10, "UP"), "UP"); equal(walkDirection(12, -10, "UP"), "RIGHT");
+});
+test("Forest and palisades have shared collision blocks and preserve both gate passages", () => {
+    ok(VILLAGE_PROPS.filter(p => p.id.startsWith("forest:")).length >= 40);
+    ok(navigation.obstacles.length <= 16, "decorative trees must not each expand the route graph");
+    ok(navigation.clear({ x: 274, y: 770 }, { x: 274, y: 850 }), "left gate passage blocked");
+    ok(navigation.clear({ x: 446, y: 770 }, { x: 446, y: 850 }), "right gate passage blocked");
+    ok(!navigation.clear({ x: 220, y: 780 }, { x: 220, y: 850 }), "wall has no collision");
+    ok(!navigation.walkable({ x: 90, y: 600 }), "forest has no collision");
+});
 
 test("Every real map stop is reachable without crossing any footprint", () => {
     const stops = [...VILLAGE_STOPS.homes, ...VILLAGE_STOPS.farm, ...VILLAGE_STOPS.logging, ...VILLAGE_STOPS.rest, ...VILLAGE_STOPS.children, ...VILLAGE_STOPS.towers,
@@ -44,6 +62,19 @@ test("All founders actually walk, work and rest while business data stays unchan
         });
     }
     equal(traveled.size, s.people.length); ok(working.size >= 3); equal(rested.size, s.people.length); equal(JSON.stringify(s), before);
+});
+test("Moving poses match signed displacement across a complete work and rest cycle", () => {
+    const s = createGame(17), motion = new VillagerMotion(navigation), directions = new Set<WalkDirection>(); motion.sync(s, s.towers);
+    for (let i = 0; i < 2400; i++) {
+        const previous = s.people.map(p => ({ ...motion.get(p.id) })); motion.update(.05);
+        s.people.forEach((p, index) => {
+            const m = motion.get(p.id), old = previous[index], dx = m.x - old.x, dy = m.y - old.y;
+            if (Math.hypot(dx, dy) < .001) { equal(m.direction, old.direction); return; }
+            directions.add(m.direction);
+            ok(m.direction === "UP" ? dy < 0 : m.direction === "DOWN" ? dy > 0 : m.direction === "LEFT" ? dx < 0 : dx > 0, "backward walking pose");
+        });
+    }
+    equal(directions.size, 4);
 });
 test("Pause and unrelated UI sync preserve position, path and current animation time", () => {
     const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers); motion.update(.2);

@@ -23,8 +23,8 @@
       "runtimeFile": "ui_0.png",
       "width": 512,
       "height": 512,
-      "bytes": 150994,
-      "sha256": "65680c3a4d8e512528963c395f1f73d4af742d05fd15f56a65d44f7776e17663",
+      "bytes": 195342,
+      "sha256": "a4132d33e4e29d7ea0b0ea5a1f12b3e7c306be2d5c23ca110e395b38166db52f",
       "group": "ui"
     }
   ],
@@ -3240,18 +3240,11 @@
         "y": 80
       },
       "nineSlice": {
-        "top": 30,
-        "right": 30,
-        "bottom": 30,
-        "left": 30,
-        "repeat": 0,
-        "order": [
-          "top",
-          "right",
-          "bottom",
-          "left",
-          "repeat"
-        ]
+        "top": 48,
+        "right": 48,
+        "bottom": 48,
+        "left": 48,
+        "repeat": 0
       }
     },
     "panel_button_disabled": {
