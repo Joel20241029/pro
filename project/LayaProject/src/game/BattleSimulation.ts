@@ -1,4 +1,4 @@
-import { ENEMIES, EnemyKind, PADS, PATH, RULE, TOWERS, TowerKind } from "./GameConfig";
+import { ELITE, ENEMIES, EnemyKind, PADS, PATH, RULE, TOWERS, TowerKind } from "./GameConfig";
 import { clone, GameState } from "./GameState";
 import { assignOperator, person, policy } from "./VillageRules";
 export interface Enemy { seq: number; kind: EnemyKind; progress: number; hp: number; maxHp: number; speed: number; slow: number; slowTicks: number; born: number; summoned: number; }
@@ -68,7 +68,7 @@ export class BattleSimulation {
             const bonus = (po.damage || 0) + (tower.kind === "STONE" ? (p.trait === "trait_strong" ? .2 : 0) + (p.skill === "skill_throwing" ? .25 : 0) + (po.stoneDamage || 0) : tower.kind === "ARROW" && p.skill === "skill_archery" ? .25 : 0);
             for (const e of tower.kind === "STONE" ? nearby : [target]) {
                 const armor = ENEMIES[e.kind].armor;
-                e.hp -= Math.max(1, Math.floor(t.damage * RULE.levelDamage[tower.level - 1] * (1 + bonus) * (1 - armor / (tower.kind === "STONE" ? 2 : 1))));
+                e.hp -= Math.max(1, Math.floor(t.damage * RULE.levelDamage[tower.level - 1] * (1 + bonus) * (p.elite ? ELITE.damageMultiplier : 1) * (1 - armor / (tower.kind === "STONE" ? 2 : 1))));
             }
             if (tower.kind === "SLOW") {
                 const strength = Math.min(.6, .3 + (p.trait === "trait_patient" ? .1 : 0) + (p.skill === "skill_warding" ? .1 : 0) + (po.slow || 0));

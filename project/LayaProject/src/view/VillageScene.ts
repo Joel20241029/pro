@@ -48,7 +48,8 @@ export const MOTION = {
 
 /** 成家后的纯视觉庆祝：两人到齐才显示 2.4 秒红心；不延迟成家存档，也不阻塞守夜。 */
 export const WEDDING = {
-    heartSeconds: 2.4, heartSize: 30, headOffset: 65, rise: 10, fadeIn: .2, fadeOut: .5,
+    // 52px 红心与 86px 头顶偏移让庆祝清晰可见且不挡脸；不改变成家时序与持续时间。
+    heartSeconds: 2.4, heartSize: 52, headOffset: 86, rise: 10, fadeIn: .2, fadeOut: .5,
     pulse: .08, pulseSeconds: .8
 } as const;
 

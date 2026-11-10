@@ -1,7 +1,7 @@
 import { applyCommand, createGame } from "../src/game/VillageRules";
 import { clone } from "../src/game/GameState";
 import { BattleSimulation } from "../src/game/BattleSimulation";
-import { LABOR_CLIPS } from "../src/game/GameConfig";
+import { LABOR_CLIPS, RULE } from "../src/game/GameConfig";
 import { compareDepth, distance, MOTION, VillageNavigation, VILLAGE_PROPS, VILLAGE_STOPS, WEDDING } from "../src/view/VillageScene";
 import { VillagerMotion, walkDirection, WalkDirection } from "../src/view/VillagerMotion";
 
@@ -231,5 +231,25 @@ test("Both adult identities play farming, chopping and caring actions after arri
         for (let i = 0; i < 1600; i++) { motion.update(.05); const m = motion.get(p.id); if (!m.walking && m.animated && m.elapsed > .5 && m.clip === LABOR_CLIPS[p.appearance][job]) played = true; }
         ok(played, `${p.appearance}/${job} never played`);
     }
+});
+test("Retiring in place switches to elder walks and idle without teleporting or mutating game state", () => {
+    const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    for (let i = 0; i < 30; i++) motion.update(.1);
+    const elders = s.people.slice(0, 2), before = elders.map(p => ({ ...motion.get(p.id) }));
+    elders.forEach(p => { p.nights = 0; p.elderNights = RULE.elderNights; p.job = "WAITING"; }); motion.sync(s, s.towers);
+    elders.forEach((p, i) => equal([motion.get(p.id).x, motion.get(p.id).y], [before[i].x, before[i].y]));
+    const state = JSON.stringify(s), walked = new Set<string>(), rested = new Set<string>();
+    for (let i = 0; i < 2400; i++) {
+        const last = elders.map(p => ({ ...motion.get(p.id) })); motion.update(.05);
+        elders.forEach((p, index) => {
+            const m = motion.get(p.id), identity = p.sex === "MALE" ? "male" : "female";
+            ok(navigation.clear(last[index], m)); ok(distance(last[index], m) <= MOTION.elderSpeed * .05 + 1e-7);
+            ok(m.animated); equal(m.clip, `villager_elder_${identity}_${m.walking ? "walk" : "idle"}`);
+            (m.walking ? walked : rested).add(p.id); ok(!m.insideTower);
+        });
+    }
+    equal(walked.size, 2); equal(rested.size, 2); equal(JSON.stringify(s), state);
+    s.phase = "NIGHT"; motion.sync(s, s.towers); for (let i = 0; i < 1000; i++) motion.update(.05);
+    elders.forEach(p => { const m = motion.get(p.id); ok(!m.walking && !m.insideTower && m.clip.endsWith("_idle")); });
 });
 console.log(`RESULT ${passed} motion checks passed`);

@@ -3,6 +3,8 @@ export type Job = "WAITING" | "FARM" | "LOGGING" | "CARE";
 export interface Person {
     id: string; name: string; sex: "MALE" | "FEMALE"; origin: "FOUNDER" | "TRAVELER" | "BORN";
     appearance: string; trait: Trait; skill: Skill | null; generation: number;
+    /** 出生/旅人创建时确定的稀有身份；不随重进、成年或荣休重新抽取，家谱保留。 */
+    elite: boolean;
     parents: string[]; ancestors: string[]; adult: boolean; nights: number; growth: number;
     /** 荣休后剩余成功守夜夜数；儿童、劳动成人及已入家谱者为 0，不使用现实时间。 */
     elderNights: number;

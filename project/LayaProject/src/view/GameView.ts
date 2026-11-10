@@ -1,7 +1,7 @@
 import { GameSession } from "../game/GameSession";
-import { capacity, economy, JOB_NAMES, person, canMarry, Command } from "../game/VillageRules";
+import { capacity, economy, JOB_NAMES, person, canMarry, birthUnavailableReason, Command } from "../game/VillageRules";
 import { GameState, isElder, isWorkingAdult, Person } from "../game/GameState";
-import { ENEMIES, PATH, PADS, POLICIES, RULE, SEASONS, SKILLS, TOWERS, TowerKind, TRAITS, Trait } from "../game/GameConfig";
+import { ELITE, ENEMIES, PATH, PADS, POLICIES, RULE, SEASONS, SKILLS, TOWERS, TowerKind, TRAITS, Trait } from "../game/GameConfig";
 import { BattleSimulation, pointAt } from "../game/BattleSimulation";
 import { season } from "../game/WaveGenerator";
 import { SpriteFrames } from "./SpriteFrames";
@@ -11,6 +11,8 @@ import { ProjectileMotion } from "./ProjectileMotion";
 import { C, UI } from "./UiTheme";
 import { Tip } from "./Tip";
 import { ScrollList } from "./ScrollList";
+import { RankingView } from "./RankingView";
+import { WechatPlatform } from "../platform/WechatPlatform";
 type Panel = { type: string; id?: string; index?: number; scroll?: number; a?: string; job?: "FARM" | "LOGGING" };
 export class GameView {
     readonly root = new Laya.Sprite();
@@ -26,7 +28,7 @@ export class GameView {
     private backgroundKey = "";
     private tip: Tip; private shownErrorRevision = 0;
     private observedRun = 0; private observedDawn = 0;
-    constructor(private game: GameSession, private art: SpriteFrames) {
+    constructor(private game: GameSession, private art: SpriteFrames, private platform: WechatPlatform) {
         this.root.name = "VillageGame"; this.root.size(720, 1280); this.root.stackingRoot = true;
         [this.scenery, this.world, this.shots, this.chrome, this.overlay].forEach((layer, i) => { layer.stackingRoot = true; layer.zIndex = i; this.root.addChild(layer); });
         this.tip = new Tip(art); this.tip.stackingRoot = true; this.tip.zIndex = 5; this.tip.pos(360, 640); this.root.addChild(this.tip);
@@ -54,7 +56,7 @@ export class GameView {
     }
     private image(parent: Laya.Sprite, id: string, x: number, y: number, w: number, h = w) { const s = new Laya.Sprite(); s.texture = this.art.get(id); s.pos(x, y); s.size(w, h); s.mouseEnabled = false; parent.addChild(s); return s; }
     /** 同一姓名格式用于名册、家庭、详情与驻塔；只给名字上色，说明文字保持自身层级。 */
-    private coloredName(p: Person) { return `<font color="${p.sex === "MALE" ? C.maleName : C.femaleName}" stroke="1" strokecolor="${C.lightEdge}">${p.name.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}</font>`; }
+    private coloredName(p: Person, enabled = true) { return `${p.elite ? `<font color="${enabled ? C.timber : C.muted}">精英·</font>` : ""}<font color="${!enabled ? C.muted : p.sex === "MALE" ? C.maleName : C.femaleName}" stroke="1" strokecolor="${C.lightEdge}">${p.name.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}</font>`; }
     /** 费用统一显示现有/所需；不足只标红分子，满足（含相等）继承正文色，扣费仍由 VillageRules 校验。 */
     private resourceCost(owned: number, required: number) { return `${owned < required ? `<font color="${C.red}" stroke="1" strokecolor="${C.lightEdge}">${owned}</font>` : owned}/${required}`; }
     private button(parent: Laya.Sprite, title: string, x: number, y: number, w: number, action: () => void, color = C.green, h = 72, enabled = true) {
@@ -127,6 +129,14 @@ export class GameView {
         this.chrome.graphics.drawRect(0, 209, 720, 37, C.green);
         const count = s.wave?.entries.length || 0;
         this.label(this.chrome, s.phase === "NIGHT" ? "守夜中 · 齐心护家园" : `第 ${s.day} 天 · 今夜 ${count} 名来敌 · 挑战 ${s.tier}`, 28, 209, 664, 24, "#f4edce", true, 37).align = "center";
+        // 首次成功守住一波才解锁；沿用已提交的传承最高纪录，重新开村仍保持入口。
+        if (s.legacy.bestNight > 0) {
+            const ranking = new Laya.Sprite(); ranking.name = "RankingButton"; ranking.pos(24, 266); ranking.size(96, 104); ranking.mouseEnabled = true;
+            this.art.panel(ranking, "panel_card", 96, 104); this.chrome.addChild(ranking);
+            this.image(ranking, "icon_trophy", 22, 10, 52);
+            this.label(ranking, "排行", 8, 62, 80, 26, C.ink, true, 34).align = "center";
+            ranking.on(Laya.Event.CLICK, this, () => this.open({ type: "ranking" }));
+        }
         const gate = battle?.gate ?? s.gate;
         this.hp = this.label(this.chrome, `城门 ${gate}/${RULE.gateMax}`, 225, 789, 270, 26, C.cream, true); this.hp.align = "center";
         for (let i = 0; i < PADS.length; i++) {
@@ -157,7 +167,8 @@ export class GameView {
             this.button(box, "继续游戏", 34, 540, 600, () => { this.game.resume("WAIT_RESUME"); this.refresh(); }, C.gold, 80);
         } else if (s.phase === "GAME_OVER") this.drawGameOver(s);
         else if (s.phase === "DAWN") this.drawDawn(s);
-        else if (this.panel) this.drawPanel(s, this.panel);
+        // 切后台只释放已打开的开放域；回前台点“继续游戏”后再请求授权与绘制。
+        else if (this.panel && !this.game.pauses.has("BACKGROUND")) this.drawPanel(s, this.panel);
         this.updateActors();
     }
     private modal(title: string, subtitle: string, close = true) {
@@ -165,7 +176,7 @@ export class GameView {
         this.overlay.graphics.drawRect(0, 0, 720, 1280, "rgba(25,31,22,0.68)");
         const box = new Laya.Sprite(); box.name = `panel:${title}`; box.pos(UI.panelX, UI.panelY); box.size(UI.panelWidth, UI.panelHeight); box.mouseEnabled = true;
         this.art.panel(box, "panel_parchment", UI.panelWidth, UI.panelHeight); this.overlay.addChild(box);
-        this.label(box, title, 108, 44, 452, UI.title, C.ink, true, 60).align = "center";
+        this.label(box, title, 108, 44, 452, title.replace(/<[^>]*>/g, "").length > 12 ? 32 : UI.title, C.ink, true, 60).align = "center";
         this.label(box, subtitle, UI.inset, 108, UI.contentWidth, 27, C.muted, false, 100).align = "center";
         // 用户移除左上麦穗，关闭按钮仍在右侧；底角装饰不参与九宫格拉伸。
         this.image(box, "deco_bush", 635, 813, 28, 25);
@@ -212,7 +223,8 @@ export class GameView {
             const rows = new ScrollList(UI.contentWidth, 590, Math.max(0, list.length * UI.listStep - 8), p.scroll, offset => p.scroll = offset);
             rows.pos(UI.inset, UI.listTop); box.addChild(rows);
             list.forEach((q, i) => {
-                const desc = `${this.coloredName(q)} · ${q.sex === "MALE" ? "男" : "女"} · ${TRAITS[q.trait][0]}\n${p.type === "history" ? (s.favorites.includes(q.id) ? "★ 珍藏的先辈" : "已寿终 · 留念家谱") : isElder(q) ? `养老 · 余 ${q.elderNights} 夜` : q.adult ? `${JOB_NAMES[q.job]} · 余 ${q.nights} 夜${q.nights <= RULE.retirementNoticeNights ? " · 即将荣休" : ""}` : `孩子 · 成长 ${q.growth}/2`}`;
+                const reason = p.type === "carers" ? birthUnavailableReason(s, p.id!, q.id) : null;
+                const desc = `${this.coloredName(q, reason === null)} · ${q.sex === "MALE" ? "男" : "女"} · ${TRAITS[q.trait][0]}\n${reason !== null ? reason : p.type === "history" ? (s.favorites.includes(q.id) ? "★ 珍藏的先辈" : "已寿终 · 留念家谱") : isElder(q) ? `养老 · 余 ${q.elderNights} 夜` : q.adult ? `${JOB_NAMES[q.job]} · 余 ${q.nights} 夜${q.nights <= RULE.retirementNoticeNights ? " · 即将荣休" : ""}` : `孩子 · 成长 ${q.growth}/2`}`;
                 this.button(rows.content, desc, 0, i * UI.listStep, UI.contentWidth - UI.scrollGutter, () => {
                     if (p.type === "history") this.open({ type: "ancestor", id: q.id });
                     else if (p.type === "partners") { if (p.a) this.send({ type: "FAMILY", a: p.a, b: q.id }, false); else this.open({ type: "partners", a: q.id }); }
@@ -221,17 +233,23 @@ export class GameView {
                     else if (p.type === "care") this.send({ type: "JOB", id: p.id!, job: "CARE", child: q.id }, false);
                     else if (p.type === "workers") this.send({ type: "JOB", id: p.id!, job: p.job!, replace: q.id }, false);
                     else this.open({ type: "person", id: q.id });
-                }, C.muted, UI.listHeight);
+                }, C.muted, UI.listHeight, reason === null);
             }); return;
+        }
+        if (p.type === "ranking") {
+            const box = this.modal("好友守村榜", "");
+            const ranking = new RankingView(this.platform, s.legacy.bestNight); ranking.pos(34, 132); box.addChild(ranking);
+            ranking.refreshRanking(); return;
         }
         if (p.type === "person" || p.type === "ancestor") {
             const ancestor = p.type === "ancestor";
             const q = ancestor ? s.history.find(q => q.id === p.id)! : person(s, p.id!), parents = q.parents.map(id => { const parent = [...s.people, ...s.history].find(a => a.id === id); return parent?.name ? this.coloredName(parent) : "更早的家族成员"; });
             const box = this.modal(`${this.coloredName(q)} · 第 ${q.generation} 代`, `${TRAITS[q.trait].join("：")}\n${q.skill ? SKILLS[q.skill].join("：") : "成年后选择专长"}`);
-            this.image(box, this.art.frameId(ancestor || isElder(q) ? `villager_elder_${q.sex === "MALE" ? "male" : "female"}_idle` : q.adult ? `villager_${q.appearance}_walk` : q.growth === 0 ? "villager_baby_idle" : `villager_${q.sex === "MALE" ? "boy" : "girl"}_walk`, 0, false), 44, 226, 112);
+            this.image(box, this.art.frameId(ancestor || isElder(q) ? `villager_elder_${q.sex === "MALE" ? "male" : "female"}_idle` : q.adult ? `villager_${q.appearance}_walk` : q.growth === 0 ? "villager_baby_idle" : `villager_${q.sex === "MALE" ? "boy" : "girl"}_walk`, 0, false), q.elite ? 30 : 44, q.elite ? 206 : 226, q.elite ? 140 : 112);
             const cared = s.people.some(a => a.careChild === q.id);
             this.label(box, ancestor ? `已寿终 · 留念家谱\n来自第 ${q.id.split(":")[0]} 个村落` : isElder(q) ? `安心养老 · 余 ${q.elderNights} 夜\n基础口粮 ${q.trait === "trait_frugal" ? 1 : RULE.adultRation} / 夜` : q.adult ? `余 ${q.nights} 夜劳作期${q.nights <= RULE.retirementNoticeNights ? " · 即将荣休" : ""}\n当前${JOB_NAMES[q.job]}` : `成长 ${q.growth}/2\n${cared ? "照料并守夜即可成长" : "无人照料，成长暂停"}`, 180, 230, 438, 30, C.green, true, 102);
-            this.label(box, parents.length ? `双亲：${parents.join("、")}` : q.origin === "TRAVELER" ? "来历：路过村落的旅人" : "来历：第一代开村人", 34, 365, 600, 28, C.muted, false, 86);
+            this.label(box, parents.length ? `双亲：${parents.join("、")}` : q.origin === "TRAVELER" ? "来历：路过村落的旅人" : "来历：第一代开村人", 34, 354, 600, 28, C.muted, false, 68);
+            if (q.elite) this.label(box, `耕伐 +50% · 塔伤 +25% · 照料 +${ELITE.careFoodBonus} 粮\n劳作 ${ELITE.adultNights} 夜 · 养老 ${ELITE.elderNights} 夜 · 口粮不变`, 34, 430, 600, 28, C.timber, true, 68).align = "center";
             if (ancestor) {
                 this.button(box, s.favorites.includes(q.id) ? "取消珍藏" : "珍藏这位先辈", 34, 510, 600, () => this.send({ type: "FAVORITE", id: q.id }), C.gold, 78);
                 this.label(box, "珍藏的先辈随村落传承保留，最多 20 位。\n普通家谱保留最近 60 位先辈。", 34, 650, 600, 28, C.muted, false, 126); return;
@@ -244,22 +262,22 @@ export class GameView {
                 (["FARM", "LOGGING"] as const).forEach((job, i) => {
                     const full = s.people.filter(a => a.job === job).length >= (job === "FARM" ? RULE.farmSlots[s.farm - 1] : RULE.logSlots[s.logging - 1]);
                     const current = q.job === job;
-                    this.button(box, `${JOB_NAMES[job]}${current ? " · 当前" : full ? " · 换人" : ""}`, 34 + i * 308, 484, 292, () => {
+                    this.button(box, `${JOB_NAMES[job]}${current ? " · 当前" : full ? " · 换人" : ""}`, 34 + i * 308, q.elite ? 516 : 484, 292, () => {
                         if (full && !current) this.open({ type: "workers", id: q.id, job });
                         else this.send({ type: "JOB", id: q.id, job });
                     }, current ? C.gold : C.green, 78);
                 });
-                this.button(box, "安排照料孩子", 34, 596, 600, () => this.open({ type: "care", id: q.id }), C.green, 78);
+                this.button(box, "安排照料孩子", 34, q.elite ? 624 : 596, 600, () => this.open({ type: "care", id: q.id }), C.green, 78);
             }
             this.label(box, "点击地图防塔，安排夜间驻守。\n白天岗位与夜间驻塔独立分配。", 34, 716, 600, 28, C.muted, false, 96).align = "center"; return;
         }
         if (p.type === "families") {
-            const box = this.modal("家庭与新生命", `迎接孩子：粮食 ${this.resourceCost(s.food, RULE.birthCost)}（现有/所需）\n每家同时育1孩，双亲需至少余3夜。`), list = s.families;
-            const rows = new ScrollList(600, 414, Math.max(0, list.length * 100 - 14), p.scroll, offset => p.scroll = offset);
+            const box = this.modal("家庭与新生命", `迎接孩子：粮食 ${this.resourceCost(s.food, RULE.birthCost)}（现有/所需）\n可用条目选择照料者，灰色条目显示原因。`), list = s.families;
+            const rows = new ScrollList(UI.contentWidth, 414, Math.max(0, list.length * UI.listStep - (UI.listStep - UI.listHeight)), p.scroll, offset => p.scroll = offset);
             rows.pos(34, 224); box.addChild(rows);
             list.forEach((f, i) => {
-                const retired = f.partners.some(id => isElder(person(s, id)));
-                this.button(rows.content, `${f.partners.map(id => this.coloredName(person(s, id))).join(" ＋ ")} · ${retired ? "家中有长辈" : "迎接孩子"}`, 0, i * 100, 600 - UI.scrollGutter, () => this.open({ type: "carers", id: f.id }), C.muted, 86, day && !retired);
+                const reason = birthUnavailableReason(s, f.id), enabled = reason === null;
+                this.button(rows.content, `${f.partners.map(id => this.coloredName(person(s, id), enabled)).join(" ＋ ")}\n${enabled ? "迎接孩子 · 选择照料者" : reason}`, 0, i * UI.listStep, UI.contentWidth - UI.scrollGutter, () => this.open({ type: "carers", id: f.id }), C.muted, UI.listHeight, enabled);
             });
             if (!list.length) this.label(box, "还没有家庭，先为成年村民牵线吧。", 26, 220, 616, 23, C.muted);
             this.button(box, "让两位村民成家", 34, 672, 600, () => this.open({ type: "partners" }), C.gold, 78, day); return;
@@ -300,9 +318,9 @@ export class GameView {
             rows.pos(UI.inset, UI.listTop); box.addChild(rows);
             s.legacy.traits.forEach((t, i) => this.button(rows.content, `确认重开 · 传承${TRAITS[t][0]}`, 0, i * UI.listStep, UI.contentWidth - UI.scrollGutter, () => { this.panel = null; this.game.resume("CHOICE"); this.game.resume("USER"); this.game.newVillage(t); }, C.green, UI.listHeight)); return;
         }
-        const box = this.modal("村落小记", "只在微信中本地保存，无联网生产与离线收益。");
+        const box = this.modal("村落小记", "村落进度本地保存，无离线收益。\n好友榜同步最高守村纪录。");
         this.label(box, "玩法提示", 34, 224, 600, 32, C.green, true, 54).align = "center";
-        ["1. 空闲村民自动补空岗，也可在名册中调岗。", "2. 生育消耗 20 粮，照料两夜后孩子成年。", "3. 分配驻塔；每夜可敲一次警钟，提速 5 秒。", "4. 荣休后养老三夜，仍吃粮、占住房。", "5. 守夜胜利才增长年龄，记得培养下一代。"].forEach((tip, i) => this.label(box, tip, 44, 310 + i * 80, 580, 28, C.ink, false, 74));
+        ["1. 空闲村民自动补空岗，也可在名册中调岗。", "2. 生育消耗 20 粮，照料两夜后孩子成年。", "3. 分配驻塔；每夜可敲一次警钟，提速 5 秒。", "4. 普通养老 3 夜，精英 5 夜，仍吃粮占房。", "5. 守夜胜利才增长年龄，记得培养下一代。"].forEach((tip, i) => this.label(box, tip, 44, 310 + i * 80, 580, 28, C.ink, false, 74));
         this.button(box, "重新开村…", 34, 754, 600, () => this.open({ type: "restart" }), C.red, 76);
     }
     private drawDawn(s: GameState) {
@@ -312,8 +330,9 @@ export class GameView {
             this.label(box, `${this.coloredName(person(s, q.person))} 成年了\n选择一项专长：`, 34, 226, 600, 32, C.green, true, 104).align = "center";
             q.options.forEach((k, i) => this.button(box, SKILLS[k].join("\n"), 34, 378 + i * 132, 600, () => this.send({ type: "CHOOSE", value: k }), i === 0 ? C.gold : C.green, 102));
         } else if (q.kind === "TRAVELER") {
-            this.image(box, this.art.frameId(`villager_${q.person.appearance}_walk`, 0, false), 250, 210, 168);
+            this.image(box, this.art.frameId(`villager_${q.person.appearance}_walk`, 0, false), q.person.elite ? 229 : 250, 200, q.person.elite ? 210 : 168);
             this.label(box, `${this.coloredName(q.person)} 希望加入村落\n天赋：${TRAITS[q.person.trait][0]}  ·  专长：${SKILLS[q.person.skill!][0]}\n民居 ${s.people.length}/${capacity(s)}`, 34, 408, 600, 30, C.green, true, 155).align = "center";
+            if (q.person.elite) this.label(box, `耕伐 +50% · 塔伤 +25% · 照料 +${ELITE.careFoodBonus} 粮\n劳作 ${ELITE.adultNights} 夜 · 养老 ${ELITE.elderNights} 夜`, 34, 550, 600, 28, C.timber, true, 68).align = "center";
             this.button(box, "欢迎加入", 34, 626, 600, () => this.send({ type: "CHOOSE", value: "accept" }), C.gold, 78, s.people.length < capacity(s));
             this.button(box, "礼貌谢绝", 34, 744, 600, () => this.send({ type: "CHOOSE", value: "decline" }), C.muted, 78);
         } else if (q.kind === "POLICY") {
@@ -358,7 +377,8 @@ export class GameView {
             const identity = isElder(p) ? `elder_${p.sex === "MALE" ? "male" : "female"}` : p.adult ? p.appearance : p.sex === "MALE" ? "boy" : "girl";
             const facing = pose.clip.endsWith("_walk") ? this.art.walk(identity, pose.direction) : { clip: pose.clip, mirror: false };
             this.art.applyFrame(n, this.art.frameId(facing.clip, pose.elapsed, pose.animated), p.adult ? 56 : p.growth === 0 ? 42 : 48);
-            n.pos(pose.x, pose.y); n.scale(facing.mirror ? -1 : 1, 1);
+            const scale = p.elite ? ELITE.visualScale : 1;
+            n.pos(pose.x, pose.y); n.scale((facing.mirror ? -1 : 1) * scale, scale);
             if (pose.heartElapsed !== null && n.visible) {
                 const heart = this.hearts[i], elapsed = pose.heartElapsed;
                 heart.visible = true;

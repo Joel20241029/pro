@@ -20,7 +20,7 @@ export class Main extends Laya.Script {
             this.platform.bind(this.session.hide, this.session.show);
             await this.frames.load();
             if (this.disposed) return;
-            this.view = new GameView(this.session, this.frames);
+            this.view = new GameView(this.session, this.frames, this.platform);
             Laya.stage.addChild(this.view.root);
             // fixedwidth 让舞台填满微信画布；在安全区内显式居中 720×1280 游戏区，不依赖 canvas CSS 位移。
             const w = this.platform.window, scale = w.windowWidth / 720;
@@ -33,7 +33,11 @@ export class Main extends Laya.Script {
             loading.text = "启动失败，请重新打开小游戏。\n" + (e instanceof Error ? e.message : String(e)); loading.pos(40, 480); loading.size(640, 300); loading.wordWrap = true; console.error(e);
         }
     }
-    onUpdate() { const delta = Laya.timer.unscaledDelta / 1000; this.session?.update(delta); this.view?.update(delta); }
+    onUpdate() {
+        const delta = Laya.timer.unscaledDelta / 1000; this.session?.update(delta); this.view?.update(delta);
+        // 只上报已确认存档；平台失败不能进入 GameSession 的提交异常路径。
+        if (this.session?.state && !this.session.saves.pending) this.platform?.syncBestNight(this.session.state.legacy.bestNight);
+    }
     onDisable() { this.session?.pause("DISABLED"); }
     onEnable() { this.session?.resume("DISABLED"); }
     onDestroy() { this.disposed = true; if (this.platform && this.session) this.platform.unbind(this.session.hide, this.session.show); this.view?.destroy(); this.frames.destroy(); }

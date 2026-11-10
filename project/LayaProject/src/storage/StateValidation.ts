@@ -1,4 +1,4 @@
-import { ADULT_APPEARANCE, ENEMIES, POLICIES, RULE, SKILLS, TOWERS, TRAITS } from "../game/GameConfig";
+import { ADULT_APPEARANCE, ELITE, ENEMIES, POLICIES, RULE, SKILLS, TOWERS, TRAITS } from "../game/GameConfig";
 import { GameState, isElder, isWorkingAdult, Person } from "../game/GameState";
 function check(v: unknown, message = "存档数据不完整"): asserts v { if (!v) throw new Error(message); }
 const int = (v: unknown, low = 0, high = Number.MAX_SAFE_INTEGER) => Number.isSafeInteger(v) && (v as number) >= low && (v as number) <= high;
@@ -7,11 +7,13 @@ const ids = (v: unknown, max: number) => Array.isArray(v) && v.length <= max && 
 const own = (v: unknown, table: object) => typeof v === "string" && Object.prototype.hasOwnProperty.call(table, v);
 function validatePerson(p: Person) {
     check(p && text(p.id) && text(p.name) && ["MALE", "FEMALE"].includes(p.sex) && ["FOUNDER", "TRAVELER", "BORN"].includes(p.origin));
+    check(typeof p.elite === "boolean", "村民精英标记缺失");
+    check(p.origin !== "FOUNDER" || !p.elite, "开村村民不参与精英抽取");
     check(p.appearance === ADULT_APPEARANCE[p.sex], "人物外观与当前资源版本不匹配");
     check(own(p.trait, TRAITS) && (p.skill === null || own(p.skill, SKILLS)) && int(p.generation, 1));
     check(ids(p.parents, 2) && p.parents.length === (p.origin === "BORN" ? 2 : 0) && ids(p.ancestors, RULE.populationCap));
-    check(!p.parents.includes(p.id) && !p.ancestors.includes(p.id) && typeof p.adult === "boolean" && int(p.nights, 0, RULE.adultNights) && int(p.growth, 0, RULE.growNights));
-    check(int(p.elderNights, 0, RULE.elderNights));
+    check(!p.parents.includes(p.id) && !p.ancestors.includes(p.id) && typeof p.adult === "boolean" && int(p.nights, 0, p.elite ? ELITE.adultNights : RULE.adultNights) && int(p.growth, 0, RULE.growNights));
+    check(int(p.elderNights, 0, p.elite ? ELITE.elderNights : RULE.elderNights));
     check(["WAITING", "FARM", "LOGGING", "CARE"].includes(p.job) && (p.job === "CARE" ? text(p.careChild) : p.careChild === null));
     if (!p.adult) check(p.nights === 0 && p.elderNights === 0 && p.skill === null && p.job === "WAITING" && p.growth < RULE.growNights);
     else if (isWorkingAdult(p)) check(p.elderNights === 0);

@@ -1,6 +1,16 @@
 /** 首版规则取自 doc/design/01 与 doc/tech/01；集中调整会改变经济、存档与战斗，需升级 CONFIG_VERSION。 */
-// v3 加入留村养老；开发期不兼容旧档，每次开发交付后人工清除本游戏存档，同版本正常续玩。
-export const CONFIG_VERSION = 3;
+// v4 增加持久化精英标记及 18/5 夜寿命；开发期不迁移旧档，交付后人工清两槽，同版正常续玩。
+export const CONFIG_VERSION = 4;
+/** 用户确认的稀有村民规则：仅新生儿/旅人独立抽取，不遗传、不重抽，创始人普通。
+ * 产出与伤害在原加成后乘倍率、最后取整；照料只额外产粮，不缩短两夜成长。
+ * 寿命按成功守夜计算，口粮沿 RULE；改动影响经济、战斗与存档校验，须同步版本。
+ */
+export const ELITE = {
+    chancePercent: 5, chanceScale: 100, productionMultiplier: 1.5, damageMultiplier: 1.25,
+    careFoodBonus: 1, adultNights: 18, elderNights: 5,
+    // 纯表现缩放，各人生阶段沿用原动画与足底，不改变寻路、速度和住房占用。
+    visualScale: 1.25
+} as const;
 /** 用户指定的两种成人外观；出生、旅人、开村及旧档迁移统一使用，不改变性别/天赋/专长。 */
 export const ADULT_APPEARANCE = { MALE: "male_a", FEMALE: "female_a" } as const;
 /** 随机姓名沿用原孩子字根及旅人名，追加用户指定的男女姓名；只影响新人物命名，不增加人口。

@@ -717,6 +717,230 @@
       "mapping": "adult female CARE at child home",
       "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
       "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_elder_male_walk",
+      "characterId": "elder_male",
+      "actionId": "walk",
+      "category": "characters",
+      "frameIds": [
+        "villager_elder_male_walk_00",
+        "villager_elder_male_walk_01"
+      ],
+      "frameCount": 2,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "villager_elder_male_walk_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "elder_male walk: active elder phase / historical portrait",
+      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_elder_male_walk_up",
+      "characterId": "elder_male",
+      "actionId": "walk_up",
+      "category": "characters",
+      "frameIds": [
+        "villager_elder_male_walk_up_00",
+        "villager_elder_male_walk_up_01"
+      ],
+      "frameCount": 2,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "villager_elder_male_walk_up_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "elder_male walk_up: active elder phase / historical portrait",
+      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_elder_male_walk_right",
+      "characterId": "elder_male",
+      "actionId": "walk_right",
+      "category": "characters",
+      "frameIds": [
+        "villager_elder_male_walk_right_00",
+        "villager_elder_male_walk_right_01"
+      ],
+      "frameCount": 2,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "villager_elder_male_walk_right_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "elder_male walk_right: active elder phase / historical portrait",
+      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_elder_male_idle",
+      "characterId": "elder_male",
+      "actionId": "idle",
+      "category": "characters",
+      "frameIds": [
+        "villager_elder_male_idle_00",
+        "villager_elder_male_idle_01"
+      ],
+      "frameCount": 2,
+      "fps": 2,
+      "loop": true,
+      "restFrame": "villager_elder_male_idle_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "elder_male idle: active elder phase / historical portrait",
+      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_elder_female_walk",
+      "characterId": "elder_female",
+      "actionId": "walk",
+      "category": "characters",
+      "frameIds": [
+        "villager_elder_female_walk_00",
+        "villager_elder_female_walk_01"
+      ],
+      "frameCount": 2,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "villager_elder_female_walk_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "elder_female walk: active elder phase / historical portrait",
+      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_elder_female_walk_up",
+      "characterId": "elder_female",
+      "actionId": "walk_up",
+      "category": "characters",
+      "frameIds": [
+        "villager_elder_female_walk_up_00",
+        "villager_elder_female_walk_up_01"
+      ],
+      "frameCount": 2,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "villager_elder_female_walk_up_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "elder_female walk_up: active elder phase / historical portrait",
+      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_elder_female_walk_right",
+      "characterId": "elder_female",
+      "actionId": "walk_right",
+      "category": "characters",
+      "frameIds": [
+        "villager_elder_female_walk_right_00",
+        "villager_elder_female_walk_right_01"
+      ],
+      "frameCount": 2,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "villager_elder_female_walk_right_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "elder_female walk_right: active elder phase / historical portrait",
+      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_elder_female_idle",
+      "characterId": "elder_female",
+      "actionId": "idle",
+      "category": "characters",
+      "frameIds": [
+        "villager_elder_female_idle_00",
+        "villager_elder_female_idle_01"
+      ],
+      "frameCount": 2,
+      "fps": 2,
+      "loop": true,
+      "restFrame": "villager_elder_female_idle_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "elder_female idle: active elder phase / historical portrait",
+      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
+      "usageStatus": "runtime_connected"
     }
   ],
   "walkDirections": {
@@ -789,6 +1013,42 @@
       },
       "LEFT": {
         "clip": "villager_girl_walk_right",
+        "mirror": true
+      }
+    },
+    "elder_male": {
+      "DOWN": {
+        "clip": "villager_elder_male_walk",
+        "mirror": false
+      },
+      "UP": {
+        "clip": "villager_elder_male_walk_up",
+        "mirror": false
+      },
+      "RIGHT": {
+        "clip": "villager_elder_male_walk_right",
+        "mirror": false
+      },
+      "LEFT": {
+        "clip": "villager_elder_male_walk_right",
+        "mirror": true
+      }
+    },
+    "elder_female": {
+      "DOWN": {
+        "clip": "villager_elder_female_walk",
+        "mirror": false
+      },
+      "UP": {
+        "clip": "villager_elder_female_walk_up",
+        "mirror": false
+      },
+      "RIGHT": {
+        "clip": "villager_elder_female_walk_right",
+        "mirror": false
+      },
+      "LEFT": {
+        "clip": "villager_elder_female_walk_right",
         "mirror": true
       }
     }

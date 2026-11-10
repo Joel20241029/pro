@@ -2049,18 +2049,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "FOUNDER/TRAVELER/BORN male variant A",
@@ -2070,7 +2070,7 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2085,18 +2085,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
-        "x": 313,
+        "x": 256,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "FOUNDER/TRAVELER/BORN male variant A",
@@ -2106,7 +2106,7 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2121,18 +2121,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
-        "x": 627,
+        "x": 512,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "FOUNDER/TRAVELER/BORN male variant A",
@@ -2142,7 +2142,7 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2157,18 +2157,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
-        "x": 940,
+        "x": 768,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "FOUNDER/TRAVELER/BORN male variant A",
@@ -2178,7 +2178,7 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2193,18 +2193,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 0,
-        "y": 627,
-        "w": 313,
-        "h": 313
+        "y": 768,
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "female variant A",
@@ -2214,7 +2214,7 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2229,18 +2229,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
-        "x": 313,
-        "y": 627,
-        "w": 314,
-        "h": 313
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "female variant A",
@@ -2250,7 +2250,7 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2265,18 +2265,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
-        "x": 627,
-        "y": 627,
-        "w": 313,
-        "h": 313
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "female variant A",
@@ -2286,7 +2286,7 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2301,18 +2301,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
-        "x": 940,
-        "y": 627,
-        "w": 314,
-        "h": 313
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "female variant A",
@@ -2322,7 +2322,7 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2337,18 +2337,18 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/anim_villagers_family.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "CHILD male; appearance only",
@@ -2358,7 +2358,7 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -2373,18 +2373,18 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/anim_villagers_family.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
-        "x": 313,
+        "x": 256,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "CHILD male; appearance only",
@@ -2394,7 +2394,7 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -2409,18 +2409,18 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/anim_villagers_family.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
-        "x": 627,
+        "x": 512,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "CHILD male; appearance only",
@@ -2430,7 +2430,7 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -2445,18 +2445,18 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/anim_villagers_family.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
-        "x": 940,
+        "x": 768,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "CHILD male; appearance only",
@@ -2466,7 +2466,7 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -2481,18 +2481,18 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/anim_villagers_family.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 0,
-        "y": 313,
-        "w": 313,
-        "h": 314
+        "y": 768,
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 314
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "CHILD female; appearance only",
@@ -2502,7 +2502,7 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -2517,18 +2517,18 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/anim_villagers_family.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
-        "x": 313,
-        "y": 313,
-        "w": 314,
-        "h": 314
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 314,
-        "h": 314
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "CHILD female; appearance only",
@@ -2538,7 +2538,7 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -2553,18 +2553,18 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/anim_villagers_family.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
-        "x": 627,
-        "y": 313,
-        "w": 313,
-        "h": 314
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 314
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "CHILD female; appearance only",
@@ -2574,7 +2574,7 @@
         "actionId": "walk",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -2589,18 +2589,18 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/anim_villagers_family.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
-        "x": 940,
-        "y": 313,
-        "w": 314,
-        "h": 314
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 314,
-        "h": 314
+        "w": 256,
+        "h": 256
       },
       "nineSlice": null,
       "mapping": "CHILD female; appearance only",
@@ -2610,7 +2610,7 @@
         "actionId": "walk",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -2769,18 +2769,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 280,
+        "h": 280
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 280,
+        "h": 280
       },
       "nineSlice": null,
       "mapping": "male A farming",
@@ -2790,7 +2790,7 @@
         "actionId": "farm",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2805,18 +2805,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 313,
+        "x": 280,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 281,
+        "h": 280
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 281,
+        "h": 280
       },
       "nineSlice": null,
       "mapping": "male A farming",
@@ -2826,7 +2826,7 @@
         "actionId": "farm",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2841,18 +2841,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 627,
+        "x": 561,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 280,
+        "h": 280
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 313
+        "w": 280,
+        "h": 280
       },
       "nineSlice": null,
       "mapping": "male A farming",
@@ -2862,7 +2862,7 @@
         "actionId": "farm",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2877,18 +2877,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 940,
+        "x": 841,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 281,
+        "h": 280
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 314,
-        "h": 313
+        "w": 281,
+        "h": 280
       },
       "nineSlice": null,
       "mapping": "male A farming",
@@ -2898,7 +2898,7 @@
         "actionId": "farm",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2913,18 +2913,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
         "x": 0,
-        "y": 313,
-        "w": 313,
-        "h": 314
+        "y": 280,
+        "w": 280,
+        "h": 280
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 314
+        "w": 280,
+        "h": 280
       },
       "nineSlice": null,
       "mapping": "female A farming",
@@ -2934,7 +2934,7 @@
         "actionId": "harvest",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2949,18 +2949,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 313,
-        "y": 313,
-        "w": 314,
-        "h": 314
+        "x": 280,
+        "y": 280,
+        "w": 281,
+        "h": 280
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 314,
-        "h": 314
+        "w": 281,
+        "h": 280
       },
       "nineSlice": null,
       "mapping": "female A farming",
@@ -2970,7 +2970,7 @@
         "actionId": "harvest",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -2985,18 +2985,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 627,
-        "y": 313,
-        "w": 313,
-        "h": 314
+        "x": 561,
+        "y": 280,
+        "w": 280,
+        "h": 280
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 313,
-        "h": 314
+        "w": 280,
+        "h": 280
       },
       "nineSlice": null,
       "mapping": "female A farming",
@@ -3006,7 +3006,7 @@
         "actionId": "harvest",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -3021,18 +3021,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 940,
-        "y": 313,
-        "w": 314,
-        "h": 314
+        "x": 841,
+        "y": 280,
+        "w": 281,
+        "h": 280
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 314,
-        "h": 314
+        "w": 281,
+        "h": 280
       },
       "nineSlice": null,
       "mapping": "female A farming",
@@ -3042,7 +3042,7 @@
         "actionId": "harvest",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -3777,10 +3777,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 0,
-        "y": 0,
+        "y": 256,
         "w": 256,
         "h": 256
       },
@@ -3798,7 +3798,7 @@
         "actionId": "walk_up",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -3813,10 +3813,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 256,
-        "y": 0,
+        "y": 256,
         "w": 256,
         "h": 256
       },
@@ -3834,7 +3834,7 @@
         "actionId": "walk_up",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -3849,10 +3849,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 512,
-        "y": 0,
+        "y": 256,
         "w": 256,
         "h": 256
       },
@@ -3870,7 +3870,7 @@
         "actionId": "walk_up",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -3885,10 +3885,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 768,
-        "y": 0,
+        "y": 256,
         "w": 256,
         "h": 256
       },
@@ -3906,7 +3906,7 @@
         "actionId": "walk_up",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -3921,10 +3921,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 0,
-        "y": 512,
+        "y": 1024,
         "w": 256,
         "h": 256
       },
@@ -3942,7 +3942,7 @@
         "actionId": "walk_up",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -3957,10 +3957,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 256,
-        "y": 512,
+        "y": 1024,
         "w": 256,
         "h": 256
       },
@@ -3978,7 +3978,7 @@
         "actionId": "walk_up",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -3993,10 +3993,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 512,
-        "y": 512,
+        "y": 1024,
         "w": 256,
         "h": 256
       },
@@ -4014,7 +4014,7 @@
         "actionId": "walk_up",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -4029,10 +4029,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 768,
-        "y": 512,
+        "y": 1024,
         "w": 256,
         "h": 256
       },
@@ -4050,7 +4050,7 @@
         "actionId": "walk_up",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -4065,10 +4065,10 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 0,
-        "y": 1024,
+        "y": 256,
         "w": 256,
         "h": 256
       },
@@ -4086,7 +4086,7 @@
         "actionId": "walk_up",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4101,10 +4101,10 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 256,
-        "y": 1024,
+        "y": 256,
         "w": 256,
         "h": 256
       },
@@ -4122,7 +4122,7 @@
         "actionId": "walk_up",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4137,10 +4137,10 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 512,
-        "y": 1024,
+        "y": 256,
         "w": 256,
         "h": 256
       },
@@ -4158,7 +4158,7 @@
         "actionId": "walk_up",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4173,10 +4173,10 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 768,
-        "y": 1024,
+        "y": 256,
         "w": 256,
         "h": 256
       },
@@ -4194,7 +4194,7 @@
         "actionId": "walk_up",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4209,10 +4209,10 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 0,
-        "y": 1280,
+        "y": 1024,
         "w": 256,
         "h": 256
       },
@@ -4230,7 +4230,7 @@
         "actionId": "walk_up",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4245,10 +4245,10 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 256,
-        "y": 1280,
+        "y": 1024,
         "w": 256,
         "h": 256
       },
@@ -4266,7 +4266,7 @@
         "actionId": "walk_up",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4281,10 +4281,10 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 512,
-        "y": 1280,
+        "y": 1024,
         "w": 256,
         "h": 256
       },
@@ -4302,7 +4302,7 @@
         "actionId": "walk_up",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4317,10 +4317,10 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 768,
-        "y": 1280,
+        "y": 1024,
         "w": 256,
         "h": 256
       },
@@ -4338,7 +4338,7 @@
         "actionId": "walk_up",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4353,10 +4353,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 0,
-        "y": 0,
+        "y": 512,
         "w": 256,
         "h": 256
       },
@@ -4374,7 +4374,7 @@
         "actionId": "walk_right",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -4389,10 +4389,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 256,
-        "y": 0,
+        "y": 512,
         "w": 256,
         "h": 256
       },
@@ -4410,7 +4410,7 @@
         "actionId": "walk_right",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -4425,10 +4425,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 512,
-        "y": 0,
+        "y": 512,
         "w": 256,
         "h": 256
       },
@@ -4446,7 +4446,7 @@
         "actionId": "walk_right",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -4461,10 +4461,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 768,
-        "y": 0,
+        "y": 512,
         "w": 256,
         "h": 256
       },
@@ -4482,7 +4482,7 @@
         "actionId": "walk_right",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -4497,10 +4497,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 0,
-        "y": 512,
+        "y": 1280,
         "w": 256,
         "h": 256
       },
@@ -4518,7 +4518,7 @@
         "actionId": "walk_right",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -4533,10 +4533,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 256,
-        "y": 512,
+        "y": 1280,
         "w": 256,
         "h": 256
       },
@@ -4554,7 +4554,7 @@
         "actionId": "walk_right",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -4569,10 +4569,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 512,
-        "y": 512,
+        "y": 1280,
         "w": 256,
         "h": 256
       },
@@ -4590,7 +4590,7 @@
         "actionId": "walk_right",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -4605,10 +4605,10 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/adults_walk_v6.png",
       "sourceRect": {
         "x": 768,
-        "y": 512,
+        "y": 1280,
         "w": 256,
         "h": 256
       },
@@ -4626,7 +4626,7 @@
         "actionId": "walk_right",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -4641,10 +4641,10 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 0,
-        "y": 1024,
+        "y": 512,
         "w": 256,
         "h": 256
       },
@@ -4662,7 +4662,7 @@
         "actionId": "walk_right",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4677,10 +4677,10 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 256,
-        "y": 1024,
+        "y": 512,
         "w": 256,
         "h": 256
       },
@@ -4698,7 +4698,7 @@
         "actionId": "walk_right",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4713,10 +4713,10 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 512,
-        "y": 1024,
+        "y": 512,
         "w": 256,
         "h": 256
       },
@@ -4734,7 +4734,7 @@
         "actionId": "walk_right",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4749,10 +4749,10 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 768,
-        "y": 1024,
+        "y": 512,
         "w": 256,
         "h": 256
       },
@@ -4770,7 +4770,7 @@
         "actionId": "walk_right",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4785,7 +4785,7 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 0,
         "y": 1280,
@@ -4806,7 +4806,7 @@
         "actionId": "walk_right",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4821,7 +4821,7 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 256,
         "y": 1280,
@@ -4842,7 +4842,7 @@
         "actionId": "walk_right",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4857,7 +4857,7 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 512,
         "y": 1280,
@@ -4878,7 +4878,7 @@
         "actionId": "walk_right",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -4893,7 +4893,7 @@
         "x": 32,
         "y": 61
       },
-      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceSheet": "source/animations/children_walk_v6.png",
       "sourceRect": {
         "x": 768,
         "y": 1280,
@@ -4914,7 +4914,7 @@
         "actionId": "walk_right",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 2,
       "resizeMode": "contain"
     },
     {
@@ -5048,18 +5048,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/adults_work_v4.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
         "x": 0,
-        "y": 0,
-        "w": 362,
-        "h": 362
+        "y": 560,
+        "w": 280,
+        "h": 281
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 362,
-        "h": 362
+        "w": 280,
+        "h": 281
       },
       "nineSlice": null,
       "mapping": "adult male LOGGING at work stop",
@@ -5069,7 +5069,7 @@
         "actionId": "chop",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5084,18 +5084,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/adults_work_v4.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 362,
-        "y": 0,
-        "w": 362,
-        "h": 362
+        "x": 280,
+        "y": 560,
+        "w": 281,
+        "h": 281
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 362,
-        "h": 362
+        "w": 281,
+        "h": 281
       },
       "nineSlice": null,
       "mapping": "adult male LOGGING at work stop",
@@ -5105,7 +5105,7 @@
         "actionId": "chop",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5120,18 +5120,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/adults_work_v4.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 724,
-        "y": 0,
-        "w": 362,
-        "h": 362
+        "x": 561,
+        "y": 560,
+        "w": 280,
+        "h": 281
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 362,
-        "h": 362
+        "w": 280,
+        "h": 281
       },
       "nineSlice": null,
       "mapping": "adult male LOGGING at work stop",
@@ -5141,7 +5141,7 @@
         "actionId": "chop",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5156,18 +5156,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/adults_work_v4.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 1086,
-        "y": 0,
-        "w": 362,
-        "h": 362
+        "x": 841,
+        "y": 560,
+        "w": 281,
+        "h": 281
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 362,
-        "h": 362
+        "w": 281,
+        "h": 281
       },
       "nineSlice": null,
       "mapping": "adult male LOGGING at work stop",
@@ -5177,7 +5177,7 @@
         "actionId": "chop",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5192,18 +5192,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/adults_work_v4.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
         "x": 0,
-        "y": 362,
-        "w": 362,
-        "h": 362
+        "y": 841,
+        "w": 280,
+        "h": 280
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 362,
-        "h": 362
+        "w": 280,
+        "h": 280
       },
       "nineSlice": null,
       "mapping": "adult female LOGGING at work stop",
@@ -5213,7 +5213,7 @@
         "actionId": "chop",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5228,18 +5228,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/adults_work_v4.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 362,
-        "y": 362,
-        "w": 362,
-        "h": 362
+        "x": 280,
+        "y": 841,
+        "w": 281,
+        "h": 280
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 362,
-        "h": 362
+        "w": 281,
+        "h": 280
       },
       "nineSlice": null,
       "mapping": "adult female LOGGING at work stop",
@@ -5249,7 +5249,7 @@
         "actionId": "chop",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5264,18 +5264,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/adults_work_v4.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 724,
-        "y": 362,
-        "w": 362,
-        "h": 362
+        "x": 561,
+        "y": 841,
+        "w": 280,
+        "h": 280
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 362,
-        "h": 362
+        "w": 280,
+        "h": 280
       },
       "nineSlice": null,
       "mapping": "adult female LOGGING at work stop",
@@ -5285,7 +5285,7 @@
         "actionId": "chop",
         "frameIndex": 2
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5300,18 +5300,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/adults_work_v4.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 1086,
-        "y": 362,
-        "w": 362,
-        "h": 362
+        "x": 841,
+        "y": 841,
+        "w": 281,
+        "h": 280
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 362,
-        "h": 362
+        "w": 281,
+        "h": 280
       },
       "nineSlice": null,
       "mapping": "adult female LOGGING at work stop",
@@ -5321,7 +5321,7 @@
         "actionId": "chop",
         "frameIndex": 3
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5336,18 +5336,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/adults_work_v4.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
         "x": 0,
-        "y": 724,
-        "w": 362,
-        "h": 362
+        "y": 1121,
+        "w": 280,
+        "h": 281
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 362,
-        "h": 362
+        "w": 280,
+        "h": 281
       },
       "nineSlice": null,
       "mapping": "adult male CARE at child home",
@@ -5357,7 +5357,7 @@
         "actionId": "care",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5372,18 +5372,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/adults_work_v4.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 362,
-        "y": 724,
-        "w": 362,
-        "h": 362
+        "x": 280,
+        "y": 1121,
+        "w": 281,
+        "h": 281
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 362,
-        "h": 362
+        "w": 281,
+        "h": 281
       },
       "nineSlice": null,
       "mapping": "adult male CARE at child home",
@@ -5393,7 +5393,7 @@
         "actionId": "care",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5408,18 +5408,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/adults_work_v4.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 724,
-        "y": 724,
-        "w": 362,
-        "h": 362
+        "x": 561,
+        "y": 1121,
+        "w": 280,
+        "h": 281
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 362,
-        "h": 362
+        "w": 280,
+        "h": 281
       },
       "nineSlice": null,
       "mapping": "adult female CARE at child home",
@@ -5429,7 +5429,7 @@
         "actionId": "care",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5444,18 +5444,18 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/adults_work_v4.png",
+      "sourceSheet": "source/animations/adults_work_v6.png",
       "sourceRect": {
-        "x": 1086,
-        "y": 724,
-        "w": 362,
-        "h": 362
+        "x": 841,
+        "y": 1121,
+        "w": 281,
+        "h": 281
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 362,
-        "h": 362
+        "w": 281,
+        "h": 281
       },
       "nineSlice": null,
       "mapping": "adult female CARE at child home",
@@ -5465,7 +5465,7 @@
         "actionId": "care",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5480,7 +5480,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
@@ -5501,7 +5501,7 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5516,7 +5516,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 313,
         "y": 0,
@@ -5537,7 +5537,7 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5552,7 +5552,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 627,
         "y": 0,
@@ -5573,7 +5573,7 @@
         "actionId": "walk_up",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5588,7 +5588,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 940,
         "y": 0,
@@ -5609,7 +5609,7 @@
         "actionId": "walk_up",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5624,7 +5624,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 0,
         "y": 313,
@@ -5645,7 +5645,7 @@
         "actionId": "walk_right",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5660,7 +5660,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 313,
         "y": 313,
@@ -5681,7 +5681,7 @@
         "actionId": "walk_right",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5696,7 +5696,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 627,
         "y": 313,
@@ -5717,7 +5717,7 @@
         "actionId": "idle",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5732,7 +5732,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 940,
         "y": 313,
@@ -5753,7 +5753,7 @@
         "actionId": "idle",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5768,7 +5768,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 0,
         "y": 627,
@@ -5789,7 +5789,7 @@
         "actionId": "walk",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5804,7 +5804,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 313,
         "y": 627,
@@ -5825,7 +5825,7 @@
         "actionId": "walk",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5840,7 +5840,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 627,
         "y": 627,
@@ -5861,7 +5861,7 @@
         "actionId": "walk_up",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5876,7 +5876,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 940,
         "y": 627,
@@ -5897,7 +5897,7 @@
         "actionId": "walk_up",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5912,7 +5912,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 0,
         "y": 940,
@@ -5933,7 +5933,7 @@
         "actionId": "walk_right",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5948,7 +5948,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 313,
         "y": 940,
@@ -5969,7 +5969,7 @@
         "actionId": "walk_right",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -5984,7 +5984,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 627,
         "y": 940,
@@ -6005,7 +6005,7 @@
         "actionId": "idle",
         "frameIndex": 0
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
       "resizeMode": "contain"
     },
     {
@@ -6020,7 +6020,7 @@
         "x": 40,
         "y": 77
       },
-      "sourceSheet": "source/animations/elders_v5.png",
+      "sourceSheet": "source/animations/elders_v6.png",
       "sourceRect": {
         "x": 940,
         "y": 940,
@@ -6041,7 +6041,38 @@
         "actionId": "idle",
         "frameIndex": 1
       },
-      "fitPadding": 0,
+      "fitPadding": 4,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "icon_trophy",
+      "label": "排行榜奖杯",
+      "category": "ui/icons",
+      "categoryLabel": "界面图标",
+      "path": "runtime/ui/icons/icon_trophy.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/static/ranking_trophy_v1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 1254,
+        "h": 1254
+      },
+      "sourceCropWithinCell": {
+        "x": 180,
+        "y": 232,
+        "w": 894,
+        "h": 842
+      },
+      "nineSlice": null,
+      "mapping": "主界面左侧好友守村榜入口",
+      "animation": null,
+      "fitPadding": 4,
       "resizeMode": "contain"
     }
   ],

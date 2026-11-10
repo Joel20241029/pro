@@ -162,14 +162,14 @@ write('manifest.json', { version: 2, status: 'imported_in_wechat_prototype', pre
 const categoryStats = {}; for (const a of assets) { const c = categoryStats[a.category] ??= { count: 0, bytes: 0 }; c.count++; c.bytes += a.bytes; }
 const pngBytes = pages.reduce((sum, p) => sum + p.bytes, 0), metadataBytes = runtimeFiles.filter(p => p.endsWith('.json')).reduce((sum, p) => sum + fs.statSync(path.join(root, p)).size, 0);
 const packing = { sourceCanvasPixels: originalArea, atlasContentPixels: trimmedArea, savedContentPixels: originalArea - trimmedArea, savedContentPercent: +(100 * (originalArea - trimmedArea) / originalArea).toFixed(2), trimmedAssetCount: trimmedCount, alphaThreshold: 0, nineSlicePreserved: true, paddingPerSide: padding };
-write('budget_report.json', { generatedAt: '2026-11-10', runtimeAssetCount: assets.length, animationCount: recipe.animations.animations.length,
+write('budget_report.json', { generatedAt: new Date().toISOString(), runtimeAssetCount: assets.length, animationCount: recipe.animations.animations.length,
     animationFrames: recipe.animations.animations.reduce((s, a) => s + a.frameCount, 0), categoryStats, atlasPages: pages, packing,
     selectedRuntime: { mode: 'atlas_only', pngBytes, metadataBytes, totalBytes: pngBytes + metadataBytes, files: runtimeFiles },
     nineSliceCompaction: { originalPixels: nineSliceOriginalPixels, compactPixels: nineSliceCompactPixels, cornersPreserved: true },
     budgets: { fullPackageTarget: 3500000 }, sourceBytes: read('source/generation_records.json').records.reduce((sum, r) => sum + r.bytes, 0),
     budgetComparison: { worldPngBytes: pages.filter(p => p.group === 'world').reduce((s, p) => s + p.bytes, 0), uiAndEffectsPngBytes: pages.filter(p => p.group === 'ui').reduce((s, p) => s + p.bytes, 0) },
     limitations: ['Atlas content-pixel savings are not identical to PNG byte savings', 'No real phone or platform upload measurement'] });
-write('validation_report.json', { date: '2026-11-10', status: 'passed', checks: { pngCount: assets.length, animationGroups: recipe.animations.animations.length, atlasPages: pages.length, atlasRectsAndPaddingNonOverlapping: true, exactTransparentTrimOnly: true, sourceCanvasAndPivotsMatch: true, atlasPixelsMatchSourceCrop: true, croppedAwayPixelsAllTransparent: true, directionReferencesValid: true, nineSliceCanvasPreserved: true, nineSliceCornersPreserved: true }, packing, errors: [] });
+write('validation_report.json', { date: new Date().toISOString(), status: 'passed', checks: { pngCount: assets.length, animationGroups: recipe.animations.animations.length, atlasPages: pages.length, atlasRectsAndPaddingNonOverlapping: true, exactTransparentTrimOnly: true, sourceCanvasAndPivotsMatch: true, atlasPixelsMatchSourceCrop: true, croppedAwayPixelsAllTransparent: true, directionReferencesValid: true, nineSliceCanvasPreserved: true, nineSliceCornersPreserved: true }, packing, errors: [] });
 
 // 完整画布预览与方向切换页，不进入微信包。
 for (const dir of ['preview/animations', 'preview/strips']) fs.mkdirSync(path.join(root, dir), { recursive: true });

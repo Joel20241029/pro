@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-10",
-  "runtimeAssetCount": 157,
-  "animationCount": 24,
-  "animationFrames": 92,
+  "generatedAt": "2026-11-10T16:28:14.715Z",
+  "runtimeAssetCount": 174,
+  "animationCount": 32,
+  "animationFrames": 108,
   "categoryStats": {
     "buildings": {
       "count": 13,
@@ -17,8 +17,8 @@
       "bytes": 91386
     },
     "ui/icons": {
-      "count": 24,
-      "bytes": 87784
+      "count": 25,
+      "bytes": 91059
     },
     "effects": {
       "count": 8,
@@ -29,8 +29,8 @@
       "bytes": 27392
     },
     "characters": {
-      "count": 72,
-      "bytes": 421360
+      "count": 88,
+      "bytes": 567182
     },
     "enemies": {
       "count": 20,
@@ -44,8 +44,8 @@
       "runtimeFile": "world_0.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 962295,
-      "sha256": "6b5f802e6f1d2b5eb17cc3daad03cb5a94e3b28affefd3309c91bbd627f9b4a1",
+      "bytes": 1110913,
+      "sha256": "98f8816255e37c68b79e0271f9726481ff099a21024e462a34c0169074268685",
       "group": "world"
     },
     {
@@ -54,26 +54,26 @@
       "runtimeFile": "ui_0.png",
       "width": 512,
       "height": 512,
-      "bytes": 129019,
-      "sha256": "7f8773a2a66fd0c2813c0c6be6dae1f67625c06670d11969f7340fdddff1193b",
+      "bytes": 132722,
+      "sha256": "3b7eee591d807e76581380ca29e2f063561f9eb2f51490355a09a81170711000",
       "group": "ui"
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 941212,
-    "atlasContentPixels": 789568,
-    "savedContentPixels": 151644,
-    "savedContentPercent": 16.11,
-    "trimmedAssetCount": 132,
+    "sourceCanvasPixels": 1045916,
+    "atlasContentPixels": 887070,
+    "savedContentPixels": 158846,
+    "savedContentPercent": 15.19,
+    "trimmedAssetCount": 152,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
     "mode": "atlas_only",
-    "pngBytes": 1091314,
-    "metadataBytes": 81264,
-    "totalBytes": 1172578,
+    "pngBytes": 1243635,
+    "metadataBytes": 95100,
+    "totalBytes": 1338735,
     "files": [
       "atlases/world_0.png",
       "atlases/ui_0.png",
@@ -89,10 +89,10 @@
   "budgets": {
     "fullPackageTarget": 3500000
   },
-  "sourceBytes": 25397143,
+  "sourceBytes": 35892189,
   "budgetComparison": {
-    "worldPngBytes": 962295,
-    "uiAndEffectsPngBytes": 129019
+    "worldPngBytes": 1110913,
+    "uiAndEffectsPngBytes": 132722
   },
   "limitations": [
     "Atlas content-pixel savings are not identical to PNG byte savings",

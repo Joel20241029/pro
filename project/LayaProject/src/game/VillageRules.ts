@@ -1,4 +1,4 @@
-import { ADULT_APPEARANCE, FOUNDERS, POLICIES, Policy, RULE, SKILLS, Skill, TOWERS, TowerKind, TRAITS, Trait, VILLAGER_NAMES } from "./GameConfig";
+import { ADULT_APPEARANCE, ELITE, FOUNDERS, POLICIES, Policy, RULE, SKILLS, Skill, TOWERS, TowerKind, TRAITS, Trait, VILLAGER_NAMES } from "./GameConfig";
 import { clone, GameState, isElder, isWorkingAdult, Job, Legacy, Person } from "./GameState";
 import { SeededRandom } from "./SeededRandom";
 import { generateWave, season } from "./WaveGenerator";
@@ -40,7 +40,7 @@ export function createGame(seed: number, old?: Legacy, inherited?: Trait, histor
         rng: { family: (seed ^ 0xa341316c) >>> 0, world: (seed ^ 0xc8013ea4) >>> 0, battle: (seed ^ 0xad90777d) >>> 0 },
         stats: { births: 0, retirees: 0, generation: 1 }, legacy, settings: { speed: 1 }, summary: ""
     };
-    s.people = FOUNDERS.map((f, i): Person => ({ id: newId(s), name: f.name, sex: f.sex, origin: "FOUNDER", appearance: f.appearance, trait: i === 0 && inherited ? inherited : f.trait, skill: f.skill, generation: 1, parents: [], ancestors: [], adult: true, nights: f.nights, elderNights: 0, growth: 0, job: f.job, careChild: null }));
+    s.people = FOUNDERS.map((f, i): Person => ({ id: newId(s), name: f.name, sex: f.sex, origin: "FOUNDER", elite: false, appearance: f.appearance, trait: i === 0 && inherited ? inherited : f.trait, skill: f.skill, generation: 1, parents: [], ancestors: [], adult: true, nights: f.nights, elderNights: 0, growth: 0, job: f.job, careChild: null }));
     s.families.push({ id: `${s.run}:f1`, partners: [s.people[0].id, s.people[1].id], lastBirth: null });
     s.towers = [{ kind: "ARROW", level: 1, operator: s.people[3].id }, { kind: "STONE", level: 1, operator: s.people[2].id }, { kind: null, level: 0, operator: null }, { kind: null, level: 0, operator: null }];
     s.people.forEach(p => remember(s, p.trait)); autoAssignJobs(s); s.wave = generateWave(s); return s;
@@ -50,6 +50,26 @@ export function canMarry(s: GameState, a: Person, b: Person): boolean {
         !s.families.some(f => f.partners.includes(a.id) || f.partners.includes(b.id)) &&
         !a.ancestors.includes(b.id) && !b.ancestors.includes(a.id) && !a.parents.some(id => b.parents.includes(id));
 }
+/** 迎接孩子的预检与命令共用原生育条件，按原校验顺序返回首个阻塞原因。
+ * 不传照料者时只检查是否存在合格人选；传入 ID 时校验该人。纯查询，不扣粮、不改岗位或随机数。
+ */
+export function birthUnavailableReason(s: GameState, familyId: string, carerId?: string): string | null {
+    if (s.phase !== "DAY") return "请在白天安排村务";
+    const family = s.families.find(f => f.id === familyId);
+    if (!family) return "家庭不存在";
+    const parents = family.partners.map(id => person(s, id));
+    if (parents.some(p => !isWorkingAdult(p))) return "双亲需仍在劳作期";
+    if (s.people.length >= capacity(s)) return `民居已满 · ${s.people.length}/${capacity(s)} 人`;
+    if (parents.some(p => p.nights < RULE.parentMinNights)) return `双亲需至少余 ${RULE.parentMinNights} 夜`;
+    if (s.people.some(p => !p.adult && p.parents.some(id => family.partners.includes(id)))) return "已有孩子未成年";
+    if (family.lastBirth !== null && s.completed - family.lastBirth < RULE.birthCooldown) return `再守住 ${RULE.birthCooldown - (s.completed - family.lastBirth)} 夜可迎接`;
+    const carer = carerId === undefined ? s.people.find(p => isWorkingAdult(p) && p.job !== "CARE") : s.people.find(p => p.id === carerId);
+    if (!carer) return carerId === undefined ? "暂无可用照料者" : "照料者已不在村中";
+    if (!isWorkingAdult(carer)) return "照料者需在劳作期";
+    if (carer.job === "CARE") return "照料者正照顾其他孩子";
+    if (s.food < RULE.birthCost) return `粮食不足 · ${s.food}/${RULE.birthCost}`;
+    return null;
+}
 export function economy(s: GameState) {
     const po = policy(s); let food = 0, wood = 0, rations = 0, elderRations = 0;
     for (const p of s.people) {
@@ -57,9 +77,10 @@ export function economy(s: GameState) {
         rations += ration;
         if (isElder(p)) elderRations += ration;
         if (!isWorkingAdult(p)) continue;
-        if (p.job === "FARM") food += Math.floor(RULE.farmBase * (1 + (p.trait === "trait_diligent" ? .2 : 0) + (p.skill === "skill_farming" ? .2 : 0) + (season(s.day) === 0 ? .1 : 0) + (po.food || 0)));
-        if (p.job === "LOGGING") wood += Math.floor(RULE.logBase * (1 + (p.trait === "trait_woodwise" ? .2 : 0) + (p.skill === "skill_logging" ? .2 : 0) + (season(s.day) === 2 ? .15 : 0) + (po.wood || 0)));
-        if (p.job === "CARE" && s.people.some(c => c.id === p.careChild && !c.adult)) food += (p.skill === "skill_nurturing" ? 2 : 0) + (po.care || 0);
+        const production = p.elite ? ELITE.productionMultiplier : 1;
+        if (p.job === "FARM") food += Math.floor(production * RULE.farmBase * (1 + (p.trait === "trait_diligent" ? .2 : 0) + (p.skill === "skill_farming" ? .2 : 0) + (season(s.day) === 0 ? .1 : 0) + (po.food || 0)));
+        if (p.job === "LOGGING") wood += Math.floor(production * RULE.logBase * (1 + (p.trait === "trait_woodwise" ? .2 : 0) + (p.skill === "skill_logging" ? .2 : 0) + (season(s.day) === 2 ? .15 : 0) + (po.wood || 0)));
+        if (p.job === "CARE" && s.people.some(c => c.id === p.careChild && !c.adult)) food += (p.skill === "skill_nurturing" ? 2 : 0) + (po.care || 0) + (p.elite ? ELITE.careFoodBonus : 0);
     }
     rations = Math.ceil(rations * (1 + (season(s.day) === 3 ? .2 : 0) + (po.ration || 0)));
     // elderRations 是已包含在总口粮中的基础值，仅供 UI 解释；不可再次扣除或单独向上取整。
@@ -116,20 +137,16 @@ export function applyCommand(s: GameState, c: Command) {
             s.families.push({ id: `${s.run}:f${s.nextFamily++}`, partners: [c.a, c.b], lastBirth: null }); break;
         }
         case "BIRTH": {
-            const f = s.families.find(f => f.id === c.family); requireRule(f, "家庭不存在");
-            requireRule(f.partners.every(id => isWorkingAdult(person(s, id))), "家中已有荣休老人，不能再迎接孩子");
-            requireRule(s.people.length < capacity(s), "民居已满，请先建民居");
-            const parents = f.partners.map(id => person(s, id)); requireRule(parents.every(p => p.nights >= RULE.parentMinNights), "双亲均需剩余至少 3 夜劳作期");
-            requireRule(!s.people.some(p => !p.adult && p.parents.some(id => f.partners.includes(id))), "这个家庭尚有孩子未成年");
-            requireRule(f.lastBirth === null || s.completed - f.lastBirth >= RULE.birthCooldown, "两胎之间需守住 4 夜");
-            const carer = person(s, c.carer); requireRule(isWorkingAdult(carer) && carer.job !== "CARE", "照料人需在劳作期且未照料其他孩子");
+            const reason = birthUnavailableReason(s, c.family, c.carer); requireRule(reason === null, reason!);
+            const f = s.families.find(f => f.id === c.family)!;
+            const parents = f.partners.map(id => person(s, id)), carer = person(s, c.carer);
             spend(s, "food", RULE.birthCost);
             const rng = new SeededRandom(s.rng.family), sex = rng.range(2) === 0 ? "MALE" : "FEMALE";
             const trait = parents[0].trait === parents[1].trait ? parents[0].trait : parents[rng.range(2)].trait;
             const id = newId(s);
             const nameIndex = rng.range(VILLAGER_NAMES.child.length + 1);
             const name = nameIndex === VILLAGER_NAMES.child.length ? VILLAGER_NAMES.personal[sex] : `小${VILLAGER_NAMES.child[nameIndex]}${s.nextPerson - 1}`;
-            const child: Person = { id, name, sex, origin: "BORN", appearance: ADULT_APPEARANCE[sex], trait, skill: null, generation: Math.max(...parents.map(p => p.generation)) + 1, parents: f.partners.slice(), ancestors: Array.from(new Set([...f.partners, ...parents[0].ancestors, ...parents[1].ancestors])), adult: false, nights: 0, elderNights: 0, growth: 0, job: "WAITING", careChild: null };
+            const child: Person = { id, name, sex, origin: "BORN", elite: rng.range(ELITE.chanceScale) < ELITE.chancePercent, appearance: ADULT_APPEARANCE[sex], trait, skill: null, generation: Math.max(...parents.map(p => p.generation)) + 1, parents: f.partners.slice(), ancestors: Array.from(new Set([...f.partners, ...parents[0].ancestors, ...parents[1].ancestors])), adult: false, nights: 0, elderNights: 0, growth: 0, job: "WAITING", careChild: null };
             s.people.push(child); carer.job = "CARE"; carer.careChild = id; f.lastBirth = s.completed;
             s.stats.births++; s.legacy.births++; s.stats.generation = Math.max(s.stats.generation, child.generation); remember(s, trait); s.rng.family = rng.state; break;
         }
@@ -165,11 +182,11 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
     const departed = s.night.elders.map(id => person(s, id)).filter(p => p.elderNights === 0), departedIds = departed.map(p => p.id);
     for (const id of s.night.adults) person(s, id).nights--;
     const grown: Person[] = [];
-    for (const id of s.night.cared) { const p = person(s, id); if (!p.adult && ++p.growth >= RULE.growNights) { p.adult = true; p.nights = RULE.adultNights; p.job = "WAITING"; grown.push(p); } }
+    for (const id of s.night.cared) { const p = person(s, id); if (!p.adult && ++p.growth >= RULE.growNights) { p.adult = true; p.nights = p.elite ? ELITE.adultNights : RULE.adultNights; p.job = "WAITING"; grown.push(p); } }
     for (const p of s.people) if (grown.some(c => c.id === p.careChild)) { p.job = "WAITING"; p.careChild = null; }
     const retired = s.night.adults.map(id => person(s, id)).filter(p => p.nights === 0), retiredIds = retired.map(p => p.id);
     const uncared = retired.filter(p => p.careChild && !person(s, p.careChild).adult).length;
-    for (const p of retired) { p.elderNights = RULE.elderNights; p.job = "WAITING"; p.careChild = null; }
+    for (const p of retired) { p.elderNights = p.elite ? ELITE.elderNights : RULE.elderNights; p.job = "WAITING"; p.careChild = null; }
     s.towers.forEach(t => { if (t.operator && retiredIds.includes(t.operator)) t.operator = null; });
     // 老人在村时保留婚姻和亲缘；寿终才腾出人口、解除婚姻并进入有界家谱。
     for (const p of departed) { p.ancestors = []; s.history.push(p); }
@@ -184,7 +201,8 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
     if (s.day >= 5 && (s.day - 5) % 4 === 0) {
         const sex = world.range(2) === 0 ? "MALE" : "FEMALE";
         const name = [...VILLAGER_NAMES.traveler, VILLAGER_NAMES.personal[sex]][world.range(VILLAGER_NAMES.traveler.length + 1)];
-        const traveler: Person = { id: newId(s), name, sex, origin: "TRAVELER", appearance: ADULT_APPEARANCE[sex], trait: (Object.keys(TRAITS) as Trait[])[world.range(8)], skill: (Object.keys(SKILLS) as Skill[])[world.range(6)], generation: 1, parents: [], ancestors: [], adult: true, nights: RULE.adultNights, elderNights: 0, growth: 0, job: "WAITING", careChild: null };
+        const elite = world.range(ELITE.chanceScale) < ELITE.chancePercent;
+        const traveler: Person = { id: newId(s), name, sex, origin: "TRAVELER", elite, appearance: ADULT_APPEARANCE[sex], trait: (Object.keys(TRAITS) as Trait[])[world.range(8)], skill: (Object.keys(SKILLS) as Skill[])[world.range(6)], generation: 1, parents: [], ancestors: [], adult: true, nights: elite ? ELITE.adultNights : RULE.adultNights, elderNights: 0, growth: 0, job: "WAITING", careChild: null };
         s.choices.push({ kind: "TRAVELER", person: traveler });
     }
     s.rng.family = rng.state;

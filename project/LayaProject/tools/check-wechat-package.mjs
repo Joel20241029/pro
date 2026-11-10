@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 
 // 首版完整单包内部目标来自技术设计；原始字节不是平台上传压缩体积。
 const TARGET_BYTES = 3_500_000;
@@ -28,6 +29,16 @@ const config = JSON.parse(match[1]);
 const errors = [];
 if (game.deviceOrientation !== 'portrait') errors.push('不是竖屏');
 if (game.subpackages?.length || game.subPackages?.length || game.plugins) errors.push('出现分包或引擎插件');
+if (game.openDataContext !== 'openDataContext') errors.push('未声明本地开放数据域');
+// 制作源与出包逐文件比对，避免 IDE 默认的随机示例排行榜覆盖正式实现。
+const openSource = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../build-templates/wxgame/openDataContext');
+const openFiles = ['engine.js', 'index.js', 'score-store.js', 'render.js', 'LICENSE'];
+if (files.some(f => f.path.startsWith('openDataContext/') && !openFiles.includes(f.path.slice('openDataContext/'.length)))) errors.push('开放域含未使用的示例文件');
+for (const name of openFiles) {
+    const source = fs.readFileSync(path.join(openSource, name));
+    const output = files.find(f => f.path === 'openDataContext/' + name);
+    if (!output || output.sha256 !== crypto.createHash('sha256').update(source).digest('hex')) errors.push('开放域制作源与出包不一致：' + name);
+}
 if (project.compileType !== 'game' || project.appid !== 'wx46e59dc5dc95b52f') errors.push('微信项目类型或 AppID 不符');
 if (config.pkgs.length !== 1 || config.pkgs[0].path !== '' || config.pkgs[0].remoteUrl) errors.push('出现额外包或远程资源地址');
 const actualResources = files.filter(f => f.path.startsWith('resources/village/')).map(f => f.path).sort();
