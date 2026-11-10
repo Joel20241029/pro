@@ -1,5 +1,5 @@
-import { ENEMIES, POLICIES, RULE, SKILLS, TOWERS, TRAITS } from "../game/GameConfig";
-import { GameState, Person } from "../game/GameState";
+import { ADULT_APPEARANCE, ENEMIES, POLICIES, RULE, SKILLS, TOWERS, TRAITS } from "../game/GameConfig";
+import { GameState, isElder, isWorkingAdult, Person } from "../game/GameState";
 function check(v: unknown, message = "存档数据不完整"): asserts v { if (!v) throw new Error(message); }
 const int = (v: unknown, low = 0, high = Number.MAX_SAFE_INTEGER) => Number.isSafeInteger(v) && (v as number) >= low && (v as number) <= high;
 const text = (v: unknown) => typeof v === "string" && v.length > 0 && v.length <= 80;
@@ -7,12 +7,15 @@ const ids = (v: unknown, max: number) => Array.isArray(v) && v.length <= max && 
 const own = (v: unknown, table: object) => typeof v === "string" && Object.prototype.hasOwnProperty.call(table, v);
 function validatePerson(p: Person) {
     check(p && text(p.id) && text(p.name) && ["MALE", "FEMALE"].includes(p.sex) && ["FOUNDER", "TRAVELER", "BORN"].includes(p.origin));
-    check(["male_a", "male_b", "female_a", "female_b"].includes(p.appearance) && p.appearance.startsWith(p.sex === "MALE" ? "male" : "female"));
+    check(p.appearance === ADULT_APPEARANCE[p.sex], "人物外观与当前资源版本不匹配");
     check(own(p.trait, TRAITS) && (p.skill === null || own(p.skill, SKILLS)) && int(p.generation, 1));
     check(ids(p.parents, 2) && p.parents.length === (p.origin === "BORN" ? 2 : 0) && ids(p.ancestors, RULE.populationCap));
     check(!p.parents.includes(p.id) && !p.ancestors.includes(p.id) && typeof p.adult === "boolean" && int(p.nights, 0, RULE.adultNights) && int(p.growth, 0, RULE.growNights));
+    check(int(p.elderNights, 0, RULE.elderNights));
     check(["WAITING", "FARM", "LOGGING", "CARE"].includes(p.job) && (p.job === "CARE" ? text(p.careChild) : p.careChild === null));
-    if (!p.adult) check(p.nights === 0 && p.skill === null && p.job === "WAITING" && p.growth < RULE.growNights);
+    if (!p.adult) check(p.nights === 0 && p.elderNights === 0 && p.skill === null && p.job === "WAITING" && p.growth < RULE.growNights);
+    else if (isWorkingAdult(p)) check(p.elderNights === 0);
+    else check(p.skill !== null && p.job === "WAITING" && p.careChild === null);
 }
 /** 载入即验证业务引用；损坏内容不自动补值、不自动清档。 */
 export function validateState(s: GameState) {
@@ -25,13 +28,13 @@ export function validateState(s: GameState) {
     const all = [...s.people, ...s.history]; check(new Set(all.map(p => p.id)).size === all.length);
     check(s.people.every(p => { const parts = p.id.split(":"); return parts.length === 2 && Number(parts[0]) === s.run && int(Number(parts[1]), 1, s.nextPerson - 1); }));
     check(s.history.every(p => { const parts = p.id.split(":"); return parts.length === 2 && int(Number(parts[0]), 1, s.run) && int(Number(parts[1]), 1, Number(parts[0]) === s.run ? s.nextPerson - 1 : Number.MAX_SAFE_INTEGER); }));
-    const adults = s.people.filter(p => p.adult), children = s.people.filter(p => !p.adult);
-    check(adults.every(p => p.nights > 0));
-    check(s.history.every(p => p.adult && p.nights === 0 && p.job === "WAITING"));
+    const adults = s.people.filter(p => p.adult), workers = s.people.filter(isWorkingAdult), elders = s.people.filter(isElder), children = s.people.filter(p => !p.adult);
+    check(adults.every(p => isWorkingAdult(p) || isElder(p)));
+    check(s.history.every(p => p.adult && p.nights === 0 && p.elderNights === 0 && p.job === "WAITING"));
     check(s.people.every(p => p.ancestors.every(id => s.people.some(a => a.id === id))));
-    const cares = adults.filter(p => p.job === "CARE").map(p => p.careChild);
+    const cares = workers.filter(p => p.job === "CARE").map(p => p.careChild);
     check(new Set(cares).size === cares.length && cares.every(id => children.some(p => p.id === id)));
-    check(adults.filter(p => p.job === "FARM").length <= RULE.farmSlots[s.farm - 1] && adults.filter(p => p.job === "LOGGING").length <= RULE.logSlots[s.logging - 1]);
+    check(workers.filter(p => p.job === "FARM").length <= RULE.farmSlots[s.farm - 1] && workers.filter(p => p.job === "LOGGING").length <= RULE.logSlots[s.logging - 1]);
     check(Array.isArray(s.families) && s.families.length <= 10);
     const partners: string[] = [];
     for (const f of s.families) {
@@ -44,18 +47,18 @@ export function validateState(s: GameState) {
     const operators: string[] = [];
     for (const t of s.towers) {
         check(t.kind === null ? t.level === 0 && t.operator === null : own(t.kind, TOWERS) && int(t.level, 1, 3));
-        if (t.operator !== null) { check(adults.some(p => p.id === t.operator)); operators.push(t.operator); }
+        if (t.operator !== null) { check(workers.some(p => p.id === t.operator)); operators.push(t.operator); }
     }
     check(new Set(operators).size === operators.length && ids(s.favorites, RULE.favoriteCap) && s.favorites.every(id => s.history.some(p => p.id === id)));
     check(Array.isArray(s.choices) && s.choices.length <= RULE.populationCap + 3);
     for (const q of s.choices) {
         check(q && ["SKILL", "TRAVELER", "POLICY", "TIER"].includes(q.kind));
-        if (q.kind === "SKILL") check(adults.some(p => p.id === q.person && p.skill === null) && ids(q.options, 3) && q.options.length === 3 && q.options.every(k => own(k, SKILLS)));
-        if (q.kind === "TRAVELER") { validatePerson(q.person); check(q.person.origin === "TRAVELER" && q.person.adult && !all.some(p => p.id === q.person.id)); }
+        if (q.kind === "SKILL") check(workers.some(p => p.id === q.person && p.skill === null) && ids(q.options, 3) && q.options.length === 3 && q.options.every(k => own(k, SKILLS)));
+        if (q.kind === "TRAVELER") { validatePerson(q.person); check(q.person.origin === "TRAVELER" && isWorkingAdult(q.person) && !all.some(p => p.id === q.person.id)); }
         if (q.kind === "POLICY") check(ids(q.options, 3) && q.options.length === 3 && q.options.every(k => own(k, POLICIES)));
     }
     if (s.phase !== "DAWN") check(!s.choices.length);
-    for (const p of adults) if (p.skill === null) check(s.phase === "DAWN" && s.choices.some(q => q.kind === "SKILL" && q.person === p.id));
+    for (const p of workers) if (p.skill === null) check(s.phase === "DAWN" && s.choices.some(q => q.kind === "SKILL" && q.person === p.id));
     if (s.phase === "DAY" || s.phase === "NIGHT") {
         const w = s.wave; check(w && int(w.budget, 1, 66) && w.tier === s.tier && ["NONE", "FAST", "STURDY", "GROUP"].includes(w.affix) && Array.isArray(w.entries) && w.entries.length > 0 && w.entries.length <= RULE.planCap);
         let last = 0, budget = 0;
@@ -63,8 +66,9 @@ export function validateState(s: GameState) {
         check(budget === w.budget);
     } else check(s.wave === null);
     if (s.phase === "NIGHT") {
-        check(s.night && ids(s.night.adults, RULE.populationCap) && ids(s.night.cared, RULE.populationCap) && typeof s.night.hungry === "boolean");
-        check(s.night.adults.length === adults.length && s.night.adults.every(id => adults.some(p => p.id === id)));
+        check(s.night && ids(s.night.adults, RULE.populationCap) && ids(s.night.elders, RULE.populationCap) && ids(s.night.cared, RULE.populationCap) && typeof s.night.hungry === "boolean");
+        check(s.night.adults.length === workers.length && s.night.adults.every(id => workers.some(p => p.id === id)));
+        check(s.night.elders.length === elders.length && s.night.elders.every(id => elders.some(p => p.id === id)));
         check(s.night.cared.length === cares.length && s.night.cared.every(id => cares.includes(id)));
     } else check(s.night === null);
     check(s.rng && [s.rng.family, s.rng.world, s.rng.battle].every(n => int(n, 0, 0xffffffff)));

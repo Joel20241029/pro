@@ -1,0 +1,1786 @@
+{
+  "date": "2026-11-10",
+  "reason": "成人统一男女各一种；旧成人B及未接入长者/敌人换装退出运行图集，制作源仍可由此配方复现。",
+  "assets": [
+    {
+      "id": "villager_male_b_walk_00",
+      "label": "villager_male_b_walk_00",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/walk/00.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 313,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "male variant B",
+      "animation": {
+        "animationId": "villager_male_b_walk",
+        "characterId": "male_b",
+        "actionId": "walk",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_walk_01",
+      "label": "villager_male_b_walk_01",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/walk/01.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceRect": {
+        "x": 313,
+        "y": 313,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "male variant B",
+      "animation": {
+        "animationId": "villager_male_b_walk",
+        "characterId": "male_b",
+        "actionId": "walk",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_walk_02",
+      "label": "villager_male_b_walk_02",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/walk/02.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 313,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "male variant B",
+      "animation": {
+        "animationId": "villager_male_b_walk",
+        "characterId": "male_b",
+        "actionId": "walk",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_walk_03",
+      "label": "villager_male_b_walk_03",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/walk/03.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceRect": {
+        "x": 940,
+        "y": 313,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "male variant B",
+      "animation": {
+        "animationId": "villager_male_b_walk",
+        "characterId": "male_b",
+        "actionId": "walk",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_walk_00",
+      "label": "villager_female_b_walk_00",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/walk/00.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "female variant B",
+      "animation": {
+        "animationId": "villager_female_b_walk",
+        "characterId": "female_b",
+        "actionId": "walk",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_walk_01",
+      "label": "villager_female_b_walk_01",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/walk/01.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceRect": {
+        "x": 313,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "female variant B",
+      "animation": {
+        "animationId": "villager_female_b_walk",
+        "characterId": "female_b",
+        "actionId": "walk",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_walk_02",
+      "label": "villager_female_b_walk_02",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/walk/02.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "female variant B",
+      "animation": {
+        "animationId": "villager_female_b_walk",
+        "characterId": "female_b",
+        "actionId": "walk",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_walk_03",
+      "label": "villager_female_b_walk_03",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/walk/03.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_civilian.png",
+      "sourceRect": {
+        "x": 940,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "female variant B",
+      "animation": {
+        "animationId": "villager_female_b_walk",
+        "characterId": "female_b",
+        "actionId": "walk",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_elder_idle_00",
+      "label": "villager_elder_idle_00",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/elder/idle/00.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_family.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "history/portrait candidate; does not return to active population",
+      "animation": {
+        "animationId": "villager_elder_idle",
+        "characterId": "elder",
+        "actionId": "idle",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_elder_idle_01",
+      "label": "villager_elder_idle_01",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/elder/idle/01.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_family.png",
+      "sourceRect": {
+        "x": 313,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "history/portrait candidate; does not return to active population",
+      "animation": {
+        "animationId": "villager_elder_idle",
+        "characterId": "elder",
+        "actionId": "idle",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_elder_idle_02",
+      "label": "villager_elder_idle_02",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/elder/idle/02.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_family.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "history/portrait candidate; does not return to active population",
+      "animation": {
+        "animationId": "villager_elder_idle",
+        "characterId": "elder",
+        "actionId": "idle",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_elder_idle_03",
+      "label": "villager_elder_idle_03",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/elder/idle/03.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_family.png",
+      "sourceRect": {
+        "x": 940,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "history/portrait candidate; does not return to active population",
+      "animation": {
+        "animationId": "villager_elder_idle",
+        "characterId": "elder",
+        "actionId": "idle",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_chop_00",
+      "label": "villager_male_b_chop_00",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/chop/00.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "w": 313,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 313
+      },
+      "nineSlice": null,
+      "mapping": "male B logging",
+      "animation": {
+        "animationId": "villager_male_b_chop",
+        "characterId": "male_b",
+        "actionId": "chop",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_chop_01",
+      "label": "villager_male_b_chop_01",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/chop/01.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceRect": {
+        "x": 313,
+        "y": 627,
+        "w": 314,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 313
+      },
+      "nineSlice": null,
+      "mapping": "male B logging",
+      "animation": {
+        "animationId": "villager_male_b_chop",
+        "characterId": "male_b",
+        "actionId": "chop",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_chop_02",
+      "label": "villager_male_b_chop_02",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/chop/02.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "w": 313,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 313
+      },
+      "nineSlice": null,
+      "mapping": "male B logging",
+      "animation": {
+        "animationId": "villager_male_b_chop",
+        "characterId": "male_b",
+        "actionId": "chop",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_chop_03",
+      "label": "villager_male_b_chop_03",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/chop/03.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceRect": {
+        "x": 940,
+        "y": 627,
+        "w": 314,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 313
+      },
+      "nineSlice": null,
+      "mapping": "male B logging",
+      "animation": {
+        "animationId": "villager_male_b_chop",
+        "characterId": "male_b",
+        "actionId": "chop",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_carry_00",
+      "label": "villager_female_b_carry_00",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/carry/00.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "female B logging/carry presentation",
+      "animation": {
+        "animationId": "villager_female_b_carry",
+        "characterId": "female_b",
+        "actionId": "carry",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_carry_01",
+      "label": "villager_female_b_carry_01",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/carry/01.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceRect": {
+        "x": 313,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "female B logging/carry presentation",
+      "animation": {
+        "animationId": "villager_female_b_carry",
+        "characterId": "female_b",
+        "actionId": "carry",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_carry_02",
+      "label": "villager_female_b_carry_02",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/carry/02.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "female B logging/carry presentation",
+      "animation": {
+        "animationId": "villager_female_b_carry",
+        "characterId": "female_b",
+        "actionId": "carry",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_carry_03",
+      "label": "villager_female_b_carry_03",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/carry/03.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_villagers_work.png",
+      "sourceRect": {
+        "x": 940,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "nineSlice": null,
+      "mapping": "female B logging/carry presentation",
+      "animation": {
+        "animationId": "villager_female_b_carry",
+        "characterId": "female_b",
+        "actionId": "carry",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "enemy_raider_guard_walk_00",
+      "label": "enemy_raider_guard_walk_00",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/raider_guard/walk/00.png",
+      "width": 64,
+      "height": 64,
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "sourceSheet": "source/animations/anim_enemies_b.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 690,
+        "w": 362,
+        "h": 396
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 396
+      },
+      "nineSlice": null,
+      "mapping": "enemy_raider cosmetic variant; no new behavior",
+      "animation": {
+        "animationId": "enemy_raider_guard_walk",
+        "characterId": "raider_guard",
+        "actionId": "walk",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "enemy_raider_guard_walk_01",
+      "label": "enemy_raider_guard_walk_01",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/raider_guard/walk/01.png",
+      "width": 64,
+      "height": 64,
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "sourceSheet": "source/animations/anim_enemies_b.png",
+      "sourceRect": {
+        "x": 362,
+        "y": 690,
+        "w": 362,
+        "h": 396
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 396
+      },
+      "nineSlice": null,
+      "mapping": "enemy_raider cosmetic variant; no new behavior",
+      "animation": {
+        "animationId": "enemy_raider_guard_walk",
+        "characterId": "raider_guard",
+        "actionId": "walk",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "enemy_raider_guard_walk_02",
+      "label": "enemy_raider_guard_walk_02",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/raider_guard/walk/02.png",
+      "width": 64,
+      "height": 64,
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "sourceSheet": "source/animations/anim_enemies_b.png",
+      "sourceRect": {
+        "x": 724,
+        "y": 690,
+        "w": 362,
+        "h": 396
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 396
+      },
+      "nineSlice": null,
+      "mapping": "enemy_raider cosmetic variant; no new behavior",
+      "animation": {
+        "animationId": "enemy_raider_guard_walk",
+        "characterId": "raider_guard",
+        "actionId": "walk",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "enemy_raider_guard_walk_03",
+      "label": "enemy_raider_guard_walk_03",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/raider_guard/walk/03.png",
+      "width": 64,
+      "height": 64,
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "sourceSheet": "source/animations/anim_enemies_b.png",
+      "sourceRect": {
+        "x": 1086,
+        "y": 690,
+        "w": 362,
+        "h": 396
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 396
+      },
+      "nineSlice": null,
+      "mapping": "enemy_raider cosmetic variant; no new behavior",
+      "animation": {
+        "animationId": "enemy_raider_guard_walk",
+        "characterId": "raider_guard",
+        "actionId": "walk",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_walk_up_00",
+      "label": "villager_male_b_walk_up_00",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/walk_up/00.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "male_b walking up",
+      "animation": {
+        "animationId": "villager_male_b_walk_up",
+        "characterId": "male_b",
+        "actionId": "walk_up",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_walk_up_01",
+      "label": "villager_male_b_walk_up_01",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/walk_up/01.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceRect": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "male_b walking up",
+      "animation": {
+        "animationId": "villager_male_b_walk_up",
+        "characterId": "male_b",
+        "actionId": "walk_up",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_walk_up_02",
+      "label": "villager_male_b_walk_up_02",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/walk_up/02.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceRect": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "male_b walking up",
+      "animation": {
+        "animationId": "villager_male_b_walk_up",
+        "characterId": "male_b",
+        "actionId": "walk_up",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_walk_up_03",
+      "label": "villager_male_b_walk_up_03",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/walk_up/03.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceRect": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "male_b walking up",
+      "animation": {
+        "animationId": "villager_male_b_walk_up",
+        "characterId": "male_b",
+        "actionId": "walk_up",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_walk_up_00",
+      "label": "villager_female_b_walk_up_00",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/walk_up/00.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "female_b walking up",
+      "animation": {
+        "animationId": "villager_female_b_walk_up",
+        "characterId": "female_b",
+        "actionId": "walk_up",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_walk_up_01",
+      "label": "villager_female_b_walk_up_01",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/walk_up/01.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceRect": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "female_b walking up",
+      "animation": {
+        "animationId": "villager_female_b_walk_up",
+        "characterId": "female_b",
+        "actionId": "walk_up",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_walk_up_02",
+      "label": "villager_female_b_walk_up_02",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/walk_up/02.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceRect": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "female_b walking up",
+      "animation": {
+        "animationId": "villager_female_b_walk_up",
+        "characterId": "female_b",
+        "actionId": "walk_up",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_walk_up_03",
+      "label": "villager_female_b_walk_up_03",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/walk_up/03.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_up_v2.png",
+      "sourceRect": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "female_b walking up",
+      "animation": {
+        "animationId": "villager_female_b_walk_up",
+        "characterId": "female_b",
+        "actionId": "walk_up",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_walk_right_00",
+      "label": "villager_male_b_walk_right_00",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/walk_right/00.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "male_b walking right",
+      "animation": {
+        "animationId": "villager_male_b_walk_right",
+        "characterId": "male_b",
+        "actionId": "walk_right",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_walk_right_01",
+      "label": "villager_male_b_walk_right_01",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/walk_right/01.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceRect": {
+        "x": 256,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "male_b walking right",
+      "animation": {
+        "animationId": "villager_male_b_walk_right",
+        "characterId": "male_b",
+        "actionId": "walk_right",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_walk_right_02",
+      "label": "villager_male_b_walk_right_02",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/walk_right/02.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceRect": {
+        "x": 512,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "male_b walking right",
+      "animation": {
+        "animationId": "villager_male_b_walk_right",
+        "characterId": "male_b",
+        "actionId": "walk_right",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_male_b_walk_right_03",
+      "label": "villager_male_b_walk_right_03",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/male_b/walk_right/03.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceRect": {
+        "x": 768,
+        "y": 256,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "male_b walking right",
+      "animation": {
+        "animationId": "villager_male_b_walk_right",
+        "characterId": "male_b",
+        "actionId": "walk_right",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_walk_right_00",
+      "label": "villager_female_b_walk_right_00",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/walk_right/00.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "female_b walking right",
+      "animation": {
+        "animationId": "villager_female_b_walk_right",
+        "characterId": "female_b",
+        "actionId": "walk_right",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_walk_right_01",
+      "label": "villager_female_b_walk_right_01",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/walk_right/01.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceRect": {
+        "x": 256,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "female_b walking right",
+      "animation": {
+        "animationId": "villager_female_b_walk_right",
+        "characterId": "female_b",
+        "actionId": "walk_right",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_walk_right_02",
+      "label": "villager_female_b_walk_right_02",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/walk_right/02.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceRect": {
+        "x": 512,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "female_b walking right",
+      "animation": {
+        "animationId": "villager_female_b_walk_right",
+        "characterId": "female_b",
+        "actionId": "walk_right",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "villager_female_b_walk_right_03",
+      "label": "villager_female_b_walk_right_03",
+      "category": "characters",
+      "categoryLabel": "村民序列帧",
+      "path": "runtime/characters/female_b/walk_right/03.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/villagers_walk_right_v2.png",
+      "sourceRect": {
+        "x": 768,
+        "y": 768,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "female_b walking right",
+      "animation": {
+        "animationId": "villager_female_b_walk_right",
+        "characterId": "female_b",
+        "actionId": "walk_right",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain"
+    }
+  ],
+  "animations": [
+    {
+      "id": "villager_male_b_walk",
+      "characterId": "male_b",
+      "actionId": "walk",
+      "category": "characters",
+      "frameIds": [
+        "villager_male_b_walk_00",
+        "villager_male_b_walk_01",
+        "villager_male_b_walk_02",
+        "villager_male_b_walk_03"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "villager_male_b_walk_01",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "male variant B",
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_female_b_walk",
+      "characterId": "female_b",
+      "actionId": "walk",
+      "category": "characters",
+      "frameIds": [
+        "villager_female_b_walk_00",
+        "villager_female_b_walk_01",
+        "villager_female_b_walk_02",
+        "villager_female_b_walk_03"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "villager_female_b_walk_01",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "female variant B",
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_elder_idle",
+      "characterId": "elder",
+      "actionId": "idle",
+      "category": "characters",
+      "frameIds": [
+        "villager_elder_idle_00",
+        "villager_elder_idle_01",
+        "villager_elder_idle_02",
+        "villager_elder_idle_03"
+      ],
+      "frameCount": 4,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "villager_elder_idle_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "reserved: no runtime entry; history currently uses original adult rest frame",
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "generated_not_connected"
+    },
+    {
+      "id": "villager_male_b_chop",
+      "characterId": "male_b",
+      "actionId": "chop",
+      "category": "characters",
+      "frameIds": [
+        "villager_male_b_chop_00",
+        "villager_male_b_chop_01",
+        "villager_male_b_chop_02",
+        "villager_male_b_chop_03"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "villager_male_b_chop_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "male B logging",
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_female_b_carry",
+      "characterId": "female_b",
+      "actionId": "carry",
+      "category": "characters",
+      "frameIds": [
+        "villager_female_b_carry_00",
+        "villager_female_b_carry_01",
+        "villager_female_b_carry_02",
+        "villager_female_b_carry_03"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "villager_female_b_carry_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "reserved: frontal carry cannot replace directional walking; not currently selected",
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "generated_not_connected"
+    },
+    {
+      "id": "enemy_raider_guard_walk",
+      "characterId": "raider_guard",
+      "actionId": "walk",
+      "category": "enemies",
+      "frameIds": [
+        "enemy_raider_guard_walk_00",
+        "enemy_raider_guard_walk_01",
+        "enemy_raider_guard_walk_02",
+        "enemy_raider_guard_walk_03"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "enemy_raider_guard_walk_01",
+      "canvas": {
+        "w": 64,
+        "h": 64
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "battle",
+      "restartOnActionChange": true,
+      "mapping": "reserved: cosmetic variant not selected by current five EnemyKind values",
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "generated_not_connected"
+    },
+    {
+      "id": "villager_male_b_walk_up",
+      "characterId": "male_b",
+      "actionId": "walk_up",
+      "category": "characters",
+      "frameIds": [
+        "villager_male_b_walk_up_00",
+        "villager_male_b_walk_up_01",
+        "villager_male_b_walk_up_02",
+        "villager_male_b_walk_up_03"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "villager_male_b_walk_up_01",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "up facing walk",
+      "coverageStatus": "four-direction walk via down/up/right plus mirrored right",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_female_b_walk_up",
+      "characterId": "female_b",
+      "actionId": "walk_up",
+      "category": "characters",
+      "frameIds": [
+        "villager_female_b_walk_up_00",
+        "villager_female_b_walk_up_01",
+        "villager_female_b_walk_up_02",
+        "villager_female_b_walk_up_03"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "villager_female_b_walk_up_01",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "up facing walk",
+      "coverageStatus": "four-direction walk via down/up/right plus mirrored right",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_male_b_walk_right",
+      "characterId": "male_b",
+      "actionId": "walk_right",
+      "category": "characters",
+      "frameIds": [
+        "villager_male_b_walk_right_00",
+        "villager_male_b_walk_right_01",
+        "villager_male_b_walk_right_02",
+        "villager_male_b_walk_right_03"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "villager_male_b_walk_right_01",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "right facing walk",
+      "coverageStatus": "four-direction walk via down/up/right plus mirrored right",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_female_b_walk_right",
+      "characterId": "female_b",
+      "actionId": "walk_right",
+      "category": "characters",
+      "frameIds": [
+        "villager_female_b_walk_right_00",
+        "villager_female_b_walk_right_01",
+        "villager_female_b_walk_right_02",
+        "villager_female_b_walk_right_03"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "villager_female_b_walk_right_01",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "right facing walk",
+      "coverageStatus": "four-direction walk via down/up/right plus mirrored right",
+      "usageStatus": "runtime_connected"
+    }
+  ],
+  "walkDirections": {
+    "male_b": {
+      "DOWN": {
+        "clip": "villager_male_b_walk",
+        "mirror": false
+      },
+      "UP": {
+        "clip": "villager_male_b_walk_up",
+        "mirror": false
+      },
+      "RIGHT": {
+        "clip": "villager_male_b_walk_right",
+        "mirror": false
+      },
+      "LEFT": {
+        "clip": "villager_male_b_walk_right",
+        "mirror": true
+      }
+    },
+    "female_b": {
+      "DOWN": {
+        "clip": "villager_female_b_walk",
+        "mirror": false
+      },
+      "UP": {
+        "clip": "villager_female_b_walk_up",
+        "mirror": false
+      },
+      "RIGHT": {
+        "clip": "villager_female_b_walk_right",
+        "mirror": false
+      },
+      "LEFT": {
+        "clip": "villager_female_b_walk_right",
+        "mirror": true
+      }
+    }
+  }
+}

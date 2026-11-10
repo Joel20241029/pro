@@ -1,9 +1,29 @@
 /** 首版规则取自 doc/design/01 与 doc/tech/01；集中调整会改变经济、存档与战斗，需升级 CONFIG_VERSION。 */
-export const CONFIG_VERSION = 1;
+// v3 加入留村养老；开发期不兼容旧档，每次开发交付后人工清除本游戏存档，同版本正常续玩。
+export const CONFIG_VERSION = 3;
+/** 用户指定的两种成人外观；出生、旅人、开村及旧档迁移统一使用，不改变性别/天赋/专长。 */
+export const ADULT_APPEARANCE = { MALE: "male_a", FEMALE: "female_a" } as const;
+/** 随机姓名沿用原孩子字根及旅人名，追加用户指定的男女姓名；只影响新人物命名，不增加人口。
+ * 普通孩子继续附编号，指定姓名保持原文。调整池大小会改变新开局后姓名的抽样概率。
+ */
+export const VILLAGER_NAMES = {
+    child: ["禾", "桃", "松", "竹", "杏", "川"], traveler: ["行舟", "云溪", "山青", "晚晴"],
+    personal: { MALE: "四辈儿", FEMALE: "芊芊" }
+} as const;
+/** 纯表现动作表：男女均具备三类劳动动画；到工位播放，移动仍使用方向 walk，不限制任职资格。 */
+export const LABOR_CLIPS: Readonly<Record<string, Readonly<Record<"FARM" | "LOGGING" | "CARE", string>>>> = {
+    male_a: { FARM: "villager_male_a_farm", LOGGING: "villager_male_a_chop", CARE: "villager_male_a_care" },
+    female_a: { FARM: "villager_female_a_harvest", LOGGING: "villager_female_a_chop", CARE: "villager_female_a_care" }
+};
 export const RULE = {
     storageCap: 200, populationCap: 20, houseCapacity: 4, houseMax: 5, houseCost: 30,
     initialResource: 60, gateMax: 200, repairCost: 10, repairAmount: 40,
     birthCost: 20, birthCooldown: 4, parentMinNights: 3, growNights: 2, adultNights: 12,
+    // 用户确认的晚年为 3 个成功守夜夜晚；刚荣休的清晨不扣减，改变此值会影响口粮与床位占用。
+    elderNights: 3,
+    // 劳作剩余 2 夜起预告荣休，仅影响提醒，不提前释放岗位或减少劳动产出。
+    retirementNoticeNights: 2,
+    // 成人及老人共用普通 2 粮、节俭 1 粮的口粮规则，再统一应用季节和村规。
     farmBase: 8, logBase: 6, adultRation: 2, childRation: 1,
     farmSlots: [2, 4, 6], logSlots: [2, 3, 4], farmUpgrade: [40, 65], logUpgrade: [35, 60],
     towerUpgrade: [35, 60], towerConvert: 20, levelDamage: [1, 1.5, 2.1],
@@ -62,8 +82,8 @@ export const PADS = [{ x: 240, y: 340 }, { x: 475, y: 395 }, { x: 220, y: 555 },
 export const FOUNDERS = [
     { name: "阿禾", sex: "MALE", appearance: "male_a", trait: "trait_diligent", skill: "skill_farming", nights: 4, job: "FARM" },
     { name: "春杏", sex: "FEMALE", appearance: "female_a", trait: "trait_frugal", skill: "skill_nurturing", nights: 6, job: "FARM" },
-    { name: "石生", sex: "MALE", appearance: "male_b", trait: "trait_strong", skill: "skill_throwing", nights: 8, job: "LOGGING" },
-    { name: "青竹", sex: "FEMALE", appearance: "female_b", trait: "trait_focused", skill: "skill_archery", nights: 10, job: "WAITING" },
+    { name: "石生", sex: "MALE", appearance: "male_a", trait: "trait_strong", skill: "skill_throwing", nights: 8, job: "LOGGING" },
+    { name: "青竹", sex: "FEMALE", appearance: "female_a", trait: "trait_focused", skill: "skill_archery", nights: 10, job: "WAITING" },
     { name: "林川", sex: "MALE", appearance: "male_a", trait: "trait_woodwise", skill: "skill_logging", nights: 12, job: "LOGGING" },
     { name: "小满", sex: "FEMALE", appearance: "female_a", trait: "trait_farsight", skill: "skill_farming", nights: 12, job: "WAITING" }
 ] as const;

@@ -45,7 +45,7 @@ test("Uncared child does not grow; failed night does not age", () => {
 });
 test("Retiring carer can finish child's growth", () => {
     const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id }); s.people[1].nights = 1; s.people[6].growth = 1;
-    applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); equal(s.people[5].nights, 12); equal(s.history.length, 1); dawn(s); validateState(s);
+    applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); equal(s.people[6].nights, 12); equal(s.people[1].elderNights, 3); equal(s.history.length, 0); dawn(s); validateState(s);
 });
 test("Parents and siblings blocked, unrelated origins allowed", () => {
     const s = createGame(1); ok(canMarry(s, s.people[4], s.people[5])); s.people[4].parents = ["old:1", "old:2"]; s.people[5].parents = ["old:1", "old:3"]; ok(!canMarry(s, s.people[4], s.people[5])); s.people[5].parents = []; s.people[5].ancestors = [s.people[4].id]; ok(!canMarry(s, s.people[4], s.people[5]));
@@ -85,13 +85,50 @@ test("Night settings save keeps live battle; reload replays baseline", () => {
 test("Background/resume and panel pause cannot erase user pause", () => {
     const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.command({ type: "NIGHT" }); g.pause("USER"); g.hide(); g.show(); g.resume("CHOICE"); g.update(2); equal(g.battle!.tick, 0); g.resume("WAIT_RESUME"); g.update(2); equal(g.battle!.tick, 0); g.resume("USER"); g.update(.05); equal(g.battle!.tick, 1);
 });
+test("Tower dialog pause permits reassignment and resumes without changing the saved baseline", () => {
+    const m = new MemoryStore(), g = new GameSession(new SaveStore(m)); g.load(); g.newVillage(); g.command({ type: "NIGHT" });
+    const live = g.battle!, previous = live.operators[0], replacement = g.state!.people[4].id, baseline = JSON.stringify(g.state), writes = m.writes;
+    g.reassign(0, replacement); equal(live.operators[0], previous);
+    g.pause("CHOICE"); g.reassign(0, replacement); equal(live.operators[0], replacement); g.update(.1); equal(live.tick, 0);
+    g.resume("CHOICE"); g.update(.05); equal(live.tick, 1); ok(g.battle === live); equal(g.pauses.size, 0);
+    equal(JSON.stringify(g.state), baseline); equal(m.writes, writes);
+});
+test("Closing tower dialog preserves an earlier manual pause", () => {
+    const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.command({ type: "NIGHT" });
+    g.pause("USER"); g.pause("CHOICE"); g.reassign(0, null); equal(g.battle!.operators[0], null);
+    g.resume("CHOICE"); g.update(.1); equal(g.battle!.tick, 0); equal([...g.pauses], ["USER"]);
+    g.resume("USER"); g.update(.05); equal(g.battle!.tick, 1);
+});
+test("Closing tower dialog does not clear background or return confirmation pauses", () => {
+    const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.command({ type: "NIGHT" });
+    g.pause("CHOICE"); g.hide(); g.resume("CHOICE"); g.update(.1); equal(g.battle!.tick, 0); ok(g.pauses.has("BACKGROUND"));
+    g.show(); g.update(.1); equal(g.battle!.tick, 0); ok(g.pauses.has("WAIT_RESUME"));
+    g.resume("WAIT_RESUME"); g.update(.05); equal(g.battle!.tick, 1);
+});
+test("Pending save still blocks tower reassignment under dialog pause", () => {
+    const m = new MemoryStore(), g = new GameSession(new SaveStore(m)); g.load(); g.newVillage(); g.command({ type: "NIGHT" }); g.pause("CHOICE");
+    const operator = g.battle!.operators[0]; m.fail = "BEFORE"; g.command({ type: "SPEED", value: 2 }); ok(g.saves.pending);
+    g.reassign(0, null); equal(g.battle!.operators[0], operator); g.resume("CHOICE"); g.update(.1); equal(g.battle!.tick, 0); ok(g.pauses.has("SAVE_PENDING"));
+    m.fail = "NONE"; g.retry(); g.pause("CHOICE"); g.reassign(0, null); equal(g.battle!.operators[0], null);
+});
 test("Empty dawn resumes once without repeated age settlement", () => {
     const m = new MemoryStore(), st = new SaveStore(m); st.inspect(); const s = createGame(1); applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); st.prepare(s); st.commit();
     const g = new GameSession(new SaveStore(m)); g.load(); equal(g.state!.phase, "DAY"); equal(g.state!.people[0].nights, 3); equal(g.state!.day, 2);
 });
+test("Repeated command errors each notify the Tip without changing saved business state", () => {
+    const m = new MemoryStore(), g = new GameSession(new SaveStore(m)); g.load(); g.newVillage();
+    g.state!.wood = 0; const before = JSON.stringify(g.state), revision = g.errorRevision, writes = m.writes;
+    g.command({ type: "BUILD", kind: "HOUSE" }); const message = g.error;
+    ok(message.length > 0); equal(g.errorRevision, revision + 1);
+    g.command({ type: "BUILD", kind: "HOUSE" }); equal(g.error, message); equal(g.errorRevision, revision + 2);
+    g.hide(); g.show(); equal(g.errorRevision, revision + 2);
+    equal(JSON.stringify(g.state), before); equal(m.writes, writes);
+});
 test("Malformed jobs and references fail validation", () => { const s = createGame(1); s.towers[0].operator = "missing"; rejects(() => validateState(s)); });
 test("Favorite ancestor survives new village and save reload", () => {
-    const s = createGame(1); s.people[0].nights = 1; applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); dawn(s); applyCommand(s, { type: "FAVORITE", id: s.history[0].id });
+    const s = createGame(1); s.people[0].nights = 1;
+    for (let i = 0; i < 1 + RULE.elderNights; i++) { applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); dawn(s); }
+    applyCommand(s, { type: "FAVORITE", id: s.history[0].id });
     const next = createGame(2, s.legacy, s.legacy.traits[0], s.history, s.favorites); validateState(next); equal(next.run, 2); equal(next.favorites, s.favorites);
     const m = new MemoryStore(), st = new SaveStore(m); st.inspect(); st.prepare(next); st.commit(); const loaded = new SaveStore(m).inspect(); ok(loaded.kind === "ready"); equal(loaded.state.history[0].id, "1:1");
 });

@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-10",
+  "generator": "builtin image_gen",
+  "source": "source/animations/elders_v5.png",
+  "reference": "source/animations/anim_villagers_family.png",
+  "prompts": [
+    "Use case: stylized-concept. Asset type: production transparent sprite sheet for a small portrait Chinese village game.\nUse the attached village family sprite sheet as STYLE reference. Keep its warm earthy colors, crisp dark brown outlines, friendly chibi proportions, same character scale and clean alpha; the elderly man in its bottom row is the appearance reference.\nCreate a NEW sprite sheet of exactly 4 columns x 4 rows, 16 equally sized square cells, no separators or text. All cells have comfortable transparent margins. Each full-body character at SAME scale (about 75 percent cell height), centered horizontally, feet on the same baseline near bottom of each cell. Never crop cane, hair or feet. Transparent background, no floor, no shadows.\nTwo identities: elderly man with gray-white hair topknot, small white beard, brown robe and a walking cane; elderly woman with gray-white hair bun, no beard, muted orange village robe and a walking cane. Clearly elderly but warm and dignified, slightly stooped. Keep outfit and identity perfectly consistent across all angles.\nEXACT layout:\nRow 1 cells 1-2: elderly MAN walking DOWN toward viewer, alternating left and right foot poses. Cells 3-4: same man walking UP away from viewer, back view, alternating foot poses. Back view must not show eyes or beard.\nRow 2 cells 1-2: same man walking to RIGHT, exact side profile facing right, alternating foot poses. Cells 3-4: same man standing IDLE front view, one breathing/resting pose and a subtly different breathing/blinking pose.\nRow 3 cells 1-2: elderly WOMAN walking DOWN toward viewer, alternating left and right foot poses. Cells 3-4: same woman walking UP away from viewer, back view, alternating foot poses. Back view must not show face.\nRow 4 cells 1-2: same woman walking to RIGHT, exact side profile facing right, alternating foot poses. Cells 3-4: same woman standing IDLE front view, one resting pose and a subtly different breathing/blinking pose.\nAll walking pairs must show unmistakably different left/right foot placement and cane swing without changing body size. Fixed orthographic game camera, no perspective rotation within a pair. Exactly 16 characters, no children, no extra decorations, no checkerboard baked in, no gradients in background, no UI, no lettering.",
+    "Use case: precise-object-edit. Edit this 4x4 transparent game sprite sheet. Preserve its exact 4-column 4-row layout, both elderly identities, outfits, outlines, scale, cell positions, idle frames, and transparent alpha.\nThe walk pairs need CLEAR opposing steps. Change only walking poses as follows:\nFor row 1 columns 1-2 and row 3 columns 1-2 (front walking), column 1 has the LEFT-ON-SCREEN foot extended DOWN toward the viewer; column 2 MUST have the RIGHT-ON-SCREEN foot extended DOWN toward the viewer and the left-on-screen foot visibly raised/back. The second pose must not repeat the first leg silhouette. Swing the free arm in the opposite direction and shift cane contact slightly.\nFor row 1 columns 3-4 and row 3 columns 3-4 (back walking), preserve facing away, but show clear opposite foot extension in each pair.\nFor row 2 columns 1-2 and row 4 columns 1-2 (right-profile walking), keep facing RIGHT. Column 1 is a wide-stride pose with the forward foot on the right extended. Column 2 is a PASSING pose: both feet close under the body, one lifted off the ground mid-stride, with bent knee, to make a distinctly narrower leg silhouette. Do not change height/size.\nKeep row 2 columns 3-4 and row 4 columns 3-4 IDLE frames unchanged.\nExactly 16 sprites in equal square cells. No text, no borders, no floor, no added shadows. No new objects or extra limbs. Transparent background."
+  ],
+  "grid": {
+    "columns": 4,
+    "rows": 4
+  },
+  "rows": [
+    "male down 2, male up 2",
+    "male right 2, male idle 2",
+    "female down 2, female up 2",
+    "female right 2, female idle 2"
+  ],
+  "selection": "Second generation corrects alternating gait; approved elder lifecycle. Original source and editable recipe retained."
+}

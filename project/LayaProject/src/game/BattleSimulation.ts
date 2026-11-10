@@ -1,8 +1,8 @@
-import { ENEMIES, EnemyKind, PADS, PATH, RULE, TOWERS } from "./GameConfig";
+import { ENEMIES, EnemyKind, PADS, PATH, RULE, TOWERS, TowerKind } from "./GameConfig";
 import { clone, GameState } from "./GameState";
 import { assignOperator, person, policy } from "./VillageRules";
 export interface Enemy { seq: number; kind: EnemyKind; progress: number; hp: number; maxHp: number; speed: number; slow: number; slowTicks: number; born: number; summoned: number; }
-export interface Shot { tower: number; x: number; y: number; kind: string; tick: number; }
+export interface Shot { tower: number; x: number; y: number; kind: TowerKind; tick: number; }
 const LENGTHS = PATH.slice(1).map((p, i) => Math.hypot(p.x - PATH[i].x, p.y - PATH[i].y));
 export const PATH_LENGTH = LENGTHS.reduce((a, b) => a + b, 0);
 export function pointAt(progress: number) {

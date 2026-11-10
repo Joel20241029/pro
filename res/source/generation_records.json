@@ -288,7 +288,60 @@
       "prompt": "Production transparent RGBA UI SPRITE SHEET for a warm pixel-art Chinese countryside village game. EXACT grid THREE columns x TWO rows, landscape3:2. Six fully isolated elements each within its cell with generous transparent gutters, no touching, no texts or icons anywhere. Brown stepped pixel outlines, warm cream parchment, subtle amber highlights, tiny corner knot flourishes; high readability at small phone sizes. Row1 col1: square cream parchment panel with thick warm wooden trim, elegant small geometric corner flourishes confined strictly to corner 15% areas, completely clean bright cream center and straight uninterrupted stretchable edges, for nine-slice scaling. Row1 col2: square inset cream card with thin double amber-brown border and subtle recessed depth, clean cream center. Row1 col3: horizontal amber-gold primary button, width to height3:1, raised bright upper rim and dark thick lower bevel, stepped corners, clean center. Row2 col1: horizontal moss-green raised button same shape with pale yellow-green upper bevel and deep dark forest lower bevel. Row2 col2: horizontal muted warm gray disabled button same raised form. Row2 col3: horizontal terracotta red raised button same form. All buttons 3:1 aspect within their square cells, matched dimensions and 12% edge safe area for nine-slice scaling. NO large shadows/glow/background/color wash outside shapes, transparent canvas. Pixel-art studio-quality small UI assets, no gradients, no typography, no watermark.",
       "generator": "image_gen built-in",
       "transparent": true
+    },
+    {
+      "key": "village_tip_v3",
+      "path": "source/static/village_tip_v3.png",
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-d88dda62-b997-4dbc-87c6-8efc72f78591.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "ed7d00f8a8aadf1df8fec7ea94e72958a56de6cdd0df95e186ed55752550e1bd",
+      "bytes": 984373,
+      "prompt": "Single minimal toast nine-slice tile, dark warm charcoal-brown #382d24, tiny rounded corners, uniform plain interior, transparent outside, no decorative frame, no border, no text, no wood, no shadow, no glow. Runtime 32x32.",
+      "generator": "builtin image_gen"
+    },
+    {
+      "key": "village_tip_v4",
+      "path": "source/static/village_tip_v4.png",
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-63ff2f06-4ac8-4f89-92b0-d31673ba75a2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "1f4a3229fb791250a881e5ef3ae1408152b8b29d2f122ab6f2dc4139a0bfd69a",
+      "bytes": 1156652,
+      "prompt": "Production game UI texture: a plain filled square swatch of a single warm wheat parchment gold color, approximate HEX #EDD3A1. The entire image, from every edge to the exact center, is the same solid light golden beige. Fully opaque square image. Absolutely no gradients, shadows, border, frame, hole, dark spots, patterns, texture, objects, letters, or transparency. It is a solid color background tile for dark brown toast text in a cozy pixel-art village game, to be reduced to a tiny 32x32 PNG.",
+      "generator": "builtin image_gen"
+    },
+    {
+      "key": "adults_work_v4",
+      "path": "source/animations/adults_work_v4.png",
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-b07257db-6a81-4f74-9819-1ce87067e16e.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "bytes": 1174383,
+      "sha256": "999b7ab6cb5f62d3a41beb8d27f580b7593b834bc4718f716bff751f135c4abf",
+      "prompt": "Use case: game-asset animation-sheet. Create a NEW production sprite sheet matching exactly the chibi pixel-art style, dark outlines, scale and clothing of the attached reference sheets. Only TWO adult identities are used: male A from row 1 of each reference (brown topknot, cream wrap shirt, brown belt and trousers, NO hat) and female A from row 3 of civilian sheet / row 2 of work sheet (brown bun with orange tie, cream shirt and terracotta skirt). Do NOT use the green clothes or straw-hat characters. This new sheet is precisely FOUR columns by THREE rows, equal square cells, 4:3 canvas. Actual transparent background, no checkerboard. Every cell contains exactly ONE whole adult, same centered foot baseline at 92% of cell and same head/body proportions, with ample transparent gutters. No text, labels, ground, circles, shadows, decorations, hearts or borders. Row 1: FOUR sequential frames of male A chopping with a small woodcutting axe: resting axe forward-low, lifting, raised high, swinging down. Legs remain planted; clear arm/axe motion. Row 2: FOUR sequential frames of female A chopping with the same small axe, same phase order; her terracotta skirt and bun remain unchanged. Row 3 columns 1-2: TWO gentle childcare loop frames of male A slightly bending forward, lowering and raising a hand to comfort a nearby child (child stays OUTSIDE the sheet; draw NO child, NO bundle and NO baby in these cells). Row 3 columns 3-4: same TWO childcare loop frames of female A. The care poses are gentle, empty hands, slight head tilt and clear arm motion, not axe/chopping. All bodies face down/front at mild three-quarter view. Preserve original character identity across all frames, no costume changes. Exact count 12 cells, no overlaps, no cropping heads/feet/tool. The final sprites will be 80x80 logical pixels.",
+      "generator": "builtin image_gen"
+    },
+    {
+      "key": "elders_v5",
+      "path": "source/animations/elders_v5.png",
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-6f54e30a-ef61-4619-9e47-f221bc2cff6e.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 1263573,
+      "sha256": "1a81d38dd5fb3589659c6bd25bb3ce74459195e9d1202bdf8a62863a7320885c",
+      "promptFile": "source/elders_v5_prompts.json",
+      "prompt": "Use case: precise-object-edit. Edit this 4x4 transparent game sprite sheet. Preserve its exact 4-column 4-row layout, both elderly identities, outfits, outlines, scale, cell positions, idle frames, and transparent alpha.\nThe walk pairs need CLEAR opposing steps. Change only walking poses as follows:\nFor row 1 columns 1-2 and row 3 columns 1-2 (front walking), column 1 has the LEFT-ON-SCREEN foot extended DOWN toward the viewer; column 2 MUST have the RIGHT-ON-SCREEN foot extended DOWN toward the viewer and the left-on-screen foot visibly raised/back. The second pose must not repeat the first leg silhouette. Swing the free arm in the opposite direction and shift cane contact slightly.\nFor row 1 columns 3-4 and row 3 columns 3-4 (back walking), preserve facing away, but show clear opposite foot extension in each pair.\nFor row 2 columns 1-2 and row 4 columns 1-2 (right-profile walking), keep facing RIGHT. Column 1 is a wide-stride pose with the forward foot on the right extended. Column 2 is a PASSING pose: both feet close under the body, one lifted off the ground mid-stride, with bent knee, to make a distinctly narrower leg silhouette. Do not change height/size.\nKeep row 2 columns 3-4 and row 4 columns 3-4 IDLE frames unchanged.\nExactly 16 sprites in equal square cells. No text, no borders, no floor, no added shadows. No new objects or extra limbs. Transparent background.",
+      "generator": "builtin image_gen"
     }
   ],
-  "exportMethod": "ImageMagick mechanical crop/nearest-neighbor size export/atlas packing; animation frames retain uniform per-action canvas and no atlas trim."
+  "exportMethod": "ImageMagick mechanical crop/nearest-neighbor export/atlas packing; animation frames retain uniform source canvas and feet, atlas trims transparent margins and restores offsets."
 }

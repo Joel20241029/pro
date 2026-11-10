@@ -6,7 +6,12 @@ import { LoadResult, SaveStore } from "../storage/SaveStore";
 export type Pause = "USER" | "BACKGROUND" | "WAIT_RESUME" | "CHOICE" | "SAVE_PENDING" | "DISABLED";
 export class GameSession {
     state: GameState | null = null; battle: BattleSimulation | null = null;
-    readonly pauses = new Set<Pause>(); boot: LoadResult | null = null; error = "";
+    readonly pauses = new Set<Pause>(); boot: LoadResult | null = null;
+    private currentError = "";
+    /** 仅供表现层识别新提示；同文案再次报错也递增，不写入存档或参与业务判断。 */
+    errorRevision = 0;
+    get error() { return this.currentError; }
+    set error(value: string) { this.currentError = value; if (value) this.errorRevision++; }
     changed = () => {}; private accumulator = 0; private continuingBattle = false;
     constructor(readonly saves: SaveStore) {}
     load() {
@@ -47,7 +52,8 @@ export class GameSession {
     show = () => { this.resume("BACKGROUND"); this.pause("WAIT_RESUME"); this.changed(); };
     bell() { if (this.battle && !this.pauses.size) { this.battle.bell(); this.changed(); } }
     reassign(index: number, id: string | null) {
-        if (!this.battle || !this.pauses.has("USER") || this.saves.pending) return;
+        // 夜间调任允许手动暂停或面板临时暂停；关闭面板只解除 CHOICE，其余暂停仍由各自流程管理。
+        if (!this.battle || (!this.pauses.has("USER") && !this.pauses.has("CHOICE")) || this.saves.pending) return;
         try { this.battle.reassign(index, id); this.error = ""; } catch (e) { this.error = String(e); } this.changed();
     }
     update(delta: number) {

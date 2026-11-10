@@ -19,14 +19,42 @@ const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).d
 const geometry = r => `${r.w}x${r.h}+${r.x}+${r.y}`;
 const decode = file => run([file, '-depth', '8', 'rgba:-']);
 const recipe = read('source/asset_recipe.json'), assets = [];
+let nineSliceOriginalPixels = 0, nineSliceCompactPixels = 0;
 let originalArea = 0, trimmedArea = 0, trimmedCount = 0;
 
 for (const a of recipe.assets) {
     const out = path.join(root, a.path); fs.mkdirSync(path.dirname(out), { recursive: true });
     const crop = a.sourceCropWithinCell;
+    const base = a.nineSliceSourceSize || { w: a.width, h: a.height };
+    const sourceOutput = a.nineSliceSourceSize ? path.join(work, a.id + '-authoring.png') : out;
     run([path.join(root, a.sourceSheet), '-crop', geometry(a.sourceRect), '+repage', '-crop', geometry(crop), '+repage',
-        '-filter', 'point', '-resize', `${a.width - a.fitPadding}x${a.height - a.fitPadding}${a.resizeMode === 'stretch' ? '!' : ''}`,
-        '-background', 'none', '-gravity', 'center', '-extent', `${a.width}x${a.height}`, '-strip', out]);
+        '-filter', 'point', '-resize', `${base.w - a.fitPadding}x${base.h - a.fitPadding}${a.resizeMode === 'stretch' ? '!' : ''}`,
+        '-background', 'none', '-gravity', 'center', '-extent', `${base.w}x${base.h}`, '-strip', sourceOutput]);
+    if (a.nineSliceSourceSize) {
+        const g = a.nineSlice;
+        if (!g || a.width !== g.left + g.right + 2 || a.height !== g.top + g.bottom + 2) throw new Error('九宫格紧凑尺寸不符：' + a.id);
+        const widths = [g.left, 2, g.right], heights = [g.top, 2, g.bottom];
+        const xs = [0, g.left + Math.floor((base.w - g.left - g.right - 2) / 2), base.w - g.right];
+        const ys = [0, g.top + Math.floor((base.h - g.top - g.bottom - 2) / 2), base.h - g.bottom];
+        const command = ['-size', `${a.width}x${a.height}`, 'canvas:none'];
+        for (let row = 0, dy = 0; row < 3; dy += heights[row++]) for (let col = 0, dx = 0; col < 3; dx += widths[col++]) {
+            const part = path.join(work, `${a.id}-grid-${row}-${col}.png`);
+            run([sourceOutput, '-crop', geometry({ x: xs[col], y: ys[row], w: widths[col], h: heights[row] }), '+repage', part]);
+            command.push(part, '-geometry', `+${dx}+${dy}`, '-composite');
+        }
+        run([...command, '-strip', out]);
+        // 四角是视觉不变量，不缩放、不重采样；仅抽取可拉伸方向的中线。
+        const before = decode(sourceOutput), after = decode(out);
+        for (const row of [0, 2]) for (const col of [0, 2]) {
+            const dx = col === 0 ? 0 : a.width - g.right, dy = row === 0 ? 0 : a.height - g.bottom;
+            for (let y = 0; y < heights[row]; y++) for (let x = 0; x < widths[col]; x++) {
+                const i = ((ys[row] + y) * base.w + xs[col] + x) * 4, j = ((dy + y) * a.width + dx + x) * 4;
+                if (before[i + 3] !== after[j + 3]) throw new Error('九宫格角alpha发生变化：' + a.id);
+                for (let c = 0; c < 3; c++) if (Math.abs(before[i + c] * before[i + 3] / 255 - after[j + c] * after[j + 3] / 255) > 1.05) throw new Error('九宫格角像素发生变化：' + a.id);
+            }
+        }
+        nineSliceOriginalPixels += base.w * base.h; nineSliceCompactPixels += a.width * a.height;
+    }
     const pixels = decode(out);
     if (pixels.length !== a.width * a.height * 4) throw new Error(`画布尺寸不符：${a.id}`);
     let left = a.width, top = a.height, right = -1, bottom = -1;
@@ -115,7 +143,7 @@ const seen = new Set();
 for (const a of assets) { if (seen.has(a.id)) throw new Error('重复资源 ID：' + a.id); seen.add(a.id); }
 for (const clip of recipe.animations.animations) {
     const list = clip.frameIds.map(id => assets.find(a => a.id === id));
-    if (list.length < 2 || list.length > 4 || list.some(a => !a || a.width !== clip.canvas.w || a.height !== clip.canvas.h || a.pivot.x !== clip.pivot.x || a.pivot.y !== clip.pivot.y)) throw new Error('动画画布或 pivot 不一致：' + clip.id);
+    if (clip.frameCount !== list.length || list.length < 2 || list.length > 4 || list.some(a => !a || a.width !== clip.canvas.w || a.height !== clip.canvas.h || a.pivot.x !== clip.pivot.x || a.pivot.y !== clip.pivot.y)) throw new Error('动画帧数、画布或 pivot 不一致：' + clip.id);
     if (!clip.frameIds.includes(clip.restFrame)) throw new Error('静止帧不在动作中：' + clip.id);
     if (new Set(list.map(a => a.sha256)).size < 2) throw new Error('动画帧完全相同：' + clip.id);
 }
@@ -137,22 +165,27 @@ const packing = { sourceCanvasPixels: originalArea, atlasContentPixels: trimmedA
 write('budget_report.json', { generatedAt: '2026-11-10', runtimeAssetCount: assets.length, animationCount: recipe.animations.animations.length,
     animationFrames: recipe.animations.animations.reduce((s, a) => s + a.frameCount, 0), categoryStats, atlasPages: pages, packing,
     selectedRuntime: { mode: 'atlas_only', pngBytes, metadataBytes, totalBytes: pngBytes + metadataBytes, files: runtimeFiles },
+    nineSliceCompaction: { originalPixels: nineSliceOriginalPixels, compactPixels: nineSliceCompactPixels, cornersPreserved: true },
     budgets: { fullPackageTarget: 3500000 }, sourceBytes: read('source/generation_records.json').records.reduce((sum, r) => sum + r.bytes, 0),
     budgetComparison: { worldPngBytes: pages.filter(p => p.group === 'world').reduce((s, p) => s + p.bytes, 0), uiAndEffectsPngBytes: pages.filter(p => p.group === 'ui').reduce((s, p) => s + p.bytes, 0) },
     limitations: ['Atlas content-pixel savings are not identical to PNG byte savings', 'No real phone or platform upload measurement'] });
-write('validation_report.json', { date: '2026-11-10', status: 'passed', checks: { pngCount: assets.length, animationGroups: recipe.animations.animations.length, atlasPages: pages.length, atlasRectsAndPaddingNonOverlapping: true, exactTransparentTrimOnly: true, sourceCanvasAndPivotsMatch: true, atlasPixelsMatchSourceCrop: true, croppedAwayPixelsAllTransparent: true, directionReferencesValid: true, nineSliceCanvasPreserved: true }, packing, errors: [] });
+write('validation_report.json', { date: '2026-11-10', status: 'passed', checks: { pngCount: assets.length, animationGroups: recipe.animations.animations.length, atlasPages: pages.length, atlasRectsAndPaddingNonOverlapping: true, exactTransparentTrimOnly: true, sourceCanvasAndPivotsMatch: true, atlasPixelsMatchSourceCrop: true, croppedAwayPixelsAllTransparent: true, directionReferencesValid: true, nineSliceCanvasPreserved: true, nineSliceCornersPreserved: true }, packing, errors: [] });
 
 // 完整画布预览与方向切换页，不进入微信包。
 for (const dir of ['preview/animations', 'preview/strips']) fs.mkdirSync(path.join(root, dir), { recursive: true });
 for (const clip of recipe.animations.animations) {
     const inputs = clip.frameIds.map(id => path.join(root, assets.find(a => a.id === id).path));
-    run([...inputs, '+append', '-filter', 'point', '-resize', '200%', '-background', '#e6e1d2', '-alpha', 'remove', path.join(root, `preview/strips/${clip.id}.png`)]);
-    run(['-delay', String(Math.round(100 / clip.fps)), ...inputs, '-loop', '0', '-dispose', 'background', path.join(root, `preview/animations/${clip.id}.gif`)]);
+    run([...inputs, '+append', '-filter', 'point', '-resize', '200%', '-background', '#e6e1d2', '-alpha', 'remove', '-strip', path.join(root, `preview/strips/${clip.id}.png`)]);
+    run(['-delay', String(Math.round(100 / clip.fps)), ...inputs, '-loop', '0', '-dispose', 'background', '-strip', path.join(root, `preview/animations/${clip.id}.gif`)]);
 }
-run(['montage', ...assets.filter(a => !a.animation).map(a => path.join(root, a.path)), '-background', '#e6e1d2', '-tile', '8x', '-geometry', '128x128+8+8', path.join(root, 'preview/static_contact.png')]);
-run(['montage', ...recipe.animations.animations.map(a => path.join(root, `preview/strips/${a.id}.png`)), '-background', '#e6e1d2', '-tile', '2x', '-geometry', '480x120+8+8', path.join(root, 'preview/characters_contact.png')]);
+run(['montage', ...assets.filter(a => !a.animation).map(a => path.join(root, a.path)), '-background', '#e6e1d2', '-tile', '8x', '-geometry', '128x128+8+8', '-strip', path.join(root, 'preview/static_contact.png')]);
+run(['montage', ...recipe.animations.animations.map(a => path.join(root, `preview/strips/${a.id}.png`)), '-background', '#e6e1d2', '-tile', '2x', '-geometry', '480x120+8+8', '-strip', path.join(root, 'preview/characters_contact.png')]);
 const clips = recipe.animations.animations.map(c => ({ ...c, urls: c.frameIds.map(id => '../' + assets.find(a => a.id === id).path) }));
-const html = `<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>代代守村 · 可迭代资源预览</title><style>body{margin:0;padding:32px;background:#e9e0c9;color:#392c20;font:16px/1.7 system-ui}h1{margin:0}button{font:inherit;padding:8px 20px}section{display:flex;flex-wrap:wrap;gap:20px;margin:24px 0}article{background:#fff4d8;border:2px solid #ae854b;padding:14px;text-align:center;min-width:190px}.sprite{height:176px;display:flex;align-items:center;justify-content:center;background:#dce0c7}img{image-rendering:pixelated}small{display:block}a{color:#5b723c}.contact{max-width:100%}</style><h1>代代守村 · 方向与资源预览</h1><p>${assets.length} 张源画布 / ${clips.length} 组动画 / ${pages.length} 页图集。打图集裁透明边，源画布与脚底保持完整。裁边减少内容占用 ${packing.savedContentPercent}%。</p><button id="pause">暂停 / 播放</button><button id="step">下一帧</button><h2>四方向连续转向</h2><section id="turns"></section><h2>全部动作</h2><section id="clips"></section><h2>静态资源</h2><img class="contact" src="static_contact.png"><script>const clips=${JSON.stringify(clips)},dirs=${JSON.stringify(recipe.animations.walkDirections)};let elapsed=0,last=performance.now(),paused=false;document.querySelector('#pause').onclick=()=>paused=!paused;document.querySelector('#step').onclick=()=>{paused=true;elapsed+=125;render()};const card=(title)=>{let e=document.createElement('article');e.innerHTML='<strong>'+title+'</strong><div class="sprite"><img width="144" height="144"></div><small></small>';return e};const cards=clips.map(c=>{let e=card(c.id);document.querySelector('#clips').append(e);return e});const turns=Object.keys(dirs).map(k=>{let e=card(k);document.querySelector('#turns').append(e);return e});function render(){clips.forEach((c,i)=>{cards[i].querySelector('img').src=c.urls[Math.floor(elapsed*c.fps/1000)%c.frameCount];cards[i].querySelector('small').textContent=c.frameCount+'帧 · '+c.fps+'FPS'});Object.keys(dirs).forEach((k,i)=>{const direction=['DOWN','LEFT','UP','RIGHT'][Math.floor(elapsed/1600)%4],d=dirs[k][direction],c=clips.find(c=>c.id===d.clip),img=turns[i].querySelector('img');img.src=c.urls[Math.floor(elapsed*c.fps/1000)%c.frameCount];img.style.transform=d.mirror?'scaleX(-1)':'';turns[i].querySelector('small').textContent=direction})}function tick(now){if(!paused)elapsed+=Math.min(100,now-last);last=now;render();requestAnimationFrame(tick)}requestAnimationFrame(tick)</script></html>`;
+const nineSlicePreview = '<h2>九宫格实际拉伸预览</h2><section>' + assets.filter(a => a.nineSlice).map(a => {
+    const g = a.nineSlice, height = a.id === 'panel_parchment' ? 220 : 90;
+    return `<article><strong>${a.id} · ${a.width}×${a.height}</strong><div style="box-sizing:border-box;width:280px;height:${height}px;border:solid transparent;border-width:${g.top}px ${g.right}px ${g.bottom}px ${g.left}px;border-image-source:url(../${a.path});border-image-slice:${g.top} ${g.right} ${g.bottom} ${g.left} fill;border-image-repeat:stretch"></div></article>`;
+}).join('') + '</section>';
+const html = `<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>代代守村 · 可迭代资源预览</title><style>body{margin:0;padding:32px;background:#e9e0c9;color:#392c20;font:16px/1.7 system-ui}h1{margin:0}button{font:inherit;padding:8px 20px}section{display:flex;flex-wrap:wrap;gap:20px;margin:24px 0}article{background:#fff4d8;border:2px solid #ae854b;padding:14px;text-align:center;min-width:190px}.sprite{height:176px;display:flex;align-items:center;justify-content:center;background:#dce0c7}img{image-rendering:pixelated}small{display:block}a{color:#5b723c}.contact{max-width:100%}</style><h1>代代守村 · 方向与资源预览</h1><p>${assets.length} 张源画布 / ${clips.length} 组动画 / ${pages.length} 页图集。打图集裁透明边，源画布与脚底保持完整。裁边减少内容占用 ${packing.savedContentPercent}%。</p><button id="pause">暂停 / 播放</button><button id="step">下一帧</button><h2>四方向连续转向</h2><section id="turns"></section><h2>全部动作</h2><section id="clips"></section>${nineSlicePreview}<h2>静态资源</h2><img class="contact" src="static_contact.png"><script>const clips=${JSON.stringify(clips)},dirs=${JSON.stringify(recipe.animations.walkDirections)};let elapsed=0,last=performance.now(),paused=false;document.querySelector('#pause').onclick=()=>paused=!paused;document.querySelector('#step').onclick=()=>{paused=true;elapsed+=125;render()};const card=(title)=>{let e=document.createElement('article');e.innerHTML='<strong>'+title+'</strong><div class="sprite"><img width="144" height="144"></div><small></small>';return e};const cards=clips.map(c=>{let e=card(c.id);document.querySelector('#clips').append(e);return e});const turns=Object.keys(dirs).map(k=>{let e=card(k);document.querySelector('#turns').append(e);return e});function render(){clips.forEach((c,i)=>{cards[i].querySelector('img').src=c.urls[Math.floor(elapsed*c.fps/1000)%c.frameCount];cards[i].querySelector('small').textContent=c.frameCount+'帧 · '+c.fps+'FPS'});Object.keys(dirs).forEach((k,i)=>{const direction=['DOWN','LEFT','UP','RIGHT'][Math.floor(elapsed/1600)%4],d=dirs[k][direction],c=clips.find(c=>c.id===d.clip),img=turns[i].querySelector('img');img.src=c.urls[Math.floor(elapsed*c.fps/1000)%c.frameCount];img.style.transform=d.mirror?'scaleX(-1)':'';turns[i].querySelector('small').textContent=direction})}function tick(now){if(!paused)elapsed+=Math.min(100,now-last);last=now;render();requestAnimationFrame(tick)}requestAnimationFrame(tick)</script></html>`;
 fs.writeFileSync(path.join(root, 'preview/index.html'), html);
 
 if (args.includes('--sync')) {

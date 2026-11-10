@@ -1,8 +1,8 @@
 {
   "generatedAt": "2026-11-10",
-  "runtimeAssetCount": 184,
-  "animationCount": 30,
-  "animationFrames": 120,
+  "runtimeAssetCount": 157,
+  "animationCount": 24,
+  "animationFrames": 92,
   "categoryStats": {
     "buildings": {
       "count": 13,
@@ -25,16 +25,16 @@
       "bytes": 10864
     },
     "ui/panels": {
-      "count": 7,
-      "bytes": 90511
+      "count": 8,
+      "bytes": 27392
     },
     "characters": {
-      "count": 96,
-      "bytes": 606351
+      "count": 72,
+      "bytes": 421360
     },
     "enemies": {
-      "count": 24,
-      "bytes": 178655
+      "count": 20,
+      "bytes": 162761
     }
   },
   "atlasPages": [
@@ -44,8 +44,8 @@
       "runtimeFile": "world_0.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1158851,
-      "sha256": "f9437a1758a95c4ffb160a59c3a7e761d1bb1465532c80d7da8e3058173a2d75",
+      "bytes": 962295,
+      "sha256": "6b5f802e6f1d2b5eb17cc3daad03cb5a94e3b28affefd3309c91bbd627f9b4a1",
       "group": "world"
     },
     {
@@ -54,26 +54,26 @@
       "runtimeFile": "ui_0.png",
       "width": 512,
       "height": 512,
-      "bytes": 195342,
-      "sha256": "a4132d33e4e29d7ea0b0ea5a1f12b3e7c306be2d5c23ca110e395b38166db52f",
+      "bytes": 129019,
+      "sha256": "7f8773a2a66fd0c2813c0c6be6dae1f67625c06670d11969f7340fdddff1193b",
       "group": "ui"
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 1171456,
-    "atlasContentPixels": 982957,
-    "savedContentPixels": 188499,
-    "savedContentPercent": 16.09,
-    "trimmedAssetCount": 159,
+    "sourceCanvasPixels": 941212,
+    "atlasContentPixels": 789568,
+    "savedContentPixels": 151644,
+    "savedContentPercent": 16.11,
+    "trimmedAssetCount": 132,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
     "mode": "atlas_only",
-    "pngBytes": 1354193,
-    "metadataBytes": 96132,
-    "totalBytes": 1450325,
+    "pngBytes": 1091314,
+    "metadataBytes": 81264,
+    "totalBytes": 1172578,
     "files": [
       "atlases/world_0.png",
       "atlases/ui_0.png",
@@ -81,13 +81,18 @@
       "animations.json"
     ]
   },
+  "nineSliceCompaction": {
+    "originalPixels": 76288,
+    "compactPixels": 15004,
+    "cornersPreserved": true
+  },
   "budgets": {
     "fullPackageTarget": 3500000
   },
-  "sourceBytes": 22081735,
+  "sourceBytes": 25397143,
   "budgetComparison": {
-    "worldPngBytes": 1158851,
-    "uiAndEffectsPngBytes": 195342
+    "worldPngBytes": 962295,
+    "uiAndEffectsPngBytes": 129019
   },
   "limitations": [
     "Atlas content-pixel savings are not identical to PNG byte savings",

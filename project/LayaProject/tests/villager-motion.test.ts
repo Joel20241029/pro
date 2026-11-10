@@ -1,7 +1,8 @@
 import { applyCommand, createGame } from "../src/game/VillageRules";
 import { clone } from "../src/game/GameState";
 import { BattleSimulation } from "../src/game/BattleSimulation";
-import { compareDepth, distance, MOTION, VillageNavigation, VILLAGE_PROPS, VILLAGE_STOPS } from "../src/view/VillageScene";
+import { LABOR_CLIPS } from "../src/game/GameConfig";
+import { compareDepth, distance, MOTION, VillageNavigation, VILLAGE_PROPS, VILLAGE_STOPS, WEDDING } from "../src/view/VillageScene";
 import { VillagerMotion, walkDirection, WalkDirection } from "../src/view/VillagerMotion";
 
 let passed = 0;
@@ -29,8 +30,8 @@ test("Forest and palisades have shared collision blocks and preserve both gate p
 });
 
 test("Every real map stop is reachable without crossing any footprint", () => {
-    const stops = [...VILLAGE_STOPS.homes, ...VILLAGE_STOPS.farm, ...VILLAGE_STOPS.logging, ...VILLAGE_STOPS.rest, ...VILLAGE_STOPS.children, ...VILLAGE_STOPS.towers,
-        ...VILLAGE_STOPS.homes.map(p => ({ x: p.x + 14, y: p.y + 8 }))];
+    const stops = [...VILLAGE_STOPS.homes, ...VILLAGE_STOPS.farm, ...VILLAGE_STOPS.logging, ...VILLAGE_STOPS.rest, ...VILLAGE_STOPS.children, ...VILLAGE_STOPS.towers, ...VILLAGE_STOPS.wedding,
+        ...VILLAGE_STOPS.homes.map(p => ({ x: p.x + 34, y: p.y + 8 }))];
     for (const from of stops) for (const to of stops) {
         const route = navigation.route(from, to); let at = from;
         for (const p of route) { ok(navigation.clear(at, p), "path crosses building"); at = p; }
@@ -87,7 +88,7 @@ test("Changing jobs replans from current feet, without teleport or resetting oth
     const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     for (let i = 0; i < 30; i++) motion.update(.1);
     const p = s.people[0], before = { ...motion.get(p.id) }, other = { ...motion.get(s.people[5].id) };
-    applyCommand(s, { type: "JOB", id: p.id, job: "WAITING" }); motion.sync(s, s.towers);
+    applyCommand(s, { type: "JOB", id: p.id, job: "LOGGING", replace: s.people[2].id }); motion.sync(s, s.towers);
     equal([motion.get(p.id).x, motion.get(p.id).y], [before.x, before.y]); equal(motion.get(s.people[5].id).x, other.x);
     for (let i = 0; i < 500; i++) { const previous = { ...motion.get(p.id) }; motion.update(.1); ok(navigation.clear(previous, motion.get(p.id))); }
 });
@@ -105,6 +106,23 @@ test("Night watch uses live reassignment while towers already attack during trav
     for (let i = 0; i < 600; i++) motion.update(.05);
     equal([motion.get(id).x, motion.get(id).y], [VILLAGE_STOPS.towers[0].x, VILLAGE_STOPS.towers[0].y]);
     ok(s.towers[0].operator !== id, "test must distinguish live and saved assignments");
+});
+test("Tower watch hides only after arrival and reappears on reassignment, release and dawn", () => {
+    const s = createGame(7), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    applyCommand(s, { type: "NIGHT" }); const battle = new BattleSimulation(s); motion.sync(s, battle.base.towers);
+    const id = battle.base.towers[0].operator!;
+    ok(motion.get(id).walking && !motion.get(id).insideTower);
+    for (let i = 0; i < 1000; i++) motion.update(.05);
+    ok(!motion.get(id).walking && motion.get(id).insideTower);
+    for (const p of s.people) if (!battle.base.towers.some(t => t.operator === p.id)) ok(!motion.get(p.id).insideTower);
+    const before = { ...motion.get(id) }; battle.reassign(1, id); motion.sync(s, battle.base.towers);
+    ok(motion.get(id).walking && !motion.get(id).insideTower); equal([motion.get(id).x, motion.get(id).y], [before.x, before.y]);
+    for (let i = 0; i < 1000; i++) motion.update(.05);
+    ok(motion.get(id).insideTower); battle.reassign(1, null); motion.sync(s, battle.base.towers);
+    ok(!motion.get(id).insideTower);
+    battle.reassign(1, id); motion.sync(s, battle.base.towers); for (let i = 0; i < 1000; i++) motion.update(.05);
+    ok(motion.get(id).insideTower); s.phase = "DAWN"; motion.sync(s, s.towers);
+    for (const p of s.people) ok(!motion.get(p.id).insideTower);
 });
 test("Babies stay home, children walk, growth retains position, retired people are removed", () => {
     const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id });
@@ -126,5 +144,92 @@ test("Full population and maximum production slots stay bounded and outside buil
     const motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     for (let i = 0; i < 3600; i++) { motion.update(.05); for (const p of s.people) ok(navigation.walkable(motion.get(p.id))); }
     equal(motion.count, 20);
+});
+test("New spouses walk to reachable meeting points, wait for each other, then show hearts without changing business state", () => {
+    const s = createGame(17), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    const pair = [s.people[4], s.people[5]]; applyCommand(s, { type: "FAMILY", a: pair[0].id, b: pair[1].id });
+    const before = JSON.stringify(s); motion.sync(s, s.towers); let oneWaiting = false, together = false;
+    for (let step = 0; step < 1200; step++) {
+        const previous = pair.map(p => ({ ...motion.get(p.id) })); motion.update(.05);
+        const poses = pair.map(p => motion.get(p.id));
+        poses.forEach((m, i) => { ok(navigation.clear(previous[i], m)); ok(distance(previous[i], m) <= MOTION.adultSpeed * .05 + 1e-7); });
+        if (poses[0].walking !== poses[1].walking) { oneWaiting = true; ok(poses.every(m => m.heartElapsed === null)); }
+        if (poses.every(m => m.heartElapsed !== null)) { together = true; break; }
+    }
+    ok(oneWaiting && together); pair.forEach((p, i) => equal([motion.get(p.id).x, motion.get(p.id).y], [VILLAGE_STOPS.wedding[i].x, VILLAGE_STOPS.wedding[i].y]));
+    equal(pair.map(p => motion.get(p.id).direction), ["RIGHT", "LEFT"]);
+    motion.update(.1); const paused = JSON.stringify(pair.map(p => motion.get(p.id)));
+    for (let i = 0; i < 20; i++) { motion.sync(clone(s), clone(s.towers)); motion.update(0); }
+    equal(JSON.stringify(pair.map(p => motion.get(p.id))), paused);
+    for (let i = 0; i < Math.ceil(WEDDING.heartSeconds / .05) + 1; i++) motion.update(.05);
+    ok(pair.every(p => motion.get(p.id).heartElapsed === null)); equal(JSON.stringify(s), before);
+});
+test("Loading existing families never replays a wedding and repeated sync never queues it twice", () => {
+    const s = createGame(1); applyCommand(s, { type: "FAMILY", a: s.people[4].id, b: s.people[5].id });
+    const loaded = new VillagerMotion(navigation); loaded.sync(s, s.towers);
+    for (let i = 0; i < 800; i++) { loaded.update(.1); ok(s.people.every(p => loaded.get(p.id).heartElapsed === null)); }
+    const motion = new VillagerMotion(navigation), fresh = createGame(2); motion.sync(fresh, fresh.towers);
+    applyCommand(fresh, { type: "FAMILY", a: fresh.people[4].id, b: fresh.people[5].id });
+    let starts = 0, active = false;
+    for (let i = 0; i < 1200; i++) {
+        motion.sync(clone(fresh), clone(fresh.towers)); motion.update(.05);
+        const heart = motion.get(fresh.people[4].id).heartElapsed !== null;
+        if (heart && !active) starts++; active = heart;
+    }
+    equal(starts, 1);
+});
+test("Changing a spouse's job during the ceremony restores the latest daily routine", () => {
+    const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    const p = s.people[2]; applyCommand(s, { type: "FAMILY", a: p.id, b: s.people[3].id }); motion.sync(s, s.towers);
+    for (let i = 0; i < 1200 && motion.get(p.id).heartElapsed === null; i++) motion.update(.05);
+    ok(motion.get(p.id).heartElapsed !== null); const at = { ...motion.get(p.id) };
+    applyCommand(s, { type: "JOB", id: p.id, job: "FARM", replace: s.people[0].id }); motion.sync(s, s.towers);
+    equal([motion.get(p.id).x, motion.get(p.id).y], [at.x, at.y]); ok(motion.get(p.id).heartElapsed !== null);
+    let farmed = false;
+    for (let i = 0; i < 1400; i++) { motion.update(.05); const m = motion.get(p.id); ok(m.clip !== "villager_male_a_chop"); if (!m.walking && m.clip === "villager_male_a_farm") farmed = true; }
+    ok(farmed);
+});
+test("Night cancels both meeting and queued weddings, and dawn does not replay them", () => {
+    const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    applyCommand(s, { type: "FAMILY", a: s.people[4].id, b: s.people[5].id }); applyCommand(s, { type: "FAMILY", a: s.people[2].id, b: s.people[3].id }); motion.sync(s, s.towers);
+    for (let i = 0; i < 1200 && motion.get(s.people[4].id).heartElapsed === null; i++) motion.update(.05);
+    ok(motion.get(s.people[4].id).heartElapsed !== null);
+    applyCommand(s, { type: "NIGHT" }); motion.sync(s, s.towers);
+    ok(s.people.every(p => motion.get(p.id).heartElapsed === null));
+    for (let i = 0; i < 1200; i++) motion.update(.05);
+    ok(motion.get(s.towers[0].operator!).insideTower);
+    s.phase = "DAY"; motion.sync(s, s.towers);
+    for (let i = 0; i < 800; i++) { motion.update(.05); ok(s.people.every(p => motion.get(p.id).heartElapsed === null)); }
+});
+test("Spouse removal and a new run clear all wedding state", () => {
+    const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    applyCommand(s, { type: "FAMILY", a: s.people[4].id, b: s.people[5].id }); motion.sync(s, s.towers); motion.update(.1);
+    const removed = s.people[4].id; s.people = s.people.filter(p => p.id !== removed); s.families = s.families.filter(f => !f.partners.includes(removed)); motion.sync(s, s.towers);
+    for (let i = 0; i < 800; i++) { motion.update(.05); ok(s.people.every(p => motion.get(p.id).heartElapsed === null)); }
+    const next = createGame(2, s.legacy); motion.sync(next, next.towers);
+    for (let i = 0; i < 800; i++) { motion.update(.05); ok(next.people.every(p => motion.get(p.id).heartElapsed === null)); }
+    equal(motion.count, next.people.length);
+});
+test("Multiple new families celebrate one pair at a time with no lingering pooled hearts", () => {
+    const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    applyCommand(s, { type: "FAMILY", a: s.people[4].id, b: s.people[5].id }); applyCommand(s, { type: "FAMILY", a: s.people[2].id, b: s.people[3].id }); motion.sync(s, s.towers);
+    const seen = new Set<string>();
+    for (let i = 0; i < 2400; i++) {
+        motion.sync(clone(s), clone(s.towers)); motion.update(.05);
+        const showing = s.people.filter(p => motion.get(p.id).heartElapsed !== null);
+        ok(showing.length === 0 || showing.length === 2); showing.forEach(p => seen.add(p.id));
+    }
+    equal([...seen].sort(), [s.people[2].id, s.people[3].id, s.people[4].id, s.people[5].id].sort());
+    ok(s.people.every(p => motion.get(p.id).heartElapsed === null));
+});
+test("Both adult identities play farming, chopping and caring actions after arriving at their work stop", () => {
+    for (const index of [0, 1]) for (const job of ["FARM", "LOGGING", "CARE"] as const) {
+        const s = createGame(3), p = s.people[index];
+        if (job === "CARE") applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: p.id });
+        else if (job === "LOGGING") applyCommand(s, { type: "JOB", id: p.id, job, replace: s.people[2].id });
+        const motion = new VillagerMotion(navigation); motion.sync(s, s.towers); let played = false;
+        for (let i = 0; i < 1600; i++) { motion.update(.05); const m = motion.get(p.id); if (!m.walking && m.animated && m.elapsed > .5 && m.clip === LABOR_CLIPS[p.appearance][job]) played = true; }
+        ok(played, `${p.appearance}/${job} never played`);
+    }
 });
 console.log(`RESULT ${passed} motion checks passed`);

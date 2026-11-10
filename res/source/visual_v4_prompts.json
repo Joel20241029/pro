@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-10",
+  "key": "village_tip_v4",
+  "source": "source/static/village_tip_v4.png",
+  "generator": "builtin image_gen",
+  "prompt": "Production game UI texture: a plain filled square swatch of a single warm wheat parchment gold color, approximate HEX #EDD3A1. The entire image, from every edge to the exact center, is the same solid light golden beige. Fully opaque square image. Absolutely no gradients, shadows, border, frame, hole, dark spots, patterns, texture, objects, letters, or transparency. It is a solid color background tile for dark brown toast text in a cozy pixel-art village game, to be reduced to a tiny 32x32 PNG.",
+  "transparent_background": false,
+  "runtime": "panel_tip",
+  "purpose": "暖麦金短提示底板，完整不透明中心，不使用面板边框",
+  "references": [
+    "https://www.adobe.com/uk/creativecloud/design/discover/color-wheel.html",
+    "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+  ]
+}

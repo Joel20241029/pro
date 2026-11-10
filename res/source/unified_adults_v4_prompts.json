@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-10",
+  "key": "adults_work_v4",
+  "source": "source/animations/adults_work_v4.png",
+  "generator": "builtin image_gen",
+  "prompt": "Use case: game-asset animation-sheet. Create a NEW production sprite sheet matching exactly the chibi pixel-art style, dark outlines, scale and clothing of the attached reference sheets. Only TWO adult identities are used: male A from row 1 of each reference (brown topknot, cream wrap shirt, brown belt and trousers, NO hat) and female A from row 3 of civilian sheet / row 2 of work sheet (brown bun with orange tie, cream shirt and terracotta skirt). Do NOT use the green clothes or straw-hat characters. This new sheet is precisely FOUR columns by THREE rows, equal square cells, 4:3 canvas. Actual transparent background, no checkerboard. Every cell contains exactly ONE whole adult, same centered foot baseline at 92% of cell and same head/body proportions, with ample transparent gutters. No text, labels, ground, circles, shadows, decorations, hearts or borders. Row 1: FOUR sequential frames of male A chopping with a small woodcutting axe: resting axe forward-low, lifting, raised high, swinging down. Legs remain planted; clear arm/axe motion. Row 2: FOUR sequential frames of female A chopping with the same small axe, same phase order; her terracotta skirt and bun remain unchanged. Row 3 columns 1-2: TWO gentle childcare loop frames of male A slightly bending forward, lowering and raising a hand to comfort a nearby child (child stays OUTSIDE the sheet; draw NO child, NO bundle and NO baby in these cells). Row 3 columns 3-4: same TWO childcare loop frames of female A. The care poses are gentle, empty hands, slight head tilt and clear arm motion, not axe/chopping. All bodies face down/front at mild three-quarter view. Preserve original character identity across all frames, no costume changes. Exact count 12 cells, no overlaps, no cropping heads/feet/tool. The final sprites will be 80x80 logical pixels.",
+  "transparent_background": true,
+  "layout": "4 columns x 3 rows; row1 male chop4, row2 female chop4, row3 male care2 + female care2",
+  "runtimeGroups": [
+    "villager_male_a_chop",
+    "villager_female_a_chop",
+    "villager_male_a_care",
+    "villager_female_a_care"
+  ]
+}

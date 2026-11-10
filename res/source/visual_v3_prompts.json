@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-10",
+  "key": "village_tip_v3",
+  "source": "source/static/village_tip_v3.png",
+  "generator": "builtin image_gen",
+  "prompt": "Use case: game-asset. Create ONE minimal UI toast background tile for a small portrait Chinese village pixel-art game. Actual final asset will be only 32x32 pixels and used as a nine-slice stretched to a wide notification. A single square dark warm charcoal-brown flat fill (#382d24) with a very subtle uniform warm softness, softly rounded tiny corners, clean actual transparent pixels outside the square. The square fills 90 percent of canvas centered. NO decorative frame, NO border line, NO wood, NO parchment, NO icons, NO text, NO highlight rim, NO drop shadow, NO texture noise, NO glow. Interior completely plain and uniform so nine-slice center can stretch seamlessly. Pixel-friendly crisp shape, two pixel equivalent rounded corners. Transparent background. This is a production UI tile, not a screenshot or mockup.",
+  "runtime": "panel_tip",
+  "purpose": "独立32×32九宫格短提示底图"
+}

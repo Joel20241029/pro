@@ -39,9 +39,17 @@ export const LANDSCAPE_FOOTPRINTS: Footprint[] = [
 
 /** 纯表现参数：逻辑像素/秒与秒；调整只改变行走节奏、驻足时间和离建筑的距离，不参与生产/战斗结算。 */
 export const MOTION = {
-    adultSpeed: 40, childSpeed: 31, clearance: 7, cornerGap: 1,
+    adultSpeed: 40, childSpeed: 31,
+    // 老人沿同一可行走路径慢行，仅表现用；不会延迟口粮、养老夜数或守夜结算。
+    elderSpeed: 24, clearance: 7, cornerGap: 1,
     workSeconds: 4.5, restSeconds: 1.8, staggerSeconds: .23,
     bounds: { left: 28, top: 275, right: 692, bottom: 1028 }
+} as const;
+
+/** 成家后的纯视觉庆祝：两人到齐才显示 2.4 秒红心；不延迟成家存档，也不阻塞守夜。 */
+export const WEDDING = {
+    heartSeconds: 2.4, heartSize: 30, headOffset: 65, rise: 10, fadeIn: .2, fadeOut: .5,
+    pulse: .08, pulseSeconds: .8
 } as const;
 
 /** 站点均在占地之外。工作点对应现有最大岗位数，家门仅为表现站点，不新增住宅归属规则。 */
@@ -52,6 +60,8 @@ export const VILLAGE_STOPS = {
     // 有意包含屋后与屋前的休息点，行人绕过墙基后会自然发生遮挡切换。
     rest: [{ x: 108, y: 884 }, { x: 232, y: 898 }, { x: 300, y: 858 }, { x: 410, y: 904 }, { x: 411, y: 984 }, { x: 300, y: 1006 }],
     children: [{ x: 74, y: 970 }, { x: 166, y: 983 }, { x: 278, y: 974 }, { x: 292, y: 1004 }],
+    // 篝火前的双人会合点，与所有家门/工作点共用导航和足底遮挡；不新增建筑或家庭归属。
+    wedding: [{ x: 330, y: 990 }, { x: 370, y: 990 }],
     towers: PADS.map(p => ({ x: p.x, y: p.y + 54 }))
 };
 

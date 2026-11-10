@@ -29,36 +29,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "FOUNDER/TRAVELER/BORN male variant A",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
-    },
-    {
-      "id": "villager_male_b_walk",
-      "characterId": "male_b",
-      "actionId": "walk",
-      "category": "characters",
-      "frameIds": [
-        "villager_male_b_walk_00",
-        "villager_male_b_walk_01",
-        "villager_male_b_walk_02",
-        "villager_male_b_walk_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_male_b_walk_01",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "male variant B",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
+      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_female_a_walk",
@@ -87,36 +59,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "female variant A",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
-    },
-    {
-      "id": "villager_female_b_walk",
-      "characterId": "female_b",
-      "actionId": "walk",
-      "category": "characters",
-      "frameIds": [
-        "villager_female_b_walk_00",
-        "villager_female_b_walk_01",
-        "villager_female_b_walk_02",
-        "villager_female_b_walk_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_female_b_walk_01",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "female variant B",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
+      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_boy_walk",
@@ -145,7 +89,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "CHILD male; appearance only",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_girl_walk",
@@ -174,7 +119,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "CHILD female; appearance only",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_baby_idle",
@@ -203,36 +149,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "CHILD growth 0, no extra gameplay stage",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
-    },
-    {
-      "id": "villager_elder_idle",
-      "characterId": "elder",
-      "actionId": "idle",
-      "category": "characters",
-      "frameIds": [
-        "villager_elder_idle_00",
-        "villager_elder_idle_01",
-        "villager_elder_idle_02",
-        "villager_elder_idle_03"
-      ],
-      "frameCount": 4,
-      "fps": 4,
-      "loop": true,
-      "restFrame": "villager_elder_idle_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "history/portrait candidate; does not return to active population",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_male_a_farm",
@@ -261,7 +179,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "male A farming",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
+      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_female_a_harvest",
@@ -290,65 +209,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "female A farming",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
-    },
-    {
-      "id": "villager_male_b_chop",
-      "characterId": "male_b",
-      "actionId": "chop",
-      "category": "characters",
-      "frameIds": [
-        "villager_male_b_chop_00",
-        "villager_male_b_chop_01",
-        "villager_male_b_chop_02",
-        "villager_male_b_chop_03"
-      ],
-      "frameCount": 4,
-      "fps": 6,
-      "loop": true,
-      "restFrame": "villager_male_b_chop_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "male B logging",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
-    },
-    {
-      "id": "villager_female_b_carry",
-      "characterId": "female_b",
-      "actionId": "carry",
-      "category": "characters",
-      "frameIds": [
-        "villager_female_b_carry_00",
-        "villager_female_b_carry_01",
-        "villager_female_b_carry_02",
-        "villager_female_b_carry_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_female_b_carry_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "female B logging/carry presentation",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
+      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "enemy_raider_walk",
@@ -377,7 +239,8 @@
       "clock": "battle",
       "restartOnActionChange": true,
       "mapping": "enemy_raider",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "enemy_runner_walk",
@@ -406,7 +269,8 @@
       "clock": "battle",
       "restartOnActionChange": true,
       "mapping": "enemy_runner",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "enemy_armored_walk",
@@ -435,7 +299,8 @@
       "clock": "battle",
       "restartOnActionChange": true,
       "mapping": "enemy_armored",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "enemy_disruptor_walk",
@@ -464,7 +329,8 @@
       "clock": "battle",
       "restartOnActionChange": true,
       "mapping": "enemy_disruptor",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "enemy_chief_walk",
@@ -493,36 +359,8 @@
       "clock": "battle",
       "restartOnActionChange": true,
       "mapping": "enemy_chief",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
-    },
-    {
-      "id": "enemy_raider_guard_walk",
-      "characterId": "raider_guard",
-      "actionId": "walk",
-      "category": "enemies",
-      "frameIds": [
-        "enemy_raider_guard_walk_00",
-        "enemy_raider_guard_walk_01",
-        "enemy_raider_guard_walk_02",
-        "enemy_raider_guard_walk_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "enemy_raider_guard_walk_01",
-      "canvas": {
-        "w": 64,
-        "h": 64
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "battle",
-      "restartOnActionChange": true,
-      "mapping": "enemy_raider cosmetic variant; no new behavior",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence"
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_male_a_walk_up",
@@ -551,36 +389,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "up facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right"
-    },
-    {
-      "id": "villager_male_b_walk_up",
-      "characterId": "male_b",
-      "actionId": "walk_up",
-      "category": "characters",
-      "frameIds": [
-        "villager_male_b_walk_up_00",
-        "villager_male_b_walk_up_01",
-        "villager_male_b_walk_up_02",
-        "villager_male_b_walk_up_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_male_b_walk_up_01",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "up facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right"
+      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_female_a_walk_up",
@@ -609,36 +419,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "up facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right"
-    },
-    {
-      "id": "villager_female_b_walk_up",
-      "characterId": "female_b",
-      "actionId": "walk_up",
-      "category": "characters",
-      "frameIds": [
-        "villager_female_b_walk_up_00",
-        "villager_female_b_walk_up_01",
-        "villager_female_b_walk_up_02",
-        "villager_female_b_walk_up_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_female_b_walk_up_01",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "up facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right"
+      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_boy_walk_up",
@@ -667,7 +449,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "up facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right"
+      "coverageStatus": "four-direction walk via down/up/right plus mirrored right",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_girl_walk_up",
@@ -696,7 +479,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "up facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right"
+      "coverageStatus": "four-direction walk via down/up/right plus mirrored right",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_male_a_walk_right",
@@ -725,36 +509,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "right facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right"
-    },
-    {
-      "id": "villager_male_b_walk_right",
-      "characterId": "male_b",
-      "actionId": "walk_right",
-      "category": "characters",
-      "frameIds": [
-        "villager_male_b_walk_right_00",
-        "villager_male_b_walk_right_01",
-        "villager_male_b_walk_right_02",
-        "villager_male_b_walk_right_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_male_b_walk_right_01",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "right facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right"
+      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_female_a_walk_right",
@@ -783,36 +539,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "right facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right"
-    },
-    {
-      "id": "villager_female_b_walk_right",
-      "characterId": "female_b",
-      "actionId": "walk_right",
-      "category": "characters",
-      "frameIds": [
-        "villager_female_b_walk_right_00",
-        "villager_female_b_walk_right_01",
-        "villager_female_b_walk_right_02",
-        "villager_female_b_walk_right_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_female_b_walk_right_01",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "right facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right"
+      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_boy_walk_right",
@@ -841,7 +569,8 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "right facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right"
+      "coverageStatus": "four-direction walk via down/up/right plus mirrored right",
+      "usageStatus": "runtime_connected"
     },
     {
       "id": "villager_girl_walk_right",
@@ -870,7 +599,124 @@
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
       "mapping": "right facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right"
+      "coverageStatus": "four-direction walk via down/up/right plus mirrored right",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_male_a_chop",
+      "characterId": "male_a",
+      "actionId": "chop",
+      "category": "characters",
+      "frameIds": [
+        "villager_male_a_chop_00",
+        "villager_male_a_chop_01",
+        "villager_male_a_chop_02",
+        "villager_male_a_chop_03"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "villager_male_a_chop_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "adult male LOGGING at work stop",
+      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_female_a_chop",
+      "characterId": "female_a",
+      "actionId": "chop",
+      "category": "characters",
+      "frameIds": [
+        "villager_female_a_chop_00",
+        "villager_female_a_chop_01",
+        "villager_female_a_chop_02",
+        "villager_female_a_chop_03"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "villager_female_a_chop_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "adult female LOGGING at work stop",
+      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_male_a_care",
+      "characterId": "male_a",
+      "actionId": "care",
+      "category": "characters",
+      "frameIds": [
+        "villager_male_a_care_00",
+        "villager_male_a_care_01"
+      ],
+      "frameCount": 2,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "villager_male_a_care_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "adult male CARE at child home",
+      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "villager_female_a_care",
+      "characterId": "female_a",
+      "actionId": "care",
+      "category": "characters",
+      "frameIds": [
+        "villager_female_a_care_00",
+        "villager_female_a_care_01"
+      ],
+      "frameCount": 2,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "villager_female_a_care_00",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "scene_visual_or_battle",
+      "restartOnActionChange": true,
+      "mapping": "adult female CARE at child home",
+      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
+      "usageStatus": "runtime_connected"
     }
   ],
   "walkDirections": {
@@ -892,24 +738,6 @@
         "mirror": true
       }
     },
-    "male_b": {
-      "DOWN": {
-        "clip": "villager_male_b_walk",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_male_b_walk_up",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_male_b_walk_right",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_male_b_walk_right",
-        "mirror": true
-      }
-    },
     "female_a": {
       "DOWN": {
         "clip": "villager_female_a_walk",
@@ -925,24 +753,6 @@
       },
       "LEFT": {
         "clip": "villager_female_a_walk_right",
-        "mirror": true
-      }
-    },
-    "female_b": {
-      "DOWN": {
-        "clip": "villager_female_b_walk",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_female_b_walk_up",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_female_b_walk_right",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_female_b_walk_right",
         "mirror": true
       }
     },
