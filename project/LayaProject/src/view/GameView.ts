@@ -67,12 +67,12 @@ export class GameView {
             this.scenery.graphics.drawCircle(50, 280 + row * 70, 112, night ? "#304c45" : "#6e8e4c");
             this.scenery.graphics.drawCircle(672, 280 + row * 70, 112, night ? "#304c45" : "#6e8e4c");
         }
-        for (let i = 1; i < PATH.length; i++) {
-            this.scenery.graphics.drawLine(PATH[i - 1].x, PATH[i - 1].y, PATH[i].x, PATH[i].y, night ? "#696f5e" : "#a99867", 80);
-            this.scenery.graphics.drawCircle(PATH[i].x, PATH[i].y, 40, night ? "#696f5e" : "#a99867");
-            this.scenery.graphics.drawLine(PATH[i - 1].x, PATH[i - 1].y, PATH[i].x, PATH[i].y, night ? "#8d8976" : "#d3bc8a", 68);
-            this.scenery.graphics.drawCircle(PATH[i].x, PATH[i].y, 34, night ? "#8d8976" : "#d3bc8a");
-        }
+        // 先完成全部路沿，再铺完整路面，避免后一段路沿覆盖前一段路面形成尖刺接缝。
+        for (const surface of [{ width: 80, color: night ? "#696f5e" : "#a99867" }, { width: 68, color: night ? "#8d8976" : "#d3bc8a" }])
+            for (let i = 1; i < PATH.length; i++) {
+                this.scenery.graphics.drawLine(PATH[i - 1].x, PATH[i - 1].y, PATH[i].x, PATH[i].y, surface.color, surface.width);
+                this.scenery.graphics.drawCircle(PATH[i].x, PATH[i].y, surface.width / 2, surface.color);
+            }
         // 固定点缀不消费业务 RNG；森林阴影、草簇与小石头为道路提供边缘层次。
         for (const [x, y] of [[182, 399], [530, 470], [173, 591], [560, 643], [297, 628], [411, 356]]) this.image(this.scenery, "deco_rocks", x, y, 36);
         for (let i = 0; i < 26; i++) {

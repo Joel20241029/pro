@@ -81,6 +81,14 @@ for (const [group, size] of [['world', recipe.atlas.worldSize], ['ui', recipe.at
         a.importedLayaAtlasPath = `assets/resources/village/${best.p.id}.png`; a.importedFrameId = a.id;
     }
     for (const p of groupPages) {
+        for (let i = 0; i < p.placements.length; i++) {
+            const r = p.placements[i].rect;
+            if (r.x < padding || r.y < padding || r.x + r.w + padding > size || r.y + r.h + padding > size) throw new Error('图集矩形或间隔越界：' + p.placements[i].a.id);
+            for (let j = 0; j < i; j++) {
+                const q = p.placements[j].rect;
+                if (r.x - padding < q.x + q.w + padding && q.x - padding < r.x + r.w + padding && r.y - padding < q.y + q.h + padding && q.y - padding < r.y + r.h + padding) throw new Error('图集占位重叠：' + p.placements[i].a.id);
+            }
+        }
         const name = `atlases/${p.id}.png`, out = path.join(root, name), command = ['-size', `${size}x${size}`, 'canvas:none'];
         for (const { a, rect } of p.placements) command.push(a._packedFile, '-geometry', `+${rect.x}+${rect.y}`, '-composite');
         run([...command, '-strip', out]);
@@ -115,7 +123,7 @@ for (const [character, map] of Object.entries(recipe.animations.walkDirections))
     const directionClips = ['DOWN', 'UP', 'RIGHT', 'LEFT'].map(direction => recipe.animations.animations.find(a => a.id === map[direction]?.clip));
     if (directionClips.some(c => !c)) throw new Error('四方向引用不完整：' + character);
     const first = directionClips[0];
-    if (directionClips.some(c => c.canvas.w !== first.canvas.w || c.canvas.h !== first.canvas.h || c.pivot.x !== first.pivot.x || c.pivot.y !== first.pivot.y || c.frameCount !== first.frameCount)) throw new Error('四方向画布/足底/帧数不一致：' + character);
+    if (directionClips.some(c => c.canvas.w !== first.canvas.w || c.canvas.h !== first.canvas.h || c.pivot.x !== first.pivot.x || c.pivot.y !== first.pivot.y || c.frameCount !== first.frameCount || c.fps !== first.fps)) throw new Error('四方向画布/足底/帧数/帧率不一致：' + character);
 }
 write('atlases/frames.json', { format: 'daidai-village-rects', version: 2, coordinateSystem: 'top-left pixels', padding, rotated: false, trimmed: true, trimAlphaThreshold: 0, pages, frames });
 write('animations.json', recipe.animations);
@@ -132,7 +140,7 @@ write('budget_report.json', { generatedAt: '2026-11-10', runtimeAssetCount: asse
     budgets: { fullPackageTarget: 3500000 }, sourceBytes: read('source/generation_records.json').records.reduce((sum, r) => sum + r.bytes, 0),
     budgetComparison: { worldPngBytes: pages.filter(p => p.group === 'world').reduce((s, p) => s + p.bytes, 0), uiAndEffectsPngBytes: pages.filter(p => p.group === 'ui').reduce((s, p) => s + p.bytes, 0) },
     limitations: ['Atlas content-pixel savings are not identical to PNG byte savings', 'No real phone or platform upload measurement'] });
-write('validation_report.json', { date: '2026-11-10', status: 'passed', checks: { pngCount: assets.length, animationGroups: recipe.animations.animations.length, atlasPages: pages.length, exactTransparentTrimOnly: true, sourceCanvasAndPivotsMatch: true, atlasPixelsMatchSourceCrop: true, croppedAwayPixelsAllTransparent: true, directionReferencesValid: true, nineSliceCanvasPreserved: true }, packing, errors: [] });
+write('validation_report.json', { date: '2026-11-10', status: 'passed', checks: { pngCount: assets.length, animationGroups: recipe.animations.animations.length, atlasPages: pages.length, atlasRectsAndPaddingNonOverlapping: true, exactTransparentTrimOnly: true, sourceCanvasAndPivotsMatch: true, atlasPixelsMatchSourceCrop: true, croppedAwayPixelsAllTransparent: true, directionReferencesValid: true, nineSliceCanvasPreserved: true }, packing, errors: [] });
 
 // 完整画布预览与方向切换页，不进入微信包。
 for (const dir of ['preview/animations', 'preview/strips']) fs.mkdirSync(path.join(root, dir), { recursive: true });
