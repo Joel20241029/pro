@@ -1,6 +1,6 @@
 /** 首版规则取自 doc/design/01 与 doc/tech/01；集中调整会改变经济、存档与战斗，需升级 CONFIG_VERSION。 */
-// v9：用户确认警钟延长为15个战斗秒，改变战斗重放结果；保留v8自动驻塔，旧档经确认重开，同版正常续玩。
-export const CONFIG_VERSION = 9;
+// v10：每日口粮新增跨局领取日期（doc/tech/18）；无旧档迁移，同版正常续玩。
+export const CONFIG_VERSION = 10;
 /** 2026-11-11 已确认的持续成长方案（doc/tech/12）。等级不封顶，人数及工作站仍有界。
  * 成本线性增长，产出线性、战力二次增长；更改系数须复跑完整经营模拟及升级预检。
  */
@@ -45,6 +45,8 @@ export const LABOR_CLIPS: Readonly<Record<string, Readonly<Record<"FARM" | "LOGG
 export const RULE = {
     storageCap: 200, populationCap: 20, houseCapacity: 4, houseMax: 5, houseCost: 30,
     initialResource: 60, gateMax: 200, repairCost: 10,
+    // 用户确认每日固定20粮；本地自然日一次、仓满截断、确认后记领取日，重开仍保留。调整影响额外经营补给。
+    dailyFood: 20,
     birthCost: 20, birthCooldown: 4, parentMinNights: 3, growNights: 2, adultNights: 12,
     // 用户确认的晚年为 3 个成功守夜夜晚；刚荣休的清晨不扣减，改变此值会影响口粮与床位占用。
     elderNights: 3,

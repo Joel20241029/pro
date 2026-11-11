@@ -19,7 +19,7 @@ export class Main extends Laya.Script {
     private show = () => { this.session?.show(); };
     private interact = () => {
         const session = this.session;
-        if (!session?.state || session.pauses.has("BACKGROUND") || session.pauses.has("WAIT_RESUME") || session.pauses.has("DISABLED")) return;
+        if (!session?.state || session.pauses.has("BACKGROUND") || session.pauses.has("WAIT_RESUME") || session.pauses.has("DAILY_RATION") || session.pauses.has("DISABLED")) return;
         this.music?.setEnabled(session.state.settings.music); this.music?.interact();
     };
     async onStart() {
@@ -46,7 +46,7 @@ export class Main extends Laya.Script {
             const available = Laya.stage.height - top - bottom, ratio = Math.min(1, available / 1280);
             this.view.root.scale(ratio, ratio);
             this.view.root.pos((720 - 720 * ratio) / 2, top + (available - 1280 * ratio) / 2);
-            loading.destroy(); this.loading = null; this.session.load(); console.log("[代代守村] 微信单机版已启动");
+            loading.destroy(); this.loading = null; this.session.load(); this.session.enter(); console.log("[代代守村] 微信单机版已启动");
         } catch (e) {
             if (this.disposed) { this.frames.destroy(); return; }
             loading.text = "启动失败，请重新打开小游戏。\n" + (e instanceof Error ? e.message : String(e)); loading.pos(40, 480); loading.size(640, 300); loading.wordWrap = true; console.error(e);

@@ -14,7 +14,11 @@ export interface Family { id: string; partners: string[]; lastBirth: number | nu
 export interface Tower { kind: TowerKind | null; level: number; operator: string | null; }
 export interface Wave { budget: number; tier: number; affix: "NONE" | "FAST" | "STURDY" | "GROUP"; entries: { kind: EnemyKind; tick: number }[]; }
 export type Choice = { kind: "SKILL"; person: string; options: Skill[] } | { kind: "TRAVELER"; person: Person } | { kind: "POLICY"; options: string[] } | { kind: "TIER" };
-export interface Legacy { births: number; retirees: number; bestNight: number; traits: Trait[]; nextRun: number; }
+export interface Legacy {
+    births: number; retirees: number; bestNight: number; traits: Trait[]; nextRun: number;
+    /** 每日口粮最后成功入档的本地日历日期 YYYY-MM-DD；null 表示未领过，跨村保留。 */
+    lastRationDate: string | null;
+}
 export interface GameState {
     run: number; nextPerson: number; nextFamily: number; day: number; completed: number;
     phase: "DAY" | "NIGHT" | "DAWN" | "GAME_OVER"; food: number; wood: number; gate: number;

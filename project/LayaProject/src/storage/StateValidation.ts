@@ -1,6 +1,7 @@
 import { ADULT_APPEARANCE, ELITE, ENEMIES, POLICIES, RULE, SKILLS, TOWERS, TRAITS } from "../game/GameConfig";
 import { GameState, isElder, isWorkingAdult, Person } from "../game/GameState";
 import { gateCapacity, laborSlots, levelPower, storageCapacity } from "../game/Growth";
+import { validRationDate } from "../game/DailyRation";
 function check(v: unknown, message = "存档数据不完整"): asserts v { if (!v) throw new Error(message); }
 const int = (v: unknown, low = 0, high = Number.MAX_SAFE_INTEGER) => Number.isSafeInteger(v) && (v as number) >= low && (v as number) <= high;
 const text = (v: unknown) => typeof v === "string" && v.length > 0 && v.length <= 80;
@@ -79,6 +80,7 @@ export function validateState(s: GameState) {
     check(s.rng && [s.rng.family, s.rng.world].every(n => int(n, 0, 0xffffffff)));
     check(s.stats && int(s.stats.births) && int(s.stats.retirees) && int(s.stats.generation, 1));
     check(s.legacy && int(s.legacy.births, s.stats.births) && int(s.legacy.retirees, s.stats.retirees) && int(s.legacy.bestNight, s.completed) && int(s.legacy.nextRun, s.run + 1));
+    check(s.legacy.lastRationDate === null || validRationDate(s.legacy.lastRationDate));
     check(ids(s.legacy.traits, Object.keys(TRAITS).length) && s.legacy.traits.every(k => own(k, TRAITS)) && s.people.every(p => s.legacy.traits.includes(p.trait)));
     check(s.settings && [1, 2, 3].includes(s.settings.speed) && typeof s.settings.music === "boolean" && typeof s.summary === "string" && s.summary.length < 300);
 }

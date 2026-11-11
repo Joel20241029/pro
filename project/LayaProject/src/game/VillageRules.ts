@@ -4,6 +4,7 @@ import { SeededRandom } from "./SeededRandom";
 import { generateWave, season } from "./WaveGenerator";
 import { gateCapacity, laborSlots, laborYield, repairCost, storageCapacity, upgradeCost, upgradeUnavailableReason } from "./Growth";
 import { nextSex, travelerDue } from "./Population";
+import { dailyRationAmount } from "./DailyRation";
 export const JOB_NAMES: Record<Job, string> = { WAITING: "待安排", FARM: "耕作", LOGGING: "伐木", CARE: "照料" };
 /** 用户确认的自动分配顺序：先农艺/伐木专长对应空岗，再先农田后伐木；各轮按在村顺序。
  * 只处理待安排成年人，不换走在岗者、不自动照料、不使用随机数；没有空岗仍为待安排。
@@ -36,7 +37,7 @@ function spend(s: GameState, resource: "food" | "wood", amount: number) { requir
 function newId(s: GameState): string { requireRule(Number.isSafeInteger(s.nextPerson + 1), "人口编号已达安全范围"); return `${s.run}:${s.nextPerson++}`; }
 function remember(s: GameState, trait: Trait) { if (!s.legacy.traits.includes(trait)) s.legacy.traits.push(trait); }
 export function createGame(seed: number, old?: Legacy, inherited?: Trait, history: Person[] = [], favorites: string[] = []): GameState {
-    const legacy: Legacy = old ? clone(old) : { births: 0, retirees: 0, bestNight: 0, traits: [], nextRun: 1 };
+    const legacy: Legacy = old ? clone(old) : { births: 0, retirees: 0, bestNight: 0, traits: [], nextRun: 1, lastRationDate: null };
     requireRule(Number.isSafeInteger(legacy.nextRun + 1), "村落编号已达安全范围");
     if (inherited) requireRule(legacy.traits.includes(inherited), "尚未发现此天赋");
     const s: GameState = {
@@ -97,6 +98,7 @@ export function economy(s: GameState) {
     return { food, wood, rations, elderRations, hungry: s.food + food < rations, endFood: Math.min(storageCapacity(s), Math.max(0, s.food + food - rations)), endWood: Math.min(storageCapacity(s), s.wood + wood) };
 }
 export type Command =
+    { type: "DAILY_RATION"; date: string } |
     { type: "JOB"; id: string; job: Job; child?: string; replace?: string } |
     { type: "FAMILY"; a: string; b: string } | { type: "BIRTH"; family: string; carer: string } |
     { type: "BUILD"; kind: "HOUSE" | "FARM" | "LOGGING" | "HOUSING" | "GATE" } | { type: "REPAIR" } |
@@ -112,6 +114,11 @@ export function assignOperator(s: GameState, index: number, id: string) {
     t.operator = id; autoAssignOperators(s);
 }
 export function applyCommand(s: GameState, c: Command) {
+    if (c.type === "DAILY_RATION") {
+        const amount = dailyRationAmount(s, c.date);
+        requireRule(amount !== null, "今天的口粮已领取，或当前需先完成村务");
+        s.food += amount; s.legacy.lastRationDate = c.date; return;
+    }
     if (c.type === "SPEED") { requireRule(c.value === 1 || c.value === 2 || c.value === 3, "无效倍速"); s.settings.speed = c.value; return; }
     if (c.type === "MUSIC") { requireRule(typeof c.enabled === "boolean", "无效音乐设置"); s.settings.music = c.enabled; return; }
     if (c.type === "FAVORITE") {
