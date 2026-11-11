@@ -1,6 +1,6 @@
 /** 首版规则取自 doc/design/01 与 doc/tech/01；集中调整会改变经济、存档与战斗，需升级 CONFIG_VERSION。 */
-// v6：修正随机整数的低位相关性，移除无用/重复存档字段；不迁移旧档，交付后人工清两槽，同版正常续玩。
-export const CONFIG_VERSION = 6;
+// v7：按基础射程重排四个塔位，战前复盘结果随之改变；不迁移旧档，交付后人工清两槽，同版正常续玩。
+export const CONFIG_VERSION = 7;
 /** 2026-11-11 已确认的持续成长方案（doc/tech/12）。等级不封顶，人数及工作站仍有界。
  * 成本线性增长，产出线性、战力二次增长；更改系数须复跑完整经营模拟及升级预检。
  */
@@ -105,7 +105,8 @@ export const POLICIES: Record<string, Policy> = {
 export const SEASONS = ["春", "夏", "秋", "冬"];
 /** 720×1280 的固定逻辑路径/塔位，首版地图配置；改变坐标会影响射程和到门时间。 */
 export const PATH = [{ x: 360, y: 230 }, { x: 360, y: 350 }, { x: 250, y: 435 }, { x: 470, y: 550 }, { x: 360, y: 655 }, { x: 360, y: 760 }];
-export const PADS = [{ x: 240, y: 340 }, { x: 475, y: 395 }, { x: 220, y: 555 }, { x: 495, y: 665 }];
+/** 沿弯路错开四塔：最短150射程也能连续覆盖至少233px道路。唯一坐标源同时驱动战斗、立绘、点击区、进塔与弹道；调整后复核覆盖及导航，见doc/tech/14。 */
+export const PADS = [{ x: 255, y: 330 }, { x: 475, y: 460 }, { x: 250, y: 535 }, { x: 455, y: 690 }];
 export const FOUNDERS = [
     { name: "阿禾", sex: "MALE", appearance: "male_a", trait: "trait_diligent", skill: "skill_farming", nights: 4, job: "FARM" },
     { name: "春杏", sex: "FEMALE", appearance: "female_a", trait: "trait_frugal", skill: "skill_nurturing", nights: 6, job: "FARM" },

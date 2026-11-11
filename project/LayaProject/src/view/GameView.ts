@@ -479,7 +479,9 @@ export class GameView {
                 const owner = person(s, emote.id), scale = owner.elite ? ELITE.visualScale : 1;
                 const elapsed = EMOTE.seconds - emote.remaining;
                 this.emote.visible = true; this.art.applyFrame(this.emote, emote.frameId, EMOTE.size);
-                this.emote.pos(Math.max(EMOTE.size / 2, Math.min(720 - EMOTE.size / 2, pose.x)), pose.y - 62 * scale - Math.sin(Math.min(1, elapsed / .25) * Math.PI / 2) * 6);
+                // 依现有成人56px、儿童48px立绘收近挂点；保留精英缩放，只上浮3px，避免表情远离头顶。
+                const headOffset = owner.adult ? 52 : 46;
+                this.emote.pos(Math.max(EMOTE.size / 2, Math.min(720 - EMOTE.size / 2, pose.x)), pose.y - headOffset * scale - Math.sin(Math.min(1, elapsed / .25) * Math.PI / 2) * 3);
                 this.emote.alpha = Math.min(1, elapsed / .16, emote.remaining / .25);
             }
         }
