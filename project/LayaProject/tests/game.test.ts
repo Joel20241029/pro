@@ -83,7 +83,7 @@ test("Night settings save keeps live battle; reload replays baseline", () => {
     g.command({ type: "SPEED", value: 2 }); ok(g.battle === live); const reloaded = new GameSession(new SaveStore(m)); reloaded.load(); equal(reloaded.battle!.tick, 0); equal(reloaded.state!.settings.speed, 2);
 });
 test("Background/resume and panel pause cannot erase user pause", () => {
-    const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.command({ type: "NIGHT" }); g.pause("USER"); g.hide(); g.show(); g.resume("CHOICE"); g.update(2); equal(g.battle!.tick, 0); g.resume("WAIT_RESUME"); g.update(2); equal(g.battle!.tick, 0); g.resume("USER"); g.update(.05); equal(g.battle!.tick, 1);
+    const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.enter(); g.claimDailyRation(); g.command({ type: "NIGHT" }); g.pause("USER"); g.hide(); g.show(); g.resume("CHOICE"); g.update(2); equal(g.battle!.tick, 0); g.resume("WAIT_RESUME"); g.update(2); equal(g.battle!.tick, 0); g.resume("USER"); g.update(.05); equal(g.battle!.tick, 1);
 });
 test("Tower dialog pause permits reassignment and resumes without changing the saved baseline", () => {
     const m = new MemoryStore(), g = new GameSession(new SaveStore(m)); g.load(); g.newVillage(); g.command({ type: "NIGHT" });
@@ -101,7 +101,7 @@ test("Closing tower dialog preserves an earlier manual pause", () => {
     g.resume("USER"); g.update(.05); equal(g.battle!.tick, 1);
 });
 test("Closing tower dialog does not clear background or return confirmation pauses", () => {
-    const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.command({ type: "NIGHT" });
+    const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.enter(); g.claimDailyRation(); g.command({ type: "NIGHT" });
     g.pause("CHOICE"); g.hide(); g.resume("CHOICE"); g.update(.1); equal(g.battle!.tick, 0); ok(g.pauses.has("BACKGROUND"));
     g.show(); g.update(.1); equal(g.battle!.tick, 0); ok(g.pauses.has("WAIT_RESUME"));
     g.resume("WAIT_RESUME"); g.update(.05); equal(g.battle!.tick, 1);

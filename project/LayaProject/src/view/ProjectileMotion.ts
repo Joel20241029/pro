@@ -1,5 +1,6 @@
 import { BattleSimulation, Shot } from "../game/BattleSimulation";
-import { PADS, RULE } from "../game/GameConfig";
+import { RULE } from "../game/GameConfig";
+import { towerLaunch } from "./VillageScene";
 
 /**
  * 720 逻辑画布的投射物表现参数：图片为现有 48×48 原画布（包含透明边）。
@@ -12,8 +13,8 @@ export const PROJECTILE_STYLE = {
     SLOW: { frame: "fx_ice", size: 60, flight: .3, arc: 12, spin: 0, hit: "fx_slow_ring", hitSize: 72, impact: .2 }
 } as const;
 
-/** 发射点沿用原攻击线的塔顶 -35、目标身体 -20；统一作用于弹道与落点，调整仅改变视觉挂点。 */
-const LAUNCH_Y = -35, TARGET_Y = -20;
+/** 落点位于敌人足底上方20px身体处；发射口与塔图共享源画布挂点，均只改变表现。 */
+const TARGET_Y = -20;
 export interface ProjectilePose {
     shot: Shot; frame: string; x: number; y: number; rotation: number; size: number; alpha: number;
 }
@@ -38,14 +39,14 @@ export class ProjectileMotion {
             return (battle.tick - p.shot.tick - 1) * RULE.step < style.flight + style.impact;
         }).slice(-RULE.effectCap);
         for (const p of this.poses) {
-            const shot = p.shot, style = PROJECTILE_STYLE[shot.kind], from = PADS[shot.tower];
+            const shot = p.shot, style = PROJECTILE_STYLE[shot.kind], from = towerLaunch(shot.tower, shot.kind);
             // step 完成后 tick 已加一；最后一次 step 新发射的弹道年龄为零。只读实际 tick，暂停/倍速天然同步。
             const age = (battle.tick - shot.tick - 1) * RULE.step;
-            const dx = shot.x - from.x, dy = shot.y + TARGET_Y - (from.y + LAUNCH_Y);
+            const dx = shot.x - from.x, dy = shot.y + TARGET_Y - from.y;
             if (age < style.flight) {
                 const t = age / style.flight;
                 p.frame = style.frame; p.size = style.size; p.alpha = 1;
-                p.x = from.x + dx * t; p.y = from.y + LAUNCH_Y + dy * t - 4 * style.arc * t * (1 - t);
+                p.x = from.x + dx * t; p.y = from.y + dy * t - 4 * style.arc * t * (1 - t);
                 p.rotation = shot.kind === "ARROW" ? Math.atan2(dy, dx) * 180 / Math.PI : age * style.spin;
             } else {
                 const t = (age - style.flight) / style.impact;

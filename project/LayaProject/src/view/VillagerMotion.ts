@@ -70,7 +70,7 @@ export class VillagerMotion {
             reserved.add(p.id);
         }
         for (const p of sorted) {
-            const sequence = Number(p.id.split(":")[1]), tower = towers.findIndex(t => t.operator === p.id);
+            const sequence = this.campSlots.get(p.id)! + 1, tower = towers.findIndex(t => t.operator === p.id);
             const coworkers = sorted.filter(q => q.adult && q.job === p.job), slot = coworkers.findIndex(q => q.id === p.id);
             const careStop = this.careStops.get(p.id);
             const signature = `${state.phase === "NIGHT" ? "NIGHT" : "DAY"}:${p.adult}:${isElder(p)}:${p.growth}:${p.appearance}:${p.job}:${p.careChild}:${slot}:${tower}:${this.campSlots.get(p.id)}:${careStop?.x}:${careStop?.y}`;
@@ -128,7 +128,7 @@ export class VillagerMotion {
         const rest = VILLAGE_STOPS.rest[(sequence - 1) % VILLAGE_STOPS.rest.length];
         const dwell = MOTION.workSeconds + (sequence % 4) * MOTION.staggerSeconds;
         if (isElder(p)) return [visit(rest, dwell), visit(home, dwell)];
-        if (!p.adult) return [visit(VILLAGE_STOPS.children[sequence % VILLAGE_STOPS.children.length], MOTION.restSeconds), visit(home, MOTION.restSeconds)];
+        if (!p.adult) return [visit(VILLAGE_STOPS.children[sequence - 1], MOTION.restSeconds), visit(home, MOTION.restSeconds)];
         if (p.job === "FARM" || p.job === "LOGGING") {
             const stops = p.job === "FARM" ? VILLAGE_STOPS.farm : VILLAGE_STOPS.logging;
             if (slot < 0 || slot >= stops.length) throw new Error("工作表现站点少于已分配岗位");
@@ -137,7 +137,7 @@ export class VillagerMotion {
         if (p.job === "CARE") {
             return [visit(camp, dwell, true), visit(home, MOTION.restSeconds)];
         }
-        return [visit(rest, MOTION.restSeconds + (sequence % 3) * MOTION.staggerSeconds), visit(VILLAGE_STOPS.rest[(sequence + 2) % VILLAGE_STOPS.rest.length], MOTION.restSeconds), visit(home, MOTION.restSeconds)];
+        return [visit(rest, MOTION.restSeconds + (sequence % 3) * MOTION.staggerSeconds), visit(home, MOTION.restSeconds)];
     }
     private chooseAction(m: MovingPerson, walking: boolean) {
         const p = m.person;

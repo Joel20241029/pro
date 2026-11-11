@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-11",
+  "generator": "image_gen built-in",
+  "references": [
+    "runtime/buildings/building_farm.png (pre-v10)",
+    "source/static/buildings.png"
+  ],
+  "prompts": [
+    "Use case: precise-object-edit. Asset type: a single transparent ground-level farm sprite for the portrait pixel-art Chinese village game 代代守村. Image 1 is the edit target, Image 2 is style reference only. Redesign ONLY the farm: remove every fence, wooden post, rail, raised border and tall obstacle. Keep the warm muted gold wheat, olive green leaves, brown soil and dark pixel outlines matching the references. Draw one horizontal rectangular tilled patch in the same slightly top-down front-view game perspective, with three shallow rows of low wheat and clearly visible open soil paths between rows so game characters can stand within the field. It must read as flat ground, not a building or platform. Generous spaces between small wheat clusters; no full-height fence-like wall of wheat. Single asset centered with compact transparent margin. No characters, tools, houses, decorations, lettering, labels, drop shadow, checkerboard, or background. Crisp deliberately chunky pixel-art edges suitable for reduction to a 128 by 128 game canvas. Real alpha transparency around the whole patch. Preserve the game's existing warm rural art style.",
+    "Use case: background-extraction. Edit this exact farm sprite. Preserve only the crisp pixel-art wheat plants, brown tilled soil and small green grass tufts at the soil border, with their exact layout and colors. REMOVE ALL soft glow, halo, shadow, haze, black background and brown background outside the sharply defined soil perimeter. Pixels outside the actual farm patch must have alpha exactly zero. Interior of the soil and wheat must be fully opaque. Hard pixel edges only, no feathered alpha and no lighting bloom. Output one clean isolated low wheat farm ground sprite on genuine transparent background, centered tightly in the image. No fences, text, labels, extra objects, checkerboard or gradient."
+  ],
+  "selected": "source/static/farm_open_v10.png",
+  "outputCanvas": [
+    1536,
+    1024
+  ],
+  "recipeCrop": [
+    240,
+    224,
+    1056,
+    560
+  ],
+  "runtimeCanvas": [
+    128,
+    128
+  ],
+  "pivot": [
+    64,
+    100
+  ],
+  "note": "母版保留原始RGBA；按配方最近邻缩放，不烘入地面底色。"
+}

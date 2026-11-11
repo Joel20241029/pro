@@ -6,7 +6,7 @@ import { BattleSimulation, pointAt } from "../game/BattleSimulation";
 import { season } from "../game/WaveGenerator";
 import { enemyPower, gateCapacity, laborSlots, laborYield, levelPower, repairCost, storageCapacity, UpgradeKind, upgradeCost, upgradeUnavailableReason } from "../game/Growth";
 import { SpriteFrames } from "./SpriteFrames";
-import { compareDepth, VILLAGE_PROPS, WEDDING } from "./VillageScene";
+import { compareDepth, TOWER_VIEW, VILLAGE_PROPS, WEDDING } from "./VillageScene";
 import { VillagerMotion } from "./VillagerMotion";
 import { ProjectileMotion } from "./ProjectileMotion";
 import { C, UI } from "./UiTheme";
@@ -16,6 +16,7 @@ import { RankingView } from "./RankingView";
 import { WechatPlatform } from "../platform/WechatPlatform";
 import { EMOTE, VillagerEmotes } from "./VillagerEmotes";
 import { GUIDE_CHAPTERS } from "./GameGuide";
+import { dailyRationAmount } from "../game/DailyRation";
 type Panel = { type: string; id?: string; index?: number; scroll?: number; tab?: number; a?: string; job?: "FARM" | "LOGGING" };
 export class GameView {
     readonly root = new Laya.Sprite();
@@ -47,7 +48,7 @@ export class GameView {
         this.overlay.size(720, 1280); this.overlay.mouseEnabled = true; this.overlay.mouseThrough = true;
         for (const p of VILLAGE_PROPS) {
             const node = new Laya.Sprite(); node.name = p.id; node.mouseEnabled = false;
-            this.art.applyFrame(node, p.frame, p.size); node.pos(p.x, p.y); this.world.addChild(node); this.props.push({ id: p.id, y: p.y, node });
+            this.art.applyFrame(node, p.frame, p.size); node.pos(p.x, p.y); this.world.addChild(node); this.props.push({ id: p.id, y: p.ground ? -1 : p.y, node });
         }
         for (let i = 0; i < RULE.populationCap; i++) {
             const s = new Laya.Sprite(); s.mouseEnabled = false; s.stackingRoot = true; this.world.addChild(s); this.people.push(s);
@@ -180,11 +181,15 @@ export class GameView {
         this.emotes.sync(s);
         this.label(this.chrome, `第 ${Math.floor((s.day - 1) / 12) + 1} 年 · ${SEASONS[season(s.day)]}${((s.day - 1) % 3) + 1}日`, 34, 76, 380, 27, C.green, true, 40);
         this.label(this.chrome, `已守 ${this.amount(s.completed)} 波`, 420, 88, 264, 25, C.timber, true, 28).align = "right";
-        [["icon_food", "粮", this.amount(s.food, true)], ["icon_wood", "木", this.amount(s.wood, true)], ["icon_population", "人", `${s.people.length}/${capacity(s)}`]].forEach(([id, name, value], i) => {
+        // 与人口统一为“现有/容量”；窄栏的千进制数值省略小数，始终单行显示。
+        const [food, wood, storage] = [s.food, s.wood, storageCapacity(s)].map(value => this.amount(value, true).replace(/\.\d(?=[kmbtq]$)/, ""));
+        [["icon_food", "粮", `${food}/${storage}`], ["icon_wood", "木", `${wood}/${storage}`], ["icon_population", "人", `${s.people.length}/${capacity(s)}`]].forEach(([id, name, value], i) => {
             const x = 28 + i * 226, card = new Laya.Sprite(); card.pos(x, 122); this.art.panel(card, "panel_card", 212, 74); this.chrome.addChild(card);
             this.image(card, id, 12, 21, 32);
-            const text = this.label(card, `${name} ${value}`, 50, 13, 150, 30, C.ink, true, 48);
+            const full = i < 2 && (i === 0 ? s.food : s.wood) >= storageCapacity(s);
+            const text = this.label(card, `${name} ${value}`, 50, 13, 150, 30, full ? C.timber : C.ink, true, 48);
             text.name = `resource:${id}`; text.wordWrap = false; text.align = "center";
+            while (text.textWidth > text.width && text.fontSize > UI.mapLabel) text.fontSize--;
         });
         this.chrome.graphics.drawRect(0, 209, 720, 37, C.green);
         const count = s.wave?.entries.length || 0;
@@ -198,8 +203,9 @@ export class GameView {
             ranking.on(Laya.Event.CLICK, this, () => this.open({ type: "ranking" }));
         }
         const gate = battle?.gate ?? s.gate;
-        this.hp = this.label(this.chrome, `城门 ${this.amount(gate)}/${this.amount(gateCapacity(s))}`, 225, 783, 270, 26, C.cream, true, 38); this.hp.align = "center";
-        this.gateGauge = new Laya.Sprite(); this.gateGauge.pos(288, 821); this.gateGauge.mouseEnabled = false; this.chrome.addChild(this.gateGauge);
+        this.label(this.chrome, "城门", 146, 682, 180, 24, C.cream, true, 30).align = "center";
+        this.hp = this.label(this.chrome, `${this.amount(gate, true)}/${this.amount(gateCapacity(s), true)}`, 146, 712, 180, 24, C.cream, true, 32); this.hp.align = "center"; this.hp.wordWrap = false;
+        this.gateGauge = new Laya.Sprite(); this.gateGauge.pos(164, 750); this.gateGauge.mouseEnabled = false; this.chrome.addChild(this.gateGauge);
         for (let i = 0; i < PADS.length; i++) {
             const t = battle?.base.towers[i] || s.towers[i], pos = PADS[i];
             const b = new Laya.Sprite(); b.pos(pos.x - 58, pos.y - 80); b.size(116, 134); b.mouseEnabled = true;
@@ -229,25 +235,35 @@ export class GameView {
             this.image(face, ["icon_population", "icon_family", "icon_build", "icon_view"][i], 14, 24, 30);
         });
         if (this.game.saves.pending) this.drawPending();
+        else if (this.game.dailyRationDate !== null) {
+            const amount = dailyRationAmount(s, this.game.dailyRationDate)!;
+            const box = this.modal("每日口粮", `每日补给 ${RULE.dailyFood} 粮`, false, { width: 540, height: 402 });
+            this.image(box, "icon_food", 108, 156, 88);
+            this.label(box, `＋${amount} 粮`, 206, 164, 230, 42, amount ? C.green : C.muted, true, 64).align = "center";
+            const detail = amount === 0 ? "粮仓已满，本次到账 0 粮\n确认后今日不再发放" : amount < RULE.dailyFood ? `仓储仅剩 ${amount}，本次入库 ${amount} 粮\n确认后今日不再发放` : "确认后入库，今日仅领一次";
+            const note = this.label(box, detail, 34, 238, 472, 28, C.muted, false, 64); note.align = "center"; note.valign = "middle";
+            this.button(box, this.game.pauses.has("WAIT_RESUME") ? "确认并继续" : "确认领取", 130, 308, 280, () => this.game.claimDailyRation(), C.gold, 72);
+        }
         else if (this.game.pauses.has("WAIT_RESUME")) {
-            const box = this.modal("欢迎回来", "战斗与动画已暂停；退出期间没有生产、成长或战斗损耗。", false);
-            this.button(box, "继续游戏", 34, 540, 600, () => { this.game.resume("WAIT_RESUME"); this.refresh(); }, C.gold, 80);
+            const box = this.modal("欢迎回来", "村庄已暂停，欢迎回来。\n离开期间没有收益或损耗。", false, { width: 540, height: 300 });
+            this.button(box, "继续游戏", 130, 202, 280, () => { this.game.resume("WAIT_RESUME"); this.refresh(); }, C.gold, 72);
         } else if (s.phase === "GAME_OVER") this.drawGameOver(s);
         else if (s.phase === "DAWN") this.drawDawn(s);
         // 切后台只释放已打开的开放域；回前台点“继续游戏”后再请求授权与绘制。
         else if (this.panel && !this.game.pauses.has("BACKGROUND")) this.drawPanel(s, this.panel);
         this.updateActors();
     }
-    private modal(title: string, subtitle: string, close = true) {
+    private modal(title: string, subtitle: string, close = true, size?: { width: number; height: number }) {
         this.overlay.mouseThrough = false;
         this.overlay.graphics.drawRect(0, 0, 720, 1280, "rgba(25,31,22,0.68)");
-        const box = new Laya.Sprite(); box.name = `panel:${title}`; box.pos(UI.panelX, UI.panelY); box.size(UI.panelWidth, UI.panelHeight); box.mouseEnabled = true;
-        this.art.panel(box, "panel_parchment", UI.panelWidth, UI.panelHeight); this.overlay.addChild(box);
-        this.label(box, title, 108, 34, 452, title.replace(/<[^>]*>/g, "").length > 12 ? 32 : UI.title, C.ink, true, 60).align = "center";
-        box.graphics.drawLine(64, 100, 604, 100, C.gold, 2);
-        this.label(box, subtitle, UI.inset, 108, UI.contentWidth, 27, C.muted, false, 100).align = "center";
+        const width = size ? size.width : UI.panelWidth, height = size ? size.height : UI.panelHeight;
+        const box = new Laya.Sprite(); box.name = `panel:${title}`; box.pos(size ? (720 - width) / 2 : UI.panelX, size ? (1280 - height) / 2 : UI.panelY); box.size(width, height); box.mouseEnabled = true;
+        this.art.panel(box, "panel_parchment", width, height); this.overlay.addChild(box);
+        this.label(box, title, 108, 34, width - 216, title.replace(/<[^>]*>/g, "").length > 12 ? 32 : UI.title, C.ink, true, 60).align = "center";
+        box.graphics.drawLine(64, 100, width - 64, 100, C.gold, 2);
+        this.label(box, subtitle, UI.inset, 108, width - UI.inset * 2, 27, C.muted, false, 100).align = "center";
         // 用户移除左上麦穗，关闭按钮仍在右侧；底角装饰不参与九宫格拉伸。
-        if (close) this.button(box, "×", 560, 48, 50, () => this.close(), C.red, 54);
+        if (close) this.button(box, "×", width - 108, 48, 50, () => this.close(), C.red, 54);
         return box;
     }
     private drawBoot() {
@@ -286,7 +302,7 @@ export class GameView {
             let title = "村民名册", sub = `自动安排：专长优先，先农田后伐木。\n待安排 ${s.people.filter(q => isWorkingAdult(q) && q.job === "WAITING").length} 人 · 养老 ${s.people.filter(isElder).length} 人（占住房）。`;
             if (p.type === "history") { list = s.history.slice().reverse(); title = "村落家谱"; sub = `累计诞生 ${s.legacy.births} 人，荣休 ${s.legacy.retirees} 人。珍藏 ${s.favorites.length}/20。`; }
             if (p.type === "partners") { list = s.people.filter(q => p.a ? canMarry(s, person(s, p.a), q) : s.people.some(other => canMarry(s, q, other))); title = p.a ? "选择另一半" : "选择成家村民"; sub = "只列出可成家的成年单身男女，双方须未退休。\n直系亲属、兄弟姐妹不能成家。"; }
-            if (p.type === "carers") { list = s.people.filter(q => isWorkingAdult(q) && q.job !== "CARE"); title = "迎接新生命"; sub = `粮食 ${this.resourceCost(s.food, RULE.birthCost)}（现有/所需）\n选照料者：白天照料，夜间仍可驻塔。`; }
+            if (p.type === "carers") { list = s.people.filter(q => isWorkingAdult(q) && q.job !== "CARE"); title = "选择孩子的照料者"; sub = `选择后迎接孩子，消耗 ${RULE.birthCost} 粮。\n人选会转为照料，夜间仍可驻塔。`; }
             if (p.type === "operators") { list = s.people.filter(isWorkingAdult); title = "安排驻塔"; sub = "空位自动补人，已驻塔者可直接对调。\n夜间换人只影响本夜，重进恢复战前安排。"; }
             if (p.type === "care") { list = s.people.filter(q => !q.adult && !s.people.some(a => a.careChild === q.id)); title = "选择照料的孩子"; sub = `只列出无人照料的孩子。\n照料并成功守住 ${RULE.growNights} 夜后成年。`; }
             if (p.type === "workers") { list = s.people.filter(q => isWorkingAdult(q) && q.job === p.job && q.id !== p.id); title = "选择替换的工人"; sub = `${JOB_NAMES[p.job!]}岗位已满，选一位村民换岗。\n原工人有其他空岗会自动补位。`; }
@@ -352,21 +368,42 @@ export class GameView {
             this.label(box, !q.adult ? "孩子暂不参加工作和驻塔。\n请在成人详情中为他安排照料。" : !day ? "夜间可换驻塔人选，白天再调工作。\n白天岗位与夜间驻塔互不占用。" : "防塔会自动补人，点击地图防塔可换人。\n白天岗位与夜间驻塔互不占用。", 34, 716, 600, 28, C.muted, false, 96).align = "center"; return;
         }
         if (p.type === "families") {
-            const box = this.modal("家庭与新生命", `迎接孩子：粮食 ${this.resourceCost(s.food, RULE.birthCost)}（现有/所需）\n可用条目选择照料者，灰色条目显示原因。`), list = s.families;
+            const list = s.families, rowHeight = 272, rowStep = 286;
+            const height = Math.min(UI.panelHeight, 392 + Math.max(1, list.length) * rowStep);
+            const box = this.modal("家庭与养育", "先让单身村民成家，再迎接下一代。", true, { width: UI.panelWidth, height });
+            this.label(box, `空余住房 ${capacity(s) - s.people.length} 人`, 34, 158, 260, 28, C.green, true, 40);
+            this.label(box, `迎接需 ${RULE.birthCost} 粮 · 现有 ${this.amount(s.food)}`, 294, 158, 340, 28, s.food < RULE.birthCost ? C.red : C.timber, true, 40).align = "right";
+            const canFormFamily = s.people.some(a => s.people.some(b => canMarry(s, a, b)));
+            this.button(box, !day ? "白天可安排成家" : canFormFamily ? "安排村民成家" : "暂无可成家的单身男女", 34, 210, 600, () => this.open({ type: "partners" }), C.gold, 76, day && canFormFamily);
+            this.label(box, "已有家庭", 36, 300, 260, 28, C.ink, true, 40);
+            this.button(box, "养育说明", 470, 298, 164, () => this.open({ type: "guide", tab: 2 }), C.muted, 60);
             if (list.length) {
-                const rows = new ScrollList(UI.contentWidth, 414, Math.max(0, list.length * UI.conditionRowStep - (UI.conditionRowStep - UI.conditionRowHeight)), p.scroll, offset => p.scroll = offset);
-                rows.pos(34, 224); box.addChild(rows);
+                const rows = new ScrollList(UI.contentWidth, height - 392, list.length * rowStep - (rowStep - rowHeight), p.scroll, offset => p.scroll = offset);
+                rows.pos(34, 362); box.addChild(rows);
                 list.forEach((f, i) => {
-                    const reason = birthUnavailableReason(s, f.id), enabled = reason === null;
-                    this.listItem(rows.content, `${f.partners.map(id => this.coloredName(person(s, id), enabled)).join(" ＋ ")}\n${enabled ? "迎接孩子 · 选择照料者" : reason}`, "icon_family", i * UI.conditionRowStep, () => this.open({ type: "carers", id: f.id }), enabled, UI.conditionRowHeight);
+                    const reason = birthUnavailableReason(s, f.id), card = new Laya.Sprite(); card.name = `family:${f.id}`; card.pos(0, i * rowStep);
+                    this.art.panel(card, "panel_card", 584, rowHeight); rows.content.addChild(card);
+                    f.partners.forEach((id, partner) => {
+                        const parent = person(s, id), x = partner ? 306 : 18;
+                        const clip = isElder(parent) ? `villager_elder_${parent.sex === "MALE" ? "male" : "female"}_idle` : `villager_${parent.appearance}_walk`;
+                        this.image(card, this.art.frameId(clip, 0, false), x, 12, 58);
+                        const name = this.label(card, this.coloredName(parent), x + 64, 23, 186, 28, C.ink, true, 42);
+                        name.wordWrap = false; name.overflow = Laya.Text.ELLIPSIS;
+                    });
+                    this.image(card, "icon_heart", 270, 32, 30);
+                    const child = s.people.find(q => !q.adult && q.parents.some(id => f.partners.includes(id)));
+                    this.image(card, "icon_baby", 20, 82, 34);
+                    const carer = child ? s.people.find(q => q.careChild === child.id) : null;
+                    this.label(card, child ? `${this.coloredName(child)} · 成长 ${child.growth}/${RULE.growNights}` : "本户暂无未成年孩子", 66, 78, 490, 26, C.muted, false, 40);
+                    const detail = child ? `${carer ? carer.name + "正在照料" : "无人照料，成长暂停"}。${reason || ""}` : reason || "选择照料者后，孩子就会来到村里。";
+                    this.label(card, detail, 22, 120, 538, 24, reason ? C.muted : C.green, false, 72);
+                    this.button(card, reason ? "暂不可迎接" : "迎接孩子", 334, 202, 228, () => this.open({ type: "carers", id: f.id }), C.green, 60, reason === null);
                 });
             } else {
-                const empty = this.label(box, "还没有家庭，先为村民牵线吧", UI.inset, UI.panelHeight / 2 - 48, UI.contentWidth, 34, C.muted, false, 96);
+                const empty = this.label(box, "还没有家庭\n点击上方按钮，为村民牵线吧", UI.inset, 404, UI.contentWidth, 32, C.muted, false, 130);
                 empty.name = "emptyState"; empty.align = "center"; empty.valign = "middle"; empty.wordWrap = false;
             }
-            const canFormFamily = s.people.some(a => s.people.some(b => canMarry(s, a, b)));
-            this.button(box, !day ? "请在白天安排成家" : canFormFamily ? "让两位村民成家" : "暂无可成家的单身男女", 34, 672, 600, () => this.open({ type: "partners" }), C.gold, 78, day && canFormFamily);
-            this.label(box, "完整条件见：小记 → 玩法说明 → 家庭", 34, 770, 600, 26, C.muted, false, 44).align = "center"; return;
+            return;
         }
         if (p.type === "build") {
             const box = this.modal("建设村落", `木材 ${this.amount(s.wood)}   粮食 ${this.amount(s.food)}   仓储各 ${this.amount(storageCapacity(s))}\n红字表示材料不足，向上滑动查看更多。`);
@@ -494,7 +531,11 @@ export class GameView {
         if (!s) { depth.sort(compareDepth).forEach((p, i) => p.node.zIndex = i); return; }
         for (const p of this.props) {
             if (p.id === "building:gate") p.node.texture = this.art.get((battle ? battle.gate : s.gate) / gateCapacity(s) < .35 ? "building_gate_damaged" : "building_gate_closed");
-            else if (p.id.startsWith("tower:")) { const t = (battle ? battle.base.towers : s.towers)[Number(p.id.split(":")[1])]; p.node.texture = this.art.get(t.kind ? TOWERS[t.kind].image : "building_tower_pad"); }
+            else if (p.id.startsWith("tower:")) {
+                const index = Number(p.id.split(":")[1]), t = (battle ? battle.base.towers : s.towers)[index];
+                p.node.texture = this.art.get(t.kind ? TOWERS[t.kind].image : "building_tower_pad");
+                p.node.scaleX = t.kind === "ARROW" ? TOWER_VIEW.facing[index] : 1;
+            }
         }
         s.people.forEach((p, i) => {
             const n = this.people[i], pose = this.motion.get(p.id); n.visible = !pose.insideTower; n.name = `person:${p.id}`;
@@ -548,7 +589,7 @@ export class GameView {
                 const n = this.projectileNodes[i]; n.name = `projectile:${p.shot.kind}:${p.shot.tower}:${p.shot.tick}`; n.visible = true;
                 this.art.applyFrame(n, p.frame, p.size); n.pos(p.x, p.y); n.rotation = p.rotation; n.alpha = p.alpha;
             });
-            if (this.hp) this.hp.text = `城门 ${this.amount(battle.gate)}/${this.amount(gateCapacity(s))}`;
+            if (this.hp) this.hp.text = `${this.amount(battle.gate, true)}/${this.amount(gateCapacity(s), true)}`;
             if (this.count) this.count.text = `${this.game.pauses.size ? "已暂停" : "守夜中"}  ·  场上 ${battle.enemies.length}  ·  待来 ${battle.pendingCount}${battle.base.night!.hungry ? "  · 缺粮" : ""}`;
         }
         if (this.gateGauge) {

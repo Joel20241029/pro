@@ -1,9 +1,21 @@
-import { PADS } from "../game/GameConfig";
+import { PADS, TowerKind } from "../game/GameConfig";
 
 export interface GroundPoint { x: number; y: number; }
 export interface Footprint { left: number; top: number; right: number; bottom: number; }
 export interface VillageProp extends GroundPoint {
-    id: string; frame: string; size: number; footprint: Footprint | null;
+    id: string; frame: string; size: number; footprint: Footprint | null; ground?: boolean;
+}
+
+/** 128px塔源画布的实际弓口/投石兜/水晶挂点；仅表现，不移动逻辑塔位或射程。
+ * 左侧1/3塔向右、右侧2/4塔向左；正面石塔/寒塔保持原构图，改建必须重设镜像。
+ */
+export const TOWER_VIEW = {
+    size: 108, top: -80, canvas: 128, facing: [1, -1, 1, -1],
+    muzzle: { ARROW: { x: 92, y: 35 }, STONE: { x: 74, y: 50 }, SLOW: { x: 64, y: 32 } }
+} as const;
+export function towerLaunch(index: number, kind: TowerKind): GroundPoint {
+    const pad = PADS[index], at = TOWER_VIEW.muzzle[kind], scale = TOWER_VIEW.size / TOWER_VIEW.canvas;
+    return { x: pad.x + (at.x - TOWER_VIEW.canvas / 2) * scale * (kind === "ARROW" ? TOWER_VIEW.facing[index] : 1), y: pad.y + TOWER_VIEW.top + at.y * scale };
 }
 
 /** 原 GameView 的固定地图与图集足底（中心、15/16 高度）。占地仅覆盖底座，屋顶/树冠可以遮住行人。 */
@@ -15,25 +27,27 @@ export const VILLAGE_PROPS: VillageProp[] = [
     // 边缘林带复用原松树/橡树，视觉树数与导航障碍数分离，下方仅两个整块林地占地。
     ...Array.from({ length: 42 }, (_, i): VillageProp => {
         const side = i % 2, row = Math.floor(i / 6), column = Math.floor(i / 2) % 3;
-        const x = side ? 602 + column * 57 : 8 + column * 57, y = 320 + row * 72 + (column % 2) * 23;
+        const x = side ? 586 + column * 39 : 56 + column * 39, y = 320 + row * 72 + (column % 2) * 23;
         return { id: `forest:${i}`, frame: i % 3 === 0 ? "deco_tree_pine" : "deco_tree_oak", x, y, size: i % 3 === 0 ? 114 : 110, footprint: null };
     }),
     ...[28, 92, 156, 220, 500, 564, 628, 692].map((x, i): VillageProp => ({ id: `wall:${i}`, frame: "building_palisade", x, y: 830, size: 78, footprint: null })),
-    { id: "tree:logging", frame: "deco_tree_oak", x: 642, y: 870, size: 92, footprint: { left: 629, top: 854, right: 655, bottom: 870 } },
+    { id: "tree:logging", frame: "deco_tree_oak", x: 632, y: 964, size: 82, footprint: { left: 621, top: 949, right: 643, bottom: 964 } },
+    { id: "deco:logs", frame: "deco_log_pile", x: 571, y: 1024, size: 60, footprint: null },
     ...[[168, 292], [560, 286], [170, 477], [553, 548], [164, 668], [553, 734]].map(([x, y], i): VillageProp => ({ id: `bush:${i}`, frame: "deco_bush", x, y, size: 64, footprint: null })),
     ...[[279, 822], [441, 822]].map(([x, y], i): VillageProp => ({ id: `torch:${i}`, frame: "deco_torch", x, y, size: 62, footprint: null })),
-    prop("building:house-a", "building_house_thatched", 45, 810, 130, 96, 30),
-    prop("building:house-b", "building_house_terracotta", 170, 838, 118, 88, 29),
-    prop("building:farm", "building_farm", 450, 840, 150, 122, 81),
-    prop("building:logging", "building_lumber_shed", 565, 905, 114, 88, 32),
-    prop("building:hearth", "building_hearth_lit", 318, 882, 90, 58, 17),
+    prop("building:house-a", "building_house_thatched", 50, 821.25, 116, 84, 27),
+    prop("building:house-b", "building_house_terracotta", 169, 820.625, 106, 78, 26),
+    // 田地是可站立地面，用农田自身源pivot；不加入建筑排序/导航障碍，人物真正走入垄沟。
+    { id: "building:farm", frame: "building_farm", x: 546, y: 954, size: 202, footprint: null, ground: true },
+    prop("building:logging", "building_lumber_shed", 467, 922.625, 106, 74, 28),
+    prop("building:hearth", "building_hearth_lit", 321, 891, 78, 44, 15),
     prop("building:gate", "building_gate_closed", 282, 684, 156, 132, 30),
-    ...PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - 54, p.y - 80, 108, 70, 28))
+    ...PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, 70, 28))
 ];
 
 /** 林带合并为 2 个固定块，墙体合并为左右两段；城门两边保留 40px 侧道，扣除足底间距后仍可通行。 */
 export const LANDSCAPE_FOOTPRINTS: Footprint[] = [
-    { left: 0, top: 260, right: 146, bottom: 764 }, { left: 578, top: 260, right: 720, bottom: 764 },
+    { left: 0, top: 260, right: 154, bottom: 764 }, { left: 566, top: 260, right: 720, bottom: 764 },
     { left: -7, top: 817, right: 254, bottom: 830 }, { left: 466, top: 817, right: 727, bottom: 830 }
 ];
 
@@ -43,18 +57,18 @@ export const MOTION = {
     // 老人沿同一可行走路径慢行，仅表现用；不会延迟口粮、养老夜数或守夜结算。
     elderSpeed: 24, clearance: 7, cornerGap: 1,
     workSeconds: 4.5, restSeconds: 1.8, staggerSeconds: .23,
-    bounds: { left: 28, top: 275, right: 692, bottom: 1028 }
+    bounds: { left: 44, top: 275, right: 676, bottom: 1028 }
 } as const;
 
 /** 火堆周围的20个足底站点，避开房屋、农田、炉体底座；新生儿从出生起使用其中的育儿位置。
  * 只作表现，不增加人口容量。按存活人物保留分配，不能以永久人口编号取模复用占位。
  */
 export const CAMP_STOPS: GroundPoint[] = [
-    { x: 300, y: 884 }, { x: 338, y: 884 }, { x: 376, y: 884 }, { x: 414, y: 884 },
-    { x: 300, y: 918 }, { x: 338, y: 918 }, { x: 376, y: 918 }, { x: 414, y: 918 },
-    { x: 300, y: 951 }, { x: 426, y: 951 }, { x: 300, y: 986 }, { x: 426, y: 986 },
-    { x: 282, y: 1018 }, { x: 320, y: 1018 }, { x: 358, y: 1018 }, { x: 396, y: 1018 },
-    { x: 434, y: 1018 }, { x: 270, y: 986 }, { x: 244, y: 1018 }, { x: 472, y: 1018 }
+    { x: 286, y: 872 }, { x: 334, y: 872 }, { x: 382, y: 872 }, { x: 430, y: 872 },
+    { x: 286, y: 912 }, { x: 334, y: 912 }, { x: 382, y: 912 }, { x: 430, y: 912 },
+    { x: 286, y: 952 }, { x: 430, y: 952 }, { x: 286, y: 988 }, { x: 430, y: 988 },
+    { x: 286, y: 1024 }, { x: 334, y: 1024 }, { x: 382, y: 1024 }, { x: 430, y: 1024 },
+    { x: 334, y: 988 }, { x: 382, y: 988 }, { x: 244, y: 984 }, { x: 472, y: 972 }
 ];
 
 /** 成家后的纯视觉庆祝：两人到齐才显示 2.4 秒红心；不延迟成家存档，也不阻塞守夜。 */
@@ -66,12 +80,16 @@ export const WEDDING = {
 
 /** 站点均在占地之外。工作点对应现有最大岗位数，家门仅为表现站点，不新增住宅归属规则。 */
 export const VILLAGE_STOPS = {
-    homes: Array.from({ length: 20 }, (_, i) => ({ x: 62 + (i % 10) * 25, y: 980 + Math.floor(i / 10) * 34 })),
-    farm: [{ x: 438, y: 919 }, { x: 438, y: 956 }, { x: 452, y: 1007 }, { x: 486, y: 1007 }, { x: 520, y: 1007 }, { x: 552, y: 1007 }],
-    logging: [{ x: 679, y: 857 }, { x: 667, y: 903 }, { x: 690, y: 949 }, { x: 620, y: 1028 }],
+    // 家门与火堆/休息点跨集合留出间距，避免一个回家、另一个休息时仍站在一起。
+    homes: [
+        ...Array.from({ length: 15 }, (_, i) => ({ x: 58 + (i % 5) * 36, y: 950 + Math.floor(i / 5) * 36 })),
+        ...[58, 98, 140, 182, 224].map(x => ({ x, y: 874 }))
+    ],
+    farm: [{ x: 486, y: 879 }, { x: 546, y: 879 }, { x: 606, y: 879 }, { x: 486, y: 924 }, { x: 546, y: 924 }, { x: 606, y: 924 }],
+    logging: [{ x: 590, y: 956 }, { x: 670, y: 956 }, { x: 614, y: 1007 }, { x: 662, y: 1007 }],
     // 有意包含屋后与屋前的休息点，行人绕过墙基后会自然发生遮挡切换。
-    rest: [{ x: 108, y: 884 }, { x: 232, y: 898 }, { x: 300, y: 858 }, { x: 410, y: 904 }, { x: 411, y: 984 }, { x: 300, y: 1006 }],
-    children: [{ x: 74, y: 970 }, { x: 166, y: 983 }, { x: 278, y: 974 }, { x: 292, y: 1004 }],
+    rest: CAMP_STOPS,
+    children: CAMP_STOPS,
     // 篝火前的双人会合点，与所有家门/工作点共用导航和足底遮挡；不新增建筑或家庭归属。
     wedding: [{ x: 330, y: 990 }, { x: 370, y: 990 }],
     towers: PADS.map(p => ({ x: p.x, y: p.y + 54 }))

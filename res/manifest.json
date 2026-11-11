@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "status": "imported_in_wechat_prototype",
   "preferredRuntimeMode": "atlas_plus_audio",
   "runtimeWhitelist": [
@@ -10,6 +10,8 @@
     "audio/village_loop.mp3"
   ],
   "assetCount": 180,
+  "runtimeAssetCount": 161,
+  "reserveAssetCount": 19,
   "assets": [
     {
       "id": "building_house_thatched",
@@ -41,6 +43,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 22846,
       "sha256": "5cc599a2309b2843265caa75664fab8b6750f12bdc5633d3ad5268223b3b3659",
       "alpha": "rgba",
@@ -58,13 +62,12 @@
         "h": 128
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/buildings/building_house_thatched.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 166,
+        "x": 330,
+        "y": 71,
         "w": 128,
         "h": 128
       },
@@ -101,6 +104,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 22889,
       "sha256": "163ffee630c815b8f3668c9e9c96d19d2b8f298d9d6641640b7e2eb5efc90762",
       "alpha": "rgba",
@@ -118,13 +123,12 @@
         "h": 128
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/buildings/building_house_terracotta.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 330,
-        "y": 71,
+        "x": 477,
+        "y": 2,
         "w": 128,
         "h": 128
       },
@@ -141,28 +145,30 @@
       "height": 128,
       "pivot": {
         "x": 64,
-        "y": 120
+        "y": 100
       },
-      "sourceSheet": "source/static/buildings.png",
+      "sourceSheet": "source/static/farm_open_v10.png",
       "sourceRect": {
-        "x": 724,
-        "y": 0,
-        "w": 362,
-        "h": 362
+        "x": 240,
+        "y": 224,
+        "w": 1056,
+        "h": 560
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 362,
-        "h": 362
+        "w": 1056,
+        "h": 560
       },
       "nineSlice": null,
-      "mapping": "",
+      "mapping": "无围栏可站立农田，三行低矮作物、两条工作垄沟",
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
-      "bytes": 22956,
-      "sha256": "d246222f396ff92829e384f8328269546b8b9d60ff19c81aa4680c491db5d9cf",
+      "runtime": true,
+      "usage": "村庄场景入口",
+      "bytes": 22644,
+      "sha256": "e2bee1a90b9fdf865a2bf808877d62d8a7194d25428e1aca541b082e66015c0d",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 128,
@@ -170,23 +176,22 @@
       },
       "trimOffset": {
         "x": 0,
-        "y": 0
+        "y": 32
       },
-      "atlasTrim": false,
+      "atlasTrim": true,
       "displaySize": {
         "w": 128,
         "h": 128
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/buildings/building_farm.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 477,
-        "y": 2,
+        "x": 462,
+        "y": 134,
         "w": 128,
-        "h": 128
+        "h": 65
       },
       "importedLayaAtlasPath": "assets/resources/village/world_0.png",
       "importedFrameId": "building_farm"
@@ -221,6 +226,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 22448,
       "sha256": "d6d3cc77d58a8c6bfcbf2a3bb9efaa459cbdb72108418d8eddf79dcc9634f80b",
       "alpha": "rgba",
@@ -238,12 +245,11 @@
         "h": 128
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/buildings/building_lumber_shed.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 134,
+        "x": 2,
         "y": 166,
         "w": 128,
         "h": 128
@@ -281,6 +287,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 19281,
       "sha256": "6ed26e236939801e0903b953a5037e753e6c9c6eab18d39e8cac7ec641730205",
       "alpha": "rgba",
@@ -298,13 +306,12 @@
         "h": 128
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/buildings/building_tower_arrow.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 609,
-        "y": 2,
+        "x": 134,
+        "y": 166,
         "w": 128,
         "h": 128
       },
@@ -341,6 +348,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 19285,
       "sha256": "8aa3e9b531f04831bf2418f8575b9a63599180a04d1a9207056837946866d8af",
       "alpha": "rgba",
@@ -358,13 +367,12 @@
         "h": 128
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/buildings/building_tower_stone.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 462,
-        "y": 134,
+        "x": 873,
+        "y": 2,
         "w": 128,
         "h": 128
       },
@@ -401,6 +409,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 18137,
       "sha256": "e801d29a9a68068b8c2ed1cfb1bc463842b44f919473fc839b1430155b03afd8",
       "alpha": "rgba",
@@ -418,12 +428,11 @@
         "h": 128
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/buildings/building_tower_slow.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 873,
+        "x": 741,
         "y": 2,
         "w": 128,
         "h": 128
@@ -461,6 +470,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 14701,
       "sha256": "f0454e63fb80c23d928837f44abdaac49ee649bc46ecd8605ae3f3183d0eedc8",
       "alpha": "rgba",
@@ -478,12 +489,11 @@
         "h": 128
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/buildings/building_tower_pad.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 741,
+        "x": 609,
         "y": 2,
         "w": 128,
         "h": 128
@@ -521,6 +531,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 29305,
       "sha256": "13e80f6a1bb63774e09d4affbf56e2131157b4533d68a83a70d343b84b546fdc",
       "alpha": "rgba",
@@ -538,9 +550,8 @@
         "h": 160
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/buildings/building_gate_closed.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 2,
@@ -581,6 +592,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 29956,
       "sha256": "6b439e82e0c8e4db13613edd37935e10bbac2d4c911564554d62cc8ef14b4356",
       "alpha": "rgba",
@@ -598,9 +611,8 @@
         "h": 160
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/buildings/building_gate_damaged.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 166,
@@ -641,6 +653,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 6869,
       "sha256": "04ebc4c3be51b4f800385bb374f673b99d27669869bb928515da1dcd0a07cc9e",
       "alpha": "rgba",
@@ -658,18 +672,8 @@
         "h": 96
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/buildings/building_hearth_unlit.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 817,
-        "y": 134,
-        "w": 96,
-        "h": 93
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "building_hearth_unlit"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "building_hearth_lit",
@@ -701,6 +705,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 7645,
       "sha256": "0e6686c3b3d265d67bb6de6da6a215e0646b7b432e6f4ebf5500b75e5ab114c2",
       "alpha": "rgba",
@@ -718,12 +724,11 @@
         "h": 96
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/buildings/building_hearth_lit.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 717,
+        "x": 846,
         "y": 134,
         "w": 96,
         "h": 93
@@ -761,6 +766,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 5373,
       "sha256": "907d97d7d9f837d66d27269eb2cf6b3ce5818144aa088ad41eac2f9f735b0939",
       "alpha": "rgba",
@@ -778,18 +785,8 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/terrain/tile_ground_grass.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 503,
-        "y": 813,
-        "w": 64,
-        "h": 64
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "tile_ground_grass"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "tile_ground_dirt",
@@ -821,6 +818,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 6040,
       "sha256": "ab79326d6488b57c9fe6aaadbf6fed5100b65c88decb5b3f62bb90ce4ecd7d30",
       "alpha": "rgba",
@@ -838,18 +837,8 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/terrain/tile_ground_dirt.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 2,
-        "y": 737,
-        "w": 64,
-        "h": 64
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "tile_ground_dirt"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "tile_ground_soil",
@@ -881,6 +870,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 7193,
       "sha256": "a977804788164692f4cd2cfe5558491affe257393a61033125a3d96a6bf72481",
       "alpha": "rgba",
@@ -898,18 +889,8 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/terrain/tile_ground_soil.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 509,
-        "y": 738,
-        "w": 64,
-        "h": 64
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "tile_ground_soil"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "tile_ground_stone",
@@ -941,6 +922,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 7925,
       "sha256": "e98c5ac8bc382341860bed9e0a28a54cddae4734a33425001a0d00d609f3401f",
       "alpha": "rgba",
@@ -958,18 +941,8 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/terrain/tile_ground_stone.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 565,
-        "y": 656,
-        "w": 64,
-        "h": 64
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "tile_ground_stone"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "deco_tree_oak",
@@ -1001,6 +974,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 19683,
       "sha256": "b1904d4b387e8cdace68fa22cf4949fd8f75cf2a6bf9a7bd6eca06d6d3b9c7ea",
       "alpha": "rgba",
@@ -1018,13 +993,12 @@
         "h": 128
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/decorations/deco_tree_oak.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 131,
-        "y": 298,
+        "x": 723,
+        "y": 134,
         "w": 119,
         "h": 113
       },
@@ -1061,6 +1035,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 15623,
       "sha256": "b27f2c603ed30d93d31a49404139edf2ba3ca43b674072bcf8ea9f61e9986c49",
       "alpha": "rgba",
@@ -1078,13 +1054,12 @@
         "h": 128
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/decorations/deco_tree_pine.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 298,
+        "x": 594,
+        "y": 134,
         "w": 125,
         "h": 120
       },
@@ -1121,6 +1096,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 8348,
       "sha256": "33c7bfcd809dc7601371c7f7ea23635697fdf2583c1e521cc7cb343a313a2995",
       "alpha": "rgba",
@@ -1138,13 +1115,12 @@
         "h": 96
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/decorations/deco_bush.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 717,
-        "y": 231,
+        "x": 723,
+        "y": 251,
         "w": 90,
         "h": 94
       },
@@ -1181,6 +1157,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 7193,
       "sha256": "55356788a7a1a67073d3512f4f5fac415b1c30b8e10b4c551e63d7253b1b6c7d",
       "alpha": "rgba",
@@ -1198,13 +1176,12 @@
         "h": 96
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/decorations/deco_rocks.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 917,
-        "y": 134,
+        "x": 846,
+        "y": 231,
         "w": 90,
         "h": 95
       },
@@ -1241,6 +1218,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 11876,
       "sha256": "3b095ac14d1743368351ab4a578d8d27f31d828cac43183b02d0ab93e48c2a4f",
       "alpha": "rgba",
@@ -1258,18 +1237,8 @@
         "h": 128
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/decorations/deco_fence_straight.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 594,
-        "y": 134,
-        "w": 119,
-        "h": 105
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "deco_fence_straight"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "deco_fence_corner",
@@ -1301,6 +1270,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 15040,
       "sha256": "c482ccfaebfb55aa2aa4f72bab952ad49e8afd4fe90cfe4b8fb6fb45bd37043a",
       "alpha": "rgba",
@@ -1318,18 +1289,8 @@
         "h": 128
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/decorations/deco_fence_corner.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 266,
-        "y": 203,
-        "w": 128,
-        "h": 119
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "deco_fence_corner"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "deco_torch",
@@ -1361,6 +1322,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 4738,
       "sha256": "c334caf783327da191c733af45a5b2e060445cb2491923a72268acb0e2f56ddf",
       "alpha": "rgba",
@@ -1378,12 +1341,11 @@
         "h": 96
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/decorations/deco_torch.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 895,
+        "x": 817,
         "y": 330,
         "w": 91,
         "h": 88
@@ -1421,6 +1383,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 8885,
       "sha256": "ae0dfd7124b9b6b2ba04a9d92be3fc89059cfa1f21284c091b01363355c50578",
       "alpha": "rgba",
@@ -1438,13 +1402,12 @@
         "h": 96
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/decorations/deco_log_pile.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 675,
-        "y": 329,
+        "x": 438,
+        "y": 203,
         "w": 83,
         "h": 86
       },
@@ -1481,6 +1444,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3686,
       "sha256": "9ecc4cc5e41810bd6ce11d90b412d53eb9ac72aa40e7004c6fbeb6813d81274c",
       "alpha": "rgba",
@@ -1498,13 +1463,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_food.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 50,
-        "y": 290,
+        "x": 104,
+        "y": 43,
         "w": 37,
         "h": 44
       },
@@ -1541,6 +1505,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3757,
       "sha256": "52121c8b61771179438344012835ee266e247b95b8543fd246767ab85fd77966",
       "alpha": "rgba",
@@ -1558,13 +1524,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_wood.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 148,
-        "y": 50,
+        "x": 92,
+        "y": 104,
         "w": 44,
         "h": 38
       },
@@ -1601,6 +1566,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 4376,
       "sha256": "7caf40c1685658bf49352a2ea53171109d93a599b5c8ee3a5b3ea540465ecdfe",
       "alpha": "rgba",
@@ -1618,13 +1585,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_population.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 231,
-        "y": 2,
+        "x": 91,
+        "y": 241,
         "w": 44,
         "h": 37
       },
@@ -1661,6 +1627,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3313,
       "sha256": "cf4c308762b596d69c4f842a31f4aa34e031409d73cb66ede39852a0d78dd4cb",
       "alpha": "rgba",
@@ -1678,13 +1646,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_build.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 190,
-        "y": 2,
+        "x": 50,
+        "y": 241,
         "w": 37,
         "h": 44
       },
@@ -1721,6 +1688,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 4367,
       "sha256": "69bed3990d6ee9bbc02b79a009304a38cd2c9f32c84925cdb276e8938b4d8b83",
       "alpha": "rgba",
@@ -1738,13 +1707,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_house.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 196,
-        "y": 50,
+        "x": 50,
+        "y": 344,
         "w": 44,
         "h": 37
       },
@@ -1781,6 +1749,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3392,
       "sha256": "9838732de738040c5423de67c8d9bca955f0049f08ea12e2babb65fac974ba8b",
       "alpha": "rgba",
@@ -1798,13 +1768,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_logging.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 148,
-        "y": 2,
+        "x": 50,
+        "y": 193,
         "w": 38,
         "h": 44
       },
@@ -1841,6 +1810,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3724,
       "sha256": "7dcf7d116cf28b393b82e19a2f280119f1b09c2f8b25b7084275140ca90d880f",
       "alpha": "rgba",
@@ -1858,13 +1829,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_family.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 182,
-        "y": 92,
+        "x": 104,
+        "y": 2,
         "w": 44,
         "h": 37
       },
@@ -1901,6 +1871,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3027,
       "sha256": "c0cc571f7017489aa0b9ca2749b9d04ac9fe9f5a9c400727ec3c02349d4544f9",
       "alpha": "rgba",
@@ -1918,13 +1890,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_heart.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 94,
-        "y": 199,
+        "x": 2,
+        "y": 432,
         "w": 44,
         "h": 39
       },
@@ -1961,6 +1932,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 2848,
       "sha256": "6cdb1ec03e4412430dc3bebfa713f0e7a5b68837a7407ea15f454b756f54f3db",
       "alpha": "rgba",
@@ -1978,13 +1951,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_arrow.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 50,
-        "y": 151,
+        "x": 2,
+        "y": 296,
         "w": 41,
         "h": 44
       },
@@ -2021,6 +1993,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3424,
       "sha256": "e23cce4eb2708b14f12fae070b17b54617843e22991b106000aba2c14e016950",
       "alpha": "rgba",
@@ -2038,13 +2012,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_stone.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 98,
-        "y": 242,
+        "x": 2,
+        "y": 475,
         "w": 44,
         "h": 35
       },
@@ -2081,6 +2054,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 4462,
       "sha256": "e1cf3c23211f1746c3265cc5f9920d7b6d3f430fa1ae8670e747f72a3931f3f4",
       "alpha": "rgba",
@@ -2098,13 +2073,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_slow.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
-        "y": 296,
+        "y": 249,
         "w": 44,
         "h": 43
       },
@@ -2141,6 +2115,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 3371,
       "sha256": "622fc33d4bceb3799573ac0df0cd38eda92b0231bb1d59a5c738ebda927c1f52",
       "alpha": "rgba",
@@ -2158,18 +2134,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_bell.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "ui_0",
-      "atlasRect": {
-        "x": 140,
-        "y": 98,
-        "w": 38,
-        "h": 44
-      },
-      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
-      "importedFrameId": "icon_bell"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "icon_pause",
@@ -2201,6 +2167,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 2846,
       "sha256": "1c25b70a8a47997f83e0aed8af2e118d7d43f716801ec4cbd9877f1c139a7da7",
       "alpha": "rgba",
@@ -2218,18 +2186,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_pause.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "ui_0",
-      "atlasRect": {
-        "x": 104,
-        "y": 2,
-        "w": 40,
-        "h": 44
-      },
-      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
-      "importedFrameId": "icon_pause"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "icon_play",
@@ -2261,6 +2219,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 2901,
       "sha256": "59647cbd1441f94af3e76f30b7c2813ed77b02f2a97cbcff1fb08045ead177be",
       "alpha": "rgba",
@@ -2278,18 +2238,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_play.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "ui_0",
-      "atlasRect": {
-        "x": 50,
-        "y": 379,
-        "w": 37,
-        "h": 43
-      },
-      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
-      "importedFrameId": "icon_play"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "icon_settings",
@@ -2321,6 +2271,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 4024,
       "sha256": "ffd9cf9045c8e07b2f8c45768ea1812c49952bd08e445e0025b500fc7b80f785",
       "alpha": "rgba",
@@ -2338,18 +2290,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_settings.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "ui_0",
-      "atlasRect": {
-        "x": 2,
-        "y": 436,
-        "w": 44,
-        "h": 42
-      },
-      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
-      "importedFrameId": "icon_settings"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "icon_close",
@@ -2381,6 +2323,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 4143,
       "sha256": "8011d81a9250623f89dde1bc14d7b2e1d296474706104de55edab24c4ca29c48",
       "alpha": "rgba",
@@ -2398,18 +2342,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_close.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "ui_0",
-      "atlasRect": {
-        "x": 2,
-        "y": 390,
-        "w": 44,
-        "h": 42
-      },
-      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
-      "importedFrameId": "icon_close"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "icon_spring",
@@ -2441,6 +2375,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 3211,
       "sha256": "7c8398ed91adf2fda1cf48d1b15a906c391477decd3bc46f73aa39f8c334f090",
       "alpha": "rgba",
@@ -2458,18 +2394,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_spring.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "ui_0",
-      "atlasRect": {
-        "x": 50,
-        "y": 338,
-        "w": 44,
-        "h": 37
-      },
-      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
-      "importedFrameId": "icon_spring"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "icon_summer",
@@ -2501,6 +2427,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 3541,
       "sha256": "6d7f1c361923c4135d61dee1728e73b1d2a8939e8f72c1c3a678afa1504fc6ca",
       "alpha": "rgba",
@@ -2518,18 +2446,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_summer.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "ui_0",
-      "atlasRect": {
-        "x": 2,
-        "y": 343,
-        "w": 44,
-        "h": 43
-      },
-      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
-      "importedFrameId": "icon_summer"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "icon_autumn",
@@ -2561,6 +2479,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 3712,
       "sha256": "928754e220437b5eec67ef3c3698b6d429ea79b606f8e3cefa943824cca47e80",
       "alpha": "rgba",
@@ -2578,18 +2498,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_autumn.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "ui_0",
-      "atlasRect": {
-        "x": 2,
-        "y": 249,
-        "w": 44,
-        "h": 43
-      },
-      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
-      "importedFrameId": "icon_autumn"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "icon_winter",
@@ -2621,6 +2531,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 4290,
       "sha256": "1956319ebbcf78b7208df1f9fec90bbc8ca0197453b89e9129bf03a6a5e7b838",
       "alpha": "rgba",
@@ -2638,18 +2550,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_winter.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "ui_0",
-      "atlasRect": {
-        "x": 50,
-        "y": 199,
-        "w": 40,
-        "h": 44
-      },
-      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
-      "importedFrameId": "icon_winter"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "icon_upgrade",
@@ -2681,6 +2583,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 3979,
       "sha256": "7ba0d504c352d489abb5ab901f5b279a439d6e175230f0f84a66e74072599490",
       "alpha": "rgba",
@@ -2698,18 +2602,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_upgrade.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "ui_0",
-      "atlasRect": {
-        "x": 95,
-        "y": 149,
-        "w": 39,
-        "h": 44
-      },
-      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
-      "importedFrameId": "icon_upgrade"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "icon_shield",
@@ -2741,6 +2635,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3886,
       "sha256": "682de23369fcf8692f9d5cba6212ad4b96d730abcef7cd39cd7323a6626faa0e",
       "alpha": "rgba",
@@ -2758,13 +2654,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_shield.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 104,
-        "y": 50,
+        "x": 47,
+        "y": 296,
         "w": 40,
         "h": 44
       },
@@ -2801,6 +2696,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 4571,
       "sha256": "04cc687117af625d0ca392675fc899ea85c09e2c5d4590006920acf17c81ad4d",
       "alpha": "rgba",
@@ -2818,13 +2715,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_baby.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 50,
-        "y": 247,
+        "x": 2,
+        "y": 389,
         "w": 44,
         "h": 39
       },
@@ -2861,6 +2757,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 2933,
       "sha256": "478f1ade33594b36715447052c024c292740a5c10bc2915488bd611d07bd52cc",
       "alpha": "rgba",
@@ -2878,13 +2776,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_view.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 91,
-        "y": 290,
+        "x": 92,
+        "y": 193,
         "w": 44,
         "h": 36
       },
@@ -2921,6 +2818,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 1104,
       "sha256": "d002c50ca81f75664b4907eadbc611b712162e3c30a68941b2bb19ff11cac714",
       "alpha": "rgba",
@@ -2938,13 +2837,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/fx_arrow.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 91,
-        "y": 379,
+        "x": 50,
+        "y": 385,
         "w": 39,
         "h": 42
       },
@@ -2981,6 +2879,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 1482,
       "sha256": "ee00c3b2420227d46336983a1f831d8c4400ab15290b06ddfd663eeb88f3810f",
       "alpha": "rgba",
@@ -2998,13 +2898,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/fx_stone.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 134,
-        "y": 375,
+        "x": 86,
+        "y": 431,
         "w": 20,
         "h": 40
       },
@@ -3041,6 +2940,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 1468,
       "sha256": "39136e9531601a7051de6d9b4bcbaa1e7ddfa6615ba193b6e25d6aed62a91748",
       "alpha": "rgba",
@@ -3058,13 +2959,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/fx_ice.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 139,
-        "y": 281,
+        "x": 50,
+        "y": 431,
         "w": 32,
         "h": 40
       },
@@ -3101,6 +3001,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 1225,
       "sha256": "7c9e52cd2c7a022c29da2d9ac31cb0aab2f084b81c20be0991929ef7aef32438",
       "alpha": "rgba",
@@ -3118,9 +3020,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/fx_hit.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -3161,6 +3062,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 1491,
       "sha256": "3e022bf9c2578badcef99424de9d59980e1c57211edec4ff60967db6467a6ff3",
       "alpha": "rgba",
@@ -3178,13 +3081,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/fx_slow_ring.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 50,
-        "y": 426,
+        "x": 145,
+        "y": 43,
         "w": 36,
         "h": 43
       },
@@ -3221,6 +3123,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 1296,
       "sha256": "6450725528d9c8292d3de1b5855a12e36a192742996d3ea98e640a9f51d15c39",
       "alpha": "rgba",
@@ -3238,13 +3142,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/fx_hearts.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 186,
-        "y": 133,
+        "x": 140,
+        "y": 91,
         "w": 37,
         "h": 43
       },
@@ -3281,6 +3184,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 1299,
       "sha256": "995fc9844dbcc696e1e043b80e6fed72cd7c707153f47e72bc8e921b90b20c16",
       "alpha": "rgba",
@@ -3298,18 +3203,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/fx_sound_wave.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "ui_0",
-      "atlasRect": {
-        "x": 50,
-        "y": 473,
-        "w": 41,
-        "h": 35
-      },
-      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
-      "importedFrameId": "fx_sound_wave"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "fx_level_up",
@@ -3341,6 +3236,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": false,
+      "usage": "备用源文件，不进入图集",
       "bytes": 1499,
       "sha256": "70ac12c1947ecc309da67ef14784fb4d2cc0f4d466e5cb1a5ee8c6900ddbf343",
       "alpha": "rgba",
@@ -3358,18 +3255,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/fx_level_up.png",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
-      "atlasPage": "ui_0",
-      "atlasRect": {
-        "x": 98,
-        "y": 330,
-        "w": 40,
-        "h": 41
-      },
-      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
-      "importedFrameId": "fx_level_up"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v10"
     },
     {
       "id": "panel_parchment",
@@ -3413,6 +3300,8 @@
         "h": 160
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 16821,
       "sha256": "61e98bf80984c16395530834ff159dfbbe1850ca20fe482f464e74baaa1cf17a",
       "alpha": "rgba",
@@ -3430,9 +3319,8 @@
         "h": 98
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/panels/panel_parchment.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -3492,6 +3380,8 @@
         "h": 128
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 2027,
       "sha256": "2b8a75e9b712e465ff15faea86d5857e16585b3de4d40351141d5323e97eda97",
       "alpha": "rgba",
@@ -3509,13 +3399,12 @@
         "h": 30
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/panels/panel_card.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 180,
-        "y": 238,
+        "x": 98,
+        "y": 328,
         "w": 30,
         "h": 30
       },
@@ -3571,6 +3460,8 @@
         "h": 56
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 1577,
       "sha256": "a4282d101246b15b29d28dfe2886e9d5eb6305efbfc2344c1aed9243c2cfb4ec",
       "alpha": "rgba",
@@ -3588,13 +3479,12 @@
         "h": 30
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/panels/panel_button_gold.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 146,
-        "y": 238,
+        "x": 152,
+        "y": 2,
         "w": 30,
         "h": 30
       },
@@ -3650,6 +3540,8 @@
         "h": 56
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 1579,
       "sha256": "ebaf9356d219d6186d09d26d3c2c0024a6e24f1deec273619edb343594a5c192",
       "alpha": "rgba",
@@ -3667,13 +3559,12 @@
         "h": 30
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/panels/panel_button_green.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 142,
-        "y": 325,
+        "x": 93,
+        "y": 385,
         "w": 30,
         "h": 30
       },
@@ -3729,6 +3620,8 @@
         "h": 56
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 1562,
       "sha256": "2a038a21dbd1cc3ac57ef7e50454564fc209293753930cfccf02801033953d01",
       "alpha": "rgba",
@@ -3746,13 +3639,12 @@
         "h": 30
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/panels/panel_button_disabled.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 131,
-        "y": 472,
+        "x": 86,
+        "y": 475,
         "w": 30,
         "h": 30
       },
@@ -3807,6 +3699,8 @@
         "h": 64
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 1500,
       "sha256": "e0da0282d0e10011202342028ba8fed7337653f03206a93297eee0240ffa30f8",
       "alpha": "rgba",
@@ -3824,13 +3718,12 @@
         "h": 30
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/panels/panel_portrait_frame.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 136,
-        "y": 419,
+        "x": 127,
+        "y": 362,
         "w": 30,
         "h": 30
       },
@@ -3872,6 +3765,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7093,
       "sha256": "1cb0245dfab0f708ed1acc7878352f48a8f289111bd2ec0fa68726594b3e9b0e",
       "alpha": "rgba",
@@ -3889,13 +3784,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/walk/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 500,
-        "y": 663,
+        "x": 762,
+        "y": 651,
         "w": 61,
         "h": 71
       },
@@ -3937,6 +3831,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7091,
       "sha256": "06184897b5f18ed44b0d87781e9b93a5063a507ef9df9e685d142b4ed5a962c0",
       "alpha": "rgba",
@@ -3954,13 +3850,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/walk/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 306,
-        "y": 898,
+        "x": 301,
+        "y": 688,
         "w": 71,
         "h": 71
       },
@@ -4002,6 +3897,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7164,
       "sha256": "08d569186f80ee160a6ab02e38c108021d4186999e4c2b7f81cd169727c61a8f",
       "alpha": "rgba",
@@ -4019,13 +3916,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/walk/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 367,
-        "y": 744,
+        "x": 226,
+        "y": 696,
         "w": 69,
         "h": 71
       },
@@ -4067,6 +3963,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7087,
       "sha256": "94be330ef6edd90356a0a832534cf847e5150e752fc2092a873f5a6503d057ba",
       "alpha": "rgba",
@@ -4084,13 +3982,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/walk/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 433,
-        "y": 819,
+        "x": 931,
+        "y": 575,
         "w": 66,
         "h": 71
       },
@@ -4132,6 +4029,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7306,
       "sha256": "2a87f63ba405944a9e93ce377e21106b9daf88bfa3862cf980ffa994d7a56125",
       "alpha": "rgba",
@@ -4149,13 +4048,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/walk/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 666,
-        "y": 576,
+        "x": 448,
+        "y": 659,
         "w": 54,
         "h": 72
       },
@@ -4197,6 +4095,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7196,
       "sha256": "7fd737e2b2bc08a80011fbf39c69b3331087b6dbc47094d1827d4db9860bab4c",
       "alpha": "rgba",
@@ -4214,13 +4114,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/walk/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 298,
-        "y": 746,
+        "x": 789,
+        "y": 575,
         "w": 65,
         "h": 72
       },
@@ -4262,6 +4161,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7510,
       "sha256": "450c5396a4565705d13c5f808feb437b2a43aa73c7ed5c33add2ce6ddd983416",
       "alpha": "rgba",
@@ -4279,13 +4180,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/walk/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 298,
-        "y": 822,
+        "x": 534,
+        "y": 656,
         "w": 58,
         "h": 72
       },
@@ -4327,6 +4227,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7389,
       "sha256": "a3ad41e5b26152441767d8a8693b37196b47000a28818c67c1112baf8f58e2b1",
       "alpha": "rgba",
@@ -4344,13 +4246,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/walk/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 301,
-        "y": 669,
+        "x": 699,
+        "y": 581,
         "w": 59,
         "h": 72
       },
@@ -4392,6 +4293,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4803,
       "sha256": "dc1340f5ef62fa83adbabdf31ae8f6494572e6cd40d4e84e2105a4abbbe7caba",
       "alpha": "rgba",
@@ -4409,13 +4312,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/boy/walk/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 767,
-        "y": 718,
+        "x": 721,
+        "y": 792,
         "w": 47,
         "h": 60
       },
@@ -4457,6 +4359,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4935,
       "sha256": "0ee2212840cdf58ca13d0b23ffe8d346dc96763b57d636f16dfd11fa36532d07",
       "alpha": "rgba",
@@ -4474,13 +4378,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/boy/walk/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 484,
-        "y": 350,
+        "x": 927,
+        "y": 718,
         "w": 62,
         "h": 62
       },
@@ -4522,6 +4425,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5070,
       "sha256": "f4b7f51f081aa1e7e2ee44c9feddcc61a2e73ab92e2c815deb78dc66d2696b99",
       "alpha": "rgba",
@@ -4539,13 +4444,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/boy/walk/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 789,
-        "y": 655,
+        "x": 55,
+        "y": 827,
         "w": 50,
         "h": 59
       },
@@ -4587,6 +4491,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4837,
       "sha256": "c25024b4f8fd75e823ced001c36e82c9f3286cb644b1d5d6314a0f1669b54a24",
       "alpha": "rgba",
@@ -4604,13 +4510,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/boy/walk/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 714,
-        "y": 851,
+        "x": 373,
+        "y": 763,
         "w": 54,
         "h": 60
       },
@@ -4652,6 +4557,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5548,
       "sha256": "e17cc167b33c0a1b636d375b5b0f15117f99689b33011f2c06ea7e41873613a2",
       "alpha": "rgba",
@@ -4669,13 +4576,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/girl/walk/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 798,
-        "y": 582,
+        "x": 170,
+        "y": 827,
         "w": 51,
         "h": 58
       },
@@ -4717,6 +4623,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5499,
       "sha256": "c6fe1ae889e6dffaecc0de44db4f28d5abc4c7428cee3bf54a6c7824c5eb8ba0",
       "alpha": "rgba",
@@ -4734,13 +4642,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/girl/walk/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 592,
-        "y": 872,
+        "x": 787,
+        "y": 791,
         "w": 62,
         "h": 58
       },
@@ -4782,6 +4689,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5427,
       "sha256": "09fa8e861b0198bd58b58a5df354755e655d1d0e10eaaac97ac6510338d67a03",
       "alpha": "rgba",
@@ -4799,13 +4708,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/girl/walk/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 577,
-        "y": 724,
+        "x": 853,
+        "y": 850,
         "w": 62,
         "h": 58
       },
@@ -4847,6 +4755,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5164,
       "sha256": "d66361f42193a3c0a895431c8a59a4bd24d0668f20c40747f92595774634358a",
       "alpha": "rgba",
@@ -4864,12 +4774,11 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/girl/walk/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 82,
+        "x": 979,
         "y": 422,
         "w": 42,
         "h": 58
@@ -4912,6 +4821,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 2305,
       "sha256": "6a1ff593c180cc096a81eed84e5df28f1ff3dafa6356be99fbed90e1f025c261",
       "alpha": "rgba",
@@ -4929,13 +4840,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/baby/idle/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 355,
-        "y": 973,
+        "x": 51,
+        "y": 775,
         "w": 44,
         "h": 48
       },
@@ -4977,6 +4887,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 2249,
       "sha256": "55c847517ac9e5e6b536921f1c810bc2747aef4250bd7f1c89c254668f887508",
       "alpha": "rgba",
@@ -4994,13 +4906,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/baby/idle/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 766,
-        "y": 975,
+        "x": 99,
+        "y": 771,
         "w": 44,
         "h": 47
       },
@@ -5042,6 +4953,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 2277,
       "sha256": "236a35ce1d734ab6116e19ffde94b55902ecbb5ffe7d71e76ea833b73b0b2b25",
       "alpha": "rgba",
@@ -5059,13 +4972,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/baby/idle/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 715,
-        "y": 975,
+        "x": 525,
+        "y": 203,
         "w": 47,
         "h": 45
       },
@@ -5107,6 +5019,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 2259,
       "sha256": "5000143b1f778bc5968a44ca82b007e307c104b40d56ed11c03280787547c6fc",
       "alpha": "rgba",
@@ -5124,13 +5038,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/baby/idle/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 306,
-        "y": 973,
+        "x": 2,
+        "y": 775,
         "w": 45,
         "h": 48
       },
@@ -5172,6 +5085,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7437,
       "sha256": "2a5fdb8d05dd7fd66a9afbbba03f6f7578462b16f41f9425f096d27742499770",
       "alpha": "rgba",
@@ -5189,13 +5104,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/farm/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 360,
-        "y": 822,
+        "x": 153,
+        "y": 696,
         "w": 69,
         "h": 71
       },
@@ -5237,6 +5151,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7673,
       "sha256": "c72ec92d1e471e7cfd7520b5fe56cdf681779e44ca38ac7a32064e120f96048a",
       "alpha": "rgba",
@@ -5254,13 +5170,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/farm/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 580,
+        "x": 81,
+        "y": 535,
         "w": 76,
         "h": 73
       },
@@ -5302,6 +5217,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 8103,
       "sha256": "6f75ab17007854365ee9854ce9f7f086f2c66dc8e40733ad56133fb09aa91133",
       "alpha": "rgba",
@@ -5319,13 +5236,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/farm/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 291,
-        "y": 430,
+        "x": 562,
+        "y": 422,
         "w": 76,
         "h": 76
       },
@@ -5367,6 +5283,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7673,
       "sha256": "775f099dd8c2ca0d2b5003ca217be5796a84eea74185a86db630f67a6a23e991",
       "alpha": "rgba",
@@ -5384,13 +5302,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/farm/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 230,
-        "y": 950,
+        "x": 534,
+        "y": 582,
         "w": 72,
         "h": 70
       },
@@ -5432,6 +5349,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 8057,
       "sha256": "e235495d3464ce49acb6aeedbdba1e9967eb897fcb559090795ea72713b0ed0f",
       "alpha": "rgba",
@@ -5449,13 +5368,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/harvest/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 804,
-        "y": 502,
+        "x": 2,
+        "y": 617,
         "w": 70,
         "h": 76
       },
@@ -5497,6 +5415,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 8078,
       "sha256": "983675caacf01e9353d1059c24e46754d61b45eef146907c6d5333e1b606fc2b",
       "alpha": "rgba",
@@ -5514,13 +5434,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/harvest/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 484,
-        "y": 423,
+        "x": 162,
+        "y": 298,
         "w": 76,
         "h": 76
       },
@@ -5562,6 +5481,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 8304,
       "sha256": "442e62a6c7e36e0694e1c4fcc938186552b57dd56ddb684407b38fd2ed920c81",
       "alpha": "rgba",
@@ -5579,13 +5500,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/harvest/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 564,
-        "y": 496,
+        "x": 242,
+        "y": 372,
         "w": 76,
         "h": 76
       },
@@ -5627,6 +5547,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7912,
       "sha256": "412a98bdeffd39a37f9dc080853ba1e033c4861d44bb8568ff9d7ef5c5b9c3a2",
       "alpha": "rgba",
@@ -5644,13 +5566,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/harvest/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 162,
-        "y": 575,
+        "x": 238,
+        "y": 530,
         "w": 71,
         "h": 76
       },
@@ -5692,6 +5613,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4860,
       "sha256": "4fea134ce03558d1a553dd3c84e34a4018749d40ee784ce1eef34b784cdc8a9a",
       "alpha": "rgba",
@@ -5709,13 +5632,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/raider/walk/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 704,
-        "y": 720,
+        "x": 245,
+        "y": 915,
         "w": 59,
         "h": 61
       },
@@ -5757,6 +5679,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4582,
       "sha256": "f14e31e1b0fbe04c8d025446df77388524356a456250301e46a3c978b6e9b0aa",
       "alpha": "rgba",
@@ -5774,13 +5698,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/raider/walk/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 657,
-        "y": 934,
+        "x": 448,
+        "y": 735,
         "w": 54,
         "h": 62
       },
@@ -5822,6 +5745,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4653,
       "sha256": "0c0b062aed93dc08a4efc55afae76ed85afdfd2840eff3744c8171f1eabf908a",
       "alpha": "rgba",
@@ -5839,13 +5764,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/raider/walk/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 699,
-        "y": 786,
+        "x": 181,
+        "y": 915,
         "w": 60,
         "h": 61
       },
@@ -5887,6 +5811,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4341,
       "sha256": "5333d1a466e64e4fe54ba4edec2cf5f0bbdab59eb04ce455cedbf701be9cbdd7",
       "alpha": "rgba",
@@ -5904,13 +5830,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/raider/walk/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 658,
-        "y": 852,
+        "x": 125,
+        "y": 915,
         "w": 52,
         "h": 62
       },
@@ -5952,6 +5877,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5969,
       "sha256": "33131ffa5b8051116515fc7e6d9f2352540bb4bd9356ac38e6771b96f618851e",
       "alpha": "rgba",
@@ -5969,13 +5896,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/runner/walk/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 478,
-        "y": 266,
+        "x": 525,
+        "y": 258,
         "w": 69,
         "h": 80
       },
@@ -6017,6 +5943,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5808,
       "sha256": "df20c189b336e16e8455eca1a75d69a4252ca6607a13d81f8769972f3683086e",
       "alpha": "rgba",
@@ -6034,13 +5962,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/runner/walk/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 398,
-        "y": 266,
+        "x": 946,
+        "y": 134,
         "w": 76,
         "h": 80
       },
@@ -6082,6 +6009,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5932,
       "sha256": "76feb51d02413811f4f1eff4a40f4ef6ad46c3a015a0e50db554cbd3f545fb4c",
       "alpha": "rgba",
@@ -6099,13 +6028,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/runner/walk/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 551,
-        "y": 339,
+        "x": 438,
+        "y": 293,
         "w": 66,
         "h": 80
       },
@@ -6147,6 +6075,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5827,
       "sha256": "0b98abec1bbe667d9b63477a1bbdb6e110f9f61868bd6a2f8856783b3507f65b",
       "alpha": "rgba",
@@ -6164,13 +6094,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/runner/walk/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 254,
-        "y": 326,
+        "x": 598,
+        "y": 258,
         "w": 66,
         "h": 80
       },
@@ -6212,6 +6141,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 9022,
       "sha256": "9c0212e9b34e6b7e28b322398f0803d60e8ee937a8bb1cce04a9b195060e40c4",
       "alpha": "rgba",
@@ -6229,13 +6160,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/armored/walk/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 810,
+        "x": 76,
+        "y": 692,
         "w": 73,
         "h": 75
       },
@@ -6277,6 +6207,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 8776,
       "sha256": "864e9fba65ac1a06da2deb0c43a497acd81b19f12879b1b7c8ee106d68555e68",
       "alpha": "rgba",
@@ -6294,13 +6226,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/armored/walk/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 621,
-        "y": 419,
+        "x": 266,
+        "y": 295,
         "w": 78,
         "h": 73
       },
@@ -6342,6 +6273,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 8851,
       "sha256": "980b7353448d2ec50d57ae5c9a14fa387d5b2e55a7b2cf3910bb73ce5526940f",
       "alpha": "rgba",
@@ -6359,13 +6292,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/armored/walk/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 703,
-        "y": 419,
+        "x": 348,
+        "y": 295,
         "w": 74,
         "h": 77
       },
@@ -6407,6 +6339,8 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 8636,
       "sha256": "d5255f1fe6619d9f518ea1f9558a3906b3e509c336025a3758fa371f7ac0eafa",
       "alpha": "rgba",
@@ -6424,13 +6358,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/armored/walk/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 371,
-        "y": 430,
+        "x": 2,
+        "y": 378,
         "w": 76,
         "h": 75
       },
@@ -6451,7 +6384,7 @@
       },
       "sourceSheet": "source/animations/anim_enemies_b.png",
       "sourceRect": {
-        "x": 0,
+        "x": 42,
         "y": 0,
         "w": 362,
         "h": 320
@@ -6472,15 +6405,18 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
-      "bytes": 7238,
-      "sha256": "24ead92f018a996fa1a4d9ad9e6f1d1ddc3eb56bbbde77a20ecb2b5cb5d221fa",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bytes": 7304,
+      "sha256": "e8865277b20ced0052404188eba7fbc80ac30ed7e741c0091ed79f067d4f6855",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 80,
         "h": 80
       },
       "trimOffset": {
-        "x": 23,
+        "x": 15,
         "y": 8
       },
       "atlasTrim": true,
@@ -6489,14 +6425,13 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/disruptor/walk/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 666,
-        "y": 652,
-        "w": 54,
+        "x": 748,
+        "y": 349,
+        "w": 65,
         "h": 64
       },
       "importedLayaAtlasPath": "assets/resources/village/world_0.png",
@@ -6516,7 +6451,7 @@
       },
       "sourceSheet": "source/animations/anim_enemies_b.png",
       "sourceRect": {
-        "x": 362,
+        "x": 372,
         "y": 0,
         "w": 362,
         "h": 320
@@ -6537,8 +6472,11 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
-      "bytes": 6995,
-      "sha256": "0cef4d7849d3aa5b4a699823308a15b41e32491f39ad4df843c23097405326fd",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bytes": 7016,
+      "sha256": "6379c521b7431b5b848d0687df482d2d505bdfc1268ee18d0b2cf6ea8ae5736c",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 80,
@@ -6554,15 +6492,14 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/disruptor/walk/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 156,
-        "y": 885,
-        "w": 74,
-        "h": 61
+        "x": 506,
+        "y": 732,
+        "w": 69,
+        "h": 60
       },
       "importedLayaAtlasPath": "assets/resources/village/world_0.png",
       "importedFrameId": "enemy_disruptor_walk_01"
@@ -6581,7 +6518,7 @@
       },
       "sourceSheet": "source/animations/anim_enemies_b.png",
       "sourceRect": {
-        "x": 724,
+        "x": 710,
         "y": 0,
         "w": 362,
         "h": 320
@@ -6602,15 +6539,18 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
-      "bytes": 7012,
-      "sha256": "6030edb5dee4bdfd3501b6191605908a82086546c3d47fbf4cfae327a142ea1d",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bytes": 7013,
+      "sha256": "ae0265fd13e271bcce7a9c0f3be1f8c82d719a3e5e3cbb5346de11394562ad54",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 80,
         "h": 80
       },
       "trimOffset": {
-        "x": 12,
+        "x": 2,
         "y": 11
       },
       "atlasTrim": true,
@@ -6619,14 +6559,13 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/disruptor/walk/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 564,
-        "y": 423,
-        "w": 53,
+        "x": 927,
+        "y": 650,
+        "w": 66,
         "h": 64
       },
       "importedLayaAtlasPath": "assets/resources/village/world_0.png",
@@ -6646,7 +6585,7 @@
       },
       "sourceSheet": "source/animations/anim_enemies_b.png",
       "sourceRect": {
-        "x": 1086,
+        "x": 1043,
         "y": 0,
         "w": 362,
         "h": 320
@@ -6667,15 +6606,18 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
-      "bytes": 6901,
-      "sha256": "a79c92c5d9e935999dd01616ebb043d8341bc2813306c88c11df398bfe3fe70d",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bytes": 6851,
+      "sha256": "f6e7cf9c52c0d392cd0da744e799934324d38790747618a0037b2c5c31940e58",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 80,
         "h": 80
       },
       "trimOffset": {
-        "x": 4,
+        "x": 15,
         "y": 10
       },
       "atlasTrim": true,
@@ -6684,14 +6626,13 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/disruptor/walk/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 964,
-        "w": 71,
+        "x": 109,
+        "y": 827,
+        "w": 57,
         "h": 58
       },
       "importedLayaAtlasPath": "assets/resources/village/world_0.png",
@@ -6711,7 +6652,7 @@
       },
       "sourceSheet": "source/animations/anim_enemies_b.png",
       "sourceRect": {
-        "x": 0,
+        "x": 28,
         "y": 320,
         "w": 362,
         "h": 370
@@ -6732,16 +6673,19 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
-      "bytes": 14427,
-      "sha256": "cb076ff67bebe6f55730283ffbcd8ae7a1b5719b6b144f97244f5abd988f3869",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bytes": 14434,
+      "sha256": "f3dada1f2a7820f9843eb162ab62016f082a4706c2d12bc5720ecb12a1cfc0f8",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 96,
         "h": 96
       },
       "trimOffset": {
-        "x": 14,
-        "y": 0
+        "x": 6,
+        "y": 5
       },
       "atlasTrim": true,
       "displaySize": {
@@ -6749,15 +6693,14 @@
         "h": 96
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/chief/walk/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 811,
-        "y": 323,
-        "w": 80,
-        "h": 93
+        "x": 266,
+        "y": 203,
+        "w": 82,
+        "h": 88
       },
       "importedLayaAtlasPath": "assets/resources/village/world_0.png",
       "importedFrameId": "enemy_chief_walk_00"
@@ -6776,7 +6719,7 @@
       },
       "sourceSheet": "source/animations/anim_enemies_b.png",
       "sourceRect": {
-        "x": 362,
+        "x": 371,
         "y": 320,
         "w": 362,
         "h": 370
@@ -6797,15 +6740,18 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
-      "bytes": 14391,
-      "sha256": "4ff63beeed817587b17aa1304f4a925230f63dfe08620e10efbac3ff05240c39",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bytes": 14475,
+      "sha256": "4d779c0e0d09c5a209988e8d125852e5e70e61e97d9a7dc0dfa6570855fea680",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 96,
         "h": 96
       },
       "trimOffset": {
-        "x": 4,
+        "x": 8,
         "y": 3
       },
       "atlasTrim": true,
@@ -6814,15 +6760,14 @@
         "h": 96
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/chief/walk/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 908,
-        "y": 233,
-        "w": 87,
-        "h": 93
+        "x": 352,
+        "y": 203,
+        "w": 82,
+        "h": 88
       },
       "importedLayaAtlasPath": "assets/resources/village/world_0.png",
       "importedFrameId": "enemy_chief_walk_01"
@@ -6841,7 +6786,7 @@
       },
       "sourceSheet": "source/animations/anim_enemies_b.png",
       "sourceRect": {
-        "x": 724,
+        "x": 707,
         "y": 320,
         "w": 362,
         "h": 370
@@ -6862,16 +6807,19 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
-      "bytes": 14286,
-      "sha256": "81f1b98a9c6eae256827241a3056122bcc5e0e19f98aa483a9c4d46bf2935f43",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bytes": 14207,
+      "sha256": "08ea9f6376a0667f7edcadde367f4460da01ffff8f88b4008106492af0db3bf5",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 96,
         "h": 96
       },
       "trimOffset": {
-        "x": 2,
-        "y": 4
+        "x": 9,
+        "y": 0
       },
       "atlasTrim": true,
       "displaySize": {
@@ -6879,15 +6827,14 @@
         "h": 96
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/chief/walk/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 811,
-        "y": 231,
-        "w": 93,
-        "h": 88
+        "x": 940,
+        "y": 327,
+        "w": 80,
+        "h": 91
       },
       "importedLayaAtlasPath": "assets/resources/village/world_0.png",
       "importedFrameId": "enemy_chief_walk_02"
@@ -6906,7 +6853,7 @@
       },
       "sourceSheet": "source/animations/anim_enemies_b.png",
       "sourceRect": {
-        "x": 1086,
+        "x": 1051,
         "y": 320,
         "w": 362,
         "h": 370
@@ -6927,15 +6874,18 @@
       },
       "fitPadding": 0,
       "resizeMode": "contain",
-      "bytes": 14254,
-      "sha256": "03407dce48d77d5b54a23802b361eeb6e7cd06487057ba07d2c17a3e93318357",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bytes": 14289,
+      "sha256": "6a3d648a37a509e754d9881afaceb3750f8b27a05d1ee3f907ca57e95f2f3a33",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 96,
         "h": 96
       },
       "trimOffset": {
-        "x": 1,
+        "x": 9,
         "y": 4
       },
       "atlasTrim": true,
@@ -6944,14 +6894,13 @@
         "h": 96
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/enemies/chief/walk/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 594,
-        "y": 243,
-        "w": 77,
+        "x": 940,
+        "y": 231,
+        "w": 80,
         "h": 92
       },
       "importedLayaAtlasPath": "assets/resources/village/world_0.png",
@@ -6992,6 +6941,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6273,
       "sha256": "c7bb98e4eac7b28491d802c910ce44c4611ee03d4cbc060b5180a1a789fc15f2",
       "alpha": "rgba",
@@ -7009,13 +6960,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/walk_up/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 601,
-        "y": 576,
+        "x": 236,
+        "y": 610,
         "w": 61,
         "h": 76
       },
@@ -7057,6 +7007,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6489,
       "sha256": "31f6863b9584e87bc0556693c26f876f3303f8a2e194833fe8203460be7b7913",
       "alpha": "rgba",
@@ -7074,13 +7026,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/walk_up/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 239,
-        "y": 510,
+        "x": 2,
+        "y": 537,
         "w": 73,
         "h": 76
       },
@@ -7122,6 +7073,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6350,
       "sha256": "a5ec5b7f4d2922a87195caa888a56ece01c637f99294c59184b4320269110896",
       "alpha": "rgba",
@@ -7139,13 +7092,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/walk_up/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 82,
-        "y": 651,
+        "x": 161,
+        "y": 537,
         "w": 71,
         "h": 76
       },
@@ -7187,6 +7139,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6163,
       "sha256": "fccdf0f6711242dd4dd9b92cf3c7be213720bb75e0846165d7b6d36c4dfa77ad",
       "alpha": "rgba",
@@ -7204,13 +7158,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/walk_up/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 621,
-        "y": 339,
+        "x": 668,
+        "y": 258,
         "w": 46,
         "h": 76
       },
@@ -7252,6 +7205,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6881,
       "sha256": "2fb0246d30fbfda3239e7d246ecc67363fde5313fd27e2bafbc3fc547e07b9dc",
       "alpha": "rgba",
@@ -7269,13 +7224,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/walk_up/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 762,
-        "y": 329,
+        "x": 673,
+        "y": 657,
         "w": 44,
         "h": 71
       },
@@ -7317,6 +7271,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7009,
       "sha256": "fed68d1642d88ef801143f3fb9f5c22798864477e31c32d6778af0ce7a1bac02",
       "alpha": "rgba",
@@ -7334,13 +7290,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/walk_up/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 226,
-        "y": 807,
+        "x": 462,
+        "y": 582,
         "w": 68,
         "h": 73
       },
@@ -7382,6 +7337,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6869,
       "sha256": "7ec9d25ae967a4df5fd569f358fd21eec9eb4fbbf39754a8958ff788824192b4",
       "alpha": "rgba",
@@ -7399,13 +7356,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/walk_up/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 440,
-        "y": 738,
+        "x": 858,
+        "y": 650,
         "w": 65,
         "h": 71
       },
@@ -7447,6 +7403,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6723,
       "sha256": "bb56a1207f347e4afdc6323b333a955f2e10ac41ac02a79c76c24604e4e71355",
       "alpha": "rgba",
@@ -7464,13 +7422,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/walk_up/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 381,
-        "y": 897,
+        "x": 376,
+        "y": 688,
         "w": 68,
         "h": 71
       },
@@ -7512,6 +7469,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4674,
       "sha256": "0da9916ca29053d679809d91ed64f4ef9a3ad780e7ec005bd9ece2c62dd4d619",
       "alpha": "rgba",
@@ -7529,13 +7488,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/boy/walk_up/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 316,
-        "y": 510,
+        "x": 299,
+        "y": 763,
         "w": 49,
         "h": 60
       },
@@ -7577,6 +7535,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4549,
       "sha256": "0c4356a8d3f8effeaca57f18b0050512eb56ca8e83058c3831fbd7af29d1dd08",
       "alpha": "rgba",
@@ -7594,13 +7554,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/boy/walk_up/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 643,
-        "y": 720,
+        "x": 64,
+        "y": 915,
         "w": 57,
         "h": 62
       },
@@ -7642,6 +7601,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4641,
       "sha256": "0559de7e4e500d3a32d5d47c48935662ddae4f0c2305d04943e140991261f550",
       "alpha": "rgba",
@@ -7659,13 +7620,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/boy/walk_up/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 395,
-        "y": 589,
+        "x": 2,
+        "y": 827,
         "w": 49,
         "h": 60
       },
@@ -7707,6 +7667,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4410,
       "sha256": "e0dace36a131f6db317195707d7dfe600c6f5af51a83525cf15565316a4995fc",
       "alpha": "rgba",
@@ -7724,13 +7686,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/boy/walk_up/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 398,
-        "y": 203,
+        "x": 772,
+        "y": 853,
         "w": 55,
         "h": 59
       },
@@ -7772,6 +7733,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5071,
       "sha256": "406f90817269563b76391ad48f5fea53342a5bdf758c5a122df54881b51ccc75",
       "alpha": "rgba",
@@ -7789,13 +7752,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/girl/walk_up/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 637,
-        "y": 786,
+        "x": 2,
+        "y": 915,
         "w": 58,
         "h": 62
       },
@@ -7837,6 +7799,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5288,
       "sha256": "afed4e4f2d8f896164c53c943da44e2ada87f49aa2d999826677eb5a68ea8673",
       "alpha": "rgba",
@@ -7854,13 +7818,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/girl/walk_up/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 571,
-        "y": 806,
+        "x": 721,
+        "y": 726,
         "w": 62,
         "h": 62
       },
@@ -7902,6 +7865,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5028,
       "sha256": "8f643baa7a37cca0ce0b453c1af85d6e9d6f1148b12f96a830dd8a4703687a49",
       "alpha": "rgba",
@@ -7919,13 +7884,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/girl/walk_up/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 591,
-        "y": 947,
+        "x": 958,
+        "y": 784,
         "w": 62,
         "h": 61
       },
@@ -7967,6 +7931,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4851,
       "sha256": "bfa742b1f269e1ad2d4e25654864b5684f5930996c50ffcc6bc8801cc592878d",
       "alpha": "rgba",
@@ -7984,13 +7950,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/girl/walk_up/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 234,
-        "y": 884,
+        "x": 958,
+        "y": 849,
         "w": 59,
         "h": 62
       },
@@ -8032,6 +7997,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7220,
       "sha256": "4db7434cc172deb31597f89e8b2941d88caf758ab34ab4293136aedb70b42132",
       "alpha": "rgba",
@@ -8049,13 +8016,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/walk_right/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 154,
-        "y": 733,
+        "x": 901,
+        "y": 501,
         "w": 74,
         "h": 70
       },
@@ -8097,6 +8063,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6039,
       "sha256": "86715b293cc689a3b8bef9d93ad3254e061cd2eed54fab8c3bbd42a63d4c7a5d",
       "alpha": "rgba",
@@ -8114,13 +8082,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/walk_right/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 453,
-        "y": 894,
+        "x": 596,
+        "y": 664,
         "w": 69,
         "h": 70
       },
@@ -8162,6 +8129,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7418,
       "sha256": "193b049e06a9f3b37c8f75cbe3c2da4730a014cfe7340eef087d6daefe6ebfb8",
       "alpha": "rgba",
@@ -8179,13 +8148,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/walk_right/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 237,
-        "y": 590,
+        "x": 383,
+        "y": 532,
         "w": 75,
         "h": 75
       },
@@ -8227,6 +8195,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6099,
       "sha256": "a7e95cdc47455b983144f1e9f42efec70cb66da264a35a18b9b1142e370934bc",
       "alpha": "rgba",
@@ -8244,13 +8214,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/walk_right/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 427,
-        "y": 663,
+        "x": 858,
+        "y": 575,
         "w": 69,
         "h": 71
       },
@@ -8292,6 +8261,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7692,
       "sha256": "55ca8adeddbbd98745650fba48ad749caa5ed966e272b92859ee3e75c6d8460a",
       "alpha": "rgba",
@@ -8309,13 +8280,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/walk_right/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 364,
-        "y": 668,
+        "x": 610,
+        "y": 588,
         "w": 59,
         "h": 72
       },
@@ -8357,6 +8327,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6816,
       "sha256": "d6951b4148f283d2c848f19c0a21ff7c127c667a47b4cfc369407a6b030825fb",
       "alpha": "rgba",
@@ -8374,13 +8346,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/walk_right/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 81,
-        "y": 889,
+        "x": 624,
+        "y": 509,
         "w": 71,
         "h": 75
       },
@@ -8422,6 +8393,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 8017,
       "sha256": "0e9f1ccfc75628350b48c649c8753d3c15bd3f5524cdc4f144b6957ddfc4bafa",
       "alpha": "rgba",
@@ -8439,13 +8412,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/walk_right/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 644,
-        "y": 500,
+        "x": 321,
+        "y": 456,
         "w": 76,
         "h": 72
       },
@@ -8487,6 +8459,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6681,
       "sha256": "4c4bbfb7a8d70c43e150113cdee6d6d49ca414d2c9fa153de59cda9feb0afa91",
       "alpha": "rgba",
@@ -8504,13 +8478,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/walk_right/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 156,
-        "y": 950,
+        "x": 301,
+        "y": 612,
         "w": 70,
         "h": 72
       },
@@ -8552,6 +8525,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4731,
       "sha256": "26bfe59ab58350804a75bdff14d11972c118eff1b8bc56dad25b76f207d6b621",
       "alpha": "rgba",
@@ -8569,13 +8544,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/boy/walk_right/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 763,
-        "y": 785,
+        "x": 669,
+        "y": 732,
         "w": 48,
         "h": 60
       },
@@ -8617,6 +8591,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4305,
       "sha256": "c53e69d7a41acdfcb1e1cde2e8c39d64ca32b8744f59ae124597feae08d56b7c",
       "alpha": "rgba",
@@ -8634,13 +8610,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/boy/walk_right/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 232,
-        "y": 746,
+        "x": 225,
+        "y": 771,
         "w": 52,
         "h": 57
       },
@@ -8682,6 +8657,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5047,
       "sha256": "ec3dc709dc1818c272d0323b0cc75260ef30387977073d43d29d171fb467ff56",
       "alpha": "rgba",
@@ -8699,13 +8676,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/boy/walk_right/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 526,
-        "y": 947,
+        "x": 893,
+        "y": 784,
         "w": 61,
         "h": 62
       },
@@ -8747,6 +8723,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4320,
       "sha256": "5d58b74ce2cbd2936ed274c57c4e1d66f01ae3faa7aa6acb51a8117b7ff4e598",
       "alpha": "rgba",
@@ -8764,13 +8742,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/boy/walk_right/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 724,
-        "y": 655,
+        "x": 308,
+        "y": 915,
         "w": 61,
         "h": 59
       },
@@ -8812,6 +8789,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5066,
       "sha256": "2727626cec5e7ce5f696975620ce71027e0eb93b8de98a5226ccbfb4592f5450",
       "alpha": "rgba",
@@ -8829,13 +8808,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/girl/walk_right/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 815,
-        "y": 782,
+        "x": 345,
+        "y": 827,
         "w": 47,
         "h": 56
       },
@@ -8877,6 +8855,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4725,
       "sha256": "b35c3e4543456ae30f8a1f3244f9931c47b96c37f8e70c3c44ed13cda5ef462c",
       "alpha": "rgba",
@@ -8894,13 +8874,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/girl/walk_right/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 526,
-        "y": 881,
+        "x": 827,
+        "y": 725,
         "w": 62,
         "h": 62
       },
@@ -8942,6 +8921,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 5113,
       "sha256": "f0c157eea7ede94fb6ca0e6986d624765fb004c2c10a5fd7f90fc0c50defa887",
       "alpha": "rgba",
@@ -8959,13 +8940,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/girl/walk_right/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 715,
-        "y": 915,
+        "x": 225,
+        "y": 832,
         "w": 56,
         "h": 56
       },
@@ -9007,6 +8987,8 @@
       },
       "fitPadding": 2,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 4681,
       "sha256": "30e48e29bdd075491c5dbb024143549ca93c116e60d6868e05b1cbe1fcc00097",
       "alpha": "rgba",
@@ -9024,13 +9006,12 @@
         "h": 64
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/girl/walk_right/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 772,
-        "y": 849,
+        "x": 285,
+        "y": 827,
         "w": 56,
         "h": 56
       },
@@ -9086,6 +9067,8 @@
         "h": 56
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 1559,
       "sha256": "cc50bac051f8a64bed12cdaf8dd3522c894ff34436371884503ca0ff7b3ddcc1",
       "alpha": "rgba",
@@ -9103,13 +9086,12 @@
         "h": 30
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/panels/panel_button_red.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 175,
-        "y": 272,
+        "x": 110,
+        "y": 419,
         "w": 30,
         "h": 30
       },
@@ -9146,6 +9128,8 @@
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "村庄场景入口",
       "bytes": 20225,
       "sha256": "043da1de867ee1396dbbadd00eb7bf9be6ec38824116fadd93f6b18ae8e0f923",
       "alpha": "rgba",
@@ -9163,9 +9147,8 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/buildings/building_palisade.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 330,
@@ -9213,6 +9196,8 @@
       "fitPadding": 0,
       "resizeMode": "stretch",
       "cropNote": "独立浅麦金纯色底；完整不透明中心，32×32九宫格，配深棕文字，无描边/木框/投影。",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 767,
       "sha256": "126f53115518db8394a482747bca1176d8ce1b788edf622927a11f42ede7d42e",
       "alpha": "rgba",
@@ -9230,13 +9215,12 @@
         "h": 32
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/panels/panel_tip.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 95,
-        "y": 472,
+        "x": 50,
+        "y": 475,
         "w": 32,
         "h": 32
       },
@@ -9278,6 +9262,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7777,
       "sha256": "d96ebd23ec7f169e99e5916e05f8adb428241dc76f58322314e7347b375fc806",
       "alpha": "rgba",
@@ -9295,13 +9281,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/chop/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 724,
-        "y": 575,
+        "x": 748,
+        "y": 422,
         "w": 70,
         "h": 76
       },
@@ -9343,6 +9328,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7856,
       "sha256": "aae3dfbf17d95249b6c28f957ce9fba8dfbc2c31944bd59207a4bd51f7e84c03",
       "alpha": "rgba",
@@ -9360,13 +9347,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/chop/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 211,
-        "y": 415,
+        "x": 402,
+        "y": 377,
         "w": 76,
         "h": 76
       },
@@ -9408,6 +9394,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 8299,
       "sha256": "19b5f54dbafae5e3d61b43549d67fdef9368268b47660866a1888a7f2ce18fa5",
       "alpha": "rgba",
@@ -9425,12 +9413,11 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/chop/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
+        "x": 482,
         "y": 422,
         "w": 76,
         "h": 76
@@ -9473,6 +9460,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7514,
       "sha256": "307d0ac7b55b5be628a05ad0dcf1181fa36c3e03562e34d153056dd15e9bb850",
       "alpha": "rgba",
@@ -9490,13 +9479,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/chop/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 450,
-        "y": 583,
+        "x": 313,
+        "y": 532,
         "w": 66,
         "h": 76
       },
@@ -9538,6 +9526,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 8181,
       "sha256": "0abf4b883823a2f87b114bb94a621015e3629123fca8dba92b44b4ef0ab6622b",
       "alpha": "rgba",
@@ -9555,12 +9545,11 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/chop/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 950,
+        "x": 481,
         "y": 502,
         "w": 68,
         "h": 76
@@ -9603,6 +9592,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7856,
       "sha256": "ab5afd2a0b8f395d499c2b02d56d508e23af7b56dcfb736f3d36ecb887c0d842",
       "alpha": "rgba",
@@ -9620,13 +9611,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/chop/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 502,
+        "x": 241,
+        "y": 452,
         "w": 76,
         "h": 74
       },
@@ -9668,6 +9658,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7992,
       "sha256": "d72b3188f0ec53b1061c7b6b93595a910e9f43dee09e645760f83003a89010de",
       "alpha": "rgba",
@@ -9685,13 +9677,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/chop/02.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 404,
-        "y": 350,
+        "x": 82,
+        "y": 298,
         "w": 76,
         "h": 76
       },
@@ -9733,6 +9724,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7929,
       "sha256": "e8f5b3724096e39ef8294f46bd3a2b29f1acc2f6050601910cde0f99fe0a00ee",
       "alpha": "rgba",
@@ -9750,13 +9743,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/chop/03.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 79,
-        "y": 810,
+        "x": 714,
+        "y": 502,
         "w": 71,
         "h": 75
       },
@@ -9798,6 +9790,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7307,
       "sha256": "28b64be2a3d55a33c5d389923436945645a92fc618fd592fde60372057395d56",
       "alpha": "rgba",
@@ -9815,13 +9809,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/care/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 131,
-        "y": 415,
+        "x": 322,
+        "y": 376,
         "w": 76,
         "h": 76
       },
@@ -9863,6 +9856,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7528,
       "sha256": "255310f868638a1d73127708222748d02a821487f7eb054b33cc8c71cd94a5f9",
       "alpha": "rgba",
@@ -9880,13 +9875,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/male_a/care/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 82,
-        "y": 495,
+        "x": 161,
+        "y": 378,
         "w": 76,
         "h": 75
       },
@@ -9928,6 +9922,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7690,
       "sha256": "42df3a724c3a6e0464eddb1b9d4d5b8388517dbe426a2b46ac692482af54bd9e",
       "alpha": "rgba",
@@ -9945,13 +9941,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/care/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 324,
-        "y": 350,
+        "x": 2,
+        "y": 298,
         "w": 76,
         "h": 76
       },
@@ -9993,6 +9988,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7691,
       "sha256": "33059efabdc53ad3cbaad393937b246a6e8ff1cad40261106667edbcbd209559",
       "alpha": "rgba",
@@ -10010,13 +10007,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/female_a/care/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 657,
+        "x": 79,
+        "y": 612,
         "w": 70,
         "h": 76
       },
@@ -10058,6 +10054,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7485,
       "sha256": "0348eb6caa8e332a46a37e780fe3994cdf7a8ae61825592f80556bd4c216e319",
       "alpha": "rgba",
@@ -10075,13 +10073,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_male/walk/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 236,
-        "y": 669,
+        "x": 383,
+        "y": 611,
         "w": 61,
         "h": 73
       },
@@ -10123,6 +10120,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7588,
       "sha256": "cdee26597976e23eeec20e750283a95cd03ca94f7f68ba1c2c5d2f59bc893457",
       "alpha": "rgba",
@@ -10140,13 +10139,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_male/walk/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 82,
-        "y": 574,
+        "x": 81,
+        "y": 458,
         "w": 76,
         "h": 73
       },
@@ -10188,6 +10186,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6850,
       "sha256": "49b8011ad54da43f91cf4e128e81bc9088a1bca5df32ac49044c10bf59bd9b60",
       "alpha": "rgba",
@@ -10205,13 +10205,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_male/walk_up/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 724,
-        "y": 500,
+        "x": 401,
+        "y": 457,
         "w": 76,
         "h": 71
       },
@@ -10253,6 +10252,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6761,
       "sha256": "7edd14071cf3137edad577a07ca56fd796bb9168622a83cabf6e5d6f4343fb79",
       "alpha": "rgba",
@@ -10270,13 +10271,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_male/walk_up/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 889,
+        "x": 822,
+        "y": 500,
         "w": 75,
         "h": 71
       },
@@ -10318,6 +10318,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7114,
       "sha256": "65136004ff657498c522bd64e11b78dfbbb216c5db45ba3035e70f4856dd2488",
       "alpha": "rgba",
@@ -10335,13 +10337,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_male/walk_right/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 878,
-        "y": 502,
+        "x": 642,
+        "y": 429,
         "w": 68,
         "h": 76
       },
@@ -10383,6 +10384,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 6623,
       "sha256": "c2ac5284afab91e557d90b53b2e2bb3c4a5c00ec8936fe50f69311796feccf05",
       "alpha": "rgba",
@@ -10400,13 +10403,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_male/walk_right/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 941,
-        "y": 422,
+        "x": 668,
+        "y": 349,
         "w": 76,
         "h": 76
       },
@@ -10448,6 +10450,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7501,
       "sha256": "6da50488787ae82bcd31fe89914fb32dfbe9d87a896af301b875c62b7c227720",
       "alpha": "rgba",
@@ -10465,13 +10469,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_male/idle/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 371,
-        "y": 509,
+        "x": 2,
+        "y": 457,
         "w": 75,
         "h": 76
       },
@@ -10513,6 +10516,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7536,
       "sha256": "ca809832a7a3072ce699008b6f5ff41a89404b370dd47843c8d3329fe5c6040a",
       "alpha": "rgba",
@@ -10530,13 +10535,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_male/idle/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 162,
-        "y": 495,
+        "x": 161,
+        "y": 457,
         "w": 73,
         "h": 76
       },
@@ -10578,6 +10582,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7625,
       "sha256": "83890b78781f7e3576d7521ce5fcebcbdd33d279f837385c44bdbd63d46c46e0",
       "alpha": "rgba",
@@ -10595,13 +10601,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_female/walk/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 316,
-        "y": 589,
+        "x": 153,
+        "y": 617,
         "w": 75,
         "h": 75
       },
@@ -10643,6 +10648,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7537,
       "sha256": "3b82ede31bbdb161090c9f81bc1548b3257df2ef52cfa54b05222fc1bbebddf1",
       "alpha": "rgba",
@@ -10660,13 +10667,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_female/walk/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 76,
-        "y": 731,
+        "x": 901,
+        "y": 422,
         "w": 74,
         "h": 75
       },
@@ -10708,6 +10714,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7313,
       "sha256": "ad8742bf33c24b85e7214f0b7c6c103d7433946c24885d03da0d170175b58874",
       "alpha": "rgba",
@@ -10725,13 +10733,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_female/walk_up/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 861,
-        "y": 422,
+        "x": 588,
+        "y": 342,
         "w": 76,
         "h": 76
       },
@@ -10773,6 +10780,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7157,
       "sha256": "a2b72a331e343ded5508f21843a4e12c9fae3086c147d1e59abfdbad2c60b4bc",
       "alpha": "rgba",
@@ -10790,13 +10799,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_female/walk_up/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 530,
-        "y": 576,
+        "x": 553,
+        "y": 502,
         "w": 67,
         "h": 76
       },
@@ -10838,6 +10846,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7285,
       "sha256": "87c78f6a144fe7cdc0c46c4a545f41c6d48f00baca25684f2b3ffeb33c0132ba",
       "alpha": "rgba",
@@ -10855,13 +10865,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_female/walk_right/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 154,
-        "y": 807,
+        "x": 2,
+        "y": 697,
         "w": 68,
         "h": 74
       },
@@ -10903,6 +10912,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7095,
       "sha256": "d339128e5cfc8d75441654712093906f94b6cb7dbcd8622ab9d9904eb48ca029",
       "alpha": "rgba",
@@ -10920,13 +10931,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_female/walk_right/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 781,
-        "y": 420,
+        "x": 508,
+        "y": 342,
         "w": 76,
         "h": 76
       },
@@ -10968,6 +10978,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7734,
       "sha256": "1af5aa2e165a87c4bfe7831861ef3e353b28a291434d0cfb32e8d1dbfe486405",
       "alpha": "rgba",
@@ -10985,13 +10997,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_female/idle/00.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 157,
-        "y": 655,
+        "x": 822,
+        "y": 422,
         "w": 75,
         "h": 74
       },
@@ -11033,6 +11044,8 @@
       },
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
       "bytes": 7673,
       "sha256": "9526e96eb1c7a2d66ce9a3c23eaca5d722e812d8c555576038431ec5ff04d5b5",
       "alpha": "rgba",
@@ -11050,13 +11063,12 @@
         "h": 80
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/characters/elder_female/idle/01.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 451,
-        "y": 503,
+        "x": 82,
+        "y": 378,
         "w": 75,
         "h": 76
       },
@@ -11093,6 +11105,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3275,
       "sha256": "2747bb79d966f8e1d4702982e2fbc1da12329b582ee80fdc7de9d2de73267888",
       "alpha": "rgba",
@@ -11110,13 +11124,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/ui/icons/icon_trophy.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 92,
-        "y": 104,
+        "x": 2,
+        "y": 344,
         "w": 44,
         "h": 41
       },
@@ -11153,6 +11166,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3657,
       "sha256": "a6a8bed1073d2b0308ab0ea5a014bc4a051ab2a7b5a2a37397c3e83013941a30",
       "alpha": "rgba",
@@ -11170,9 +11185,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/emote_happy.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 44,
@@ -11213,6 +11227,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3394,
       "sha256": "7f98c4e09d150cbcb3c1400983acc813f3d72b103d1c72d167eac9d314a274c2",
       "alpha": "rgba",
@@ -11230,13 +11246,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/emote_proud.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 142,
-        "y": 191,
+        "x": 98,
+        "y": 146,
         "w": 42,
         "h": 43
       },
@@ -11273,6 +11288,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3548,
       "sha256": "86f4948a99c8d6b847a0f4e21b882102945a058723e55411a9d1faef5fb94ea2",
       "alpha": "rgba",
@@ -11290,9 +11307,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/emote_sleepy.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -11333,6 +11349,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3527,
       "sha256": "4fe1e9f45e99d17b3147bb65400f040b47cb794662d56bde698eeb554fd0368d",
       "alpha": "rgba",
@@ -11350,9 +11368,8 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/emote_peaceful.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -11393,6 +11410,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3339,
       "sha256": "6e00cff4799126ee0c53f411feb2efaacbecf4f35b35a301d6501253472daac8",
       "alpha": "rgba",
@@ -11410,13 +11429,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/emote_loving.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 138,
-        "y": 149,
+        "x": 50,
+        "y": 151,
         "w": 44,
         "h": 38
       },
@@ -11453,6 +11471,8 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain",
+      "runtime": true,
+      "usage": "界面/特效入口",
       "bytes": 3357,
       "sha256": "2d411ed39f48acb7330982e570fd8d2a295d117fee7cce7900ba341816a3c917",
       "alpha": "rgba",
@@ -11470,13 +11490,12 @@
         "h": 48
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "plannedLayaPath": "assets/resources/village/effects/emote_curious.png",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v2",
+      "reviewStatus": "visual_v10",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 90,
-        "y": 426,
+        "x": 91,
+        "y": 282,
         "w": 42,
         "h": 42
       },

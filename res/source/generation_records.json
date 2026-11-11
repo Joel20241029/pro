@@ -465,6 +465,22 @@
       ],
       "note": "Explicit crop rectangles preserve the visible sprites and omit faint alpha outside each silhouette; regenerate runtime/atlas from source/asset_recipe.json, never edit generated atlas.",
       "bytes": 489082
+    },
+    {
+      "key": "farm_open_v10",
+      "path": "source/static/farm_open_v10.png",
+      "spec": {
+        "transparent": true,
+        "promptFile": "source/farm_v10_prompts.json"
+      },
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-aa201b61-2264-4e59-8647-70a45dcb12ad.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "2e2d028a2f32240625418cc995d65bfd4ec805a32bfc88cdc92da59e3dfb0101",
+      "bytes": 1481101,
+      "brief": "三行低矮麦田，移除全部木栏，透明底；用地面层绘制，农夫可站在垄沟。"
     }
   ],
   "exportMethod": "ImageMagick mechanical crop/nearest-neighbor export/atlas packing; animation frames retain uniform source canvas and feet, atlas trims transparent margins and restores offsets."

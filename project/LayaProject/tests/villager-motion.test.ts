@@ -30,8 +30,7 @@ test("Forest and palisades have shared collision blocks and preserve both gate p
 });
 
 test("Every real map stop is reachable without crossing any footprint", () => {
-    const stops = [...VILLAGE_STOPS.homes, ...VILLAGE_STOPS.farm, ...VILLAGE_STOPS.logging, ...VILLAGE_STOPS.rest, ...VILLAGE_STOPS.children, ...VILLAGE_STOPS.towers, ...VILLAGE_STOPS.wedding,
-        ...VILLAGE_STOPS.homes.map(p => ({ x: p.x + 34, y: p.y + 8 }))];
+    const stops = [...VILLAGE_STOPS.homes, ...VILLAGE_STOPS.farm, ...VILLAGE_STOPS.logging, ...VILLAGE_STOPS.rest, ...VILLAGE_STOPS.children, ...VILLAGE_STOPS.towers, ...VILLAGE_STOPS.wedding];
     for (const from of stops) for (const to of stops) {
         const route = navigation.route(from, to); let at = from;
         for (const p of route) { ok(navigation.clear(at, p), "path crosses building"); at = p; }
@@ -39,9 +38,9 @@ test("Every real map stop is reachable without crossing any footprint", () => {
     }
 });
 test("A walk from behind a house goes around its foundation", () => {
-    const behind = VILLAGE_STOPS.rest[0], front = { x: 108, y: 970 };
-    ok(!navigation.clear(behind, front)); const route = navigation.route(behind, front); ok(route.length > 1);
     const house = VILLAGE_PROPS.find(p => p.id === "building:house-a")!;
+    const behind = { x: house.x, y: house.footprint!.top - MOTION.clearance - 20 }, front = { x: house.x, y: house.footprint!.bottom + MOTION.clearance + 24 };
+    ok(!navigation.clear(behind, front)); const route = navigation.route(behind, front); ok(route.length > 1);
     ok(compareDepth({ id: "person:1:1", y: behind.y }, house) < 0);
     ok(compareDepth({ id: "person:1:1", y: front.y }, house) > 0);
     const tied = [{ id: "person:1:2", y: 950 }, { id: "enemy:2", y: 950 }, { id: "building:a", y: 950 }];
@@ -64,9 +63,11 @@ test("All founders actually walk, work and rest while business data stays unchan
     }
     equal(traveled.size, s.people.length); ok(working.size >= 3); equal(rested.size, s.people.length); equal(JSON.stringify(s), before);
 });
-test("Moving poses match signed displacement across a complete work and rest cycle", () => {
+test("Moving poses match signed displacement across work, tower travel and return", () => {
     const s = createGame(17), motion = new VillagerMotion(navigation), directions = new Set<WalkDirection>(); motion.sync(s, s.towers);
-    for (let i = 0; i < 2400; i++) {
+    for (let i = 0; i < 4800; i++) {
+        if (i === 2400) { applyCommand(s, { type: "NIGHT" }); motion.sync(s, s.towers); }
+        if (i === 3600) { s.phase = "DAY"; motion.sync(s, s.towers); }
         const previous = s.people.map(p => ({ ...motion.get(p.id) })); motion.update(.05);
         s.people.forEach((p, index) => {
             const m = motion.get(p.id), old = previous[index], dx = m.x - old.x, dy = m.y - old.y;
@@ -131,7 +132,10 @@ test("Babies stay home, children walk, growth retains position, retired people a
     const baby = { ...motion.get(child.id) };
     for (let i = 0; i < 50; i++) motion.update(.1);
     equal([motion.get(child.id).x, motion.get(child.id).y], [baby.x, baby.y]); ok(!motion.get(child.id).walking);
-    child.growth = 1; motion.sync(s, s.towers); motion.update(.1); ok(motion.get(child.id).walking);
+    child.growth = 1; motion.sync(s, s.towers);
+    // 新儿童沿用自己的稳定活动位，先完成最多一次短驻足，再离开婴儿位置行走。
+    for (let i = 0; i < 50 && !motion.get(child.id).walking; i++) motion.update(.1);
+    ok(motion.get(child.id).walking);
     const feet = { ...motion.get(child.id) }; child.adult = true; child.job = "WAITING"; motion.sync(s, s.towers);
     equal([motion.get(child.id).x, motion.get(child.id).y], [feet.x, feet.y]);
     s.people.splice(0, 1); motion.sync(s, s.towers); equal(motion.count, s.people.length);
@@ -252,5 +256,32 @@ test("Retiring in place switches to elder walks and idle without teleporting or 
     equal(walked.size, 2); equal(rested.size, 2); equal(JSON.stringify(s), state);
     s.phase = "NIGHT"; motion.sync(s, s.towers); for (let i = 0; i < 1000; i++) motion.update(.05);
     elders.forEach(p => { const m = motion.get(p.id); ok(!m.walking && !m.insideTower && m.clip.endsWith("_idle")); });
+});
+test("Many generations never alias home/rest slots by permanent person number", () => {
+    const s = createGame(1); s.families = []; s.towers.forEach(t => t.operator = null);
+    s.people = Array.from({ length: RULE.populationCap }, (_, i) => ({ ...clone(s.people[0]), id: `1:${1 + i * 20}`, job: "WAITING" as const }));
+    const motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    const homes = s.people.map(p => { const at = motion.get(p.id); return `${at.x}:${at.y}`; });
+    equal(new Set(homes).size, RULE.populationCap);
+    const routines = [...(motion as any).people.values()].map((p: any) => p.routine[0].at);
+    equal(new Set(routines.map((p: any) => `${p.x}:${p.y}`)).size, RULE.populationCap);
+    const survivor = s.people[1].id, before = { ...motion.get(survivor) };
+    s.people.shift(); s.people.push({ ...clone(s.people[0]), id: "1:501" }); motion.sync(s, s.towers);
+    equal([motion.get(survivor).x, motion.get(survivor).y], [before.x, before.y]);
+    for (let i = 0; i < 1200; i++) { motion.update(.05); for (const p of s.people) ok(navigation.walkable(motion.get(p.id))); }
+});
+test("Farmers work within the walkable ground field; scenery no longer blocks the entire crop plot", () => {
+    const farm = VILLAGE_PROPS.find(p => p.id === "building:farm")!;
+    equal(farm.ground, true); equal(farm.footprint, null);
+    for (const p of VILLAGE_STOPS.farm) { ok(navigation.walkable(p)); ok(Math.abs(p.x - farm.x) < farm.size / 2); ok(p.y < farm.y && p.y > farm.y - farm.size / 2); }
+});
+test("Mixed full village never parks unrelated home/rest/work routines on top of one another", () => {
+    const s = createGame(1); s.families = [];
+    s.people = Array.from({ length: RULE.populationCap }, (_, i) => ({ ...clone(s.people[i % 6]), id: `1:${i + 1}`, job: i < 6 ? "FARM" as const : i < 10 ? "LOGGING" as const : "WAITING" as const, nights: i < 10 ? 8 : 0, elderNights: i < 10 ? 0 : RULE.elderNights }));
+    const motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    for (let step = 0; step < 3600; step++) {
+        motion.update(.05); const parked = s.people.map(p => motion.get(p.id)).filter(p => !p.walking);
+        for (let i = 0; i < parked.length; i++) for (let j = 0; j < i; j++) ok(distance(parked[i], parked[j]) >= 24, `stationary overlap: ${parked[i].id}/${parked[j].id}`);
+    }
 });
 console.log(`RESULT ${passed} motion checks passed`);

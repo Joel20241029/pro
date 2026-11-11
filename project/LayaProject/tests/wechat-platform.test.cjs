@@ -53,6 +53,7 @@ test('Main notifies accepted saves only and platform failures never become local
 });
 test('background refresh destroys old board without rebuilding; show waits for player continue', () => {
     const s = setup(), store = new SaveStore(s.platform); store.inspect(); store.prepare(createGame(1)); store.commit(); const session = new GameSession(new SaveStore(s.platform)); session.load();
+    session.enter(); session.claimDailyRation();
     const view = Object.create(GameView.prototype); let boards = 0;
     Object.assign(view, { game: session, platform: s.platform, panel: { type: 'ranking' }, shownErrorRevision: 0, observedRun: 1, observedDawn: 0, chrome: new Sprite(), overlay: new Sprite(), motion: { sync() {} }, emotes: { sync() {} }, art: { panel() {} }, tip: {}, drawScenery() {}, image() {}, label: () => ({}), button: fakeButton, modal: () => new Sprite(), updateActors() {}, drawPanel() { boards++; } });
     session.changed = () => view.refresh(); view.refresh(); assert.equal(boards, 1);

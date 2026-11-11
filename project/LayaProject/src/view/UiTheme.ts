@@ -5,6 +5,8 @@ export const C = {
     outline: "#493420", lightEdge: "#fff9e7",
     // 木色用于资源与成长信息强调；不改变资源是否足够的判定。
     timber: "#9a591f",
+    // 浅麦金 Tip 底图的暖棕正文，中心区域对比度≥5.26:1；仅用于短提示，不改变警示语义。
+    tipInk: "#6b4928",
     // 用户指定：姓名按性别区分；深蓝/橘黄的深色阶保证羊皮纸背景上的可读性。
     maleName: "#276b9c", femaleName: "#ba741a"
 };
@@ -19,5 +21,5 @@ export const UI = {
     scrollGutter: 16, scrollDragThreshold: 8, scrollThumbMin: 32, scrollWheelStep: 24,
     pressedOffset: 4,
     // Tip 总显示2秒（包含淡入/淡出），按用户指定；位置为720×1280游戏安全区中心。
-    tipSeconds: 2, tipFadeIn: .16, tipFadeOut: .28, tipWidth: 600, tipFont: 34, tipMaxHeight: 800
+    tipSeconds: 2, tipFadeIn: .16, tipFadeOut: .28, tipWidth: 600, tipFont: 30, tipMaxHeight: 800
 } as const;

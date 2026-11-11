@@ -2,6 +2,7 @@ import { BattleSimulation, Shot } from "../src/game/BattleSimulation";
 import { PADS, RULE, TowerKind } from "../src/game/GameConfig";
 import { createGame, applyCommand } from "../src/game/VillageRules";
 import { ProjectileMotion, PROJECTILE_STYLE } from "../src/view/ProjectileMotion";
+import { towerLaunch } from "../src/view/VillageScene";
 
 let passed = 0;
 function ok(value: unknown, reason = "assertion failed"): asserts value { if (!value) throw new Error(reason); }
@@ -13,10 +14,10 @@ function shot(kind: TowerKind, tick = 0): Shot { return { tower: 0, x: PADS[0].x
 
 test("Arrow starts at the launcher, faces its target and becomes a short impact", () => {
     for (const [dx, dy, angle] of [[120, 0, 0], [-120, 0, 180], [0, -100, -90], [0, 100, 90]]) {
-        const b = battle(), m = new ProjectileMotion(), s = shot("ARROW"); s.x = PADS[0].x + dx; s.y = PADS[0].y - 15 + dy;
+        const b = battle(), m = new ProjectileMotion(), s = shot("ARROW"), start = towerLaunch(0, "ARROW"); s.x = start.x + dx; s.y = start.y + 20 + dy;
         b.shots = [s]; b.tick = 1; m.update(b);
-        const p = m.poses[0]; equal(p.frame, "fx_arrow"); near(p.x, PADS[0].x); near(p.y, PADS[0].y - 35); near(p.rotation, angle);
-        b.tick = 3; m.update(b); near(p.x, PADS[0].x + dx * .1 / PROJECTILE_STYLE.ARROW.flight);
+        const p = m.poses[0]; equal(p.frame, "fx_arrow"); near(p.x, start.x); near(p.y, start.y); near(p.rotation, angle);
+        b.tick = 3; m.update(b); near(p.x, start.x + dx * .1 / PROJECTILE_STYLE.ARROW.flight);
         b.tick = 6; m.update(b); equal(p.frame, "fx_hit"); near(p.x, s.x); near(p.y, s.y - 20); ok(p.alpha > 0 && p.alpha < 1);
         b.tick = 9; m.update(b); equal(m.poses.length, 0);
     }
@@ -24,7 +25,8 @@ test("Arrow starts at the launcher, faces its target and becomes a short impact"
 test("Stone follows a rotating arc and survives removal from the five-tick event queue", () => {
     const b = battle(), m = new ProjectileMotion(), s = shot("STONE"); b.shots = [s]; b.tick = 1; m.update(b);
     b.tick = 5; m.update(b); const p = m.poses[0];
-    near(p.x, (PADS[0].x + s.x) / 2); near(p.y, PADS[0].y - 35 - PROJECTILE_STYLE.STONE.arc); ok(p.rotation > 0);
+    const start = towerLaunch(0, "STONE");
+    near(p.x, (start.x + s.x) / 2); near(p.y, (start.y + s.y - 20) / 2 - PROJECTILE_STYLE.STONE.arc); ok(p.rotation > 0);
     b.shots = []; b.tick = 7; m.update(b); equal(m.poses.length, 1); equal(p.frame, "fx_stone");
     b.tick = 9; m.update(b); equal(p.frame, "fx_hit"); near(p.x, s.x); near(p.y, s.y - 20);
     b.tick = 14; m.update(b); equal(m.poses.length, 0);
@@ -43,7 +45,8 @@ test("Paused ticks freeze every property, batched ticks match individually advan
 });
 test("First observation uses event age exactly once", () => {
     const b = battle(), m = new ProjectileMotion(), s = shot("STONE", 8); b.shots = [s]; b.tick = 11; m.update(b);
-    near(m.poses[0].x, PADS[0].x + 120 * .1 / PROJECTILE_STYLE.STONE.flight);
+    const start = towerLaunch(0, "STONE");
+    near(m.poses[0].x, start.x + (s.x - start.x) * .1 / PROJECTILE_STYLE.STONE.flight);
     const before = JSON.stringify(m.poses); m.update(b); equal(JSON.stringify(m.poses), before);
 });
 test("Battle end, exit and a new night clear old effects", () => {
@@ -71,5 +74,14 @@ test("Playing effects does not change damage, targeting, outcome or business sta
         equal(JSON.stringify(a), before); if (m.poses.length) observed++;
     }
     ok(observed > 0); equal([a.outcome, a.tick, a.gate, a.base], [b.outcome, b.tick, b.gate, b.base]); equal(m.poses.length, 0);
+});
+test("All three tower types launch from their visible source anchor at all four pads", () => {
+    for (let tower = 0; tower < PADS.length; tower++) for (const kind of ["ARROW", "STONE", "SLOW"] as TowerKind[]) {
+        const b = battle(), m = new ProjectileMotion(), s = { ...shot(kind), tower };
+        b.tick = 1; b.shots = [s]; m.update(b); const start = towerLaunch(tower, kind);
+        near(m.poses[0].x, start.x); near(m.poses[0].y, start.y);
+        if (kind === "ARROW") ok(tower % 2 ? start.x < PADS[tower].x : start.x > PADS[tower].x);
+        if (kind === "SLOW") near(start.x, PADS[tower].x);
+    }
 });
 console.log(`${passed} projectile motion checks passed`);
