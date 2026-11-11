@@ -9,5 +9,11 @@
   },
   "openDataContext": "openDataContext",
   "iOSHighPerformance": false,
-  "iOSHighPerformance+": false
+  "iOSHighPerformance+": false,
+  "subpackages": [
+    {
+      "name": "resources/village",
+      "root": "resources/village/"
+    }
+  ]
 }

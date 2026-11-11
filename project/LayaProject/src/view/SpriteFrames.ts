@@ -1,4 +1,6 @@
 import { WalkDirection } from "./VillagerMotion";
+/** 微信原生村庄资源包根目录，与 BuildSettings.subpackages.path 一致；改名需同步发布配置和资源目录。 */
+export const VILLAGE_RESOURCE_PACKAGE = "resources/village";
 interface Frame { page: string; rect: { x: number; y: number; w: number; h: number }; sourceSize: { w: number; h: number }; trimOffset: { x: number; y: number }; pivot: { x: number; y: number }; nineSlice: { top: number; right: number; bottom: number; left: number; repeat: number } | null; }
 interface Clip { id: string; frameIds: string[]; fps: number; restFrame: string; }
 /** 图集页表是加载白名单；裁片恢复原画布，人物始终共用原足底。 */
@@ -9,7 +11,7 @@ export class SpriteFrames {
     private directions: Record<string, Record<WalkDirection, { clip: string; mirror: boolean }>> = {};
     private enemyFacing: Record<string, string> = {};
     async load() {
-        const root = "resources/village/";
+        const root = VILLAGE_RESOURCE_PACKAGE + "/";
         const result = await Promise.all([Laya.loader.load(root + "frames.json", Laya.Loader.JSON), Laya.loader.load(root + "animations.json", Laya.Loader.JSON)]);
         if (result.some(r => !r)) throw new Error("本地游戏素材加载失败，请重新打开小游戏");
         const descriptors = result[0].data.pages as { id: string; runtimeFile: string }[];

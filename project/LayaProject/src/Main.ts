@@ -1,7 +1,7 @@
 import { GameSession } from "./game/GameSession";
 import { SaveStore } from "./storage/SaveStore";
 import { WechatPlatform } from "./platform/WechatPlatform";
-import { SpriteFrames } from "./view/SpriteFrames";
+import { SpriteFrames, VILLAGE_RESOURCE_PACKAGE } from "./view/SpriteFrames";
 import { GameView } from "./view/GameView";
 const { regClass } = Laya;
 @regClass()
@@ -10,16 +10,22 @@ export class Main extends Laya.Script {
     private session: GameSession | null = null;
     private view: GameView | null = null;
     private frames = new SpriteFrames();
+    private loading: Laya.Text | null = null;
     private disposed = false;
     async onStart() {
-        const loading = new Laya.Text(); loading.text = "村里的灯火正在亮起…"; loading.fontSize = 28; loading.color = "#f7e7be"; loading.stroke = 2; loading.strokeColor = "#493420"; loading.pos(40, 580); loading.size(640, 64); loading.align = "center"; loading.valign = "middle"; Laya.stage.addChild(loading);
+        const loading = this.loading = new Laya.Text(); loading.text = "正在准备村庄资源…"; loading.fontSize = 28; loading.color = "#f7e7be"; loading.stroke = 2; loading.strokeColor = "#493420"; loading.pos(40, 580); loading.size(640, 64); loading.align = "center"; loading.valign = "middle"; Laya.stage.addChild(loading);
         Laya.stage.bgColor = "#354c3e";
         try {
             this.platform = new WechatPlatform();
             this.session = new GameSession(new SaveStore(this.platform));
             this.platform.bind(this.session.hide, this.session.show);
-            await this.frames.load();
+            // 原生下载及 fileconfig 注册成功后才能读取图集；Laya 3.4.2 用 false 表示加载失败。
+            const packageLoaded = await Laya.loader.loadPackage(VILLAGE_RESOURCE_PACKAGE);
             if (this.disposed) return;
+            if (!packageLoaded) throw new Error("村庄资源包加载失败");
+            loading.text = "村里的灯火正在亮起…";
+            await this.frames.load();
+            if (this.disposed) { this.frames.destroy(); return; }
             this.view = new GameView(this.session, this.frames, this.platform);
             Laya.stage.addChild(this.view.root);
             // fixedwidth 让舞台填满微信画布；在安全区内显式居中 720×1280 游戏区，不依赖 canvas CSS 位移。
@@ -28,8 +34,9 @@ export class Main extends Laya.Script {
             const available = Laya.stage.height - top - bottom, ratio = Math.min(1, available / 1280);
             this.view.root.scale(ratio, ratio);
             this.view.root.pos((720 - 720 * ratio) / 2, top + (available - 1280 * ratio) / 2);
-            loading.destroy(); this.session.load(); console.log("[代代守村] 微信单机版已启动");
+            loading.destroy(); this.loading = null; this.session.load(); console.log("[代代守村] 微信单机版已启动");
         } catch (e) {
+            if (this.disposed) { this.frames.destroy(); return; }
             loading.text = "启动失败，请重新打开小游戏。\n" + (e instanceof Error ? e.message : String(e)); loading.pos(40, 480); loading.size(640, 300); loading.wordWrap = true; console.error(e);
         }
     }
@@ -40,5 +47,5 @@ export class Main extends Laya.Script {
     }
     onDisable() { this.session?.pause("DISABLED"); }
     onEnable() { this.session?.resume("DISABLED"); }
-    onDestroy() { this.disposed = true; if (this.platform && this.session) this.platform.unbind(this.session.hide, this.session.show); this.view?.destroy(); this.frames.destroy(); }
+    onDestroy() { this.disposed = true; this.loading?.destroy(); this.loading = null; if (this.platform && this.session) this.platform.unbind(this.session.hide, this.session.show); this.view?.destroy(); this.frames.destroy(); }
 }

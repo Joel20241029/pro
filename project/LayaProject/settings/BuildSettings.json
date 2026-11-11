@@ -6,7 +6,15 @@
   "useCompressedEngine": true,
   "minifyJS": true,
   "sourcemap": false,
-  "enableSubpackages": false,
+  "enableSubpackages": true,
+  "subpackages": [
+    {
+      "path": "resources/village",
+      "packAllAssets": true,
+      "autoLoad": false,
+      "remote": false
+    }
+  ],
   "enableWasmSubpackage": false,
   "copyBinFiles": false,
   "wxgame": {
