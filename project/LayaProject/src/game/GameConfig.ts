@@ -1,6 +1,6 @@
 /** 首版规则取自 doc/design/01 与 doc/tech/01；集中调整会改变经济、存档与战斗，需升级 CONFIG_VERSION。 */
-// v7：按基础射程重排四个塔位，战前复盘结果随之改变；不迁移旧档，交付后人工清两槽，同版正常续玩。
-export const CONFIG_VERSION = 7;
+// v9：用户确认警钟延长为15个战斗秒，改变战斗重放结果；保留v8自动驻塔，旧档经确认重开，同版正常续玩。
+export const CONFIG_VERSION = 9;
 /** 2026-11-11 已确认的持续成长方案（doc/tech/12）。等级不封顶，人数及工作站仍有界。
  * 成本线性增长，产出线性、战力二次增长；更改系数须复跑完整经营模拟及升级预检。
  */
@@ -56,7 +56,11 @@ export const RULE = {
     yearDays: 12, seasonDays: 3, maxTier: 3, historyCap: 60, favoriteCap: 20,
     // 15步覆盖允许计入的0.25秒×最高3倍速，不追赶后台时间，不改变固定模拟步长。
     step: .05, frameCap: .25, maxSpeed: 3, maxSteps: 15, enemyCap: 40, planCap: 80,
-    bellTicks: 100, slowTicks: 30, hungerSpeed: .7, disruptSpeed: .8,
+    // 用户确认15个战斗秒（300步×0.05秒），每夜一次；倍速缩短现实耗时，暂停不扣时，调整需验证战斗与升版。
+    bellTicks: 300,
+    // 沿用原警钟攻速+50%；战斗与说明共用，乘在天赋/村规加成之后，再乘缺粮/扰阵减益。
+    bellSpeedMultiplier: 1.5,
+    slowTicks: 30, hungerSpeed: .7, disruptSpeed: .8,
     spawnTicks: 480, summonTicks: [120, 240], effectCap: 32
 } as const;
 export type TowerKind = "ARROW" | "STONE" | "SLOW";

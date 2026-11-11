@@ -22,11 +22,17 @@ export function autoAssignJobs(s: GameState) {
         else if (free.LOGGING > 0) { p.job = "LOGGING"; free.LOGGING--; }
     }
 }
+/** 已建塔有成年村民就补满；沿用在村顺序与塔位顺序，不换已有驻守、不占白天岗位、不消耗随机数。 */
+export function autoAssignOperators(s: GameState) {
+    const assigned = new Set(s.towers.map(t => t.operator).filter(id => id !== null));
+    const available = s.people.filter(p => isWorkingAdult(p) && !assigned.has(p.id));
+    for (const tower of s.towers) if (tower.kind && !tower.operator && available.length) tower.operator = available.shift()!.id;
+}
 export function person(s: GameState, id: string): Person { const p = s.people.find(p => p.id === id); if (!p) throw new Error("村民已不在村中"); return p; }
 function requireRule(ok: unknown, message: string): asserts ok { if (!ok) throw new Error(message); }
 export function policy(s: GameState): Partial<Policy> { return s.policy === null ? {} : POLICIES[s.policy]; }
 export function capacity(s: GameState) { return Math.min(RULE.populationCap, s.houses * RULE.houseCapacity); }
-function spend(s: GameState, resource: "food" | "wood", amount: number) { requireRule(s[resource] >= amount, resource === "food" ? "粮食不足" : "木材不足"); s[resource] -= amount; }
+function spend(s: GameState, resource: "food" | "wood", amount: number) { requireRule(s[resource] >= amount, `还缺 ${amount - s[resource]} ${resource === "food" ? "粮食" : "木材"}`); s[resource] -= amount; }
 function newId(s: GameState): string { requireRule(Number.isSafeInteger(s.nextPerson + 1), "人口编号已达安全范围"); return `${s.run}:${s.nextPerson++}`; }
 function remember(s: GameState, trait: Trait) { if (!s.legacy.traits.includes(trait)) s.legacy.traits.push(trait); }
 export function createGame(seed: number, old?: Legacy, inherited?: Trait, history: Person[] = [], favorites: string[] = []): GameState {
@@ -45,7 +51,7 @@ export function createGame(seed: number, old?: Legacy, inherited?: Trait, histor
     s.people = FOUNDERS.map((f, i): Person => ({ id: newId(s), name: f.name, sex: f.sex, origin: "FOUNDER", elite: false, appearance: f.appearance, trait: i === 0 && inherited ? inherited : f.trait, skill: f.skill, generation: 1, parents: [], ancestors: [], adult: true, nights: f.nights, elderNights: 0, growth: 0, job: f.job, careChild: null }));
     s.families.push({ id: `${s.run}:f1`, partners: [s.people[0].id, s.people[1].id], lastBirth: null });
     s.towers = [{ kind: "ARROW", level: 1, operator: s.people[3].id }, { kind: "STONE", level: 1, operator: s.people[2].id }, { kind: null, level: 0, operator: null }, { kind: null, level: 0, operator: null }];
-    s.people.forEach(p => remember(s, p.trait)); autoAssignJobs(s); s.wave = generateWave(s); return s;
+    s.people.forEach(p => remember(s, p.trait)); autoAssignJobs(s); autoAssignOperators(s); s.wave = generateWave(s); return s;
 }
 export function canMarry(s: GameState, a: Person, b: Person): boolean {
     return a.id !== b.id && isWorkingAdult(a) && isWorkingAdult(b) && a.sex !== b.sex &&
@@ -60,16 +66,18 @@ export function birthUnavailableReason(s: GameState, familyId: string, carerId?:
     const family = s.families.find(f => f.id === familyId);
     if (!family) return "家庭不存在";
     const parents = family.partners.map(id => person(s, id));
-    if (parents.some(p => !isWorkingAdult(p))) return "双亲需仍在劳作期";
-    if (s.people.length >= capacity(s)) return `民居已满 · ${s.people.length}/${capacity(s)} 人`;
-    if (parents.some(p => p.nights < RULE.parentMinNights)) return `双亲需至少余 ${RULE.parentMinNights} 夜`;
-    if (s.people.some(p => !p.adult && p.parents.some(id => family.partners.includes(id)))) return "已有孩子未成年";
-    if (family.lastBirth !== null && s.completed - family.lastBirth < RULE.birthCooldown) return `再守住 ${RULE.birthCooldown - (s.completed - family.lastBirth)} 夜可迎接`;
+    const unavailableParent = parents.find(p => !isWorkingAdult(p));
+    if (unavailableParent) return `${unavailableParent.name}${unavailableParent.adult ? "已退休" : "未成年"}，不能迎接孩子`;
+    if (s.people.length >= capacity(s)) return s.people.length >= RULE.populationCap ? `人口已满 ${RULE.populationCap} 人，需等空出名额` : `住房已满 ${s.people.length}/${capacity(s)} 人，请增建民居`;
+    const agingParent = parents.find(p => p.nights < RULE.parentMinNights);
+    if (agingParent) return `${agingParent.name}距退休 ${agingParent.nights} 夜，至少需 ${RULE.parentMinNights} 夜`;
+    if (s.people.some(p => !p.adult && p.parents.some(id => family.partners.includes(id)))) return "已有孩子未成年，请先照料长大";
+    if (family.lastBirth !== null && s.completed - family.lastBirth < RULE.birthCooldown) return `再成功守住 ${RULE.birthCooldown - (s.completed - family.lastBirth)} 夜可迎接`;
     const carer = carerId === undefined ? s.people.find(p => isWorkingAdult(p) && p.job !== "CARE") : s.people.find(p => p.id === carerId);
-    if (!carer) return carerId === undefined ? "暂无可用照料者" : "照料者已不在村中";
-    if (!isWorkingAdult(carer)) return "照料者需在劳作期";
-    if (carer.job === "CARE") return "照料者正照顾其他孩子";
-    if (s.food < RULE.birthCost) return `粮食不足 · ${s.food}/${RULE.birthCost}`;
+    if (!carer) return carerId === undefined ? "没有可接手照料的成年人" : "照料者已不在村中，请重新选择";
+    if (!isWorkingAdult(carer)) return `${carer.name}${carer.adult ? "已退休" : "未成年"}，无法照料`;
+    if (carer.job === "CARE") return `${carer.name}正在照料其他孩子`;
+    if (s.food < RULE.birthCost) return `还缺 ${RULE.birthCost - s.food} 粮（现有 ${s.food}/${RULE.birthCost}）`;
     return null;
 }
 export function economy(s: GameState) {
@@ -93,13 +101,15 @@ export type Command =
     { type: "FAMILY"; a: string; b: string } | { type: "BIRTH"; family: string; carer: string } |
     { type: "BUILD"; kind: "HOUSE" | "FARM" | "LOGGING" | "HOUSING" | "GATE" } | { type: "REPAIR" } |
     { type: "TOWER"; index: number; kind: TowerKind } | { type: "UPGRADE"; index: number } |
-    { type: "OPERATOR"; index: number; id: string | null } | { type: "NIGHT" } |
+    { type: "OPERATOR"; index: number; id: string } | { type: "NIGHT" } |
     { type: "CHOOSE"; value: string } | { type: "FINALIZE" } | { type: "FAVORITE"; id: string } | { type: "SPEED"; value: 1 | 2 | 3 } | { type: "MUSIC"; enabled: boolean };
-export function assignOperator(s: GameState, index: number, id: string | null) {
+export function assignOperator(s: GameState, index: number, id: string) {
     const t = s.towers[index]; requireRule(t && t.kind !== null, "此处尚未建塔");
-    if (id) requireRule(isWorkingAdult(person(s, id)), "只有仍在劳作期的成年人可以驻塔");
-    for (const tower of s.towers) if (id && tower.operator === id) tower.operator = null;
-    t.operator = id;
+    requireRule(typeof id === "string" && id.length > 0, "请选择驻守村民");
+    requireRule(isWorkingAdult(person(s, id)), "驻塔需要已成年且未退休的村民");
+    const previous = s.towers.find(tower => tower !== t && tower.operator === id);
+    if (previous) previous.operator = t.operator;
+    t.operator = id; autoAssignOperators(s);
 }
 export function applyCommand(s: GameState, c: Command) {
     if (c.type === "SPEED") { requireRule(c.value === 1 || c.value === 2 || c.value === 3, "无效倍速"); s.settings.speed = c.value; return; }
@@ -110,7 +120,7 @@ export function applyCommand(s: GameState, c: Command) {
         if (i >= 0) s.favorites.splice(i, 1); else { requireRule(s.favorites.length < RULE.favoriteCap, "最多珍藏 20 位先辈"); s.favorites.push(c.id); }
         pruneHistory(s); return;
     }
-    if (c.type === "CHOOSE") { requireRule(s.phase === "DAWN" && s.choices.length > 0, "当前没有待办事项"); choose(s, c.value); autoAssignJobs(s); return; }
+    if (c.type === "CHOOSE") { requireRule(s.phase === "DAWN" && s.choices.length > 0, "当前没有待办事项"); choose(s, c.value); autoAssignJobs(s); autoAssignOperators(s); return; }
     if (c.type === "FINALIZE") { requireRule(s.phase === "DAWN" && !s.choices.length, "请先完成清晨事项"); s.wave = generateWave(s); s.phase = "DAY"; return; }
     requireRule(s.phase === "DAY", "请在白天安排村务");
     switch (c.type) {
@@ -135,7 +145,7 @@ export function applyCommand(s: GameState, c: Command) {
             p.job = c.job; p.careChild = c.job === "CARE" ? c.child! : null; break;
         }
         case "FAMILY": {
-            requireRule(canMarry(s, person(s, c.a), person(s, c.b)), "双方须在劳作期、单身，且非直系亲属或同胞");
+            requireRule(canMarry(s, person(s, c.a), person(s, c.b)), "成家需成年未退休、单身的男女，且非直系亲属或兄弟姐妹");
             requireRule(Number.isSafeInteger(s.nextFamily + 1), "家庭编号已达安全范围");
             s.families.push({ id: `${s.run}:f${s.nextFamily++}`, partners: [c.a, c.b], lastBirth: null }); break;
         }
@@ -172,12 +182,13 @@ export function applyCommand(s: GameState, c: Command) {
         }
         case "OPERATOR": assignOperator(s, c.index, c.id); break;
         case "NIGHT": {
-            requireRule(s.wave !== null, "波次未准备好"); const e = economy(s);
+            requireRule(s.wave !== null, "波次未准备好"); autoAssignOperators(s); const e = economy(s);
             s.night = { adults: s.people.filter(isWorkingAdult).map(p => p.id), elders: s.people.filter(isElder).map(p => p.id), cared: s.people.filter(p => isWorkingAdult(p) && p.job === "CARE").map(p => p.careChild!), hungry: e.hungry };
             s.food = e.endFood; s.wood = e.endWood; s.phase = "NIGHT"; break;
         }
     }
     if (c.type === "JOB" || c.type === "BIRTH" || c.type === "BUILD") autoAssignJobs(s);
+    if (c.type === "TOWER") autoAssignOperators(s);
 }
 function pruneHistory(s: GameState) {
     const normal = s.history.filter(p => !s.favorites.includes(p.id)).slice(-RULE.historyCap);
@@ -207,7 +218,7 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
     s.people = s.people.filter(p => !departedIds.includes(p.id));
     for (const p of s.people) p.ancestors = p.ancestors.filter(id => !departedIds.includes(id));
     s.families = s.families.filter(f => !f.partners.some(id => departedIds.includes(id)));
-    autoAssignJobs(s);
+    autoAssignJobs(s); autoAssignOperators(s);
     s.stats.retirees += retired.length; s.legacy.retirees += retired.length; pruneHistory(s);
     s.completed++; s.day++; s.phase = "DAWN"; s.wave = null; s.night = null;
     s.legacy.bestNight = Math.max(s.legacy.bestNight, s.completed);

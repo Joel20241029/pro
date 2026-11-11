@@ -19,9 +19,9 @@ export function repairCost(s: GameState) { return RULE.repairCost + GROWTH.repai
 export function upgradeUnavailableReason(s: GameState, cost: UpgradeCost): string | null {
     if (s.phase !== "DAY") return "请在白天建设";
     if (!Number.isSafeInteger(cost.wood) || !Number.isSafeInteger(cost.food)) return "建设数值已达安全范围";
-    if (Math.max(cost.wood, cost.food) > storageCapacity(s)) return "仓储不足，请先修缮民居";
-    if (s.wood < cost.wood && s.food < cost.food) return "木材与粮食不足";
-    if (s.wood < cost.wood) return "木材不足";
-    if (s.food < cost.food) return "粮食不足";
+    if (Math.max(cost.wood, cost.food) > storageCapacity(s)) return `费用超出仓储 ${storageCapacity(s)}，先修缮民居`;
+    if (s.wood < cost.wood && s.food < cost.food) return `还缺 ${cost.wood - s.wood} 木、${cost.food - s.food} 粮`;
+    if (s.wood < cost.wood) return `还缺 ${cost.wood - s.wood} 木材`;
+    if (s.food < cost.food) return `还缺 ${cost.food - s.food} 粮食`;
     return null;
 }

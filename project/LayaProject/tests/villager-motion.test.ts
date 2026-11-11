@@ -107,7 +107,7 @@ test("Night watch uses live reassignment while towers already attack during trav
     equal([motion.get(id).x, motion.get(id).y], [VILLAGE_STOPS.towers[0].x, VILLAGE_STOPS.towers[0].y]);
     ok(s.towers[0].operator !== id, "test must distinguish live and saved assignments");
 });
-test("Tower watch hides only after arrival and reappears on reassignment, release and dawn", () => {
+test("Tower watch hides only after arrival and reappears on reassignment, replacement and dawn", () => {
     const s = createGame(7), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     applyCommand(s, { type: "NIGHT" }); const battle = new BattleSimulation(s); motion.sync(s, battle.base.towers);
     const id = battle.base.towers[0].operator!;
@@ -118,7 +118,8 @@ test("Tower watch hides only after arrival and reappears on reassignment, releas
     const before = { ...motion.get(id) }; battle.reassign(1, id); motion.sync(s, battle.base.towers);
     ok(motion.get(id).walking && !motion.get(id).insideTower); equal([motion.get(id).x, motion.get(id).y], [before.x, before.y]);
     for (let i = 0; i < 1000; i++) motion.update(.05);
-    ok(motion.get(id).insideTower); battle.reassign(1, null); motion.sync(s, battle.base.towers);
+    const replacement = s.people.find(p => !battle.base.towers.some(t => t.operator === p.id))!.id;
+    ok(motion.get(id).insideTower); battle.reassign(1, replacement); motion.sync(s, battle.base.towers);
     ok(!motion.get(id).insideTower);
     battle.reassign(1, id); motion.sync(s, battle.base.towers); for (let i = 0; i < 1000; i++) motion.update(.05);
     ok(motion.get(id).insideTower); s.phase = "DAWN"; motion.sync(s, s.towers);

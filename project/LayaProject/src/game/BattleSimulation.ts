@@ -27,7 +27,7 @@ export class BattleSimulation {
     get operators() { return this.base.towers.map(t => t.operator); }
     get pendingCount() { return this.base.wave!.entries.length - this.cursor + this.queued.length; }
     bell() { if (!this.bellUsed && !this.outcome) { this.bellUsed = true; this.bellTicks = RULE.bellTicks; } }
-    reassign(index: number, id: string | null) { assignOperator(this.base, index, id); }
+    reassign(index: number, id: string) { assignOperator(this.base, index, id); }
     private spawn(kind: EnemyKind, progress: number) {
         const data = ENEMIES[kind], affix = this.base.wave!.affix;
         const hp = Math.ceil(data.hp * enemyPower(this.base.day) * (affix === "FAST" ? .9 : affix === "STURDY" ? 1.15 : 1));
@@ -54,7 +54,7 @@ export class BattleSimulation {
             const p = person(this.base, tower.operator), t = TOWERS[tower.kind], at = PADS[i];
             const distance = (e: Enemy) => { const pos = pointAt(e.progress); return Math.hypot(pos.x - at.x, pos.y - at.y); };
             let speed = 1 + (p.trait === "trait_nimble" ? .1 : 0) + (p.trait === "trait_focused" && tower.kind === "ARROW" ? .15 : 0) + (po.speed || 0) + (tower.kind === "ARROW" ? po.arrowSpeed || 0 : tower.kind === "STONE" ? po.stoneSpeed || 0 : 0);
-            if (this.bellTicks > 0) speed *= 1.5;
+            if (this.bellTicks > 0) speed *= RULE.bellSpeedMultiplier;
             if (this.base.night!.hungry) speed *= RULE.hungerSpeed;
             if (this.enemies.some(e => e.hp > 0 && e.kind === "enemy_disruptor" && distance(e) <= 190)) speed *= RULE.disruptSpeed;
             this.charge[i] += RULE.step * speed / t.interval;

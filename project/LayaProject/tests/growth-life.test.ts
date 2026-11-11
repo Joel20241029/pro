@@ -22,7 +22,7 @@ test("Higher buildings improve yield and retain bounded slots; upgrades charge b
     applyCommand(s, { type: "BUILD", kind: "FARM" }); equal(s.farm, 4); equal([s.food, s.wood], [food - cost.food, wood - cost.wood]); ok(economy(s).food > before.food);
     equal([laborSlots("FARM", 1000), laborSlots("LOGGING", 1000)], [6, 4]); validateState(s);
     const snapshot = JSON.stringify(s); s.food = 0; const denied = JSON.stringify(s);
-    try { applyCommand(s, { type: "BUILD", kind: "FARM" }); throw new Error("must reject"); } catch (e) { ok(String(e).includes("粮食不足")); }
+    try { applyCommand(s, { type: "BUILD", kind: "FARM" }); throw new Error("must reject"); } catch (e) { ok(String(e).includes(`还缺 ${upgradeCost("FARM", s.farm).food - s.food} 粮食`)); }
     equal(JSON.stringify(s), denied); ok(snapshot !== denied);
 });
 test("Housing self-upgrade always fits its current warehouse; gate upgrades preserve existing damage", () => {

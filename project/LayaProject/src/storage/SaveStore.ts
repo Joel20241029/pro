@@ -31,8 +31,8 @@ function decode(raw: string | null): Slot {
         validateState(e.payload); return { kind: "valid", data: e };
     } catch { return { kind: "corrupt" }; }
 }
-export type LoadResult = { kind: "new" } | { kind: "ready" | "recover"; state: GameState } | { kind: "blocked"; reason: string; canReset: boolean };
-interface Pending { raw: string; state: GameState; revision: number; target: number; baseline: (string | null)[]; }
+export type LoadResult = { kind: "new" } | { kind: "ready" | "recover"; state: GameState } | { kind: "incompatible"; reason: string } | { kind: "blocked"; reason: string; canReset: boolean };
+interface Pending { raw: string; state: GameState; revision: number; target: number; baseline: (string | null)[]; reset: boolean; }
 export class SaveStore {
     private baseline: (string | null)[] = []; private revision = 0; private active = -1;
     pending: Pending | null = null;
@@ -40,7 +40,7 @@ export class SaveStore {
     inspect(): LoadResult {
         this.baseline = KEYS.map(k => this.port.read(k));
         const slots = this.baseline.map(decode);
-        if (slots.some(s => s.kind === "version")) return { kind: "blocked", reason: "存档属于其他版本，请使用对应版本。原存档已保留。", canReset: false };
+        if (slots.some(s => s.kind === "version")) return { kind: "incompatible", reason: "旧进度来自其他版本，当前版本无法读取。\n确认前保留旧进度，重开后替换旧进度。" };
         const valid = slots.map((s, i) => ({ s, i })).filter(v => v.s.kind === "valid") as { s: { kind: "valid"; data: Envelope }; i: number }[];
         if (!valid.length) {
             if (slots.every(s => s.kind === "missing")) { this.revision = 0; this.active = -1; return { kind: "new" }; }
@@ -51,27 +51,33 @@ export class SaveStore {
         const best = valid[0]; this.revision = best.s.data.revision; this.active = best.i;
         return { kind: slots.some(s => s.kind === "corrupt") ? "recover" : "ready", state: best.s.data.payload };
     }
-    /** 只有用户明确确认损坏档重开后调用；第一个新提交仍只覆盖一个槽。 */
-    allowReset() { this.revision = 0; this.active = -1; }
-    prepare(state: GameState) {
+    /** reset 仅由玩家确认放弃异版或损坏进度后传入；同一候选替换双槽，不做旧档迁移。 */
+    prepare(state: GameState, reset = false) {
         if (this.pending) throw new Error("请先核对待保存的进度");
         validateState(state);
-        const revision = this.revision + 1;
+        const revision = reset ? 1 : this.revision + 1;
         if (!Number.isSafeInteger(revision)) throw new Error("存档版本已达安全范围");
         const body = { schemaVersion: SCHEMA_VERSION, configVersion: CONFIG_VERSION, revision, commitId: `${state.run}:${revision}:${crc32(canonical(state))}`, payload: state };
-        this.pending = { raw: canonical({ ...body, checksum: crc32(canonical(body)) }), state, revision, target: this.active === 0 ? 1 : 0, baseline: this.baseline.slice() };
+        // 混合版本先替换当前/损坏/空槽，异版槽最后写；中途退出仍会提示确认，不会复活旧村。
+        const target = reset ? (decode(this.baseline[0]).kind === "version" && decode(this.baseline[1]).kind !== "version" ? 1 : 0) : this.active === 0 ? 1 : 0;
+        this.pending = { raw: canonical({ ...body, checksum: crc32(canonical(body)) }), state, revision, target, baseline: this.baseline.slice(), reset };
     }
     commit(): GameState {
         const p = this.pending; if (!p) throw new Error("没有待保存的进度");
         const current = KEYS.map(k => this.port.read(k)), other = 1 - p.target;
-        if (current[other] !== p.baseline[other]) throw new Error("存档在保存期间发生变化，请保留现场并重进核对");
-        if (current[p.target] !== p.raw) {
-            const target = decode(current[p.target]);
-            if (current[p.target] !== p.baseline[p.target] && target.kind !== "missing" && target.kind !== "corrupt") throw new Error("目标存档存在另一份有效进度，停止覆盖");
-            this.port.write(KEYS[p.target], p.raw);
+        if (p.reset) {
+            if (current.some((raw, i) => raw !== p.baseline[i] && raw !== p.raw)) throw new Error("存档在确认重开后发生变化，请重新进入核对，未继续覆盖");
+            for (const i of [p.target, other]) if (current[i] !== p.raw) this.port.write(KEYS[i], p.raw);
+        } else {
+            if (current[other] !== p.baseline[other]) throw new Error("存档在保存期间发生变化，请保留现场并重进核对");
+            if (current[p.target] !== p.raw) {
+                const target = decode(current[p.target]);
+                if (current[p.target] !== p.baseline[p.target] && target.kind !== "missing" && target.kind !== "corrupt") throw new Error("目标存档存在另一份有效进度，停止覆盖");
+                this.port.write(KEYS[p.target], p.raw);
+            }
         }
         const confirmed = KEYS.map(k => this.port.read(k));
-        if (confirmed[p.target] !== p.raw || confirmed[other] !== p.baseline[other]) throw new Error("保存尚未核对完成，请重试核对");
+        if (confirmed[p.target] !== p.raw || confirmed[other] !== (p.reset ? p.raw : p.baseline[other])) throw new Error("保存尚未核对完成，请重试核对");
         this.baseline = confirmed; this.revision = p.revision; this.active = p.target; this.pending = null; return p.state;
     }
 }

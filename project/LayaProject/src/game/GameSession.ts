@@ -20,7 +20,10 @@ export class GameSession {
     }
     recover() { if (this.boot?.kind === "recover") this.accept(this.boot.state); }
     newVillage(trait?: Trait, reset = false) {
-        if (reset) this.saves.allowReset();
+        if (reset) {
+            if (this.saves.pending || !(this.boot?.kind === "incompatible" || (this.boot?.kind === "blocked" && this.boot.canReset))) return;
+            this.submit(createGame(Date.now() >>> 0), false, true); return;
+        }
         this.submit(createGame(Date.now() >>> 0, this.state?.legacy, trait, this.state ? this.state.history : [], this.state ? this.state.favorites : []));
     }
     private accept(s: GameState) {
@@ -31,9 +34,9 @@ export class GameSession {
         if (s.phase === "DAWN" && s.choices.length === 0) { this.command({ type: "FINALIZE" }); return; }
         this.changed();
     }
-    private submit(next: GameState, keepBattle = false) {
+    private submit(next: GameState, keepBattle = false, reset = false) {
         try {
-            this.continuingBattle = keepBattle; this.saves.prepare(next); this.pauses.add("SAVE_PENDING");
+            this.continuingBattle = keepBattle; this.saves.prepare(next, reset); this.pauses.add("SAVE_PENDING");
             this.accept(this.saves.commit());
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); if (!this.saves.pending) this.pauses.delete("SAVE_PENDING"); this.changed(); }
     }
@@ -51,7 +54,7 @@ export class GameSession {
     hide = () => { this.pause("BACKGROUND"); this.changed(); };
     show = () => { this.resume("BACKGROUND"); this.pause("WAIT_RESUME"); this.changed(); };
     bell() { if (this.battle && !this.pauses.size) { this.battle.bell(); this.changed(); } }
-    reassign(index: number, id: string | null) {
+    reassign(index: number, id: string) {
         // 夜间调任允许手动暂停或面板临时暂停；关闭面板只解除 CHOICE，其余暂停仍由各自流程管理。
         if (!this.battle || (!this.pauses.has("USER") && !this.pauses.has("CHOICE")) || this.saves.pending) return false;
         try { this.battle.reassign(index, id); this.error = ""; this.changed(); return true; }

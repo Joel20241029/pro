@@ -28,7 +28,7 @@ test("Retirement preserves home and family, frees work/tower/care, and starts th
     applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: p.id }); p.nights = 1; assignOperator(s, 0, p.id);
     const child = s.people[6], count = s.people.length; win(s);
     ok(isElder(p) && !isWorkingAdult(p)); equal(p.elderNights, 3); equal(p.job, "WAITING"); equal(p.careChild, null);
-    equal(s.people.length, count); equal(s.history.length, 0); equal(s.families.length, 1); equal(s.towers[0].operator, null);
+    equal(s.people.length, count); equal(s.history.length, 0); equal(s.families.length, 1); ok(s.towers[0].operator !== null && s.towers[0].operator !== p.id); ok(isWorkingAdult(s.people.find(q => q.id === s.towers[0].operator)!));
     ok(child.ancestors.includes(p.id)); equal(child.growth, 1); ok(s.summary.includes("照料者荣休")); equal(s.stats.retirees, 1);
     dawn(s); const state = canonical(s); autoAssignJobs(s); equal(canonical(s), state);
     ok(!canMarry(s, spouse, s.people[4]), "living spouse still owns the family bond");
@@ -104,7 +104,7 @@ test("Only current save version is read; old/future data is not migrated or auto
     for (const version of [1, 2, 3, CONFIG_VERSION + 1]) {
         const m = new MemoryStore(), body = { schemaVersion: 1, configVersion: version, revision: 1, commitId: "other-version", payload: createGame(1) };
         const raw = canonical({ ...body, checksum: crc32(canonical(body)) }); m.values.set("daidai_village.save.a", raw);
-        const g = new GameSession(new SaveStore(m)); g.load(); equal(g.state, null); equal(g.boot?.kind, "blocked"); equal(m.values.get("daidai_village.save.a"), raw); equal(m.writes, 0);
+        const g = new GameSession(new SaveStore(m)); g.load(); equal(g.state, null); equal(g.boot?.kind, "incompatible"); equal(m.values.get("daidai_village.save.a"), raw); equal(m.writes, 0);
     }
 });
 test("Personal names are drawn for the specified sex in births and travelers without adding population", () => {

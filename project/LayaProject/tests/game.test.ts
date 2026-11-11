@@ -73,7 +73,7 @@ test("Read errors, corruption, future versions and conflicts stay distinct", () 
     const m = new MemoryStore(), store = new SaveStore(m); store.inspect(); store.prepare(createGame(1)); store.commit();
     m.fail = "READ"; rejects(() => store.inspect()); m.fail = "NONE";
     m.values.set("daidai_village.save.b", "broken"); equal(store.inspect().kind, "recover");
-    m.values.set("daidai_village.save.b", JSON.stringify({ schemaVersion: 99, configVersion: 1 })); equal(store.inspect().kind, "blocked");
+    m.values.set("daidai_village.save.b", JSON.stringify({ schemaVersion: 99, configVersion: 1 })); equal(store.inspect().kind, "incompatible");
 });
 test("Concurrent valid save is never overwritten", () => {
     const m = new MemoryStore(), a = new SaveStore(m), b = new SaveStore(m); a.inspect(); b.inspect(); a.prepare(createGame(1)); b.prepare(createGame(2)); b.commit(); const before = [...m.values.values()][0]; rejects(() => a.commit()); equal([...m.values.values()][0], before);
@@ -95,7 +95,8 @@ test("Tower dialog pause permits reassignment and resumes without changing the s
 });
 test("Closing tower dialog preserves an earlier manual pause", () => {
     const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.command({ type: "NIGHT" });
-    g.pause("USER"); g.pause("CHOICE"); g.reassign(0, null); equal(g.battle!.operators[0], null);
+    const replacement = g.state!.people[4].id;
+    g.pause("USER"); g.pause("CHOICE"); g.reassign(0, replacement); equal(g.battle!.operators[0], replacement);
     g.resume("CHOICE"); g.update(.1); equal(g.battle!.tick, 0); equal([...g.pauses], ["USER"]);
     g.resume("USER"); g.update(.05); equal(g.battle!.tick, 1);
 });
@@ -107,9 +108,9 @@ test("Closing tower dialog does not clear background or return confirmation paus
 });
 test("Pending save still blocks tower reassignment under dialog pause", () => {
     const m = new MemoryStore(), g = new GameSession(new SaveStore(m)); g.load(); g.newVillage(); g.command({ type: "NIGHT" }); g.pause("CHOICE");
-    const operator = g.battle!.operators[0]; m.fail = "BEFORE"; g.command({ type: "SPEED", value: 2 }); ok(g.saves.pending);
-    g.reassign(0, null); equal(g.battle!.operators[0], operator); g.resume("CHOICE"); g.update(.1); equal(g.battle!.tick, 0); ok(g.pauses.has("SAVE_PENDING"));
-    m.fail = "NONE"; g.retry(); g.pause("CHOICE"); g.reassign(0, null); equal(g.battle!.operators[0], null);
+    const operator = g.battle!.operators[0], replacement = g.state!.people[4].id; m.fail = "BEFORE"; g.command({ type: "SPEED", value: 2 }); ok(g.saves.pending);
+    g.reassign(0, replacement); equal(g.battle!.operators[0], operator); g.resume("CHOICE"); g.update(.1); equal(g.battle!.tick, 0); ok(g.pauses.has("SAVE_PENDING"));
+    m.fail = "NONE"; g.retry(); g.pause("CHOICE"); g.reassign(0, replacement); equal(g.battle!.operators[0], replacement);
 });
 test("Empty dawn resumes once without repeated age settlement", () => {
     const m = new MemoryStore(), st = new SaveStore(m); st.inspect(); const s = createGame(1); applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); st.prepare(s); st.commit();
