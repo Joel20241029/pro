@@ -1,15 +1,17 @@
-import { ADULT_APPEARANCE, ELITE, FOUNDERS, POLICIES, Policy, RULE, SKILLS, Skill, TOWERS, TowerKind, TRAITS, Trait, VILLAGER_NAMES } from "./GameConfig";
+import { ADULT_APPEARANCE, ELITE, FOUNDERS, GROWTH, POLICIES, Policy, RULE, SKILLS, Skill, TOWERS, TowerKind, TRAITS, Trait, VILLAGER_NAMES } from "./GameConfig";
 import { clone, GameState, isElder, isWorkingAdult, Job, Legacy, Person } from "./GameState";
 import { SeededRandom } from "./SeededRandom";
 import { generateWave, season } from "./WaveGenerator";
+import { gateCapacity, laborSlots, laborYield, repairCost, storageCapacity, upgradeCost, upgradeUnavailableReason } from "./Growth";
+import { nextSex, travelerDue } from "./Population";
 export const JOB_NAMES: Record<Job, string> = { WAITING: "待安排", FARM: "耕作", LOGGING: "伐木", CARE: "照料" };
 /** 用户确认的自动分配顺序：先农艺/伐木专长对应空岗，再先农田后伐木；各轮按在村顺序。
  * 只处理待安排成年人，不换走在岗者、不自动照料、不使用随机数；没有空岗仍为待安排。
  */
 export function autoAssignJobs(s: GameState) {
     const free = {
-        FARM: RULE.farmSlots[s.farm - 1] - s.people.filter(p => p.job === "FARM").length,
-        LOGGING: RULE.logSlots[s.logging - 1] - s.people.filter(p => p.job === "LOGGING").length
+        FARM: laborSlots("FARM", s.farm) - s.people.filter(p => p.job === "FARM").length,
+        LOGGING: laborSlots("LOGGING", s.logging) - s.people.filter(p => p.job === "LOGGING").length
     };
     for (const p of s.people) if (isWorkingAdult(p) && p.skill !== null && p.job === "WAITING") {
         const job = p.skill === "skill_farming" ? "FARM" : p.skill === "skill_logging" ? "LOGGING" : null;
@@ -28,17 +30,17 @@ function spend(s: GameState, resource: "food" | "wood", amount: number) { requir
 function newId(s: GameState): string { requireRule(Number.isSafeInteger(s.nextPerson + 1), "人口编号已达安全范围"); return `${s.run}:${s.nextPerson++}`; }
 function remember(s: GameState, trait: Trait) { if (!s.legacy.traits.includes(trait)) s.legacy.traits.push(trait); }
 export function createGame(seed: number, old?: Legacy, inherited?: Trait, history: Person[] = [], favorites: string[] = []): GameState {
-    const legacy: Legacy = old ? clone(old) : { births: 0, retirees: 0, bestNight: 0, bestTier: 0, traits: [], nextRun: 1 };
+    const legacy: Legacy = old ? clone(old) : { births: 0, retirees: 0, bestNight: 0, traits: [], nextRun: 1 };
     requireRule(Number.isSafeInteger(legacy.nextRun + 1), "村落编号已达安全范围");
     if (inherited) requireRule(legacy.traits.includes(inherited), "尚未发现此天赋");
     const s: GameState = {
-        run: legacy.nextRun++, nextPerson: 1, nextFamily: 2, day: 1, completed: 0, lastDawn: 0,
+        run: legacy.nextRun++, nextPerson: 1, nextFamily: 2, day: 1, completed: 0,
         phase: "DAY", food: RULE.initialResource, wood: RULE.initialResource, gate: RULE.gateMax,
-        houses: 2, farm: 1, logging: 1, tier: 0, policy: null,
+        houses: 2, housing: 1, gateLevel: 1, farm: 1, logging: 1, tier: 0, policy: null, lastTraveler: null,
         people: [], families: [], towers: [], history: clone(history), favorites: favorites.slice(), choices: [], wave: null, night: null,
-        // 三流通过不同固定掩码分离；仅新村生成种子，重进不重新取时间。
-        rng: { family: (seed ^ 0xa341316c) >>> 0, world: (seed ^ 0xc8013ea4) >>> 0, battle: (seed ^ 0xad90777d) >>> 0 },
-        stats: { births: 0, retirees: 0, generation: 1 }, legacy, settings: { speed: 1 }, summary: ""
+        // 家庭与世界通过不同固定掩码分离；战斗不使用随机数，重进不重新取时间。
+        rng: { family: (seed ^ 0xa341316c) >>> 0, world: (seed ^ 0xc8013ea4) >>> 0 },
+        stats: { births: 0, retirees: 0, generation: 1 }, legacy, settings: { speed: 1, music: true }, summary: ""
     };
     s.people = FOUNDERS.map((f, i): Person => ({ id: newId(s), name: f.name, sex: f.sex, origin: "FOUNDER", elite: false, appearance: f.appearance, trait: i === 0 && inherited ? inherited : f.trait, skill: f.skill, generation: 1, parents: [], ancestors: [], adult: true, nights: f.nights, elderNights: 0, growth: 0, job: f.job, careChild: null }));
     s.families.push({ id: `${s.run}:f1`, partners: [s.people[0].id, s.people[1].id], lastBirth: null });
@@ -78,21 +80,21 @@ export function economy(s: GameState) {
         if (isElder(p)) elderRations += ration;
         if (!isWorkingAdult(p)) continue;
         const production = p.elite ? ELITE.productionMultiplier : 1;
-        if (p.job === "FARM") food += Math.floor(production * RULE.farmBase * (1 + (p.trait === "trait_diligent" ? .2 : 0) + (p.skill === "skill_farming" ? .2 : 0) + (season(s.day) === 0 ? .1 : 0) + (po.food || 0)));
-        if (p.job === "LOGGING") wood += Math.floor(production * RULE.logBase * (1 + (p.trait === "trait_woodwise" ? .2 : 0) + (p.skill === "skill_logging" ? .2 : 0) + (season(s.day) === 2 ? .15 : 0) + (po.wood || 0)));
+        if (p.job === "FARM") food += Math.floor(production * laborYield("FARM", s.farm) * (1 + (p.trait === "trait_diligent" ? .2 : 0) + (p.skill === "skill_farming" ? .2 : 0) + (season(s.day) === 0 ? .1 : 0) + (po.food || 0)));
+        if (p.job === "LOGGING") wood += Math.floor(production * laborYield("LOGGING", s.logging) * (1 + (p.trait === "trait_woodwise" ? .2 : 0) + (p.skill === "skill_logging" ? .2 : 0) + (season(s.day) === 2 ? .15 : 0) + (po.wood || 0)));
         if (p.job === "CARE" && s.people.some(c => c.id === p.careChild && !c.adult)) food += (p.skill === "skill_nurturing" ? 2 : 0) + (po.care || 0) + (p.elite ? ELITE.careFoodBonus : 0);
     }
     rations = Math.ceil(rations * (1 + (season(s.day) === 3 ? .2 : 0) + (po.ration || 0)));
     // elderRations 是已包含在总口粮中的基础值，仅供 UI 解释；不可再次扣除或单独向上取整。
-    return { food, wood, rations, elderRations, hungry: s.food + food < rations, endFood: Math.min(RULE.storageCap, Math.max(0, s.food + food - rations)), endWood: Math.min(RULE.storageCap, s.wood + wood) };
+    return { food, wood, rations, elderRations, hungry: s.food + food < rations, endFood: Math.min(storageCapacity(s), Math.max(0, s.food + food - rations)), endWood: Math.min(storageCapacity(s), s.wood + wood) };
 }
 export type Command =
     { type: "JOB"; id: string; job: Job; child?: string; replace?: string } |
     { type: "FAMILY"; a: string; b: string } | { type: "BIRTH"; family: string; carer: string } |
-    { type: "BUILD"; kind: "HOUSE" | "FARM" | "LOGGING" } | { type: "REPAIR" } |
+    { type: "BUILD"; kind: "HOUSE" | "FARM" | "LOGGING" | "HOUSING" | "GATE" } | { type: "REPAIR" } |
     { type: "TOWER"; index: number; kind: TowerKind } | { type: "UPGRADE"; index: number } |
     { type: "OPERATOR"; index: number; id: string | null } | { type: "NIGHT" } |
-    { type: "CHOOSE"; value: string } | { type: "FINALIZE" } | { type: "FAVORITE"; id: string } | { type: "SPEED"; value: 1 | 2 };
+    { type: "CHOOSE"; value: string } | { type: "FINALIZE" } | { type: "FAVORITE"; id: string } | { type: "SPEED"; value: 1 | 2 | 3 } | { type: "MUSIC"; enabled: boolean };
 export function assignOperator(s: GameState, index: number, id: string | null) {
     const t = s.towers[index]; requireRule(t && t.kind !== null, "此处尚未建塔");
     if (id) requireRule(isWorkingAdult(person(s, id)), "只有仍在劳作期的成年人可以驻塔");
@@ -100,7 +102,8 @@ export function assignOperator(s: GameState, index: number, id: string | null) {
     t.operator = id;
 }
 export function applyCommand(s: GameState, c: Command) {
-    if (c.type === "SPEED") { requireRule(c.value === 1 || c.value === 2, "无效倍速"); s.settings.speed = c.value; return; }
+    if (c.type === "SPEED") { requireRule(c.value === 1 || c.value === 2 || c.value === 3, "无效倍速"); s.settings.speed = c.value; return; }
+    if (c.type === "MUSIC") { requireRule(typeof c.enabled === "boolean", "无效音乐设置"); s.settings.music = c.enabled; return; }
     if (c.type === "FAVORITE") {
         requireRule(s.history.some(p => p.id === c.id), "此人不在家谱中");
         const i = s.favorites.indexOf(c.id);
@@ -115,7 +118,7 @@ export function applyCommand(s: GameState, c: Command) {
             const p = person(s, c.id); requireRule(isWorkingAdult(p), "孩子和荣休老人不能安排工作");
             let replaced: Person | null = null;
             if (c.job === "FARM" || c.job === "LOGGING") {
-                const max = c.job === "FARM" ? RULE.farmSlots[s.farm - 1] : RULE.logSlots[s.logging - 1];
+                const max = laborSlots(c.job, c.job === "FARM" ? s.farm : s.logging);
                 const full = s.people.filter(q => q.id !== p.id && q.job === c.job).length >= max;
                 if (c.replace) {
                     replaced = person(s, c.replace);
@@ -141,7 +144,7 @@ export function applyCommand(s: GameState, c: Command) {
             const f = s.families.find(f => f.id === c.family)!;
             const parents = f.partners.map(id => person(s, id)), carer = person(s, c.carer);
             spend(s, "food", RULE.birthCost);
-            const rng = new SeededRandom(s.rng.family), sex = rng.range(2) === 0 ? "MALE" : "FEMALE";
+            const rng = new SeededRandom(s.rng.family), sex = nextSex(s.people, rng);
             const trait = parents[0].trait === parents[1].trait ? parents[0].trait : parents[rng.range(2)].trait;
             const id = newId(s);
             const nameIndex = rng.range(VILLAGER_NAMES.child.length + 1);
@@ -150,12 +153,23 @@ export function applyCommand(s: GameState, c: Command) {
             s.people.push(child); carer.job = "CARE"; carer.careChild = id; f.lastBirth = s.completed;
             s.stats.births++; s.legacy.births++; s.stats.generation = Math.max(s.stats.generation, child.generation); remember(s, trait); s.rng.family = rng.state; break;
         }
-        case "BUILD":
+        case "BUILD": {
             if (c.kind === "HOUSE") { requireRule(s.houses < RULE.houseMax, "民居已达上限"); spend(s, "wood", RULE.houseCost); s.houses++; }
-            else { const field = c.kind === "FARM" ? "farm" : "logging"; requireRule(s[field] < 3, "建筑已满级"); spend(s, "wood", (field === "farm" ? RULE.farmUpgrade : RULE.logUpgrade)[s[field] - 1]); s[field]++; } break;
-        case "REPAIR": requireRule(s.gate < RULE.gateMax, "城门完好"); spend(s, "wood", RULE.repairCost); s.gate = Math.min(RULE.gateMax, s.gate + RULE.repairAmount * (1 + (policy(s).repair || 0))); break;
+            else {
+                const field = c.kind === "FARM" ? "farm" : c.kind === "LOGGING" ? "logging" : c.kind === "HOUSING" ? "housing" : "gateLevel";
+                const cost = upgradeCost(c.kind, s[field]), reason = upgradeUnavailableReason(s, cost);
+                requireRule(!reason, reason!); const oldMax = gateCapacity(s);
+                spend(s, "wood", cost.wood); spend(s, "food", cost.food); s[field]++;
+                if (c.kind === "GATE") s.gate += gateCapacity(s) - oldMax;
+            } break;
+        }
+        case "REPAIR": requireRule(s.gate < gateCapacity(s), "城门完好"); spend(s, "wood", repairCost(s)); s.gate = Math.min(gateCapacity(s), s.gate + Math.ceil(gateCapacity(s) * GROWTH.repairFraction * (1 + (policy(s).repair || 0)))); break;
         case "TOWER": { const t = s.towers[c.index]; requireRule(t && c.kind in TOWERS, "塔位无效"); requireRule(t.kind !== c.kind, "已是此类防塔"); spend(s, "wood", t.kind ? RULE.towerConvert : TOWERS[c.kind].cost); t.kind = c.kind; if (!t.level) t.level = 1; break; }
-        case "UPGRADE": { const t = s.towers[c.index]; requireRule(t && t.kind && t.level < 3, "无法升级此塔"); spend(s, "wood", RULE.towerUpgrade[t.level - 1]); t.level++; break; }
+        case "UPGRADE": {
+            const t = s.towers[c.index]; requireRule(t && t.kind, "此处尚未建塔");
+            const cost = upgradeCost("TOWER", t.level), reason = upgradeUnavailableReason(s, cost); requireRule(!reason, reason!);
+            spend(s, "wood", cost.wood); spend(s, "food", cost.food); t.level++; break;
+        }
         case "OPERATOR": assignOperator(s, c.index, c.id); break;
         case "NIGHT": {
             requireRule(s.wave !== null, "波次未准备好"); const e = economy(s);
@@ -176,7 +190,7 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
         s.phase = "GAME_OVER"; s.wave = null; s.night = null;
         s.summary = `守住 ${s.completed} 夜，传承至第 ${s.stats.generation} 代，迎来 ${s.stats.births} 个孩子，${s.stats.retirees} 位村民荣休。`; return;
     }
-    const rng = new SeededRandom(s.rng.family), world = new SeededRandom(s.rng.world), completedDay = s.day;
+    const rng = new SeededRandom(s.rng.family), world = new SeededRandom(s.rng.world);
     // 只递减入夜时已经在养老的人，新荣休者从下一夜开始计时，失败夜已在上方返回。
     for (const id of s.night.elders) person(s, id).elderNights--;
     const departed = s.night.elders.map(id => person(s, id)).filter(p => p.elderNights === 0), departedIds = departed.map(p => p.id);
@@ -195,11 +209,12 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
     s.families = s.families.filter(f => !f.partners.some(id => departedIds.includes(id)));
     autoAssignJobs(s);
     s.stats.retirees += retired.length; s.legacy.retirees += retired.length; pruneHistory(s);
-    s.completed++; s.day++; s.lastDawn = completedDay; s.phase = "DAWN"; s.wave = null; s.night = null;
-    s.legacy.bestNight = Math.max(s.legacy.bestNight, s.completed); s.legacy.bestTier = Math.max(s.legacy.bestTier, s.tier);
+    s.completed++; s.day++; s.phase = "DAWN"; s.wave = null; s.night = null;
+    s.legacy.bestNight = Math.max(s.legacy.bestNight, s.completed);
     s.choices = grown.sort((a, b) => Number(a.id.split(":")[1]) - Number(b.id.split(":")[1])).map(p => ({ kind: "SKILL" as const, person: p.id, options: rng.choices(Object.keys(SKILLS) as Skill[], 3) }));
-    if (s.day >= 5 && (s.day - 5) % 4 === 0) {
-        const sex = world.range(2) === 0 ? "MALE" : "FEMALE";
+    if (travelerDue(s, capacity(s))) {
+        s.lastTraveler = s.completed;
+        const sex = nextSex(s.people, world, true);
         const name = [...VILLAGER_NAMES.traveler, VILLAGER_NAMES.personal[sex]][world.range(VILLAGER_NAMES.traveler.length + 1)];
         const elite = world.range(ELITE.chanceScale) < ELITE.chancePercent;
         const traveler: Person = { id: newId(s), name, sex, origin: "TRAVELER", elite, appearance: ADULT_APPEARANCE[sex], trait: (Object.keys(TRAITS) as Trait[])[world.range(8)], skill: (Object.keys(SKILLS) as Skill[])[world.range(6)], generation: 1, parents: [], ancestors: [], adult: true, nights: elite ? ELITE.adultNights : RULE.adultNights, elderNights: 0, growth: 0, job: "WAITING", careChild: null };

@@ -33,9 +33,9 @@ export class WechatPlatform implements StoragePort {
         this.notifiedBest = bestNight;
         this.postRanking({ bestNight });
     }
-    postRanking(message: object): boolean {
-        try { wx.getOpenDataContext().postMessage(message); return true; }
-        catch (error) { console.error("[好友榜] 开放域消息发送失败", error); return false; }
+    postRanking(message: object): void {
+        try { wx.getOpenDataContext().postMessage(message); }
+        catch (error) { console.error("[好友榜] 开放域消息发送失败", error); }
     }
     /** 点击排行榜时直接请求微信原生授权；不再提供单独权限按钮或主动跳转设置页。 */
     authorizeRanking(isCurrent: () => boolean, done: (error: string | null) => void) {

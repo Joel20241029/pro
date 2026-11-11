@@ -57,11 +57,11 @@ test('synchronous API errors release queue and surface to refresh caller', () =>
 });
 test('XML attributes round trip exactly once including literal entities and query strings', () => {
     for (const text of ['A&B <hi> "say" \'ok\'', '&amp; &lt;', 'https://example.test/avatar?a=1&b=2']) assert.equal(render.decode(render.escape(text)), text);
-    const xml = render.template([{ nickname: '"><view/>', avatarUrl: 'x?a=1&b=2', rank: 1, score: 5 }], 5, 0);
+    const xml = render.template([{ nickname: '"><view/>', avatarUrl: 'x?a=1&b=2', rank: 1, score: 5 }], 0);
     assert(!xml.includes('value=""><view/>')); assert(xml.includes('x?a=1&amp;b=2'));
 });
 test('ranking presentation contains only header, scrollable rows and a short hint', () => {
-    const xml = render.template([{ rank: 1, nickname: 'same', avatarUrl: '', score: 10 }, { rank: 2, nickname: 'same', avatarUrl: '', score: 5 }], 5, 0);
+    const xml = render.template([{ rank: 1, nickname: 'same', avatarUrl: '', score: 10 }, { rank: 2, nickname: 'same', avatarUrl: '', score: 5 }], 0);
     assert(!xml.includes('class="mine"')); assert(!xml.includes('按钮')); assert.equal(render.style.root.height, 680);
     assert.equal(render.style.header.height + render.style.list.height + render.style.tip.height, render.style.root.height);
 });
@@ -94,7 +94,7 @@ test('real Layout parser decodes nicknames and avatar query once, without inject
     global.requestAnimationFrame = () => 1; global.cancelAnimationFrame = () => {};
     const Layout = require(base + '/engine.js').default;
     const name = 'A&B <hi> "say" &amp;';
-    Layout.init(render.template([{ rank: 1, score: 3, nickname: name, avatarUrl: 'https://x.test/a?q=1&b=2' }], 3, 0), render.style, render.decode);
+    Layout.init(render.template([{ rank: 1, score: 3, nickname: name, avatarUrl: 'https://x.test/a?q=1&b=2' }], 0), render.style, render.decode);
     assert.equal(Layout.getElementsByClassName('name')[0].value, name);
     assert.equal(Layout.getElementsByClassName('avatar')[0].src, 'https://x.test/a?q=1&b=2');
 });

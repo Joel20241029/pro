@@ -156,15 +156,17 @@ for (const [character, map] of Object.entries(recipe.animations.walkDirections))
 write('atlases/frames.json', { format: 'daidai-village-rects', version: 2, coordinateSystem: 'top-left pixels', padding, rotated: false, trimmed: true, trimAlphaThreshold: 0, pages, frames });
 write('animations.json', recipe.animations);
 const publicAssets = assets.map(({ _trim, _pixels, _packedFile, ...a }) => a);
-const runtimeFiles = [...pages.map(p => p.path), 'atlases/frames.json', 'animations.json'];
-write('manifest.json', { version: 2, status: 'imported_in_wechat_prototype', preferredRuntimeMode: 'atlas_only', runtimeWhitelist: runtimeFiles, assetCount: assets.length, assets: publicAssets,
+const audio = read('audio/manifest.json');
+if (hash(path.join(root, audio.runtimeFile)) !== audio.sha256) throw new Error('音乐成品与源清单不一致，请重建音频');
+const runtimeFiles = [...pages.map(p => p.path), 'atlases/frames.json', 'animations.json', audio.runtimeFile];
+write('manifest.json', { version: 2, status: 'imported_in_wechat_prototype', preferredRuntimeMode: 'atlas_plus_audio', runtimeWhitelist: runtimeFiles, assetCount: assets.length, assets: publicAssets, audio,
     externalAssets: recipe.externalAssets, engineImport: { directory: 'project/LayaProject/assets/resources/village', mode: 'trimmed_shared_atlas', runtime: 'WeChat Mini Game', verificationReport: 'doc/tech/06_视觉升级与资源管线.md' } });
 const categoryStats = {}; for (const a of assets) { const c = categoryStats[a.category] ??= { count: 0, bytes: 0 }; c.count++; c.bytes += a.bytes; }
 const pngBytes = pages.reduce((sum, p) => sum + p.bytes, 0), metadataBytes = runtimeFiles.filter(p => p.endsWith('.json')).reduce((sum, p) => sum + fs.statSync(path.join(root, p)).size, 0);
 const packing = { sourceCanvasPixels: originalArea, atlasContentPixels: trimmedArea, savedContentPixels: originalArea - trimmedArea, savedContentPercent: +(100 * (originalArea - trimmedArea) / originalArea).toFixed(2), trimmedAssetCount: trimmedCount, alphaThreshold: 0, nineSlicePreserved: true, paddingPerSide: padding };
 write('budget_report.json', { generatedAt: new Date().toISOString(), runtimeAssetCount: assets.length, animationCount: recipe.animations.animations.length,
     animationFrames: recipe.animations.animations.reduce((s, a) => s + a.frameCount, 0), categoryStats, atlasPages: pages, packing,
-    selectedRuntime: { mode: 'atlas_only', pngBytes, metadataBytes, totalBytes: pngBytes + metadataBytes, files: runtimeFiles },
+    selectedRuntime: { mode: 'atlas_plus_audio', pngBytes, metadataBytes, audioBytes: audio.bytes, totalBytes: pngBytes + metadataBytes + audio.bytes, files: runtimeFiles },
     nineSliceCompaction: { originalPixels: nineSliceOriginalPixels, compactPixels: nineSliceCompactPixels, cornersPreserved: true },
     budgets: { fullPackageTarget: 3500000 }, sourceBytes: read('source/generation_records.json').records.reduce((sum, r) => sum + r.bytes, 0),
     budgetComparison: { worldPngBytes: pages.filter(p => p.group === 'world').reduce((s, p) => s + p.bytes, 0), uiAndEffectsPngBytes: pages.filter(p => p.group === 'ui').reduce((s, p) => s + p.bytes, 0) },
@@ -194,4 +196,4 @@ if (args.includes('--sync')) {
     for (const name of fs.readdirSync(dest)) if (!name.endsWith('.meta') && !allowed.has(name)) throw new Error('发现非本轮运行白名单文件，请人工核对：' + name);
     for (const name of runtimeFiles) fs.copyFileSync(path.join(root, name), path.join(dest, path.basename(name)));
 }
-console.log(JSON.stringify({ assets: assets.length, clips: clips.length, pages: pages.length, runtimeBytes: pngBytes + metadataBytes, packing, sync: args.includes('--sync') }));
+console.log(JSON.stringify({ assets: assets.length, clips: clips.length, pages: pages.length, runtimeBytes: pngBytes + metadataBytes + audio.bytes, packing, sync: args.includes('--sync') }));

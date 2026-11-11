@@ -1,0 +1,42 @@
+const {test}=require('node:test');
+const assert=require('node:assert/strict');
+const path=require('node:path');
+const root=process.env.DAIDAI_TEST_BUILD;
+if(!root)throw new Error('Set DAIDAI_TEST_BUILD to compiled project under Downloads');
+const {WechatMusic}=require(path.join(root,'platform/WechatMusic.js'));
+function setup(){
+ const events={begin:new Set(),end:new Set()}, calls={created:0,play:0,pause:0,destroy:0,problems:0}, tracks=[];
+ global.wx={createInnerAudioContext(){calls.created++;const audio={src:'',loop:false,autoplay:true,volume:1,play(){calls.play++;},pause(){calls.pause++;},destroy(){calls.destroy++;},onError(fn){this.error=fn;}};tracks.push(audio);return audio;},
+ onAudioInterruptionBegin:fn=>events.begin.add(fn),offAudioInterruptionBegin:fn=>events.begin.delete(fn),onAudioInterruptionEnd:fn=>events.end.add(fn),offAudioInterruptionEnd:fn=>events.end.delete(fn)};
+ const music=new WechatMusic('resources/village/village_loop.mp3',()=>calls.problems++);
+ return{music,calls,tracks,events};
+}
+test('gesture starts one looping context without requiring unsupported global audio options',()=>{
+ const {music,calls,tracks}=setup();music.setEnabled(true);assert.equal(calls.play,0);music.interact();music.interact();
+ assert.equal(calls.created,1);assert.equal(calls.play,1);const audio=tracks[0];
+ assert.equal(audio.src,'resources/village/village_loop.mp3');assert.equal(audio.loop,true);assert.equal(audio.autoplay,false);assert.equal(audio.volume,.3);
+ music.setEnabled(false);assert.equal(calls.pause,1);music.interact();assert.equal(calls.play,1);music.setEnabled(true);assert.equal(calls.play,1);music.interact();assert.equal(calls.play,2);assert.equal(calls.created,1);music.destroy();
+});
+test('background pauses playback and waits for next gesture to resume',()=>{
+ const {music,calls}=setup();music.setEnabled(true);music.interact();music.suspend();assert.equal(calls.pause,1);assert.equal(calls.play,1);
+ music.setEnabled(true);assert.equal(calls.play,1);music.interact();assert.equal(calls.play,2);music.destroy();
+});
+test('system interruption pauses and waits for a new gesture after ending',()=>{
+ const {music,calls,events}=setup();music.setEnabled(true);music.interact();events.begin.forEach(fn=>fn());music.interact();assert.equal(calls.play,1);
+ events.end.forEach(fn=>fn());assert.equal(calls.play,1);music.interact();assert.equal(calls.play,2);music.destroy();assert.equal(events.begin.size+events.end.size,0);
+});
+test('errors notify once, never retry per frame, explicit off/on replaces failed context',()=>{
+ const {music,calls,tracks}=setup();music.setEnabled(true);music.interact();tracks[0].error({errMsg:'decoder failure'});tracks[0].error({errMsg:'decoder failure'});
+ for(let i=0;i<60;i++)music.interact();assert.equal(calls.problems,1);assert.equal(calls.play,1);
+ music.setEnabled(false);music.setEnabled(true);assert.equal(calls.destroy,1);music.interact();assert.equal(calls.created,2);assert.equal(calls.play,2);
+ tracks[0].error({errMsg:'late failure of old context'});assert.equal(calls.problems,1);music.destroy();
+});
+test('destroy is idempotent and ignores late errors and interaction',()=>{
+ const {music,calls,events,tracks}=setup();music.setEnabled(true);music.interact();music.destroy();music.destroy();tracks[0].error({errMsg:'late'});music.interact();
+ assert.equal(calls.destroy,1);assert.equal(calls.problems,0);assert.equal(calls.play,1);assert.equal(events.begin.size+events.end.size,0);
+});
+test('synchronous native failure is isolated, disabled music ignores late errors',()=>{
+ const {music,calls,tracks}=setup();const create=wx.createInnerAudioContext;wx.createInnerAudioContext=()=>{throw new Error('native create failed');};
+ music.setEnabled(true);music.interact();music.interact();assert.equal(calls.problems,1);wx.createInnerAudioContext=create;
+ music.setEnabled(false);music.setEnabled(true);music.interact();assert.equal(calls.play,1);music.setEnabled(false);tracks[0].error({errMsg:'late while off'});assert.equal(calls.problems,1);music.destroy();
+});

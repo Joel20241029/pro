@@ -148,7 +148,7 @@
       "trimPolicy": "atlas_trim_restore_source_canvas",
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
-      "mapping": "CHILD growth 0, no extra gameplay stage",
+      "mapping": "Baby stays at camp nursery from birth; never uses a walking clip",
       "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
       "usageStatus": "runtime_connected"
     },
@@ -686,9 +686,10 @@
       "trimPolicy": "atlas_trim_restore_source_canvas",
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
-      "mapping": "adult male CARE at child home",
+      "mapping": "CARE beside child at stable camp nursery; native facing RIGHT; mirror horizontally when child is on left",
       "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected"
+      "usageStatus": "runtime_connected",
+      "nativeFacing": "RIGHT"
     },
     {
       "id": "villager_female_a_care",
@@ -714,9 +715,10 @@
       "trimPolicy": "atlas_trim_restore_source_canvas",
       "clock": "scene_visual_or_battle",
       "restartOnActionChange": true,
-      "mapping": "adult female CARE at child home",
+      "mapping": "CARE beside child at stable camp nursery; native facing RIGHT; mirror horizontally when child is on left",
       "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected"
+      "usageStatus": "runtime_connected",
+      "nativeFacing": "RIGHT"
     },
     {
       "id": "villager_elder_male_walk",

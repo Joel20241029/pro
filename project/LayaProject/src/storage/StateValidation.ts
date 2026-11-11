@@ -1,5 +1,6 @@
 import { ADULT_APPEARANCE, ELITE, ENEMIES, POLICIES, RULE, SKILLS, TOWERS, TRAITS } from "../game/GameConfig";
 import { GameState, isElder, isWorkingAdult, Person } from "../game/GameState";
+import { gateCapacity, laborSlots, levelPower, storageCapacity } from "../game/Growth";
 function check(v: unknown, message = "存档数据不完整"): asserts v { if (!v) throw new Error(message); }
 const int = (v: unknown, low = 0, high = Number.MAX_SAFE_INTEGER) => Number.isSafeInteger(v) && (v as number) >= low && (v as number) <= high;
 const text = (v: unknown) => typeof v === "string" && v.length > 0 && v.length <= 80;
@@ -21,10 +22,12 @@ function validatePerson(p: Person) {
 }
 /** 载入即验证业务引用；损坏内容不自动补值、不自动清档。 */
 export function validateState(s: GameState) {
-    check(s && int(s.run, 1) && int(s.nextPerson, 1) && int(s.nextFamily, 1) && int(s.day, 1) && int(s.completed) && s.day === s.completed + 1 && int(s.lastDawn) && s.lastDawn === s.completed);
+    check(s && int(s.run, 1) && int(s.nextPerson, 1) && int(s.nextFamily, 1) && int(s.day, 1) && int(s.completed) && s.day === s.completed + 1);
     check(["DAY", "NIGHT", "DAWN", "GAME_OVER"].includes(s.phase));
-    check(int(s.food, 0, RULE.storageCap) && int(s.wood, 0, RULE.storageCap) && int(s.gate, 0, RULE.gateMax) && (s.phase === "GAME_OVER" ? s.gate === 0 : s.gate > 0));
-    check(int(s.houses, 2, RULE.houseMax) && int(s.farm, 1, 3) && int(s.logging, 1, 3) && int(s.tier, 0, RULE.maxTier) && (s.policy === null || own(s.policy, POLICIES)));
+    check(int(s.housing, 1) && int(s.gateLevel, 1) && int(storageCapacity(s), RULE.storageCap) && int(gateCapacity(s), RULE.gateMax));
+    check(int(s.food, 0, storageCapacity(s)) && int(s.wood, 0, storageCapacity(s)) && int(s.gate, 0, gateCapacity(s)) && (s.phase === "GAME_OVER" ? s.gate === 0 : s.gate > 0));
+    check(int(s.houses, 2, RULE.houseMax) && int(s.farm, 1) && int(s.logging, 1) && int(s.tier, 0, RULE.maxTier) && (s.policy === null || own(s.policy, POLICIES)));
+    check(s.lastTraveler === null || int(s.lastTraveler, 1, s.completed));
     check(Array.isArray(s.people) && s.people.length <= Math.min(RULE.populationCap, s.houses * RULE.houseCapacity)); s.people.forEach(validatePerson);
     check(Array.isArray(s.history) && s.history.length <= RULE.historyCap + RULE.favoriteCap); s.history.forEach(validatePerson);
     const all = [...s.people, ...s.history]; check(new Set(all.map(p => p.id)).size === all.length);
@@ -36,7 +39,7 @@ export function validateState(s: GameState) {
     check(s.people.every(p => p.ancestors.every(id => s.people.some(a => a.id === id))));
     const cares = workers.filter(p => p.job === "CARE").map(p => p.careChild);
     check(new Set(cares).size === cares.length && cares.every(id => children.some(p => p.id === id)));
-    check(workers.filter(p => p.job === "FARM").length <= RULE.farmSlots[s.farm - 1] && workers.filter(p => p.job === "LOGGING").length <= RULE.logSlots[s.logging - 1]);
+    check(workers.filter(p => p.job === "FARM").length <= laborSlots("FARM", s.farm) && workers.filter(p => p.job === "LOGGING").length <= laborSlots("LOGGING", s.logging));
     check(Array.isArray(s.families) && s.families.length <= 10);
     const partners: string[] = [];
     for (const f of s.families) {
@@ -48,7 +51,7 @@ export function validateState(s: GameState) {
     check(Array.isArray(s.towers) && s.towers.length === 4);
     const operators: string[] = [];
     for (const t of s.towers) {
-        check(t.kind === null ? t.level === 0 && t.operator === null : own(t.kind, TOWERS) && int(t.level, 1, 3));
+        check(t.kind === null ? t.level === 0 && t.operator === null : own(t.kind, TOWERS) && int(t.level, 1) && Number.isSafeInteger(Math.ceil(levelPower(t.level) * TOWERS[t.kind].damage)));
         if (t.operator !== null) { check(workers.some(p => p.id === t.operator)); operators.push(t.operator); }
     }
     check(new Set(operators).size === operators.length && ids(s.favorites, RULE.favoriteCap) && s.favorites.every(id => s.history.some(p => p.id === id)));
@@ -73,9 +76,9 @@ export function validateState(s: GameState) {
         check(s.night.elders.length === elders.length && s.night.elders.every(id => elders.some(p => p.id === id)));
         check(s.night.cared.length === cares.length && s.night.cared.every(id => cares.includes(id)));
     } else check(s.night === null);
-    check(s.rng && [s.rng.family, s.rng.world, s.rng.battle].every(n => int(n, 0, 0xffffffff)));
+    check(s.rng && [s.rng.family, s.rng.world].every(n => int(n, 0, 0xffffffff)));
     check(s.stats && int(s.stats.births) && int(s.stats.retirees) && int(s.stats.generation, 1));
-    check(s.legacy && int(s.legacy.births, s.stats.births) && int(s.legacy.retirees, s.stats.retirees) && int(s.legacy.bestNight, s.completed) && int(s.legacy.bestTier, 0, RULE.maxTier) && int(s.legacy.nextRun, s.run + 1));
+    check(s.legacy && int(s.legacy.births, s.stats.births) && int(s.legacy.retirees, s.stats.retirees) && int(s.legacy.bestNight, s.completed) && int(s.legacy.nextRun, s.run + 1));
     check(ids(s.legacy.traits, Object.keys(TRAITS).length) && s.legacy.traits.every(k => own(k, TRAITS)) && s.people.every(p => s.legacy.traits.includes(p.trait)));
-    check(s.settings && [1, 2].includes(s.settings.speed) && typeof s.summary === "string" && s.summary.length < 300);
+    check(s.settings && [1, 2, 3].includes(s.settings.speed) && typeof s.settings.music === "boolean" && typeof s.summary === "string" && s.summary.length < 300);
 }

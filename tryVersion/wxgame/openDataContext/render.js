@@ -24,7 +24,7 @@ const style = {
     message: { width: 600, height: 80, lineHeight: 80, fontSize: 28, color: '#796348', textAlign: 'center' },
     spacer: { width: 600, height: 230 }
 };
-function template(rows, ownScore, invalid) {
+function template(rows, invalid) {
     const entries = rows.length ? rows.map((row, i) => `<view class="row ${i % 2 ? 'alternate' : ''}"><text class="rank" value="${row.rank}"/>${row.avatarUrl ? `<image class="avatar" src="${escape(row.avatarUrl)}"/>` : '<view class="avatarSpace"/>'}<text class="name" value="${escape(row.nickname)}"/><text class="score" value="${row.score} 波"/></view>`).join('') : '<text class="message" value="暂未读取到可显示的排行记录"/>';
     return `<view class="root"><view class="header"><text class="rank" value="名次"/><text class="player" value="同玩好友"/><text class="score" value="最高波数"/></view><scrollview class="list" scrollY="true">${entries}</scrollview><text class="tip" value="${invalid ? `${invalid} 条异常成绩未参与排名` : '上下滑动查看 · 同分并列' }"/></view>`;
 }

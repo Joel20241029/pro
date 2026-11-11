@@ -6,7 +6,9 @@ class Sprite {
     pos(x, y) { this.x = x; this.y = y; } size(width, height) { this.width = width; this.height = height; }
     addChild(child) { this.children.push(child); child.parent = this; } destroyChildren() { this.children = []; } on() {}
     getChildByName(name) { return this.children.find(child => child.name === name); }
+    getChildAt(index) { return this.children[index]; }
 }
+function fakeButton() { const button = new Sprite(), face = new Sprite(), label = new Sprite(); label.name = 'buttonText'; face.addChild(label); button.addChild(face); return button; }
 let allocations = 0, uploads = [];
 class Texture2D { constructor() { this._texture = { test: true }; } setImageData() { allocations++; } }
 class OpenDataContextView extends Sprite {
@@ -52,7 +54,7 @@ test('Main notifies accepted saves only and platform failures never become local
 test('background refresh destroys old board without rebuilding; show waits for player continue', () => {
     const s = setup(), store = new SaveStore(s.platform); store.inspect(); store.prepare(createGame(1)); store.commit(); const session = new GameSession(new SaveStore(s.platform)); session.load();
     const view = Object.create(GameView.prototype); let boards = 0;
-    Object.assign(view, { game: session, platform: s.platform, panel: { type: 'ranking' }, shownErrorRevision: 0, observedRun: 1, observedDawn: 0, chrome: new Sprite(), overlay: new Sprite(), motion: { sync() {} }, art: { panel() {} }, tip: {}, drawScenery() {}, image() {}, label: () => ({}), button() {}, modal: () => new Sprite(), updateActors() {}, drawPanel() { boards++; } });
+    Object.assign(view, { game: session, platform: s.platform, panel: { type: 'ranking' }, shownErrorRevision: 0, observedRun: 1, observedDawn: 0, chrome: new Sprite(), overlay: new Sprite(), motion: { sync() {} }, emotes: { sync() {} }, art: { panel() {} }, tip: {}, drawScenery() {}, image() {}, label: () => ({}), button: fakeButton, modal: () => new Sprite(), updateActors() {}, drawPanel() { boards++; } });
     session.changed = () => view.refresh(); view.refresh(); assert.equal(boards, 1);
     session.hide(); assert.equal(boards, 1); session.show(); assert.equal(boards, 1);
     session.resume('WAIT_RESUME'); view.refresh(); assert.equal(boards, 2);
@@ -67,7 +69,7 @@ test('shared canvas allocates once, then uploads pixels without reallocation or 
 
 function gameView(session, platform) {
     const view = Object.create(GameView.prototype);
-    Object.assign(view, { game: session, platform, panel: null, shownErrorRevision: 0, observedRun: 0, observedDawn: 0, chrome: new Sprite(), overlay: new Sprite(), motion: { sync() {} }, art: { panel() {} }, tip: { show() {} }, drawScenery() {}, image() {}, label: () => ({}), button() {}, modal: () => new Sprite(), updateActors() {}, drawGameOver() {}, drawDawn() {}, drawPending() {} });
+    Object.assign(view, { game: session, platform, panel: null, shownErrorRevision: 0, observedRun: 0, observedDawn: 0, chrome: new Sprite(), overlay: new Sprite(), motion: { sync() {} }, emotes: { sync() {} }, art: { panel() {} }, tip: { show() {} }, drawScenery() {}, image() {}, label: () => ({}), button: fakeButton, modal: () => new Sprite(), updateActors() {}, drawGameOver() {}, drawDawn() {}, drawPending() {} });
     return view;
 }
 test('ranking unlocks after first committed victory, stays unlocked after restart, and syncs one real wave', () => {

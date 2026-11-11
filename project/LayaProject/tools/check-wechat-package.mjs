@@ -47,7 +47,9 @@ if (project.compileType !== 'game' || project.appid !== 'wx46e59dc5dc95b52f') er
 if (config.pkgs.length !== 2 || config.pkgs.filter(p => p.path === '' && p.autoLoad === true).length !== 1 || config.pkgs.filter(p => p.path === VILLAGE_PACKAGE && !p.autoLoad).length !== 1 || config.pkgs.some(p => p.remoteUrl)) errors.push('启动包配置不符：必须仅主包自动加载，村庄包由 Main 加载，禁止远程地址');
 const actualResources = files.filter(f => f.path.startsWith(VILLAGE_PREFIX)).map(f => f.path).sort();
 const atlas = JSON.parse(fs.readFileSync(path.join(root, VILLAGE_PREFIX + 'frames.json'), 'utf8'));
-const artFiles = ['animations.json', 'frames.json', ...atlas.pages.map(p => p.runtimeFile)];
+const audio = JSON.parse(fs.readFileSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../res/audio/manifest.json'), 'utf8'));
+if (audio.packageFile !== 'village_loop.mp3' || audio.bytes > 120000) errors.push('音乐资源名或体积不符');
+const artFiles = ['animations.json', 'frames.json', ...atlas.pages.map(p => p.runtimeFile), audio.packageFile];
 // game.js、fileconfig.json 由 Laya 发布器生成，不属于原图/动画资源白名单。
 const expectedResources = [...artFiles, 'game.js', 'fileconfig.json'].map(f => VILLAGE_PREFIX + f).sort();
 if (atlas.pages.some(p => !/^(world|ui)_\d+\.png$/.test(p.runtimeFile))) errors.push('页表包含非本地图集文件');
@@ -57,10 +59,12 @@ const villageConfig = JSON.parse(fs.readFileSync(path.join(root, VILLAGE_PREFIX 
 const mainConfigFiles = Object.entries(mainConfig.files).flatMap(([dir, names]) => names.map(name => (dir ? dir + '/' : '') + name));
 const villageConfigFiles = Object.entries(villageConfig.files).flatMap(([dir, names]) => names.map(name => (dir ? dir + '/' : '') + name)).sort();
 if (mainConfigFiles.some(f => f.startsWith(VILLAGE_PREFIX))) errors.push('主包 fileconfig 仍引用分包资源');
+// Laya 3.4.2 实际导出：fileconfig只登记需纹理导入配置的PNG；JSON/原生MP3按包内路径读取。
 if (JSON.stringify(villageConfigFiles) !== JSON.stringify(atlas.pages.map(p => VILLAGE_PREFIX + p.runtimeFile).sort())) errors.push('分包纹理配置与页表不符');
 const artSource = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../assets', VILLAGE_PACKAGE);
 for (const name of artFiles) {
     const sourceHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(artSource, name))).digest('hex');
+    if (name === audio.packageFile && sourceHash !== audio.sha256) errors.push('音乐导入文件与原始音频清单不一致');
     if (files.find(f => f.path === VILLAGE_PREFIX + name)?.sha256 !== sourceHash) errors.push('分包素材与工程资源不一致：' + name);
     if (files.some(f => !f.path.startsWith(VILLAGE_PREFIX) && f.sha256 === sourceHash)) errors.push('主包含重复的村庄素材：' + name);
 }

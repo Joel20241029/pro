@@ -1,14 +1,15 @@
 {
   "version": 2,
   "status": "imported_in_wechat_prototype",
-  "preferredRuntimeMode": "atlas_only",
+  "preferredRuntimeMode": "atlas_plus_audio",
   "runtimeWhitelist": [
     "atlases/world_0.png",
     "atlases/ui_0.png",
     "atlases/frames.json",
-    "animations.json"
+    "animations.json",
+    "audio/village_loop.mp3"
   ],
-  "assetCount": 174,
+  "assetCount": 180,
   "assets": [
     {
       "id": "building_house_thatched",
@@ -1502,8 +1503,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 138,
-        "y": 426,
+        "x": 50,
+        "y": 290,
         "w": 37,
         "h": 44
       },
@@ -1562,8 +1563,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 50,
-        "y": 295,
+        "x": 148,
+        "y": 50,
         "w": 44,
         "h": 38
       },
@@ -1622,8 +1623,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 92,
-        "y": 199,
+        "x": 231,
+        "y": 2,
         "w": 44,
         "h": 37
       },
@@ -1682,8 +1683,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 91,
-        "y": 337,
+        "x": 190,
+        "y": 2,
         "w": 37,
         "h": 44
       },
@@ -1742,8 +1743,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 92,
-        "y": 104,
+        "x": 196,
+        "y": 50,
         "w": 44,
         "h": 37
       },
@@ -1802,8 +1803,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 50,
-        "y": 247,
+        "x": 148,
+        "y": 2,
         "w": 38,
         "h": 44
       },
@@ -1862,8 +1863,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 98,
-        "y": 385,
+        "x": 182,
+        "y": 92,
         "w": 44,
         "h": 37
       },
@@ -1922,8 +1923,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 90,
-        "y": 431,
+        "x": 94,
+        "y": 199,
         "w": 44,
         "h": 39
       },
@@ -1982,8 +1983,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 340,
+        "x": 50,
+        "y": 151,
         "w": 41,
         "h": 44
       },
@@ -2042,8 +2043,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 138,
-        "y": 474,
+        "x": 98,
+        "y": 242,
         "w": 44,
         "h": 35
       },
@@ -2102,8 +2103,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 44,
-        "y": 104,
+        "x": 2,
+        "y": 296,
         "w": 44,
         "h": 43
       },
@@ -2162,8 +2163,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 50,
-        "y": 199,
+        "x": 140,
+        "y": 98,
         "w": 38,
         "h": 44
       },
@@ -2222,8 +2223,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 47,
-        "y": 340,
+        "x": 104,
+        "y": 2,
         "w": 40,
         "h": 44
       },
@@ -2282,8 +2283,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 98,
-        "y": 287,
+        "x": 50,
+        "y": 379,
         "w": 37,
         "h": 43
       },
@@ -2343,7 +2344,7 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
-        "y": 294,
+        "y": 436,
         "w": 44,
         "h": 42
       },
@@ -2403,7 +2404,7 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
-        "y": 248,
+        "y": 390,
         "w": 44,
         "h": 42
       },
@@ -2462,8 +2463,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 93,
-        "y": 145,
+        "x": 50,
+        "y": 338,
         "w": 44,
         "h": 37
       },
@@ -2523,7 +2524,7 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
-        "y": 201,
+        "y": 343,
         "w": 44,
         "h": 43
       },
@@ -2583,7 +2584,7 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
-        "y": 154,
+        "y": 249,
         "w": 44,
         "h": 43
       },
@@ -2642,8 +2643,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 46,
-        "y": 433,
+        "x": 50,
+        "y": 199,
         "w": 40,
         "h": 44
       },
@@ -2702,8 +2703,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 50,
-        "y": 151,
+        "x": 95,
+        "y": 149,
         "w": 39,
         "h": 44
       },
@@ -2762,8 +2763,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 433,
+        "x": 104,
+        "y": 50,
         "w": 40,
         "h": 44
       },
@@ -2823,7 +2824,7 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 50,
-        "y": 388,
+        "y": 247,
         "w": 44,
         "h": 39
       },
@@ -2882,8 +2883,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 90,
-        "y": 474,
+        "x": 91,
+        "y": 290,
         "w": 44,
         "h": 36
       },
@@ -2942,8 +2943,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 132,
-        "y": 334,
+        "x": 91,
+        "y": 379,
         "w": 39,
         "h": 42
       },
@@ -3002,8 +3003,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 186,
-        "y": 469,
+        "x": 134,
+        "y": 375,
         "w": 20,
         "h": 40
       },
@@ -3062,8 +3063,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 179,
-        "y": 425,
+        "x": 139,
+        "y": 281,
         "w": 32,
         "h": 40
       },
@@ -3182,8 +3183,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 133,
-        "y": 240,
+        "x": 50,
+        "y": 426,
         "w": 36,
         "h": 43
       },
@@ -3242,8 +3243,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 92,
-        "y": 240,
+        "x": 186,
+        "y": 133,
         "w": 37,
         "h": 43
       },
@@ -3302,8 +3303,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 139,
-        "y": 287,
+        "x": 50,
+        "y": 473,
         "w": 41,
         "h": 35
       },
@@ -3362,8 +3363,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 146,
-        "y": 380,
+        "x": 98,
+        "y": 330,
         "w": 40,
         "h": 41
       },
@@ -3513,8 +3514,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 184,
-        "y": 254,
+        "x": 180,
+        "y": 238,
         "w": 30,
         "h": 30
       },
@@ -3592,8 +3593,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 140,
-        "y": 186,
+        "x": 146,
+        "y": 238,
         "w": 30,
         "h": 30
       },
@@ -3671,8 +3672,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 190,
-        "y": 360,
+        "x": 142,
+        "y": 325,
         "w": 30,
         "h": 30
       },
@@ -3750,8 +3751,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 175,
-        "y": 326,
+        "x": 131,
+        "y": 472,
         "w": 30,
         "h": 30
       },
@@ -3828,8 +3829,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 184,
-        "y": 288,
+        "x": 136,
+        "y": 419,
         "w": 30,
         "h": 30
       },
@@ -9107,8 +9108,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 173,
-        "y": 220,
+        "x": 175,
+        "y": 272,
         "w": 30,
         "h": 30
       },
@@ -9234,8 +9235,8 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 210,
-        "y": 469,
+        "x": 95,
+        "y": 472,
         "w": 32,
         "h": 32
       },
@@ -11114,15 +11115,393 @@
       "reviewStatus": "visual_v2",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 388,
+        "x": 92,
+        "y": 104,
         "w": 44,
         "h": 41
       },
       "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
       "importedFrameId": "icon_trophy"
+    },
+    {
+      "id": "emote_happy",
+      "label": "开心",
+      "category": "effects",
+      "categoryLabel": "特效",
+      "path": "runtime/effects/emote_happy.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "sourceSheet": "source/emotes/villager_emotes_v1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 418,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 116,
+        "y": 334,
+        "w": 258,
+        "h": 255
+      },
+      "nineSlice": null,
+      "mapping": "headEmote:happy",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain",
+      "bytes": 3657,
+      "sha256": "a6a8bed1073d2b0308ab0ea5a014bc4a051ab2a7b5a2a37397c3e83013941a30",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "plannedLayaPath": "assets/resources/village/effects/emote_happy.png",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v2",
+      "atlasPage": "ui_0",
+      "atlasRect": {
+        "x": 44,
+        "y": 104,
+        "w": 44,
+        "h": 43
+      },
+      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
+      "importedFrameId": "emote_happy"
+    },
+    {
+      "id": "emote_proud",
+      "label": "得意",
+      "category": "effects",
+      "categoryLabel": "特效",
+      "path": "runtime/effects/emote_proud.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "sourceSheet": "source/emotes/villager_emotes_v1.png",
+      "sourceRect": {
+        "x": 418,
+        "y": 0,
+        "w": 418,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 61,
+        "y": 309,
+        "w": 275,
+        "h": 280
+      },
+      "nineSlice": null,
+      "mapping": "headEmote:proud",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain",
+      "bytes": 3394,
+      "sha256": "7f98c4e09d150cbcb3c1400983acc813f3d72b103d1c72d167eac9d314a274c2",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 3,
+        "y": 3
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "plannedLayaPath": "assets/resources/village/effects/emote_proud.png",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v2",
+      "atlasPage": "ui_0",
+      "atlasRect": {
+        "x": 142,
+        "y": 191,
+        "w": 42,
+        "h": 43
+      },
+      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
+      "importedFrameId": "emote_proud"
+    },
+    {
+      "id": "emote_sleepy",
+      "label": "困倦",
+      "category": "effects",
+      "categoryLabel": "特效",
+      "path": "runtime/effects/emote_sleepy.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "sourceSheet": "source/emotes/villager_emotes_v1.png",
+      "sourceRect": {
+        "x": 836,
+        "y": 0,
+        "w": 418,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 38,
+        "y": 334,
+        "w": 258,
+        "h": 255
+      },
+      "nineSlice": null,
+      "mapping": "headEmote:sleepy",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain",
+      "bytes": 3548,
+      "sha256": "86f4948a99c8d6b847a0f4e21b882102945a058723e55411a9d1faef5fb94ea2",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "plannedLayaPath": "assets/resources/village/effects/emote_sleepy.png",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v2",
+      "atlasPage": "ui_0",
+      "atlasRect": {
+        "x": 2,
+        "y": 202,
+        "w": 44,
+        "h": 43
+      },
+      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
+      "importedFrameId": "emote_sleepy"
+    },
+    {
+      "id": "emote_peaceful",
+      "label": "安心",
+      "category": "effects",
+      "categoryLabel": "特效",
+      "path": "runtime/effects/emote_peaceful.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "sourceSheet": "source/emotes/villager_emotes_v1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "w": 418,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 116,
+        "y": 98,
+        "w": 258,
+        "h": 257
+      },
+      "nineSlice": null,
+      "mapping": "headEmote:peaceful",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain",
+      "bytes": 3527,
+      "sha256": "4fe1e9f45e99d17b3147bb65400f040b47cb794662d56bde698eeb554fd0368d",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "plannedLayaPath": "assets/resources/village/effects/emote_peaceful.png",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v2",
+      "atlasPage": "ui_0",
+      "atlasRect": {
+        "x": 2,
+        "y": 154,
+        "w": 44,
+        "h": 44
+      },
+      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
+      "importedFrameId": "emote_peaceful"
+    },
+    {
+      "id": "emote_loving",
+      "label": "喜爱",
+      "category": "effects",
+      "categoryLabel": "特效",
+      "path": "runtime/effects/emote_loving.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "sourceSheet": "source/emotes/villager_emotes_v1.png",
+      "sourceRect": {
+        "x": 418,
+        "y": 627,
+        "w": 418,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 65,
+        "y": 98,
+        "w": 287,
+        "h": 257
+      },
+      "nineSlice": null,
+      "mapping": "headEmote:loving",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain",
+      "bytes": 3339,
+      "sha256": "6e00cff4799126ee0c53f411feb2efaacbecf4f35b35a301d6501253472daac8",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 5
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "plannedLayaPath": "assets/resources/village/effects/emote_loving.png",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v2",
+      "atlasPage": "ui_0",
+      "atlasRect": {
+        "x": 138,
+        "y": 149,
+        "w": 44,
+        "h": 38
+      },
+      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
+      "importedFrameId": "emote_loving"
+    },
+    {
+      "id": "emote_curious",
+      "label": "好奇",
+      "category": "effects",
+      "categoryLabel": "特效",
+      "path": "runtime/effects/emote_curious.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "sourceSheet": "source/emotes/villager_emotes_v1.png",
+      "sourceRect": {
+        "x": 836,
+        "y": 627,
+        "w": 418,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 38,
+        "y": 69,
+        "w": 292,
+        "h": 286
+      },
+      "nineSlice": null,
+      "mapping": "headEmote:curious",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain",
+      "bytes": 3357,
+      "sha256": "2d411ed39f48acb7330982e570fd8d2a295d117fee7cce7900ba341816a3c917",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 3,
+        "y": 2
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "plannedLayaPath": "assets/resources/village/effects/emote_curious.png",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v2",
+      "atlasPage": "ui_0",
+      "atlasRect": {
+        "x": 90,
+        "y": 426,
+        "w": 42,
+        "h": 42
+      },
+      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
+      "importedFrameId": "emote_curious"
     }
   ],
+  "audio": {
+    "title": "篝火边",
+    "source": "source/audio/village_loop.score.json",
+    "generator": "tools/build-audio.py",
+    "runtimeFile": "audio/village_loop.mp3",
+    "packageFile": "village_loop.mp3",
+    "durationSeconds": 24,
+    "sampleRate": 22050,
+    "channels": 1,
+    "bitrate": "32k",
+    "bytes": 96462,
+    "sha256": "5fc8646055275c788d97b6c21894a311746c1ad9cd07a4fa73f14924a884bb5a",
+    "sourceSha256": "643dd59ef31686dee4e5550b2cacbcdbaffea835c0c50b4f4b62c43100cda60f",
+    "sourcePeak": 0.65,
+    "sourceBoundaryDifference": 0.00341796875,
+    "license": "Original score and synthesis; no third-party samples",
+    "phoneListeningVerified": false
+  },
   "externalAssets": [
     {
       "path": "branding/app_icon_144.png",

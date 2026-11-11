@@ -112,7 +112,7 @@ test("Personal names are drawn for the specified sex in births and travelers wit
     for (let i = 1; i <= 200; i++) {
         const s = createGame(i * 99991); equal(s.people.length, 6); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id }); equal(s.people.length, 7);
         const baby = s.people[6]; if (Object.values(VILLAGER_NAMES.personal).includes(baby.name as any)) { equal(baby.name, VILLAGER_NAMES.personal[baby.sex]); births.add(baby.name); }
-        const t = createGame(i * 99991); t.day = 4; t.completed = t.lastDawn = t.legacy.bestNight = 3; t.wave = generateWave(t); win(t);
+        const t = createGame(i * 99991); t.day = 4; t.completed = t.legacy.bestNight = 3; t.wave = generateWave(t); win(t);
         const q = t.choices.find(q => q.kind === "TRAVELER"); ok(q && q.kind === "TRAVELER"); equal(t.people.length, 6);
         if (Object.values(VILLAGER_NAMES.personal).includes(q.person.name as any)) { equal(q.person.name, VILLAGER_NAMES.personal[q.person.sex]); travelers.add(q.person.name); }
     }

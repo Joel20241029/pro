@@ -53,8 +53,9 @@ export class GameSession {
     bell() { if (this.battle && !this.pauses.size) { this.battle.bell(); this.changed(); } }
     reassign(index: number, id: string | null) {
         // 夜间调任允许手动暂停或面板临时暂停；关闭面板只解除 CHOICE，其余暂停仍由各自流程管理。
-        if (!this.battle || (!this.pauses.has("USER") && !this.pauses.has("CHOICE")) || this.saves.pending) return;
-        try { this.battle.reassign(index, id); this.error = ""; } catch (e) { this.error = String(e); } this.changed();
+        if (!this.battle || (!this.pauses.has("USER") && !this.pauses.has("CHOICE")) || this.saves.pending) return false;
+        try { this.battle.reassign(index, id); this.error = ""; this.changed(); return true; }
+        catch (e) { this.error = String(e); this.changed(); return false; }
     }
     update(delta: number) {
         if (this.pauses.size || !this.battle || !this.state || this.battle.outcome) return;

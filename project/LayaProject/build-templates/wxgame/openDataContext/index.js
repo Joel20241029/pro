@@ -13,7 +13,7 @@ function status(lines) { content = render.status(lines); draw(); }
 function refresh() {
     const request = ++epoch;
     status(['正在同步守村纪录…']);
-    scores.request(localBest, (error, ownScore) => {
+    scores.request(localBest, error => {
         if (!visible || request !== epoch) return;
         if (error) { status(['守村纪录同步失败', '请稍后重新打开排行榜']); return; }
         status(['正在读取同玩好友…']);
@@ -21,7 +21,7 @@ function refresh() {
             wx.getFriendCloudStorage({ keyList: [SCORE_KEY], success(result) {
                 if (!visible || request !== epoch) return;
                 const { rows, invalid } = rankFriends(result.data);
-                content = render.template(rows, ownScore, invalid); draw();
+                content = render.template(rows, invalid); draw();
             }, fail(error) {
                 if (!visible || request !== epoch) return;
                 console.warn('[好友榜] 好友数据读取失败', error.errMsg);

@@ -4,7 +4,7 @@ import { SeededRandom } from "../src/game/SeededRandom";
 import { BattleSimulation, PATH_LENGTH } from "../src/game/BattleSimulation";
 import { GameSession } from "../src/game/GameSession";
 import { generateWave } from "../src/game/WaveGenerator";
-import { ENEMIES, RULE } from "../src/game/GameConfig";
+import { ELITE, ENEMIES, RULE } from "../src/game/GameConfig";
 import { canonical, crc32, SaveStore, StoragePort } from "../src/storage/SaveStore";
 import { validateState } from "../src/storage/StateValidation";
 let passed = 0;
@@ -32,12 +32,12 @@ test("Consumption occurs before warehouse cap", () => {
     const child = clone(s.people[0]); child.id = "1:7"; child.adult = false; s.people.push(child);
     const e = economy(s); equal([e.food, e.rations, e.endFood], [16, 13, 198]);
 });
-test("Birth once, two cared wins, new adult has 12 nights", () => {
+test("Birth once, two cared wins, new adult receives its configured lifespan", () => {
     const s = createGame(6); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id }); equal(s.food, 40); validateState(s);
     const child = s.people[6]; ok(child.parents.length === 2); ok(child.trait === s.people[0].trait || child.trait === s.people[1].trait);
     rejects(() => applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[5].id }));
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); dawn(s); equal(child.growth, 1);
-    applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); validateState(s); equal(child.nights, 12); ok(child.adult); equal(s.people[1].job, "WAITING"); ok(s.choices[0].kind === "SKILL"); dawn(s); validateState(s);
+    applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); validateState(s); equal(child.nights, child.elite ? ELITE.adultNights : RULE.adultNights); ok(child.adult); equal(s.people[1].job, "WAITING"); ok(s.choices[0].kind === "SKILL"); dawn(s); validateState(s);
 });
 test("Uncared child does not grow; failed night does not age", () => {
     const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id }); applyCommand(s, { type: "JOB", id: s.people[1].id, job: "WAITING" });
@@ -61,7 +61,7 @@ test("Initial battle is winnable, replay is deterministic", () => {
 });
 test("Gate arrival loss precedes a tower firing in same tick", () => {
     const s = createGame(1); applyCommand(s, { type: "NIGHT" }); const b = new BattleSimulation(s); b.gate = 1;
-    b.enemies.push({ seq: 100, kind: "enemy_raider", progress: PATH_LENGTH - .1, hp: 1, maxHp: 36, speed: 36, slow: 0, slowTicks: 0, born: 0, summoned: 0 }); b.step(); equal(b.outcome, "LOSE"); equal(b.shots.length, 0);
+    b.enemies.push({ seq: 100, kind: "enemy_raider", progress: PATH_LENGTH - .1, hp: 1, speed: 36, slow: 0, slowTicks: 0, born: 0, summoned: 0 }); b.step(); equal(b.outcome, "LOSE"); equal(b.shots.length, 0);
 });
 test("Save write-before failure preserves candidate and retries once", () => {
     const m = new MemoryStore(), store = new SaveStore(m); equal(store.inspect().kind, "new"); store.prepare(createGame(1)); m.fail = "BEFORE"; rejects(() => store.commit()); const raw = store.pending!.raw; m.fail = "NONE"; store.commit(); equal(m.writes, 1); equal([...m.values.values()][0], raw); equal(new SaveStore(m).inspect().kind, "ready");
@@ -133,11 +133,11 @@ test("Favorite ancestor survives new village and save reload", () => {
     const m = new MemoryStore(), st = new SaveStore(m); st.inspect(); st.prepare(next); st.commit(); const loaded = new SaveStore(m).inspect(); ok(loaded.kind === "ready"); equal(loaded.state.history[0].id, "1:1");
 });
 test("Traveler uses world RNG without advancing family RNG", () => {
-    const s = createGame(12); s.day = 4; s.completed = 3; s.lastDawn = 3; s.wave = generateWave(s); const family = s.rng.family, world = s.rng.world;
+    const s = createGame(12); s.day = 4; s.completed = 3;  s.wave = generateWave(s); const family = s.rng.family, world = s.rng.world;
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); equal(s.rng.family, family); ok(s.rng.world !== world); ok(s.choices.some(q => q.kind === "TRAVELER"));
 });
 test("Annual tier selected before next wave", () => {
-    const s = createGame(1); s.day = 12; s.completed = 11; s.lastDawn = 11; s.wave = generateWave(s);
+    const s = createGame(1); s.day = 12; s.completed = 11;  s.wave = generateWave(s);
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator));
     while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" || q.kind === "SKILL" ? q.options[0] : q.kind === "TRAVELER" ? "decline" : "3" }); }
     equal(s.wave, null); applyCommand(s, { type: "FINALIZE" }); equal(s.wave!.tier, 3); equal(s.wave!.budget, 38);

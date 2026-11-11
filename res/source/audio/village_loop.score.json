@@ -1,0 +1,19 @@
+{
+  "title": "篝火边",
+  "authorship": "Original score and additive synthesis created for 代代守村; no sampled recordings or external music.",
+  "bpm": 80,
+  "beatsPerBar": 4,
+  "sampleRate": 22050,
+  "mp3Bitrate": "32k",
+  "bars": [
+    { "bass": "C3", "chord": ["C4", "E4", "G4"], "melody": ["G4", "E4", "D4", "E4"] },
+    { "bass": "A2", "chord": ["A3", "C4", "E4"], "melody": ["A4", "G4", "E4", null] },
+    { "bass": "F2", "chord": ["F3", "A3", "C4"], "melody": ["E4", "G4", "A4", "G4"] },
+    { "bass": "G2", "chord": ["G3", "B3", "D4"], "melody": ["D4", null, "E4", "G4"] },
+    { "bass": "C3", "chord": ["C4", "E4", "G4"], "melody": ["C5", "G4", "E4", "D4"] },
+    { "bass": "A2", "chord": ["A3", "C4", "E4"], "melody": ["E4", "A4", "G4", null] },
+    { "bass": "F2", "chord": ["F3", "A3", "C4"], "melody": ["A4", "G4", "E4", "D4"] },
+    { "bass": "G2", "chord": ["G3", "B3", "D4"], "melody": ["D4", "E4", "G4", null] }
+  ],
+  "synthesis": { "melodyGain": 0.13, "chordGain": 0.035, "bassGain": 0.075, "peak": 0.65, "echoSeconds": [0.19, 0.37], "echoGains": [0.16, 0.08] }
+}

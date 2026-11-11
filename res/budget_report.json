@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-10T16:28:14.715Z",
-  "runtimeAssetCount": 174,
+  "generatedAt": "2026-11-11T06:20:40.485Z",
+  "runtimeAssetCount": 180,
   "animationCount": 32,
   "animationFrames": 108,
   "categoryStats": {
@@ -21,8 +21,8 @@
       "bytes": 91059
     },
     "effects": {
-      "count": 8,
-      "bytes": 10864
+      "count": 14,
+      "bytes": 31686
     },
     "ui/panels": {
       "count": 8,
@@ -54,31 +54,33 @@
       "runtimeFile": "ui_0.png",
       "width": 512,
       "height": 512,
-      "bytes": 132722,
-      "sha256": "3b7eee591d807e76581380ca29e2f063561f9eb2f51490355a09a81170711000",
+      "bytes": 153302,
+      "sha256": "3617216e69d19730a32a5a8585a6072abce544d3349eb92e4f8f5a5da7016d9e",
       "group": "ui"
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 1045916,
-    "atlasContentPixels": 887070,
-    "savedContentPixels": 158846,
-    "savedContentPercent": 15.19,
-    "trimmedAssetCount": 152,
+    "sourceCanvasPixels": 1059740,
+    "atlasContentPixels": 898032,
+    "savedContentPixels": 161708,
+    "savedContentPercent": 15.26,
+    "trimmedAssetCount": 158,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
-    "mode": "atlas_only",
-    "pngBytes": 1243635,
-    "metadataBytes": 95100,
-    "totalBytes": 1338735,
+    "mode": "atlas_plus_audio",
+    "pngBytes": 1264215,
+    "metadataBytes": 97446,
+    "audioBytes": 96462,
+    "totalBytes": 1458123,
     "files": [
       "atlases/world_0.png",
       "atlases/ui_0.png",
       "atlases/frames.json",
-      "animations.json"
+      "animations.json",
+      "audio/village_loop.mp3"
     ]
   },
   "nineSliceCompaction": {
@@ -89,10 +91,10 @@
   "budgets": {
     "fullPackageTarget": 3500000
   },
-  "sourceBytes": 35892189,
+  "sourceBytes": 36381271,
   "budgetComparison": {
     "worldPngBytes": 1110913,
-    "uiAndEffectsPngBytes": 132722
+    "uiAndEffectsPngBytes": 153302
   },
   "limitations": [
     "Atlas content-pixel savings are not identical to PNG byte savings",

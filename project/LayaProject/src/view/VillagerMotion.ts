@@ -1,6 +1,6 @@
 import { GameState, isElder, Person, Tower } from "../game/GameState";
 import { LABOR_CLIPS, RULE } from "../game/GameConfig";
-import { distance, GroundPoint, MOTION, VillageNavigation, VILLAGE_STOPS, WEDDING } from "./VillageScene";
+import { CAMP_STOPS, distance, GroundPoint, MOTION, VillageNavigation, VILLAGE_STOPS, WEDDING } from "./VillageScene";
 
 interface Visit { at: GroundPoint; seconds: number; working: boolean; insideTower: boolean; }
 export type WalkDirection = "UP" | "DOWN" | "LEFT" | "RIGHT";
@@ -13,10 +13,10 @@ export function walkDirection(dx: number, dy: number, previous: WalkDirection): 
 }
 export interface VillagerPose extends GroundPoint {
     id: string; direction: WalkDirection; walking: boolean; insideTower: boolean; clip: string; animated: boolean; elapsed: number;
-    heartElapsed: number | null;
+    heartElapsed: number | null; mirror: boolean;
 }
 interface MovingPerson extends VillagerPose {
-    signature: string; sequence: number; plan: Visit[]; routine: Visit[]; wedding: boolean; visit: number; route: GroundPoint[]; remaining: number; person: Person;
+    signature: string; plan: Visit[]; routine: Visit[]; wedding: boolean; visit: number; route: GroundPoint[]; remaining: number; person: Person;
 }
 interface Wedding { family: string; partners: string[]; elapsed: number | null; }
 
@@ -27,23 +27,57 @@ export class VillagerMotion {
     private knownFamilies = new Set<string>();
     private weddings: Wedding[] = [];
     private wedding: Wedding | null = null;
+    private campSlots = new Map<string, number>();
+    private careStops = new Map<string, GroundPoint>();
     constructor(readonly navigation = new VillageNavigation()) {}
     get count() { return this.people.size; }
     get(id: string): Readonly<VillagerPose> { const p = this.people.get(id); if (!p) throw new Error(`未同步村民表现：${id}`); return p; }
     sync(state: GameState, towers: Tower[]) {
         const newRun = this.run !== state.run;
-        if (newRun) { this.people.clear(); this.run = state.run; this.weddings = []; this.wedding = null; }
+        if (newRun) { this.people.clear(); this.campSlots.clear(); this.run = state.run; this.weddings = []; this.wedding = null; }
         const present = new Set(state.people.map(p => p.id));
         for (const id of this.people.keys()) if (!present.has(id)) this.people.delete(id);
+        for (const id of this.campSlots.keys()) if (!present.has(id)) this.campSlots.delete(id);
         const sorted = state.people.slice().sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+        for (const p of sorted) if (!this.campSlots.has(p.id)) {
+            const used = new Set(this.campSlots.values()), slot = CAMP_STOPS.findIndex((_, i) => !used.has(i));
+            if (slot < 0) throw new Error("火堆站点少于在村人数");
+            this.campSlots.set(p.id, slot);
+        }
+        // 先保护孩子的固定位置，再把照料者与最近的非孩子位置交换；满员也不会重叠或挪动婴儿。
+        this.careStops.clear();
+        const reserved = new Set(sorted.filter(p => !p.adult).map(p => p.id));
+        for (const p of sorted) if (p.job === "CARE" && p.careChild) {
+            const child = CAMP_STOPS[this.campSlots.get(p.careChild)!], old = this.campSlots.get(p.id)!;
+            const slots = CAMP_STOPS.map((at, i) => ({ i, d: distance(at, child), owner: sorted.find(q => this.campSlots.get(q.id) === i)?.id }))
+                .filter(q => (!q.owner || !reserved.has(q.owner)) && Math.abs(CAMP_STOPS[q.i].x - child.x) >= 24 && Math.abs(CAMP_STOPS[q.i].y - child.y) < Math.abs(CAMP_STOPS[q.i].x - child.x))
+                .sort((a, b) => a.d - b.d || a.i - b.i);
+            const best = slots[0];
+            if (best) {
+                if (best.owner && best.owner !== p.id) this.campSlots.set(best.owner, old);
+                this.campSlots.set(p.id, best.i);
+            } else {
+                // 极多未成年人的满员场景：保留所有婴儿位置，在侧方找空隙，不能退回正上/正下招手。
+                const occupied = sorted.filter(q => q.id !== p.id).map(q => this.careStops.get(q.id) || CAMP_STOPS[this.campSlots.get(q.id)!]);
+                let at: GroundPoint | null = null;
+                for (let dx = 24; dx <= 160 && !at; dx += 4) for (const dy of [0, 4, -4, 8, -8, 12, -12, 16, -16, 20, -20]) {
+                    for (const side of [-1, 1]) { const candidate = { x: child.x + dx * side, y: child.y + dy }; if (this.navigation.walkable(candidate) && occupied.every(point => distance(point, candidate) >= 22)) { at = candidate; break; } }
+                    if (at) break;
+                }
+                if (!at) throw new Error("照料者缺少侧方站位");
+                this.careStops.set(p.id, at);
+            }
+            reserved.add(p.id);
+        }
         for (const p of sorted) {
             const sequence = Number(p.id.split(":")[1]), tower = towers.findIndex(t => t.operator === p.id);
             const coworkers = sorted.filter(q => q.adult && q.job === p.job), slot = coworkers.findIndex(q => q.id === p.id);
-            const signature = `${state.phase === "NIGHT" ? "NIGHT" : "DAY"}:${p.adult}:${isElder(p)}:${p.growth}:${p.appearance}:${p.job}:${p.careChild}:${slot}:${tower}`;
+            const careStop = this.careStops.get(p.id);
+            const signature = `${state.phase === "NIGHT" ? "NIGHT" : "DAY"}:${p.adult}:${isElder(p)}:${p.growth}:${p.appearance}:${p.job}:${p.careChild}:${slot}:${tower}:${this.campSlots.get(p.id)}:${careStop?.x}:${careStop?.y}`;
             let m = this.people.get(p.id);
             if (!m) {
-                const home = VILLAGE_STOPS.homes[(sequence - 1) % VILLAGE_STOPS.homes.length];
-                m = { ...home, id: p.id, direction: "DOWN", walking: false, insideTower: false, clip: "", animated: false, elapsed: 0, heartElapsed: null, signature: "", sequence, plan: [], routine: [], wedding: false, visit: 0, route: [], remaining: 0, person: p };
+                const home = !p.adult && p.growth === 0 ? CAMP_STOPS[this.campSlots.get(p.id)!] : VILLAGE_STOPS.homes[(sequence - 1) % VILLAGE_STOPS.homes.length];
+                m = { ...home, id: p.id, direction: "DOWN", walking: false, insideTower: false, clip: "", animated: false, elapsed: 0, heartElapsed: null, mirror: false, signature: "", plan: [], routine: [], wedding: false, visit: 0, route: [], remaining: 0, person: p };
                 this.people.set(p.id, m);
             }
             m.person = p;
@@ -88,8 +122,9 @@ export class VillagerMotion {
     private itinerary(p: Person, night: boolean, tower: number, slot: number, sequence: number): Visit[] {
         const home = VILLAGE_STOPS.homes[(sequence - 1) % VILLAGE_STOPS.homes.length];
         const visit = (at: GroundPoint, seconds: number, working = false): Visit => ({ at, seconds, working, insideTower: false });
-        if (!p.adult && p.growth === 0) return [visit(home, Infinity)];
-        if (night) return [{ ...visit(tower >= 0 ? VILLAGE_STOPS.towers[tower] : home, Infinity), insideTower: tower >= 0 }];
+        const camp = this.careStops.get(p.id) || CAMP_STOPS[this.campSlots.get(p.id)!];
+        if (!p.adult && p.growth === 0) return [visit(camp, Infinity)];
+        if (night) return [{ ...visit(tower >= 0 ? VILLAGE_STOPS.towers[tower] : camp, Infinity, tower < 0 && p.job === "CARE"), insideTower: tower >= 0 }];
         const rest = VILLAGE_STOPS.rest[(sequence - 1) % VILLAGE_STOPS.rest.length];
         const dwell = MOTION.workSeconds + (sequence % 4) * MOTION.staggerSeconds;
         if (isElder(p)) return [visit(rest, dwell), visit(home, dwell)];
@@ -100,10 +135,7 @@ export class VillagerMotion {
             return [visit(stops[slot], dwell, true), visit(rest, MOTION.restSeconds)];
         }
         if (p.job === "CARE") {
-            const childSequence = Number(p.careChild!.split(":")[1]);
-            const childHome = VILLAGE_STOPS.homes[(childSequence - 1) % VILLAGE_STOPS.homes.length];
-            // 留出婴儿可见宽度，避免照料者在前景覆盖孩子；仅调整表现站位。
-            return [visit({ x: childHome.x + 34, y: childHome.y + 8 }, dwell, true), visit(home, MOTION.restSeconds)];
+            return [visit(camp, dwell, true), visit(home, MOTION.restSeconds)];
         }
         return [visit(rest, MOTION.restSeconds + (sequence % 3) * MOTION.staggerSeconds), visit(VILLAGE_STOPS.rest[(sequence + 2) % VILLAGE_STOPS.rest.length], MOTION.restSeconds), visit(home, MOTION.restSeconds)];
     }
@@ -118,12 +150,17 @@ export class VillagerMotion {
         // 专用劳动动作固定为原美术视角；所有移动都选择方向 walk，不能用只有正面的 carry 代替。
         if (m.clip !== clip || m.animated !== animated) m.elapsed = 0;
         m.clip = clip; m.animated = animated; m.walking = walking;
+        m.mirror = false;
+        if (!walking && clip.endsWith("_care") && p.careChild) {
+            const child = this.people.get(p.careChild) || CAMP_STOPS[this.campSlots.get(p.careChild)!];
+            m.mirror = child.x < m.x;
+        }
         // 夜间驻塔到达后视为进入塔内；仍保留位置与日程，调任/天亮会自然重新显示。
         m.insideTower = !walking && m.plan[m.visit].insideTower;
     }
     /** 调用者传实际视觉时间；传 0 表示暂停，当前位置、动作累计时间和帧均保持。 */
     update(delta: number) {
-        const dt = Math.min(RULE.frameCap * 2, Math.max(0, delta));
+        const dt = Math.min(RULE.frameCap * RULE.maxSpeed, Math.max(0, delta));
         if (!dt) return;
         for (const m of this.people.values()) {
             if (m.animated) m.elapsed += dt;
@@ -141,6 +178,9 @@ export class VillagerMotion {
                 else { m.x += dx / d * travel; m.y += (next.y - m.y) / d * travel; travel = 0; }
             }
             if (!m.route.length) { m.remaining = m.plan[m.visit].seconds; this.chooseAction(m, false); }
+        }
+        for (const m of this.people.values()) if (!m.walking && m.clip.endsWith("_care") && m.person.careChild) {
+            m.mirror = this.people.get(m.person.careChild)!.x < m.x;
         }
         const w = this.wedding;
         if (w && w.partners.every(id => !this.people.get(id)!.walking)) {

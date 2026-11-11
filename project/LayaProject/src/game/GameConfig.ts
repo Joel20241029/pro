@@ -1,6 +1,23 @@
 /** 首版规则取自 doc/design/01 与 doc/tech/01；集中调整会改变经济、存档与战斗，需升级 CONFIG_VERSION。 */
-// v4 增加持久化精英标记及 18/5 夜寿命；开发期不迁移旧档，交付后人工清两槽，同版正常续玩。
-export const CONFIG_VERSION = 4;
+// v6：修正随机整数的低位相关性，移除无用/重复存档字段；不迁移旧档，交付后人工清两槽，同版正常续玩。
+export const CONFIG_VERSION = 6;
+/** 2026-11-11 已确认的持续成长方案（doc/tech/12）。等级不封顶，人数及工作站仍有界。
+ * 成本线性增长，产出线性、战力二次增长；更改系数须复跑完整经营模拟及升级预检。
+ */
+export const GROWTH = {
+    productionPerLevel: 2, storagePerLevel: 160, powerLinear: .45, powerQuadratic: .05,
+    enemyStartDay: 12, enemyLevelNights: 18,
+    costWoodPerLevel: 25, costFoodPerLevel: 10,
+    costs: { FARM: { wood: 40, food: 15 }, LOGGING: { wood: 35, food: 15 }, HOUSING: { wood: 30, food: 10 }, GATE: { wood: 30, food: 10 }, TOWER: { wood: 35, food: 10 } },
+    repairWoodPerLevel: 5, repairFraction: .2
+} as const;
+/** 已确认的柔性人口平衡：出生最多偏置25个百分点、旅人35个百分点；不使用固定交替性别。
+ * 旅人保留第5天起每4夜的来访时点，成年性别断档可提前；所有来访至少间隔3次成功守夜。
+ * 两种人口都为空时为50%，计数排除老人。调整会影响后续出生/旅人，不重抽已经生成的人。
+ */
+export const POPULATION = { birthBias: .25, travelerBias: .35, firstTravelerDay: 5, travelerPeriod: 4, travelerMinNights: 3 } as const;
+/** 原生音乐只用一条循环，音量低于前景反馈；不随战斗倍速，遵循系统静音。 */
+export const MUSIC = { file: "village_loop.mp3", volume: .3 } as const;
 /** 用户确认的稀有村民规则：仅新生儿/旅人独立抽取，不遗传、不重抽，创始人普通。
  * 产出与伤害在原加成后乘倍率、最后取整；照料只额外产粮，不缩短两夜成长。
  * 寿命按成功守夜计算，口粮沿 RULE；改动影响经济、战斗与存档校验，须同步版本。
@@ -11,7 +28,7 @@ export const ELITE = {
     // 纯表现缩放，各人生阶段沿用原动画与足底，不改变寻路、速度和住房占用。
     visualScale: 1.25
 } as const;
-/** 用户指定的两种成人外观；出生、旅人、开村及旧档迁移统一使用，不改变性别/天赋/专长。 */
+/** 用户指定的两种成人外观；出生、旅人及开村统一使用，不改变性别/天赋/专长。 */
 export const ADULT_APPEARANCE = { MALE: "male_a", FEMALE: "female_a" } as const;
 /** 随机姓名沿用原孩子字根及旅人名，追加用户指定的男女姓名；只影响新人物命名，不增加人口。
  * 普通孩子继续附编号，指定姓名保持原文。调整池大小会改变新开局后姓名的抽样概率。
@@ -27,7 +44,7 @@ export const LABOR_CLIPS: Readonly<Record<string, Readonly<Record<"FARM" | "LOGG
 };
 export const RULE = {
     storageCap: 200, populationCap: 20, houseCapacity: 4, houseMax: 5, houseCost: 30,
-    initialResource: 60, gateMax: 200, repairCost: 10, repairAmount: 40,
+    initialResource: 60, gateMax: 200, repairCost: 10,
     birthCost: 20, birthCooldown: 4, parentMinNights: 3, growNights: 2, adultNights: 12,
     // 用户确认的晚年为 3 个成功守夜夜晚；刚荣休的清晨不扣减，改变此值会影响口粮与床位占用。
     elderNights: 3,
@@ -35,10 +52,10 @@ export const RULE = {
     retirementNoticeNights: 2,
     // 成人及老人共用普通 2 粮、节俭 1 粮的口粮规则，再统一应用季节和村规。
     farmBase: 8, logBase: 6, adultRation: 2, childRation: 1,
-    farmSlots: [2, 4, 6], logSlots: [2, 3, 4], farmUpgrade: [40, 65], logUpgrade: [35, 60],
-    towerUpgrade: [35, 60], towerConvert: 20, levelDamage: [1, 1.5, 2.1],
+    farmSlots: [2, 4, 6], logSlots: [2, 3, 4], towerConvert: 20,
     yearDays: 12, seasonDays: 3, maxTier: 3, historyCap: 60, favoriteCap: 20,
-    step: .05, frameCap: .25, maxSteps: 10, enemyCap: 40, planCap: 80,
+    // 15步覆盖允许计入的0.25秒×最高3倍速，不追赶后台时间，不改变固定模拟步长。
+    step: .05, frameCap: .25, maxSpeed: 3, maxSteps: 15, enemyCap: 40, planCap: 80,
     bellTicks: 100, slowTicks: 30, hungerSpeed: .7, disruptSpeed: .8,
     spawnTicks: 480, summonTicks: [120, 240], effectCap: 32
 } as const;

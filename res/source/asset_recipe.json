@@ -6074,6 +6074,192 @@
       "animation": null,
       "fitPadding": 4,
       "resizeMode": "contain"
+    },
+    {
+      "id": "emote_happy",
+      "label": "开心",
+      "category": "effects",
+      "categoryLabel": "特效",
+      "path": "runtime/effects/emote_happy.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "sourceSheet": "source/emotes/villager_emotes_v1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 418,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 116,
+        "y": 334,
+        "w": 258,
+        "h": 255
+      },
+      "nineSlice": null,
+      "mapping": "headEmote:happy",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "emote_proud",
+      "label": "得意",
+      "category": "effects",
+      "categoryLabel": "特效",
+      "path": "runtime/effects/emote_proud.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "sourceSheet": "source/emotes/villager_emotes_v1.png",
+      "sourceRect": {
+        "x": 418,
+        "y": 0,
+        "w": 418,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 61,
+        "y": 309,
+        "w": 275,
+        "h": 280
+      },
+      "nineSlice": null,
+      "mapping": "headEmote:proud",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "emote_sleepy",
+      "label": "困倦",
+      "category": "effects",
+      "categoryLabel": "特效",
+      "path": "runtime/effects/emote_sleepy.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "sourceSheet": "source/emotes/villager_emotes_v1.png",
+      "sourceRect": {
+        "x": 836,
+        "y": 0,
+        "w": 418,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 38,
+        "y": 334,
+        "w": 258,
+        "h": 255
+      },
+      "nineSlice": null,
+      "mapping": "headEmote:sleepy",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "emote_peaceful",
+      "label": "安心",
+      "category": "effects",
+      "categoryLabel": "特效",
+      "path": "runtime/effects/emote_peaceful.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "sourceSheet": "source/emotes/villager_emotes_v1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "w": 418,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 116,
+        "y": 98,
+        "w": 258,
+        "h": 257
+      },
+      "nineSlice": null,
+      "mapping": "headEmote:peaceful",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "emote_loving",
+      "label": "喜爱",
+      "category": "effects",
+      "categoryLabel": "特效",
+      "path": "runtime/effects/emote_loving.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "sourceSheet": "source/emotes/villager_emotes_v1.png",
+      "sourceRect": {
+        "x": 418,
+        "y": 627,
+        "w": 418,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 65,
+        "y": 98,
+        "w": 287,
+        "h": 257
+      },
+      "nineSlice": null,
+      "mapping": "headEmote:loving",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain"
+    },
+    {
+      "id": "emote_curious",
+      "label": "好奇",
+      "category": "effects",
+      "categoryLabel": "特效",
+      "path": "runtime/effects/emote_curious.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "sourceSheet": "source/emotes/villager_emotes_v1.png",
+      "sourceRect": {
+        "x": 836,
+        "y": 627,
+        "w": 418,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 38,
+        "y": 69,
+        "w": 292,
+        "h": 286
+      },
+      "nineSlice": null,
+      "mapping": "headEmote:curious",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain"
     }
   ],
   "animations": {
@@ -6226,7 +6412,7 @@
         "trimPolicy": "atlas_trim_restore_source_canvas",
         "clock": "scene_visual_or_battle",
         "restartOnActionChange": true,
-        "mapping": "CHILD growth 0, no extra gameplay stage",
+        "mapping": "Baby stays at camp nursery from birth; never uses a walking clip",
         "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
         "usageStatus": "runtime_connected"
       },
@@ -6764,9 +6950,10 @@
         "trimPolicy": "atlas_trim_restore_source_canvas",
         "clock": "scene_visual_or_battle",
         "restartOnActionChange": true,
-        "mapping": "adult male CARE at child home",
+        "mapping": "CARE beside child at stable camp nursery; native facing RIGHT; mirror horizontally when child is on left",
         "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-        "usageStatus": "runtime_connected"
+        "usageStatus": "runtime_connected",
+        "nativeFacing": "RIGHT"
       },
       {
         "id": "villager_female_a_care",
@@ -6792,9 +6979,10 @@
         "trimPolicy": "atlas_trim_restore_source_canvas",
         "clock": "scene_visual_or_battle",
         "restartOnActionChange": true,
-        "mapping": "adult female CARE at child home",
+        "mapping": "CARE beside child at stable camp nursery; native facing RIGHT; mirror horizontally when child is on left",
         "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-        "usageStatus": "runtime_connected"
+        "usageStatus": "runtime_connected",
+        "nativeFacing": "RIGHT"
       },
       {
         "id": "villager_elder_male_walk",

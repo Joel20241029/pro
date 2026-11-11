@@ -19,6 +19,7 @@ function setup() {
         constructor() { this.children = []; this.destroyed = false; }
         pos() { return this; } size() { return this; } scale() { return this; }
         addChild(child) { this.children.push(child); child.parent = this; }
+        on() { return this; } off() { return this; }
         destroy() { this.destroyed = true; if (this.parent) this.parent.children = this.parent.children.filter(c => c !== this); }
     }
     class Text extends Sprite {
@@ -33,7 +34,7 @@ function setup() {
     const frames = { pages: [{ id: 'world', runtimeFile: 'world_0.png' }], frames: { villager: { page: 'world', rect: { x: 0, y: 0, w: 8, h: 8 }, trimOffset: { x: 0, y: 0 }, sourceSize: { w: 8, h: 8 }, pivot: { x: 4, y: 8 } } } };
     const animations = { animations: [{ id: 'walk', frameIds: ['villager'], fps: 4, restFrame: 'villager' }], walkDirections: {}, enemyNativeFacing: {} };
     global.Laya = {
-        Script: class {}, regClass: () => target => target, Text, stage, Loader: { JSON: 'json', IMAGE: 'image' },
+        Script: class {}, regClass: () => target => target, Text, stage, Event: { CLICK: 'click' }, Loader: { JSON: 'json', IMAGE: 'image' },
         loader: {
             loadPackage(name) { requests.push(['package', name]); return packageGate.promise; },
             load(url, type) {
@@ -48,7 +49,8 @@ function setup() {
     global.wx = {
         getWindowInfo: () => ({ windowWidth: 720, windowHeight: 1280, safeArea: { top: 0, bottom: 1280 } }),
         getStorageInfoSync: () => { storageReads++; return { keys: [] }; },
-        onHide: fn => hide.add(fn), offHide: fn => hide.delete(fn), onShow: fn => show.add(fn), offShow: fn => show.delete(fn)
+        onHide: fn => hide.add(fn), offHide: fn => hide.delete(fn), onShow: fn => show.add(fn), offShow: fn => show.delete(fn),
+        onAudioInterruptionBegin() {}, offAudioInterruptionBegin() {}, onAudioInterruptionEnd() {}, offAudioInterruptionEnd() {}
     };
     const module = { exports: {} };
     vm.runInNewContext(fs.readFileSync(mainFile, 'utf8'), {

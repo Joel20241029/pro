@@ -1,7 +1,8 @@
 import { ELITE, ENEMIES, EnemyKind, PADS, PATH, RULE, TOWERS, TowerKind } from "./GameConfig";
 import { clone, GameState } from "./GameState";
 import { assignOperator, person, policy } from "./VillageRules";
-export interface Enemy { seq: number; kind: EnemyKind; progress: number; hp: number; maxHp: number; speed: number; slow: number; slowTicks: number; born: number; summoned: number; }
+import { enemyPower, levelPower } from "./Growth";
+export interface Enemy { seq: number; kind: EnemyKind; progress: number; hp: number; speed: number; slow: number; slowTicks: number; born: number; summoned: number; }
 export interface Shot { tower: number; x: number; y: number; kind: TowerKind; tick: number; }
 const LENGTHS = PATH.slice(1).map((p, i) => Math.hypot(p.x - PATH[i].x, p.y - PATH[i].y));
 export const PATH_LENGTH = LENGTHS.reduce((a, b) => a + b, 0);
@@ -29,8 +30,8 @@ export class BattleSimulation {
     reassign(index: number, id: string | null) { assignOperator(this.base, index, id); }
     private spawn(kind: EnemyKind, progress: number) {
         const data = ENEMIES[kind], affix = this.base.wave!.affix;
-        const hp = Math.ceil(data.hp * (affix === "FAST" ? .9 : affix === "STURDY" ? 1.15 : 1));
-        this.enemies.push({ seq: this.seq++, kind, progress, hp, maxHp: hp, speed: data.speed * (affix === "FAST" ? 1.1 : affix === "STURDY" ? .9 : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
+        const hp = Math.ceil(data.hp * enemyPower(this.base.day) * (affix === "FAST" ? .9 : affix === "STURDY" ? 1.15 : 1));
+        this.enemies.push({ seq: this.seq++, kind, progress, hp, speed: data.speed * (affix === "FAST" ? 1.1 : affix === "STURDY" ? .9 : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
     }
     step() {
         if (this.outcome) return;
@@ -41,14 +42,13 @@ export class BattleSimulation {
         }
         while (this.queued.length && this.enemies.length < RULE.enemyCap) { const q = this.queued.shift()!; this.spawn(q.kind, q.progress); }
         const existingSlow = new Set(this.enemies.filter(e => e.slowTicks > 0).map(e => e.seq));
-        const refreshed = new Set<number>();
+        const refreshed = new Set<number>(), po = policy(this.base);
         for (const e of this.enemies) {
             e.progress += e.speed * RULE.step * (e.slowTicks > 0 ? 1 - e.slow : 1);
-            if (e.progress >= PATH_LENGTH) { this.gate -= Math.ceil(ENEMIES[e.kind].gate * (1 + (policy(this.base).gate || 0))); e.hp = 0; }
+            if (e.progress >= PATH_LENGTH) { this.gate -= Math.ceil(ENEMIES[e.kind].gate * enemyPower(this.base.day) * (1 + (po.gate || 0))); e.hp = 0; }
         }
         this.enemies = this.enemies.filter(e => e.hp > 0);
         if (this.gate <= 0) { this.gate = 0; this.outcome = "LOSE"; return; }
-        const po = policy(this.base);
         for (let i = 0; i < this.base.towers.length; i++) {
             const tower = this.base.towers[i]; if (!tower.kind || !tower.operator) continue;
             const p = person(this.base, tower.operator), t = TOWERS[tower.kind], at = PADS[i];
@@ -64,11 +64,14 @@ export class BattleSimulation {
             if (this.charge[i] < 1) continue;
             this.charge[i] -= 1;
             const target = candidates[0], center = pointAt(target.progress);
-            const nearby = this.enemies.filter(e => e.hp > 0 && Math.hypot(pointAt(e.progress).x - center.x, pointAt(e.progress).y - center.y) <= t.splash);
+            const nearby = tower.kind === "ARROW" ? [] : this.enemies.filter(e => {
+                const pos = pointAt(e.progress);
+                return e.hp > 0 && Math.hypot(pos.x - center.x, pos.y - center.y) <= t.splash;
+            });
             const bonus = (po.damage || 0) + (tower.kind === "STONE" ? (p.trait === "trait_strong" ? .2 : 0) + (p.skill === "skill_throwing" ? .25 : 0) + (po.stoneDamage || 0) : tower.kind === "ARROW" && p.skill === "skill_archery" ? .25 : 0);
             for (const e of tower.kind === "STONE" ? nearby : [target]) {
                 const armor = ENEMIES[e.kind].armor;
-                e.hp -= Math.max(1, Math.floor(t.damage * RULE.levelDamage[tower.level - 1] * (1 + bonus) * (p.elite ? ELITE.damageMultiplier : 1) * (1 - armor / (tower.kind === "STONE" ? 2 : 1))));
+                e.hp -= Math.max(1, Math.floor(t.damage * levelPower(tower.level) * (1 + bonus) * (p.elite ? ELITE.damageMultiplier : 1) * (1 - armor / (tower.kind === "STONE" ? 2 : 1))));
             }
             if (tower.kind === "SLOW") {
                 const strength = Math.min(.6, .3 + (p.trait === "trait_patient" ? .1 : 0) + (p.skill === "skill_warding" ? .1 : 0) + (po.slow || 0));

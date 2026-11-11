@@ -427,6 +427,44 @@
         "prompt": "Use case: stylized-concept. Asset type: one small transparent PNG game UI icon. Design a SINGLE golden trophy cup icon for a cozy Chinese village survival tower-defense WeChat minigame. The attached contact sheet is STYLE REFERENCE ONLY: match the chunky pixel-art clusters, dark chocolate brown outlines, warm gold highlights, terracotta/ochre shading of its bell/upgrade/shield icons. Output ONLY the new trophy, not the contact sheet. Frontal small gold cup, two clearly visible side handles, broad small wooden pedestal, subtle engraved shield or wheat shape on the cup, strong clear silhouette readable when reduced to 48 by 48 pixels. Square canvas, object occupies about 75 percent, even generous completely transparent margins. Genuine RGBA transparent background. Crisp stepped pixel edges, limited colors, no gradients, no glow, no cast/drop shadow beneath, no text, no letters, no numbers, no additional loose objects, no border or frame. Clean centered sprite suitable for atlas cropping.",
         "reference": "preview/static_contact.png"
       }
+    },
+    {
+      "key": "villager_emotes_v1",
+      "date": "2026-11-11",
+      "generator": "image_gen built-in",
+      "path": "source/emotes/villager_emotes_v1.png",
+      "prompt": "Create ONE production sprite sheet for a tiny warm medieval pixel-art village mobile game, SIX expressive emoji face sprites, arranged in a perfectly regular 3-column by 2-row grid on TRUE TRANSPARENT alpha background. Each icon centered in its own equal square cell with very generous transparent margins, no sprite overlaps. Order left to right, top row: happy smiling face with cheerful closed crescent eyes; proud determined face with one tiny golden sparkle; sleepy tired face with drooping eyelids and small open mouth. Bottom row: peacefully content face with closed eyes and soft smile; affectionate smiling face with one tiny red heart beside cheek; surprised curious face with round eyes and small round mouth. Icons are warm muted golden-cream circular heads, simple readable dark chestnut pixel outlines 2-3 pixels thick, warm terracotta blush, minimal two-tone shading, authentic crisp 16-bit hand-drawn pixel art, low resolution pixel clusters, each intended to shrink to 40x40 pixels. Consistent silhouette size and palette. No body, no speech bubble, no rectangular backdrop, no text, no letters, no numbers, no cell frames, no watermark, no drop shadow, no realistic gradients, no 3D. Sheet is square 1024x1024, 3 equal columns and 2 equal rows; sprites occupying only central 55 percent of each cell. Must look charming and extremely legible over green grass and dark forest.",
+      "requestedSize": "1024x1024",
+      "actualSize": [
+        1254,
+        1254
+      ],
+      "transparent": true,
+      "sha256": "d761ec65a4aa42683c3d295e28b792fd07648035c85e011efeebe93253a0f471",
+      "grid": {
+        "columns": 3,
+        "rows": 2,
+        "cellWidth": 418,
+        "cellHeight": 627
+      },
+      "frames": [
+        "emote_happy",
+        "emote_proud",
+        "emote_sleepy",
+        "emote_peaceful",
+        "emote_loving",
+        "emote_curious"
+      ],
+      "runtimeCanvas": [
+        48,
+        48
+      ],
+      "pivot": [
+        24,
+        48
+      ],
+      "note": "Explicit crop rectangles preserve the visible sprites and omit faint alpha outside each silhouette; regenerate runtime/atlas from source/asset_recipe.json, never edit generated atlas.",
+      "bytes": 489082
     }
   ],
   "exportMethod": "ImageMagick mechanical crop/nearest-neighbor export/atlas packing; animation frames retain uniform source canvas and feet, atlas trims transparent margins and restores offsets."

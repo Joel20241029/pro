@@ -47,7 +47,7 @@ test("New adults wait for skill choice; retired workers free jobs while keeping 
     ok(child.job === "FARM" || child.job === "LOGGING"); validateState(s);
 });
 test("Accepted travelers receive work after joining; declined travelers never consume a slot", () => {
-    const s = createGame(5); s.day = 4; s.completed = 3; s.lastDawn = 3; s.legacy.bestNight = 3; s.houses = 5; s.farm = 3; s.logging = 3;
+    const s = createGame(5); s.day = 4; s.completed = 3;  s.legacy.bestNight = 3; s.houses = 5; s.farm = 3; s.logging = 3;
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator));
     const q = s.choices[0]; ok(q.kind === "TRAVELER"); q.person.skill = "skill_logging";
     const declined = clone(s), count = declined.people.length; applyCommand(declined, { type: "CHOOSE", value: "decline" }); equal(declined.people.length, count);

@@ -14,17 +14,19 @@ export interface Family { id: string; partners: string[]; lastBirth: number | nu
 export interface Tower { kind: TowerKind | null; level: number; operator: string | null; }
 export interface Wave { budget: number; tier: number; affix: "NONE" | "FAST" | "STURDY" | "GROUP"; entries: { kind: EnemyKind; tick: number }[]; }
 export type Choice = { kind: "SKILL"; person: string; options: Skill[] } | { kind: "TRAVELER"; person: Person } | { kind: "POLICY"; options: string[] } | { kind: "TIER" };
-export interface Legacy { births: number; retirees: number; bestNight: number; bestTier: number; traits: Trait[]; nextRun: number; }
+export interface Legacy { births: number; retirees: number; bestNight: number; traits: Trait[]; nextRun: number; }
 export interface GameState {
-    run: number; nextPerson: number; nextFamily: number; day: number; completed: number; lastDawn: number;
+    run: number; nextPerson: number; nextFamily: number; day: number; completed: number;
     phase: "DAY" | "NIGHT" | "DAWN" | "GAME_OVER"; food: number; wood: number; gate: number;
-    houses: number; farm: number; logging: number; tier: number; policy: string | null;
+    houses: number; housing: number; gateLevel: number; farm: number; logging: number; tier: number; policy: string | null;
+    /** 上次提供旅人时的成功守夜数；谢绝也记时，新村null，不迁移旧配置。 */
+    lastTraveler: number | null;
     people: Person[]; families: Family[]; towers: Tower[];
     history: Person[]; favorites: string[]; choices: Choice[];
     wave: Wave | null; night: { adults: string[]; elders: string[]; cared: string[]; hungry: boolean } | null;
-    rng: { family: number; world: number; battle: number };
+    rng: { family: number; world: number };
     stats: { births: number; retirees: number; generation: number }; legacy: Legacy;
-    settings: { speed: 1 | 2 }; summary: string;
+    settings: { speed: 1 | 2 | 3; music: boolean }; summary: string;
 }
 export function clone<T>(v: T): T { return JSON.parse(JSON.stringify(v)); }
 /** 工作、驻塔、照料与成家共用资格；已成年并不代表仍在劳作期。 */
