@@ -99,8 +99,15 @@ export class GameHud {
             this.ui.bindClick(b, () => this.panels.open({ type: "tower", index: i }));
             this.node.addChild(b);
             const op = t.operator ? coloredName(person(s, t.operator)) : "成年村民不足";
-            // 下排说明向道路外侧让位：左下70、右下24；为精英长名与居中的城门血条留间距，不改变塔位和点击范围。
-            this.ui.label(this.node, t.kind ? `${TOWERS[t.kind].name} ${amount(t.level)}阶\n${op}` : "＋ 建塔", pos.x - HUD.tower.labelHalfWidth + (i === 3 ? HUD.tower.rightLowerX : i === 2 && t.kind ? HUD.tower.leftLowerX : 0), pos.y + (i === 3 ? HUD.tower.rightLowerTop : HUD.tower.top), HUD.tower.labelWidth, HUD.tower.font, t.operator ? C.cream : "#fff0b2", true, t.kind ? HUD.tower.occupiedHeight : HUD.tower.emptyHeight).align = "center";
+            // 沿用城门文字的独立字号做法，避开通用地图文字24号下限；所有塔名与姓名都对齐塔中心。
+            const label = this.ui.label(this.node, t.kind ? `${TOWERS[t.kind].name} ${amount(t.level)}阶\n${op}` : "＋ 建塔", pos.x - HUD.tower.labelWidth / 2, pos.y + HUD.tower.top, HUD.tower.labelWidth, HUD.tower.font, t.operator ? C.cream : "#fff0b2", true, t.kind ? HUD.tower.occupiedHeight : HUD.tower.emptyHeight);
+            label.fontSize = HUD.tower.font;
+            label.leading = HUD.tower.leading;
+            label.stroke = HUD.tower.stroke;
+            label.align = "center";
+            label.valign = "top";
+            label.wordWrap = false;
+            label.overflow = Laya.Text.SHRINK;
         }
         this.node.graphics.drawRect(0, bottomY, 720, layout.height - bottomY, C.cream);
         const bottom = new Laya.Sprite();
