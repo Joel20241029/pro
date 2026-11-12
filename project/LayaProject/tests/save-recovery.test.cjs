@@ -6,7 +6,7 @@ const { GameSession } = require(path.join(compiled, 'game/GameSession.js'));
 const { createGame } = require(path.join(compiled, 'game/VillageRules.js'));
 const { CONFIG_VERSION } = require(path.join(compiled, 'game/GameConfig.js'));
 global.Laya = { Sprite: class {}, OpenDataContextView: class {}, Texture2D: class {} };
-const { GameView } = require(path.join(compiled, 'view/GameView.js'));
+const { drawBoot } = require(path.join(compiled, 'view/panels/SessionPanels.js'));
 const keys = ['daidai_village.save.a', 'daidai_village.save.b'];
 
 function envelope(configVersion, revision = 1, seed = 1, schemaVersion = 2) {
@@ -55,12 +55,12 @@ test('old/future config and schema mismatches preserve both original slots until
 
 test('incompatible popup offers a working explicit reset instead of an ineffective reload action', () => {
     const storage = new MemoryStore([envelope(CONFIG_VERSION - 1), envelope(CONFIG_VERSION - 1)]), game = session(storage);
-    const buttons = [], modals = [], view = Object.create(GameView.prototype);
+    const buttons = [], modals = [], view = {};
     Object.assign(view, {
-        game, modal(title, reason, close) { modals.push({ title, reason, close }); return {}; }, label() { return {}; },
-        button(parent, text, x, y, width, action) { buttons.push({ text, action }); }
+        game, modal(title, reason, close) { modals.push({ title, reason, close }); return {}; },
+        ui: { label() { return {}; }, button(parent, text, x, y, width, action) { buttons.push({ text, action }); } }
     });
-    view.drawBoot(); assert.equal(modals[0].close, false); assert.match(modals[0].reason, /替换旧进度/);
+    drawBoot(view); assert.equal(modals[0].close, false); assert.match(modals[0].reason, /替换旧进度/);
     assert.equal(buttons.length, 1); assert.match(buttons[0].text, /确认放弃旧进度/); assert.doesNotMatch(buttons[0].text, /重新读取/);
     buttons[0].action(); assertNewVillage(game, storage);
 });

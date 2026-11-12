@@ -99,25 +99,27 @@ class Sprite {
     addChild(n) { this.children.push(n); return n; }
     destroyChildren() { this.children.length = 0; }
     getChildAt(i) { return this.children[i]; }
+    get numChildren() { return this.children.length; }
     getChildByName(name) { return this.children.find(n => n.name === name); }
     on(event, caller, fn) { this.handlers[event] = (...args) => fn.apply(caller, args); }
     event(event, data) { this.handlers[event]?.(data); }
     off() {}
 }
 global.Laya = { Sprite, Text: { SHRINK: 'shrink' }, Rectangle: class {}, OpenDataContextView: class {}, Texture2D: class {}, Event: { CLICK: 'click', MOUSE_DOWN: 'down', MOUSE_UP: 'up', MOUSE_OUT: 'out', UNDISPLAY: 'undisplay' } };
-const { GameView } = require(path.join(compiled, 'view/GameView.js'));
+const { GamePanels } = require(path.join(compiled, 'view/GamePanels.js'));
+const { GameHud } = require(path.join(compiled, 'view/GameHud.js'));
+const { UiWidgets } = require(path.join(compiled, 'view/UiWidgets.js'));
 const { GUIDE_CHAPTERS } = require(path.join(compiled, 'view/GameGuide.js'));
 function panelView(game) {
-    const view = Object.create(GameView.prototype);
-    Object.assign(view, {
-        game, art: { panel() {} }, panel: null, clickSounds: 0,
-        playClick() { this.clickSounds++; },
-        modal() { this.box = new Sprite(); return this.box; },
-        label(parent, text, x, y, w, font, color, bold, h) {
-            const node = new Sprite().pos(x, y).size(w, h); node.text = text; node.textHeight = 200; parent.addChild(node); return node;
-        },
-        refresh() { if (this.panel) this.drawPanel(game.state, this.panel); }
-    }); return view;
+    const art = { panel() {} }, view = new GamePanels(game, art, {}, null, new Sprite(), {}, () => {
+        if (view.current) view.draw(game.state, view.current);
+    });
+    const ui = new UiWidgets(art, () => view.clickSounds++);
+    Object.assign(view, { ui, clickSounds: 0, modal() { this.box = new Sprite(); return this.box; } });
+    ui.label = (parent, text, x, y, w, font, color, bold, h) => {
+        const node = new Sprite().pos(x, y).size(w, h); node.text = text; node.textHeight = 200; parent.addChild(node); return node;
+    };
+    return view;
 }
 
 test('help entry and all five tabs are read-only; each chapter resets its own scrolling', () => {
@@ -126,9 +128,9 @@ test('help entry and all five tabs are read-only; each chapter resets its own sc
     assert.equal(view.clickSounds, 1);
     assert.deepEqual(GUIDE_CHAPTERS.map(c => c.title), ['起步', '村民', '家庭', '建设', '守夜']);
     for (let i = 0; i < GUIDE_CHAPTERS.length; i++) {
-        view.box.getChildByName(`button:${GUIDE_CHAPTERS[i].title}`).event('click'); assert.equal(view.panel.tab, i);
+        view.box.getChildByName(`button:${GUIDE_CHAPTERS[i].title}`).event('click'); assert.equal(view.current.tab, i);
         const rows = view.box.getChildByName('ScrollList'); assert.equal(rows.offset, 0); assert(rows.maximum > 0);
-        rows.setOffset(rows.maximum); assert.equal(view.panel.scroll, rows.maximum);
+        rows.setOffset(rows.maximum); assert.equal(view.current.scroll, rows.maximum);
         const chapter = rows.content.children[0], last = chapter.children[chapter.children.length - 1];
         assert(last.y + last.height - rows.offset <= rows.height, 'last paragraph remains reachable');
     }
@@ -138,14 +140,12 @@ test('help entry and all five tabs are read-only; each chapter resets its own sc
 test('leaving a pressed button, ranking entry or tower cancels the engine click and its sound', () => {
     const { game } = session(), view = panelView(game), opened = [];
     game.state.legacy.bestNight = 1;
-    Object.assign(view, {
-        chrome: new Sprite(), layout: { mapTop: 280, footerTop: 980, gateY: 680, height: 1280, safeTop: 0, settingsY: 42, resourcesY: 124 },
-        scene: { pads: PADS }, observedVillageRevision: game.villageRevision, emotes: { sync() {} },
-        drawScenery() {}, updateActors() {}, image() { return {}; }, open(panel) { opened.push(panel); },
-    });
-    GameView.prototype.refresh.call(view, true);
-    const tower = view.chrome.children.find(n => n.x === PADS[0].x - 58 && n.y === PADS[0].y - 80 && n.width === 116);
-    const entries = [view.chrome.getChildByName('button:小记'), view.chrome.getChildByName('RankingButton'), tower];
+    const layout = { mapTop: 280, footerTop: 980, gateY: 680, height: 1280, safeTop: 0, settingsY: 42, resourcesY: 124 };
+    view.ui.image = () => ({}); view.open = panel => opened.push(panel);
+    const hud = new GameHud(game, view.art, view.ui, view, () => {});
+    hud.drawHeader(layout); hud.draw(game.state, layout, { pads: PADS });
+    const tower = hud.node.children.find(n => n.x === PADS[0].x - 58 && n.y === PADS[0].y - 80 && n.width === 116);
+    const entries = [hud.node.getChildByName('button:小记'), hud.node.getChildByName('RankingButton'), tower];
     const cancelled = [];
     Laya.InputManager = { cancelClick: id => cancelled.push(id) };
     for (const [index, entry] of entries.entries()) {
@@ -189,7 +189,7 @@ test('opening and closing help removes only CHOICE, leaving independent pauses i
 });
 
 test('tower building is disabled before payment when short of wood or during night', () => {
-    const { game } = session(), view = panelView(game); view.image = () => ({}); view.buildRow = () => {};
+    const { game } = session(), view = panelView(game); view.ui.image = () => ({}); view.ui.buildRow = () => {};
     game.state.wood = TOWERS.ARROW.cost - 1; view.open({ type: 'tower', index: 2 });
     const unavailable = view.box.children.find(n => n.name.startsWith('button:箭楼')); assert(unavailable.name.includes('还缺 1 木')); assert(!unavailable.handlers.click);
     game.state.wood++; view.open({ type: 'tower', index: 2 }); assert(view.box.children.find(n => n.name.startsWith('button:箭楼')).handlers.click);
@@ -201,9 +201,30 @@ test('tower building is disabled before payment when short of wood or during nig
 test('clean-start choice requires confirmation, cancellation is read-only and inheritance stays available', () => {
     const {game,values}=session(),view=panelView(game); const initial=canonical(game.state),saved=canonical([...values]);
     view.open({type:'restart'}); assert(view.box.getChildByName('button:传承开村'));
-    view.box.getChildByName('button:纯净开始').event('click'); assert.equal(view.panel.type,'cleanStart');
+    view.box.getChildByName('button:纯净开始').event('click'); assert.equal(view.current.type,'cleanStart');
     assert.equal(canonical(game.state),initial); assert.equal(canonical([...values]),saved);
-    view.box.getChildByName('button:取消').event('click'); assert.equal(view.panel.type,'restart');assert.equal(canonical([...values]),saved);
+    view.box.getChildByName('button:取消').event('click'); assert.equal(view.current.type,'restart');assert.equal(canonical([...values]),saved);
     view.box.getChildByName('button:纯净开始').event('click'); const revision=game.villageRevision;
     view.box.getChildByName('button:确认纯净开始').event('click');assert.equal(game.villageRevision,revision+1);assert.equal(game.state.run,1);assert.equal(game.state.legacy.lastRationDate,null);
+});
+
+test('resizing an open guide preserves its panel, scroll list, offset and pause without writing a save', () => {
+    const { GameView } = require(path.join(compiled, 'view/GameView.js'));
+    const { GameLayout } = require(path.join(compiled, 'view/GameLayout.js'));
+    const { game, values } = session(), panels = panelView(game), overlay = new Sprite();
+    panels.modal = () => { const box = new Sprite().size(668, 860); overlay.addChild(box); return box; };
+    panels.open({ type: 'guide', tab: 4 });
+    const box = overlay.getChildAt(0), rows = box.getChildByName('ScrollList'); rows.setOffset(rows.maximum);
+    const panel = panels.current, offset = rows.offset, saved = canonical([...values]), state = canonical(game.state);
+    const window = { windowWidth: 390, windowHeight: 844, statusBarHeight: 47, safeArea: { top: 47, bottom: 810 } };
+    const menu = { width: 88, height: 32, top: 51, bottom: 83, left: 292, right: 380 };
+    const view = Object.create(GameView.prototype);
+    Object.assign(view, { game, panels, overlay, layout: new GameLayout(window, menu), platform: { window: { ...window, windowHeight: 900, safeArea: { top: 47, bottom: 866 } }, menu },
+        root: new Sprite(), tip: { pos() {} }, observedVillageRevision: game.villageRevision,
+        village: { scene: { pads: PADS }, relayout() {}, sync() {}, drawScenery() {} }, updateActors() {} });
+    view.hud = new GameHud(game, panels.art, panels.ui, panels, () => view.refresh()); panels.ui.image = () => ({});
+    view.resize();
+    assert.equal(overlay.getChildAt(0), box); assert.equal(box.getChildByName('ScrollList'), rows);
+    assert.equal(panels.current, panel); assert.equal(rows.offset, offset); assert.equal(panel.scroll, offset);
+    assert(game.pauses.has('CHOICE')); assert.equal(canonical([...values]), saved); assert.equal(canonical(game.state), state);
 });

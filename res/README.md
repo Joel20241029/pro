@@ -28,6 +28,8 @@
 
 每个变体包含 `VisualBounds`、`Footprint`、`SortOrigin`；防塔另有 `Weapon/Muzzle`。农田的水车使用独立遮挡组与底座，田畦仍可行走。详见 [建筑实施记录](../doc/tech/23_Laya编辑器建筑部件与升级动画.md)。
 
+2026-11-12 比例与塔位调整：两栋民居显示宽度由 116/106 放大至 140/128，沿用原生预制体，以原足底定位并同步扩大导航底座。参数位于 `VillageScene.VILLAGE_PROPS`；第 3/4 塔的唯一坐标源 `GameConfig.PADS` 改为 `(300,535)` / `(455,650)`。图集、母版与原生动画无需重建；设计稿及实际场景检查分类保存在 [compact-header](preview/compact-header/README.md)。
+
 ## 构建与验证
 
 ```bash

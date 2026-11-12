@@ -16,7 +16,9 @@
 - `工具 / PreviewVillageBuildings`：读取已保存的 .lh，经原生渲染生成四档对比图和 BuildingPreview.ls，记录真实 .mc 采样结果。
 - `工具 / CheckBuildingsInGame`：读取下载目录中的正式游戏测试编译，使用实际 GameView、SpriteFrames、VillageNavigation 渲染短屏/长屏昼夜夹具。需要先完成项目测试编译；不会连接微信云数据或写入真实游戏存档。
 
-两个验证菜单的中间输出位于 `~/Downloads/daidai-building-editor-20261112/evidence/`。正式保留的效果图在 `res/preview/buildings/`。GameView验收所需 `assets/resources/` 是自动复制缓存，已排除版本控制与建筑发布，制作源仍以 res/source 和原生预制体为准。
+- `工具 / CompareGameRefactor`：读取 `~/Downloads/daidai-refactor-20261112/` 内两份正式 CommonJS 编译，在原生 Laya 中对照 8 组场景和 23 个面板；PNG 和节点树输出到 native-baseline/native-current。只用于行为保持验收，见 [技术文档 25](../../../doc/tech/25_代码分层与行为保持重构.md)。
+
+两个原有验证菜单的中间输出位于 `~/Downloads/daidai-building-editor-20261112/evidence/`。正式保留的效果图在 `res/preview/buildings/`。GameView验收所需 `assets/resources/` 是自动复制缓存，已排除版本控制与建筑发布，制作源仍以 res/source 和原生预制体为准。
 
 ## 发布到游戏
 

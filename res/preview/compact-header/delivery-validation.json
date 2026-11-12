@@ -1,0 +1,319 @@
+{
+  "date": "2026-11-12",
+  "implemented": [
+    "12个男女共用精英姓名，普通人移除四辈儿和芊芊",
+    "左下塔右移50，右下塔上移40",
+    "两栋民居约放大20%，占地同步",
+    "长精英姓名避开城门血条"
+  ],
+  "proposalOnly": [
+    "小记居左、标题日期居中、压缩顶部信息区，三机型效果稿"
+  ],
+  "tests": {
+    "total": 150,
+    "passed": 150,
+    "failed": 0,
+    "log": "/Users/happyelements/Downloads/daidai-elite-pool-20261112/tests.log"
+  },
+  "nativeRender": {
+    "count": 8,
+    "runtime": "LayaAir IDE 3.4.2",
+    "profiles": [
+      "320x568",
+      "390x844"
+    ],
+    "levels": [
+      1,
+      12
+    ],
+    "dayAndNight": true,
+    "physicalDeviceVerified": false
+  },
+  "package": {
+    "createdAt": "2026-11-12T07:26:47.847Z",
+    "root": "/Users/happyelements/Documents/pro/tryVersion/wxgame",
+    "rawDirectoryBytes": 3467790,
+    "rawMainPackageBytes": 1642999,
+    "subpackages": [
+      {
+        "name": "resources/village",
+        "root": "resources/village/",
+        "rawBytes": 1824791
+      }
+    ],
+    "internalTargetBytes": 3500000,
+    "remainingToTarget": 32210,
+    "platformUploadBytes": null,
+    "platformUploadStatus": "not_uploaded",
+    "grouped": {
+      "engineAndAdapter": 1238465,
+      "businessAndStartup": 137691,
+      "artAndMetadata": 1824791,
+      "other": 266843
+    },
+    "errors": [],
+    "files": [
+      {
+        "path": "Scene.ls",
+        "bytes": 148,
+        "sha256": "6a7afbcff770e82d6634924056d7aa9ea9e5d4cf915131a9f201aa04a6ca82a3"
+      },
+      {
+        "path": "fileconfig.json",
+        "bytes": 225,
+        "sha256": "39984b7c0427395710d1069758f392d90acdff4789218b58d53fd48db8de3691"
+      },
+      {
+        "path": "game.js",
+        "bytes": 210,
+        "sha256": "9bd6de89df9581b00687e4b506d4ad3b944da16b6f0f1b53504f5a2d7698123d"
+      },
+      {
+        "path": "game.json",
+        "bytes": 400,
+        "sha256": "32831e630cf63a4fe9a1385132c24d0356f9611e5a44b108dd75ad5689bf1632"
+      },
+      {
+        "path": "js/bundle.js",
+        "bytes": 132978,
+        "sha256": "a79a3e61a2938dea48101e8b4f75dd606b203e77fceb89a784a390a997899b85"
+      },
+      {
+        "path": "js/index.js",
+        "bytes": 4503,
+        "sha256": "3ef651d7175e3dd1e9f1cdb3a7b39989cbebbab6803cf784e6e258b9f3e84a08"
+      },
+      {
+        "path": "libs/laya.adapter-weixin.js",
+        "bytes": 27458,
+        "sha256": "6210f0d89427bf60c8fa32a3a9af88b8e4c10b07eb072e226532fd8453f03512"
+      },
+      {
+        "path": "libs/laya.core.js",
+        "bytes": 873557,
+        "sha256": "2ff75d9ddea3876541770faaea736a2dc11335c2e6f369cb2620dc184275ad6a"
+      },
+      {
+        "path": "libs/laya.webgl_2D.js",
+        "bytes": 280600,
+        "sha256": "d475792569537d892a721614f12a58e3a3ff7c8634a1ae8286b092fd6a6e4573"
+      },
+      {
+        "path": "openDataContext/LICENSE",
+        "bytes": 1075,
+        "sha256": "e1df5224ddaec61dfdeb5bb1651a189fba742a614e0daf16dc6dfba50d47d80c"
+      },
+      {
+        "path": "openDataContext/engine.js",
+        "bytes": 248113,
+        "sha256": "16ddf3862afff82cd0b6d5bece91d8b5e77ca18c4a73a20fd63238742cb7e018"
+      },
+      {
+        "path": "openDataContext/index.js",
+        "bytes": 2519,
+        "sha256": "c08d287249da52bfbfc72f53c415cf4de00db3d19cab4588c1595e8efb22fb92"
+      },
+      {
+        "path": "openDataContext/render.js",
+        "bytes": 3069,
+        "sha256": "92ef39620f42e9a2392a13610c83c34182e7a4f1ca96b8c7f4159243ced8c8f2"
+      },
+      {
+        "path": "openDataContext/score-store.js",
+        "bytes": 3315,
+        "sha256": "9a18f4ed51ac6f066afca4cf6e5f1b42490123d90fb3fac8f5c942610e68615a"
+      },
+      {
+        "path": "project.config.json",
+        "bytes": 248,
+        "sha256": "8092d650bed767a59382abebaca7c7405e3a0953806e0358c581202d813f1b93"
+      },
+      {
+        "path": "resources/layaAir.png",
+        "bytes": 7731,
+        "sha256": "ef747ba1544684249c7b6127a4b30aad5b86491490251f3dc832e083f4ddd8e0"
+      },
+      {
+        "path": "resources/village/animations.json",
+        "bytes": 29452,
+        "sha256": "81d0ecdccde0948a71c25b05def362a1699cb900d635fcaa583198dfb270b564"
+      },
+      {
+        "path": "resources/village/battle_loop.mp3",
+        "bytes": 58637,
+        "sha256": "d20ced70f054d41d83946664655592edb89725ff6d49e9ecb5df39d66c557822"
+      },
+      {
+        "path": "resources/village/building_attack.mc.bin",
+        "bytes": 137,
+        "sha256": "6273a65ab55bd8500b91f3cc8adba23a21fc53f62e4071388fabd8b7a1232698"
+      },
+      {
+        "path": "resources/village/building_upgrade.mc.bin",
+        "bytes": 135,
+        "sha256": "5fa6cbe8f09bbf0edcaa4020a5d9579767cffe31317f4b478f06a6ee54a5f140"
+      },
+      {
+        "path": "resources/village/buildings.json",
+        "bytes": 118070,
+        "sha256": "6cc185e17dce6a34b39ddca35be3386a6c2a25c628c403b70f6bc356eb6d39ad"
+      },
+      {
+        "path": "resources/village/fileconfig.json",
+        "bytes": 249,
+        "sha256": "fd2dbe5eba2a448e0d46c56f220f317142904b57321f5b869108c2649b13e5a0"
+      },
+      {
+        "path": "resources/village/frames.json",
+        "bytes": 74112,
+        "sha256": "390ac99406ab751e8f13c1249c2e0c7619175303b3550aca859b164123472f90"
+      },
+      {
+        "path": "resources/village/game.js",
+        "bytes": 2,
+        "sha256": "a2c2339691fc48fbd14fb307292dff3e21222712d9240810742d7df0c6d74dfb"
+      },
+      {
+        "path": "resources/village/ui_0.png",
+        "bytes": 114966,
+        "sha256": "746aafc67bd099a3f6e54501545ba7eb0c425223702eda00b94c1604f27e838e"
+      },
+      {
+        "path": "resources/village/ui_click.mp3",
+        "bytes": 854,
+        "sha256": "8149b864e7202c77ab2a2da117a9e765599de7adba3030ca6e84b9ce0e9678c3"
+      },
+      {
+        "path": "resources/village/village_loop.mp3",
+        "bytes": 96462,
+        "sha256": "5fc8646055275c788d97b6c21894a311746c1ad9cd07a4fa73f14924a884bb5a"
+      },
+      {
+        "path": "resources/village/world_0.png",
+        "bytes": 1331715,
+        "sha256": "a9b5caa1c670534a54d0eb2857575b37e2dc395c7b4813fbcc5a11a1b2e1ead0"
+      },
+      {
+        "path": "weapp-adapter.js",
+        "bytes": 56850,
+        "sha256": "394188e3f152624ad240391ba865dfcc4a632c8e5ddac49d6f5a6b56c0a03da8"
+      }
+    ]
+  },
+  "names": {
+    "configVersion": 12,
+    "pads": [
+      {
+        "x": 255,
+        "y": 330
+      },
+      {
+        "x": 475,
+        "y": 460
+      },
+      {
+        "x": 300,
+        "y": 535
+      },
+      {
+        "x": 455,
+        "y": 650
+      }
+    ],
+    "eliteNames": [
+      "旭勇",
+      "智卓",
+      "二百",
+      "翟毅",
+      "周博",
+      "赵靓",
+      "龙龙",
+      "昭易",
+      "明波",
+      "宋磊",
+      "徐超",
+      "四辈儿"
+    ],
+    "results": {
+      "birth": {
+        "sample": 4096,
+        "elite": 208,
+        "eliteBySex": {
+          "MALE": {
+            "赵靓": 10,
+            "徐超": 8,
+            "二百": 8,
+            "翟毅": 14,
+            "昭易": 7,
+            "四辈儿": 13,
+            "宋磊": 9,
+            "龙龙": 8,
+            "明波": 11,
+            "周博": 15,
+            "智卓": 6,
+            "旭勇": 5
+          },
+          "FEMALE": {
+            "翟毅": 8,
+            "周博": 13,
+            "龙龙": 8,
+            "四辈儿": 6,
+            "旭勇": 9,
+            "徐超": 10,
+            "明波": 7,
+            "二百": 9,
+            "昭易": 6,
+            "宋磊": 2,
+            "智卓": 7,
+            "赵靓": 9
+          }
+        },
+        "ordinaryRemovedName": 0
+      },
+      "traveler": {
+        "sample": 4096,
+        "elite": 198,
+        "eliteBySex": {
+          "MALE": {
+            "旭勇": 9,
+            "周博": 15,
+            "宋磊": 8,
+            "赵靓": 8,
+            "二百": 6,
+            "龙龙": 6,
+            "徐超": 10,
+            "昭易": 9,
+            "四辈儿": 8,
+            "智卓": 4,
+            "翟毅": 6,
+            "明波": 6
+          },
+          "FEMALE": {
+            "四辈儿": 6,
+            "智卓": 11,
+            "昭易": 18,
+            "翟毅": 8,
+            "宋磊": 7,
+            "赵靓": 10,
+            "周博": 7,
+            "二百": 9,
+            "旭勇": 8,
+            "龙龙": 9,
+            "明波": 4,
+            "徐超": 6
+          }
+        },
+        "ordinaryRemovedName": 0
+      }
+    }
+  },
+  "developmentSaveCleared": false,
+  "saveClearLimitation": "微信开发者工具CLI服务端口关闭；没有启用安全设置或清除其他存储。",
+  "sourceSha256": {
+    "project/LayaProject/src/game/GameConfig.ts": "254e8357d066821e72645519a64a289b6d4798b825fcebcbe64c52a7497c23a2",
+    "project/LayaProject/src/game/VillageRules.ts": "1422e5a6aff3d97ec42eb7d1aa5cdfb7832ec7bc584f2949bbd4dc6ef896fff7",
+    "project/LayaProject/src/view/VillageScene.ts": "f3e5451070615c00ea62da873234d78ea09a47bb36f45bd1341eadc2ca956f5b",
+    "project/LayaProject/src/view/GameView.ts": "dd412130cc45827a14a096d5211b64de69644fbc5a19629da5f3a658fda3e859",
+    "tryVersion/wxgame/js/bundle.js": "a79a3e61a2938dea48101e8b4f75dd606b203e77fceb89a784a390a997899b85"
+  }
+}
