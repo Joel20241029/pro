@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-12T06:06:08.584Z",
-  "runtimeAssetCount": 197,
-  "reserveAssetCount": 30,
+  "generatedAt": "2026-11-12T10:36:15.569Z",
+  "runtimeAssetCount": 198,
+  "reserveAssetCount": 31,
   "animationCount": 32,
   "animationFrames": 108,
   "categoryStats": {
@@ -36,10 +36,10 @@
       "reserve": 2
     },
     "ui/panels": {
-      "count": 8,
-      "bytes": 27392,
-      "runtime": 8,
-      "reserve": 0
+      "count": 10,
+      "bytes": 29277,
+      "runtime": 9,
+      "reserve": 1
     },
     "characters": {
       "count": 88,
@@ -77,14 +77,14 @@
       "runtimeFile": "ui_0.png",
       "width": 512,
       "height": 512,
-      "bytes": 114966,
-      "sha256": "746aafc67bd099a3f6e54501545ba7eb0c425223702eda00b94c1604f27e838e",
+      "bytes": 114881,
+      "sha256": "11d3f56539c9d5a42725b9853063b4b1cedacf6c1d843d16f4858c3fd61b3ca6",
       "group": "ui"
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 1098532,
-    "atlasContentPixels": 937850,
+    "sourceCanvasPixels": 1098272,
+    "atlasContentPixels": 937590,
     "savedContentPixels": 160682,
     "savedContentPercent": 14.63,
     "trimmedAssetCount": 151,
@@ -94,10 +94,10 @@
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "pngBytes": 1446681,
-    "metadataBytes": 221906,
+    "pngBytes": 1446596,
+    "metadataBytes": 222283,
     "audioBytes": 155953,
-    "totalBytes": 1824540,
+    "totalBytes": 1824832,
     "files": [
       "atlases/world_0.png",
       "atlases/ui_0.png",
@@ -112,17 +112,17 @@
     ]
   },
   "nineSliceCompaction": {
-    "originalPixels": 76288,
-    "compactPixels": 15004,
+    "originalPixels": 80128,
+    "compactPixels": 15488,
     "cornersPreserved": true
   },
   "budgets": {
     "fullPackageTarget": 3500000
   },
-  "sourceBytes": 45661209,
+  "sourceBytes": 46252637,
   "budgetComparison": {
     "worldPngBytes": 1331715,
-    "uiAndEffectsPngBytes": 114966
+    "uiAndEffectsPngBytes": 114881
   },
   "limitations": [
     "Atlas content-pixel savings are not identical to PNG byte savings",

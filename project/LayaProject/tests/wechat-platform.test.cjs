@@ -85,9 +85,9 @@ function gameView(session, platform) {
     const panels = new GamePanels(session, art, platform, ui, overlay, layout, () => view.refresh());
     panels.modal = () => { const box = new Sprite(); box.height = 860; overlay.addChild(box); return box; };
     const village = Object.create(VillageWorld.prototype);
-    Object.assign(village, { game: session, layout, scene, motion: { sync() {} }, emotes: { sync() {} }, drawScenery() {} });
+    Object.assign(village, { game: session, layout, scene, motion: { sync() {} }, emotes: { sync() {} }, pressedTargets: new Map(), drawScenery() {} });
     Object.assign(view, { game: session, observedVillageRevision: session.villageRevision, platform, layout, panels, village,
-        shownErrorRevision: 0, observedRun: 0, observedDawn: 0, overlay, tip: { show() {} }, updateActors() {} });
+        shownErrorRevision: 0, observedRun: 0, observedDawn: 0, overlay, tip: { show() {} }, anchoredTip: { hide() {} }, updateActors() {} });
     view.hud = new GameHud(session, art, ui, panels, () => view.refresh());
     return view;
 }
@@ -121,8 +121,10 @@ test('ranking panel is a tall list with no extra controls and authorizes as soon
 test('pure restart of run one resets view schedules, pending panels and effects without a run-number change', () => {
     const env = setup(), session = new GameSession(new SaveStore(env.platform)); session.load(); session.newVillage();
     const view = gameView(session, env.platform), oldMotion = view.village.motion, oldEmotes = view.village.emotes;
+    let houseTipHidden = false; view.anchoredTip.hide = () => { houseTipHidden = true; };
     view.panels.current = {type:'cleanStart'}; view.tip.visible = true; session.changed=()=>view.refresh();
     session.cleanStart(); assert.equal(session.state.run,1); assert.equal(view.panels.current,null); assert.notEqual(view.village.motion,oldMotion); assert.notEqual(view.village.emotes,oldEmotes); assert.equal(view.tip.visible,false);
+    assert(houseTipHidden, 'pure restart must clear the house tip target as well');
 });
 
 test('ranking resize retains the live instance and pending authorization; closing invalidates it once', () => {

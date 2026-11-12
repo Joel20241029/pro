@@ -570,6 +570,20 @@
       "sha256": "9b836a5c72b54278dc209e2cbc211a15c95f68d332e77c887b06aca584d78d79",
       "promptSource": "source/decorations/village_sign.prompt.txt",
       "brief": "暖木路牌空白母版，文字在引擎内绘制；新增88×52运行散图并复用现有图集页。"
+    },
+    {
+      "key": "anchored_tip_v1",
+      "path": "source/ui/anchored-tip/anchored-tip-v1.png",
+      "generator": "image_gen",
+      "promptRecord": "source/ui/anchored-tip/generation.json",
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-533b4559-32a1-4b7c-9b6c-b892388106d7.png",
+      "size": [
+        2172,
+        724
+      ],
+      "sha256": "96c4b6a1d05b0c0a7bc0452376b488f654535951477cb399d3e23ccec9ce34e0",
+      "bytes": 591428,
+      "brief": "无按钮的浅米黄建筑文字气泡；九宫格主体和短指角分开；用户确认并追加尖端原点缩放效果。"
     }
   ],
   "exportMethod": "ImageMagick mechanical crop/nearest-neighbor export/atlas packing; animation frames retain uniform source canvas and feet, atlas trims transparent margins and restores offsets."

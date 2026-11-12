@@ -89,27 +89,28 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
         const ancestor = p.type === "ancestor";
         const q = ancestor ? s.history.find(q => q.id === p.id)! : person(s, p.id!), parents = q.parents.map(id => { const parent = [...s.people, ...s.history].find(a => a.id === id); return parent?.name ? coloredName(parent) : "更早的家族成员"; });
         const box = ctx.modal(`${coloredName(q)} · 第 ${q.generation} 代`, `${TRAITS[q.trait].join("：")}\n${q.skill ? SKILLS[q.skill].join("：") : "成年后选择专长"}`);
-        ctx.ui.image(box, ctx.art.frameId(ancestor || isElder(q) ? `villager_elder_${q.sex === "MALE" ? "male" : "female"}_idle` : q.adult ? `villager_${q.appearance}_walk` : q.growth === 0 ? "villager_baby_idle" : `villager_${q.sex === "MALE" ? "boy" : "girl"}_walk`, 0, false), q.elite ? 30 : 44, q.elite ? 206 : 226, q.elite ? 140 : 112);
+        // 详情统一沿面板中轴排版；精英保留原放大尺寸，两种头像的中心高度一致。
+        ctx.ui.image(box, ctx.art.frameId(ancestor || isElder(q) ? `villager_elder_${q.sex === "MALE" ? "male" : "female"}_idle` : q.adult ? `villager_${q.appearance}_walk` : q.growth === 0 ? "villager_baby_idle" : `villager_${q.sex === "MALE" ? "boy" : "girl"}_walk`, 0, false), (box.width - (q.elite ? 140 : 112)) / 2, q.elite ? 198 : 212, q.elite ? 140 : 112);
         const cared = s.people.some(a => a.careChild === q.id);
-        ctx.ui.label(box, ancestor ? `已寿终 · 留念家谱\n来自第 ${q.id.split(":")[0]} 个村落` : isElder(q) ? `养老还剩 ${q.elderNights} 夜\n基础口粮 ${q.trait === "trait_frugal" ? 1 : RULE.adultRation} / 夜` : q.adult ? `距退休 ${q.nights} 夜\n当前${JOB_NAMES[q.job]}` : `还需照料并守住 ${RULE.growNights - q.growth} 夜\n${cared ? "已安排照料者" : "无人照料，成长暂停"}`, 180, 230, 438, 30, C.green, true, 102);
-        ctx.ui.label(box, parents.length ? `双亲：${parents.join("、")}` : q.origin === "TRAVELER" ? "来历：路过村落的旅人" : "来历：第一代开村人", 34, 354, 600, 28, C.muted, false, 68);
+        ctx.ui.label(box, ancestor ? `已寿终 · 留念家谱\n来自第 ${q.id.split(":")[0]} 个村落` : isElder(q) ? `养老还剩 ${q.elderNights} 夜\n基础口粮 ${q.trait === "trait_frugal" ? 1 : RULE.adultRation} / 夜` : q.adult ? `距退休 ${q.nights} 夜\n当前${JOB_NAMES[q.job]}` : `还需照料并守住 ${RULE.growNights - q.growth} 夜\n${cared ? "已安排照料者" : "无人照料，成长暂停"}`, UI.inset, 348, UI.contentWidth, 30, C.green, true, 76).align = "center";
+        ctx.ui.label(box, parents.length ? `双亲：${parents.join("、")}` : q.origin === "TRAVELER" ? "来历：路过村落的旅人" : "来历：第一代开村人", UI.inset, 424, UI.contentWidth, 28, C.muted, false, 44).align = "center";
         if (q.elite)
-            ctx.ui.label(box, `耕伐 +50% · 塔伤 +25% · 照料 +${ELITE.careFoodBonus} 粮\n劳作 ${ELITE.adultNights} 夜 · 养老 ${ELITE.elderNights} 夜 · 口粮不变`, 34, 430, 600, 28, C.timber, true, 68).align = "center";
+            ctx.ui.label(box, `耕伐 +50% · 塔伤 +25% · 照料 +${ELITE.careFoodBonus} 粮\n劳作 ${ELITE.adultNights} 夜 · 养老 ${ELITE.elderNights} 夜 · 口粮不变`, 34, 472, 600, 28, C.timber, true, 68).align = "center";
         if (ancestor) {
             const favorite = s.favorites.includes(q.id), full = s.favorites.length >= RULE.favoriteCap;
-            ctx.ui.button(box, favorite ? "取消珍藏" : full ? `珍藏已满 ${RULE.favoriteCap} 位` : "珍藏这位先辈", 34, 510, 600, () => ctx.send({ type: "FAVORITE", id: q.id }), C.gold, 78, favorite || !full);
-            ctx.ui.label(box, `珍藏最多 ${RULE.favoriteCap} 位，满了可先取消一位。\n普通家谱保留最近 ${RULE.historyCap} 位先辈。`, 34, 650, 600, 28, C.muted, false, 126);
+            ctx.ui.button(box, favorite ? "取消珍藏" : full ? `珍藏已满 ${RULE.favoriteCap} 位` : "珍藏这位先辈", 34, q.elite ? 556 : 510, 600, () => ctx.send({ type: "FAVORITE", id: q.id }), C.gold, 78, favorite || !full);
+            ctx.ui.label(box, `珍藏最多 ${RULE.favoriteCap} 位，满了可先取消一位。\n普通家谱保留最近 ${RULE.historyCap} 位先辈。`, 34, q.elite ? 680 : 650, 600, 28, C.muted, false, 126).align = "center";
             return;
         }
         if (isElder(q)) {
-            ctx.ui.label(box, "已卸下劳作，留在熟悉的村落养老。\n占用 1 个住房名额，口粮计入每日消耗。\n成功守夜才推进晚年，寿终后记入家谱。", 34, 504, 600, 29, C.timber, false, 180).align = "center";
+            ctx.ui.label(box, "已卸下劳作，留在熟悉的村落养老。\n占用 1 个住房名额，口粮计入每日消耗。\n成功守夜才推进晚年，寿终后记入家谱。", 34, q.elite ? 556 : 504, 600, 29, C.timber, false, 180).align = "center";
             return;
         }
         if (isWorkingAdult(q) && day) {
             (["FARM", "LOGGING"] as const).forEach((job, i) => {
                 const full = s.people.filter(a => a.job === job).length >= laborSlots(job, job === "FARM" ? s.farm : s.logging);
                 const current = q.job === job;
-                ctx.ui.button(box, `${JOB_NAMES[job]}${current ? " · 当前" : full ? " · 换人" : ""}`, 34 + i * 308, q.elite ? 516 : 484, 292, () => {
+                ctx.ui.button(box, `${JOB_NAMES[job]}${current ? " · 当前" : full ? " · 换人" : ""}`, 34 + i * 308, q.elite ? 556 : 484, 292, () => {
                     if (full && !current)
                         ctx.open({ type: "workers", id: q.id, job });
                     else
@@ -117,9 +118,9 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
                 }, current ? C.gold : C.green, 78);
             });
             const needsCare = s.people.some(child => !child.adult && !s.people.some(a => a.careChild === child.id));
-            ctx.ui.button(box, needsCare ? "安排照料孩子" : "暂无需要照料的孩子", 34, q.elite ? 624 : 596, 600, () => ctx.open({ type: "care", id: q.id }), C.green, 78, needsCare);
+            ctx.ui.button(box, needsCare ? "安排照料孩子" : "暂无需要照料的孩子", 34, q.elite ? 648 : 596, 600, () => ctx.open({ type: "care", id: q.id }), C.green, 78, needsCare);
         }
-        ctx.ui.label(box, !q.adult ? "孩子暂不参加工作和驻塔。\n请在成人详情中为他安排照料。" : !day ? "夜间可换驻塔人选，白天再调工作。\n白天岗位与夜间驻塔互不占用。" : "防塔会自动补人，点击地图防塔可换人。\n白天岗位与夜间驻塔互不占用。", 34, 716, 600, 28, C.muted, false, 96).align = "center";
+        ctx.ui.label(box, !q.adult ? "孩子暂不参加工作和驻塔。\n请在成人详情中为他安排照料。" : !day ? "夜间可换驻塔人选，白天再调工作。\n白天岗位与夜间驻塔互不占用。" : "防塔会自动补人，点击地图防塔可换人。\n白天岗位与夜间驻塔互不占用。", 34, q.elite ? 744 : 716, 600, 28, C.muted, false, 96).align = "center";
         return;
     }
 }

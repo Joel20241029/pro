@@ -3,7 +3,7 @@ export const C = {
     ink: "#48311f", muted: "#796348", cream: "#fff1cf", paper: "#eddbad",
     green: "#557637", gold: "#d49a35", red: "#af5338", grass: "#97af70", night: "#354f53",
     outline: "#493420", lightEdge: "#fff9e7",
-    // 木色用于资源与成长信息强调；不改变资源是否足够的判定。
+    // 木色用于资源、成长及米黄底板上的屏中提示；不改变资源是否足够的判定。
     timber: "#9a591f",
     // 浅麦金 Tip 底图的暖棕正文，中心区域对比度≥5.26:1；仅用于短提示，不改变警示语义。
     tipInk: "#6b4928",

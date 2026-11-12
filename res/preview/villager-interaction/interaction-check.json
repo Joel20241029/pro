@@ -1,0 +1,102 @@
+[
+  {
+    "level": 1,
+    "short": false,
+    "phase": "DAY",
+    "personKinds": 5,
+    "nativeInput": true,
+    "modalBlocking": true,
+    "autoPanelBlocking": true,
+    "mirrorElite": true,
+    "overlap": true,
+    "poolReuse": true,
+    "treeOcclusion": true,
+    "houseBubble": true,
+    "farmGround": true,
+    "pauseResume": true,
+    "centerTip": true
+  },
+  {
+    "level": 1,
+    "short": false,
+    "phase": "NIGHT",
+    "nativeInput": true,
+    "nightPauseResume": true,
+    "towerHidden": true
+  },
+  {
+    "level": 1,
+    "short": true,
+    "phase": "DAY",
+    "personKinds": 5,
+    "nativeInput": true,
+    "modalBlocking": true,
+    "autoPanelBlocking": true,
+    "mirrorElite": true,
+    "overlap": true,
+    "poolReuse": true,
+    "treeOcclusion": true,
+    "houseBubble": true,
+    "farmGround": true,
+    "pauseResume": true,
+    "centerTip": true
+  },
+  {
+    "level": 1,
+    "short": true,
+    "phase": "NIGHT",
+    "nativeInput": true,
+    "nightPauseResume": true,
+    "towerHidden": true
+  },
+  {
+    "level": 12,
+    "short": false,
+    "phase": "DAY",
+    "personKinds": 5,
+    "nativeInput": true,
+    "modalBlocking": true,
+    "autoPanelBlocking": true,
+    "mirrorElite": true,
+    "overlap": true,
+    "poolReuse": true,
+    "treeOcclusion": true,
+    "houseBubble": true,
+    "farmGround": true,
+    "pauseResume": true,
+    "centerTip": true
+  },
+  {
+    "level": 12,
+    "short": false,
+    "phase": "NIGHT",
+    "nativeInput": true,
+    "nightPauseResume": true,
+    "towerHidden": true
+  },
+  {
+    "level": 12,
+    "short": true,
+    "phase": "DAY",
+    "personKinds": 5,
+    "nativeInput": true,
+    "modalBlocking": true,
+    "autoPanelBlocking": true,
+    "mirrorElite": true,
+    "overlap": true,
+    "poolReuse": true,
+    "treeOcclusion": true,
+    "houseBubble": true,
+    "farmGround": true,
+    "pauseResume": true,
+    "centerTip": true
+  },
+  {
+    "level": 12,
+    "short": true,
+    "phase": "NIGHT",
+    "nativeInput": true,
+    "nightPauseResume": true,
+    "towerHidden": true
+  }
+]

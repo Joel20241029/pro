@@ -53,17 +53,17 @@ export const VILLAGE_PROPS: VillageProp[] = [
         { frame: "deco_apple_pair", x: .22, y: .37, size: .14, alpha: .85 },
         { frame: "deco_apple_pair", x: .59, y: .24, size: .12, alpha: .8 }
     ] },
-    // 两棵48/52宽的角落花果树，体量低于成人64~68；树干在既有行走边界之外，保留中央活动空间。
+    // 角落圆树参考原伐木树90宽，调整至84/86宽，树冠高度超过成人；足底靠边并留出完整树冠。
     // 花果各一簇、低透明度，无闪烁或跳动；复用林带素材，不新增贴图和寻路障碍。
-    { id: "tree:corner-blossom", frame: "deco_tree_oak", x: 28, y: 884, size: 48, footprint: null, canopyDetails: [
-        { frame: "deco_blossom_ivory", x: .55, y: .28, size: .2, alpha: .78 }
+    { id: "tree:corner-blossom", frame: "deco_tree_oak", x: 38, y: 884, size: 84, footprint: null, canopyDetails: [
+        { frame: "deco_blossom_ivory", x: .55, y: .28, size: .12, alpha: .78 }
     ] },
-    { id: "tree:corner-fruit", frame: "deco_tree_oak", x: 686, y: 998, size: 52, footprint: null, canopyDetails: [
-        { frame: "deco_pear_pair", x: .25, y: .33, size: .2, alpha: .8 }
+    { id: "tree:corner-fruit", frame: "deco_tree_oak", x: 677, y: 998, size: 86, footprint: null, canopyDetails: [
+        { frame: "deco_pear_pair", x: .25, y: .33, size: .12, alpha: .8 }
     ] },
-    // 按用户要求再加两棵现有松树，左下/右上错位补充树形；小体量且树干仍位于行走边界外。
-    { id: "tree:corner-pine-left", frame: "deco_tree_pine", x: 28, y: 976, size: 54, footprint: null },
-    { id: "tree:corner-pine-right", frame: "deco_tree_pine", x: 686, y: 880, size: 56, footprint: null },
+    // 松树使用88宽，与圆树同一量级、树形稍高；根部仍在行走横向边界外，左右错位保留活动区。
+    { id: "tree:corner-pine-left", frame: "deco_tree_pine", x: 43, y: 976, size: 88, footprint: null },
+    { id: "tree:corner-pine-right", frame: "deco_tree_pine", x: 677, y: 880, size: 88, footprint: null },
     { id: "deco:logs", frame: "deco_log_pile", x: 571, y: 1024, size: 60, footprint: null },
     ...[[168, 292], [560, 286], [170, 477], [553, 548], [164, 668], [553, 734]].map(([x, y], i): VillageProp => ({ id: `bush:${i}`, frame: "deco_bush", x, y, size: 64, footprint: null })),
     ...[[279, 822], [441, 822]].map(([x, y], i): VillageProp => ({ id: `torch:${i}`, frame: "deco_torch", x, y, size: 62, footprint: null })),

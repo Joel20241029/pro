@@ -56,7 +56,8 @@ export class UiWidgets {
         this.image(frame, icon, 4, 4, 80).alpha = enabled ? 1 : .5;
         return row;
     }
-    bindClick(target: Laya.Sprite, action: () => void, face?: Laya.Sprite) {
+    /** 有效点击保留原事件坐标，供民房交叠区域选择前景目标；取消点击和音效仍走同一入口。 */
+    bindClick(target: Laya.Sprite, action: (event: Laya.Event) => void, face?: Laya.Sprite) {
         const pressed = new Set<number>();
         target.mouseEnabled = true;
         target.on(Laya.Event.MOUSE_DOWN, this, (e: Laya.Event) => {
@@ -83,7 +84,7 @@ export class UiWidgets {
             }
         });
         target.on(Laya.Event.UNDISPLAY, this, () => { pressed.clear(); release(); });
-        target.on(Laya.Event.CLICK, this, () => { this.playClick(); action(); });
+        target.on(Laya.Event.CLICK, this, (event: Laya.Event) => { this.playClick(); action(event); });
     }
     button(parent: Laya.Sprite, title: string, x: number, y: number, w: number, action: () => void, color = C.green, h = 72, enabled = true) {
         const b = new Laya.Sprite();

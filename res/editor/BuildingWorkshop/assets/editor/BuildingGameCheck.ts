@@ -28,9 +28,10 @@ export class BuildingGameCheckMenu {
         console.log("VILLAGE_REFACTOR_VISUAL_CHECK", JSON.stringify(results));
     }
     @IEditor.menu("App/tool/CheckBuildingsInGame")
-    static async run() {
+    static async run(mode?: "anchored-tip" | "person-click") {
         const fs = IEditor.require("fs"), path = IEditor.require("path"), home = IEditor.require("os").homedir();
-        const evidence = home + "/Downloads/daidai-building-editor-20261112/evidence";
+        const evidence = home + (mode === "person-click" ? "/Downloads/daidai-person-click-20261112/native" : mode === "anchored-tip" ? "/Downloads/daidai-building-tip-20261112/native" : "/Downloads/daidai-building-editor-20261112/evidence");
+        fs.mkdirSync(evidence, { recursive: true });
         const compiled = home + "/Downloads/daidai-building-editor-20261112/test-suite/src";
         const modules: Record<string, string> = {};
         const walk = (dir: string) => {
@@ -45,8 +46,12 @@ export class BuildingGameCheckMenu {
         fs.mkdirSync(dest, { recursive: true });
         const manifest = JSON.parse(fs.readFileSync(repo + "/res/manifest.json", "utf8"));
         for (const file of manifest.runtimeWhitelist) fs.copyFileSync(repo + "/res/" + file, dest + "/" + path.basename(file));
-        const result = await Editor.scene.runScript("BuildingGameCheck.render", modules, evidence, manifest.runtimeWhitelist.map((file: string) => path.basename(file)));
+        const result = await Editor.scene.runScript("BuildingGameCheck.render", modules, evidence, manifest.runtimeWhitelist.map((file: string) => path.basename(file)), mode);
         console.log("VILLAGE_GAME_VISUAL_CHECK", JSON.stringify(result));
     }
+    @IEditor.menu("App/tool/CheckBuildingTips")
+    static async checkBuildingTips() { await BuildingGameCheckMenu.run("anchored-tip"); }
+    @IEditor.menu("App/tool/CheckVillageInteraction")
+    static async checkVillageInteraction() { await BuildingGameCheckMenu.run("person-click"); }
 }
 

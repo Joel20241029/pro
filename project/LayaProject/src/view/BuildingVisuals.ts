@@ -3,6 +3,7 @@ import { BuildingLook, BuildingNode, buildingLayoutId } from "./BuildingLayout";
 import { BattleSimulation, Shot } from "../game/BattleSimulation";
 import { RULE } from "../game/GameConfig";
 import { GroundPoint } from "./VillageScene";
+import { TipTarget } from "./AnchoredTip";
 export { BuildingLook } from "./BuildingLayout";
 
 /** 原生编辑器部件+共享 .mc；地图根的足底/排序不动，动画只作用于内部 Body/Weapon。 */
@@ -14,6 +15,7 @@ export class BuildingVisuals {
     private above: Laya.Sprite | null = null; private aboveSort: GroundPoint | null = null;
     private elapsed = 0; private upgrading = false;
     private battle: BattleSimulation | null = null; private latestShot: Shot | null = null;
+    private cachedBodyRegion: TipTarget | null = null;
     constructor(private owner: Laya.Sprite, private art: SpriteFrames) {
         this.parts.name = "EditorBuilding"; this.parts.mouseEnabled = false; owner.addChild(this.parts);
         this.badge.name = "UpgradeLevel"; this.badge.mouseEnabled = false;
@@ -46,6 +48,7 @@ export class BuildingVisuals {
         this.key = key; this.level = level; this.rooms = rooms;
         this.parts.destroyChildren(); this.above?.destroy(true); this.above = null; this.aboveSort = null;
         this.body = this.muzzle = null; this.upgrades = []; this.attack = null;
+        this.cachedBodyRegion = null;
         this.latestShot = null; this.upgrading = false; this.badge.visible = false;
         if (!kind) return;
         this.owner.texture = null;
@@ -80,6 +83,15 @@ export class BuildingVisuals {
         this.elapsed += delta;
         const progress = Math.min(1, this.elapsed / this.upgrades[0].clip.duration());
         this.upgrades.forEach(a => a.gotoAndStop(progress)); this.upgrading = progress < 1;
+    }
+    /** 实际贴图范围用于民房点击和屋顶提示；编辑器bounds含安全留白，不能作为屋顶。
+     * 只缓存Body本地范围；坐标换算仍取当前缩放，升级动画与窗口重排不会留下旧挂点。
+     */
+    bodyRegion(): TipTarget {
+        if (!this.body) throw new Error("当前建筑没有可交互主体");
+        if (!this.cachedBodyRegion)
+            this.cachedBodyRegion = { node: this.body, bounds: this.body.getSelfBounds(new Laya.Rectangle(), true) };
+        return this.cachedBodyRegion;
     }
     /** 水车从地面农田分离，只按自己的足底与人物排序；重排时从owner当前坐标重算。 */
     occluder(): { id: string; y: number; node: Laya.Sprite } | null {

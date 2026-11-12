@@ -23,8 +23,8 @@
       "runtimeFile": "ui_0.png",
       "width": 512,
       "height": 512,
-      "bytes": 114966,
-      "sha256": "746aafc67bd099a3f6e54501545ba7eb0c425223702eda00b94c1604f27e838e",
+      "bytes": 114881,
+      "sha256": "11d3f56539c9d5a42725b9853063b4b1cedacf6c1d843d16f4858c3fd61b3ca6",
       "group": "ui"
     }
   ],
@@ -4215,38 +4215,10 @@
       },
       "nineSlice": null
     },
-    "panel_tip": {
-      "page": "ui_0",
-      "rect": {
-        "x": 50,
-        "y": 475,
-        "w": 32,
-        "h": 32
-      },
-      "sourceSize": {
-        "w": 32,
-        "h": 32
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 16,
-        "y": 16
-      },
-      "nineSlice": {
-        "top": 6,
-        "right": 6,
-        "bottom": 6,
-        "left": 6,
-        "repeat": 0
-      }
-    },
     "panel_button_disabled": {
       "page": "ui_0",
       "rect": {
-        "x": 86,
+        "x": 50,
         "y": 475,
         "w": 30,
         "h": 30
@@ -4281,6 +4253,41 @@
     "panel_button_gold": {
       "page": "ui_0",
       "rect": {
+        "x": 84,
+        "y": 475,
+        "w": 30,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 30,
+        "h": 30
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 15,
+        "y": 15
+      },
+      "nineSlice": {
+        "top": 14,
+        "right": 14,
+        "bottom": 14,
+        "left": 14,
+        "repeat": 0,
+        "order": [
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "repeat"
+        ]
+      }
+    },
+    "panel_button_green": {
+      "page": "ui_0",
+      "rect": {
         "x": 152,
         "y": 2,
         "w": 30,
@@ -4313,7 +4320,7 @@
         ]
       }
     },
-    "panel_button_green": {
+    "panel_button_red": {
       "page": "ui_0",
       "rect": {
         "x": 93,
@@ -4348,7 +4355,7 @@
         ]
       }
     },
-    "panel_button_red": {
+    "panel_card": {
       "page": "ui_0",
       "rect": {
         "x": 110,
@@ -4383,7 +4390,7 @@
         ]
       }
     },
-    "panel_card": {
+    "panel_portrait_frame": {
       "page": "ui_0",
       "rect": {
         "x": 98,
@@ -4418,40 +4425,55 @@
         ]
       }
     },
-    "panel_portrait_frame": {
+    "panel_anchored_tip": {
       "page": "ui_0",
       "rect": {
         "x": 127,
         "y": 362,
-        "w": 30,
-        "h": 30
+        "w": 22,
+        "h": 22
       },
       "sourceSize": {
-        "w": 30,
-        "h": 30
+        "w": 22,
+        "h": 22
       },
       "trimOffset": {
         "x": 0,
         "y": 0
       },
       "pivot": {
-        "x": 15,
-        "y": 15
+        "x": 11,
+        "y": 11
       },
       "nineSlice": {
-        "top": 14,
-        "right": 14,
-        "bottom": 14,
-        "left": 14,
-        "repeat": 0,
-        "order": [
-          "top",
-          "right",
-          "bottom",
-          "left",
-          "repeat"
-        ]
+        "top": 10,
+        "right": 10,
+        "bottom": 10,
+        "left": 10,
+        "repeat": 0
       }
+    },
+    "panel_anchored_tip_tail": {
+      "page": "ui_0",
+      "rect": {
+        "x": 110,
+        "y": 453,
+        "w": 20,
+        "h": 14
+      },
+      "sourceSize": {
+        "w": 20,
+        "h": 14
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 10,
+        "y": 7
+      },
+      "nineSlice": null
     }
   }
 }

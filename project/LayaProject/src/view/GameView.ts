@@ -3,6 +3,7 @@ import { RULE } from "../game/GameConfig";
 import { SpriteFrames } from "./SpriteFrames";
 import { GameLayout } from "./GameLayout";
 import { Tip } from "./Tip";
+import { AnchoredTip } from "./AnchoredTip";
 import { RankingView } from "./RankingView";
 import { WechatPlatform } from "../platform/WechatPlatform";
 import { UiWidgets } from "./UiWidgets";
@@ -16,7 +17,16 @@ export class GameView {
     private overlay = new Laya.Sprite();
     private layout = new GameLayout(this.platform.window, this.platform.menu);
     private ui = new UiWidgets(this.art, this.playClick);
-    private village = new VillageWorld(this.game, this.art, this.ui, this.layout);
+    private anchoredTip = new AnchoredTip(this.art);
+    private village = new VillageWorld(this.game, this.art, this.ui, this.layout, (name, visual) => {
+        const phase = this.game.state?.phase;
+        if (!this.overlay.numChildren && (phase === "DAY" || phase === "NIGHT"))
+            this.anchoredTip.show(name, () => visual.bodyRegion());
+    }, id => {
+        const state = this.game.state;
+        if (state && !this.overlay.numChildren && (state.phase === "DAY" || state.phase === "NIGHT") && state.people.some(p => p.id === id))
+            this.panels.open({ type: "person", id });
+    });
     private panels = new GamePanels(this.game, this.art, this.platform, this.ui, this.overlay, this.layout, () => this.refresh());
     private hud = new GameHud(this.game, this.art, this.ui, this.panels, () => this.refresh());
     private tip: Tip;
@@ -29,7 +39,7 @@ export class GameView {
         this.root.name = "VillageGame";
         this.root.size(720, this.layout.height);
         this.root.stackingRoot = true;
-        [this.village.scenery, this.village.world, this.village.shots, this.hud.node, this.overlay].forEach((layer, i) => { layer.stackingRoot = true; layer.zIndex = i; this.root.addChild(layer); });
+        [this.village.scenery, this.village.world, this.village.shots, this.hud.node, this.anchoredTip, this.overlay].forEach((layer, i) => { layer.stackingRoot = true; layer.zIndex = i; this.root.addChild(layer); });
         this.village.bellAura.name = "BellAura";
         this.village.bellAura.zIndex = 2;
         this.village.bellAura.mouseEnabled = false;
@@ -42,7 +52,7 @@ export class GameView {
         this.root.addChild(this.village.emote);
         this.tip = new Tip(art);
         this.tip.stackingRoot = true;
-        this.tip.zIndex = 5;
+        this.tip.zIndex = 6;
         this.tip.pos(360, (this.layout.safeTop + this.layout.safeBottom) / 2);
         this.root.addChild(this.tip);
         this.overlay.size(720, this.layout.height);
@@ -82,6 +92,7 @@ export class GameView {
             this.observedDawn = 0;
             this.panels.current = null;
             this.tip.visible = false;
+            this.anchoredTip.hide();
         }
         if (this.shownErrorRevision !== this.game.errorRevision) {
             this.shownErrorRevision = this.game.errorRevision;
@@ -121,11 +132,19 @@ export class GameView {
         this.updateActors();
     }
     update(delta: number) {
-        if (!this.game.pauses.has("BACKGROUND") && !this.game.pauses.has("DISABLED"))
-            this.tip.advance(Math.min(RULE.frameCap, Math.max(0, delta)));
+        const active = !this.game.pauses.has("BACKGROUND") && !this.game.pauses.has("DISABLED");
+        const visualDelta = Math.min(RULE.frameCap, Math.max(0, delta));
+        if (active) this.tip.advance(visualDelta);
         if (this.village.advance(delta))
             this.updateActors();
+        if (active) this.anchoredTip.advance(visualDelta);
     }
-    private updateActors() { this.village.render(this.panels.current !== null); this.hud.update(); }
-    destroy() { this.game.changed = () => { }; this.root.destroy(true); }
+    private updateActors() {
+        this.village.render(this.panels.current !== null);
+        this.hud.update();
+        // 每日口粮/欢迎回来等自动面板也通过overlay显示，不仅检查主动打开的panels.current。
+        if (this.overlay.numChildren) this.anchoredTip.hide();
+        else this.anchoredTip.advance(0);
+    }
+    destroy() { this.game.changed = () => { }; this.anchoredTip.hide(); this.root.destroy(true); }
 }

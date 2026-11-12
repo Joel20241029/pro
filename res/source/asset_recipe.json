@@ -5326,13 +5326,13 @@
         "left": 6,
         "repeat": 0
       },
-      "mapping": "Tip:screen-center",
+      "mapping": "旧版屏中提示底板，仅保留制作源",
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "stretch",
       "cropNote": "独立浅麦金纯色底；完整不透明中心，32×32九宫格，配深棕文字，无描边/木框/投影。",
-      "runtime": true,
-      "usage": "界面/特效入口"
+      "runtime": false,
+      "usage": "被共享的panel_anchored_tip替换，不进入运行图集"
     },
     {
       "id": "villager_male_a_chop_00",
@@ -8210,6 +8210,85 @@
       "runtime": true,
       "usage": "城门左侧村名路牌；文字是GameView中的子节点，与牌体一起按足底排序。",
       "cropNote": "主体10%alpha范围用于母版定位；保留内部alpha；运行图集仅裁alpha=0。"
+    },
+    {
+      "id": "panel_anchored_tip",
+      "label": "建筑文字气泡底板",
+      "category": "ui/panels",
+      "categoryLabel": "界面底板",
+      "path": "runtime/ui/panels/panel_anchored_tip.png",
+      "width": 22,
+      "height": 22,
+      "pivot": {
+        "x": 11.0,
+        "y": 11.0
+      },
+      "sourceSheet": "source/ui/anchored-tip/anchored-tip-v1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 2172,
+        "h": 724
+      },
+      "sourceCropWithinCell": {
+        "x": 173,
+        "y": 134,
+        "w": 1325,
+        "h": 455
+      },
+      "nineSlice": {
+        "top": 10,
+        "right": 10,
+        "bottom": 10,
+        "left": 10,
+        "repeat": 0
+      },
+      "mapping": "AnchoredTip:target-top; Tip:screen-center",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "cropNote": "新生成像素母版；按主体轮廓明确裁出，排除外侧游离低透明像素。文字由Laya绘制，指角单独保留比例。",
+      "runtime": true,
+      "usage": "民房点击文字气泡",
+      "nineSliceSourceSize": {
+        "w": 96,
+        "h": 40
+      },
+      "compactNote": "保留10px固定角部，中间取2px；指角由独立图片绘制，不参与九宫格拉伸。"
+    },
+    {
+      "id": "panel_anchored_tip_tail",
+      "label": "建筑文字气泡指角",
+      "category": "ui/panels",
+      "categoryLabel": "界面底板",
+      "path": "runtime/ui/panels/panel_anchored_tip_tail.png",
+      "width": 20,
+      "height": 14,
+      "pivot": {
+        "x": 10.0,
+        "y": 7.0
+      },
+      "sourceSheet": "source/ui/anchored-tip/anchored-tip-v1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 2172,
+        "h": 724
+      },
+      "sourceCropWithinCell": {
+        "x": 1755,
+        "y": 318,
+        "w": 239,
+        "h": 172
+      },
+      "nineSlice": null,
+      "mapping": "AnchoredTip:target-top",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "cropNote": "新生成像素母版；按主体轮廓明确裁出，排除外侧游离低透明像素。文字由Laya绘制，指角单独保留比例。",
+      "runtime": true,
+      "usage": "民房点击文字气泡"
     }
   ],
   "animations": {

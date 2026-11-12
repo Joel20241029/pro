@@ -61,6 +61,6 @@ export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel) {
     const box = ctx.modal("村落小记", "村落进度本地保存，无离线收益。\n好友榜同步最高守村纪录。");
     ctx.ui.button(box, s.settings.music ? "游戏声音 · 开" : "游戏声音 · 关", 34, 224, 600, () => ctx.send({ type: "MUSIC", enabled: !s.settings.music }), s.settings.music ? C.green : C.muted, 76);
     ctx.ui.button(box, "玩法说明", 34, 326, 600, () => ctx.open({ type: "guide", tab: 0 }), C.gold, 80);
-    ["不清楚条件、资源或警钟？打开玩法说明。", "灰色条目会提前写明还缺什么。", "白天准备好生产、家庭和防线，再去守夜。"].forEach((tip, i) => ctx.ui.label(box, tip, 44, 444 + i * 82, 580, 28, C.ink, false, 70));
+    ["不清楚条件、资源或大王之心？打开玩法说明。", "灰色条目会提前写明还缺什么。", "白天准备好生产、家庭和防线，再去守夜。"].forEach((tip, i) => ctx.ui.label(box, tip, 44, 444 + i * 82, 580, 28, C.ink, false, 70));
     ctx.ui.button(box, "重新开村…", 34, 754, 600, () => ctx.open({ type: "restart" }), C.red, 76);
 }

@@ -8,7 +8,7 @@ export class Tip extends Laya.Sprite {
     constructor(private art: SpriteFrames) {
         super(); this.name = "Tip"; this.mouseEnabled = false; this.visible = false;
         const t = this.message; t.name = "TipText"; t.font = "sans-serif"; t.fontSize = UI.tipFont;
-        t.bold = false; t.color = C.tipInk; t.stroke = 1; t.strokeColor = C.lightEdge;
+        t.bold = false; t.color = C.timber; t.stroke = 1; t.strokeColor = C.lightEdge;
         t.align = "center"; t.valign = "middle"; t.wordWrap = true; t.leading = 8;
         t.mouseEnabled = false; t.size(UI.tipWidth - 64, UI.tipMaxHeight - 56); t.pos(32, 28); this.addChild(t);
     }
@@ -18,7 +18,7 @@ export class Tip extends Laya.Sprite {
         const height = Math.min(UI.tipMaxHeight, Math.max(112, t.textHeight + 56));
         t.height = height - 56; t.overflow = Laya.Text.ELLIPSIS;
         this.size(UI.tipWidth, height).pivot(UI.tipWidth / 2, height / 2);
-        this.graphics.clear(); this.art.panel(this, "panel_tip", UI.tipWidth, height);
+        this.graphics.clear(); this.art.panel(this, "panel_anchored_tip", UI.tipWidth, height);
         this.elapsed = 0; this.alpha = 0; this.visible = true;
     }
     advance(delta: number) {

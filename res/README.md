@@ -40,14 +40,20 @@ node res/tools/build-resources.mjs \
 
 流程：母版+配方 → 分类散图 → 编辑器引用贴图同步 → 透明裁边图集；七个原生 .lh → 严格属性校验 → 紧凑布局。两个 .mc 使用原生二进制原样复制。原生源工程的搭建命令见 [工程说明](editor/BuildingWorkshop/README.md)。
 
-只发布 `manifest.runtimeWhitelist`，不递归复制整个 res。当前227张源画布，197张运行素材、30张备用素材，32组人物/敌人动画、108张动画帧、2页图集。弃用的10张旧升级挂饰和旧抛石机关已退出运行图集，原始素材保留。
+只发布 `manifest.runtimeWhitelist`，不递归复制整个 res。当前 229 张源画布，198 张运行素材、31 张备用素材，32 组人物/敌人动画、108 张动画帧、2 页图集。弃用的 10 张旧升级挂饰、旧抛石机关及旧屏中 Tip 底板已退出运行图集，原始素材保留。
 
 图集仅裁 alpha=0 外圈，frames.json 恢复源画布偏移和脚底；九宫格保持完整尺寸。建筑母版的分格裁片额外使用显式主体矩形，避免邻格碎片进入部件；这个制作裁切与运行图集透明裁边是两个步骤。
 
-当前资源白名单共10个文件，合计1,824,540字节。微信发布将 `.mc` 改名为 `.mc.bin`，内容哈希保持一致；发布器另生成分包 `game.js` 和 `fileconfig.json`。主包1,643,072字节，村庄分包1,824,791字节，总计3,467,863字节，这是导出目录原始字节，未包含平台上传压缩测量。
+当前资源白名单共 10 个文件，合计 1,824,832 字节。微信发布将 `.mc` 改名为 `.mc.bin`，内容哈希保持一致；发布器另生成分包 `game.js` 和 `fileconfig.json`。主包 1,651,728 字节，村庄分包 1,825,083 字节，总计 3,476,811 字节，这是导出目录原始字节，未包含平台上传压缩测量。
+
+建筑点击气泡：点击左侧民房显示“佟楼”，右侧显示“南楼”，以指角尖端为原点展开、收起，总计 2 秒。新增 `22×22` 九宫格主体与 `20×14` 指角，仍合入现有 UI 图集；制作源及完整提示词在 [source/ui/anchored-tip](source/ui/anchored-tip/README.md)，确认稿、实际渲染和检查报告在 [preview/anchored-tip](preview/anchored-tip/README.md)，实现见 [技术文档 26](../doc/tech/26_建筑点击气泡.md)。
+
+屏中 Tip 已共用该米黄主体九宫格，不带指角，正文为棕橙色 `#9a591f`，保留两秒淡入淡出。旧 `panel_tip` 只保留源素材，退出发布图集，资源白名单减少 2,093 字节。地图村民点击详情不增加图片资源，最新 Tip 及各类人物详情实绘和检查报告见 [villager-interaction](preview/villager-interaction/README.md)，实现见 [技术文档 27](../doc/tech/27_地图村民详情与共享Tip.md)。
+
+排行入口图文间距已调整，奖杯大小保留，“排行”与奖杯、底框分开留白；仅修改布局参数，原图和图集不变。最新长短屏实绘见 [ranking-entry](preview/ranking-entry/README.md)。
 
 村名与道路路牌：母版与提示词在 `source/decorations/`，共同使用 88×52 底图和独立中文；“文明里村”显示宽 140，“友谊路”显示宽 120，均为设计像素。文字与位置配置在 `VillageSceneConfig.VILLAGE_PROPS`，与牌体共用遮挡。复用底图不增加运行素材，仍为两页图集。村名牌首次实绘见 [village-sign](preview/village-sign/README.md)，最新双路牌实绘见 [compact-header](preview/compact-header/README.md)，规则见 [技术记录24](../doc/tech/24_精英姓名与文明里村路牌.md)。
 
-村内花果：原伐木树复用两簇红果，两个角落各增加一棵 48/52 宽的小树，分别带一簇浅色花和黄果。树与花果全部复用现有运行素材，不增位图；相对挂点、大小和透明度记录在 `VillageSceneConfig.VILLAGE_PROPS.canopyDetails`，花果与树一起遮挡。具体参数见 [场景交付记录](../doc/tech/22_场景音频与图文排版交付.md)，最新实绘继续归档到 [compact-header](preview/compact-header/README.md)。
+村内花果：原伐木树复用两簇红果，两个角落各增加一棵 84/86 宽的树，分别带一簇约 10 像素的浅色花和黄果。树木参照原伐木树 90 宽修正了与成年村民的比例，花果保持小点缀。树与花果全部复用现有运行素材，不增位图；相对挂点、大小和透明度记录在 `VillageSceneConfig.VILLAGE_PROPS.canopyDetails`，花果与树一起遮挡。具体参数见 [场景交付记录](../doc/tech/22_场景音频与图文排版交付.md)，最新实绘继续归档到 [compact-header](preview/compact-header/README.md)。
 
-村内松树：在两棵花果圆树之外，再复用 `deco_tree_pine` 放置两棵 54/56 宽的小松树，分别位于左下草地和右上农田外侧，与圆树错位。只增加场景配置，不新增素材或图集页。
+村内松树：在两棵花果圆树之外，再复用 `deco_tree_pine` 放置两棵 88 宽的松树，分别位于左下草地和右上农田外侧，与圆树错位。树形略高，保留中央活动区。只调整场景配置，不新增素材或图集页。

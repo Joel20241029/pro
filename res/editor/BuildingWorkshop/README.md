@@ -15,6 +15,8 @@
 - `工具 / BuildVillageBuildings`：从 layout-seeds.json 重新生成七个原生预制体。仅用于首次搭建或明确重做，会覆盖人工布局；日常编辑不用点。
 - `工具 / PreviewVillageBuildings`：读取已保存的 .lh，经原生渲染生成四档对比图和 BuildingPreview.ls，记录真实 .mc 采样结果。
 - `工具 / CheckBuildingsInGame`：读取下载目录中的正式游戏测试编译，使用实际 GameView、SpriteFrames、VillageNavigation 渲染短屏/长屏昼夜夹具。需要先完成项目测试编译；不会连接微信云数据或写入真实游戏存档。
+- `工具 / CheckBuildingTips`：使用相同正式编译，验收两栋民房的尖端缩放气泡、原生命中选择、面板拦截、重排及重开清理。输出到 `~/Downloads/daidai-building-tip-20261112/native/`，完整说明见 [技术文档 26](../../../doc/tech/26_建筑点击气泡.md)。
+- `工具 / CheckVillageInteraction`：验证地图村民点击详情，包含人物阶段、前景选择、节点换人、树木/民房遮挡、农田与夜间暂停恢复，同时渲染共享底板的屏中 Tip。仅使用内存夹具，输出到 `~/Downloads/daidai-person-click-20261112/native/`；不上传排行榜或操作真实存档。
 
 - `工具 / CompareGameRefactor`：读取 `~/Downloads/daidai-refactor-20261112/` 内两份正式 CommonJS 编译，在原生 Laya 中对照 8 组场景和 23 个面板；PNG 和节点树输出到 native-baseline/native-current。只用于行为保持验收，见 [技术文档 25](../../../doc/tech/25_代码分层与行为保持重构.md)。
 

@@ -70,11 +70,12 @@ export class GameHud {
             const ranking = new Laya.Sprite();
             ranking.name = "RankingButton";
             ranking.pos(24, layout.mapTop + 20);
-            ranking.size(96, 104);
-            this.art.panel(ranking, "panel_card", 96, 104);
+            // 奖杯、标题各占一行；增加底部留白，避免中文描边压住奖杯或卡片边框。
+            ranking.size(96, 116);
+            this.art.panel(ranking, "panel_card", 96, 116);
             this.node.addChild(ranking);
-            this.ui.image(ranking, "icon_trophy", 18, 8, 60);
-            this.ui.label(ranking, "排行", 8, 72, 80, 26, C.ink, true, 28).align = "center";
+            this.ui.image(ranking, "icon_trophy", 18, 6, 60);
+            this.ui.label(ranking, "排行", 8, 78, 80, 24, C.ink, true, 28).align = "center";
             this.ui.bindClick(ranking, () => this.panels.open({ type: "ranking" }));
         }
         const gate = battle?.gate ?? s.gate;
@@ -131,7 +132,7 @@ export class GameHud {
                 this.refresh();
             }, C.green, 68);
             this.ui.button(this.node, `速度 ×${s.settings.speed}`, 234, bottomY + 65, 190, () => this.panels.send({ type: "SPEED", value: s.settings.speed === 3 ? 1 : s.settings.speed === 1 ? 2 : 3 }), C.muted, 68);
-            const bell = this.ui.button(this.node, battle?.bellUsed ? "警钟已用" : this.game.pauses.size ? "恢复后敲钟" : "敲响警钟", 440, bottomY + 65, 252, () => this.game.bell(), C.gold, 68, !battle?.bellUsed && !this.game.pauses.size);
+            const bell = this.ui.button(this.node, battle?.bellUsed ? "大王之心已用" : this.game.pauses.size ? "恢复后使用" : "大王之心", 440, bottomY + 65, 252, () => this.game.bell(), C.gold, 68, !battle?.bellUsed && !this.game.pauses.size);
             this.bellCountdown = bell.getChildAt(0).getChildByName("buttonText") as Laya.Text;
         }
         else
@@ -154,9 +155,9 @@ export class GameHud {
         if (battle) {
             const ringing = !battle.outcome && battle.bellTicks > 0, seconds = Math.ceil(battle.bellTicks * RULE.step);
             if (this.bellCountdown)
-                this.bellCountdown.text = ringing ? `鼓舞 ${seconds}秒` : battle.bellUsed ? "警钟已用" : this.game.pauses.size ? "恢复后敲钟" : "敲响警钟";
+                this.bellCountdown.text = ringing ? `鼓舞 ${seconds}秒` : battle.bellUsed ? "大王之心已用" : this.game.pauses.size ? "恢复后使用" : "大王之心";
             if (this.nightStatus)
-                this.nightStatus.text = ringing ? `警钟鼓舞 · 攻速 +${Math.round((RULE.bellSpeedMultiplier - 1) * 100)}% · 还剩 ${seconds}秒` : `守夜中 · 已守 ${amount(s.completed)} 波 · 齐心护家园`;
+                this.nightStatus.text = ringing ? `大王之心 · 攻速 +${Math.round((RULE.bellSpeedMultiplier - 1) * 100)}% · 还剩 ${seconds}秒` : `守夜中 · 已守 ${amount(s.completed)} 波 · 齐心护家园`;
             if (this.hp)
                 this.hp.text = `${amount(battle.gate, true)}/${amount(gateCapacity(s), true)}`.replace(/\.\d(?=[kmbtq])/g, "");
             if (this.count)

@@ -14,9 +14,9 @@
     "audio/battle_loop.mp3",
     "audio/ui_click.mp3"
   ],
-  "assetCount": 227,
-  "runtimeAssetCount": 197,
-  "reserveAssetCount": 30,
+  "assetCount": 229,
+  "runtimeAssetCount": 198,
+  "reserveAssetCount": 31,
   "assets": [
     {
       "id": "building_house_thatched",
@@ -3408,8 +3408,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 98,
-        "y": 328,
+        "x": 110,
+        "y": 419,
         "w": 30,
         "h": 30
       },
@@ -3488,8 +3488,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 152,
-        "y": 2,
+        "x": 84,
+        "y": 475,
         "w": 30,
         "h": 30
       },
@@ -3568,8 +3568,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 93,
-        "y": 385,
+        "x": 152,
+        "y": 2,
         "w": 30,
         "h": 30
       },
@@ -3648,7 +3648,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 86,
+        "x": 50,
         "y": 475,
         "w": 30,
         "h": 30
@@ -3727,8 +3727,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 127,
-        "y": 362,
+        "x": 98,
+        "y": 328,
         "w": 30,
         "h": 30
       },
@@ -9095,8 +9095,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 110,
-        "y": 419,
+        "x": 93,
+        "y": 385,
         "w": 30,
         "h": 30
       },
@@ -9196,13 +9196,13 @@
         "left": 6,
         "repeat": 0
       },
-      "mapping": "Tip:screen-center",
+      "mapping": "旧版屏中提示底板，仅保留制作源",
       "animation": null,
       "fitPadding": 0,
       "resizeMode": "stretch",
       "cropNote": "独立浅麦金纯色底；完整不透明中心，32×32九宫格，配深棕文字，无描边/木框/投影。",
-      "runtime": true,
-      "usage": "界面/特效入口",
+      "runtime": false,
+      "usage": "被共享的panel_anchored_tip替换，不进入运行图集",
       "bytes": 767,
       "sha256": "126f53115518db8394a482747bca1176d8ce1b788edf622927a11f42ede7d42e",
       "alpha": "rgba",
@@ -9220,17 +9220,8 @@
         "h": 32
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "ui_0",
-      "atlasRect": {
-        "x": 50,
-        "y": 475,
-        "w": 32,
-        "h": 32
-      },
-      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
-      "importedFrameId": "panel_tip"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "villager_male_a_chop_00",
@@ -14305,6 +14296,141 @@
       },
       "importedLayaAtlasPath": "assets/resources/village/world_0.png",
       "importedFrameId": "deco_village_sign"
+    },
+    {
+      "id": "panel_anchored_tip",
+      "label": "建筑文字气泡底板",
+      "category": "ui/panels",
+      "categoryLabel": "界面底板",
+      "path": "runtime/ui/panels/panel_anchored_tip.png",
+      "width": 22,
+      "height": 22,
+      "pivot": {
+        "x": 11,
+        "y": 11
+      },
+      "sourceSheet": "source/ui/anchored-tip/anchored-tip-v1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 2172,
+        "h": 724
+      },
+      "sourceCropWithinCell": {
+        "x": 173,
+        "y": 134,
+        "w": 1325,
+        "h": 455
+      },
+      "nineSlice": {
+        "top": 10,
+        "right": 10,
+        "bottom": 10,
+        "left": 10,
+        "repeat": 0
+      },
+      "mapping": "AnchoredTip:target-top; Tip:screen-center",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "cropNote": "新生成像素母版；按主体轮廓明确裁出，排除外侧游离低透明像素。文字由Laya绘制，指角单独保留比例。",
+      "runtime": true,
+      "usage": "民房点击文字气泡",
+      "nineSliceSourceSize": {
+        "w": 96,
+        "h": 40
+      },
+      "compactNote": "保留10px固定角部，中间取2px；指角由独立图片绘制，不参与九宫格拉伸。",
+      "bytes": 1056,
+      "sha256": "9f3ee1f00e48133f45655b2b9a755ccca1a12f58c9442b2704cbf6b9d9a27852",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 22,
+        "h": 22
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 22,
+        "h": 22
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "ui_0",
+      "atlasRect": {
+        "x": 127,
+        "y": 362,
+        "w": 22,
+        "h": 22
+      },
+      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
+      "importedFrameId": "panel_anchored_tip"
+    },
+    {
+      "id": "panel_anchored_tip_tail",
+      "label": "建筑文字气泡指角",
+      "category": "ui/panels",
+      "categoryLabel": "界面底板",
+      "path": "runtime/ui/panels/panel_anchored_tip_tail.png",
+      "width": 20,
+      "height": 14,
+      "pivot": {
+        "x": 10,
+        "y": 7
+      },
+      "sourceSheet": "source/ui/anchored-tip/anchored-tip-v1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 2172,
+        "h": 724
+      },
+      "sourceCropWithinCell": {
+        "x": 1755,
+        "y": 318,
+        "w": 239,
+        "h": 172
+      },
+      "nineSlice": null,
+      "mapping": "AnchoredTip:target-top",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "cropNote": "新生成像素母版；按主体轮廓明确裁出，排除外侧游离低透明像素。文字由Laya绘制，指角单独保留比例。",
+      "runtime": true,
+      "usage": "民房点击文字气泡",
+      "bytes": 829,
+      "sha256": "dd9dd0c82f0706d72e34c26ae254ec05468838088fbdcdbd9f1228829b573d98",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 20,
+        "h": 14
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 20,
+        "h": 14
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "ui_0",
+      "atlasRect": {
+        "x": 110,
+        "y": 453,
+        "w": 20,
+        "h": 14
+      },
+      "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
+      "importedFrameId": "panel_anchored_tip_tail"
     }
   ],
   "audio": {
