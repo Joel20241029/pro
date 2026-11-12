@@ -22,7 +22,7 @@ function near(a,b) { assert(Math.abs(a-b)<1e-6,`${a} != ${b}`); }
 for(const profile of profiles) test(`${profile[0]}: safe controls, expanded village, reachable stops and intact source proportions`, () => {
     const l=layout(profile), {scene,nav}=sceneAt(l), [name,w,h,top,bottom,mt,mb]=profile;
     near(l.height,h*720/w); near(l.safeTop,top*720/w); near(l.safeBottom,bottom*720/w);
-    assert(l.settingsY>=mb*720/w+10-1e-6); assert(l.footerTop+228<=l.safeBottom);
+    assert(l.dateY>=mb*720/w+10-1e-6); assert(l.footerTop+228<=l.safeBottom);
     assert(l.footerTop-l.gateY>=260); assert(l.personScale*56>=64 && l.personScale*56<=68);
     assert(l.safeBottom-l.safeTop>=860, 'full panel must fit safe region');
     for(const [key,stops] of Object.entries(scene.stops)) for(const p of stops) {
@@ -47,9 +47,9 @@ for(const profile of profiles) test(`${profile[0]}: safe controls, expanded vill
 test('missing safeArea uses reported status bar; screenTop removes already excluded status pixels; empty menu adds no phantom inset', () => {
     const menu={top:0,bottom:0,left:0,right:0,width:0,height:0};
     let l=new GameLayout({windowWidth:360,windowHeight:800,screenTop:0,statusBarHeight:24},menu);
-    near(l.safeTop,48); near(l.safeBottom,1600); near(l.settingsY,112);
+    near(l.safeTop,48); near(l.safeBottom,1600); near(l.dateY,112);
     l=new GameLayout({windowWidth:360,windowHeight:776,screenTop:24,statusBarHeight:24,safeArea:{top:24,bottom:776,left:0,right:360}}, {top:28,bottom:60,left:262,right:350,width:88,height:32});
-    near(l.safeTop,0); near(l.safeBottom,1504); near(l.settingsY,82);
+    near(l.safeTop,0); near(l.safeBottom,1504); near(l.dateY,82);
 });
 test('iPhone 12 window without screenTop keeps layout, village stops and controls inside the visible window', () => {
     const menu={top:51,bottom:83,left:292,right:380,width:88,height:32};
@@ -58,7 +58,7 @@ test('iPhone 12 window without screenTop keeps layout, village stops and control
         const l=new GameLayout(metrics,menu);
         for(const [key,value] of Object.entries(l)) assert(Number.isFinite(value),`invalid layout ${key}: ${value}`);
         assert.deepEqual(l,new GameLayout({...metrics,screenTop:0},menu));
-        assert(l.settingsY>=menu.bottom*720/390+10); assert(l.footerTop+228<=l.safeBottom);
+        assert(l.dateY>=menu.bottom*720/390+10); assert(l.footerTop+228<=l.safeBottom);
         const {scene,nav}=sceneAt(l);
         for(const [key,stops] of Object.entries(scene.stops)) for(const point of stops) {
             assert(Number.isFinite(point.x) && Number.isFinite(point.y),`invalid ${key} stop`);

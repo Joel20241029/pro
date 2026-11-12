@@ -54,7 +54,7 @@ export class GameView {
     /** 保留原面板/开放域实例与人物日程，不执行命令、读档或重复请求授权。 */
     resize() {
         const next = new GameLayout(this.platform.window, this.platform.menu), previous = this.layout;
-        if (next.height === previous.height && next.safeTop === previous.safeTop && next.safeBottom === previous.safeBottom && next.settingsY === previous.settingsY)
+        if (next.height === previous.height && next.safeTop === previous.safeTop && next.safeBottom === previous.safeBottom && next.dateY === previous.dateY)
             return;
         this.village.relayout(next);
         this.layout = next;

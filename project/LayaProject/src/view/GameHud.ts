@@ -29,14 +29,16 @@ export class GameHud {
     }
     drawHeader(layout: GameLayout) {
         const statusY = layout.mapTop - HUD.statusHeight;
-        this.art.panel(this.node, "panel_card", LAYOUT.width, statusY);
-        this.ui.label(this.node, "代代守村", HUD.title.x, layout.safeTop + HUD.title.top, HUD.title.width, HUD.title.font, C.ink, true, HUD.title.height);
-        this.ui.button(this.node, "小记", HUD.settings.x, layout.settingsY, HUD.settings.width, () => this.panels.open({ type: "settings" }), C.muted, HUD.settings.height);
+        const header = new Laya.Sprite();
+        header.pos(0, layout.safeTop);
+        this.art.panel(header, "panel_card", LAYOUT.width, statusY - layout.safeTop);
+        this.node.addChild(header);
+        this.ui.label(this.node, "代代守村", HUD.title.x, layout.dateY + HUD.title.top, HUD.title.width, HUD.title.font, C.ink, true, HUD.title.height).align = "center";
+        this.ui.button(this.node, "小记", HUD.settings.x, layout.dateY + HUD.settings.top, HUD.settings.width, () => this.panels.open({ type: "settings" }), C.muted, HUD.settings.height);
     }
     draw(s: GameState, layout: GameLayout, scene: ReturnType<typeof layoutVillage>) {
         const battle = this.game.battle, statusY = layout.mapTop - HUD.statusHeight, bottomY = layout.footerTop;
-        this.ui.label(this.node, `第 ${Math.floor((s.day - 1) / 12) + 1} 年 · ${SEASONS[season(s.day)]}${((s.day - 1) % 3) + 1}日`, HUD.date.x, layout.settingsY + HUD.date.top, HUD.date.width, HUD.date.font, C.green, true, HUD.date.height);
-        this.ui.label(this.node, `已守 ${amount(s.completed)} 波`, HUD.score.x, layout.settingsY + HUD.score.top, HUD.score.width, HUD.score.font, C.timber, true, HUD.score.height).align = "right";
+        this.ui.label(this.node, `第 ${Math.floor((s.day - 1) / 12) + 1} 年 · ${SEASONS[season(s.day)]}${((s.day - 1) % 3) + 1}日`, HUD.date.x, layout.dateY + HUD.date.top, HUD.date.width, HUD.date.font, C.green, true, HUD.date.height).align = "center";
         // 与人口统一为“现有/容量”；窄栏的千进制数值省略小数，始终单行显示。
         const [food, wood, storage] = [s.food, s.wood, storageCapacity(s)].map(value => amount(value, true).replace(/\.\d(?=[kmbtq]$)/, ""));
         [["icon_food", "粮", `${food}/${storage}`], ["icon_wood", "木", `${wood}/${storage}`], ["icon_population", "人", `${s.people.length}/${capacity(s)}`]].forEach(([id, name, value], i) => {
@@ -59,8 +61,10 @@ export class GameHud {
         });
         this.node.graphics.drawRect(0, statusY, LAYOUT.width, HUD.statusHeight, C.green);
         const count = s.wave?.entries.length || 0;
-        this.nightStatus = this.ui.label(this.node, s.phase === "NIGHT" ? "守夜中 · 齐心护家园" : `第 ${s.day} 天 · 今夜 ${count} 名来敌 · 挑战 ${s.tier}`, 28, statusY, 664, 24, "#f4edce", true, 37);
+        this.nightStatus = this.ui.label(this.node, s.phase === "NIGHT" ? `守夜中 · 已守 ${amount(s.completed)} 波 · 齐心护家园` : `第 ${s.day} 天 · 今夜 ${count} 名来敌 · 已守 ${amount(s.completed)} 波 · 挑战 ${s.tier}`, 28, statusY, 664, 24, "#f4edce", true, 37);
         this.nightStatus.align = "center";
+        this.nightStatus.wordWrap = false;
+        this.nightStatus.overflow = Laya.Text.SHRINK;
         // 首次成功守住一波才解锁；沿用已提交的传承最高纪录，重新开村仍保持入口。
         if (s.legacy.bestNight > 0) {
             const ranking = new Laya.Sprite();
@@ -145,7 +149,7 @@ export class GameHud {
             if (this.bellCountdown)
                 this.bellCountdown.text = ringing ? `鼓舞 ${seconds}秒` : battle.bellUsed ? "警钟已用" : this.game.pauses.size ? "恢复后敲钟" : "敲响警钟";
             if (this.nightStatus)
-                this.nightStatus.text = ringing ? `警钟鼓舞 · 攻速 +${Math.round((RULE.bellSpeedMultiplier - 1) * 100)}% · 还剩 ${seconds}秒` : "守夜中 · 齐心护家园";
+                this.nightStatus.text = ringing ? `警钟鼓舞 · 攻速 +${Math.round((RULE.bellSpeedMultiplier - 1) * 100)}% · 还剩 ${seconds}秒` : `守夜中 · 已守 ${amount(s.completed)} 波 · 齐心护家园`;
             if (this.hp)
                 this.hp.text = `${amount(battle.gate, true)}/${amount(gateCapacity(s), true)}`.replace(/\.\d(?=[kmbtq])/g, "");
             if (this.count)

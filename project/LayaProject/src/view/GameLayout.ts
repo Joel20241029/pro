@@ -29,7 +29,7 @@ export class GameLayout {
     readonly height: number;
     readonly safeTop: number;
     readonly safeBottom: number;
-    readonly settingsY: number;
+    readonly dateY: number;
     readonly resourcesY: number;
     readonly mapTop: number;
     readonly gateY: number;
@@ -45,8 +45,8 @@ export class GameLayout {
         this.safeTop = Math.max(0, (window.safeArea ? window.safeArea.top : window.statusBarHeight) - screenTop) * scale;
         this.safeBottom = Math.min(window.windowHeight, window.safeArea ? window.safeArea.bottom - screenTop : window.windowHeight) * scale;
         const menuBottom = menu.width > 0 && menu.height > 0 ? (menu.bottom - screenTop) * scale : this.safeTop;
-        this.settingsY = Math.max(this.safeTop + LAYOUT.settingsTop, menuBottom + LAYOUT.menuGap);
-        this.resourcesY = this.settingsY + LAYOUT.resourcesGap;
+        this.dateY = Math.max(this.safeTop + LAYOUT.dateTop, menuBottom + LAYOUT.menuGap);
+        this.resourcesY = this.dateY + LAYOUT.resourcesGap;
         this.mapTop = this.resourcesY + LAYOUT.mapGap;
         // 操作区沿用242高；地图按战场68%、居民区32%分配，进一步收紧居民区高度。
         // 战场上限700、居民区至少260逻辑像素，保持短屏站点可走；仅调整显示区域，不改逻辑塔位/射程。

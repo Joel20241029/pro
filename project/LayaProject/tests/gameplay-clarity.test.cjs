@@ -140,7 +140,7 @@ test('help entry and all five tabs are read-only; each chapter resets its own sc
 test('leaving a pressed button, ranking entry or tower cancels the engine click and its sound', () => {
     const { game } = session(), view = panelView(game), opened = [];
     game.state.legacy.bestNight = 1;
-    const layout = { mapTop: 280, footerTop: 980, gateY: 680, height: 1280, safeTop: 0, settingsY: 42, resourcesY: 124 };
+    const layout = { mapTop: 280, footerTop: 980, gateY: 680, height: 1280, safeTop: 0, dateY: 42, resourcesY: 124 };
     view.ui.image = () => ({}); view.open = panel => opened.push(panel);
     const hud = new GameHud(game, view.art, view.ui, view, () => {});
     hud.drawHeader(layout); hud.draw(game.state, layout, { pads: PADS });
