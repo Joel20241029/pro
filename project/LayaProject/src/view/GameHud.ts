@@ -70,12 +70,12 @@ export class GameHud {
             const ranking = new Laya.Sprite();
             ranking.name = "RankingButton";
             ranking.pos(24, layout.mapTop + 20);
-            // 奖杯、标题各占一行；增加底部留白，避免中文描边压住奖杯或卡片边框。
+            // 奖杯下移、标题上移，图文向中部收拢；各占一行并留出上下边框间距。
             ranking.size(96, 116);
             this.art.panel(ranking, "panel_card", 96, 116);
             this.node.addChild(ranking);
-            this.ui.image(ranking, "icon_trophy", 18, 6, 60);
-            this.ui.label(ranking, "排行", 8, 78, 80, 24, C.ink, true, 28).align = "center";
+            this.ui.image(ranking, "icon_trophy", 18, 12, 60);
+            this.ui.label(ranking, "排行", 8, 70, 80, 24, C.ink, true, 28).align = "center";
             this.ui.bindClick(ranking, () => this.panels.open({ type: "ranking" }));
         }
         const gate = battle?.gate ?? s.gate;
