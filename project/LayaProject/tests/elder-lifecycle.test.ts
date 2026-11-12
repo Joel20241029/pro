@@ -1,9 +1,8 @@
 import { applyCommand, assignOperator, autoAssignJobs, canMarry, capacity, createGame, economy, finishNight } from "../src/game/VillageRules";
 import { clone, GameState, isElder, isWorkingAdult } from "../src/game/GameState";
-import { CONFIG_VERSION, RULE, VILLAGER_NAMES } from "../src/game/GameConfig";
+import { CONFIG_VERSION, RULE } from "../src/game/GameConfig";
 import { BattleSimulation } from "../src/game/BattleSimulation";
 import { GameSession } from "../src/game/GameSession";
-import { generateWave } from "../src/game/WaveGenerator";
 import { canonical, crc32, SaveStore, StoragePort } from "../src/storage/SaveStore";
 import { validateState } from "../src/storage/StateValidation";
 
@@ -107,15 +106,4 @@ test("Only current save version is read; old/future data is not migrated or auto
         const g = new GameSession(new SaveStore(m)); g.load(); equal(g.state, null); equal(g.boot?.kind, "incompatible"); equal(m.values.get("daidai_village.save.a"), raw); equal(m.writes, 0);
     }
 });
-test("Personal names are drawn for the specified sex in births and travelers without adding population", () => {
-    const births = new Set<string>(), travelers = new Set<string>();
-    for (let i = 1; i <= 200; i++) {
-        const s = createGame(i * 99991); equal(s.people.length, 6); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id }); equal(s.people.length, 7);
-        const baby = s.people[6]; if (Object.values(VILLAGER_NAMES.personal).includes(baby.name as any)) { equal(baby.name, VILLAGER_NAMES.personal[baby.sex]); births.add(baby.name); }
-        const t = createGame(i * 99991); t.day = 4; t.completed = t.legacy.bestNight = 3; t.wave = generateWave(t); win(t);
-        const q = t.choices.find(q => q.kind === "TRAVELER"); ok(q && q.kind === "TRAVELER"); equal(t.people.length, 6);
-        if (Object.values(VILLAGER_NAMES.personal).includes(q.person.name as any)) { equal(q.person.name, VILLAGER_NAMES.personal[q.person.sex]); travelers.add(q.person.name); }
-    }
-    equal(births.size, 2); equal(travelers.size, 2);
-});
-console.log(`RESULT ${passed} elder/name/save checks passed`);
+console.log(`RESULT ${passed} elder/save checks passed`);

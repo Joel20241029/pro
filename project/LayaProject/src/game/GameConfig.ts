@@ -1,6 +1,6 @@
 /** 首版规则取自 doc/design/01 与 doc/tech/01；集中调整会改变经济、存档与战斗，需升级 CONFIG_VERSION。 */
-// v11：纯净重开与每次新村可重新领取口粮（doc/tech/20）；不迁移旧开发档，同版续玩保留进度。
-export const CONFIG_VERSION = 11;
+// v12：按用户箭头右移左下塔、上移右下塔（doc/tech/14）；塔位影响守夜重演，不迁移旧开发档。
+export const CONFIG_VERSION = 12;
 /** 2026-11-11 已确认的持续成长方案（doc/tech/12）。等级不封顶，人数及工作站仍有界。
  * 成本线性增长，产出线性、战力二次增长；更改系数须复跑完整经营模拟及升级预检。
  */
@@ -31,15 +31,15 @@ export const ELITE = {
 } as const;
 /** 用户指定的两种成人外观；出生、旅人及开村统一使用，不改变性别/天赋/专长。 */
 export const ADULT_APPEARANCE = { MALE: "male_a", FEMALE: "female_a" } as const;
-/** 随机姓名沿用原孩子字根及旅人名，追加用户指定的男女姓名；只影响新人物命名，不增加人口。
- * 普通孩子继续附编号，指定姓名保持原文。调整池大小会改变新开局后姓名的抽样概率。
+/** 2026-11-12 用户确认：普通姓名仅使用原孩子字根及旅人名，四辈儿移入精英池，移除芊芊。
+ * 只影响新人物命名，不增加人口或重命名已有村民；普通孩子继续附编号，精英姓名保持原文。
+ * 调整池大小会改变后续姓名的抽样概率，精英概率和能力仍由 ELITE 决定。
  */
 export const VILLAGER_NAMES = {
     child: ["禾", "桃", "松", "竹", "杏", "川"], traveler: ["行舟", "云溪", "山青", "晚晴"],
-    personal: { MALE: "四辈儿", FEMALE: "芊芊" },
-    // 2026-11-12用户指定：仅新生/来访精英使用，男女共用，不加编号；普通人保留上面的规则。
+    // 用户指定的12个名字：仅新生/来访精英使用，男女共用，不加编号。
     // 独立取名不推进业务随机流；修改只影响后续精英姓名，不改性别、5%概率、能力及已有村民。
-    elite: ["旭勇", "智卓", "二百", "翟毅", "周博", "赵靓", "龙龙", "昭易", "明波", "宋磊", "徐超"]
+    elite: ["旭勇", "智卓", "二百", "翟毅", "周博", "赵靓", "龙龙", "昭易", "明波", "宋磊", "徐超", "四辈儿"]
 } as const;
 /** 纯表现动作表：男女均具备三类劳动动画；到工位播放，移动仍使用方向 walk，不限制任职资格。 */
 export const LABOR_CLIPS: Readonly<Record<string, Readonly<Record<"FARM" | "LOGGING" | "CARE", string>>>> = {
@@ -115,8 +115,10 @@ export const POLICIES: Record<string, Policy> = {
 export const SEASONS = ["春", "夏", "秋", "冬"];
 /** 720×1280 的固定逻辑路径/塔位，首版地图配置；改变坐标会影响射程和到门时间。 */
 export const PATH = [{ x: 360, y: 230 }, { x: 360, y: 350 }, { x: 250, y: 435 }, { x: 470, y: 550 }, { x: 360, y: 655 }, { x: 360, y: 760 }];
-/** 沿弯路错开四塔：最短150射程也能连续覆盖至少233px道路。唯一坐标源同时驱动战斗、立绘、点击区、进塔与弹道；调整后复核覆盖及导航，见doc/tech/14。 */
-export const PADS = [{ x: 255, y: 330 }, { x: 475, y: 460 }, { x: 250, y: 535 }, { x: 455, y: 690 }];
+/** 2026-11-12用户箭头微调：左下向右50，右下向上40；最短150射程的四塔覆盖并集仍贯通道路。
+ * 唯一坐标源同时驱动战斗、立绘、点击区、进塔与弹道；右下仍覆盖终点，再上移需重算，见doc/tech/14。
+ */
+export const PADS = [{ x: 255, y: 330 }, { x: 475, y: 460 }, { x: 300, y: 535 }, { x: 455, y: 650 }];
 export const FOUNDERS = [
     { name: "阿禾", sex: "MALE", appearance: "male_a", trait: "trait_diligent", skill: "skill_farming", nights: 4, job: "FARM" },
     { name: "春杏", sex: "FEMALE", appearance: "female_a", trait: "trait_frugal", skill: "skill_nurturing", nights: 6, job: "FARM" },

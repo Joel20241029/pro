@@ -29,7 +29,9 @@ export class BuildingGameCheck {
             const game = new GameSession(saves), s = createGame(7); game.state = s;
             s.farm = s.logging = s.housing = s.gateLevel = level; s.houses = level === 1 ? 2 : 5; s.gate = gateCapacity(s);
             s.towers.forEach((t: any, i: number) => { t.kind = ["ARROW", "STONE", "SLOW", "ARROW"][i]; t.level = level; t.operator = s.people[i].id; });
-            const platform = { window: { windowWidth: short ? 320 : 390, windowHeight: short ? 568 : 844, screenTop: 0, statusBarHeight: short ? 20 : 47, safeArea: { top: short ? 20 : 47, bottom: short ? 568 : 810 } }, menu: { top: short ? 24 : 51, bottom: short ? 56 : 83 } };
+            // 只在内存夹具验证高阶右下塔的最长精英名，检查上移后与城门血条的间距。
+            if (level === 12) { s.people[3].name = "四辈儿"; s.people[3].elite = true; }
+            const platform = { window: { windowWidth: short ? 320 : 390, windowHeight: short ? 568 : 844, screenTop: 0, statusBarHeight: short ? 20 : 47, safeArea: { top: short ? 20 : 47, bottom: short ? 568 : 810 } }, menu: { top: short ? 24 : 51, bottom: short ? 56 : 83, width: 88, height: 32, left: short ? 222 : 292, right: short ? 310 : 380 } };
             const view = new GameView(game, art, platform, () => {});
             Laya.stage.addChild(view.root);
             for (let i = 0; i < 360; i++) view.update(.05);

@@ -46,7 +46,7 @@ test("Repeated birth draw cadence does not lock inheritance or distort elite rar
         for (let i = 0; i < 100000; i++) {
             nextSex(population, rng);
             if (rng.range(2) === 0) firstParent++;
-            rng.range(VILLAGER_NAMES.child.length + 1);
+            rng.range(VILLAGER_NAMES.child.length);
             if (rng.range(ELITE.chanceScale) < ELITE.chancePercent) elites++;
         }
         ok(firstParent >= 49000 && firstParent <= 51000, `parent distribution for seed ${seed}: ${firstParent}`);

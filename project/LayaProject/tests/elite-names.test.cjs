@@ -3,10 +3,10 @@ const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 const { createGame, applyCommand, finishNight } = require(path.join(compiled, 'game/VillageRules.js'));
 const { generateWave } = require(path.join(compiled, 'game/WaveGenerator.js'));
-const expected = ['旭勇', '智卓', '二百', '翟毅', '周博', '赵靓', '龙龙', '昭易', '明波', '宋磊', '徐超'];
+const expected = ['旭勇', '智卓', '二百', '翟毅', '周博', '赵靓', '龙龙', '昭易', '明波', '宋磊', '徐超', '四辈儿'];
 
-for (const route of ['birth', 'traveler']) test(`${route}: all eleven elite names occur for both sexes; ordinary personal names stay ordinary`, () => {
-    const seen = { MALE: new Set(), FEMALE: new Set() }, ordinary = new Set();
+for (const route of ['birth', 'traveler']) test(`${route}: all twelve elite names occur for both sexes; ordinary villagers exclude personal names`, () => {
+    const seen = { MALE: new Set(), FEMALE: new Set() };
     for (let i = 1; i <= 4096; i++) {
         const s = createGame(i * 99991);
         let person;
@@ -19,15 +19,15 @@ for (const route of ['birth', 'traveler']) test(`${route}: all eleven elite name
             person = s.choices.find(q => q.kind === 'TRAVELER').person;
             assert.equal(s.people.length, 6);
         }
+        assert.notEqual(person.name, '芊芊', 'removed personal name must not be generated');
         if (person.elite) {
             assert(expected.includes(person.name), `unexpected elite name ${person.name}`);
             seen[person.sex].add(person.name);
         } else {
             assert(!expected.includes(person.name), 'elite-only names must not enter the ordinary pool');
-            if (person.name === '芊芊') { assert.equal(person.sex, 'FEMALE'); ordinary.add(person.name); }
-            if (person.name === '四辈儿') { assert.equal(person.sex, 'MALE'); ordinary.add(person.name); }
+            if (route === 'birth') assert.match(person.name, /^小[禾桃松竹杏川]\d+$/);
+            else assert(['行舟', '云溪', '山青', '晚晴'].includes(person.name));
         }
     }
     for (const sex of ['MALE', 'FEMALE']) assert.deepEqual([...seen[sex]].sort(), expected.slice().sort());
-    assert.equal(ordinary.size, 2);
 });
