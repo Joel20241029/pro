@@ -35,7 +35,8 @@ export const VILLAGE_PROPS: VillageProp[] = [
         [583, 619, 112], [664, 652, 100], [619, 698, 116], [687, 730, 108], [578, 756, 96], [648, 777, 94]
     ].map(([x, y, size], i): VillageProp => ({ id: `forest:${i}`, frame: i % 4 === 0 ? "deco_tree_pine" : "deco_tree_oak", x, y, size, footprint: null })),
     ...[28, 92, 156, 220, 500, 564, 628, 692].map((x, i): VillageProp => ({ id: `wall:${i}`, frame: "building_palisade", x, y: 830, size: 78, footprint: null })),
-    { id: "tree:logging", frame: "deco_tree_oak", x: 98, y: 982, size: 90, footprint: { left: 87, top: 967, right: 109, bottom: 982 } },
+    // 树足底下移30，树冠与民居分开；底座与工位同步调整，尺寸和足底排序不变。
+    { id: "tree:logging", frame: "deco_tree_oak", x: 98, y: 1012, size: 90, footprint: { left: 87, top: 997, right: 109, bottom: 1012 } },
     { id: "deco:logs", frame: "deco_log_pile", x: 571, y: 1024, size: 60, footprint: null },
     ...[[168, 292], [560, 286], [170, 477], [553, 548], [164, 668], [553, 734]].map(([x, y], i): VillageProp => ({ id: `bush:${i}`, frame: "deco_bush", x, y, size: 64, footprint: null })),
     ...[[279, 822], [441, 822]].map(([x, y], i): VillageProp => ({ id: `torch:${i}`, frame: "deco_torch", x, y, size: 62, footprint: null })),
@@ -91,7 +92,8 @@ export const VILLAGE_STOPS = {
         ...[58, 98, 140, 182, 224].map(x => ({ x, y: 874 }))
     ],
     farm: [{ x: 486, y: 879 }, { x: 546, y: 879 }, { x: 606, y: 879 }, { x: 486, y: 924 }, { x: 546, y: 924 }, { x: 606, y: 924 }],
-    logging: [{ x: 56, y: 974 }, { x: 142, y: 974 }, { x: 76, y: 1021 }, { x: 126, y: 1021 }],
+    // 工位围绕下移后的树干排列，下排仍留在短屏底部操作区之外。
+    logging: [{ x: 56, y: 994 }, { x: 142, y: 994 }, { x: 76, y: 1026 }, { x: 126, y: 1026 }],
     // 有意包含屋后与屋前的休息点，行人绕过墙基后会自然发生遮挡切换。
     rest: CAMP_STOPS,
     children: CAMP_STOPS,
