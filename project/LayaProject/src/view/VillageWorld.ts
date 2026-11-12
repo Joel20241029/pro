@@ -52,10 +52,10 @@ export class VillageWorld {
             this.world.addChild(node);
             const upgradeable = p.id.startsWith("tower:") || (p.id.startsWith("building:") && p.id !== "building:hearth");
             this.props.push({ id: p.id, y: p.ground ? -1 : p.y, node, visual: upgradeable ? new BuildingVisuals(node, art) : undefined });
-            if (p.id === "deco:village-sign") {
+            if (p.signText) {
                 // 88×52源画布：牌面横向留10%，文字框顶边为宽度的13.75%；避开两端铆钉。
                 // 文字只在牌面居中，不含下方木桩；与路牌共用足底遮挡。
-                const title = this.ui.label(node, "文明里村", p.size * .1, p.size * .1375, p.size * .8, 22, "#59391e", true, p.size * .2);
+                const title = this.ui.label(node, p.signText, p.size * .1, p.size * .1375, p.size * .8, 22, "#59391e", true, p.size * .2);
                 title.fontSize = 22;
                 title.stroke = .7;
                 title.strokeColor = "#f8d79c";
@@ -71,6 +71,8 @@ export class VillageWorld {
                 this.ui.image(node, frame, p.size * .22, p.size * .37, p.size * .19);
                 this.ui.image(node, frame, p.size * .59, p.size * .24, p.size * .17);
             }
+            if (p.canopyDetails) for (const detail of p.canopyDetails)
+                this.ui.image(node, detail.frame, p.size * detail.x, p.size * detail.y, p.size * detail.size).alpha = detail.alpha;
         }
         for (let i = 0; i < RULE.populationCap; i++) {
             const s = new Laya.Sprite();

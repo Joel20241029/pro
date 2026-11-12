@@ -16,6 +16,10 @@ export interface VillageProp extends GroundPoint {
     size: number;
     footprint: Footprint | null;
     ground?: boolean;
+    /** 同一木牌底图的独立文字，与牌体共用缩放、重排和足底排序。 */
+    signText?: string;
+    /** 村内树冠的小点缀：坐标和尺寸相对树宽，透明度控制视觉强度；随树遮挡，不独立置顶。 */
+    canopyDetails?: readonly { frame: string; x: number; y: number; size: number; alpha: number }[];
 }
 /** 128px塔源画布的实际弓口/投石兜/水晶挂点；仅表现，不移动逻辑塔位或射程。
  * 左侧1/3塔向右、右侧2/4塔向左；正面石塔/寒塔保持原构图，改建必须重设镜像。
@@ -41,9 +45,25 @@ export const VILLAGE_PROPS: VillageProp[] = [
     ].map(([x, y, size], i): VillageProp => ({ id: `forest:${i}`, frame: i % 4 === 0 ? "deco_tree_pine" : "deco_tree_oak", x, y, size, footprint: null })),
     ...[28, 92, 156, 220, 500, 564, 628, 692].map((x, i): VillageProp => ({ id: `wall:${i}`, frame: "building_palisade", x, y: 830, size: 78, footprint: null })),
     // 村名牌靠左城墙，底座落在已有墙体安全边内；牌面与火把分开，不增加通行障碍。
-    { id: "deco:village-sign", frame: "deco_village_sign", x: 178, y: 832, size: 140, footprint: null },
+    { id: "deco:village-sign", frame: "deco_village_sign", x: 178, y: 832, size: 140, footprint: null, signText: "文明里村" },
+    // 用户标注的道路北段右侧草地；复用村名木牌，120宽留开道路、右侧林带和下方石塔。
+    { id: "deco:friendship-road-sign", frame: "deco_village_sign", x: 455, y: 350, size: 120, footprint: null, signText: "友谊路" },
     // 树足底下移30，树冠与民居分开；底座与工位同步调整，尺寸和足底排序不变。
-    { id: "tree:logging", frame: "deco_tree_oak", x: 98, y: 1012, size: 90, footprint: { left: 87, top: 997, right: 109, bottom: 1012 } },
+    { id: "tree:logging", frame: "deco_tree_oak", x: 98, y: 1012, size: 90, footprint: { left: 87, top: 997, right: 109, bottom: 1012 }, canopyDetails: [
+        { frame: "deco_apple_pair", x: .22, y: .37, size: .14, alpha: .85 },
+        { frame: "deco_apple_pair", x: .59, y: .24, size: .12, alpha: .8 }
+    ] },
+    // 两棵48/52宽的角落花果树，体量低于成人64~68；树干在既有行走边界之外，保留中央活动空间。
+    // 花果各一簇、低透明度，无闪烁或跳动；复用林带素材，不新增贴图和寻路障碍。
+    { id: "tree:corner-blossom", frame: "deco_tree_oak", x: 28, y: 884, size: 48, footprint: null, canopyDetails: [
+        { frame: "deco_blossom_ivory", x: .55, y: .28, size: .2, alpha: .78 }
+    ] },
+    { id: "tree:corner-fruit", frame: "deco_tree_oak", x: 686, y: 998, size: 52, footprint: null, canopyDetails: [
+        { frame: "deco_pear_pair", x: .25, y: .33, size: .2, alpha: .8 }
+    ] },
+    // 按用户要求再加两棵现有松树，左下/右上错位补充树形；小体量且树干仍位于行走边界外。
+    { id: "tree:corner-pine-left", frame: "deco_tree_pine", x: 28, y: 976, size: 54, footprint: null },
+    { id: "tree:corner-pine-right", frame: "deco_tree_pine", x: 686, y: 880, size: 56, footprint: null },
     { id: "deco:logs", frame: "deco_log_pile", x: 571, y: 1024, size: 60, footprint: null },
     ...[[168, 292], [560, 286], [170, 477], [553, 548], [164, 668], [553, 734]].map(([x, y], i): VillageProp => ({ id: `bush:${i}`, frame: "deco_bush", x, y, size: 64, footprint: null })),
     ...[[279, 822], [441, 822]].map(([x, y], i): VillageProp => ({ id: `torch:${i}`, frame: "deco_torch", x, y, size: 62, footprint: null })),

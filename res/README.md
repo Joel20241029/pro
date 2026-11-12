@@ -46,4 +46,8 @@ node res/tools/build-resources.mjs \
 
 当前资源白名单共10个文件，合计1,824,540字节。微信发布将 `.mc` 改名为 `.mc.bin`，内容哈希保持一致；发布器另生成分包 `game.js` 和 `fileconfig.json`。主包1,643,072字节，村庄分包1,824,791字节，总计3,467,863字节，这是导出目录原始字节，未包含平台上传压缩测量。
 
-村名路牌：母版与提示词在 `source/decorations/`，使用88×52底图和单独中文，场景中显示140设计像素宽；文字与牌体共用遮挡。仍为两页图集。实际效果和本轮验证见 [village-sign](preview/village-sign/README.md)，规则见 [技术记录24](../doc/tech/24_精英姓名与文明里村路牌.md)。
+村名与道路路牌：母版与提示词在 `source/decorations/`，共同使用 88×52 底图和独立中文；“文明里村”显示宽 140，“友谊路”显示宽 120，均为设计像素。文字与位置配置在 `VillageSceneConfig.VILLAGE_PROPS`，与牌体共用遮挡。复用底图不增加运行素材，仍为两页图集。村名牌首次实绘见 [village-sign](preview/village-sign/README.md)，最新双路牌实绘见 [compact-header](preview/compact-header/README.md)，规则见 [技术记录24](../doc/tech/24_精英姓名与文明里村路牌.md)。
+
+村内花果：原伐木树复用两簇红果，两个角落各增加一棵 48/52 宽的小树，分别带一簇浅色花和黄果。树与花果全部复用现有运行素材，不增位图；相对挂点、大小和透明度记录在 `VillageSceneConfig.VILLAGE_PROPS.canopyDetails`，花果与树一起遮挡。具体参数见 [场景交付记录](../doc/tech/22_场景音频与图文排版交付.md)，最新实绘继续归档到 [compact-header](preview/compact-header/README.md)。
+
+村内松树：在两棵花果圆树之外，再复用 `deco_tree_pine` 放置两棵 54/56 宽的小松树，分别位于左下草地和右上农田外侧，与圆树错位。只增加场景配置，不新增素材或图集页。
