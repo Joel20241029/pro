@@ -51,9 +51,11 @@ const audio = JSON.parse(fs.readFileSync(path.resolve(path.dirname(fileURLToPath
 // 已确认的三轨预算：原村庄曲≤120KB，夜战与点击新增合计≤80KB；与制作源清单逐字节核对。
 const AUDIO_NAMES = ['battle_loop.mp3', 'ui_click.mp3', 'village_loop.mp3'];
 if (JSON.stringify(audio.tracks.map(t => t.packageFile).sort()) !== JSON.stringify(AUDIO_NAMES) || audio.tracks.filter(t => t.packageFile !== 'village_loop.mp3').reduce((sum,t) => sum+t.bytes,0) > 80000 || audio.tracks.find(t => t.packageFile === 'village_loop.mp3')?.bytes > 120000) errors.push('音频资源名或体积不符');
-const artFiles = ['animations.json', 'frames.json', ...atlas.pages.map(p => p.runtimeFile), ...audio.tracks.map(t => t.packageFile)];
+const artFiles = ['animations.json', 'frames.json', 'buildings.json', 'building_upgrade.mc', 'building_attack.mc', ...atlas.pages.map(p => p.runtimeFile), ...audio.tracks.map(t => t.packageFile)];
+// Laya 3.4.2 原生动画发布为 .mc.bin，内容与编辑器 .mc 完全一致，加载器自行补bin后缀。
+const exportedName = name => name.endsWith('.mc') ? name + '.bin' : name;
 // game.js、fileconfig.json 由 Laya 发布器生成，不属于原图/动画资源白名单。
-const expectedResources = [...artFiles, 'game.js', 'fileconfig.json'].map(f => VILLAGE_PREFIX + f).sort();
+const expectedResources = [...artFiles.map(exportedName), 'game.js', 'fileconfig.json'].map(f => VILLAGE_PREFIX + f).sort();
 if (atlas.pages.some(p => !/^(world|ui)_\d+\.png$/.test(p.runtimeFile))) errors.push('页表包含非本地图集文件');
 if (JSON.stringify(actualResources) !== JSON.stringify(expectedResources)) errors.push('村落资源白名单不符');
 const mainConfig = JSON.parse(fs.readFileSync(path.join(root, 'fileconfig.json'), 'utf8'));
@@ -68,7 +70,7 @@ for (const name of artFiles) {
     const sourceHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(artSource, name))).digest('hex');
     const track = audio.tracks.find(t => t.packageFile === name);
     if (track && sourceHash !== track.sha256) errors.push('音频导入文件与原始清单不一致：' + name);
-    if (files.find(f => f.path === VILLAGE_PREFIX + name)?.sha256 !== sourceHash) errors.push('分包素材与工程资源不一致：' + name);
+    if (files.find(f => f.path === VILLAGE_PREFIX + exportedName(name))?.sha256 !== sourceHash) errors.push('分包素材与工程资源不一致：' + name);
     if (files.some(f => !f.path.startsWith(VILLAGE_PREFIX) && f.sha256 === sourceHash)) errors.push('主包含重复的村庄素材：' + name);
 }
 const total = files.reduce((n, f) => n + f.bytes, 0);

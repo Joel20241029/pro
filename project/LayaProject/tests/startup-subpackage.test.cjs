@@ -42,6 +42,8 @@ function setup() {
                 requests.push([type, url]);
                 if (url.endsWith('/frames.json')) return Promise.resolve({ data: frames });
                 if (url.endsWith('/animations.json')) return Promise.resolve({ data: animations });
+                if (url.endsWith('/buildings.json')) return Promise.resolve({ data: { layouts: {} } });
+                if (url.endsWith('/building_upgrade.mc') || url.endsWith('/building_attack.mc')) return Promise.resolve({ duration: () => .6 });
                 assert.equal(url, 'resources/village/world_0.png'); return imageGate.promise;
             }
         },
@@ -69,7 +71,8 @@ test('native package gates atlas reads, village creation and save loading; each 
         assert.deepEqual(s.requests, [['package', 'resources/village']]);
         assert.equal(s.views, 0); assert.equal(s.storageReads, 0);
         s.packageGate.resolve(true); await new Promise(setImmediate);
-        assert.equal(s.requests.filter(r => r[0] === 'json').length, 2);
+        assert.equal(s.requests.filter(r => r[0] === 'json').length, 3);
+        assert.equal(s.requests.filter(r => r[1].endsWith('.mc')).length, 2);
         assert.equal(s.views, 0); assert.equal(s.storageReads, 0);
         s.imageGate.resolve({}); await s.running;
         assert.equal(s.views, 1); assert(s.storageReads > 0); assert(s.loading.destroyed);

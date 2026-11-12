@@ -19,6 +19,7 @@ import { EMOTE, VillagerEmotes } from "./VillagerEmotes";
 import { GUIDE_CHAPTERS } from "./GameGuide";
 import { dailyRationAmount } from "../game/DailyRation";
 import { BuildingLook, BuildingVisuals } from "./BuildingVisuals";
+import { houseRooms } from "./BuildingLayout";
 type Panel = { type: string; id?: string; index?: number; scroll?: number; tab?: number; a?: string; job?: "FARM" | "LOGGING" };
 export class GameView {
     readonly root = new Laya.Sprite();
@@ -56,6 +57,13 @@ export class GameView {
             this.art.applyFrame(node, p.frame, p.size); node.pos(p.x, p.y); this.world.addChild(node);
             const upgradeable = p.id.startsWith("tower:") || (p.id.startsWith("building:") && p.id !== "building:hearth");
             this.props.push({ id: p.id, y: p.ground ? -1 : p.y, node, visual: upgradeable ? new BuildingVisuals(node, art) : undefined });
+            if (p.id === "deco:village-sign") {
+                // 88×52源画布：牌面横向留10%，文字框顶边为宽度的13.75%；避开两端铆钉。
+                // 文字只在牌面居中，不含下方木桩；与路牌共用足底遮挡。
+                const title = this.label(node, "文明里村", p.size * .1, p.size * .1375, p.size * .8, 22, "#59391e", true, p.size * .2);
+                title.fontSize = 22; title.stroke = .7; title.strokeColor = "#f8d79c";
+                title.align = "center"; title.valign = "middle"; title.wordWrap = false; title.overflow = Laya.Text.SHRINK;
+            }
             if (p.id.startsWith("forest:") && Number(p.id.split(":")[1]) % 2 === 1) {
                 const index = Number(p.id.split(":")[1]);
                 const frame = ["deco_apple_pair", "deco_blossom_pink", "deco_pear_pair", "deco_blossom_ivory"][Math.floor(index / 2) % 4];
@@ -273,7 +281,8 @@ export class GameView {
             // 塔面板只使用 open/close 配对管理的 CHOICE 暂停，不把临时调任变成手动暂停。
             this.bindClick(b, () => this.open({ type: "tower", index: i })); this.chrome.addChild(b);
             const op = t.operator ? this.coloredName(person(s, t.operator)) : "成年村民不足";
-            this.label(this.chrome, t.kind ? `${TOWERS[t.kind].name} ${this.amount(t.level)}阶\n${op}` : "＋ 建塔", pos.x - 116, pos.y + 27, 232, 24, t.operator ? C.cream : "#fff0b2", true, t.kind ? 64 : 40).align = "center";
+            // 右下塔的说明向外24、上移8像素，避开高阶城门右檐和城墙；塔位与点击范围不变。
+            this.label(this.chrome, t.kind ? `${TOWERS[t.kind].name} ${this.amount(t.level)}阶\n${op}` : "＋ 建塔", pos.x - 116 + (i === 3 ? 24 : 0), pos.y + (i === 3 ? 19 : 27), 232, 24, t.operator ? C.cream : "#fff0b2", true, t.kind ? 64 : 40).align = "center";
         }
         this.chrome.graphics.drawRect(0, bottomY, 720, layout.height - bottomY, C.cream);
         const bottom = new Laya.Sprite(); bottom.pos(0, bottomY); this.art.panel(bottom, "panel_card", 720, 242); this.chrome.addChild(bottom);
@@ -609,24 +618,26 @@ export class GameView {
         this.people.forEach(n => n.visible = false); this.enemies.forEach(n => n.visible = false); this.projectileNodes.forEach(n => n.visible = false);
         this.hearts.forEach(n => { n.visible = false; n.alpha = 1; n.scale(1, 1); n.pos(0, 0); });
         this.emote.visible = false;
-        this.projectiles.update(battle, this.layout, this.scene.pads);
         const depth = this.props.slice();
         if (!s) { depth.sort(compareDepth).forEach((p, i) => p.node.zIndex = i); return; }
         for (const p of this.props) {
-            let kind: BuildingLook | null = null, level = 0;
+            let kind: BuildingLook | null = null, level = 0, rooms = 1, damaged = false;
             if (p.id === "building:gate") {
-                p.node.texture = this.art.get((battle ? battle.gate : s.gate) / gateCapacity(s) < .35 ? "building_gate_damaged" : "building_gate_closed"); kind = "GATE"; level = s.gateLevel;
+                damaged = (battle ? battle.gate : s.gate) / gateCapacity(s) < .35; kind = "GATE"; level = s.gateLevel;
             } else if (p.id.startsWith("tower:")) {
                 const index = Number(p.id.split(":")[1]), t = (battle ? battle.base.towers : s.towers)[index];
-                p.node.texture = this.art.get(t.kind ? TOWERS[t.kind].image : "building_tower_pad");
-                p.node.scaleX = t.kind === "ARROW" ? TOWER_VIEW.facing[index] : 1; kind = t.kind; level = t.level;
+                p.node.texture = t.kind ? null : this.art.get("building_tower_pad");
+                p.node.scaleX = t.kind === "ARROW" || t.kind === "STONE" ? TOWER_VIEW.facing[index] : 1; kind = t.kind; level = t.level;
             } else if (p.id.startsWith("building:house-")) {
                 kind = "HOUSE"; level = s.housing;
-                p.node.texture = this.art.get(level >= 5 || p.id === "building:house-b" ? "building_house_terracotta" : "building_house_thatched");
+                rooms = houseRooms(s.houses, p.id === "building:house-b");
             } else if (p.id === "building:farm") { kind = "FARM"; level = s.farm; }
             else if (p.id === "building:logging") { kind = "LOGGING"; level = s.logging; }
-            p.visual?.sync(kind, level, this.freshBuildingVillage);
+            p.visual?.sync(kind, level, this.freshBuildingVillage, rooms, damaged);
+            const extra = p.visual?.occluder(); if (extra) depth.push(extra);
         }
+        for (const p of this.props) if (p.id.startsWith("tower:")) p.visual!.updateAttack(battle, Number(p.id.split(":")[1]));
+        this.projectiles.update(battle, this.layout, this.scene.pads, index => this.props.find(p => p.id === `tower:${index}`)!.visual!.launchPoint());
         this.freshBuildingVillage = false;
         s.people.forEach((p, i) => {
             const n = this.people[i], pose = this.motion.get(p.id); n.visible = !pose.insideTower; n.name = `person:${p.id}`;

@@ -1,0 +1,111 @@
+{
+  "_$ver": 1,
+  "_$id": "crdlma7l",
+  "_$type": "Sprite",
+  "name": "GATE_2_1",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "loivhb21",
+      "_$type": "Sprite",
+      "name": "Body",
+      "x": 64,
+      "y": 120,
+      "width": 128,
+      "height": 128,
+      "anchorX": 0.5,
+      "anchorY": 0.9375,
+      "_$comp": [
+        {
+          "_$type": "AnimatorClip2D",
+          "clip": {
+            "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+            "_$type": "AnimationClip2D"
+          },
+          "autoPlay": false
+        }
+      ],
+      "_$child": [
+        {
+          "_$id": "88e0b2nt",
+          "_$type": "Sprite",
+          "name": "Foundation",
+          "x": 12,
+          "y": 108,
+          "width": 104,
+          "height": 12,
+          "texture": {
+            "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "kd6uumje",
+          "_$type": "Sprite",
+          "name": "Arch",
+          "x": 23,
+          "y": 58,
+          "width": 82,
+          "height": 56,
+          "texture": {
+            "_$uuid": "f74997e8-b2cc-4f38-b231-f9406a9298ec",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "zrkez77f",
+          "_$type": "Sprite",
+          "name": "GateDoors",
+          "x": 48,
+          "y": 76,
+          "width": 32,
+          "height": 39,
+          "texture": {
+            "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "8zibi0sa",
+          "_$type": "Sprite",
+          "name": "Roof",
+          "x": 14,
+          "y": 35,
+          "width": 100,
+          "height": 34,
+          "texture": {
+            "_$uuid": "e98e280f-e8f6-4fe8-9525-8eea7695455b",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "2a4smg1y",
+          "_$type": "Sprite",
+          "name": "LeftPillar",
+          "x": 14,
+          "y": 69,
+          "width": 21,
+          "height": 44,
+          "texture": {
+            "_$uuid": "8ad2f438-86a5-49b0-adb6-b3dfc78da3ac",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "53vhaa2s",
+          "_$type": "Sprite",
+          "name": "RightPillar",
+          "x": 93,
+          "y": 69,
+          "width": 21,
+          "height": 44,
+          "texture": {
+            "_$uuid": "8ad2f438-86a5-49b0-adb6-b3dfc78da3ac",
+            "_$type": "Texture"
+          }
+        }
+      ]
+    }
+  ]
+}

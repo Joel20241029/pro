@@ -1,5 +1,6 @@
 import { PADS, TowerKind } from "../game/GameConfig";
 import { GameLayout } from "./GameLayout";
+import { FARM_WHEEL_FOOTPRINT } from "./BuildingLayout";
 
 export interface GroundPoint { x: number; y: number; }
 export interface Footprint { left: number; top: number; right: number; bottom: number; }
@@ -35,6 +36,8 @@ export const VILLAGE_PROPS: VillageProp[] = [
         [583, 619, 112], [664, 652, 100], [619, 698, 116], [687, 730, 108], [578, 756, 96], [648, 777, 94]
     ].map(([x, y, size], i): VillageProp => ({ id: `forest:${i}`, frame: i % 4 === 0 ? "deco_tree_pine" : "deco_tree_oak", x, y, size, footprint: null })),
     ...[28, 92, 156, 220, 500, 564, 628, 692].map((x, i): VillageProp => ({ id: `wall:${i}`, frame: "building_palisade", x, y: 830, size: 78, footprint: null })),
+    // 村名牌靠左城墙，底座落在已有墙体安全边内；牌面与火把分开，不增加通行障碍。
+    { id: "deco:village-sign", frame: "deco_village_sign", x: 178, y: 832, size: 140, footprint: null },
     // 树足底下移30，树冠与民居分开；底座与工位同步调整，尺寸和足底排序不变。
     { id: "tree:logging", frame: "deco_tree_oak", x: 98, y: 1012, size: 90, footprint: { left: 87, top: 997, right: 109, bottom: 1012 } },
     { id: "deco:logs", frame: "deco_log_pile", x: 571, y: 1024, size: 60, footprint: null },
@@ -47,13 +50,17 @@ export const VILLAGE_PROPS: VillageProp[] = [
     prop("building:logging", "building_lumber_shed", 467, 922.625, 106, 74, 28),
     prop("building:hearth", "building_hearth_lit", 321, 891, 78, 44, 15),
     prop("building:gate", "building_gate_closed", 282, 684, 156, 132, 30),
-    ...PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, 70, 28))
+    ...PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, 72, 28))
 ];
+const farm = VILLAGE_PROPS.find(p => p.id === "building:farm")!, wheel = FARM_WHEEL_FOOTPRINT, farmScale = farm.size / 128;
 
 /** 林带合并为 2 个固定块，墙体合并为左右两段；城门两边保留 40px 侧道，扣除足底间距后仍可通行。 */
 export const LANDSCAPE_FOOTPRINTS: Footprint[] = [
     { left: 0, top: 260, right: 154, bottom: 764 }, { left: 566, top: 260, right: 720, bottom: 764 },
-    { left: -7, top: 817, right: 254, bottom: 830 }, { left: 466, top: 817, right: 727, bottom: 830 }
+    { left: -7, top: 817, right: 254, bottom: 830 }, { left: 466, top: 817, right: 727, bottom: 830 },
+    // 独立水车底座，升级前后统一预留。屋顶与水轮上半部不参与阻挡。
+    { left: farm.x + (wheel.x - 64) * farmScale, top: farm.y + (wheel.y - 120) * farmScale,
+        right: farm.x + (wheel.x + wheel.width - 64) * farmScale, bottom: farm.y + (wheel.y + wheel.height - 120) * farmScale }
 ];
 
 /** 纯表现参数：逻辑像素/秒与秒；调整只改变行走节奏、驻足时间和离建筑的距离，不参与生产/战斗结算。 */
@@ -124,7 +131,8 @@ export function layoutVillage(layout: GameLayout) {
         logging: relative(VILLAGE_STOPS.logging, "tree:logging"), rest: camp, children: camp,
         wedding: VILLAGE_STOPS.wedding.map(point), towers: pads.map(p => ({ x: p.x, y: p.y + 54 }))
     };
-    const landscape = LANDSCAPE_FOOTPRINTS.map((r, i) => ({ ...r,
+    const farmShift = props.find(p => p.id === "building:farm")!.y - farm.y;
+    const landscape = LANDSCAPE_FOOTPRINTS.map((r, i) => i === 4 ? { ...r, top: r.top + farmShift, bottom: r.bottom + farmShift } : ({ ...r,
         top: i < 2 ? layout.worldY(r.top) : layout.gateY - (830 - r.top), bottom: layout.worldY(r.bottom)
     }));
     const bounds = { ...MOTION.bounds, top: layout.worldY(MOTION.bounds.top), bottom: layout.footerTop - 14 };

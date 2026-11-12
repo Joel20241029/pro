@@ -1,84 +1,111 @@
 import { SpriteFrames } from "./SpriteFrames";
+import { BuildingLook, BuildingNode, buildingLayoutId } from "./BuildingLayout";
+import { BattleSimulation, Shot } from "../game/BattleSimulation";
+import { RULE } from "../game/GameConfig";
+import { GroundPoint } from "./VillageScene";
+export { BuildingLook } from "./BuildingLayout";
 
-export type BuildingLook = "HOUSE" | "FARM" | "LOGGING" | "GATE" | "ARROW" | "STONE" | "SLOW";
-export interface BuildingPart { frame: string; x: number; y: number; w: number; h: number; }
-/** 所有挂点以128方形源画布为基准，只覆盖基座/檐口，不改变足底、射口、碰撞或射程。
- * 每4级形成木作/加固/金饰三档，1～12级逐级变化；13级起保持轮廓，每4级轮换左侧徽饰，等级牌逐级更新。
- */
-export function buildingParts(kind: BuildingLook, level: number): BuildingPart[] {
-    const stage = Math.min(12, level) - 1, tier = Math.floor(stage / 4), step = stage % 4;
-    const parts: BuildingPart[] = [];
-    const add = (frame: string, x: number, y: number, w: number, h: number) => parts.push({ frame, x, y, w, h });
-    const house = kind === "HOUSE" || kind === "LOGGING" || kind === "GATE";
-    if (level <= 1) return parts;
-    if (tier > 0 || step >= 2) add("part_foundation", 27, 103, 74, 15);
-    if (house) {
-        if (kind === "HOUSE" && tier === 2) add("part_gold_roof", 15, 27, 98, 25);
-        // 城门的瓦饰和金饰放在原茅草檐口内，保留完整屋顶轮廓。
-        if (kind === "GATE" && tier > 0) add(tier === 2 ? "part_gold_roof" : "part_tile_roof", 36, 38, 56, 10);
-        if (kind === "LOGGING" && tier > 0) add(tier === 2 ? "part_crest" : "part_timbers", 76, 84, 24, 27);
-        const feature = kind === "HOUSE" ? "part_window" : kind === "LOGGING" ? "part_tools" : "part_brace";
-        if (step >= 1 || tier > 0) add(feature, kind === "GATE" ? 52 : 27, 76, 24, 26);
-    } else if (kind === "FARM") {
-        if (step >= 1 || tier > 0) add("part_grain", 12, 83, 24, 28);
-        if (tier > 0) add(tier === 2 ? "part_timbers" : "part_tools", 91, 83, 26, 26);
-    } else {
-        // 器械保留完整：所有加固件在下半部，左右箭塔随同一根节点镜像。
-        if (step >= 1 || tier > 0) add(tier === 2 ? "part_crest" : "part_brace", 48, 80, 28, 28);
-        if (tier > 0) add(kind === "SLOW" ? "part_crystal" : "part_iron", 28, 83, 18, 26);
-    }
-    if (tier === 1 && step >= 1) add("part_iron", 84, 80, 15, 23);
-    if (tier === 2 && step >= 1 && house) add(kind === "LOGGING" ? "part_iron" : "part_crest", kind === "LOGGING" ? 15 : 81, 73, 19, 23);
-    if (tier === 2 && step >= 1 && kind === "FARM") add("part_crest", 51, 94, 19, 22);
-    if (tier === 2 && step >= 1 && !house && kind !== "FARM") add("part_iron", 81, 83, 17, 26);
-    if (step >= (tier ? 2 : 3)) add("part_banner", 96, house ? 62 : 86, 16, 23);
-    const crestStage = level >= 13 && Math.floor((level - 13) / 4) % 2 === 0;
-    if (tier > 0 && step === 3) add(tier === 1 || crestStage ? "part_crest" : "part_banner", 13, house ? 64 : 87, 16, 23);
-    return parts;
-}
-
-/** 部件只在等级/种类变化时重建；升级光点复用原图集，不注册额外计时器。 */
+/** 原生编辑器部件+共享 .mc；地图根的足底/排序不动，动画只作用于内部 Body/Weapon。 */
 export class BuildingVisuals {
-    private key = "";
-    private level = 0;
-    private parts = new Laya.Sprite();
-    private flash = new Laya.Sprite();
-    private elapsed = 1;
+    private key = ""; private level = 0; private rooms = 1;
+    private parts = new Laya.Sprite(); private badge = new Laya.Text();
+    private body: Laya.Sprite | null = null; private muzzle: Laya.Sprite | null = null;
+    private upgrades: Laya.AnimatorClip2D[] = []; private attack: Laya.AnimatorClip2D | null = null;
+    private above: Laya.Sprite | null = null; private aboveSort: GroundPoint | null = null;
+    private elapsed = 0; private upgrading = false;
+    private battle: BattleSimulation | null = null; private latestShot: Shot | null = null;
     constructor(private owner: Laya.Sprite, private art: SpriteFrames) {
-        this.parts.name = "UpgradeParts"; this.parts.mouseEnabled = false; owner.addChild(this.parts);
-        this.flash.name = "UpgradeFlash"; this.flash.mouseEnabled = false; this.flash.visible = false; owner.addChild(this.flash);
+        this.parts.name = "EditorBuilding"; this.parts.mouseEnabled = false; owner.addChild(this.parts);
+        this.badge.name = "UpgradeLevel"; this.badge.mouseEnabled = false;
+        this.badge.wordWrap = false; this.badge.overflow = Laya.Text.SHRINK; this.badge.bold = true;
+        this.badge.color = "#fff0ac"; this.badge.strokeColor = "#493420"; this.badge.align = "center"; this.badge.valign = "middle";
+        owner.addChild(this.badge); this.badge.visible = false;
     }
-    sync(kind: BuildingLook | null, level: number, freshVillage: boolean) {
-        const key = `${kind}:${level}`;
-        if (freshVillage) { this.elapsed = 1; this.flash.visible = false; }
-        if (this.key === key) return;
-        this.key = key; this.parts.destroyChildren();
-        const scale = this.owner.width / 128;
-        if (kind) for (const part of buildingParts(kind, level)) {
-            const node = new Laya.Sprite(); node.name = part.frame; node.texture = this.art.get(part.frame);
-            node.pos(part.x * scale, part.y * scale); node.size(part.w * scale, part.h * scale); node.mouseEnabled = false; this.parts.addChild(node);
+    private create(data: BuildingNode, parent: Laya.Sprite): Laya.Sprite {
+        const node = new Laya.Sprite(); node.name = data.name; node.mouseEnabled = false;
+        if (data.frame) node.texture = this.art.get(data.frame);
+        // 省略属性使用 Sprite 自身默认值，与原生 .lh 解码语义一致。
+        for (const property of ["x", "y", "width", "height", "anchorX", "anchorY", "scaleX", "scaleY", "rotation", "alpha", "visible"] as const)
+            if (data[property] !== undefined) (node as any)[property] = data[property];
+        parent.addChild(node);
+        if (data.name === "Muzzle") this.muzzle = node;
+        for (const child of data.children || []) this.create(child, node);
+        if (data.clip) {
+            const animator = node.addComponent(Laya.AnimatorClip2D); animator.autoPlay = false;
+            animator.clip = data.clip === "upgrade" ? this.art.buildingUpgrade : this.art.buildingAttack;
+            if (data.clip === "upgrade") this.upgrades.push(animator); else this.attack = animator;
+            animator.gotoAndStop(1);
         }
-        if (kind && level >= 13) {
-            const badge = new Laya.Text(); badge.name = "UpgradeLevel"; badge.text = String(level);
-            badge.wordWrap = false; badge.overflow = Laya.Text.SHRINK;
-            badge.fontSize = 23 * scale; badge.bold = true; badge.color = "#fff0ac"; badge.stroke = 2 * scale; badge.strokeColor = "#493420";
-            badge.align = "center"; badge.valign = "middle"; badge.size(70 * scale, 28 * scale); badge.pivot(35 * scale, 0);
-            badge.pos(64 * scale, 88 * scale); badge.scaleX = this.owner.scaleX; badge.mouseEnabled = false; this.parts.addChild(badge);
+        return node;
+    }
+    sync(kind: BuildingLook | null, level: number, freshVillage: boolean, rooms = 1, damaged = false) {
+        const key = `${kind}:${level}:${rooms}:${damaged}`;
+        if (freshVillage) { this.upgrading = false; this.upgrades.forEach(a => a.gotoAndStop(1)); this.latestShot = null; this.attack?.gotoAndStop(1); }
+        if (key === this.key) return;
+        const animate = !freshVillage && kind && this.level > 0 && (level > this.level || rooms > this.rooms);
+        this.key = key; this.level = level; this.rooms = rooms;
+        this.parts.destroyChildren(); this.above?.destroy(true); this.above = null; this.aboveSort = null;
+        this.body = this.muzzle = null; this.upgrades = []; this.attack = null;
+        this.latestShot = null; this.upgrading = false; this.badge.visible = false;
+        if (!kind) return;
+        this.owner.texture = null;
+        const layout = this.art.buildingLayouts[buildingLayoutId(kind, level, rooms)];
+        if (!layout) throw new Error("缺少编辑器建筑布局:" + key);
+        const root = this.create(layout, this.parts), scale = this.owner.width / 128;
+        this.owner.size(this.owner.width, this.owner.width).pivot(layout.sort.x * scale, layout.sort.y * scale);
+        this.parts.scale(scale, scale);
+        this.body = root.getChildByName("Body") as Laya.Sprite;
+        const upper = root.getChildByName("AboveGround") as Laya.Sprite;
+        if (upper) {
+            this.above = new Laya.Sprite(); this.above.name = this.owner.name + ":above";
+            this.above.mouseEnabled = false; this.above.stackingRoot = true;
+            this.owner.parent.addChild(this.above); this.above.addChild(upper);
+            this.aboveSort = { x: upper.x, y: upper.y };
         }
-        if (!freshVillage && kind && this.level > 0 && level > this.level) { this.elapsed = 0; this.flash.visible = true; }
-        this.level = level;
+        if (damaged) {
+            // 沿用城门低于35%血量的损坏档；裂缝附着门板，不改变碰撞/遮挡根。
+            const door = this.body.getChildByName("GateDoors") as Laya.Sprite;
+            door.alpha = .68; door.rotation = 6;
+            door.graphics.drawLines(door.width * .45, 2, [0, 0, -5, 8, 2, 13, -3, 22], "#41251e", 2);
+        }
+        if (level >= 13) {
+            this.badge.visible = true; this.badge.text = String(level); this.badge.fontSize = 19 * scale; this.badge.stroke = 2 * scale;
+            this.badge.size(64 * scale, 24 * scale).pivot(32 * scale, 0).pos(64 * scale, 93 * scale);
+            this.badge.scaleX = this.owner.scaleX;
+        }
+        if (animate) { this.elapsed = 0; this.upgrading = true; this.upgrades.forEach(a => a.gotoAndStop(0)); }
     }
     advance(delta: number) {
-        if (this.elapsed >= 1) return;
-        this.elapsed = Math.min(1, this.elapsed + delta);
-        // 约一秒的金色十字光点，沿屋顶两侧升起；固定轮廓外不增加常驻体积。
-        const size = this.owner.width, t = this.elapsed;
-        this.flash.texture = null; this.flash.graphics.clear(); this.flash.alpha = 1 - t;
-        for (const x of [.22, .78]) {
-            const y = size * (.5 - t * .2), px = size * x;
-            this.flash.graphics.drawLine(px - 4, y, px + 4, y, "#fff0ac", 3);
-            this.flash.graphics.drawLine(px, y - 6, px, y + 6, "#fff0ac", 3);
+        if (!this.upgrading) return;
+        this.elapsed += delta;
+        const progress = Math.min(1, this.elapsed / this.upgrades[0].clip.duration());
+        this.upgrades.forEach(a => a.gotoAndStop(progress)); this.upgrading = progress < 1;
+    }
+    /** 水车从地面农田分离，只按自己的足底与人物排序；重排时从owner当前坐标重算。 */
+    occluder(): { id: string; y: number; node: Laya.Sprite } | null {
+        if (!this.above || !this.aboveSort) return null;
+        const scale = this.owner.width / 128, parent = this.owner.parent as Laya.Sprite;
+        const origin = this.owner.localToGlobal(new Laya.Point(0, 0), false, parent);
+        const foot = this.owner.localToGlobal(new Laya.Point(this.aboveSort.x * scale, this.aboveSort.y * scale), false, parent);
+        this.above.pos(origin.x, origin.y).scale(scale * this.owner.scaleX, scale * this.owner.scaleY);
+        this.above.rotation = this.owner.rotation;
+        return { id: this.above.name, y: foot.y, node: this.above };
+    }
+    /** 保存最后一发Shot，避免逻辑短队列移除时动作提前结束；暂停和倍速跟随战斗tick。 */
+    updateAttack(battle: BattleSimulation | null, tower: number) {
+        if (battle !== this.battle) { this.battle = battle; this.latestShot = null; this.attack?.gotoAndStop(1); }
+        if (!this.attack) return;
+        if (!battle || battle.outcome) { this.latestShot = null; this.attack.gotoAndStop(1); return; }
+        for (const shot of battle.shots) if (shot.tower === tower && (!this.latestShot || shot.tick > this.latestShot.tick)) this.latestShot = shot;
+        if (this.latestShot) {
+            const age = (battle.tick - this.latestShot.tick - 1) * RULE.step;
+            this.attack.gotoAndStop(Math.min(1, Math.max(0, age) / this.attack.clip.duration()));
         }
-        this.flash.visible = t < 1;
+    }
+    /** 编辑器 Muzzle 挂点应用结构缩放和左右镜像；弹道在发射时保存此坐标。 */
+    launchPoint(): GroundPoint {
+        if (!this.muzzle || !this.body) throw new Error("当前建筑没有发射口");
+        const point = this.muzzle.localToGlobal(new Laya.Point(0, 0), false, this.owner.parent as Laya.Sprite);
+        return { x: point.x, y: point.y };
     }
 }

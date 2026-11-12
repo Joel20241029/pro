@@ -1,0 +1,105 @@
+{
+  "_$ver": 1,
+  "_$id": "v00zqb0h",
+  "_$type": "Sprite",
+  "name": "SLOW_1_1",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "4a6pthb5",
+      "_$type": "Sprite",
+      "name": "Body",
+      "x": 64,
+      "y": 120,
+      "width": 128,
+      "height": 128,
+      "anchorX": 0.5,
+      "anchorY": 0.9375,
+      "_$comp": [
+        {
+          "_$type": "AnimatorClip2D",
+          "clip": {
+            "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+            "_$type": "AnimationClip2D"
+          },
+          "autoPlay": false
+        }
+      ],
+      "_$child": [
+        {
+          "_$id": "ppie9u3o",
+          "_$type": "Sprite",
+          "name": "Foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15,
+          "texture": {
+            "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "bnd4ikva",
+          "_$type": "Sprite",
+          "name": "TowerBody",
+          "x": 42,
+          "y": 68,
+          "width": 44,
+          "height": 40,
+          "texture": {
+            "_$uuid": "798fdd17-155b-4d99-9a7e-871a30a287ff",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "ynnxuzkr",
+          "_$type": "Sprite",
+          "name": "Platform",
+          "x": 19,
+          "y": 60,
+          "width": 90,
+          "height": 21,
+          "texture": {
+            "_$uuid": "943da39b-29a8-4843-baa5-0eadf0927147",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "vu7jenaf",
+          "_$type": "Sprite",
+          "name": "Weapon",
+          "x": 64,
+          "y": 71,
+          "width": 31,
+          "height": 40,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "_$child": [
+            {
+              "_$id": "c706z183",
+              "_$type": "Sprite",
+              "name": "Launcher",
+              "width": 31,
+              "height": 40,
+              "texture": {
+                "_$uuid": "7aca5ae8-7fe6-452a-9c2e-938f2a5afffa",
+                "_$type": "Texture"
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "msz7natj",
+          "_$type": "Sprite",
+          "name": "Muzzle",
+          "x": 64,
+          "y": 38,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    }
+  ]
+}

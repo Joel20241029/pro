@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-11-12T02:02:50.861Z",
-  "runtimeAssetCount": 177,
-  "reserveAssetCount": 19,
+  "generatedAt": "2026-11-12T06:06:08.584Z",
+  "runtimeAssetCount": 197,
+  "reserveAssetCount": 30,
   "animationCount": 32,
   "animationFrames": 108,
   "categoryStats": {
     "buildings": {
       "count": 25,
       "bytes": 288290,
-      "runtime": 24,
-      "reserve": 1
+      "runtime": 14,
+      "reserve": 11
     },
     "terrain": {
       "count": 4,
@@ -18,9 +18,9 @@
       "reserve": 4
     },
     "decorations": {
-      "count": 12,
-      "bytes": 97423,
-      "runtime": 10,
+      "count": 13,
+      "bytes": 101910,
+      "runtime": 11,
       "reserve": 2
     },
     "ui/icons": {
@@ -52,6 +52,12 @@
       "bytes": 162846,
       "runtime": 20,
       "reserve": 0
+    },
+    "building-parts": {
+      "count": 30,
+      "bytes": 268480,
+      "runtime": 29,
+      "reserve": 1
     }
   },
   "atlasPages": [
@@ -61,8 +67,8 @@
       "runtimeFile": "world_0.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1086332,
-      "sha256": "32c96c56c627af2960c6371a6d13bcfe99e711e5a8f88b4477cc9907334a4804",
+      "bytes": 1331715,
+      "sha256": "a9b5caa1c670534a54d0eb2857575b37e2dc395c7b4813fbcc5a11a1b2e1ead0",
       "group": "world"
     },
     {
@@ -77,26 +83,29 @@
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 992108,
-    "atlasContentPixels": 829922,
-    "savedContentPixels": 162186,
-    "savedContentPercent": 16.35,
-    "trimmedAssetCount": 160,
+    "sourceCanvasPixels": 1098532,
+    "atlasContentPixels": 937850,
+    "savedContentPixels": 160682,
+    "savedContentPercent": 14.63,
+    "trimmedAssetCount": 151,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "pngBytes": 1201298,
-    "metadataBytes": 96352,
+    "pngBytes": 1446681,
+    "metadataBytes": 221906,
     "audioBytes": 155953,
-    "totalBytes": 1453603,
+    "totalBytes": 1824540,
     "files": [
       "atlases/world_0.png",
       "atlases/ui_0.png",
       "atlases/frames.json",
       "animations.json",
+      "native/buildings.json",
+      "native/building_upgrade.mc",
+      "native/building_attack.mc",
       "audio/village_loop.mp3",
       "audio/battle_loop.mp3",
       "audio/ui_click.mp3"
@@ -110,9 +119,9 @@
   "budgets": {
     "fullPackageTarget": 3500000
   },
-  "sourceBytes": 38870810,
+  "sourceBytes": 45661209,
   "budgetComparison": {
-    "worldPngBytes": 1086332,
+    "worldPngBytes": 1331715,
     "uiAndEffectsPngBytes": 114966
   },
   "limitations": [

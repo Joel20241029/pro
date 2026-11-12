@@ -7,13 +7,16 @@
     "atlases/ui_0.png",
     "atlases/frames.json",
     "animations.json",
+    "native/buildings.json",
+    "native/building_upgrade.mc",
+    "native/building_attack.mc",
     "audio/village_loop.mp3",
     "audio/battle_loop.mp3",
     "audio/ui_click.mp3"
   ],
-  "assetCount": 196,
-  "runtimeAssetCount": 177,
-  "reserveAssetCount": 19,
+  "assetCount": 227,
+  "runtimeAssetCount": 197,
+  "reserveAssetCount": 30,
   "assets": [
     {
       "id": "building_house_thatched",
@@ -730,8 +733,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 846,
-        "y": 134,
+        "x": 266,
+        "y": 203,
         "w": 96,
         "h": 93
       },
@@ -1121,8 +1124,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 723,
-        "y": 251,
+        "x": 566,
+        "y": 258,
         "w": 90,
         "h": 94
       },
@@ -1182,8 +1185,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 846,
-        "y": 231,
+        "x": 931,
+        "y": 288,
         "w": 90,
         "h": 95
       },
@@ -1347,8 +1350,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 817,
-        "y": 330,
+        "x": 744,
+        "y": 360,
         "w": 91,
         "h": 88
       },
@@ -1408,8 +1411,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 438,
-        "y": 203,
+        "x": 2,
+        "y": 298,
         "w": 83,
         "h": 86
       },
@@ -3790,8 +3793,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 762,
-        "y": 651,
+        "x": 452,
+        "y": 778,
         "w": 61,
         "h": 71
       },
@@ -3856,8 +3859,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 301,
-        "y": 688,
+        "x": 928,
+        "y": 660,
         "w": 71,
         "h": 71
       },
@@ -3922,8 +3925,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 226,
-        "y": 696,
+        "x": 852,
+        "y": 669,
         "w": 69,
         "h": 71
       },
@@ -3988,8 +3991,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 931,
-        "y": 575,
+        "x": 2,
+        "y": 928,
         "w": 66,
         "h": 71
       },
@@ -4054,8 +4057,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 448,
-        "y": 659,
+        "x": 76,
+        "y": 805,
         "w": 54,
         "h": 72
       },
@@ -4120,8 +4123,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 789,
-        "y": 575,
+        "x": 705,
+        "y": 689,
         "w": 65,
         "h": 72
       },
@@ -4186,8 +4189,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 534,
-        "y": 656,
+        "x": 151,
+        "y": 802,
         "w": 58,
         "h": 72
       },
@@ -4252,8 +4255,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 699,
-        "y": 581,
+        "x": 626,
+        "y": 732,
         "w": 59,
         "h": 72
       },
@@ -4318,8 +4321,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 107,
-        "y": 771,
+        "x": 588,
+        "y": 870,
         "w": 47,
         "h": 60
       },
@@ -4384,8 +4387,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 827,
-        "y": 725,
+        "x": 847,
+        "y": 744,
         "w": 62,
         "h": 62
       },
@@ -4450,8 +4453,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 113,
-        "y": 862,
+        "x": 826,
+        "y": 875,
         "w": 50,
         "h": 59
       },
@@ -4516,8 +4519,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 862,
+        "x": 648,
+        "y": 840,
         "w": 54,
         "h": 60
       },
@@ -4582,8 +4585,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 126,
-        "y": 931,
+        "x": 588,
+        "y": 957,
         "w": 51,
         "h": 58
       },
@@ -4648,8 +4651,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 642,
-        "y": 738,
+        "x": 582,
+        "y": 808,
         "w": 62,
         "h": 58
       },
@@ -4714,8 +4717,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 708,
-        "y": 792,
+        "x": 490,
+        "y": 857,
         "w": 62,
         "h": 58
       },
@@ -4780,8 +4783,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 167,
-        "y": 869,
+        "x": 643,
+        "y": 957,
         "w": 42,
         "h": 58
       },
@@ -4846,8 +4849,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 279,
-        "y": 801,
+        "x": 950,
+        "y": 915,
         "w": 44,
         "h": 48
       },
@@ -4912,8 +4915,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 322,
-        "y": 869,
+        "x": 947,
+        "y": 967,
         "w": 44,
         "h": 47
       },
@@ -4978,8 +4981,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 288,
-        "y": 931,
+        "x": 896,
+        "y": 959,
         "w": 47,
         "h": 45
       },
@@ -5044,8 +5047,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 273,
-        "y": 869,
+        "x": 691,
+        "y": 904,
         "w": 45,
         "h": 48
       },
@@ -5110,8 +5113,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 153,
-        "y": 696,
+        "x": 2,
+        "y": 853,
         "w": 69,
         "h": 71
       },
@@ -5176,8 +5179,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 81,
-        "y": 535,
+        "x": 159,
+        "y": 566,
         "w": 76,
         "h": 73
       },
@@ -5242,8 +5245,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 562,
-        "y": 422,
+        "x": 645,
+        "y": 419,
         "w": 76,
         "h": 76
       },
@@ -5308,8 +5311,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 534,
-        "y": 582,
+        "x": 629,
+        "y": 658,
         "w": 72,
         "h": 70
       },
@@ -5374,8 +5377,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 617,
+        "x": 560,
+        "y": 482,
         "w": 70,
         "h": 76
       },
@@ -5440,8 +5443,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 162,
-        "y": 298,
+        "x": 2,
+        "y": 540,
         "w": 76,
         "h": 76
       },
@@ -5506,8 +5509,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 242,
-        "y": 372,
+        "x": 485,
+        "y": 402,
         "w": 76,
         "h": 76
       },
@@ -5572,8 +5575,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 238,
-        "y": 530,
+        "x": 159,
+        "y": 643,
         "w": 71,
         "h": 76
       },
@@ -5638,8 +5641,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 626,
-        "y": 866,
+        "x": 660,
+        "y": 258,
         "w": 59,
         "h": 61
       },
@@ -5704,8 +5707,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 448,
-        "y": 735,
+        "x": 530,
+        "y": 919,
         "w": 54,
         "h": 62
       },
@@ -5770,8 +5773,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 562,
-        "y": 804,
+        "x": 827,
+        "y": 810,
         "w": 60,
         "h": 61
       },
@@ -5836,8 +5839,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 506,
-        "y": 796,
+        "x": 913,
+        "y": 787,
         "w": 52,
         "h": 62
       },
@@ -5902,8 +5905,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 525,
-        "y": 258,
+        "x": 950,
+        "y": 134,
         "w": 69,
         "h": 80
       },
@@ -5968,8 +5971,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 946,
-        "y": 134,
+        "x": 177,
+        "y": 298,
         "w": 76,
         "h": 80
       },
@@ -6034,8 +6037,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 438,
-        "y": 293,
+        "x": 257,
+        "y": 300,
         "w": 66,
         "h": 80
       },
@@ -6100,8 +6103,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 598,
-        "y": 258,
+        "x": 173,
+        "y": 382,
         "w": 66,
         "h": 80
       },
@@ -6166,8 +6169,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 76,
-        "y": 692,
+        "x": 234,
+        "y": 699,
         "w": 73,
         "h": 75
       },
@@ -6232,8 +6235,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 266,
-        "y": 295,
+        "x": 2,
+        "y": 463,
         "w": 78,
         "h": 73
       },
@@ -6298,8 +6301,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 348,
-        "y": 295,
+        "x": 327,
+        "y": 352,
         "w": 74,
         "h": 77
       },
@@ -6364,8 +6367,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 378,
+        "x": 725,
+        "y": 452,
         "w": 76,
         "h": 75
       },
@@ -6431,8 +6434,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 748,
-        "y": 349,
+        "x": 141,
+        "y": 946,
         "w": 65,
         "h": 64
       },
@@ -6498,8 +6501,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 506,
-        "y": 732,
+        "x": 213,
+        "y": 854,
         "w": 69,
         "h": 60
       },
@@ -6565,8 +6568,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 927,
-        "y": 650,
+        "x": 141,
+        "y": 878,
         "w": 66,
         "h": 64
       },
@@ -6632,8 +6635,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 158,
-        "y": 771,
+        "x": 759,
+        "y": 895,
         "w": 57,
         "h": 58
       },
@@ -6699,8 +6702,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 266,
-        "y": 203,
+        "x": 923,
+        "y": 387,
         "w": 82,
         "h": 88
       },
@@ -6766,8 +6769,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 352,
-        "y": 203,
+        "x": 366,
+        "y": 260,
         "w": 82,
         "h": 88
       },
@@ -6833,8 +6836,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 940,
-        "y": 327,
+        "x": 839,
+        "y": 360,
         "w": 80,
         "h": 91
       },
@@ -6900,8 +6903,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 940,
-        "y": 231,
+        "x": 660,
+        "y": 323,
         "w": 80,
         "h": 92
       },
@@ -6966,8 +6969,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 236,
-        "y": 610,
+        "x": 319,
+        "y": 669,
         "w": 61,
         "h": 76
       },
@@ -7032,8 +7035,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 537,
+        "x": 483,
+        "y": 482,
         "w": 73,
         "h": 76
       },
@@ -7098,8 +7101,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 161,
-        "y": 537,
+        "x": 82,
+        "y": 646,
         "w": 71,
         "h": 76
       },
@@ -7164,8 +7167,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 668,
-        "y": 258,
+        "x": 965,
+        "y": 479,
         "w": 46,
         "h": 76
       },
@@ -7230,8 +7233,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 673,
-        "y": 657,
+        "x": 376,
+        "y": 824,
         "w": 44,
         "h": 71
       },
@@ -7296,8 +7299,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 462,
-        "y": 582,
+        "x": 780,
+        "y": 614,
         "w": 68,
         "h": 73
       },
@@ -7362,8 +7365,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 858,
-        "y": 650,
+        "x": 72,
+        "y": 928,
         "w": 65,
         "h": 71
       },
@@ -7428,8 +7431,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 376,
-        "y": 688,
+        "x": 689,
+        "y": 765,
         "w": 68,
         "h": 71
       },
@@ -7494,8 +7497,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 60,
-        "y": 862,
+        "x": 706,
+        "y": 840,
         "w": 49,
         "h": 60
       },
@@ -7560,8 +7563,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 704,
-        "y": 854,
+        "x": 469,
+        "y": 919,
         "w": 57,
         "h": 62
       },
@@ -7626,8 +7629,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 775,
+        "x": 969,
+        "y": 787,
         "w": 49,
         "h": 60
       },
@@ -7692,8 +7695,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 67,
-        "y": 931,
+        "x": 891,
+        "y": 853,
         "w": 55,
         "h": 59
       },
@@ -7758,8 +7761,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 642,
-        "y": 800,
+        "x": 407,
+        "y": 918,
         "w": 58,
         "h": 62
       },
@@ -7824,8 +7827,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 893,
-        "y": 756,
+        "x": 278,
+        "y": 918,
         "w": 62,
         "h": 62
       },
@@ -7890,8 +7893,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 787,
-        "y": 791,
+        "x": 424,
+        "y": 853,
         "w": 62,
         "h": 61
       },
@@ -7956,8 +7959,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 579,
-        "y": 738,
+        "x": 344,
+        "y": 900,
         "w": 59,
         "h": 62
       },
@@ -8022,8 +8025,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 901,
-        "y": 501,
+        "x": 852,
+        "y": 557,
         "w": 74,
         "h": 70
       },
@@ -8088,8 +8091,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 596,
-        "y": 664,
+        "x": 295,
+        "y": 826,
         "w": 69,
         "h": 70
       },
@@ -8154,8 +8157,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 383,
-        "y": 532,
+        "x": 629,
+        "y": 579,
         "w": 75,
         "h": 75
       },
@@ -8220,8 +8223,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 858,
-        "y": 575,
+        "x": 774,
+        "y": 691,
         "w": 69,
         "h": 71
       },
@@ -8286,8 +8289,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 610,
-        "y": 588,
+        "x": 232,
+        "y": 778,
         "w": 59,
         "h": 72
       },
@@ -8352,8 +8355,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 624,
-        "y": 509,
+        "x": 76,
+        "y": 726,
         "w": 71,
         "h": 75
       },
@@ -8418,8 +8421,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 321,
-        "y": 456,
+        "x": 322,
+        "y": 593,
         "w": 76,
         "h": 72
       },
@@ -8484,8 +8487,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 301,
-        "y": 612,
+        "x": 2,
+        "y": 777,
         "w": 70,
         "h": 72
       },
@@ -8550,8 +8553,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 55,
-        "y": 775,
+        "x": 969,
+        "y": 851,
         "w": 48,
         "h": 60
       },
@@ -8616,8 +8619,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 181,
-        "y": 931,
+        "x": 689,
+        "y": 957,
         "w": 52,
         "h": 57
       },
@@ -8682,8 +8685,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 959,
-        "y": 756,
+        "x": 517,
+        "y": 791,
         "w": 61,
         "h": 62
       },
@@ -8748,8 +8751,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 931,
+        "x": 761,
+        "y": 832,
         "w": 61,
         "h": 59
       },
@@ -8814,8 +8817,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 237,
-        "y": 931,
+        "x": 805,
+        "y": 957,
         "w": 47,
         "h": 56
       },
@@ -8880,8 +8883,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 721,
-        "y": 726,
+        "x": 761,
+        "y": 766,
         "w": 62,
         "h": 62
       },
@@ -8946,8 +8949,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 213,
-        "y": 869,
+        "x": 344,
+        "y": 966,
         "w": 56,
         "h": 56
       },
@@ -9012,8 +9015,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 219,
-        "y": 801,
+        "x": 745,
+        "y": 957,
         "w": 56,
         "h": 56
       },
@@ -9287,8 +9290,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 748,
-        "y": 422,
+        "x": 634,
+        "y": 499,
         "w": 70,
         "h": 76
       },
@@ -9353,8 +9356,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 402,
-        "y": 377,
+        "x": 323,
+        "y": 513,
         "w": 76,
         "h": 76
       },
@@ -9419,8 +9422,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 482,
-        "y": 422,
+        "x": 565,
+        "y": 402,
         "w": 76,
         "h": 76
       },
@@ -9485,8 +9488,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 313,
-        "y": 532,
+        "x": 402,
+        "y": 613,
         "w": 66,
         "h": 76
       },
@@ -9551,8 +9554,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 481,
-        "y": 502,
+        "x": 780,
+        "y": 534,
         "w": 68,
         "h": 76
       },
@@ -9617,8 +9620,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 241,
-        "y": 452,
+        "x": 885,
+        "y": 479,
         "w": 76,
         "h": 74
       },
@@ -9683,8 +9686,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 82,
-        "y": 298,
+        "x": 84,
+        "y": 486,
         "w": 76,
         "h": 76
       },
@@ -9749,8 +9752,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 714,
-        "y": 502,
+        "x": 157,
+        "y": 723,
         "w": 71,
         "h": 75
       },
@@ -9815,8 +9818,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 322,
-        "y": 376,
+        "x": 403,
+        "y": 453,
         "w": 76,
         "h": 76
       },
@@ -9881,8 +9884,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 161,
-        "y": 378,
+        "x": 805,
+        "y": 455,
         "w": 76,
         "h": 75
       },
@@ -9947,8 +9950,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 298,
+        "x": 243,
+        "y": 464,
         "w": 76,
         "h": 76
       },
@@ -10013,8 +10016,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 79,
-        "y": 612,
+        "x": 2,
+        "y": 697,
         "w": 70,
         "h": 76
       },
@@ -10079,8 +10082,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 383,
-        "y": 611,
+        "x": 311,
+        "y": 749,
         "w": 61,
         "h": 73
       },
@@ -10145,8 +10148,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 81,
-        "y": 458,
+        "x": 2,
+        "y": 620,
         "w": 76,
         "h": 73
       },
@@ -10211,8 +10214,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 401,
-        "y": 457,
+        "x": 239,
+        "y": 624,
         "w": 76,
         "h": 71
       },
@@ -10277,8 +10280,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 822,
-        "y": 500,
+        "x": 384,
+        "y": 693,
         "w": 75,
         "h": 71
       },
@@ -10343,8 +10346,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 642,
-        "y": 429,
+        "x": 708,
+        "y": 531,
         "w": 68,
         "h": 76
       },
@@ -10409,8 +10412,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 668,
-        "y": 349,
+        "x": 323,
+        "y": 433,
         "w": 76,
         "h": 76
       },
@@ -10475,8 +10478,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 457,
+        "x": 243,
+        "y": 544,
         "w": 75,
         "h": 76
       },
@@ -10541,8 +10544,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 161,
-        "y": 457,
+        "x": 82,
+        "y": 566,
         "w": 73,
         "h": 76
       },
@@ -10607,8 +10610,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 153,
-        "y": 617,
+        "x": 550,
+        "y": 562,
         "w": 75,
         "h": 75
       },
@@ -10673,8 +10676,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 901,
-        "y": 422,
+        "x": 472,
+        "y": 642,
         "w": 74,
         "h": 75
       },
@@ -10739,8 +10742,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 588,
-        "y": 342,
+        "x": 405,
+        "y": 373,
         "w": 76,
         "h": 76
       },
@@ -10805,8 +10808,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 553,
-        "y": 502,
+        "x": 479,
+        "y": 562,
         "w": 67,
         "h": 76
       },
@@ -10871,8 +10874,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 697,
+        "x": 708,
+        "y": 611,
         "w": 68,
         "h": 74
       },
@@ -10937,8 +10940,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 508,
-        "y": 342,
+        "x": 243,
+        "y": 384,
         "w": 76,
         "h": 76
       },
@@ -11003,8 +11006,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 822,
-        "y": 422,
+        "x": 550,
+        "y": 641,
         "w": 75,
         "h": 74
       },
@@ -11069,8 +11072,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 82,
-        "y": 378,
+        "x": 164,
+        "y": 486,
         "w": 75,
         "h": 76
       },
@@ -11557,8 +11560,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 673,
-        "y": 614,
+        "x": 852,
+        "y": 534,
         "w": 22,
         "h": 19
       },
@@ -11618,8 +11621,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 673,
-        "y": 588,
+        "x": 566,
+        "y": 231,
         "w": 22,
         "h": 22
       },
@@ -11679,8 +11682,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 827,
-        "y": 651,
+        "x": 556,
+        "y": 870,
         "w": 26,
         "h": 22
       },
@@ -11740,8 +11743,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 107,
-        "y": 835,
+        "x": 211,
+        "y": 918,
         "w": 26,
         "h": 23
       },
@@ -11778,8 +11781,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
       "bytes": 2293,
       "sha256": "3925a1b679315f2b98be58f4e583dd879640104b209d51913131be8a812a9c15",
       "alpha": "rgba",
@@ -11797,17 +11800,8 @@
         "h": 32
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 789,
-        "y": 502,
-        "w": 29,
-        "h": 30
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "part_window"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "part_iron",
@@ -11839,8 +11833,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
       "bytes": 1307,
       "sha256": "769045889fd62221fbbcda85529a8076969b5be9a37f94ce81b722bf3073f406",
       "alpha": "rgba",
@@ -11858,17 +11852,8 @@
         "h": 32
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 482,
-        "y": 377,
-        "w": 22,
-        "h": 24
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "part_iron"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "part_gold_roof",
@@ -11900,8 +11885,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
       "bytes": 3613,
       "sha256": "08b976073f8d96491f44aa9eeb88004035dfbc12298129e2ea9eaa1d943550c1",
       "alpha": "rgba",
@@ -11919,17 +11904,8 @@
         "h": 28
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 266,
-        "y": 166,
-        "w": 59,
-        "h": 26
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "part_gold_roof"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "part_tile_roof",
@@ -11961,8 +11937,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
       "bytes": 4555,
       "sha256": "f95b00b47ab43f038d170361ebd14dd348853a034364bc7baf7010c551feb9de",
       "alpha": "rgba",
@@ -11980,17 +11956,8 @@
         "h": 36
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 927,
-        "y": 718,
-        "w": 66,
-        "h": 34
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "part_tile_roof"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "part_brace",
@@ -12022,8 +11989,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
       "bytes": 2406,
       "sha256": "466af08848cd1bcdc6128a5e60a5a34fa00b3b715058fb0756fa3b53a6f3400e",
       "alpha": "rgba",
@@ -12041,17 +12008,8 @@
         "h": 32
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 714,
-        "y": 467,
-        "w": 30,
-        "h": 30
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "part_brace"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "part_foundation",
@@ -12083,8 +12041,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
       "bytes": 3292,
       "sha256": "bae5cccdefe5455fb515f4169643b9991d065f2b6768bff6c46d4e9cd5a3d229",
       "alpha": "rgba",
@@ -12102,17 +12060,8 @@
         "h": 24
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 525,
-        "y": 203,
-        "w": 62,
-        "h": 19
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "part_foundation"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "part_grain",
@@ -12144,8 +12093,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
       "bytes": 2756,
       "sha256": "dbf8646c765dec417939630589573ce19dcc9bac1911b6a54dee7c30674e4f9a",
       "alpha": "rgba",
@@ -12163,17 +12112,8 @@
         "h": 36
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 714,
-        "y": 429,
-        "w": 30,
-        "h": 34
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "part_grain"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "part_tools",
@@ -12205,8 +12145,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
       "bytes": 2939,
       "sha256": "4fdb8908b47efda418d05e656e4acb4619d8020008a9f9818cb0a5d17db9a947",
       "alpha": "rgba",
@@ -12224,17 +12164,8 @@
         "h": 36
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 299,
-        "y": 763,
-        "w": 38,
-        "h": 33
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "part_tools"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "part_timbers",
@@ -12266,8 +12197,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
       "bytes": 2859,
       "sha256": "6d6f3faef016d656a8c72bd7e3a9577830b348d469bbca1966cc6416bd820a37",
       "alpha": "rgba",
@@ -12285,17 +12216,8 @@
         "h": 32
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 721,
-        "y": 657,
-        "w": 37,
-        "h": 30
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "part_timbers"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "part_crystal",
@@ -12327,8 +12249,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
       "bytes": 2519,
       "sha256": "699882fccee7da9ce725fc8337c4b8e4c66a3ed1ec27cb496087ca10c9e87d7c",
       "alpha": "rgba",
@@ -12346,17 +12268,8 @@
         "h": 36
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "world_0",
-      "atlasRect": {
-        "x": 787,
-        "y": 726,
-        "w": 30,
-        "h": 33
-      },
-      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
-      "importedFrameId": "part_crystal"
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "part_crest",
@@ -12411,8 +12324,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 181,
-        "y": 992,
+        "x": 995,
+        "y": 967,
         "w": 26,
         "h": 30
       },
@@ -12472,13 +12385,1926 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 827,
-        "y": 677,
+        "x": 241,
+        "y": 918,
         "w": 26,
         "h": 22
       },
       "importedLayaAtlasPath": "assets/resources/village/world_0.png",
       "importedFrameId": "part_banner"
+    },
+    {
+      "id": "module_foundation",
+      "label": "module_foundation",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_foundation.png",
+      "width": 88,
+      "height": 42,
+      "pivot": {
+        "x": 44,
+        "y": 42
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 28,
+        "y": 148,
+        "w": 265,
+        "h": 126
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 9242,
+      "sha256": "fecee51baa7795b1856e53cabbbdcb0f7e9f9129359360e8d477d68b5952dde5",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 88,
+        "h": 42
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 88,
+        "h": 42
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 544,
+        "y": 356,
+        "w": 88,
+        "h": 42
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_foundation"
+    },
+    {
+      "id": "module_floor",
+      "label": "module_floor",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_floor.png",
+      "width": 88,
+      "height": 46,
+      "pivot": {
+        "x": 44,
+        "y": 46
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 314,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 9,
+        "y": 137,
+        "w": 272,
+        "h": 142
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 9646,
+      "sha256": "84c2351a844511645857d757e901544eb9c91875def7d6ce4cddb699900ceb5d",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 88,
+        "h": 46
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 88,
+        "h": 46
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 452,
+        "y": 323,
+        "w": 88,
+        "h": 46
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_floor"
+    },
+    {
+      "id": "module_plaster",
+      "label": "module_plaster",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_plaster.png",
+      "width": 72,
+      "height": 54,
+      "pivot": {
+        "x": 36,
+        "y": 54
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 2,
+        "y": 73,
+        "w": 275,
+        "h": 205
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 8501,
+      "sha256": "af482a493fa6fb776959026dfb736796fd8e09da093df209495ebae8e8269a0e",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 72,
+        "h": 54
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 72,
+        "h": 54
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 950,
+        "y": 218,
+        "w": 72,
+        "h": 54
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_plaster"
+    },
+    {
+      "id": "module_masonry",
+      "label": "module_masonry",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_masonry.png",
+      "width": 72,
+      "height": 53,
+      "pivot": {
+        "x": 36,
+        "y": 53
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 940,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 15,
+        "y": 74,
+        "w": 267,
+        "h": 196
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 9648,
+      "sha256": "2d42da132847df47a3a7938396528ff7019b66943f899070f4184526ab573e30",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 72,
+        "h": 53
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 72,
+        "h": 53
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 463,
+        "y": 721,
+        "w": 72,
+        "h": 53
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_masonry"
+    },
+    {
+      "id": "module_lattice",
+      "label": "module_lattice",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_lattice.png",
+      "width": 72,
+      "height": 76,
+      "pivot": {
+        "x": 36,
+        "y": 76
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 314,
+        "w": 314,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 28,
+        "y": 13,
+        "w": 258,
+        "h": 274
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 13262,
+      "sha256": "49708525574bf73fbadd5e4544ea32290d2cf9dce3cffba5f652b1648e76c66f",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 72,
+        "h": 76
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 72,
+        "h": 76
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 403,
+        "y": 533,
+        "w": 72,
+        "h": 76
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_lattice"
+    },
+    {
+      "id": "module_thatch",
+      "label": "module_thatch",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_thatch.png",
+      "width": 100,
+      "height": 70,
+      "pivot": {
+        "x": 50,
+        "y": 70
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 314,
+        "y": 314,
+        "w": 313,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 48,
+        "w": 298,
+        "h": 209
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 15276,
+      "sha256": "fc28d705ad074753c99e3f4941b0f8505031a0474e4996c117161a313490243e",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 100,
+        "h": 70
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 100,
+        "h": 70
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 846,
+        "y": 214,
+        "w": 100,
+        "h": 70
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_thatch"
+    },
+    {
+      "id": "module_tile",
+      "label": "module_tile",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_tile.png",
+      "width": 100,
+      "height": 68,
+      "pivot": {
+        "x": 50,
+        "y": 68
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 314,
+        "w": 313,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 52,
+        "w": 302,
+        "h": 206
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 14280,
+      "sha256": "fe3ef9a3246b3b6fb3aa0906e95a7c009c85789d1d731e6f6a16667b6c1c8ea5",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 100,
+        "h": 68
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 100,
+        "h": 68
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 827,
+        "y": 288,
+        "w": 100,
+        "h": 68
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_tile"
+    },
+    {
+      "id": "module_slate",
+      "label": "module_slate",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_slate.png",
+      "width": 100,
+      "height": 68,
+      "pivot": {
+        "x": 50,
+        "y": 68
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 940,
+        "y": 314,
+        "w": 314,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 54,
+        "w": 298,
+        "h": 203
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 14705,
+      "sha256": "b2f8d14da0d596222f5683cabf8b13a2a33aaf4ef33b2e0c379275413b737390",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 100,
+        "h": 68
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 100,
+        "h": 68
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 723,
+        "y": 251,
+        "w": 100,
+        "h": 68
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_slate"
+    },
+    {
+      "id": "module_pagoda",
+      "label": "module_pagoda",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_pagoda.png",
+      "width": 100,
+      "height": 76,
+      "pivot": {
+        "x": 50,
+        "y": 76
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "w": 314,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 22,
+        "y": 18,
+        "w": 292,
+        "h": 223
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 14141,
+      "sha256": "2f26f258fbb444c281572086bd558d28bdf71a2825170ff590133cd564055630",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 100,
+        "h": 76
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 100,
+        "h": 76
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 846,
+        "y": 134,
+        "w": 100,
+        "h": 76
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_pagoda"
+    },
+    {
+      "id": "module_door",
+      "label": "module_door",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_door.png",
+      "width": 28,
+      "height": 29,
+      "pivot": {
+        "x": 14,
+        "y": 29
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 314,
+        "y": 627,
+        "w": 313,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 66,
+        "y": 34,
+        "w": 204,
+        "h": 212
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 2297,
+      "sha256": "50175cc9dc89faf8dced85cc080431ac28181f0e9e9d9827bccd6f79c69e62aa",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 28,
+        "h": 29
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 28,
+        "h": 29
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 856,
+        "y": 993,
+        "w": 28,
+        "h": 29
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_door"
+    },
+    {
+      "id": "module_window",
+      "label": "module_window",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_window.png",
+      "width": 24,
+      "height": 24,
+      "pivot": {
+        "x": 12,
+        "y": 24
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "w": 313,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 33,
+        "y": 30,
+        "w": 214,
+        "h": 212
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 1754,
+      "sha256": "952b1f648ae6632d7295f1825730616228719658343b7073a5307c2f7409b3bb",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 24,
+        "h": 24
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 24,
+        "h": 24
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 566,
+        "y": 203,
+        "w": 24,
+        "h": 24
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_window"
+    },
+    {
+      "id": "module_battlement",
+      "label": "module_battlement",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_battlement.png",
+      "width": 88,
+      "height": 59,
+      "pivot": {
+        "x": 44,
+        "y": 59
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 940,
+        "y": 627,
+        "w": 314,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 41,
+        "w": 286,
+        "h": 193
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 12686,
+      "sha256": "354a7a2a9ddc81f626183ca323ff87b6066a52106a2c3c55cff8ed390015be4a",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 88,
+        "h": 59
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 88,
+        "h": 59
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 452,
+        "y": 260,
+        "w": 88,
+        "h": 59
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_battlement"
+    },
+    {
+      "id": "module_woodgate",
+      "label": "module_woodgate",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_woodgate.png",
+      "width": 72,
+      "height": 68,
+      "pivot": {
+        "x": 36,
+        "y": 68
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 23,
+        "y": 0,
+        "w": 279,
+        "h": 265
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 11407,
+      "sha256": "8aace960bcc0fb602bbc127fd45735a78b0bea0cd369102bd358f1f9fea05c19",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 72,
+        "h": 68
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 72,
+        "h": 68
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 550,
+        "y": 719,
+        "w": 72,
+        "h": 68
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_woodgate"
+    },
+    {
+      "id": "module_stonegate",
+      "label": "module_stonegate",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_stonegate.png",
+      "width": 80,
+      "height": 71,
+      "pivot": {
+        "x": 40,
+        "y": 71
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 314,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 8,
+        "y": 0,
+        "w": 291,
+        "h": 257
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 12489,
+      "sha256": "2f387f5e809a574eadbaaa1ac8c895fc54899c425348b6f4e82fa71743d0f7e5",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 80,
+        "h": 71
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 80,
+        "h": 71
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 2,
+        "y": 388,
+        "w": 80,
+        "h": 71
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_stonegate"
+    },
+    {
+      "id": "module_balcony",
+      "label": "module_balcony",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_balcony.png",
+      "width": 72,
+      "height": 45,
+      "pivot": {
+        "x": 36,
+        "y": 45
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 12,
+        "y": 62,
+        "w": 272,
+        "h": 170
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 7323,
+      "sha256": "d2de01d28f27985845123f8f025bcaba0c57b2e3d8953f3859aa500f6cce077c",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 72,
+        "h": 45
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 72,
+        "h": 45
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 930,
+        "y": 611,
+        "w": 72,
+        "h": 45
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_balcony"
+    },
+    {
+      "id": "module_porch",
+      "label": "module_porch",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_porch.png",
+      "width": 72,
+      "height": 52,
+      "pivot": {
+        "x": 36,
+        "y": 52
+      },
+      "sourceSheet": "source/buildings/special_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 859,
+        "w": 610,
+        "h": 430
+      },
+      "sourceCropWithinCell": {
+        "x": 65,
+        "y": 18,
+        "w": 473,
+        "h": 344
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved.",
+      "bytes": 7226,
+      "sha256": "c267805b15a763b47dfb3888b60af65e260ba175dda7c3eb39fc4b81543bae4f",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 72,
+        "h": 52
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 72,
+        "h": 52
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 376,
+        "y": 768,
+        "w": 72,
+        "h": 52
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_porch"
+    },
+    {
+      "id": "module_ballista",
+      "label": "module_ballista",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_ballista.png",
+      "width": 64,
+      "height": 57,
+      "pivot": {
+        "x": 32,
+        "y": 85
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 28,
+        "y": 152,
+        "w": 350,
+        "h": 310
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bytes": 6069,
+      "sha256": "94f6a5ea10aa488d4f4f8184cf4e31f50a02bcf5c801913160b4dfe6168b6443",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 64,
+        "h": 57
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 64,
+        "h": 57
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 210,
+        "y": 946,
+        "w": 64,
+        "h": 57
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_ballista"
+    },
+    {
+      "id": "module_catapult",
+      "label": "module_catapult",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_catapult.png",
+      "width": 64,
+      "height": 60,
+      "pivot": {
+        "x": 32,
+        "y": 77
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 384,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 22,
+        "y": 147,
+        "w": 342,
+        "h": 321
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": false,
+      "usage": "已改为设计稿中的投石兜，仅保留旧源",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bytes": 7227,
+      "sha256": "16e2c260c21702970ed105a8fc3124eb08a8ee13c419c0e9bbc326982759c64d",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 64,
+        "h": 60
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 64,
+        "h": 60
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "source_only_reserve",
+      "reviewStatus": "visual_v11"
+    },
+    {
+      "id": "module_crystal",
+      "label": "module_crystal",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_crystal.png",
+      "width": 36,
+      "height": 51,
+      "pivot": {
+        "x": 18,
+        "y": 48
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 768,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 75,
+        "y": 141,
+        "w": 232,
+        "h": 331
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bytes": 4451,
+      "sha256": "eb3943babddd51d96a5a3feebd8dd91e58f6914cb74c03d9a0fdbb5e9995f778",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 36,
+        "h": 51
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 36,
+        "h": 51
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 856,
+        "y": 938,
+        "w": 36,
+        "h": 51
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_crystal"
+    },
+    {
+      "id": "module_field",
+      "label": "module_field",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_field.png",
+      "width": 72,
+      "height": 48,
+      "pivot": {
+        "x": 36,
+        "y": 96
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 1152,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 8,
+        "y": 233,
+        "w": 350,
+        "h": 234
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bytes": 9304,
+      "sha256": "d5c9dfc5a659aec217bb2cf48d09959988599b7d8dbfbc113cafd54b0cbdc6f1",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 72,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 72,
+        "h": 48
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 930,
+        "y": 559,
+        "w": 72,
+        "h": 48
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_field"
+    },
+    {
+      "id": "module_logs",
+      "label": "module_logs",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_logs.png",
+      "width": 48,
+      "height": 33,
+      "pivot": {
+        "x": 24,
+        "y": 66
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 20,
+        "y": 156,
+        "w": 325,
+        "h": 225
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bytes": 4256,
+      "sha256": "9cdc9f1fbe40a5e087626073231f09acd5298a0f075efb5d5908028b32931237",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 48,
+        "h": 33
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 48,
+        "h": 33
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 266,
+        "y": 166,
+        "w": 48,
+        "h": 33
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_logs"
+    },
+    {
+      "id": "module_wheel",
+      "label": "module_wheel",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_wheel.png",
+      "width": 48,
+      "height": 46,
+      "pivot": {
+        "x": 24,
+        "y": 58
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 384,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 8,
+        "y": 51,
+        "w": 366,
+        "h": 350
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bytes": 5688,
+      "sha256": "ce5b16f6d42f4227fb3d8c19275387ef6c10de1baad73e91a7010f4de7dfdc87",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 48,
+        "h": 46
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 48,
+        "h": 46
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 639,
+        "y": 904,
+        "w": 48,
+        "h": 46
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_wheel"
+    },
+    {
+      "id": "module_saw",
+      "label": "module_saw",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_saw.png",
+      "width": 48,
+      "height": 39,
+      "pivot": {
+        "x": 24,
+        "y": 60
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 768,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 21,
+        "y": 110,
+        "w": 336,
+        "h": 271
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bytes": 4668,
+      "sha256": "178e411d4e96d2a01258bb15f8e9dd54a02917157a39027e9f892241234ad9d3",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 48,
+        "h": 39
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 48,
+        "h": 39
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 896,
+        "y": 916,
+        "w": 48,
+        "h": 39
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_saw"
+    },
+    {
+      "id": "module_trough",
+      "label": "module_trough",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_trough.png",
+      "width": 72,
+      "height": 24,
+      "pivot": {
+        "x": 36,
+        "y": 97
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 1152,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 13,
+        "y": 225,
+        "w": 355,
+        "h": 119
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bytes": 4579,
+      "sha256": "232f9a28719ae963a255474a623bdea44a21399a3efeab6805b1696f384b360d",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 72,
+        "h": 24
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 72,
+        "h": 24
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 744,
+        "y": 323,
+        "w": 72,
+        "h": 24
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_trough"
+    },
+    {
+      "id": "module_round_body",
+      "label": "module_round_body",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_round_body.png",
+      "width": 80,
+      "height": 72,
+      "pivot": {
+        "x": 40,
+        "y": 72
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 940,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 12,
+        "y": 14,
+        "w": 274,
+        "h": 247
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bytes": 14011,
+      "sha256": "8243b6b1054440b54e1bd5164e427586eeb99a6ec426af7a6dfd4025c533dcef",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 80,
+        "h": 72
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 80,
+        "h": 72
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 89,
+        "y": 349,
+        "w": 80,
+        "h": 72
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_round_body"
+    },
+    {
+      "id": "module_sling",
+      "label": "module_sling",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_sling.png",
+      "width": 64,
+      "height": 48,
+      "pivot": {
+        "x": 32,
+        "y": 48
+      },
+      "sourceSheet": "source/buildings/special_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 610,
+        "h": 430
+      },
+      "sourceCropWithinCell": {
+        "x": 116,
+        "y": 92,
+        "w": 422,
+        "h": 319
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved.",
+      "bytes": 6439,
+      "sha256": "a41294b17fabfe41b97363d9ecbd336dbe6568a80fac6b59322f2664d1d2e9e7",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 64,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 64,
+        "h": 48
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 925,
+        "y": 735,
+        "w": 64,
+        "h": 48
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_sling"
+    },
+    {
+      "id": "module_canopy_thatch",
+      "label": "module_canopy_thatch",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_canopy_thatch.png",
+      "width": 96,
+      "height": 53,
+      "pivot": {
+        "x": 48,
+        "y": 53
+      },
+      "sourceSheet": "source/buildings/special_v2.png",
+      "sourceRect": {
+        "x": 610,
+        "y": 0,
+        "w": 610,
+        "h": 430
+      },
+      "sourceCropWithinCell": {
+        "x": 24,
+        "y": 130,
+        "w": 492,
+        "h": 274
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved.",
+      "bytes": 11087,
+      "sha256": "1d22bbca0fd4f6b2412e70eb731684a57e479b55fb0bdd2d5f6eff784f792ef6",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 96,
+        "h": 53
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 96,
+        "h": 53
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 466,
+        "y": 203,
+        "w": 96,
+        "h": 53
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_canopy_thatch"
+    },
+    {
+      "id": "module_canopy_teal",
+      "label": "module_canopy_teal",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_canopy_teal.png",
+      "width": 96,
+      "height": 53,
+      "pivot": {
+        "x": 48,
+        "y": 53
+      },
+      "sourceSheet": "source/buildings/special_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 430,
+        "w": 610,
+        "h": 429
+      },
+      "sourceCropWithinCell": {
+        "x": 88,
+        "y": 82,
+        "w": 473,
+        "h": 263
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved.",
+      "bytes": 11876,
+      "sha256": "56a334672103149345bbbb353e343cd820ead878f9505ba1984eb422aed9a004",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 96,
+        "h": 53
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 96,
+        "h": 53
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 366,
+        "y": 203,
+        "w": 96,
+        "h": 53
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_canopy_teal"
+    },
+    {
+      "id": "module_workshop",
+      "label": "module_workshop",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_workshop.png",
+      "width": 80,
+      "height": 57,
+      "pivot": {
+        "x": 40,
+        "y": 57
+      },
+      "sourceSheet": "source/buildings/special_v2.png",
+      "sourceRect": {
+        "x": 610,
+        "y": 430,
+        "w": 610,
+        "h": 429
+      },
+      "sourceCropWithinCell": {
+        "x": 51,
+        "y": 53,
+        "w": 487,
+        "h": 349
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved.",
+      "bytes": 9410,
+      "sha256": "91d3250f2f545ba35d6337dc83a7d61fc78f5cfe079837372d3f9189f4b5ad56",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 80,
+        "h": 57
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 80,
+        "h": 57
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 86,
+        "y": 425,
+        "w": 80,
+        "h": 57
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_workshop"
+    },
+    {
+      "id": "module_porch_rail",
+      "label": "module_porch_rail",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_porch_rail.png",
+      "width": 72,
+      "height": 34,
+      "pivot": {
+        "x": 36,
+        "y": 34
+      },
+      "sourceSheet": "source/buildings/special_v2.png",
+      "sourceRect": {
+        "x": 610,
+        "y": 859,
+        "w": 610,
+        "h": 430
+      },
+      "sourceCropWithinCell": {
+        "x": 43,
+        "y": 74,
+        "w": 500,
+        "h": 239
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved.",
+      "bytes": 5532,
+      "sha256": "c9cbccf8cfc9d5e1c3ed3784baa58ba0ba8514815ad42177355e30a1163e54c5",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 72,
+        "h": 34
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 72,
+        "h": 34
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 852,
+        "y": 631,
+        "w": 72,
+        "h": 34
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "module_porch_rail"
+    },
+    {
+      "id": "deco_village_sign",
+      "label": "文明里村木路牌",
+      "category": "decorations",
+      "categoryLabel": "场景装饰",
+      "path": "runtime/decorations/deco_village_sign.png",
+      "width": 88,
+      "height": 52,
+      "pivot": {
+        "x": 44,
+        "y": 50
+      },
+      "sourceSheet": "source/decorations/village_sign.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 1619,
+        "h": 972
+      },
+      "sourceCropWithinCell": {
+        "x": 35,
+        "y": 72,
+        "w": 1534,
+        "h": 866
+      },
+      "nineSlice": null,
+      "mapping": "deco:village-sign",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "城门左侧村名路牌；文字是GameView中的子节点，与牌体一起按足底排序。",
+      "cropNote": "主体10%alpha范围用于母版定位；保留内部alpha；运行图集仅裁alpha=0。",
+      "bytes": 4487,
+      "sha256": "eb681bdd88a753fcdeddd2e2b465a6d20d9dcd2afd77f7f9b8e0fb588591c854",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 88,
+        "h": 52
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 88,
+        "h": 52
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 89,
+        "y": 298,
+        "w": 84,
+        "h": 47
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "deco_village_sign"
     }
   ],
   "audio": {

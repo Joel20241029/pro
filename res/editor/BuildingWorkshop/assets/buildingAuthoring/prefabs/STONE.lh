@@ -1,0 +1,1957 @@
+{
+  "_$ver": 1,
+  "_$id": "jj5xy7uo",
+  "_$type": "Sprite",
+  "name": "STONE",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "9dfmqbot",
+      "_$type": "Sprite",
+      "name": "STONE_1_1",
+      "width": 128,
+      "height": 128,
+      "_$child": [
+        {
+          "_$id": "fw9cd23q",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "6adc14e7",
+              "_$type": "Sprite",
+              "name": "Footing",
+              "x": 20,
+              "y": 104,
+              "width": 88,
+              "height": 16,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "j5tuv6ic",
+              "_$type": "Sprite",
+              "name": "RoundTower",
+              "x": 26,
+              "y": 77,
+              "width": 76,
+              "height": 39,
+              "texture": {
+                "_$uuid": "598c2ead-28c1-4eb8-99dd-f77c39f93e21",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "sxd7cxdo",
+              "_$type": "Sprite",
+              "name": "RoundPlatform",
+              "x": 18,
+              "y": 70,
+              "width": 92,
+              "height": 27,
+              "texture": {
+                "_$uuid": "65d49716-3d33-4f19-b250-e78f9a13d9b3",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "dqubw392",
+              "_$type": "Sprite",
+              "name": "Weapon",
+              "x": 64,
+              "y": 86,
+              "width": 66,
+              "height": 49,
+              "anchorX": 0.5,
+              "anchorY": 1,
+              "_$comp": [
+                {
+                  "_$type": "AnimatorClip2D",
+                  "clip": {
+                    "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+                    "_$type": "AnimationClip2D"
+                  },
+                  "autoPlay": false
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "9m2u11p5",
+                  "_$type": "Sprite",
+                  "name": "Sling",
+                  "width": 66,
+                  "height": 49,
+                  "texture": {
+                    "_$uuid": "3922f131-d356-40d7-827c-81ccfead5b6b",
+                    "_$type": "Texture"
+                  }
+                },
+                {
+                  "_$id": "0k4p8apb",
+                  "_$type": "Sprite",
+                  "name": "Muzzle",
+                  "x": 33,
+                  "y": 27,
+                  "width": 0,
+                  "height": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_$id": "gvz6w36n",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 22,
+          "y": 99,
+          "width": 84,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "l33mhr7m",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -10,
+          "width": 136,
+          "height": 138,
+          "visible": false
+        },
+        {
+          "_$id": "whhlluzu",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "x8u7cfk2",
+      "_$type": "Sprite",
+      "name": "STONE_2_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "4pudq4k8",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "l0m16tck",
+              "_$type": "Sprite",
+              "name": "Footing",
+              "x": 20,
+              "y": 104,
+              "width": 88,
+              "height": 16,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "qzjehp5n",
+              "_$type": "Sprite",
+              "name": "RoundTower",
+              "x": 26,
+              "y": 75,
+              "width": 77,
+              "height": 41,
+              "texture": {
+                "_$uuid": "598c2ead-28c1-4eb8-99dd-f77c39f93e21",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "x30tzn8w",
+              "_$type": "Sprite",
+              "name": "RoundPlatform",
+              "x": 18,
+              "y": 68,
+              "width": 92,
+              "height": 27,
+              "texture": {
+                "_$uuid": "65d49716-3d33-4f19-b250-e78f9a13d9b3",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "hepmut9h",
+              "_$type": "Sprite",
+              "name": "Weapon",
+              "x": 64,
+              "y": 84,
+              "width": 66,
+              "height": 49,
+              "anchorX": 0.5,
+              "anchorY": 1,
+              "_$comp": [
+                {
+                  "_$type": "AnimatorClip2D",
+                  "clip": {
+                    "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+                    "_$type": "AnimationClip2D"
+                  },
+                  "autoPlay": false
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "dabf962i",
+                  "_$type": "Sprite",
+                  "name": "Sling",
+                  "width": 66,
+                  "height": 49,
+                  "texture": {
+                    "_$uuid": "3922f131-d356-40d7-827c-81ccfead5b6b",
+                    "_$type": "Texture"
+                  }
+                },
+                {
+                  "_$id": "afqluds8",
+                  "_$type": "Sprite",
+                  "name": "Muzzle",
+                  "x": 33,
+                  "y": 27,
+                  "width": 0,
+                  "height": 0
+                }
+              ]
+            },
+            {
+              "_$id": "7lxiv1ws",
+              "_$type": "Sprite",
+              "name": "ThickBase",
+              "x": 20,
+              "y": 102,
+              "width": 88,
+              "height": 18,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "is32eepp",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 22,
+          "y": 99,
+          "width": 84,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "d5r7ir6o",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -10,
+          "width": 136,
+          "height": 138,
+          "visible": false
+        },
+        {
+          "_$id": "20zdq037",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "way2s39a",
+      "_$type": "Sprite",
+      "name": "STONE_3_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "80w3m2nc",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "junhpz2m",
+              "_$type": "Sprite",
+              "name": "Footing",
+              "x": 20,
+              "y": 104,
+              "width": 88,
+              "height": 16,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "k0lwzm8n",
+              "_$type": "Sprite",
+              "name": "RoundTower",
+              "x": 25,
+              "y": 73,
+              "width": 78,
+              "height": 43,
+              "texture": {
+                "_$uuid": "598c2ead-28c1-4eb8-99dd-f77c39f93e21",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "usi0iqu3",
+              "_$type": "Sprite",
+              "name": "RoundPlatform",
+              "x": 18,
+              "y": 66,
+              "width": 92,
+              "height": 27,
+              "texture": {
+                "_$uuid": "65d49716-3d33-4f19-b250-e78f9a13d9b3",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "o2uaifwv",
+              "_$type": "Sprite",
+              "name": "Weapon",
+              "x": 64,
+              "y": 82,
+              "width": 66,
+              "height": 49,
+              "anchorX": 0.5,
+              "anchorY": 1,
+              "_$comp": [
+                {
+                  "_$type": "AnimatorClip2D",
+                  "clip": {
+                    "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+                    "_$type": "AnimationClip2D"
+                  },
+                  "autoPlay": false
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "akml5qpk",
+                  "_$type": "Sprite",
+                  "name": "Sling",
+                  "width": 66,
+                  "height": 49,
+                  "texture": {
+                    "_$uuid": "3922f131-d356-40d7-827c-81ccfead5b6b",
+                    "_$type": "Texture"
+                  }
+                },
+                {
+                  "_$id": "m1wlba43",
+                  "_$type": "Sprite",
+                  "name": "Muzzle",
+                  "x": 33,
+                  "y": 27,
+                  "width": 0,
+                  "height": 0
+                }
+              ]
+            },
+            {
+              "_$id": "mhus9zv2",
+              "_$type": "Sprite",
+              "name": "LeftBrace",
+              "x": 22,
+              "y": 94,
+              "width": 16,
+              "height": 21,
+              "texture": {
+                "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "4ly9eyb0",
+              "_$type": "Sprite",
+              "name": "RightBrace",
+              "x": 90,
+              "y": 94,
+              "width": 16,
+              "height": 21,
+              "texture": {
+                "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
+                "_$type": "Texture"
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "gisq7349",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 22,
+          "y": 99,
+          "width": 84,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "rq2zrqhs",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -10,
+          "width": 136,
+          "height": 138,
+          "visible": false
+        },
+        {
+          "_$id": "wbmaf3y3",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "cce23785",
+      "_$type": "Sprite",
+      "name": "STONE_4_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "el9es8yc",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "yf4le9sg",
+              "_$type": "Sprite",
+              "name": "Footing",
+              "x": 20,
+              "y": 104,
+              "width": 88,
+              "height": 16,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "lxybfjl6",
+              "_$type": "Sprite",
+              "name": "RoundTower",
+              "x": 25,
+              "y": 71,
+              "width": 79,
+              "height": 45,
+              "texture": {
+                "_$uuid": "598c2ead-28c1-4eb8-99dd-f77c39f93e21",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "jy4qwpqe",
+              "_$type": "Sprite",
+              "name": "RoundPlatform",
+              "x": 18,
+              "y": 64,
+              "width": 92,
+              "height": 27,
+              "texture": {
+                "_$uuid": "65d49716-3d33-4f19-b250-e78f9a13d9b3",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "dtbo8aje",
+              "_$type": "Sprite",
+              "name": "Weapon",
+              "x": 64,
+              "y": 80,
+              "width": 66,
+              "height": 49,
+              "anchorX": 0.5,
+              "anchorY": 1,
+              "_$comp": [
+                {
+                  "_$type": "AnimatorClip2D",
+                  "clip": {
+                    "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+                    "_$type": "AnimationClip2D"
+                  },
+                  "autoPlay": false
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "lxep1r74",
+                  "_$type": "Sprite",
+                  "name": "Sling",
+                  "width": 66,
+                  "height": 49,
+                  "texture": {
+                    "_$uuid": "3922f131-d356-40d7-827c-81ccfead5b6b",
+                    "_$type": "Texture"
+                  }
+                },
+                {
+                  "_$id": "l5i72ho7",
+                  "_$type": "Sprite",
+                  "name": "Muzzle",
+                  "x": 33,
+                  "y": 27,
+                  "width": 0,
+                  "height": 0
+                }
+              ]
+            },
+            {
+              "_$id": "c1csixmx",
+              "_$type": "Sprite",
+              "name": "FrontCrest",
+              "x": 53,
+              "y": 91,
+              "width": 22,
+              "height": 24,
+              "texture": {
+                "_$uuid": "fc904cfb-30b4-440e-8dc3-1a61f18a468f",
+                "_$type": "Texture"
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "o6rs8k5m",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 22,
+          "y": 99,
+          "width": 84,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "h44aormk",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -10,
+          "width": 136,
+          "height": 138,
+          "visible": false
+        },
+        {
+          "_$id": "d4wl22u2",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "iu02a4uu",
+      "_$type": "Sprite",
+      "name": "STONE_5_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "vkdfxusj",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "lxw67y0l",
+              "_$type": "Sprite",
+              "name": "Footing",
+              "x": 20,
+              "y": 104,
+              "width": 88,
+              "height": 16,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "vu21mc5w",
+              "_$type": "Sprite",
+              "name": "RoundTower",
+              "x": 24,
+              "y": 65,
+              "width": 80,
+              "height": 51,
+              "texture": {
+                "_$uuid": "598c2ead-28c1-4eb8-99dd-f77c39f93e21",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "qned61ui",
+              "_$type": "Sprite",
+              "name": "RoundPlatform",
+              "x": 18,
+              "y": 58,
+              "width": 92,
+              "height": 27,
+              "texture": {
+                "_$uuid": "65d49716-3d33-4f19-b250-e78f9a13d9b3",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "84n6sosi",
+              "_$type": "Sprite",
+              "name": "Weapon",
+              "x": 64,
+              "y": 74,
+              "width": 66,
+              "height": 49,
+              "anchorX": 0.5,
+              "anchorY": 1,
+              "_$comp": [
+                {
+                  "_$type": "AnimatorClip2D",
+                  "clip": {
+                    "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+                    "_$type": "AnimationClip2D"
+                  },
+                  "autoPlay": false
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "q092zgp9",
+                  "_$type": "Sprite",
+                  "name": "Sling",
+                  "width": 66,
+                  "height": 49,
+                  "texture": {
+                    "_$uuid": "3922f131-d356-40d7-827c-81ccfead5b6b",
+                    "_$type": "Texture"
+                  }
+                },
+                {
+                  "_$id": "8nq30z28",
+                  "_$type": "Sprite",
+                  "name": "Muzzle",
+                  "x": 33,
+                  "y": 27,
+                  "width": 0,
+                  "height": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_$id": "3pxrpcbd",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 22,
+          "y": 99,
+          "width": 84,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "py2eze6m",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -10,
+          "width": 136,
+          "height": 138,
+          "visible": false
+        },
+        {
+          "_$id": "boeqj5pr",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "s5r9z6cc",
+      "_$type": "Sprite",
+      "name": "STONE_6_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "nexjzwf9",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "qe8civul",
+              "_$type": "Sprite",
+              "name": "Footing",
+              "x": 20,
+              "y": 104,
+              "width": 88,
+              "height": 16,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "oj5v2oyi",
+              "_$type": "Sprite",
+              "name": "RoundTower",
+              "x": 24,
+              "y": 63,
+              "width": 81,
+              "height": 53,
+              "texture": {
+                "_$uuid": "598c2ead-28c1-4eb8-99dd-f77c39f93e21",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "k9wjoks8",
+              "_$type": "Sprite",
+              "name": "RoundPlatform",
+              "x": 18,
+              "y": 56,
+              "width": 92,
+              "height": 27,
+              "texture": {
+                "_$uuid": "65d49716-3d33-4f19-b250-e78f9a13d9b3",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "djj2wb1p",
+              "_$type": "Sprite",
+              "name": "Weapon",
+              "x": 64,
+              "y": 72,
+              "width": 66,
+              "height": 49,
+              "anchorX": 0.5,
+              "anchorY": 1,
+              "_$comp": [
+                {
+                  "_$type": "AnimatorClip2D",
+                  "clip": {
+                    "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+                    "_$type": "AnimationClip2D"
+                  },
+                  "autoPlay": false
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "cdclzq49",
+                  "_$type": "Sprite",
+                  "name": "Sling",
+                  "width": 66,
+                  "height": 49,
+                  "texture": {
+                    "_$uuid": "3922f131-d356-40d7-827c-81ccfead5b6b",
+                    "_$type": "Texture"
+                  }
+                },
+                {
+                  "_$id": "u6yp17ku",
+                  "_$type": "Sprite",
+                  "name": "Muzzle",
+                  "x": 33,
+                  "y": 27,
+                  "width": 0,
+                  "height": 0
+                }
+              ]
+            },
+            {
+              "_$id": "8dvege4h",
+              "_$type": "Sprite",
+              "name": "ThickBase",
+              "x": 20,
+              "y": 102,
+              "width": 88,
+              "height": 18,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "8xjhs7on",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 22,
+          "y": 99,
+          "width": 84,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "t6i9scb7",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -10,
+          "width": 136,
+          "height": 138,
+          "visible": false
+        },
+        {
+          "_$id": "wn74711o",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "impupamd",
+      "_$type": "Sprite",
+      "name": "STONE_7_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "f9a5vdyk",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "35ruj6zc",
+              "_$type": "Sprite",
+              "name": "Footing",
+              "x": 20,
+              "y": 104,
+              "width": 88,
+              "height": 16,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "8jmdyn5k",
+              "_$type": "Sprite",
+              "name": "RoundTower",
+              "x": 23,
+              "y": 61,
+              "width": 82,
+              "height": 55,
+              "texture": {
+                "_$uuid": "598c2ead-28c1-4eb8-99dd-f77c39f93e21",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "n0dkbfnd",
+              "_$type": "Sprite",
+              "name": "RoundPlatform",
+              "x": 18,
+              "y": 54,
+              "width": 92,
+              "height": 27,
+              "texture": {
+                "_$uuid": "65d49716-3d33-4f19-b250-e78f9a13d9b3",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "nujfnvyw",
+              "_$type": "Sprite",
+              "name": "Weapon",
+              "x": 64,
+              "y": 70,
+              "width": 66,
+              "height": 49,
+              "anchorX": 0.5,
+              "anchorY": 1,
+              "_$comp": [
+                {
+                  "_$type": "AnimatorClip2D",
+                  "clip": {
+                    "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+                    "_$type": "AnimationClip2D"
+                  },
+                  "autoPlay": false
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "7m0uavry",
+                  "_$type": "Sprite",
+                  "name": "Sling",
+                  "width": 66,
+                  "height": 49,
+                  "texture": {
+                    "_$uuid": "3922f131-d356-40d7-827c-81ccfead5b6b",
+                    "_$type": "Texture"
+                  }
+                },
+                {
+                  "_$id": "an8gcwqp",
+                  "_$type": "Sprite",
+                  "name": "Muzzle",
+                  "x": 33,
+                  "y": 27,
+                  "width": 0,
+                  "height": 0
+                }
+              ]
+            },
+            {
+              "_$id": "7dg99cyr",
+              "_$type": "Sprite",
+              "name": "LeftBrace",
+              "x": 22,
+              "y": 94,
+              "width": 16,
+              "height": 21,
+              "texture": {
+                "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "ozti47uk",
+              "_$type": "Sprite",
+              "name": "RightBrace",
+              "x": 90,
+              "y": 94,
+              "width": 16,
+              "height": 21,
+              "texture": {
+                "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
+                "_$type": "Texture"
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "3hktpzdd",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 22,
+          "y": 99,
+          "width": 84,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "js66t8fb",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -10,
+          "width": 136,
+          "height": 138,
+          "visible": false
+        },
+        {
+          "_$id": "k1u8futo",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "lxoijab7",
+      "_$type": "Sprite",
+      "name": "STONE_8_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "v8br6if2",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "lo2w8rtn",
+              "_$type": "Sprite",
+              "name": "Footing",
+              "x": 20,
+              "y": 104,
+              "width": 88,
+              "height": 16,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "q34x1h62",
+              "_$type": "Sprite",
+              "name": "RoundTower",
+              "x": 23,
+              "y": 59,
+              "width": 83,
+              "height": 57,
+              "texture": {
+                "_$uuid": "598c2ead-28c1-4eb8-99dd-f77c39f93e21",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "q3jurw3d",
+              "_$type": "Sprite",
+              "name": "RoundPlatform",
+              "x": 18,
+              "y": 52,
+              "width": 92,
+              "height": 27,
+              "texture": {
+                "_$uuid": "65d49716-3d33-4f19-b250-e78f9a13d9b3",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "z8a4fkjq",
+              "_$type": "Sprite",
+              "name": "Weapon",
+              "x": 64,
+              "y": 68,
+              "width": 66,
+              "height": 49,
+              "anchorX": 0.5,
+              "anchorY": 1,
+              "_$comp": [
+                {
+                  "_$type": "AnimatorClip2D",
+                  "clip": {
+                    "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+                    "_$type": "AnimationClip2D"
+                  },
+                  "autoPlay": false
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "2lkb7dtw",
+                  "_$type": "Sprite",
+                  "name": "Sling",
+                  "width": 66,
+                  "height": 49,
+                  "texture": {
+                    "_$uuid": "3922f131-d356-40d7-827c-81ccfead5b6b",
+                    "_$type": "Texture"
+                  }
+                },
+                {
+                  "_$id": "omtb5fvw",
+                  "_$type": "Sprite",
+                  "name": "Muzzle",
+                  "x": 33,
+                  "y": 27,
+                  "width": 0,
+                  "height": 0
+                }
+              ]
+            },
+            {
+              "_$id": "j70e5w2q",
+              "_$type": "Sprite",
+              "name": "FrontCrest",
+              "x": 53,
+              "y": 91,
+              "width": 22,
+              "height": 24,
+              "texture": {
+                "_$uuid": "fc904cfb-30b4-440e-8dc3-1a61f18a468f",
+                "_$type": "Texture"
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "ainklq18",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 22,
+          "y": 99,
+          "width": 84,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "ayz1kcjk",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -10,
+          "width": 136,
+          "height": 138,
+          "visible": false
+        },
+        {
+          "_$id": "q13xawj2",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "ebzq3j4t",
+      "_$type": "Sprite",
+      "name": "STONE_9_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "so95m53s",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "u8ftipgh",
+              "_$type": "Sprite",
+              "name": "Footing",
+              "x": 20,
+              "y": 104,
+              "width": 88,
+              "height": 16,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "pkjm1bh3",
+              "_$type": "Sprite",
+              "name": "RoundTower",
+              "x": 18,
+              "y": 54,
+              "width": 92,
+              "height": 62,
+              "texture": {
+                "_$uuid": "598c2ead-28c1-4eb8-99dd-f77c39f93e21",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "jkjkqeki",
+              "_$type": "Sprite",
+              "name": "MidRing",
+              "x": 20,
+              "y": 92,
+              "width": 88,
+              "height": 13,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "a5bc2sej",
+              "_$type": "Sprite",
+              "name": "RoundPlatform",
+              "x": 12,
+              "y": 47,
+              "width": 104,
+              "height": 27,
+              "texture": {
+                "_$uuid": "65d49716-3d33-4f19-b250-e78f9a13d9b3",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "vjprjxi1",
+              "_$type": "Sprite",
+              "name": "Weapon",
+              "x": 64,
+              "y": 63,
+              "width": 66,
+              "height": 49,
+              "anchorX": 0.5,
+              "anchorY": 1,
+              "_$comp": [
+                {
+                  "_$type": "AnimatorClip2D",
+                  "clip": {
+                    "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+                    "_$type": "AnimationClip2D"
+                  },
+                  "autoPlay": false
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "31jssvs0",
+                  "_$type": "Sprite",
+                  "name": "Sling",
+                  "width": 66,
+                  "height": 49,
+                  "texture": {
+                    "_$uuid": "3922f131-d356-40d7-827c-81ccfead5b6b",
+                    "_$type": "Texture"
+                  }
+                },
+                {
+                  "_$id": "g1clpymu",
+                  "_$type": "Sprite",
+                  "name": "Muzzle",
+                  "x": 33,
+                  "y": 27,
+                  "width": 0,
+                  "height": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_$id": "ixt498jw",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 22,
+          "y": 99,
+          "width": 84,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "gcx9oyye",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -10,
+          "width": 136,
+          "height": 138,
+          "visible": false
+        },
+        {
+          "_$id": "9vogstuc",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "7ei09tru",
+      "_$type": "Sprite",
+      "name": "STONE_10_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "ab9pmbvc",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "bdztop0s",
+              "_$type": "Sprite",
+              "name": "Footing",
+              "x": 20,
+              "y": 104,
+              "width": 88,
+              "height": 16,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "11mxwr60",
+              "_$type": "Sprite",
+              "name": "RoundTower",
+              "x": 17,
+              "y": 53,
+              "width": 94,
+              "height": 63,
+              "texture": {
+                "_$uuid": "598c2ead-28c1-4eb8-99dd-f77c39f93e21",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "qx9i344n",
+              "_$type": "Sprite",
+              "name": "MidRing",
+              "x": 20,
+              "y": 92,
+              "width": 88,
+              "height": 13,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "ue7eke1i",
+              "_$type": "Sprite",
+              "name": "RoundPlatform",
+              "x": 12,
+              "y": 46,
+              "width": 104,
+              "height": 27,
+              "texture": {
+                "_$uuid": "65d49716-3d33-4f19-b250-e78f9a13d9b3",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "dlc5zcl5",
+              "_$type": "Sprite",
+              "name": "Weapon",
+              "x": 64,
+              "y": 62,
+              "width": 66,
+              "height": 49,
+              "anchorX": 0.5,
+              "anchorY": 1,
+              "_$comp": [
+                {
+                  "_$type": "AnimatorClip2D",
+                  "clip": {
+                    "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+                    "_$type": "AnimationClip2D"
+                  },
+                  "autoPlay": false
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "jmom9blr",
+                  "_$type": "Sprite",
+                  "name": "Sling",
+                  "width": 66,
+                  "height": 49,
+                  "texture": {
+                    "_$uuid": "3922f131-d356-40d7-827c-81ccfead5b6b",
+                    "_$type": "Texture"
+                  }
+                },
+                {
+                  "_$id": "ndby7yqm",
+                  "_$type": "Sprite",
+                  "name": "Muzzle",
+                  "x": 33,
+                  "y": 27,
+                  "width": 0,
+                  "height": 0
+                }
+              ]
+            },
+            {
+              "_$id": "mbq1ymim",
+              "_$type": "Sprite",
+              "name": "ThickBase",
+              "x": 20,
+              "y": 102,
+              "width": 88,
+              "height": 18,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "01f3bn0z",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 22,
+          "y": 99,
+          "width": 84,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "b0ge0yka",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -10,
+          "width": 136,
+          "height": 138,
+          "visible": false
+        },
+        {
+          "_$id": "64p6ezau",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "sk5jc8t3",
+      "_$type": "Sprite",
+      "name": "STONE_11_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "gk61g87u",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "vxvt8413",
+              "_$type": "Sprite",
+              "name": "Footing",
+              "x": 20,
+              "y": 104,
+              "width": 88,
+              "height": 16,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "39m1zggf",
+              "_$type": "Sprite",
+              "name": "RoundTower",
+              "x": 16,
+              "y": 52,
+              "width": 96,
+              "height": 64,
+              "texture": {
+                "_$uuid": "598c2ead-28c1-4eb8-99dd-f77c39f93e21",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "4bx5mvwv",
+              "_$type": "Sprite",
+              "name": "MidRing",
+              "x": 20,
+              "y": 92,
+              "width": 88,
+              "height": 13,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "wwoovw8r",
+              "_$type": "Sprite",
+              "name": "RoundPlatform",
+              "x": 12,
+              "y": 45,
+              "width": 104,
+              "height": 27,
+              "texture": {
+                "_$uuid": "65d49716-3d33-4f19-b250-e78f9a13d9b3",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "vaazo9qy",
+              "_$type": "Sprite",
+              "name": "Weapon",
+              "x": 64,
+              "y": 61,
+              "width": 66,
+              "height": 49,
+              "anchorX": 0.5,
+              "anchorY": 1,
+              "_$comp": [
+                {
+                  "_$type": "AnimatorClip2D",
+                  "clip": {
+                    "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+                    "_$type": "AnimationClip2D"
+                  },
+                  "autoPlay": false
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "8cap17gz",
+                  "_$type": "Sprite",
+                  "name": "Sling",
+                  "width": 66,
+                  "height": 49,
+                  "texture": {
+                    "_$uuid": "3922f131-d356-40d7-827c-81ccfead5b6b",
+                    "_$type": "Texture"
+                  }
+                },
+                {
+                  "_$id": "j5wkt7gu",
+                  "_$type": "Sprite",
+                  "name": "Muzzle",
+                  "x": 33,
+                  "y": 27,
+                  "width": 0,
+                  "height": 0
+                }
+              ]
+            },
+            {
+              "_$id": "s0ic64uo",
+              "_$type": "Sprite",
+              "name": "LeftBrace",
+              "x": 22,
+              "y": 94,
+              "width": 16,
+              "height": 21,
+              "texture": {
+                "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "7s6ev15z",
+              "_$type": "Sprite",
+              "name": "RightBrace",
+              "x": 90,
+              "y": 94,
+              "width": 16,
+              "height": 21,
+              "texture": {
+                "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
+                "_$type": "Texture"
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "5s5pmvl4",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 22,
+          "y": 99,
+          "width": 84,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "1f7bbxhi",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -10,
+          "width": 136,
+          "height": 138,
+          "visible": false
+        },
+        {
+          "_$id": "hh08fr2z",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "vkll7ps9",
+      "_$type": "Sprite",
+      "name": "STONE_12_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "uk5yde73",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "ewsf8xfy",
+              "_$type": "Sprite",
+              "name": "Footing",
+              "x": 20,
+              "y": 104,
+              "width": 88,
+              "height": 16,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "yeidk83v",
+              "_$type": "Sprite",
+              "name": "RoundTower",
+              "x": 15,
+              "y": 51,
+              "width": 98,
+              "height": 65,
+              "texture": {
+                "_$uuid": "598c2ead-28c1-4eb8-99dd-f77c39f93e21",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "9zgkhvnk",
+              "_$type": "Sprite",
+              "name": "MidRing",
+              "x": 20,
+              "y": 92,
+              "width": 88,
+              "height": 13,
+              "texture": {
+                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "x5n70vz4",
+              "_$type": "Sprite",
+              "name": "RoundPlatform",
+              "x": 12,
+              "y": 44,
+              "width": 104,
+              "height": 27,
+              "texture": {
+                "_$uuid": "65d49716-3d33-4f19-b250-e78f9a13d9b3",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "7zfl1wtf",
+              "_$type": "Sprite",
+              "name": "Weapon",
+              "x": 64,
+              "y": 60,
+              "width": 66,
+              "height": 49,
+              "anchorX": 0.5,
+              "anchorY": 1,
+              "_$comp": [
+                {
+                  "_$type": "AnimatorClip2D",
+                  "clip": {
+                    "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+                    "_$type": "AnimationClip2D"
+                  },
+                  "autoPlay": false
+                }
+              ],
+              "_$child": [
+                {
+                  "_$id": "1oqs542k",
+                  "_$type": "Sprite",
+                  "name": "Sling",
+                  "width": 66,
+                  "height": 49,
+                  "texture": {
+                    "_$uuid": "3922f131-d356-40d7-827c-81ccfead5b6b",
+                    "_$type": "Texture"
+                  }
+                },
+                {
+                  "_$id": "fu2z4kml",
+                  "_$type": "Sprite",
+                  "name": "Muzzle",
+                  "x": 33,
+                  "y": 27,
+                  "width": 0,
+                  "height": 0
+                }
+              ]
+            },
+            {
+              "_$id": "taajg4bm",
+              "_$type": "Sprite",
+              "name": "FrontCrest",
+              "x": 53,
+              "y": 91,
+              "width": 22,
+              "height": 24,
+              "texture": {
+                "_$uuid": "fc904cfb-30b4-440e-8dc3-1a61f18a468f",
+                "_$type": "Texture"
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "5gh1v3m0",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 22,
+          "y": 99,
+          "width": 84,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "o75jrbu5",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -10,
+          "width": 136,
+          "height": 138,
+          "visible": false
+        },
+        {
+          "_$id": "pzykidtx",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    }
+  ]
+}

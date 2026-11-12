@@ -1,0 +1,3 @@
+# 编辑器工具
+
+BuildingWorkshop是编辑器菜单进程，BuildingWorkshopScene是原生场景进程；不能合并为同一模块，否则IEditor/IEditorEnv环境不一致。BuildingGameCheck和BuildingGameCheckScene用于正式GameView离屏验收。仅在编辑器运行，不进入游戏。

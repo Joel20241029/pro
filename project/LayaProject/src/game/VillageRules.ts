@@ -165,9 +165,12 @@ export function applyCommand(s: GameState, c: Command) {
             const rng = new SeededRandom(s.rng.family), sex = nextSex(s.people, rng);
             const trait = parents[0].trait === parents[1].trait ? parents[0].trait : parents[rng.range(2)].trait;
             const id = newId(s);
-            const nameIndex = rng.range(VILLAGER_NAMES.child.length + 1);
-            const name = nameIndex === VILLAGER_NAMES.child.length ? VILLAGER_NAMES.personal[sex] : `小${VILLAGER_NAMES.child[nameIndex]}${s.nextPerson - 1}`;
-            const child: Person = { id, name, sex, origin: "BORN", elite: rng.range(ELITE.chanceScale) < ELITE.chancePercent, appearance: ADULT_APPEARANCE[sex], trait, skill: null, generation: Math.max(...parents.map(p => p.generation)) + 1, parents: f.partners.slice(), ancestors: Array.from(new Set([...f.partners, ...parents[0].ancestors, ...parents[1].ancestors])), adult: false, nights: 0, elderNights: 0, growth: 0, job: "WAITING", careChild: null };
+            // 主随机流保留原姓名→精英的抽样顺序；精英用命名前快照取名，不影响后续玩法抽样。
+            const nameState = rng.state, nameIndex = rng.range(VILLAGER_NAMES.child.length + 1);
+            const elite = rng.range(ELITE.chanceScale) < ELITE.chancePercent;
+            const name = elite ? VILLAGER_NAMES.elite[new SeededRandom(nameState).range(VILLAGER_NAMES.elite.length)]
+                : nameIndex === VILLAGER_NAMES.child.length ? VILLAGER_NAMES.personal[sex] : `小${VILLAGER_NAMES.child[nameIndex]}${s.nextPerson - 1}`;
+            const child: Person = { id, name, sex, origin: "BORN", elite, appearance: ADULT_APPEARANCE[sex], trait, skill: null, generation: Math.max(...parents.map(p => p.generation)) + 1, parents: f.partners.slice(), ancestors: Array.from(new Set([...f.partners, ...parents[0].ancestors, ...parents[1].ancestors])), adult: false, nights: 0, elderNights: 0, growth: 0, job: "WAITING", careChild: null };
             s.people.push(child); carer.job = "CARE"; carer.careChild = id; f.lastBirth = s.completed;
             s.stats.births++; s.legacy.births++; s.stats.generation = Math.max(s.stats.generation, child.generation); remember(s, trait); s.rng.family = rng.state; break;
         }
@@ -234,8 +237,11 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
     if (travelerDue(s, capacity(s))) {
         s.lastTraveler = s.completed;
         const sex = nextSex(s.people, world, true);
-        const name = [...VILLAGER_NAMES.traveler, VILLAGER_NAMES.personal[sex]][world.range(VILLAGER_NAMES.traveler.length + 1)];
+        // 与出生一致，保留世界随机流的原消费顺序，命名分支不改变精英、天赋和专长结果。
+        const nameState = world.state, nameIndex = world.range(VILLAGER_NAMES.traveler.length + 1);
         const elite = world.range(ELITE.chanceScale) < ELITE.chancePercent;
+        const name = elite ? VILLAGER_NAMES.elite[new SeededRandom(nameState).range(VILLAGER_NAMES.elite.length)]
+            : [...VILLAGER_NAMES.traveler, VILLAGER_NAMES.personal[sex]][nameIndex];
         const traveler: Person = { id: newId(s), name, sex, origin: "TRAVELER", elite, appearance: ADULT_APPEARANCE[sex], trait: (Object.keys(TRAITS) as Trait[])[world.range(8)], skill: (Object.keys(SKILLS) as Skill[])[world.range(6)], generation: 1, parents: [], ancestors: [], adult: true, nights: elite ? ELITE.adultNights : RULE.adultNights, elderNights: 0, growth: 0, job: "WAITING", careChild: null };
         s.choices.push({ kind: "TRAVELER", person: traveler });
     }

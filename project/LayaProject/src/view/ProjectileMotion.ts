@@ -1,5 +1,5 @@
 import { BattleSimulation, Shot } from "../game/BattleSimulation";
-import { RULE } from "../game/GameConfig";
+import { RULE, PADS } from "../game/GameConfig";
 import { GroundPoint, towerLaunch } from "./VillageScene";
 import { GameLayout } from "./GameLayout";
 
@@ -18,6 +18,8 @@ export const PROJECTILE_STYLE = {
 const TARGET_Y = -20;
 export interface ProjectilePose {
     shot: Shot; frame: string; x: number; y: number; rotation: number; size: number; alpha: number;
+    from: GroundPoint;
+    launchOffset: GroundPoint;
 }
 
 /** 已结算 Shot 的纯表现；保留自身引用直到命中淡出，不依赖 Shot 在逻辑队列中停留的五个 tick。 */
@@ -26,13 +28,15 @@ export class ProjectileMotion {
     private battle: BattleSimulation | null = null;
     private seen = new WeakSet<Shot>();
 
-    update(battle: BattleSimulation | null, layout?: GameLayout, pads?: readonly GroundPoint[]) {
+    update(battle: BattleSimulation | null, layout?: GameLayout, pads: readonly GroundPoint[] = PADS, launch?: (tower: number) => GroundPoint) {
         if (battle !== this.battle) { this.battle = battle; this.poses = []; this.seen = new WeakSet<Shot>(); }
         if (!battle || battle.outcome) { this.poses = []; return; }
         for (const shot of battle.shots) {
             if (this.seen.has(shot)) continue;
             this.seen.add(shot);
-            this.poses.push({ shot, frame: "", x: 0, y: 0, rotation: 0, size: 0, alpha: 1 });
+            const from = launch ? launch(shot.tower) : towerLaunch(shot.tower, shot.kind, pads), pad = pads[shot.tower];
+            this.poses.push({ shot, frame: "", x: 0, y: 0, rotation: 0, size: 0, alpha: 1, from,
+                launchOffset: { x: from.x - pad.x, y: from.y - pad.y } });
         }
         // 与现有战斗特效上限相同：拥挤时只保留最新装饰，始终不影响逻辑攻击。
         this.poses = this.poses.filter(p => {
@@ -40,7 +44,9 @@ export class ProjectileMotion {
             return (battle.tick - p.shot.tick - 1) * RULE.step < style.flight + style.impact;
         }).slice(-RULE.effectCap);
         for (const p of this.poses) {
-            const shot = p.shot, style = PROJECTILE_STYLE[shot.kind], from = towerLaunch(shot.tower, shot.kind, pads);
+            const shot = p.shot, style = PROJECTILE_STYLE[shot.kind], pad = pads[shot.tower];
+            // 固定发射瞬间相对塔位的偏移，后坐不拉动弹道，屏幕重排则跟随塔位整体移动。
+            const from = p.from = { x: pad.x + p.launchOffset.x, y: pad.y + p.launchOffset.y };
             const target = { x: shot.x, y: (layout ? layout.worldY(shot.y) : shot.y) + TARGET_Y };
             // step 完成后 tick 已加一；最后一次 step 新发射的弹道年龄为零。只读实际 tick，暂停/倍速天然同步。
             const age = (battle.tick - shot.tick - 1) * RULE.step;

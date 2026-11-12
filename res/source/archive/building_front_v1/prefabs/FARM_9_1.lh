@@ -1,0 +1,137 @@
+{
+  "_$ver": 1,
+  "_$id": "69xnoecv",
+  "_$type": "Sprite",
+  "name": "FARM_9_1",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "gssihi1s",
+      "_$type": "Sprite",
+      "name": "Body",
+      "x": 64,
+      "y": 120,
+      "width": 128,
+      "height": 128,
+      "anchorX": 0.5,
+      "anchorY": 0.9375,
+      "_$comp": [
+        {
+          "_$type": "AnimatorClip2D",
+          "clip": {
+            "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+            "_$type": "AnimationClip2D"
+          },
+          "autoPlay": false
+        }
+      ],
+      "_$child": [
+        {
+          "_$id": "f09upe4p",
+          "_$type": "Sprite",
+          "name": "Plot_0_0",
+          "x": 11,
+          "y": 24,
+          "width": 53,
+          "height": 31,
+          "texture": {
+            "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "2fbmb7dk",
+          "_$type": "Sprite",
+          "name": "Plot_0_1",
+          "x": 64,
+          "y": 24,
+          "width": 53,
+          "height": 31,
+          "texture": {
+            "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "x1rperxx",
+          "_$type": "Sprite",
+          "name": "Plot_1_0",
+          "x": 11,
+          "y": 51,
+          "width": 53,
+          "height": 31,
+          "texture": {
+            "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "v8l1tr8k",
+          "_$type": "Sprite",
+          "name": "Plot_1_1",
+          "x": 64,
+          "y": 51,
+          "width": 53,
+          "height": 31,
+          "texture": {
+            "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "3bp697eo",
+          "_$type": "Sprite",
+          "name": "Plot_2_0",
+          "x": 11,
+          "y": 79,
+          "width": 53,
+          "height": 31,
+          "texture": {
+            "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "op6uks3d",
+          "_$type": "Sprite",
+          "name": "Plot_2_1",
+          "x": 64,
+          "y": 79,
+          "width": 53,
+          "height": 31,
+          "texture": {
+            "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "8to9mofp",
+          "_$type": "Sprite",
+          "name": "Irrigation",
+          "x": 12,
+          "y": 105,
+          "width": 104,
+          "height": 12,
+          "texture": {
+            "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "1ss0z8bx",
+          "_$type": "Sprite",
+          "name": "Wheel",
+          "x": 10,
+          "y": 71,
+          "width": 30,
+          "height": 30,
+          "texture": {
+            "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+            "_$type": "Texture"
+          }
+        }
+      ]
+    }
+  ]
+}

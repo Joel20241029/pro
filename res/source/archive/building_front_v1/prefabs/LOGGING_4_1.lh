@@ -1,0 +1,111 @@
+{
+  "_$ver": 1,
+  "_$id": "g20p9v1f",
+  "_$type": "Sprite",
+  "name": "LOGGING_4_1",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "jk4qpc5w",
+      "_$type": "Sprite",
+      "name": "Body",
+      "x": 64,
+      "y": 120,
+      "width": 128,
+      "height": 128,
+      "anchorX": 0.5,
+      "anchorY": 0.9375,
+      "_$comp": [
+        {
+          "_$type": "AnimatorClip2D",
+          "clip": {
+            "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+            "_$type": "AnimationClip2D"
+          },
+          "autoPlay": false
+        }
+      ],
+      "_$child": [
+        {
+          "_$id": "o5b2rmwd",
+          "_$type": "Sprite",
+          "name": "Foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14,
+          "texture": {
+            "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "icqoiwqe",
+          "_$type": "Sprite",
+          "name": "WorkshopWall",
+          "x": 25,
+          "y": 54,
+          "width": 78,
+          "height": 56,
+          "texture": {
+            "_$uuid": "8ad2f438-86a5-49b0-adb6-b3dfc78da3ac",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "b37d2vjr",
+          "_$type": "Sprite",
+          "name": "Door",
+          "x": 39,
+          "y": 75,
+          "width": 42,
+          "height": 39,
+          "texture": {
+            "_$uuid": "f74997e8-b2cc-4f38-b231-f9406a9298ec",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "gcbl3srr",
+          "_$type": "Sprite",
+          "name": "WorkshopRoof",
+          "x": 17,
+          "y": 34,
+          "width": 94,
+          "height": 31,
+          "texture": {
+            "_$uuid": "e98e280f-e8f6-4fe8-9525-8eea7695455b",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "7vwx8h7j",
+          "_$type": "Sprite",
+          "name": "Timber",
+          "x": 68,
+          "y": 94,
+          "width": 42,
+          "height": 25,
+          "texture": {
+            "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "etf228g7",
+          "_$type": "Sprite",
+          "name": "WorkDeck",
+          "x": 16,
+          "y": 75,
+          "width": 96,
+          "height": 15,
+          "texture": {
+            "_$uuid": "943da39b-29a8-4843-baa5-0eadf0927147",
+            "_$type": "Texture"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "createdAt": "2026-11-12T06:08:59.440Z",
+  "rawDirectoryBytes": 3467863,
+  "rawMainPackageBytes": 1643072,
+  "subpackages": [
+    {
+      "name": "resources/village",
+      "root": "resources/village/",
+      "rawBytes": 1824791
+    }
+  ],
+  "platformUploadStatus": "not_uploaded",
+  "errors": [],
+  "tests": {
+    "passed": 150,
+    "failed": 0
+  },
+  "atlasPages": 2,
+  "renderEvidence": "LayaAir IDE 3.4.2 scene engine; production GameView; not physical-device verification"
+}

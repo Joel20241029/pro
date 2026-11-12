@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
+import { buildBuildingLayouts } from './build-building-layouts.mjs';
 
 // 原始图片与可编辑配方为唯一输入；临时裁片只能放 Downloads。无额外 npm 依赖。
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -56,6 +57,8 @@ for (const a of recipe.assets) {
         }
         nineSliceOriginalPixels += base.w * base.h; nineSliceCompactPixels += a.width * a.height;
     }
+    // 部件导入源与运行裁片来自同一配方，防止编辑器看到的图和微信运行图不一致。
+    if (a.category === 'building-parts' && a.runtime) fs.copyFileSync(out, path.join(root, 'editor/BuildingWorkshop/assets/buildingAuthoring/textures', a.id + '.png'));
     const pixels = decode(out);
     if (pixels.length !== a.width * a.height * 4) throw new Error(`画布尺寸不符：${a.id}`);
     let left = a.width, top = a.height, right = -1, bottom = -1;
@@ -160,11 +163,12 @@ write('animations.json', recipe.animations);
 const publicAssets = assets.map(({ _trim, _pixels, _packedFile, ...a }) => a);
 const audio = read('audio/manifest.json');
 for (const track of audio.tracks) if (hash(path.join(root, track.runtimeFile)) !== track.sha256) throw new Error('音频成品与源清单不一致，请重建：' + track.runtimeFile);
-const runtimeFiles = [...pages.map(p => p.path), 'atlases/frames.json', 'animations.json', ...audio.tracks.map(track => track.runtimeFile)];
+const buildingFiles = buildBuildingLayouts(root);
+const runtimeFiles = [...pages.map(p => p.path), 'atlases/frames.json', 'animations.json', ...buildingFiles, ...audio.tracks.map(track => track.runtimeFile)];
 write('manifest.json', { version: 3, status: 'imported_in_wechat_prototype', preferredRuntimeMode: 'atlas_plus_audio', runtimeWhitelist: runtimeFiles, assetCount: assets.length, runtimeAssetCount: runtimeAssets.length, reserveAssetCount: reserveAssets.length, assets: publicAssets, audio,
     externalAssets: recipe.externalAssets, engineImport: { directory: 'project/LayaProject/assets/resources/village', mode: 'trimmed_shared_atlas', runtime: 'WeChat Mini Game', verificationReport: 'doc/tech/06_视觉升级与资源管线.md' } });
 const categoryStats = {}; for (const a of assets) { const c = categoryStats[a.category] ??= { count: 0, bytes: 0, runtime: 0, reserve: 0 }; c.count++; c.bytes += a.bytes; c[a.runtime ? 'runtime' : 'reserve']++; }
-const pngBytes = pages.reduce((sum, p) => sum + p.bytes, 0), metadataBytes = runtimeFiles.filter(p => p.endsWith('.json')).reduce((sum, p) => sum + fs.statSync(path.join(root, p)).size, 0);
+const pngBytes = pages.reduce((sum, p) => sum + p.bytes, 0), metadataBytes = runtimeFiles.filter(p => p.endsWith('.json') || p.endsWith('.mc')).reduce((sum, p) => sum + fs.statSync(path.join(root, p)).size, 0);
 const packing = { sourceCanvasPixels: originalArea, atlasContentPixels: trimmedArea, savedContentPixels: originalArea - trimmedArea, savedContentPercent: +(100 * (originalArea - trimmedArea) / originalArea).toFixed(2), trimmedAssetCount: trimmedCount, alphaThreshold: 0, nineSlicePreserved: true, paddingPerSide: padding };
 write('budget_report.json', { generatedAt: new Date().toISOString(), runtimeAssetCount: runtimeAssets.length, reserveAssetCount: reserveAssets.length, animationCount: recipe.animations.animations.length,
     animationFrames: recipe.animations.animations.reduce((s, a) => s + a.frameCount, 0), categoryStats, atlasPages: pages, packing,

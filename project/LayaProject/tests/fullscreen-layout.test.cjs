@@ -107,6 +107,17 @@ test('projectiles use resized muzzle and enemy body, preserve age and leave exac
     while(!a.outcome && a.tick<6000){a.step();c.step();m.update(a,l,scene.pads);}
     assert.equal(JSON.stringify(a),JSON.stringify(c));
 });
+test('in-flight native muzzle offset survives recoil and paused screen resize', () => {
+    const before=layout(profiles[0]),after=layout(profiles[4]),first=layoutVillage(before),next=layoutVillage(after);
+    const s=createGame(7);applyCommand(s,{type:'NIGHT'});const b=new BattleSimulation(s),m=new ProjectileMotion();
+    const shot={tower:0,kind:'STONE',x:360,y:500,tick:0};b.shots=[shot];b.tick=1;
+    const offset={x:17,y:-53};let calls=0;
+    m.update(b,before,first.pads,index=>{calls++;return{x:first.pads[index].x+offset.x,y:first.pads[index].y+offset.y};});
+    b.tick=3;m.update(b,before,first.pads,()=>{throw new Error('must not re-read a moving weapon');});
+    const p=m.poses[0],age=b.tick;
+    m.update(b,after,next.pads,()=>{throw new Error('paused resize must not resample recoil');});
+    assert.equal(calls,1);assert.equal(b.tick,age);near(p.from.x,next.pads[0].x+offset.x);near(p.from.y,next.pads[0].y+offset.y);
+});
 test('crowded childcare keeps babies stationary and carers beside them across layout changes', () => {
     const s=createGame(11);s.people.forEach((p,i)=>{p.job='CARE';p.careChild=`1:${7+i}`;});
     while(s.people.length<20){const i=s.people.length;s.people.push({...s.people[0],id:`1:${i+1}`,adult:false,growth:0,job:'WAITING',careChild:null});}

@@ -1,0 +1,131 @@
+{
+  "_$ver": 1,
+  "_$id": "9jowf3s7",
+  "_$type": "Sprite",
+  "name": "ARROW_8_1",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "bvrw4wvm",
+      "_$type": "Sprite",
+      "name": "Body",
+      "x": 64,
+      "y": 120,
+      "width": 128,
+      "height": 128,
+      "anchorX": 0.5,
+      "anchorY": 0.9375,
+      "_$comp": [
+        {
+          "_$type": "AnimatorClip2D",
+          "clip": {
+            "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+            "_$type": "AnimationClip2D"
+          },
+          "autoPlay": false
+        }
+      ],
+      "_$child": [
+        {
+          "_$id": "c7ixg0bv",
+          "_$type": "Sprite",
+          "name": "Foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15,
+          "texture": {
+            "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "9iu6n1td",
+          "_$type": "Sprite",
+          "name": "TowerBody",
+          "x": 33,
+          "y": 39,
+          "width": 63,
+          "height": 69,
+          "texture": {
+            "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "u2ge5r15",
+          "_$type": "Sprite",
+          "name": "LowerFloor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14,
+          "texture": {
+            "_$uuid": "943da39b-29a8-4843-baa5-0eadf0927147",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "nsno6kce",
+          "_$type": "Sprite",
+          "name": "SecondDeck",
+          "x": 23,
+          "y": 63,
+          "width": 82,
+          "height": 20,
+          "texture": {
+            "_$uuid": "65d49716-3d33-4f19-b250-e78f9a13d9b3",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "8rzhqses",
+          "_$type": "Sprite",
+          "name": "Platform",
+          "x": 19,
+          "y": 31,
+          "width": 90,
+          "height": 21,
+          "texture": {
+            "_$uuid": "943da39b-29a8-4843-baa5-0eadf0927147",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "fg8ed12t",
+          "_$type": "Sprite",
+          "name": "Weapon",
+          "x": 64,
+          "y": 42,
+          "width": 58,
+          "height": 39,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "_$child": [
+            {
+              "_$id": "3wtbl39b",
+              "_$type": "Sprite",
+              "name": "Launcher",
+              "width": 58,
+              "height": 39,
+              "texture": {
+                "_$uuid": "80ec4838-02f5-4e42-99c3-508400219589",
+                "_$type": "Texture"
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "5ijx46si",
+          "_$type": "Sprite",
+          "name": "Muzzle",
+          "x": 91,
+          "y": 23,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "_$ver": 1,
+  "_$id": "8getgej0",
+  "_$type": "Sprite",
+  "name": "HOUSE_11_1",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "dxkw8bnw",
+      "_$type": "Sprite",
+      "name": "Body",
+      "x": 64,
+      "y": 120,
+      "width": 128,
+      "height": 128,
+      "anchorX": 0.5,
+      "anchorY": 0.9375,
+      "_$comp": [
+        {
+          "_$type": "AnimatorClip2D",
+          "clip": {
+            "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+            "_$type": "AnimationClip2D"
+          },
+          "autoPlay": false
+        }
+      ],
+      "_$child": [
+        {
+          "_$id": "xdx24hmh",
+          "_$type": "Sprite",
+          "name": "Foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14,
+          "texture": {
+            "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "w2wkjhm7",
+          "_$type": "Sprite",
+          "name": "MainWall",
+          "x": 26,
+          "y": 43,
+          "width": 76,
+          "height": 67,
+          "texture": {
+            "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "nz36gjop",
+          "_$type": "Sprite",
+          "name": "MainDoor",
+          "x": 55,
+          "y": 82,
+          "width": 24,
+          "height": 31,
+          "texture": {
+            "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "lv6s33g2",
+          "_$type": "Sprite",
+          "name": "MainWindow",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17,
+          "texture": {
+            "_$uuid": "849b3b81-dd57-4bb7-a306-56f292f8200e",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "opy1yvra",
+          "_$type": "Sprite",
+          "name": "MainRoof",
+          "x": 18,
+          "y": 21,
+          "width": 92,
+          "height": 32,
+          "texture": {
+            "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "wie6zgh4",
+          "_$type": "Sprite",
+          "name": "DormerWall",
+          "x": 43,
+          "y": 27,
+          "width": 30,
+          "height": 22,
+          "texture": {
+            "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "7ow90g25",
+          "_$type": "Sprite",
+          "name": "DormerRoof",
+          "x": 37,
+          "y": 14,
+          "width": 42,
+          "height": 22,
+          "texture": {
+            "_$uuid": "744bd17d-ec73-4baa-8f8f-731cd78424ef",
+            "_$type": "Texture"
+          }
+        }
+      ]
+    }
+  ]
+}

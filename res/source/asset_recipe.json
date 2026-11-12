@@ -6638,7 +6638,7 @@
       "width": 24,
       "height": 24,
       "pivot": {
-        "x": 12.0,
+        "x": 12,
         "y": 24
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -6671,7 +6671,7 @@
       "width": 24,
       "height": 24,
       "pivot": {
-        "x": 12.0,
+        "x": 12,
         "y": 24
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -6704,7 +6704,7 @@
       "width": 28,
       "height": 28,
       "pivot": {
-        "x": 14.0,
+        "x": 14,
         "y": 28
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -6737,7 +6737,7 @@
       "width": 28,
       "height": 28,
       "pivot": {
-        "x": 14.0,
+        "x": 14,
         "y": 28
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -6770,7 +6770,7 @@
       "width": 32,
       "height": 32,
       "pivot": {
-        "x": 16.0,
+        "x": 16,
         "y": 32
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -6791,8 +6791,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
     },
     {
       "id": "part_iron",
@@ -6803,7 +6803,7 @@
       "width": 24,
       "height": 32,
       "pivot": {
-        "x": 12.0,
+        "x": 12,
         "y": 32
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -6824,8 +6824,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
     },
     {
       "id": "part_gold_roof",
@@ -6836,7 +6836,7 @@
       "width": 64,
       "height": 28,
       "pivot": {
-        "x": 32.0,
+        "x": 32,
         "y": 28
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -6857,8 +6857,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
     },
     {
       "id": "part_tile_roof",
@@ -6869,7 +6869,7 @@
       "width": 72,
       "height": 36,
       "pivot": {
-        "x": 36.0,
+        "x": 36,
         "y": 36
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -6890,8 +6890,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
     },
     {
       "id": "part_brace",
@@ -6902,7 +6902,7 @@
       "width": 32,
       "height": 32,
       "pivot": {
-        "x": 16.0,
+        "x": 16,
         "y": 32
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -6923,8 +6923,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
     },
     {
       "id": "part_foundation",
@@ -6935,7 +6935,7 @@
       "width": 64,
       "height": 24,
       "pivot": {
-        "x": 32.0,
+        "x": 32,
         "y": 24
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -6956,8 +6956,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
     },
     {
       "id": "part_grain",
@@ -6968,7 +6968,7 @@
       "width": 32,
       "height": 36,
       "pivot": {
-        "x": 16.0,
+        "x": 16,
         "y": 36
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -6989,8 +6989,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
     },
     {
       "id": "part_tools",
@@ -7001,7 +7001,7 @@
       "width": 40,
       "height": 36,
       "pivot": {
-        "x": 20.0,
+        "x": 20,
         "y": 36
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -7022,8 +7022,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
     },
     {
       "id": "part_timbers",
@@ -7034,7 +7034,7 @@
       "width": 40,
       "height": 32,
       "pivot": {
-        "x": 20.0,
+        "x": 20,
         "y": 32
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -7055,8 +7055,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
     },
     {
       "id": "part_crystal",
@@ -7067,7 +7067,7 @@
       "width": 32,
       "height": 36,
       "pivot": {
-        "x": 16.0,
+        "x": 16,
         "y": 36
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -7088,8 +7088,8 @@
       "animation": null,
       "fitPadding": 2,
       "resizeMode": "contain",
-      "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "runtime": false,
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
     },
     {
       "id": "part_crest",
@@ -7100,7 +7100,7 @@
       "width": 28,
       "height": 32,
       "pivot": {
-        "x": 14.0,
+        "x": 14,
         "y": 32
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -7133,7 +7133,7 @@
       "width": 28,
       "height": 36,
       "pivot": {
-        "x": 14.0,
+        "x": 14,
         "y": 36
       },
       "sourceSheet": "source/static/village_parts_v11.png",
@@ -7156,6 +7156,1060 @@
       "resizeMode": "contain",
       "runtime": true,
       "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "module_foundation",
+      "label": "module_foundation",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_foundation.png",
+      "width": 88,
+      "height": 42,
+      "pivot": {
+        "x": 44,
+        "y": 42
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 28,
+        "y": 148,
+        "w": 265,
+        "h": 126
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_floor",
+      "label": "module_floor",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_floor.png",
+      "width": 88,
+      "height": 46,
+      "pivot": {
+        "x": 44,
+        "y": 46
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 314,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 9,
+        "y": 137,
+        "w": 272,
+        "h": 142
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_plaster",
+      "label": "module_plaster",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_plaster.png",
+      "width": 72,
+      "height": 54,
+      "pivot": {
+        "x": 36,
+        "y": 54
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 2,
+        "y": 73,
+        "w": 275,
+        "h": 205
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_masonry",
+      "label": "module_masonry",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_masonry.png",
+      "width": 72,
+      "height": 53,
+      "pivot": {
+        "x": 36,
+        "y": 53
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 940,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 15,
+        "y": 74,
+        "w": 267,
+        "h": 196
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_lattice",
+      "label": "module_lattice",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_lattice.png",
+      "width": 72,
+      "height": 76,
+      "pivot": {
+        "x": 36,
+        "y": 76
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 314,
+        "w": 314,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 28,
+        "y": 13,
+        "w": 258,
+        "h": 274
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_thatch",
+      "label": "module_thatch",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_thatch.png",
+      "width": 100,
+      "height": 70,
+      "pivot": {
+        "x": 50,
+        "y": 70
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 314,
+        "y": 314,
+        "w": 313,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 48,
+        "w": 298,
+        "h": 209
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_tile",
+      "label": "module_tile",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_tile.png",
+      "width": 100,
+      "height": 68,
+      "pivot": {
+        "x": 50,
+        "y": 68
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 314,
+        "w": 313,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 52,
+        "w": 302,
+        "h": 206
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_slate",
+      "label": "module_slate",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_slate.png",
+      "width": 100,
+      "height": 68,
+      "pivot": {
+        "x": 50,
+        "y": 68
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 940,
+        "y": 314,
+        "w": 314,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 54,
+        "w": 298,
+        "h": 203
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_pagoda",
+      "label": "module_pagoda",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_pagoda.png",
+      "width": 100,
+      "height": 76,
+      "pivot": {
+        "x": 50,
+        "y": 76
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "w": 314,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 22,
+        "y": 18,
+        "w": 292,
+        "h": 223
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_door",
+      "label": "module_door",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_door.png",
+      "width": 28,
+      "height": 29,
+      "pivot": {
+        "x": 14,
+        "y": 29
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 314,
+        "y": 627,
+        "w": 313,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 66,
+        "y": 34,
+        "w": 204,
+        "h": 212
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_window",
+      "label": "module_window",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_window.png",
+      "width": 24,
+      "height": 24,
+      "pivot": {
+        "x": 12,
+        "y": 24
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "w": 313,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 33,
+        "y": 30,
+        "w": 214,
+        "h": 212
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_battlement",
+      "label": "module_battlement",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_battlement.png",
+      "width": 88,
+      "height": 59,
+      "pivot": {
+        "x": 44,
+        "y": 59
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 940,
+        "y": 627,
+        "w": 314,
+        "h": 313
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 41,
+        "w": 286,
+        "h": 193
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_woodgate",
+      "label": "module_woodgate",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_woodgate.png",
+      "width": 72,
+      "height": 68,
+      "pivot": {
+        "x": 36,
+        "y": 68
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 23,
+        "y": 0,
+        "w": 279,
+        "h": 265
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_stonegate",
+      "label": "module_stonegate",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_stonegate.png",
+      "width": 80,
+      "height": 71,
+      "pivot": {
+        "x": 40,
+        "y": 71
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 314,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 8,
+        "y": 0,
+        "w": 291,
+        "h": 257
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_balcony",
+      "label": "module_balcony",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_balcony.png",
+      "width": 72,
+      "height": 45,
+      "pivot": {
+        "x": 36,
+        "y": 45
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 12,
+        "y": 62,
+        "w": 272,
+        "h": 170
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_porch",
+      "label": "module_porch",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_porch.png",
+      "width": 72,
+      "height": 52,
+      "pivot": {
+        "x": 36,
+        "y": 52
+      },
+      "sourceSheet": "source/buildings/special_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 859,
+        "w": 610,
+        "h": 430
+      },
+      "sourceCropWithinCell": {
+        "x": 65,
+        "y": 18,
+        "w": 473,
+        "h": 344
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "module_ballista",
+      "label": "module_ballista",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_ballista.png",
+      "width": 64,
+      "height": 57,
+      "pivot": {
+        "x": 32,
+        "y": 85
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 28,
+        "y": 152,
+        "w": 350,
+        "h": 310
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "module_catapult",
+      "label": "module_catapult",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_catapult.png",
+      "width": 64,
+      "height": 60,
+      "pivot": {
+        "x": 32,
+        "y": 77
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 384,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 22,
+        "y": 147,
+        "w": 342,
+        "h": 321
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": false,
+      "usage": "已改为设计稿中的投石兜，仅保留旧源",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "module_crystal",
+      "label": "module_crystal",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_crystal.png",
+      "width": 36,
+      "height": 51,
+      "pivot": {
+        "x": 18,
+        "y": 48
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 768,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 75,
+        "y": 141,
+        "w": 232,
+        "h": 331
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "module_field",
+      "label": "module_field",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_field.png",
+      "width": 72,
+      "height": 48,
+      "pivot": {
+        "x": 36,
+        "y": 96
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 1152,
+        "y": 0,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 8,
+        "y": 233,
+        "w": 350,
+        "h": 234
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "module_logs",
+      "label": "module_logs",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_logs.png",
+      "width": 48,
+      "height": 33,
+      "pivot": {
+        "x": 24,
+        "y": 66
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 20,
+        "y": 156,
+        "w": 325,
+        "h": 225
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "module_wheel",
+      "label": "module_wheel",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_wheel.png",
+      "width": 48,
+      "height": 46,
+      "pivot": {
+        "x": 24,
+        "y": 58
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 384,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 8,
+        "y": 51,
+        "w": 366,
+        "h": 350
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "module_saw",
+      "label": "module_saw",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_saw.png",
+      "width": 48,
+      "height": 39,
+      "pivot": {
+        "x": 24,
+        "y": 60
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 768,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 21,
+        "y": 110,
+        "w": 336,
+        "h": 271
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "module_trough",
+      "label": "module_trough",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_trough.png",
+      "width": 72,
+      "height": 24,
+      "pivot": {
+        "x": 36,
+        "y": 97
+      },
+      "sourceSheet": "source/buildings/mechanisms.png",
+      "sourceRect": {
+        "x": 1152,
+        "y": 512,
+        "w": 384,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 13,
+        "y": 225,
+        "w": 355,
+        "h": 119
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "原生编辑器预制体主体拼装，运行图集合批",
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "module_round_body",
+      "label": "module_round_body",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_round_body.png",
+      "width": 80,
+      "height": 72,
+      "pivot": {
+        "x": 40,
+        "y": 72
+      },
+      "sourceSheet": "source/buildings/structures_v2.png",
+      "sourceRect": {
+        "x": 940,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "sourceCropWithinCell": {
+        "x": 12,
+        "y": 14,
+        "w": 274,
+        "h": 247
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+    },
+    {
+      "id": "module_sling",
+      "label": "module_sling",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_sling.png",
+      "width": 64,
+      "height": 48,
+      "pivot": {
+        "x": 32,
+        "y": 48
+      },
+      "sourceSheet": "source/buildings/special_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 610,
+        "h": 430
+      },
+      "sourceCropWithinCell": {
+        "x": 116,
+        "y": 92,
+        "w": 422,
+        "h": 319
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "module_canopy_thatch",
+      "label": "module_canopy_thatch",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_canopy_thatch.png",
+      "width": 96,
+      "height": 53,
+      "pivot": {
+        "x": 48,
+        "y": 53
+      },
+      "sourceSheet": "source/buildings/special_v2.png",
+      "sourceRect": {
+        "x": 610,
+        "y": 0,
+        "w": 610,
+        "h": 430
+      },
+      "sourceCropWithinCell": {
+        "x": 24,
+        "y": 130,
+        "w": 492,
+        "h": 274
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "module_canopy_teal",
+      "label": "module_canopy_teal",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_canopy_teal.png",
+      "width": 96,
+      "height": 53,
+      "pivot": {
+        "x": 48,
+        "y": 53
+      },
+      "sourceSheet": "source/buildings/special_v2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 430,
+        "w": 610,
+        "h": 429
+      },
+      "sourceCropWithinCell": {
+        "x": 88,
+        "y": 82,
+        "w": 473,
+        "h": 263
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "module_workshop",
+      "label": "module_workshop",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_workshop.png",
+      "width": 80,
+      "height": 57,
+      "pivot": {
+        "x": 40,
+        "y": 57
+      },
+      "sourceSheet": "source/buildings/special_v2.png",
+      "sourceRect": {
+        "x": 610,
+        "y": 430,
+        "w": 610,
+        "h": 429
+      },
+      "sourceCropWithinCell": {
+        "x": 51,
+        "y": 53,
+        "w": 487,
+        "h": 349
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "module_porch_rail",
+      "label": "module_porch_rail",
+      "category": "building-parts",
+      "categoryLabel": "编辑器建筑部件",
+      "path": "runtime/building-parts/module_porch_rail.png",
+      "width": 72,
+      "height": 34,
+      "pivot": {
+        "x": 36,
+        "y": 34
+      },
+      "sourceSheet": "source/buildings/special_v2.png",
+      "sourceRect": {
+        "x": 610,
+        "y": 859,
+        "w": 610,
+        "h": 430
+      },
+      "sourceCropWithinCell": {
+        "x": 43,
+        "y": 74,
+        "w": 500,
+        "h": 239
+      },
+      "nineSlice": null,
+      "mapping": "Laya buildingAuthoring prefab texture",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "runtime": true,
+      "usage": "已确认设计稿对应的原生建筑拼装部件",
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved."
+    },
+    {
+      "id": "deco_village_sign",
+      "label": "文明里村木路牌",
+      "category": "decorations",
+      "categoryLabel": "场景装饰",
+      "path": "runtime/decorations/deco_village_sign.png",
+      "width": 88,
+      "height": 52,
+      "pivot": {
+        "x": 44,
+        "y": 50
+      },
+      "sourceSheet": "source/decorations/village_sign.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 1619,
+        "h": 972
+      },
+      "sourceCropWithinCell": {
+        "x": 35,
+        "y": 72,
+        "w": 1534,
+        "h": 866
+      },
+      "nineSlice": null,
+      "mapping": "deco:village-sign",
+      "animation": null,
+      "fitPadding": 4,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "城门左侧村名路牌；文字是GameView中的子节点，与牌体一起按足底排序。",
+      "cropNote": "主体10%alpha范围用于母版定位；保留内部alpha；运行图集仅裁alpha=0。"
     }
   ],
   "animations": {

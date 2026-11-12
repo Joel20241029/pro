@@ -1,0 +1,7661 @@
+{
+  "canvas": 128,
+  "layouts": [
+    {
+      "id": "HOUSE_1_1",
+      "kind": "HOUSE",
+      "stage": 1,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 26,
+          "y": 63,
+          "width": 76,
+          "height": 47
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 54.879999999999995,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_thatch",
+          "x": 18,
+          "y": 41,
+          "width": 92,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_1_2",
+      "kind": "HOUSE",
+      "stage": 1,
+      "rooms": 2,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 63,
+          "width": 58,
+          "height": 47
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_thatch",
+          "x": 12,
+          "y": 41,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_thatch",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_1_3",
+      "kind": "HOUSE",
+      "stage": 1,
+      "rooms": 3,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 63,
+          "width": 58,
+          "height": 47
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_thatch",
+          "x": 12,
+          "y": 41,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_thatch",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "UpperRoom",
+          "frame": "module_plaster",
+          "x": 29,
+          "y": 32,
+          "width": 42,
+          "height": 28
+        },
+        {
+          "name": "UpperWindow",
+          "frame": "module_window",
+          "x": 41,
+          "y": 37,
+          "width": 15,
+          "height": 16
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_thatch",
+          "x": 20,
+          "y": 16,
+          "width": 61,
+          "height": 28
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_2_1",
+      "kind": "HOUSE",
+      "stage": 2,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 26,
+          "y": 60,
+          "width": 76,
+          "height": 50
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 54.879999999999995,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_thatch",
+          "x": 18,
+          "y": 38,
+          "width": 92,
+          "height": 32
+        },
+        {
+          "name": "WidePorch",
+          "frame": "module_porch",
+          "x": 21,
+          "y": 82,
+          "width": 86,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_2_2",
+      "kind": "HOUSE",
+      "stage": 2,
+      "rooms": 2,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 60,
+          "width": 58,
+          "height": 50
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_thatch",
+          "x": 12,
+          "y": 38,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_thatch",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "WidePorch",
+          "frame": "module_porch",
+          "x": 15,
+          "y": 82,
+          "width": 68,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_2_3",
+      "kind": "HOUSE",
+      "stage": 2,
+      "rooms": 3,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 60,
+          "width": 58,
+          "height": 50
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_thatch",
+          "x": 12,
+          "y": 38,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_thatch",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "UpperRoom",
+          "frame": "module_plaster",
+          "x": 29,
+          "y": 32,
+          "width": 42,
+          "height": 28
+        },
+        {
+          "name": "UpperWindow",
+          "frame": "module_window",
+          "x": 41,
+          "y": 37,
+          "width": 15,
+          "height": 16
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_thatch",
+          "x": 20,
+          "y": 16,
+          "width": 61,
+          "height": 28
+        },
+        {
+          "name": "WidePorch",
+          "frame": "module_porch",
+          "x": 15,
+          "y": 82,
+          "width": 68,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_3_1",
+      "kind": "HOUSE",
+      "stage": 3,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 26,
+          "y": 57,
+          "width": 76,
+          "height": 53
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 54.879999999999995,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_thatch",
+          "x": 18,
+          "y": 35,
+          "width": 92,
+          "height": 32
+        },
+        {
+          "name": "DormerWall",
+          "frame": "module_plaster",
+          "x": 43,
+          "y": 41,
+          "width": 30,
+          "height": 22
+        },
+        {
+          "name": "DormerRoof",
+          "frame": "module_thatch",
+          "x": 37,
+          "y": 28,
+          "width": 42,
+          "height": 22
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_3_2",
+      "kind": "HOUSE",
+      "stage": 3,
+      "rooms": 2,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 57,
+          "width": 58,
+          "height": 53
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_thatch",
+          "x": 12,
+          "y": 35,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_thatch",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "DormerWall",
+          "frame": "module_plaster",
+          "x": 37,
+          "y": 41,
+          "width": 30,
+          "height": 22
+        },
+        {
+          "name": "DormerRoof",
+          "frame": "module_thatch",
+          "x": 31,
+          "y": 28,
+          "width": 42,
+          "height": 22
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_3_3",
+      "kind": "HOUSE",
+      "stage": 3,
+      "rooms": 3,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 57,
+          "width": 58,
+          "height": 53
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_thatch",
+          "x": 12,
+          "y": 35,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_thatch",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "UpperRoom",
+          "frame": "module_plaster",
+          "x": 29,
+          "y": 32,
+          "width": 42,
+          "height": 28
+        },
+        {
+          "name": "UpperWindow",
+          "frame": "module_window",
+          "x": 41,
+          "y": 37,
+          "width": 15,
+          "height": 16
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_thatch",
+          "x": 20,
+          "y": 16,
+          "width": 61,
+          "height": 28
+        },
+        {
+          "name": "DormerWall",
+          "frame": "module_plaster",
+          "x": 37,
+          "y": 41,
+          "width": 30,
+          "height": 22
+        },
+        {
+          "name": "DormerRoof",
+          "frame": "module_thatch",
+          "x": 31,
+          "y": 28,
+          "width": 42,
+          "height": 22
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_4_1",
+      "kind": "HOUSE",
+      "stage": 4,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 26,
+          "y": 54,
+          "width": 76,
+          "height": 56
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 54.879999999999995,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_thatch",
+          "x": 18,
+          "y": 32,
+          "width": 92,
+          "height": 32
+        },
+        {
+          "name": "FrontBalcony",
+          "frame": "module_balcony",
+          "x": 22,
+          "y": 73,
+          "width": 84,
+          "height": 21
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_4_2",
+      "kind": "HOUSE",
+      "stage": 4,
+      "rooms": 2,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 54,
+          "width": 58,
+          "height": 56
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_thatch",
+          "x": 12,
+          "y": 32,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_thatch",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "FrontBalcony",
+          "frame": "module_balcony",
+          "x": 16,
+          "y": 73,
+          "width": 66,
+          "height": 21
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_4_3",
+      "kind": "HOUSE",
+      "stage": 4,
+      "rooms": 3,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 54,
+          "width": 58,
+          "height": 56
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_thatch",
+          "x": 12,
+          "y": 32,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_thatch",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "UpperRoom",
+          "frame": "module_plaster",
+          "x": 29,
+          "y": 32,
+          "width": 42,
+          "height": 28
+        },
+        {
+          "name": "UpperWindow",
+          "frame": "module_window",
+          "x": 41,
+          "y": 37,
+          "width": 15,
+          "height": 16
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_thatch",
+          "x": 20,
+          "y": 16,
+          "width": 61,
+          "height": 28
+        },
+        {
+          "name": "FrontBalcony",
+          "frame": "module_balcony",
+          "x": 16,
+          "y": 73,
+          "width": 66,
+          "height": 21
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_5_1",
+      "kind": "HOUSE",
+      "stage": 5,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 26,
+          "y": 51,
+          "width": 76,
+          "height": 59
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 54.879999999999995,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_tile",
+          "x": 18,
+          "y": 29,
+          "width": 92,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_5_2",
+      "kind": "HOUSE",
+      "stage": 5,
+      "rooms": 2,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 51,
+          "width": 58,
+          "height": 59
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_tile",
+          "x": 12,
+          "y": 29,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_tile",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_5_3",
+      "kind": "HOUSE",
+      "stage": 5,
+      "rooms": 3,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 51,
+          "width": 58,
+          "height": 59
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_tile",
+          "x": 12,
+          "y": 29,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_tile",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "UpperRoom",
+          "frame": "module_plaster",
+          "x": 29,
+          "y": 32,
+          "width": 42,
+          "height": 28
+        },
+        {
+          "name": "UpperWindow",
+          "frame": "module_window",
+          "x": 41,
+          "y": 37,
+          "width": 15,
+          "height": 16
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_tile",
+          "x": 20,
+          "y": 16,
+          "width": 61,
+          "height": 28
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_6_1",
+      "kind": "HOUSE",
+      "stage": 6,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 26,
+          "y": 49,
+          "width": 76,
+          "height": 61
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 54.879999999999995,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_tile",
+          "x": 18,
+          "y": 27,
+          "width": 92,
+          "height": 32
+        },
+        {
+          "name": "WidePorch",
+          "frame": "module_porch",
+          "x": 21,
+          "y": 82,
+          "width": 86,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_6_2",
+      "kind": "HOUSE",
+      "stage": 6,
+      "rooms": 2,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 49,
+          "width": 58,
+          "height": 61
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_tile",
+          "x": 12,
+          "y": 27,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_tile",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "WidePorch",
+          "frame": "module_porch",
+          "x": 15,
+          "y": 82,
+          "width": 68,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_6_3",
+      "kind": "HOUSE",
+      "stage": 6,
+      "rooms": 3,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 49,
+          "width": 58,
+          "height": 61
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_tile",
+          "x": 12,
+          "y": 27,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_tile",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "UpperRoom",
+          "frame": "module_plaster",
+          "x": 29,
+          "y": 32,
+          "width": 42,
+          "height": 28
+        },
+        {
+          "name": "UpperWindow",
+          "frame": "module_window",
+          "x": 41,
+          "y": 37,
+          "width": 15,
+          "height": 16
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_tile",
+          "x": 20,
+          "y": 16,
+          "width": 61,
+          "height": 28
+        },
+        {
+          "name": "WidePorch",
+          "frame": "module_porch",
+          "x": 15,
+          "y": 82,
+          "width": 68,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_7_1",
+      "kind": "HOUSE",
+      "stage": 7,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 26,
+          "y": 47,
+          "width": 76,
+          "height": 63
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 54.879999999999995,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_tile",
+          "x": 18,
+          "y": 25,
+          "width": 92,
+          "height": 32
+        },
+        {
+          "name": "DormerWall",
+          "frame": "module_plaster",
+          "x": 43,
+          "y": 31,
+          "width": 30,
+          "height": 22
+        },
+        {
+          "name": "DormerRoof",
+          "frame": "module_tile",
+          "x": 37,
+          "y": 18,
+          "width": 42,
+          "height": 22
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_7_2",
+      "kind": "HOUSE",
+      "stage": 7,
+      "rooms": 2,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 47,
+          "width": 58,
+          "height": 63
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_tile",
+          "x": 12,
+          "y": 25,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_tile",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "DormerWall",
+          "frame": "module_plaster",
+          "x": 37,
+          "y": 31,
+          "width": 30,
+          "height": 22
+        },
+        {
+          "name": "DormerRoof",
+          "frame": "module_tile",
+          "x": 31,
+          "y": 18,
+          "width": 42,
+          "height": 22
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_7_3",
+      "kind": "HOUSE",
+      "stage": 7,
+      "rooms": 3,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 47,
+          "width": 58,
+          "height": 63
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_tile",
+          "x": 12,
+          "y": 25,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_tile",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "UpperRoom",
+          "frame": "module_plaster",
+          "x": 29,
+          "y": 32,
+          "width": 42,
+          "height": 28
+        },
+        {
+          "name": "UpperWindow",
+          "frame": "module_window",
+          "x": 41,
+          "y": 37,
+          "width": 15,
+          "height": 16
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_tile",
+          "x": 20,
+          "y": 16,
+          "width": 61,
+          "height": 28
+        },
+        {
+          "name": "DormerWall",
+          "frame": "module_plaster",
+          "x": 37,
+          "y": 31,
+          "width": 30,
+          "height": 22
+        },
+        {
+          "name": "DormerRoof",
+          "frame": "module_tile",
+          "x": 31,
+          "y": 18,
+          "width": 42,
+          "height": 22
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_8_1",
+      "kind": "HOUSE",
+      "stage": 8,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 26,
+          "y": 45,
+          "width": 76,
+          "height": 65
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 54.879999999999995,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_tile",
+          "x": 18,
+          "y": 23,
+          "width": 92,
+          "height": 32
+        },
+        {
+          "name": "FrontBalcony",
+          "frame": "module_balcony",
+          "x": 22,
+          "y": 73,
+          "width": 84,
+          "height": 21
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_8_2",
+      "kind": "HOUSE",
+      "stage": 8,
+      "rooms": 2,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 45,
+          "width": 58,
+          "height": 65
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_tile",
+          "x": 12,
+          "y": 23,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_tile",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "FrontBalcony",
+          "frame": "module_balcony",
+          "x": 16,
+          "y": 73,
+          "width": 66,
+          "height": 21
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_8_3",
+      "kind": "HOUSE",
+      "stage": 8,
+      "rooms": 3,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_plaster",
+          "x": 20,
+          "y": 45,
+          "width": 58,
+          "height": 65
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_tile",
+          "x": 12,
+          "y": 23,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_plaster",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_tile",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "UpperRoom",
+          "frame": "module_plaster",
+          "x": 29,
+          "y": 32,
+          "width": 42,
+          "height": 28
+        },
+        {
+          "name": "UpperWindow",
+          "frame": "module_window",
+          "x": 41,
+          "y": 37,
+          "width": 15,
+          "height": 16
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_tile",
+          "x": 20,
+          "y": 16,
+          "width": 61,
+          "height": 28
+        },
+        {
+          "name": "FrontBalcony",
+          "frame": "module_balcony",
+          "x": 16,
+          "y": 73,
+          "width": 66,
+          "height": 21
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_9_1",
+      "kind": "HOUSE",
+      "stage": 9,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_masonry",
+          "x": 26,
+          "y": 43,
+          "width": 76,
+          "height": 67
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 54.879999999999995,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_pagoda",
+          "x": 18,
+          "y": 21,
+          "width": 92,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_9_2",
+      "kind": "HOUSE",
+      "stage": 9,
+      "rooms": 2,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 43,
+          "width": 58,
+          "height": 67
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_pagoda",
+          "x": 12,
+          "y": 21,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_masonry",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_pagoda",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_9_3",
+      "kind": "HOUSE",
+      "stage": 9,
+      "rooms": 3,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 43,
+          "width": 58,
+          "height": 67
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_pagoda",
+          "x": 12,
+          "y": 21,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_masonry",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_pagoda",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "UpperRoom",
+          "frame": "module_masonry",
+          "x": 29,
+          "y": 32,
+          "width": 42,
+          "height": 28
+        },
+        {
+          "name": "UpperWindow",
+          "frame": "module_window",
+          "x": 41,
+          "y": 37,
+          "width": 15,
+          "height": 16
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_pagoda",
+          "x": 20,
+          "y": 16,
+          "width": 61,
+          "height": 28
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_10_1",
+      "kind": "HOUSE",
+      "stage": 10,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_masonry",
+          "x": 26,
+          "y": 43,
+          "width": 76,
+          "height": 67
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 54.879999999999995,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_pagoda",
+          "x": 18,
+          "y": 21,
+          "width": 92,
+          "height": 32
+        },
+        {
+          "name": "WidePorch",
+          "frame": "module_porch",
+          "x": 21,
+          "y": 82,
+          "width": 86,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_10_2",
+      "kind": "HOUSE",
+      "stage": 10,
+      "rooms": 2,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 43,
+          "width": 58,
+          "height": 67
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_pagoda",
+          "x": 12,
+          "y": 21,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_masonry",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_pagoda",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "WidePorch",
+          "frame": "module_porch",
+          "x": 15,
+          "y": 82,
+          "width": 68,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_10_3",
+      "kind": "HOUSE",
+      "stage": 10,
+      "rooms": 3,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 43,
+          "width": 58,
+          "height": 67
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_pagoda",
+          "x": 12,
+          "y": 21,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_masonry",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_pagoda",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "UpperRoom",
+          "frame": "module_masonry",
+          "x": 29,
+          "y": 32,
+          "width": 42,
+          "height": 28
+        },
+        {
+          "name": "UpperWindow",
+          "frame": "module_window",
+          "x": 41,
+          "y": 37,
+          "width": 15,
+          "height": 16
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_pagoda",
+          "x": 20,
+          "y": 16,
+          "width": 61,
+          "height": 28
+        },
+        {
+          "name": "WidePorch",
+          "frame": "module_porch",
+          "x": 15,
+          "y": 82,
+          "width": 68,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_11_1",
+      "kind": "HOUSE",
+      "stage": 11,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_masonry",
+          "x": 26,
+          "y": 43,
+          "width": 76,
+          "height": 67
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 54.879999999999995,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_slate",
+          "x": 18,
+          "y": 21,
+          "width": 92,
+          "height": 32
+        },
+        {
+          "name": "DormerWall",
+          "frame": "module_masonry",
+          "x": 43,
+          "y": 27,
+          "width": 30,
+          "height": 22
+        },
+        {
+          "name": "DormerRoof",
+          "frame": "module_pagoda",
+          "x": 37,
+          "y": 14,
+          "width": 42,
+          "height": 22
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_11_2",
+      "kind": "HOUSE",
+      "stage": 11,
+      "rooms": 2,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 43,
+          "width": 58,
+          "height": 67
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_slate",
+          "x": 12,
+          "y": 21,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_masonry",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_pagoda",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "DormerWall",
+          "frame": "module_masonry",
+          "x": 37,
+          "y": 27,
+          "width": 30,
+          "height": 22
+        },
+        {
+          "name": "DormerRoof",
+          "frame": "module_pagoda",
+          "x": 31,
+          "y": 14,
+          "width": 42,
+          "height": 22
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_11_3",
+      "kind": "HOUSE",
+      "stage": 11,
+      "rooms": 3,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 43,
+          "width": 58,
+          "height": 67
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_slate",
+          "x": 12,
+          "y": 21,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_masonry",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_pagoda",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "UpperRoom",
+          "frame": "module_masonry",
+          "x": 29,
+          "y": 32,
+          "width": 42,
+          "height": 28
+        },
+        {
+          "name": "UpperWindow",
+          "frame": "module_window",
+          "x": 41,
+          "y": 37,
+          "width": 15,
+          "height": 16
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_pagoda",
+          "x": 20,
+          "y": 16,
+          "width": 61,
+          "height": 28
+        },
+        {
+          "name": "DormerWall",
+          "frame": "module_masonry",
+          "x": 37,
+          "y": 27,
+          "width": 30,
+          "height": 22
+        },
+        {
+          "name": "DormerRoof",
+          "frame": "module_pagoda",
+          "x": 31,
+          "y": 14,
+          "width": 42,
+          "height": 22
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_12_1",
+      "kind": "HOUSE",
+      "stage": 12,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_masonry",
+          "x": 26,
+          "y": 43,
+          "width": 76,
+          "height": 67
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 54.879999999999995,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_pagoda",
+          "x": 18,
+          "y": 21,
+          "width": 92,
+          "height": 32
+        },
+        {
+          "name": "FrontBalcony",
+          "frame": "module_balcony",
+          "x": 22,
+          "y": 73,
+          "width": 84,
+          "height": 21
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_12_2",
+      "kind": "HOUSE",
+      "stage": 12,
+      "rooms": 2,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 43,
+          "width": 58,
+          "height": 67
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_pagoda",
+          "x": 12,
+          "y": 21,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_masonry",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_pagoda",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "FrontBalcony",
+          "frame": "module_balcony",
+          "x": 16,
+          "y": 73,
+          "width": 66,
+          "height": 21
+        }
+      ]
+    },
+    {
+      "id": "HOUSE_12_3",
+      "kind": "HOUSE",
+      "stage": 12,
+      "rooms": 3,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "MainWall",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 43,
+          "width": 58,
+          "height": 67
+        },
+        {
+          "name": "MainDoor",
+          "frame": "module_door",
+          "x": 42.04,
+          "y": 82,
+          "width": 24,
+          "height": 31
+        },
+        {
+          "name": "MainWindow",
+          "frame": "module_window",
+          "x": 27,
+          "y": 75,
+          "width": 16,
+          "height": 17
+        },
+        {
+          "name": "MainRoof",
+          "frame": "module_pagoda",
+          "x": 12,
+          "y": 21,
+          "width": 74,
+          "height": 32
+        },
+        {
+          "name": "WingWall",
+          "frame": "module_masonry",
+          "x": 78,
+          "y": 77,
+          "width": 32,
+          "height": 34
+        },
+        {
+          "name": "WingDoor",
+          "frame": "module_door",
+          "x": 85,
+          "y": 86,
+          "width": 17,
+          "height": 26
+        },
+        {
+          "name": "WingRoof",
+          "frame": "module_pagoda",
+          "x": 73,
+          "y": 60,
+          "width": 42,
+          "height": 26
+        },
+        {
+          "name": "UpperRoom",
+          "frame": "module_masonry",
+          "x": 29,
+          "y": 32,
+          "width": 42,
+          "height": 28
+        },
+        {
+          "name": "UpperWindow",
+          "frame": "module_window",
+          "x": 41,
+          "y": 37,
+          "width": 15,
+          "height": 16
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_pagoda",
+          "x": 20,
+          "y": 16,
+          "width": 61,
+          "height": 28
+        },
+        {
+          "name": "FrontBalcony",
+          "frame": "module_balcony",
+          "x": 16,
+          "y": 73,
+          "width": 66,
+          "height": 21
+        }
+      ]
+    },
+    {
+      "id": "FARM_1_1",
+      "kind": "FARM",
+      "stage": 1,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Plot_0_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 24,
+          "width": 53,
+          "height": 38
+        },
+        {
+          "name": "Plot_0_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 24,
+          "width": 53,
+          "height": 38
+        },
+        {
+          "name": "Plot_1_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 58,
+          "width": 53,
+          "height": 38
+        },
+        {
+          "name": "Plot_1_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 58,
+          "width": 53,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "id": "FARM_2_1",
+      "kind": "FARM",
+      "stage": 2,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Plot_0_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 38
+        },
+        {
+          "name": "Plot_0_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 38
+        },
+        {
+          "name": "Plot_0_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 38
+        },
+        {
+          "name": "Plot_1_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 58,
+          "width": 35.333333333333336,
+          "height": 38
+        },
+        {
+          "name": "Plot_1_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 58,
+          "width": 35.333333333333336,
+          "height": 38
+        },
+        {
+          "name": "Plot_1_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 58,
+          "width": 35.333333333333336,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "id": "FARM_3_1",
+      "kind": "FARM",
+      "stage": 3,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Plot_0_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 24,
+          "width": 53,
+          "height": 38
+        },
+        {
+          "name": "Plot_0_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 24,
+          "width": 53,
+          "height": 38
+        },
+        {
+          "name": "Plot_1_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 58,
+          "width": 53,
+          "height": 38
+        },
+        {
+          "name": "Plot_1_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 58,
+          "width": 53,
+          "height": 38
+        },
+        {
+          "name": "Irrigation",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 105,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "CrossChannel",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 52,
+          "width": 104,
+          "height": 10
+        }
+      ]
+    },
+    {
+      "id": "FARM_4_1",
+      "kind": "FARM",
+      "stage": 4,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Plot_0_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 38
+        },
+        {
+          "name": "Plot_0_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 38
+        },
+        {
+          "name": "Plot_0_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 38
+        },
+        {
+          "name": "Plot_1_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 58,
+          "width": 35.333333333333336,
+          "height": 38
+        },
+        {
+          "name": "Plot_1_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 58,
+          "width": 35.333333333333336,
+          "height": 38
+        },
+        {
+          "name": "Plot_1_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 58,
+          "width": 35.333333333333336,
+          "height": 38
+        },
+        {
+          "name": "Irrigation",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 105,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "CrossChannel",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 52,
+          "width": 104,
+          "height": 10
+        }
+      ]
+    },
+    {
+      "id": "FARM_5_1",
+      "kind": "FARM",
+      "stage": 5,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Plot_0_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 24,
+          "width": 53,
+          "height": 29
+        },
+        {
+          "name": "Plot_0_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 24,
+          "width": 53,
+          "height": 29
+        },
+        {
+          "name": "Plot_1_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 49,
+          "width": 53,
+          "height": 29
+        },
+        {
+          "name": "Plot_1_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 49,
+          "width": 53,
+          "height": 29
+        },
+        {
+          "name": "Plot_2_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 74,
+          "width": 53,
+          "height": 29
+        },
+        {
+          "name": "Plot_2_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 74,
+          "width": 53,
+          "height": 29
+        },
+        {
+          "name": "Irrigation",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 105,
+          "width": 104,
+          "height": 12
+        }
+      ]
+    },
+    {
+      "id": "FARM_6_1",
+      "kind": "FARM",
+      "stage": 6,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Plot_0_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_0_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_0_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_1_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 49,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_1_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 49,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_1_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 49,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_2_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 74,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_2_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 74,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_2_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 74,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Irrigation",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 105,
+          "width": 104,
+          "height": 12
+        }
+      ]
+    },
+    {
+      "id": "FARM_7_1",
+      "kind": "FARM",
+      "stage": 7,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Plot_0_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 24,
+          "width": 53,
+          "height": 29
+        },
+        {
+          "name": "Plot_0_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 24,
+          "width": 53,
+          "height": 29
+        },
+        {
+          "name": "Plot_1_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 49,
+          "width": 53,
+          "height": 29
+        },
+        {
+          "name": "Plot_1_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 49,
+          "width": 53,
+          "height": 29
+        },
+        {
+          "name": "Plot_2_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 74,
+          "width": 53,
+          "height": 29
+        },
+        {
+          "name": "Plot_2_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 74,
+          "width": 53,
+          "height": 29
+        },
+        {
+          "name": "Irrigation",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 105,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "CrossChannel",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 52,
+          "width": 104,
+          "height": 10
+        }
+      ]
+    },
+    {
+      "id": "FARM_8_1",
+      "kind": "FARM",
+      "stage": 8,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Plot_0_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_0_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_0_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_1_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 49,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_1_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 49,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_1_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 49,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_2_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 74,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_2_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 74,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Plot_2_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 74,
+          "width": 35.333333333333336,
+          "height": 29
+        },
+        {
+          "name": "Irrigation",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 105,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "CrossChannel",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 52,
+          "width": 104,
+          "height": 10
+        }
+      ]
+    },
+    {
+      "id": "FARM_9_1",
+      "kind": "FARM",
+      "stage": 9,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Plot_0_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 24,
+          "width": 53,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_0_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 24,
+          "width": 53,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_1_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 51.33333333333333,
+          "width": 53,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_1_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 51.33333333333333,
+          "width": 53,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_2_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 78.66666666666666,
+          "width": 53,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_2_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 78.66666666666666,
+          "width": 53,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Irrigation",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 105,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Wheel",
+          "frame": "module_wheel",
+          "x": 10,
+          "y": 71,
+          "width": 30,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "id": "FARM_10_1",
+      "kind": "FARM",
+      "stage": 10,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Plot_0_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_0_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_0_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_1_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 51.33333333333333,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_1_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 51.33333333333333,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_1_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 51.33333333333333,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_2_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 78.66666666666666,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_2_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 78.66666666666666,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_2_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 78.66666666666666,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Irrigation",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 105,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Wheel",
+          "frame": "module_wheel",
+          "x": 10,
+          "y": 71,
+          "width": 30,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "id": "FARM_11_1",
+      "kind": "FARM",
+      "stage": 11,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Plot_0_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 24,
+          "width": 53,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_0_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 24,
+          "width": 53,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_1_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 51.33333333333333,
+          "width": 53,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_1_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 51.33333333333333,
+          "width": 53,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_2_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 78.66666666666666,
+          "width": 53,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_2_1",
+          "frame": "module_field",
+          "x": 64,
+          "y": 78.66666666666666,
+          "width": 53,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Irrigation",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 105,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "CrossChannel",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 52,
+          "width": 104,
+          "height": 10
+        },
+        {
+          "name": "Wheel",
+          "frame": "module_wheel",
+          "x": 80,
+          "y": 71,
+          "width": 30,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "id": "FARM_12_1",
+      "kind": "FARM",
+      "stage": 12,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Plot_0_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_0_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_0_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 24,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_1_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 51.33333333333333,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_1_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 51.33333333333333,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_1_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 51.33333333333333,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_2_0",
+          "frame": "module_field",
+          "x": 11,
+          "y": 78.66666666666666,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_2_1",
+          "frame": "module_field",
+          "x": 46.333333333333336,
+          "y": 78.66666666666666,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Plot_2_2",
+          "frame": "module_field",
+          "x": 81.66666666666667,
+          "y": 78.66666666666666,
+          "width": 35.333333333333336,
+          "height": 31.333333333333332
+        },
+        {
+          "name": "Irrigation",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 105,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "CrossChannel",
+          "frame": "module_trough",
+          "x": 12,
+          "y": 52,
+          "width": 104,
+          "height": 10
+        },
+        {
+          "name": "Wheel",
+          "frame": "module_wheel",
+          "x": 10,
+          "y": 71,
+          "width": 30,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "id": "LOGGING_1_1",
+      "kind": "LOGGING",
+      "stage": 1,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "WorkshopWall",
+          "frame": "module_plaster",
+          "x": 25,
+          "y": 60,
+          "width": 78,
+          "height": 50
+        },
+        {
+          "name": "Door",
+          "frame": "module_woodgate",
+          "x": 39,
+          "y": 75,
+          "width": 42,
+          "height": 39
+        },
+        {
+          "name": "WorkshopRoof",
+          "frame": "module_thatch",
+          "x": 17,
+          "y": 40,
+          "width": 94,
+          "height": 31
+        },
+        {
+          "name": "Timber",
+          "frame": "module_logs",
+          "x": 68,
+          "y": 94,
+          "width": 42,
+          "height": 25
+        }
+      ]
+    },
+    {
+      "id": "LOGGING_2_1",
+      "kind": "LOGGING",
+      "stage": 2,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "WorkshopWall",
+          "frame": "module_plaster",
+          "x": 25,
+          "y": 58,
+          "width": 78,
+          "height": 52
+        },
+        {
+          "name": "Door",
+          "frame": "module_woodgate",
+          "x": 39,
+          "y": 75,
+          "width": 42,
+          "height": 39
+        },
+        {
+          "name": "WorkshopRoof",
+          "frame": "module_thatch",
+          "x": 17,
+          "y": 38,
+          "width": 94,
+          "height": 31
+        },
+        {
+          "name": "Timber",
+          "frame": "module_logs",
+          "x": 68,
+          "y": 94,
+          "width": 42,
+          "height": 25
+        },
+        {
+          "name": "LoadingPorch",
+          "frame": "module_porch",
+          "x": 18,
+          "y": 79,
+          "width": 58,
+          "height": 33
+        }
+      ]
+    },
+    {
+      "id": "LOGGING_3_1",
+      "kind": "LOGGING",
+      "stage": 3,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "WorkshopWall",
+          "frame": "module_plaster",
+          "x": 25,
+          "y": 56,
+          "width": 78,
+          "height": 54
+        },
+        {
+          "name": "Door",
+          "frame": "module_woodgate",
+          "x": 39,
+          "y": 75,
+          "width": 42,
+          "height": 39
+        },
+        {
+          "name": "WorkshopRoof",
+          "frame": "module_thatch",
+          "x": 17,
+          "y": 36,
+          "width": 94,
+          "height": 31
+        },
+        {
+          "name": "Timber",
+          "frame": "module_logs",
+          "x": 68,
+          "y": 94,
+          "width": 42,
+          "height": 25
+        },
+        {
+          "name": "LoftWall",
+          "frame": "module_plaster",
+          "x": 38,
+          "y": 39,
+          "width": 48,
+          "height": 24
+        },
+        {
+          "name": "LoftRoof",
+          "frame": "module_thatch",
+          "x": 30,
+          "y": 26,
+          "width": 64,
+          "height": 24
+        }
+      ]
+    },
+    {
+      "id": "LOGGING_4_1",
+      "kind": "LOGGING",
+      "stage": 4,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "WorkshopWall",
+          "frame": "module_plaster",
+          "x": 25,
+          "y": 54,
+          "width": 78,
+          "height": 56
+        },
+        {
+          "name": "Door",
+          "frame": "module_woodgate",
+          "x": 39,
+          "y": 75,
+          "width": 42,
+          "height": 39
+        },
+        {
+          "name": "WorkshopRoof",
+          "frame": "module_thatch",
+          "x": 17,
+          "y": 34,
+          "width": 94,
+          "height": 31
+        },
+        {
+          "name": "Timber",
+          "frame": "module_logs",
+          "x": 68,
+          "y": 94,
+          "width": 42,
+          "height": 25
+        },
+        {
+          "name": "WorkDeck",
+          "frame": "module_floor",
+          "x": 16,
+          "y": 75,
+          "width": 96,
+          "height": 15
+        }
+      ]
+    },
+    {
+      "id": "LOGGING_5_1",
+      "kind": "LOGGING",
+      "stage": 5,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "WorkshopWall",
+          "frame": "module_plaster",
+          "x": 25,
+          "y": 50,
+          "width": 78,
+          "height": 60
+        },
+        {
+          "name": "Door",
+          "frame": "module_woodgate",
+          "x": 39,
+          "y": 75,
+          "width": 42,
+          "height": 39
+        },
+        {
+          "name": "WorkshopRoof",
+          "frame": "module_tile",
+          "x": 17,
+          "y": 30,
+          "width": 94,
+          "height": 31
+        },
+        {
+          "name": "Timber",
+          "frame": "module_logs",
+          "x": 68,
+          "y": 94,
+          "width": 42,
+          "height": 25
+        },
+        {
+          "name": "Saw",
+          "frame": "module_saw",
+          "x": 22,
+          "y": 85,
+          "width": 40,
+          "height": 35
+        }
+      ]
+    },
+    {
+      "id": "LOGGING_6_1",
+      "kind": "LOGGING",
+      "stage": 6,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "WorkshopWall",
+          "frame": "module_plaster",
+          "x": 25,
+          "y": 48,
+          "width": 78,
+          "height": 62
+        },
+        {
+          "name": "Door",
+          "frame": "module_woodgate",
+          "x": 39,
+          "y": 75,
+          "width": 42,
+          "height": 39
+        },
+        {
+          "name": "WorkshopRoof",
+          "frame": "module_tile",
+          "x": 17,
+          "y": 28,
+          "width": 94,
+          "height": 31
+        },
+        {
+          "name": "Timber",
+          "frame": "module_logs",
+          "x": 68,
+          "y": 94,
+          "width": 42,
+          "height": 25
+        },
+        {
+          "name": "LoadingPorch",
+          "frame": "module_porch",
+          "x": 18,
+          "y": 79,
+          "width": 58,
+          "height": 33
+        },
+        {
+          "name": "Saw",
+          "frame": "module_saw",
+          "x": 22,
+          "y": 85,
+          "width": 40,
+          "height": 35
+        }
+      ]
+    },
+    {
+      "id": "LOGGING_7_1",
+      "kind": "LOGGING",
+      "stage": 7,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "WorkshopWall",
+          "frame": "module_plaster",
+          "x": 25,
+          "y": 46,
+          "width": 78,
+          "height": 64
+        },
+        {
+          "name": "Door",
+          "frame": "module_woodgate",
+          "x": 39,
+          "y": 75,
+          "width": 42,
+          "height": 39
+        },
+        {
+          "name": "WorkshopRoof",
+          "frame": "module_tile",
+          "x": 17,
+          "y": 26,
+          "width": 94,
+          "height": 31
+        },
+        {
+          "name": "Timber",
+          "frame": "module_logs",
+          "x": 68,
+          "y": 94,
+          "width": 42,
+          "height": 25
+        },
+        {
+          "name": "LoftWall",
+          "frame": "module_plaster",
+          "x": 38,
+          "y": 29,
+          "width": 48,
+          "height": 24
+        },
+        {
+          "name": "LoftRoof",
+          "frame": "module_tile",
+          "x": 30,
+          "y": 16,
+          "width": 64,
+          "height": 24
+        },
+        {
+          "name": "Saw",
+          "frame": "module_saw",
+          "x": 22,
+          "y": 85,
+          "width": 40,
+          "height": 35
+        }
+      ]
+    },
+    {
+      "id": "LOGGING_8_1",
+      "kind": "LOGGING",
+      "stage": 8,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "WorkshopWall",
+          "frame": "module_plaster",
+          "x": 25,
+          "y": 44,
+          "width": 78,
+          "height": 66
+        },
+        {
+          "name": "Door",
+          "frame": "module_woodgate",
+          "x": 39,
+          "y": 75,
+          "width": 42,
+          "height": 39
+        },
+        {
+          "name": "WorkshopRoof",
+          "frame": "module_tile",
+          "x": 17,
+          "y": 24,
+          "width": 94,
+          "height": 31
+        },
+        {
+          "name": "Timber",
+          "frame": "module_logs",
+          "x": 68,
+          "y": 94,
+          "width": 42,
+          "height": 25
+        },
+        {
+          "name": "WorkDeck",
+          "frame": "module_floor",
+          "x": 16,
+          "y": 75,
+          "width": 96,
+          "height": 15
+        },
+        {
+          "name": "Saw",
+          "frame": "module_saw",
+          "x": 22,
+          "y": 85,
+          "width": 40,
+          "height": 35
+        }
+      ]
+    },
+    {
+      "id": "LOGGING_9_1",
+      "kind": "LOGGING",
+      "stage": 9,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "WorkshopWall",
+          "frame": "module_masonry",
+          "x": 25,
+          "y": 40,
+          "width": 78,
+          "height": 70
+        },
+        {
+          "name": "Door",
+          "frame": "module_woodgate",
+          "x": 39,
+          "y": 75,
+          "width": 42,
+          "height": 39
+        },
+        {
+          "name": "WorkshopRoof",
+          "frame": "module_pagoda",
+          "x": 17,
+          "y": 20,
+          "width": 94,
+          "height": 31
+        },
+        {
+          "name": "Timber",
+          "frame": "module_logs",
+          "x": 68,
+          "y": 94,
+          "width": 42,
+          "height": 25
+        },
+        {
+          "name": "Saw",
+          "frame": "module_saw",
+          "x": 22,
+          "y": 85,
+          "width": 40,
+          "height": 35
+        },
+        {
+          "name": "Wheel",
+          "frame": "module_wheel",
+          "x": 18,
+          "y": 65,
+          "width": 34,
+          "height": 34
+        }
+      ]
+    },
+    {
+      "id": "LOGGING_10_1",
+      "kind": "LOGGING",
+      "stage": 10,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "WorkshopWall",
+          "frame": "module_masonry",
+          "x": 25,
+          "y": 40,
+          "width": 78,
+          "height": 70
+        },
+        {
+          "name": "Door",
+          "frame": "module_woodgate",
+          "x": 39,
+          "y": 75,
+          "width": 42,
+          "height": 39
+        },
+        {
+          "name": "WorkshopRoof",
+          "frame": "module_pagoda",
+          "x": 17,
+          "y": 20,
+          "width": 94,
+          "height": 31
+        },
+        {
+          "name": "Timber",
+          "frame": "module_logs",
+          "x": 68,
+          "y": 94,
+          "width": 42,
+          "height": 25
+        },
+        {
+          "name": "LoadingPorch",
+          "frame": "module_porch",
+          "x": 18,
+          "y": 79,
+          "width": 58,
+          "height": 33
+        },
+        {
+          "name": "Saw",
+          "frame": "module_saw",
+          "x": 22,
+          "y": 85,
+          "width": 40,
+          "height": 35
+        },
+        {
+          "name": "Wheel",
+          "frame": "module_wheel",
+          "x": 18,
+          "y": 65,
+          "width": 34,
+          "height": 34
+        }
+      ]
+    },
+    {
+      "id": "LOGGING_11_1",
+      "kind": "LOGGING",
+      "stage": 11,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "WorkshopWall",
+          "frame": "module_masonry",
+          "x": 25,
+          "y": 40,
+          "width": 78,
+          "height": 70
+        },
+        {
+          "name": "Door",
+          "frame": "module_woodgate",
+          "x": 39,
+          "y": 75,
+          "width": 42,
+          "height": 39
+        },
+        {
+          "name": "WorkshopRoof",
+          "frame": "module_pagoda",
+          "x": 17,
+          "y": 20,
+          "width": 94,
+          "height": 31
+        },
+        {
+          "name": "Timber",
+          "frame": "module_logs",
+          "x": 68,
+          "y": 94,
+          "width": 42,
+          "height": 25
+        },
+        {
+          "name": "LoftWall",
+          "frame": "module_masonry",
+          "x": 38,
+          "y": 23,
+          "width": 48,
+          "height": 24
+        },
+        {
+          "name": "LoftRoof",
+          "frame": "module_pagoda",
+          "x": 30,
+          "y": 10,
+          "width": 64,
+          "height": 24
+        },
+        {
+          "name": "Saw",
+          "frame": "module_saw",
+          "x": 22,
+          "y": 85,
+          "width": 40,
+          "height": 35
+        },
+        {
+          "name": "Wheel",
+          "frame": "module_wheel",
+          "x": 74,
+          "y": 65,
+          "width": 34,
+          "height": 34
+        }
+      ]
+    },
+    {
+      "id": "LOGGING_12_1",
+      "kind": "LOGGING",
+      "stage": 12,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14
+        },
+        {
+          "name": "WorkshopWall",
+          "frame": "module_masonry",
+          "x": 25,
+          "y": 40,
+          "width": 78,
+          "height": 70
+        },
+        {
+          "name": "Door",
+          "frame": "module_woodgate",
+          "x": 39,
+          "y": 75,
+          "width": 42,
+          "height": 39
+        },
+        {
+          "name": "WorkshopRoof",
+          "frame": "module_pagoda",
+          "x": 17,
+          "y": 20,
+          "width": 94,
+          "height": 31
+        },
+        {
+          "name": "Timber",
+          "frame": "module_logs",
+          "x": 68,
+          "y": 94,
+          "width": 42,
+          "height": 25
+        },
+        {
+          "name": "WorkDeck",
+          "frame": "module_floor",
+          "x": 16,
+          "y": 75,
+          "width": 96,
+          "height": 15
+        },
+        {
+          "name": "Saw",
+          "frame": "module_saw",
+          "x": 22,
+          "y": 85,
+          "width": 40,
+          "height": 35
+        },
+        {
+          "name": "Wheel",
+          "frame": "module_wheel",
+          "x": 18,
+          "y": 65,
+          "width": 34,
+          "height": 34
+        }
+      ]
+    },
+    {
+      "id": "GATE_1_1",
+      "kind": "GATE",
+      "stage": 1,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 12,
+          "y": 108,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Arch",
+          "frame": "module_woodgate",
+          "x": 23,
+          "y": 58,
+          "width": 82,
+          "height": 56
+        },
+        {
+          "name": "GateDoors",
+          "frame": "module_door",
+          "x": 48,
+          "y": 76,
+          "width": 32,
+          "height": 39
+        },
+        {
+          "name": "Roof",
+          "frame": "module_thatch",
+          "x": 14,
+          "y": 35,
+          "width": 100,
+          "height": 34
+        }
+      ]
+    },
+    {
+      "id": "GATE_2_1",
+      "kind": "GATE",
+      "stage": 2,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 12,
+          "y": 108,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Arch",
+          "frame": "module_woodgate",
+          "x": 23,
+          "y": 58,
+          "width": 82,
+          "height": 56
+        },
+        {
+          "name": "GateDoors",
+          "frame": "module_door",
+          "x": 48,
+          "y": 76,
+          "width": 32,
+          "height": 39
+        },
+        {
+          "name": "Roof",
+          "frame": "module_thatch",
+          "x": 14,
+          "y": 35,
+          "width": 100,
+          "height": 34
+        },
+        {
+          "name": "LeftPillar",
+          "frame": "module_plaster",
+          "x": 14,
+          "y": 69,
+          "width": 21,
+          "height": 44
+        },
+        {
+          "name": "RightPillar",
+          "frame": "module_plaster",
+          "x": 93,
+          "y": 69,
+          "width": 21,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "id": "GATE_3_1",
+      "kind": "GATE",
+      "stage": 3,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 12,
+          "y": 108,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Arch",
+          "frame": "module_woodgate",
+          "x": 23,
+          "y": 58,
+          "width": 82,
+          "height": 56
+        },
+        {
+          "name": "GateDoors",
+          "frame": "module_door",
+          "x": 48,
+          "y": 76,
+          "width": 32,
+          "height": 39
+        },
+        {
+          "name": "Roof",
+          "frame": "module_thatch",
+          "x": 14,
+          "y": 35,
+          "width": 100,
+          "height": 34
+        },
+        {
+          "name": "UpperWall",
+          "frame": "module_plaster",
+          "x": 35,
+          "y": 49,
+          "width": 58,
+          "height": 22
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_thatch",
+          "x": 28,
+          "y": 30,
+          "width": 72,
+          "height": 29
+        }
+      ]
+    },
+    {
+      "id": "GATE_4_1",
+      "kind": "GATE",
+      "stage": 4,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 12,
+          "y": 108,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Arch",
+          "frame": "module_woodgate",
+          "x": 23,
+          "y": 58,
+          "width": 82,
+          "height": 56
+        },
+        {
+          "name": "GateDoors",
+          "frame": "module_door",
+          "x": 48,
+          "y": 76,
+          "width": 32,
+          "height": 39
+        },
+        {
+          "name": "Roof",
+          "frame": "module_thatch",
+          "x": 14,
+          "y": 35,
+          "width": 100,
+          "height": 34
+        },
+        {
+          "name": "Battlement",
+          "frame": "module_battlement",
+          "x": 16,
+          "y": 54,
+          "width": 96,
+          "height": 25
+        }
+      ]
+    },
+    {
+      "id": "GATE_5_1",
+      "kind": "GATE",
+      "stage": 5,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 12,
+          "y": 108,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Arch",
+          "frame": "module_stonegate",
+          "x": 23,
+          "y": 58,
+          "width": 82,
+          "height": 56
+        },
+        {
+          "name": "GateDoors",
+          "frame": "module_door",
+          "x": 48,
+          "y": 76,
+          "width": 32,
+          "height": 39
+        },
+        {
+          "name": "Roof",
+          "frame": "module_tile",
+          "x": 14,
+          "y": 35,
+          "width": 100,
+          "height": 34
+        }
+      ]
+    },
+    {
+      "id": "GATE_6_1",
+      "kind": "GATE",
+      "stage": 6,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 12,
+          "y": 108,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Arch",
+          "frame": "module_stonegate",
+          "x": 23,
+          "y": 58,
+          "width": 82,
+          "height": 56
+        },
+        {
+          "name": "GateDoors",
+          "frame": "module_door",
+          "x": 48,
+          "y": 76,
+          "width": 32,
+          "height": 39
+        },
+        {
+          "name": "Roof",
+          "frame": "module_tile",
+          "x": 14,
+          "y": 35,
+          "width": 100,
+          "height": 34
+        },
+        {
+          "name": "LeftPillar",
+          "frame": "module_plaster",
+          "x": 14,
+          "y": 69,
+          "width": 21,
+          "height": 44
+        },
+        {
+          "name": "RightPillar",
+          "frame": "module_plaster",
+          "x": 93,
+          "y": 69,
+          "width": 21,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "id": "GATE_7_1",
+      "kind": "GATE",
+      "stage": 7,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 12,
+          "y": 108,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Arch",
+          "frame": "module_stonegate",
+          "x": 23,
+          "y": 58,
+          "width": 82,
+          "height": 56
+        },
+        {
+          "name": "GateDoors",
+          "frame": "module_door",
+          "x": 48,
+          "y": 76,
+          "width": 32,
+          "height": 39
+        },
+        {
+          "name": "Roof",
+          "frame": "module_tile",
+          "x": 14,
+          "y": 35,
+          "width": 100,
+          "height": 34
+        },
+        {
+          "name": "UpperWall",
+          "frame": "module_plaster",
+          "x": 35,
+          "y": 49,
+          "width": 58,
+          "height": 22
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_tile",
+          "x": 28,
+          "y": 30,
+          "width": 72,
+          "height": 29
+        }
+      ]
+    },
+    {
+      "id": "GATE_8_1",
+      "kind": "GATE",
+      "stage": 8,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 12,
+          "y": 108,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Arch",
+          "frame": "module_stonegate",
+          "x": 23,
+          "y": 58,
+          "width": 82,
+          "height": 56
+        },
+        {
+          "name": "GateDoors",
+          "frame": "module_door",
+          "x": 48,
+          "y": 76,
+          "width": 32,
+          "height": 39
+        },
+        {
+          "name": "Roof",
+          "frame": "module_tile",
+          "x": 14,
+          "y": 35,
+          "width": 100,
+          "height": 34
+        },
+        {
+          "name": "Battlement",
+          "frame": "module_battlement",
+          "x": 16,
+          "y": 54,
+          "width": 96,
+          "height": 25
+        }
+      ]
+    },
+    {
+      "id": "GATE_9_1",
+      "kind": "GATE",
+      "stage": 9,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 12,
+          "y": 108,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Arch",
+          "frame": "module_stonegate",
+          "x": 23,
+          "y": 58,
+          "width": 82,
+          "height": 56
+        },
+        {
+          "name": "GateDoors",
+          "frame": "module_door",
+          "x": 48,
+          "y": 76,
+          "width": 32,
+          "height": 39
+        },
+        {
+          "name": "Roof",
+          "frame": "module_pagoda",
+          "x": 14,
+          "y": 35,
+          "width": 100,
+          "height": 34
+        },
+        {
+          "name": "GuardLeft",
+          "frame": "module_masonry",
+          "x": 12,
+          "y": 74,
+          "width": 22,
+          "height": 40
+        },
+        {
+          "name": "GuardRight",
+          "frame": "module_masonry",
+          "x": 94,
+          "y": 74,
+          "width": 22,
+          "height": 40
+        }
+      ]
+    },
+    {
+      "id": "GATE_10_1",
+      "kind": "GATE",
+      "stage": 10,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 12,
+          "y": 108,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Arch",
+          "frame": "module_stonegate",
+          "x": 23,
+          "y": 58,
+          "width": 82,
+          "height": 56
+        },
+        {
+          "name": "GateDoors",
+          "frame": "module_door",
+          "x": 48,
+          "y": 76,
+          "width": 32,
+          "height": 39
+        },
+        {
+          "name": "Roof",
+          "frame": "module_pagoda",
+          "x": 14,
+          "y": 35,
+          "width": 100,
+          "height": 34
+        },
+        {
+          "name": "LeftPillar",
+          "frame": "module_masonry",
+          "x": 14,
+          "y": 69,
+          "width": 21,
+          "height": 44
+        },
+        {
+          "name": "RightPillar",
+          "frame": "module_masonry",
+          "x": 93,
+          "y": 69,
+          "width": 21,
+          "height": 44
+        },
+        {
+          "name": "GuardLeft",
+          "frame": "module_masonry",
+          "x": 12,
+          "y": 74,
+          "width": 22,
+          "height": 40
+        },
+        {
+          "name": "GuardRight",
+          "frame": "module_masonry",
+          "x": 94,
+          "y": 74,
+          "width": 22,
+          "height": 40
+        }
+      ]
+    },
+    {
+      "id": "GATE_11_1",
+      "kind": "GATE",
+      "stage": 11,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 12,
+          "y": 108,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Arch",
+          "frame": "module_stonegate",
+          "x": 23,
+          "y": 58,
+          "width": 82,
+          "height": 56
+        },
+        {
+          "name": "GateDoors",
+          "frame": "module_door",
+          "x": 48,
+          "y": 76,
+          "width": 32,
+          "height": 39
+        },
+        {
+          "name": "Roof",
+          "frame": "module_pagoda",
+          "x": 14,
+          "y": 35,
+          "width": 100,
+          "height": 34
+        },
+        {
+          "name": "UpperWall",
+          "frame": "module_masonry",
+          "x": 35,
+          "y": 49,
+          "width": 58,
+          "height": 22
+        },
+        {
+          "name": "UpperRoof",
+          "frame": "module_pagoda",
+          "x": 28,
+          "y": 30,
+          "width": 72,
+          "height": 29
+        },
+        {
+          "name": "GuardLeft",
+          "frame": "module_masonry",
+          "x": 12,
+          "y": 74,
+          "width": 22,
+          "height": 40
+        },
+        {
+          "name": "GuardRight",
+          "frame": "module_masonry",
+          "x": 94,
+          "y": 74,
+          "width": 22,
+          "height": 40
+        }
+      ]
+    },
+    {
+      "id": "GATE_12_1",
+      "kind": "GATE",
+      "stage": 12,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 12,
+          "y": 108,
+          "width": 104,
+          "height": 12
+        },
+        {
+          "name": "Arch",
+          "frame": "module_stonegate",
+          "x": 23,
+          "y": 58,
+          "width": 82,
+          "height": 56
+        },
+        {
+          "name": "GateDoors",
+          "frame": "module_door",
+          "x": 48,
+          "y": 76,
+          "width": 32,
+          "height": 39
+        },
+        {
+          "name": "Roof",
+          "frame": "module_pagoda",
+          "x": 14,
+          "y": 35,
+          "width": 100,
+          "height": 34
+        },
+        {
+          "name": "Battlement",
+          "frame": "module_battlement",
+          "x": 16,
+          "y": 54,
+          "width": 96,
+          "height": 25
+        },
+        {
+          "name": "GuardLeft",
+          "frame": "module_masonry",
+          "x": 12,
+          "y": 74,
+          "width": 22,
+          "height": 40
+        },
+        {
+          "name": "GuardRight",
+          "frame": "module_masonry",
+          "x": 94,
+          "y": 74,
+          "width": 22,
+          "height": 40
+        }
+      ]
+    },
+    {
+      "id": "ARROW_1_1",
+      "kind": "ARROW",
+      "stage": 1,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_lattice",
+          "x": 42,
+          "y": 68,
+          "width": 44,
+          "height": 40
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 60,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 71,
+          "width": 53,
+          "height": 39,
+          "pivotX": 26.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_ballista",
+              "x": 0,
+              "y": 0,
+              "width": 53,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 88.91,
+          "y": 51.5
+        }
+      ]
+    },
+    {
+      "id": "ARROW_2_1",
+      "kind": "ARROW",
+      "stage": 2,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_lattice",
+          "x": 40,
+          "y": 63,
+          "width": 48,
+          "height": 45
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 55,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 66,
+          "width": 53,
+          "height": 39,
+          "pivotX": 26.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_ballista",
+              "x": 0,
+              "y": 0,
+              "width": 53,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 88.91,
+          "y": 46.5
+        }
+      ]
+    },
+    {
+      "id": "ARROW_3_1",
+      "kind": "ARROW",
+      "stage": 3,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_lattice",
+          "x": 38,
+          "y": 58,
+          "width": 52,
+          "height": 50
+        },
+        {
+          "name": "LeftButtress",
+          "frame": "module_lattice",
+          "x": 20,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "RightButtress",
+          "frame": "module_lattice",
+          "x": 88,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 50,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 61,
+          "width": 53,
+          "height": 39,
+          "pivotX": 26.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_ballista",
+              "x": 0,
+              "y": 0,
+              "width": 53,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 88.91,
+          "y": 41.5
+        }
+      ]
+    },
+    {
+      "id": "ARROW_4_1",
+      "kind": "ARROW",
+      "stage": 4,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_lattice",
+          "x": 36,
+          "y": 53,
+          "width": 56,
+          "height": 55
+        },
+        {
+          "name": "SecondDeck",
+          "frame": "module_floor",
+          "x": 23,
+          "y": 63,
+          "width": 82,
+          "height": 20
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 45,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 56,
+          "width": 53,
+          "height": 39,
+          "pivotX": 26.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_ballista",
+              "x": 0,
+              "y": 0,
+              "width": 53,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 88.91,
+          "y": 36.5
+        }
+      ]
+    },
+    {
+      "id": "ARROW_5_1",
+      "kind": "ARROW",
+      "stage": 5,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 37,
+          "y": 48,
+          "width": 54,
+          "height": 60
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 40,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 51,
+          "width": 58,
+          "height": 39,
+          "pivotX": 29,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_ballista",
+              "x": 0,
+              "y": 0,
+              "width": 58,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 91.25999999999999,
+          "y": 31.5
+        }
+      ]
+    },
+    {
+      "id": "ARROW_6_1",
+      "kind": "ARROW",
+      "stage": 6,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 35.5,
+          "y": 45,
+          "width": 57,
+          "height": 63
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 37,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 48,
+          "width": 58,
+          "height": 39,
+          "pivotX": 29,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_ballista",
+              "x": 0,
+              "y": 0,
+              "width": 58,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 91.25999999999999,
+          "y": 28.5
+        }
+      ]
+    },
+    {
+      "id": "ARROW_7_1",
+      "kind": "ARROW",
+      "stage": 7,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 34,
+          "y": 42,
+          "width": 60,
+          "height": 66
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "LeftButtress",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "RightButtress",
+          "frame": "module_masonry",
+          "x": 88,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 34,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 45,
+          "width": 58,
+          "height": 39,
+          "pivotX": 29,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_ballista",
+              "x": 0,
+              "y": 0,
+              "width": 58,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 91.25999999999999,
+          "y": 25.5
+        }
+      ]
+    },
+    {
+      "id": "ARROW_8_1",
+      "kind": "ARROW",
+      "stage": 8,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 32.5,
+          "y": 39,
+          "width": 63,
+          "height": 69
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "SecondDeck",
+          "frame": "module_battlement",
+          "x": 23,
+          "y": 63,
+          "width": 82,
+          "height": 20
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 31,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 42,
+          "width": 58,
+          "height": 39,
+          "pivotX": 29,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_ballista",
+              "x": 0,
+              "y": 0,
+              "width": 58,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 91.25999999999999,
+          "y": 22.5
+        }
+      ]
+    },
+    {
+      "id": "ARROW_9_1",
+      "kind": "ARROW",
+      "stage": 9,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 33,
+          "y": 34,
+          "width": 62,
+          "height": 74
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "Platform",
+          "frame": "module_battlement",
+          "x": 19,
+          "y": 26,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 37,
+          "width": 63,
+          "height": 39,
+          "pivotX": 31.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_ballista",
+              "x": 0,
+              "y": 0,
+              "width": 63,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 93.61,
+          "y": 17.5
+        }
+      ]
+    },
+    {
+      "id": "ARROW_10_1",
+      "kind": "ARROW",
+      "stage": 10,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 29,
+          "y": 34,
+          "width": 70,
+          "height": 74
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "Platform",
+          "frame": "module_battlement",
+          "x": 19,
+          "y": 26,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 37,
+          "width": 63,
+          "height": 39,
+          "pivotX": 31.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_ballista",
+              "x": 0,
+              "y": 0,
+              "width": 63,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 93.61,
+          "y": 17.5
+        },
+        {
+          "name": "UpperBalcony",
+          "frame": "module_balcony",
+          "x": 24,
+          "y": 53,
+          "width": 80,
+          "height": 20
+        }
+      ]
+    },
+    {
+      "id": "ARROW_11_1",
+      "kind": "ARROW",
+      "stage": 11,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 35,
+          "y": 34,
+          "width": 58,
+          "height": 74
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "LeftButtress",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "RightButtress",
+          "frame": "module_masonry",
+          "x": 88,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "Platform",
+          "frame": "module_battlement",
+          "x": 19,
+          "y": 26,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 37,
+          "width": 63,
+          "height": 39,
+          "pivotX": 31.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_ballista",
+              "x": 0,
+              "y": 0,
+              "width": 63,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 93.61,
+          "y": 17.5
+        }
+      ]
+    },
+    {
+      "id": "ARROW_12_1",
+      "kind": "ARROW",
+      "stage": 12,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 26,
+          "y": 34,
+          "width": 76,
+          "height": 74
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "SecondDeck",
+          "frame": "module_battlement",
+          "x": 23,
+          "y": 63,
+          "width": 82,
+          "height": 20
+        },
+        {
+          "name": "Platform",
+          "frame": "module_battlement",
+          "x": 19,
+          "y": 26,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 37,
+          "width": 63,
+          "height": 39,
+          "pivotX": 31.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_ballista",
+              "x": 0,
+              "y": 0,
+              "width": 63,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 93.61,
+          "y": 17.5
+        }
+      ]
+    },
+    {
+      "id": "STONE_1_1",
+      "kind": "STONE",
+      "stage": 1,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_lattice",
+          "x": 42,
+          "y": 68,
+          "width": 44,
+          "height": 40
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 60,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 71,
+          "width": 53,
+          "height": 39,
+          "pivotX": 26.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_catapult",
+              "x": 0,
+              "y": 0,
+              "width": 53,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 79.9,
+          "y": 39.02
+        }
+      ]
+    },
+    {
+      "id": "STONE_2_1",
+      "kind": "STONE",
+      "stage": 2,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_lattice",
+          "x": 40,
+          "y": 63,
+          "width": 48,
+          "height": 45
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 55,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 66,
+          "width": 53,
+          "height": 39,
+          "pivotX": 26.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_catapult",
+              "x": 0,
+              "y": 0,
+              "width": 53,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 79.9,
+          "y": 34.02
+        }
+      ]
+    },
+    {
+      "id": "STONE_3_1",
+      "kind": "STONE",
+      "stage": 3,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_lattice",
+          "x": 38,
+          "y": 58,
+          "width": 52,
+          "height": 50
+        },
+        {
+          "name": "LeftButtress",
+          "frame": "module_lattice",
+          "x": 20,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "RightButtress",
+          "frame": "module_lattice",
+          "x": 88,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 50,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 61,
+          "width": 53,
+          "height": 39,
+          "pivotX": 26.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_catapult",
+              "x": 0,
+              "y": 0,
+              "width": 53,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 79.9,
+          "y": 29.020000000000003
+        }
+      ]
+    },
+    {
+      "id": "STONE_4_1",
+      "kind": "STONE",
+      "stage": 4,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_lattice",
+          "x": 36,
+          "y": 53,
+          "width": 56,
+          "height": 55
+        },
+        {
+          "name": "SecondDeck",
+          "frame": "module_floor",
+          "x": 23,
+          "y": 63,
+          "width": 82,
+          "height": 20
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 45,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 56,
+          "width": 53,
+          "height": 39,
+          "pivotX": 26.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_catapult",
+              "x": 0,
+              "y": 0,
+              "width": 53,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 79.9,
+          "y": 24.020000000000003
+        }
+      ]
+    },
+    {
+      "id": "STONE_5_1",
+      "kind": "STONE",
+      "stage": 5,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 37,
+          "y": 48,
+          "width": 54,
+          "height": 60
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 40,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 51,
+          "width": 58,
+          "height": 39,
+          "pivotX": 29,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_catapult",
+              "x": 0,
+              "y": 0,
+              "width": 58,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 81.4,
+          "y": 19.020000000000003
+        }
+      ]
+    },
+    {
+      "id": "STONE_6_1",
+      "kind": "STONE",
+      "stage": 6,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 35.5,
+          "y": 45,
+          "width": 57,
+          "height": 63
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 37,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 48,
+          "width": 58,
+          "height": 39,
+          "pivotX": 29,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_catapult",
+              "x": 0,
+              "y": 0,
+              "width": 58,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 81.4,
+          "y": 16.020000000000003
+        }
+      ]
+    },
+    {
+      "id": "STONE_7_1",
+      "kind": "STONE",
+      "stage": 7,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 34,
+          "y": 42,
+          "width": 60,
+          "height": 66
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "LeftButtress",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "RightButtress",
+          "frame": "module_masonry",
+          "x": 88,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 34,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 45,
+          "width": 58,
+          "height": 39,
+          "pivotX": 29,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_catapult",
+              "x": 0,
+              "y": 0,
+              "width": 58,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 81.4,
+          "y": 13.020000000000003
+        }
+      ]
+    },
+    {
+      "id": "STONE_8_1",
+      "kind": "STONE",
+      "stage": 8,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 32.5,
+          "y": 39,
+          "width": 63,
+          "height": 69
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "SecondDeck",
+          "frame": "module_battlement",
+          "x": 23,
+          "y": 63,
+          "width": 82,
+          "height": 20
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 31,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 42,
+          "width": 58,
+          "height": 39,
+          "pivotX": 29,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_catapult",
+              "x": 0,
+              "y": 0,
+              "width": 58,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 81.4,
+          "y": 10.020000000000003
+        }
+      ]
+    },
+    {
+      "id": "STONE_9_1",
+      "kind": "STONE",
+      "stage": 9,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 33,
+          "y": 34,
+          "width": 62,
+          "height": 74
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "Platform",
+          "frame": "module_battlement",
+          "x": 19,
+          "y": 26,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 37,
+          "width": 63,
+          "height": 39,
+          "pivotX": 31.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_catapult",
+              "x": 0,
+              "y": 0,
+              "width": 63,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 82.9,
+          "y": 5.020000000000003
+        }
+      ]
+    },
+    {
+      "id": "STONE_10_1",
+      "kind": "STONE",
+      "stage": 10,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 29,
+          "y": 34,
+          "width": 70,
+          "height": 74
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "Platform",
+          "frame": "module_battlement",
+          "x": 19,
+          "y": 26,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 37,
+          "width": 63,
+          "height": 39,
+          "pivotX": 31.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_catapult",
+              "x": 0,
+              "y": 0,
+              "width": 63,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 82.9,
+          "y": 5.020000000000003
+        },
+        {
+          "name": "UpperBalcony",
+          "frame": "module_balcony",
+          "x": 24,
+          "y": 53,
+          "width": 80,
+          "height": 20
+        }
+      ]
+    },
+    {
+      "id": "STONE_11_1",
+      "kind": "STONE",
+      "stage": 11,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 35,
+          "y": 34,
+          "width": 58,
+          "height": 74
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "LeftButtress",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "RightButtress",
+          "frame": "module_masonry",
+          "x": 88,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "Platform",
+          "frame": "module_battlement",
+          "x": 19,
+          "y": 26,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 37,
+          "width": 63,
+          "height": 39,
+          "pivotX": 31.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_catapult",
+              "x": 0,
+              "y": 0,
+              "width": 63,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 82.9,
+          "y": 5.020000000000003
+        }
+      ]
+    },
+    {
+      "id": "STONE_12_1",
+      "kind": "STONE",
+      "stage": 12,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 26,
+          "y": 34,
+          "width": 76,
+          "height": 74
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "SecondDeck",
+          "frame": "module_battlement",
+          "x": 23,
+          "y": 63,
+          "width": 82,
+          "height": 20
+        },
+        {
+          "name": "Platform",
+          "frame": "module_battlement",
+          "x": 19,
+          "y": 26,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 37,
+          "width": 63,
+          "height": 39,
+          "pivotX": 31.5,
+          "pivotY": 39,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_catapult",
+              "x": 0,
+              "y": 0,
+              "width": 63,
+              "height": 39
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 82.9,
+          "y": 5.020000000000003
+        }
+      ]
+    },
+    {
+      "id": "SLOW_1_1",
+      "kind": "SLOW",
+      "stage": 1,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_lattice",
+          "x": 42,
+          "y": 68,
+          "width": 44,
+          "height": 40
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 60,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 71,
+          "width": 31,
+          "height": 40,
+          "pivotX": 15.5,
+          "pivotY": 40,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_crystal",
+              "x": 0,
+              "y": 0,
+              "width": 31,
+              "height": 40
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 64,
+          "y": 38.2
+        }
+      ]
+    },
+    {
+      "id": "SLOW_2_1",
+      "kind": "SLOW",
+      "stage": 2,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_lattice",
+          "x": 40,
+          "y": 63,
+          "width": 48,
+          "height": 45
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 55,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 66,
+          "width": 31,
+          "height": 40,
+          "pivotX": 15.5,
+          "pivotY": 40,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_crystal",
+              "x": 0,
+              "y": 0,
+              "width": 31,
+              "height": 40
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 64,
+          "y": 33.2
+        }
+      ]
+    },
+    {
+      "id": "SLOW_3_1",
+      "kind": "SLOW",
+      "stage": 3,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_lattice",
+          "x": 38,
+          "y": 58,
+          "width": 52,
+          "height": 50
+        },
+        {
+          "name": "LeftButtress",
+          "frame": "module_lattice",
+          "x": 20,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "RightButtress",
+          "frame": "module_lattice",
+          "x": 88,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 50,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 61,
+          "width": 31,
+          "height": 40,
+          "pivotX": 15.5,
+          "pivotY": 40,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_crystal",
+              "x": 0,
+              "y": 0,
+              "width": 31,
+              "height": 40
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 64,
+          "y": 28.200000000000003
+        }
+      ]
+    },
+    {
+      "id": "SLOW_4_1",
+      "kind": "SLOW",
+      "stage": 4,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_lattice",
+          "x": 36,
+          "y": 53,
+          "width": 56,
+          "height": 55
+        },
+        {
+          "name": "SecondDeck",
+          "frame": "module_floor",
+          "x": 23,
+          "y": 63,
+          "width": 82,
+          "height": 20
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 45,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 56,
+          "width": 31,
+          "height": 40,
+          "pivotX": 15.5,
+          "pivotY": 40,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_crystal",
+              "x": 0,
+              "y": 0,
+              "width": 31,
+              "height": 40
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 64,
+          "y": 23.200000000000003
+        }
+      ]
+    },
+    {
+      "id": "SLOW_5_1",
+      "kind": "SLOW",
+      "stage": 5,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 37,
+          "y": 48,
+          "width": 54,
+          "height": 60
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 40,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 51,
+          "width": 36,
+          "height": 40,
+          "pivotX": 18,
+          "pivotY": 40,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_crystal",
+              "x": 0,
+              "y": 0,
+              "width": 36,
+              "height": 40
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 64,
+          "y": 18.200000000000003
+        }
+      ]
+    },
+    {
+      "id": "SLOW_6_1",
+      "kind": "SLOW",
+      "stage": 6,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 35.5,
+          "y": 45,
+          "width": 57,
+          "height": 63
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 37,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 48,
+          "width": 36,
+          "height": 40,
+          "pivotX": 18,
+          "pivotY": 40,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_crystal",
+              "x": 0,
+              "y": 0,
+              "width": 36,
+              "height": 40
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 64,
+          "y": 15.200000000000003
+        }
+      ]
+    },
+    {
+      "id": "SLOW_7_1",
+      "kind": "SLOW",
+      "stage": 7,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 34,
+          "y": 42,
+          "width": 60,
+          "height": 66
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "LeftButtress",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "RightButtress",
+          "frame": "module_masonry",
+          "x": 88,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 34,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 45,
+          "width": 36,
+          "height": 40,
+          "pivotX": 18,
+          "pivotY": 40,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_crystal",
+              "x": 0,
+              "y": 0,
+              "width": 36,
+              "height": 40
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 64,
+          "y": 12.200000000000003
+        }
+      ]
+    },
+    {
+      "id": "SLOW_8_1",
+      "kind": "SLOW",
+      "stage": 8,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 32.5,
+          "y": 39,
+          "width": 63,
+          "height": 69
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "SecondDeck",
+          "frame": "module_battlement",
+          "x": 23,
+          "y": 63,
+          "width": 82,
+          "height": 20
+        },
+        {
+          "name": "Platform",
+          "frame": "module_floor",
+          "x": 19,
+          "y": 31,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 42,
+          "width": 36,
+          "height": 40,
+          "pivotX": 18,
+          "pivotY": 40,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_crystal",
+              "x": 0,
+              "y": 0,
+              "width": 36,
+              "height": 40
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 64,
+          "y": 9.200000000000003
+        }
+      ]
+    },
+    {
+      "id": "SLOW_9_1",
+      "kind": "SLOW",
+      "stage": 9,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 33,
+          "y": 34,
+          "width": 62,
+          "height": 74
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "Platform",
+          "frame": "module_battlement",
+          "x": 19,
+          "y": 26,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 37,
+          "width": 41,
+          "height": 40,
+          "pivotX": 20.5,
+          "pivotY": 40,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_crystal",
+              "x": 0,
+              "y": 0,
+              "width": 41,
+              "height": 40
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 64,
+          "y": 4.200000000000003
+        }
+      ]
+    },
+    {
+      "id": "SLOW_10_1",
+      "kind": "SLOW",
+      "stage": 10,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 29,
+          "y": 34,
+          "width": 70,
+          "height": 74
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "Platform",
+          "frame": "module_battlement",
+          "x": 19,
+          "y": 26,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 37,
+          "width": 41,
+          "height": 40,
+          "pivotX": 20.5,
+          "pivotY": 40,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_crystal",
+              "x": 0,
+              "y": 0,
+              "width": 41,
+              "height": 40
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 64,
+          "y": 4.200000000000003
+        },
+        {
+          "name": "UpperBalcony",
+          "frame": "module_balcony",
+          "x": 24,
+          "y": 53,
+          "width": 80,
+          "height": 20
+        }
+      ]
+    },
+    {
+      "id": "SLOW_11_1",
+      "kind": "SLOW",
+      "stage": 11,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 35,
+          "y": 34,
+          "width": 58,
+          "height": 74
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "LeftButtress",
+          "frame": "module_masonry",
+          "x": 20,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "RightButtress",
+          "frame": "module_masonry",
+          "x": 88,
+          "y": 71,
+          "width": 20,
+          "height": 40
+        },
+        {
+          "name": "Platform",
+          "frame": "module_battlement",
+          "x": 19,
+          "y": 26,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 37,
+          "width": 41,
+          "height": 40,
+          "pivotX": 20.5,
+          "pivotY": 40,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_crystal",
+              "x": 0,
+              "y": 0,
+              "width": 41,
+              "height": 40
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 64,
+          "y": 4.200000000000003
+        }
+      ]
+    },
+    {
+      "id": "SLOW_12_1",
+      "kind": "SLOW",
+      "stage": 12,
+      "rooms": 1,
+      "nodes": [
+        {
+          "name": "Foundation",
+          "frame": "module_foundation",
+          "x": 20,
+          "y": 105,
+          "width": 88,
+          "height": 15
+        },
+        {
+          "name": "TowerBody",
+          "frame": "module_masonry",
+          "x": 26,
+          "y": 34,
+          "width": 76,
+          "height": 74
+        },
+        {
+          "name": "LowerFloor",
+          "frame": "module_floor",
+          "x": 22,
+          "y": 83,
+          "width": 84,
+          "height": 14
+        },
+        {
+          "name": "SecondDeck",
+          "frame": "module_battlement",
+          "x": 23,
+          "y": 63,
+          "width": 82,
+          "height": 20
+        },
+        {
+          "name": "Platform",
+          "frame": "module_battlement",
+          "x": 19,
+          "y": 26,
+          "width": 90,
+          "height": 21
+        },
+        {
+          "name": "Weapon",
+          "x": 64,
+          "y": 37,
+          "width": 41,
+          "height": 40,
+          "pivotX": 20.5,
+          "pivotY": 40,
+          "children": [
+            {
+              "name": "Launcher",
+              "frame": "module_crystal",
+              "x": 0,
+              "y": 0,
+              "width": 41,
+              "height": 40
+            }
+          ]
+        },
+        {
+          "name": "Muzzle",
+          "x": 64,
+          "y": 4.200000000000003
+        }
+      ]
+    }
+  ]
+}

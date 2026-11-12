@@ -36,7 +36,10 @@ export const ADULT_APPEARANCE = { MALE: "male_a", FEMALE: "female_a" } as const;
  */
 export const VILLAGER_NAMES = {
     child: ["禾", "桃", "松", "竹", "杏", "川"], traveler: ["行舟", "云溪", "山青", "晚晴"],
-    personal: { MALE: "四辈儿", FEMALE: "芊芊" }
+    personal: { MALE: "四辈儿", FEMALE: "芊芊" },
+    // 2026-11-12用户指定：仅新生/来访精英使用，男女共用，不加编号；普通人保留上面的规则。
+    // 独立取名不推进业务随机流；修改只影响后续精英姓名，不改性别、5%概率、能力及已有村民。
+    elite: ["旭勇", "智卓", "二百", "翟毅", "周博", "赵靓", "龙龙", "昭易", "明波", "宋磊", "徐超"]
 } as const;
 /** 纯表现动作表：男女均具备三类劳动动画；到工位播放，移动仍使用方向 walk，不限制任职资格。 */
 export const LABOR_CLIPS: Readonly<Record<string, Readonly<Record<"FARM" | "LOGGING" | "CARE", string>>>> = {

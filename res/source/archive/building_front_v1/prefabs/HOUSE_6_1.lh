@@ -1,0 +1,111 @@
+{
+  "_$ver": 1,
+  "_$id": "89zzu2mz",
+  "_$type": "Sprite",
+  "name": "HOUSE_6_1",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "4pl1lkay",
+      "_$type": "Sprite",
+      "name": "Body",
+      "x": 64,
+      "y": 120,
+      "width": 128,
+      "height": 128,
+      "anchorX": 0.5,
+      "anchorY": 0.9375,
+      "_$comp": [
+        {
+          "_$type": "AnimatorClip2D",
+          "clip": {
+            "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+            "_$type": "AnimationClip2D"
+          },
+          "autoPlay": false
+        }
+      ],
+      "_$child": [
+        {
+          "_$id": "rqhwn5g6",
+          "_$type": "Sprite",
+          "name": "Foundation",
+          "x": 18,
+          "y": 106,
+          "width": 92,
+          "height": 14,
+          "texture": {
+            "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "zw6zapo7",
+          "_$type": "Sprite",
+          "name": "MainWall",
+          "x": 26,
+          "y": 49,
+          "width": 76,
+          "height": 61,
+          "texture": {
+            "_$uuid": "8ad2f438-86a5-49b0-adb6-b3dfc78da3ac",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "gmbr08r7",
+          "_$type": "Sprite",
+          "name": "MainDoor",
+          "x": 55,
+          "y": 82,
+          "width": 24,
+          "height": 31,
+          "texture": {
+            "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "39dm64ev",
+          "_$type": "Sprite",
+          "name": "MainWindow",
+          "x": 33,
+          "y": 75,
+          "width": 16,
+          "height": 17,
+          "texture": {
+            "_$uuid": "849b3b81-dd57-4bb7-a306-56f292f8200e",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "uj18dey1",
+          "_$type": "Sprite",
+          "name": "MainRoof",
+          "x": 18,
+          "y": 27,
+          "width": 92,
+          "height": 32,
+          "texture": {
+            "_$uuid": "e1f744ae-0078-43bc-9769-a177149edf2a",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "36ypt19s",
+          "_$type": "Sprite",
+          "name": "WidePorch",
+          "x": 21,
+          "y": 82,
+          "width": 86,
+          "height": 30,
+          "texture": {
+            "_$uuid": "3af9de23-8980-4b7c-ad0b-51ba77ecb660",
+            "_$type": "Texture"
+          }
+        }
+      ]
+    }
+  ]
+}

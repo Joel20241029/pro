@@ -497,6 +497,79 @@
       "sha256": "151c8d4399bd6917bfaeec06a97932d6daa76a31fa44c5c3f5bbd6249e224cb2",
       "bytes": 1008438,
       "brief": "独立花果4张、建筑部件12张，裁片固定在配方中；轮廓框按alpha>=128定位并外扩3像素，运行图集仍仅去除alpha=0外圈。"
+    },
+    {
+      "key": "building_structures",
+      "path": "source/archive/building_front_v1/structures.png",
+      "bytes": 1238941,
+      "sha256": "47c114763ec8b201079c721794b2dbed5df580ce8d91f0b93473159ac309de07",
+      "spec": {
+        "cols": 4,
+        "rows": 4,
+        "transparent": true,
+        "prompt": "Use case: stylized-concept. Production sprite sheet for a small portrait Chinese village tower defense game. Create exactly 16 separate modular architectural component sprites arranged in a precise uniform 4 columns x 4 rows grid on a transparent square canvas. Each cell has generous transparent margin; sprites must NOT touch between cells. No labels, no characters, no text, no grid lines. Charming finely outlined low-resolution pixel game art, warm brown outlines, ochre timber, cream plaster, blue-gray stone, terracotta. View: near-front orthographic with a SMALL visible top plane, not isometric diamonds. These are COMPONENTS, not whole buildings. Lighting upper left. Flat bottoms and straight vertical sides so parts stack without gaps.\nRow1 left to right: (1) low wide rectangular rough stone foundation slab, (2) low wide wooden floor/platform with thick edge, (3) rectangular cream plaster half-timber wall panel with NO roof and NO window, (4) rectangular gray stone wall panel with NO roof and NO door.\nRow2: (1) flat-topped tall timber lattice tower storey, exactly two strong vertical posts and X bracing, transparent between posts, NO roof, (2) wide golden straw gable roof ONLY, (3) wide warm red tiled gable roof ONLY, (4) wide blue-gray tiled hip roof ONLY.\nRow3: (1) ornate gold-edged dark teal pavilion roof ONLY, (2) small wooden arched door with deep brown opening, (3) small square cream-framed wood lattice window, (4) wide fortified gray stone parapet/platform with three crenellations and visible floor, NO tower below.\nRow4: (1) wide wooden open entrance arch with double wooden gate doors, NO roof, (2) stout gray stone gate arch with open dark passage and stone jambs, NO roof, (3) short wide wooden front balcony railing, (4) a short broad terracotta awning on two short wooden posts for a porch, NO building walls.\nConsistent crisp thick dark-brown pixel outlines, clean simple silhouettes readable at 32-80 pixels, restrained highlights, no soft shadows outside sprites, no ground shadows, no vegetation, no decorations beyond the requested components. Transparent alpha background. Exactly one component centered per grid cell."
+      },
+      "size": [
+        1254,
+        1254
+      ],
+      "brief": "Laya可编辑建筑主体拼装部件",
+      "status": "archived_rejected_front_view"
+    },
+    {
+      "key": "building_mechanisms",
+      "path": "source/buildings/mechanisms.png",
+      "bytes": 1721668,
+      "sha256": "f8b43a4665488abd7a64c76b32b2eded19534e673748b2197de8ae2f6b675cbf",
+      "spec": {
+        "cols": 4,
+        "rows": 2,
+        "transparent": true,
+        "prompt": "Use case: stylized-concept. Transparent sprite sheet for modular Chinese village tower defense buildings. EXACTLY 8 isolated game components, in a uniform grid of FOUR columns and TWO rows, wide 3:2 canvas. Generous transparent margins, no overlaps or connecting marks, no text/grid/labels. Pixel game art, warm dark-brown crisp outlines, ochre wood and cream highlights, visible pixels at small scale, orthographic near-front view with a small visible top plane. Matching miniature medieval Chinese village sprites.\nTop row left to right:\n1) a large sturdy wooden mounted CROSSBOW weapon only, no tower or floor. Side view facing RIGHT, bow arms vertical, bolt pointing horizontally right, short central pivot support;\n2) a wooden CATAPULT throwing arm and pivot assembly only, no tower or base, arm leans up to RIGHT with stone in scoop, thick heavy wood;\n3) a bright icy cyan crystal cluster in a small brass socket, symmetrical front view, NO magic glow beyond silhouette, NO tower;\n4) a compact low rectangular tilled SOIL PLOT with a few golden wheat stalks along back edge, front edge open bare soil, NO fence, allows farmer to stand inside.\nBottom row left to right:\n1) short stacked round timber logs, 3 broad logs on bottom and 2 above, circular cut ends visible, no ground;\n2) a large wooden water wheel with eight paddles and thick rim, front view, no water, no building;\n3) a circular steel saw blade mounted in a short wooden workshop frame, front view, no building;\n4) a wide thin stone irrigation trough with cyan water inside, low shallow rectangle front view, no surrounding ground.\nOne clean component centered per cell. Clearly separated. No complete building, no trees, no people, no shadows outside sprites. Truly transparent alpha background."
+      },
+      "size": [
+        1536,
+        1024
+      ],
+      "brief": "Laya可编辑建筑主体拼装部件"
+    },
+    {
+      "key": "structures_v2",
+      "path": "source/buildings/structures_v2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 1670459,
+      "sha256": "c511f13dec686d902c3bcd6765ce61a220dc83cafead99ba69e1c2ca71c7482c",
+      "promptSource": "source/buildings/prompts_v2.json",
+      "status": "approved_style_parts"
+    },
+    {
+      "key": "special_v2",
+      "path": "source/buildings/special_v2.png",
+      "size": [
+        1220,
+        1289
+      ],
+      "bytes": 1210839,
+      "sha256": "099ddd5ea28956e58d52b5bef471ae612c4bbcfedf4b963ef54ca3155e6dea75",
+      "promptSource": "source/buildings/prompts_v2.json",
+      "status": "approved_style_parts"
+    },
+    {
+      "key": "village_sign",
+      "path": "source/decorations/village_sign.png",
+      "generator": "image_gen",
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-85126dcd-ca91-4ecb-aeff-9a592e1e46aa.png",
+      "size": [
+        1619,
+        972
+      ],
+      "bytes": 948492,
+      "sha256": "9b836a5c72b54278dc209e2cbc211a15c95f68d332e77c887b06aca584d78d79",
+      "promptSource": "source/decorations/village_sign.prompt.txt",
+      "brief": "暖木路牌空白母版，文字在引擎内绘制；新增88×52运行散图并复用现有图集页。"
     }
   ],
   "exportMethod": "ImageMagick mechanical crop/nearest-neighbor export/atlas packing; animation frames retain uniform source canvas and feet, atlas trims transparent margins and restores offsets."

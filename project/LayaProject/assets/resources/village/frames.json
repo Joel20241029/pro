@@ -13,8 +13,8 @@
       "runtimeFile": "world_0.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1086332,
-      "sha256": "32c96c56c627af2960c6371a6d13bcfe99e711e5a8f88b4477cc9907334a4804",
+      "bytes": 1331715,
+      "sha256": "a9b5caa1c670534a54d0eb2857575b37e2dc395c7b4813fbcc5a11a1b2e1ead0",
       "group": "world"
     },
     {
@@ -315,11 +315,99 @@
       },
       "nineSlice": null
     },
-    "building_hearth_lit": {
+    "module_pagoda": {
       "page": "world_0",
       "rect": {
         "x": 846,
         "y": 134,
+        "w": 100,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 76
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 50,
+        "y": 76
+      },
+      "nineSlice": null
+    },
+    "module_thatch": {
+      "page": "world_0",
+      "rect": {
+        "x": 846,
+        "y": 214,
+        "w": 100,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 70
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 50,
+        "y": 70
+      },
+      "nineSlice": null
+    },
+    "module_slate": {
+      "page": "world_0",
+      "rect": {
+        "x": 723,
+        "y": 251,
+        "w": 100,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 68
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 50,
+        "y": 68
+      },
+      "nineSlice": null
+    },
+    "module_tile": {
+      "page": "world_0",
+      "rect": {
+        "x": 827,
+        "y": 288,
+        "w": 100,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 68
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 50,
+        "y": 68
+      },
+      "nineSlice": null
+    },
+    "building_hearth_lit": {
+      "page": "world_0",
+      "rect": {
+        "x": 266,
+        "y": 203,
         "w": 96,
         "h": 93
       },
@@ -337,11 +425,55 @@
       },
       "nineSlice": null
     },
+    "module_canopy_teal": {
+      "page": "world_0",
+      "rect": {
+        "x": 366,
+        "y": 203,
+        "w": 96,
+        "h": 53
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 53
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 53
+      },
+      "nineSlice": null
+    },
+    "module_canopy_thatch": {
+      "page": "world_0",
+      "rect": {
+        "x": 466,
+        "y": 203,
+        "w": 96,
+        "h": 53
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 53
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 53
+      },
+      "nineSlice": null
+    },
     "deco_rocks": {
       "page": "world_0",
       "rect": {
-        "x": 846,
-        "y": 231,
+        "x": 931,
+        "y": 288,
         "w": 90,
         "h": 95
       },
@@ -362,8 +494,8 @@
     "deco_bush": {
       "page": "world_0",
       "rect": {
-        "x": 723,
-        "y": 251,
+        "x": 566,
+        "y": 258,
         "w": 90,
         "h": 94
       },
@@ -384,8 +516,8 @@
     "enemy_chief_walk_03": {
       "page": "world_0",
       "rect": {
-        "x": 940,
-        "y": 231,
+        "x": 660,
+        "y": 323,
         "w": 80,
         "h": 92
       },
@@ -406,8 +538,8 @@
     "deco_torch": {
       "page": "world_0",
       "rect": {
-        "x": 817,
-        "y": 330,
+        "x": 744,
+        "y": 360,
         "w": 91,
         "h": 88
       },
@@ -428,8 +560,8 @@
     "enemy_chief_walk_02": {
       "page": "world_0",
       "rect": {
-        "x": 940,
-        "y": 327,
+        "x": 839,
+        "y": 360,
         "w": 80,
         "h": 91
       },
@@ -450,8 +582,8 @@
     "enemy_chief_walk_00": {
       "page": "world_0",
       "rect": {
-        "x": 266,
-        "y": 203,
+        "x": 923,
+        "y": 387,
         "w": 82,
         "h": 88
       },
@@ -472,8 +604,8 @@
     "enemy_chief_walk_01": {
       "page": "world_0",
       "rect": {
-        "x": 352,
-        "y": 203,
+        "x": 366,
+        "y": 260,
         "w": 82,
         "h": 88
       },
@@ -491,11 +623,77 @@
       },
       "nineSlice": null
     },
+    "module_battlement": {
+      "page": "world_0",
+      "rect": {
+        "x": 452,
+        "y": 260,
+        "w": 88,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 88,
+        "h": 59
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 44,
+        "y": 59
+      },
+      "nineSlice": null
+    },
+    "module_floor": {
+      "page": "world_0",
+      "rect": {
+        "x": 452,
+        "y": 323,
+        "w": 88,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 88,
+        "h": 46
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 44,
+        "y": 46
+      },
+      "nineSlice": null
+    },
+    "module_foundation": {
+      "page": "world_0",
+      "rect": {
+        "x": 544,
+        "y": 356,
+        "w": 88,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 88,
+        "h": 42
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 44,
+        "y": 42
+      },
+      "nineSlice": null
+    },
     "deco_log_pile": {
       "page": "world_0",
       "rect": {
-        "x": 438,
-        "y": 203,
+        "x": 2,
+        "y": 298,
         "w": 83,
         "h": 86
       },
@@ -513,11 +711,33 @@
       },
       "nineSlice": null
     },
+    "deco_village_sign": {
+      "page": "world_0",
+      "rect": {
+        "x": 89,
+        "y": 298,
+        "w": 84,
+        "h": 47
+      },
+      "sourceSize": {
+        "w": 88,
+        "h": 52
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 44,
+        "y": 50
+      },
+      "nineSlice": null
+    },
     "enemy_runner_walk_01": {
       "page": "world_0",
       "rect": {
-        "x": 946,
-        "y": 134,
+        "x": 177,
+        "y": 298,
         "w": 76,
         "h": 80
       },
@@ -535,11 +755,55 @@
       },
       "nineSlice": null
     },
+    "module_round_body": {
+      "page": "world_0",
+      "rect": {
+        "x": 89,
+        "y": 349,
+        "w": 80,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 72
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 72
+      },
+      "nineSlice": null
+    },
+    "module_stonegate": {
+      "page": "world_0",
+      "rect": {
+        "x": 2,
+        "y": 388,
+        "w": 80,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 71
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 71
+      },
+      "nineSlice": null
+    },
     "enemy_runner_walk_00": {
       "page": "world_0",
       "rect": {
-        "x": 525,
-        "y": 258,
+        "x": 950,
+        "y": 134,
         "w": 69,
         "h": 80
       },
@@ -560,8 +824,8 @@
     "enemy_runner_walk_02": {
       "page": "world_0",
       "rect": {
-        "x": 438,
-        "y": 293,
+        "x": 257,
+        "y": 300,
         "w": 66,
         "h": 80
       },
@@ -582,8 +846,8 @@
     "enemy_runner_walk_03": {
       "page": "world_0",
       "rect": {
-        "x": 598,
-        "y": 258,
+        "x": 173,
+        "y": 382,
         "w": 66,
         "h": 80
       },
@@ -601,11 +865,33 @@
       },
       "nineSlice": null
     },
+    "module_workshop": {
+      "page": "world_0",
+      "rect": {
+        "x": 86,
+        "y": 425,
+        "w": 80,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 57
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 57
+      },
+      "nineSlice": null
+    },
     "enemy_armored_walk_01": {
       "page": "world_0",
       "rect": {
-        "x": 266,
-        "y": 295,
+        "x": 2,
+        "y": 463,
         "w": 78,
         "h": 73
       },
@@ -626,8 +912,8 @@
     "enemy_armored_walk_02": {
       "page": "world_0",
       "rect": {
-        "x": 348,
-        "y": 295,
+        "x": 327,
+        "y": 352,
         "w": 74,
         "h": 77
       },
@@ -648,8 +934,8 @@
     "villager_elder_female_walk_right_01": {
       "page": "world_0",
       "rect": {
-        "x": 508,
-        "y": 342,
+        "x": 243,
+        "y": 384,
         "w": 76,
         "h": 76
       },
@@ -670,8 +956,8 @@
     "villager_elder_female_walk_up_00": {
       "page": "world_0",
       "rect": {
-        "x": 588,
-        "y": 342,
+        "x": 405,
+        "y": 373,
         "w": 76,
         "h": 76
       },
@@ -692,8 +978,8 @@
     "villager_elder_male_walk_right_01": {
       "page": "world_0",
       "rect": {
-        "x": 668,
-        "y": 349,
+        "x": 323,
+        "y": 433,
         "w": 76,
         "h": 76
       },
@@ -714,8 +1000,8 @@
     "villager_female_a_care_00": {
       "page": "world_0",
       "rect": {
-        "x": 2,
-        "y": 298,
+        "x": 243,
+        "y": 464,
         "w": 76,
         "h": 76
       },
@@ -736,8 +1022,8 @@
     "villager_female_a_chop_02": {
       "page": "world_0",
       "rect": {
-        "x": 82,
-        "y": 298,
+        "x": 84,
+        "y": 486,
         "w": 76,
         "h": 76
       },
@@ -758,8 +1044,8 @@
     "villager_female_a_harvest_01": {
       "page": "world_0",
       "rect": {
-        "x": 162,
-        "y": 298,
+        "x": 2,
+        "y": 540,
         "w": 76,
         "h": 76
       },
@@ -780,8 +1066,8 @@
     "villager_female_a_harvest_02": {
       "page": "world_0",
       "rect": {
-        "x": 242,
-        "y": 372,
+        "x": 485,
+        "y": 402,
         "w": 76,
         "h": 76
       },
@@ -802,8 +1088,8 @@
     "villager_male_a_care_00": {
       "page": "world_0",
       "rect": {
-        "x": 322,
-        "y": 376,
+        "x": 403,
+        "y": 453,
         "w": 76,
         "h": 76
       },
@@ -824,8 +1110,8 @@
     "villager_male_a_chop_01": {
       "page": "world_0",
       "rect": {
-        "x": 402,
-        "y": 377,
+        "x": 323,
+        "y": 513,
         "w": 76,
         "h": 76
       },
@@ -846,8 +1132,8 @@
     "villager_male_a_chop_02": {
       "page": "world_0",
       "rect": {
-        "x": 482,
-        "y": 422,
+        "x": 565,
+        "y": 402,
         "w": 76,
         "h": 76
       },
@@ -868,8 +1154,8 @@
     "villager_male_a_farm_02": {
       "page": "world_0",
       "rect": {
-        "x": 562,
-        "y": 422,
+        "x": 645,
+        "y": 419,
         "w": 76,
         "h": 76
       },
@@ -890,8 +1176,8 @@
     "enemy_armored_walk_03": {
       "page": "world_0",
       "rect": {
-        "x": 2,
-        "y": 378,
+        "x": 725,
+        "y": 452,
         "w": 76,
         "h": 75
       },
@@ -912,8 +1198,8 @@
     "villager_elder_female_idle_01": {
       "page": "world_0",
       "rect": {
-        "x": 82,
-        "y": 378,
+        "x": 164,
+        "y": 486,
         "w": 75,
         "h": 76
       },
@@ -934,8 +1220,8 @@
     "villager_elder_male_idle_00": {
       "page": "world_0",
       "rect": {
-        "x": 2,
-        "y": 457,
+        "x": 243,
+        "y": 544,
         "w": 75,
         "h": 76
       },
@@ -956,8 +1242,8 @@
     "villager_male_a_care_01": {
       "page": "world_0",
       "rect": {
-        "x": 161,
-        "y": 378,
+        "x": 805,
+        "y": 455,
         "w": 76,
         "h": 75
       },
@@ -978,8 +1264,8 @@
     "villager_female_a_chop_01": {
       "page": "world_0",
       "rect": {
-        "x": 241,
-        "y": 452,
+        "x": 885,
+        "y": 479,
         "w": 76,
         "h": 74
       },
@@ -1000,8 +1286,8 @@
     "villager_elder_male_idle_01": {
       "page": "world_0",
       "rect": {
-        "x": 161,
-        "y": 457,
+        "x": 82,
+        "y": 566,
         "w": 73,
         "h": 76
       },
@@ -1022,8 +1308,8 @@
     "villager_elder_male_walk_01": {
       "page": "world_0",
       "rect": {
-        "x": 81,
-        "y": 458,
+        "x": 2,
+        "y": 620,
         "w": 76,
         "h": 73
       },
@@ -1044,8 +1330,8 @@
     "villager_male_a_farm_01": {
       "page": "world_0",
       "rect": {
-        "x": 81,
-        "y": 535,
+        "x": 159,
+        "y": 566,
         "w": 76,
         "h": 73
       },
@@ -1066,8 +1352,8 @@
     "villager_male_a_walk_up_01": {
       "page": "world_0",
       "rect": {
-        "x": 2,
-        "y": 537,
+        "x": 483,
+        "y": 482,
         "w": 73,
         "h": 76
       },
@@ -1085,11 +1371,33 @@
       },
       "nineSlice": null
     },
+    "module_lattice": {
+      "page": "world_0",
+      "rect": {
+        "x": 403,
+        "y": 533,
+        "w": 72,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 76
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 76
+      },
+      "nineSlice": null
+    },
     "villager_female_a_walk_right_02": {
       "page": "world_0",
       "rect": {
-        "x": 321,
-        "y": 456,
+        "x": 322,
+        "y": 593,
         "w": 76,
         "h": 72
       },
@@ -1110,8 +1418,8 @@
     "villager_elder_male_walk_up_00": {
       "page": "world_0",
       "rect": {
-        "x": 401,
-        "y": 457,
+        "x": 239,
+        "y": 624,
         "w": 76,
         "h": 71
       },
@@ -1132,8 +1440,8 @@
     "villager_female_a_harvest_03": {
       "page": "world_0",
       "rect": {
-        "x": 238,
-        "y": 530,
+        "x": 159,
+        "y": 643,
         "w": 71,
         "h": 76
       },
@@ -1154,8 +1462,8 @@
     "villager_male_a_walk_up_02": {
       "page": "world_0",
       "rect": {
-        "x": 161,
-        "y": 537,
+        "x": 82,
+        "y": 646,
         "w": 71,
         "h": 76
       },
@@ -1176,8 +1484,8 @@
     "villager_female_a_care_01": {
       "page": "world_0",
       "rect": {
-        "x": 79,
-        "y": 612,
+        "x": 2,
+        "y": 697,
         "w": 70,
         "h": 76
       },
@@ -1198,8 +1506,8 @@
     "villager_female_a_harvest_00": {
       "page": "world_0",
       "rect": {
-        "x": 2,
-        "y": 617,
+        "x": 560,
+        "y": 482,
         "w": 70,
         "h": 76
       },
@@ -1220,8 +1528,8 @@
     "villager_male_a_chop_00": {
       "page": "world_0",
       "rect": {
-        "x": 748,
-        "y": 422,
+        "x": 634,
+        "y": 499,
         "w": 70,
         "h": 76
       },
@@ -1242,8 +1550,8 @@
     "villager_elder_male_walk_right_00": {
       "page": "world_0",
       "rect": {
-        "x": 642,
-        "y": 429,
+        "x": 708,
+        "y": 531,
         "w": 68,
         "h": 76
       },
@@ -1264,8 +1572,8 @@
     "villager_female_a_chop_00": {
       "page": "world_0",
       "rect": {
-        "x": 481,
-        "y": 502,
+        "x": 780,
+        "y": 534,
         "w": 68,
         "h": 76
       },
@@ -1286,8 +1594,8 @@
     "villager_elder_female_walk_up_01": {
       "page": "world_0",
       "rect": {
-        "x": 553,
-        "y": 502,
+        "x": 479,
+        "y": 562,
         "w": 67,
         "h": 76
       },
@@ -1308,8 +1616,8 @@
     "villager_male_a_chop_03": {
       "page": "world_0",
       "rect": {
-        "x": 313,
-        "y": 532,
+        "x": 402,
+        "y": 613,
         "w": 66,
         "h": 76
       },
@@ -1330,8 +1638,8 @@
     "villager_male_a_walk_up_00": {
       "page": "world_0",
       "rect": {
-        "x": 236,
-        "y": 610,
+        "x": 319,
+        "y": 669,
         "w": 61,
         "h": 76
       },
@@ -1352,8 +1660,8 @@
     "villager_male_a_walk_up_03": {
       "page": "world_0",
       "rect": {
-        "x": 668,
-        "y": 258,
+        "x": 965,
+        "y": 479,
         "w": 46,
         "h": 76
       },
@@ -1374,8 +1682,8 @@
     "villager_elder_female_walk_00": {
       "page": "world_0",
       "rect": {
-        "x": 153,
-        "y": 617,
+        "x": 550,
+        "y": 562,
         "w": 75,
         "h": 75
       },
@@ -1396,8 +1704,8 @@
     "villager_male_a_walk_right_02": {
       "page": "world_0",
       "rect": {
-        "x": 383,
-        "y": 532,
+        "x": 629,
+        "y": 579,
         "w": 75,
         "h": 75
       },
@@ -1418,8 +1726,8 @@
     "villager_elder_female_idle_00": {
       "page": "world_0",
       "rect": {
-        "x": 822,
-        "y": 422,
+        "x": 550,
+        "y": 641,
         "w": 75,
         "h": 74
       },
@@ -1440,8 +1748,8 @@
     "villager_elder_female_walk_01": {
       "page": "world_0",
       "rect": {
-        "x": 901,
-        "y": 422,
+        "x": 472,
+        "y": 642,
         "w": 74,
         "h": 75
       },
@@ -1462,8 +1770,8 @@
     "enemy_armored_walk_00": {
       "page": "world_0",
       "rect": {
-        "x": 76,
-        "y": 692,
+        "x": 234,
+        "y": 699,
         "w": 73,
         "h": 75
       },
@@ -1484,8 +1792,8 @@
     "villager_elder_male_walk_up_01": {
       "page": "world_0",
       "rect": {
-        "x": 822,
-        "y": 500,
+        "x": 384,
+        "y": 693,
         "w": 75,
         "h": 71
       },
@@ -1506,8 +1814,8 @@
     "villager_female_a_chop_03": {
       "page": "world_0",
       "rect": {
-        "x": 714,
-        "y": 502,
+        "x": 157,
+        "y": 723,
         "w": 71,
         "h": 75
       },
@@ -1528,8 +1836,8 @@
     "villager_female_a_walk_right_01": {
       "page": "world_0",
       "rect": {
-        "x": 624,
-        "y": 509,
+        "x": 76,
+        "y": 726,
         "w": 71,
         "h": 75
       },
@@ -1550,8 +1858,8 @@
     "villager_male_a_walk_right_00": {
       "page": "world_0",
       "rect": {
-        "x": 901,
-        "y": 501,
+        "x": 852,
+        "y": 557,
         "w": 74,
         "h": 70
       },
@@ -1572,8 +1880,8 @@
     "villager_elder_female_walk_right_00": {
       "page": "world_0",
       "rect": {
-        "x": 2,
-        "y": 697,
+        "x": 708,
+        "y": 611,
         "w": 68,
         "h": 74
       },
@@ -1594,8 +1902,8 @@
     "villager_female_a_walk_up_01": {
       "page": "world_0",
       "rect": {
-        "x": 462,
-        "y": 582,
+        "x": 780,
+        "y": 614,
         "w": 68,
         "h": 73
       },
@@ -1616,8 +1924,8 @@
     "villager_elder_male_walk_00": {
       "page": "world_0",
       "rect": {
-        "x": 383,
-        "y": 611,
+        "x": 311,
+        "y": 749,
         "w": 61,
         "h": 73
       },
@@ -1638,8 +1946,8 @@
     "villager_female_a_walk_right_03": {
       "page": "world_0",
       "rect": {
-        "x": 301,
-        "y": 612,
+        "x": 2,
+        "y": 777,
         "w": 70,
         "h": 72
       },
@@ -1660,8 +1968,8 @@
     "villager_male_a_farm_03": {
       "page": "world_0",
       "rect": {
-        "x": 534,
-        "y": 582,
+        "x": 629,
+        "y": 658,
         "w": 72,
         "h": 70
       },
@@ -1679,11 +1987,33 @@
       },
       "nineSlice": null
     },
+    "module_woodgate": {
+      "page": "world_0",
+      "rect": {
+        "x": 550,
+        "y": 719,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 68
+      },
+      "nineSlice": null
+    },
     "villager_female_a_walk_01": {
       "page": "world_0",
       "rect": {
-        "x": 789,
-        "y": 575,
+        "x": 705,
+        "y": 689,
         "w": 65,
         "h": 72
       },
@@ -1704,8 +2034,8 @@
     "villager_female_a_walk_03": {
       "page": "world_0",
       "rect": {
-        "x": 699,
-        "y": 581,
+        "x": 626,
+        "y": 732,
         "w": 59,
         "h": 72
       },
@@ -1726,8 +2056,8 @@
     "villager_female_a_walk_right_00": {
       "page": "world_0",
       "rect": {
-        "x": 610,
-        "y": 588,
+        "x": 232,
+        "y": 778,
         "w": 59,
         "h": 72
       },
@@ -1748,8 +2078,8 @@
     "villager_female_a_walk_02": {
       "page": "world_0",
       "rect": {
-        "x": 534,
-        "y": 656,
+        "x": 151,
+        "y": 802,
         "w": 58,
         "h": 72
       },
@@ -1767,11 +2097,33 @@
       },
       "nineSlice": null
     },
+    "module_plaster": {
+      "page": "world_0",
+      "rect": {
+        "x": 950,
+        "y": 218,
+        "w": 72,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 54
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 54
+      },
+      "nineSlice": null
+    },
     "villager_female_a_walk_00": {
       "page": "world_0",
       "rect": {
-        "x": 448,
-        "y": 659,
+        "x": 76,
+        "y": 805,
         "w": 54,
         "h": 72
       },
@@ -1789,11 +2141,143 @@
       },
       "nineSlice": null
     },
+    "module_masonry": {
+      "page": "world_0",
+      "rect": {
+        "x": 463,
+        "y": 721,
+        "w": 72,
+        "h": 53
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 53
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 53
+      },
+      "nineSlice": null
+    },
+    "module_porch": {
+      "page": "world_0",
+      "rect": {
+        "x": 376,
+        "y": 768,
+        "w": 72,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 52
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 52
+      },
+      "nineSlice": null
+    },
+    "module_field": {
+      "page": "world_0",
+      "rect": {
+        "x": 930,
+        "y": 559,
+        "w": 72,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 96
+      },
+      "nineSlice": null
+    },
+    "module_balcony": {
+      "page": "world_0",
+      "rect": {
+        "x": 930,
+        "y": 611,
+        "w": 72,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 45
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 45
+      },
+      "nineSlice": null
+    },
+    "module_porch_rail": {
+      "page": "world_0",
+      "rect": {
+        "x": 852,
+        "y": 631,
+        "w": 72,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 34
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 34
+      },
+      "nineSlice": null
+    },
+    "module_trough": {
+      "page": "world_0",
+      "rect": {
+        "x": 744,
+        "y": 323,
+        "w": 72,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 24
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 97
+      },
+      "nineSlice": null
+    },
     "villager_male_a_walk_01": {
       "page": "world_0",
       "rect": {
-        "x": 301,
-        "y": 688,
+        "x": 928,
+        "y": 660,
         "w": 71,
         "h": 71
       },
@@ -1814,8 +2298,8 @@
     "villager_male_a_farm_00": {
       "page": "world_0",
       "rect": {
-        "x": 153,
-        "y": 696,
+        "x": 2,
+        "y": 853,
         "w": 69,
         "h": 71
       },
@@ -1836,8 +2320,8 @@
     "villager_male_a_walk_02": {
       "page": "world_0",
       "rect": {
-        "x": 226,
-        "y": 696,
+        "x": 852,
+        "y": 669,
         "w": 69,
         "h": 71
       },
@@ -1858,8 +2342,8 @@
     "villager_male_a_walk_right_03": {
       "page": "world_0",
       "rect": {
-        "x": 858,
-        "y": 575,
+        "x": 774,
+        "y": 691,
         "w": 69,
         "h": 71
       },
@@ -1880,8 +2364,8 @@
     "villager_female_a_walk_up_03": {
       "page": "world_0",
       "rect": {
-        "x": 376,
-        "y": 688,
+        "x": 689,
+        "y": 765,
         "w": 68,
         "h": 71
       },
@@ -1902,8 +2386,8 @@
     "villager_male_a_walk_03": {
       "page": "world_0",
       "rect": {
-        "x": 931,
-        "y": 575,
+        "x": 2,
+        "y": 928,
         "w": 66,
         "h": 71
       },
@@ -1924,8 +2408,8 @@
     "villager_female_a_walk_up_02": {
       "page": "world_0",
       "rect": {
-        "x": 858,
-        "y": 650,
+        "x": 72,
+        "y": 928,
         "w": 65,
         "h": 71
       },
@@ -1946,8 +2430,8 @@
     "villager_male_a_walk_00": {
       "page": "world_0",
       "rect": {
-        "x": 762,
-        "y": 651,
+        "x": 452,
+        "y": 778,
         "w": 61,
         "h": 71
       },
@@ -1968,8 +2452,8 @@
     "villager_female_a_walk_up_00": {
       "page": "world_0",
       "rect": {
-        "x": 673,
-        "y": 657,
+        "x": 376,
+        "y": 824,
         "w": 44,
         "h": 71
       },
@@ -1990,8 +2474,8 @@
     "villager_male_a_walk_right_01": {
       "page": "world_0",
       "rect": {
-        "x": 596,
-        "y": 664,
+        "x": 295,
+        "y": 826,
         "w": 69,
         "h": 70
       },
@@ -2012,8 +2496,8 @@
     "enemy_disruptor_walk_01": {
       "page": "world_0",
       "rect": {
-        "x": 506,
-        "y": 732,
+        "x": 213,
+        "y": 854,
         "w": 69,
         "h": 60
       },
@@ -2034,8 +2518,8 @@
     "enemy_disruptor_walk_02": {
       "page": "world_0",
       "rect": {
-        "x": 927,
-        "y": 650,
+        "x": 141,
+        "y": 878,
         "w": 66,
         "h": 64
       },
@@ -2053,33 +2537,11 @@
       },
       "nineSlice": null
     },
-    "part_tile_roof": {
-      "page": "world_0",
-      "rect": {
-        "x": 927,
-        "y": 718,
-        "w": 66,
-        "h": 34
-      },
-      "sourceSize": {
-        "w": 72,
-        "h": 36
-      },
-      "trimOffset": {
-        "x": 3,
-        "y": 1
-      },
-      "pivot": {
-        "x": 36,
-        "y": 36
-      },
-      "nineSlice": null
-    },
     "enemy_disruptor_walk_00": {
       "page": "world_0",
       "rect": {
-        "x": 748,
-        "y": 349,
+        "x": 141,
+        "y": 946,
         "w": 65,
         "h": 64
       },
@@ -2097,11 +2559,55 @@
       },
       "nineSlice": null
     },
+    "module_ballista": {
+      "page": "world_0",
+      "rect": {
+        "x": 210,
+        "y": 946,
+        "w": 64,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 57
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 85
+      },
+      "nineSlice": null
+    },
+    "module_sling": {
+      "page": "world_0",
+      "rect": {
+        "x": 925,
+        "y": 735,
+        "w": 64,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 48
+      },
+      "nineSlice": null
+    },
     "villager_boy_walk_01": {
       "page": "world_0",
       "rect": {
-        "x": 827,
-        "y": 725,
+        "x": 847,
+        "y": 744,
         "w": 62,
         "h": 62
       },
@@ -2122,8 +2628,8 @@
     "villager_girl_walk_right_01": {
       "page": "world_0",
       "rect": {
-        "x": 721,
-        "y": 726,
+        "x": 761,
+        "y": 766,
         "w": 62,
         "h": 62
       },
@@ -2144,8 +2650,8 @@
     "villager_girl_walk_up_01": {
       "page": "world_0",
       "rect": {
-        "x": 893,
-        "y": 756,
+        "x": 278,
+        "y": 918,
         "w": 62,
         "h": 62
       },
@@ -2166,8 +2672,8 @@
     "villager_boy_walk_right_02": {
       "page": "world_0",
       "rect": {
-        "x": 959,
-        "y": 756,
+        "x": 517,
+        "y": 791,
         "w": 61,
         "h": 62
       },
@@ -2188,8 +2694,8 @@
     "villager_girl_walk_up_02": {
       "page": "world_0",
       "rect": {
-        "x": 787,
-        "y": 791,
+        "x": 424,
+        "y": 853,
         "w": 62,
         "h": 61
       },
@@ -2210,8 +2716,8 @@
     "villager_girl_walk_up_03": {
       "page": "world_0",
       "rect": {
-        "x": 579,
-        "y": 738,
+        "x": 344,
+        "y": 900,
         "w": 59,
         "h": 62
       },
@@ -2232,8 +2738,8 @@
     "villager_girl_walk_01": {
       "page": "world_0",
       "rect": {
-        "x": 642,
-        "y": 738,
+        "x": 582,
+        "y": 808,
         "w": 62,
         "h": 58
       },
@@ -2254,8 +2760,8 @@
     "villager_girl_walk_02": {
       "page": "world_0",
       "rect": {
-        "x": 708,
-        "y": 792,
+        "x": 490,
+        "y": 857,
         "w": 62,
         "h": 58
       },
@@ -2276,8 +2782,8 @@
     "villager_girl_walk_up_00": {
       "page": "world_0",
       "rect": {
-        "x": 642,
-        "y": 800,
+        "x": 407,
+        "y": 918,
         "w": 58,
         "h": 62
       },
@@ -2298,8 +2804,8 @@
     "villager_boy_walk_up_01": {
       "page": "world_0",
       "rect": {
-        "x": 704,
-        "y": 854,
+        "x": 469,
+        "y": 919,
         "w": 57,
         "h": 62
       },
@@ -2320,8 +2826,8 @@
     "enemy_raider_walk_01": {
       "page": "world_0",
       "rect": {
-        "x": 448,
-        "y": 735,
+        "x": 530,
+        "y": 919,
         "w": 54,
         "h": 62
       },
@@ -2342,8 +2848,8 @@
     "enemy_raider_walk_03": {
       "page": "world_0",
       "rect": {
-        "x": 506,
-        "y": 796,
+        "x": 913,
+        "y": 787,
         "w": 52,
         "h": 62
       },
@@ -2361,33 +2867,11 @@
       },
       "nineSlice": null
     },
-    "part_foundation": {
-      "page": "world_0",
-      "rect": {
-        "x": 525,
-        "y": 203,
-        "w": 62,
-        "h": 19
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 24
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 2
-      },
-      "pivot": {
-        "x": 32,
-        "y": 24
-      },
-      "nineSlice": null
-    },
     "enemy_raider_walk_02": {
       "page": "world_0",
       "rect": {
-        "x": 562,
-        "y": 804,
+        "x": 827,
+        "y": 810,
         "w": 60,
         "h": 61
       },
@@ -2408,8 +2892,8 @@
     "enemy_raider_walk_00": {
       "page": "world_0",
       "rect": {
-        "x": 626,
-        "y": 866,
+        "x": 660,
+        "y": 258,
         "w": 59,
         "h": 61
       },
@@ -2430,8 +2914,8 @@
     "villager_boy_walk_right_03": {
       "page": "world_0",
       "rect": {
-        "x": 2,
-        "y": 931,
+        "x": 761,
+        "y": 832,
         "w": 61,
         "h": 59
       },
@@ -2452,8 +2936,8 @@
     "villager_boy_walk_03": {
       "page": "world_0",
       "rect": {
-        "x": 2,
-        "y": 862,
+        "x": 648,
+        "y": 840,
         "w": 54,
         "h": 60
       },
@@ -2474,8 +2958,8 @@
     "villager_boy_walk_up_00": {
       "page": "world_0",
       "rect": {
-        "x": 60,
-        "y": 862,
+        "x": 706,
+        "y": 840,
         "w": 49,
         "h": 60
       },
@@ -2496,8 +2980,8 @@
     "villager_boy_walk_up_02": {
       "page": "world_0",
       "rect": {
-        "x": 2,
-        "y": 775,
+        "x": 969,
+        "y": 787,
         "w": 49,
         "h": 60
       },
@@ -2518,8 +3002,8 @@
     "villager_boy_walk_right_00": {
       "page": "world_0",
       "rect": {
-        "x": 55,
-        "y": 775,
+        "x": 969,
+        "y": 851,
         "w": 48,
         "h": 60
       },
@@ -2540,8 +3024,8 @@
     "villager_boy_walk_00": {
       "page": "world_0",
       "rect": {
-        "x": 107,
-        "y": 771,
+        "x": 588,
+        "y": 870,
         "w": 47,
         "h": 60
       },
@@ -2562,8 +3046,8 @@
     "villager_boy_walk_up_03": {
       "page": "world_0",
       "rect": {
-        "x": 67,
-        "y": 931,
+        "x": 891,
+        "y": 853,
         "w": 55,
         "h": 59
       },
@@ -2584,8 +3068,8 @@
     "villager_boy_walk_02": {
       "page": "world_0",
       "rect": {
-        "x": 113,
-        "y": 862,
+        "x": 826,
+        "y": 875,
         "w": 50,
         "h": 59
       },
@@ -2603,33 +3087,11 @@
       },
       "nineSlice": null
     },
-    "part_gold_roof": {
-      "page": "world_0",
-      "rect": {
-        "x": 266,
-        "y": 166,
-        "w": 59,
-        "h": 26
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 28
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 1
-      },
-      "pivot": {
-        "x": 32,
-        "y": 28
-      },
-      "nineSlice": null
-    },
     "enemy_disruptor_walk_03": {
       "page": "world_0",
       "rect": {
-        "x": 158,
-        "y": 771,
+        "x": 759,
+        "y": 895,
         "w": 57,
         "h": 58
       },
@@ -2650,8 +3112,8 @@
     "villager_girl_walk_00": {
       "page": "world_0",
       "rect": {
-        "x": 126,
-        "y": 931,
+        "x": 588,
+        "y": 957,
         "w": 51,
         "h": 58
       },
@@ -2672,8 +3134,8 @@
     "villager_girl_walk_03": {
       "page": "world_0",
       "rect": {
-        "x": 167,
-        "y": 869,
+        "x": 643,
+        "y": 957,
         "w": 42,
         "h": 58
       },
@@ -2694,8 +3156,8 @@
     "villager_boy_walk_right_01": {
       "page": "world_0",
       "rect": {
-        "x": 181,
-        "y": 931,
+        "x": 689,
+        "y": 957,
         "w": 52,
         "h": 57
       },
@@ -2716,8 +3178,8 @@
     "villager_girl_walk_right_02": {
       "page": "world_0",
       "rect": {
-        "x": 213,
-        "y": 869,
+        "x": 344,
+        "y": 966,
         "w": 56,
         "h": 56
       },
@@ -2738,8 +3200,8 @@
     "villager_girl_walk_right_03": {
       "page": "world_0",
       "rect": {
-        "x": 219,
-        "y": 801,
+        "x": 745,
+        "y": 957,
         "w": 56,
         "h": 56
       },
@@ -2760,8 +3222,8 @@
     "villager_girl_walk_right_00": {
       "page": "world_0",
       "rect": {
-        "x": 237,
-        "y": 931,
+        "x": 805,
+        "y": 957,
         "w": 47,
         "h": 56
       },
@@ -2779,11 +3241,55 @@
       },
       "nineSlice": null
     },
+    "module_crystal": {
+      "page": "world_0",
+      "rect": {
+        "x": 856,
+        "y": 938,
+        "w": 36,
+        "h": 51
+      },
+      "sourceSize": {
+        "w": 36,
+        "h": 51
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 18,
+        "y": 48
+      },
+      "nineSlice": null
+    },
+    "module_wheel": {
+      "page": "world_0",
+      "rect": {
+        "x": 639,
+        "y": 904,
+        "w": 48,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 46
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 58
+      },
+      "nineSlice": null
+    },
     "villager_baby_idle_03": {
       "page": "world_0",
       "rect": {
-        "x": 273,
-        "y": 869,
+        "x": 691,
+        "y": 904,
         "w": 45,
         "h": 48
       },
@@ -2804,8 +3310,8 @@
     "villager_baby_idle_00": {
       "page": "world_0",
       "rect": {
-        "x": 279,
-        "y": 801,
+        "x": 950,
+        "y": 915,
         "w": 44,
         "h": 48
       },
@@ -2823,11 +3329,55 @@
       },
       "nineSlice": null
     },
+    "module_saw": {
+      "page": "world_0",
+      "rect": {
+        "x": 896,
+        "y": 916,
+        "w": 48,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 39
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 60
+      },
+      "nineSlice": null
+    },
+    "module_logs": {
+      "page": "world_0",
+      "rect": {
+        "x": 266,
+        "y": 166,
+        "w": 48,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 33
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 66
+      },
+      "nineSlice": null
+    },
     "villager_baby_idle_02": {
       "page": "world_0",
       "rect": {
-        "x": 288,
-        "y": 931,
+        "x": 896,
+        "y": 959,
         "w": 47,
         "h": 45
       },
@@ -2848,8 +3398,8 @@
     "villager_baby_idle_01": {
       "page": "world_0",
       "rect": {
-        "x": 322,
-        "y": 869,
+        "x": 947,
+        "y": 967,
         "w": 44,
         "h": 47
       },
@@ -2867,143 +3417,11 @@
       },
       "nineSlice": null
     },
-    "part_tools": {
-      "page": "world_0",
-      "rect": {
-        "x": 299,
-        "y": 763,
-        "w": 38,
-        "h": 33
-      },
-      "sourceSize": {
-        "w": 40,
-        "h": 36
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "pivot": {
-        "x": 20,
-        "y": 36
-      },
-      "nineSlice": null
-    },
-    "part_timbers": {
-      "page": "world_0",
-      "rect": {
-        "x": 721,
-        "y": 657,
-        "w": 37,
-        "h": 30
-      },
-      "sourceSize": {
-        "w": 40,
-        "h": 32
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "pivot": {
-        "x": 20,
-        "y": 32
-      },
-      "nineSlice": null
-    },
-    "part_grain": {
-      "page": "world_0",
-      "rect": {
-        "x": 714,
-        "y": 429,
-        "w": 30,
-        "h": 34
-      },
-      "sourceSize": {
-        "w": 32,
-        "h": 36
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "pivot": {
-        "x": 16,
-        "y": 36
-      },
-      "nineSlice": null
-    },
-    "part_crystal": {
-      "page": "world_0",
-      "rect": {
-        "x": 787,
-        "y": 726,
-        "w": 30,
-        "h": 33
-      },
-      "sourceSize": {
-        "w": 32,
-        "h": 36
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "pivot": {
-        "x": 16,
-        "y": 36
-      },
-      "nineSlice": null
-    },
-    "part_brace": {
-      "page": "world_0",
-      "rect": {
-        "x": 714,
-        "y": 467,
-        "w": 30,
-        "h": 30
-      },
-      "sourceSize": {
-        "w": 32,
-        "h": 32
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "pivot": {
-        "x": 16,
-        "y": 32
-      },
-      "nineSlice": null
-    },
-    "part_window": {
-      "page": "world_0",
-      "rect": {
-        "x": 789,
-        "y": 502,
-        "w": 29,
-        "h": 30
-      },
-      "sourceSize": {
-        "w": 32,
-        "h": 32
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "pivot": {
-        "x": 16,
-        "y": 32
-      },
-      "nineSlice": null
-    },
     "part_crest": {
       "page": "world_0",
       "rect": {
-        "x": 181,
-        "y": 992,
+        "x": 995,
+        "y": 967,
         "w": 26,
         "h": 30
       },
@@ -3021,11 +3439,33 @@
       },
       "nineSlice": null
     },
+    "module_door": {
+      "page": "world_0",
+      "rect": {
+        "x": 856,
+        "y": 993,
+        "w": 28,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 28,
+        "h": 29
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 14,
+        "y": 29
+      },
+      "nineSlice": null
+    },
     "deco_blossom_ivory": {
       "page": "world_0",
       "rect": {
-        "x": 107,
-        "y": 835,
+        "x": 211,
+        "y": 918,
         "w": 26,
         "h": 23
       },
@@ -3046,8 +3486,8 @@
     "deco_blossom_pink": {
       "page": "world_0",
       "rect": {
-        "x": 827,
-        "y": 651,
+        "x": 556,
+        "y": 870,
         "w": 26,
         "h": 22
       },
@@ -3068,8 +3508,8 @@
     "part_banner": {
       "page": "world_0",
       "rect": {
-        "x": 827,
-        "y": 677,
+        "x": 241,
+        "y": 918,
         "w": 26,
         "h": 22
       },
@@ -3087,33 +3527,33 @@
       },
       "nineSlice": null
     },
-    "part_iron": {
+    "module_window": {
       "page": "world_0",
       "rect": {
-        "x": 482,
-        "y": 377,
-        "w": 22,
+        "x": 566,
+        "y": 203,
+        "w": 24,
         "h": 24
       },
       "sourceSize": {
         "w": 24,
-        "h": 32
+        "h": 24
       },
       "trimOffset": {
-        "x": 1,
-        "y": 4
+        "x": 0,
+        "y": 0
       },
       "pivot": {
         "x": 12,
-        "y": 32
+        "y": 24
       },
       "nineSlice": null
     },
     "deco_pear_pair": {
       "page": "world_0",
       "rect": {
-        "x": 673,
-        "y": 588,
+        "x": 566,
+        "y": 231,
         "w": 22,
         "h": 22
       },
@@ -3134,8 +3574,8 @@
     "deco_apple_pair": {
       "page": "world_0",
       "rect": {
-        "x": 673,
-        "y": 614,
+        "x": 852,
+        "y": 534,
         "w": 22,
         "h": 19
       },
