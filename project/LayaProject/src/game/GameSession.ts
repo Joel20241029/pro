@@ -2,7 +2,7 @@ import { BattleSimulation } from "./BattleSimulation";
 import { clone, GameState } from "./GameState";
 import { RULE, Trait } from "./GameConfig";
 import { applyCommand, Command, createGame, finishNight } from "./VillageRules";
-import { LoadResult, SaveStore } from "../storage/SaveStore";
+import { LoadResult, SaveMode, SaveStore } from "../storage/SaveStore";
 import { dailyRationAmount, localRationDate } from "./DailyRation";
 export type Pause = "USER" | "BACKGROUND" | "WAIT_RESUME" | "CHOICE" | "SAVE_PENDING" | "DISABLED" | "DAILY_RATION";
 export class GameSession {
@@ -14,6 +14,11 @@ export class GameSession {
     get error() { return this.currentError; }
     set error(value: string) { this.currentError = value; if (value) this.errorRevision++; }
     changed = () => {}; private accumulator = 0; private continuingBattle = false;
+    /** 供表现层识别已保存的新村；同 run 的纯净开局也递增，普通进度保存不递增。 */
+    private currentVillageRevision = 0;
+    get villageRevision() { return this.currentVillageRevision; }
+    /** 标记当前候选为开村操作；提交失败后重试也要在成功时清理旧村表现。 */
+    private pendingNewVillage = false;
     /** 只在进入/返回/重开时更新；不会在常驻跨午夜时自动打断游戏。 */
     private visitDate: string | null = null;
     dailyRationDate: string | null = null;
@@ -40,20 +45,41 @@ export class GameSession {
         this.command({ type: "DAILY_RATION", date: this.visitDate });
     }
     load() {
-        try { this.boot = this.saves.inspect(); this.error = ""; if (this.boot.kind === "ready") this.accept(this.boot.state); else this.changed(); }
+        if (this.saves.pending) { this.retry(); return; }
+        try {
+            this.boot = this.saves.inspect(); this.error = "";
+            if (this.boot.kind === "ready") this.accept(this.boot.state);
+            else if (this.boot.kind === "complete-clean-start") {
+                this.pendingNewVillage = true; this.pauses.add("SAVE_PENDING"); this.retry();
+            } else this.changed();
+        }
         catch (e) { this.error = String(e); this.boot = { kind: "blocked", reason: "微信存档暂时读取失败。请重试，未新建或覆盖进度。", canReset: false }; this.changed(); }
     }
     recover() { if (this.boot?.kind === "recover") this.accept(this.boot.state); }
     newVillage(trait?: Trait, reset = false) {
+        if (this.saves.pending) return;
         if (this.visitDate !== null) this.visitDate = this.today();
         if (reset) {
-            if (this.saves.pending || !(this.boot?.kind === "incompatible" || (this.boot?.kind === "blocked" && this.boot.canReset))) return;
-            this.submit(createGame(Date.now() >>> 0), false, true); return;
+            if (!(this.boot?.kind === "incompatible" || (this.boot?.kind === "blocked" && this.boot.canReset))) return;
+            this.submit(createGame(Date.now() >>> 0), false, "RESET"); return;
         }
-        this.submit(createGame(Date.now() >>> 0, this.state?.legacy, trait, this.state ? this.state.history : [], this.state ? this.state.favorites : []));
+        this.submit(createGame(Date.now() >>> 0, this.state?.legacy, trait, this.state ? this.state.history : [], this.state ? this.state.favorites : []), false, "NORMAL");
     }
-    private accept(s: GameState) {
-        const sameNight = this.continuingBattle && this.battle !== null && s.phase === "NIGHT";
+    cleanStart() {
+        if (!this.state || this.boot !== null || this.saves.pending) return;
+        if (this.visitDate !== null) this.visitDate = this.today();
+        const next = createGame(Date.now() >>> 0);
+        next.legacy.bestNight = this.state.legacy.bestNight;
+        this.submit(next, false, "CLEAN_START");
+    }
+    private accept(s: GameState, newVillage = false) {
+        const sameNight = !newVillage && this.continuingBattle && this.battle !== null && s.phase === "NIGHT";
+        if (newVillage) {
+            this.currentVillageRevision++;
+            // 前后台、等待恢复和禁用来自应用生命周期；清除旧村自身的暂停。
+            this.pauses.delete("USER"); this.pauses.delete("CHOICE"); this.pauses.delete("DAILY_RATION");
+            this.dailyRationDate = null;
+        }
         this.state = s; this.boot = null; this.error = ""; this.pauses.delete("SAVE_PENDING");
         if (!sameNight) { this.battle = s.phase === "NIGHT" ? new BattleSimulation(s) : null; this.accumulator = 0; }
         this.continuingBattle = false;
@@ -61,15 +87,18 @@ export class GameSession {
         this.checkDailyRation();
         this.changed();
     }
-    private submit(next: GameState, keepBattle = false, reset = false) {
+    private submit(next: GameState, keepBattle = false, start?: SaveMode) {
         try {
-            this.continuingBattle = keepBattle; this.saves.prepare(next, reset); this.pauses.add("SAVE_PENDING");
-            this.accept(this.saves.commit());
-        } catch (e) { this.error = e instanceof Error ? e.message : String(e); if (!this.saves.pending) this.pauses.delete("SAVE_PENDING"); this.changed(); }
+            this.saves.prepare(next, start); this.continuingBattle = keepBattle; this.pendingNewVillage = start !== undefined;
+            this.pauses.add("SAVE_PENDING"); this.retry();
+        } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
     retry() {
         if (!this.saves.pending) { this.load(); return; }
-        try { this.accept(this.saves.commit()); } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
+        try {
+            const state = this.saves.commit(), newVillage = this.pendingNewVillage;
+            this.pendingNewVillage = false; this.accept(state, newVillage);
+        } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
     command(c: Command) {
         if (!this.state || this.saves.pending) return;

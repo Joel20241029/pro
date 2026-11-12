@@ -6628,6 +6628,534 @@
       "resizeMode": "contain",
       "runtime": true,
       "usage": "界面/特效入口"
+    },
+    {
+      "id": "deco_apple_pair",
+      "label": "红苹果",
+      "category": "decorations",
+      "categoryLabel": "独立花果",
+      "path": "runtime/decorations/parts/deco_apple_pair.png",
+      "width": 24,
+      "height": 24,
+      "pivot": {
+        "x": 12.0,
+        "y": 24
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 316,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 81,
+        "y": 103,
+        "w": 179,
+        "h": 155
+      },
+      "nineSlice": null,
+      "mapping": "tree child",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "deco_pear_pair",
+      "label": "金梨",
+      "category": "decorations",
+      "categoryLabel": "独立花果",
+      "path": "runtime/decorations/parts/deco_pear_pair.png",
+      "width": 24,
+      "height": 24,
+      "pivot": {
+        "x": 12.0,
+        "y": 24
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 316,
+        "y": 0,
+        "w": 316,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 71,
+        "y": 90,
+        "w": 174,
+        "h": 178
+      },
+      "nineSlice": null,
+      "mapping": "tree child",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "deco_blossom_pink",
+      "label": "粉花",
+      "category": "decorations",
+      "categoryLabel": "独立花果",
+      "path": "runtime/decorations/parts/deco_blossom_pink.png",
+      "width": 28,
+      "height": 28,
+      "pivot": {
+        "x": 14.0,
+        "y": 28
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 632,
+        "y": 0,
+        "w": 315,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 34,
+        "y": 78,
+        "w": 220,
+        "h": 190
+      },
+      "nineSlice": null,
+      "mapping": "tree child",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "deco_blossom_ivory",
+      "label": "米白花",
+      "category": "decorations",
+      "categoryLabel": "独立花果",
+      "path": "runtime/decorations/parts/deco_blossom_ivory.png",
+      "width": 28,
+      "height": 28,
+      "pivot": {
+        "x": 14.0,
+        "y": 28
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 947,
+        "y": 0,
+        "w": 316,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 36,
+        "y": 78,
+        "w": 218,
+        "h": 190
+      },
+      "nineSlice": null,
+      "mapping": "tree child",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "part_window",
+      "label": "木窗",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_window.png",
+      "width": 32,
+      "height": 32,
+      "pivot": {
+        "x": 16.0,
+        "y": 32
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 312,
+        "w": 316,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 75,
+        "y": 69,
+        "w": 178,
+        "h": 187
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "part_iron",
+      "label": "铁加固",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_iron.png",
+      "width": 24,
+      "height": 32,
+      "pivot": {
+        "x": 12.0,
+        "y": 32
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 316,
+        "y": 312,
+        "w": 316,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 71,
+        "y": 76,
+        "w": 165,
+        "h": 178
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "part_gold_roof",
+      "label": "金檐",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_gold_roof.png",
+      "width": 64,
+      "height": 28,
+      "pivot": {
+        "x": 32.0,
+        "y": 28
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 632,
+        "y": 312,
+        "w": 315,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 9,
+        "y": 104,
+        "w": 277,
+        "h": 122
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "part_tile_roof",
+      "label": "瓦檐",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_tile_roof.png",
+      "width": 72,
+      "height": 36,
+      "pivot": {
+        "x": 36.0,
+        "y": 36
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 947,
+        "y": 312,
+        "w": 316,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 6,
+        "y": 89,
+        "w": 293,
+        "h": 152
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "part_brace",
+      "label": "木撑",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_brace.png",
+      "width": 32,
+      "height": 32,
+      "pivot": {
+        "x": 16.0,
+        "y": 32
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 623,
+        "w": 316,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 68,
+        "y": 62,
+        "w": 188,
+        "h": 188
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "part_foundation",
+      "label": "石基",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_foundation.png",
+      "width": 64,
+      "height": 24,
+      "pivot": {
+        "x": 32.0,
+        "y": 24
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 316,
+        "y": 623,
+        "w": 316,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 23,
+        "y": 118,
+        "w": 268,
+        "h": 84
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "part_grain",
+      "label": "粮袋",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_grain.png",
+      "width": 32,
+      "height": 36,
+      "pivot": {
+        "x": 16.0,
+        "y": 36
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 632,
+        "y": 623,
+        "w": 315,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 44,
+        "y": 39,
+        "w": 201,
+        "h": 226
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "part_tools",
+      "label": "工具架",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_tools.png",
+      "width": 40,
+      "height": 36,
+      "pivot": {
+        "x": 20.0,
+        "y": 36
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 947,
+        "y": 623,
+        "w": 316,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 36,
+        "y": 50,
+        "w": 243,
+        "h": 209
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "part_timbers",
+      "label": "木料堆",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_timbers.png",
+      "width": 40,
+      "height": 32,
+      "pivot": {
+        "x": 20.0,
+        "y": 32
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 934,
+        "w": 316,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 43,
+        "y": 53,
+        "w": 237,
+        "h": 193
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "part_crystal",
+      "label": "晶簇",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_crystal.png",
+      "width": 32,
+      "height": 36,
+      "pivot": {
+        "x": 16.0,
+        "y": 36
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 316,
+        "y": 934,
+        "w": 316,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 62,
+        "y": 42,
+        "w": 193,
+        "h": 210
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "part_crest",
+      "label": "金徽",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_crest.png",
+      "width": 28,
+      "height": 32,
+      "pivot": {
+        "x": 14.0,
+        "y": 32
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 632,
+        "y": 934,
+        "w": 315,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 57,
+        "y": 39,
+        "w": 186,
+        "h": 213
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+    },
+    {
+      "id": "part_banner",
+      "label": "锦旗",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_banner.png",
+      "width": 28,
+      "height": 36,
+      "pivot": {
+        "x": 14.0,
+        "y": 36
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 947,
+        "y": 934,
+        "w": 316,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 35,
+        "y": 53,
+        "w": 231,
+        "h": 193
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
     }
   ],
   "animations": {

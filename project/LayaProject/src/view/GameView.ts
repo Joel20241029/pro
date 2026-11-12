@@ -1,12 +1,13 @@
 import { GameSession } from "../game/GameSession";
 import { capacity, economy, JOB_NAMES, person, canMarry, birthUnavailableReason, Command } from "../game/VillageRules";
 import { GameState, isElder, isWorkingAdult, Person } from "../game/GameState";
-import { ELITE, ENEMIES, PATH, PADS, POLICIES, RULE, SEASONS, SKILLS, TOWERS, TowerKind, TRAITS } from "../game/GameConfig";
+import { ELITE, ENEMIES, PATH, POLICIES, RULE, SEASONS, SKILLS, TOWERS, TowerKind, TRAITS } from "../game/GameConfig";
 import { BattleSimulation, pointAt } from "../game/BattleSimulation";
 import { season } from "../game/WaveGenerator";
 import { enemyPower, gateCapacity, laborSlots, laborYield, levelPower, repairCost, storageCapacity, UpgradeKind, upgradeCost, upgradeUnavailableReason } from "../game/Growth";
 import { SpriteFrames } from "./SpriteFrames";
-import { compareDepth, TOWER_VIEW, VILLAGE_PROPS, WEDDING } from "./VillageScene";
+import { compareDepth, layoutVillage, TOWER_VIEW, VillageNavigation, WEDDING } from "./VillageScene";
+import { GameLayout } from "./GameLayout";
 import { VillagerMotion } from "./VillagerMotion";
 import { ProjectileMotion } from "./ProjectileMotion";
 import { C, UI } from "./UiTheme";
@@ -17,14 +18,18 @@ import { WechatPlatform } from "../platform/WechatPlatform";
 import { EMOTE, VillagerEmotes } from "./VillagerEmotes";
 import { GUIDE_CHAPTERS } from "./GameGuide";
 import { dailyRationAmount } from "../game/DailyRation";
+import { BuildingLook, BuildingVisuals } from "./BuildingVisuals";
 type Panel = { type: string; id?: string; index?: number; scroll?: number; tab?: number; a?: string; job?: "FARM" | "LOGGING" };
 export class GameView {
     readonly root = new Laya.Sprite();
     private scenery = new Laya.Sprite(); private world = new Laya.Sprite(); private chrome = new Laya.Sprite(); private overlay = new Laya.Sprite();
     private people: Laya.Sprite[] = []; private enemies: Laya.Sprite[] = []; private shots = new Laya.Sprite();
     private hearts: Laya.Sprite[] = [];
-    private props: { id: string; y: number; node: Laya.Sprite }[] = [];
-    private motion = new VillagerMotion();
+    private props: { id: string; y: number; node: Laya.Sprite; visual?: BuildingVisuals }[] = [];
+    private freshBuildingVillage = true;
+    private layout = new GameLayout(this.platform.window, this.platform.menu);
+    private scene = layoutVillage(this.layout);
+    private motion = new VillagerMotion(new VillageNavigation(this.scene.props, this.scene.landscape, this.scene.bounds), this.scene.stops);
     private projectiles = new ProjectileMotion(); private projectileNodes: Laya.Sprite[] = [];
     private lastBattle: BattleSimulation | null = null; private lastBattleTick = 0;
     private hp!: Laya.Text; private count!: Laya.Text;
@@ -32,23 +37,32 @@ export class GameView {
     private renderDelta = 0; private panel: Panel | null = null;
     private backgroundKey = "";
     private tip: Tip; private shownErrorRevision = 0;
-    private observedRun = 0; private observedDawn = 0;
+    private observedRun = 0; private observedDawn = 0; private observedVillageRevision = 0;
     private emotes = new VillagerEmotes();
     private emote = new Laya.Sprite();
     private bellAura = new Laya.Sprite();
     private bellCountdown: Laya.Text | null = null; private nightStatus: Laya.Text | null = null;
-    showMusicProblem() { this.tip.show("音乐暂时无法播放，可在设置中重新开启"); }
-    constructor(private game: GameSession, private art: SpriteFrames, private platform: WechatPlatform) {
-        this.root.name = "VillageGame"; this.root.size(720, 1280); this.root.stackingRoot = true;
+    showMusicProblem() { this.tip.show("声音暂时无法播放，可在小记中重新开启"); }
+    constructor(private game: GameSession, private art: SpriteFrames, private platform: WechatPlatform, private playClick: () => void) {
+        this.root.name = "VillageGame"; this.root.size(720, this.layout.height); this.root.stackingRoot = true;
         [this.scenery, this.world, this.shots, this.chrome, this.overlay].forEach((layer, i) => { layer.stackingRoot = true; layer.zIndex = i; this.root.addChild(layer); });
         this.bellAura.name = "BellAura"; this.bellAura.zIndex = 2; this.bellAura.mouseEnabled = false; this.bellAura.visible = false; this.root.addChild(this.bellAura);
         this.emote.name = "VillagerEmote"; this.emote.zIndex = 2; this.emote.mouseEnabled = false; this.emote.visible = false; this.root.addChild(this.emote);
-        this.tip = new Tip(art); this.tip.stackingRoot = true; this.tip.zIndex = 5; this.tip.pos(360, 640); this.root.addChild(this.tip);
+        this.tip = new Tip(art); this.tip.stackingRoot = true; this.tip.zIndex = 5; this.tip.pos(360, (this.layout.safeTop + this.layout.safeBottom) / 2); this.root.addChild(this.tip);
         this.world.name = "VillageWorld";
-        this.overlay.size(720, 1280); this.overlay.mouseEnabled = true; this.overlay.mouseThrough = true;
-        for (const p of VILLAGE_PROPS) {
-            const node = new Laya.Sprite(); node.name = p.id; node.mouseEnabled = false;
-            this.art.applyFrame(node, p.frame, p.size); node.pos(p.x, p.y); this.world.addChild(node); this.props.push({ id: p.id, y: p.ground ? -1 : p.y, node });
+        this.overlay.size(720, this.layout.height); this.overlay.mouseEnabled = true; this.overlay.mouseThrough = true;
+        for (const p of this.scene.props) {
+            const node = new Laya.Sprite(); node.name = p.id; node.mouseEnabled = false; node.stackingRoot = true;
+            this.art.applyFrame(node, p.frame, p.size); node.pos(p.x, p.y); this.world.addChild(node);
+            const upgradeable = p.id.startsWith("tower:") || (p.id.startsWith("building:") && p.id !== "building:hearth");
+            this.props.push({ id: p.id, y: p.ground ? -1 : p.y, node, visual: upgradeable ? new BuildingVisuals(node, art) : undefined });
+            if (p.id.startsWith("forest:") && Number(p.id.split(":")[1]) % 2 === 1) {
+                const index = Number(p.id.split(":")[1]);
+                const frame = ["deco_apple_pair", "deco_blossom_pink", "deco_pear_pair", "deco_blossom_ivory"][Math.floor(index / 2) % 4];
+                // 花果在树冠内，作为树的子节点一起遮挡；不漂在更近的树或角色前面。
+                this.image(node, frame, p.size * .22, p.size * .37, p.size * .19);
+                this.image(node, frame, p.size * .59, p.size * .24, p.size * .17);
+            }
         }
         for (let i = 0; i < RULE.populationCap; i++) {
             const s = new Laya.Sprite(); s.mouseEnabled = false; s.stackingRoot = true; this.world.addChild(s); this.people.push(s);
@@ -59,6 +73,25 @@ export class GameView {
         for (let i = 0; i < RULE.enemyCap; i++) { const s = new Laya.Sprite(); s.mouseEnabled = false; this.world.addChild(s); this.enemies.push(s); }
         for (let i = 0; i < RULE.effectCap; i++) { const s = new Laya.Sprite(); s.mouseEnabled = false; s.visible = false; this.shots.addChild(s); this.projectileNodes.push(s); }
         game.changed = () => this.refresh(); this.refresh();
+    }
+    /** 屏幕重排保留现有面板/滚动/开放域实例与人物日程，不执行命令、读档或重复请求排行榜授权。 */
+    resize() {
+        const next = new GameLayout(this.platform.window, this.platform.menu), previous = this.layout;
+        if (next.height === previous.height && next.safeTop === previous.safeTop && next.safeBottom === previous.safeBottom && next.settingsY === previous.settingsY) return;
+        const scene = layoutVillage(next);
+        this.motion.relayout(new VillageNavigation(scene.props, scene.landscape, scene.bounds), scene.stops,
+            p => ({ x: p.x, y: next.worldY(previous.referenceY(p.y)) }));
+        this.layout = next; this.scene = scene; this.backgroundKey = "";
+        this.root.size(720, next.height); this.overlay.size(720, next.height); this.tip.pos(360, (next.safeTop + next.safeBottom) / 2);
+        this.props.forEach((p, i) => { const at = scene.props[i]; p.y = at.ground ? -1 : at.y; p.node.pos(at.x, at.y); });
+        this.overlay.graphics.clear();
+        if (this.overlay.numChildren) this.overlay.graphics.drawRect(0, 0, 720, next.height, "rgba(25,31,22,0.68)");
+        for (let i = 0; i < this.overlay.numChildren; i++) {
+            const box = this.overlay.getChildAt(i) as Laya.Sprite;
+            box.y = next.safeTop + (next.safeBottom - next.safeTop - box.height) / 2;
+            (box.getChildByName("FriendRankingCanvas") as RankingView)?.updateViewPort();
+        }
+        this.refresh(true);
     }
     private label(parent: Laya.Sprite, text: string, x: number, y: number, w: number, size: number = UI.body, color = C.ink, bold = false, h = 48): Laya.Text {
         const t = new Laya.Text(); t.html = text.includes("<font "); t.text = text; t.font = "sans-serif"; t.fontSize = Math.max(parent.name.startsWith("panel:") ? UI.body : UI.mapLabel, size); t.color = color; t.bold = bold; t.wordWrap = true; t.leading = 7; t.size(w, h); t.pos(x, y);
@@ -91,7 +124,7 @@ export class GameView {
         const row = this.button(parent, "", 0, y, 584, action, C.muted, 184, !reason);
         const face = row.getChildAt(0) as Laya.Sprite;
         face.graphics.drawRect(12, 20, 5, 144, reason ? C.muted : C.green);
-        this.image(face, icon, 26, 35, 64);
+        this.image(face, icon, 20, 30, 80);
         this.label(face, title, 108, 12, 344, 30, reason ? C.muted : C.ink, true, 42);
         this.label(face, reason ? "未满足" : caption, 454, 14, 110, 26, reason ? C.muted : C.green, true, 38).align = "right";
         this.label(face, effect, 108, 54, 452, 26, C.green, false, 36);
@@ -106,9 +139,30 @@ export class GameView {
         const face = row.getChildAt(0) as Laya.Sprite;
         const text = face.getChildByName("buttonText") as Laya.Text;
         text.pos(116, 14); text.size(446, height - 28); text.align = "left"; text.fontSize = 28; text.leading = 6;
-        const frame = new Laya.Sprite(); frame.pos(22, 20); this.art.panel(frame, "panel_portrait_frame", 78, 78); frame.mouseEnabled = false; face.addChild(frame);
-        this.image(frame, icon, 5, 5, 68).alpha = enabled ? 1 : .5;
+        const frame = new Laya.Sprite(); frame.pos(20, 15); this.art.panel(frame, "panel_portrait_frame", 88, 88); frame.mouseEnabled = false; face.addChild(frame);
+        this.image(frame, icon, 4, 4, 80).alpha = enabled ? 1 : .5;
         return row;
+    }
+    private bindClick(target: Laya.Sprite, action: () => void, face?: Laya.Sprite) {
+        const pressed = new Set<number>();
+        target.mouseEnabled = true;
+        target.on(Laya.Event.MOUSE_DOWN, this, (e: Laya.Event) => {
+            pressed.add(e.touchId);
+            if (face) face.y = UI.pressedOffset;
+        });
+        const release = () => { if (face && !pressed.size) face.y = 0; };
+        target.on(Laya.Event.MOUSE_UP, this, (e: Laya.Event) => { pressed.delete(e.touchId); release(); });
+        target.on(Laya.Event.MOUSE_OUT, this, (e?: Laya.Event) => {
+            // ScrollList 手动发送无事件参数的 MOUSE_OUT 前已取消其拖动手指。
+            if (!e) { if (face) face.y = 0; return; }
+            // 引擎短距离移出仍可能以按下目标生成 CLICK。只取消曾在此按下的手指。
+            if (pressed.delete(e.touchId)) {
+                Laya.InputManager.cancelClick(e.touchId);
+                release();
+            }
+        });
+        target.on(Laya.Event.UNDISPLAY, this, () => { pressed.clear(); release(); });
+        target.on(Laya.Event.CLICK, this, () => { this.playClick(); action(); });
     }
     private button(parent: Laya.Sprite, title: string, x: number, y: number, w: number, action: () => void, color = C.green, h = 72, enabled = true) {
         const b = new Laya.Sprite(); b.name = `button:${title}`; b.size(w, h); b.pos(x, y);
@@ -120,13 +174,7 @@ export class GameView {
             // 小尺寸关闭按钮只有一个符号，按实际边框留白；其余按钮正文不进入固定14px边缘。
             if (w < 80) { t.fontSize = 24; t.pos(10, 8); t.size(w - 20, h - 22); }
         }
-        if (enabled) {
-            b.mouseEnabled = true;
-            b.on(Laya.Event.MOUSE_DOWN, this, () => face.y = UI.pressedOffset);
-            const release = () => face.y = 0;
-            b.on(Laya.Event.MOUSE_UP, this, release); b.on(Laya.Event.MOUSE_OUT, this, release); b.on(Laya.Event.UNDISPLAY, this, release);
-            b.on(Laya.Event.CLICK, this, action);
-        }
+        if (enabled) this.bindClick(b, action, face);
         parent.addChild(b); return b;
     }
     private open(panel: Panel) { this.panel = panel; this.game.pause("CHOICE"); this.refresh(); }
@@ -135,29 +183,36 @@ export class GameView {
     private drawScenery(night: boolean) {
         const key = night ? "night" : "day"; if (this.backgroundKey === key) return; this.backgroundKey = key;
         this.scenery.destroyChildren(); this.scenery.graphics.clear();
-        this.scenery.graphics.drawRect(0, 0, 720, 1280, night ? C.night : C.grass);
-        this.scenery.graphics.drawRect(0, 780, 720, 260, night ? "#6d785e" : "#b5bd86");
-        for (let row = 0; row < 8; row++) {
-            this.scenery.graphics.drawCircle(50, 280 + row * 70, 112, night ? "#304c45" : "#6e8e4c");
-            this.scenery.graphics.drawCircle(672, 280 + row * 70, 112, night ? "#304c45" : "#6e8e4c");
-        }
+        const y = (value: number) => this.layout.worldY(value);
+        this.scenery.graphics.drawRect(0, 0, 720, this.layout.height, night ? C.night : C.grass);
+        this.scenery.graphics.drawRect(0, y(780), 720, this.layout.footerTop - y(780), night ? "#6d785e" : "#b5bd86");
+        for (const tree of this.scene.props.filter(p => p.id.startsWith("forest:")))
+            this.scenery.graphics.drawEllipse(tree.x - tree.size * .38, tree.y - tree.size * .28, tree.size * .76, tree.size * .35, night ? "#304c45" : "#829956", null, 0);
         // 先完成全部路沿，再铺完整路面，避免后一段路沿覆盖前一段路面形成尖刺接缝。
         for (const surface of [{ width: 80, color: night ? "#696f5e" : "#a99867" }, { width: 68, color: night ? "#8d8976" : "#d3bc8a" }])
             for (let i = 1; i < PATH.length; i++) {
-                this.scenery.graphics.drawLine(PATH[i - 1].x, PATH[i - 1].y, PATH[i].x, PATH[i].y, surface.color, surface.width);
-                this.scenery.graphics.drawCircle(PATH[i].x, PATH[i].y, surface.width / 2, surface.color);
+                this.scenery.graphics.drawLine(PATH[i - 1].x, y(PATH[i - 1].y), PATH[i].x, y(PATH[i].y), surface.color, surface.width);
+                this.scenery.graphics.drawCircle(PATH[i].x, y(PATH[i].y), surface.width / 2, surface.color);
             }
         // 固定点缀不消费业务 RNG；森林阴影、草簇与小石头为道路提供边缘层次。
-        for (const [x, y] of [[182, 399], [530, 470], [173, 591], [560, 643], [297, 628], [411, 356]]) this.image(this.scenery, "deco_rocks", x, y, 36);
+        for (const [x, at] of [[182, 399], [530, 470], [173, 591], [560, 643], [297, 628], [411, 356]]) this.image(this.scenery, "deco_rocks", x, y(at), 36);
         for (let i = 0; i < 26; i++) {
-            const x = i % 2 ? 560 + i % 5 * 17 : 105 + i % 5 * 16, y = 298 + Math.floor(i / 2) * 35;
-            this.scenery.graphics.drawLine(x, y, x - 3, y - 8, night ? "#577451" : "#668445", 3);
-            this.scenery.graphics.drawLine(x, y, x + 4, y - 6, night ? "#577451" : "#668445", 3);
+            const x = i % 2 ? 560 + i % 5 * 17 : 105 + i % 5 * 16, at = y(298 + Math.floor(i / 2) * 35);
+            this.scenery.graphics.drawLine(x, at, x - 3, at - 8, night ? "#577451" : "#668445", 3);
+            this.scenery.graphics.drawLine(x, at, x + 4, at - 6, night ? "#577451" : "#668445", 3);
         }
         // 美术仅提供地块拼片，不将未验证接缝的地块铺满地图。
     }
-    refresh() {
+    refresh(preserveOverlay = false) {
         const s = this.game.state, battle = this.game.battle;
+        // 纯净开局的run会回到1，用成功提交版本识别新村，避免继承旧路线、婚礼和表情。
+        if (this.observedVillageRevision !== this.game.villageRevision) {
+            this.observedVillageRevision = this.game.villageRevision;
+            this.motion = new VillagerMotion(new VillageNavigation(this.scene.props, this.scene.landscape, this.scene.bounds), this.scene.stops);
+            this.emotes = new VillagerEmotes(); this.projectiles = new ProjectileMotion();
+            this.lastBattle = null; this.lastBattleTick = 0; this.renderDelta = 0;
+            this.observedRun = 0; this.observedDawn = 0; this.panel = null; this.tip.visible = false; this.freshBuildingVillage = true;
+        }
         if (this.shownErrorRevision !== this.game.errorRevision) {
             this.shownErrorRevision = this.game.errorRevision;
             if (s && this.game.error && !this.game.saves.pending) this.tip.show(this.game.error);
@@ -169,78 +224,89 @@ export class GameView {
         }
         if (this.game.saves.pending) this.tip.visible = false;
         this.bellCountdown = null; this.nightStatus = null;
-        this.chrome.destroyChildren(); this.chrome.graphics.clear(); this.overlay.destroyChildren(); this.overlay.graphics.clear(); this.overlay.mouseThrough = true;
+        this.chrome.destroyChildren(); this.chrome.graphics.clear();
+        if (!preserveOverlay) { this.overlay.destroyChildren(); this.overlay.graphics.clear(); this.overlay.mouseThrough = true; }
         this.drawScenery(s?.phase === "NIGHT");
-        this.art.panel(this.chrome, "panel_card", 720, 209);
-        this.chrome.graphics.drawRect(18, 14, 684, 5, C.timber);
-        this.label(this.chrome, "代代守村", 34, 26, 430, 36, C.ink, true, 50);
-        this.button(this.chrome, "小记", 558, 24, 126, () => this.open({ type: "settings" }), C.muted, 60);
-        if (!s) { this.drawBoot(); this.updateActors(); return; }
+        const layout = this.layout, statusY = layout.mapTop - 37, bottomY = layout.footerTop;
+        this.art.panel(this.chrome, "panel_card", 720, statusY);
+        this.label(this.chrome, "代代守村", 34, layout.safeTop + 8, 310, 36, C.ink, true, 50);
+        this.button(this.chrome, "小记", 558, layout.settingsY, 126, () => this.open({ type: "settings" }), C.muted, 60);
+        if (!s) { if (!preserveOverlay) this.drawBoot(); this.updateActors(); return; }
         // 仅确认状态或界面事件时同步目标，帧循环只推进已有路线。
-        this.motion.sync(s, battle ? battle.base.towers : s.towers);
+        if (!preserveOverlay) this.motion.sync(s, battle ? battle.base.towers : s.towers);
         this.emotes.sync(s);
-        this.label(this.chrome, `第 ${Math.floor((s.day - 1) / 12) + 1} 年 · ${SEASONS[season(s.day)]}${((s.day - 1) % 3) + 1}日`, 34, 76, 380, 27, C.green, true, 40);
-        this.label(this.chrome, `已守 ${this.amount(s.completed)} 波`, 420, 88, 264, 25, C.timber, true, 28).align = "right";
+        this.label(this.chrome, `第 ${Math.floor((s.day - 1) / 12) + 1} 年 · ${SEASONS[season(s.day)]}${((s.day - 1) % 3) + 1}日`, 34, layout.settingsY + 10, 290, 27, C.green, true, 40);
+        this.label(this.chrome, `已守 ${this.amount(s.completed)} 波`, 324, layout.settingsY + 14, 214, 25, C.timber, true, 32).align = "right";
         // 与人口统一为“现有/容量”；窄栏的千进制数值省略小数，始终单行显示。
         const [food, wood, storage] = [s.food, s.wood, storageCapacity(s)].map(value => this.amount(value, true).replace(/\.\d(?=[kmbtq]$)/, ""));
         [["icon_food", "粮", `${food}/${storage}`], ["icon_wood", "木", `${wood}/${storage}`], ["icon_population", "人", `${s.people.length}/${capacity(s)}`]].forEach(([id, name, value], i) => {
-            const x = 28 + i * 226, card = new Laya.Sprite(); card.pos(x, 122); this.art.panel(card, "panel_card", 212, 74); this.chrome.addChild(card);
-            this.image(card, id, 12, 21, 32);
+            const x = 28 + i * 226, card = new Laya.Sprite(); card.pos(x, layout.resourcesY); this.chrome.addChild(card);
             const full = i < 2 && (i === 0 ? s.food : s.wood) >= storageCapacity(s);
-            const text = this.label(card, `${name} ${value}`, 50, 13, 150, 30, full ? C.timber : C.ink, true, 48);
+            const text = this.label(card, `${name} ${value}`, 0, 13, 154, 30, full ? C.timber : C.ink, true, 48);
             text.name = `resource:${id}`; text.wordWrap = false; text.align = "center";
-            while (text.textWidth > text.width && text.fontSize > UI.mapLabel) text.fontSize--;
+            // 极端“999m/999m”也留在各自列内；正常库存保持原字号，只对窄栏长数字缩小。
+            while (text.textWidth > text.width && text.fontSize > 20) text.fontSize--;
+            // 图文作为一组居中，使用实际文字宽度；人口短数字也不会把图标留在远处。
+            text.width = Math.ceil(text.textWidth) + 4;
+            const left = (212 - 44 - 6 - text.width) / 2;
+            this.image(card, id, left, 15, 44); text.x = left + 50;
         });
-        this.chrome.graphics.drawRect(0, 209, 720, 37, C.green);
+        this.chrome.graphics.drawRect(0, statusY, 720, 37, C.green);
         const count = s.wave?.entries.length || 0;
-        this.nightStatus = this.label(this.chrome, s.phase === "NIGHT" ? "守夜中 · 齐心护家园" : `第 ${s.day} 天 · 今夜 ${count} 名来敌 · 挑战 ${s.tier}`, 28, 209, 664, 24, "#f4edce", true, 37); this.nightStatus.align = "center";
+        this.nightStatus = this.label(this.chrome, s.phase === "NIGHT" ? "守夜中 · 齐心护家园" : `第 ${s.day} 天 · 今夜 ${count} 名来敌 · 挑战 ${s.tier}`, 28, statusY, 664, 24, "#f4edce", true, 37); this.nightStatus.align = "center";
         // 首次成功守住一波才解锁；沿用已提交的传承最高纪录，重新开村仍保持入口。
         if (s.legacy.bestNight > 0) {
-            const ranking = new Laya.Sprite(); ranking.name = "RankingButton"; ranking.pos(24, 266); ranking.size(96, 104); ranking.mouseEnabled = true;
+            const ranking = new Laya.Sprite(); ranking.name = "RankingButton"; ranking.pos(24, layout.mapTop + 20); ranking.size(96, 104);
             this.art.panel(ranking, "panel_card", 96, 104); this.chrome.addChild(ranking);
-            this.image(ranking, "icon_trophy", 22, 10, 52);
-            this.label(ranking, "排行", 8, 62, 80, 26, C.ink, true, 34).align = "center";
-            ranking.on(Laya.Event.CLICK, this, () => this.open({ type: "ranking" }));
+            this.image(ranking, "icon_trophy", 18, 8, 60);
+            this.label(ranking, "排行", 8, 72, 80, 26, C.ink, true, 28).align = "center";
+            this.bindClick(ranking, () => this.open({ type: "ranking" }));
         }
         const gate = battle?.gate ?? s.gate;
-        this.label(this.chrome, "城门", 146, 682, 180, 24, C.cream, true, 30).align = "center";
-        this.hp = this.label(this.chrome, `${this.amount(gate, true)}/${this.amount(gateCapacity(s), true)}`, 146, 712, 180, 24, C.cream, true, 32); this.hp.align = "center"; this.hp.wordWrap = false;
-        this.gateGauge = new Laya.Sprite(); this.gateGauge.pos(164, 750); this.gateGauge.mouseEnabled = false; this.chrome.addChild(this.gateGauge);
-        for (let i = 0; i < PADS.length; i++) {
-            const t = battle?.base.towers[i] || s.towers[i], pos = PADS[i];
-            const b = new Laya.Sprite(); b.pos(pos.x - 58, pos.y - 80); b.size(116, 134); b.mouseEnabled = true;
+        // 血量与88宽血条共同对齐城门中心x360；独立22px字号、轻描边，不受通用地图文字24px下限影响。
+        // 沿用资源栏的整数千进制显示，避免高等级数值变长挤到右侧塔身；血条仍按真实耐久比例绘制。
+        this.hp = this.label(this.chrome, `${this.amount(gate, true)}/${this.amount(gateCapacity(s), true)}`.replace(/\.\d(?=[kmbtq])/g, ""), 304, layout.gateY - 162, 112, 22, C.cream, true, 28); this.hp.fontSize = 22; this.hp.stroke = 1.5; this.hp.align = "center"; this.hp.wordWrap = false; this.hp.overflow = Laya.Text.SHRINK;
+        this.gateGauge = new Laya.Sprite(); this.gateGauge.pos(316, layout.gateY - 130); this.gateGauge.mouseEnabled = false; this.chrome.addChild(this.gateGauge);
+        for (let i = 0; i < this.scene.pads.length; i++) {
+            const t = battle?.base.towers[i] || s.towers[i], pos = this.scene.pads[i];
+            const b = new Laya.Sprite(); b.pos(pos.x - 58, pos.y - 80); b.size(116, 134);
             // 塔面板只使用 open/close 配对管理的 CHOICE 暂停，不把临时调任变成手动暂停。
-            b.on(Laya.Event.CLICK, this, () => this.open({ type: "tower", index: i })); this.chrome.addChild(b);
+            this.bindClick(b, () => this.open({ type: "tower", index: i })); this.chrome.addChild(b);
             const op = t.operator ? this.coloredName(person(s, t.operator)) : "成年村民不足";
             this.label(this.chrome, t.kind ? `${TOWERS[t.kind].name} ${this.amount(t.level)}阶\n${op}` : "＋ 建塔", pos.x - 116, pos.y + 27, 232, 24, t.operator ? C.cream : "#fff0b2", true, t.kind ? 64 : 40).align = "center";
         }
-        this.chrome.graphics.drawRect(0, 1038, 720, 242, C.cream);
-        const bottom = new Laya.Sprite(); bottom.pos(0, 1038); this.art.panel(bottom, "panel_card", 720, 242); this.chrome.addChild(bottom);
+        this.chrome.graphics.drawRect(0, bottomY, 720, layout.height - bottomY, C.cream);
+        const bottom = new Laya.Sprite(); bottom.pos(0, bottomY); this.art.panel(bottom, "panel_card", 720, 242); this.chrome.addChild(bottom);
         if (s.phase === "DAY") {
             const e = economy(s);
-            this.count = this.label(this.chrome, `产粮 ${this.amount(e.food)}   ·   口粮 ${e.rations}   ·   产木 ${this.amount(e.wood)}`, 28, 1054, 664, 28, e.hungry ? C.red : C.ink, true); this.count.align = "center";
-            this.button(this.chrome, "今夜来敌", 28, 1103, 185, () => this.open({ type: "wave" }), C.gold, 68);
-            this.button(this.chrome, "开始守夜", 229, 1103, 463, () => this.open({ type: "start" }), C.gold, 74);
+            this.count = this.label(this.chrome, `产粮 ${this.amount(e.food)}   ·   口粮 ${e.rations}   ·   产木 ${this.amount(e.wood)}`, 28, bottomY + 16, 664, 28, e.hungry ? C.red : C.ink, true); this.count.align = "center";
+            this.button(this.chrome, "今夜来敌", 28, bottomY + 65, 185, () => this.open({ type: "wave" }), C.gold, 68);
+            this.button(this.chrome, "开始守夜", 229, bottomY + 65, 463, () => this.open({ type: "start" }), C.gold, 74);
         } else if (s.phase === "NIGHT") {
-            this.count = this.label(this.chrome, "", 28, 1054, 660, 23, C.muted);
-            this.button(this.chrome, this.game.pauses.has("USER") ? "继续守夜" : "暂停", 28, 1103, 190, () => { if (this.game.pauses.has("USER")) this.game.resume("USER"); else this.game.pause("USER"); this.refresh(); }, C.green, 68);
-            this.button(this.chrome, `速度 ×${s.settings.speed}`, 234, 1103, 190, () => this.send({ type: "SPEED", value: s.settings.speed === 3 ? 1 : s.settings.speed === 1 ? 2 : 3 }), C.muted, 68);
-            const bell = this.button(this.chrome, battle?.bellUsed ? "警钟已用" : this.game.pauses.size ? "恢复后敲钟" : "敲响警钟", 440, 1103, 252, () => this.game.bell(), C.gold, 68, !battle?.bellUsed && !this.game.pauses.size);
+            this.count = this.label(this.chrome, "", 28, bottomY + 16, 660, 23, C.muted);
+            this.button(this.chrome, this.game.pauses.has("USER") ? "继续守夜" : "暂停", 28, bottomY + 65, 190, () => { if (this.game.pauses.has("USER")) this.game.resume("USER"); else this.game.pause("USER"); this.refresh(); }, C.green, 68);
+            this.button(this.chrome, `速度 ×${s.settings.speed}`, 234, bottomY + 65, 190, () => this.send({ type: "SPEED", value: s.settings.speed === 3 ? 1 : s.settings.speed === 1 ? 2 : 3 }), C.muted, 68);
+            const bell = this.button(this.chrome, battle?.bellUsed ? "警钟已用" : this.game.pauses.size ? "恢复后敲钟" : "敲响警钟", 440, bottomY + 65, 252, () => this.game.bell(), C.gold, 68, !battle?.bellUsed && !this.game.pauses.size);
             this.bellCountdown = bell.getChildAt(0).getChildByName("buttonText") as Laya.Text;
-        } else this.label(this.chrome, s.summary, 28, 1054, 664, 23, C.green, true, 110);
+        } else this.label(this.chrome, s.summary, 28, bottomY + 16, 664, 23, C.green, true, 110);
         ["村民", "家庭", "建设", "家谱"].forEach((title, i) => {
-            const button = this.button(this.chrome, title, 28 + 168 * i, 1188, 160, () => this.open({ type: ["people", "families", "build", "history"][i] }), i === 0 ? C.green : C.muted, 78);
+            const button = this.button(this.chrome, title, 28 + 168 * i, bottomY + 150, 160, () => this.open({ type: ["people", "families", "build", "history"][i] }), i === 0 ? C.green : C.muted, 78);
             const face = button.getChildAt(0) as Laya.Sprite;
-            const text = face.getChildByName("buttonText") as Laya.Text; text.pos(48, 14); text.size(98, 50);
-            this.image(face, ["icon_population", "icon_family", "icon_build", "icon_view"][i], 14, 24, 30);
+            const text = face.getChildByName("buttonText") as Laya.Text;
+            const textWidth = Math.ceil(text.textWidth) + 4, left = (160 - 44 - 6 - textWidth) / 2;
+            text.pos(left + 50, 14); text.size(textWidth, 50); text.wordWrap = false;
+            this.image(face, ["icon_population", "icon_family", "icon_build", "icon_view"][i], left, 17, 44);
         });
+        if (preserveOverlay) { this.updateActors(); return; }
         if (this.game.saves.pending) this.drawPending();
         else if (this.game.dailyRationDate !== null) {
             const amount = dailyRationAmount(s, this.game.dailyRationDate)!;
             const box = this.modal("每日口粮", `每日补给 ${RULE.dailyFood} 粮`, false, { width: 540, height: 402 });
-            this.image(box, "icon_food", 108, 156, 88);
-            this.label(box, `＋${amount} 粮`, 206, 164, 230, 42, amount ? C.green : C.muted, true, 64).align = "center";
-            const detail = amount === 0 ? "粮仓已满，本次到账 0 粮\n确认后今日不再发放" : amount < RULE.dailyFood ? `仓储仅剩 ${amount}，本次入库 ${amount} 粮\n确认后今日不再发放` : "确认后入库，今日仅领一次";
+            const reward = this.label(box, `＋${amount} 粮`, 0, 168, 230, 42, amount ? C.green : C.muted, true, 64);
+            reward.width = Math.ceil(reward.textWidth) + 4;
+            const rewardLeft = (540 - 88 - 12 - reward.width) / 2;
+            this.image(box, "icon_food", rewardLeft, 156, 88); reward.x = rewardLeft + 100;
+            const detail = amount === 0 ? "粮仓已满，本次到账 0 粮\n本村今日不再发放" : amount < RULE.dailyFood ? `仓储仅剩 ${amount}，本次入库 ${amount} 粮\n本村今日不再发放` : "确认后入库，本村今日仅领一次";
             const note = this.label(box, detail, 34, 238, 472, 28, C.muted, false, 64); note.align = "center"; note.valign = "middle";
             this.button(box, this.game.pauses.has("WAIT_RESUME") ? "确认并继续" : "确认领取", 130, 308, 280, () => this.game.claimDailyRation(), C.gold, 72);
         }
@@ -255,9 +321,9 @@ export class GameView {
     }
     private modal(title: string, subtitle: string, close = true, size?: { width: number; height: number }) {
         this.overlay.mouseThrough = false;
-        this.overlay.graphics.drawRect(0, 0, 720, 1280, "rgba(25,31,22,0.68)");
+        this.overlay.graphics.drawRect(0, 0, 720, this.layout.height, "rgba(25,31,22,0.68)");
         const width = size ? size.width : UI.panelWidth, height = size ? size.height : UI.panelHeight;
-        const box = new Laya.Sprite(); box.name = `panel:${title}`; box.pos(size ? (720 - width) / 2 : UI.panelX, size ? (1280 - height) / 2 : UI.panelY); box.size(width, height); box.mouseEnabled = true;
+        const box = new Laya.Sprite(); box.name = `panel:${title}`; box.pos((720 - width) / 2, this.layout.safeTop + (this.layout.safeBottom - this.layout.safeTop - height) / 2); box.size(width, height); box.mouseEnabled = true;
         this.art.panel(box, "panel_parchment", width, height); this.overlay.addChild(box);
         this.label(box, title, 108, 34, width - 216, title.replace(/<[^>]*>/g, "").length > 12 ? 32 : UI.title, C.ink, true, 60).align = "center";
         box.graphics.drawLine(64, 100, width - 64, 100, C.gold, 2);
@@ -386,15 +452,15 @@ export class GameView {
                     f.partners.forEach((id, partner) => {
                         const parent = person(s, id), x = partner ? 306 : 18;
                         const clip = isElder(parent) ? `villager_elder_${parent.sex === "MALE" ? "male" : "female"}_idle` : `villager_${parent.appearance}_walk`;
-                        this.image(card, this.art.frameId(clip, 0, false), x, 12, 58);
-                        const name = this.label(card, this.coloredName(parent), x + 64, 23, 186, 28, C.ink, true, 42);
+                        this.image(card, this.art.frameId(clip, 0, false), x, 8, 68);
+                        const name = this.label(card, this.coloredName(parent), x + 74, 23, 176, 28, C.ink, true, 42);
                         name.wordWrap = false; name.overflow = Laya.Text.ELLIPSIS;
                     });
-                    this.image(card, "icon_heart", 270, 32, 30);
+                    this.image(card, "icon_heart", 267, 24, 40);
                     const child = s.people.find(q => !q.adult && q.parents.some(id => f.partners.includes(id)));
-                    this.image(card, "icon_baby", 20, 82, 34);
+                    this.image(card, "icon_baby", 20, 78, 44);
                     const carer = child ? s.people.find(q => q.careChild === child.id) : null;
-                    this.label(card, child ? `${this.coloredName(child)} · 成长 ${child.growth}/${RULE.growNights}` : "本户暂无未成年孩子", 66, 78, 490, 26, C.muted, false, 40);
+                    this.label(card, child ? `${this.coloredName(child)} · 成长 ${child.growth}/${RULE.growNights}` : "本户暂无未成年孩子", 72, 78, 484, 26, C.muted, false, 40);
                     const detail = child ? `${carer ? carer.name + "正在照料" : "无人照料，成长暂停"}。${reason || ""}` : reason || "选择照料者后，孩子就会来到村里。";
                     this.label(card, detail, 22, 120, 538, 24, reason ? C.muted : C.green, false, 72);
                     this.button(card, reason ? "暂不可迎接" : "迎接孩子", 334, 202, 228, () => this.open({ type: "carers", id: f.id }), C.green, 60, reason === null);
@@ -450,7 +516,20 @@ export class GameView {
             this.button(box, "确认安排 · 开始守夜", 34, 752, 600, () => this.send({ type: "NIGHT" }, false), C.gold, 78, day); return;
         }
         if (p.type === "restart") {
-            const box = this.modal("重新开村", "放弃当前村落，保留累计传承。\n选择一项天赋，交给新村的首位开村人。");
+            const box = this.modal("重新开村", "两种方式都会结束当前村落", true, { width: 620, height: 490 });
+            this.button(box, "传承开村", 38, 160, 544, () => this.open({ type: "inherit" }), C.green, 76);
+            this.label(box, "保留家谱与累计，选择一项天赋", 38, 242, 544, 26, C.green, false, 40).align = "center";
+            this.button(box, "纯净开始", 38, 304, 544, () => this.open({ type: "cleanStart" }), C.gold, 76);
+            this.label(box, "回到首次开村状态，只保留最高纪录", 38, 386, 544, 26, C.timber, false, 40).align = "center"; return;
+        }
+        if (p.type === "cleanStart") {
+            const box = this.modal("确认纯净开始", "当前村庄、天赋、家谱和累计进度将清空", true, { width: 620, height: 420 });
+            this.label(box, "只保留最高守夜纪录。\n新村可重新领取一次口粮。", 38, 160, 544, 28, C.timber, false, 100).align = "center";
+            this.button(box, "取消", 38, 300, 254, () => this.open({ type: "restart" }), C.muted, 76);
+            this.button(box, "确认纯净开始", 310, 300, 272, () => this.game.cleanStart(), C.gold, 76); return;
+        }
+        if (p.type === "inherit") {
+            const box = this.modal("传承开村", "放弃当前村落，保留累计传承。\n选择一项天赋，交给新村的首位开村人。");
             const rows = new ScrollList(UI.contentWidth, 590, Math.max(0, s.legacy.traits.length * UI.listStep - 8), p.scroll, offset => p.scroll = offset);
             rows.pos(UI.inset, UI.listTop); box.addChild(rows);
             s.legacy.traits.forEach((t, i) => this.button(rows.content, `确认重开 · 传承${TRAITS[t][0]}`, 0, i * UI.listStep, UI.contentWidth - UI.scrollGutter, () => { this.panel = null; this.game.resume("CHOICE"); this.game.resume("USER"); this.game.newVillage(t); }, C.green, UI.listHeight)); return;
@@ -473,7 +552,7 @@ export class GameView {
             rows.pos(34, 314); rows.content.addChild(content); box.addChild(rows); return;
         }
         const box = this.modal("村落小记", "村落进度本地保存，无离线收益。\n好友榜同步最高守村纪录。");
-        this.button(box, s.settings.music ? "背景音乐 · 开" : "背景音乐 · 关", 34, 224, 600, () => this.send({ type: "MUSIC", enabled: !s.settings.music }), s.settings.music ? C.green : C.muted, 76);
+        this.button(box, s.settings.music ? "游戏声音 · 开" : "游戏声音 · 关", 34, 224, 600, () => this.send({ type: "MUSIC", enabled: !s.settings.music }), s.settings.music ? C.green : C.muted, 76);
         this.button(box, "玩法说明", 34, 326, 600, () => this.open({ type: "guide", tab: 0 }), C.gold, 80);
         ["不清楚条件、资源或警钟？打开玩法说明。", "灰色条目会提前写明还缺什么。", "白天准备好生产、家庭和防线，再去守夜。"].forEach((tip, i) => this.label(box, tip, 44, 444 + i * 82, 580, 28, C.ink, false, 70));
         this.button(box, "重新开村…", 34, 754, 600, () => this.open({ type: "restart" }), C.red, 76);
@@ -500,22 +579,26 @@ export class GameView {
         }
     }
     private drawGameOver(s: GameState) {
-        if (this.panel?.type === "restart") { this.drawPanel(s, this.panel); return; }
+        if (this.panel && ["restart", "inherit", "cleanStart"].includes(this.panel.type)) { this.drawPanel(s, this.panel); return; }
         const box = this.modal("灯火未尽，传承不息", "城门被突破。此夜没有推进年龄与日期，村落的故事已记入传承。", false);
         this.image(box, "building_hearth_lit", 253, 226, 162);
         this.label(box, s.summary, 34, 430, 600, 32, C.green, true, 140).align = "center";
         this.label(box, `最长坚守 ${s.legacy.bestNight} 夜 · 累计出生 ${s.legacy.births} 人`, 34, 620, 600, 28, C.muted, false, 80).align = "center";
-        this.button(box, "带着天赋 · 再建一个村落", 34, 748, 600, () => this.open({ type: "restart" }), C.gold, 82);
+        this.button(box, "传承开村", 34, 748, 286, () => this.open({ type: "inherit" }), C.green, 82);
+        this.button(box, "纯净开始", 338, 748, 296, () => this.open({ type: "cleanStart" }), C.gold, 82);
     }
     update(delta: number) {
-        if (!this.game.pauses.has("BACKGROUND") && !this.game.pauses.has("DISABLED")) this.tip.advance(Math.min(RULE.frameCap, Math.max(0, delta)));
+        if (!this.game.pauses.has("BACKGROUND") && !this.game.pauses.has("DISABLED")) {
+            const visualTime = Math.min(RULE.frameCap, Math.max(0, delta));
+            this.tip.advance(visualTime); this.props.forEach(p => p.visual?.advance(visualTime));
+        }
         const battle = this.game.battle, s = this.game.state;
         if (battle !== this.lastBattle) { this.lastBattle = battle; this.lastBattleTick = 0; }
         const visualDelta = battle ? Math.max(0, battle.tick - this.lastBattleTick) * RULE.step : Math.min(RULE.frameCap, Math.max(0, delta));
         this.lastBattleTick = battle ? battle.tick : 0;
         if (s && !this.game.pauses.size && (s.phase === "DAY" || s.phase === "NIGHT")) {
             this.motion.update(visualDelta);
-            this.emotes.update(s, Math.min(RULE.frameCap, Math.max(0, delta)), id => { const pose = this.motion.get(id); return !pose.insideTower && pose.y > 840 && pose.heartElapsed === null; });
+            this.emotes.update(s, Math.min(RULE.frameCap, Math.max(0, delta)), id => { const pose = this.motion.get(id); return !pose.insideTower && pose.y > this.layout.worldY(840) && pose.heartElapsed === null; });
         }
         this.renderDelta += delta;
         if (this.renderDelta < 1 / 30) return; this.renderDelta = 0; this.updateActors();
@@ -526,23 +609,31 @@ export class GameView {
         this.people.forEach(n => n.visible = false); this.enemies.forEach(n => n.visible = false); this.projectileNodes.forEach(n => n.visible = false);
         this.hearts.forEach(n => { n.visible = false; n.alpha = 1; n.scale(1, 1); n.pos(0, 0); });
         this.emote.visible = false;
-        this.projectiles.update(battle);
+        this.projectiles.update(battle, this.layout, this.scene.pads);
         const depth = this.props.slice();
         if (!s) { depth.sort(compareDepth).forEach((p, i) => p.node.zIndex = i); return; }
         for (const p of this.props) {
-            if (p.id === "building:gate") p.node.texture = this.art.get((battle ? battle.gate : s.gate) / gateCapacity(s) < .35 ? "building_gate_damaged" : "building_gate_closed");
-            else if (p.id.startsWith("tower:")) {
+            let kind: BuildingLook | null = null, level = 0;
+            if (p.id === "building:gate") {
+                p.node.texture = this.art.get((battle ? battle.gate : s.gate) / gateCapacity(s) < .35 ? "building_gate_damaged" : "building_gate_closed"); kind = "GATE"; level = s.gateLevel;
+            } else if (p.id.startsWith("tower:")) {
                 const index = Number(p.id.split(":")[1]), t = (battle ? battle.base.towers : s.towers)[index];
                 p.node.texture = this.art.get(t.kind ? TOWERS[t.kind].image : "building_tower_pad");
-                p.node.scaleX = t.kind === "ARROW" ? TOWER_VIEW.facing[index] : 1;
-            }
+                p.node.scaleX = t.kind === "ARROW" ? TOWER_VIEW.facing[index] : 1; kind = t.kind; level = t.level;
+            } else if (p.id.startsWith("building:house-")) {
+                kind = "HOUSE"; level = s.housing;
+                p.node.texture = this.art.get(level >= 5 || p.id === "building:house-b" ? "building_house_terracotta" : "building_house_thatched");
+            } else if (p.id === "building:farm") { kind = "FARM"; level = s.farm; }
+            else if (p.id === "building:logging") { kind = "LOGGING"; level = s.logging; }
+            p.visual?.sync(kind, level, this.freshBuildingVillage);
         }
+        this.freshBuildingVillage = false;
         s.people.forEach((p, i) => {
             const n = this.people[i], pose = this.motion.get(p.id); n.visible = !pose.insideTower; n.name = `person:${p.id}`;
             const identity = isElder(p) ? `elder_${p.sex === "MALE" ? "male" : "female"}` : p.adult ? p.appearance : p.sex === "MALE" ? "boy" : "girl";
             const facing = pose.clip.endsWith("_walk") ? this.art.walk(identity, pose.direction) : { clip: pose.clip, mirror: pose.mirror };
             this.art.applyFrame(n, this.art.frameId(facing.clip, pose.elapsed, pose.animated), p.adult ? 56 : p.growth === 0 ? 42 : 48);
-            const scale = p.elite ? ELITE.visualScale : 1;
+            const scale = (p.elite ? ELITE.visualScale : 1) * this.layout.personScale;
             n.pos(pose.x, pose.y); n.scale((facing.mirror ? -1 : 1) * scale, scale);
             if (pose.heartElapsed !== null && n.visible) {
                 const heart = this.hearts[i], elapsed = pose.heartElapsed;
@@ -559,10 +650,10 @@ export class GameView {
         if (emote && !this.panel && !this.game.pauses.size && (s.phase === "DAY" || s.phase === "NIGHT")) {
             const pose = this.motion.get(emote.id);
             if (!pose.insideTower) {
-                const owner = person(s, emote.id), scale = owner.elite ? ELITE.visualScale : 1;
+                const owner = person(s, emote.id), scale = (owner.elite ? ELITE.visualScale : 1) * this.layout.personScale;
                 const elapsed = EMOTE.seconds - emote.remaining;
                 this.emote.visible = true; this.art.applyFrame(this.emote, emote.frameId, EMOTE.size);
-                // 依现有成人56px、儿童48px立绘收近挂点；保留精英缩放，只上浮3px，避免表情远离头顶。
+                // 依人物原画布挂点，同时应用屏幕与精英缩放，只上浮3px，保持贴近头顶。
                 const headOffset = owner.adult ? 52 : 46;
                 this.emote.pos(Math.max(EMOTE.size / 2, Math.min(720 - EMOTE.size / 2, pose.x)), pose.y - headOffset * scale - Math.sin(Math.min(1, elapsed / .25) * Math.PI / 2) * 3);
                 this.emote.alpha = Math.min(1, elapsed / .16, emote.remaining / .25);
@@ -577,25 +668,26 @@ export class GameView {
                 // 相位只跟随战斗tick，暂停和打开面板时冻结；最多四圈，不新增图片、计时器或逐帧节点。
                 const pulse = Math.sin(battle.tick * RULE.step * Math.PI * 2);
                 battle.base.towers.forEach((tower, i) => {
-                    if (tower.kind && tower.operator) this.bellAura.graphics.drawCircle(PADS[i].x, PADS[i].y - 40, 46 + pulse * 4, "rgba(246,207,114,0.12)", "#f6cf72", 3);
+                    const pad = this.scene.pads[i];
+                    if (tower.kind && tower.operator) this.bellAura.graphics.drawCircle(pad.x, pad.y - 40, 46 + pulse * 4, "rgba(246,207,114,0.12)", "#f6cf72", 3);
                 });
             }
             battle.enemies.forEach((e, i) => {
                 const n = this.enemies[i], at = pointAt(e.progress); n.visible = true; n.name = `enemy:${e.seq}`;
                 this.art.applyFrame(n, this.art.frameId(`${e.kind}_walk`, battle.tick * RULE.step + e.seq * .13), e.kind === "enemy_chief" ? 82 : 64);
-                n.pos(at.x, at.y); n.scale(this.art.enemyMirror(e.kind, pointAt(e.progress + 1).x - at.x) ? -1 : 1, 1); depth.push({ id: n.name, y: at.y, node: n });
+                n.pos(at.x, this.layout.worldY(at.y)); n.scale(this.art.enemyMirror(e.kind, pointAt(e.progress + 1).x - at.x) ? -1 : 1, 1); depth.push({ id: n.name, y: n.y, node: n });
             });
             this.projectiles.poses.forEach((p, i) => {
                 const n = this.projectileNodes[i]; n.name = `projectile:${p.shot.kind}:${p.shot.tower}:${p.shot.tick}`; n.visible = true;
                 this.art.applyFrame(n, p.frame, p.size); n.pos(p.x, p.y); n.rotation = p.rotation; n.alpha = p.alpha;
             });
-            if (this.hp) this.hp.text = `${this.amount(battle.gate, true)}/${this.amount(gateCapacity(s), true)}`;
+            if (this.hp) this.hp.text = `${this.amount(battle.gate, true)}/${this.amount(gateCapacity(s), true)}`.replace(/\.\d(?=[kmbtq])/g, "");
             if (this.count) this.count.text = `${this.game.pauses.size ? "已暂停" : "守夜中"}  ·  场上 ${battle.enemies.length}  ·  待来 ${battle.pendingCount}${battle.base.night!.hungry ? "  · 缺粮" : ""}`;
         }
         if (this.gateGauge) {
             const ratio = (battle ? battle.gate : s.gate) / gateCapacity(s);
-            this.gateGauge.graphics.clear(); this.gateGauge.graphics.drawRect(0, 0, 144, 9, C.outline);
-            this.gateGauge.graphics.drawRect(2, 2, 140 * ratio, 5, ratio < .35 ? C.red : C.gold);
+            this.gateGauge.graphics.clear(); this.gateGauge.graphics.drawRect(0, 0, 88, 7, C.outline);
+            this.gateGauge.graphics.drawRect(2, 2, 84 * ratio, 3, ratio < .35 ? C.red : C.gold);
         }
         // Laya 3.4 的 zIndex 决定渲染顺序；world 为 stackingRoot，不让深度排序覆盖 HUD/弹窗。
         depth.sort(compareDepth).forEach((p, i) => p.node.zIndex = i);

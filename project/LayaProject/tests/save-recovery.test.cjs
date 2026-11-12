@@ -9,8 +9,8 @@ global.Laya = { Sprite: class {}, OpenDataContextView: class {}, Texture2D: clas
 const { GameView } = require(path.join(compiled, 'view/GameView.js'));
 const keys = ['daidai_village.save.a', 'daidai_village.save.b'];
 
-function envelope(configVersion, revision = 1, seed = 1, schemaVersion = 1) {
-    const body = { schemaVersion, configVersion, revision, commitId: `fixture:${seed}:${revision}`, payload: createGame(seed) };
+function envelope(configVersion, revision = 1, seed = 1, schemaVersion = 2) {
+    const body = { schemaVersion, configVersion, revision, commitId: `fixture:${seed}:${revision}`, commitType: 'NORMAL', payload: createGame(seed) };
     return canonical({ ...body, checksum: crc32(canonical(body)) });
 }
 class MemoryStore {
@@ -45,7 +45,7 @@ function assertNewVillage(game, storage) {
 }
 
 test('old/future config and schema mismatches preserve both original slots until explicit reset', () => {
-    for (const raw of [envelope(CONFIG_VERSION - 1), envelope(CONFIG_VERSION + 1), envelope(CONFIG_VERSION, 1, 1, 2)]) {
+    for (const raw of [envelope(CONFIG_VERSION - 1), envelope(CONFIG_VERSION + 1), envelope(CONFIG_VERSION, 1, 1, 1), envelope(CONFIG_VERSION, 1, 1, 3)]) {
         const storage = new MemoryStore([raw, raw]), game = session(storage);
         assert.equal(game.boot.kind, 'incompatible'); assert.equal(game.state, null);
         game.retry(); assert.equal(game.boot.kind, 'incompatible');

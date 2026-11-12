@@ -1,10 +1,12 @@
 import { StoragePort } from "../storage/SaveStore";
+import { MenuBounds, WindowMetrics } from "../view/GameLayout";
 /** 精简声明仅列本游戏直接使用的微信 API；依据官方 minigame-api-typings。没有浏览器兼容分支。 */
 declare const wx: {
     getStorageInfoSync(): { keys: string[] };
     getStorageSync(key: string): unknown;
     setStorageSync(key: string, value: string): void;
-    getWindowInfo(): { windowWidth: number; windowHeight: number; safeArea: { top: number; bottom: number; left: number; right: number } };
+    getWindowInfo(): WindowMetrics;
+    getMenuButtonBoundingClientRect(): MenuBounds;
     onHide(listener: () => void): void; offHide(listener: () => void): void;
     onShow(listener: () => void): void; offShow(listener: () => void): void;
     getOpenDataContext(): { postMessage(message: object): void };
@@ -16,7 +18,8 @@ const FRIEND_SCOPE = "scope.WxFriendInteraction";
 /** 微信 3.17.6 实测的隐私声明缺失错误；由开发者后台处理，不能误导玩家反复授权。 */
 const PRIVACY_DECLARATION_ERROR = "please go to mp to announce your privacy usage";
 export class WechatPlatform implements StoragePort {
-    readonly window = wx.getWindowInfo();
+    get window() { return wx.getWindowInfo(); }
+    get menu() { return wx.getMenuButtonBoundingClientRect(); }
     private notifiedBest = 0;
     read(key: string): string | null {
         if (!wx.getStorageInfoSync().keys.includes(key)) return null;

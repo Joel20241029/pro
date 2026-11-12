@@ -16,7 +16,7 @@ export interface Wave { budget: number; tier: number; affix: "NONE" | "FAST" | "
 export type Choice = { kind: "SKILL"; person: string; options: Skill[] } | { kind: "TRAVELER"; person: Person } | { kind: "POLICY"; options: string[] } | { kind: "TIER" };
 export interface Legacy {
     births: number; retirees: number; bestNight: number; traits: Trait[]; nextRun: number;
-    /** 每日口粮最后成功入档的本地日历日期 YYYY-MM-DD；null 表示未领过，跨村保留。 */
+    /** 每日口粮最后成功入档的本地日历日期 YYYY-MM-DD；null 表示未领过，每次新开村清空。 */
     lastRationDate: string | null;
 }
 export interface GameState {

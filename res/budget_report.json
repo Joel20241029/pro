@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-11-11T11:17:50.353Z",
-  "runtimeAssetCount": 161,
+  "generatedAt": "2026-11-12T02:02:50.861Z",
+  "runtimeAssetCount": 177,
   "reserveAssetCount": 19,
   "animationCount": 32,
   "animationFrames": 108,
   "categoryStats": {
     "buildings": {
-      "count": 13,
-      "bytes": 256231,
-      "runtime": 12,
+      "count": 25,
+      "bytes": 288290,
+      "runtime": 24,
       "reserve": 1
     },
     "terrain": {
@@ -18,9 +18,9 @@
       "reserve": 4
     },
     "decorations": {
-      "count": 8,
-      "bytes": 91386,
-      "runtime": 6,
+      "count": 12,
+      "bytes": 97423,
+      "runtime": 10,
       "reserve": 2
     },
     "ui/icons": {
@@ -61,8 +61,8 @@
       "runtimeFile": "world_0.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1049287,
-      "sha256": "f5d300cc1a3cda8450738e32a58255968c86f2a1143adb988a40da9cad3b6c56",
+      "bytes": 1086332,
+      "sha256": "32c96c56c627af2960c6371a6d13bcfe99e711e5a8f88b4477cc9907334a4804",
       "group": "world"
     },
     {
@@ -77,27 +77,29 @@
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 973724,
-    "atlasContentPixels": 814870,
-    "savedContentPixels": 158854,
-    "savedContentPercent": 16.31,
-    "trimmedAssetCount": 144,
+    "sourceCanvasPixels": 992108,
+    "atlasContentPixels": 829922,
+    "savedContentPixels": 162186,
+    "savedContentPercent": 16.35,
+    "trimmedAssetCount": 160,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "pngBytes": 1164253,
-    "metadataBytes": 90629,
-    "audioBytes": 96462,
-    "totalBytes": 1351344,
+    "pngBytes": 1201298,
+    "metadataBytes": 96352,
+    "audioBytes": 155953,
+    "totalBytes": 1453603,
     "files": [
       "atlases/world_0.png",
       "atlases/ui_0.png",
       "atlases/frames.json",
       "animations.json",
-      "audio/village_loop.mp3"
+      "audio/village_loop.mp3",
+      "audio/battle_loop.mp3",
+      "audio/ui_click.mp3"
     ]
   },
   "nineSliceCompaction": {
@@ -108,9 +110,9 @@
   "budgets": {
     "fullPackageTarget": 3500000
   },
-  "sourceBytes": 37862372,
+  "sourceBytes": 38870810,
   "budgetComparison": {
-    "worldPngBytes": 1049287,
+    "worldPngBytes": 1086332,
     "uiAndEffectsPngBytes": 114966
   },
   "limitations": [

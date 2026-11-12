@@ -37,7 +37,8 @@ function spend(s: GameState, resource: "food" | "wood", amount: number) { requir
 function newId(s: GameState): string { requireRule(Number.isSafeInteger(s.nextPerson + 1), "人口编号已达安全范围"); return `${s.run}:${s.nextPerson++}`; }
 function remember(s: GameState, trait: Trait) { if (!s.legacy.traits.includes(trait)) s.legacy.traits.push(trait); }
 export function createGame(seed: number, old?: Legacy, inherited?: Trait, history: Person[] = [], favorites: string[] = []): GameState {
-    const legacy: Legacy = old ? clone(old) : { births: 0, retirees: 0, bestNight: 0, traits: [], nextRun: 1, lastRationDate: null };
+    // 口粮按当前村庄领取；即使传承其他记录，新村也从未领取开始。
+    const legacy: Legacy = old ? { ...clone(old), lastRationDate: null } : { births: 0, retirees: 0, bestNight: 0, traits: [], nextRun: 1, lastRationDate: null };
     requireRule(Number.isSafeInteger(legacy.nextRun + 1), "村落编号已达安全范围");
     if (inherited) requireRule(legacy.traits.includes(inherited), "尚未发现此天赋");
     const s: GameState = {

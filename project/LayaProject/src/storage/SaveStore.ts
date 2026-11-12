@@ -4,8 +4,13 @@ import { validateState } from "./StateValidation";
 /** 微信实现将读异常向外抛出；null 只能表示 keys 列表确认键不存在。 */
 export interface StoragePort { read(key: string): string | null; write(key: string, value: string): void; }
 const KEYS = ["daidai_village.save.a", "daidai_village.save.b"];
-const SCHEMA_VERSION = 1;
-interface Envelope { schemaVersion: number; configVersion: number; revision: number; commitId: string; payload: GameState; checksum: string; }
+/** 双槽存档格式 2：提交类型参与校验；修改格式版本会阻止载入旧格式。 */
+const SCHEMA_VERSION = 2;
+/** 普通进度轮换单槽；纯净开局的标记让启动时可补齐同一份双槽候选。 */
+type CommitType = "NORMAL" | "CLEAN_START";
+/** RESET 是异版/坏档的显式覆盖流程；写出的仍是普通存档，不参与纯净开局补写。 */
+export type SaveMode = CommitType | "RESET";
+interface Envelope { schemaVersion: number; configVersion: number; revision: number; commitId: string; commitType: CommitType; payload: GameState; checksum: string; }
 export function canonical(v: unknown): string {
     if (v === null) return "null";
     if (typeof v === "number") { if (!Number.isSafeInteger(v) || Object.is(v, -0)) throw new Error("存档数值超出安全范围"); return String(v); }
@@ -26,13 +31,15 @@ function decode(raw: string | null): Slot {
         const e: Envelope = JSON.parse(raw);
         if (!e || !Number.isSafeInteger(e.schemaVersion) || !Number.isSafeInteger(e.configVersion)) return { kind: "corrupt" };
         if (e.schemaVersion !== SCHEMA_VERSION || e.configVersion !== CONFIG_VERSION) return { kind: "version" };
+        if (e.commitType !== "NORMAL" && e.commitType !== "CLEAN_START") return { kind: "corrupt" };
         const { checksum, ...body } = e;
         if (typeof checksum !== "string" || crc32(canonical(body)) !== checksum || !Number.isSafeInteger(e.revision) || e.revision < 1 || typeof e.commitId !== "string" || !e.commitId.length) return { kind: "corrupt" };
         validateState(e.payload); return { kind: "valid", data: e };
     } catch { return { kind: "corrupt" }; }
 }
-export type LoadResult = { kind: "new" } | { kind: "ready" | "recover"; state: GameState } | { kind: "incompatible"; reason: string } | { kind: "blocked"; reason: string; canReset: boolean };
-interface Pending { raw: string; state: GameState; revision: number; target: number; baseline: (string | null)[]; reset: boolean; }
+/** 补写结果对应已重建的 pending，双槽核对成功前不发布其状态。 */
+export type LoadResult = { kind: "new" | "complete-clean-start" } | { kind: "ready" | "recover"; state: GameState } | { kind: "incompatible"; reason: string } | { kind: "blocked"; reason: string; canReset: boolean };
+interface Pending { raw: string; state: GameState; revision: number; target: number; baseline: (string | null)[]; mode: SaveMode; }
 export class SaveStore {
     private baseline: (string | null)[] = []; private revision = 0; private active = -1;
     pending: Pending | null = null;
@@ -48,26 +55,42 @@ export class SaveStore {
         }
         valid.sort((a, b) => b.s.data.revision - a.s.data.revision);
         if (valid.length === 2 && valid[0].s.data.revision === valid[1].s.data.revision && this.baseline[0] !== this.baseline[1]) return { kind: "blocked", reason: "两个存档版本冲突，未覆盖任何进度。", canReset: false };
-        const best = valid[0]; this.revision = best.s.data.revision; this.active = best.i;
-        return { kind: slots.some(s => s.kind === "corrupt") ? "recover" : "ready", state: best.s.data.payload };
+        const { i, s: { data } } = valid[0]; this.revision = data.revision; this.active = i;
+        if (data.commitType === "CLEAN_START" && this.baseline[0] !== this.baseline[1]) {
+            // 异版与同 revision 冲突已拒绝。保留原始候选字节，只补低 revision、空槽或坏槽。
+            this.pending = { raw: this.baseline[i]!, state: data.payload, revision: data.revision, target: i, baseline: this.baseline.slice(), mode: "CLEAN_START" };
+            return { kind: "complete-clean-start" };
+        }
+        return { kind: slots.some(s => s.kind === "corrupt") ? "recover" : "ready", state: data.payload };
     }
-    /** reset 仅由玩家确认放弃异版或损坏进度后传入；同一候选替换双槽，不做旧档迁移。 */
-    prepare(state: GameState, reset = false) {
+    /** RESET 仅由玩家确认放弃异版或损坏进度后传入；同一候选替换双槽，不做旧档迁移。 */
+    prepare(state: GameState, mode: SaveMode = "NORMAL") {
         if (this.pending) throw new Error("请先核对待保存的进度");
         validateState(state);
-        const revision = reset ? 1 : this.revision + 1;
+        const revision = mode === "RESET" ? 1 : this.revision + 1;
         if (!Number.isSafeInteger(revision)) throw new Error("存档版本已达安全范围");
-        const body = { schemaVersion: SCHEMA_VERSION, configVersion: CONFIG_VERSION, revision, commitId: `${state.run}:${revision}:${crc32(canonical(state))}`, payload: state };
+        const body = { schemaVersion: SCHEMA_VERSION, configVersion: CONFIG_VERSION, revision, commitId: `${state.run}:${revision}:${crc32(canonical(state))}`, commitType: mode === "RESET" ? "NORMAL" : mode, payload: state };
         // 混合版本先替换当前/损坏/空槽，异版槽最后写；中途退出仍会提示确认，不会复活旧村。
-        const target = reset ? (decode(this.baseline[0]).kind === "version" && decode(this.baseline[1]).kind !== "version" ? 1 : 0) : this.active === 0 ? 1 : 0;
-        this.pending = { raw: canonical({ ...body, checksum: crc32(canonical(body)) }), state, revision, target, baseline: this.baseline.slice(), reset };
+        const target = mode === "RESET" ? (decode(this.baseline[0]).kind === "version" && decode(this.baseline[1]).kind !== "version" ? 1 : 0) : this.active === 0 ? 1 : 0;
+        this.pending = { raw: canonical({ ...body, checksum: crc32(canonical(body)) }), state, revision, target, baseline: this.baseline.slice(), mode };
     }
     commit(): GameState {
         const p = this.pending; if (!p) throw new Error("没有待保存的进度");
         const current = KEYS.map(k => this.port.read(k)), other = 1 - p.target;
-        if (p.reset) {
-            if (current.some((raw, i) => raw !== p.baseline[i] && raw !== p.raw)) throw new Error("存档在确认重开后发生变化，请重新进入核对，未继续覆盖");
-            for (const i of [p.target, other]) if (current[i] !== p.raw) this.port.write(KEYS[i], p.raw);
+        if (p.mode !== "NORMAL") {
+            if (current.some((raw, i) => {
+                if (raw === p.baseline[i] || raw === p.raw) return false;
+                if (p.mode === "RESET") return true;
+                // 纯净开局重试可替换失败写入留下的空槽或坏槽，拒绝异版或新出现的有效记录。
+                const slot = decode(raw);
+                return slot.kind !== "missing" && slot.kind !== "corrupt";
+            })) throw new Error("存档在确认重开后发生变化，请重新进入核对，未继续覆盖");
+            if (current[p.target] !== p.raw) {
+                this.port.write(KEYS[p.target], p.raw);
+                // 纯净开局保留旧有效槽，直到第一份新进度已核对且旧槽没有变化。
+                if (p.mode === "CLEAN_START" && (this.port.read(KEYS[p.target]) !== p.raw || this.port.read(KEYS[other]) !== current[other])) throw new Error("保存尚未核对完成，请重试核对");
+            }
+            if (current[other] !== p.raw) this.port.write(KEYS[other], p.raw);
         } else {
             if (current[other] !== p.baseline[other]) throw new Error("存档在保存期间发生变化，请保留现场并重进核对");
             if (current[p.target] !== p.raw) {
@@ -77,7 +100,7 @@ export class SaveStore {
             }
         }
         const confirmed = KEYS.map(k => this.port.read(k));
-        if (confirmed[p.target] !== p.raw || confirmed[other] !== (p.reset ? p.raw : p.baseline[other])) throw new Error("保存尚未核对完成，请重试核对");
+        if (confirmed[p.target] !== p.raw || confirmed[other] !== (p.mode === "NORMAL" ? p.baseline[other] : p.raw)) throw new Error("保存尚未核对完成，请重试核对");
         this.baseline = confirmed; this.revision = p.revision; this.active = p.target; this.pending = null; return p.state;
     }
 }

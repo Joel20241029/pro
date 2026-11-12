@@ -1,6 +1,9 @@
 import { GameState, isElder, Person, Tower } from "../game/GameState";
 import { LABOR_CLIPS, RULE } from "../game/GameConfig";
-import { CAMP_STOPS, distance, GroundPoint, MOTION, VillageNavigation, VILLAGE_STOPS, WEDDING } from "./VillageScene";
+import { distance, GroundPoint, MOTION, VillageNavigation, VILLAGE_PROPS, VILLAGE_STOPS, WEDDING } from "./VillageScene";
+
+// 布局只映射纵坐标，伐木树横坐标取自场景树干，仅用于驻足挥斧的镜像。
+const LOGGING_TREE_X = VILLAGE_PROPS.find(p => p.id === "tree:logging")!.x;
 
 interface Visit { at: GroundPoint; seconds: number; working: boolean; insideTower: boolean; }
 export type WalkDirection = "UP" | "DOWN" | "LEFT" | "RIGHT";
@@ -29,7 +32,29 @@ export class VillagerMotion {
     private wedding: Wedding | null = null;
     private campSlots = new Map<string, number>();
     private careStops = new Map<string, GroundPoint>();
-    constructor(readonly navigation = new VillageNavigation()) {}
+    constructor(public navigation = new VillageNavigation(), private stops = VILLAGE_STOPS) {}
+    /** 只迁移显示坐标和路线，保留日程游标、驻足/动画计时、营火席位与已播放的成家记录。 */
+    relayout(navigation: VillageNavigation, stops: typeof VILLAGE_STOPS, project: (p: GroundPoint) => GroundPoint) {
+        const positions = new Map<GroundPoint, GroundPoint>();
+        for (const key of Object.keys(this.stops) as (keyof typeof VILLAGE_STOPS)[]) {
+            this.stops[key].forEach((p, i) => positions.set(p, stops[key][i]));
+        }
+        for (const [id, at] of this.careStops) {
+            const child = this.people.get(id)!.person.careChild!;
+            const before = this.stops.rest[this.campSlots.get(child)!], after = stops.rest[this.campSlots.get(child)!];
+            const moved = navigation.relocate({ x: after.x + at.x - before.x, y: after.y + at.y - before.y });
+            positions.set(at, moved); this.careStops.set(id, moved);
+        }
+        const visits = new Set<Visit>();
+        for (const m of this.people.values()) for (const v of [...m.plan, ...m.routine]) visits.add(v);
+        for (const v of visits) v.at = positions.get(v.at) || navigation.relocate(project(v.at));
+        this.navigation = navigation; this.stops = stops;
+        for (const m of this.people.values()) {
+            const goal = m.plan[m.visit].at, at = m.walking ? navigation.relocate(project(m)) : goal;
+            m.x = at.x; m.y = at.y;
+            m.route = m.walking ? navigation.route(m, goal) : [];
+        }
+    }
     get count() { return this.people.size; }
     get(id: string): Readonly<VillagerPose> { const p = this.people.get(id); if (!p) throw new Error(`未同步村民表现：${id}`); return p; }
     sync(state: GameState, towers: Tower[]) {
@@ -40,7 +65,7 @@ export class VillagerMotion {
         for (const id of this.campSlots.keys()) if (!present.has(id)) this.campSlots.delete(id);
         const sorted = state.people.slice().sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
         for (const p of sorted) if (!this.campSlots.has(p.id)) {
-            const used = new Set(this.campSlots.values()), slot = CAMP_STOPS.findIndex((_, i) => !used.has(i));
+            const used = new Set(this.campSlots.values()), slot = this.stops.rest.findIndex((_, i) => !used.has(i));
             if (slot < 0) throw new Error("火堆站点少于在村人数");
             this.campSlots.set(p.id, slot);
         }
@@ -48,9 +73,9 @@ export class VillagerMotion {
         this.careStops.clear();
         const reserved = new Set(sorted.filter(p => !p.adult).map(p => p.id));
         for (const p of sorted) if (p.job === "CARE" && p.careChild) {
-            const child = CAMP_STOPS[this.campSlots.get(p.careChild)!], old = this.campSlots.get(p.id)!;
-            const slots = CAMP_STOPS.map((at, i) => ({ i, d: distance(at, child), owner: sorted.find(q => this.campSlots.get(q.id) === i)?.id }))
-                .filter(q => (!q.owner || !reserved.has(q.owner)) && Math.abs(CAMP_STOPS[q.i].x - child.x) >= 24 && Math.abs(CAMP_STOPS[q.i].y - child.y) < Math.abs(CAMP_STOPS[q.i].x - child.x))
+            const child = this.stops.rest[this.campSlots.get(p.careChild)!], old = this.campSlots.get(p.id)!;
+            const slots = this.stops.rest.map((at, i) => ({ i, d: distance(at, child), owner: sorted.find(q => this.campSlots.get(q.id) === i)?.id }))
+                .filter(q => (!q.owner || !reserved.has(q.owner)) && Math.abs(this.stops.rest[q.i].x - child.x) >= 24 && Math.abs(this.stops.rest[q.i].y - child.y) < Math.abs(this.stops.rest[q.i].x - child.x))
                 .sort((a, b) => a.d - b.d || a.i - b.i);
             const best = slots[0];
             if (best) {
@@ -58,7 +83,7 @@ export class VillagerMotion {
                 this.campSlots.set(p.id, best.i);
             } else {
                 // 极多未成年人的满员场景：保留所有婴儿位置，在侧方找空隙，不能退回正上/正下招手。
-                const occupied = sorted.filter(q => q.id !== p.id).map(q => this.careStops.get(q.id) || CAMP_STOPS[this.campSlots.get(q.id)!]);
+                const occupied = sorted.filter(q => q.id !== p.id).map(q => this.careStops.get(q.id) || this.stops.rest[this.campSlots.get(q.id)!]);
                 let at: GroundPoint | null = null;
                 for (let dx = 24; dx <= 160 && !at; dx += 4) for (const dy of [0, 4, -4, 8, -8, 12, -12, 16, -16, 20, -20]) {
                     for (const side of [-1, 1]) { const candidate = { x: child.x + dx * side, y: child.y + dy }; if (this.navigation.walkable(candidate) && occupied.every(point => distance(point, candidate) >= 22)) { at = candidate; break; } }
@@ -76,7 +101,7 @@ export class VillagerMotion {
             const signature = `${state.phase === "NIGHT" ? "NIGHT" : "DAY"}:${p.adult}:${isElder(p)}:${p.growth}:${p.appearance}:${p.job}:${p.careChild}:${slot}:${tower}:${this.campSlots.get(p.id)}:${careStop?.x}:${careStop?.y}`;
             let m = this.people.get(p.id);
             if (!m) {
-                const home = !p.adult && p.growth === 0 ? CAMP_STOPS[this.campSlots.get(p.id)!] : VILLAGE_STOPS.homes[(sequence - 1) % VILLAGE_STOPS.homes.length];
+                const home = !p.adult && p.growth === 0 ? this.stops.rest[this.campSlots.get(p.id)!] : this.stops.homes[(sequence - 1) % this.stops.homes.length];
                 m = { ...home, id: p.id, direction: "DOWN", walking: false, insideTower: false, clip: "", animated: false, elapsed: 0, heartElapsed: null, mirror: false, signature: "", plan: [], routine: [], wedding: false, visit: 0, route: [], remaining: 0, person: p };
                 this.people.set(p.id, m);
             }
@@ -108,7 +133,7 @@ export class VillagerMotion {
         const w = this.weddings.shift()!; this.wedding = w;
         w.partners.forEach((id, i) => {
             const m = this.people.get(id)!; m.wedding = true; m.heartElapsed = null;
-            this.setPlan(m, [{ at: VILLAGE_STOPS.wedding[i], seconds: Infinity, working: false, insideTower: false }]);
+            this.setPlan(m, [{ at: this.stops.wedding[i], seconds: Infinity, working: false, insideTower: false }]);
         });
     }
     private endWedding() {
@@ -120,17 +145,17 @@ export class VillagerMotion {
         this.wedding = null;
     }
     private itinerary(p: Person, night: boolean, tower: number, slot: number, sequence: number): Visit[] {
-        const home = VILLAGE_STOPS.homes[(sequence - 1) % VILLAGE_STOPS.homes.length];
+        const home = this.stops.homes[(sequence - 1) % this.stops.homes.length];
         const visit = (at: GroundPoint, seconds: number, working = false): Visit => ({ at, seconds, working, insideTower: false });
-        const camp = this.careStops.get(p.id) || CAMP_STOPS[this.campSlots.get(p.id)!];
+        const camp = this.careStops.get(p.id) || this.stops.rest[this.campSlots.get(p.id)!];
         if (!p.adult && p.growth === 0) return [visit(camp, Infinity)];
-        if (night) return [{ ...visit(tower >= 0 ? VILLAGE_STOPS.towers[tower] : camp, Infinity, tower < 0 && p.job === "CARE"), insideTower: tower >= 0 }];
-        const rest = VILLAGE_STOPS.rest[(sequence - 1) % VILLAGE_STOPS.rest.length];
+        if (night) return [{ ...visit(tower >= 0 ? this.stops.towers[tower] : camp, Infinity, tower < 0 && p.job === "CARE"), insideTower: tower >= 0 }];
+        const rest = this.stops.rest[(sequence - 1) % this.stops.rest.length];
         const dwell = MOTION.workSeconds + (sequence % 4) * MOTION.staggerSeconds;
         if (isElder(p)) return [visit(rest, dwell), visit(home, dwell)];
-        if (!p.adult) return [visit(VILLAGE_STOPS.children[sequence - 1], MOTION.restSeconds), visit(home, MOTION.restSeconds)];
+        if (!p.adult) return [visit(this.stops.children[sequence - 1], MOTION.restSeconds), visit(home, MOTION.restSeconds)];
         if (p.job === "FARM" || p.job === "LOGGING") {
-            const stops = p.job === "FARM" ? VILLAGE_STOPS.farm : VILLAGE_STOPS.logging;
+            const stops = p.job === "FARM" ? this.stops.farm : this.stops.logging;
             if (slot < 0 || slot >= stops.length) throw new Error("工作表现站点少于已分配岗位");
             return [visit(stops[slot], dwell, true), visit(rest, MOTION.restSeconds)];
         }
@@ -147,12 +172,14 @@ export class VillagerMotion {
         if (!walking && m.plan[m.visit].working) {
             if (p.job !== "WAITING") { clip = LABOR_CLIPS[p.appearance][p.job]; animated = true; }
         }
-        // 专用劳动动作固定为原美术视角；所有移动都选择方向 walk，不能用只有正面的 carry 代替。
+        // 移动仍按行走方向选择 walk；驻足伐木和照料时，根据工作目标镜像原美术。
         if (m.clip !== clip || m.animated !== animated) m.elapsed = 0;
         m.clip = clip; m.animated = animated; m.walking = walking;
         m.mirror = false;
-        if (!walking && clip.endsWith("_care") && p.careChild) {
-            const child = this.people.get(p.careChild) || CAMP_STOPS[this.campSlots.get(p.careChild)!];
+        if (!walking && clip.endsWith("_chop")) {
+            m.mirror = LOGGING_TREE_X < m.x;
+        } else if (!walking && clip.endsWith("_care") && p.careChild) {
+            const child = this.people.get(p.careChild) || this.stops.rest[this.campSlots.get(p.careChild)!];
             m.mirror = child.x < m.x;
         }
         // 夜间驻塔到达后视为进入塔内；仍保留位置与日程，调任/天亮会自然重新显示。

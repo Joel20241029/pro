@@ -14,10 +14,14 @@ class Texture2D { constructor() { this._texture = { test: true }; } setImageData
 class OpenDataContextView extends Sprite {
     constructor() { super(); this.texture = { bitmap: { destroy() {} }, setTo(bitmap) { this.bitmap = bitmap; } }; }
 }
-global.Laya = { Texture2D, TextureFormat: { R8G8B8A8: 1 }, SpriteUtils: { getTransformRelativeToWindow: () => ({ x: 0, y: 0, scaleX: 1, scaleY: 1 }) }, LayaGL: { textureContext: { setTextureSubImageData(...args) { uploads.push(args); } } }, Sprite, OpenDataContextView, Script: class {}, regClass: () => target => target, timer: { unscaledDelta: 0 }, Event: { CLICK: 'click' } };
+global.Laya = { Text: { SHRINK: 'shrink' }, Texture2D, TextureFormat: { R8G8B8A8: 1 }, SpriteUtils: { getTransformRelativeToWindow: () => ({ x: 0, y: 0, scaleX: 1, scaleY: 1 }) }, LayaGL: { textureContext: { setTextureSubImageData(...args) { uploads.push(args); } } }, Sprite, OpenDataContextView, Script: class {}, regClass: () => target => target, timer: { unscaledDelta: 0 }, Event: { CLICK: 'click' } };
 const { WechatPlatform } = require(path.join(compiled, 'platform/WechatPlatform.js'));
 const { Main } = require(path.join(compiled, 'Main.js'));
 const { GameView } = require(path.join(compiled, 'view/GameView.js'));
+const { GameLayout } = require(path.join(compiled, 'view/GameLayout.js'));
+const { layoutVillage } = require(path.join(compiled, 'view/VillageScene.js'));
+const layout = new GameLayout({ windowWidth: 390, windowHeight: 844, screenTop: 0, statusBarHeight: 47, safeArea: { top: 47, bottom: 810 } }, { width: 88, height: 32, bottom: 76 });
+const scene = layoutVillage(layout);
 const { GameSession } = require(path.join(compiled, 'game/GameSession.js'));
 const { SaveStore } = require(path.join(compiled, 'storage/SaveStore.js'));
 const { createGame, applyCommand, finishNight } = require(path.join(compiled, 'game/VillageRules.js'));
@@ -54,8 +58,8 @@ test('Main notifies accepted saves only and platform failures never become local
 test('background refresh destroys old board without rebuilding; show waits for player continue', () => {
     const s = setup(), store = new SaveStore(s.platform); store.inspect(); store.prepare(createGame(1)); store.commit(); const session = new GameSession(new SaveStore(s.platform)); session.load();
     session.enter(); session.claimDailyRation();
-    const view = Object.create(GameView.prototype); let boards = 0;
-    Object.assign(view, { game: session, platform: s.platform, panel: { type: 'ranking' }, shownErrorRevision: 0, observedRun: 1, observedDawn: 0, chrome: new Sprite(), overlay: new Sprite(), motion: { sync() {} }, emotes: { sync() {} }, art: { panel() {} }, tip: {}, drawScenery() {}, image() {}, label: () => ({}), button: fakeButton, modal: () => new Sprite(), updateActors() {}, drawPanel() { boards++; } });
+    const view = Object.create(GameView.prototype); Object.assign(view, { layout, scene }); let boards = 0;
+    Object.assign(view, { game: session, observedVillageRevision: session.villageRevision, platform: s.platform, panel: { type: 'ranking' }, shownErrorRevision: 0, observedRun: 1, observedDawn: 0, chrome: new Sprite(), overlay: new Sprite(), motion: { sync() {} }, emotes: { sync() {} }, art: { panel() {} }, tip: {}, drawScenery() {}, image() {}, label: () => ({}), button: fakeButton, modal: () => new Sprite(), updateActors() {}, drawPanel() { boards++; } });
     session.changed = () => view.refresh(); view.refresh(); assert.equal(boards, 1);
     session.hide(); assert.equal(boards, 1); session.show(); assert.equal(boards, 1);
     session.resume('WAIT_RESUME'); view.refresh(); assert.equal(boards, 2);
@@ -69,8 +73,8 @@ test('shared canvas allocates once, then uploads pixels without reallocation or 
 });
 
 function gameView(session, platform) {
-    const view = Object.create(GameView.prototype);
-    Object.assign(view, { game: session, platform, panel: null, shownErrorRevision: 0, observedRun: 0, observedDawn: 0, chrome: new Sprite(), overlay: new Sprite(), motion: { sync() {} }, emotes: { sync() {} }, art: { panel() {} }, tip: { show() {} }, drawScenery() {}, image() {}, label: () => ({}), button: fakeButton, modal: () => new Sprite(), updateActors() {}, drawGameOver() {}, drawDawn() {}, drawPending() {} });
+    const view = Object.create(GameView.prototype); Object.assign(view, { layout, scene });
+    Object.assign(view, { game: session, observedVillageRevision: session.villageRevision, platform, panel: null, shownErrorRevision: 0, observedRun: 0, observedDawn: 0, chrome: new Sprite(), overlay: new Sprite(), motion: { sync() {} }, emotes: { sync() {} }, art: { panel() {} }, tip: { show() {} }, drawScenery() {}, image() {}, label: () => ({}), button: fakeButton, modal: () => new Sprite(), updateActors() {}, drawGameOver() {}, drawDawn() {}, drawPending() {} });
     return view;
 }
 test('ranking unlocks after first committed victory, stays unlocked after restart, and syncs one real wave', () => {
@@ -97,4 +101,12 @@ test('ranking panel is a tall list with no extra controls and authorizes as soon
     const ranking = box.getChildByName('FriendRankingCanvas'); assert.deepEqual([ranking.x, ranking.y, ranking.width, ranking.height], [34, 132, 600, 680]);
     assert.equal(subtitle, ''); assert.equal(controls.length, 0); assert.equal(s.privacy.length, 1); assert.equal(s.settings.length, 0);
     s.privacy.shift().success(); s.authorization.shift().success(); assert(s.messages.some(m => m.refreshRanking));
+});
+
+
+test('pure restart of run one resets view schedules, pending panels and effects without a run-number change', () => {
+    const env = setup(), session = new GameSession(new SaveStore(env.platform)); session.load(); session.newVillage();
+    const view = gameView(session, env.platform), oldMotion = view.motion, oldEmotes = view.emotes;
+    view.panel = {type:'cleanStart'}; view.tip.visible = true; session.changed=()=>view.refresh();
+    session.cleanStart(); assert.equal(session.state.run,1); assert.equal(view.panel,null); assert.notEqual(view.motion,oldMotion); assert.notEqual(view.emotes,oldEmotes); assert.equal(view.tip.visible,false);
 });

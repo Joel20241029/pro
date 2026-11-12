@@ -7,10 +7,12 @@
     "atlases/ui_0.png",
     "atlases/frames.json",
     "animations.json",
-    "audio/village_loop.mp3"
+    "audio/village_loop.mp3",
+    "audio/battle_loop.mp3",
+    "audio/ui_click.mp3"
   ],
-  "assetCount": 180,
-  "runtimeAssetCount": 161,
+  "assetCount": 196,
+  "runtimeAssetCount": 177,
   "reserveAssetCount": 19,
   "assets": [
     {
@@ -63,7 +65,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 330,
@@ -124,7 +126,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 477,
@@ -185,7 +187,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 462,
@@ -246,7 +248,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 2,
@@ -307,7 +309,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 134,
@@ -368,7 +370,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 873,
@@ -429,7 +431,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 741,
@@ -490,7 +492,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 609,
@@ -551,7 +553,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 2,
@@ -612,7 +614,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 166,
@@ -673,7 +675,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "building_hearth_lit",
@@ -725,7 +727,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 846,
@@ -786,7 +788,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "tile_ground_dirt",
@@ -838,7 +840,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "tile_ground_soil",
@@ -890,7 +892,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "tile_ground_stone",
@@ -942,7 +944,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "deco_tree_oak",
@@ -994,7 +996,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 723,
@@ -1055,7 +1057,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 594,
@@ -1116,7 +1118,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 723,
@@ -1177,7 +1179,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 846,
@@ -1238,7 +1240,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "deco_fence_corner",
@@ -1290,7 +1292,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "deco_torch",
@@ -1342,7 +1344,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 817,
@@ -1403,7 +1405,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 438,
@@ -1464,7 +1466,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 104,
@@ -1525,7 +1527,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 92,
@@ -1586,7 +1588,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 91,
@@ -1647,7 +1649,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 50,
@@ -1708,7 +1710,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 50,
@@ -1769,7 +1771,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 50,
@@ -1830,7 +1832,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 104,
@@ -1891,7 +1893,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -1952,7 +1954,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -2013,7 +2015,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -2074,7 +2076,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -2135,7 +2137,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "icon_pause",
@@ -2187,7 +2189,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "icon_play",
@@ -2239,7 +2241,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "icon_settings",
@@ -2291,7 +2293,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "icon_close",
@@ -2343,7 +2345,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "icon_spring",
@@ -2395,7 +2397,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "icon_summer",
@@ -2447,7 +2449,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "icon_autumn",
@@ -2499,7 +2501,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "icon_winter",
@@ -2551,7 +2553,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "icon_upgrade",
@@ -2603,7 +2605,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "icon_shield",
@@ -2655,7 +2657,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 47,
@@ -2716,7 +2718,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -2777,7 +2779,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 92,
@@ -2838,7 +2840,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 50,
@@ -2899,7 +2901,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 86,
@@ -2960,7 +2962,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 50,
@@ -3021,7 +3023,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -3082,7 +3084,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 145,
@@ -3143,7 +3145,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 140,
@@ -3204,7 +3206,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "fx_level_up",
@@ -3256,7 +3258,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "source_only_reserve",
-      "reviewStatus": "visual_v10"
+      "reviewStatus": "visual_v11"
     },
     {
       "id": "panel_parchment",
@@ -3320,7 +3322,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -3400,7 +3402,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 98,
@@ -3480,7 +3482,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 152,
@@ -3560,7 +3562,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 93,
@@ -3640,7 +3642,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 86,
@@ -3719,7 +3721,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 127,
@@ -3785,7 +3787,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 762,
@@ -3851,7 +3853,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 301,
@@ -3917,7 +3919,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 226,
@@ -3983,7 +3985,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 931,
@@ -4049,7 +4051,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 448,
@@ -4115,7 +4117,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 789,
@@ -4181,7 +4183,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 534,
@@ -4247,7 +4249,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 699,
@@ -4313,11 +4315,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 721,
-        "y": 792,
+        "x": 107,
+        "y": 771,
         "w": 47,
         "h": 60
       },
@@ -4379,11 +4381,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 927,
-        "y": 718,
+        "x": 827,
+        "y": 725,
         "w": 62,
         "h": 62
       },
@@ -4445,11 +4447,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 55,
-        "y": 827,
+        "x": 113,
+        "y": 862,
         "w": 50,
         "h": 59
       },
@@ -4511,11 +4513,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 373,
-        "y": 763,
+        "x": 2,
+        "y": 862,
         "w": 54,
         "h": 60
       },
@@ -4577,11 +4579,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 170,
-        "y": 827,
+        "x": 126,
+        "y": 931,
         "w": 51,
         "h": 58
       },
@@ -4643,11 +4645,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 787,
-        "y": 791,
+        "x": 642,
+        "y": 738,
         "w": 62,
         "h": 58
       },
@@ -4709,11 +4711,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 853,
-        "y": 850,
+        "x": 708,
+        "y": 792,
         "w": 62,
         "h": 58
       },
@@ -4775,11 +4777,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 979,
-        "y": 422,
+        "x": 167,
+        "y": 869,
         "w": 42,
         "h": 58
       },
@@ -4841,11 +4843,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 51,
-        "y": 775,
+        "x": 279,
+        "y": 801,
         "w": 44,
         "h": 48
       },
@@ -4907,11 +4909,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 99,
-        "y": 771,
+        "x": 322,
+        "y": 869,
         "w": 44,
         "h": 47
       },
@@ -4973,11 +4975,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 525,
-        "y": 203,
+        "x": 288,
+        "y": 931,
         "w": 47,
         "h": 45
       },
@@ -5039,11 +5041,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 775,
+        "x": 273,
+        "y": 869,
         "w": 45,
         "h": 48
       },
@@ -5105,7 +5107,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 153,
@@ -5171,7 +5173,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 81,
@@ -5237,7 +5239,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 562,
@@ -5303,7 +5305,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 534,
@@ -5369,7 +5371,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 2,
@@ -5435,7 +5437,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 162,
@@ -5501,7 +5503,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 242,
@@ -5567,7 +5569,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 238,
@@ -5633,11 +5635,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 245,
-        "y": 915,
+        "x": 626,
+        "y": 866,
         "w": 59,
         "h": 61
       },
@@ -5699,7 +5701,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 448,
@@ -5765,11 +5767,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 181,
-        "y": 915,
+        "x": 562,
+        "y": 804,
         "w": 60,
         "h": 61
       },
@@ -5831,11 +5833,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 125,
-        "y": 915,
+        "x": 506,
+        "y": 796,
         "w": 52,
         "h": 62
       },
@@ -5897,7 +5899,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 525,
@@ -5963,7 +5965,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 946,
@@ -6029,7 +6031,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 438,
@@ -6095,7 +6097,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 598,
@@ -6161,7 +6163,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 76,
@@ -6227,7 +6229,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 266,
@@ -6293,7 +6295,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 348,
@@ -6359,7 +6361,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 2,
@@ -6426,7 +6428,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 748,
@@ -6493,7 +6495,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 506,
@@ -6560,7 +6562,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 927,
@@ -6627,11 +6629,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 109,
-        "y": 827,
+        "x": 158,
+        "y": 771,
         "w": 57,
         "h": 58
       },
@@ -6694,7 +6696,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 266,
@@ -6761,7 +6763,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 352,
@@ -6828,7 +6830,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 940,
@@ -6895,7 +6897,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 940,
@@ -6961,7 +6963,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 236,
@@ -7027,7 +7029,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 2,
@@ -7093,7 +7095,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 161,
@@ -7159,7 +7161,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 668,
@@ -7225,7 +7227,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 673,
@@ -7291,7 +7293,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 462,
@@ -7357,7 +7359,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 858,
@@ -7423,7 +7425,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 376,
@@ -7489,11 +7491,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 299,
-        "y": 763,
+        "x": 60,
+        "y": 862,
         "w": 49,
         "h": 60
       },
@@ -7555,11 +7557,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 64,
-        "y": 915,
+        "x": 704,
+        "y": 854,
         "w": 57,
         "h": 62
       },
@@ -7621,11 +7623,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 2,
-        "y": 827,
+        "y": 775,
         "w": 49,
         "h": 60
       },
@@ -7687,11 +7689,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 772,
-        "y": 853,
+        "x": 67,
+        "y": 931,
         "w": 55,
         "h": 59
       },
@@ -7753,11 +7755,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 2,
-        "y": 915,
+        "x": 642,
+        "y": 800,
         "w": 58,
         "h": 62
       },
@@ -7819,11 +7821,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 721,
-        "y": 726,
+        "x": 893,
+        "y": 756,
         "w": 62,
         "h": 62
       },
@@ -7885,11 +7887,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 958,
-        "y": 784,
+        "x": 787,
+        "y": 791,
         "w": 62,
         "h": 61
       },
@@ -7951,11 +7953,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 958,
-        "y": 849,
+        "x": 579,
+        "y": 738,
         "w": 59,
         "h": 62
       },
@@ -8017,7 +8019,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 901,
@@ -8083,7 +8085,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 596,
@@ -8149,7 +8151,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 383,
@@ -8215,7 +8217,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 858,
@@ -8281,7 +8283,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 610,
@@ -8347,7 +8349,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 624,
@@ -8413,7 +8415,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 321,
@@ -8479,7 +8481,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 301,
@@ -8545,11 +8547,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 669,
-        "y": 732,
+        "x": 55,
+        "y": 775,
         "w": 48,
         "h": 60
       },
@@ -8611,11 +8613,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 225,
-        "y": 771,
+        "x": 181,
+        "y": 931,
         "w": 52,
         "h": 57
       },
@@ -8677,11 +8679,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 893,
-        "y": 784,
+        "x": 959,
+        "y": 756,
         "w": 61,
         "h": 62
       },
@@ -8743,11 +8745,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 308,
-        "y": 915,
+        "x": 2,
+        "y": 931,
         "w": 61,
         "h": 59
       },
@@ -8809,11 +8811,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 345,
-        "y": 827,
+        "x": 237,
+        "y": 931,
         "w": 47,
         "h": 56
       },
@@ -8875,11 +8877,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 827,
-        "y": 725,
+        "x": 721,
+        "y": 726,
         "w": 62,
         "h": 62
       },
@@ -8941,11 +8943,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 225,
-        "y": 832,
+        "x": 213,
+        "y": 869,
         "w": 56,
         "h": 56
       },
@@ -9007,11 +9009,11 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
-        "x": 285,
-        "y": 827,
+        "x": 219,
+        "y": 801,
         "w": 56,
         "h": 56
       },
@@ -9087,7 +9089,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 110,
@@ -9148,7 +9150,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 330,
@@ -9216,7 +9218,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 50,
@@ -9282,7 +9284,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 748,
@@ -9348,7 +9350,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 402,
@@ -9414,7 +9416,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 482,
@@ -9480,7 +9482,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 313,
@@ -9546,7 +9548,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 481,
@@ -9612,7 +9614,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 241,
@@ -9678,7 +9680,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 82,
@@ -9744,7 +9746,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 714,
@@ -9810,7 +9812,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 322,
@@ -9876,7 +9878,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 161,
@@ -9942,7 +9944,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 2,
@@ -10008,7 +10010,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 79,
@@ -10074,7 +10076,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 383,
@@ -10140,7 +10142,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 81,
@@ -10206,7 +10208,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 401,
@@ -10272,7 +10274,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 822,
@@ -10338,7 +10340,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 642,
@@ -10404,7 +10406,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 668,
@@ -10470,7 +10472,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 2,
@@ -10536,7 +10538,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 161,
@@ -10602,7 +10604,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 153,
@@ -10668,7 +10670,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 901,
@@ -10734,7 +10736,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 588,
@@ -10800,7 +10802,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 553,
@@ -10866,7 +10868,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 2,
@@ -10932,7 +10934,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 508,
@@ -10998,7 +11000,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 822,
@@ -11064,7 +11066,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "world_0",
       "atlasRect": {
         "x": 82,
@@ -11125,7 +11127,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -11186,7 +11188,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 44,
@@ -11247,7 +11249,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 98,
@@ -11308,7 +11310,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -11369,7 +11371,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
@@ -11430,7 +11432,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 50,
@@ -11491,7 +11493,7 @@
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v10",
+      "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 91,
@@ -11501,25 +11503,1042 @@
       },
       "importedLayaAtlasPath": "assets/resources/village/ui_0.png",
       "importedFrameId": "emote_curious"
+    },
+    {
+      "id": "deco_apple_pair",
+      "label": "红苹果",
+      "category": "decorations",
+      "categoryLabel": "独立花果",
+      "path": "runtime/decorations/parts/deco_apple_pair.png",
+      "width": 24,
+      "height": 24,
+      "pivot": {
+        "x": 12,
+        "y": 24
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 316,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 81,
+        "y": 103,
+        "w": 179,
+        "h": 155
+      },
+      "nineSlice": null,
+      "mapping": "tree child",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 1250,
+      "sha256": "e001bd0f6472a9925ff94511e9c1186985807f3dd81fd2da0f72c7ee4e2c5d66",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 24,
+        "h": 24
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 2
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 24,
+        "h": 24
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 673,
+        "y": 614,
+        "w": 22,
+        "h": 19
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "deco_apple_pair"
+    },
+    {
+      "id": "deco_pear_pair",
+      "label": "金梨",
+      "category": "decorations",
+      "categoryLabel": "独立花果",
+      "path": "runtime/decorations/parts/deco_pear_pair.png",
+      "width": 24,
+      "height": 24,
+      "pivot": {
+        "x": 12,
+        "y": 24
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 316,
+        "y": 0,
+        "w": 316,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 71,
+        "y": 90,
+        "w": 174,
+        "h": 178
+      },
+      "nineSlice": null,
+      "mapping": "tree child",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 1400,
+      "sha256": "2395b3cf916fece694f92c2ae9814f963e5c09953ae282788799caceb253d75f",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 24,
+        "h": 24
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 24,
+        "h": 24
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 673,
+        "y": 588,
+        "w": 22,
+        "h": 22
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "deco_pear_pair"
+    },
+    {
+      "id": "deco_blossom_pink",
+      "label": "粉花",
+      "category": "decorations",
+      "categoryLabel": "独立花果",
+      "path": "runtime/decorations/parts/deco_blossom_pink.png",
+      "width": 28,
+      "height": 28,
+      "pivot": {
+        "x": 14,
+        "y": 28
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 632,
+        "y": 0,
+        "w": 315,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 34,
+        "y": 78,
+        "w": 220,
+        "h": 190
+      },
+      "nineSlice": null,
+      "mapping": "tree child",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 1647,
+      "sha256": "6b812baaf13a078d9fe720ab29feb7c80c13e754616ae630c2f6f815718670fe",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 28,
+        "h": 28
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 3
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 28,
+        "h": 28
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 827,
+        "y": 651,
+        "w": 26,
+        "h": 22
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "deco_blossom_pink"
+    },
+    {
+      "id": "deco_blossom_ivory",
+      "label": "米白花",
+      "category": "decorations",
+      "categoryLabel": "独立花果",
+      "path": "runtime/decorations/parts/deco_blossom_ivory.png",
+      "width": 28,
+      "height": 28,
+      "pivot": {
+        "x": 14,
+        "y": 28
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 947,
+        "y": 0,
+        "w": 316,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 36,
+        "y": 78,
+        "w": 218,
+        "h": 190
+      },
+      "nineSlice": null,
+      "mapping": "tree child",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 1740,
+      "sha256": "86c6a66ff9db93d1a37b9901bffcca5e57804e41b9e77f154e90134d512935cf",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 28,
+        "h": 28
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 2
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 28,
+        "h": 28
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 107,
+        "y": 835,
+        "w": 26,
+        "h": 23
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "deco_blossom_ivory"
+    },
+    {
+      "id": "part_window",
+      "label": "木窗",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_window.png",
+      "width": 32,
+      "height": 32,
+      "pivot": {
+        "x": 16,
+        "y": 32
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 312,
+        "w": 316,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 75,
+        "y": 69,
+        "w": 178,
+        "h": 187
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 2293,
+      "sha256": "3925a1b679315f2b98be58f4e583dd879640104b209d51913131be8a812a9c15",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 32,
+        "h": 32
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 32,
+        "h": 32
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 789,
+        "y": 502,
+        "w": 29,
+        "h": 30
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "part_window"
+    },
+    {
+      "id": "part_iron",
+      "label": "铁加固",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_iron.png",
+      "width": 24,
+      "height": 32,
+      "pivot": {
+        "x": 12,
+        "y": 32
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 316,
+        "y": 312,
+        "w": 316,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 71,
+        "y": 76,
+        "w": 165,
+        "h": 178
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 1307,
+      "sha256": "769045889fd62221fbbcda85529a8076969b5be9a37f94ce81b722bf3073f406",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 24,
+        "h": 32
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 4
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 24,
+        "h": 32
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 482,
+        "y": 377,
+        "w": 22,
+        "h": 24
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "part_iron"
+    },
+    {
+      "id": "part_gold_roof",
+      "label": "金檐",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_gold_roof.png",
+      "width": 64,
+      "height": 28,
+      "pivot": {
+        "x": 32,
+        "y": 28
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 632,
+        "y": 312,
+        "w": 315,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 9,
+        "y": 104,
+        "w": 277,
+        "h": 122
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 3613,
+      "sha256": "08b976073f8d96491f44aa9eeb88004035dfbc12298129e2ea9eaa1d943550c1",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 64,
+        "h": 28
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 1
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 64,
+        "h": 28
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 266,
+        "y": 166,
+        "w": 59,
+        "h": 26
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "part_gold_roof"
+    },
+    {
+      "id": "part_tile_roof",
+      "label": "瓦檐",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_tile_roof.png",
+      "width": 72,
+      "height": 36,
+      "pivot": {
+        "x": 36,
+        "y": 36
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 947,
+        "y": 312,
+        "w": 316,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 6,
+        "y": 89,
+        "w": 293,
+        "h": 152
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 4555,
+      "sha256": "f95b00b47ab43f038d170361ebd14dd348853a034364bc7baf7010c551feb9de",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 72,
+        "h": 36
+      },
+      "trimOffset": {
+        "x": 3,
+        "y": 1
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 72,
+        "h": 36
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 927,
+        "y": 718,
+        "w": 66,
+        "h": 34
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "part_tile_roof"
+    },
+    {
+      "id": "part_brace",
+      "label": "木撑",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_brace.png",
+      "width": 32,
+      "height": 32,
+      "pivot": {
+        "x": 16,
+        "y": 32
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 623,
+        "w": 316,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 68,
+        "y": 62,
+        "w": 188,
+        "h": 188
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 2406,
+      "sha256": "466af08848cd1bcdc6128a5e60a5a34fa00b3b715058fb0756fa3b53a6f3400e",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 32,
+        "h": 32
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 32,
+        "h": 32
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 714,
+        "y": 467,
+        "w": 30,
+        "h": 30
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "part_brace"
+    },
+    {
+      "id": "part_foundation",
+      "label": "石基",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_foundation.png",
+      "width": 64,
+      "height": 24,
+      "pivot": {
+        "x": 32,
+        "y": 24
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 316,
+        "y": 623,
+        "w": 316,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 23,
+        "y": 118,
+        "w": 268,
+        "h": 84
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 3292,
+      "sha256": "bae5cccdefe5455fb515f4169643b9991d065f2b6768bff6c46d4e9cd5a3d229",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 64,
+        "h": 24
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 2
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 64,
+        "h": 24
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 525,
+        "y": 203,
+        "w": 62,
+        "h": 19
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "part_foundation"
+    },
+    {
+      "id": "part_grain",
+      "label": "粮袋",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_grain.png",
+      "width": 32,
+      "height": 36,
+      "pivot": {
+        "x": 16,
+        "y": 36
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 632,
+        "y": 623,
+        "w": 315,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 44,
+        "y": 39,
+        "w": 201,
+        "h": 226
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 2756,
+      "sha256": "dbf8646c765dec417939630589573ce19dcc9bac1911b6a54dee7c30674e4f9a",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 32,
+        "h": 36
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 32,
+        "h": 36
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 714,
+        "y": 429,
+        "w": 30,
+        "h": 34
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "part_grain"
+    },
+    {
+      "id": "part_tools",
+      "label": "工具架",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_tools.png",
+      "width": 40,
+      "height": 36,
+      "pivot": {
+        "x": 20,
+        "y": 36
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 947,
+        "y": 623,
+        "w": 316,
+        "h": 311
+      },
+      "sourceCropWithinCell": {
+        "x": 36,
+        "y": 50,
+        "w": 243,
+        "h": 209
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 2939,
+      "sha256": "4fdb8908b47efda418d05e656e4acb4619d8020008a9f9818cb0a5d17db9a947",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 40,
+        "h": 36
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 40,
+        "h": 36
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 299,
+        "y": 763,
+        "w": 38,
+        "h": 33
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "part_tools"
+    },
+    {
+      "id": "part_timbers",
+      "label": "木料堆",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_timbers.png",
+      "width": 40,
+      "height": 32,
+      "pivot": {
+        "x": 20,
+        "y": 32
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 934,
+        "w": 316,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 43,
+        "y": 53,
+        "w": 237,
+        "h": 193
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 2859,
+      "sha256": "6d6f3faef016d656a8c72bd7e3a9577830b348d469bbca1966cc6416bd820a37",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 40,
+        "h": 32
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 40,
+        "h": 32
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 721,
+        "y": 657,
+        "w": 37,
+        "h": 30
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "part_timbers"
+    },
+    {
+      "id": "part_crystal",
+      "label": "晶簇",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_crystal.png",
+      "width": 32,
+      "height": 36,
+      "pivot": {
+        "x": 16,
+        "y": 36
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 316,
+        "y": 934,
+        "w": 316,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 62,
+        "y": 42,
+        "w": 193,
+        "h": 210
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 2519,
+      "sha256": "699882fccee7da9ce725fc8337c4b8e4c66a3ed1ec27cb496087ca10c9e87d7c",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 32,
+        "h": 36
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 32,
+        "h": 36
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 787,
+        "y": 726,
+        "w": 30,
+        "h": 33
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "part_crystal"
+    },
+    {
+      "id": "part_crest",
+      "label": "金徽",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_crest.png",
+      "width": 28,
+      "height": 32,
+      "pivot": {
+        "x": 14,
+        "y": 32
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 632,
+        "y": 934,
+        "w": 315,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 57,
+        "y": 39,
+        "w": 186,
+        "h": 213
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 2162,
+      "sha256": "9e71aeea3865248ae8353e810a8689e8f1b0a1f7a974584ed2703feab5f82482",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 28,
+        "h": 32
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 28,
+        "h": 32
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 181,
+        "y": 992,
+        "w": 26,
+        "h": 30
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "part_crest"
+    },
+    {
+      "id": "part_banner",
+      "label": "锦旗",
+      "category": "buildings",
+      "categoryLabel": "建筑升级部件",
+      "path": "runtime/buildings/parts/part_banner.png",
+      "width": 28,
+      "height": 36,
+      "pivot": {
+        "x": 14,
+        "y": 36
+      },
+      "sourceSheet": "source/static/village_parts_v11.png",
+      "sourceRect": {
+        "x": 947,
+        "y": 934,
+        "w": 316,
+        "h": 312
+      },
+      "sourceCropWithinCell": {
+        "x": 35,
+        "y": 53,
+        "w": 231,
+        "h": 193
+      },
+      "nineSlice": null,
+      "mapping": "BuildingVisuals composition",
+      "animation": null,
+      "fitPadding": 2,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bytes": 1358,
+      "sha256": "3478e7a283427d571fd04ae9362bacd868b8dea7d755d4baf01e66409b98a6fd",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 28,
+        "h": 36
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 7
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 28,
+        "h": 36
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "world_0",
+      "atlasRect": {
+        "x": 827,
+        "y": 677,
+        "w": 26,
+        "h": 22
+      },
+      "importedLayaAtlasPath": "assets/resources/village/world_0.png",
+      "importedFrameId": "part_banner"
     }
   ],
   "audio": {
-    "title": "篝火边",
-    "source": "source/audio/village_loop.score.json",
-    "generator": "tools/build-audio.py",
-    "runtimeFile": "audio/village_loop.mp3",
-    "packageFile": "village_loop.mp3",
-    "durationSeconds": 24,
-    "sampleRate": 22050,
-    "channels": 1,
-    "bitrate": "32k",
-    "bytes": 96462,
-    "sha256": "5fc8646055275c788d97b6c21894a311746c1ad9cd07a4fa73f14924a884bb5a",
-    "sourceSha256": "643dd59ef31686dee4e5550b2cacbcdbaffea835c0c50b4f4b62c43100cda60f",
-    "sourcePeak": 0.65,
-    "sourceBoundaryDifference": 0.00341796875,
-    "license": "Original score and synthesis; no third-party samples",
-    "phoneListeningVerified": false
+    "tracks": [
+      {
+        "title": "篝火边",
+        "source": "source/audio/village_loop.score.json",
+        "generator": "tools/build-audio.py",
+        "runtimeFile": "audio/village_loop.mp3",
+        "packageFile": "village_loop.mp3",
+        "durationSeconds": 24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "bitrate": "32k",
+        "bytes": 96462,
+        "sha256": "5fc8646055275c788d97b6c21894a311746c1ad9cd07a4fa73f14924a884bb5a",
+        "sourceSha256": "643dd59ef31686dee4e5550b2cacbcdbaffea835c0c50b4f4b62c43100cda60f",
+        "sourcePeak": 0.65,
+        "sourceBoundaryDifference": 0.00341796875,
+        "license": "Original score and synthesis; no third-party samples",
+        "phoneListeningVerified": false
+      },
+      {
+        "title": "夜袭",
+        "source": "source/audio/battle_loop.score.json",
+        "generator": "tools/build-audio.py",
+        "runtimeFile": "audio/battle_loop.mp3",
+        "packageFile": "battle_loop.mp3",
+        "durationSeconds": 14.545442176870749,
+        "sampleRate": 22050,
+        "channels": 1,
+        "bitrate": "32k",
+        "bytes": 58637,
+        "sha256": "d20ced70f054d41d83946664655592edb89725ff6d49e9ecb5df39d66c557822",
+        "sourceSha256": "256529447d1ae1246f3bb3d9367dfdb7c2bdac2024bd9b063f24471d9fc52fc5",
+        "sourcePeak": 0.65,
+        "sourceBoundaryDifference": 0.002532958984375,
+        "license": "Original score and synthesis; no third-party samples",
+        "phoneListeningVerified": false
+      },
+      {
+        "title": "轻点击",
+        "source": "source/audio/ui_click.score.json",
+        "generator": "tools/build-audio.py",
+        "runtimeFile": "audio/ui_click.mp3",
+        "packageFile": "ui_click.mp3",
+        "durationSeconds": 0.08498866213151927,
+        "sampleRate": 22050,
+        "channels": 1,
+        "bitrate": "32k",
+        "bytes": 854,
+        "sha256": "8149b864e7202c77ab2a2da117a9e765599de7adba3030ca6e84b9ce0e9678c3",
+        "sourceSha256": "a5d37d89c3aeb79c39cabb7789fa6cd8c34a55f948e7c604f638f420fe175bbf",
+        "sourcePeak": 0.65,
+        "sourceBoundaryDifference": 0,
+        "license": "Original score and synthesis; no third-party samples",
+        "phoneListeningVerified": false
+      }
+    ],
+    "bytes": 155953
   },
   "externalAssets": [
     {

@@ -97,19 +97,21 @@ class Sprite {
     pos(x, y) { this.x = x; this.y = y; return this; }
     size(w, h) { this.width = w; this.height = h; return this; }
     addChild(n) { this.children.push(n); return n; }
+    destroyChildren() { this.children.length = 0; }
     getChildAt(i) { return this.children[i]; }
     getChildByName(name) { return this.children.find(n => n.name === name); }
-    on(event, caller, fn) { this.handlers[event] = () => fn.call(caller); }
-    event(event) { this.handlers[event]?.(); }
+    on(event, caller, fn) { this.handlers[event] = (...args) => fn.apply(caller, args); }
+    event(event, data) { this.handlers[event]?.(data); }
     off() {}
 }
-global.Laya = { Sprite, Rectangle: class {}, OpenDataContextView: class {}, Texture2D: class {}, Event: { CLICK: 'click', MOUSE_DOWN: 'down', MOUSE_UP: 'up', MOUSE_OUT: 'out', UNDISPLAY: 'undisplay' } };
+global.Laya = { Sprite, Text: { SHRINK: 'shrink' }, Rectangle: class {}, OpenDataContextView: class {}, Texture2D: class {}, Event: { CLICK: 'click', MOUSE_DOWN: 'down', MOUSE_UP: 'up', MOUSE_OUT: 'out', UNDISPLAY: 'undisplay' } };
 const { GameView } = require(path.join(compiled, 'view/GameView.js'));
 const { GUIDE_CHAPTERS } = require(path.join(compiled, 'view/GameGuide.js'));
 function panelView(game) {
     const view = Object.create(GameView.prototype);
     Object.assign(view, {
-        game, art: { panel() {} }, panel: null,
+        game, art: { panel() {} }, panel: null, clickSounds: 0,
+        playClick() { this.clickSounds++; },
         modal() { this.box = new Sprite(); return this.box; },
         label(parent, text, x, y, w, font, color, bold, h) {
             const node = new Sprite().pos(x, y).size(w, h); node.text = text; node.textHeight = 200; parent.addChild(node); return node;
@@ -121,6 +123,7 @@ function panelView(game) {
 test('help entry and all five tabs are read-only; each chapter resets its own scrolling', () => {
     const { game, values } = session(), view = panelView(game), saved = canonical([...values]), state = canonical(game.state);
     view.open({ type: 'settings' }); view.box.getChildByName('button:玩法说明').event('click');
+    assert.equal(view.clickSounds, 1);
     assert.deepEqual(GUIDE_CHAPTERS.map(c => c.title), ['起步', '村民', '家庭', '建设', '守夜']);
     for (let i = 0; i < GUIDE_CHAPTERS.length; i++) {
         view.box.getChildByName(`button:${GUIDE_CHAPTERS[i].title}`).event('click'); assert.equal(view.panel.tab, i);
@@ -130,6 +133,50 @@ test('help entry and all five tabs are read-only; each chapter resets its own sc
         assert(last.y + last.height - rows.offset <= rows.height, 'last paragraph remains reachable');
     }
     view.close(); assert(!game.pauses.has('CHOICE')); assert.equal(canonical([...values]), saved); assert.equal(canonical(game.state), state);
+});
+
+test('leaving a pressed button, ranking entry or tower cancels the engine click and its sound', () => {
+    const { game } = session(), view = panelView(game), opened = [];
+    game.state.legacy.bestNight = 1;
+    Object.assign(view, {
+        chrome: new Sprite(), layout: { mapTop: 280, footerTop: 980, gateY: 680, height: 1280, safeTop: 0, settingsY: 42, resourcesY: 124 },
+        scene: { pads: PADS }, observedVillageRevision: game.villageRevision, emotes: { sync() {} },
+        drawScenery() {}, updateActors() {}, image() { return {}; }, open(panel) { opened.push(panel); },
+    });
+    GameView.prototype.refresh.call(view, true);
+    const tower = view.chrome.children.find(n => n.x === PADS[0].x - 58 && n.y === PADS[0].y - 80 && n.width === 116);
+    const entries = [view.chrome.getChildByName('button:小记'), view.chrome.getChildByName('RankingButton'), tower];
+    const cancelled = [];
+    Laya.InputManager = { cancelClick: id => cancelled.push(id) };
+    for (const [index, entry] of entries.entries()) {
+        assert(entry);
+        const touch = { touchId: index };
+        entry.event('down', touch);
+        entry.event('out', { touchId: 9 }); // This pointer never pressed the entry.
+        assert.equal(cancelled.length, index);
+        entry.event('out', touch);
+        assert.equal(cancelled.at(-1), touch.touchId);
+        // A short release may still target the pressed node unless the engine click was cancelled.
+        if (!cancelled.includes(touch.touchId)) entry.event('click', touch);
+        assert.equal(view.clickSounds, index);
+        assert.equal(opened.length, index);
+
+        const tap = { touchId: 10 + index };
+        entry.event('down', tap);
+        entry.event('up', tap);
+        entry.event('click', tap);
+        entry.event('out', tap); // Native touch release emits a final MOUSE_OUT after CLICK.
+        assert.equal(cancelled.length, index + 1);
+        assert.equal(view.clickSounds, index + 1);
+    }
+    assert.deepEqual(opened, [{ type: 'settings' }, { type: 'ranking' }, { type: 'tower', index: 0 }]);
+    assert.deepEqual(cancelled, [0, 1, 2]);
+
+    const button = entries[0], face = button.getChildAt(0);
+    button.event('down', { touchId: 16 }); assert.notEqual(face.y, 0);
+    button.event('out'); // ScrollList already cancelled its pointer and sends a visual reset without event data.
+    assert.equal(face.y, 0);
+    assert.deepEqual(cancelled, [0, 1, 2]);
 });
 
 test('opening and closing help removes only CHOICE, leaving independent pauses intact', () => {
@@ -148,4 +195,15 @@ test('tower building is disabled before payment when short of wood or during nig
     game.state.wood++; view.open({ type: 'tower', index: 2 }); assert(view.box.children.find(n => n.name.startsWith('button:箭楼')).handlers.click);
     game.command({ type: 'NIGHT' }); view.open({ type: 'tower', index: 2 });
     assert(!view.box.children.find(n => n.name.startsWith('button:箭楼')).handlers.click);
+});
+
+
+test('clean-start choice requires confirmation, cancellation is read-only and inheritance stays available', () => {
+    const {game,values}=session(),view=panelView(game); const initial=canonical(game.state),saved=canonical([...values]);
+    view.open({type:'restart'}); assert(view.box.getChildByName('button:传承开村'));
+    view.box.getChildByName('button:纯净开始').event('click'); assert.equal(view.panel.type,'cleanStart');
+    assert.equal(canonical(game.state),initial); assert.equal(canonical([...values]),saved);
+    view.box.getChildByName('button:取消').event('click'); assert.equal(view.panel.type,'restart');assert.equal(canonical([...values]),saved);
+    view.box.getChildByName('button:纯净开始').event('click'); const revision=game.villageRevision;
+    view.box.getChildByName('button:确认纯净开始').event('click');assert.equal(game.villageRevision,revision+1);assert.equal(game.state.run,1);assert.equal(game.state.legacy.lastRationDate,null);
 });

@@ -2,7 +2,8 @@ import { applyCommand, createGame } from "../src/game/VillageRules";
 import { clone } from "../src/game/GameState";
 import { BattleSimulation } from "../src/game/BattleSimulation";
 import { LABOR_CLIPS, RULE } from "../src/game/GameConfig";
-import { compareDepth, distance, MOTION, VillageNavigation, VILLAGE_PROPS, VILLAGE_STOPS, WEDDING } from "../src/view/VillageScene";
+import { GameLayout } from "../src/view/GameLayout";
+import { compareDepth, distance, layoutVillage, MOTION, VillageNavigation, VILLAGE_PROPS, VILLAGE_STOPS, WEDDING } from "../src/view/VillageScene";
 import { VillagerMotion, walkDirection, WalkDirection } from "../src/view/VillagerMotion";
 
 let passed = 0;
@@ -21,7 +22,7 @@ test("Walking faces the actual travel axis, keeps diagonal hysteresis and holds 
     equal(walkDirection(10.5, -10, "UP"), "UP"); equal(walkDirection(12, -10, "UP"), "RIGHT");
 });
 test("Forest and palisades have shared collision blocks and preserve both gate passages", () => {
-    ok(VILLAGE_PROPS.filter(p => p.id.startsWith("forest:")).length >= 40);
+    equal(VILLAGE_PROPS.filter(p => p.id.startsWith("forest:")).length, 30);
     ok(navigation.obstacles.length <= 16, "decorative trees must not each expand the route graph");
     ok(navigation.clear({ x: 274, y: 770 }, { x: 274, y: 850 }), "left gate passage blocked");
     ok(navigation.clear({ x: 446, y: 770 }, { x: 446, y: 850 }), "right gate passage blocked");
@@ -38,7 +39,8 @@ test("Every real map stop is reachable without crossing any footprint", () => {
     }
 });
 test("A walk from behind a house goes around its foundation", () => {
-    const house = VILLAGE_PROPS.find(p => p.id === "building:house-a")!;
+    // 左侧民居门前现有伐木树；此用例单独验证房屋绕行，选择门前无第二障碍的右屋。
+    const house = VILLAGE_PROPS.find(p => p.id === "building:house-b")!;
     const behind = { x: house.x, y: house.footprint!.top - MOTION.clearance - 20 }, front = { x: house.x, y: house.footprint!.bottom + MOTION.clearance + 24 };
     ok(!navigation.clear(behind, front)); const route = navigation.route(behind, front); ok(route.length > 1);
     ok(compareDepth({ id: "person:1:1", y: behind.y }, house) < 0);
@@ -235,6 +237,40 @@ test("Both adult identities play farming, chopping and caring actions after arri
         const motion = new VillagerMotion(navigation); motion.sync(s, s.towers); let played = false;
         for (let i = 0; i < 1600; i++) { motion.update(.05); const m = motion.get(p.id); if (!m.walking && m.animated && m.elapsed > .5 && m.clip === LABOR_CLIPS[p.appearance][job]) played = true; }
         ok(played, `${p.appearance}/${job} never played`);
+    }
+});
+test("Male and female woodcutters face the tree at every work stop before and after a resize", () => {
+    const menu = { top: 0, bottom: 0, left: 0, right: 0, width: 0, height: 0 };
+    const before = new GameLayout({ windowWidth: 360, windowHeight: 720, statusBarHeight: 24 }, menu);
+    const after = new GameLayout({ windowWidth: 360, windowHeight: 800, statusBarHeight: 24 }, menu);
+    const original = layoutVillage(before), resized = layoutVillage(after);
+    ok(original.stops.logging[0].y !== resized.stops.logging[0].y);
+    for (const offset of [0, 1]) {
+        const s = createGame(3), adults = s.people.slice(0, 2);
+        s.people = s.people.map((p, i) => i < original.stops.logging.length
+            ? { ...clone(adults[(i + offset) % adults.length]), id: p.id, job: "LOGGING" }
+            : { ...p, job: "WAITING" });
+        const workers = s.people.filter(p => p.job === "LOGGING");
+        const motion = new VillagerMotion(new VillageNavigation(original.props, original.landscape, original.bounds), original.stops);
+        motion.sync(s, s.towers);
+        for (const scene of [original, resized]) {
+            const tree = scene.props.find(p => p.id === "tree:logging")!, seen = new Set<string>();
+            for (let step = 0; step < 1600 && seen.size < workers.length; step++) {
+                workers.forEach((worker, index) => {
+                    const pose = motion.get(worker.id);
+                    if (pose.walking) { equal(pose.mirror, false); return; }
+                    if (pose.clip !== LABOR_CLIPS[worker.appearance].LOGGING) return;
+                    const stop = scene.stops.logging[index];
+                    equal([pose.x, pose.y], [stop.x, stop.y]);
+                    equal(pose.mirror, stop.x > tree.x);
+                    seen.add(worker.id);
+                });
+                motion.update(.05);
+            }
+            equal(seen.size, workers.length);
+            if (scene === original) motion.relayout(new VillageNavigation(resized.props, resized.landscape, resized.bounds), resized.stops,
+                p => ({ x: p.x, y: after.worldY(before.referenceY(p.y)) }));
+        }
     }
 });
 test("Retiring in place switches to elder walks and idle without teleporting or mutating game state", () => {

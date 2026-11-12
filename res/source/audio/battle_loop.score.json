@@ -1,0 +1,18 @@
+{
+  "title": "夜袭",
+  "authorship": "Original score and synthesis created for 代代守村; no sampled recordings or external music.",
+  "bpm": 132,
+  "beatsPerBar": 4,
+  "bars": 8,
+  "sampleRate": 22050,
+  "mp3Bitrate": "32k",
+  "chordsHz": [[146.832, 174.614, 220], [130.813, 164.814, 195.998], [116.541, 146.832, 174.614], [130.813, 164.814, 195.998]],
+  "arpeggio": { "stepsPerBeat": 2, "frequencyRatio": 2, "lengthBeats": 0.7, "gain": 0.12, "decaySeconds": 0.13 },
+  "bass": { "frequencyRatio": 0.5, "lengthSeconds": 0.5, "gain": 0.22, "decaySeconds": 0.19 },
+  "percussion": {
+    "beatPattern": ["kick", "snare", "kick", "snare"], "hatOffsetBeats": 0.25, "gain": 0.18, "noiseSeed": 12,
+    "kick": { "lengthSeconds": 0.22, "frequencyHz": 68, "sweepDepth": 1.2, "sweepRate": 45, "decayRate": 24 },
+    "noise": { "lengthSeconds": 0.07, "decayRate": 65 }
+  },
+  "synthesis": { "attackSeconds": 0.005, "releaseSeconds": 0.04, "harmonics": [0.22, 0.09], "peak": 0.65 }
+}

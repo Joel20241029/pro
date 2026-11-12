@@ -6,9 +6,14 @@ if(!root)throw new Error('Set DAIDAI_TEST_BUILD to compiled project under Downlo
 const {WechatMusic}=require(path.join(root,'platform/WechatMusic.js'));
 function setup(){
  const events={begin:new Set(),end:new Set()}, calls={created:0,play:0,pause:0,destroy:0,problems:0}, tracks=[];
- global.wx={createInnerAudioContext(){calls.created++;const audio={src:'',loop:false,autoplay:true,volume:1,play(){calls.play++;},pause(){calls.pause++;},destroy(){calls.destroy++;},onError(fn){this.error=fn;}};tracks.push(audio);return audio;},
+ global.wx={createInnerAudioContext(){
+  calls.created++;
+  const audio={src:'',loop:false,autoplay:true,volume:1,played:[],stops:0,
+   play(){calls.play++;this.played.push(this.src);},pause(){calls.pause++;},stop(){this.stops++;},destroy(){calls.destroy++;},onError(fn){this.error=fn;}};
+  tracks.push(audio);return audio;
+ },
  onAudioInterruptionBegin:fn=>events.begin.add(fn),offAudioInterruptionBegin:fn=>events.begin.delete(fn),onAudioInterruptionEnd:fn=>events.end.add(fn),offAudioInterruptionEnd:fn=>events.end.delete(fn)};
- const music=new WechatMusic('resources/village/village_loop.mp3',()=>calls.problems++);
+ const music=new WechatMusic('resources/village',()=>calls.problems++);
  return{music,calls,tracks,events};
 }
 test('gesture starts one looping context without requiring unsupported global audio options',()=>{
@@ -39,4 +44,40 @@ test('synchronous native failure is isolated, disabled music ignores late errors
  const {music,calls,tracks}=setup();const create=wx.createInnerAudioContext;wx.createInnerAudioContext=()=>{throw new Error('native create failed');};
  music.setEnabled(true);music.interact();music.interact();assert.equal(calls.problems,1);wx.createInnerAudioContext=create;
  music.setEnabled(false);music.setEnabled(true);music.interact();assert.equal(calls.play,1);music.setEnabled(false);tracks[0].error({errMsg:'late while off'});assert.equal(calls.problems,1);music.destroy();
+});
+test('battle switches once on the current BGM; a suspended switch only changes the source',()=>{
+ const {music,calls,tracks}=setup();music.setEnabled(true);music.interact();
+ const [bgm]=tracks;music.setBattle(true);
+ assert.equal(bgm.src,'resources/village/battle_loop.mp3');assert.equal(bgm.volume,.28);assert.equal(bgm.stops,1);
+ for(let i=0;i<60;i++)music.setBattle(true);
+ assert.deepEqual(bgm.played,['resources/village/village_loop.mp3','resources/village/battle_loop.mp3']);
+ music.suspend();music.setBattle(false);
+ assert.equal(bgm.src,'resources/village/village_loop.mp3');assert.equal(bgm.volume,.3);assert.equal(calls.play,2);assert.equal(bgm.stops,1);
+ music.interact();assert.equal(bgm.played[2],'resources/village/village_loop.mp3');assert.equal(calls.created,1);music.destroy();
+});
+test('clicks reuse one short context and stay silent until a gesture after mute, hide, or interruption',()=>{
+ const {music,calls,tracks,events}=setup();music.setBattle(true);music.setEnabled(true);music.click();assert.equal(calls.created,0);
+ music.interact();music.click();music.click();music.click();
+ const [bgm,click]=tracks;
+ assert.equal(bgm.played[0],'resources/village/battle_loop.mp3');assert.equal(calls.created,2);
+ assert.equal(click.src,'resources/village/ui_click.mp3');assert.equal(click.volume,.35);
+ assert.equal(click.loop,false);assert.equal(click.autoplay,false);assert.equal(click.played.length,3);assert.equal(click.stops,2);
+ music.setEnabled(false);music.click();music.setEnabled(true);music.click();assert.equal(click.stops,3);assert.equal(click.played.length,3);
+ music.interact();music.click();music.suspend();music.click();assert.equal(click.played.length,4);assert.equal(click.stops,5);
+ music.interact();music.click();events.begin.forEach(fn=>fn());music.interact();music.click();
+ events.end.forEach(fn=>fn());music.click();assert.equal(click.played.length,5);assert.equal(click.stops,7);
+ music.interact();music.click();assert.equal(click.played.length,6);assert.equal(calls.created,2);
+ music.destroy();music.click();assert.equal(calls.destroy,2);assert.equal(click.played.length,6);
+});
+test('an SFX error suspends both tracks and stale errors cannot interrupt the replacements',()=>{
+ const {music,calls,tracks}=setup();music.setEnabled(true);music.interact();music.click();
+ const [oldBgm,oldClick]=tracks;
+ oldClick.error({errMsg:'bad SFX'});oldBgm.error({errMsg:'also failed'});
+ assert.equal(calls.problems,1);assert.equal(calls.pause,1);assert.equal(oldClick.stops,1);
+ music.interact();music.click();assert.equal(calls.play,2);
+ music.setEnabled(false);music.setEnabled(true);music.interact();music.click();
+ assert.equal(calls.created,4);assert.equal(calls.destroy,2);
+ oldBgm.error({errMsg:'old BGM'});oldClick.error({errMsg:'old SFX'});
+ music.click();assert.equal(calls.problems,1);assert.equal(calls.play,5);
+ music.destroy();tracks[3].error({errMsg:'old SFX after destroy'});assert.equal(calls.problems,1);
 });

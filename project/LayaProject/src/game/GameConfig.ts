@@ -1,6 +1,6 @@
 /** 首版规则取自 doc/design/01 与 doc/tech/01；集中调整会改变经济、存档与战斗，需升级 CONFIG_VERSION。 */
-// v10：每日口粮新增跨局领取日期（doc/tech/18）；无旧档迁移，同版正常续玩。
-export const CONFIG_VERSION = 10;
+// v11：纯净重开与每次新村可重新领取口粮（doc/tech/20）；不迁移旧开发档，同版续玩保留进度。
+export const CONFIG_VERSION = 11;
 /** 2026-11-11 已确认的持续成长方案（doc/tech/12）。等级不封顶，人数及工作站仍有界。
  * 成本线性增长，产出线性、战力二次增长；更改系数须复跑完整经营模拟及升级预检。
  */
@@ -17,7 +17,8 @@ export const GROWTH = {
  */
 export const POPULATION = { birthBias: .25, travelerBias: .35, firstTravelerDay: 5, travelerPeriod: 4, travelerMinNights: 3 } as const;
 /** 原生音乐只用一条循环，音量低于前景反馈；不随战斗倍速，遵循系统静音。 */
-export const MUSIC = { file: "village_loop.mp3", volume: .3 } as const;
+/** 原创单声道小音频；日间舒缓、夜间加快节奏，点击独立音轨。音量仅改变听感，不参与规则。 */
+export const MUSIC = { file: "village_loop.mp3", battleFile: "battle_loop.mp3", clickFile: "ui_click.mp3", volume: .3, battleVolume: .28, clickVolume: .35 } as const;
 /** 用户确认的稀有村民规则：仅新生儿/旅人独立抽取，不遗传、不重抽，创始人普通。
  * 产出与伤害在原加成后乘倍率、最后取整；照料只额外产粮，不缩短两夜成长。
  * 寿命按成功守夜计算，口粮沿 RULE；改动影响经济、战斗与存档校验，须同步版本。
@@ -45,7 +46,7 @@ export const LABOR_CLIPS: Readonly<Record<string, Readonly<Record<"FARM" | "LOGG
 export const RULE = {
     storageCap: 200, populationCap: 20, houseCapacity: 4, houseMax: 5, houseCost: 30,
     initialResource: 60, gateMax: 200, repairCost: 10,
-    // 用户确认每日固定20粮；本地自然日一次、仓满截断、确认后记领取日，重开仍保留。调整影响额外经营补给。
+    // 用户确认固定20粮；同村本地自然日一次、仓满截断、确认后记领取日。新开村清空日期，可再次领取。
     dailyFood: 20,
     birthCost: 20, birthCooldown: 4, parentMinNights: 3, growNights: 2, adultNights: 12,
     // 用户确认的晚年为 3 个成功守夜夜晚；刚荣休的清晨不扣减，改变此值会影响口粮与床位占用。

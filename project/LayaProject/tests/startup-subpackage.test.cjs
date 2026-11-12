@@ -16,10 +16,10 @@ function setup() {
     const requests = [], textures = [], hide = new Set(), show = new Set();
     let storageReads = 0, views = 0;
     class Sprite {
-        constructor() { this.children = []; this.destroyed = false; }
-        pos() { return this; } size() { return this; } scale() { return this; }
+        constructor() { this.children = []; this.destroyed = false; this.events = new Map(); }
+        pos(x, y) { this.x = x; this.y = y; return this; } size(w, h) { this.width = w; this.height = h; return this; } scale() { return this; }
         addChild(child) { this.children.push(child); child.parent = this; }
-        on() { return this; } off() { return this; }
+        on(event, caller, listener) { this.events.set(event, () => listener.call(caller)); return this; } off(event) { this.events.delete(event); return this; }
         destroy() { this.destroyed = true; if (this.parent) this.parent.children = this.parent.children.filter(c => c !== this); }
     }
     class Text extends Sprite {
@@ -27,14 +27,15 @@ function setup() {
         get text() { return this.value; }
     }
     class GameView {
-        constructor() { views++; this.root = new Sprite(); }
+        constructor() { views++; this.root = new Sprite(); this.resizes = 0; }
+        resize() { this.resizes++; }
         destroy() { this.root.destroy(); }
     }
     const stage = new Sprite(); stage.height = 1280;
     const frames = { pages: [{ id: 'world', runtimeFile: 'world_0.png' }], frames: { villager: { page: 'world', rect: { x: 0, y: 0, w: 8, h: 8 }, trimOffset: { x: 0, y: 0 }, sourceSize: { w: 8, h: 8 }, pivot: { x: 4, y: 8 } } } };
     const animations = { animations: [{ id: 'walk', frameIds: ['villager'], fps: 4, restFrame: 'villager' }], walkDirections: {}, enemyNativeFacing: {} };
     global.Laya = {
-        Script: class {}, regClass: () => target => target, Text, stage, Event: { CLICK: 'click' }, Loader: { JSON: 'json', IMAGE: 'image' },
+        Script: class {}, regClass: () => target => target, Text, stage, Event: { CLICK: 'click', RESIZE: 'resize' }, Loader: { JSON: 'json', IMAGE: 'image' },
         loader: {
             loadPackage(name) { requests.push(['package', name]); return packageGate.promise; },
             load(url, type) {
@@ -102,4 +103,14 @@ test('a late asynchronous failure never touches a destroyed loading label', asyn
     const s = setup(); s.packageGate.resolve(true); await new Promise(setImmediate);
     s.main.onDestroy(); s.imageGate.reject(new Error('image read failed')); await s.running;
     assert.equal(s.stage.children.length, 0); assert.equal(s.views, 0); assert.equal(s.storageReads, 0);
+});
+test('resize centers loading, reuses the live session/view, and releases its listener on destruction', async () => {
+    const s = setup(); s.stage.height = 1600; s.stage.events.get('resize')();
+    assert.equal(s.loading.y, 768);
+    s.packageGate.resolve(true); await new Promise(setImmediate); s.imageGate.resolve({}); await s.running;
+    const session = s.main.session, view = s.main.view, reads = s.storageReads;
+    s.stage.events.get('resize')(); s.stage.events.get('resize')();
+    assert.equal(s.main.session, session); assert.equal(s.main.view, view); assert.equal(s.views, 1);
+    assert.equal(view.resizes, 2); assert.equal(s.storageReads, reads);
+    s.main.onDestroy(); assert.equal(s.stage.events.size, 0);
 });

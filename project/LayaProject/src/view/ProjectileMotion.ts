@@ -1,6 +1,7 @@
 import { BattleSimulation, Shot } from "../game/BattleSimulation";
 import { RULE } from "../game/GameConfig";
-import { towerLaunch } from "./VillageScene";
+import { GroundPoint, towerLaunch } from "./VillageScene";
+import { GameLayout } from "./GameLayout";
 
 /**
  * 720 逻辑画布的投射物表现参数：图片为现有 48×48 原画布（包含透明边）。
@@ -25,7 +26,7 @@ export class ProjectileMotion {
     private battle: BattleSimulation | null = null;
     private seen = new WeakSet<Shot>();
 
-    update(battle: BattleSimulation | null) {
+    update(battle: BattleSimulation | null, layout?: GameLayout, pads?: readonly GroundPoint[]) {
         if (battle !== this.battle) { this.battle = battle; this.poses = []; this.seen = new WeakSet<Shot>(); }
         if (!battle || battle.outcome) { this.poses = []; return; }
         for (const shot of battle.shots) {
@@ -39,10 +40,11 @@ export class ProjectileMotion {
             return (battle.tick - p.shot.tick - 1) * RULE.step < style.flight + style.impact;
         }).slice(-RULE.effectCap);
         for (const p of this.poses) {
-            const shot = p.shot, style = PROJECTILE_STYLE[shot.kind], from = towerLaunch(shot.tower, shot.kind);
+            const shot = p.shot, style = PROJECTILE_STYLE[shot.kind], from = towerLaunch(shot.tower, shot.kind, pads);
+            const target = { x: shot.x, y: (layout ? layout.worldY(shot.y) : shot.y) + TARGET_Y };
             // step 完成后 tick 已加一；最后一次 step 新发射的弹道年龄为零。只读实际 tick，暂停/倍速天然同步。
             const age = (battle.tick - shot.tick - 1) * RULE.step;
-            const dx = shot.x - from.x, dy = shot.y + TARGET_Y - from.y;
+            const dx = target.x - from.x, dy = target.y - from.y;
             if (age < style.flight) {
                 const t = age / style.flight;
                 p.frame = style.frame; p.size = style.size; p.alpha = 1;
@@ -50,7 +52,7 @@ export class ProjectileMotion {
                 p.rotation = shot.kind === "ARROW" ? Math.atan2(dy, dx) * 180 / Math.PI : age * style.spin;
             } else {
                 const t = (age - style.flight) / style.impact;
-                p.frame = style.hit; p.x = shot.x; p.y = shot.y + TARGET_Y; p.rotation = 0;
+                p.frame = style.hit; p.x = target.x; p.y = target.y; p.rotation = 0;
                 p.size = style.hitSize * (.7 + .3 * t); p.alpha = 1 - t;
             }
         }

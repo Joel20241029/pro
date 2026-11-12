@@ -44,13 +44,15 @@ test('20 food, partial capacity and full capacity share one atomic rule; no othe
     }
 });
 
-test('repeated date, clock rollback and same-day new village cannot grant another reward', () => {
+test('same-village date and clock rollback cannot grant another reward; a new village can claim today', () => {
     const s = createGame(1); applyCommand(s, { type: 'DAILY_RATION', date: '2026-11-11' });
     for (const date of ['2026-11-11', '2026-11-10', 'bad']) {
         const before = canonical(s); assert.throws(() => applyCommand(s, { type: 'DAILY_RATION', date })); assert.equal(canonical(s), before);
     }
-    const next = createGame(2, s.legacy); assert.equal(dailyRationAmount(next, '2026-11-11'), null);
-    applyCommand(next, { type: 'DAILY_RATION', date: '2026-11-12' }); assert.equal(next.food, RULE.initialResource + RULE.dailyFood);
+    const next = createGame(2, s.legacy); assert.equal(next.legacy.lastRationDate, null);
+    assert.equal(dailyRationAmount(next, '2026-11-11'), RULE.dailyFood);
+    applyCommand(next, { type: 'DAILY_RATION', date: '2026-11-11' }); assert.equal(next.food, RULE.initialResource + RULE.dailyFood);
+    assert.equal(dailyRationAmount(next, '2026-11-11'), null);
 });
 
 test('no village gets no reward; first successfully saved new village opens one offer', () => {
@@ -113,11 +115,13 @@ test('background and disabled states cannot accept the visible reward', () => {
     }
 });
 
-test('dawn choices and game over finish before reward; new-village creation preserves a claimed date', () => {
+test('dawn choices and game over finish before reward; inheritance can claim again on the same day', () => {
     const dawn = createGame(7); dawn.phase = 'DAWN'; dawn.wave = null; dawn.choices = [{ kind: 'POLICY', options: Object.keys(POLICIES).slice(0, 3) }];
     const first = fixture(dawn).game; first.enter(); assert.equal(first.dailyRationDate, null);
     first.command({ type: 'CHOOSE', value: dawn.choices[0].options[0] }); assert.equal(first.state.phase, 'DAY'); assert.equal(first.dailyRationDate, '2026-11-11');
-    first.claimDailyRation(); first.newVillage(); assert.equal(first.dailyRationDate, null); assert.equal(first.state.food, RULE.initialResource);
+    first.claimDailyRation(); first.newVillage(first.state.legacy.traits[0]);
+    assert.equal(first.state.legacy.lastRationDate, null); assert.equal(first.dailyRationDate, '2026-11-11'); assert.equal(first.state.food, RULE.initialResource);
+    first.claimDailyRation(); assert.equal(first.state.food, RULE.initialResource + RULE.dailyFood);
     const lost = createGame(3); lost.phase = 'GAME_OVER'; lost.gate = 0; lost.wave = null;
     const second = fixture(lost).game; second.enter(); assert.equal(second.dailyRationDate, null);
     second.newVillage(); assert.equal(second.dailyRationDate, '2026-11-11');

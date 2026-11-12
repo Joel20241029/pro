@@ -1,49 +1,61 @@
 # 代代守村：图片与音频资源包
 
-版本：v0.11。日期：2026-11-11。用于竖屏、单机微信小游戏。
+1.0.4 全面屏适配复用现有图片，没有新增或改写原图、图集、裁边、pivot 与九宫格。人物 64～68 的显示尺寸、建筑位置和安全区由 GameLayout/VillageScene 管理，头顶挂点同时应用屏幕与精英缩放。维护说明见 [19](../doc/tech/19_全面屏与安全区适配.md)。
 
-当前交付 **180 张源画布、32 组序列帧、108 张动画帧、2 页运行图集** 。照料与老人动作每组 2 帧，其余动作每组 4 帧。成年男女各一种外观，均有耕作、砍树、照料动作。成人与儿童已补齐正面、背面、右侧行走，左侧复用右侧镜像；人物移动按实际方向选帧。新增木栅墙与有高光、厚边的 UI 底板。旧母版保留，新母版、源裁切参数、构建脚本和文档均已同步。
+居民区后续收紧为地图约 32%，城门血条改为程序绘制的 88×7 逻辑像素，血量字号22，二者共同对齐城门中心；这些是 GameLayout/GameView 的显示参数，图片源、制作配方和图集继续复用。调整记录与验证见 [19 第 10 节](../doc/tech/19_全面屏与安全区适配.md#10-居民区再次收紧与城门居中)。
+
+配置 10 本轮重点：无栏农田母版 [farm_open_v10.png](source/static/farm_open_v10.png) 及 [完整提示词](source/farm_v10_prompts.json)，扰阵师/匪首源裁切对齐，19 张备用图退出运行图集。具体挂点、运行入口与验证见 [18 村庄视觉与每日口粮](../doc/tech/18_村庄视觉与每日口粮.md)。所有旧母版继续保留。
+
+版本：v0.13。日期：2026-11-12。用于竖屏、单机微信小游戏。
+
+当前交付 **196 张源画布、177 张运行素材、19 张备用素材、32 组序列帧、108 张动画帧、2 页运行图集** 。照料与老人动作每组 2 帧，其余动作每组 4 帧。成年男女各一种外观，均有耕作、砍树、照料动作。成人与儿童已补齐正面、背面、右侧行走，左侧复用右侧镜像；人物移动按实际方向选帧。新增木栅墙与有高光、厚边的 UI 底板。旧母版保留，新母版、源裁切参数、构建脚本和文档均已同步。
+
+2026-11-12：新增独立花果与升级部件；全部32组人物/敌人动画保留序列帧，编辑器制作验证未通过，详见 [交付与验证](../doc/tech/22_场景音频与图文排版交付.md)。本次图标图文排版只调整显示尺寸和挂点，不改原始48×48图标。
 
 ## 查看效果与原始素材
 
 - [动态资源预览](preview/index.html)：四方向连续切换、全部动作、暂停和逐帧查看。
-- [人物动作总览](preview/characters_contact.png) 与 [静态资源总览](preview/static_contact.png)。
+- [人物动作总览](preview/characters_contact.png)、[运行静态资源总览](preview/static_contact.png) 与 [备用素材总览](preview/reserve_contact.png)。
 - [原始动作母版](source/animations/) 与 [原始静态母版](source/static/)。
-- [资源制作配方](source/asset_recipe.json)：稳定输入，编辑裁切、画布、pivot、九宫格、帧率和方向映射。
+- [资源制作配方](source/asset_recipe.json)：版本 3 稳定输入，编辑裁切、画布、pivot、九宫格、帧率、方向和每项 runtime/usage。
 - [本轮人物方案](source/concepts/villagers_gender_v6.png)、[人物生成提示词](source/villagers_v6_prompts.json)、[早期界面提示词](source/visual_v2_prompts.json) 与 [生成记录](source/generation_records.json)：原图路径、参考图、提示词、尺寸与 SHA-256。
 
 ## 分类
 
-| 分类 | PNG / 帧数 | 散图字节 |
-| --- | ---: | ---: |
-| buildings | 13 | 256,543 |
-| terrain | 4 | 26,531 |
-| decorations | 8 | 91,386 |
-| ui/icons | 25 | 91,059 |
-| effects | 14 | 31,686 |
-| ui/panels | 8 | 27,392 |
-| characters | 88 | 567,182 |
-| enemies | 20 | 162,761 |
+| 分类 | 源画布 | 运行 | 备用 | 散图字节 |
+| --- | ---: | ---: | ---: | ---: |
+| buildings | 25 | 24 | 1 | 288,290 |
+| terrain | 4 | 0 | 4 | 26,531 |
+| decorations | 12 | 10 | 2 | 97,423 |
+| ui/icons | 25 | 15 | 10 | 91,059 |
+| effects | 14 | 12 | 2 | 31,686 |
+| ui/panels | 8 | 8 | 0 | 27,392 |
+| characters | 88 | 88 | 0 | 567,182 |
+| enemies | 20 | 20 | 0 | 162,846 |
 
-总计 180：88 张村民帧、20 张敌人帧、72 张静态图。32 组动画包含方向变体，均已有运行入口；静态资源仍有候选。旧 B 外观、旧版长者待机和杂兵换装退出运行图集，原图保留，裁片配置归档于 [旧版配方](source/archive/adult_variants_v1_recipe.json)。没有新增人体攻击、受击、死亡动作。
+总计 196：88 张村民帧、20 张敌人帧、88 张静态图。运行图集包含 108 帧动画和 69 张静态图；19 张未接入静态图仅保留制作源与预览。32 组动画均有运行入口。旧 B 外观、旧版长者待机和杂兵换装另归档于 [旧版配方](source/archive/adult_variants_v1_recipe.json)，没有新增人体攻击、受击、死亡动作。
+
+备用 19 张为：未点燃火堆、四种地砖、直/角木栏、铃/暂停/播放/设置/关闭图标、四季图标、升级图标、声波与升级特效。它们不进入发布图集，源文件仍可继续迭代。每项具体 ID、用途与是否发布由 recipe.runtime/usage 和 manifest.importStatus 明确区分。
 
 ## 图集裁边与导入
 
 图集只裁掉 **alpha=0 的透明外圈** ，不按白色删像素，也不裁掉人物的浅色服装。完整源画布仍保存在 runtime；frames.json 保存 sourceSize、trimOffset 和原 pivot，Laya 使用 `Texture.create` 还原裁边偏移，动作切换不会因裁边而改变脚底。九宫格底板保留完整画布，每张图外围保留 2 像素打包间隔。
 
-本轮 158 张图片可裁边，内容占用由 1,059,740 像素降到 898,032 像素，减少 **161,708 像素 / 15.26%** 。这是内容面积节省，不是 PNG 字节下降比例。目前仍为两页图集。
+本轮 160 张运行图片可裁边，内容占用由 992,108 像素降到 829,922 像素，减少 **162,186 像素 / 16.35%**。这是内容面积节省，不是 PNG 字节下降比例。目前仍为两页图集。
 
-运行输入由 manifest.runtimeWhitelist 与 frames.pages 声明，目前为以下五个文件：
+运行输入由 manifest.runtimeWhitelist 与 frames.pages 声明，目前为以下七个文件：
 
-- [world_0.png](atlases/world_0.png)：世界图集，1024×1024，1,110,913 字节。
-- [ui_0.png](atlases/ui_0.png)：UI / 特效图集，512×512，153,302 字节。
+- [world_0.png](atlases/world_0.png)：世界图集，1024×1024，1,086,332 字节。
+- [ui_0.png](atlases/ui_0.png)：UI / 特效图集，512×512，114,966 字节。
 - [frames.json](atlases/frames.json)：自定义矩形、原画布、裁边偏移、pivot、九宫格与页表。
 - [animations.json](animations.json)：动作、帧率、静止帧、四方向与敌人原生朝向。
 - [village_loop.mp3](audio/village_loop.mp3)：24 秒原创循环，96,462 字节。
+- [battle_loop.mp3](audio/battle_loop.mp3)：14.55 秒夜战循环，58,637 字节。
+- [ui_click.mp3](audio/ui_click.mp3)：约 85ms 轻点击，854 字节。
 
-运行图片及元数据共 **1,361,661 字节** ，加音乐后共 **1,458,123 字节** 。原始母版、runtime 散图、预览、脚本和说明不进微信包。不要递归复制整个 res，也不要同时导入散图和同内容图集。
+运行图片及元数据共 **1,297,650 字节**，加三轨音频后共 **1,453,603 字节**。新增部件散图合计 38,096 字节，新增音频合计 59,491 字节。原始母版、runtime 散图、预览、脚本和说明不进微信包。不要递归复制整个 res，也不要同时导入散图和同内容图集。
 
-当前这五个文件由 Laya 原生发布配置打入微信 `resources/village` 分包，运行 URL 和工程导入目录保持原样。发布器额外生成分包 `game.js` 与 `fileconfig.json`，因此导出分包为七个文件；实际导出字节见 [本轮交付记录](../doc/tech/13_UI精修与代码审查.md)。它们是发布产物，不应加进美术白名单或制作配方。Main 等待分包加载成功后才读取图集；主包不复制同一套图片，原始母版、配方、裁边和动画参数继续维护，详见 [11 微信原生分包](../doc/tech/11_微信原生分包.md)。
+当前这七个文件由 Laya 原生发布配置打入微信 `resources/village` 分包，运行 URL 和工程导入目录保持原样。发布器额外生成分包 `game.js` 与 `fileconfig.json`，因此导出分包为九个文件；实际导出字节见 [本轮交付记录](../doc/tech/18_村庄视觉与每日口粮.md)。它们是发布产物，不应加进美术白名单或制作配方。Main 等待分包加载成功后才读取图集；主包不复制同一套图片，原始母版、配方、裁边和动画参数继续维护，详见 [11 微信原生分包](../doc/tech/11_微信原生分包.md)。
 
 ## 可重复构建
 
@@ -53,7 +65,7 @@
 
 原图为 [villager_emotes_v1.png](source/emotes/villager_emotes_v1.png)，完整提示词、实际尺寸、SHA-256 和裁片顺序见 [generation.json](source/emotes/generation.json)。制作方式为内置 imagegen 生成透明 PNG，实际源图 1254 × 1254；3 列 2 行，每格 418 × 627。轮廓裁切写入 [asset_recipe.json](source/asset_recipe.json)，避免母版外圈微弱 alpha 影响缩放。
 
-运行 pivot 为 `(24,48)`，头顶尺寸与轻微上浮由 `VillagerEmotes.ts` 和 `GameView.ts` 管理，沿用 3 秒显示、全村最多一个的表现调度。当前挂点位于足底上方：成人／老人 52、儿童 46 逻辑像素，基础偏移随精英体型缩放，额外最多上浮 3 像素。配置 7 只调整表现坐标，原图、配方及图集未变，见 [塔位覆盖与表情距离](../doc/tech/14_塔位覆盖与表情距离.md)。六张图与元数据合计让运行资源增加 22,691 字节。修改图片应从原图或配方重建，不能直接修改图集。
+运行 pivot 为 `(24,48)`，头顶尺寸与轻微上浮由 `VillagerEmotes.ts` 和 `GameView.ts` 管理，沿用 3 秒显示、全村最多一个的表现调度。当前挂点位于足底上方：成人／老人 52、儿童 46 逻辑像素，基础偏移随屏幕布局与精英体型共同缩放，额外最多上浮 3 像素。配置 7 只调整表现坐标，原图、配方及图集未变，见 [塔位覆盖与表情距离](../doc/tech/14_塔位覆盖与表情距离.md)。六张图与元数据合计让运行资源增加 22,691 字节。修改图片应从原图或配方重建，不能直接修改图集。
 
 ### 攻击小图的使用
 
@@ -69,7 +81,7 @@ node /Users/happyelements/Documents/pro/res/tools/build-resources.mjs \
   --sync
 ```
 
-构建依赖 Node.js 和本机 ImageMagick，脚本默认 `/opt/homebrew/bin/magick`；其他机器可设置 `VILLAGE_MAGICK`。临时目录必须位于 Downloads。流程为母版与配方 → 分类散图 → 透明裁边 → 两类图集分页 → 像素/动画检查 → 台账与预览 → Laya 运行白名单。配方不引用生成后的图集坐标，重新排图不会丢失制作依据。
+构建依赖 Node.js 和本机 ImageMagick，脚本默认 `/opt/homebrew/bin/magick`；其他机器可设置 `VILLAGE_MAGICK`。临时目录必须位于 Downloads。流程为母版与配方 → 全部分类散图 → runtime 筛选 → 透明裁边 → 两类图集分页 → 像素/动画/备用排除检查 → 台账与运行/备用预览 → Laya 运行白名单。所有素材必须显式声明 runtime，缺少声明或动画引用备用帧会中止构建。配方不引用生成后的图集坐标，重新排图不会丢失制作依据。
 
 UI 母版含淡辉光，源裁切使用经过检查的显式轮廓矩形；九宫格采用 stretch 输出基准画布，避免方格等比缩放把宽按钮缩成中央小块。普通图片仍采用 contain。不要用母版整格的微弱 alpha 外接框替换这些源裁切框。
 
@@ -130,3 +142,12 @@ node /Users/happyelements/Documents/pro/res/tools/build-resources.mjs \
 ```
 
 先生成音乐，再构建资源台账与白名单。工具会同步 MP3 到 Laya 资源目录；发布包只接收成品，不复制谱、母版、manifest 或脚本。开发者工具已读出 duration=24、paused=false 和持续推进的 currentTime；手机听感、iOS 静音开关与实际通话打断尚未验证。
+
+
+## 花果与建筑部件源
+
+本轮母版：[village_parts_v11.png](source/static/village_parts_v11.png)，提示词：[生成说明](source/static/village_parts_v11.prompt.txt)，记录：[generation.json](source/static/village_parts_v11.generation.json)。四张花果位于 `runtime/decorations/parts/`，十二张部件位于 `runtime/buildings/parts/`；小图尺寸24～72像素，无新图集页。
+
+花果挂在树自身局部节点，跟随树足底排序，不能置于全局特效层。建筑部件定义见 `BuildingVisuals.ts`，使用128基准坐标后按宿主宽度等比映射；不改变人物导航与炮塔射口。图文图标继续复用既有素材；资源栏/底部按钮的图标44逻辑像素、图文间距6逻辑像素，共同按实际文字宽度居中，面板中头像和建设图标适当放大。
+
+音频源位于 `source/audio/*.score.json`，运行文件在 `audio/`。运行 `python3 res/tools/build-audio.py --work <Downloads目录> --sync` 后再构建美术资源。音频清单以 `tracks` 列出三轨；`bytes`为三轨总字节。图集构建与微信包检查均逐一核对这三轨，不能再按单个音频对象读取。

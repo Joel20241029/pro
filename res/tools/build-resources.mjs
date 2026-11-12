@@ -75,7 +75,7 @@ for (const a of recipe.assets) {
     assets.push({ ...a, bytes: fs.statSync(out).size, sha256: hash(out), alpha: 'rgba',
         untrimmedSize: { w: a.width, h: a.height }, trimOffset: { x: left, y: top }, atlasTrim: isTrimmed,
         displaySize: { w: a.width, h: a.height }, pivotUnit: 'pixels in original source canvas, origin top-left',
-        importStatus: a.runtime ? 'imported_via_atlas' : 'source_only_reserve', reviewStatus: 'visual_v10',
+        importStatus: a.runtime ? 'imported_via_atlas' : 'source_only_reserve', reviewStatus: 'visual_v11',
         _trim: trim, _pixels: pixels, _packedFile: packedFile });
 }
 const runtimeAssets = assets.filter(a => a.runtime), reserveAssets = assets.filter(a => !a.runtime);
@@ -159,8 +159,8 @@ write('atlases/frames.json', { format: 'daidai-village-rects', version: 2, coord
 write('animations.json', recipe.animations);
 const publicAssets = assets.map(({ _trim, _pixels, _packedFile, ...a }) => a);
 const audio = read('audio/manifest.json');
-if (hash(path.join(root, audio.runtimeFile)) !== audio.sha256) throw new Error('音乐成品与源清单不一致，请重建音频');
-const runtimeFiles = [...pages.map(p => p.path), 'atlases/frames.json', 'animations.json', audio.runtimeFile];
+for (const track of audio.tracks) if (hash(path.join(root, track.runtimeFile)) !== track.sha256) throw new Error('音频成品与源清单不一致，请重建：' + track.runtimeFile);
+const runtimeFiles = [...pages.map(p => p.path), 'atlases/frames.json', 'animations.json', ...audio.tracks.map(track => track.runtimeFile)];
 write('manifest.json', { version: 3, status: 'imported_in_wechat_prototype', preferredRuntimeMode: 'atlas_plus_audio', runtimeWhitelist: runtimeFiles, assetCount: assets.length, runtimeAssetCount: runtimeAssets.length, reserveAssetCount: reserveAssets.length, assets: publicAssets, audio,
     externalAssets: recipe.externalAssets, engineImport: { directory: 'project/LayaProject/assets/resources/village', mode: 'trimmed_shared_atlas', runtime: 'WeChat Mini Game', verificationReport: 'doc/tech/06_视觉升级与资源管线.md' } });
 const categoryStats = {}; for (const a of assets) { const c = categoryStats[a.category] ??= { count: 0, bytes: 0, runtime: 0, reserve: 0 }; c.count++; c.bytes += a.bytes; c[a.runtime ? 'runtime' : 'reserve']++; }

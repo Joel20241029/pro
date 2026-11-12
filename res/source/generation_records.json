@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-10",
+  "date": "2026-11-12",
   "generator": "image_gen",
   "records": [
     {
@@ -481,6 +481,22 @@
       "sha256": "2e2d028a2f32240625418cc995d65bfd4ec805a32bfc88cdc92da59e3dfb0101",
       "bytes": 1481101,
       "brief": "三行低矮麦田，移除全部木栏，透明底；用地面层绘制，农夫可站在垄沟。"
+    },
+    {
+      "key": "village_parts_v11",
+      "path": "source/static/village_parts_v11.png",
+      "spec": {
+        "transparent": true,
+        "promptFile": "source/static/village_parts_v11.prompt.txt"
+      },
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-af61893d-80ee-4c78-89cf-42b47d5256fa.png",
+      "size": [
+        1263,
+        1246
+      ],
+      "sha256": "151c8d4399bd6917bfaeec06a97932d6daa76a31fa44c5c3f5bbd6249e224cb2",
+      "bytes": 1008438,
+      "brief": "独立花果4张、建筑部件12张，裁片固定在配方中；轮廓框按alpha>=128定位并外扩3像素，运行图集仍仅去除alpha=0外圈。"
     }
   ],
   "exportMethod": "ImageMagick mechanical crop/nearest-neighbor export/atlas packing; animation frames retain uniform source canvas and feet, atlas trims transparent margins and restores offsets."
