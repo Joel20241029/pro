@@ -4,8 +4,8 @@ import { validateState } from "./StateValidation";
 /** 微信实现将读异常向外抛出；null 只能表示 keys 列表确认键不存在。 */
 export interface StoragePort { read(key: string): string | null; write(key: string, value: string): void; }
 const KEYS = ["daidai_village.save.a", "daidai_village.save.b"];
-/** 双槽存档格式 2：提交类型参与校验；修改格式版本会阻止载入旧格式。 */
-const SCHEMA_VERSION = 2;
+/** 双槽存档格式 3：波次外观种子与提交类型参与校验；修改格式版本会阻止载入旧格式。 */
+const SCHEMA_VERSION = 3;
 /** 普通进度轮换单槽；纯净开局的标记让启动时可补齐同一份双槽候选。 */
 type CommitType = "NORMAL" | "CLEAN_START";
 /** RESET 是异版/坏档的显式覆盖流程；写出的仍是普通存档，不参与纯净开局补写。 */

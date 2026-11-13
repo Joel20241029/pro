@@ -2,7 +2,7 @@ const { test } = require('node:test'), assert = require('node:assert/strict'), p
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 class Sprite {
-    constructor() { this.children = []; this.graphics = { clear() {}, drawRect() {} }; }
+    constructor() { this.children = []; this.graphics = { clear() {}, drawRect() {}, drawLine() {}, drawRoundRect() {} }; }
     pos(x, y) { this.x = x; this.y = y; } size(width, height) { this.width = width; this.height = height; }
     addChild(child) { this.children.push(child); child.parent = this; }
     destroyChildren() { for (const child of this.children) child.destroy(); this.children = []; }
@@ -12,7 +12,7 @@ class Sprite {
     getChildByName(name) { return this.children.find(child => child.name === name); }
     getChildAt(index) { return this.children[index]; }
 }
-function fakeButton() { const button = new Sprite(), face = new Sprite(), label = new Sprite(); label.name = 'buttonText'; face.addChild(label); button.addChild(face); return button; }
+function fakeButton(parent, text, x, y, width, action, color, height) { const button = new Sprite(), face = new Sprite(), label = new Sprite(); button.pos(x, y); button.size(width, height); face.name = 'buttonFace'; label.name = 'buttonText'; label.text = text; face.addChild(label); button.addChild(face); parent.addChild(button); return button; }
 let allocations = 0, uploads = [];
 class Texture2D { constructor() { this._texture = { test: true }; } setImageData() { allocations++; } destroy() { this.destroyed = true; } }
 class OpenDataContextView extends Sprite {
@@ -80,13 +80,15 @@ test('shared canvas allocates once, then uploads pixels without reallocation or 
 });
 
 function gameView(session, platform) {
-    const view = Object.create(GameView.prototype), overlay = new Sprite(), art = { panel() {} };
-    const ui = { image() {}, label: () => ({}), button: fakeButton, bindClick() {} };
-    const panels = new GamePanels(session, art, platform, ui, overlay, layout, () => view.refresh());
+    const view = Object.create(GameView.prototype), overlay = new Sprite(), art = { panel() {}, particles: require("./helpers/particles.cjs").library() };
+    // This platform lifecycle fixture does not render glyphs; button/icon press coupling
+    // is exercised with the real UiWidgets in gameplay-clarity.test.cjs.
+    const ui = { image() {}, buttonIcon() {}, label: () => ({}), button: fakeButton, bindClick() {} };
+    const panels = new GamePanels(session, art, platform, ui, overlay, layout, () => view.refresh(), { ready: () => true });
     panels.modal = () => { const box = new Sprite(); box.height = 860; overlay.addChild(box); return box; };
     const village = Object.create(VillageWorld.prototype);
-    Object.assign(village, { game: session, layout, scene, motion: { sync() {} }, emotes: { sync() {} }, pressedTargets: new Map(), drawScenery() {} });
-    Object.assign(view, { game: session, observedVillageRevision: session.villageRevision, platform, layout, panels, village,
+    Object.assign(village, { game: session, layout, scene, particles: { reset() {} }, motion: { sync() {} }, emotes: { sync() {} }, pressedTargets: new Map(), drawScenery() {} });
+    Object.assign(view, { resources: { ready: () => true }, game: session, observedVillageRevision: session.villageRevision, platform, layout, panels, village,
         shownErrorRevision: 0, observedRun: 0, observedDawn: 0, overlay, tip: { show() {} }, anchoredTip: { hide() {} }, updateActors() {} });
     view.hud = new GameHud(session, art, ui, panels, () => view.refresh());
     return view;

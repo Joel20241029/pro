@@ -52,7 +52,7 @@ test("Parents and siblings blocked, unrelated origins allowed", () => {
 });
 test("Wave budget and object limits over 10,000 days", () => {
     const s = createGame(11);
-    for (let d = 1; d <= 10000; d++) { s.day = d; s.tier = d % 4; const w = generateWave(s); equal(w.entries.reduce((a, e) => a + ENEMIES[e.kind].cost, 0), w.budget); ok(w.budget <= 66 && w.entries.length <= 80); equal(w.entries.filter(e => e.kind === "enemy_chief").length, d % 12 === 0 ? 1 : 0); }
+    for (let d = 1; d <= 10000; d++) { s.day = d; s.tier = d % 4; const w = generateWave(s); equal(w.entries.reduce((a, e) => a + ENEMIES[e.kind].cost, 0), w.budget); ok(w.budget <= 66 && w.entries.length <= 80); equal(w.entries.filter(e => ENEMIES[e.kind].boss).length, d % 12 === 0 ? 1 : 0); }
 });
 test("Initial battle is winnable, replay is deterministic", () => {
     const s = createGame(7); applyCommand(s, { type: "NIGHT" }); const a = new BattleSimulation(s), b = new BattleSimulation(s);
@@ -61,7 +61,7 @@ test("Initial battle is winnable, replay is deterministic", () => {
 });
 test("Gate arrival loss precedes a tower firing in same tick", () => {
     const s = createGame(1); applyCommand(s, { type: "NIGHT" }); const b = new BattleSimulation(s); b.gate = 1;
-    b.enemies.push({ seq: 100, kind: "enemy_raider", progress: PATH_LENGTH - .1, hp: 1, speed: 36, slow: 0, slowTicks: 0, born: 0, summoned: 0 }); b.step(); equal(b.outcome, "LOSE"); equal(b.shots.length, 0);
+    b.enemies.push({ appearanceSeed: 1, seq: 100, kind: "enemy_raider", progress: PATH_LENGTH - .1, hp: 1, speed: 36, slow: 0, slowTicks: 0, born: 0, summoned: 0 }); b.step(); equal(b.outcome, "LOSE"); equal(b.shots.length, 0);
 });
 test("Save write-before failure preserves candidate and retries once", () => {
     const m = new MemoryStore(), store = new SaveStore(m); equal(store.inspect().kind, "new"); store.prepare(createGame(1)); m.fail = "BEFORE"; rejects(() => store.commit()); const raw = store.pending!.raw; m.fail = "NONE"; store.commit(); equal(m.writes, 1); equal([...m.values.values()][0], raw); equal(new SaveStore(m).inspect().kind, "ready");

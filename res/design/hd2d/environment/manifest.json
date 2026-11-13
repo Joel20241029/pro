@@ -1,0 +1,82 @@
+{
+  "status": "visual_review_pending",
+  "files": [
+    {
+      "file": "res/design/hd2d/environment/tree_oak_layers.png",
+      "method": "image_gen",
+      "source": "res/design/hd2d/environment/generation-prompts.json#oak",
+      "status": "native_probe_candidate_not_game_runtime",
+      "bytes": 891686,
+      "sha256": "15a9bae22469b2bab7407c2cbd02e88f810dd3e9d6afe80ebf62071bed4d4ed0"
+    },
+    {
+      "file": "res/design/hd2d/environment/tree_pine_layers.png",
+      "method": "image_gen",
+      "source": "res/design/hd2d/environment/generation-prompts.json#pine",
+      "status": "native_probe_candidate_not_game_runtime",
+      "bytes": 802298,
+      "sha256": "f6cbc283472b4641ff5e55cf55862b6e0a21d53110ec5b124f3313332a289d9d"
+    },
+    {
+      "file": "res/design/hd2d/environment/sign.png",
+      "method": "image_gen",
+      "source": "res/design/hd2d/environment/generation-prompts.json#sign",
+      "status": "native_probe_candidate_not_game_runtime",
+      "bytes": 1455754,
+      "sha256": "78d58ac0842f1b34f81b850a63dd579d3e901dcef1682f954b3e26d1b8cd1094"
+    },
+    {
+      "file": "res/design/hd2d/environment/rock_cluster.png",
+      "method": "image_gen",
+      "source": "res/design/hd2d/environment/generation-prompts.json#rocks_crisp",
+      "status": "native_probe_candidate_not_game_runtime",
+      "bytes": 993695,
+      "sha256": "f1b89795f2da1ebea4f23ba1f81a82c38acbb1f01e89d11a5fcdf2a32263b32a"
+    },
+    {
+      "file": "res/design/hd2d/environment/flower.png",
+      "method": "image_gen",
+      "source": "res/design/hd2d/environment/generation-prompts.json#flower_crisp",
+      "status": "native_probe_candidate_not_game_runtime",
+      "bytes": 868911,
+      "sha256": "afbc76712747018ffbd1989c0f2751009305ce889e7feaeca2f1fc281f067792"
+    },
+    {
+      "file": "res/design/hd2d/environment/campfire_flame_strip.png",
+      "method": "image_gen",
+      "source": "res/design/hd2d/environment/generation-prompts.json#flame",
+      "status": "native_probe_candidate_not_game_runtime",
+      "bytes": 509967,
+      "sha256": "5f996f8d17961b2e806527c3134fcee5bd93badb77d3bf995b689a9b858cf06e"
+    },
+    {
+      "file": "res/design/hd2d/environment/campfire_base.png",
+      "method": "Blender actual offline rendering",
+      "source": "res/source/rendered2d/environment/campfire_base.blend",
+      "status": "native_probe_candidate_not_game_runtime",
+      "bytes": 204854,
+      "sha256": "207fcd5c2e159d90bbab681232f345e8c4ed6aeb4a4a1e3fcfb98a179f1b1cff"
+    },
+    {
+      "file": "res/design/hd2d/environment/campfire_front.png",
+      "method": "Blender actual offline rendering",
+      "source": "res/source/rendered2d/environment/campfire_base.blend",
+      "status": "native_probe_candidate_not_game_runtime",
+      "bytes": 164007,
+      "sha256": "54af6583d024b018d8994745350277707059b970152b882109ca9dc8c9163561"
+    },
+    {
+      "file": "res/design/hd2d/environment/fruit_apple.png",
+      "method": "Blender actual offline rendering",
+      "source": "res/source/rendered2d/environment/fruit_apple.blend",
+      "status": "native_probe_candidate_not_game_runtime",
+      "bytes": 208339,
+      "sha256": "fb24cf02183ae58e60f36de6356c1d8c43ff2293c4e5dc9b2f24c1e9275e5610"
+    }
+  ],
+  "knownLimitations": [
+    "Pine sheet white shadow is excluded; oak detached grey-brown shadow is shared in the probe.",
+    "All ornamental sprites and layer placements are authoring candidates, not production layout data.",
+    "Campfire and apple are actual Blender renders; other environment sheets are generated rasters, not editable 3D models."
+  ]
+}

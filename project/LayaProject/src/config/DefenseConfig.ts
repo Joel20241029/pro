@@ -1,16 +1,8 @@
 export type TowerKind = "ARROW" | "STONE" | "SLOW";
-export type EnemyKind = "enemy_raider" | "enemy_runner" | "enemy_armored" | "enemy_disruptor" | "enemy_chief";
 export const TOWERS = {
     ARROW: { name: "箭楼", damage: 12, interval: .8, range: 170, cost: 30, splash: 0, image: "building_tower_arrow" },
     STONE: { name: "石塔", damage: 22, interval: 1.6, range: 155, cost: 45, splash: 70, image: "building_tower_stone" },
     SLOW: { name: "寒塔", damage: 4, interval: 1.5, range: 150, cost: 35, splash: 60, image: "building_tower_slow" }
-} as const;
-export const ENEMIES = {
-    enemy_raider: { name: "山匪", hp: 36, speed: 36, armor: 0, gate: 8, cost: 1, weight: 6, unlock: 1 },
-    enemy_runner: { name: "疾行匪", hp: 24, speed: 70, armor: 0, gate: 6, cost: 2, weight: 3, unlock: 2 },
-    enemy_armored: { name: "甲兵", hp: 160, speed: 22, armor: .4, gate: 18, cost: 5, weight: 2, unlock: 4 },
-    enemy_disruptor: { name: "扰阵师", hp: 96, speed: 28, armor: 0, gate: 12, cost: 4, weight: 1, unlock: 7 },
-    enemy_chief: { name: "匪首", hp: 480, speed: 18, armor: .2, gate: 40, cost: 12, weight: 0, unlock: 12 }
 } as const;
 /** 720×1280 的固定逻辑路径/塔位，首版地图配置；改变坐标会影响射程和到门时间。 */
 export const PATH = [{ x: 360, y: 230 }, { x: 360, y: 350 }, { x: 250, y: 435 }, { x: 470, y: 550 }, { x: 360, y: 655 }, { x: 360, y: 760 }];

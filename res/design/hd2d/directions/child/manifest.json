@@ -1,0 +1,94 @@
+{
+  "status": "four_direction_motion_candidate_not_integrated",
+  "method": "actual Blender offline rendering",
+  "source": "res/source/rendered2d/characters/child/child_direction_probe.blend",
+  "frames": [
+    {
+      "file": "child_down_1.png",
+      "bytes": 252571,
+      "sha256": "b2534c2a2c8b568529fbcd6a80dc410bd0bfe551e1f4f35be3c3d0b065f602a9"
+    },
+    {
+      "file": "child_down_2.png",
+      "bytes": 252633,
+      "sha256": "f8a51a062e97a9b4ffad95c07c69c162ec34107d410a04a4121ed68213c06713"
+    },
+    {
+      "file": "child_down_3.png",
+      "bytes": 252562,
+      "sha256": "27e584f3a9eda00bd7ebfcc1f8df5baa558e124bba2db63bcd7561dc73511a55"
+    },
+    {
+      "file": "child_down_4.png",
+      "bytes": 252398,
+      "sha256": "f130669f991a1573061d619065b6abf7783c959806012bd38d6cc0ef07111e2c"
+    },
+    {
+      "file": "child_left_1.png",
+      "bytes": 234330,
+      "sha256": "3ebc75e8cbdb099b82d92dbf3e773ecd88dadf6e96de591574075c704746df75"
+    },
+    {
+      "file": "child_left_2.png",
+      "bytes": 233003,
+      "sha256": "1e7afb4c3587f15b7d8806eccca12b8ebe530e50babc836b200dc0d3edf5fcc3"
+    },
+    {
+      "file": "child_left_3.png",
+      "bytes": 236371,
+      "sha256": "02913c712266a2c9c79fccef88f7f517d4c6da8f49bc53b2da6b10167bf1004e"
+    },
+    {
+      "file": "child_left_4.png",
+      "bytes": 233844,
+      "sha256": "b0f80c6ab313fc7619cf2f7a9533e0ef867c1bed534e3bc1b193e8f11a6993b3"
+    },
+    {
+      "file": "child_right_1.png",
+      "bytes": 236870,
+      "sha256": "65f3005c74015ac5f2f84952016568b4f5545f816950a073653959a91a19b097"
+    },
+    {
+      "file": "child_right_2.png",
+      "bytes": 236551,
+      "sha256": "1b3d9d2933227ced7f4995908168403dc565ec580ee71e5699d6cf59661b5ba9"
+    },
+    {
+      "file": "child_right_3.png",
+      "bytes": 238390,
+      "sha256": "15b9db71a4c6731dd1434a3e53ee86e8f9bda40d851294382053467bd8b59dcf"
+    },
+    {
+      "file": "child_right_4.png",
+      "bytes": 234904,
+      "sha256": "ba1c8b45960247c280fe21848e2325db968286f8053f918c3c8729117ef72962"
+    },
+    {
+      "file": "child_up_1.png",
+      "bytes": 244407,
+      "sha256": "50dc971d77f73e43a6e5417838cb8dfbdc4721e2267a729d7cafe08ab3e2cba2"
+    },
+    {
+      "file": "child_up_2.png",
+      "bytes": 244002,
+      "sha256": "ac8a850ec0ad6946a200e3c9da39206f8b64bf4994ce1fe4455f7a57e8154fb0"
+    },
+    {
+      "file": "child_up_3.png",
+      "bytes": 244453,
+      "sha256": "4b2320a715b2aa7eb2c15b3e4f20867b1ba824d1b4605292e62048507ad3ea27"
+    },
+    {
+      "file": "child_up_4.png",
+      "bytes": 244098,
+      "sha256": "239dd6b351b06b71634408722a6b1bc8562865e873209c4fdfd08a0deec4ff0f"
+    }
+  ],
+  "frameSize": [
+    512,
+    512
+  ],
+  "fps": 6,
+  "mirror": false,
+  "cameraAndLightsFixed": true
+}

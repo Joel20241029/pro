@@ -943,6 +943,156 @@
       "mapping": "elder_female idle: active elder phase / historical portrait",
       "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
       "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "enemy_boar_walk",
+      "characterId": "boar",
+      "actionId": "walk",
+      "category": "enemies",
+      "frameIds": [
+        "enemy_boar_walk_00",
+        "enemy_boar_walk_01",
+        "enemy_boar_walk_02",
+        "enemy_boar_walk_03"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "enemy_boar_walk_01",
+      "canvas": {
+        "w": 96,
+        "h": 96
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "battle",
+      "restartOnActionChange": true,
+      "mapping": "enemy_boar",
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "enemy_commander_walk",
+      "characterId": "commander",
+      "actionId": "walk",
+      "category": "enemies",
+      "frameIds": [
+        "enemy_commander_walk_00",
+        "enemy_commander_walk_01",
+        "enemy_commander_walk_02",
+        "enemy_commander_walk_03"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "enemy_commander_walk_01",
+      "canvas": {
+        "w": 96,
+        "h": 96
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "battle",
+      "restartOnActionChange": true,
+      "mapping": "enemy_commander",
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "enemy_wolfking_walk",
+      "characterId": "wolfking",
+      "actionId": "walk",
+      "category": "enemies",
+      "frameIds": [
+        "enemy_wolfking_walk_00",
+        "enemy_wolfking_walk_01",
+        "enemy_wolfking_walk_02",
+        "enemy_wolfking_walk_03"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "enemy_wolfking_walk_01",
+      "canvas": {
+        "w": 96,
+        "h": 96
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "battle",
+      "restartOnActionChange": true,
+      "mapping": "enemy_wolfking",
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "enemy_tuskking_walk",
+      "characterId": "tuskking",
+      "actionId": "walk",
+      "category": "enemies",
+      "frameIds": [
+        "enemy_tuskking_walk_00",
+        "enemy_tuskking_walk_01",
+        "enemy_tuskking_walk_02",
+        "enemy_tuskking_walk_03"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "enemy_tuskking_walk_01",
+      "canvas": {
+        "w": 96,
+        "h": 96
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "battle",
+      "restartOnActionChange": true,
+      "mapping": "enemy_tuskking",
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
+    },
+    {
+      "id": "enemy_shaman_walk",
+      "characterId": "shaman",
+      "actionId": "walk",
+      "category": "enemies",
+      "frameIds": [
+        "enemy_shaman_walk_00",
+        "enemy_shaman_walk_01",
+        "enemy_shaman_walk_02",
+        "enemy_shaman_walk_03"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "enemy_shaman_walk_01",
+      "canvas": {
+        "w": 96,
+        "h": 96
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "clock": "battle",
+      "restartOnActionChange": true,
+      "mapping": "enemy_shaman",
+      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+      "usageStatus": "runtime_connected"
     }
   ],
   "walkDirections": {
@@ -1060,6 +1210,11 @@
     "enemy_runner": "LEFT",
     "enemy_armored": "LEFT",
     "enemy_disruptor": "DOWN",
-    "enemy_chief": "DOWN"
+    "enemy_chief": "DOWN",
+    "enemy_boar": "DOWN",
+    "enemy_commander": "DOWN",
+    "enemy_wolfking": "DOWN",
+    "enemy_tuskking": "DOWN",
+    "enemy_shaman": "DOWN"
   }
 }

@@ -1,18 +1,59 @@
 # 代代守村 · 资源与编辑器源工程
 
-日期：2026-11-12。当前建筑已按确认的设计稿完成原生 Laya 拼装。请从下表进入对应目录，日常制作不要直接修改图集。
+2026-11-13 最新决定：恢复原来的二维表现，取消实时 3D，也不采用“3D 渲染为二维图片”的路线。正式制作方向为原二维图集、人物与敌人序列帧、Laya 部件建筑和二维粒子；保留高清矢量 UI，人物头像恢复原人物帧。回退实施及验证状态以 [31 恢复二维场景与序列帧](../doc/tech/31_恢复二维场景与序列帧.md) 为准，本文不声明回退已完成。
 
-## 目录索引
+## 当前制作与发布入口
+
+| 目录或文件 | 内容与用途 | 是否进入微信包 |
+| --- | --- | --- |
+| `source/` 中的二维母版与 `asset_recipe.json` | 图片、配方、提示词及生成台账 | 否，经构建产生运行图集 |
+| `editor/BuildingWorkshop/BuildingWorkshop.laya` | LayaAir 3.4.2 可编辑制作工程 | 否 |
+| `editor/BuildingWorkshop/assets/buildingAuthoring/` | 七类独立二维建筑预制体、部件、范围、挂点和时间轴 | 否，转换运行布局与动画 |
+| `editor/BuildingWorkshop/assets/enemyAuthoring/` | 5 小怪和 5 首领的二维组合预制体 | 否，转换运行数据 |
+| `editor/BuildingWorkshop/assets/particleAuthoring/` | 六种二维粒子源 | 否，转换三包粒子配置 |
+| `source/ui/hd/` | 保留的高清矢量 UI 制作说明；3D 头像仅作历史源 | 仅代码绘制，不发布 3D 头像 |
+| `runtime/`、`atlases/` | 分类散图、制作侧图集和总帧索引 | 不与 bundles 重复发布 |
+| `native/` | 二维建筑、怪物、粒子转换数据与共享动画 | 由构建选择进入对应包 |
+| `bundles/base/` | 基础地图、建筑、UI 所需资源、按钮粒子及基础音频 | 按白名单 |
+| `bundles/characters/` | 村民序列帧、原帧头像所需图片、精英脚底圈 | 按白名单 |
+| `bundles/battle/` | 十类怪物、战斗图片、命中粒子及战斗音乐 | 按白名单 |
+| `source/3d/`、`editor/BuildingWorkshop/assets/world3d/` | 停止采用的 3D 试验制作源 | 否，保留追溯 |
+| `design/`、`reference/`、`preview/`、`branding/`、`tools/` | 设计、参考、验收、平台素材和构建工具 | 否 |
+
+保留 base、characters、battle 三包：主场景先显示，再准备人物，点击守夜才准备战斗资源。原分阶段加载和手动失败重试规则不变。高清面板、按钮与 UI 图标使用 `UiSurface.ts`、`UiGlyphs.ts`，人物头像使用原二维帧，不能继续引用模型渲染头像。
+
+正式资源构建恢复以下入口；回退中的加载器、白名单和脚本保护须同步完成后执行，不能单独改 manifest 版本绕过保护：
+
+```bash
+node res/tools/build-resources.mjs \
+  --work /Users/happyelements/Downloads/daidai-restore-2d-20261113/resource-build \
+  --sync
+```
+
+流程为二维母版与配方 → 分类散图 → 编辑器贴图同步 → 透明裁边图集；原生二维预制体 → 布局、敌人和粒子转换数据 → 三包白名单。`--sync` 同步至 `project/LayaProject/assets/resources/`。不得递归发布整个 res，也不运行 `build-world3d-resources.mjs` 作为当前发布步骤。
+
+保留 5 小怪＋5 首领；保留四类命中粒子、精英脚底圈及大王之心红色按钮环绕，共六种二维粒子。大王之心仅在可用时提示，暂停或不可用时不持续环绕；攻击拖尾和建筑升级粒子不恢复，建筑自身升级动作、怪物红闪与伐木树摆保留。详细规则沿用 [29 第 11 节](../doc/tech/29_粒子特效与动作反馈.md#11-1013-表现精简与红色可用提示)。
+
+回退前工程快照：`/Users/happyelements/Downloads/daidai-restore-2d-20261113/before/realtime-3d-snapshot.tar.gz`。3D 历史方案和历史验证保留在 [30](../doc/tech/30_全场景3D与高清UI.md)，不能当作本轮二维验证。新资源数量看构建后的 `manifest.json`，字节看 `budget_report.json`；完整微信目录及上传体积另测，不沿用下方旧数字。
+
+## 历史记录：1.0.13 及之前的像素管线
+
+以下尺寸、帧数、图集页数、字节和验证结论均为对应版本快照。二维制作方式重新采用，但本轮保留高清矢量 UI，最终资源数量、包体和验证结果仍须重新构建后确认。
+
+历史日期：2026-11-13。当时为配置 13、表现版本 1.0.13：七类建筑、十类怪物和六种粒子采用独立原生预制体，资源分主包、人物包和守夜包。请从下表进入对应目录，日常制作不要直接修改图集。
+
+### 历史目录索引
 
 | 目录 | 存放什么 | 怎样使用 | 进入微信包 |
 | --- | --- | --- | --- |
 | `design/` | 已确认的造型稿与设计提示词 | 审查风格、轮廓和升级差异 | 否 |
 | `reference/` | 原始村落效果图 | 对照整体色彩、视角和布局 | 否 |
-| `editor/BuildingWorkshop/` | 可独立打开的 Laya 原始工程 | 编辑七种建筑的部件、范围和原生动画 | 否 |
+| `editor/BuildingWorkshop/` | 可独立打开的 Laya 原始工程 | 编辑建筑、怪物与原生 2D 粒子，保留部件、帧、挂点、范围和发射参数 | 否 |
 | `source/` | 原始母版、配方、提示词、生成台账与归档 | 生产图片的可追溯输入 | 否 |
 | `runtime/` | 按配方生成的分类散图 | 检查裁切和完整源画布 | 否，不与图集重复导入 |
-| `atlases/` | 两页图集及 frames.json | 微信实际加载的图片与裁边信息 | 是 |
-| `native/` | 从编辑器源转换的建筑布局及共享 .mc | 运行时仅实例化当前等级 | 是 |
+| `atlases/` | 五页图集与制作侧总帧索引 | 裁边审计；正式发布见 bundles | 否，不重复发布 |
+| `bundles/` | base、characters、battle 按包成品 | 各自图集、帧/动画表及专属资源 | 按白名单 |
+| `native/` | 从编辑器源转换的建筑、怪物、粒子数据及共享 .mc | 运行时仅实例化当前等级 | 是 |
 | `audio/` | 三轨紧凑音频及音频台账 | 白天、夜战和点击音效 | 是 |
 | `branding/` | 平台上传图标及原图 | 用于微信后台素材上传 | 否 |
 | `preview/` | 动作预览、运行/备用总览、建筑实绘 | 美术与研发验收 | 否 |
@@ -20,9 +61,9 @@
 
 根目录 `manifest.json` 是运行白名单和每项素材台账；`budget_report.json` 是最新资源字节统计；`validation_report.json` 记录图集、裁边、动画检查；`animations.json` 是人物和敌人的序列帧配置。
 
-## 当前建筑做法
+### 历史建筑做法
 
-每种建筑一个原生预制体：`HOUSE.lh`、`FARM.lh`、`LOGGING.lh`、`GATE.lh`、`ARROW.lh`、`STONE.lh`、`SLOW.lh`。共108种等级/房间组合，运行时只创建当前变体。人物仍使用32组2～4帧动画；本轮建筑使用原生部件时间轴动画，不将部件动画误称为网格蒙皮骨骼。
+每种建筑一个原生预制体：`HOUSE.lh`、`FARM.lh`、`LOGGING.lh`、`GATE.lh`、`ARROW.lh`、`STONE.lh`、`SLOW.lh`。共108种等级/房间组合，运行时只创建当前变体。全项目角色共37组2～4帧动画，其中怪物10组各4帧；本轮建筑使用原生部件时间轴动画，不将部件动画误称为网格蒙皮骨骼。
 
 1～12级逐级改变结构。更高等级在9～12级的高级结构组合中循环并显示精确等级，范围与节点数不会随无限游玩持续膨胀。民居的修缮与房数分别影响层高/屋顶和侧屋/上层房间。
 
@@ -30,21 +71,21 @@
 
 2026-11-12 比例与塔位调整：两栋民居显示宽度由 116/106 放大至 140/128，沿用原生预制体，以原足底定位并同步扩大导航底座。参数位于 `VillageScene.VILLAGE_PROPS`；第 3/4 塔的唯一坐标源 `GameConfig.PADS` 改为 `(300,535)` / `(455,650)`。图集、母版与原生动画无需重建；设计稿及实际场景检查分类保存在 [compact-header](preview/compact-header/README.md)。
 
-## 构建与验证
+### 历史构建与验证
 
 ```bash
 node res/tools/build-resources.mjs \
-  --work /Users/happyelements/Downloads/daidai-building-editor-20261112/resource-build \
+  --work /Users/happyelements/Downloads/daidai-enemies-loading-20261112/art/packed \
   --sync
 ```
 
 流程：母版+配方 → 分类散图 → 编辑器引用贴图同步 → 透明裁边图集；七个原生 .lh → 严格属性校验 → 紧凑布局。两个 .mc 使用原生二进制原样复制。原生源工程的搭建命令见 [工程说明](editor/BuildingWorkshop/README.md)。
 
-只发布 `manifest.runtimeWhitelist`，不递归复制整个 res。当前 229 张源画布，198 张运行素材、31 张备用素材，32 组人物/敌人动画、108 张动画帧、2 页图集。弃用的 10 张旧升级挂饰、旧抛石机关及旧屏中 Tip 底板已退出运行图集，原始素材保留。
+只发布 `manifest.runtimeWhitelist`，不递归复制整个 res。当时 295 张源画布，264 张运行素材、31 张备用素材，37 组人物/敌人动画、128 张动画帧、5 页图集。弃用的 10 张旧升级挂饰、旧抛石机关及旧屏中 Tip 底板已退出运行图集，原始素材保留。
 
 图集仅裁 alpha=0 外圈，frames.json 恢复源画布偏移和脚底；九宫格保持完整尺寸。建筑母版的分格裁片额外使用显式主体矩形，避免邻格碎片进入部件；这个制作裁切与运行图集透明裁边是两个步骤。
 
-当前资源白名单共 10 个文件，合计 1,824,832 字节。微信发布将 `.mc` 改名为 `.mc.bin`，内容哈希保持一致；发布器另生成分包 `game.js` 和 `fileconfig.json`。主包 1,651,835 字节，村庄分包 1,825,083 字节，总计 3,476,918 字节，这是导出目录原始字节，未包含平台上传压缩测量。
+当时资源白名单共 18 个文件，合计 2,146,685 字节。微信导出主包 2,590,578 字节，人物包 620,031 字节，守夜包 609,615 字节，总计 3,820,224 字节。这是目录原始字节，不是上传压缩统计。主场景先显示再准备人物，点击守夜才准备战斗资源，失败可主动重试。详见 [技术记录28](../doc/tech/28_组合怪物与分阶段资源加载.md)。
 
 建筑点击气泡：点击左侧民房显示“佟楼”，右侧显示“南楼”，以指角尖端为原点展开、收起，总计 2 秒。新增 `22×22` 九宫格主体与 `20×14` 指角，仍合入现有 UI 图集；制作源及完整提示词在 [source/ui/anchored-tip](source/ui/anchored-tip/README.md)，确认稿、实际渲染和检查报告在 [preview/anchored-tip](preview/anchored-tip/README.md)，实现见 [技术文档 26](../doc/tech/26_建筑点击气泡.md)。
 
@@ -52,8 +93,19 @@ node res/tools/build-resources.mjs \
 
 排行入口图文间距已调整，奖杯大小保留，“排行”与奖杯、底框分开留白；仅修改布局参数，原图和图集不变。最新长短屏实绘见 [ranking-entry](preview/ranking-entry/README.md)。
 
-村名与道路路牌：母版与提示词在 `source/decorations/`，共同使用 88×52 底图和独立中文；“文明里村”显示宽 140，“友谊路”显示宽 120，均为设计像素。文字与位置配置在 `VillageSceneConfig.VILLAGE_PROPS`，与牌体共用遮挡。复用底图不增加运行素材，仍为两页图集。村名牌首次实绘见 [village-sign](preview/village-sign/README.md)，最新双路牌实绘见 [compact-header](preview/compact-header/README.md)，规则见 [技术记录24](../doc/tech/24_精英姓名与文明里村路牌.md)。
+村名与道路路牌：母版与提示词在 `source/decorations/`，共同使用 88×52 底图和独立中文；“文明里村”显示宽 140，“友谊路”显示宽 120，均为设计像素。文字与位置配置在 `VillageSceneConfig.VILLAGE_PROPS`，与牌体共用遮挡。复用底图不增加运行素材，不新增图集内容。村名牌首次实绘见 [village-sign](preview/village-sign/README.md)，最新双路牌实绘见 [compact-header](preview/compact-header/README.md)，规则见 [技术记录24](../doc/tech/24_精英姓名与文明里村路牌.md)。
 
 村内花果：原伐木树复用两簇红果，两个角落各增加一棵 84/86 宽的树，分别带一簇约 10 像素的浅色花和黄果。树木参照原伐木树 90 宽修正了与成年村民的比例，花果保持小点缀。树与花果全部复用现有运行素材，不增位图；相对挂点、大小和透明度记录在 `VillageSceneConfig.VILLAGE_PROPS.canopyDetails`，花果与树一起遮挡。具体参数见 [场景交付记录](../doc/tech/22_场景音频与图文排版交付.md)，最新实绘继续归档到 [compact-header](preview/compact-header/README.md)。
 
 村内松树：在两棵花果圆树之外，再复用 `deco_tree_pine` 放置两棵 88 宽的松树，分别位于左下草地和右上农田外侧，与圆树错位。树形略高，保留中央活动区。只调整场景配置，不新增素材或图集页。
+
+### 历史组合怪物
+
+5 小怪与 5 首领，原色细节＋中性身体着色＋兼容头/背饰，最多 4 个绘制层。外观种子随波次保存，重进不重抽，也不影响家庭随机。每 12 夜一名首领，前五场依次展示五种底型。原始来源见 [source/enemies](source/enemies/README.md)，编辑入口见 [enemyAuthoring](editor/BuildingWorkshop/assets/enemyAuthoring/README.md)，实际组合效果见 [preview/enemies](preview/enemies/README.md)。
+
+
+### 历史粒子制作
+
+1.0.13 保留 6 种 Laya 原生 2D 粒子：4 种命中、精英脚底圈、鲜红色大王之心边缘环绕；攻击拖尾与建筑升级粒子已移除。怪物红闪、伐木树摆和建筑原有升级动作保留。粒子复用内置白纹理，不增加图集页。源与编辑说明见 [particleAuthoring](editor/BuildingWorkshop/assets/particleAuthoring/README.md)，正式实绘见 [preview/particles](preview/particles/README.md)。
+
+`particles.json` 跟随 base、characters、battle 的既有准备与失败重试。当时运行素材白名单 21 个文件，共 2,194,813 字节；完整微信导出还包含代码和引擎，不能用素材数冒充包体。

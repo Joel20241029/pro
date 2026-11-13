@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "basis": "Offline-only poses for the measured unit-height male/female rigs. Angles are degrees about world X in bind space. Four poses preserve planted feet; tools follow the weighted right palm. These values affect presentation only and require visual review after edits.",
+  "fps": 6,
+  "actions": {
+    "farm": {
+      "directions": {
+        "down": 0
+      },
+      "tool": "hoe",
+      "poses": [
+        {
+          "spine": 8,
+          "rightArm": -38,
+          "rightElbow": -20,
+          "leftArm": -25,
+          "leftElbow": -12,
+          "toolPitch": 28
+        },
+        {
+          "spine": 14,
+          "rightArm": -26,
+          "rightElbow": -10,
+          "leftArm": -32,
+          "leftElbow": -15,
+          "toolPitch": 42
+        },
+        {
+          "spine": 18,
+          "rightArm": -18,
+          "rightElbow": -8,
+          "leftArm": -27,
+          "leftElbow": -12,
+          "toolPitch": 50
+        },
+        {
+          "spine": 11,
+          "rightArm": -32,
+          "rightElbow": -16,
+          "leftArm": -22,
+          "leftElbow": -10,
+          "toolPitch": 34
+        }
+      ]
+    },
+    "chop": {
+      "directions": {
+        "left": -90,
+        "right": 90
+      },
+      "tool": "axe",
+      "poses": [
+        {
+          "spine": -3,
+          "rightArm": -112,
+          "rightElbow": -24,
+          "leftArm": -45,
+          "leftElbow": -30,
+          "toolPitch": 45
+        },
+        {
+          "spine": 4,
+          "rightArm": -76,
+          "rightElbow": -18,
+          "leftArm": -42,
+          "leftElbow": -28,
+          "toolPitch": 68
+        },
+        {
+          "spine": 10,
+          "rightArm": -42,
+          "rightElbow": -12,
+          "leftArm": -32,
+          "leftElbow": -20,
+          "toolPitch": 92
+        },
+        {
+          "spine": 0,
+          "rightArm": -88,
+          "rightElbow": -22,
+          "leftArm": -40,
+          "leftElbow": -28,
+          "toolPitch": 58
+        }
+      ]
+    },
+    "care": {
+      "directions": {
+        "left": -90,
+        "right": 90
+      },
+      "tool": null,
+      "poses": [
+        {
+          "spine": 9,
+          "rightArm": -48,
+          "rightElbow": -30,
+          "leftArm": -25,
+          "leftElbow": -20,
+          "toolPitch": 0
+        },
+        {
+          "spine": 12,
+          "rightArm": -62,
+          "rightElbow": -40,
+          "leftArm": -30,
+          "leftElbow": -25,
+          "toolPitch": 0
+        },
+        {
+          "spine": 10,
+          "rightArm": -50,
+          "rightElbow": -24,
+          "leftArm": -26,
+          "leftElbow": -22,
+          "toolPitch": 0
+        },
+        {
+          "spine": 7,
+          "rightArm": -38,
+          "rightElbow": -20,
+          "leftArm": -22,
+          "leftElbow": -18,
+          "toolPitch": 0
+        }
+      ]
+    }
+  }
+}

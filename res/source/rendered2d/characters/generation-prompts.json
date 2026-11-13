@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-13",
+  "method": "Hyper3D PBR source followed by actual Blender offline rendering",
+  "model": "hyper3d-gen2-260112",
+  "material": "PBR",
+  "meshMode": "Quad",
+  "format": "glb",
+  "runtime3d": false,
+  "approval": "Existing user approval for generated villager reference images and external model generation; latest user request applies male quality to all villagers.",
+  "prompts": [
+    {
+      "role": "female",
+      "reference": "res/design/hd2d/samples/villager_female_q.png",
+      "prompt": "A full-body stylized chibi adult female village resident matching the provided reference exactly. Huge round head, very short compact body and short legs, warm orange wrap tunic with cream cuffs, brown trousers and shoes, brown tied hair and orange ribbon. Neutral symmetrical relaxed standing pose, feet separated, hands relaxed slightly away from the body, no tools. Face, chest and feet all point straight forward together, no head turn. Preserve soft rounded high-detail forms, fabric texture and clean PBR materials. No base, no ground, no shadow mesh."
+    },
+    {
+      "role": "child",
+      "reference": "res/design/hd2d/samples/villager_child_neutral_q_v2.png",
+      "prompt": "A full-body stylized chibi young village child matching the provided reference exactly. Gender-neutral ambiguous child appearance without gender-coded decorations. Enormous round head and tiny short body and short legs, soft short brown hair, beige wrap tunic, brown loose trousers and shoes. Neutral symmetrical relaxed standing pose, feet separated, hands relaxed slightly away from body. Face, chest and feet all point straight forward together, no head turn. Preserve soft rounded high-detail forms and clean PBR materials. No base, no ground, no shadow mesh."
+    },
+    {
+      "role": "elder",
+      "reference": "res/design/hd2d/samples/villager_elder_neutral_q_v2.png",
+      "prompt": "A full-body stylized chibi elderly village resident matching the provided reference exactly. Gender-neutral ambiguous elderly appearance, absolutely no beard or moustache. Huge round head, very short compact body and legs, short soft gray hair, gray-green robe with cream cuffs, brown shoes. Both hands resting together on top of a simple straight wooden walking cane centered in front of the body. Neutral symmetrical standing pose with feet slightly separated. Face, chest and feet point straight forward together, no head turn. Preserve soft rounded high-detail forms and clean PBR materials. No base, no ground, no shadow mesh."
+    },
+    {
+      "role": "baby",
+      "reference": "res/source/3d/characters/baby_reference.png",
+      "prompt": "A single stylized chibi sleeping newborn baby fully wrapped in a cream and pale sage green swaddling blanket, matching the provided reference. Gender-neutral, huge soft round baby head, tiny bundled body, closed eyes gentle smile, small brown hair curl, soft rounded high-detail forms and detailed fabric PBR material. No basket, no pillow, no floor, no extra objects, no shadow mesh. Preserve the exact clean cozy reference appearance."
+    }
+  ]
+}

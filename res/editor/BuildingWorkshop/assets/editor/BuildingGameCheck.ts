@@ -5,10 +5,12 @@ export class BuildingGameCheckMenu {
     static async compareRefactor() {
         const fs = IEditor.require("fs"), path = IEditor.require("path"), home = IEditor.require("os").homedir();
         const task = home + "/Downloads/daidai-refactor-20261112";
-        const repo = path.resolve(Editor.projectPath, "../../.."), dest = Editor.projectPath + "/assets/resources/village";
-        const manifest = JSON.parse(fs.readFileSync(repo + "/res/manifest.json", "utf8"));
+        // 历史重构对照只配锁定的旧图集；不能把新三包同名 JSON 平铺回 village。
+        const source = home + "/Downloads/daidai-enemies-loading-20261112/archive/old-village-package";
+        const dest = Editor.projectPath + "/assets/resources/village";
+        const historicalFiles: string[] = fs.readdirSync(source).filter((file: string) => !file.endsWith(".meta"));
         fs.mkdirSync(dest, { recursive: true });
-        for (const file of manifest.runtimeWhitelist) fs.copyFileSync(repo + "/res/" + file, dest + "/" + path.basename(file));
+        for (const file of historicalFiles) fs.copyFileSync(source + "/" + file, dest + "/" + file);
         const results = [];
         for (const [version, architecture] of [["baseline", "monolith"], ["current", "components"]]) {
             const compiled = task + "/" + version + "-build/src", output = task + "/native-" + version;
@@ -22,7 +24,7 @@ export class BuildingGameCheckMenu {
                 }
             };
             walk(compiled);
-            results.push({ version, checks: await Editor.scene.runScript("BuildingGameCheck.render", modules, output, manifest.runtimeWhitelist.map((file: string) => path.basename(file)), architecture) });
+            results.push({ version, checks: await Editor.scene.runScript("BuildingGameCheck.render", modules, output, historicalFiles, architecture) });
         }
         fs.writeFileSync(task + "/native-checks.json", JSON.stringify(results, null, 2));
         console.log("VILLAGE_REFACTOR_VISUAL_CHECK", JSON.stringify(results));
@@ -32,7 +34,7 @@ export class BuildingGameCheckMenu {
         const fs = IEditor.require("fs"), path = IEditor.require("path"), home = IEditor.require("os").homedir();
         const evidence = home + (mode === "person-click" ? "/Downloads/daidai-person-click-20261112/native" : mode === "anchored-tip" ? "/Downloads/daidai-building-tip-20261112/native" : "/Downloads/daidai-building-editor-20261112/evidence");
         fs.mkdirSync(evidence, { recursive: true });
-        const compiled = home + "/Downloads/daidai-building-editor-20261112/test-suite/src";
+        const compiled = home + "/Downloads/daidai-enemies-loading-20261112/checks/compiled";
         const modules: Record<string, string> = {};
         const walk = (dir: string) => {
             for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -42,11 +44,13 @@ export class BuildingGameCheckMenu {
             }
         };
         walk(compiled);
-        const repo = path.resolve(Editor.projectPath, "../../.."), dest = Editor.projectPath + "/assets/resources/village";
-        fs.mkdirSync(dest, { recursive: true });
+        const repo = path.resolve(Editor.projectPath, "../../.."), resources: string[] = [];
         const manifest = JSON.parse(fs.readFileSync(repo + "/res/manifest.json", "utf8"));
-        for (const file of manifest.runtimeWhitelist) fs.copyFileSync(repo + "/res/" + file, dest + "/" + path.basename(file));
-        const result = await Editor.scene.runScript("BuildingGameCheck.render", modules, evidence, manifest.runtimeWhitelist.map((file: string) => path.basename(file)), mode);
+        for (const [bundle, files] of Object.entries(manifest.bundles)) {
+            const dest = Editor.projectPath + "/assets/resources/" + bundle; fs.mkdirSync(dest, { recursive: true });
+            for (const file of files as string[]) { fs.copyFileSync(repo + "/res/" + file, dest + "/" + path.basename(file)); resources.push("resources/" + bundle + "/" + path.basename(file)); }
+        }
+        const result = await Editor.scene.runScript("BuildingGameCheck.render", modules, evidence, resources, mode);
         console.log("VILLAGE_GAME_VISUAL_CHECK", JSON.stringify(result));
     }
     @IEditor.menu("App/tool/CheckBuildingTips")

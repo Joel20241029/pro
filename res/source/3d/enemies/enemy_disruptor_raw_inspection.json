@@ -1,0 +1,38 @@
+{
+  "file": "enemy_disruptor_raw.glb",
+  "bytes": 3875132,
+  "meshes": [
+    {
+      "name": "model",
+      "vertices": 13267,
+      "polygons": 22215,
+      "triangles": 22215
+    }
+  ],
+  "bounds_min": [
+    -0.5864620208740234,
+    -0.2663370668888092,
+    -0.9496369957923889
+  ],
+  "bounds_max": [
+    0.586205005645752,
+    0.266448050737381,
+    0.9467759728431702
+  ],
+  "images": [
+    {
+      "name": "shaded",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "Viewer Node",
+      "size": [
+        256,
+        256
+      ]
+    }
+  ]
+}

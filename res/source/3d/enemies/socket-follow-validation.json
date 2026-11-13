@@ -1,0 +1,152 @@
+[
+  {
+    "id": "enemy_armored",
+    "sockets": {
+      "HeadAnchor": {
+        "parent": "Head",
+        "boneRelativeMatrixDelta": 2.384185791015625e-07,
+        "walkPositionDelta": 0.035248836538172505
+      },
+      "BackAnchor": {
+        "parent": "Spine",
+        "boneRelativeMatrixDelta": 1.1920928955078125e-07,
+        "walkPositionDelta": 0.03600202087085184
+      }
+    }
+  },
+  {
+    "id": "enemy_boar",
+    "sockets": {
+      "HeadAnchor": {
+        "parent": "Head",
+        "boneRelativeMatrixDelta": 1.1920928955078125e-07,
+        "walkPositionDelta": 0.017159366093273707
+      },
+      "BackAnchor": {
+        "parent": "Spine",
+        "boneRelativeMatrixDelta": 2.980232238769531e-07,
+        "walkPositionDelta": 0.005518974964191856
+      }
+    }
+  },
+  {
+    "id": "enemy_chief",
+    "sockets": {
+      "HeadAnchor": {
+        "parent": "Head",
+        "boneRelativeMatrixDelta": 2.384185791015625e-07,
+        "walkPositionDelta": 0.038433948053163976
+      },
+      "BackAnchor": {
+        "parent": "Spine",
+        "boneRelativeMatrixDelta": 1.1920928955078125e-07,
+        "walkPositionDelta": 0.04180680870485251
+      }
+    }
+  },
+  {
+    "id": "enemy_commander",
+    "sockets": {
+      "HeadAnchor": {
+        "parent": "Head",
+        "boneRelativeMatrixDelta": 2.384185791015625e-07,
+        "walkPositionDelta": 0.019995436871709335
+      },
+      "BackAnchor": {
+        "parent": "Spine",
+        "boneRelativeMatrixDelta": 1.4901161193847656e-07,
+        "walkPositionDelta": 0.02197079549218692
+      }
+    }
+  },
+  {
+    "id": "enemy_disruptor",
+    "sockets": {
+      "HeadAnchor": {
+        "parent": "Head",
+        "boneRelativeMatrixDelta": 2.384185791015625e-07,
+        "walkPositionDelta": 0.018828722968411715
+      },
+      "BackAnchor": {
+        "parent": "Spine",
+        "boneRelativeMatrixDelta": 3.2782554626464844e-07,
+        "walkPositionDelta": 0.019177682211205832
+      }
+    }
+  },
+  {
+    "id": "enemy_raider",
+    "sockets": {
+      "HeadAnchor": {
+        "parent": "Head",
+        "boneRelativeMatrixDelta": 2.980232238769531e-07,
+        "walkPositionDelta": 0.02903361094974443
+      },
+      "BackAnchor": {
+        "parent": "Spine",
+        "boneRelativeMatrixDelta": 1.1920928955078125e-07,
+        "walkPositionDelta": 0.029716910416985487
+      }
+    }
+  },
+  {
+    "id": "enemy_runner",
+    "sockets": {
+      "HeadAnchor": {
+        "parent": "Head",
+        "boneRelativeMatrixDelta": 2.384185791015625e-07,
+        "walkPositionDelta": 0.011191785309510741
+      },
+      "BackAnchor": {
+        "parent": "Spine",
+        "boneRelativeMatrixDelta": 1.1920928955078125e-07,
+        "walkPositionDelta": 0.010012665309426242
+      }
+    }
+  },
+  {
+    "id": "enemy_shaman",
+    "sockets": {
+      "HeadAnchor": {
+        "parent": "Head",
+        "boneRelativeMatrixDelta": 5.364418029785156e-07,
+        "walkPositionDelta": 0.039425771935058196
+      },
+      "BackAnchor": {
+        "parent": "Spine",
+        "boneRelativeMatrixDelta": 1.1920928955078125e-07,
+        "walkPositionDelta": 0.04311541890768272
+      }
+    }
+  },
+  {
+    "id": "enemy_tuskking",
+    "sockets": {
+      "HeadAnchor": {
+        "parent": "Head",
+        "boneRelativeMatrixDelta": 5.960464477539063e-08,
+        "walkPositionDelta": 0.025925195934743798
+      },
+      "BackAnchor": {
+        "parent": "Spine",
+        "boneRelativeMatrixDelta": 2.980232238769531e-07,
+        "walkPositionDelta": 0.01655349663426184
+      }
+    }
+  },
+  {
+    "id": "enemy_wolfking",
+    "sockets": {
+      "HeadAnchor": {
+        "parent": "Head",
+        "boneRelativeMatrixDelta": 2.384185791015625e-07,
+        "walkPositionDelta": 0.04956567268278666
+      },
+      "BackAnchor": {
+        "parent": "Spine",
+        "boneRelativeMatrixDelta": 8.940696716308594e-08,
+        "walkPositionDelta": 0.049134915309421594
+      }
+    }
+  }
+]

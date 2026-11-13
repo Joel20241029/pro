@@ -79,7 +79,7 @@ test("All three tower types gain damage with unchanged speed/range/slow and armo
         const s = createGame(1); const p = s.people[0]; p.origin = "TRAVELER"; p.trait = "trait_frugal"; p.skill = "skill_farming";
         s.towers.forEach(t => { t.kind = null; t.level = 0; t.operator = null; }); s.towers[0].kind = kind; s.towers[0].level = 1; assignOperator(s, 0, p.id); applyCommand(s, { type: "NIGHT" });
         const normal = new BattleSimulation(s); s.people[0].elite = true; const elite = new BattleSimulation(s);
-        for (const b of [normal, elite]) { b.enemies.push({ seq: 999, kind: "enemy_armored", progress: 110, hp: 500, speed: 0, slow: 0, slowTicks: 0, born: 0, summoned: 0 }); b.step(); }
+        for (const b of [normal, elite]) { b.enemies.push({ appearanceSeed: 1, seq: 999, kind: "enemy_armored", progress: 110, hp: 500, speed: 0, slow: 0, slowTicks: 0, born: 0, summoned: 0 }); b.step(); }
         const a = normal.enemies.find(e => e.seq === 999)!, b = elite.enemies.find(e => e.seq === 999)!;
         eq(500 - b.hp, Math.floor(TOWERS[kind].damage * 1.25 * (1 - .4 / (kind === "STONE" ? 2 : 1))));
         ok(a.progress === b.progress && a.slow === b.slow && a.slowTicks === b.slowTicks && normal.shots.length === elite.shots.length);

@@ -1,3 +1,4 @@
+import { appearanceSeed, APPEARANCE_DOMAIN } from "./EnemySeed";
 import { COMBAT } from "../config/DefenseConfig";
 import { ELITE, ENEMIES, EnemyKind, PADS, PATH, RULE, TOWERS, TowerKind } from "./GameConfig";
 import { clone, GameState } from "./GameState";
@@ -6,6 +7,7 @@ import { enemyPower, levelPower } from "./Growth";
 export interface Enemy {
     seq: number;
     kind: EnemyKind;
+    appearanceSeed: number;
     progress: number;
     hp: number;
     speed: number;
@@ -21,6 +23,8 @@ export interface Shot {
     kind: TowerKind;
     tick: number;
 }
+/** 只读表现事件：快照不参与伤害、索敌或存档；每步由 GameSession 收集。 */
+export type CombatFeedback = { type: "shot"; shot: Shot; target: number; hurt: Enemy[] } | { type: "gate"; enemy: Enemy };
 const LENGTHS = PATH.slice(1).map((p, i) => Math.hypot(p.x - PATH[i].x, p.y - PATH[i].y));
 export const PATH_LENGTH = LENGTHS.reduce((a, b) => a + b, 0);
 export function pointAt(progress: number) {
@@ -38,6 +42,7 @@ export class BattleSimulation {
     readonly base: GameState;
     enemies: Enemy[] = [];
     shots: Shot[] = [];
+    feedback: CombatFeedback[] = [];
     tick = 0;
     gate: number;
     bellUsed = false;
@@ -48,6 +53,7 @@ export class BattleSimulation {
     private charge = [1, 1, 1, 1];
     private queued: {
         kind: EnemyKind;
+        appearanceSeed: number;
         progress: number;
     }[] = [];
     constructor(state: GameState) {
@@ -63,25 +69,26 @@ export class BattleSimulation {
         this.bellTicks = RULE.bellTicks;
     } }
     reassign(index: number, id: string) { assignOperator(this.base, index, id); }
-    private spawn(kind: EnemyKind, progress: number) {
+    private spawn(kind: EnemyKind, progress: number, seed: number) {
         const data = ENEMIES[kind], affix = this.base.wave!.affix;
         const hp = Math.ceil(data.hp * enemyPower(this.base.day) * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1));
-        this.enemies.push({ seq: this.seq++, kind, progress, hp, speed: data.speed * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
+        this.enemies.push({ seq: this.seq++, kind, appearanceSeed: seed, progress, hp, speed: data.speed * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
     }
     step() {
         if (this.outcome)
             return;
+        this.feedback = [];
         const entries = this.base.wave!.entries;
         while (this.cursor < entries.length && entries[this.cursor].tick <= this.tick)
-            this.queued.push({ kind: entries[this.cursor++].kind, progress: 0 });
+            this.queued.push({ ...entries[this.cursor++], progress: 0 });
         for (const e of this.enemies)
-            if (e.kind === "enemy_chief" && e.summoned < RULE.summonTicks.length && this.tick - e.born >= RULE.summonTicks[e.summoned]) {
+            if (ENEMIES[e.kind].summon && e.summoned < RULE.summonTicks.length && this.tick - e.born >= RULE.summonTicks[e.summoned]) {
                 e.summoned++;
-                this.queued.push({ kind: "enemy_raider", progress: e.progress }, { kind: "enemy_raider", progress: e.progress });
+                for (let child = 0; child < 2; child++) this.queued.push({ kind: "enemy_raider", progress: e.progress, appearanceSeed: appearanceSeed(APPEARANCE_DOMAIN.summon, e.appearanceSeed, e.summoned, child) });
             }
         while (this.queued.length && this.enemies.length < RULE.enemyCap) {
             const q = this.queued.shift()!;
-            this.spawn(q.kind, q.progress);
+            this.spawn(q.kind, q.progress, q.appearanceSeed);
         }
         const existingSlow = new Set(this.enemies.filter(e => e.slowTicks > 0).map(e => e.seq));
         const refreshed = new Set<number>(), po = policy(this.base);
@@ -90,6 +97,7 @@ export class BattleSimulation {
             if (e.progress >= PATH_LENGTH) {
                 this.gate -= Math.ceil(ENEMIES[e.kind].gate * enemyPower(this.base.day) * (1 + (po.gate || 0)));
                 e.hp = 0;
+                this.feedback.push({ type: "gate", enemy: { ...e } });
             }
         }
         this.enemies = this.enemies.filter(e => e.hp > 0);
@@ -109,7 +117,7 @@ export class BattleSimulation {
                 speed *= RULE.bellSpeedMultiplier;
             if (this.base.night!.hungry)
                 speed *= RULE.hungerSpeed;
-            if (this.enemies.some(e => e.hp > 0 && e.kind === "enemy_disruptor" && distance(e) <= COMBAT.disruptRange))
+            if (this.enemies.some(e => e.hp > 0 && ENEMIES[e.kind].disrupt && distance(e) <= COMBAT.disruptRange))
                 speed *= RULE.disruptSpeed;
             this.charge[i] += RULE.step * speed / t.interval;
             const range = t.range * (1 + (p.trait === "trait_farsight" ? COMBAT.farsightRange : 0) + (po.range || 0));
@@ -127,7 +135,8 @@ export class BattleSimulation {
                 return e.hp > 0 && Math.hypot(pos.x - center.x, pos.y - center.y) <= t.splash;
             });
             const bonus = (po.damage || 0) + (tower.kind === "STONE" ? (p.trait === "trait_strong" ? COMBAT.strongDamage : 0) + (p.skill === "skill_throwing" ? COMBAT.throwingDamage : 0) + (po.stoneDamage || 0) : tower.kind === "ARROW" && p.skill === "skill_archery" ? COMBAT.archeryDamage : 0);
-            for (const e of tower.kind === "STONE" ? nearby : [target]) {
+            const hurt = tower.kind === "STONE" ? nearby : [target];
+            for (const e of hurt) {
                 const armor = ENEMIES[e.kind].armor;
                 e.hp -= Math.max(1, Math.floor(t.damage * levelPower(tower.level) * (1 + bonus) * (p.elite ? ELITE.damageMultiplier : 1) * (1 - armor / (tower.kind === "STONE" ? COMBAT.stoneArmorDivisor : 1))));
             }
@@ -140,7 +149,9 @@ export class BattleSimulation {
                         refreshed.add(e.seq);
                     }
             }
-            this.shots.push({ tower: i, x: center.x, y: center.y, kind: tower.kind, tick: this.tick });
+            const shot: Shot = { tower: i, x: center.x, y: center.y, kind: tower.kind, tick: this.tick };
+            this.shots.push(shot);
+            this.feedback.push({ type: "shot", shot, target: target.seq, hurt: hurt.map(e => ({ ...e })) });
         }
         this.enemies = this.enemies.filter(e => e.hp > 0);
         this.shots = this.shots.filter(s => this.tick - s.tick < COMBAT.shotLifetimeTicks).slice(-RULE.effectCap);

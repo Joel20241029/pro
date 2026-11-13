@@ -1,1 +1,9 @@
-{"modules":{"laya.ui":true},"addons":{"laya.ui":"ui2"}}
+{
+  "modules": {
+    "laya.ui": true,
+    "laya.particle": true
+  },
+  "addons": {
+    "laya.ui": "ui2"
+  }
+}

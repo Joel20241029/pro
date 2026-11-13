@@ -1,0 +1,835 @@
+{
+  "status": "native_probe_not_visual_acceptance",
+  "prefabs": [
+    "hd2dAuthoring/prefabs/ARROW.lh",
+    "hd2dAuthoring/prefabs/STONE.lh",
+    "hd2dAuthoring/prefabs/SLOW.lh"
+  ],
+  "animationChecks": [
+    {
+      "kind": "ARROW",
+      "start": -18,
+      "peak": 5,
+      "end": 0,
+      "bodyRotation": 0
+    },
+    {
+      "kind": "STONE",
+      "start": -18,
+      "peak": 5,
+      "end": 0,
+      "bodyRotation": 0
+    },
+    {
+      "kind": "SLOW",
+      "start": -18,
+      "peak": 5,
+      "end": 0,
+      "bodyRotation": 0
+    }
+  ],
+  "pngBytes": 3576643,
+  "decodedRgbaBytes": 17317220,
+  "roadMode": "independent_image",
+  "motionFrames": [
+    {
+      "name": "FireFlame",
+      "count": 4,
+      "fps": 6
+    },
+    {
+      "name": "MaleOfflineWalk",
+      "count": 4,
+      "fps": 6
+    },
+    {
+      "name": "FemaleOfflineWalk",
+      "count": 4,
+      "fps": 6
+    },
+    {
+      "name": "ChildOfflineWalk",
+      "count": 4,
+      "fps": 6
+    },
+    {
+      "name": "ElderOfflineWalk",
+      "count": 4,
+      "fps": 4
+    },
+    {
+      "name": "BabyOfflineIdle",
+      "count": 4,
+      "fps": 2
+    },
+    {
+      "name": "RaiderFrontWalk",
+      "count": 2,
+      "fps": 6
+    }
+  ],
+  "occlusionChecks": [
+    {
+      "prop": "OakNearRoad",
+      "side": "behind",
+      "actorIndex": 1,
+      "propIndex": 2,
+      "actorY": 245,
+      "propY": 257,
+      "file": "occlusion_OakNearRoad_behind.png",
+      "sha256": "59093e35c00a4038c2ab95eee3fc2a8636650f82d78fdcc7996f539e4875b78a",
+      "bytes": 1253549
+    },
+    {
+      "prop": "OakNearRoad",
+      "side": "front",
+      "actorIndex": 2,
+      "propIndex": 1,
+      "actorY": 269,
+      "propY": 257,
+      "file": "occlusion_OakNearRoad_front.png",
+      "sha256": "a1f18de829bd625f8bfc1deed9205b0a731f2706b17cf72e34a358e9a9e43ae4",
+      "bytes": 1257273
+    },
+    {
+      "prop": "FriendshipRoadSign",
+      "side": "behind",
+      "actorIndex": 0,
+      "propIndex": 1,
+      "actorY": 203,
+      "propY": 215,
+      "file": "occlusion_FriendshipRoadSign_behind.png",
+      "sha256": "3845d4c879a1afa44ce327e262a6480f7debe3a3d2cd35bf3146c1859b22fb1d",
+      "bytes": 1255975
+    },
+    {
+      "prop": "FriendshipRoadSign",
+      "side": "front",
+      "actorIndex": 1,
+      "propIndex": 0,
+      "actorY": 227,
+      "propY": 215,
+      "file": "occlusion_FriendshipRoadSign_front.png",
+      "sha256": "55954fbffe6c756de5e9019fc344707564ee83b742038bc7b30995d5a6b46b2b",
+      "bytes": 1256902
+    },
+    {
+      "prop": "Campfire",
+      "side": "behind",
+      "actorIndex": 13,
+      "propIndex": 14,
+      "actorY": 769,
+      "propY": 781,
+      "file": "occlusion_Campfire_behind.png",
+      "sha256": "8e39beee3e45ba013329bcc3349586df4e6a33537d86b68e77abedc386ca0a31",
+      "bytes": 1256894
+    },
+    {
+      "prop": "Campfire",
+      "side": "front",
+      "actorIndex": 14,
+      "propIndex": 13,
+      "actorY": 793,
+      "propY": 781,
+      "file": "occlusion_Campfire_front.png",
+      "sha256": "1d7dbd961d5438023be625708ee169360d80ef7232d5a539b31e6d058f6b8791",
+      "bytes": 1256853
+    }
+  ],
+  "environment": {
+    "trees": 6,
+    "signs": 2,
+    "rocks": 3,
+    "fireLayers": [
+      "Base",
+      "FireFlame",
+      "FrontStones"
+    ],
+    "detachedGroundShadows": true,
+    "shadowStatus": "shared_contact_approximation_not_final_model_shadows"
+  },
+  "gameplayTouched": false,
+  "particlesRemovedFromGame": false,
+  "captureInputs": [
+    {
+      "file": "res/design/hd2d/parts/probe-recipe.json",
+      "sha256": "5876370f63b793fc06faf85c1cdb3cf018d583b562f3ff0e18df2f8e113c3187"
+    },
+    {
+      "file": "res/tools/hd2d/build-probe-assets.mjs",
+      "sha256": "e38e375adb33cbff58be5bbdaf40b455d13a65b1bf9b52ab0e5ac0029ccebcb2"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/editor/Hd2dWorkshop.ts",
+      "sha256": "fecb77c1b8ea028082abea5c9ce79c201dbec62f14f4fce356cc25d9c43a3900"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/editor/Hd2dProbeScene.ts",
+      "sha256": "dc6b8e07bad3b9a030a2c8c320f9d85b162c2f0581bb3ae819de9375b5bdedc4"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/editor/Hd2dProbeConfig.ts",
+      "sha256": "7aaedd6a0d46e58777ac0e636a83cb7303ffca2e4699bf68a3f2f450c8ab1e9d"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/editor/Hd2dEnvironmentConfig.ts",
+      "sha256": "0a0f87a27f692b4bbc45922cce530cf5755eaa06a4a1198a6292252dbd1a66b8"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/editor/Hd2dProbeEnvironment.ts",
+      "sha256": "c263fdb3f874f58ffcf34797b8d49c7e672cf26edac574bafa07aab4361f9d7a"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/Hd2dProbeMotion.ts",
+      "sha256": "3a27f41e30264a76fb278083085b433b4b8e89e9c910861238f7084df3675f19"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/Hd2dProbeViewport.ts",
+      "sha256": "ef8e371385bd02377f51791d170c9a3344d42a73d29e9b4d5987630c25422ea5"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/texture-manifest.json",
+      "sha256": "6ebe153527b829c48a4f50bf320a403e31ec4a3925ff02959eadd007bb3d0562"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/buildingAuthoring/animations/attack.mc",
+      "sha256": "6273a65ab55bd8500b91f3cc8adba23a21fc53f62e4071388fabd8b7a1232698"
+    },
+    {
+      "file": "res/design/hd2d/parts/arrow_parts.png",
+      "sha256": "d2ba9bc864cb63ec85ddf4da7b43bc502fd7e0e387fa49510143e105ce0933fb"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/arrow_body.png",
+      "sha256": "db81e85dc1dae9294b3e8fe24cae2cced0610c10cf4cecf40a850d1c9d6856d0"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/arrow_body.png.meta",
+      "sha256": "d7227892ab980419b7703b29e672e9a8791ff0f5d0fdf90540532fee833753fd"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/arrow_front.png",
+      "sha256": "28ce343561ee466603a71cd68c9a0ab626a8f9b2e8e2ae242918b3275259a9c0"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/arrow_front.png.meta",
+      "sha256": "5625c062e6beba863c64847ec53ab61db34cdf8939d7e9a081734d64fc536764"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/arrow_weapon.png",
+      "sha256": "47d44809db690c515a4ac8fd269f3ce312ebfcde9830cf4868ecc94d0c97ec32"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/arrow_weapon.png.meta",
+      "sha256": "467f154c5ad16721a2ab6eaa716240b81396a8fa9a8ba80f5e895c73377e67dd"
+    },
+    {
+      "file": "res/design/hd2d/parts/stone_parts.png",
+      "sha256": "d0723d5896c6453a31bc611984768d94c3b0f7d96a804ef9f14b64a3bc941057"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/stone_body.png",
+      "sha256": "4cc42a83284904340b03951928423c32c37523717e23553f38697e68b105f1b7"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/stone_body.png.meta",
+      "sha256": "41f738d7922625fd0cb3115d26ccf35eba09e0983aaddc5b42db3ec3dbae14b6"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/stone_loaded.png",
+      "sha256": "8308baf6001595a9fe742976e9cad6ea96743dad18872116082fb997ca5c4876"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/stone_loaded.png.meta",
+      "sha256": "2973ba22bb3036b5cf34f9ca6fcce58ff8d822d1e90bd8cb033b859aa1bfd314"
+    },
+    {
+      "file": "res/design/hd2d/parts/frost_parts.png",
+      "sha256": "b8b4d0e571f7c282aefe02ddf34286bfa159b22fe55bd19998474bdd4ece30bb"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/frost_body.png",
+      "sha256": "25c9edb9c7fe4b47e1e925f7ec29ab16a09232ffa838e1974b6dd77acae6b6a6"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/frost_body.png.meta",
+      "sha256": "957cdf3e293b432b258163797bd8ae91006dbab88a1ff1a7ba9bff8f5d67cbae"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/frost_core.png",
+      "sha256": "74c2248c2025b9d639e8c4ded65ad0da8882b2c3c9b463615ef5bb2f311400cf"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/frost_core.png.meta",
+      "sha256": "fe0ac71a2e562e0b7f54f70e327122068bf07ef023ef40a54cbfc74479610448"
+    },
+    {
+      "file": "res/design/hd2d/samples/grass_ground_v2.png",
+      "sha256": "f9ffd271acaecdf637a9e64b725c08e63f48104c721a7df91f3a12332491722d"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/grass.png",
+      "sha256": "6f7a50542f03089edb284b2278785289b6fba4c84231d22104c7de148a67027e"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/grass.png.meta",
+      "sha256": "21ee2a114fb2d65d4de69ada824661695833640c29c8fecd05b4ef2dc6ff748b"
+    },
+    {
+      "file": "res/design/hd2d/samples/button_green_v2.png",
+      "sha256": "af0127836f26a77513cddf4e05bb5a7069a657fac7ddb3d6b18109e46f1d0c9f"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/button.png",
+      "sha256": "aa20b8689266d0a1043c0dc7a46317313895cdd0e65ee97a75fc005a5eca87e1"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/button.png.meta",
+      "sha256": "cb82c557fd04728bd93306ff4e00c0e525ce903085c8167e7df00a30f0b79e7e"
+    },
+    {
+      "file": "res/design/hd2d/motion/raider_front_walk.png",
+      "sha256": "bb88ed5696a1d148ae15e83810a3f7d36ebd8361c3e3cd494b32c1fa24b20cbd"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/raider_0.png",
+      "sha256": "4eb2d0011c1a71d3b999fc7270ae934b9c9875dc8a3a61a1a576c19cff14ebe6"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/raider_0.png.meta",
+      "sha256": "c4b100448a8afca286e79cd5089daac2684c98a35d2b5034b9a145373c4af19c"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/raider_1.png",
+      "sha256": "169b9712fc7f6e0fb696b91949525ff55b8da10f24a44b146f411bf664e1d097"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/raider_1.png.meta",
+      "sha256": "fdf739615fcaf832053bbc55b921443439eded063a0b258ed4209b4006e4671d"
+    },
+    {
+      "file": "res/design/hd2d/directions/male/male_down_1.png",
+      "sha256": "14e042c91614934aadd4afbc22bf38b7ad74e5d4972d2a548dfbce1ff52e7159"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/male_walk_1.png",
+      "sha256": "4dba78c0ed5a21ab8c94c3d8bfee0c5726a251b2e0a0a01c80c9075f42920ad0"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/male_walk_1.png.meta",
+      "sha256": "f9714090f726f021509863815ce757be4ebda509bdcd24b82e7e668bd2c9d918"
+    },
+    {
+      "file": "res/design/hd2d/directions/male/male_down_2.png",
+      "sha256": "acf31eda3286232eccf90a8df30ca9e9df60387750b629a0c563554f7cbb48ba"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/male_walk_2.png",
+      "sha256": "e8044d4db8a422b7760dbb71c916a35ec1b1c96f154e0b7605f52dbb99cdb0b4"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/male_walk_2.png.meta",
+      "sha256": "b3d6f4138276a9d4499998b7b097717b4d1405701d8d5a061726147c558ef0a2"
+    },
+    {
+      "file": "res/design/hd2d/directions/male/male_down_3.png",
+      "sha256": "1fe99127dcbc78edcc36333933a80ca2c8c86c891b05daec23bf789fc1ef279d"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/male_walk_3.png",
+      "sha256": "97d4fd88021a2b275e8b0d662196894ad19e3b25575ed5332ea1b65443acccb3"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/male_walk_3.png.meta",
+      "sha256": "3ef15666623132447885949d384ff14075d68fedfabd772eb2a6285a476eabef"
+    },
+    {
+      "file": "res/design/hd2d/directions/male/male_down_4.png",
+      "sha256": "8a6fea8c414302efd4d8f559de380368bd30d2669e736cc72b7b179fb983178c"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/male_walk_4.png",
+      "sha256": "41451a777ce52d03630482194d418c38a7a088a79714edb52c0d99d08df51dcb"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/male_walk_4.png.meta",
+      "sha256": "f0824139059e8816b126abb37b10ca1a150df0f3b14ce541c525d28ade381445"
+    },
+    {
+      "file": "res/design/hd2d/parts/road_sprite.png",
+      "sha256": "7ae3f92f9521190a0dff00a91149202c680fa376d6f6b6536d750601a9fbc0ef"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/road_sprite.png",
+      "sha256": "e03d0cf6d1bd7d8a4e6b065d8be81d54a0fc1053f834d3500dad8d0f4519a590"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/road_sprite.png.meta",
+      "sha256": "e17df18c6c3247ac24f91c233cb44ad5f97d98d230064a77bf4e3f37e190df27"
+    },
+    {
+      "file": "res/design/hd2d/directions/female/female_down_1.png",
+      "sha256": "406ac4d6c8bf7330e64e84e50e5ed3556aa47c01b0f3e7b34bfdb9523ad89774"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/female_walk_1.png",
+      "sha256": "bf5ff368513c993b8d55304aaa7ae4da1370fe29abd5e08ad8facfd000643a2c"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/female_walk_1.png.meta",
+      "sha256": "3ca9d5df9161f797e7365dd51581f299821dc69e8c041f4350688ef3461131cb"
+    },
+    {
+      "file": "res/design/hd2d/directions/female/female_down_2.png",
+      "sha256": "fc690c64ee004fa8a47834589cda5af7cc96e9ec8f4028dd799ab8c1f7036353"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/female_walk_2.png",
+      "sha256": "41ef5d0cb403525cfed2b509113e9e6d679a6bfa674319f86d2025b06db1b025"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/female_walk_2.png.meta",
+      "sha256": "98dedcc6ddb1b5ec7e6dcfcdc470861f5b2c30b479c7541c86a82edc1fd1680e"
+    },
+    {
+      "file": "res/design/hd2d/directions/female/female_down_3.png",
+      "sha256": "8c1712f0d0fef60e95556e0eef99ff6289af862d278c73326acc813425df3a1f"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/female_walk_3.png",
+      "sha256": "3cffd4b5c1e5df2ecf57df542086764ba7c064193cb313d34c7538bc8bdd4e5e"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/female_walk_3.png.meta",
+      "sha256": "f179e809d435fd5f4c22fb7e99c811e77869bc382a361d3e92a4f333150b4451"
+    },
+    {
+      "file": "res/design/hd2d/directions/female/female_down_4.png",
+      "sha256": "327da1a62a1bdc45939f88a5e3ff8475c0bff60145c40c04814f7d0f1a25f568"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/female_walk_4.png",
+      "sha256": "e339480438d405fd2d3d240e02ef20e5d17a287aea2495d02fe4bb2ae65da3d9"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/female_walk_4.png.meta",
+      "sha256": "14da9558883f7942d7a75f063886de03196a7fd89fc118dc109b8c4437eb5e59"
+    },
+    {
+      "file": "res/design/hd2d/directions/child/child_down_1.png",
+      "sha256": "b2534c2a2c8b568529fbcd6a80dc410bd0bfe551e1f4f35be3c3d0b065f602a9"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/child_walk_1.png",
+      "sha256": "460cbbb5bda11dd1a8c20b2c5dc6a768c07ebecdfff2855983cd0b2fa6e389d3"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/child_walk_1.png.meta",
+      "sha256": "0eed2acb3a8b2a154cf85106a2311e1267b547250672ce6b3b7110ca20009c4e"
+    },
+    {
+      "file": "res/design/hd2d/directions/child/child_down_2.png",
+      "sha256": "f8a51a062e97a9b4ffad95c07c69c162ec34107d410a04a4121ed68213c06713"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/child_walk_2.png",
+      "sha256": "b36d5dd2ff3d5a247406e76eeef90f541742a84c149abb34435e3e4285924be2"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/child_walk_2.png.meta",
+      "sha256": "782ee1bb8064f86f912776de28cfe6586ead14d4161686ae7fdf4f7232e12850"
+    },
+    {
+      "file": "res/design/hd2d/directions/child/child_down_3.png",
+      "sha256": "27e584f3a9eda00bd7ebfcc1f8df5baa558e124bba2db63bcd7561dc73511a55"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/child_walk_3.png",
+      "sha256": "b391699d3ecb9ab1289601585c4b63443dd8f0e499df0ba0dae0863aa9d16c2a"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/child_walk_3.png.meta",
+      "sha256": "43861ad2489d846d8ebdef9415f6ccc3a2a4a77b9c41d2afe61cd3f120f1d1c9"
+    },
+    {
+      "file": "res/design/hd2d/directions/child/child_down_4.png",
+      "sha256": "f130669f991a1573061d619065b6abf7783c959806012bd38d6cc0ef07111e2c"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/child_walk_4.png",
+      "sha256": "70eab2bd42814878c74df3eb89b64c292fcae7a9f7db114c7f7af6033b454c55"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/child_walk_4.png.meta",
+      "sha256": "9ead7af821234d759066cfdfa290e6b170033ba5c92473483063ae8a57fde967"
+    },
+    {
+      "file": "res/design/hd2d/directions/elder/elder_down_1.png",
+      "sha256": "6290f0645e3694b0a078df5d3461091b54c06dc6b080dd36a86fbf8e76c72cc9"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/elder_walk_1.png",
+      "sha256": "9feb17cc011a6d63b129e81a6884532f60a6a4a217dce9eca6ec421e63e50779"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/elder_walk_1.png.meta",
+      "sha256": "de5130656a48aec371831e140f99bf3566396fb8282b1caa110bddc33aaf3149"
+    },
+    {
+      "file": "res/design/hd2d/directions/elder/elder_down_2.png",
+      "sha256": "ddc2f8e67a8a561e68ef16e9c4d76394feb261a4af8b58b49293acf37d9fe20a"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/elder_walk_2.png",
+      "sha256": "93db9fa2d4ce42c5147e12e0ca7562308a8976651a9948271c33871dafa10010"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/elder_walk_2.png.meta",
+      "sha256": "36cd937f4d3e91d192075416d63a2fb795b5c1d3b0bd7c64b36c60809b5d0320"
+    },
+    {
+      "file": "res/design/hd2d/directions/elder/elder_down_3.png",
+      "sha256": "273435c843cb7f11b8510d1bc4bbc3150de540a17489a8e4a0a9b83b06938c92"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/elder_walk_3.png",
+      "sha256": "33081830e9166c906c228702c05c7e03c60f5b3534e4951fbbea10c5bb96354e"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/elder_walk_3.png.meta",
+      "sha256": "9c9346dc7fe1c2ef6e4b0ce4c55910cea0437bb38fa5d7ceb3890117a80857c4"
+    },
+    {
+      "file": "res/design/hd2d/directions/elder/elder_down_4.png",
+      "sha256": "bfd6c2f2a2be302456b7964e311f64f4d17d1723a31409a3cdb5a5e6ab119cca"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/elder_walk_4.png",
+      "sha256": "f6462c69c20d8144365268be2476b8f838b40ef79fad03e4954708c29a5708e3"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/elder_walk_4.png.meta",
+      "sha256": "380dec76250b74ae0e4d3945af8a3258a5b43a47cf1d0ca7a480869bb7a97b7c"
+    },
+    {
+      "file": "res/design/hd2d/directions/baby/baby_idle_1.png",
+      "sha256": "61fa4491b416253426d32d492245b20cbf60fa2ffdf0c528850cb639039cbd67"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/baby_idle_1.png",
+      "sha256": "93c3f5055c88a7af7e729a32f5e20116c0803360d8ab05baee7aee8a19522c90"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/baby_idle_1.png.meta",
+      "sha256": "56591e8ccc466aaf01ef03545f6390cc198d299d10694d192f88fd976c60c983"
+    },
+    {
+      "file": "res/design/hd2d/directions/baby/baby_idle_2.png",
+      "sha256": "c742910c9c38553094910563d0890cfc378c7067f32fc5a2c149be5e0dc6182d"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/baby_idle_2.png",
+      "sha256": "56f9533399025996ff152100a524e11b9d24a83f6c2394e78ae1122c0df4a4fd"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/baby_idle_2.png.meta",
+      "sha256": "9414faab7d79785e5ac9481e8c0f157a98b7fa6c208d264f9145a04d6855e526"
+    },
+    {
+      "file": "res/design/hd2d/directions/baby/baby_idle_3.png",
+      "sha256": "4842ead7b9bcba12204fb736262b80e90c52308c399478b787a3a67c73a072c1"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/baby_idle_3.png",
+      "sha256": "93c3f5055c88a7af7e729a32f5e20116c0803360d8ab05baee7aee8a19522c90"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/baby_idle_3.png.meta",
+      "sha256": "04a45e405fff167c441cd09afcb2b32588f1b9e26960c7d775b2cadae3b551aa"
+    },
+    {
+      "file": "res/design/hd2d/directions/baby/baby_idle_4.png",
+      "sha256": "4a39ec10077c17fbd76d94e424705004299ffd71d241ac194f2298771714d073"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/baby_idle_4.png",
+      "sha256": "fa7a83bd623fc87cfb7605724e2fa17df2dbba0fd3568a3271df0a4a96e275c6"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/baby_idle_4.png.meta",
+      "sha256": "a582dd26f2195ef84e1d8a31f98d63cd8eab5e0a56e9193eaeb579c42ced24cf"
+    },
+    {
+      "file": "res/design/hd2d/environment/tree_oak_layers.png",
+      "sha256": "15a9bae22469b2bab7407c2cbd02e88f810dd3e9d6afe80ebf62071bed4d4ed0"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_oak.png",
+      "sha256": "15eb96f6894d7028b18702ccd108f237faaa884699c0a021afa103ee52ef99fb"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_oak.png.meta",
+      "sha256": "dce3e0e932181bca5b32277dfb11092f73d68191eab5e9275711479ecf4b7a1d"
+    },
+    {
+      "file": "res/design/hd2d/environment/tree_pine_layers.png",
+      "sha256": "f6cbc283472b4641ff5e55cf55862b6e0a21d53110ec5b124f3313332a289d9d"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_pine.png",
+      "sha256": "ebf0574e900923a7272aadb52f00333ca4287110f2a1a98942386a124a50fe16"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_pine.png.meta",
+      "sha256": "3e02fad54f9845236557e4c18d26ac71771563095df7995141c575adcdc56898"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_shadow.png",
+      "sha256": "744e56f920e5e7c3f531e28d33efb6862183ab99108e301284f712ac58347f09"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_shadow.png.meta",
+      "sha256": "f5126447b3f5afd98d7a43ce8d83404daf78e66ea75043d91d78573678f4f24c"
+    },
+    {
+      "file": "res/design/hd2d/environment/sign.png",
+      "sha256": "78d58ac0842f1b34f81b850a63dd579d3e901dcef1682f954b3e26d1b8cd1094"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_sign.png",
+      "sha256": "91fb6ac8e982cdcbaae9202a496936f80881c7c0cb8a2b21cb85b8963f6b9e22"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_sign.png.meta",
+      "sha256": "4123ea77a890067c36ce12a72abc272c73e5902c4c5f42ad1048a93464cf8378"
+    },
+    {
+      "file": "res/design/hd2d/environment/rock_cluster.png",
+      "sha256": "f1b89795f2da1ebea4f23ba1f81a82c38acbb1f01e89d11a5fcdf2a32263b32a"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_rocks.png",
+      "sha256": "65c8c5c387dd10e7943902ac71dae415ac9014059cb602262ec4f132472de830"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_rocks.png.meta",
+      "sha256": "5050c11565d9ead65a42d4f543ce6d62e525d23ac639ca97b858e1cc76c2d761"
+    },
+    {
+      "file": "res/design/hd2d/environment/flower.png",
+      "sha256": "afbc76712747018ffbd1989c0f2751009305ce889e7feaeca2f1fc281f067792"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_flower.png",
+      "sha256": "bdbb9a7c4cacd9e25196336ec7ed66f09ab0966ca915886efa6839c19a3bec62"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_flower.png.meta",
+      "sha256": "1a17cd1a8fb4e57be94e66629eeb8bd512367f16b7ea98ae482e56fbbd50e8b3"
+    },
+    {
+      "file": "res/design/hd2d/environment/fruit_apple.png",
+      "sha256": "fb24cf02183ae58e60f36de6356c1d8c43ff2293c4e5dc9b2f24c1e9275e5610"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_apple.png",
+      "sha256": "a6ac9e0487255f12a2f6d079a0c8941defafec14f9e8ba88b0d0940afe663a44"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_apple.png.meta",
+      "sha256": "6ea8eb6c205d242538320f467b7e0780cd5bff6f2f986016fcf0ac35f8c0cc37"
+    },
+    {
+      "file": "res/design/hd2d/environment/campfire_base.png",
+      "sha256": "207fcd5c2e159d90bbab681232f345e8c4ed6aeb4a4a1e3fcfb98a179f1b1cff"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_campfire.png",
+      "sha256": "7388dd155f59e275a8ae6bc8340def326c0d25fb04b01844156d553a25e58ce8"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_campfire.png.meta",
+      "sha256": "458b6818df1f2fc373e061f4023357e3bd303e432137256ce75800487f91586e"
+    },
+    {
+      "file": "res/design/hd2d/environment/campfire_front.png",
+      "sha256": "54af6583d024b018d8994745350277707059b970152b882109ca9dc8c9163561"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_campfire_front.png",
+      "sha256": "eb5de44bbcd40fcbf0d74e1aa10e1cb7bc6bad91f11d59eb00d0a1e2d089c5fe"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_campfire_front.png.meta",
+      "sha256": "026e951bfd60a479ede2864fc48bd63fe8ca859579447d8c564e990737a6e69e"
+    },
+    {
+      "file": "res/design/hd2d/environment/campfire_flame_strip.png",
+      "sha256": "5f996f8d17961b2e806527c3134fcee5bd93badb77d3bf995b689a9b858cf06e"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_flame_1.png",
+      "sha256": "8a912d0c69d8729d1e24876e939c08ce06f0d4cf6c0e4bd02e9ae7f9bb7323cf"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_flame_1.png.meta",
+      "sha256": "b8e3a4ea13deeb92d9cc6a83f0ca6e63ea6c692b706fc8947058996afc58f066"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_flame_2.png",
+      "sha256": "e45defcafc9e5b96b5fd0eac09ccfecac9884996a082c90f85212b80f75869ef"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_flame_2.png.meta",
+      "sha256": "565691e14d0355ba5d6db5ed9281e9641fb49b987605b75ff9cffe57d79014ca"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_flame_3.png",
+      "sha256": "d1f905eb501e186fe785c2289100713f1de84110f4395e3c032a867cbe5b51e8"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_flame_3.png.meta",
+      "sha256": "a35be6847e7d6d407b3f62867302b314608fc0c3b5d19e1b3db91e8155d034ca"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_flame_4.png",
+      "sha256": "afc47ce7f41dc05aa108faeea57f07cdf0018c45eccc74ed483a0cd162c365b1"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures/env_flame_4.png.meta",
+      "sha256": "886c8ac9ef861438931f749d5cf8f449f9c3413067f6f9c0cc98e51bc48449ea"
+    }
+  ],
+  "captureOutputs": [
+    {
+      "file": "res/editor/BuildingWorkshop/assets/Hd2dProbe.ls",
+      "sha256": "7d1602cac20ead9328f7555f9c544e57251820cd37708e7e0a1a8e90a2f060f4"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/prefabs/ARROW.lh",
+      "sha256": "7d066378f7a9a3f745593edd1f39d3d4cc234f8eb421ecfca4e7ccfa1888f13f"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/prefabs/STONE.lh",
+      "sha256": "96bed1f7fd2168305059ae72b5595e27d7a4cbcf48ec9b2a7925ead498f7d1c7"
+    },
+    {
+      "file": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/prefabs/SLOW.lh",
+      "sha256": "4a271a4050f9677db1afad5d6bdbd917f8a589fd54aede133807ab7d45c6ce81"
+    }
+  ],
+  "samples": [
+    {
+      "file": "native_frame_0.png",
+      "bytes": 1260885,
+      "sha256": "0908e5afb9d7121e1694cf06febfde5782c9ca0aba9b5f51b7922a6664db0c7a"
+    },
+    {
+      "file": "native_frame_1.png",
+      "bytes": 1260864,
+      "sha256": "6e30e16582781e71fd8501b7d039ad51a82f61b5819b4cc1e4359f15da93d86f"
+    },
+    {
+      "file": "native_frame_2.png",
+      "bytes": 1261472,
+      "sha256": "4501ce6ba3e6751daa1edd21202845c156f1dc7e1b2631d9c5f561e7c9ade0a1"
+    },
+    {
+      "file": "native_frame_3.png",
+      "bytes": 1261822,
+      "sha256": "8aa9a52fc1e179f984b87ac18c503273c92c73407416ffa280bc6c30e1136d9b"
+    }
+  ],
+  "motionChecks": [
+    {
+      "name": "MaleOfflineWalk",
+      "frames": [
+        "male_walk_1",
+        "male_walk_2",
+        "male_walk_3",
+        "male_walk_4"
+      ],
+      "fps": 6,
+      "serializedAutoPlay": true
+    },
+    {
+      "name": "FemaleOfflineWalk",
+      "frames": [
+        "female_walk_1",
+        "female_walk_2",
+        "female_walk_3",
+        "female_walk_4"
+      ],
+      "fps": 6,
+      "serializedAutoPlay": true
+    },
+    {
+      "name": "ChildOfflineWalk",
+      "frames": [
+        "child_walk_1",
+        "child_walk_2",
+        "child_walk_3",
+        "child_walk_4"
+      ],
+      "fps": 6,
+      "serializedAutoPlay": true
+    },
+    {
+      "name": "ElderOfflineWalk",
+      "frames": [
+        "elder_walk_1",
+        "elder_walk_2",
+        "elder_walk_3",
+        "elder_walk_4"
+      ],
+      "fps": 4,
+      "serializedAutoPlay": true
+    },
+    {
+      "name": "BabyOfflineIdle",
+      "frames": [
+        "baby_idle_1",
+        "baby_idle_2",
+        "baby_idle_3",
+        "baby_idle_4"
+      ],
+      "fps": 2,
+      "serializedAutoPlay": true
+    },
+    {
+      "name": "RaiderFrontWalk",
+      "frames": [
+        "raider_0",
+        "raider_1"
+      ],
+      "fps": 6,
+      "serializedAutoPlay": true
+    },
+    {
+      "name": "FireFlame",
+      "frames": [
+        "env_flame_1",
+        "env_flame_2",
+        "env_flame_3",
+        "env_flame_4"
+      ],
+      "fps": 6,
+      "serializedAutoPlay": true
+    }
+  ],
+  "allFourNativeSamplesDiffer": true,
+  "validationInputs": [
+    {
+      "file": "project/LayaProject/src/config/DefenseConfig.ts",
+      "sha256": "e014e2cd5aefda3ad3535c3db38431b98bb329187c081f54133aae2b1efeaf06"
+    },
+    {
+      "file": "res/tools/hd2d/verify-probe.mjs",
+      "sha256": "dc43e7f6d438b0c8449d649370b1e1113d3799bf73935dfa7ad4826f0bf5472e"
+    },
+    {
+      "file": "res/source/rendered2d/characters/male/foot-validation.json",
+      "sha256": "2f8ea3d0ccd3b2f211fdc68f4ed34695bfbe96d575cdbd2591f4994cf5c05e60"
+    }
+  ]
+}

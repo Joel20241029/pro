@@ -12,7 +12,7 @@ export interface Person {
 }
 export interface Family { id: string; partners: string[]; lastBirth: number | null; }
 export interface Tower { kind: TowerKind | null; level: number; operator: string | null; }
-export interface Wave { budget: number; tier: number; affix: "NONE" | "FAST" | "STURDY" | "GROUP"; entries: { kind: EnemyKind; tick: number }[]; }
+export interface Wave { budget: number; tier: number; affix: "NONE" | "FAST" | "STURDY" | "GROUP"; entries: { kind: EnemyKind; tick: number; appearanceSeed: number }[]; }
 export type Choice = { kind: "SKILL"; person: string; options: Skill[] } | { kind: "TRAVELER"; person: Person } | { kind: "POLICY"; options: string[] } | { kind: "TIER" };
 export interface Legacy {
     births: number; retirees: number; bestNight: number; traits: Trait[]; nextRun: number;

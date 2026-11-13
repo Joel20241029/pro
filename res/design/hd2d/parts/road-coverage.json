@@ -1,0 +1,40 @@
+{
+  "path": [
+    [
+      360,
+      230
+    ],
+    [
+      360,
+      350
+    ],
+    [
+      250,
+      435
+    ],
+    [
+      470,
+      550
+    ],
+    [
+      360,
+      655
+    ],
+    [
+      360,
+      760
+    ]
+  ],
+  "renderSize": [
+    720,
+    1065
+  ],
+  "testedTextureSize": [
+    737,
+    1065
+  ],
+  "samples": 505,
+  "minimumAlphaOnSimulationPath": 253,
+  "passed": true,
+  "scope": "path center only, not full enemy footprint"
+}

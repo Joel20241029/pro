@@ -1,0 +1,94 @@
+{
+  "status": "four_direction_motion_candidate_not_integrated",
+  "method": "actual Blender offline rendering",
+  "source": "res/source/rendered2d/characters/elder/elder_direction_probe.blend",
+  "frames": [
+    {
+      "file": "elder_down_1.png",
+      "bytes": 257250,
+      "sha256": "6290f0645e3694b0a078df5d3461091b54c06dc6b080dd36a86fbf8e76c72cc9"
+    },
+    {
+      "file": "elder_down_2.png",
+      "bytes": 257725,
+      "sha256": "ddc2f8e67a8a561e68ef16e9c4d76394feb261a4af8b58b49293acf37d9fe20a"
+    },
+    {
+      "file": "elder_down_3.png",
+      "bytes": 257720,
+      "sha256": "273435c843cb7f11b8510d1bc4bbc3150de540a17489a8e4a0a9b83b06938c92"
+    },
+    {
+      "file": "elder_down_4.png",
+      "bytes": 257912,
+      "sha256": "bfd6c2f2a2be302456b7964e311f64f4d17d1723a31409a3cdb5a5e6ab119cca"
+    },
+    {
+      "file": "elder_left_1.png",
+      "bytes": 245926,
+      "sha256": "dde052193cc28d6ad73b4b131ba5f01d8416ca022f5cf4827b72da04d9c844fc"
+    },
+    {
+      "file": "elder_left_2.png",
+      "bytes": 246063,
+      "sha256": "72e63da71822cd3b507e303b266c1ccb56b087545a0e153a5593dc7b087b156a"
+    },
+    {
+      "file": "elder_left_3.png",
+      "bytes": 247145,
+      "sha256": "2a6a5ab8effd36188916c52d6f7992bff6f36ae3992dbbbb216f8bb3c5e2451e"
+    },
+    {
+      "file": "elder_left_4.png",
+      "bytes": 247608,
+      "sha256": "fbbfd5c10f0360ec3cc43a3f1c3ae36282f17f5a019cd2515cfe7d5b53293ebe"
+    },
+    {
+      "file": "elder_right_1.png",
+      "bytes": 254312,
+      "sha256": "41968398e45f922d6e17def8c873039f72ca5f1e5fc3df5a8d06c4f9313636a8"
+    },
+    {
+      "file": "elder_right_2.png",
+      "bytes": 256228,
+      "sha256": "855945a40b5081539fb85d5bd376228bc40b297abfae6d5791c6b8eb05afbe15"
+    },
+    {
+      "file": "elder_right_3.png",
+      "bytes": 255170,
+      "sha256": "68b10c95ec4eb5bbe9a31eb16970b7c7baacf5b95b9b68da1b11d9ed5261ed86"
+    },
+    {
+      "file": "elder_right_4.png",
+      "bytes": 254630,
+      "sha256": "7017d88cc5ad19a2d27a6fe1cbf27b7b30c4f323c12b1279238aa4ee631b528f"
+    },
+    {
+      "file": "elder_up_1.png",
+      "bytes": 240180,
+      "sha256": "f2da12da84d89eaddd01a5bd609ee8c29be76251c2c507aea0da3afd3504d602"
+    },
+    {
+      "file": "elder_up_2.png",
+      "bytes": 240843,
+      "sha256": "a185b18f41d919cb144b254537744eb0e43679aa6dd2880198567789fbc42e88"
+    },
+    {
+      "file": "elder_up_3.png",
+      "bytes": 240901,
+      "sha256": "ef77d7fea0239bbd9a4cd906e0cf99828feba0547c6df1bad53f99c0ac4d0816"
+    },
+    {
+      "file": "elder_up_4.png",
+      "bytes": 240241,
+      "sha256": "77a1033dc4e173d3dac10b95ffafc43c2419021d8f27835377fa7e65af93837f"
+    }
+  ],
+  "frameSize": [
+    512,
+    512
+  ],
+  "fps": 4,
+  "mirror": false,
+  "cameraAndLightsFixed": true
+}

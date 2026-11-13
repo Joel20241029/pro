@@ -1,4 +1,4 @@
-# 建筑制作工程
+# 建筑、怪物与粒子制作工程
 
 使用 LayaAir IDE 3.4.2 导入本目录或打开 `BuildingWorkshop.laya`。工程可独立编辑，不依赖 Downloads 中的试验项目。`engine/` 是 IDE 生成的本地引擎与声明，未纳入版本库；请使用对应版本的 IDE 生成。
 
@@ -27,3 +27,25 @@
 在仓库根运行 `node res/tools/build-resources.mjs --work <Downloads内目录> --sync`。转换器读取原生 .lh，拒绝未知属性、纹理或动画。修改范围后必须执行建筑与全屏测试，不能只运行编辑器搭建命令。
 
 `BuildingPreview.ls` 是查看多个成品的场景，不是将所有建筑装入一个 prefab。正式游戏不会加载这个预览场景。
+
+## 怪物制作与验收
+
+10 个独立预制体位于 [assets/enemyAuthoring](assets/enemyAuthoring/README.md)。沿用同一个制作工程，避免重复引擎、插件和配置。
+
+- `工具 / BuildVillageEnemies`：按挂点种子，用 Laya 原生保存十种四帧预制体；会覆盖人工布局，日常编辑不用重复执行。
+- `工具 / CheckEnemyComposition`：实际验证 drawImage 局部乘色与配件整体镜像，输出 Downloads 本任务 spike 目录。
+- `工具 / VerifyEnemiesInGame`：使用当前正式代码和三包资源，渲染人物准备/失败状态、长短屏、战前列表、10 种怪物、40 敌人＋20 村民容量及四帧/变体总览。结果位于 `~/Downloads/daidai-enemies-loading-20261112/checks/native/`。
+
+当前 GameView 验收菜单共同读取 `~/Downloads/daidai-enemies-loading-20261112/checks/compiled/`，先用正式游戏 tsconfig 编译为 CommonJS 到该目录。CompareGameRefactor 是历史快照入口，仍需旧两份编译及 `~/Downloads/daidai-enemies-loading-20261112/archive/old-village-package/` 的锁定图集，不用新三包替代历史对照输入。
+
+EnemyVariantsPreview.ls、EnemyWalkPreview.ls 是查看用的原生场景，不是混合怪物 prefab，不参与发布。
+
+
+## 粒子制作与验收
+
+6 个独立原生粒子预制体及共享材质、shader 位于 [assets/particleAuthoring](assets/particleAuthoring/README.md)。所有粒子使用内置白纹理，不另加图片。1.0.13 保留命中、精英圈和红色按钮环绕，删除拖尾与升级粒子。
+
+- `工具 / BuildVillageParticles`：按 recipe 用真实 Laya 原生组件和资产保存器重建，覆盖手工参数；日常调参直接编辑对应 `.lh`。
+- `工具 / VerifyParticlesInGame`：读取 `~/Downloads/daidai-release-1.0.13/checks/compiled/` 的正式游戏编译，在原生持续渲染中验证 6 种效果、长短屏、保留建筑升级动作、实际命中粒子的暂停和三倍速压力场景。输出至该任务 `checks/native/`，全部存档在内存。
+
+运行分包只装原生序列化转换后的粒子参数。发布资源、包体与验证边界见 [技术文档 29](../../../doc/tech/29_粒子特效与动作反馈.md)。

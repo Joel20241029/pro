@@ -8,29 +8,59 @@
   "trimAlphaThreshold": 0,
   "pages": [
     {
-      "id": "world_0",
-      "path": "atlases/world_0.png",
-      "runtimeFile": "world_0.png",
+      "id": "base_0",
+      "path": "atlases/base_0.png",
+      "runtimeFile": "base_0.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1331715,
-      "sha256": "a9b5caa1c670534a54d0eb2857575b37e2dc395c7b4813fbcc5a11a1b2e1ead0",
-      "group": "world"
+      "bytes": 687488,
+      "sha256": "10ef7ab9215bd93c256f6bbf97d00f19d7a3f4edc67b888dff9e3b03eedd5b45",
+      "group": "base"
     },
     {
-      "id": "ui_0",
-      "path": "atlases/ui_0.png",
-      "runtimeFile": "ui_0.png",
+      "id": "characters_0",
+      "path": "atlases/characters_0.png",
+      "runtimeFile": "characters_0.png",
       "width": 512,
       "height": 512,
-      "bytes": 114881,
-      "sha256": "11d3f56539c9d5a42725b9853063b4b1cedacf6c1d843d16f4858c3fd61b3ca6",
-      "group": "ui"
+      "bytes": 290146,
+      "sha256": "22c4301b2e15198a7586e1be2f9886a768e8a7c24ca02ece219bfd8d8a8c386c",
+      "group": "characters"
+    },
+    {
+      "id": "characters_1",
+      "path": "atlases/characters_1.png",
+      "runtimeFile": "characters_1.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 293381,
+      "sha256": "4962ccc4630b590c0246f268402c29b4286a2c401e0c7845a1004035c327b547",
+      "group": "characters"
+    },
+    {
+      "id": "battle_0",
+      "path": "atlases/battle_0.png",
+      "runtimeFile": "battle_0.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 287577,
+      "sha256": "e10fbcfddb546dcc10d7cec3ff006731f7b793cfa4b22b7c826d107464d1400e",
+      "group": "battle"
+    },
+    {
+      "id": "battle_1",
+      "path": "atlases/battle_1.png",
+      "runtimeFile": "battle_1.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 234222,
+      "sha256": "e679e4aa888f40e2b093ce1f755d4c94e18737bcbf9debb10c1b06846f89f267",
+      "group": "battle"
     }
   ],
   "frames": {
     "building_gate_closed": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 2,
         "y": 2,
@@ -52,7 +82,7 @@
       "nineSlice": null
     },
     "building_gate_damaged": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 166,
         "y": 2,
@@ -74,7 +104,7 @@
       "nineSlice": null
     },
     "building_palisade": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 330,
         "y": 2,
@@ -96,7 +126,7 @@
       "nineSlice": null
     },
     "building_house_terracotta": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 477,
         "y": 2,
@@ -118,7 +148,7 @@
       "nineSlice": null
     },
     "building_house_thatched": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 330,
         "y": 71,
@@ -140,7 +170,7 @@
       "nineSlice": null
     },
     "building_lumber_shed": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 2,
         "y": 166,
@@ -162,7 +192,7 @@
       "nineSlice": null
     },
     "building_tower_arrow": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 134,
         "y": 166,
@@ -184,7 +214,7 @@
       "nineSlice": null
     },
     "building_tower_pad": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 609,
         "y": 2,
@@ -206,7 +236,7 @@
       "nineSlice": null
     },
     "building_tower_slow": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 741,
         "y": 2,
@@ -228,7 +258,7 @@
       "nineSlice": null
     },
     "building_tower_stone": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 873,
         "y": 2,
@@ -250,7 +280,7 @@
       "nineSlice": null
     },
     "building_farm": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 462,
         "y": 134,
@@ -272,7 +302,7 @@
       "nineSlice": null
     },
     "deco_tree_pine": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 594,
         "y": 134,
@@ -294,7 +324,7 @@
       "nineSlice": null
     },
     "deco_tree_oak": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 723,
         "y": 134,
@@ -316,7 +346,7 @@
       "nineSlice": null
     },
     "module_pagoda": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 846,
         "y": 134,
@@ -338,7 +368,7 @@
       "nineSlice": null
     },
     "module_thatch": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 846,
         "y": 214,
@@ -360,7 +390,7 @@
       "nineSlice": null
     },
     "module_slate": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 723,
         "y": 251,
@@ -382,7 +412,7 @@
       "nineSlice": null
     },
     "module_tile": {
-      "page": "world_0",
+      "page": "base_0",
       "rect": {
         "x": 827,
         "y": 288,
@@ -403,3201 +433,11 @@
       },
       "nineSlice": null
     },
-    "building_hearth_lit": {
-      "page": "world_0",
-      "rect": {
-        "x": 266,
-        "y": 203,
-        "w": 96,
-        "h": 93
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 96
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 48,
-        "y": 90
-      },
-      "nineSlice": null
-    },
-    "module_canopy_teal": {
-      "page": "world_0",
-      "rect": {
-        "x": 366,
-        "y": 203,
-        "w": 96,
-        "h": 53
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 53
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 48,
-        "y": 53
-      },
-      "nineSlice": null
-    },
-    "module_canopy_thatch": {
-      "page": "world_0",
-      "rect": {
-        "x": 466,
-        "y": 203,
-        "w": 96,
-        "h": 53
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 53
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 48,
-        "y": 53
-      },
-      "nineSlice": null
-    },
-    "deco_rocks": {
-      "page": "world_0",
-      "rect": {
-        "x": 931,
-        "y": 288,
-        "w": 90,
-        "h": 95
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 96
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 48,
-        "y": 90
-      },
-      "nineSlice": null
-    },
-    "deco_bush": {
-      "page": "world_0",
-      "rect": {
-        "x": 566,
-        "y": 258,
-        "w": 90,
-        "h": 94
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 96
-      },
-      "trimOffset": {
-        "x": 5,
-        "y": 2
-      },
-      "pivot": {
-        "x": 48,
-        "y": 90
-      },
-      "nineSlice": null
-    },
-    "enemy_chief_walk_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 660,
-        "y": 323,
-        "w": 80,
-        "h": 92
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 96
-      },
-      "trimOffset": {
-        "x": 9,
-        "y": 4
-      },
-      "pivot": {
-        "x": 48,
-        "y": 92
-      },
-      "nineSlice": null
-    },
-    "deco_torch": {
-      "page": "world_0",
-      "rect": {
-        "x": 744,
-        "y": 360,
-        "w": 91,
-        "h": 88
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 96
-      },
-      "trimOffset": {
-        "x": 4,
-        "y": 2
-      },
-      "pivot": {
-        "x": 48,
-        "y": 90
-      },
-      "nineSlice": null
-    },
-    "enemy_chief_walk_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 839,
-        "y": 360,
-        "w": 80,
-        "h": 91
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 96
-      },
-      "trimOffset": {
-        "x": 9,
-        "y": 0
-      },
-      "pivot": {
-        "x": 48,
-        "y": 92
-      },
-      "nineSlice": null
-    },
-    "enemy_chief_walk_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 923,
-        "y": 387,
-        "w": 82,
-        "h": 88
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 96
-      },
-      "trimOffset": {
-        "x": 6,
-        "y": 5
-      },
-      "pivot": {
-        "x": 48,
-        "y": 92
-      },
-      "nineSlice": null
-    },
-    "enemy_chief_walk_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 366,
-        "y": 260,
-        "w": 82,
-        "h": 88
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 96
-      },
-      "trimOffset": {
-        "x": 8,
-        "y": 3
-      },
-      "pivot": {
-        "x": 48,
-        "y": 92
-      },
-      "nineSlice": null
-    },
-    "module_battlement": {
-      "page": "world_0",
-      "rect": {
-        "x": 452,
-        "y": 260,
-        "w": 88,
-        "h": 59
-      },
-      "sourceSize": {
-        "w": 88,
-        "h": 59
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 44,
-        "y": 59
-      },
-      "nineSlice": null
-    },
-    "module_floor": {
-      "page": "world_0",
-      "rect": {
-        "x": 452,
-        "y": 323,
-        "w": 88,
-        "h": 46
-      },
-      "sourceSize": {
-        "w": 88,
-        "h": 46
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 44,
-        "y": 46
-      },
-      "nineSlice": null
-    },
-    "module_foundation": {
-      "page": "world_0",
-      "rect": {
-        "x": 544,
-        "y": 356,
-        "w": 88,
-        "h": 42
-      },
-      "sourceSize": {
-        "w": 88,
-        "h": 42
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 44,
-        "y": 42
-      },
-      "nineSlice": null
-    },
-    "deco_log_pile": {
-      "page": "world_0",
-      "rect": {
-        "x": 2,
-        "y": 298,
-        "w": 83,
-        "h": 86
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 96
-      },
-      "trimOffset": {
-        "x": 6,
-        "y": 2
-      },
-      "pivot": {
-        "x": 48,
-        "y": 90
-      },
-      "nineSlice": null
-    },
-    "deco_village_sign": {
-      "page": "world_0",
-      "rect": {
-        "x": 89,
-        "y": 298,
-        "w": 84,
-        "h": 47
-      },
-      "sourceSize": {
-        "w": 88,
-        "h": 52
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 44,
-        "y": 50
-      },
-      "nineSlice": null
-    },
-    "enemy_runner_walk_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 177,
-        "y": 298,
-        "w": 76,
-        "h": 80
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 3,
-        "y": 0
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "module_round_body": {
-      "page": "world_0",
-      "rect": {
-        "x": 89,
-        "y": 349,
-        "w": 80,
-        "h": 72
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 72
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 40,
-        "y": 72
-      },
-      "nineSlice": null
-    },
-    "module_stonegate": {
-      "page": "world_0",
-      "rect": {
-        "x": 2,
-        "y": 388,
-        "w": 80,
-        "h": 71
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 71
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 40,
-        "y": 71
-      },
-      "nineSlice": null
-    },
-    "enemy_runner_walk_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 950,
-        "y": 134,
-        "w": 69,
-        "h": 80
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 10,
-        "y": 0
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "enemy_runner_walk_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 257,
-        "y": 300,
-        "w": 66,
-        "h": 80
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 6,
-        "y": 0
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "enemy_runner_walk_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 173,
-        "y": 382,
-        "w": 66,
-        "h": 80
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 3,
-        "y": 0
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "module_workshop": {
-      "page": "world_0",
-      "rect": {
-        "x": 86,
-        "y": 425,
-        "w": 80,
-        "h": 57
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 57
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 40,
-        "y": 57
-      },
-      "nineSlice": null
-    },
-    "enemy_armored_walk_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 2,
-        "y": 463,
-        "w": 78,
-        "h": 73
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 0
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "enemy_armored_walk_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 327,
-        "y": 352,
-        "w": 74,
-        "h": 77
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 6,
-        "y": 0
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_female_walk_right_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 243,
-        "y": 384,
-        "w": 76,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_female_walk_up_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 405,
-        "y": 373,
-        "w": 76,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_male_walk_right_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 323,
-        "y": 433,
-        "w": 76,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_care_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 243,
-        "y": 464,
-        "w": 76,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_chop_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 84,
-        "y": 486,
-        "w": 76,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_harvest_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 2,
-        "y": 540,
-        "w": 76,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_harvest_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 485,
-        "y": 402,
-        "w": 76,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_care_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 403,
-        "y": 453,
-        "w": 76,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_chop_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 323,
-        "y": 513,
-        "w": 76,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_chop_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 565,
-        "y": 402,
-        "w": 76,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_farm_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 645,
-        "y": 419,
-        "w": 76,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "enemy_armored_walk_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 725,
-        "y": 452,
-        "w": 76,
-        "h": 75
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_female_idle_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 164,
-        "y": 486,
-        "w": 75,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_male_idle_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 243,
-        "y": 544,
-        "w": 75,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_care_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 805,
-        "y": 455,
-        "w": 76,
-        "h": 75
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 3
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_chop_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 885,
-        "y": 479,
-        "w": 76,
-        "h": 74
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_male_idle_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 82,
-        "y": 566,
-        "w": 73,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_male_walk_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 2,
-        "y": 620,
-        "w": 76,
-        "h": 73
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 5
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_farm_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 159,
-        "y": 566,
-        "w": 76,
-        "h": 73
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 5
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_walk_up_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 483,
-        "y": 482,
-        "w": 73,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 3,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "module_lattice": {
-      "page": "world_0",
-      "rect": {
-        "x": 403,
-        "y": 533,
-        "w": 72,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 72,
-        "h": 76
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 36,
-        "y": 76
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_walk_right_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 322,
-        "y": 593,
-        "w": 76,
-        "h": 72
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 6
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_male_walk_up_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 239,
-        "y": 624,
-        "w": 76,
-        "h": 71
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 6
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_harvest_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 159,
-        "y": 643,
-        "w": 71,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_walk_up_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 82,
-        "y": 646,
-        "w": 71,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_care_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 2,
-        "y": 697,
-        "w": 70,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_harvest_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 560,
-        "y": 482,
-        "w": 70,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 8,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_chop_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 634,
-        "y": 499,
-        "w": 70,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 8,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_male_walk_right_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 708,
-        "y": 531,
-        "w": 68,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 10,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_chop_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 780,
-        "y": 534,
-        "w": 68,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 10,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_female_walk_up_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 479,
-        "y": 562,
-        "w": 67,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_chop_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 402,
-        "y": 613,
-        "w": 66,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_walk_up_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 319,
-        "y": 669,
-        "w": 61,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_walk_up_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 965,
-        "y": 479,
-        "w": 46,
-        "h": 76
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 17,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_female_walk_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 550,
-        "y": 562,
-        "w": 75,
-        "h": 75
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 3
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_walk_right_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 629,
-        "y": 579,
-        "w": 75,
-        "h": 75
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_female_idle_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 550,
-        "y": 641,
-        "w": 75,
-        "h": 74
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 3,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_female_walk_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 472,
-        "y": 642,
-        "w": 74,
-        "h": 75
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 4,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "enemy_armored_walk_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 234,
-        "y": 699,
-        "w": 73,
-        "h": 75
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 7,
-        "y": 0
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_male_walk_up_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 384,
-        "y": 693,
-        "w": 75,
-        "h": 71
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 6
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_chop_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 157,
-        "y": 723,
-        "w": 71,
-        "h": 75
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 3
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_walk_right_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 76,
-        "y": 726,
-        "w": 71,
-        "h": 75
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 6,
-        "y": 3
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_walk_right_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 852,
-        "y": 557,
-        "w": 74,
-        "h": 70
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 7
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_female_walk_right_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 708,
-        "y": 611,
-        "w": 68,
-        "h": 74
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 10,
-        "y": 2
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_walk_up_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 780,
-        "y": 614,
-        "w": 68,
-        "h": 73
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 5,
-        "y": 5
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_elder_male_walk_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 311,
-        "y": 749,
-        "w": 61,
-        "h": 73
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 17,
-        "y": 5
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_walk_right_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 2,
-        "y": 777,
-        "w": 70,
-        "h": 72
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 6
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_farm_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 629,
-        "y": 658,
-        "w": 72,
-        "h": 70
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 8
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "module_woodgate": {
-      "page": "world_0",
-      "rect": {
-        "x": 550,
-        "y": 719,
-        "w": 72,
-        "h": 68
-      },
-      "sourceSize": {
-        "w": 72,
-        "h": 68
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 36,
-        "y": 68
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_walk_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 705,
-        "y": 689,
-        "w": 65,
-        "h": 72
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 5,
-        "y": 6
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_walk_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 626,
-        "y": 732,
-        "w": 59,
-        "h": 72
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 8,
-        "y": 6
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_walk_right_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 232,
-        "y": 778,
-        "w": 59,
-        "h": 72
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 17,
-        "y": 6
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_walk_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 151,
-        "y": 802,
-        "w": 58,
-        "h": 72
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 18,
-        "y": 6
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "module_plaster": {
-      "page": "world_0",
-      "rect": {
-        "x": 950,
-        "y": 218,
-        "w": 72,
-        "h": 54
-      },
-      "sourceSize": {
-        "w": 72,
-        "h": 54
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 36,
-        "y": 54
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_walk_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 76,
-        "y": 805,
-        "w": 54,
-        "h": 72
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 19,
-        "y": 6
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "module_masonry": {
-      "page": "world_0",
-      "rect": {
-        "x": 463,
-        "y": 721,
-        "w": 72,
-        "h": 53
-      },
-      "sourceSize": {
-        "w": 72,
-        "h": 53
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 36,
-        "y": 53
-      },
-      "nineSlice": null
-    },
-    "module_porch": {
-      "page": "world_0",
-      "rect": {
-        "x": 376,
-        "y": 768,
-        "w": 72,
-        "h": 52
-      },
-      "sourceSize": {
-        "w": 72,
-        "h": 52
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 36,
-        "y": 52
-      },
-      "nineSlice": null
-    },
-    "module_field": {
-      "page": "world_0",
-      "rect": {
-        "x": 930,
-        "y": 559,
-        "w": 72,
-        "h": 48
-      },
-      "sourceSize": {
-        "w": 72,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 36,
-        "y": 96
-      },
-      "nineSlice": null
-    },
-    "module_balcony": {
-      "page": "world_0",
-      "rect": {
-        "x": 930,
-        "y": 611,
-        "w": 72,
-        "h": 45
-      },
-      "sourceSize": {
-        "w": 72,
-        "h": 45
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 36,
-        "y": 45
-      },
-      "nineSlice": null
-    },
-    "module_porch_rail": {
-      "page": "world_0",
-      "rect": {
-        "x": 852,
-        "y": 631,
-        "w": 72,
-        "h": 34
-      },
-      "sourceSize": {
-        "w": 72,
-        "h": 34
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 36,
-        "y": 34
-      },
-      "nineSlice": null
-    },
-    "module_trough": {
-      "page": "world_0",
-      "rect": {
-        "x": 744,
-        "y": 323,
-        "w": 72,
-        "h": 24
-      },
-      "sourceSize": {
-        "w": 72,
-        "h": 24
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 36,
-        "y": 97
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_walk_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 928,
-        "y": 660,
-        "w": 71,
-        "h": 71
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 6,
-        "y": 7
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_farm_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 2,
-        "y": 853,
-        "w": 69,
-        "h": 71
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 9,
-        "y": 7
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_walk_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 852,
-        "y": 669,
-        "w": 69,
-        "h": 71
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 8,
-        "y": 7
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_walk_right_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 774,
-        "y": 691,
-        "w": 69,
-        "h": 71
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 7
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_walk_up_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 689,
-        "y": 765,
-        "w": 68,
-        "h": 71
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 7
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_walk_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 2,
-        "y": 928,
-        "w": 66,
-        "h": 71
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 7
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_walk_up_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 72,
-        "y": 928,
-        "w": 65,
-        "h": 71
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 7
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_walk_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 452,
-        "y": 778,
-        "w": 61,
-        "h": 71
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 9,
-        "y": 7
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_female_a_walk_up_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 376,
-        "y": 824,
-        "w": 44,
-        "h": 71
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 18,
-        "y": 7
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_male_a_walk_right_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 295,
-        "y": 826,
-        "w": 69,
-        "h": 70
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 8,
-        "y": 7
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "enemy_disruptor_walk_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 213,
-        "y": 854,
-        "w": 69,
-        "h": 60
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 6,
-        "y": 9
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "enemy_disruptor_walk_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 141,
-        "y": 878,
-        "w": 66,
-        "h": 64
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 11
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "enemy_disruptor_walk_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 141,
-        "y": 946,
-        "w": 65,
-        "h": 64
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 15,
-        "y": 8
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "module_ballista": {
-      "page": "world_0",
-      "rect": {
-        "x": 210,
-        "y": 946,
-        "w": 64,
-        "h": 57
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 57
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 32,
-        "y": 85
-      },
-      "nineSlice": null
-    },
-    "module_sling": {
-      "page": "world_0",
-      "rect": {
-        "x": 925,
-        "y": 735,
-        "w": 64,
-        "h": 48
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 32,
-        "y": 48
-      },
-      "nineSlice": null
-    },
-    "villager_boy_walk_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 847,
-        "y": 744,
-        "w": 62,
-        "h": 62
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_girl_walk_right_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 761,
-        "y": 766,
-        "w": 62,
-        "h": 62
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_girl_walk_up_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 278,
-        "y": 918,
-        "w": 62,
-        "h": 62
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_boy_walk_right_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 517,
-        "y": 791,
-        "w": 61,
-        "h": 62
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_girl_walk_up_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 424,
-        "y": 853,
-        "w": 62,
-        "h": 61
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_girl_walk_up_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 344,
-        "y": 900,
-        "w": 59,
-        "h": 62
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 3,
-        "y": 1
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_girl_walk_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 582,
-        "y": 808,
-        "w": 62,
-        "h": 58
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 5
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_girl_walk_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 490,
-        "y": 857,
-        "w": 62,
-        "h": 58
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 5
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_girl_walk_up_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 407,
-        "y": 918,
-        "w": 58,
-        "h": 62
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 5,
-        "y": 1
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_boy_walk_up_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 469,
-        "y": 919,
-        "w": 57,
-        "h": 62
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 5,
-        "y": 1
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "enemy_raider_walk_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 530,
-        "y": 919,
-        "w": 54,
-        "h": 62
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 4,
-        "y": 2
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "enemy_raider_walk_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 913,
-        "y": 787,
-        "w": 52,
-        "h": 62
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 4,
-        "y": 2
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "enemy_raider_walk_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 827,
-        "y": 810,
-        "w": 60,
-        "h": 61
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 4,
-        "y": 3
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "enemy_raider_walk_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 660,
-        "y": 258,
-        "w": 59,
-        "h": 61
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 5,
-        "y": 2
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_boy_walk_right_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 761,
-        "y": 832,
-        "w": 61,
-        "h": 59
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 3
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_boy_walk_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 648,
-        "y": 840,
-        "w": 54,
-        "h": 60
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 5,
-        "y": 3
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_boy_walk_up_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 706,
-        "y": 840,
-        "w": 49,
-        "h": 60
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 14,
-        "y": 2
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_boy_walk_up_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 969,
-        "y": 787,
-        "w": 49,
-        "h": 60
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 14,
-        "y": 3
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_boy_walk_right_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 969,
-        "y": 851,
-        "w": 48,
-        "h": 60
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 15,
-        "y": 1
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_boy_walk_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 588,
-        "y": 870,
-        "w": 47,
-        "h": 60
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 15,
-        "y": 3
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_boy_walk_up_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 891,
-        "y": 853,
-        "w": 55,
-        "h": 59
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 3
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_boy_walk_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 826,
-        "y": 875,
-        "w": 50,
-        "h": 59
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 13,
-        "y": 3
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "enemy_disruptor_walk_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 759,
-        "y": 895,
-        "w": 57,
-        "h": 58
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 80
-      },
-      "trimOffset": {
-        "x": 15,
-        "y": 10
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "nineSlice": null
-    },
-    "villager_girl_walk_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 588,
-        "y": 957,
-        "w": 51,
-        "h": 58
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 12,
-        "y": 5
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_girl_walk_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 643,
-        "y": 957,
-        "w": 42,
-        "h": 58
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 10,
-        "y": 5
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_boy_walk_right_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 689,
-        "y": 957,
-        "w": 52,
-        "h": 57
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 7,
-        "y": 3
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_girl_walk_right_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 344,
-        "y": 966,
-        "w": 56,
-        "h": 56
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 7,
-        "y": 5
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_girl_walk_right_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 745,
-        "y": 957,
-        "w": 56,
-        "h": 56
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 4,
-        "y": 5
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "villager_girl_walk_right_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 805,
-        "y": 957,
-        "w": 47,
-        "h": 56
-      },
-      "sourceSize": {
-        "w": 64,
-        "h": 64
-      },
-      "trimOffset": {
-        "x": 14,
-        "y": 5
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "nineSlice": null
-    },
-    "module_crystal": {
-      "page": "world_0",
-      "rect": {
-        "x": 856,
-        "y": 938,
-        "w": 36,
-        "h": 51
-      },
-      "sourceSize": {
-        "w": 36,
-        "h": 51
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 18,
-        "y": 48
-      },
-      "nineSlice": null
-    },
-    "module_wheel": {
-      "page": "world_0",
-      "rect": {
-        "x": 639,
-        "y": 904,
-        "w": 48,
-        "h": 46
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 46
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 24,
-        "y": 58
-      },
-      "nineSlice": null
-    },
-    "villager_baby_idle_03": {
-      "page": "world_0",
-      "rect": {
-        "x": 691,
-        "y": 904,
-        "w": 45,
-        "h": 48
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 24,
-        "y": 46
-      },
-      "nineSlice": null
-    },
-    "villager_baby_idle_00": {
-      "page": "world_0",
-      "rect": {
-        "x": 950,
-        "y": 915,
-        "w": 44,
-        "h": 48
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 4,
-        "y": 0
-      },
-      "pivot": {
-        "x": 24,
-        "y": 46
-      },
-      "nineSlice": null
-    },
-    "module_saw": {
-      "page": "world_0",
-      "rect": {
-        "x": 896,
-        "y": 916,
-        "w": 48,
-        "h": 39
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 39
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 24,
-        "y": 60
-      },
-      "nineSlice": null
-    },
-    "module_logs": {
-      "page": "world_0",
-      "rect": {
-        "x": 266,
-        "y": 166,
-        "w": 48,
-        "h": 33
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 33
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 24,
-        "y": 66
-      },
-      "nineSlice": null
-    },
-    "villager_baby_idle_02": {
-      "page": "world_0",
-      "rect": {
-        "x": 896,
-        "y": 959,
-        "w": 47,
-        "h": 45
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 24,
-        "y": 46
-      },
-      "nineSlice": null
-    },
-    "villager_baby_idle_01": {
-      "page": "world_0",
-      "rect": {
-        "x": 947,
-        "y": 967,
-        "w": 44,
-        "h": 47
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 0
-      },
-      "pivot": {
-        "x": 24,
-        "y": 46
-      },
-      "nineSlice": null
-    },
-    "part_crest": {
-      "page": "world_0",
-      "rect": {
-        "x": 995,
-        "y": 967,
-        "w": 26,
-        "h": 30
-      },
-      "sourceSize": {
-        "w": 28,
-        "h": 32
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "pivot": {
-        "x": 14,
-        "y": 32
-      },
-      "nineSlice": null
-    },
-    "module_door": {
-      "page": "world_0",
-      "rect": {
-        "x": 856,
-        "y": 993,
-        "w": 28,
-        "h": 29
-      },
-      "sourceSize": {
-        "w": 28,
-        "h": 29
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 14,
-        "y": 29
-      },
-      "nineSlice": null
-    },
-    "deco_blossom_ivory": {
-      "page": "world_0",
-      "rect": {
-        "x": 211,
-        "y": 918,
-        "w": 26,
-        "h": 23
-      },
-      "sourceSize": {
-        "w": 28,
-        "h": 28
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 2
-      },
-      "pivot": {
-        "x": 14,
-        "y": 28
-      },
-      "nineSlice": null
-    },
-    "deco_blossom_pink": {
-      "page": "world_0",
-      "rect": {
-        "x": 556,
-        "y": 870,
-        "w": 26,
-        "h": 22
-      },
-      "sourceSize": {
-        "w": 28,
-        "h": 28
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 3
-      },
-      "pivot": {
-        "x": 14,
-        "y": 28
-      },
-      "nineSlice": null
-    },
-    "part_banner": {
-      "page": "world_0",
-      "rect": {
-        "x": 241,
-        "y": 918,
-        "w": 26,
-        "h": 22
-      },
-      "sourceSize": {
-        "w": 28,
-        "h": 36
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 7
-      },
-      "pivot": {
-        "x": 14,
-        "y": 36
-      },
-      "nineSlice": null
-    },
-    "module_window": {
-      "page": "world_0",
-      "rect": {
-        "x": 566,
-        "y": 203,
-        "w": 24,
-        "h": 24
-      },
-      "sourceSize": {
-        "w": 24,
-        "h": 24
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 0
-      },
-      "pivot": {
-        "x": 12,
-        "y": 24
-      },
-      "nineSlice": null
-    },
-    "deco_pear_pair": {
-      "page": "world_0",
-      "rect": {
-        "x": 566,
-        "y": 231,
-        "w": 22,
-        "h": 22
-      },
-      "sourceSize": {
-        "w": 24,
-        "h": 24
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "pivot": {
-        "x": 12,
-        "y": 24
-      },
-      "nineSlice": null
-    },
-    "deco_apple_pair": {
-      "page": "world_0",
-      "rect": {
-        "x": 852,
-        "y": 534,
-        "w": 22,
-        "h": 19
-      },
-      "sourceSize": {
-        "w": 24,
-        "h": 24
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 2
-      },
-      "pivot": {
-        "x": 12,
-        "y": 24
-      },
-      "nineSlice": null
-    },
     "panel_parchment": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 2,
-        "y": 2,
+        "x": 266,
+        "y": 203,
         "w": 98,
         "h": 98
       },
@@ -3621,99 +461,649 @@
         "repeat": 0
       }
     },
-    "fx_hit": {
-      "page": "ui_0",
+    "building_hearth_lit": {
+      "page": "base_0",
       "rect": {
-        "x": 2,
-        "y": 104,
-        "w": 38,
-        "h": 46
+        "x": 368,
+        "y": 203,
+        "w": 96,
+        "h": 93
       },
       "sourceSize": {
-        "w": 48,
-        "h": 48
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 90
+      },
+      "nineSlice": null
+    },
+    "module_canopy_teal": {
+      "page": "base_0",
+      "rect": {
+        "x": 468,
+        "y": 203,
+        "w": 96,
+        "h": 53
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 53
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 53
+      },
+      "nineSlice": null
+    },
+    "module_canopy_thatch": {
+      "page": "base_0",
+      "rect": {
+        "x": 568,
+        "y": 258,
+        "w": 96,
+        "h": 53
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 53
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 53
+      },
+      "nineSlice": null
+    },
+    "deco_rocks": {
+      "page": "base_0",
+      "rect": {
+        "x": 931,
+        "y": 288,
+        "w": 90,
+        "h": 95
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 90
+      },
+      "nineSlice": null
+    },
+    "deco_bush": {
+      "page": "base_0",
+      "rect": {
+        "x": 468,
+        "y": 260,
+        "w": 90,
+        "h": 94
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
       },
       "trimOffset": {
         "x": 5,
         "y": 2
       },
       "pivot": {
-        "x": 24,
-        "y": 24
+        "x": 48,
+        "y": 90
       },
       "nineSlice": null
     },
-    "emote_peaceful": {
-      "page": "ui_0",
+    "deco_torch": {
+      "page": "base_0",
       "rect": {
-        "x": 2,
-        "y": 154,
-        "w": 44,
-        "h": 44
+        "x": 368,
+        "y": 300,
+        "w": 91,
+        "h": 88
       },
       "sourceSize": {
-        "w": 48,
-        "h": 48
+        "w": 96,
+        "h": 96
       },
       "trimOffset": {
-        "x": 2,
+        "x": 4,
         "y": 2
       },
       "pivot": {
-        "x": 24,
-        "y": 48
+        "x": 48,
+        "y": 90
       },
       "nineSlice": null
     },
-    "emote_happy": {
-      "page": "ui_0",
+    "module_battlement": {
+      "page": "base_0",
       "rect": {
+        "x": 562,
+        "y": 315,
+        "w": 88,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 88,
+        "h": 59
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
         "x": 44,
-        "y": 104,
-        "w": 44,
-        "h": 43
+        "y": 59
+      },
+      "nineSlice": null
+    },
+    "module_floor": {
+      "page": "base_0",
+      "rect": {
+        "x": 463,
+        "y": 358,
+        "w": 88,
+        "h": 46
       },
       "sourceSize": {
-        "w": 48,
-        "h": 48
+        "w": 88,
+        "h": 46
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 44,
+        "y": 46
+      },
+      "nineSlice": null
+    },
+    "module_foundation": {
+      "page": "base_0",
+      "rect": {
+        "x": 654,
+        "y": 323,
+        "w": 88,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 88,
+        "h": 42
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 44,
+        "y": 42
+      },
+      "nineSlice": null
+    },
+    "deco_log_pile": {
+      "page": "base_0",
+      "rect": {
+        "x": 746,
+        "y": 360,
+        "w": 83,
+        "h": 86
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 2
+      },
+      "pivot": {
+        "x": 48,
+        "y": 90
+      },
+      "nineSlice": null
+    },
+    "deco_village_sign": {
+      "page": "base_0",
+      "rect": {
+        "x": 654,
+        "y": 369,
+        "w": 84,
+        "h": 47
+      },
+      "sourceSize": {
+        "w": 88,
+        "h": 52
       },
       "trimOffset": {
         "x": 2,
         "y": 2
       },
       "pivot": {
-        "x": 24,
+        "x": 44,
+        "y": 50
+      },
+      "nineSlice": null
+    },
+    "module_round_body": {
+      "page": "base_0",
+      "rect": {
+        "x": 833,
+        "y": 360,
+        "w": 80,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 72
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 72
+      },
+      "nineSlice": null
+    },
+    "module_stonegate": {
+      "page": "base_0",
+      "rect": {
+        "x": 555,
+        "y": 378,
+        "w": 80,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 71
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 71
+      },
+      "nineSlice": null
+    },
+    "module_workshop": {
+      "page": "base_0",
+      "rect": {
+        "x": 639,
+        "y": 420,
+        "w": 80,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 57
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 57
+      },
+      "nineSlice": null
+    },
+    "module_lattice": {
+      "page": "base_0",
+      "rect": {
+        "x": 950,
+        "y": 134,
+        "w": 72,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 76
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 76
+      },
+      "nineSlice": null
+    },
+    "module_woodgate": {
+      "page": "base_0",
+      "rect": {
+        "x": 950,
+        "y": 214,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 68
+      },
+      "nineSlice": null
+    },
+    "module_plaster": {
+      "page": "base_0",
+      "rect": {
+        "x": 917,
+        "y": 387,
+        "w": 72,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 54
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 54
+      },
+      "nineSlice": null
+    },
+    "module_masonry": {
+      "page": "base_0",
+      "rect": {
+        "x": 833,
+        "y": 436,
+        "w": 72,
+        "h": 53
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 53
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 53
+      },
+      "nineSlice": null
+    },
+    "module_porch": {
+      "page": "base_0",
+      "rect": {
+        "x": 723,
+        "y": 450,
+        "w": 72,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 52
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 52
+      },
+      "nineSlice": null
+    },
+    "module_field": {
+      "page": "base_0",
+      "rect": {
+        "x": 909,
+        "y": 445,
+        "w": 72,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 96
+      },
+      "nineSlice": null
+    },
+    "module_balcony": {
+      "page": "base_0",
+      "rect": {
+        "x": 799,
+        "y": 493,
+        "w": 72,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 45
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 45
+      },
+      "nineSlice": null
+    },
+    "module_porch_rail": {
+      "page": "base_0",
+      "rect": {
+        "x": 875,
+        "y": 497,
+        "w": 72,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 34
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 34
+      },
+      "nineSlice": null
+    },
+    "module_trough": {
+      "page": "base_0",
+      "rect": {
+        "x": 746,
+        "y": 323,
+        "w": 72,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 24
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 36,
+        "y": 97
+      },
+      "nineSlice": null
+    },
+    "module_ballista": {
+      "page": "base_0",
+      "rect": {
+        "x": 951,
+        "y": 497,
+        "w": 64,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 57
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
+        "y": 85
+      },
+      "nineSlice": null
+    },
+    "module_sling": {
+      "page": "base_0",
+      "rect": {
+        "x": 875,
+        "y": 535,
+        "w": 64,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 32,
         "y": 48
       },
       "nineSlice": null
     },
-    "emote_sleepy": {
-      "page": "ui_0",
+    "module_crystal": {
+      "page": "base_0",
       "rect": {
-        "x": 2,
-        "y": 202,
-        "w": 44,
-        "h": 43
+        "x": 668,
+        "y": 258,
+        "w": 36,
+        "h": 51
+      },
+      "sourceSize": {
+        "w": 36,
+        "h": 51
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 18,
+        "y": 48
+      },
+      "nineSlice": null
+    },
+    "module_wheel": {
+      "page": "base_0",
+      "rect": {
+        "x": 943,
+        "y": 558,
+        "w": 48,
+        "h": 46
       },
       "sourceSize": {
         "w": 48,
-        "h": 48
+        "h": 46
       },
       "trimOffset": {
-        "x": 2,
-        "y": 2
+        "x": 0,
+        "y": 0
       },
       "pivot": {
         "x": 24,
-        "y": 48
+        "y": 58
+      },
+      "nineSlice": null
+    },
+    "module_saw": {
+      "page": "base_0",
+      "rect": {
+        "x": 2,
+        "y": 298,
+        "w": 48,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 39
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 60
+      },
+      "nineSlice": null
+    },
+    "module_logs": {
+      "page": "base_0",
+      "rect": {
+        "x": 266,
+        "y": 166,
+        "w": 48,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 33
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 66
       },
       "nineSlice": null
     },
     "icon_slow": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 2,
-        "y": 249,
+        "x": 54,
+        "y": 298,
         "w": 44,
         "h": 43
       },
@@ -3732,10 +1122,10 @@
       "nineSlice": null
     },
     "icon_arrow": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
         "x": 2,
-        "y": 296,
+        "y": 341,
         "w": 41,
         "h": 44
       },
@@ -3754,10 +1144,10 @@
       "nineSlice": null
     },
     "icon_trophy": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 2,
-        "y": 344,
+        "x": 102,
+        "y": 298,
         "w": 44,
         "h": 41
       },
@@ -3776,10 +1166,10 @@
       "nineSlice": null
     },
     "icon_shield": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 47,
-        "y": 296,
+        "x": 150,
+        "y": 298,
         "w": 40,
         "h": 44
       },
@@ -3798,10 +1188,10 @@
       "nineSlice": null
     },
     "icon_baby": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 2,
-        "y": 389,
+        "x": 102,
+        "y": 343,
         "w": 44,
         "h": 39
       },
@@ -3820,10 +1210,10 @@
       "nineSlice": null
     },
     "icon_heart": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 2,
-        "y": 432,
+        "x": 47,
+        "y": 345,
         "w": 44,
         "h": 39
       },
@@ -3841,33 +1231,11 @@
       },
       "nineSlice": null
     },
-    "emote_loving": {
-      "page": "ui_0",
-      "rect": {
-        "x": 50,
-        "y": 151,
-        "w": 44,
-        "h": 38
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 5
-      },
-      "pivot": {
-        "x": 24,
-        "y": 48
-      },
-      "nineSlice": null
-    },
     "icon_logging": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 50,
-        "y": 193,
+        "x": 194,
+        "y": 298,
         "w": 38,
         "h": 44
       },
@@ -3886,10 +1254,10 @@
       "nineSlice": null
     },
     "icon_wood": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 92,
-        "y": 104,
+        "x": 236,
+        "y": 305,
         "w": 44,
         "h": 38
       },
@@ -3908,10 +1276,10 @@
       "nineSlice": null
     },
     "icon_build": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 50,
-        "y": 241,
+        "x": 985,
+        "y": 445,
         "w": 37,
         "h": 44
       },
@@ -3930,10 +1298,10 @@
       "nineSlice": null
     },
     "icon_family": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 104,
-        "y": 2,
+        "x": 284,
+        "y": 305,
         "w": 44,
         "h": 37
       },
@@ -3952,10 +1320,10 @@
       "nineSlice": null
     },
     "icon_food": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 104,
-        "y": 43,
+        "x": 284,
+        "y": 346,
         "w": 37,
         "h": 44
       },
@@ -3974,10 +1342,10 @@
       "nineSlice": null
     },
     "icon_house": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 50,
-        "y": 344,
+        "x": 150,
+        "y": 346,
         "w": 44,
         "h": 37
       },
@@ -3996,10 +1364,10 @@
       "nineSlice": null
     },
     "icon_population": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 91,
-        "y": 241,
+        "x": 95,
+        "y": 386,
         "w": 44,
         "h": 37
       },
@@ -4018,10 +1386,10 @@
       "nineSlice": null
     },
     "icon_view": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 92,
-        "y": 193,
+        "x": 47,
+        "y": 388,
         "w": 44,
         "h": 36
       },
@@ -4040,10 +1408,10 @@
       "nineSlice": null
     },
     "icon_stone": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 2,
-        "y": 475,
+        "x": 198,
+        "y": 347,
         "w": 44,
         "h": 35
       },
@@ -4061,165 +1429,11 @@
       },
       "nineSlice": null
     },
-    "emote_proud": {
-      "page": "ui_0",
-      "rect": {
-        "x": 98,
-        "y": 146,
-        "w": 42,
-        "h": 43
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 3,
-        "y": 3
-      },
-      "pivot": {
-        "x": 24,
-        "y": 48
-      },
-      "nineSlice": null
-    },
-    "fx_hearts": {
-      "page": "ui_0",
-      "rect": {
-        "x": 140,
-        "y": 91,
-        "w": 37,
-        "h": 43
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 11,
-        "y": 0
-      },
-      "pivot": {
-        "x": 24,
-        "y": 24
-      },
-      "nineSlice": null
-    },
-    "fx_slow_ring": {
-      "page": "ui_0",
-      "rect": {
-        "x": 145,
-        "y": 43,
-        "w": 36,
-        "h": 43
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 4,
-        "y": 0
-      },
-      "pivot": {
-        "x": 24,
-        "y": 24
-      },
-      "nineSlice": null
-    },
-    "emote_curious": {
-      "page": "ui_0",
-      "rect": {
-        "x": 91,
-        "y": 282,
-        "w": 42,
-        "h": 42
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 3,
-        "y": 2
-      },
-      "pivot": {
-        "x": 24,
-        "y": 48
-      },
-      "nineSlice": null
-    },
-    "fx_arrow": {
-      "page": "ui_0",
-      "rect": {
-        "x": 50,
-        "y": 385,
-        "w": 39,
-        "h": 42
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 6,
-        "y": 2
-      },
-      "pivot": {
-        "x": 24,
-        "y": 24
-      },
-      "nineSlice": null
-    },
-    "fx_ice": {
-      "page": "ui_0",
-      "rect": {
-        "x": 50,
-        "y": 431,
-        "w": 32,
-        "h": 40
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 8,
-        "y": 6
-      },
-      "pivot": {
-        "x": 24,
-        "y": 24
-      },
-      "nineSlice": null
-    },
-    "fx_stone": {
-      "page": "ui_0",
-      "rect": {
-        "x": 86,
-        "y": 431,
-        "w": 20,
-        "h": 40
-      },
-      "sourceSize": {
-        "w": 48,
-        "h": 48
-      },
-      "trimOffset": {
-        "x": 14,
-        "y": 8
-      },
-      "pivot": {
-        "x": 24,
-        "y": 24
-      },
-      "nineSlice": null
-    },
     "panel_button_disabled": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 50,
-        "y": 475,
+        "x": 799,
+        "y": 450,
         "w": 30,
         "h": 30
       },
@@ -4251,10 +1465,10 @@
       }
     },
     "panel_button_gold": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 84,
-        "y": 475,
+        "x": 332,
+        "y": 305,
         "w": 30,
         "h": 30
       },
@@ -4286,10 +1500,10 @@
       }
     },
     "panel_button_green": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 152,
-        "y": 2,
+        "x": 332,
+        "y": 339,
         "w": 30,
         "h": 30
       },
@@ -4321,10 +1535,10 @@
       }
     },
     "panel_button_red": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 93,
-        "y": 385,
+        "x": 246,
+        "y": 347,
         "w": 30,
         "h": 30
       },
@@ -4356,10 +1570,10 @@
       }
     },
     "panel_card": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 110,
-        "y": 419,
+        "x": 246,
+        "y": 381,
         "w": 30,
         "h": 30
       },
@@ -4391,10 +1605,10 @@
       }
     },
     "panel_portrait_frame": {
-      "page": "ui_0",
+      "page": "base_0",
       "rect": {
-        "x": 98,
-        "y": 328,
+        "x": 325,
+        "y": 373,
         "w": 30,
         "h": 30
       },
@@ -4425,11 +1639,165 @@
         ]
       }
     },
-    "panel_anchored_tip": {
-      "page": "ui_0",
+    "part_crest": {
+      "page": "base_0",
       "rect": {
-        "x": 127,
-        "y": 362,
+        "x": 995,
+        "y": 558,
+        "w": 26,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 28,
+        "h": 32
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "pivot": {
+        "x": 14,
+        "y": 32
+      },
+      "nineSlice": null
+    },
+    "module_door": {
+      "page": "base_0",
+      "rect": {
+        "x": 993,
+        "y": 387,
+        "w": 28,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 28,
+        "h": 29
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 14,
+        "y": 29
+      },
+      "nineSlice": null
+    },
+    "deco_blossom_ivory": {
+      "page": "base_0",
+      "rect": {
+        "x": 995,
+        "y": 592,
+        "w": 26,
+        "h": 23
+      },
+      "sourceSize": {
+        "w": 28,
+        "h": 28
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 2
+      },
+      "pivot": {
+        "x": 14,
+        "y": 28
+      },
+      "nineSlice": null
+    },
+    "deco_blossom_pink": {
+      "page": "base_0",
+      "rect": {
+        "x": 2,
+        "y": 389,
+        "w": 26,
+        "h": 22
+      },
+      "sourceSize": {
+        "w": 28,
+        "h": 28
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 3
+      },
+      "pivot": {
+        "x": 14,
+        "y": 28
+      },
+      "nineSlice": null
+    },
+    "part_banner": {
+      "page": "base_0",
+      "rect": {
+        "x": 2,
+        "y": 415,
+        "w": 26,
+        "h": 22
+      },
+      "sourceSize": {
+        "w": 28,
+        "h": 36
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 7
+      },
+      "pivot": {
+        "x": 14,
+        "y": 36
+      },
+      "nineSlice": null
+    },
+    "module_window": {
+      "page": "base_0",
+      "rect": {
+        "x": 280,
+        "y": 394,
+        "w": 24,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 24,
+        "h": 24
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 12,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "deco_pear_pair": {
+      "page": "base_0",
+      "rect": {
+        "x": 568,
+        "y": 203,
+        "w": 22,
+        "h": 22
+      },
+      "sourceSize": {
+        "w": 24,
+        "h": 24
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "pivot": {
+        "x": 12,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "panel_anchored_tip": {
+      "page": "base_0",
+      "rect": {
+        "x": 568,
+        "y": 229,
         "w": 22,
         "h": 22
       },
@@ -4453,11 +1821,33 @@
         "repeat": 0
       }
     },
-    "panel_anchored_tip_tail": {
-      "page": "ui_0",
+    "deco_apple_pair": {
+      "page": "base_0",
       "rect": {
-        "x": 110,
-        "y": 453,
+        "x": 993,
+        "y": 420,
+        "w": 22,
+        "h": 19
+      },
+      "sourceSize": {
+        "w": 24,
+        "h": 24
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 2
+      },
+      "pivot": {
+        "x": 12,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "panel_anchored_tip_tail": {
+      "page": "base_0",
+      "rect": {
+        "x": 198,
+        "y": 386,
         "w": 20,
         "h": 14
       },
@@ -4472,6 +1862,4098 @@
       "pivot": {
         "x": 10,
         "y": 7
+      },
+      "nineSlice": null
+    },
+    "villager_elder_female_walk_right_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 2,
+        "y": 2,
+        "w": 76,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_female_walk_up_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 82,
+        "y": 2,
+        "w": 76,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_male_walk_right_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 162,
+        "y": 2,
+        "w": 76,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_care_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 242,
+        "y": 2,
+        "w": 76,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_chop_02": {
+      "page": "characters_0",
+      "rect": {
+        "x": 322,
+        "y": 2,
+        "w": 76,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_harvest_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 402,
+        "y": 2,
+        "w": 76,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_harvest_02": {
+      "page": "characters_0",
+      "rect": {
+        "x": 2,
+        "y": 82,
+        "w": 76,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_care_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 2,
+        "y": 162,
+        "w": 76,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_chop_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 2,
+        "y": 242,
+        "w": 76,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_chop_02": {
+      "page": "characters_0",
+      "rect": {
+        "x": 2,
+        "y": 322,
+        "w": 76,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_farm_02": {
+      "page": "characters_0",
+      "rect": {
+        "x": 2,
+        "y": 402,
+        "w": 76,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_female_idle_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 82,
+        "y": 82,
+        "w": 75,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_male_idle_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 82,
+        "y": 162,
+        "w": 75,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_care_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 82,
+        "y": 242,
+        "w": 76,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 3
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_chop_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 161,
+        "y": 82,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_male_idle_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 161,
+        "y": 160,
+        "w": 73,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_male_walk_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 82,
+        "y": 321,
+        "w": 76,
+        "h": 73
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 5
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_farm_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 82,
+        "y": 398,
+        "w": 76,
+        "h": 73
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 5
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_up_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 162,
+        "y": 240,
+        "w": 73,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 3,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_right_02": {
+      "page": "characters_0",
+      "rect": {
+        "x": 238,
+        "y": 160,
+        "w": 76,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 6
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_male_walk_up_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 241,
+        "y": 82,
+        "w": 76,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 6
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_harvest_03": {
+      "page": "characters_0",
+      "rect": {
+        "x": 162,
+        "y": 320,
+        "w": 71,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_up_02": {
+      "page": "characters_0",
+      "rect": {
+        "x": 162,
+        "y": 400,
+        "w": 71,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_care_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 237,
+        "y": 320,
+        "w": 70,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_harvest_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 239,
+        "y": 236,
+        "w": 70,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 8,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_chop_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 237,
+        "y": 400,
+        "w": 70,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 8,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_male_walk_right_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 311,
+        "y": 316,
+        "w": 68,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_chop_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 313,
+        "y": 236,
+        "w": 68,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_female_walk_up_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 311,
+        "y": 396,
+        "w": 67,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_chop_03": {
+      "page": "characters_0",
+      "rect": {
+        "x": 382,
+        "y": 396,
+        "w": 66,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_up_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 383,
+        "y": 316,
+        "w": 61,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_up_03": {
+      "page": "characters_0",
+      "rect": {
+        "x": 452,
+        "y": 82,
+        "w": 46,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 17,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_female_walk_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 318,
+        "y": 157,
+        "w": 75,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 3
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_right_02": {
+      "page": "characters_0",
+      "rect": {
+        "x": 385,
+        "y": 236,
+        "w": 75,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_male_walk_up_01": {
+      "page": "characters_0",
+      "rect": {
+        "x": 321,
+        "y": 82,
+        "w": 75,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 6
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_right_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 397,
+        "y": 162,
+        "w": 74,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 7
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_male_walk_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 448,
+        "y": 315,
+        "w": 61,
+        "h": 73
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 17,
+        "y": 5
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_02": {
+      "page": "characters_0",
+      "rect": {
+        "x": 452,
+        "y": 392,
+        "w": 58,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 18,
+        "y": 6
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_right_00": {
+      "page": "characters_0",
+      "rect": {
+        "x": 400,
+        "y": 82,
+        "w": 48,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 15,
+        "y": 1
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_baby_idle_03": {
+      "page": "characters_0",
+      "rect": {
+        "x": 464,
+        "y": 236,
+        "w": 45,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 46
+      },
+      "nineSlice": null
+    },
+    "emote_curious": {
+      "page": "characters_0",
+      "rect": {
+        "x": 452,
+        "y": 468,
+        "w": 42,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 3,
+        "y": 2
+      },
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "nineSlice": null
+    },
+    "villager_elder_female_idle_00": {
+      "page": "characters_1",
+      "rect": {
+        "x": 2,
+        "y": 2,
+        "w": 75,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 3,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_female_walk_01": {
+      "page": "characters_1",
+      "rect": {
+        "x": 81,
+        "y": 2,
+        "w": 74,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 4,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_chop_03": {
+      "page": "characters_1",
+      "rect": {
+        "x": 2,
+        "y": 80,
+        "w": 71,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 3
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_right_01": {
+      "page": "characters_1",
+      "rect": {
+        "x": 2,
+        "y": 159,
+        "w": 71,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 3
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_elder_female_walk_right_00": {
+      "page": "characters_1",
+      "rect": {
+        "x": 2,
+        "y": 238,
+        "w": 68,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 2
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_up_01": {
+      "page": "characters_1",
+      "rect": {
+        "x": 2,
+        "y": 316,
+        "w": 68,
+        "h": 73
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 5,
+        "y": 5
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_right_03": {
+      "page": "characters_1",
+      "rect": {
+        "x": 2,
+        "y": 393,
+        "w": 70,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 6
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_farm_03": {
+      "page": "characters_1",
+      "rect": {
+        "x": 74,
+        "y": 238,
+        "w": 72,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 8
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_01": {
+      "page": "characters_1",
+      "rect": {
+        "x": 74,
+        "y": 312,
+        "w": 65,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 5,
+        "y": 6
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_03": {
+      "page": "characters_1",
+      "rect": {
+        "x": 76,
+        "y": 388,
+        "w": 59,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 8,
+        "y": 6
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_right_00": {
+      "page": "characters_1",
+      "rect": {
+        "x": 139,
+        "y": 388,
+        "w": 59,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 17,
+        "y": 6
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_00": {
+      "page": "characters_1",
+      "rect": {
+        "x": 143,
+        "y": 312,
+        "w": 54,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 19,
+        "y": 6
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_01": {
+      "page": "characters_1",
+      "rect": {
+        "x": 77,
+        "y": 81,
+        "w": 71,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 7
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_farm_00": {
+      "page": "characters_1",
+      "rect": {
+        "x": 77,
+        "y": 156,
+        "w": 69,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 7
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_02": {
+      "page": "characters_1",
+      "rect": {
+        "x": 150,
+        "y": 156,
+        "w": 69,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 8,
+        "y": 7
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_right_03": {
+      "page": "characters_1",
+      "rect": {
+        "x": 152,
+        "y": 81,
+        "w": 69,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 7
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_up_03": {
+      "page": "characters_1",
+      "rect": {
+        "x": 159,
+        "y": 2,
+        "w": 68,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 7
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_03": {
+      "page": "characters_1",
+      "rect": {
+        "x": 150,
+        "y": 231,
+        "w": 66,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 7
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_up_02": {
+      "page": "characters_1",
+      "rect": {
+        "x": 201,
+        "y": 306,
+        "w": 65,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 7
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_00": {
+      "page": "characters_1",
+      "rect": {
+        "x": 220,
+        "y": 231,
+        "w": 61,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 7
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_female_a_walk_up_00": {
+      "page": "characters_1",
+      "rect": {
+        "x": 223,
+        "y": 156,
+        "w": 44,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 18,
+        "y": 7
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_male_a_walk_right_01": {
+      "page": "characters_1",
+      "rect": {
+        "x": 225,
+        "y": 77,
+        "w": 69,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 8,
+        "y": 7
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_01": {
+      "page": "characters_1",
+      "rect": {
+        "x": 231,
+        "y": 2,
+        "w": 62,
+        "h": 62
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_right_01": {
+      "page": "characters_1",
+      "rect": {
+        "x": 297,
+        "y": 2,
+        "w": 62,
+        "h": 62
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_up_01": {
+      "page": "characters_1",
+      "rect": {
+        "x": 271,
+        "y": 151,
+        "w": 62,
+        "h": 62
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_right_02": {
+      "page": "characters_1",
+      "rect": {
+        "x": 298,
+        "y": 68,
+        "w": 61,
+        "h": 62
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_up_02": {
+      "page": "characters_1",
+      "rect": {
+        "x": 202,
+        "y": 381,
+        "w": 62,
+        "h": 61
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 1
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_up_03": {
+      "page": "characters_1",
+      "rect": {
+        "x": 202,
+        "y": 446,
+        "w": 59,
+        "h": 62
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 3,
+        "y": 1
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_01": {
+      "page": "characters_1",
+      "rect": {
+        "x": 265,
+        "y": 446,
+        "w": 62,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 5
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_02": {
+      "page": "characters_1",
+      "rect": {
+        "x": 268,
+        "y": 381,
+        "w": 62,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 5
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_up_00": {
+      "page": "characters_1",
+      "rect": {
+        "x": 331,
+        "y": 443,
+        "w": 58,
+        "h": 62
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 5,
+        "y": 1
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_up_01": {
+      "page": "characters_1",
+      "rect": {
+        "x": 270,
+        "y": 306,
+        "w": 57,
+        "h": 62
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 5,
+        "y": 1
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_right_03": {
+      "page": "characters_1",
+      "rect": {
+        "x": 285,
+        "y": 217,
+        "w": 61,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 3
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_03": {
+      "page": "characters_1",
+      "rect": {
+        "x": 337,
+        "y": 134,
+        "w": 54,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 5,
+        "y": 3
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_up_00": {
+      "page": "characters_1",
+      "rect": {
+        "x": 331,
+        "y": 280,
+        "w": 49,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 14,
+        "y": 2
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_up_02": {
+      "page": "characters_1",
+      "rect": {
+        "x": 350,
+        "y": 198,
+        "w": 49,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 14,
+        "y": 3
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_00": {
+      "page": "characters_1",
+      "rect": {
+        "x": 334,
+        "y": 344,
+        "w": 47,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 15,
+        "y": 3
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_up_03": {
+      "page": "characters_1",
+      "rect": {
+        "x": 384,
+        "y": 262,
+        "w": 55,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 3
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_02": {
+      "page": "characters_1",
+      "rect": {
+        "x": 443,
+        "y": 2,
+        "w": 50,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 13,
+        "y": 3
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_00": {
+      "page": "characters_1",
+      "rect": {
+        "x": 363,
+        "y": 65,
+        "w": 51,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 12,
+        "y": 5
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_03": {
+      "page": "characters_1",
+      "rect": {
+        "x": 363,
+        "y": 2,
+        "w": 42,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 5
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_boy_walk_right_01": {
+      "page": "characters_1",
+      "rect": {
+        "x": 395,
+        "y": 127,
+        "w": 52,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 7,
+        "y": 3
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_right_02": {
+      "page": "characters_1",
+      "rect": {
+        "x": 418,
+        "y": 65,
+        "w": 56,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 7,
+        "y": 5
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_right_03": {
+      "page": "characters_1",
+      "rect": {
+        "x": 451,
+        "y": 125,
+        "w": 56,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 4,
+        "y": 5
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_girl_walk_right_00": {
+      "page": "characters_1",
+      "rect": {
+        "x": 451,
+        "y": 185,
+        "w": 47,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 14,
+        "y": 5
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "villager_baby_idle_00": {
+      "page": "characters_1",
+      "rect": {
+        "x": 403,
+        "y": 188,
+        "w": 44,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 4,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 46
+      },
+      "nineSlice": null
+    },
+    "villager_baby_idle_02": {
+      "page": "characters_1",
+      "rect": {
+        "x": 76,
+        "y": 464,
+        "w": 47,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 46
+      },
+      "nineSlice": null
+    },
+    "villager_baby_idle_01": {
+      "page": "characters_1",
+      "rect": {
+        "x": 443,
+        "y": 245,
+        "w": 44,
+        "h": 47
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 46
+      },
+      "nineSlice": null
+    },
+    "emote_peaceful": {
+      "page": "characters_1",
+      "rect": {
+        "x": 127,
+        "y": 464,
+        "w": 44,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "nineSlice": null
+    },
+    "emote_happy": {
+      "page": "characters_1",
+      "rect": {
+        "x": 443,
+        "y": 296,
+        "w": 44,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "nineSlice": null
+    },
+    "emote_sleepy": {
+      "page": "characters_1",
+      "rect": {
+        "x": 393,
+        "y": 325,
+        "w": 44,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "nineSlice": null
+    },
+    "emote_loving": {
+      "page": "characters_1",
+      "rect": {
+        "x": 2,
+        "y": 469,
+        "w": 44,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 5
+      },
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "nineSlice": null
+    },
+    "emote_proud": {
+      "page": "characters_1",
+      "rect": {
+        "x": 385,
+        "y": 372,
+        "w": 42,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 3,
+        "y": 3
+      },
+      "pivot": {
+        "x": 24,
+        "y": 48
+      },
+      "nineSlice": null
+    },
+    "fx_hearts": {
+      "page": "characters_1",
+      "rect": {
+        "x": 441,
+        "y": 343,
+        "w": 37,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 11,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "enemy_chief_walk_03": {
+      "page": "battle_0",
+      "rect": {
+        "x": 2,
+        "y": 2,
+        "w": 80,
+        "h": 92
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 4
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_chief_walk_02": {
+      "page": "battle_0",
+      "rect": {
+        "x": 2,
+        "y": 98,
+        "w": 80,
+        "h": 91
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 0
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_chief_walk_00": {
+      "page": "battle_0",
+      "rect": {
+        "x": 2,
+        "y": 193,
+        "w": 82,
+        "h": 88
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 5
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_chief_walk_01": {
+      "page": "battle_0",
+      "rect": {
+        "x": 86,
+        "y": 2,
+        "w": 82,
+        "h": 88
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 8,
+        "y": 3
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_tuskking_walk_00": {
+      "page": "battle_0",
+      "rect": {
+        "x": 86,
+        "y": 94,
+        "w": 84,
+        "h": 86
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_commander_walk_00": {
+      "page": "battle_0",
+      "rect": {
+        "x": 172,
+        "y": 2,
+        "w": 80,
+        "h": 86
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_commander_walk_02": {
+      "page": "battle_0",
+      "rect": {
+        "x": 2,
+        "y": 285,
+        "w": 79,
+        "h": 86
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_shaman_walk_00": {
+      "page": "battle_0",
+      "rect": {
+        "x": 2,
+        "y": 375,
+        "w": 79,
+        "h": 86
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 8,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_commander_walk_03": {
+      "page": "battle_0",
+      "rect": {
+        "x": 85,
+        "y": 285,
+        "w": 78,
+        "h": 86
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_wolfking_walk_00": {
+      "page": "battle_0",
+      "rect": {
+        "x": 88,
+        "y": 184,
+        "w": 61,
+        "h": 86
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 21,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_boar_walk_00": {
+      "page": "battle_0",
+      "rect": {
+        "x": 153,
+        "y": 184,
+        "w": 60,
+        "h": 86
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 22,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_wolfking_walk_02": {
+      "page": "battle_0",
+      "rect": {
+        "x": 174,
+        "y": 92,
+        "w": 59,
+        "h": 86
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 20,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_boar_walk_01": {
+      "page": "battle_0",
+      "rect": {
+        "x": 85,
+        "y": 375,
+        "w": 58,
+        "h": 86
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 18,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_tuskking_walk_02": {
+      "page": "battle_0",
+      "rect": {
+        "x": 147,
+        "y": 375,
+        "w": 84,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_tuskking_walk_00_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 167,
+        "y": 274,
+        "w": 83,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 7,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_tuskking_walk_02_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 217,
+        "y": 182,
+        "w": 82,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 7,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_tuskking_walk_03": {
+      "page": "battle_0",
+      "rect": {
+        "x": 237,
+        "y": 92,
+        "w": 82,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 7
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_commander_walk_00_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 256,
+        "y": 2,
+        "w": 78,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_commander_walk_02_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 235,
+        "y": 363,
+        "w": 78,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_shaman_walk_00_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 254,
+        "y": 271,
+        "w": 78,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_shaman_walk_02": {
+      "page": "battle_0",
+      "rect": {
+        "x": 303,
+        "y": 181,
+        "w": 76,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 7
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_wolfking_walk_00_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 323,
+        "y": 91,
+        "w": 62,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 20,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_tuskking_walk_03_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 338,
+        "y": 2,
+        "w": 82,
+        "h": 84
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 7
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_chief_walk_00_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 424,
+        "y": 2,
+        "w": 78,
+        "h": 84
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 6
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_shaman_walk_01": {
+      "page": "battle_0",
+      "rect": {
+        "x": 389,
+        "y": 90,
+        "w": 76,
+        "h": 84
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 8
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_shaman_walk_02_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 389,
+        "y": 178,
+        "w": 74,
+        "h": 84
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 7
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_boar_walk_02": {
+      "page": "battle_0",
+      "rect": {
+        "x": 317,
+        "y": 360,
+        "w": 60,
+        "h": 84
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 17,
+        "y": 8
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_boar_walk_00_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 336,
+        "y": 270,
+        "w": 59,
+        "h": 84
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 22,
+        "y": 7
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_wolfking_walk_02_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 399,
+        "y": 266,
+        "w": 59,
+        "h": 84
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 20,
+        "y": 7
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_boar_walk_01_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 399,
+        "y": 354,
+        "w": 56,
+        "h": 84
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 19,
+        "y": 7
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_runner_walk_02_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 469,
+        "y": 90,
+        "w": 35,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 26,
+        "y": 4
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_disruptor_walk_01": {
+      "page": "battle_0",
+      "rect": {
+        "x": 317,
+        "y": 448,
+        "w": 69,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 9
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_runner_walk_01_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 390,
+        "y": 442,
+        "w": 37,
+        "h": 67
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 25,
+        "y": 3
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_runner_walk_03_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 431,
+        "y": 442,
+        "w": 35,
+        "h": 67
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 27,
+        "y": 3
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_disruptor_walk_03": {
+      "page": "battle_0",
+      "rect": {
+        "x": 235,
+        "y": 452,
+        "w": 57,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 15,
+        "y": 10
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_disruptor_walk_01_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 462,
+        "y": 266,
+        "w": 46,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 19,
+        "y": 13
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_disruptor_walk_02_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 459,
+        "y": 354,
+        "w": 49,
+        "h": 55
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 17,
+        "y": 14
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_walk_00_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 470,
+        "y": 413,
+        "w": 35,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 17,
+        "y": 7
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_walk_02_tint": {
+      "page": "battle_0",
+      "rect": {
+        "x": 469,
+        "y": 165,
+        "w": 35,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 18,
+        "y": 8
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "fx_hit": {
+      "page": "battle_0",
+      "rect": {
+        "x": 147,
+        "y": 464,
+        "w": 38,
+        "h": 46
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 5,
+        "y": 2
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "enemy_acc_antlers": {
+      "page": "battle_0",
+      "rect": {
+        "x": 462,
+        "y": 326,
+        "w": 44,
+        "h": 22
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 11
+      },
+      "pivot": {
+        "x": 24,
+        "y": 40
+      },
+      "nineSlice": null
+    },
+    "fx_slow_ring": {
+      "page": "battle_0",
+      "rect": {
+        "x": 470,
+        "y": 467,
+        "w": 36,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 4,
+        "y": 0
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "fx_arrow": {
+      "page": "battle_0",
+      "rect": {
+        "x": 467,
+        "y": 218,
+        "w": 39,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 2
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "fx_ice": {
+      "page": "battle_0",
+      "rect": {
+        "x": 2,
+        "y": 465,
+        "w": 32,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 8,
+        "y": 6
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "enemy_acc_mask": {
+      "page": "battle_0",
+      "rect": {
+        "x": 189,
+        "y": 464,
+        "w": 38,
+        "h": 22
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 5,
+        "y": 12
+      },
+      "pivot": {
+        "x": 24,
+        "y": 40
+      },
+      "nineSlice": null
+    },
+    "enemy_acc_feathers": {
+      "page": "battle_0",
+      "rect": {
+        "x": 38,
+        "y": 465,
+        "w": 30,
+        "h": 26
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 8
+      },
+      "pivot": {
+        "x": 24,
+        "y": 40
+      },
+      "nineSlice": null
+    },
+    "enemy_tuskking_walk_01": {
+      "page": "battle_1",
+      "rect": {
+        "x": 2,
+        "y": 2,
+        "w": 82,
+        "h": 83
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 9
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_commander_walk_01": {
+      "page": "battle_1",
+      "rect": {
+        "x": 2,
+        "y": 89,
+        "w": 78,
+        "h": 83
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 9
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_chief_walk_02_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 2,
+        "y": 176,
+        "w": 76,
+        "h": 83
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 11,
+        "y": 8
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_commander_walk_03_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 2,
+        "y": 263,
+        "w": 76,
+        "h": 83
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 7
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_boar_walk_03": {
+      "page": "battle_1",
+      "rect": {
+        "x": 2,
+        "y": 350,
+        "w": 57,
+        "h": 83
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 17,
+        "y": 9
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_tuskking_walk_01_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 63,
+        "y": 350,
+        "w": 82,
+        "h": 82
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 9
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_chief_walk_01_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 82,
+        "y": 176,
+        "w": 78,
+        "h": 82
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 4
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_commander_walk_01_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 84,
+        "y": 89,
+        "w": 77,
+        "h": 82
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 9
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_shaman_walk_01_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 88,
+        "y": 2,
+        "w": 71,
+        "h": 82
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 14,
+        "y": 9
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_boar_walk_02_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 163,
+        "y": 2,
+        "w": 58,
+        "h": 81
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 18,
+        "y": 10
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_boar_walk_03_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 82,
+        "y": 262,
+        "w": 56,
+        "h": 81
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 17,
+        "y": 10
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_chief_walk_03_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 142,
+        "y": 262,
+        "w": 77,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 7
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_runner_walk_01": {
+      "page": "battle_1",
+      "rect": {
+        "x": 164,
+        "y": 175,
+        "w": 76,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 3,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_runner_walk_00": {
+      "page": "battle_1",
+      "rect": {
+        "x": 165,
+        "y": 87,
+        "w": 69,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_runner_walk_02": {
+      "page": "battle_1",
+      "rect": {
+        "x": 225,
+        "y": 2,
+        "w": 66,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_runner_walk_03": {
+      "page": "battle_1",
+      "rect": {
+        "x": 238,
+        "y": 86,
+        "w": 66,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 3,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_shaman_walk_03": {
+      "page": "battle_1",
+      "rect": {
+        "x": 295,
+        "y": 2,
+        "w": 74,
+        "h": 79
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 13
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_wolfking_walk_01": {
+      "page": "battle_1",
+      "rect": {
+        "x": 373,
+        "y": 2,
+        "w": 61,
+        "h": 79
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 20,
+        "y": 13
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_wolfking_walk_03": {
+      "page": "battle_1",
+      "rect": {
+        "x": 438,
+        "y": 2,
+        "w": 58,
+        "h": 79
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 21,
+        "y": 13
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_armored_walk_01": {
+      "page": "battle_1",
+      "rect": {
+        "x": 2,
+        "y": 437,
+        "w": 78,
+        "h": 73
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_wolfking_walk_01_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 149,
+        "y": 346,
+        "w": 60,
+        "h": 78
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 20,
+        "y": 13
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_armored_walk_02": {
+      "page": "battle_1",
+      "rect": {
+        "x": 149,
+        "y": 428,
+        "w": 74,
+        "h": 77
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_shaman_walk_03_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 213,
+        "y": 346,
+        "w": 73,
+        "h": 77
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 11,
+        "y": 14
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_wolfking_walk_03_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 227,
+        "y": 427,
+        "w": 59,
+        "h": 77
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 20,
+        "y": 14
+      },
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "nineSlice": null
+    },
+    "enemy_armored_walk_03": {
+      "page": "battle_1",
+      "rect": {
+        "x": 223,
+        "y": 259,
+        "w": 76,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_armored_walk_00": {
+      "page": "battle_1",
+      "rect": {
+        "x": 244,
+        "y": 170,
+        "w": 73,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 7,
+        "y": 0
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_runner_walk_00_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 84,
+        "y": 436,
+        "w": 36,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 25,
+        "y": 4
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_disruptor_walk_02": {
+      "page": "battle_1",
+      "rect": {
+        "x": 308,
+        "y": 85,
+        "w": 66,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 11
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_armored_walk_00_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 378,
+        "y": 85,
+        "w": 65,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 6
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_disruptor_walk_00": {
+      "page": "battle_1",
+      "rect": {
+        "x": 290,
+        "y": 338,
+        "w": 65,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 15,
+        "y": 8
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_armored_walk_02_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 303,
+        "y": 249,
+        "w": 64,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 7
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_armored_walk_01_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 321,
+        "y": 154,
+        "w": 64,
+        "h": 61
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 6
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_armored_walk_03_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 447,
+        "y": 85,
+        "w": 63,
+        "h": 51
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 16
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_walk_01": {
+      "page": "battle_1",
+      "rect": {
+        "x": 447,
+        "y": 140,
+        "w": 54,
+        "h": 62
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 4,
+        "y": 2
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_walk_03": {
+      "page": "battle_1",
+      "rect": {
+        "x": 389,
+        "y": 154,
+        "w": 52,
+        "h": 62
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 4,
+        "y": 2
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_walk_02": {
+      "page": "battle_1",
+      "rect": {
+        "x": 445,
+        "y": 206,
+        "w": 60,
+        "h": 61
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 4,
+        "y": 3
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_walk_00": {
+      "page": "battle_1",
+      "rect": {
+        "x": 371,
+        "y": 220,
+        "w": 59,
+        "h": 61
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 5,
+        "y": 2
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_disruptor_walk_03_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 434,
+        "y": 271,
+        "w": 48,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 18,
+        "y": 12
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_disruptor_walk_00_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 371,
+        "y": 285,
+        "w": 45,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "trimOffset": {
+        "x": 18,
+        "y": 17
+      },
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_walk_03_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 420,
+        "y": 329,
+        "w": 35,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 17,
+        "y": 5
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_raider_walk_01_tint": {
+      "page": "battle_1",
+      "rect": {
+        "x": 459,
+        "y": 329,
+        "w": 37,
+        "h": 47
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 64
+      },
+      "trimOffset": {
+        "x": 15,
+        "y": 10
+      },
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "nineSlice": null
+    },
+    "enemy_acc_leaves": {
+      "page": "battle_1",
+      "rect": {
+        "x": 459,
+        "y": 380,
+        "w": 45,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 10
+      },
+      "pivot": {
+        "x": 24,
+        "y": 40
+      },
+      "nineSlice": null
+    },
+    "enemy_acc_banner": {
+      "page": "battle_1",
+      "rect": {
+        "x": 486,
+        "y": 271,
+        "w": 24,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 13,
+        "y": 3
+      },
+      "pivot": {
+        "x": 24,
+        "y": 40
+      },
+      "nineSlice": null
+    },
+    "fx_stone": {
+      "page": "battle_1",
+      "rect": {
+        "x": 124,
+        "y": 436,
+        "w": 20,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 14,
+        "y": 8
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "nineSlice": null
+    },
+    "enemy_acc_band": {
+      "page": "battle_1",
+      "rect": {
+        "x": 321,
+        "y": 219,
+        "w": 37,
+        "h": 22
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "trimOffset": {
+        "x": 4,
+        "y": 16
+      },
+      "pivot": {
+        "x": 24,
+        "y": 40
       },
       "nineSlice": null
     }

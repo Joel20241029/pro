@@ -1,0 +1,96 @@
+{
+  "status": "offline_candidate_not_integrated",
+  "provider": "volcengine",
+  "model": "hyper3d-gen2-260112",
+  "trace_id": "243505e126af4a84a37c6ddc24551c9f",
+  "reference": "reference.png",
+  "files": [
+    {
+      "file": "direction-report.json",
+      "bytes": 5544,
+      "sha256": "5f9b298c9c34a80f36204824840d1651d05beb9e6eed0658c12e95f60ef2a85a"
+    },
+    {
+      "file": "foot-validation.json",
+      "bytes": 3060,
+      "sha256": "2f8ea3d0ccd3b2f211fdc68f4ed34695bfbe96d575cdbd2591f4994cf5c05e60"
+    },
+    {
+      "file": "male_direction_probe.blend",
+      "bytes": 14460932,
+      "sha256": "6a9b86a47c86f39c5cfa7391b51cb4bbf390cca599f10c98e23d376dcc42060f"
+    },
+    {
+      "file": "male_inspect.blend",
+      "bytes": 13313603,
+      "sha256": "115560a6552e8567aeb4277f9af1c97ddfb39d91e9af4ace498dff61474c221b"
+    },
+    {
+      "file": "male_q_raw.glb",
+      "bytes": 10470460,
+      "sha256": "ae4b56febd30f96ce5b18e4d6ec3dc0fb89fea771dfd90e476e784dabd9d8cfc"
+    },
+    {
+      "file": "male_walk_probe.blend",
+      "bytes": 14459612,
+      "sha256": "d3a339e236ad9f4883fee3dd67172726f307bc0f0ee26934c532e2bd5d72f86d"
+    },
+    {
+      "file": "model-inspection.json",
+      "bytes": 611,
+      "sha256": "4811cd84eb7a7b92b63b7592e7ddd6f52fd9ae02b075c655f9a3301bd80b2d70"
+    },
+    {
+      "file": "reference.png",
+      "bytes": 837072,
+      "sha256": "c6bc22e0d74023050ef7de55bd1bf6811de5ed3654e699c815bcf21a9ffbeb7a"
+    },
+    {
+      "file": "rig-profile.json",
+      "bytes": 3924,
+      "sha256": "d5080d78d64bd5bfd7fe28ad5220a2f10f44516cf975ab4e115c8be760c62cc3"
+    },
+    {
+      "file": "walk-probe.json",
+      "bytes": 2650,
+      "sha256": "e4cae58a96ce1fef051c24f2a32593cebc61706986dfc8ee40efc8007744180d"
+    }
+  ],
+  "camera": "fixed orthographic, no runtime 3D",
+  "frames": 4,
+  "textureSource": 2048,
+  "geometryDecimated": false,
+  "approval": "visual acceptance pending",
+  "directions": [
+    "down",
+    "right",
+    "up",
+    "left"
+  ],
+  "framesPerDirection": 4,
+  "method": "actual Blender offline rendering",
+  "fps": 6,
+  "footFix": "rigid sole Foot weights and independent grounding; shared measured-profile pipeline",
+  "scriptInputs": [
+    {
+      "file": "res/tools/hd2d/inspect-character.py",
+      "sha256": "fed2f3307b0ef93239da2638c9fd81ef656274985c3f7877a0cb87d5b6bc645e"
+    },
+    {
+      "file": "res/tools/hd2d/bind-walk-character.py",
+      "sha256": "03aebe3f537eb1e184ab3f0a2546bab584f1da2f8021cd6a4528ebfed0636bd6"
+    },
+    {
+      "file": "res/tools/hd2d/character_weights.py",
+      "sha256": "674c0ded81ab19a3485b355478569358e5276d9de66c4981fc61675332cbfee9"
+    },
+    {
+      "file": "res/tools/hd2d/render-character-directions.py",
+      "sha256": "33b3877c6d3d5976ff349b06e3b1602f0123e010f94e1d07a3fd35ab8008cf78"
+    },
+    {
+      "file": "res/tools/hd2d/verify-character-feet.py",
+      "sha256": "66446fcb7d875a25e920245f55f1f698cbeb7988d673d7b58ef5868da11d5d48"
+    }
+  ]
+}

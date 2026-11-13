@@ -96,7 +96,7 @@ function sessionTrace(root) {
     const observe = label => {
         snapshots.push(JSON.stringify({ label, state: game.state, pending: game.saves.pending,
             pauses: [...game.pauses], boot: game.boot, error: game.error, revision: game.villageRevision,
-            errorRevision: game.errorRevision, daily: game.dailyRationDate, battle: game.battle }));
+            errorRevision: game.errorRevision, daily: game.dailyRationDate, battle: game.battle ? { ...game.battle, feedback: undefined } : null }));
     };
     game.changed = () => observe('changed');
     const action = (name, operation) => { events.push(['action', name]); operation(); observe(name); };

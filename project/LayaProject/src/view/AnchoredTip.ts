@@ -1,6 +1,7 @@
 import { SpriteFrames } from "./SpriteFrames";
 import { C } from "./UiTheme";
 import { ANCHORED_TIP as STYLE } from "./config/AnchoredTipConfig";
+import { drawUiTipTail } from "./UiSurface";
 
 /** 目标提供自己的可见范围；组件不持有业务状态，后续可用于其他场景对象。 */
 export interface TipTarget { node: Laya.Sprite; bounds: Laya.Rectangle; }
@@ -22,7 +23,7 @@ export class AnchoredTip extends Laya.Sprite {
         const tail = new Laya.Sprite();
         tail.name = "Pointer";
         tail.mouseEnabled = false;
-        tail.texture = art.get(STYLE.tailFrame);
+        drawUiTipTail(tail, STYLE.tailWidth, STYLE.tailHeight);
         tail.size(STYLE.tailWidth, STYLE.tailHeight).pos((STYLE.width - STYLE.tailWidth) / 2, STYLE.height - STYLE.tailOverlap);
         this.addChild(tail);
         const t = this.message;

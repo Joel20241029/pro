@@ -12,8 +12,12 @@
   "iOSHighPerformance+": false,
   "subpackages": [
     {
-      "name": "resources/village",
-      "root": "resources/village/"
+      "name": "resources/characters",
+      "root": "resources/characters/"
+    },
+    {
+      "name": "resources/battle",
+      "root": "resources/battle/"
     }
   ]
 }

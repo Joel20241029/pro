@@ -1,0 +1,94 @@
+{
+  "_$ver": 1,
+  "_$id": "ebmvce3z",
+  "_$type": "Sprite3D",
+  "name": "GRASS",
+  "_$child": [
+    {
+      "_$id": "#3",
+      "_$type": "Sprite3D",
+      "name": "GRASS",
+      "_$child": [
+        {
+          "_$id": "#2",
+          "_$type": "Sprite3D",
+          "name": "Body",
+          "_$child": [
+            {
+              "_$id": "#0",
+              "_$type": "Sprite3D",
+              "name": "Body_Grass",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.0010335743427276611,
+                  "y": 0.11999999731779099,
+                  "z": 0.0020592063665390015
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "127a36a1-c3cf-4fb3-86d0-06453dd199e2@lm0",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "127a36a1-c3cf-4fb3-86d0-06453dd199e2@lmat0",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#1",
+              "_$type": "Sprite3D",
+              "name": "Body_LeafLight",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.00718606635928154,
+                  "y": 0.11999999731779099,
+                  "z": -0.017353907227516174
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "127a36a1-c3cf-4fb3-86d0-06453dd199e2@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "127a36a1-c3cf-4fb3-86d0-06453dd199e2@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

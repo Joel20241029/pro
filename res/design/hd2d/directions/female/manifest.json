@@ -1,0 +1,94 @@
+{
+  "status": "four_direction_motion_candidate_not_integrated",
+  "method": "actual Blender offline rendering",
+  "source": "res/source/rendered2d/characters/female/female_direction_probe.blend",
+  "frames": [
+    {
+      "file": "female_down_1.png",
+      "bytes": 245735,
+      "sha256": "406ac4d6c8bf7330e64e84e50e5ed3556aa47c01b0f3e7b34bfdb9523ad89774"
+    },
+    {
+      "file": "female_down_2.png",
+      "bytes": 244768,
+      "sha256": "fc690c64ee004fa8a47834589cda5af7cc96e9ec8f4028dd799ab8c1f7036353"
+    },
+    {
+      "file": "female_down_3.png",
+      "bytes": 246779,
+      "sha256": "8c1712f0d0fef60e95556e0eef99ff6289af862d278c73326acc813425df3a1f"
+    },
+    {
+      "file": "female_down_4.png",
+      "bytes": 245355,
+      "sha256": "327da1a62a1bdc45939f88a5e3ff8475c0bff60145c40c04814f7d0f1a25f568"
+    },
+    {
+      "file": "female_left_1.png",
+      "bytes": 235175,
+      "sha256": "a4c1ecdd3d59c780ef698b025689d3069b6a1e912536ce5b1bce4f3b3993dd9c"
+    },
+    {
+      "file": "female_left_2.png",
+      "bytes": 236341,
+      "sha256": "8c7f757e5d0cf82b51a5a264efca0309aa8ef794cd8b172e5e91d16858508c91"
+    },
+    {
+      "file": "female_left_3.png",
+      "bytes": 240201,
+      "sha256": "e764a7c92355436ce8f0f1de416d2b72a0bc0ddbeaf11729e035d83076c2927b"
+    },
+    {
+      "file": "female_left_4.png",
+      "bytes": 236638,
+      "sha256": "d1ffc51f49b43a477c860e5b8a07588cff332b6457bbc0c80c689af8152b1ae1"
+    },
+    {
+      "file": "female_right_1.png",
+      "bytes": 240583,
+      "sha256": "ffce7c85fa6fbabb4ee3e1596ae456761e32a0fa625c0441161e4de28c652716"
+    },
+    {
+      "file": "female_right_2.png",
+      "bytes": 242456,
+      "sha256": "c17709b80dc38dba67f2d48c96a26f80391a8fb896ea4781fd85ffb1a2f63c68"
+    },
+    {
+      "file": "female_right_3.png",
+      "bytes": 246109,
+      "sha256": "3a70134c6148298cd4d8b802c142d935fb71712979b54c1efc784a8cf41219e6"
+    },
+    {
+      "file": "female_right_4.png",
+      "bytes": 240591,
+      "sha256": "17c70e9682fb143af90a8d8b05173a69c050e3ff72ab1df82d0a8726de146567"
+    },
+    {
+      "file": "female_up_1.png",
+      "bytes": 232517,
+      "sha256": "b9489b639a3deea1b4df757d86f711feb9e80ab87520b350d2d2e674fcc6cc59"
+    },
+    {
+      "file": "female_up_2.png",
+      "bytes": 231727,
+      "sha256": "4f31b069261d36cc05728279f6e8844718d503f57e147f3f787f263e9d8968a1"
+    },
+    {
+      "file": "female_up_3.png",
+      "bytes": 232507,
+      "sha256": "281a7b642b113a11a915646aee55a4bebe434785165a864fbb87f5784248a8be"
+    },
+    {
+      "file": "female_up_4.png",
+      "bytes": 231795,
+      "sha256": "fc82c283e561aca97088a07af17508e6e0054aee46799962fa0ab811dad8a1dc"
+    }
+  ],
+  "frameSize": [
+    512,
+    512
+  ],
+  "fps": 6,
+  "mirror": false,
+  "cameraAndLightsFixed": true
+}

@@ -1,0 +1,34 @@
+{
+  "status": "idle_candidate_not_integrated",
+  "method": "actual Blender offline rendering",
+  "source": "res/source/rendered2d/characters/baby/baby_idle_probe.blend",
+  "frames": [
+    {
+      "file": "baby_idle_1.png",
+      "bytes": 233640,
+      "sha256": "61fa4491b416253426d32d492245b20cbf60fa2ffdf0c528850cb639039cbd67"
+    },
+    {
+      "file": "baby_idle_2.png",
+      "bytes": 234091,
+      "sha256": "c742910c9c38553094910563d0890cfc378c7067f32fc5a2c149be5e0dc6182d"
+    },
+    {
+      "file": "baby_idle_3.png",
+      "bytes": 233640,
+      "sha256": "4842ead7b9bcba12204fb736262b80e90c52308c399478b787a3a67c73a072c1"
+    },
+    {
+      "file": "baby_idle_4.png",
+      "bytes": 233455,
+      "sha256": "4a39ec10077c17fbd76d94e424705004299ffd71d241ac194f2298771714d073"
+    }
+  ],
+  "frameSize": [
+    512,
+    512
+  ],
+  "fps": 2,
+  "mirror": false,
+  "cameraAndLightsFixed": true
+}

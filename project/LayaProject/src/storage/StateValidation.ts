@@ -68,7 +68,7 @@ export function validateState(s: GameState) {
     if (s.phase === "DAY" || s.phase === "NIGHT") {
         const w = s.wave; check(w && int(w.budget, 1, 66) && w.tier === s.tier && ["NONE", "FAST", "STURDY", "GROUP"].includes(w.affix) && Array.isArray(w.entries) && w.entries.length > 0 && w.entries.length <= RULE.planCap);
         let last = 0, budget = 0;
-        for (const e of w.entries) { check(own(e.kind, ENEMIES) && int(e.tick, last, RULE.spawnTicks) && ENEMIES[e.kind].unlock <= s.day); last = e.tick; budget += ENEMIES[e.kind].cost; }
+        for (const e of w.entries) { check(own(e.kind, ENEMIES) && int(e.tick, last, RULE.spawnTicks) && int(e.appearanceSeed, 0, 0xffffffff) && ENEMIES[e.kind].unlock <= s.day); last = e.tick; budget += ENEMIES[e.kind].cost; }
         check(budget === w.budget);
     } else check(s.wave === null);
     if (s.phase === "NIGHT") {

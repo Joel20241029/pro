@@ -1,5 +1,7 @@
 /** 配置稳定入口；直接导出原对象，保留枚举键序和随机抽样顺序。调整参数请查看 config/ 的职责说明。 */
 export { CONFIG_VERSION, GROWTH, POPULATION, ELITE, RULE, Policy, POLICIES, SEASONS } from "../config/RuleConfig";
 export { ADULT_APPEARANCE, VILLAGER_NAMES, LABOR_CLIPS, TRAITS, SKILLS, Trait, Skill, FOUNDERS } from "../config/VillagerConfig";
-export { TowerKind, EnemyKind, TOWERS, ENEMIES, PATH, PADS } from "../config/DefenseConfig";
+export { TowerKind, TOWERS, PATH, PADS } from "../config/DefenseConfig";
 export { MUSIC } from "../config/AudioConfig";
+
+export { ENEMIES, EnemyKind } from "../config/EnemyConfig";

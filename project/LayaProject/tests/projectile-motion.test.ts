@@ -34,7 +34,7 @@ test("Stone follows a rotating arc and survives removal from the five-tick event
 test("Repeated view refresh never duplicates or replays a Shot", () => {
     const b = battle(), m = new ProjectileMotion(); b.tick = 1; b.shots = [shot("ARROW")];
     for (let i = 0; i < 30; i++) m.update(b); equal(m.poses.length, 1);
-    b.tick = 20; m.update(b); equal(m.poses.length, 0); m.update(b); equal(m.poses.length, 0);
+    b.tick = 20; m.update(b); equal(m.arrivals.length, 1); m.update(b); equal(m.arrivals.length, 0); equal(m.poses.length, 0);
 });
 test("Paused ticks freeze every property, batched ticks match individually advanced ticks", () => {
     const b = battle(), m = new ProjectileMotion(); b.tick = 1; b.shots = [shot("STONE")]; m.update(b);
@@ -60,7 +60,7 @@ test("Effect pool is bounded and fully expires", () => {
     const b = battle(), m = new ProjectileMotion(); b.tick = 1;
     b.shots = Array.from({ length: RULE.effectCap + 10 }, (_, i) => ({ ...shot("STONE"), x: 200 + i }));
     m.update(b); equal(m.poses.length, RULE.effectCap); equal(m.poses[0].shot, b.shots[10]);
-    b.shots = []; b.tick = 20; m.update(b); equal(m.poses.length, 0);
+    b.shots = []; b.tick = 20; m.update(b); equal(m.arrivals.length, RULE.effectCap); m.update(b); equal(m.poses.length, 0);
 });
 test("Frost projectile becomes the existing frost ring and fades", () => {
     const b = battle(), m = new ProjectileMotion(); b.shots = [shot("SLOW")]; b.tick = 1; m.update(b); equal(m.poses[0].frame, "fx_ice");

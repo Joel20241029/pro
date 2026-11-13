@@ -47,12 +47,14 @@ const { UiWidgets } = require(path.join(build, 'view/UiWidgets.js'));
 const { createGame } = require(path.join(build, 'game/VillageRules.js'));
 const { compareDepth } = require(path.join(build, 'view/VillageScene.js'));
 const art = {
+    particles: require("./helpers/particles.cjs").library(),
+    ready: () => true,
     get: id => id, frameId: clip => clip, walk: () => ({ clip: 'villager_male_a_walk', mirror: false }),
     applyFrame(node, _id, size) { node.size(size, size).pivot(size / 2, size * 15 / 16); }
 };
 function setup() {
     cancelled.length = 0;
-    const state = createGame(7), game = { state, battle: null, pauses: new Set() }, opened = [], houses = [], poses = new Map();
+    const state = createGame(7), game = { takeCombatFeedback: () => [], state, battle: null, pauses: new Set() }, opened = [], houses = [], poses = new Map();
     const layout = new GameLayout({ windowWidth: 390, windowHeight: 844, screenTop: 0, statusBarHeight: 47, safeArea: { top: 47, bottom: 810 } }, { bottom: 83, left: 292, width: 88, height: 32 });
     const world = new VillageWorld(game, art, new UiWidgets(art, () => {}), layout, name => houses.push(name), id => opened.push(id));
     // 仅此单元夹具移去场景建筑；遮挡分别显式构造，原生验收另用完整建筑和实际图集。

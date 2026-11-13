@@ -1,0 +1,96 @@
+{
+  "status": "four_direction_walk_candidate_not_integrated",
+  "method": "Blender actual offline rendering",
+  "source": "res/source/rendered2d/characters/male/male_direction_probe.blend",
+  "frames": [
+    {
+      "file": "male_down_1.png",
+      "bytes": 262164,
+      "sha256": "14e042c91614934aadd4afbc22bf38b7ad74e5d4972d2a548dfbce1ff52e7159"
+    },
+    {
+      "file": "male_down_2.png",
+      "bytes": 261935,
+      "sha256": "acf31eda3286232eccf90a8df30ca9e9df60387750b629a0c563554f7cbb48ba"
+    },
+    {
+      "file": "male_down_3.png",
+      "bytes": 263359,
+      "sha256": "1fe99127dcbc78edcc36333933a80ca2c8c86c891b05daec23bf789fc1ef279d"
+    },
+    {
+      "file": "male_down_4.png",
+      "bytes": 262000,
+      "sha256": "8a6fea8c414302efd4d8f559de380368bd30d2669e736cc72b7b179fb983178c"
+    },
+    {
+      "file": "male_left_1.png",
+      "bytes": 238578,
+      "sha256": "7976f6220b9f3229cd15b595f5d1abf70027c6e9c672029a7d6b47618cf81810"
+    },
+    {
+      "file": "male_left_2.png",
+      "bytes": 238198,
+      "sha256": "f456311232350e47f578b02e334e2c7f7a15b3768fe955c648a742ceda7c017e"
+    },
+    {
+      "file": "male_left_3.png",
+      "bytes": 242178,
+      "sha256": "5b65a3de1b0280d3a01a1b53dbeea123851ade20215cd3ccccd004c6a285fcb5"
+    },
+    {
+      "file": "male_left_4.png",
+      "bytes": 239657,
+      "sha256": "b318a4526f7ee9daf0d9f200f019dedc257a873f55d32d5ece4899bb4e069d6b"
+    },
+    {
+      "file": "male_right_1.png",
+      "bytes": 239363,
+      "sha256": "aec7528a6494fbd16e9e5114d745d7b071b5a274775b19244dd3b4d8bf9b7bc2"
+    },
+    {
+      "file": "male_right_2.png",
+      "bytes": 240134,
+      "sha256": "a65a442e1919e63b9f53b96c9f39f26b7cf2d56f57c6f1f256948357829d095f"
+    },
+    {
+      "file": "male_right_3.png",
+      "bytes": 242898,
+      "sha256": "29550e2fff4001d267e1a9db97d84869c428d10f83bb2e44cf76e96db8c95d03"
+    },
+    {
+      "file": "male_right_4.png",
+      "bytes": 238038,
+      "sha256": "9ce7f0f2d27c69aa517a27372c0ab8a9709be673b525029c87b6997955d1553c"
+    },
+    {
+      "file": "male_up_1.png",
+      "bytes": 247742,
+      "sha256": "d8b974813b7cc2a0d15c4e98ae905e848a2ba085139bd2b5c1c7d99df1f4172f"
+    },
+    {
+      "file": "male_up_2.png",
+      "bytes": 246916,
+      "sha256": "ed308623fffe2db113c12d60ea6b4f5d2282f44b33c049fdfbd38e9cddbc6946"
+    },
+    {
+      "file": "male_up_3.png",
+      "bytes": 248480,
+      "sha256": "094cec9f306c525b76594c9204d0ff14586b5cb07771627331f3811c5d457cc1"
+    },
+    {
+      "file": "male_up_4.png",
+      "bytes": 246259,
+      "sha256": "adf01d344e14757b4ef2ef9883adb80236660a5c19a44637fd1f9020d1b25a9b"
+    }
+  ],
+  "frameSize": [
+    512,
+    512
+  ],
+  "fps": 6,
+  "mirror": false,
+  "maxRigidError": 1.0803341865539551e-07,
+  "runtimeChanged": false,
+  "footValidation": "res/source/rendered2d/characters/male/foot-validation.json"
+}

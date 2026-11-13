@@ -1,0 +1,533 @@
+{
+  "_$ver": 1,
+  "_$id": "iq9quyah",
+  "_$type": "Sprite3D",
+  "name": "enemy_runner",
+  "_$comp": [
+    {
+      "_$type": "Animator",
+      "controllerLayers": [
+        {
+          "_$type": "AnimatorControllerLayer",
+          "name": "AnimatorLayer",
+          "states": [
+            {
+              "_$type": "AnimatorState",
+              "name": "idle",
+              "clipStart": 0,
+              "clip": {
+                "_$uuid": "1f126c22-39e4-47bb-bca3-4f6b1c8c1707@lani0",
+                "_$type": "AnimationClip"
+              },
+              "soloTransitions": []
+            },
+            {
+              "_$type": "AnimatorState",
+              "name": "walk",
+              "clipStart": 0,
+              "clip": {
+                "_$uuid": "1f126c22-39e4-47bb-bca3-4f6b1c8c1707@lani1",
+                "_$type": "AnimationClip"
+              },
+              "soloTransitions": []
+            }
+          ],
+          "defaultStateName": "idle"
+        }
+      ]
+    }
+  ],
+  "_$child": [
+    {
+      "_$id": "#21",
+      "_$type": "Sprite3D",
+      "name": "enemy_runner",
+      "_$child": [
+        {
+          "_$id": "#0",
+          "_$type": "Sprite3D",
+          "name": "FootOrigin"
+        },
+        {
+          "_$id": "#20",
+          "_$type": "Sprite3D",
+          "name": "Skeleton",
+          "_$child": [
+            {
+              "_$id": "#19",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "1f126c22-39e4-47bb-bca3-4f6b1c8c1707@lm0",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "SkinnedMeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "1f126c22-39e4-47bb-bca3-4f6b1c8c1707@lmat0",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "_bones": [
+                    {
+                      "_$ref": "#18"
+                    },
+                    {
+                      "_$ref": "#17"
+                    },
+                    {
+                      "_$ref": "#10"
+                    },
+                    {
+                      "_$ref": "#2"
+                    },
+                    {
+                      "_$ref": "#5"
+                    },
+                    {
+                      "_$ref": "#4"
+                    },
+                    {
+                      "_$ref": "#3"
+                    },
+                    {
+                      "_$ref": "#8"
+                    },
+                    {
+                      "_$ref": "#7"
+                    },
+                    {
+                      "_$ref": "#6"
+                    },
+                    {
+                      "_$ref": "#13"
+                    },
+                    {
+                      "_$ref": "#12"
+                    },
+                    {
+                      "_$ref": "#11"
+                    },
+                    {
+                      "_$ref": "#16"
+                    },
+                    {
+                      "_$ref": "#15"
+                    },
+                    {
+                      "_$ref": "#14"
+                    }
+                  ],
+                  "rootBone": {
+                    "_$ref": "#18"
+                  },
+                  "localBounds": {
+                    "_$type": "Bounds",
+                    "min": {
+                      "_$type": "Vector3",
+                      "x": -0.3388049602508545,
+                      "y": -0.0013363039354865166,
+                      "z": -0.2823741137981415
+                    },
+                    "max": {
+                      "_$type": "Vector3",
+                      "x": 0.41405415534973145,
+                      "y": 1.6508943491578165,
+                      "z": 0.2827428877353668
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "#18",
+              "_$type": "Sprite3D",
+              "name": "Root",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 0.00958630908280611
+                }
+              },
+              "_$child": [
+                {
+                  "_$id": "#17",
+                  "_$type": "Sprite3D",
+                  "name": "Hips",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.5609999895095825
+                    },
+                    "localScale": {
+                      "_$type": "Vector3",
+                      "x": 1,
+                      "y": 0.9999999403953552,
+                      "z": 1
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "#10",
+                      "_$type": "Sprite3D",
+                      "name": "Spine",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "y": 0.16500002145767212
+                        }
+                      },
+                      "_$child": [
+                        {
+                          "_$id": "#2",
+                          "_$type": "Sprite3D",
+                          "name": "Head",
+                          "transform": {
+                            "localPosition": {
+                              "_$type": "Vector3",
+                              "y": 0.3630000352859497
+                            }
+                          },
+                          "_$child": [
+                            {
+                              "_$id": "#1",
+                              "_$type": "Sprite3D",
+                              "name": "HeadAnchor",
+                              "transform": {
+                                "localPosition": {
+                                  "_$type": "Vector3",
+                                  "y": 0.5816946029663086,
+                                  "z": 0.0001843869686126709
+                                },
+                                "localRotation": {
+                                  "_$type": "Quaternion",
+                                  "x": 3.7748950632021634e-8,
+                                  "w": 0.9999999999999993
+                                },
+                                "localScale": {
+                                  "_$type": "Vector3",
+                                  "x": 1,
+                                  "y": 1.0000001192092896,
+                                  "z": 1
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "_$id": "#5",
+                          "_$type": "Sprite3D",
+                          "name": "UpperArm.L",
+                          "transform": {
+                            "localPosition": {
+                              "_$type": "Vector3",
+                              "x": 0.18975000083446503,
+                              "y": 0.28050005435943604
+                            },
+                            "localRotation": {
+                              "_$type": "Quaternion",
+                              "x": -0.9270714859828837,
+                              "y": -0.16588282124169057,
+                              "z": -0.3309305814332836,
+                              "w": 0.05921401663976472
+                            },
+                            "localScale": {
+                              "_$type": "Vector3",
+                              "x": 0.9999992251396179,
+                              "y": 0.9999998807907104,
+                              "z": 1
+                            }
+                          },
+                          "_$child": [
+                            {
+                              "_$id": "#4",
+                              "_$type": "Sprite3D",
+                              "name": "Forearm.L",
+                              "transform": {
+                                "localPosition": {
+                                  "_$type": "Vector3",
+                                  "x": -1.7929462359234094e-8,
+                                  "y": 0.2345091551542282,
+                                  "z": -2.9214604069238703e-9
+                                },
+                                "localRotation": {
+                                  "_$type": "Quaternion",
+                                  "x": -0.05946155496249283,
+                                  "y": -0.07718442197073522,
+                                  "z": 0.051076634504999024,
+                                  "w": 0.9939306142252228
+                                }
+                              },
+                              "_$child": [
+                                {
+                                  "_$id": "#3",
+                                  "_$type": "Sprite3D",
+                                  "name": "Hand.L",
+                                  "transform": {
+                                    "localPosition": {
+                                      "_$type": "Vector3",
+                                      "x": -4.516914486885071e-8,
+                                      "y": 0.21098072826862335,
+                                      "z": -9.313225746154785e-9
+                                    },
+                                    "localRotation": {
+                                      "_$type": "Quaternion",
+                                      "x": -0.12895231892816483,
+                                      "y": -0.045622879569389346,
+                                      "z": -0.025239770162886265,
+                                      "w": 0.9902791557459799
+                                    },
+                                    "localScale": {
+                                      "_$type": "Vector3",
+                                      "x": 1,
+                                      "y": 0.9999999403953552,
+                                      "z": 0.9999999403953552
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "_$id": "#8",
+                          "_$type": "Sprite3D",
+                          "name": "UpperArm.R",
+                          "transform": {
+                            "localPosition": {
+                              "_$type": "Vector3",
+                              "x": -0.18975000083446503,
+                              "y": 0.28050005435943604
+                            },
+                            "localRotation": {
+                              "_$type": "Quaternion",
+                              "x": -0.9270714859828837,
+                              "y": 0.16588282124169057,
+                              "z": 0.3309305814332836,
+                              "w": 0.05921401663976472
+                            },
+                            "localScale": {
+                              "_$type": "Vector3",
+                              "x": 0.9999992251396179,
+                              "y": 0.9999998807907104,
+                              "z": 1
+                            }
+                          },
+                          "_$child": [
+                            {
+                              "_$id": "#7",
+                              "_$type": "Sprite3D",
+                              "name": "Forearm.R",
+                              "transform": {
+                                "localPosition": {
+                                  "_$type": "Vector3",
+                                  "x": 1.7929462359234094e-8,
+                                  "y": 0.2345091551542282,
+                                  "z": -2.9214604069238703e-9
+                                },
+                                "localRotation": {
+                                  "_$type": "Quaternion",
+                                  "x": -0.05946155496249283,
+                                  "y": 0.07718442197073522,
+                                  "z": -0.051076634504999024,
+                                  "w": 0.9939306142252228
+                                }
+                              },
+                              "_$child": [
+                                {
+                                  "_$id": "#6",
+                                  "_$type": "Sprite3D",
+                                  "name": "Hand.R",
+                                  "transform": {
+                                    "localPosition": {
+                                      "_$type": "Vector3",
+                                      "x": 4.516914486885071e-8,
+                                      "y": 0.21098072826862335,
+                                      "z": -9.313225746154785e-9
+                                    },
+                                    "localRotation": {
+                                      "_$type": "Quaternion",
+                                      "x": -0.12895231892816483,
+                                      "y": 0.045622879569389346,
+                                      "z": 0.025239770162886265,
+                                      "w": 0.9902791557459799
+                                    },
+                                    "localScale": {
+                                      "_$type": "Vector3",
+                                      "x": 1,
+                                      "y": 0.9999999403953552,
+                                      "z": 0.9999999403953552
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "_$id": "#9",
+                          "_$type": "Sprite3D",
+                          "name": "BackAnchor",
+                          "transform": {
+                            "localPosition": {
+                              "_$type": "Vector3",
+                              "y": 0.21316373348236084,
+                              "z": -0.10040874779224396
+                            },
+                            "localRotation": {
+                              "_$type": "Quaternion",
+                              "x": 3.7748950632021634e-8,
+                              "w": 0.9999999999999993
+                            },
+                            "localScale": {
+                              "_$type": "Vector3",
+                              "x": 1,
+                              "y": 1.0000001192092896,
+                              "z": 1
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#13",
+                      "_$type": "Sprite3D",
+                      "name": "Thigh.L",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.13199999928474426
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.9999999999999973,
+                          "z": 7.549789415861577e-8,
+                          "w": 0
+                        }
+                      },
+                      "_$child": [
+                        {
+                          "_$id": "#12",
+                          "_$type": "Sprite3D",
+                          "name": "Shin.L",
+                          "transform": {
+                            "localPosition": {
+                              "_$type": "Vector3",
+                              "y": 0.24750009179115295
+                            },
+                            "localRotation": {
+                              "_$type": "Quaternion",
+                              "y": -7.549788705318841e-8,
+                              "w": 0.9999999999999973
+                            }
+                          },
+                          "_$child": [
+                            {
+                              "_$id": "#11",
+                              "_$type": "Sprite3D",
+                              "name": "Foot.L",
+                              "transform": {
+                                "localPosition": {
+                                  "_$type": "Vector3",
+                                  "y": 0.2227499932050705
+                                },
+                                "localRotation": {
+                                  "_$type": "Quaternion",
+                                  "x": -0.6154122221701226,
+                                  "y": -1.1200985579325723e-14,
+                                  "z": -8.745602288886498e-15,
+                                  "w": 0.7882054280475567
+                                },
+                                "localScale": {
+                                  "_$type": "Vector3",
+                                  "x": 1,
+                                  "y": 0.9999998807907104,
+                                  "z": 0.9999999403953552
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#16",
+                      "_$type": "Sprite3D",
+                      "name": "Thigh.R",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.13199999928474426
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.9999999999999973,
+                          "z": 7.549789415861577e-8,
+                          "w": 0
+                        }
+                      },
+                      "_$child": [
+                        {
+                          "_$id": "#15",
+                          "_$type": "Sprite3D",
+                          "name": "Shin.R",
+                          "transform": {
+                            "localPosition": {
+                              "_$type": "Vector3",
+                              "y": 0.24750009179115295
+                            },
+                            "localRotation": {
+                              "_$type": "Quaternion",
+                              "y": -7.549788705318841e-8,
+                              "w": 0.9999999999999973
+                            }
+                          },
+                          "_$child": [
+                            {
+                              "_$id": "#14",
+                              "_$type": "Sprite3D",
+                              "name": "Foot.R",
+                              "transform": {
+                                "localPosition": {
+                                  "_$type": "Vector3",
+                                  "y": 0.2227499932050705
+                                },
+                                "localRotation": {
+                                  "_$type": "Quaternion",
+                                  "x": -0.6154122221701226,
+                                  "y": -1.1200985579325723e-14,
+                                  "z": -8.745602288886498e-15,
+                                  "w": 0.7882054280475567
+                                },
+                                "localScale": {
+                                  "_$type": "Vector3",
+                                  "x": 1,
+                                  "y": 0.9999998807907104,
+                                  "z": 0.9999999403953552
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

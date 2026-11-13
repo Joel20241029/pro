@@ -1,0 +1,1831 @@
+{
+  "_$ver": 1,
+  "_$id": "0393m3dx",
+  "_$type": "Sprite3D",
+  "name": "SLOW",
+  "_$child": [
+    {
+      "_$id": "#69",
+      "_$type": "Sprite3D",
+      "name": "SLOW",
+      "_$child": [
+        {
+          "_$id": "#15",
+          "_$type": "Sprite3D",
+          "name": "Level1",
+          "_$child": [
+            {
+              "_$id": "#8",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$child": [
+                {
+                  "_$id": "#0",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.5299999713897705,
+                      "y": 0.6050000190734863
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm0",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#1",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.26499998569488525,
+                      "y": 0.6050000190734863,
+                      "z": -0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm0",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#2",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.26499998569488525,
+                      "y": 0.6050000190734863,
+                      "z": -0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm0",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#3",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.5299999713897705,
+                      "y": 0.6050000190734863
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm0",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#4",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.26499998569488525,
+                      "y": 0.6050000190734863,
+                      "z": 0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm0",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#5",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.005",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.26499998569488525,
+                      "y": 0.6050000190734863,
+                      "z": 0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm0",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#6",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionRoofPatch.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.149999976158142
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat1",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#7",
+                  "_$type": "Sprite3D",
+                  "name": "StoneBase.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.21000000834465027
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat3",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat4",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#9",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#10",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#11",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            },
+            {
+              "_$id": "#14",
+              "_$type": "Sprite3D",
+              "name": "Weapon",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 1.2899999618530273
+                }
+              },
+              "_$child": [
+                {
+                  "_$id": "#12",
+                  "_$type": "Sprite3D",
+                  "name": "CrystalPatch.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.005815595388412476,
+                      "y": 0.2174999713897705,
+                      "z": -0.00835651159286499
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat6",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat7",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#13",
+                  "_$type": "Sprite3D",
+                  "name": "Muzzle",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.440000057220459
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_$id": "#35",
+          "_$type": "Sprite3D",
+          "name": "Level12",
+          "_$child": [
+            {
+              "_$id": "#28",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$child": [
+                {
+                  "_$id": "#16",
+                  "_$type": "Sprite3D",
+                  "name": "BannerPatch.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.550000011920929,
+                      "y": 1.1974999904632568,
+                      "z": 0.5264999866485596
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat8",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat9",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat10",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#17",
+                  "_$type": "Sprite3D",
+                  "name": "BannerPatch.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.550000011920929,
+                      "y": 1.1974999904632568,
+                      "z": 0.5264999866485596
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat8",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat9",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat10",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#18",
+                  "_$type": "Sprite3D",
+                  "name": "GoldBase",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.44999998807907104
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat8",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#19",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.018",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.5299999713897705,
+                      "y": 0.9350000023841858
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm6",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#20",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.019",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.26499998569488525,
+                      "y": 0.9350000023841858,
+                      "z": -0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm6",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#21",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.020",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.26499998569488525,
+                      "y": 0.9350000023841858,
+                      "z": -0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm6",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#22",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.021",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.5299999713897705,
+                      "y": 0.9350000023841858
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm6",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#23",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.022",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.26499998569488525,
+                      "y": 0.9350000023841858,
+                      "z": 0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm6",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#24",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.023",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.26499998569488525,
+                      "y": 0.9350000023841858,
+                      "z": 0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm6",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#25",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionRoofPatch.005",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.809999942779541
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm7",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat11",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat12",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#26",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionRoofPatch.006",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 2.134999990463257
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm8",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat11",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat12",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#27",
+                  "_$type": "Sprite3D",
+                  "name": "StoneBase.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.21000000834465027
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat3",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat4",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#29",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#30",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#31",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            },
+            {
+              "_$id": "#34",
+              "_$type": "Sprite3D",
+              "name": "Weapon",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.25
+                }
+              },
+              "_$child": [
+                {
+                  "_$id": "#32",
+                  "_$type": "Sprite3D",
+                  "name": "CrystalPatch.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.005815595388412476,
+                      "y": 0.2174999713897705,
+                      "z": -0.00835651159286499
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat6",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat7",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#33",
+                  "_$type": "Sprite3D",
+                  "name": "Muzzle",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.440000057220459
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_$id": "#51",
+          "_$type": "Sprite3D",
+          "name": "Level4",
+          "_$child": [
+            {
+              "_$id": "#44",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$child": [
+                {
+                  "_$id": "#36",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.006",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.5299999713897705,
+                      "y": 0.699999988079071
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm9",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#37",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.007",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.26499998569488525,
+                      "y": 0.699999988079071,
+                      "z": -0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm9",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#38",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.008",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.26499998569488525,
+                      "y": 0.699999988079071,
+                      "z": -0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm9",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#39",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.009",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.5299999713897705,
+                      "y": 0.699999988079071
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm9",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#40",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.010",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.26499998569488525,
+                      "y": 0.699999988079071,
+                      "z": 0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm9",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#41",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.011",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.26499998569488525,
+                      "y": 0.699999988079071,
+                      "z": 0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm9",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#42",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionRoofPatch.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.3399999141693115
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm7",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat11",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat12",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#43",
+                  "_$type": "Sprite3D",
+                  "name": "StoneBase.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.21000000834465027
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat3",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat4",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#45",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#46",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#47",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            },
+            {
+              "_$id": "#50",
+              "_$type": "Sprite3D",
+              "name": "Weapon",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 1.4800000190734863
+                }
+              },
+              "_$child": [
+                {
+                  "_$id": "#48",
+                  "_$type": "Sprite3D",
+                  "name": "CrystalPatch.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.005815595388412476,
+                      "y": 0.2174999713897705,
+                      "z": -0.00835651159286499
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat6",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat7",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#49",
+                  "_$type": "Sprite3D",
+                  "name": "Muzzle",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.440000057220459
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_$id": "#68",
+          "_$type": "Sprite3D",
+          "name": "Level8",
+          "_$child": [
+            {
+              "_$id": "#61",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$child": [
+                {
+                  "_$id": "#52",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.012",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.5299999713897705,
+                      "y": 0.8399999737739563
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm10",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#53",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.013",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.26499998569488525,
+                      "y": 0.8399999737739563,
+                      "z": -0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm10",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#54",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.014",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.26499998569488525,
+                      "y": 0.8399999737739563,
+                      "z": -0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm10",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#55",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.015",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.5299999713897705,
+                      "y": 0.8399999737739563
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm10",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#56",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.016",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.26499998569488525,
+                      "y": 0.8399999737739563,
+                      "z": 0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm10",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#57",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionPost.017",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.26499998569488525,
+                      "y": 0.8399999737739563,
+                      "z": 0.45899346470832825
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm10",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#58",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionRoofPatch.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.6200000047683716
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm7",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat11",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat12",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#59",
+                  "_$type": "Sprite3D",
+                  "name": "PavilionRoofPatch.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.9449999332427979
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm8",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat11",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat12",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#60",
+                  "_$type": "Sprite3D",
+                  "name": "StoneBase.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.21000000834465027
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat3",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat4",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#62",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#63",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#64",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            },
+            {
+              "_$id": "#67",
+              "_$type": "Sprite3D",
+              "name": "Weapon",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.059999942779541
+                }
+              },
+              "_$child": [
+                {
+                  "_$id": "#65",
+                  "_$type": "Sprite3D",
+                  "name": "CrystalPatch.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.005815595388412476,
+                      "y": 0.2174999713897705,
+                      "z": -0.00835651159286499
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat6",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "25a5fc4f-c77e-4d80-a111-7c9fb76337b5@lmat7",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#66",
+                  "_$type": "Sprite3D",
+                  "name": "Muzzle",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.440000057220459
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

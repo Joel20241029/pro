@@ -1,0 +1,49 @@
+{
+  "createdAt": "2026-11-12T13:22:23.714Z",
+  "root": "/Users/happyelements/Documents/pro/tryVersion/wxgame",
+  "rawDirectoryBytes": 3820224,
+  "rawMainPackageBytes": 2590578,
+  "subpackages": [
+    {
+      "name": "resources/characters",
+      "root": "resources/characters/",
+      "rawBytes": 620031
+    },
+    {
+      "name": "resources/battle",
+      "root": "resources/battle/",
+      "rawBytes": 609615
+    }
+  ],
+  "internalBudgets": {
+    "main": 3000000,
+    "characters": 900000,
+    "battle": 1100000,
+    "total": 5000000
+  },
+  "platformUploadBytes": null,
+  "platformUploadStatus": "not_uploaded",
+  "errors": [],
+  "tests": {
+    "cjsPassed": 163,
+    "typescriptPassed": 119,
+    "typescriptSuites": 10,
+    "growthSeeds": [
+      1,
+      2,
+      3,
+      11,
+      123
+    ],
+    "growthNightsEach": 300
+  },
+  "wechatDeveloperTools": {
+    "version": "2.02.2609250",
+    "baseLibrary": "3.18.0",
+    "layout": "iPhone 12/13",
+    "firstNightWon": true,
+    "scrollClippingVerified": true,
+    "localTestSaveCleared": true,
+    "realPhoneVerified": false
+  }
+}

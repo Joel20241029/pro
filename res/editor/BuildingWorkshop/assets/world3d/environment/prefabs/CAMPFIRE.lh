@@ -1,0 +1,582 @@
+{
+  "_$ver": 1,
+  "_$id": "q1bgbu1h",
+  "_$type": "Sprite3D",
+  "name": "CAMPFIRE",
+  "_$child": [
+    {
+      "_$id": "#17",
+      "_$type": "Sprite3D",
+      "name": "CAMPFIRE",
+      "_$child": [
+        {
+          "_$id": "#11",
+          "_$type": "Sprite3D",
+          "name": "Body",
+          "_$child": [
+            {
+              "_$id": "#0",
+              "_$type": "Sprite3D",
+              "name": "CharredLog",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 0.125
+                },
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "x": 0.4018632325146421,
+                  "y": 0.5922640942318206,
+                  "z": -0.5449617902568399,
+                  "w": 0.43674458462206944
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm0",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat0",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#1",
+              "_$type": "Sprite3D",
+              "name": "CharredLog.001",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 0.125
+                },
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "x": 0.2727569470484709,
+                  "y": -0.6735359608548098,
+                  "z": 0.6197426530726657,
+                  "w": 0.2964321191008818
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm0",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat0",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#2",
+              "_$type": "Sprite3D",
+              "name": "CharredLog.002",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 0.125
+                },
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "x": 0.673295110069175,
+                  "y": -0.0779998341982646,
+                  "z": 0.07177024012780035,
+                  "w": 0.7317368059992465
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm0",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat0",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#3",
+              "_$type": "Sprite3D",
+              "name": "FireRingStone",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.3799999952316284,
+                  "y": 0.09000000357627869
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#4",
+              "_$type": "Sprite3D",
+              "name": "FireRingStone.001",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.26870056986808777,
+                  "y": 0.09000000357627869,
+                  "z": -0.26870056986808777
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm2",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat2",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#5",
+              "_$type": "Sprite3D",
+              "name": "FireRingStone.002",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 0.09000000357627869,
+                  "z": -0.3799999952316284
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#6",
+              "_$type": "Sprite3D",
+              "name": "FireRingStone.003",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.26870056986808777,
+                  "y": 0.09000000357627869,
+                  "z": -0.26870056986808777
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm2",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat2",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#7",
+              "_$type": "Sprite3D",
+              "name": "FireRingStone.004",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.3799999952316284,
+                  "y": 0.09000000357627869
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#8",
+              "_$type": "Sprite3D",
+              "name": "FireRingStone.005",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.26870056986808777,
+                  "y": 0.09000000357627869,
+                  "z": 0.26870056986808777
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm2",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat2",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#9",
+              "_$type": "Sprite3D",
+              "name": "FireRingStone.006",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 0.09000000357627869,
+                  "z": 0.3799999952316284
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#10",
+              "_$type": "Sprite3D",
+              "name": "FireRingStone.007",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.26870056986808777,
+                  "y": 0.09000000357627869,
+                  "z": 0.26870056986808777
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm2",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat2",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_$id": "#16",
+          "_$type": "Sprite3D",
+          "name": "Flame",
+          "transform": {
+            "localPosition": {
+              "_$type": "Vector3",
+              "y": 0.15000000596046448
+            }
+          },
+          "_$child": [
+            {
+              "_$id": "#12",
+              "_$type": "Sprite3D",
+              "name": "FlameTongue",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 0.2849999964237213
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm3",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat3",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#13",
+              "_$type": "Sprite3D",
+              "name": "FlameTongue.001",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.12999999523162842,
+                  "y": 0.18000000715255737
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm4",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat3",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#14",
+              "_$type": "Sprite3D",
+              "name": "FlameTongue.002",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.10000000149011612,
+                  "y": 0.2150000035762787,
+                  "z": -0.04999999701976776
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm5",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat4",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#15",
+              "_$type": "Sprite3D",
+              "name": "FlameTongue.003",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 0.14000001549720764,
+                  "z": 0.10000000149011612
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lm6",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "ac573f02-7fdf-4f11-b2a7-76b8d6729d99@lmat4",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

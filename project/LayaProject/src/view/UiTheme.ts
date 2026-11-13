@@ -1,7 +1,7 @@
 /** 720 逻辑宽度的视觉规范。来自三屏概念图的木色、羊皮纸、森林绿；仅调整可读性与美术，不参与业务。 */
 export const C = {
-    ink: "#48311f", muted: "#796348", cream: "#fff1cf", paper: "#eddbad",
-    green: "#557637", gold: "#d49a35", red: "#af5338", grass: "#97af70", night: "#354f53",
+    ink: "#4b301c", muted: "#806b54", cream: "#fff6e6", paper: "#f1dfbd",
+    green: "#527a35", gold: "#d99b38", red: "#b6533e", grass: "#97af70", night: "#354f53",
     outline: "#493420", lightEdge: "#fff9e7",
     // 木色用于资源、成长及米黄底板上的屏中提示；不改变资源是否足够的判定。
     timber: "#9a591f",
@@ -19,7 +19,7 @@ export const UI = {
     conditionRowHeight: 170, conditionRowStep: 180,
     // 纯触控表现参数（逻辑像素）：给滑块留白，超过 8px 的移动视为拖动，避免抬指误点条目。
     scrollGutter: 16, scrollDragThreshold: 8, scrollThumbMin: 32, scrollWheelStep: 24,
-    pressedOffset: 4,
+    pressedOffset: 3,
     // Tip 总显示2秒（包含淡入/淡出），按用户指定；位置由GameLayout放在实际安全区中心。
     tipSeconds: 2, tipFadeIn: .16, tipFadeOut: .28, tipWidth: 600, tipFont: 30, tipMaxHeight: 800
 } as const;

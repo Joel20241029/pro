@@ -40,7 +40,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "building_house_terracotta",
@@ -73,7 +74,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "building_farm",
@@ -106,7 +108,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "building_lumber_shed",
@@ -139,7 +142,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "building_tower_arrow",
@@ -172,7 +176,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "building_tower_stone",
@@ -205,7 +210,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "building_tower_slow",
@@ -238,7 +244,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "building_tower_pad",
@@ -271,7 +278,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "building_gate_closed",
@@ -304,7 +312,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "building_gate_damaged",
@@ -337,7 +346,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "building_hearth_unlit",
@@ -370,7 +380,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "building_hearth_lit",
@@ -403,7 +414,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "tile_ground_grass",
@@ -436,7 +448,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "tile_ground_dirt",
@@ -469,7 +482,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "tile_ground_soil",
@@ -502,7 +516,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "tile_ground_stone",
@@ -535,7 +550,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "deco_tree_oak",
@@ -568,7 +584,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "deco_tree_pine",
@@ -601,7 +618,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "deco_bush",
@@ -634,7 +652,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "deco_rocks",
@@ -667,7 +686,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "deco_fence_straight",
@@ -700,7 +720,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "deco_fence_corner",
@@ -733,7 +754,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "deco_torch",
@@ -766,7 +788,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "deco_log_pile",
@@ -799,7 +822,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "icon_food",
@@ -832,7 +856,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "icon_wood",
@@ -865,7 +890,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "icon_population",
@@ -898,7 +924,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "icon_build",
@@ -931,7 +958,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "icon_house",
@@ -964,7 +992,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "icon_logging",
@@ -997,7 +1026,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "icon_family",
@@ -1030,7 +1060,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "icon_heart",
@@ -1063,7 +1094,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "icon_arrow",
@@ -1096,7 +1128,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "icon_stone",
@@ -1129,7 +1162,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "icon_slow",
@@ -1162,7 +1196,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "icon_bell",
@@ -1195,7 +1230,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "icon_pause",
@@ -1228,7 +1264,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "icon_play",
@@ -1261,7 +1298,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "icon_settings",
@@ -1294,7 +1332,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "icon_close",
@@ -1327,7 +1366,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "icon_spring",
@@ -1360,7 +1400,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "icon_summer",
@@ -1393,7 +1434,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "icon_autumn",
@@ -1426,7 +1468,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "icon_winter",
@@ -1459,7 +1502,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "icon_upgrade",
@@ -1492,7 +1536,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "icon_shield",
@@ -1525,7 +1570,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "icon_baby",
@@ -1558,7 +1604,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "icon_view",
@@ -1591,7 +1638,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "fx_arrow",
@@ -1624,7 +1672,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "battle"
     },
     {
       "id": "fx_stone",
@@ -1657,7 +1706,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "battle"
     },
     {
       "id": "fx_ice",
@@ -1690,7 +1740,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "battle"
     },
     {
       "id": "fx_hit",
@@ -1723,7 +1774,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "battle"
     },
     {
       "id": "fx_slow_ring",
@@ -1756,7 +1808,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "battle"
     },
     {
       "id": "fx_hearts",
@@ -1789,7 +1842,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "characters"
     },
     {
       "id": "fx_sound_wave",
@@ -1822,7 +1876,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "fx_level_up",
@@ -1855,7 +1910,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "备用源文件，不进入图集"
+      "usage": "备用源文件，不进入图集",
+      "bundle": "base"
     },
     {
       "id": "panel_parchment",
@@ -1900,7 +1956,8 @@
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "panel_card",
@@ -1952,7 +2009,8 @@
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "panel_button_gold",
@@ -2004,7 +2062,8 @@
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "panel_button_green",
@@ -2056,7 +2115,8 @@
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "panel_button_disabled",
@@ -2108,7 +2168,8 @@
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "panel_portrait_frame",
@@ -2159,7 +2220,8 @@
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "villager_male_a_walk_00",
@@ -2197,7 +2259,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_walk_01",
@@ -2235,7 +2298,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_walk_02",
@@ -2273,7 +2337,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_walk_03",
@@ -2311,7 +2376,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_walk_00",
@@ -2349,7 +2415,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_walk_01",
@@ -2387,7 +2454,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_walk_02",
@@ -2425,7 +2493,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_walk_03",
@@ -2463,7 +2532,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_boy_walk_00",
@@ -2501,7 +2571,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_boy_walk_01",
@@ -2539,7 +2610,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_boy_walk_02",
@@ -2577,7 +2649,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_boy_walk_03",
@@ -2615,7 +2688,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_girl_walk_00",
@@ -2653,7 +2727,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_girl_walk_01",
@@ -2691,7 +2766,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_girl_walk_02",
@@ -2729,7 +2805,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_girl_walk_03",
@@ -2767,7 +2844,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_baby_idle_00",
@@ -2805,7 +2883,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_baby_idle_01",
@@ -2843,7 +2922,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_baby_idle_02",
@@ -2881,7 +2961,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_baby_idle_03",
@@ -2919,7 +3000,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_farm_00",
@@ -2957,7 +3039,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_farm_01",
@@ -2995,7 +3078,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_farm_02",
@@ -3033,7 +3117,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_farm_03",
@@ -3071,7 +3156,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_harvest_00",
@@ -3109,7 +3195,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_harvest_01",
@@ -3147,7 +3234,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_harvest_02",
@@ -3185,7 +3273,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_harvest_03",
@@ -3223,7 +3312,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "enemy_raider_walk_00",
@@ -3261,7 +3351,9 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_raider_walk_01",
@@ -3299,7 +3391,9 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_raider_walk_02",
@@ -3337,7 +3431,9 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_raider_walk_03",
@@ -3375,7 +3471,9 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_runner_walk_00",
@@ -3413,7 +3511,9 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_runner_walk_01",
@@ -3451,7 +3551,9 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_runner_walk_02",
@@ -3489,7 +3591,9 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_runner_walk_03",
@@ -3527,7 +3631,9 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_armored_walk_00",
@@ -3565,7 +3671,9 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_armored_walk_01",
@@ -3603,7 +3711,9 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_armored_walk_02",
@@ -3641,7 +3751,9 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_armored_walk_03",
@@ -3679,7 +3791,9 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_disruptor_walk_00",
@@ -3718,7 +3832,9 @@
       "resizeMode": "contain",
       "runtime": true,
       "usage": "序列帧动作入口",
-      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。"
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_disruptor_walk_01",
@@ -3757,7 +3873,9 @@
       "resizeMode": "contain",
       "runtime": true,
       "usage": "序列帧动作入口",
-      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。"
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_disruptor_walk_02",
@@ -3796,7 +3914,9 @@
       "resizeMode": "contain",
       "runtime": true,
       "usage": "序列帧动作入口",
-      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。"
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_disruptor_walk_03",
@@ -3835,7 +3955,9 @@
       "resizeMode": "contain",
       "runtime": true,
       "usage": "序列帧动作入口",
-      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。"
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_chief_walk_00",
@@ -3874,7 +3996,9 @@
       "resizeMode": "contain",
       "runtime": true,
       "usage": "序列帧动作入口",
-      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。"
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_chief_walk_01",
@@ -3913,7 +4037,9 @@
       "resizeMode": "contain",
       "runtime": true,
       "usage": "序列帧动作入口",
-      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。"
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_chief_walk_02",
@@ -3952,7 +4078,9 @@
       "resizeMode": "contain",
       "runtime": true,
       "usage": "序列帧动作入口",
-      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。"
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "enemy_chief_walk_03",
@@ -3991,7 +4119,9 @@
       "resizeMode": "contain",
       "runtime": true,
       "usage": "序列帧动作入口",
-      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。"
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "detail"
     },
     {
       "id": "villager_male_a_walk_up_00",
@@ -4029,7 +4159,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_walk_up_01",
@@ -4067,7 +4198,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_walk_up_02",
@@ -4105,7 +4237,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_walk_up_03",
@@ -4143,7 +4276,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_walk_up_00",
@@ -4181,7 +4315,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_walk_up_01",
@@ -4219,7 +4354,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_walk_up_02",
@@ -4257,7 +4393,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_walk_up_03",
@@ -4295,7 +4432,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_boy_walk_up_00",
@@ -4333,7 +4471,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_boy_walk_up_01",
@@ -4371,7 +4510,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_boy_walk_up_02",
@@ -4409,7 +4549,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_boy_walk_up_03",
@@ -4447,7 +4588,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_girl_walk_up_00",
@@ -4485,7 +4627,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_girl_walk_up_01",
@@ -4523,7 +4666,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_girl_walk_up_02",
@@ -4561,7 +4705,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_girl_walk_up_03",
@@ -4599,7 +4744,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_walk_right_00",
@@ -4637,7 +4783,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_walk_right_01",
@@ -4675,7 +4822,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_walk_right_02",
@@ -4713,7 +4861,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_walk_right_03",
@@ -4751,7 +4900,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_walk_right_00",
@@ -4789,7 +4939,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_walk_right_01",
@@ -4827,7 +4978,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_walk_right_02",
@@ -4865,7 +5017,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_walk_right_03",
@@ -4903,7 +5056,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_boy_walk_right_00",
@@ -4941,7 +5095,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_boy_walk_right_01",
@@ -4979,7 +5134,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_boy_walk_right_02",
@@ -5017,7 +5173,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_boy_walk_right_03",
@@ -5055,7 +5212,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_girl_walk_right_00",
@@ -5093,7 +5251,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_girl_walk_right_01",
@@ -5131,7 +5290,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_girl_walk_right_02",
@@ -5169,7 +5329,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_girl_walk_right_03",
@@ -5207,7 +5368,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "panel_button_red",
@@ -5259,7 +5421,8 @@
       },
       "compactNote": "保留原九宫格四角像素，边条及中心取中线2px；保持原固定边距。原始基准画布尺寸见nineSliceSourceSize。",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "building_palisade",
@@ -5292,7 +5455,8 @@
       "fitPadding": 0,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "村庄场景入口"
+      "usage": "村庄场景入口",
+      "bundle": "base"
     },
     {
       "id": "panel_tip",
@@ -5332,7 +5496,8 @@
       "resizeMode": "stretch",
       "cropNote": "独立浅麦金纯色底；完整不透明中心，32×32九宫格，配深棕文字，无描边/木框/投影。",
       "runtime": false,
-      "usage": "被共享的panel_anchored_tip替换，不进入运行图集"
+      "usage": "被共享的panel_anchored_tip替换，不进入运行图集",
+      "bundle": "base"
     },
     {
       "id": "villager_male_a_chop_00",
@@ -5370,7 +5535,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_chop_01",
@@ -5408,7 +5574,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_chop_02",
@@ -5446,7 +5613,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_chop_03",
@@ -5484,7 +5652,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_chop_00",
@@ -5522,7 +5691,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_chop_01",
@@ -5560,7 +5730,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_chop_02",
@@ -5598,7 +5769,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_chop_03",
@@ -5636,7 +5808,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_care_00",
@@ -5674,7 +5847,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_male_a_care_01",
@@ -5712,7 +5886,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_care_00",
@@ -5750,7 +5925,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_female_a_care_01",
@@ -5788,7 +5964,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_male_walk_00",
@@ -5826,7 +6003,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_male_walk_01",
@@ -5864,7 +6042,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_male_walk_up_00",
@@ -5902,7 +6081,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_male_walk_up_01",
@@ -5940,7 +6120,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_male_walk_right_00",
@@ -5978,7 +6159,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_male_walk_right_01",
@@ -6016,7 +6198,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_male_idle_00",
@@ -6054,7 +6237,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_male_idle_01",
@@ -6092,7 +6276,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_female_walk_00",
@@ -6130,7 +6315,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_female_walk_01",
@@ -6168,7 +6354,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_female_walk_up_00",
@@ -6206,7 +6393,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_female_walk_up_01",
@@ -6244,7 +6432,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_female_walk_right_00",
@@ -6282,7 +6471,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_female_walk_right_01",
@@ -6320,7 +6510,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_female_idle_00",
@@ -6358,7 +6549,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "villager_elder_female_idle_01",
@@ -6396,7 +6588,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "序列帧动作入口"
+      "usage": "序列帧动作入口",
+      "bundle": "characters"
     },
     {
       "id": "icon_trophy",
@@ -6429,7 +6622,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "base"
     },
     {
       "id": "emote_happy",
@@ -6462,7 +6656,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "characters"
     },
     {
       "id": "emote_proud",
@@ -6495,7 +6690,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "characters"
     },
     {
       "id": "emote_sleepy",
@@ -6528,7 +6724,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "characters"
     },
     {
       "id": "emote_peaceful",
@@ -6561,7 +6758,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "characters"
     },
     {
       "id": "emote_loving",
@@ -6594,7 +6792,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "characters"
     },
     {
       "id": "emote_curious",
@@ -6627,7 +6826,8 @@
       "fitPadding": 4,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "界面/特效入口"
+      "usage": "界面/特效入口",
+      "bundle": "characters"
     },
     {
       "id": "deco_apple_pair",
@@ -6660,7 +6860,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bundle": "base"
     },
     {
       "id": "deco_pear_pair",
@@ -6693,7 +6894,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bundle": "base"
     },
     {
       "id": "deco_blossom_pink",
@@ -6726,7 +6928,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bundle": "base"
     },
     {
       "id": "deco_blossom_ivory",
@@ -6759,7 +6962,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bundle": "base"
     },
     {
       "id": "part_window",
@@ -6792,7 +6996,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
+      "bundle": "base"
     },
     {
       "id": "part_iron",
@@ -6825,7 +7030,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
+      "bundle": "base"
     },
     {
       "id": "part_gold_roof",
@@ -6858,7 +7064,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
+      "bundle": "base"
     },
     {
       "id": "part_tile_roof",
@@ -6891,7 +7098,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
+      "bundle": "base"
     },
     {
       "id": "part_brace",
@@ -6924,7 +7132,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
+      "bundle": "base"
     },
     {
       "id": "part_foundation",
@@ -6957,7 +7166,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
+      "bundle": "base"
     },
     {
       "id": "part_grain",
@@ -6990,7 +7200,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
+      "bundle": "base"
     },
     {
       "id": "part_tools",
@@ -7023,7 +7234,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
+      "bundle": "base"
     },
     {
       "id": "part_timbers",
@@ -7056,7 +7268,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
+      "bundle": "base"
     },
     {
       "id": "part_crystal",
@@ -7089,7 +7302,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": false,
-      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。"
+      "usage": "旧版升级挂饰，已由独立建筑预制体替代；只保留制作源，不发布。",
+      "bundle": "base"
     },
     {
       "id": "part_crest",
@@ -7122,7 +7336,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bundle": "base"
     },
     {
       "id": "part_banner",
@@ -7155,7 +7370,8 @@
       "fitPadding": 2,
       "resizeMode": "contain",
       "runtime": true,
-      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry."
+      "usage": "Independent reusable overlay. Same parent depth as tree/building; not navigation or damage geometry.",
+      "bundle": "base"
     },
     {
       "id": "module_foundation",
@@ -7189,7 +7405,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_floor",
@@ -7223,7 +7440,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_plaster",
@@ -7257,7 +7475,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_masonry",
@@ -7291,7 +7510,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_lattice",
@@ -7325,7 +7545,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_thatch",
@@ -7359,7 +7580,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_tile",
@@ -7393,7 +7615,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_slate",
@@ -7427,7 +7650,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_pagoda",
@@ -7461,7 +7685,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_door",
@@ -7495,7 +7720,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_window",
@@ -7529,7 +7755,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_battlement",
@@ -7563,7 +7790,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_woodgate",
@@ -7597,7 +7825,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_stonegate",
@@ -7631,7 +7860,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_balcony",
@@ -7665,7 +7895,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_porch",
@@ -7699,7 +7930,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_ballista",
@@ -7733,7 +7965,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "原生编辑器预制体主体拼装，运行图集合批",
-      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_catapult",
@@ -7767,7 +8000,8 @@
       "resizeMode": "stretch",
       "runtime": false,
       "usage": "已改为设计稿中的投石兜，仅保留旧源",
-      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_crystal",
@@ -7801,7 +8035,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "原生编辑器预制体主体拼装，运行图集合批",
-      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_field",
@@ -7835,7 +8070,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "原生编辑器预制体主体拼装，运行图集合批",
-      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_logs",
@@ -7869,7 +8105,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "原生编辑器预制体主体拼装，运行图集合批",
-      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_wheel",
@@ -7903,7 +8140,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "原生编辑器预制体主体拼装，运行图集合批",
-      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_saw",
@@ -7937,7 +8175,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "原生编辑器预制体主体拼装，运行图集合批",
-      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_trough",
@@ -7971,7 +8210,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "原生编辑器预制体主体拼装，运行图集合批",
-      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove generation margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_round_body",
@@ -8005,7 +8245,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved."
+      "cropNote": "Explicit main connected component bounds (10% alpha mask); excludes neighboring grid fragments. Interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_sling",
@@ -8039,7 +8280,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_canopy_thatch",
@@ -8073,7 +8315,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_canopy_teal",
@@ -8107,7 +8350,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_workshop",
@@ -8141,7 +8385,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "module_porch_rail",
@@ -8175,7 +8420,8 @@
       "resizeMode": "stretch",
       "runtime": true,
       "usage": "已确认设计稿对应的原生建筑拼装部件",
-      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved."
+      "cropNote": "Bounds from 10% alpha mask remove margin speckles; interior alpha preserved.",
+      "bundle": "base"
     },
     {
       "id": "deco_village_sign",
@@ -8209,7 +8455,8 @@
       "resizeMode": "contain",
       "runtime": true,
       "usage": "城门左侧村名路牌；文字是GameView中的子节点，与牌体一起按足底排序。",
-      "cropNote": "主体10%alpha范围用于母版定位；保留内部alpha；运行图集仅裁alpha=0。"
+      "cropNote": "主体10%alpha范围用于母版定位；保留内部alpha；运行图集仅裁alpha=0。",
+      "bundle": "base"
     },
     {
       "id": "panel_anchored_tip",
@@ -8220,8 +8467,8 @@
       "width": 22,
       "height": 22,
       "pivot": {
-        "x": 11.0,
-        "y": 11.0
+        "x": 11,
+        "y": 11
       },
       "sourceSheet": "source/ui/anchored-tip/anchored-tip-v1.png",
       "sourceRect": {
@@ -8254,7 +8501,8 @@
         "w": 96,
         "h": 40
       },
-      "compactNote": "保留10px固定角部，中间取2px；指角由独立图片绘制，不参与九宫格拉伸。"
+      "compactNote": "保留10px固定角部，中间取2px；指角由独立图片绘制，不参与九宫格拉伸。",
+      "bundle": "base"
     },
     {
       "id": "panel_anchored_tip_tail",
@@ -8265,8 +8513,8 @@
       "width": 20,
       "height": 14,
       "pivot": {
-        "x": 10.0,
-        "y": 7.0
+        "x": 10,
+        "y": 7
       },
       "sourceSheet": "source/ui/anchored-tip/anchored-tip-v1.png",
       "sourceRect": {
@@ -8288,7 +8536,2454 @@
       "resizeMode": "stretch",
       "cropNote": "新生成像素母版；按主体轮廓明确裁出，排除外侧游离低透明像素。文字由Laya绘制，指角单独保留比例。",
       "runtime": true,
-      "usage": "民房点击文字气泡"
+      "usage": "民房点击文字气泡",
+      "bundle": "base"
+    },
+    {
+      "id": "enemy_boar_walk_00",
+      "label": "enemy_boar_walk_00",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/boar/walk/00.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/boar_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_boar",
+      "animation": {
+        "animationId": "enemy_boar_walk",
+        "characterId": "boar",
+        "actionId": "walk",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_boar_walk_01",
+      "label": "enemy_boar_walk_01",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/boar/walk/01.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/boar_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_boar",
+      "animation": {
+        "animationId": "enemy_boar_walk",
+        "characterId": "boar",
+        "actionId": "walk",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_boar_walk_02",
+      "label": "enemy_boar_walk_02",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/boar/walk/02.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/boar_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_boar",
+      "animation": {
+        "animationId": "enemy_boar_walk",
+        "characterId": "boar",
+        "actionId": "walk",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_boar_walk_03",
+      "label": "enemy_boar_walk_03",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/boar/walk/03.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/boar_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_boar",
+      "animation": {
+        "animationId": "enemy_boar_walk",
+        "characterId": "boar",
+        "actionId": "walk",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_commander_walk_00",
+      "label": "enemy_commander_walk_00",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/commander/walk/00.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/commander_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_commander",
+      "animation": {
+        "animationId": "enemy_commander_walk",
+        "characterId": "commander",
+        "actionId": "walk",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_commander_walk_01",
+      "label": "enemy_commander_walk_01",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/commander/walk/01.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/commander_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_commander",
+      "animation": {
+        "animationId": "enemy_commander_walk",
+        "characterId": "commander",
+        "actionId": "walk",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_commander_walk_02",
+      "label": "enemy_commander_walk_02",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/commander/walk/02.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/commander_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_commander",
+      "animation": {
+        "animationId": "enemy_commander_walk",
+        "characterId": "commander",
+        "actionId": "walk",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_commander_walk_03",
+      "label": "enemy_commander_walk_03",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/commander/walk/03.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/commander_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_commander",
+      "animation": {
+        "animationId": "enemy_commander_walk",
+        "characterId": "commander",
+        "actionId": "walk",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_wolfking_walk_00",
+      "label": "enemy_wolfking_walk_00",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/wolfking/walk/00.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/wolfking_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_wolfking",
+      "animation": {
+        "animationId": "enemy_wolfking_walk",
+        "characterId": "wolfking",
+        "actionId": "walk",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_wolfking_walk_01",
+      "label": "enemy_wolfking_walk_01",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/wolfking/walk/01.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/wolfking_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_wolfking",
+      "animation": {
+        "animationId": "enemy_wolfking_walk",
+        "characterId": "wolfking",
+        "actionId": "walk",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_wolfking_walk_02",
+      "label": "enemy_wolfking_walk_02",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/wolfking/walk/02.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/wolfking_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_wolfking",
+      "animation": {
+        "animationId": "enemy_wolfking_walk",
+        "characterId": "wolfking",
+        "actionId": "walk",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_wolfking_walk_03",
+      "label": "enemy_wolfking_walk_03",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/wolfking/walk/03.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/wolfking_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_wolfking",
+      "animation": {
+        "animationId": "enemy_wolfking_walk",
+        "characterId": "wolfking",
+        "actionId": "walk",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_tuskking_walk_00",
+      "label": "enemy_tuskking_walk_00",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/tuskking/walk/00.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/tuskking_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_tuskking",
+      "animation": {
+        "animationId": "enemy_tuskking_walk",
+        "characterId": "tuskking",
+        "actionId": "walk",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_tuskking_walk_01",
+      "label": "enemy_tuskking_walk_01",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/tuskking/walk/01.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/tuskking_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_tuskking",
+      "animation": {
+        "animationId": "enemy_tuskking_walk",
+        "characterId": "tuskking",
+        "actionId": "walk",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_tuskking_walk_02",
+      "label": "enemy_tuskking_walk_02",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/tuskking/walk/02.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/tuskking_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_tuskking",
+      "animation": {
+        "animationId": "enemy_tuskking_walk",
+        "characterId": "tuskking",
+        "actionId": "walk",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_tuskking_walk_03",
+      "label": "enemy_tuskking_walk_03",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/tuskking/walk/03.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/tuskking_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_tuskking",
+      "animation": {
+        "animationId": "enemy_tuskking_walk",
+        "characterId": "tuskking",
+        "actionId": "walk",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_shaman_walk_00",
+      "label": "enemy_shaman_walk_00",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/shaman/walk/00.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/shaman_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_shaman",
+      "animation": {
+        "animationId": "enemy_shaman_walk",
+        "characterId": "shaman",
+        "actionId": "walk",
+        "frameIndex": 0
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_shaman_walk_01",
+      "label": "enemy_shaman_walk_01",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/shaman/walk/01.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/shaman_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_shaman",
+      "animation": {
+        "animationId": "enemy_shaman_walk",
+        "characterId": "shaman",
+        "actionId": "walk",
+        "frameIndex": 1
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_shaman_walk_02",
+      "label": "enemy_shaman_walk_02",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/shaman/walk/02.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/shaman_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_shaman",
+      "animation": {
+        "animationId": "enemy_shaman_walk",
+        "characterId": "shaman",
+        "actionId": "walk",
+        "frameIndex": 2
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_shaman_walk_03",
+      "label": "enemy_shaman_walk_03",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/shaman/walk/03.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/shaman_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_shaman",
+      "animation": {
+        "animationId": "enemy_shaman_walk",
+        "characterId": "shaman",
+        "actionId": "walk",
+        "frameIndex": 3
+      },
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "序列帧动作入口",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "detail"
+    },
+    {
+      "id": "enemy_acc_band",
+      "label": "enemy_acc_band",
+      "category": "enemy-parts",
+      "categoryLabel": "怪物共享配件",
+      "path": "runtime/enemies/accessories/band.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 40
+      },
+      "sourceSheet": "source/enemies/accessories_v1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "nineSlice": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "bundle": "battle",
+      "alphaCutoff": 240,
+      "usage": "独立头饰/背饰，挂点和兼容范围由编辑器布局定义"
+    },
+    {
+      "id": "enemy_acc_antlers",
+      "label": "enemy_acc_antlers",
+      "category": "enemy-parts",
+      "categoryLabel": "怪物共享配件",
+      "path": "runtime/enemies/accessories/antlers.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 40
+      },
+      "sourceSheet": "source/enemies/accessories_v1.png",
+      "sourceRect": {
+        "x": 512,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "nineSlice": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "bundle": "battle",
+      "alphaCutoff": 240,
+      "usage": "独立头饰/背饰，挂点和兼容范围由编辑器布局定义"
+    },
+    {
+      "id": "enemy_acc_feathers",
+      "label": "enemy_acc_feathers",
+      "category": "enemy-parts",
+      "categoryLabel": "怪物共享配件",
+      "path": "runtime/enemies/accessories/feathers.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 40
+      },
+      "sourceSheet": "source/enemies/accessories_v1.png",
+      "sourceRect": {
+        "x": 1024,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "nineSlice": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "bundle": "battle",
+      "alphaCutoff": 240,
+      "usage": "独立头饰/背饰，挂点和兼容范围由编辑器布局定义"
+    },
+    {
+      "id": "enemy_acc_banner",
+      "label": "enemy_acc_banner",
+      "category": "enemy-parts",
+      "categoryLabel": "怪物共享配件",
+      "path": "runtime/enemies/accessories/banner.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 40
+      },
+      "sourceSheet": "source/enemies/accessories_v1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 512,
+        "w": 512,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "nineSlice": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "bundle": "battle",
+      "alphaCutoff": 240,
+      "usage": "独立头饰/背饰，挂点和兼容范围由编辑器布局定义"
+    },
+    {
+      "id": "enemy_acc_leaves",
+      "label": "enemy_acc_leaves",
+      "category": "enemy-parts",
+      "categoryLabel": "怪物共享配件",
+      "path": "runtime/enemies/accessories/leaves.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 40
+      },
+      "sourceSheet": "source/enemies/accessories_v1.png",
+      "sourceRect": {
+        "x": 512,
+        "y": 512,
+        "w": 512,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "nineSlice": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "bundle": "battle",
+      "alphaCutoff": 240,
+      "usage": "独立头饰/背饰，挂点和兼容范围由编辑器布局定义"
+    },
+    {
+      "id": "enemy_acc_mask",
+      "label": "enemy_acc_mask",
+      "category": "enemy-parts",
+      "categoryLabel": "怪物共享配件",
+      "path": "runtime/enemies/accessories/mask.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 40
+      },
+      "sourceSheet": "source/enemies/accessories_v1.png",
+      "sourceRect": {
+        "x": 1024,
+        "y": 512,
+        "w": 512,
+        "h": 512
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 512
+      },
+      "nineSlice": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "bundle": "battle",
+      "alphaCutoff": 240,
+      "usage": "独立头饰/背饰，挂点和兼容范围由编辑器布局定义"
+    },
+    {
+      "id": "enemy_raider_walk_00_tint",
+      "label": "enemy_raider_walk_00_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/raider/walk/00_tint.png",
+      "width": 64,
+      "height": 64,
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "sourceSheet": "source/animations/anim_enemies_a.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "nineSlice": null,
+      "mapping": "enemy_raider",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_raider_walk_01_tint",
+      "label": "enemy_raider_walk_01_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/raider/walk/01_tint.png",
+      "width": 64,
+      "height": 64,
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "sourceSheet": "source/animations/anim_enemies_a.png",
+      "sourceRect": {
+        "x": 362,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "nineSlice": null,
+      "mapping": "enemy_raider",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_raider_walk_02_tint",
+      "label": "enemy_raider_walk_02_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/raider/walk/02_tint.png",
+      "width": 64,
+      "height": 64,
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "sourceSheet": "source/animations/anim_enemies_a.png",
+      "sourceRect": {
+        "x": 724,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "nineSlice": null,
+      "mapping": "enemy_raider",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_raider_walk_03_tint",
+      "label": "enemy_raider_walk_03_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/raider/walk/03_tint.png",
+      "width": 64,
+      "height": 64,
+      "pivot": {
+        "x": 32,
+        "y": 61
+      },
+      "sourceSheet": "source/animations/anim_enemies_a.png",
+      "sourceRect": {
+        "x": 1086,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "nineSlice": null,
+      "mapping": "enemy_raider",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_runner_walk_00_tint",
+      "label": "enemy_runner_walk_00_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/runner/walk/00_tint.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_enemies_a.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 362,
+        "w": 362,
+        "h": 362
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "nineSlice": null,
+      "mapping": "enemy_runner",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_runner_walk_01_tint",
+      "label": "enemy_runner_walk_01_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/runner/walk/01_tint.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_enemies_a.png",
+      "sourceRect": {
+        "x": 362,
+        "y": 362,
+        "w": 362,
+        "h": 362
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "nineSlice": null,
+      "mapping": "enemy_runner",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_runner_walk_02_tint",
+      "label": "enemy_runner_walk_02_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/runner/walk/02_tint.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_enemies_a.png",
+      "sourceRect": {
+        "x": 724,
+        "y": 362,
+        "w": 362,
+        "h": 362
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "nineSlice": null,
+      "mapping": "enemy_runner",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_runner_walk_03_tint",
+      "label": "enemy_runner_walk_03_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/runner/walk/03_tint.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_enemies_a.png",
+      "sourceRect": {
+        "x": 1086,
+        "y": 362,
+        "w": 362,
+        "h": 362
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "nineSlice": null,
+      "mapping": "enemy_runner",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_armored_walk_00_tint",
+      "label": "enemy_armored_walk_00_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/armored/walk/00_tint.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_enemies_a.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 724,
+        "w": 362,
+        "h": 362
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "nineSlice": null,
+      "mapping": "enemy_armored",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_armored_walk_01_tint",
+      "label": "enemy_armored_walk_01_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/armored/walk/01_tint.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_enemies_a.png",
+      "sourceRect": {
+        "x": 362,
+        "y": 724,
+        "w": 362,
+        "h": 362
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "nineSlice": null,
+      "mapping": "enemy_armored",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_armored_walk_02_tint",
+      "label": "enemy_armored_walk_02_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/armored/walk/02_tint.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_enemies_a.png",
+      "sourceRect": {
+        "x": 724,
+        "y": 724,
+        "w": 362,
+        "h": 362
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "nineSlice": null,
+      "mapping": "enemy_armored",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_armored_walk_03_tint",
+      "label": "enemy_armored_walk_03_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/armored/walk/03_tint.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_enemies_a.png",
+      "sourceRect": {
+        "x": 1086,
+        "y": 724,
+        "w": 362,
+        "h": 362
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 362
+      },
+      "nineSlice": null,
+      "mapping": "enemy_armored",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_disruptor_walk_00_tint",
+      "label": "enemy_disruptor_walk_00_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/disruptor/walk/00_tint.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_enemies_b.png",
+      "sourceRect": {
+        "x": 42,
+        "y": 0,
+        "w": 362,
+        "h": 320
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 320
+      },
+      "nineSlice": null,
+      "mapping": "enemy_disruptor",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_disruptor_walk_01_tint",
+      "label": "enemy_disruptor_walk_01_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/disruptor/walk/01_tint.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_enemies_b.png",
+      "sourceRect": {
+        "x": 372,
+        "y": 0,
+        "w": 362,
+        "h": 320
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 320
+      },
+      "nineSlice": null,
+      "mapping": "enemy_disruptor",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_disruptor_walk_02_tint",
+      "label": "enemy_disruptor_walk_02_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/disruptor/walk/02_tint.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_enemies_b.png",
+      "sourceRect": {
+        "x": 710,
+        "y": 0,
+        "w": 362,
+        "h": 320
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 320
+      },
+      "nineSlice": null,
+      "mapping": "enemy_disruptor",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_disruptor_walk_03_tint",
+      "label": "enemy_disruptor_walk_03_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/disruptor/walk/03_tint.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 77
+      },
+      "sourceSheet": "source/animations/anim_enemies_b.png",
+      "sourceRect": {
+        "x": 1043,
+        "y": 0,
+        "w": 362,
+        "h": 320
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 320
+      },
+      "nineSlice": null,
+      "mapping": "enemy_disruptor",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_chief_walk_00_tint",
+      "label": "enemy_chief_walk_00_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/chief/walk/00_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/animations/anim_enemies_b.png",
+      "sourceRect": {
+        "x": 28,
+        "y": 320,
+        "w": 362,
+        "h": 370
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 370
+      },
+      "nineSlice": null,
+      "mapping": "enemy_chief",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_chief_walk_01_tint",
+      "label": "enemy_chief_walk_01_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/chief/walk/01_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/animations/anim_enemies_b.png",
+      "sourceRect": {
+        "x": 371,
+        "y": 320,
+        "w": 362,
+        "h": 370
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 370
+      },
+      "nineSlice": null,
+      "mapping": "enemy_chief",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_chief_walk_02_tint",
+      "label": "enemy_chief_walk_02_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/chief/walk/02_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/animations/anim_enemies_b.png",
+      "sourceRect": {
+        "x": 707,
+        "y": 320,
+        "w": 362,
+        "h": 370
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 370
+      },
+      "nineSlice": null,
+      "mapping": "enemy_chief",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_chief_walk_03_tint",
+      "label": "enemy_chief_walk_03_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/chief/walk/03_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/animations/anim_enemies_b.png",
+      "sourceRect": {
+        "x": 1051,
+        "y": 320,
+        "w": 362,
+        "h": 370
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 370
+      },
+      "nineSlice": null,
+      "mapping": "enemy_chief",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v10：按躯干水平中心校准母版裁切列，共同尺寸与pivot不变；保留原步态上下起伏。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_boar_walk_00_tint",
+      "label": "enemy_boar_walk_00_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/boar/walk/00_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/boar_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_boar",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_boar_walk_01_tint",
+      "label": "enemy_boar_walk_01_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/boar/walk/01_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/boar_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_boar",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_boar_walk_02_tint",
+      "label": "enemy_boar_walk_02_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/boar/walk/02_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/boar_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_boar",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_boar_walk_03_tint",
+      "label": "enemy_boar_walk_03_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/boar/walk/03_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/boar_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_boar",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_commander_walk_00_tint",
+      "label": "enemy_commander_walk_00_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/commander/walk/00_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/commander_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_commander",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_commander_walk_01_tint",
+      "label": "enemy_commander_walk_01_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/commander/walk/01_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/commander_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_commander",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_commander_walk_02_tint",
+      "label": "enemy_commander_walk_02_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/commander/walk/02_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/commander_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_commander",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_commander_walk_03_tint",
+      "label": "enemy_commander_walk_03_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/commander/walk/03_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/commander_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_commander",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_wolfking_walk_00_tint",
+      "label": "enemy_wolfking_walk_00_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/wolfking/walk/00_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/wolfking_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_wolfking",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_wolfking_walk_01_tint",
+      "label": "enemy_wolfking_walk_01_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/wolfking/walk/01_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/wolfking_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_wolfking",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_wolfking_walk_02_tint",
+      "label": "enemy_wolfking_walk_02_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/wolfking/walk/02_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/wolfking_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_wolfking",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_wolfking_walk_03_tint",
+      "label": "enemy_wolfking_walk_03_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/wolfking/walk/03_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/wolfking_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_wolfking",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_tuskking_walk_00_tint",
+      "label": "enemy_tuskking_walk_00_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/tuskking/walk/00_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/tuskking_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_tuskking",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_tuskking_walk_01_tint",
+      "label": "enemy_tuskking_walk_01_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/tuskking/walk/01_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/tuskking_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_tuskking",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_tuskking_walk_02_tint",
+      "label": "enemy_tuskking_walk_02_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/tuskking/walk/02_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/tuskking_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_tuskking",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_tuskking_walk_03_tint",
+      "label": "enemy_tuskking_walk_03_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/tuskking/walk/03_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/tuskking_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_tuskking",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_shaman_walk_00_tint",
+      "label": "enemy_shaman_walk_00_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/shaman/walk/00_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/shaman_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_shaman",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_shaman_walk_01_tint",
+      "label": "enemy_shaman_walk_01_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/shaman/walk/01_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/shaman_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_shaman",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_shaman_walk_02_tint",
+      "label": "enemy_shaman_walk_02_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/shaman/walk/02_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/shaman_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_shaman",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
+    },
+    {
+      "id": "enemy_shaman_walk_03_tint",
+      "label": "enemy_shaman_walk_03_tint",
+      "category": "enemies",
+      "categoryLabel": "敌人序列帧",
+      "path": "runtime/enemies/shaman/walk/03_tint.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 92
+      },
+      "sourceSheet": "source/enemies/prepared/shaman_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "enemy_shaman",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "contain",
+      "runtime": true,
+      "usage": "中性身体层，与对应原色细节帧同步",
+      "registrationNote": "v13：同一行统一比例、单元格中心与脚底92配准；导入alpha>=240，原图保留。",
+      "bundle": "battle",
+      "tintLayer": "body"
     }
   ],
   "animations": {
@@ -9236,6 +11931,156 @@
         "mapping": "elder_female idle: active elder phase / historical portrait",
         "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
         "usageStatus": "runtime_connected"
+      },
+      {
+        "id": "enemy_boar_walk",
+        "characterId": "boar",
+        "actionId": "walk",
+        "category": "enemies",
+        "frameIds": [
+          "enemy_boar_walk_00",
+          "enemy_boar_walk_01",
+          "enemy_boar_walk_02",
+          "enemy_boar_walk_03"
+        ],
+        "frameCount": 4,
+        "fps": 6,
+        "loop": true,
+        "restFrame": "enemy_boar_walk_01",
+        "canvas": {
+          "w": 96,
+          "h": 96
+        },
+        "pivot": {
+          "x": 48,
+          "y": 92
+        },
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "clock": "battle",
+        "restartOnActionChange": true,
+        "mapping": "enemy_boar",
+        "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+        "usageStatus": "runtime_connected"
+      },
+      {
+        "id": "enemy_commander_walk",
+        "characterId": "commander",
+        "actionId": "walk",
+        "category": "enemies",
+        "frameIds": [
+          "enemy_commander_walk_00",
+          "enemy_commander_walk_01",
+          "enemy_commander_walk_02",
+          "enemy_commander_walk_03"
+        ],
+        "frameCount": 4,
+        "fps": 6,
+        "loop": true,
+        "restFrame": "enemy_commander_walk_01",
+        "canvas": {
+          "w": 96,
+          "h": 96
+        },
+        "pivot": {
+          "x": 48,
+          "y": 92
+        },
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "clock": "battle",
+        "restartOnActionChange": true,
+        "mapping": "enemy_commander",
+        "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+        "usageStatus": "runtime_connected"
+      },
+      {
+        "id": "enemy_wolfking_walk",
+        "characterId": "wolfking",
+        "actionId": "walk",
+        "category": "enemies",
+        "frameIds": [
+          "enemy_wolfking_walk_00",
+          "enemy_wolfking_walk_01",
+          "enemy_wolfking_walk_02",
+          "enemy_wolfking_walk_03"
+        ],
+        "frameCount": 4,
+        "fps": 6,
+        "loop": true,
+        "restFrame": "enemy_wolfking_walk_01",
+        "canvas": {
+          "w": 96,
+          "h": 96
+        },
+        "pivot": {
+          "x": 48,
+          "y": 92
+        },
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "clock": "battle",
+        "restartOnActionChange": true,
+        "mapping": "enemy_wolfking",
+        "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+        "usageStatus": "runtime_connected"
+      },
+      {
+        "id": "enemy_tuskking_walk",
+        "characterId": "tuskking",
+        "actionId": "walk",
+        "category": "enemies",
+        "frameIds": [
+          "enemy_tuskking_walk_00",
+          "enemy_tuskking_walk_01",
+          "enemy_tuskking_walk_02",
+          "enemy_tuskking_walk_03"
+        ],
+        "frameCount": 4,
+        "fps": 6,
+        "loop": true,
+        "restFrame": "enemy_tuskking_walk_01",
+        "canvas": {
+          "w": 96,
+          "h": 96
+        },
+        "pivot": {
+          "x": 48,
+          "y": 92
+        },
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "clock": "battle",
+        "restartOnActionChange": true,
+        "mapping": "enemy_tuskking",
+        "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+        "usageStatus": "runtime_connected"
+      },
+      {
+        "id": "enemy_shaman_walk",
+        "characterId": "shaman",
+        "actionId": "walk",
+        "category": "enemies",
+        "frameIds": [
+          "enemy_shaman_walk_00",
+          "enemy_shaman_walk_01",
+          "enemy_shaman_walk_02",
+          "enemy_shaman_walk_03"
+        ],
+        "frameCount": 4,
+        "fps": 6,
+        "loop": true,
+        "restFrame": "enemy_shaman_walk_01",
+        "canvas": {
+          "w": 96,
+          "h": 96
+        },
+        "pivot": {
+          "x": 48,
+          "y": 92
+        },
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "clock": "battle",
+        "restartOnActionChange": true,
+        "mapping": "enemy_shaman",
+        "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
+        "usageStatus": "runtime_connected"
       }
     ],
     "walkDirections": {
@@ -9353,7 +12198,12 @@
       "enemy_runner": "LEFT",
       "enemy_armored": "LEFT",
       "enemy_disruptor": "DOWN",
-      "enemy_chief": "DOWN"
+      "enemy_chief": "DOWN",
+      "enemy_boar": "DOWN",
+      "enemy_commander": "DOWN",
+      "enemy_wolfking": "DOWN",
+      "enemy_tuskking": "DOWN",
+      "enemy_shaman": "DOWN"
     }
   },
   "externalAssets": [

@@ -13,13 +13,13 @@ function setup(){
   tracks.push(audio);return audio;
  },
  onAudioInterruptionBegin:fn=>events.begin.add(fn),offAudioInterruptionBegin:fn=>events.begin.delete(fn),onAudioInterruptionEnd:fn=>events.end.add(fn),offAudioInterruptionEnd:fn=>events.end.delete(fn)};
- const music=new WechatMusic('resources/village',()=>calls.problems++);
+ const music=new WechatMusic(()=>calls.problems++);
  return{music,calls,tracks,events};
 }
 test('gesture starts one looping context without requiring unsupported global audio options',()=>{
  const {music,calls,tracks}=setup();music.setEnabled(true);assert.equal(calls.play,0);music.interact();music.interact();
  assert.equal(calls.created,1);assert.equal(calls.play,1);const audio=tracks[0];
- assert.equal(audio.src,'resources/village/village_loop.mp3');assert.equal(audio.loop,true);assert.equal(audio.autoplay,false);assert.equal(audio.volume,.3);
+ assert.equal(audio.src,'resources/base/village_loop.mp3');assert.equal(audio.loop,true);assert.equal(audio.autoplay,false);assert.equal(audio.volume,.3);
  music.setEnabled(false);assert.equal(calls.pause,1);music.interact();assert.equal(calls.play,1);music.setEnabled(true);assert.equal(calls.play,1);music.interact();assert.equal(calls.play,2);assert.equal(calls.created,1);music.destroy();
 });
 test('background pauses playback and waits for next gesture to resume',()=>{
@@ -48,19 +48,19 @@ test('synchronous native failure is isolated, disabled music ignores late errors
 test('battle switches once on the current BGM; a suspended switch only changes the source',()=>{
  const {music,calls,tracks}=setup();music.setEnabled(true);music.interact();
  const [bgm]=tracks;music.setBattle(true);
- assert.equal(bgm.src,'resources/village/battle_loop.mp3');assert.equal(bgm.volume,.28);assert.equal(bgm.stops,1);
+ assert.equal(bgm.src,'resources/battle/battle_loop.mp3');assert.equal(bgm.volume,.28);assert.equal(bgm.stops,1);
  for(let i=0;i<60;i++)music.setBattle(true);
- assert.deepEqual(bgm.played,['resources/village/village_loop.mp3','resources/village/battle_loop.mp3']);
+ assert.deepEqual(bgm.played,['resources/base/village_loop.mp3','resources/battle/battle_loop.mp3']);
  music.suspend();music.setBattle(false);
- assert.equal(bgm.src,'resources/village/village_loop.mp3');assert.equal(bgm.volume,.3);assert.equal(calls.play,2);assert.equal(bgm.stops,1);
- music.interact();assert.equal(bgm.played[2],'resources/village/village_loop.mp3');assert.equal(calls.created,1);music.destroy();
+ assert.equal(bgm.src,'resources/base/village_loop.mp3');assert.equal(bgm.volume,.3);assert.equal(calls.play,2);assert.equal(bgm.stops,1);
+ music.interact();assert.equal(bgm.played[2],'resources/base/village_loop.mp3');assert.equal(calls.created,1);music.destroy();
 });
 test('clicks reuse one short context and stay silent until a gesture after mute, hide, or interruption',()=>{
  const {music,calls,tracks,events}=setup();music.setBattle(true);music.setEnabled(true);music.click();assert.equal(calls.created,0);
  music.interact();music.click();music.click();music.click();
  const [bgm,click]=tracks;
- assert.equal(bgm.played[0],'resources/village/battle_loop.mp3');assert.equal(calls.created,2);
- assert.equal(click.src,'resources/village/ui_click.mp3');assert.equal(click.volume,.35);
+ assert.equal(bgm.played[0],'resources/battle/battle_loop.mp3');assert.equal(calls.created,2);
+ assert.equal(click.src,'resources/base/ui_click.mp3');assert.equal(click.volume,.35);
  assert.equal(click.loop,false);assert.equal(click.autoplay,false);assert.equal(click.played.length,3);assert.equal(click.stops,2);
  music.setEnabled(false);music.click();music.setEnabled(true);music.click();assert.equal(click.stops,3);assert.equal(click.played.length,3);
  music.interact();music.click();music.suspend();music.click();assert.equal(click.played.length,4);assert.equal(click.stops,5);

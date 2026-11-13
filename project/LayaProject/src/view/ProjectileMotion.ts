@@ -1,6 +1,7 @@
 import { BattleSimulation, Shot } from "../game/BattleSimulation";
 import { RULE, PADS } from "../game/GameConfig";
 import { GroundPoint, towerLaunch } from "./VillageScene";
+import { CombatPresentation } from "./CombatPresentation";
 import { GameLayout } from "./GameLayout";
 
 /**
@@ -17,7 +18,7 @@ export const PROJECTILE_STYLE = {
 /** 落点位于敌人足底上方20px身体处；发射口与塔图共享源画布挂点，均只改变表现。 */
 const TARGET_Y = -20;
 export interface ProjectilePose {
-    shot: Shot; frame: string; x: number; y: number; rotation: number; size: number; alpha: number;
+    shot: Shot; impacted: boolean; frame: string; x: number; y: number; rotation: number; size: number; alpha: number;
     from: GroundPoint;
     launchOffset: GroundPoint;
 }
@@ -25,29 +26,35 @@ export interface ProjectilePose {
 /** 已结算 Shot 的纯表现；保留自身引用直到命中淡出，不依赖 Shot 在逻辑队列中停留的五个 tick。 */
 export class ProjectileMotion {
     poses: ProjectilePose[] = [];
+    readonly arrivals: ProjectilePose[] = [];
     private battle: BattleSimulation | null = null;
     private seen = new WeakSet<Shot>();
 
-    update(battle: BattleSimulation | null, layout?: GameLayout, pads: readonly GroundPoint[] = PADS, launch?: (tower: number) => GroundPoint) {
+    update(battle: BattleSimulation | null, layout?: GameLayout, pads: readonly GroundPoint[] = PADS, launch?: (tower: number) => GroundPoint, feedback?: CombatPresentation) {
+        this.arrivals.length = 0;
         if (battle !== this.battle) { this.battle = battle; this.poses = []; this.seen = new WeakSet<Shot>(); }
         if (!battle || battle.outcome) { this.poses = []; return; }
-        for (const shot of battle.shots) {
+        for (const shot of [...battle.shots, ...(feedback ? feedback.shots.keys() : [])]) {
             if (this.seen.has(shot)) continue;
             this.seen.add(shot);
             const from = launch ? launch(shot.tower) : towerLaunch(shot.tower, shot.kind, pads), pad = pads[shot.tower];
-            this.poses.push({ shot, frame: "", x: 0, y: 0, rotation: 0, size: 0, alpha: 1, from,
+            this.poses.push({ shot, impacted: false, frame: "", x: 0, y: 0, rotation: 0, size: 0, alpha: 1, from,
                 launchOffset: { x: from.x - pad.x, y: from.y - pad.y } });
         }
         // 与现有战斗特效上限相同：拥挤时只保留最新装饰，始终不影响逻辑攻击。
         this.poses = this.poses.filter(p => {
             const style = PROJECTILE_STYLE[p.shot.kind];
-            return (battle.tick - p.shot.tick - 1) * RULE.step < style.flight + style.impact;
-        }).slice(-RULE.effectCap);
+            const expired = p.impacted && (battle.tick - p.shot.tick - 1) * RULE.step >= style.flight + style.impact;
+            if (expired) feedback?.discard(p.shot);
+            return !expired;
+        });
+        while (this.poses.length > RULE.effectCap) { const removed = this.poses.shift()!; feedback?.discard(removed.shot); }
         for (const p of this.poses) {
             const shot = p.shot, style = PROJECTILE_STYLE[shot.kind], pad = pads[shot.tower];
             // 固定发射瞬间相对塔位的偏移，后坐不拉动弹道，屏幕重排则跟随塔位整体移动。
             const from = p.from = { x: pad.x + p.launchOffset.x, y: pad.y + p.launchOffset.y };
-            const target = { x: shot.x, y: (layout ? layout.worldY(shot.y) : shot.y) + TARGET_Y };
+            const at = feedback ? feedback.target(shot) : shot;
+            const target = { x: at.x, y: (layout ? layout.worldY(at.y) : at.y) + TARGET_Y };
             // step 完成后 tick 已加一；最后一次 step 新发射的弹道年龄为零。只读实际 tick，暂停/倍速天然同步。
             const age = (battle.tick - shot.tick - 1) * RULE.step;
             const dx = target.x - from.x, dy = target.y - from.y;
@@ -57,7 +64,8 @@ export class ProjectileMotion {
                 p.x = from.x + dx * t; p.y = from.y + dy * t - 4 * style.arc * t * (1 - t);
                 p.rotation = shot.kind === "ARROW" ? Math.atan2(dy, dx) * 180 / Math.PI : age * style.spin;
             } else {
-                const t = (age - style.flight) / style.impact;
+                if (!p.impacted) { p.impacted = true; this.arrivals.push(p); feedback?.impact(shot); }
+                const t = Math.min(1, (age - style.flight) / style.impact);
                 p.frame = style.hit; p.x = target.x; p.y = target.y; p.rotation = 0;
                 p.size = style.hitSize * (.7 + .3 * t); p.alpha = 1 - t;
             }

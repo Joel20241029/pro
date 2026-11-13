@@ -1,119 +1,176 @@
-const { test } = require('node:test');
-const assert = require('node:assert/strict');
-const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm');
-const { createRequire } = require('node:module');
+const { test } = require('node:test'), assert = require('node:assert/strict');
+const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm'), { createRequire } = require('node:module');
 const compiled = process.env.DAIDAI_TEST_BUILD;
-if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
+if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD under Downloads');
 const mainFile = path.join(compiled, 'Main.js'), actualRequire = createRequire(mainFile);
-
-function deferred() {
-    let resolve, reject;
-    const promise = new Promise((yes, no) => { resolve = yes; reject = no; });
-    return { promise, resolve, reject };
-}
+const project = path.resolve(__dirname, '..');
+const deferred = () => { let resolve, reject; const promise = new Promise((a,b) => { resolve=a; reject=b; }); return { promise, resolve, reject }; };
+const flush = () => new Promise(setImmediate);
 function setup() {
-    const packageGate = deferred(), imageGate = deferred();
-    const requests = [], textures = [], hide = new Set(), show = new Set();
-    let storageReads = 0, views = 0;
+    const requests=[], textures=[], cache=new Map(), gates=new Map(), native=new Map(), storage=new Map(); let views=0;
     class Sprite {
-        constructor() { this.children = []; this.destroyed = false; this.events = new Map(); }
-        pos(x, y) { this.x = x; this.y = y; return this; } size(w, h) { this.width = w; this.height = h; return this; } scale() { return this; }
-        addChild(child) { this.children.push(child); child.parent = this; }
-        on(event, caller, listener) { this.events.set(event, () => listener.call(caller)); return this; } off(event) { this.events.delete(event); return this; }
-        destroy() { this.destroyed = true; if (this.parent) this.parent.children = this.parent.children.filter(c => c !== this); }
+        constructor(){this.children=[];this.events=new Map();this.destroyed=false;}
+        addChild(c){this.children.push(c);c.parent=this;return c;}
+        on(event,caller,fn){this.events.set(event,()=>fn.call(caller));}
+        off(event){this.events.delete(event);}
+        destroy(){this.destroyed=true;if(this.parent)this.parent.children=this.parent.children.filter(c=>c!==this);}
     }
-    class Text extends Sprite {
-        set text(value) { assert.equal(this.destroyed, false, 'must not write a destroyed loading label'); this.value = value; }
-        get text() { return this.value; }
-    }
-    class GameView {
-        constructor() { views++; this.root = new Sprite(); this.resizes = 0; }
-        resize() { this.resizes++; }
-        destroy() { this.root.destroy(); }
-    }
-    const stage = new Sprite(); stage.height = 1280;
-    const frames = { pages: [{ id: 'world', runtimeFile: 'world_0.png' }], frames: { villager: { page: 'world', rect: { x: 0, y: 0, w: 8, h: 8 }, trimOffset: { x: 0, y: 0 }, sourceSize: { w: 8, h: 8 }, pivot: { x: 4, y: 8 } } } };
-    const animations = { animations: [{ id: 'walk', frameIds: ['villager'], fps: 4, restFrame: 'villager' }], walkDirections: {}, enemyNativeFacing: {} };
-    global.Laya = {
-        Script: class {}, regClass: () => target => target, Text, stage, Event: { CLICK: 'click', RESIZE: 'resize' }, Loader: { JSON: 'json', IMAGE: 'image' },
-        loader: {
-            loadPackage(name) { requests.push(['package', name]); return packageGate.promise; },
-            load(url, type) {
-                requests.push([type, url]);
-                if (url.endsWith('/frames.json')) return Promise.resolve({ data: frames });
-                if (url.endsWith('/animations.json')) return Promise.resolve({ data: animations });
-                if (url.endsWith('/buildings.json')) return Promise.resolve({ data: { layouts: {} } });
-                if (url.endsWith('/building_upgrade.mc') || url.endsWith('/building_attack.mc')) return Promise.resolve({ duration: () => .6 });
-                assert.equal(url, 'resources/village/world_0.png'); return imageGate.promise;
-            }
-        },
-        Texture: { create() { const texture = { destroyed: false, destroy() { this.destroyed = true; } }; textures.push(texture); return texture; } }
+    class StartupView extends Sprite { resize(){this.resizes=(this.resizes||0)+1;} showStatus(failed){assert(!this.destroyed);this.failed=failed;} }
+    class GameView { constructor(){views++;this.root=new Sprite();} refresh(){} resize(){this.resizes=(this.resizes||0)+1;} update(){} destroy(){this.root.destroy();} }
+    const stage=new Sprite();
+    global.Laya={Script:class{},regClass:()=>t=>t,stage,Event:{CLICK:'click',RESIZE:'resize'},timer:{unscaledDelta:50},Loader:{JSON:'json',IMAGE:'image'},
+        loader:{loadPackage(root,progress){requests.push({native:root});const gate=deferred();native.set(root,{...gate,progress});return gate.promise;},
+            async load(url,options){
+                requests.push({url,options});
+                if(cache.has(url)&&!options.ignoreCache)return cache.get(url);
+                if(gates.has(url)){const value=await gates.get(url).promise;cache.set(url,value);return value;}
+                const file=path.join(project,'assets',url);
+                let value;
+                if(url.endsWith('.json'))value={data:JSON.parse(fs.readFileSync(file,'utf8'))};
+                else if(url.endsWith('.mc')){assert(fs.statSync(file).size>0);value={binary:file};}
+                else {const bytes=fs.readFileSync(file);assert(url.endsWith('.png'),url);value={width:bytes.readUInt32BE(16),height:bytes.readUInt32BE(20)};}
+                cache.set(url,value);return value;
+            }},
+        Texture:{create(){const t={destroyed:false,destroy(){this.destroyed=true;}};textures.push(t);return t;}}
     };
-    global.wx = {
-        getWindowInfo: () => ({ windowWidth: 720, windowHeight: 1280, safeArea: { top: 0, bottom: 1280 } }),
-        getStorageInfoSync: () => { storageReads++; return { keys: [] }; },
-        onHide: fn => hide.add(fn), offHide: fn => hide.delete(fn), onShow: fn => show.add(fn), offShow: fn => show.delete(fn),
-        onAudioInterruptionBegin() {}, offAudioInterruptionBegin() {}, onAudioInterruptionEnd() {}, offAudioInterruptionEnd() {}
-    };
-    const module = { exports: {} };
-    vm.runInNewContext(fs.readFileSync(mainFile, 'utf8'), {
-        module, exports: module.exports, Laya: global.Laya,
-        require: name => name === './view/GameView' ? { GameView } : actualRequire(name),
-        console: { log() {}, error() {} }
-    }, { filename: mainFile });
-    const main = new module.exports.Main(), running = main.onStart(), loading = stage.children[0];
-    return { main, running, loading, stage, requests, textures, packageGate, imageGate, hide, show, get views() { return views; }, get storageReads() { return storageReads; } };
+    require("./helpers/particles.cjs").installDecoder();
+    global.wx={getWindowInfo:()=>({windowWidth:720,windowHeight:1280,safeArea:{top:0,bottom:1280}}),
+        getStorageInfoSync:()=>({keys:[...storage.keys()]}),getStorageSync:key=>storage.get(key),setStorageSync:(key,value)=>storage.set(key,value),
+        onHide(){},offHide(){},onShow(){},offShow(){},onAudioInterruptionBegin(){},offAudioInterruptionBegin(){},onAudioInterruptionEnd(){},offAudioInterruptionEnd(){}};
+    const module={exports:{}};
+    vm.runInNewContext(fs.readFileSync(mainFile,'utf8'),{module,exports:module.exports,Laya:global.Laya,console:{log(){},error(){}},require:name=>name==='./view/GameView'?{GameView}:name==='./view/StartupView'?{StartupView}:actualRequire(name)},{filename:mainFile});
+    const main=new module.exports.Main();return {main,requests,textures,cache,gates,native,stage,get views(){return views;}};
 }
+test('main map appears before native character download; battle is not requested at boot',async()=>{
+    const f=setup();await f.main.onStart();await flush();
+    assert.equal(f.views,1);assert(f.main.frames.ready('base'));assert(!f.main.frames.ready('characters'));
+    assert.deepEqual(f.requests.filter(r=>r.native).map(r=>r.native),['resources/characters']);
+    assert(f.main.session.pauses.has('ASSETS'));assert.equal(f.main.loading,null);
+    f.native.get('resources/characters').resolve(true);await flush();
+    assert(f.main.frames.ready('characters'));assert(!f.main.session.pauses.has('ASSETS'));
+    assert.equal(f.views,1);f.main.onDestroy();assert(f.textures.every(t=>t.destroyed));
+});
+test('real native failure retries once; repeated taps share the same promise',async()=>{
+    const f=setup();await f.main.onStart();await flush();
+    const r=f.main.resources, first=r.ensure('characters');assert.equal(first,r.ensure('characters'));
+    f.native.get('resources/characters').resolve(false);assert.equal(await first,false);
+    assert.equal(r.states.characters.phase,'FAILED');assert(f.main.session.pauses.has('ASSETS'));
+    const retry=r.ensure('characters');assert.equal(retry,r.ensure('characters'));await flush();
+    f.native.get('resources/characters').resolve(true);assert.equal(await retry,true);
+    assert.equal(f.requests.filter(r=>r.native==='resources/characters').length,2);f.main.onDestroy();
+});
+test('failed Laya null cache is bypassed and retry waits for every sibling to finish',async()=>{
+    const f=setup();await f.main.onStart();await flush();
+    const table=JSON.parse(fs.readFileSync(path.join(project,'assets/resources/characters/frames.json')));
+    assert(table.pages.length>=2,'fixture must exercise concurrent pages');
+    const a='resources/characters/'+table.pages[0].runtimeFile,b='resources/characters/'+table.pages[1].runtimeFile;
+    f.gates.set(a,deferred());f.gates.set(b,deferred());
+    f.native.get('resources/characters').resolve(true);await flush();
+    const active=f.main.resources.ensure('characters');f.gates.get(a).resolve(null);await flush();
+    assert.equal(f.main.resources.states.characters.phase,'DECODE');assert.equal(active,f.main.resources.ensure('characters'));
+    const pageBytes=fs.readFileSync(path.join(project,'assets',b));f.gates.get(b).resolve({width:pageBytes.readUInt32BE(16),height:pageBytes.readUInt32BE(20)});assert.equal(await active,false);assert(!f.main.frames.ready('characters'));
+    f.gates.delete(a);f.gates.delete(b);assert.equal(await f.main.resources.ensure('characters'),true);
+    assert(f.requests.filter(r=>r.url===a).at(-1).options.ignoreCache);
+    assert.equal(f.requests.filter(r=>r.native==='resources/characters').length,1,'registered package reused');f.main.onDestroy();
+});
+test('slow foreground download gives a hint, never starts a second native task; background does not age it',async()=>{
+    const f=setup();await f.main.onStart();await flush();const r=f.main.resources;
+    r.advance(60,false);assert(!r.states.characters.slow);r.advance(31,true);assert(r.states.characters.slow);
+    const current=r.ensure('characters');assert.equal(current,r.ensure('characters'));assert.equal(f.requests.filter(r=>r.native).length,1);
+    f.native.get('resources/characters').progress(50);assert(!r.states.characters.slow);assert.equal(r.states.characters.progress,.5);
+    f.native.get('resources/characters').resolve(true);await current;f.main.onDestroy();
+});
+test('restored night remains at tick zero until both bundles are ready, without an extra settlement',async()=>{
+    const f=setup();await f.main.onStart();await flush();
+    const {createGame,applyCommand}=actualRequire('./game/VillageRules'),state=createGame(123);applyCommand(state,{type:'NIGHT'});
+    const session=f.main.session;session.saves.prepare(state);session.saves.commit();session.load();const saved=JSON.stringify(session.state);
+    f.main.onUpdate();await flush();assert(f.native.has('resources/battle'));assert.equal(session.battle.tick,0);
+    f.native.get('resources/characters').resolve(true);await flush();f.main.onUpdate();assert.equal(session.battle.tick,0);
+    f.native.get('resources/battle').resolve(true);await flush();assert.equal(JSON.stringify(session.state),saved);
+    session.dailyRationDate=null;session.resume('DAILY_RATION');f.main.onUpdate();assert(session.battle.tick>0);f.main.onDestroy();
+});
+test('destroy during native download suppresses late view creation and decode',async()=>{
+    const f=setup();await f.main.onStart();await flush();const r=f.main.resources,task=r.ensure('characters');
+    f.main.onDestroy();const requests=f.requests.length;f.native.get('resources/characters').resolve(true);assert.equal(await task,false);
+    assert.equal(f.requests.length,requests);assert.equal(f.stage.children.length,0);assert(f.textures.every(t=>t.destroyed));
+});
+test('base resource failure leaves an operable retry without requesting a subpackage',async()=>{
+    const f=setup(),url='resources/base/frames.json';f.gates.set(url,deferred());const start=f.main.onStart();f.gates.get(url).resolve(null);await start;
+    assert.equal(f.views,0);assert(f.main.loading.failed);assert(!f.requests.some(r=>r.native));
+    f.gates.delete(url);await f.main.startVillage();await flush();assert.equal(f.views,1);assert(f.requests.findLast(r=>r.url===url).options.ignoreCache);
+    f.main.onDestroy();f.native.get('resources/characters').resolve(true);await flush();
+});
 
-test('native package gates atlas reads, village creation and save loading; each startup creates one view', async () => {
-    for (let attempt = 0; attempt < 2; attempt++) {
-        const s = setup();
-        assert.deepEqual(s.requests, [['package', 'resources/village']]);
-        assert.equal(s.views, 0); assert.equal(s.storageReads, 0);
-        s.packageGate.resolve(true); await new Promise(setImmediate);
-        assert.equal(s.requests.filter(r => r[0] === 'json').length, 3);
-        assert.equal(s.requests.filter(r => r[1].endsWith('.mc')).length, 2);
-        assert.equal(s.views, 0); assert.equal(s.storageReads, 0);
-        s.imageGate.resolve({}); await s.running;
-        assert.equal(s.views, 1); assert(s.storageReads > 0); assert(s.loading.destroyed);
-        assert.equal(s.textures.length, 1); assert.equal(s.textures[0].destroyed, false);
-        s.main.onDestroy(); assert(s.textures.every(t => t.destroyed));
-    }
+test('missing frames, animation declarations or particles cannot publish half-ready characters and can retry',async()=>{
+ for(const defect of ['frames','animations','particles']) {
+  const f=setup();await f.main.onStart();await flush();
+  const name=defect==='frames'?'frames.json':defect==='animations'?'animations.json':'particles.json',url='resources/characters/'+name;
+  const data=JSON.parse(fs.readFileSync(path.join(project,'assets',url)));
+  if(defect==='frames')delete data.frames[Object.keys(data.frames)[0]];
+  else if(defect==='animations')data.animations.pop();
+  else data.definitions={};
+  f.cache.set(url,{data});f.native.get('resources/characters').resolve(true);await flush();
+  assert.equal(f.main.resources.states.characters.phase,'FAILED');assert(!f.main.frames.ready('characters'));
+  assert(f.main.session.pauses.has('ASSETS'));assert.equal(await f.main.resources.ensure('characters'),true);
+  assert(f.requests.findLast(r=>r.url===url).options.ignoreCache);f.main.onDestroy();
+ }
 });
-for (const failure of ['false', 'reject']) {
-    test(`package ${failure} stops startup without atlas reads or a partially created village`, async () => {
-        const s = setup();
-        if (failure === 'false') s.packageGate.resolve(false); else s.packageGate.reject(new Error('network failed'));
-        await s.running;
-        assert.equal(s.requests.length, 1); assert.equal(s.views, 0); assert.equal(s.storageReads, 0);
-        assert.match(s.loading.text, /启动失败，请重新打开小游戏/);
-        s.main.onDestroy(); assert.equal(s.stage.children.length, 0);
-    });
+test('missing Boss layout is rejected before a battle can start and can retry',async()=>{
+ const f=setup();await f.main.onStart();await flush();f.native.get('resources/characters').resolve(true);await flush();
+ const r=f.main.resources,url='resources/battle/enemies.json',data=JSON.parse(fs.readFileSync(path.join(project,'assets',url)));
+ delete data.definitions.enemy_shaman;f.cache.set(url,{data});const task=r.ensure('battle');await flush();f.native.get('resources/battle').resolve(true);
+ assert.equal(await task,false);assert(!f.main.frames.ready('battle'));assert.equal(await r.ensure('battle'),true);f.main.onDestroy();
+});
+test('destroy while metadata is still loading prevents page decoding and texture publication',async()=>{
+ const f=setup();await f.main.onStart();await flush();const url='resources/characters/frames.json',gate=deferred();f.gates.set(url,gate);
+ f.native.get('resources/characters').resolve(true);await flush();const task=f.main.resources.ensure('characters');f.main.onDestroy();const count=f.requests.length;
+ gate.resolve({data:JSON.parse(fs.readFileSync(path.join(project,'assets',url)))});assert.equal(await task,false);
+ assert.equal(f.requests.length,count);assert(!f.main.frames.ready('characters'));assert(f.textures.every(t=>t.destroyed));
+});
+
+// Mutations affect only decoded test-local metadata; the production loader validates
+// actual atlas declarations and frame references before publishing the character bundle.
+for(const defect of ['missing-direction','wrong-mirror','missing-action-frame','missing-rest-frame','invalid-fps']) {
+ test(`invalid character ${defect} fails atomically and manual retry rereads animation metadata`,async()=>{
+  const f=setup();await f.main.onStart();await flush();const url='resources/characters/animations.json';
+  const data=JSON.parse(fs.readFileSync(path.join(project,'assets',url)));
+  if(defect==='missing-direction'||defect==='wrong-mirror') {
+   const directions=data.walkDirections[Object.keys(data.walkDirections)[0]],key=Object.keys(directions)[0];
+   if(defect==='missing-direction')delete directions[key];else directions[key].mirror=!directions[key].mirror;
+  } else if(defect==='missing-action-frame')data.animations[0].frameIds.push('not_a_real_frame');
+  else if(defect==='missing-rest-frame')data.animations[0].restFrame='not_a_real_rest_frame';
+  else data.animations[0].fps=0;
+  f.cache.set(url,{data});const task=f.main.resources.ensure('characters');f.native.get('resources/characters').resolve(true);
+  assert.equal(await task,false);assert(!f.main.frames.ready('characters'));assert(f.main.session.pauses.has('ASSETS'));
+  const first=JSON.parse(fs.readFileSync(path.join(project,'assets/resources/characters/frames.json')));assert.throws(()=>f.main.frames.get(Object.keys(first.frames)[0]));
+  assert.equal(await f.main.resources.ensure('characters'),true);assert(f.requests.findLast(r=>r.url===url).options.ignoreCache);
+  assert.equal(f.requests.filter(r=>r.native==='resources/characters').length,1);f.main.onDestroy();assert(f.textures.every(t=>t.destroyed));
+ });
 }
-test('destroying during package download removes loading text and subscriptions before a late completion', async () => {
-    const s = setup(); s.main.onDestroy();
-    assert.equal(s.stage.children.length, 0); assert.equal(s.hide.size, 0); assert.equal(s.show.size, 0);
-    s.packageGate.resolve(true); await s.running;
-    assert.equal(s.requests.length, 1); assert.equal(s.views, 0); assert.equal(s.storageReads, 0);
+test('3D portrait-only frame table cannot satisfy restored 2D frame contract',async()=>{
+ const f=setup();await f.main.onStart();await flush();const url='resources/characters/frames.json';
+ const data=JSON.parse(fs.readFileSync(path.join(project,'assets',url))),first=Object.keys(data.frames)[0];
+ data.frames={portrait_male:data.frames[first]};f.cache.set(url,{data});
+ const task=f.main.resources.ensure('characters');f.native.get('resources/characters').resolve(true);
+ assert.equal(await task,false);assert(!f.main.frames.ready('characters'));
+ assert.equal(await f.main.resources.ensure('characters'),true);assert(f.requests.findLast(r=>r.url===url).options.ignoreCache);f.main.onDestroy();
 });
-test('destroying during atlas loading releases textures created by the late completion', async () => {
-    const s = setup(); s.packageGate.resolve(true); await new Promise(setImmediate);
-    s.main.onDestroy(); s.imageGate.resolve({}); await s.running;
-    assert.equal(s.textures.length, 1); assert(s.textures.every(t => t.destroyed));
-    assert.equal(s.stage.children.length, 0); assert.equal(s.views, 0); assert.equal(s.storageReads, 0);
+test('2D particle decode failure does not publish character frames and can retry',async()=>{
+ const f=setup();await f.main.onStart();await flush();const url='resources/characters/particles.json';
+ const data=JSON.parse(fs.readFileSync(path.join(project,'assets',url)));data.definitions.elite_ring.main.maxParticles=0;f.cache.set(url,{data});
+ const task=f.main.resources.ensure('characters');f.native.get('resources/characters').resolve(true);
+ assert.equal(await task,false);assert(!f.main.frames.ready('characters'));assert.equal(await f.main.resources.ensure('characters'),true);
+ assert(f.requests.findLast(r=>r.url===url).options.ignoreCache);f.main.onDestroy();
 });
-test('a late asynchronous failure never touches a destroyed loading label', async () => {
-    const s = setup(); s.packageGate.resolve(true); await new Promise(setImmediate);
-    s.main.onDestroy(); s.imageGate.reject(new Error('image read failed')); await s.running;
-    assert.equal(s.stage.children.length, 0); assert.equal(s.views, 0); assert.equal(s.storageReads, 0);
-});
-test('resize centers loading, reuses the live session/view, and releases its listener on destruction', async () => {
-    const s = setup(); s.stage.height = 1600; s.stage.events.get('resize')();
-    assert.equal(s.loading.y, 768);
-    s.packageGate.resolve(true); await new Promise(setImmediate); s.imageGate.resolve({}); await s.running;
-    const session = s.main.session, view = s.main.view, reads = s.storageReads;
-    s.stage.events.get('resize')(); s.stage.events.get('resize')();
-    assert.equal(s.main.session, session); assert.equal(s.main.view, view); assert.equal(s.views, 1);
-    assert.equal(view.resizes, 2); assert.equal(s.storageReads, reads);
-    s.main.onDestroy(); assert.equal(s.stage.events.size, 0);
+test('unified portraits select the original 2D rest frames for every life stage and ancestors',async()=>{
+ const f=setup();await f.main.onStart();await flush();f.native.get('resources/characters').resolve(true);await flush();const art=f.main.frames;
+ for(const sex of ['MALE','FEMALE']) {
+  const p={sex,appearance:sex==='MALE'?'male_a':'female_a',adult:true,elderNights:0,nights:12,growth:0};
+  assert.equal(art.portraitId(p),art.frameId(`villager_${p.appearance}_walk`,0,false));
+  assert.equal(art.portraitId(p,true),art.frameId(`villager_elder_${sex==='MALE'?'male':'female'}_idle`,0,false));
+  p.nights=0;p.elderNights=3;assert.equal(art.portraitId(p),art.portraitId(p,true));
+  p.adult=false;p.elderNights=0;assert.equal(art.portraitId(p),art.frameId('villager_baby_idle',0,false));
+  p.growth=1;assert.equal(art.portraitId(p),art.frameId(`villager_${sex==='MALE'?'boy':'girl'}_walk`,0,false));
+ }
+ f.main.onDestroy();
 });

@@ -6,6 +6,10 @@ require("libs/laya.core.js");
 //
 require("libs/laya.webgl_2D.js");
 //
+require("libs/laya.particleCommon.js");
+//
+require("libs/laya.particle.js");
+//
 require("libs/laya.adapter-weixin.js");
 //
 //

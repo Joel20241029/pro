@@ -1,3 +1,4 @@
+import { ResourcePreparation } from "../../platform/ResourcePreparation";
 import { GameState } from "../../game/GameState";
 import { GameSession } from "../../game/GameSession";
 import { Command } from "../../game/VillageRules";
@@ -16,6 +17,7 @@ export type Panel = {
 /** 绘制模块只访问这些明确服务；current 由 GamePanels 唯一持有，滚动回调沿用同一个 Panel 对象。 */
 export interface PanelContext {
     readonly game: GameSession;
+    readonly resources: ResourcePreparation;
     readonly art: SpriteFrames;
     readonly platform: WechatPlatform;
     readonly ui: UiWidgets;

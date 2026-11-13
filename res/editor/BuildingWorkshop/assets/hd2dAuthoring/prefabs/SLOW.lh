@@ -1,0 +1,88 @@
+{
+  "_$ver": 1,
+  "_$id": "7il0gy1j",
+  "_$type": "Sprite",
+  "name": "SLOW",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "20rh1ggh",
+      "_$type": "Sprite",
+      "name": "Body",
+      "x": 15,
+      "y": 17,
+      "width": 98,
+      "height": 106,
+      "texture": {
+        "_$uuid": "926dd311-cc90-4df1-aa38-69e2237b09a7",
+        "_$type": "Texture"
+      }
+    },
+    {
+      "_$id": "0veswrz9",
+      "_$type": "Sprite",
+      "name": "Weapon",
+      "x": 64,
+      "y": 28,
+      "width": 29,
+      "height": 35,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "texture": {
+        "_$uuid": "fff82247-7f70-4a42-b894-1a8f956050c6",
+        "_$type": "Texture"
+      },
+      "_$comp": [
+        {
+          "_$type": "AnimatorClip2D",
+          "clip": {
+            "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+            "_$type": "AnimationClip2D"
+          },
+          "autoPlay": false
+        }
+      ]
+    },
+    {
+      "_$id": "eel1st3a",
+      "_$type": "Sprite",
+      "name": "Footprint",
+      "x": 22,
+      "y": 95,
+      "width": 84,
+      "height": 24,
+      "visible": false
+    },
+    {
+      "_$id": "ktendpm6",
+      "_$type": "Sprite",
+      "name": "VisualBounds",
+      "x": 2,
+      "y": -12,
+      "width": 124,
+      "height": 136,
+      "visible": false
+    },
+    {
+      "_$id": "2p88jqf8",
+      "_$type": "Sprite",
+      "name": "SortOrigin",
+      "x": 64,
+      "y": 116,
+      "width": 0,
+      "height": 0,
+      "visible": false
+    },
+    {
+      "_$id": "txit5uiv",
+      "_$type": "Sprite",
+      "name": "Muzzle",
+      "x": 64,
+      "y": 14,
+      "width": 0,
+      "height": 0,
+      "visible": false
+    }
+  ]
+}

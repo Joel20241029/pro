@@ -1,12 +1,15 @@
-import { BattleSimulation } from "./BattleSimulation";
+import { BattleSimulation, CombatFeedback } from "./BattleSimulation";
 import { clone, GameState } from "./GameState";
 import { RULE, Trait } from "./GameConfig";
 import { applyCommand, Command, createGame, finishNight } from "./VillageRules";
 import { LoadResult, SaveMode, SaveStore } from "../storage/SaveStore";
 import { dailyRationAmount, localRationDate } from "./DailyRation";
-export type Pause = "USER" | "BACKGROUND" | "WAIT_RESUME" | "CHOICE" | "SAVE_PENDING" | "DISABLED" | "DAILY_RATION";
+export type Pause = "USER" | "BACKGROUND" | "WAIT_RESUME" | "CHOICE" | "SAVE_PENDING" | "DISABLED" | "DAILY_RATION" | "ASSETS";
 export class GameSession {
     state: GameState | null = null; battle: BattleSimulation | null = null;
+    /** 跨一帧多个逻辑步的表现信箱；换战斗时清空，结算不等待动画。 */
+    private combatFeedback: CombatFeedback[] = [];
+    takeCombatFeedback(): CombatFeedback[] { const events = this.combatFeedback; this.combatFeedback = []; return events; }
     readonly pauses = new Set<Pause>(); boot: LoadResult | null = null;
     private currentError = "";
     /** 仅供表现层识别新提示；同文案再次报错也递增，不写入存档或参与业务判断。 */
@@ -81,7 +84,7 @@ export class GameSession {
             this.dailyRationDate = null;
         }
         this.state = s; this.boot = null; this.error = ""; this.pauses.delete("SAVE_PENDING");
-        if (!sameNight) { this.battle = s.phase === "NIGHT" ? new BattleSimulation(s) : null; this.accumulator = 0; }
+        if (!sameNight) { this.combatFeedback = []; this.battle = s.phase === "NIGHT" ? new BattleSimulation(s) : null; this.accumulator = 0; }
         this.continuingBattle = false;
         if (s.phase === "DAWN" && s.choices.length === 0) { this.command({ type: "FINALIZE" }); return; }
         this.checkDailyRation();
@@ -101,7 +104,7 @@ export class GameSession {
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
     command(c: Command) {
-        if (!this.state || this.saves.pending) return;
+        if (!this.state || this.saves.pending || (c.type === "NIGHT" && this.pauses.has("ASSETS"))) return;
         try { const next = clone(this.state); applyCommand(next, c); this.submit(next, next.phase === "NIGHT" && this.state.phase === "NIGHT"); }
         catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
@@ -109,10 +112,11 @@ export class GameSession {
     resume(reason: Pause) { this.pauses.delete(reason); this.accumulator = 0; }
     hide = () => { this.pause("BACKGROUND"); this.changed(); };
     show = () => { this.resume("BACKGROUND"); this.pause("WAIT_RESUME"); this.enter(); };
-    bell() { if (this.battle && !this.pauses.size) { this.battle.bell(); this.changed(); } }
+    get canRingBell() { return this.state?.phase === "NIGHT" && !!this.battle && !this.battle.outcome && !this.battle.bellUsed && !this.pauses.size && !this.saves.pending; }
+    bell() { if (this.canRingBell) { this.battle.bell(); this.changed(); } }
     reassign(index: number, id: string) {
         // 夜间调任允许手动暂停或面板临时暂停；关闭面板只解除 CHOICE，其余暂停仍由各自流程管理。
-        if (!this.battle || (!this.pauses.has("USER") && !this.pauses.has("CHOICE")) || this.saves.pending) return false;
+        if (this.pauses.has("ASSETS") || !this.battle || (!this.pauses.has("USER") && !this.pauses.has("CHOICE")) || this.saves.pending) return false;
         try { this.battle.reassign(index, id); this.error = ""; this.changed(); return true; }
         catch (e) { this.error = String(e); this.changed(); return false; }
     }
@@ -122,6 +126,7 @@ export class GameSession {
         let steps = 0;
         while (this.accumulator + 1e-9 >= RULE.step && steps++ < RULE.maxSteps) {
             this.accumulator -= RULE.step; this.battle.step();
+            this.combatFeedback.push(...this.battle.feedback);
             if (this.battle.outcome) {
                 const next = clone(this.state); finishNight(next, this.battle.gate, this.battle.operators); this.submit(next); break;
             }

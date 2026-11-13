@@ -1,3 +1,4 @@
+import { preparationText } from "./ResourcePanel";
 import { capacity, economy, person } from "../../game/VillageRules";
 import { GameState, isElder, isWorkingAdult } from "../../game/GameState";
 import { ENEMIES, RULE, TOWERS, TowerKind } from "../../game/GameConfig";
@@ -57,15 +58,25 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
     if (p.type === "wave" || p.type === "start") {
         const e = economy(s), w = s.wave!;
         const box = ctx.modal(p.type === "start" ? "今夜，也要守住家" : "瞭望来报", `第 ${s.day} 夜 · ${w.entries.length} 名来敌 · ${({ NONE: "平常夜", FAST: "疾行来袭", STURDY: "坚韧来袭", GROUP: "结队来袭" })[w.affix]}`);
-        const counts = Object.keys(ENEMIES).map(k => `${ENEMIES[k as keyof typeof ENEMIES].name} ${w.entries.filter(e => e.kind === k).length}`).filter(v => !v.endsWith(" 0"));
-        ctx.ui.label(box, counts.join("  /  ") + `\n敌军强度 ×${enemyPower(s.day).toFixed(2)}`, 34, 224, 600, 30, C.ink, true, 110).align = "center";
+        const counts = Object.keys(ENEMIES).filter(k => w.entries.some(e => e.kind === k));
+        const rows = new ScrollList(600, 156, counts.length * 52, p.scroll, offset => p.scroll = offset);
+        rows.pos(34, 208); box.addChild(rows);
+        counts.forEach((k, i) => {
+            const data = ENEMIES[k as keyof typeof ENEMIES], count = w.entries.filter(e => e.kind === k).length;
+            ctx.ui.label(rows.content, `${data.name}  ×${count}`, 18, i * 52, 310, 27, data.boss ? C.red : C.ink, true, 48);
+            ctx.ui.label(rows.content, `${data.boss ? "首领 · " : ""}${data.brief}`, 330, i * 52, 252, 23, data.boss ? C.red : C.muted, false, 48).align = "right";
+        });
         const summary = new Laya.Sprite();
-        summary.pos(34, 352);
-        ctx.art.panel(summary, "panel_card", 600, 210);
+        summary.pos(34, 380);
+        ctx.art.panel(summary, "panel_card", 600, 202);
         box.addChild(summary);
-        ctx.ui.label(summary, `粮食 ${amount(s.food)} + ${amount(e.food)} - ${e.rations} → ${amount(e.endFood)}\n木材 ${amount(s.wood)} + ${amount(e.wood)} → ${amount(e.endWood)}\n驻塔 ${s.towers.filter(t => t.operator).length}/4  ·  照料 ${s.people.filter(p => p.job === "CARE").length} 人\n养老 ${s.people.filter(isElder).length} 人 · 基础口粮 ${e.elderRations}（已计入）`, 22, 20, 556, 28, C.green, true, 174);
-        ctx.ui.label(box, `${e.hungry ? "口粮不足：本夜攻速降至 70%。\n" : ""}${!s.towers.some(t => t.operator) ? "没有村民驻塔，城门将直接承受进攻。\n" : ""}离开小游戏可随时暂停；重进时从本夜开头重打。`, 40, 582, 588, 28, e.hungry ? C.red : C.muted, false, 150);
-        ctx.ui.button(box, "确认安排 · 开始守夜", 34, 752, 600, () => ctx.send({ type: "NIGHT" }, false), C.gold, 78, day);
+        ctx.ui.label(summary, `粮食 ${amount(s.food)} + ${amount(e.food)} - ${e.rations} → ${amount(e.endFood)}\n木材 ${amount(s.wood)} + ${amount(e.wood)} → ${amount(e.endWood)}\n驻塔 ${s.towers.filter(t => t.operator).length}/4  ·  照料 ${s.people.filter(p => p.job === "CARE").length} 人\n养老 ${s.people.filter(isElder).length} 人 · 基础口粮 ${e.elderRations}（已计入）`, 22, 20, 556, 27, C.green, true, 174);
+        ctx.ui.label(box, `${e.hungry ? "口粮不足：本夜攻速降至 70%。\n" : ""}${!s.towers.some(t => t.operator) ? "无人驻塔，城门将直接承受进攻。\n" : ""}敌军强度 ×${enemyPower(s.day).toFixed(2)} · 离开后暂停，重进从本夜开头守起`, 40, 596, 588, 26, e.hungry ? C.red : C.muted, false, 100);
+        const state = ctx.resources.states.battle, ready = ctx.resources.ready("battle"), failed = state.phase === "FAILED";
+        if (p.type === "start" && !ready) {
+            ctx.ui.label(box, preparationText(state), 40, 694, 588, 25, failed ? C.red : C.muted, false, 54).align = "center";
+            ctx.ui.button(box, failed ? "重试准备守夜" : "守夜资源准备中…", 34, 760, 600, () => { void ctx.resources.ensure("battle"); }, C.gold, 78, day && failed);
+        } else ctx.ui.button(box, p.type === "start" ? "确认安排 · 开始守夜" : "准备守夜", 34, 760, 600, () => p.type === "start" ? ctx.send({ type: "NIGHT" }, false) : ctx.open({ type: "start" }), C.gold, 78, day);
         return;
     }
 }

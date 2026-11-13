@@ -1,0 +1,402 @@
+[
+  {
+    "id": "enemy_armored",
+    "height": 1.711978,
+    "clips": [
+      "idle",
+      "walk"
+    ],
+    "file": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_armored.glb",
+    "bytes": 182524,
+    "triangles": 2600,
+    "headWidth": 0.641089,
+    "sockets": {
+      "HeadAnchor": {
+        "bone": "Head",
+        "blenderRestPosition": [
+          0.0,
+          0.0003430396318435669,
+          1.7408779859542847
+        ],
+        "gltfRestPosition": [
+          0.0,
+          1.7408779859542847,
+          -0.0003430396318435669
+        ]
+      },
+      "BackAnchor": {
+        "bone": "Spine",
+        "blenderRestPosition": [
+          0.0,
+          0.17520771920681,
+          0.9605000019073486
+        ],
+        "gltfRestPosition": [
+          0.0,
+          0.9605000019073486,
+          -0.17520771920681
+        ]
+      }
+    }
+  },
+  {
+    "id": "enemy_boar",
+    "height": 1.578832,
+    "clips": [
+      "idle",
+      "walk"
+    ],
+    "file": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_boar.glb",
+    "bytes": 192148,
+    "triangles": 2600,
+    "headWidth": 1.208519,
+    "sockets": {
+      "HeadAnchor": {
+        "bone": "Head",
+        "blenderRestPosition": [
+          0.0,
+          -0.6854982972145081,
+          1.6051818132400513
+        ],
+        "gltfRestPosition": [
+          0.0,
+          1.6051818132400513,
+          0.6854982972145081
+        ]
+      },
+      "BackAnchor": {
+        "bone": "Spine",
+        "blenderRestPosition": [
+          0.0,
+          0.17664200067520142,
+          1.558061122894287
+        ],
+        "gltfRestPosition": [
+          0.0,
+          1.558061122894287,
+          -0.17664200067520142
+        ]
+      }
+    }
+  },
+  {
+    "id": "enemy_chief",
+    "height": 2.246518,
+    "clips": [
+      "idle",
+      "walk"
+    ],
+    "file": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_chief.glb",
+    "bytes": 232460,
+    "triangles": 3500,
+    "headWidth": 1.282661,
+    "sockets": {
+      "HeadAnchor": {
+        "bone": "Head",
+        "blenderRestPosition": [
+          0.0,
+          0.0610642284154892,
+          2.2847678661346436
+        ],
+        "gltfRestPosition": [
+          0.0,
+          2.2847678661346436,
+          -0.0610642284154892
+        ]
+      },
+      "BackAnchor": {
+        "bone": "Spine",
+        "blenderRestPosition": [
+          0.0,
+          0.4957478940486908,
+          1.2937500476837158
+        ],
+        "gltfRestPosition": [
+          0.0,
+          1.2937500476837158,
+          -0.4957478940486908
+        ]
+      }
+    }
+  },
+  {
+    "id": "enemy_commander",
+    "height": 2.30036,
+    "clips": [
+      "idle",
+      "walk"
+    ],
+    "file": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_commander.glb",
+    "bytes": 241456,
+    "triangles": 3499,
+    "headWidth": 0.8022,
+    "sockets": {
+      "HeadAnchor": {
+        "bone": "Head",
+        "blenderRestPosition": [
+          0.0,
+          0.08403952419757843,
+          2.3394601345062256
+        ],
+        "gltfRestPosition": [
+          0.0,
+          2.3394601345062256,
+          -0.08403952419757843
+        ]
+      },
+      "BackAnchor": {
+        "bone": "Spine",
+        "blenderRestPosition": [
+          0.0,
+          0.44216829538345337,
+          1.253499984741211
+        ],
+        "gltfRestPosition": [
+          0.0,
+          1.253499984741211,
+          -0.44216829538345337
+        ]
+      }
+    }
+  },
+  {
+    "id": "enemy_disruptor",
+    "height": 1.802188,
+    "clips": [
+      "idle",
+      "walk"
+    ],
+    "file": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_disruptor.glb",
+    "bytes": 200416,
+    "triangles": 2599,
+    "headWidth": 0.543289,
+    "sockets": {
+      "HeadAnchor": {
+        "bone": "Head",
+        "blenderRestPosition": [
+          0.0,
+          0.005664810538291931,
+          1.8327878713607788
+        ],
+        "gltfRestPosition": [
+          0.0,
+          1.8327878713607788,
+          -0.005664810538291931
+        ]
+      },
+      "BackAnchor": {
+        "bone": "Spine",
+        "blenderRestPosition": [
+          0.0,
+          0.17332468926906586,
+          1.1069999933242798
+        ],
+        "gltfRestPosition": [
+          0.0,
+          1.1069999933242798,
+          -0.17332468926906586
+        ]
+      }
+    }
+  },
+  {
+    "id": "enemy_raider",
+    "height": 1.653176,
+    "clips": [
+      "idle",
+      "walk"
+    ],
+    "file": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_raider.glb",
+    "bytes": 197864,
+    "triangles": 2599,
+    "headWidth": 0.808181,
+    "sockets": {
+      "HeadAnchor": {
+        "bone": "Head",
+        "blenderRestPosition": [
+          0.0,
+          -0.004257962107658386,
+          1.6812257766723633
+        ],
+        "gltfRestPosition": [
+          0.0,
+          1.6812257766723633,
+          0.004257962107658386
+        ]
+      },
+      "BackAnchor": {
+        "bone": "Spine",
+        "blenderRestPosition": [
+          0.0,
+          0.17458079755306244,
+          0.8992499709129333
+        ],
+        "gltfRestPosition": [
+          0.0,
+          0.8992499709129333,
+          -0.17458079755306244
+        ]
+      }
+    }
+  },
+  {
+    "id": "enemy_runner",
+    "height": 1.652231,
+    "clips": [
+      "idle",
+      "walk"
+    ],
+    "file": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_runner.glb",
+    "bytes": 200024,
+    "triangles": 2600,
+    "headWidth": 0.752859,
+    "sockets": {
+      "HeadAnchor": {
+        "bone": "Head",
+        "blenderRestPosition": [
+          0.0,
+          -0.0001843869686126709,
+          1.6802806854248047
+        ],
+        "gltfRestPosition": [
+          0.0,
+          1.6802806854248047,
+          0.0001843869686126709
+        ]
+      },
+      "BackAnchor": {
+        "bone": "Spine",
+        "blenderRestPosition": [
+          0.0,
+          0.10040874779224396,
+          0.9487500190734863
+        ],
+        "gltfRestPosition": [
+          0.0,
+          0.9487500190734863,
+          -0.10040874779224396
+        ]
+      }
+    }
+  },
+  {
+    "id": "enemy_shaman",
+    "height": 2.293646,
+    "clips": [
+      "idle",
+      "walk"
+    ],
+    "file": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_shaman.glb",
+    "bytes": 261260,
+    "triangles": 3500,
+    "headWidth": 1.028501,
+    "sockets": {
+      "HeadAnchor": {
+        "bone": "Head",
+        "blenderRestPosition": [
+          0.0,
+          -0.009632334113121033,
+          2.332745313644409
+        ],
+        "gltfRestPosition": [
+          0.0,
+          2.332745313644409,
+          0.009632334113121033
+        ]
+      },
+      "BackAnchor": {
+        "bone": "Spine",
+        "blenderRestPosition": [
+          0.0,
+          0.4808731973171234,
+          1.3454999923706055
+        ],
+        "gltfRestPosition": [
+          0.0,
+          1.3454999923706055,
+          -0.4808731973171234
+        ]
+      }
+    }
+  },
+  {
+    "id": "enemy_tuskking",
+    "height": 2.095548,
+    "clips": [
+      "idle",
+      "walk"
+    ],
+    "file": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_tuskking.glb",
+    "bytes": 256184,
+    "triangles": 3500,
+    "headWidth": 1.543146,
+    "sockets": {
+      "HeadAnchor": {
+        "bone": "Head",
+        "blenderRestPosition": [
+          0.0,
+          -0.8680368661880493,
+          2.1312475204467773
+        ],
+        "gltfRestPosition": [
+          0.0,
+          2.1312475204467773,
+          0.8680368661880493
+        ]
+      },
+      "BackAnchor": {
+        "bone": "Spine",
+        "blenderRestPosition": [
+          0.0,
+          0.23148193955421448,
+          1.9419735670089722
+        ],
+        "gltfRestPosition": [
+          0.0,
+          1.9419735670089722,
+          -0.23148193955421448
+        ]
+      }
+    }
+  },
+  {
+    "id": "enemy_wolfking",
+    "height": 2.195406,
+    "clips": [
+      "idle",
+      "walk"
+    ],
+    "file": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_wolfking.glb",
+    "bytes": 239512,
+    "triangles": 3499,
+    "headWidth": 1.382925,
+    "sockets": {
+      "HeadAnchor": {
+        "bone": "Head",
+        "blenderRestPosition": [
+          0.0,
+          -0.976028561592102,
+          2.2328062057495117
+        ],
+        "gltfRestPosition": [
+          0.0,
+          2.2328062057495117,
+          0.976028561592102
+        ]
+      },
+      "BackAnchor": {
+        "bone": "Spine",
+        "blenderRestPosition": [
+          0.0,
+          0.2611662447452545,
+          1.7783159017562866
+        ],
+        "gltfRestPosition": [
+          0.0,
+          1.7783159017562866,
+          -0.2611662447452545
+        ]
+      }
+    }
+  }
+]

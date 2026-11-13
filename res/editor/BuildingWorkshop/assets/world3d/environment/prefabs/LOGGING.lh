@@ -1,0 +1,3675 @@
+{
+  "_$ver": 1,
+  "_$id": "skd6lisu",
+  "_$type": "Sprite3D",
+  "name": "LOGGING",
+  "_$child": [
+    {
+      "_$id": "#117",
+      "_$type": "Sprite3D",
+      "name": "LOGGING",
+      "_$child": [
+        {
+          "_$id": "#17",
+          "_$type": "Sprite3D",
+          "name": "Level1",
+          "_$child": [
+            {
+              "_$id": "#12",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$child": [
+                {
+                  "_$id": "#2",
+                  "_$type": "Sprite3D",
+                  "name": "Axe",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.3499999940395355,
+                      "y": 0.7300000190734863,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "#0",
+                      "_$type": "Sprite3D",
+                      "name": "AxeHandle",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.09999999403953552,
+                          "y": 0.2250000238418579
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.14678938895948973,
+                          "y": 0.6917028525657002,
+                          "z": -0.14678937405832834,
+                          "w": 0.6917029121703457
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm0",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat0",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#1",
+                      "_$type": "Sprite3D",
+                      "name": "AxeHead",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.18999996781349182,
+                          "y": 0.3799999952316284
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm1",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#3",
+                  "_$type": "Sprite3D",
+                  "name": "BenchLeg",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.44999998807907104,
+                      "y": 0.2800000011920929,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#4",
+                  "_$type": "Sprite3D",
+                  "name": "BenchLeg.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.44999998807907104,
+                      "y": 0.2800000011920929,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#5",
+                  "_$type": "Sprite3D",
+                  "name": "RoofPatch.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.5399999618530273
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat3",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat4",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#6",
+                  "_$type": "Sprite3D",
+                  "name": "ShedPost",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": -0.41999998688697815
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#7",
+                  "_$type": "Sprite3D",
+                  "name": "ShedPost.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": -0.41999998688697815
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#8",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.5299999713897705,
+                      "y": 0.1599999964237213,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#9",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.15000000596046448,
+                      "y": 0.1599999964237213,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#10",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.23000000417232513,
+                      "y": 0.1599999964237213,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#11",
+                  "_$type": "Sprite3D",
+                  "name": "Workbench",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.5799999833106995,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm6",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#13",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#14",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#15",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            },
+            {
+              "_$id": "#16",
+              "_$type": "Sprite3D",
+              "name": "WorkSocket",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "z": 0.7200000286102295
+                }
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "#56",
+          "_$type": "Sprite3D",
+          "name": "Level12",
+          "_$child": [
+            {
+              "_$id": "#51",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$child": [
+                {
+                  "_$id": "#20",
+                  "_$type": "Sprite3D",
+                  "name": "Axe",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.3499999940395355,
+                      "y": 0.7300000190734863,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "#18",
+                      "_$type": "Sprite3D",
+                      "name": "AxeHandle.003",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.09999999403953552,
+                          "y": 0.2250000238418579
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.14678938895948973,
+                          "y": 0.6917028525657002,
+                          "z": -0.14678937405832834,
+                          "w": 0.6917029121703457
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm0",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat0",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#19",
+                      "_$type": "Sprite3D",
+                      "name": "AxeHead.003",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.18999996781349182,
+                          "y": 0.3799999952316284
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm1",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#21",
+                  "_$type": "Sprite3D",
+                  "name": "BannerPatch.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.8100000023841858,
+                      "y": 1.0074999332427979,
+                      "z": 0.2865000069141388
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm7",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat6",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat7",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat8",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#22",
+                  "_$type": "Sprite3D",
+                  "name": "BannerPatch.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.8100000023841858,
+                      "y": 1.0075000524520874,
+                      "z": 0.2865000069141388
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm7",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat6",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat7",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat8",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#23",
+                  "_$type": "Sprite3D",
+                  "name": "BenchLeg.006",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.44999998807907104,
+                      "y": 0.2800000011920929,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#24",
+                  "_$type": "Sprite3D",
+                  "name": "BenchLeg.007",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.44999998807907104,
+                      "y": 0.2800000011920929,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#25",
+                  "_$type": "Sprite3D",
+                  "name": "FrontPost.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": 0.23999999463558197
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm8",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#26",
+                  "_$type": "Sprite3D",
+                  "name": "FrontPost.005",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": 0.23999999463558197
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm8",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#27",
+                  "_$type": "Sprite3D",
+                  "name": "RoofPatch.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.5399999618530273
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm9",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat9",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#28",
+                  "_$type": "Sprite3D",
+                  "name": "RoofPatch.005",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.850000023841858
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm10",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat9",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#40",
+                  "_$type": "Sprite3D",
+                  "name": "SawBlade",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.10000000149011612,
+                      "y": 0.7699999809265137,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "#29",
+                      "_$type": "Sprite3D",
+                      "name": "CircularSaw.001",
+                      "transform": {
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.7071067811865476,
+                          "w": 0.7071067811865476
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm11",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#30",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.010",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.2946021854877472,
+                          "y": 0.03467506170272827,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm12",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#31",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.011",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.20897570252418518,
+                          "y": 0.18829238414764404,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm13",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#32",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.012",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.04591105133295059,
+                          "y": 0.289384126663208,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm14",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#33",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.013",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.11186698079109192,
+                          "y": 0.2647465467453003,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm15",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#34",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.014",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.2511294484138489,
+                          "y": 0.13274884223937988,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm16",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#35",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.015",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.2946021854877472,
+                          "y": -0.03467506170272827,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm17",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#36",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.016",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.20897570252418518,
+                          "y": -0.18829238414764404,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm18",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#37",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.017",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.045911047607660294,
+                          "y": -0.2893841862678528,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm19",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#38",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.018",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.11186697334051132,
+                          "y": -0.2647465467453003,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm20",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#39",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.019",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.2511294484138489,
+                          "y": -0.13274884223937988,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm21",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#41",
+                  "_$type": "Sprite3D",
+                  "name": "SawRack.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.6600000262260437,
+                      "y": 0.7200000286102295,
+                      "z": 0.4000000059604645
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm22",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#42",
+                  "_$type": "Sprite3D",
+                  "name": "ShedPost.006",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": -0.41999998688697815
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#43",
+                  "_$type": "Sprite3D",
+                  "name": "ShedPost.007",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": -0.41999998688697815
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#44",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.015",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.5299999713897705,
+                      "y": 0.1599999964237213,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#45",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.016",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.5299999713897705,
+                      "y": 0.41999998688697815,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#46",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.017",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.15000000596046448,
+                      "y": 0.1599999964237213,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#47",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.018",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.15000000596046448,
+                      "y": 0.41999998688697815,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#48",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.019",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.23000000417232513,
+                      "y": 0.1599999964237213,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#49",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.020",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.23000000417232513,
+                      "y": 0.41999998688697815,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#50",
+                  "_$type": "Sprite3D",
+                  "name": "Workbench.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.5799999833106995,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm6",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#52",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#53",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#54",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            },
+            {
+              "_$id": "#55",
+              "_$type": "Sprite3D",
+              "name": "WorkSocket",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "z": 0.7200000286102295
+                }
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "#80",
+          "_$type": "Sprite3D",
+          "name": "Level4",
+          "_$child": [
+            {
+              "_$id": "#75",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$child": [
+                {
+                  "_$id": "#59",
+                  "_$type": "Sprite3D",
+                  "name": "Axe",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.3499999940395355,
+                      "y": 0.7300000190734863,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "#57",
+                      "_$type": "Sprite3D",
+                      "name": "AxeHandle.001",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.09999999403953552,
+                          "y": 0.2250000238418579
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.14678938895948973,
+                          "y": 0.6917028525657002,
+                          "z": -0.14678937405832834,
+                          "w": 0.6917029121703457
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm0",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat0",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#58",
+                      "_$type": "Sprite3D",
+                      "name": "AxeHead.001",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.18999996781349182,
+                          "y": 0.3799999952316284
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm1",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#60",
+                  "_$type": "Sprite3D",
+                  "name": "BenchLeg.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.44999998807907104,
+                      "y": 0.2800000011920929,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#61",
+                  "_$type": "Sprite3D",
+                  "name": "BenchLeg.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.44999998807907104,
+                      "y": 0.2800000011920929,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#62",
+                  "_$type": "Sprite3D",
+                  "name": "FrontPost",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": 0.23999999463558197
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm8",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#63",
+                  "_$type": "Sprite3D",
+                  "name": "FrontPost.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": 0.23999999463558197
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm8",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#64",
+                  "_$type": "Sprite3D",
+                  "name": "RoofPatch.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.5399999618530273
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat3",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat4",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#65",
+                  "_$type": "Sprite3D",
+                  "name": "SawRack",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.6600000262260437,
+                      "y": 0.7200000286102295,
+                      "z": 0.4000000059604645
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm22",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#66",
+                  "_$type": "Sprite3D",
+                  "name": "ShedPost.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": -0.41999998688697815
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#67",
+                  "_$type": "Sprite3D",
+                  "name": "ShedPost.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": -0.41999998688697815
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#68",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.5299999713897705,
+                      "y": 0.1599999964237213,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#69",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.5299999713897705,
+                      "y": 0.41999998688697815,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#70",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.005",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.15000000596046448,
+                      "y": 0.1599999964237213,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#71",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.006",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.15000000596046448,
+                      "y": 0.41999998688697815,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#72",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.007",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.23000000417232513,
+                      "y": 0.1599999964237213,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#73",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.008",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.23000000417232513,
+                      "y": 0.41999998688697815,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#74",
+                  "_$type": "Sprite3D",
+                  "name": "Workbench.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.5799999833106995,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm6",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#76",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#77",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#78",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            },
+            {
+              "_$id": "#79",
+              "_$type": "Sprite3D",
+              "name": "WorkSocket",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "z": 0.7200000286102295
+                }
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "#116",
+          "_$type": "Sprite3D",
+          "name": "Level8",
+          "_$child": [
+            {
+              "_$id": "#111",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$child": [
+                {
+                  "_$id": "#83",
+                  "_$type": "Sprite3D",
+                  "name": "Axe",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.3499999940395355,
+                      "y": 0.7300000190734863,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "#81",
+                      "_$type": "Sprite3D",
+                      "name": "AxeHandle.002",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.09999999403953552,
+                          "y": 0.2250000238418579
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.14678938895948973,
+                          "y": 0.6917028525657002,
+                          "z": -0.14678937405832834,
+                          "w": 0.6917029121703457
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm0",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat0",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#82",
+                      "_$type": "Sprite3D",
+                      "name": "AxeHead.002",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.18999996781349182,
+                          "y": 0.3799999952316284
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm1",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#84",
+                  "_$type": "Sprite3D",
+                  "name": "BenchLeg.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.44999998807907104,
+                      "y": 0.2800000011920929,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#85",
+                  "_$type": "Sprite3D",
+                  "name": "BenchLeg.005",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.44999998807907104,
+                      "y": 0.2800000011920929,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#86",
+                  "_$type": "Sprite3D",
+                  "name": "FrontPost.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": 0.23999999463558197
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm8",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#87",
+                  "_$type": "Sprite3D",
+                  "name": "FrontPost.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": 0.23999999463558197
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm8",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#88",
+                  "_$type": "Sprite3D",
+                  "name": "RoofPatch.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.5399999618530273
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm9",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat9",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#100",
+                  "_$type": "Sprite3D",
+                  "name": "SawBlade",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.10000000149011612,
+                      "y": 0.7699999809265137,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "#89",
+                      "_$type": "Sprite3D",
+                      "name": "CircularSaw",
+                      "transform": {
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.7071067811865476,
+                          "w": 0.7071067811865476
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm11",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#90",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.2946021854877472,
+                          "y": 0.03467506170272827,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm12",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#91",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.001",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.20897570252418518,
+                          "y": 0.18829238414764404,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm13",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#92",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.002",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.04591105133295059,
+                          "y": 0.289384126663208,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm14",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#93",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.003",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.11186698079109192,
+                          "y": 0.2647465467453003,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm15",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#94",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.004",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.2511294484138489,
+                          "y": 0.13274884223937988,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm16",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#95",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.005",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.2946021854877472,
+                          "y": -0.03467506170272827,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm17",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#96",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.006",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.20897570252418518,
+                          "y": -0.18829238414764404,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm18",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#97",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.007",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.045911047607660294,
+                          "y": -0.2893841862678528,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm19",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#98",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.008",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.11186697334051132,
+                          "y": -0.2647465467453003,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm20",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#99",
+                      "_$type": "Sprite3D",
+                      "name": "SawTooth.009",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.2511294484138489,
+                          "y": -0.13274884223937988,
+                          "z": 0.019999995827674866
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm21",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#101",
+                  "_$type": "Sprite3D",
+                  "name": "SawRack.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.6600000262260437,
+                      "y": 0.7200000286102295,
+                      "z": 0.4000000059604645
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm22",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat0",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#102",
+                  "_$type": "Sprite3D",
+                  "name": "ShedPost.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": -0.41999998688697815
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#103",
+                  "_$type": "Sprite3D",
+                  "name": "ShedPost.005",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.8299999833106995,
+                      "y": 0.6399999856948853,
+                      "z": -0.41999998688697815
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#104",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.009",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.5299999713897705,
+                      "y": 0.1599999964237213,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#105",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.010",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.5299999713897705,
+                      "y": 0.41999998688697815,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#106",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.011",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.15000000596046448,
+                      "y": 0.1599999964237213,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#107",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.012",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.15000000596046448,
+                      "y": 0.41999998688697815,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#108",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.013",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.23000000417232513,
+                      "y": 0.1599999964237213,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#109",
+                  "_$type": "Sprite3D",
+                  "name": "StackedLog.014",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.23000000417232513,
+                      "y": 0.41999998688697815,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#110",
+                  "_$type": "Sprite3D",
+                  "name": "Workbench.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.5799999833106995,
+                      "z": 0.23000000417232513
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lm6",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "6b771b66-5fa3-44df-b883-67388884b3d4@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#112",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#113",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#114",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            },
+            {
+              "_$id": "#115",
+              "_$type": "Sprite3D",
+              "name": "WorkSocket",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "z": 0.7200000286102295
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

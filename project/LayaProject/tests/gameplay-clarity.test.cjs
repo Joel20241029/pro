@@ -93,10 +93,10 @@ test('upgrade preview explains both deficits, exact resources pass, storage is c
 
 // Display-list test doubles verify interaction and scroll bounds, not native font measurements.
 class Sprite {
-    constructor() { this.name = ''; this.children = []; this.handlers = {}; this.graphics = { drawRect() {}, drawCircle() {}, clear() {} }; }
+    constructor() { this.name = ''; this.children = []; this.handlers = {}; this.graphics = { drawRect() {}, drawCircle() {}, drawLine() {}, drawLines() {}, drawPath() {}, drawRoundRect() {}, drawPoly() {}, clear() {} }; }
     pos(x, y) { this.x = x; this.y = y; return this; }
     size(w, h) { this.width = w; this.height = h; return this; }
-    addChild(n) { this.children.push(n); return n; }
+    addChild(n) { this.children.push(n); n.parent = this; return n; }
     destroyChildren() { this.children.length = 0; }
     getChildAt(i) { return this.children[i]; }
     get numChildren() { return this.children.length; }
@@ -113,13 +113,16 @@ const { GUIDE_CHAPTERS } = require(path.join(compiled, 'view/GameGuide.js'));
 function panelView(game) {
     const art = { panel() {} }, view = new GamePanels(game, art, {}, null, new Sprite(), {}, () => {
         if (view.current) view.draw(game.state, view.current);
-    });
+    }, { ready: () => true });
     const ui = new UiWidgets(art, () => view.clickSounds++);
-    Object.assign(view, { ui, clickSounds: 0, modal() { this.box = new Sprite(); return this.box; } });
+    Object.assign(view, { resources: { ready: () => true }, ui, clickSounds: 0, modal() { this.box = new Sprite(); return this.box; } });
     ui.label = (parent, text, x, y, w, font, color, bold, h) => {
-        const node = new Sprite().pos(x, y).size(w, h); node.text = text; node.textHeight = 200; parent.addChild(node); return node;
+        const node = new Sprite().pos(x, y).size(w, h); node.text = text; node.textHeight = 200; node.textWidth = text.replace(/<[^>]*>/g, '').length * (font || 28); parent.addChild(node); return node;
     };
     return view;
+}
+function imageNode(parent, id, x, y, width, height = width) {
+    const node = new Sprite().pos(x, y).size(width, height); node.name = id; parent.addChild(node); return node;
 }
 
 test('help entry and all five tabs are read-only; each chapter resets its own scrolling', () => {
@@ -141,9 +144,11 @@ test('leaving a pressed button, ranking entry or tower cancels the engine click 
     const { game } = session(), view = panelView(game), opened = [];
     game.state.legacy.bestNight = 1;
     const layout = { mapTop: 280, footerTop: 980, gateY: 680, height: 1280, safeTop: 0, dateY: 42, resourcesY: 124 };
-    view.ui.image = () => ({}); view.open = panel => opened.push(panel);
+    view.ui.image = imageNode; view.open = panel => opened.push(panel);
     const hud = new GameHud(game, view.art, view.ui, view, () => {});
-    hud.drawHeader(layout); hud.draw(game.state, layout, { pads: PADS });
+    // Label anchors are a fixture; touch targets retain the 2D scene pad offset.
+    const anchors = { towerAnchor: i => PADS[i], gateAnchor: () => ({ x: 360, y: 680 }) };
+    hud.drawHeader(layout); hud.draw(game.state, layout, { pads: PADS }, anchors);
     const tower = hud.node.children.find(n => n.x === PADS[0].x - 58 && n.y === PADS[0].y - 80 && n.width === 116);
     const entries = [hud.node.getChildByName('button:小记'), hud.node.getChildByName('RankingButton'), tower];
     const cancelled = [];
@@ -173,7 +178,10 @@ test('leaving a pressed button, ranking entry or tower cancels the engine click 
     assert.deepEqual(cancelled, [0, 1, 2]);
 
     const button = entries[0], face = button.getChildAt(0);
+    const icon = face.getChildByName('buttonIcon'); assert(icon); assert.equal(icon.parent, face);
+    const localIconPosition = [icon.x, icon.y];
     button.event('down', { touchId: 16 }); assert.notEqual(face.y, 0);
+    assert.deepEqual([icon.x, icon.y], localIconPosition, 'icon remains on the same pressed face rather than shifting separately');
     button.event('out'); // ScrollList already cancelled its pointer and sends a visual reset without event data.
     assert.equal(face.y, 0);
     assert.deepEqual(cancelled, [0, 1, 2]);
@@ -219,10 +227,10 @@ test('resizing an open guide preserves its panel, scroll list, offset and pause 
     const window = { windowWidth: 390, windowHeight: 844, statusBarHeight: 47, safeArea: { top: 47, bottom: 810 } };
     const menu = { width: 88, height: 32, top: 51, bottom: 83, left: 292, right: 380 };
     const view = Object.create(GameView.prototype);
-    Object.assign(view, { game, panels, overlay, layout: new GameLayout(window, menu), platform: { window: { ...window, windowHeight: 900, safeArea: { top: 47, bottom: 866 } }, menu },
+    Object.assign(view, { resources: { ready: () => true }, game, panels, overlay, layout: new GameLayout(window, menu), platform: { window: { ...window, windowHeight: 900, safeArea: { top: 47, bottom: 866 } }, menu },
         root: new Sprite(), tip: { pos() {} }, observedVillageRevision: game.villageRevision,
-        village: { scene: { pads: PADS }, relayout() {}, sync() {}, drawScenery() {} }, updateActors() {} });
-    view.hud = new GameHud(game, panels.art, panels.ui, panels, () => view.refresh()); panels.ui.image = () => ({});
+        village: { scene: { pads: PADS }, relayout() {}, sync() {}, drawScenery() {}, towerAnchor: i => PADS[i], gateAnchor: () => ({ x: 360, y: 680 }) }, updateActors() {} });
+    view.hud = new GameHud(game, panels.art, panels.ui, panels, () => view.refresh()); panels.ui.image = imageNode;
     view.resize();
     assert.equal(overlay.getChildAt(0), box); assert.equal(box.getChildByName('ScrollList'), rows);
     assert.equal(panels.current, panel); assert.equal(rows.offset, offset); assert.equal(panel.scroll, offset);

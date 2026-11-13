@@ -1,0 +1,146 @@
+{
+  "_$ver": 1,
+  "_$id": "la7xwo60",
+  "_$type": "Sprite3D",
+  "name": "ROCKS",
+  "_$child": [
+    {
+      "_$id": "#4",
+      "_$type": "Sprite3D",
+      "name": "ROCKS",
+      "_$child": [
+        {
+          "_$id": "#3",
+          "_$type": "Sprite3D",
+          "name": "Body",
+          "_$child": [
+            {
+              "_$id": "#0",
+              "_$type": "Sprite3D",
+              "name": "RiverStone",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 0.1599999964237213
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.30000001192092896,
+                  "y": 0.1979999989271164,
+                  "z": 0.23999999463558197
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "9e1d38b1-22a4-461d-b8b7-e04da8793814@lm0",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "9e1d38b1-22a4-461d-b8b7-e04da8793814@lmat0",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#1",
+              "_$type": "Sprite3D",
+              "name": "RiverStone.001",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.23999999463558197,
+                  "y": 0.07999999821186066,
+                  "z": -0.09000000357627869
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.1599999964237213,
+                  "y": 0.10559999942779541,
+                  "z": 0.12800000607967377
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "9e1d38b1-22a4-461d-b8b7-e04da8793814@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "9e1d38b1-22a4-461d-b8b7-e04da8793814@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#2",
+              "_$type": "Sprite3D",
+              "name": "RiverStone.002",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.20000000298023224,
+                  "y": 0.05999999865889549,
+                  "z": 0.07000000029802322
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.12999999523162842,
+                  "y": 0.08579999953508377,
+                  "z": 0.10400000214576721
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "9e1d38b1-22a4-461d-b8b7-e04da8793814@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "9e1d38b1-22a4-461d-b8b7-e04da8793814@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

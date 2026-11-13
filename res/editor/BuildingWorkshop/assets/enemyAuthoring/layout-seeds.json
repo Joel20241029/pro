@@ -1,0 +1,120 @@
+{
+  "canvas": 96,
+  "pivot": {
+    "x": 48,
+    "y": 92
+  },
+  "fps": 6,
+  "enemies": [
+    {
+      "kind": "enemy_raider",
+      "head": {
+        "x": 48,
+        "y": 40
+      },
+      "back": {
+        "x": 61,
+        "y": 50
+      }
+    },
+    {
+      "kind": "enemy_runner",
+      "head": {
+        "x": 48,
+        "y": 45
+      },
+      "back": {
+        "x": 48,
+        "y": 57
+      }
+    },
+    {
+      "kind": "enemy_armored",
+      "head": {
+        "x": 48,
+        "y": 34
+      },
+      "back": {
+        "x": 61,
+        "y": 47
+      }
+    },
+    {
+      "kind": "enemy_boar",
+      "head": {
+        "x": 48,
+        "y": 43
+      },
+      "back": {
+        "x": 48,
+        "y": 59
+      }
+    },
+    {
+      "kind": "enemy_disruptor",
+      "head": {
+        "x": 48,
+        "y": 25
+      },
+      "back": {
+        "x": 60,
+        "y": 51
+      }
+    },
+    {
+      "kind": "enemy_chief",
+      "head": {
+        "x": 48,
+        "y": 23
+      },
+      "back": {
+        "x": 64,
+        "y": 50
+      }
+    },
+    {
+      "kind": "enemy_commander",
+      "head": {
+        "x": 48,
+        "y": 20
+      },
+      "back": {
+        "x": 66,
+        "y": 47
+      }
+    },
+    {
+      "kind": "enemy_wolfking",
+      "head": {
+        "x": 48,
+        "y": 49
+      },
+      "back": {
+        "x": 48,
+        "y": 56
+      }
+    },
+    {
+      "kind": "enemy_tuskking",
+      "head": {
+        "x": 48,
+        "y": 31
+      },
+      "back": {
+        "x": 48,
+        "y": 52
+      }
+    },
+    {
+      "kind": "enemy_shaman",
+      "head": {
+        "x": 48,
+        "y": 24
+      },
+      "back": {
+        "x": 65,
+        "y": 54
+      }
+    }
+  ]
+}

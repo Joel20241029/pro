@@ -1,0 +1,53 @@
+{
+  "status": "offline_candidate_not_integrated",
+  "method": "actual Blender offline rendering",
+  "model": "hyper3d-gen2-260112",
+  "trace_id": "9f7fed3a36f9a4f48d4e5090e0032080",
+  "reference": "reference.png",
+  "textureResolution": 2048,
+  "geometryDecimated": false,
+  "runtime3d": false,
+  "fps": 2,
+  "scriptInputs": [
+    {
+      "file": "res/tools/hd2d/inspect-character.py",
+      "sha256": "fed2f3307b0ef93239da2638c9fd81ef656274985c3f7877a0cb87d5b6bc645e"
+    },
+    {
+      "file": "res/tools/hd2d/render-baby-idle.py",
+      "sha256": "4cc5537c18a3faa97844f089075ba990d7b5a9166e4a1bfb1d6e451b06badf49"
+    }
+  ],
+  "files": [
+    {
+      "file": "baby_idle_probe.blend",
+      "bytes": 12298801,
+      "sha256": "0a4caeed2b8136d7fc28c736a13bfb4e1417a53a010cdf100d33241e16419644"
+    },
+    {
+      "file": "baby_inspect.blend",
+      "bytes": 11319484,
+      "sha256": "670777e10decb7ff2e7545a98768a26a5b8a0278d4d51f3eea060ff11080285f"
+    },
+    {
+      "file": "baby_q_raw.glb",
+      "bytes": 8540756,
+      "sha256": "1f83e1cbd2a3a425108b6a98971e7a2eb0c07b5c03b227175bb5119a82132471"
+    },
+    {
+      "file": "idle-report.json",
+      "bytes": 1325,
+      "sha256": "da40defa5479421675573e8675b12ae224138d7fed72350a660f8be3af7a167b"
+    },
+    {
+      "file": "model-inspection.json",
+      "bytes": 609,
+      "sha256": "0a47c1213d3ce7120aa20db5f093f641833209f63f0bb1318cc7cc9b5e48b0e4"
+    },
+    {
+      "file": "reference.png",
+      "bytes": 986674,
+      "sha256": "23db1df59fd6ad50da5b9caa728391ca7ef992e041432bfe84046b0274cb23e5"
+    }
+  ]
+}

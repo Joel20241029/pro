@@ -1,0 +1,3462 @@
+{
+  "_$ver": 1,
+  "_$id": "jtzmf7qa",
+  "_$type": "Sprite3D",
+  "name": "GATE",
+  "_$child": [
+    {
+      "_$id": "#113",
+      "_$type": "Sprite3D",
+      "name": "GATE",
+      "_$child": [
+        {
+          "_$id": "#24",
+          "_$type": "Sprite3D",
+          "name": "Level1",
+          "_$child": [
+            {
+              "_$id": "#19",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$child": [
+                {
+                  "_$id": "#12",
+                  "_$type": "Sprite3D",
+                  "name": "GateDoors",
+                  "_$child": [
+                    {
+                      "_$id": "#0",
+                      "_$type": "Sprite3D",
+                      "name": "DoorKnocker",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.1599999964237213,
+                          "y": 0.6299999952316284,
+                          "z": 0.11999999731779099
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.7071067811865476,
+                          "w": 0.7071067811865476
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm0",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat0",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#1",
+                      "_$type": "Sprite3D",
+                      "name": "DoorKnocker.001",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.1599999964237213,
+                          "y": 0.6299999952316284,
+                          "z": 0.11999999731779099
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.7071067811865476,
+                          "w": 0.7071067811865476
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm0",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat0",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#2",
+                      "_$type": "Sprite3D",
+                      "name": "GateBrace",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "y": 0.33000001311302185,
+                          "z": 0.03999999910593033
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm1",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#3",
+                      "_$type": "Sprite3D",
+                      "name": "GateBrace.001",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "y": 0.8399999737739563,
+                          "z": 0.03999999910593033
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm1",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#4",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.5799999833106995,
+                          "y": 0.515999972820282,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm2",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#5",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.001",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.414000004529953,
+                          "y": 0.515999972820282,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm2",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#6",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.002",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.24799999594688416,
+                          "y": 0.515999972820282,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm2",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#7",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.003",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.0820000022649765,
+                          "y": 0.515999972820282,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm2",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#8",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.004",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.08399999886751175,
+                          "y": 0.515999972820282,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm2",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#9",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.005",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.25,
+                          "y": 0.515999972820282,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm2",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#10",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.006",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.41600000858306885,
+                          "y": 0.515999972820282,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm2",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#11",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.007",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.5820000171661377,
+                          "y": 0.515999972820282,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm2",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#13",
+                  "_$type": "Sprite3D",
+                  "name": "GatePier",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.7400000095367432,
+                      "y": 0.25
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#14",
+                  "_$type": "Sprite3D",
+                  "name": "GatePier.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.7400000095367432,
+                      "y": 0.25
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#15",
+                  "_$type": "Sprite3D",
+                  "name": "GatePost",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.7400000095367432,
+                      "y": 0.75
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#16",
+                  "_$type": "Sprite3D",
+                  "name": "GatePost.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.7400000095367432,
+                      "y": 0.75
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#17",
+                  "_$type": "Sprite3D",
+                  "name": "Lintel",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.2000000476837158
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat4",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#18",
+                  "_$type": "Sprite3D",
+                  "name": "RoofPatch.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.5600000619888306
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm6",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat5",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat6",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat4",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#20",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#21",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#22",
+              "_$type": "Sprite3D",
+              "name": "HealthAnchor",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.200000047683716
+                }
+              }
+            },
+            {
+              "_$id": "#23",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            }
+          ]
+        },
+        {
+          "_$id": "#56",
+          "_$type": "Sprite3D",
+          "name": "Level12",
+          "_$child": [
+            {
+              "_$id": "#51",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$child": [
+                {
+                  "_$id": "#25",
+                  "_$type": "Sprite3D",
+                  "name": "BannerPatch.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.8299999833106995,
+                      "y": 1.337499976158142,
+                      "z": 0.27649998664855957
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm7",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat0",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat7",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat8",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#26",
+                  "_$type": "Sprite3D",
+                  "name": "BannerPatch.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.8299999833106995,
+                      "y": 1.337499976158142,
+                      "z": 0.27649998664855957
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm7",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat0",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat7",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat8",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#39",
+                  "_$type": "Sprite3D",
+                  "name": "GateDoors",
+                  "_$child": [
+                    {
+                      "_$id": "#27",
+                      "_$type": "Sprite3D",
+                      "name": "DoorKnocker.006",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.1599999964237213,
+                          "y": 0.6299999952316284,
+                          "z": 0.11999999731779099
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.7071067811865476,
+                          "w": 0.7071067811865476
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm0",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat0",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#28",
+                      "_$type": "Sprite3D",
+                      "name": "DoorKnocker.007",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.1599999964237213,
+                          "y": 0.6299999952316284,
+                          "z": 0.11999999731779099
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.7071067811865476,
+                          "w": 0.7071067811865476
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm0",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat0",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#29",
+                      "_$type": "Sprite3D",
+                      "name": "GateBrace.006",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "y": 0.33000001311302185,
+                          "z": 0.03999999910593033
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm1",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#30",
+                      "_$type": "Sprite3D",
+                      "name": "GateBrace.007",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "y": 1.2319999933242798,
+                          "z": 0.03999999910593033
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm1",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#31",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.024",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.5799999833106995,
+                          "y": 0.7567999958992004,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm8",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#32",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.025",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.414000004529953,
+                          "y": 0.7567999958992004,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm8",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#33",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.026",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.24799999594688416,
+                          "y": 0.7567999958992004,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm8",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#34",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.027",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.0820000022649765,
+                          "y": 0.7567999958992004,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm8",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#35",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.028",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.08399999886751175,
+                          "y": 0.7567999958992004,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm8",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#36",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.029",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.25,
+                          "y": 0.7567999958992004,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm8",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#37",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.030",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.41600000858306885,
+                          "y": 0.7567999958992004,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm8",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#38",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.031",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.5820000171661377,
+                          "y": 0.7567999958992004,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm8",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#40",
+                  "_$type": "Sprite3D",
+                  "name": "GatePier.006",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.7400000095367432,
+                      "y": 0.25
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#41",
+                  "_$type": "Sprite3D",
+                  "name": "GatePier.007",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.7400000095367432,
+                      "y": 0.25
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#42",
+                  "_$type": "Sprite3D",
+                  "name": "GatePost.006",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.7400000095367432,
+                      "y": 1.0299999713897705
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm9",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#43",
+                  "_$type": "Sprite3D",
+                  "name": "GatePost.007",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.7400000095367432,
+                      "y": 1.0299999713897705
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm9",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#44",
+                  "_$type": "Sprite3D",
+                  "name": "Lintel.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.7599999904632568
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat4",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#45",
+                  "_$type": "Sprite3D",
+                  "name": "RoofPatch.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 2.120000123977661
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm10",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat9",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat4",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#46",
+                  "_$type": "Sprite3D",
+                  "name": "RoofPatch.005",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 2.4650001525878906
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm11",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat9",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat4",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#47",
+                  "_$type": "Sprite3D",
+                  "name": "SideSupport.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.8720999956130981,
+                      "y": 0.9700000286102295
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.06533977039994145,
+                      "y": 0.704081497695379,
+                      "z": -0.06533978530110185,
+                      "w": 0.7040814380907374
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm12",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#48",
+                  "_$type": "Sprite3D",
+                  "name": "SideSupport.005",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.8720999956130981,
+                      "y": 0.9700000286102295
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.06533977039994145,
+                      "y": -0.704081497695379,
+                      "z": 0.06533978530110185,
+                      "w": 0.7040814380907374
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm12",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#49",
+                  "_$type": "Sprite3D",
+                  "name": "StonePierCladding.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.7400000095367432,
+                      "y": 0.5299999713897705
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm13",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat10",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#50",
+                  "_$type": "Sprite3D",
+                  "name": "StonePierCladding.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.7400000095367432,
+                      "y": 0.5299999713897705
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm13",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat10",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#52",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#53",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#54",
+              "_$type": "Sprite3D",
+              "name": "HealthAnchor",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.759999990463257
+                }
+              }
+            },
+            {
+              "_$id": "#55",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            }
+          ]
+        },
+        {
+          "_$id": "#83",
+          "_$type": "Sprite3D",
+          "name": "Level4",
+          "_$child": [
+            {
+              "_$id": "#78",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$child": [
+                {
+                  "_$id": "#69",
+                  "_$type": "Sprite3D",
+                  "name": "GateDoors",
+                  "_$child": [
+                    {
+                      "_$id": "#57",
+                      "_$type": "Sprite3D",
+                      "name": "DoorKnocker.002",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.1599999964237213,
+                          "y": 0.6299999952316284,
+                          "z": 0.11999999731779099
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.7071067811865476,
+                          "w": 0.7071067811865476
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm0",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat0",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#58",
+                      "_$type": "Sprite3D",
+                      "name": "DoorKnocker.003",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.1599999964237213,
+                          "y": 0.6299999952316284,
+                          "z": 0.11999999731779099
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.7071067811865476,
+                          "w": 0.7071067811865476
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm0",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat0",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#59",
+                      "_$type": "Sprite3D",
+                      "name": "GateBrace.002",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "y": 0.33000001311302185,
+                          "z": 0.03999999910593033
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm1",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#60",
+                      "_$type": "Sprite3D",
+                      "name": "GateBrace.003",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "y": 0.9800000190734863,
+                          "z": 0.03999999910593033
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm1",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#61",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.008",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.5799999833106995,
+                          "y": 0.6019999980926514,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm14",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#62",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.009",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.414000004529953,
+                          "y": 0.6019999980926514,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm14",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#63",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.010",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.24799999594688416,
+                          "y": 0.6019999980926514,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm14",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#64",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.011",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.0820000022649765,
+                          "y": 0.6019999980926514,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm14",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#65",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.012",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.08399999886751175,
+                          "y": 0.6019999980926514,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm14",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#66",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.013",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.25,
+                          "y": 0.6019999980926514,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm14",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#67",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.014",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.41600000858306885,
+                          "y": 0.6019999980926514,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm14",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#68",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.015",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.5820000171661377,
+                          "y": 0.6019999980926514,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm14",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#70",
+                  "_$type": "Sprite3D",
+                  "name": "GatePier.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.7400000095367432,
+                      "y": 0.25
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#71",
+                  "_$type": "Sprite3D",
+                  "name": "GatePier.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.7400000095367432,
+                      "y": 0.25
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#72",
+                  "_$type": "Sprite3D",
+                  "name": "GatePost.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.7400000095367432,
+                      "y": 0.8500000238418579
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm15",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#73",
+                  "_$type": "Sprite3D",
+                  "name": "GatePost.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.7400000095367432,
+                      "y": 0.8500000238418579
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm15",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#74",
+                  "_$type": "Sprite3D",
+                  "name": "Lintel.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.399999976158142
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat4",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#75",
+                  "_$type": "Sprite3D",
+                  "name": "RoofPatch.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.7599999904632568
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm16",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat5",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat6",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat4",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#76",
+                  "_$type": "Sprite3D",
+                  "name": "SideSupport",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.8720999956130981,
+                      "y": 0.7899999618530273
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.08390123892258532,
+                      "y": 0.7021115213115233,
+                      "z": -0.08390116441678157,
+                      "w": 0.7021115213115233
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm17",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#77",
+                  "_$type": "Sprite3D",
+                  "name": "SideSupport.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.8720999956130981,
+                      "y": 0.7899999618530273
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.08390123892258532,
+                      "y": -0.7021115213115233,
+                      "z": 0.08390116441678157,
+                      "w": 0.7021115213115233
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm17",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#79",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#80",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#81",
+              "_$type": "Sprite3D",
+              "name": "HealthAnchor",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.4000000953674316
+                }
+              }
+            },
+            {
+              "_$id": "#82",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            }
+          ]
+        },
+        {
+          "_$id": "#112",
+          "_$type": "Sprite3D",
+          "name": "Level8",
+          "_$child": [
+            {
+              "_$id": "#107",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$child": [
+                {
+                  "_$id": "#96",
+                  "_$type": "Sprite3D",
+                  "name": "GateDoors",
+                  "_$child": [
+                    {
+                      "_$id": "#84",
+                      "_$type": "Sprite3D",
+                      "name": "DoorKnocker.004",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.1599999964237213,
+                          "y": 0.6299999952316284,
+                          "z": 0.11999999731779099
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.7071067811865476,
+                          "w": 0.7071067811865476
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm0",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat0",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#85",
+                      "_$type": "Sprite3D",
+                      "name": "DoorKnocker.005",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.1599999964237213,
+                          "y": 0.6299999952316284,
+                          "z": 0.11999999731779099
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.7071067811865476,
+                          "w": 0.7071067811865476
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm0",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat0",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#86",
+                      "_$type": "Sprite3D",
+                      "name": "GateBrace.004",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "y": 0.33000001311302185,
+                          "z": 0.03999999910593033
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm1",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#87",
+                      "_$type": "Sprite3D",
+                      "name": "GateBrace.005",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "y": 1.0989999771118164,
+                          "z": 0.03999999910593033
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm1",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat1",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#88",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.016",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.5799999833106995,
+                          "y": 0.6751000285148621,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm18",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#89",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.017",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.414000004529953,
+                          "y": 0.6751000285148621,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm18",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#90",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.018",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.24799999594688416,
+                          "y": 0.6751000285148621,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm18",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#91",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.019",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": -0.0820000022649765,
+                          "y": 0.6751000285148621,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm18",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#92",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.020",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.08399999886751175,
+                          "y": 0.6751000285148621,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm18",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#93",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.021",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.25,
+                          "y": 0.6751000285148621,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm18",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#94",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.022",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.41600000858306885,
+                          "y": 0.6751000285148621,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm18",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "_$id": "#95",
+                      "_$type": "Sprite3D",
+                      "name": "GatePlank.023",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "x": 0.5820000171661377,
+                          "y": 0.6751000285148621,
+                          "z": -0.05000000074505806
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm18",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#97",
+                  "_$type": "Sprite3D",
+                  "name": "GatePier.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.7400000095367432,
+                      "y": 0.25
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#98",
+                  "_$type": "Sprite3D",
+                  "name": "GatePier.005",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.7400000095367432,
+                      "y": 0.25
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#99",
+                  "_$type": "Sprite3D",
+                  "name": "GatePost.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.7400000095367432,
+                      "y": 0.9350000023841858
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm19",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#100",
+                  "_$type": "Sprite3D",
+                  "name": "GatePost.005",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.7400000095367432,
+                      "y": 0.9350000023841858
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm19",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#101",
+                  "_$type": "Sprite3D",
+                  "name": "Lintel.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.5700000524520874
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat4",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#102",
+                  "_$type": "Sprite3D",
+                  "name": "RoofPatch.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 1.9300000667572021
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.5,
+                      "y": 0.5,
+                      "z": -0.5,
+                      "w": 0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm20",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat9",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat4",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#103",
+                  "_$type": "Sprite3D",
+                  "name": "SideSupport.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.8720999956130981,
+                      "y": 0.875
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.0739965364964926,
+                      "y": 0.7032243615396194,
+                      "z": -0.07399667060694345,
+                      "w": 0.7032243615396194
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm21",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#104",
+                  "_$type": "Sprite3D",
+                  "name": "SideSupport.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.8720999956130981,
+                      "y": 0.875
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": 0.0739965364964926,
+                      "y": -0.7032243615396194,
+                      "z": 0.07399667060694345,
+                      "w": 0.7032243615396194
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm21",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat2",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#105",
+                  "_$type": "Sprite3D",
+                  "name": "StonePierCladding",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.7400000095367432,
+                      "y": 0.5299999713897705
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm13",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat10",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#106",
+                  "_$type": "Sprite3D",
+                  "name": "StonePierCladding.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.7400000095367432,
+                      "y": 0.5299999713897705
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lm13",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "394957da-d207-408f-a068-3cfe34462245@lmat10",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#108",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#109",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#110",
+              "_$type": "Sprite3D",
+              "name": "HealthAnchor",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 2.569999933242798
+                }
+              }
+            },
+            {
+              "_$id": "#111",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

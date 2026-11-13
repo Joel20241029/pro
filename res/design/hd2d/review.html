@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>代代守村 · 高清二维小样对照</title>
+<style>
+  :root { color-scheme:light; --ink:#563619; --muted:#866b4e; --line:#dbc29d; --paper:#fff9ed; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#f3eadb; color:var(--ink); font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
+  main { max-width:1260px; margin:auto; padding:28px; }
+  h1,h2,h3,p { margin:0; } h1 { font-size:29px; line-height:1.35; } h2 { font-size:20px; margin-bottom:8px; } h3 { font-size:17px; }
+  .eyebrow { color:#71834c; font-weight:700; letter-spacing:2px; font-size:12px; margin-bottom:6px; }
+  .lead { max-width:950px; color:var(--muted); margin:10px 0 20px; }
+  .status { background:#f8e9cd; border-left:4px solid #bb8234; padding:12px 16px; margin:18px 0; border-radius:4px; }
+  section { margin-top:24px; }
+  .tools { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:14px 0; }
+  button { font:inherit; color:var(--ink); border:1px solid #bd9c6c; background:#fff8e9; padding:6px 15px; border-radius:8px; cursor:pointer; }
+  button[aria-pressed="true"] { color:white; background:#567a35; border-color:#567a35; }
+  .muted, figcaption { color:var(--muted); font-size:13px; }
+  .pair { display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start; }
+  .card { background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:18px; overflow:auto; }
+  .card-head { margin-bottom:14px; }
+  canvas { display:block; max-width:100%; height:auto; }
+  .phone { margin:0 auto; border-radius:14px; overflow:hidden; border:1px solid #d4ae72; }
+  .test-area { margin:auto; }
+  .test-area canvas { border-radius:8px; }
+  .tests { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin:12px 0; align-items:center; }
+  .tests canvas { max-width:100%; }
+  .gallery { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .gallery .card { text-align:center; }
+  #person-gallery { grid-template-columns:repeat(4,1fr); }
+  .gallery canvas { margin:10px auto; background:#eee9db; border-radius:10px; }
+  .gallery p { font-size:13px; color:var(--muted); }
+  .reference { width:100%; border:1px solid var(--line); border-radius:12px; }
+  .native-frame { display:block; width:390px; max-width:100%; height:auto; margin:14px auto; border-radius:8px; }
+  .direction-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .direction-role { margin:16px 0; }
+  #direction-gallery figure { margin:0; text-align:center; background:#eee9db; border-radius:10px; padding:8px; }
+  .direction-frame { width:100%; max-width:190px; height:auto; display:block; margin:auto; }
+  .occlusion-pair { display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin:14px 0 22px; }
+  .occlusion-pair figure { margin:0; text-align:center; }
+  .evidence-crop { position:relative; width:200px; height:220px; overflow:hidden; border-radius:10px; }
+  .evidence-crop img { position:absolute; width:720px; height:1040px; max-width:none; }
+  #villager-size-line { display:flex; gap:24px; align-items:flex-end; justify-content:center; padding:16px; background:#e2e6c5; border-radius:10px; }
+  #villager-size-line figure { margin:0; text-align:center; }
+  #villager-size-line img { display:block; margin:auto; }
+  .footer { color:var(--muted); font-size:13px; margin-top:20px; }
+  @media(max-width:1100px) { #person-gallery { grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:900px) { .pair { grid-template-columns:1fr; } .gallery { grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:540px) { main { padding:16px; } h1 { font-size:25px; } .gallery,#person-gallery { grid-template-columns:1fr; } .card { padding:12px; } }
+  @media(max-width:700px) { .direction-grid { grid-template-columns:repeat(2,1fr); } #villager-size-line { gap:8px; } }
+</style>
+<main>
+  <div class="eyebrow">代代守村 / 美术小样 / 2026.11.13</div>
+  <h1>以原参考图为标准，逐项看实际尺寸</h1>
+  <p class="lead">游戏保持二维运行。三种塔采用完整底座与独立活动件，角色保持圆润体积；孩子和老人各用一套中性外观。这里展示候选原图的浏览器排版，没有替换游戏资源。</p>
+  <div class="status"><strong>当前状态：原生动态小场景已运行，完整美术尚未验收。</strong> 四类村民行走、婴儿呼吸、山匪正面两帧、三种塔独立部件、圆弯道路及环境物已进入 Laya 试样；本轮修正鞋底变形，补充树、路牌与火堆遮挡检查。正式游戏、完整投影、其余动作、机型安全区与性能仍待接入验证。</div>
+  <div class="tools" aria-label="显示宽度">
+    <span>对照宽度</span>
+    <button data-width="320" aria-pressed="false">320 px</button>
+    <button data-width="390" aria-pressed="true">390 px</button>
+    <button data-width="430" aria-pressed="false">430 px</button>
+    <span class="muted">保持物体比例；不拉伸角色或塔身</span>
+  </div>
+  <section class="card">
+    <h2>村民四向 · 脸、身体和脚一起朝向前进方向</h2>
+    <p class="muted">男村民、女村民、中性孩子、中性老人均按同一规格实际离线渲染，每类四向各四帧。向上露出后脑与背部，左右使用真实侧面；相机和灯光固定，不镜像图片、不单独把头转回镜头。老人采用较慢短步，婴儿保持躺卧呼吸。</p>
+    <p class="muted">脚部修正：男村民鞋底原先混入小腿权重，迈步时会被压扁。现在鞋底完整跟随脚骨，脚踝保留过渡；四类行走村民均通过脚底刚性、脚骨缩放和落地检查。可逐帧看脚型与朝向，旧版男村民试帧已标为历史文件。</p>
+    <div class="tools"><button id="direction-play" aria-pressed="false">播放四向步态</button><button id="direction-step">下一动作帧</button><span id="direction-status" class="muted">动作帧 1 / 4</span></div>
+    <div id="direction-gallery"></div>
+    <h3>相同场景比例 · 原始帧画布不重新裁切</h3>
+    <p class="muted">以下按 390 像素屏宽换算成人 102、孩子 78、老人 96、婴儿 76 的逻辑帧画布。图片保留统一透明边，因此可见身高小于画布。上方等画布放大检查脸型，下方检查实际可读性；不是手机游戏截图。</p>
+    <div id="villager-size-line"></div>
+    <p class="muted">四类共 64 张方向母片，婴儿另有四帧轻微呼吸。它们是动作候选，完整劳动、老人休息、正式投影与游戏方向映射仍需完成，不能把本组视为全部人物动画已完成。</p>
+  </section>
+  <section class="card">
+    <h2>正面怪物 · 五种小怪与五种首领</h2>
+    <p class="muted">统一正面略俯视，不做侧面与背面；行走保持持刀手、头巾及光向一致。下图为造型设计，尚非十种完整动作资源。</p>
+    <img class="reference" src="06_怪物正面造型.png" alt="五种小怪和五种首领的高清正面造型">
+  </section>
+  <section class="card">
+    <h2>Laya 原生验证帧 · 实际素材拼装</h2>
+    <p class="muted">下图由原生 Laya 场景输出。播放按钮依次显示四张实际采样图，不用 CSS 摇晃静态人物。男、女、孩子、老人均有四个离线行走姿势，婴儿四帧呼吸、山匪两帧循环、火焰四帧循环；原生连续预览中老人每秒 4 帧、婴儿 2 帧、其他 6 帧。三种塔的当前旋转只验证武器层独立性，不是最终攻击效果。</p>
+    <div class="tools"><button id="native-play" aria-pressed="false">播放采样</button><button id="native-step">下一帧</button><span id="native-status" class="muted">原生采样 1 / 4</span></div>
+    <img id="native-frame" class="native-frame" src="validation/native_frame_0.png" alt="Laya原生高清二维小场景第一帧">
+    <p class="muted">圆弯道路采用独立图片。环境已加入圆树、松树、独立花果、实时文字路牌和石头；火堆分为底座、火焰与前排石头。接地柔影目前为近似，完整逐物体投影、草地重复感、活动件连接和最终场景密度仍需改进。此图不能当作正式游戏或手机适配完成的证明。</p>
+  </section>
+  <section class="card">
+    <h2>实际遮挡检查 · 人在后方与前方</h2>
+    <p class="muted">下方只是裁窗显示六张原生 Laya 截图，没有重画或拼接遮挡。地影单独放在底层，人物和环境按落地点排序，文字操作层独立。</p>
+    <h3>圆树 · 花果与树冠一起遮挡</h3>
+    <div class="occlusion-pair">
+      <figure><div class="evidence-crop"><img src="validation/occlusion_OakNearRoad_behind.png" style="left:0;top:-90px" alt="人物位于树后，被树冠和树干遮挡"></div><figcaption>人物在树后</figcaption></figure>
+      <figure><div class="evidence-crop"><img src="validation/occlusion_OakNearRoad_front.png" style="left:0;top:-90px" alt="人物位于树前，盖住树干下部"></div><figcaption>人物在树前</figcaption></figure>
+    </div>
+    <h3>路牌 · 木板与文字同一层级</h3>
+    <div class="occlusion-pair">
+      <figure><div class="evidence-crop"><img src="validation/occlusion_FriendshipRoadSign_behind.png" style="left:-402px;top:-80px" alt="人物在路牌后，木牌和文字盖住人物"></div><figcaption>人物在路牌后</figcaption></figure>
+      <figure><div class="evidence-crop"><img src="validation/occlusion_FriendshipRoadSign_front.png" style="left:-402px;top:-80px" alt="人物在路牌前，人物同时盖住木牌和文字"></div><figcaption>人物在路牌前</figcaption></figure>
+    </div>
+    <h3>火堆 · 前排石头盖住火焰根部</h3>
+    <div class="occlusion-pair">
+      <figure><div class="evidence-crop"><img src="validation/occlusion_Campfire_behind.png" style="left:-260px;top:-650px" alt="人物在火堆后，火焰和前排石头在人物前面"></div><figcaption>人物在火堆后</figcaption></figure>
+      <figure><div class="evidence-crop"><img src="validation/occlusion_Campfire_front.png" style="left:-260px;top:-650px" alt="人物在火堆前，人物盖住火堆"></div><figcaption>人物在火堆前</figcaption></figure>
+    </div>
+  </section>
+  <div class="pair">
+    <div class="card">
+      <div class="card-head"><h2>用户参考 · 游戏画面</h2><p class="muted">从用户原图显示左侧区域；未改动原图。</p></div>
+      <canvas id="reference-phone" class="phone" aria-label="用户参考游戏画面"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>候选图 · 同尺寸可读性</h2><p class="muted">以 720 逻辑宽度换算。塔高 144，成人高 68，孩子高 52，老人高 64；是检查起点，不是最终定值。</p></div>
+      <div class="test-area"><canvas id="size-test" aria-label="三种塔与男女村民、孩子、老人在草地上的实际尺寸小样"></canvas></div>
+      <p class="muted" style="margin-top:10px">地面仅为底层纹理。预览椭圆用于观察接地；道路、树木、真实阴影与建筑排序还未加入。</p>
+      <h3 style="margin-top:20px">按钮横向拉伸</h3>
+      <p class="muted">保留完整纵向渐变；文字为实时文字，没有画进图片。</p>
+      <div class="tests"><canvas id="button-short"></canvas><canvas id="button-long"></canvas></div>
+      <h3 style="margin-top:20px">草地平铺检查</h3>
+      <p class="muted">下方按两行两列平铺，检查边界与重复感。仍需匹配参考图中的道路过渡。</p>
+      <canvas id="grass-test" style="margin:12px auto 0;border-radius:8px"></canvas>
+    </div>
+  </div>
+  <section><h2>放大细节 · 三种塔同一标准</h2><p class="muted" style="margin-bottom:12px">这三张是静态造型候选。原生一级塔拆件已做试样，左右朝向、完整等级和最终攻击动作仍未完成。</p><div class="gallery" id="tower-gallery"></div></section>
+  <section><h2>放大细节 · 更 Q 的角色比例</h2><p class="muted" style="margin-bottom:12px">按最新反馈收短身体和四肢，放大头身比例。成年男女保持服装与发型差异，孩子、老人保持中性外观。</p><div class="gallery" id="person-gallery"></div></section>
+  <section><h2>完整建筑升级设计</h2><p class="muted">结构设计已补齐；原生部件、动画与尺寸占地数据仍需制作接入。</p>
+    <img class="reference" src="upgrades/01_箭塔升级.png" alt="箭塔 1、4、8、12 级升级设计">
+    <img class="reference" src="upgrades/02_石塔升级.png" alt="石塔 1、4、8、12 级升级设计">
+    <img class="reference" src="upgrades/03_寒塔升级.png" alt="寒塔 1、4、8、12 级升级设计">
+    <img class="reference" src="upgrades/04_民居修缮与扩建.png" alt="民居修缮与房间扩建设计">
+    <img class="reference" src="upgrades/05_村内设施升级.png" alt="农田、伐木场和城门升级设计">
+  </section>
+  <section><h2>完整基准图</h2><img class="reference" src="00_用户确认美术基准.png" alt="用户指定的完整高清美术基准图"></section>
+  <p class="footer">来源分开记录：静态造型、塔拆件、道路、山匪两帧与多数环境原图来自 image_gen；所有村民方向帧、婴儿呼吸、火堆石圈与苹果来自真实 Blender 离线渲染；原生采样来自 Laya。对照页不修改 PNG。制作源、验证结果及未通过项见同目录 README、environment、validation 和技术文档 32。</p>
+</main>
+<script>
+  const assets = {
+    tower_arrow_01:{title:'箭塔',file:'tower_arrow_01.png',bounds:[122,60,1191,1128],description:'木架完整底座；后续单独制作弩、弓弦与箭。'},
+    tower_stone_01:{title:'石塔',file:'tower_stone_01.png',bounds:[178,105,1115,1042],description:'圆石底座；后续单独制作投石装置、托兜和石块。'},
+    tower_frost_01:{title:'寒塔',file:'tower_frost_01.png',bounds:[244,71,1068,1094],description:'木亭与冰晶；后续单独制作核心与发射部件。'},
+    villager_male:{title:'成年男村民',file:'villager_male_q_v2.png',bounds:[284,132,987,1098],description:'蓝衣、短发；头大身短，衣服与鞋的轮廓保持清楚。'},
+    villager_female:{title:'成年女村民',file:'villager_female_q.png',bounds:[181,115,903,1160],description:'橘衣、束发与橘色发带；采用同一套大头小身体比例。'},
+    villager_child_neutral:{title:'孩子 · 共用外观',file:'villager_child_neutral_q_v2.png',bounds:[217,150,946,1196],description:'中性短发、米色宽衣；小身体，头身比比成人更大。'},
+    villager_elder_neutral:{title:'老人 · 共用外观',file:'villager_elder_neutral_q_v2.png',bounds:[346,188,957,1068],description:'灰发、无胡须、短身宽袍与拐杖，不强调性别。'},
+    grass:{file:'grass_ground_v2.png'},
+    button:{file:'button_green_v2.png',bounds:[55,212,2118,510]}
+  };
+  let width = 390;
+  let directionIndex=1,directionTimer=null;
+  const villagerRoles={male:{name:'成年男村民',fps:6,size:102},female:{name:'成年女村民',fps:6,size:102},
+    child:{name:'中性孩子',fps:6,size:78},elder:{name:'中性老人',fps:4,size:96},baby:{name:'中性婴儿',fps:2,size:76}};
+  const facings={down:'向下 · 正面',up:'向上 · 背面',left:'向左 · 左侧',right:'向右 · 右侧'};
+  const directionFile=(role,facing,frame)=>role==='baby'?'directions/baby/baby_idle_'+frame+'.png':
+    'directions/'+role+'/'+role+'_'+facing+'_'+frame+'.png';
+  const directionImages=[];
+  for(const [role,info] of Object.entries(villagerRoles)) {
+    const row=document.createElement('div');row.className='direction-role';
+    const heading=document.createElement('h3');heading.textContent=info.name+' · '+info.fps+' 帧/秒';
+    const grid=document.createElement('div');grid.className='direction-grid';
+    for(const [facing,label] of Object.entries(role==='baby'?{idle:'躺卧 · 胸部轻微呼吸'}:facings)) {
+      const figure=document.createElement('figure'),im=new Image(),caption=document.createElement('figcaption');
+      im.className='direction-frame';im.dataset.role=role;im.dataset.facing=facing;im.alt=info.name+' '+label;
+      im.src=directionFile(role,facing,1);caption.textContent=label;figure.append(im,caption);grid.append(figure);directionImages.push(im);
+      for(let frame=1;frame<=4;frame++){const preload=new Image();preload.src=directionFile(role,facing,frame);}
+    }
+    row.append(heading,grid);document.getElementById('direction-gallery').append(row);
+    const figure=document.createElement('figure'),im=new Image(),caption=document.createElement('figcaption');
+    im.dataset.role=role;im.dataset.facing=role==='baby'?'idle':'down';im.alt=info.name+' 场景尺寸';
+    im.src=directionFile(role,im.dataset.facing,1);im.style.width=Math.round(info.size*390/720)+'px';
+    caption.textContent=info.name;figure.append(im,caption);document.getElementById('villager-size-line').append(figure);directionImages.push(im);
+  }
+  function showDirections(elapsed) {
+    directionImages.forEach(im=>{
+      const frame=elapsed===undefined?directionIndex:Math.floor(elapsed*villagerRoles[im.dataset.role].fps/1000)%4+1;
+      const file=directionFile(im.dataset.role,im.dataset.facing,frame);
+      if(im.getAttribute('src')!==file)im.src=file;
+    });
+    document.getElementById('direction-status').textContent=elapsed===undefined?'动作帧 '+directionIndex+' / 4':'各身份按自己的步频连续播放';
+  }
+  document.getElementById('direction-step').addEventListener('click',()=>{
+    if(directionTimer)document.getElementById('direction-play').click();directionIndex=directionIndex%4+1;showDirections();
+  });
+  document.getElementById('direction-play').addEventListener('click',()=>{
+    const b=document.getElementById('direction-play');
+    if(directionTimer){clearInterval(directionTimer);directionTimer=null;b.textContent='播放四向步态';b.setAttribute('aria-pressed','false');}
+    else{const start=performance.now();directionTimer=setInterval(()=>showDirections(performance.now()-start),1000/12);b.textContent='暂停四向步态';b.setAttribute('aria-pressed','true');}
+  });
+  let nativeIndex=0,nativeTimer=null;
+  const nativeFrames=Array.from({length:4},(_,i)=>'validation/native_frame_'+i+'.png');
+  nativeFrames.forEach(src=>{const im=new Image();im.src=src;});
+  function showNativeFrame() {
+    const im=document.getElementById('native-frame');im.src=nativeFrames[nativeIndex];im.alt='Laya原生高清二维小场景第'+(nativeIndex+1)+'帧';
+    document.getElementById('native-status').textContent='原生采样 '+(nativeIndex+1)+' / 4';
+  }
+  document.getElementById('native-play').addEventListener('click',()=>{
+    const b=document.getElementById('native-play');
+    if(nativeTimer){clearInterval(nativeTimer);nativeTimer=null;b.textContent='播放采样';b.setAttribute('aria-pressed','false');}
+    else{nativeTimer=setInterval(()=>{nativeIndex=(nativeIndex+1)%4;showNativeFrame();},1000/6);b.textContent='暂停采样';b.setAttribute('aria-pressed','true');}
+  });
+  document.getElementById('native-step').addEventListener('click',()=>{nativeIndex=(nativeIndex+1)%4;showNativeFrame();});
+  function loadImage(src) { return new Promise((resolve,reject)=>{ const im=new Image(); im.onload=()=>resolve(im); im.onerror=()=>reject(new Error('无法加载 '+src)); im.src=src; }); }
+  // This preview uses ordinary browser smoothing and retains all source files unchanged.
+  function surface(canvas,w,h) {
+    const dpr=Math.max(1,window.devicePixelRatio || 1);
+    canvas.width=Math.round(w*dpr); canvas.height=Math.round(h*dpr); canvas.style.width=w+'px'; canvas.style.height=h+'px';
+    const c=canvas.getContext('2d'); c.scale(dpr,dpr); c.imageSmoothingEnabled=true; c.imageSmoothingQuality='high'; return c;
+  }
+  function bounds(a,pad=8) { const b=a.bounds; return [Math.max(0,b[0]-pad),Math.max(0,b[1]-pad),Math.min(a.image.width,b[2]+pad),Math.min(a.image.height,b[3]+pad)]; }
+  function sprite(c,a,x,foot,h,shadow=false) {
+    const b=bounds(a),sw=b[2]-b[0],sh=b[3]-b[1],w=h*sw/sh;
+    if(shadow) { c.save(); c.fillStyle='rgba(76,60,29,.20)'; c.beginPath(); c.ellipse(x,foot-2,w*.36,Math.max(2,h*.065),0,0,Math.PI*2); c.fill(); c.restore(); }
+    c.drawImage(a.image,b[0],b[1],sw,sh,x-w/2,foot-h,w,h);
+  }
+  function gallery(id,keys) {
+    const node=document.getElementById(id); node.replaceChildren();
+    for(const key of keys) { const a=assets[key],card=document.createElement('article'); card.className='card';
+      const title=document.createElement('h3');title.textContent=a.title;
+      const canvas=document.createElement('canvas'),c=surface(canvas,286,270); sprite(c,a,143,250,228);
+      const p=document.createElement('p');p.textContent=a.description;card.append(title,canvas,p);node.append(card);
+    }
+  }
+  function button(canvas,w,h,label) {
+    const c=surface(canvas,w,h),a=assets.button,b=a.bounds,sw=b[2]-b[0],sh=b[3]-b[1];
+    const cap=sh*.55,drawCap=cap*h/sh;
+    c.drawImage(a.image,b[0],b[1],cap,sh,0,0,drawCap,h);
+    c.drawImage(a.image,b[0]+cap,b[1],sw-cap*2,sh,drawCap,0,w-drawCap*2,h);
+    c.drawImage(a.image,b[2]-cap,b[1],cap,sh,w-drawCap,0,drawCap,h);
+    c.font='600 18px "PingFang SC",sans-serif'; c.textAlign='center'; c.textBaseline='middle'; c.fillStyle='#fffbea';c.fillText(label,w/2,h/2+1);
+  }
+  function render() {
+    document.getElementById('native-frame').style.width=width+'px';
+    const ref=document.getElementById('reference-phone'),r=surface(ref,width,width*872/448);r.drawImage(reference,36,115,448,872,0,0,width,width*872/448);
+    const scale=width/720,h=480*scale,c=surface(document.getElementById('size-test'),width,h),tile=Math.round(260*scale);
+    for(let y=0;y<h;y+=tile)for(let x=0;x<width;x+=tile)c.drawImage(assets.grass.image,x,y,tile,tile);
+    const keys=['tower_arrow_01','tower_stone_01','tower_frost_01'];
+    keys.forEach((key,i)=>{sprite(c,assets[key],(120+i*240)*scale,210*scale,144*scale,true);c.fillStyle='#523b25';c.textAlign='center';c.font='600 '+Math.max(12,22*scale)+'px "PingFang SC",sans-serif';c.fillText(assets[key].title,(120+i*240)*scale,245*scale);});
+    [['villager_male',68,'男村民'],['villager_female',68,'女村民'],['villager_child_neutral',52,'孩子'],['villager_elder_neutral',64,'老人']].forEach(([key,ph,label],i)=>{sprite(c,assets[key],(90+i*180)*scale,390*scale,ph*scale,true);c.fillStyle='#523b25';c.textAlign='center';c.font='600 '+Math.max(12,22*scale)+'px "PingFang SC",sans-serif';c.fillText(label,(90+i*180)*scale,430*scale);});
+    button(document.getElementById('button-short'),Math.min(140,width*.4),42,'继续');button(document.getElementById('button-long'),Math.min(225,width*.64),42,'开始守夜');
+    const side=Math.min(330,width),g=surface(document.getElementById('grass-test'),side,side),t=side/2;
+    for(let y=0;y<2;y++)for(let x=0;x<2;x++)g.drawImage(assets.grass.image,x*t,y*t,t,t);
+  }
+  let reference;
+  Promise.all([loadImage('00_用户确认美术基准.png').then(im=>reference=im),...Object.values(assets).map(a=>loadImage('samples/'+a.file).then(im=>a.image=im))]).then(()=>{
+    render();gallery('tower-gallery',['tower_arrow_01','tower_stone_01','tower_frost_01']);gallery('person-gallery',['villager_male','villager_female','villager_child_neutral','villager_elder_neutral']);
+    document.querySelectorAll('[data-width]').forEach(b=>b.addEventListener('click',()=>{width=Number(b.dataset.width);document.querySelectorAll('[data-width]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render();}));
+    document.documentElement.dataset.ready='true';
+  }).catch(error=>{document.querySelector('.status').textContent=error.message;document.documentElement.dataset.ready='error';throw error;});
+</script>
+</html>

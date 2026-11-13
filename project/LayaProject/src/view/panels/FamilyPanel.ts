@@ -1,5 +1,5 @@
 import { capacity, person, canMarry, birthUnavailableReason } from "../../game/VillageRules";
-import { GameState, isElder } from "../../game/GameState";
+import { GameState } from "../../game/GameState";
 import { RULE } from "../../game/GameConfig";
 import { C, UI } from "../UiTheme";
 import { ScrollList } from "../ScrollList";
@@ -8,18 +8,25 @@ import { amount, coloredName } from "../ViewText";
 export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
     const day = s.phase === "DAY";
     if (p.type === "families") {
-        const list = s.families, rowHeight = 272, rowStep = 286;
-        const height = Math.min(UI.panelHeight, 392 + Math.max(1, list.length) * rowStep);
+        // 家庭卡片保留全部原因和照料信息；两栏概要与独立操作区只改变阅读层级。
+        const list = s.families, rowHeight = 266, rowStep = 280;
+        const height = Math.min(UI.panelHeight, 408 + Math.max(1, list.length) * rowStep);
         const box = ctx.modal("家庭与养育", "先让单身村民成家，再迎接下一代。", true, { width: UI.panelWidth, height });
-        ctx.ui.label(box, `空余住房 ${capacity(s) - s.people.length} 人`, 34, 158, 260, 28, C.green, true, 40);
-        ctx.ui.label(box, `迎接需 ${RULE.birthCost} 粮 · 现有 ${amount(s.food)}`, 294, 158, 340, 28, s.food < RULE.birthCost ? C.red : C.timber, true, 40).align = "right";
+        const home = new Laya.Sprite(); home.pos(34, 152); ctx.art.panel(home, "panel_card", 288, 70); box.addChild(home);
+        ctx.ui.image(home, "icon_house", 12, 13, 44);
+        ctx.ui.label(home, "空余住房", 66, 6, 208, 24, C.muted, false, 28);
+        ctx.ui.label(home, `${capacity(s) - s.people.length} 人`, 66, 33, 208, 28, C.green, true, 30);
+        const food = new Laya.Sprite(); food.pos(334, 152); ctx.art.panel(food, "panel_card", 300, 70); box.addChild(food);
+        ctx.ui.image(food, "icon_food", 12, 13, 44);
+        ctx.ui.label(food, `迎接需 ${RULE.birthCost} 粮`, 66, 6, 220, 24, C.muted, false, 28);
+        ctx.ui.label(food, `现有 ${amount(s.food)} 粮`, 66, 33, 220, 28, s.food < RULE.birthCost ? C.red : C.timber, true, 30);
         const canFormFamily = s.people.some(a => s.people.some(b => canMarry(s, a, b)));
-        ctx.ui.button(box, !day ? "白天可安排成家" : canFormFamily ? "安排村民成家" : "暂无可成家的单身男女", 34, 210, 600, () => ctx.open({ type: "partners" }), C.gold, 76, day && canFormFamily);
-        ctx.ui.label(box, "已有家庭", 36, 300, 260, 28, C.ink, true, 40);
-        ctx.ui.button(box, "养育说明", 470, 298, 164, () => ctx.open({ type: "guide", tab: 2 }), C.muted, 60);
+        ctx.ui.button(box, !day ? "白天可安排成家" : canFormFamily ? "安排村民成家" : "暂无可成家的单身男女", 34, 236, 600, () => ctx.open({ type: "partners" }), C.green, 72, day && canFormFamily);
+        ctx.ui.label(box, "已有家庭", 36, 326, 260, 28, C.ink, true, 40);
+        ctx.ui.button(box, "养育说明", 470, 320, 164, () => ctx.open({ type: "guide", tab: 2 }), C.muted, 50);
         if (list.length) {
-            const rows = new ScrollList(UI.contentWidth, height - 392, list.length * rowStep - (rowStep - rowHeight), p.scroll, offset => p.scroll = offset);
-            rows.pos(34, 362);
+            const rows = new ScrollList(UI.contentWidth, height - 408, list.length * rowStep - (rowStep - rowHeight), p.scroll, offset => p.scroll = offset);
+            rows.pos(34, 382);
             box.addChild(rows);
             list.forEach((f, i) => {
                 const reason = birthUnavailableReason(s, f.id), card = new Laya.Sprite();
@@ -29,8 +36,7 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
                 rows.content.addChild(card);
                 f.partners.forEach((id, partner) => {
                     const parent = person(s, id), x = partner ? 306 : 18;
-                    const clip = isElder(parent) ? `villager_elder_${parent.sex === "MALE" ? "male" : "female"}_idle` : `villager_${parent.appearance}_walk`;
-                    ctx.ui.image(card, ctx.art.frameId(clip, 0, false), x, 8, 68);
+                    ctx.ui.image(card, ctx.art.portraitId(parent), x, 8, 68);
                     const name = ctx.ui.label(card, coloredName(parent), x + 74, 23, 176, 28, C.ink, true, 42);
                     name.wordWrap = false;
                     name.overflow = Laya.Text.ELLIPSIS;
@@ -42,7 +48,7 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
                 ctx.ui.label(card, child ? `${coloredName(child)} · 成长 ${child.growth}/${RULE.growNights}` : "本户暂无未成年孩子", 72, 78, 484, 26, C.muted, false, 40);
                 const detail = child ? `${carer ? carer.name + "正在照料" : "无人照料，成长暂停"}。${reason || ""}` : reason || "选择照料者后，孩子就会来到村里。";
                 ctx.ui.label(card, detail, 22, 120, 538, 24, reason ? C.muted : C.green, false, 72);
-                ctx.ui.button(card, reason ? "暂不可迎接" : "迎接孩子", 334, 202, 228, () => ctx.open({ type: "carers", id: f.id }), C.green, 60, reason === null);
+                ctx.ui.button(card, reason ? "暂不可迎接" : "迎接孩子", 334, 200, 228, () => ctx.open({ type: "carers", id: f.id }), C.green, 54, reason === null);
             });
         }
         else {

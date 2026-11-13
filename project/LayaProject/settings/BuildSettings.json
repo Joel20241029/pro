@@ -9,7 +9,13 @@
   "enableSubpackages": true,
   "subpackages": [
     {
-      "path": "resources/village",
+      "path": "resources/characters",
+      "packAllAssets": true,
+      "autoLoad": false,
+      "remote": false
+    },
+    {
+      "path": "resources/battle",
       "packAllAssets": true,
       "autoLoad": false,
       "remote": false

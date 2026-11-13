@@ -1,0 +1,132 @@
+{
+  "role": "female",
+  "profile": "rig-profile.json",
+  "frames": [
+    {
+      "frame": 1,
+      "pose": {
+        "L": [
+          0.05,
+          0
+        ],
+        "R": [
+          -0.05,
+          0
+        ],
+        "swing": -1,
+        "bodyZ": -0.015,
+        "bodyY": 0
+      },
+      "lowestWorldZ": -1.30385160446167e-08,
+      "shoeMinimumZ": {
+        "L": 1.955777406692505e-08,
+        "R": -1.30385160446167e-08
+      },
+      "shoeVertexCounts": {
+        "L": 756,
+        "R": 797
+      },
+      "caneTipZ": null
+    },
+    {
+      "frame": 2,
+      "pose": {
+        "L": [
+          -0.004,
+          0.045
+        ],
+        "R": [
+          0.004,
+          0
+        ],
+        "swing": 0,
+        "bodyZ": 0,
+        "bodyY": 0
+      },
+      "lowestWorldZ": -7.07223080098629e-09,
+      "shoeMinimumZ": {
+        "L": 0.04500000551342964,
+        "R": -7.07223080098629e-09
+      },
+      "shoeVertexCounts": {
+        "L": 756,
+        "R": 797
+      },
+      "caneTipZ": null
+    },
+    {
+      "frame": 3,
+      "pose": {
+        "L": [
+          -0.05,
+          0
+        ],
+        "R": [
+          0.05,
+          0
+        ],
+        "swing": 1,
+        "bodyZ": -0.015,
+        "bodyY": 0
+      },
+      "lowestWorldZ": 2.7939677238464355e-09,
+      "shoeMinimumZ": {
+        "L": 8.381903171539307e-09,
+        "R": 2.7939677238464355e-09
+      },
+      "shoeVertexCounts": {
+        "L": 756,
+        "R": 797
+      },
+      "caneTipZ": null
+    },
+    {
+      "frame": 4,
+      "pose": {
+        "L": [
+          0.004,
+          0
+        ],
+        "R": [
+          -0.004,
+          0.045
+        ],
+        "swing": 0,
+        "bodyZ": 0,
+        "bodyY": 0
+      },
+      "lowestWorldZ": 4.4201939886079344e-09,
+      "shoeMinimumZ": {
+        "L": 4.4201939886079344e-09,
+        "R": 0.04500000551342964
+      },
+      "shoeVertexCounts": {
+        "L": 756,
+        "R": 797
+      },
+      "caneTipZ": null
+    }
+  ],
+  "boneCount": 16,
+  "caneRigidVertices": [],
+  "status": "four_direction_visual_review_required",
+  "runtime3d": false,
+  "inputs": [
+    {
+      "file": "female_inspect.blend",
+      "sha256": "da56b6779a7b55773d2e8466b4e50ad2e9897a4f20fed25f5214cd74bed1e277"
+    },
+    {
+      "file": "rig-profile.json",
+      "sha256": "82760bc82be715065240e0b7a1b6e67c2ceb750c06f2d8f5568f923427bca976"
+    },
+    {
+      "file": "bind-walk-character.py",
+      "sha256": "03aebe3f537eb1e184ab3f0a2546bab584f1da2f8021cd6a4528ebfed0636bd6"
+    },
+    {
+      "file": "character_weights.py",
+      "sha256": "674c0ded81ab19a3485b355478569358e5276d9de66c4981fc61675332cbfee9"
+    }
+  ]
+}

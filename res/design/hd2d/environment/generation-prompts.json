@@ -1,0 +1,117 @@
+{
+  "status": "candidates_not_game_runtime",
+  "records": [
+    {
+      "key": "oak",
+      "mode": "built-in image_gen",
+      "status": "isolated_candidate",
+      "sourceReference": "res/design/hd2d/00_用户确认美术基准.png",
+      "prompt": "Use case: style-transfer and background-extraction. Source image is the approved game concept; extract and remake ONE of the rounded broadleaf trees visible on the left game screen as a production-quality transparent 2D sprite with the exact same high-quality softly rendered 3D look. One squat chunky warm-brown branched trunk, irregular layered rounded leaf clusters with large individually readable oval leaves, olive green lower leaves and yellow-green sunlit upper leaves, gentle bevels, fine smooth surfaces, warm light from upper-left, quiet soft ambient occlusion. Orthographic three-quarter camera looking down about 23 degrees, same as game. No flowers or fruit attached (they will be separate layers). No pixel art, no outline, no low-poly flat facets, no grass platform, no earth island, no text. OUTPUT: one 1024 square RGBA sprite sheet split into two separate non-overlapping layers: upper 78 percent is the complete tree alone, centered, entirely visible with 6 percent safe margin, NO external ground shadow in this top layer; bottom 22 percent is ONLY that tree's subtle low-opacity grey-brown elliptical canopy ground shadow cast slightly right-back, broad soft penumbra, no tree/ground. Real alpha transparency outside the tree and shadow, never a painted checkerboard or opaque background. This is one reusable tree asset with its detached shadow layer; preserve readable rounded leaf volume at small game display size.",
+      "referenceMode": "image_input"
+    },
+    {
+      "key": "pine",
+      "prompt": "Use case: style-transfer and background-extraction. Extract and remake ONE small pine tree from the left game screen of the approved reference into an isolated high-quality transparent 2D production sprite. Match its softly rendered toy-like 3D look precisely: short warm-brown trunk, 4 irregular layered tiers of chunky rounded pointed pine branch lobes, yellow-green sunlit upper edges, deep olive green lower foliage, soft smooth bevels, subtle ambient occlusion, warm diffuse sunlight from upper-left. Slight asymmetric silhouette, not a perfectly regular cone. Orthographic view about 23 degrees above ground, same as game. No flowers, fruit, ornaments, snow, grass platform, text or pixel art. Sheet layout: complete pine tree alone in upper 78 percent with generous safe margin, NO external ground shadow; bottom 22 percent contains ONLY a detached subtle broad low-opacity grey-brown ground shadow for this tree, soft penumbra cast right-back, no tree/ground. One reusable pine asset with a separate shadow layer. Genuine RGBA transparent background, do not paint a checkerboard.",
+      "sourceReference": "res/design/hd2d/00_用户确认美术基准.png",
+      "mode": "built-in image_gen",
+      "status": "isolated_candidate",
+      "referenceMode": "image_input"
+    },
+    {
+      "key": "sign",
+      "prompt": "Use case: style-transfer and background-extraction. From the approved game concept, remake ONLY its wooden road sign as a high-quality transparent 2D production sprite, exact warm polished handcrafted 3D render style. One plain horizontal honey-gold wooden plank with softly bevelled uneven rounded edges and quiet subtle wood grain, attached to ONE short thicker dark warm-brown vertical post behind. Two small aged wooden pegs near left/right edges. Wide blank writing area facing camera, horizontally level and easily readable; no inscription, no icon, NO arrows, NO extra plank. Orthographic slight downward camera about 23 degrees. Warm diffuse light upper-left, smooth shaded volume and soft contact occlusion. Sprite should be broad and short like the reference's 友谊路 sign; blank plank aspect ratio about 3.4:1, full sign with post about 2:1. Entire sign centered with safe margin. NO grass, terrain island, trees, UI border, pixel art or cast shadow; true alpha transparency. Text will be a separate runtime layer so the same sprite can say 文明里村 or 友谊路.",
+      "sourceReference": "res/design/hd2d/00_用户确认美术基准.png",
+      "mode": "built-in image_gen",
+      "status": "isolated_candidate",
+      "referenceMode": "image_input"
+    },
+    {
+      "key": "rocks_crisp",
+      "prompt": "A production game sprite of three rounded gray boulders, one medium boulder behind two smaller pebbles. Stylized high-definition 3D clay render, matte grey-lavender stones with bevelled rounded facets, compact cute proportions. Orthographic camera 25 degrees downward, key light upper-left. SOLID OPAQUE GEOMETRY WITH A SHARP CLEAN CUTOUT SILHOUETTE, genuine transparent alpha everywhere outside stone geometry. No atmosphere, NO GLOW, no bloom, no haze, no smoke, no mist, NO SOFT EDGE, no rim lighting, no shadows outside object, no pedestal, no landscape, no grass, no text. Single stone cluster centered in square canvas with wide transparent margin. All stone surfaces remain solid and sharply visible.",
+      "sourceReference": null,
+      "mode": "built-in image_gen",
+      "status": "isolated_candidate",
+      "referenceMode": "text_only"
+    },
+    {
+      "key": "flame",
+      "prompt": "Use case: style-transfer. Make ONE animation asset: a transparent horizontal sprite strip of FOUR consecutive animation frames of the same small cozy campfire flame, based exactly on the fire in the game screen of the reference image. Four equal square cells in one row, no borders or labels. Same fixed bottom-center root and same size envelope in each cell. Smoothly looping 4-frame lively flicker: left-lean, upright tall, right-lean, upright shorter. A chunky central soft yellow flame with orange lower outer lobes, three clearly readable rounded flame tongues, polished stylized 3D-rendered toy-like game style. Opaque colored flame body with crisp antialiased silhouette, warm orange rim, no bloom or blurry halo outside the silhouette, no smoke or embers/particles, no stones, wood, ground, text. True alpha transparency. Each flame entirely inside its cell with at least 10 percent safe margin. Avoid real-fire photography, pixel art, flat vector icon. The flame is composited behind a separate foreground stone/log campfire base.",
+      "sourceReference": "res/design/hd2d/00_用户确认美术基准.png",
+      "mode": "built-in image_gen",
+      "status": "isolated_candidate",
+      "referenceMode": "image_input"
+    },
+    {
+      "key": "flower_crisp",
+      "prompt": "One cute five-petal ivory blossom game sprite, tiny golden-yellow rounded center, faint pink blush near petal bases, thick rounded petals with gently sculpted volume. High-definition stylized 3D toy render, matte opaque solid surfaces, upper-left light, front three-quarter view. SHARP CLEAN CUTOUT SILHOUETTE, thin antialiasing only, genuine RGBA transparency immediately outside the five petals. No glow, no bloom, no mist, no aura, no haze, no shadow, no stem or leaves, no tree, no ground, no text, no border. Simple and readable at tiny size. Single centered object with wide transparent margin.",
+      "sourceReference": null,
+      "mode": "built-in image_gen",
+      "status": "isolated_candidate",
+      "referenceMode": "text_only"
+    },
+    {
+      "key": "campfire_crisp",
+      "prompt": "A high-definition production game sprite of a tiny unlit campfire base: a low oval ring of eight rounded grey cobblestones surrounding three intersecting short brown firewood logs, toasted log tips and faint dark-red embers inside. NO FLAMES (they are a separate animation layer). Chunky rounded smooth 3D clay-rendered toy-game style, broad soft bevels and attractive warm wood, compact shape, orthographic camera 23 degrees downward, light upper-left. Opaque solid geometry and a SHARP CLEAN CUTOUT SILHOUETTE. Genuine transparent alpha immediately outside the object, only thin antialiasing. No glow, NO BLOOM, NO HAZE, no smoke, no fog, no aura, no external shadow, no ground or grass, no text or UI, no pixel art. Centered object with plenty of transparent margin. Stones in front are lower than the wood so the separately placed flame can rise from the center.",
+      "sourceReference": null,
+      "mode": "built-in image_gen",
+      "status": "rejected_outer_halo",
+      "referenceMode": "text_only"
+    },
+    {
+      "key": "apple_crisp",
+      "prompt": "One cute small red-orange apple game sprite with a short brown stem and one olive-green leaf. High-definition rounded stylized 3D toy render, smooth opaque surfaces, compact simple shape readable at tiny size, upper-left light, restrained small highlight. Solid geometry with a SHARP CLEAN CUTOUT SILHOUETTE, thin antialiasing only. Genuine RGBA transparency everywhere outside the apple and leaf. No glow, no bloom, no mist, no aura, no haze, no shadow, no tree, no ground, no text, no border. Centered single object with wide transparent margin. This is a fruit overlay for a game tree.",
+      "sourceReference": null,
+      "mode": "built-in image_gen",
+      "status": "rejected_outer_halo",
+      "referenceMode": "text_only"
+    },
+    {
+      "key": "rocks",
+      "prompt": "Use case: style-transfer and background-extraction. Extract and remake ONLY a small roadside cluster of three stones visible on the left game screen of the approved concept. A high-quality polished stylized 3D-rendered 2D sprite: one medium rounded lopsided grey rock behind, one smaller rounded rock at left-front, one tiny rock at right-front; clearly readable broad planes with soft rounded bevels, warm upper-left sunlight, subtle lavender-grey cool lower surfaces, soft occlusion at contacts, quiet matte stone texture, no cracks or strong shiny highlights. Orthographic slight downward view about 23 degrees. Closely match the reference's friendly miniaturized game prop, not realistic rubble and not pixel art. Complete isolated cluster, centered with transparent margin on every side. True alpha RGBA, no grass, terrain, island, shadows beyond the tiny contact under each rock, text or other objects.",
+      "sourceReference": "res/design/hd2d/00_用户确认美术基准.png",
+      "mode": "built-in image_gen",
+      "status": "rejected_outer_halo",
+      "referenceMode": "image_input"
+    },
+    {
+      "key": "campfire_base",
+      "prompt": "Use case: style-transfer and background-extraction. Extract and remake the village campfire at the bottom of the approved game concept as an isolated high-quality transparent production sprite, BUT REMOVE ALL FLAMES AND SMOKE because fire animation is a separate layer. Keep one low oval ring made of eight rounded warm-grey cobblestones and a small stack of three intersecting short brown firewood logs with dark charcoal tips and a few dull orange embers tucked inside. Exact cozy polished 3D render look of the reference: chunky readable rounded forms, soft bevels, clean smooth surfaces, warm diffuse sunlight from upper-left, subtle contact shading, camera orthographic about 23 degrees downward. No tall logs, no surrounding grass or terrain island, no text, no UI, no pixel-art outline. Complete campfire base, centered, full safe transparent margin on every side, real RGBA transparency. The open center must have room for a separate little flame, stones and logs stay static during fire animation.",
+      "sourceReference": "res/design/hd2d/00_用户确认美术基准.png",
+      "mode": "built-in image_gen",
+      "status": "rejected_outer_halo",
+      "referenceMode": "image_input"
+    },
+    {
+      "key": "apple",
+      "prompt": "Use case: style-transfer. Extract and refine ONE tiny fruit ornament from the game trees in the approved reference: a single rounded red-orange apple with short brown stem and one small olive-green leaf, for layering onto a separate tree sprite. Exact high-quality soft 3D-rendered stylized game prop, clean smooth bevelled form, warm upper-left light, tiny restrained glossy highlight, soft ambient occlusion under leaf, chunky shape readable at 6 pixels high. Orthographic slight downward view. One object centered with safe margin, true transparent RGBA background, no surrounding glow, shadow, tree, text, border, platform, pixel outline.",
+      "sourceReference": "res/design/hd2d/00_用户确认美术基准.png",
+      "mode": "built-in image_gen",
+      "status": "rejected_outer_halo",
+      "referenceMode": "image_input"
+    },
+    {
+      "key": "flower",
+      "prompt": "Use case: style-transfer. Extract and refine ONE tiny blossom ornament from the game trees in the approved reference: one five-petal soft ivory blossom with a small golden-yellow center, very subtle warm blush at petal bases, thick rounded petal volume and readable simple silhouette, no stem or leaves. This is a separate overlay for a tree canopy. Exact high-quality cozy softly rendered 3D game look, warm upper-left light, gentle ambient shading between petals, slightly tilted to camera (not edge-on). Centered and full safe margin, true transparent RGBA background, no glow, external shadow, tree, text, border, pixel art. Remain simple and readable at 7 pixels high.",
+      "sourceReference": "res/design/hd2d/00_用户确认美术基准.png",
+      "mode": "built-in image_gen",
+      "status": "rejected_outer_halo",
+      "referenceMode": "image_input"
+    },
+    {
+      "key": "rocks_clean",
+      "prompt": "Use case: background-extraction, precise-object-edit. Change ONLY the alpha edge cleanup of this existing sprite. Keep the object's shape, details, colors, lighting, camera, size, position and arrangement exactly. REMOVE the entire blurry colored aura / smoky bright halo around the solid object, including the soft haze extending above and to its sides. Background must be completely transparent immediately outside the hard solid silhouette, with only 1-2 pixels of clean antialiasing. Do NOT fade the object itself. No new ground shadow or any outside glow. This is a crisp production game cutout, not a glowing sticker. Preserve the image's current pixel dimensions and full object.",
+      "sourceReference": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-644c1dcc-eff3-4aa4-8e4f-8722f7c0f1b0.png",
+      "mode": "built-in image_gen",
+      "status": "rejected_outer_halo",
+      "referenceMode": "image_input"
+    },
+    {
+      "key": "campfire_base_clean",
+      "prompt": "Use case: background-extraction, precise-object-edit. Change ONLY the alpha edge cleanup of this existing sprite. Keep the object's shape, details, colors, lighting, camera, size, position and arrangement exactly. REMOVE the entire blurry colored aura / smoky bright halo around the solid object, including the soft haze extending above and to its sides. Background must be completely transparent immediately outside the hard solid silhouette, with only 1-2 pixels of clean antialiasing. Do NOT fade the object itself. No new ground shadow or any outside glow. This is a crisp production game cutout, not a glowing sticker. Preserve the image's current pixel dimensions and full object.",
+      "sourceReference": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-659da806-e77c-4ddc-8b71-c32baff75e22.png",
+      "mode": "built-in image_gen",
+      "status": "rejected_outer_halo",
+      "referenceMode": "image_input"
+    }
+  ]
+}

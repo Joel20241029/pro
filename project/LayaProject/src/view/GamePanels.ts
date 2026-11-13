@@ -1,3 +1,4 @@
+import { ResourcePreparation } from "../platform/ResourcePreparation";
 import { GameSession } from "../game/GameSession";
 import { Command } from "../game/VillageRules";
 import { GameState } from "../game/GameState";
@@ -14,10 +15,15 @@ import { drawJournalPanel } from "./panels/JournalPanels";
 /** 面板状态与 CHOICE 暂停的唯一所有者。绘制模块不会各自缓存面板或注册刷新回调。 */
 export class GamePanels implements PanelContext {
     current: Panel | null = null;
-    constructor(readonly game: GameSession, readonly art: SpriteFrames, readonly platform: WechatPlatform, readonly ui: UiWidgets, readonly overlay: Laya.Sprite, public layout: GameLayout, readonly refresh: () => void) { }
-    open(panel: Panel) { this.current = panel; this.game.pause("CHOICE"); this.refresh(); }
+    constructor(readonly game: GameSession, readonly art: SpriteFrames, readonly platform: WechatPlatform, readonly ui: UiWidgets, readonly overlay: Laya.Sprite, public layout: GameLayout, readonly refresh: () => void, readonly resources: ResourcePreparation) { }
+    open(panel: Panel) {
+        if (!this.resources.ready("characters") || this.game.pauses.has("ASSETS")) return;
+        this.current = panel; this.game.pause("CHOICE"); this.refresh();
+        if (panel.type === "start") void this.resources.ensure("battle");
+    }
     close() { this.current = null; this.game.resume("CHOICE"); this.refresh(); }
     send(c: Command, keep = true) {
+        if (this.game.pauses.has("ASSETS") || (c.type === "NIGHT" && !this.resources.ready("battle"))) return;
         if (!keep) {
             this.current = null;
             this.game.resume("CHOICE");
@@ -29,7 +35,7 @@ export class GamePanels implements PanelContext {
         height: number;
     }) {
         this.overlay.mouseThrough = false;
-        this.overlay.graphics.drawRect(0, 0, 720, this.layout.height, "rgba(25,31,22,0.68)");
+        this.overlay.graphics.drawRect(0, 0, 720, this.layout.height, "rgba(28,36,25,0.56)");
         const width = size ? size.width : UI.panelWidth, height = size ? size.height : UI.panelHeight;
         const box = new Laya.Sprite();
         box.name = `panel:${title}`;
@@ -39,11 +45,10 @@ export class GamePanels implements PanelContext {
         this.art.panel(box, "panel_parchment", width, height);
         this.overlay.addChild(box);
         this.ui.label(box, title, 108, 34, width - 216, title.replace(/<[^>]*>/g, "").length > 12 ? 32 : UI.title, C.ink, true, 60).align = "center";
-        box.graphics.drawLine(64, 100, width - 64, 100, C.gold, 2);
         this.ui.label(box, subtitle, UI.inset, 108, width - UI.inset * 2, 27, C.muted, false, 100).align = "center";
         // 用户移除左上麦穗，关闭按钮仍在右侧；底角装饰不参与九宫格拉伸。
         if (close)
-            this.ui.button(box, "×", width - 108, 48, 50, () => this.close(), C.red, 54);
+            this.ui.button(box, "×", width - 82, 24, 54, () => this.close(), C.muted, 54);
         return box;
     }
     draw(s: GameState, p: Panel) {

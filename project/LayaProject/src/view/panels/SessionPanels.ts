@@ -31,7 +31,7 @@ export function drawBoot(ctx: PanelContext) {
         return;
     }
     const box = ctx.modal("一处村落，代代相守", "白天安排耕作与家庭，夜晚守住城门。孩子继承双亲天赋，长大后接过守村的责任。", false);
-    ctx.ui.image(box, "building_house_terracotta", 239, 228, 190);
+    ctx.ui.image(box, "icon_house", 239, 228, 190);
     ctx.ui.label(box, "先让村民成家，迎接孩子、安排照料。\n守住两夜，再为孩子选择一项专长。", 42, 450, 584, 30, C.green, true, 122).align = "center";
     ctx.ui.button(box, "开村 · 从这一代开始", 34, 646, 600, () => ctx.game.newVillage(), C.gold, 84);
     ctx.ui.label(box, "单机存档 · 随时暂停 · 没有最后一关", 34, 758, 600, 28, C.muted).align = "center";
@@ -51,7 +51,7 @@ export function drawDawn(ctx: PanelContext, s: GameState) {
         q.options.forEach((k, i) => ctx.ui.button(box, SKILLS[k].join("\n"), 34, 378 + i * 132, 600, () => ctx.send({ type: "CHOOSE", value: k }), i === 0 ? C.gold : C.green, 102));
     }
     else if (q.kind === "TRAVELER") {
-        ctx.ui.image(box, ctx.art.frameId(`villager_${q.person.appearance}_walk`, 0, false), q.person.elite ? 229 : 250, 200, q.person.elite ? 210 : 168);
+        ctx.ui.image(box, ctx.art.portraitId(q.person), q.person.elite ? 229 : 250, 200, q.person.elite ? 210 : 168);
         ctx.ui.label(box, `${coloredName(q.person)} 希望加入村落\n天赋：${TRAITS[q.person.trait][0]}  ·  专长：${SKILLS[q.person.skill!][0]}\n民居 ${s.people.length}/${capacity(s)}`, 34, 408, 600, 30, C.green, true, 155).align = "center";
         if (q.person.elite)
             ctx.ui.label(box, `耕伐 +50% · 塔伤 +25% · 照料 +${ELITE.careFoodBonus} 粮\n劳作 ${ELITE.adultNights} 夜 · 养老 ${ELITE.elderNights} 夜`, 34, 550, 600, 28, C.timber, true, 68).align = "center";
@@ -74,7 +74,7 @@ export function drawGameOver(ctx: PanelContext, s: GameState) {
         return;
     }
     const box = ctx.modal("灯火未尽，传承不息", "城门被突破。此夜没有推进年龄与日期，村落的故事已记入传承。", false);
-    ctx.ui.image(box, "building_hearth_lit", 253, 226, 162);
+    ctx.ui.image(box, "icon_heart", 253, 226, 162);
     ctx.ui.label(box, s.summary, 34, 430, 600, 32, C.green, true, 140).align = "center";
     ctx.ui.label(box, `最长坚守 ${s.legacy.bestNight} 夜 · 累计出生 ${s.legacy.births} 人`, 34, 620, 600, 28, C.muted, false, 80).align = "center";
     ctx.ui.button(box, "传承开村", 34, 748, 286, () => ctx.open({ type: "inherit" }), C.green, 82);

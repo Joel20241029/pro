@@ -1,0 +1,347 @@
+{
+  "reference": "../00_用户确认美术基准.png",
+  "candidates": [
+    {
+      "id": "tower_arrow_01",
+      "file": "tower_arrow_01.png",
+      "pixels": [
+        1312,
+        1199
+      ],
+      "alphaBounds": [
+        0,
+        21,
+        1288,
+        1175
+      ],
+      "hasTransparency": true,
+      "bytes": 1419765,
+      "sha256": "ea405ff137a45e867f739ac2b0b60bc55e31c357021dd9a1ecb3c453d7410bd8",
+      "source": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-0ea6b8af-ff44-48ba-b1be-0e964d8b1101.png",
+      "status": "candidate_not_integrated",
+      "method": "built-in image_gen, not Blender render",
+      "visibleBoundsAlpha128": [
+        122,
+        60,
+        1191,
+        1128
+      ],
+      "previewBoundsNote": "Display-only crop around alpha >= 128 plus 8 px. Original image is unchanged. Not a production trimming rule."
+    },
+    {
+      "id": "villager_male",
+      "file": "villager_male.png",
+      "pixels": [
+        1312,
+        1199
+      ],
+      "alphaBounds": [
+        0,
+        19,
+        1282,
+        1159
+      ],
+      "hasTransparency": true,
+      "bytes": 819525,
+      "sha256": "370a1fbd6ceae58ba4dff413e1cb1a1be17ebdd045a4322240ddca647d9ba438",
+      "source": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-07305585-d87a-4c4d-8cf4-37fa1deedab6.png",
+      "status": "candidate_not_integrated",
+      "method": "built-in image_gen, not Blender render",
+      "visibleBoundsAlpha128": [
+        376,
+        74,
+        933,
+        1134
+      ],
+      "previewBoundsNote": "Display-only crop around alpha >= 128 plus 8 px. Original image is unchanged. Not a production trimming rule.",
+      "supersededBy": "villager_male_q_v2"
+    },
+    {
+      "id": "villager_elder_neutral",
+      "file": "villager_elder_neutral.png",
+      "pixels": [
+        1312,
+        1199
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        1298,
+        1199
+      ],
+      "hasTransparency": true,
+      "bytes": 885685,
+      "sha256": "a5e16bbf95a46acce9108fbe81ac93913c1d5c47cdc8807897981ff10c5c282a",
+      "source": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-d532e64a-3c06-4c03-9578-c9ba2d587991.png",
+      "status": "candidate_not_integrated",
+      "method": "built-in image_gen, not Blender render",
+      "visibleBoundsAlpha128": [
+        368,
+        47,
+        931,
+        1141
+      ],
+      "previewBoundsNote": "Display-only crop around alpha >= 128 plus 8 px. Original image is unchanged. Not a production trimming rule.",
+      "supersededBy": "villager_elder_neutral_q_v2"
+    },
+    {
+      "id": "villager_child_neutral",
+      "file": "villager_child_neutral.png",
+      "pixels": [
+        1199,
+        1312
+      ],
+      "alphaBounds": [
+        0,
+        20,
+        1169,
+        1286
+      ],
+      "hasTransparency": true,
+      "bytes": 826207,
+      "sha256": "052de7414ac07f41e331c760b85ecfd156c91647de2820ae03d29c6526136a9b",
+      "source": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-7a5f85c4-67f8-4b84-a086-853ccfe5831b.png",
+      "status": "candidate_not_integrated",
+      "method": "built-in image_gen, not Blender render",
+      "visibleBoundsAlpha128": [
+        282,
+        117,
+        871,
+        1215
+      ],
+      "previewBoundsNote": "Display-only crop around alpha >= 128 plus 8 px. Original image is unchanged. Not a production trimming rule.",
+      "supersededBy": "villager_child_neutral_q_v2"
+    },
+    {
+      "id": "grass_ground_v2",
+      "file": "grass_ground_v2.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "hasTransparency": false,
+      "bytes": 1479314,
+      "sha256": "f9ffd271acaecdf637a9e64b725c08e63f48104c721a7df91f3a12332491722d",
+      "source": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-31a2e0d6-3fba-4810-ae09-88984d4dc0d7.png",
+      "status": "candidate_not_integrated",
+      "method": "built-in image_gen, not Blender render",
+      "visibleBoundsAlpha128": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "previewBoundsNote": "Display-only crop around alpha >= 128 plus 8 px. Original image is unchanged. Not a production trimming rule."
+    },
+    {
+      "id": "button_green_v2",
+      "file": "button_green_v2.png",
+      "pixels": [
+        2172,
+        724
+      ],
+      "alphaBounds": [
+        48,
+        13,
+        2124,
+        714
+      ],
+      "hasTransparency": true,
+      "bytes": 753422,
+      "sha256": "af0127836f26a77513cddf4e05bb5a7069a657fac7ddb3d6b18109e46f1d0c9f",
+      "source": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-bd35bcbe-7261-4980-8075-f18100d11492.png",
+      "status": "candidate_not_integrated",
+      "method": "built-in image_gen, not Blender render",
+      "visibleBoundsAlpha128": [
+        55,
+        212,
+        2118,
+        510
+      ],
+      "previewBoundsNote": "Display-only crop around alpha >= 128 plus 8 px. Original image is unchanged. Not a production trimming rule."
+    },
+    {
+      "id": "tower_stone_01",
+      "file": "tower_stone_01.png",
+      "pixels": [
+        1312,
+        1199
+      ],
+      "alphaBounds": [
+        0,
+        19,
+        1290,
+        1199
+      ],
+      "hasTransparency": true,
+      "bytes": 1150406,
+      "sha256": "083bd93654e4503aa1f1f6bd8eb5b59c53552455e48124bc654087ff98e7e892",
+      "source": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-95ae5ac3-119d-415f-aadf-4311ccfeab64.png",
+      "status": "candidate_not_integrated",
+      "method": "built-in image_gen, not Blender render",
+      "visibleBoundsAlpha128": [
+        178,
+        105,
+        1115,
+        1042
+      ],
+      "previewBoundsNote": "Display-only crop around alpha >= 128 plus 8 px. Original image is unchanged. Not a production trimming rule."
+    },
+    {
+      "id": "tower_frost_01",
+      "file": "tower_frost_01.png",
+      "pixels": [
+        1312,
+        1199
+      ],
+      "alphaBounds": [
+        41,
+        19,
+        1274,
+        1126
+      ],
+      "hasTransparency": true,
+      "bytes": 1023275,
+      "sha256": "e9931779eed43e1db0ab1b0a9bb1d2586626e237105c7b8bd1a242175fb6020b",
+      "source": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-2ba7e9e3-2691-4314-988a-94a46871e542.png",
+      "status": "candidate_not_integrated",
+      "method": "built-in image_gen, not Blender render",
+      "visibleBoundsAlpha128": [
+        244,
+        71,
+        1068,
+        1094
+      ],
+      "previewBoundsNote": "Display-only crop around alpha >= 128 plus 8 px. Original image is unchanged. Not a production trimming rule."
+    },
+    {
+      "id": "villager_male_q_v2",
+      "file": "villager_male_q_v2.png",
+      "pixels": [
+        1312,
+        1199
+      ],
+      "alphaBounds": [
+        33,
+        19,
+        1294,
+        1148
+      ],
+      "visibleBoundsAlpha128": [
+        284,
+        132,
+        987,
+        1098
+      ],
+      "hasTransparency": true,
+      "bytes": 837072,
+      "sha256": "c6bc22e0d74023050ef7de55bd1bf6811de5ed3654e699c815bcf21a9ffbeb7a",
+      "source": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-e8591527-62d2-40d4-ba4d-0af12f62a709.png",
+      "status": "candidate_not_integrated",
+      "method": "built-in image_gen, not Blender render",
+      "basedOn": "villager_male",
+      "change": "Larger head, shorter body and legs per user feedback; appearance only."
+    },
+    {
+      "id": "villager_child_neutral_q_v2",
+      "file": "villager_child_neutral_q_v2.png",
+      "pixels": [
+        1199,
+        1312
+      ],
+      "alphaBounds": [
+        0,
+        20,
+        1177,
+        1286
+      ],
+      "visibleBoundsAlpha128": [
+        217,
+        150,
+        946,
+        1196
+      ],
+      "hasTransparency": true,
+      "bytes": 847120,
+      "sha256": "1b7afdf3e47aca52b7815a5f2fa05851cc560a1675317aab31b19f4e7ee69c5d",
+      "source": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-db82cbba-09aa-4a23-9f66-10c7d3643a50.png",
+      "status": "candidate_not_integrated",
+      "method": "built-in image_gen, not Blender render",
+      "basedOn": "villager_child_neutral",
+      "change": "Larger head, shorter body and legs per user feedback; appearance only."
+    },
+    {
+      "id": "villager_elder_neutral_q_v2",
+      "file": "villager_elder_neutral_q_v2.png",
+      "pixels": [
+        1312,
+        1199
+      ],
+      "alphaBounds": [
+        51,
+        0,
+        1292,
+        1126
+      ],
+      "visibleBoundsAlpha128": [
+        346,
+        188,
+        957,
+        1068
+      ],
+      "hasTransparency": true,
+      "bytes": 698433,
+      "sha256": "845729949a1d6741aa52ac68d6cf70b67c1ae369eeef7b7b368d95bbb1446d03",
+      "source": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-747aeb9d-d9d7-438d-8853-bbe41095c8af.png",
+      "status": "candidate_not_integrated",
+      "method": "built-in image_gen, not Blender render",
+      "basedOn": "villager_elder_neutral",
+      "change": "Larger head, shorter body and legs per user feedback; appearance only."
+    },
+    {
+      "id": "villager_female_q",
+      "file": "villager_female_q.png",
+      "pixels": [
+        1200,
+        1310
+      ],
+      "alphaBounds": [
+        0,
+        22,
+        1164,
+        1310
+      ],
+      "visibleBoundsAlpha128": [
+        181,
+        115,
+        903,
+        1160
+      ],
+      "hasTransparency": true,
+      "bytes": 882064,
+      "sha256": "d686acef0379a737402f0debabcb18b43630aba1acff77b60db1998b4ee52011",
+      "source": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-aa2c0e41-884b-45ed-bdae-50ca74a413ed.png",
+      "status": "candidate_not_integrated",
+      "method": "built-in image_gen, not Blender render",
+      "change": "Female adult identity with compact chibi proportions matching revised male."
+    }
+  ],
+  "runtimeExported": false,
+  "selectedCandidates": [
+    "tower_arrow_01",
+    "grass_ground_v2",
+    "button_green_v2",
+    "tower_stone_01",
+    "tower_frost_01",
+    "villager_male_q_v2",
+    "villager_child_neutral_q_v2",
+    "villager_elder_neutral_q_v2",
+    "villager_female_q"
+  ]
+}

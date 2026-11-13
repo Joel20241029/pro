@@ -1,0 +1,287 @@
+{
+  "role": "male",
+  "basis": "2026-11-13 measured landmarks retained from the existing male high-resolution GLB. Shoe sole region now rigidly follows Foot; independent sole grounding replaces the old whole-mesh grounding. Authoring-only unit-height proportions; changing them requires four-direction deformation review.",
+  "groundAnchor": [
+    -0.025,
+    0,
+    0
+  ],
+  "fps": 6,
+  "bones": {
+    "Root": [
+      [
+        -0.025,
+        0,
+        0
+      ],
+      [
+        -0.025,
+        0,
+        0.06
+      ],
+      null
+    ],
+    "Hips": [
+      [
+        -0.025,
+        -0.03,
+        0.18
+      ],
+      [
+        -0.025,
+        -0.03,
+        0.26
+      ],
+      "Root"
+    ],
+    "Spine": [
+      [
+        -0.025,
+        -0.03,
+        0.26
+      ],
+      [
+        -0.025,
+        -0.015,
+        0.4
+      ],
+      "Hips"
+    ],
+    "Head": [
+      [
+        -0.025,
+        -0.015,
+        0.4
+      ],
+      [
+        0,
+        0,
+        0.85
+      ],
+      "Spine"
+    ],
+    "Thigh.L": [
+      [
+        0.075,
+        -0.03,
+        0.18
+      ],
+      [
+        0.075,
+        -0.055,
+        0.115
+      ],
+      "Hips"
+    ],
+    "Shin.L": [
+      [
+        0.075,
+        -0.055,
+        0.115
+      ],
+      [
+        0.075,
+        -0.06,
+        0.055
+      ],
+      "Thigh.L"
+    ],
+    "Foot.L": [
+      [
+        0.075,
+        -0.06,
+        0.055
+      ],
+      [
+        0.075,
+        -0.17,
+        0.045
+      ],
+      "Shin.L"
+    ],
+    "UpperArm.L": [
+      [
+        0.12,
+        -0.03,
+        0.35
+      ],
+      [
+        0.19,
+        -0.065,
+        0.28
+      ],
+      "Spine"
+    ],
+    "Forearm.L": [
+      [
+        0.19,
+        -0.065,
+        0.28
+      ],
+      [
+        0.19,
+        -0.09,
+        0.23
+      ],
+      "UpperArm.L"
+    ],
+    "Hand.L": [
+      [
+        0.19,
+        -0.09,
+        0.23
+      ],
+      [
+        0.19,
+        -0.095,
+        0.19
+      ],
+      "Forearm.L"
+    ],
+    "Thigh.R": [
+      [
+        -0.125,
+        -0.03,
+        0.18
+      ],
+      [
+        -0.125,
+        -0.055,
+        0.115
+      ],
+      "Hips"
+    ],
+    "Shin.R": [
+      [
+        -0.125,
+        -0.055,
+        0.115
+      ],
+      [
+        -0.125,
+        -0.06,
+        0.055
+      ],
+      "Thigh.R"
+    ],
+    "Foot.R": [
+      [
+        -0.125,
+        -0.06,
+        0.055
+      ],
+      [
+        -0.125,
+        -0.17,
+        0.045
+      ],
+      "Shin.R"
+    ],
+    "UpperArm.R": [
+      [
+        -0.17,
+        -0.03,
+        0.35
+      ],
+      [
+        -0.23,
+        -0.065,
+        0.28
+      ],
+      "Spine"
+    ],
+    "Forearm.R": [
+      [
+        -0.23,
+        -0.065,
+        0.28
+      ],
+      [
+        -0.23,
+        -0.09,
+        0.23
+      ],
+      "UpperArm.R"
+    ],
+    "Hand.R": [
+      [
+        -0.23,
+        -0.09,
+        0.23
+      ],
+      [
+        -0.23,
+        -0.095,
+        0.19
+      ],
+      "Forearm.R"
+    ]
+  },
+  "weightRegions": {
+    "centerX": -0.025,
+    "headStart": 0.405,
+    "headRigidStart": 0.43,
+    "legEnd": 0.17,
+    "armOuterX": 0.145,
+    "armTop": 0.385,
+    "upperBodyRigidStart": 0.21,
+    "shoeRigidTop": 0.075
+  },
+  "cane": null,
+  "armSwing": -0.22,
+  "elbowBend": -0.12,
+  "poses": [
+    {
+      "L": [
+        0.055,
+        0
+      ],
+      "R": [
+        -0.055,
+        0
+      ],
+      "swing": -1,
+      "bodyZ": -0.018,
+      "bodyY": 0
+    },
+    {
+      "L": [
+        -0.005,
+        0.055
+      ],
+      "R": [
+        0.005,
+        0
+      ],
+      "swing": 0,
+      "bodyZ": -0.006,
+      "bodyY": 0
+    },
+    {
+      "L": [
+        -0.055,
+        0
+      ],
+      "R": [
+        0.055,
+        0
+      ],
+      "swing": 1,
+      "bodyZ": -0.018,
+      "bodyY": 0
+    },
+    {
+      "L": [
+        0.005,
+        0
+      ],
+      "R": [
+        -0.005,
+        0.055
+      ],
+      "swing": 0,
+      "bodyZ": -0.006,
+      "bodyY": 0
+    }
+  ]
+}

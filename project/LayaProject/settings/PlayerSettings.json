@@ -1,7 +1,9 @@
 {
   "modules": {
     "laya.ui": false,
-    "laya.d3": false
+    "laya.d3": false,
+    "laya.particle": true,
+    "laya.particle3D": false
   },
   "resolution": {
     "designWidth": 720,

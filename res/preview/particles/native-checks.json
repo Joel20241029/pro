@@ -1,0 +1,48 @@
+[
+  {
+    "id": "hit_arrow",
+    "count": 6
+  },
+  {
+    "id": "hit_stone",
+    "count": 10
+  },
+  {
+    "id": "hit_ice",
+    "count": 8
+  },
+  {
+    "id": "hit_gate",
+    "count": 8
+  },
+  {
+    "id": "elite_ring",
+    "count": 1
+  },
+  {
+    "id": "button_ready",
+    "count": 3
+  },
+  {
+    "short": false,
+    "freeze": true,
+    "impactsBeforePause": 1,
+    "upgradeMotionPreserved": true,
+    "people": 20,
+    "enemies": 40,
+    "rings": 20,
+    "bursts": 1,
+    "ringParticles": 240
+  },
+  {
+    "short": true,
+    "freeze": true,
+    "impactsBeforePause": 1,
+    "upgradeMotionPreserved": true,
+    "people": 20,
+    "enemies": 40,
+    "rings": 20,
+    "bursts": 1,
+    "ringParticles": 262
+  }
+]

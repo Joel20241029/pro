@@ -1,0 +1,56 @@
+{
+  "generator": "built-in image_gen",
+  "status": "candidate_not_integrated",
+  "entries": [
+    {
+      "id": "tower_arrow_01",
+      "references": [
+        "../00_用户确认美术基准.png"
+      ],
+      "prompt": "Use the supplied image as the exact visual source, not loose inspiration. Extract and reconstruct ONLY the FIRST / level 1 wooden crossbow defense tower shown in the bottom-right row of the reference. This is a candidate game asset, not a concept poster. One single complete tower centered at very high resolution on genuine transparent background, orthographic three-quarter camera matching that reference tower. Preserve precisely its short stout proportions, thick rounded warm honey-brown timber posts, open lower support structure, rope and timber joints, small broad four-sided railed upper deck, one centered small crossbow with slim grey arrow pointed upper right, irregular light grey stone foundation blocks. Rich smooth sculpted 3D pre-render appearance: bevelled organic wood, restrained fine wood grain, softly occluded joints, soft upper-left warm lighting, readable dark recesses, pale reflected fill, polished anti-aliased contour. Match silhouette, colors, material detail, camera and friendly scale of the supplied first-stage tower as closely as possible. No redesign, no taller tower, no ladder or banners from upgraded versions, no extra weapon, no realism, no pixel art, no flat vector, no black outlines. Keep the tower base entirely visible. Small sparse grass at foundations as shown. Do not bake a rectangular colored backdrop, no UI, no labels, no titles, no surrounding scene, no border. Keep shadows within the physical object; ground cast shadow is omitted for a separately composited game shadow. Asset occupies about 85 percent of canvas height.",
+      "transparentBackground": true
+    },
+    {
+      "id": "villager_male",
+      "references": [
+        "../00_用户确认美术基准.png"
+      ],
+      "prompt": "Reconstruct the adult MALE villager from the upper middle of the supplied reference as one standalone transparent game sprite. Preserve that exact chibi identity, proportion, compact sculpted silhouette, matte dark brown swept sculpted hair, friendly round face with black eyes and thick brows, blue crossed tunic with cream cuffs, brown sash, dark short trousers and brown shoes. Orthographic three-quarter view, slightly looking down 25 degrees, face turned gently toward screen right as in the game. Full body centered. A balanced standing idle pose, knees relaxed, empty hands naturally at sides with loosely closed fingers, no tool in this idle asset. High-quality soft 3D prerender finish with precisely readable facial features, hair clusters, cloth seams and folds, soft warm upper-left key light and gentle reflected fill. Closely match the supplied reference's toy-like smooth materials and color palette, no gritty realistic texture, no enlarged eyes, no new costume or facial redesign, no rigid A pose, no black outline, no pixelation or painterly smearing. Genuine transparent alpha, no scenery, no text, no floor plate, no cast ground shadow, no gradient backdrop. Maintain complete shoes and hair silhouette. Candidate production sprite, not an illustration poster.",
+      "transparentBackground": true
+    },
+    {
+      "id": "villager_elder_neutral",
+      "references": [
+        "../00_用户确认美术基准.png"
+      ],
+      "prompt": "Use the reference's villagers as the EXACT high quality stylized 3D art direction. Create ONE elderly villager game sprite, specifically gender-neutral and used for both male and female elders. This deliberate user requirement overrides the bearded old man in the reference. A gently rounded elderly face, warm friendly black eyes with subtle soft eyelid creases, small round nose, relaxed closed smile, rounded chin, short soft silver-grey hair in irregular rounded tufts. Absolutely NO beard or moustache, no bun, no jewelry or feminine/masculine adornment, no pronounced masculine brow or jaw, no visible chest or waist gender cues. Loose simple muted sage-grey cross-collar tunic with pale collar, brown sash, charcoal loose trousers and simple brown cloth shoes. Both hands rest comfortably over a short wooden walking stick in front; hands grasp the stick clearly. Compact chibi elderly proportions, large head, short torso and legs, slight comfortable stoop. Full body, orthographic three-quarter view facing screen right, elevated 25 degrees to match the game camera. Exactly the reference's round sculpted forms, smooth matte materials, rich subtle folds, soft upper-left warm light, ambient occlusion inside folds. Refined anti-aliased finish, not realistic, not low-poly, not flat vector or pixel art. Transparent background, no floor, no cast ground shadow, no text, no labels, no other figures. Single sprite with all shoes and stick visible.",
+      "transparentBackground": true
+    },
+    {
+      "id": "villager_child_neutral",
+      "references": [
+        "../00_用户确认美术基准.png"
+      ],
+      "prompt": "Create ONE standalone gender-neutral child villager sprite closely matching the reference game's precise smooth stylized 3D prerender quality. This single child design will represent all children: intentionally ambiguous gender. Compact very large round head, small cheerful black eyes, a small relaxed closed smile, softly rounded cheeks, gentle eyebrows, short softly tousled dark-brown hair with a plain rounded silhouette and modest fringe; no hair bow, ponytail, jewelry, makeup, stereotypically boyish spiked hair or gender-coded decorative motifs. Simple loose warm oatmeal-beige cross-collar short tunic with cream cuffs, neutral brown sash, loose dark umber shorts and small brown cloth shoes. Naturally relaxed full-body standing pose, arms at sides, hands softly closed. Child must look visibly younger and shorter than adult villagers. Orthographic elevated three-quarter game view facing screen right, 25 degree elevation. Preserve reference's sculpted toy-like volume, gentle rich fabric folds, subtle warm upper-left light, clean contour and restrained material detail. No realistic anatomy, no flat vector or pixel art, no black outline. Genuine transparent background, no floor or ground shadow, no text, no poster, no objects. Entire body and shoes visible. One sprite only.",
+      "transparentBackground": true
+    },
+    {
+      "id": "grass_ground_v2",
+      "references": [
+        "../00_用户确认美术基准.png",
+        "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-312cb96e-e719-4529-b9ee-4cd94325ed1b.png"
+      ],
+      "prompt": "Edit the SECOND image, the grass tile, to match the grassy ground inside the FIRST image's left-hand game scene much more accurately. The current second image is too yellow/chartreuse and the grass sprigs are too regularly spaced. Change the palette to muted warm sage/olive greens: approximate midtone #9fb978, light #adc685, dark #8ea36b; preserve natural subtle broad variation, no harsh hue shift. Reduce about half of the tiny sprigs and leaf flecks, and make the remaining distribution gently irregular with quiet open spaces. Remove the almost textile-like fine noisy grain; use smooth sculpted stylized 3D turf with soft low-contrast small rounded clumps and pale blended grass patches, not photographic grass. Still a perfectly seamless edge-to-edge square ground-only game texture, overhead orthographic, no directional lighting gradient. No roads, stones, flowers, trees, people, objects, horizon, shadows from missing objects, UI, frames or text. Do not make it a flat uniform color; its broad soft variation and sparse sculpted details must remain. Match reference's calm ground value so characters retain visual prominence. Output 1024x1024.",
+      "transparentBackground": false
+    },
+    {
+      "id": "button_green_v2",
+      "references": [
+        "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-11808d6e-1a51-4a00-b466-615f26c561ab.png",
+        "../00_用户确认美术基准.png"
+      ],
+      "prompt": "Edit ONLY the empty green button skin in the first image to match the Start Night button in the second image precisely. The current skin is too capsule-shaped and shiny. Keep its wide horizontal shape and true transparency, but make the four rounded-rectangle corners distinctly smaller: corner radius about 20 percent of button HEIGHT, leaving long straight vertical sections at both left and right ends; this is NOT a pill or capsule. Make the finish softly matte with a very thin cream highlight, not a thick brilliant white neon gloss stripe. Use the reference's calmer olive green: upper fill approximately #709e3d and lower fill #426b2b, thin warm golden olive rim, restrained lower bevel fully inside the shape. Keep the full-height vertical gradient and symmetric caps so the center can stretch horizontally without flattening the color. No external shadow or black border. No text, no icon or labels. Preserve a wide roughly 5.5:1 usable button body, centered on transparent canvas with modest margins. A precise reusable HD game UI asset, closely matching the reference, not a glossy app store badge.",
+      "transparentBackground": true
+    }
+  ]
+}

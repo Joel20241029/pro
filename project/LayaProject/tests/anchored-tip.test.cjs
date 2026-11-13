@@ -3,7 +3,7 @@ const build = process.env.DAIDAI_TEST_BUILD;
 class Point { constructor(x = 0, y = 0) { this.setTo(x, y); } setTo(x, y) { this.x = x; this.y = y; return this; } }
 class Rectangle { constructor(x = 0, y = 0, width = 0, height = 0) { Object.assign(this, { x, y, width, height }); } }
 class Sprite {
-    constructor() { this.x = this.y = this.pivotX = this.pivotY = 0; this.scaleX = this.scaleY = 1; this.children = []; this.graphics = {}; }
+    constructor() { this.x = this.y = this.pivotX = this.pivotY = 0; this.scaleX = this.scaleY = 1; this.children = []; this.graphics = { drawPoly() {}, drawPath() {} }; }
     pos(x, y) { this.x = x; this.y = y; return this; }
     size(width, height) { this.width = width; this.height = height; return this; }
     pivot(x, y) { this.pivotX = x; this.pivotY = y; return this; }
@@ -70,7 +70,7 @@ test('roof attachment is re-read after a building replacement, movement and scal
 test('view clock ignores battle speed and stops advancing tips while backgrounded or disabled', () => {
     const { tip, target } = setup(), pauses = new Set();
     const view = Object.create(GameView.prototype);
-    Object.assign(view, { game: { pauses, speed: 3 }, anchoredTip: tip, tip: { advance() {} }, village: { advance() { return false; } } });
+    Object.assign(view, { hud: { advance() {} }, game: { pauses, speed: 3 }, anchoredTip: tip, tip: { advance() {} }, village: { advance() { return false; } } });
     tip.show('佟楼', () => target);
     for (let i = 0; i < 30; i++) view.update(.05);
     assert(tip.visible);

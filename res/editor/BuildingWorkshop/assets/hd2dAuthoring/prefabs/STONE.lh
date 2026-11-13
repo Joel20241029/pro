@@ -1,0 +1,88 @@
+{
+  "_$ver": 1,
+  "_$id": "sf9gsxd6",
+  "_$type": "Sprite",
+  "name": "STONE",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "tlqkox59",
+      "_$type": "Sprite",
+      "name": "Body",
+      "x": 12,
+      "y": 18,
+      "width": 104,
+      "height": 103,
+      "texture": {
+        "_$uuid": "7beda5c8-6e6b-41c3-a922-d3050f089258",
+        "_$type": "Texture"
+      }
+    },
+    {
+      "_$id": "6athajws",
+      "_$type": "Sprite",
+      "name": "Weapon",
+      "x": 64,
+      "y": 75,
+      "width": 68,
+      "height": 42,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "texture": {
+        "_$uuid": "76a4118a-b463-4800-9470-84a1eb19da40",
+        "_$type": "Texture"
+      },
+      "_$comp": [
+        {
+          "_$type": "AnimatorClip2D",
+          "clip": {
+            "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+            "_$type": "AnimationClip2D"
+          },
+          "autoPlay": false
+        }
+      ]
+    },
+    {
+      "_$id": "wft4mwm6",
+      "_$type": "Sprite",
+      "name": "Footprint",
+      "x": 22,
+      "y": 95,
+      "width": 84,
+      "height": 24,
+      "visible": false
+    },
+    {
+      "_$id": "x2hmzmrb",
+      "_$type": "Sprite",
+      "name": "VisualBounds",
+      "x": 2,
+      "y": -12,
+      "width": 124,
+      "height": 136,
+      "visible": false
+    },
+    {
+      "_$id": "6vj7c1vg",
+      "_$type": "Sprite",
+      "name": "SortOrigin",
+      "x": 64,
+      "y": 116,
+      "width": 0,
+      "height": 0,
+      "visible": false
+    },
+    {
+      "_$id": "wfof5966",
+      "_$type": "Sprite",
+      "name": "Muzzle",
+      "x": 64,
+      "y": 14,
+      "width": 0,
+      "height": 0,
+      "visible": false
+    }
+  ]
+}

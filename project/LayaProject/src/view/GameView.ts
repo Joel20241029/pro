@@ -1,3 +1,5 @@
+import { ResourcePreparation } from "../platform/ResourcePreparation";
+import { drawResourcePanel } from "./panels/ResourcePanel";
 import { GameSession } from "../game/GameSession";
 import { RULE } from "../game/GameConfig";
 import { SpriteFrames } from "./SpriteFrames";
@@ -27,7 +29,7 @@ export class GameView {
         if (state && !this.overlay.numChildren && (state.phase === "DAY" || state.phase === "NIGHT") && state.people.some(p => p.id === id))
             this.panels.open({ type: "person", id });
     });
-    private panels = new GamePanels(this.game, this.art, this.platform, this.ui, this.overlay, this.layout, () => this.refresh());
+    private panels = new GamePanels(this.game, this.art, this.platform, this.ui, this.overlay, this.layout, () => this.refresh(), this.resources);
     private hud = new GameHud(this.game, this.art, this.ui, this.panels, () => this.refresh());
     private tip: Tip;
     private shownErrorRevision = 0;
@@ -35,7 +37,7 @@ export class GameView {
     private observedDawn = 0;
     private observedVillageRevision = 0;
     showMusicProblem() { this.tip.show("声音暂时无法播放，可在小记中重新开启"); }
-    constructor(private game: GameSession, private art: SpriteFrames, private platform: WechatPlatform, private playClick: () => void) {
+    constructor(private game: GameSession, private art: SpriteFrames, private platform: WechatPlatform, private playClick: () => void, private resources: ResourcePreparation) {
         this.root.name = "VillageGame";
         this.root.size(720, this.layout.height);
         this.root.stackingRoot = true;
@@ -116,6 +118,12 @@ export class GameView {
         }
         this.village.drawScenery(s?.phase === "NIGHT");
         this.hud.drawHeader(this.layout);
+        const waiting = !this.resources.ready("characters") ? "characters" : s?.phase === "NIGHT" && !this.resources.ready("battle") ? "battle" : null;
+        if (waiting) {
+            if (s) { this.village.sync(s, preserveOverlay); this.hud.draw(s, this.layout, this.village.scene, this.village); }
+            if (!preserveOverlay) drawResourcePanel(this.panels, waiting);
+            this.updateActors(); return;
+        }
         if (!s) {
             if (!preserveOverlay)
                 drawBoot(this.panels);
@@ -123,7 +131,7 @@ export class GameView {
             return;
         }
         this.village.sync(s, preserveOverlay);
-        this.hud.draw(s, this.layout, this.village.scene);
+        this.hud.draw(s, this.layout, this.village.scene, this.village);
         if (preserveOverlay) {
             this.updateActors();
             return;
@@ -138,13 +146,14 @@ export class GameView {
         if (this.village.advance(delta))
             this.updateActors();
         if (active) this.anchoredTip.advance(visualDelta);
+        this.hud.advance(visualDelta);
     }
     private updateActors() {
-        this.village.render(this.panels.current !== null);
+        this.village.render(this.overlay.numChildren > 0);
         this.hud.update();
         // 每日口粮/欢迎回来等自动面板也通过overlay显示，不仅检查主动打开的panels.current。
         if (this.overlay.numChildren) this.anchoredTip.hide();
         else this.anchoredTip.advance(0);
     }
-    destroy() { this.game.changed = () => { }; this.anchoredTip.hide(); this.root.destroy(true); }
+    destroy() { this.game.changed = () => { }; this.anchoredTip.hide(); this.hud.clear(); this.village.destroy(); this.root.destroy(true); }
 }

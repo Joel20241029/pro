@@ -1,0 +1,383 @@
+{
+  "status": "small_scene_probe",
+  "sourceRoot": "res/design/hd2d",
+  "output": "res/editor/BuildingWorkshop/assets/hd2dAuthoring/textures",
+  "evidenceInputsNote": "Native capture fingerprints these authoring inputs plus this recipe, source PNGs, derived textures and texture metadata. Changing any captured input requires a new Laya capture.",
+  "evidenceInputs": [
+    "res/tools/hd2d/build-probe-assets.mjs",
+    "res/editor/BuildingWorkshop/assets/editor/Hd2dWorkshop.ts",
+    "res/editor/BuildingWorkshop/assets/editor/Hd2dProbeScene.ts",
+    "res/editor/BuildingWorkshop/assets/editor/Hd2dProbeConfig.ts",
+    "res/editor/BuildingWorkshop/assets/editor/Hd2dEnvironmentConfig.ts",
+    "res/editor/BuildingWorkshop/assets/editor/Hd2dProbeEnvironment.ts",
+    "res/editor/BuildingWorkshop/assets/hd2dAuthoring/Hd2dProbeMotion.ts",
+    "res/editor/BuildingWorkshop/assets/hd2dAuthoring/Hd2dProbeViewport.ts",
+    "res/editor/BuildingWorkshop/assets/hd2dAuthoring/texture-manifest.json",
+    "res/editor/BuildingWorkshop/assets/buildingAuthoring/animations/attack.mc"
+  ],
+  "assets": [
+    {
+      "id": "arrow_body",
+      "source": "parts/arrow_parts.png",
+      "crop": [
+        0,
+        41,
+        822,
+        694
+      ],
+      "height": 512
+    },
+    {
+      "id": "arrow_front",
+      "source": "parts/arrow_parts.png",
+      "crop": [
+        824,
+        280,
+        563,
+        231
+      ],
+      "height": 174
+    },
+    {
+      "id": "arrow_weapon",
+      "source": "parts/arrow_parts.png",
+      "crop": [
+        1511,
+        173,
+        486,
+        396
+      ],
+      "height": 300
+    },
+    {
+      "id": "stone_body",
+      "source": "parts/stone_parts.png",
+      "crop": [
+        58,
+        15,
+        676,
+        671
+      ],
+      "height": 512
+    },
+    {
+      "id": "stone_loaded",
+      "source": "parts/stone_parts.png",
+      "crop": [
+        851,
+        230,
+        479,
+        295
+      ],
+      "height": 240
+    },
+    {
+      "id": "frost_body",
+      "source": "parts/frost_parts.png",
+      "crop": [
+        131,
+        23,
+        771,
+        832
+      ],
+      "height": 512
+    },
+    {
+      "id": "frost_core",
+      "source": "parts/frost_parts.png",
+      "crop": [
+        1158,
+        229,
+        358,
+        425
+      ],
+      "height": 256
+    },
+    {
+      "id": "grass",
+      "source": "samples/grass_ground_v2.png",
+      "height": 512
+    },
+    {
+      "id": "button",
+      "source": "samples/button_green_v2.png",
+      "crop": [
+        47,
+        204,
+        2079,
+        314
+      ],
+      "height": 96
+    },
+    {
+      "id": "raider_0",
+      "source": "motion/raider_front_walk.png",
+      "crop": [
+        197,
+        65,
+        528,
+        770
+      ],
+      "height": 256
+    },
+    {
+      "id": "raider_1",
+      "source": "motion/raider_front_walk.png",
+      "crop": [
+        1084,
+        65,
+        528,
+        770
+      ],
+      "height": 256
+    },
+    {
+      "id": "male_walk_1",
+      "source": "directions/male/male_down_1.png",
+      "height": 256
+    },
+    {
+      "id": "male_walk_2",
+      "source": "directions/male/male_down_2.png",
+      "height": 256
+    },
+    {
+      "id": "male_walk_3",
+      "source": "directions/male/male_down_3.png",
+      "height": 256
+    },
+    {
+      "id": "male_walk_4",
+      "source": "directions/male/male_down_4.png",
+      "height": 256
+    },
+    {
+      "id": "road_sprite",
+      "source": "parts/road_sprite.png",
+      "height": 1065
+    },
+    {
+      "id": "female_walk_1",
+      "source": "directions/female/female_down_1.png",
+      "height": 256
+    },
+    {
+      "id": "female_walk_2",
+      "source": "directions/female/female_down_2.png",
+      "height": 256
+    },
+    {
+      "id": "female_walk_3",
+      "source": "directions/female/female_down_3.png",
+      "height": 256
+    },
+    {
+      "id": "female_walk_4",
+      "source": "directions/female/female_down_4.png",
+      "height": 256
+    },
+    {
+      "id": "child_walk_1",
+      "source": "directions/child/child_down_1.png",
+      "height": 256
+    },
+    {
+      "id": "child_walk_2",
+      "source": "directions/child/child_down_2.png",
+      "height": 256
+    },
+    {
+      "id": "child_walk_3",
+      "source": "directions/child/child_down_3.png",
+      "height": 256
+    },
+    {
+      "id": "child_walk_4",
+      "source": "directions/child/child_down_4.png",
+      "height": 256
+    },
+    {
+      "id": "elder_walk_1",
+      "source": "directions/elder/elder_down_1.png",
+      "height": 256
+    },
+    {
+      "id": "elder_walk_2",
+      "source": "directions/elder/elder_down_2.png",
+      "height": 256
+    },
+    {
+      "id": "elder_walk_3",
+      "source": "directions/elder/elder_down_3.png",
+      "height": 256
+    },
+    {
+      "id": "elder_walk_4",
+      "source": "directions/elder/elder_down_4.png",
+      "height": 256
+    },
+    {
+      "id": "baby_idle_1",
+      "source": "directions/baby/baby_idle_1.png",
+      "height": 256
+    },
+    {
+      "id": "baby_idle_2",
+      "source": "directions/baby/baby_idle_2.png",
+      "height": 256
+    },
+    {
+      "id": "baby_idle_3",
+      "source": "directions/baby/baby_idle_3.png",
+      "height": 256
+    },
+    {
+      "id": "baby_idle_4",
+      "source": "directions/baby/baby_idle_4.png",
+      "height": 256
+    },
+    {
+      "id": "env_oak",
+      "source": "environment/tree_oak_layers.png",
+      "crop": [
+        140,
+        60,
+        956,
+        824
+      ],
+      "height": 384
+    },
+    {
+      "id": "env_pine",
+      "source": "environment/tree_pine_layers.png",
+      "crop": [
+        280,
+        53,
+        614,
+        850
+      ],
+      "height": 384
+    },
+    {
+      "id": "env_shadow",
+      "source": "environment/tree_oak_layers.png",
+      "crop": [
+        320,
+        1060,
+        690,
+        165
+      ],
+      "height": 64
+    },
+    {
+      "id": "env_sign",
+      "source": "environment/sign.png",
+      "crop": [
+        70,
+        44,
+        1627,
+        808
+      ],
+      "height": 128
+    },
+    {
+      "id": "env_rocks",
+      "source": "environment/rock_cluster.png",
+      "crop": [
+        142,
+        178,
+        920,
+        923
+      ],
+      "height": 128
+    },
+    {
+      "id": "env_flower",
+      "source": "environment/flower.png",
+      "crop": [
+        153,
+        102,
+        981,
+        956
+      ],
+      "height": 64
+    },
+    {
+      "id": "env_apple",
+      "source": "environment/fruit_apple.png",
+      "crop": [
+        96,
+        58,
+        320,
+        383
+      ],
+      "height": 64
+    },
+    {
+      "id": "env_campfire",
+      "source": "environment/campfire_base.png",
+      "crop": [
+        54,
+        160,
+        408,
+        216
+      ],
+      "height": 192
+    },
+    {
+      "id": "env_campfire_front",
+      "source": "environment/campfire_front.png",
+      "crop": [
+        54,
+        160,
+        408,
+        216
+      ],
+      "height": 192
+    },
+    {
+      "id": "env_flame_1",
+      "source": "environment/campfire_flame_strip.png",
+      "crop": [
+        0,
+        88,
+        543,
+        448
+      ],
+      "height": 192
+    },
+    {
+      "id": "env_flame_2",
+      "source": "environment/campfire_flame_strip.png",
+      "crop": [
+        543,
+        88,
+        543,
+        448
+      ],
+      "height": 192
+    },
+    {
+      "id": "env_flame_3",
+      "source": "environment/campfire_flame_strip.png",
+      "crop": [
+        1086,
+        88,
+        543,
+        448
+      ],
+      "height": 192
+    },
+    {
+      "id": "env_flame_4",
+      "source": "environment/campfire_flame_strip.png",
+      "crop": [
+        1629,
+        88,
+        543,
+        448
+      ],
+      "height": 192
+    }
+  ]
+}

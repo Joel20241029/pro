@@ -1,0 +1,222 @@
+{
+  "_$ver": 1,
+  "_$id": "gv309htr",
+  "_$type": "Sprite3D",
+  "name": "PATH",
+  "_$child": [
+    {
+      "_$id": "#8",
+      "_$type": "Sprite3D",
+      "name": "PATH",
+      "_$child": [
+        {
+          "_$id": "#5",
+          "_$type": "Sprite3D",
+          "name": "Body",
+          "_$child": [
+            {
+              "_$id": "#0",
+              "_$type": "Sprite3D",
+              "name": "EarthPath",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": -0.014999999664723873
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "420c5a83-399c-4d5b-adf3-5a0354bf9311@lm0",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "420c5a83-399c-4d5b-adf3-5a0354bf9311@lmat0",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#1",
+              "_$type": "Sprite3D",
+              "name": "EdgePebble",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.6600000262260437,
+                  "y": 0.019999999552965164,
+                  "z": 0.7200000286102295
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "420c5a83-399c-4d5b-adf3-5a0354bf9311@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "420c5a83-399c-4d5b-adf3-5a0354bf9311@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#2",
+              "_$type": "Sprite3D",
+              "name": "EdgePebble.001",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.6499999761581421,
+                  "y": 0.019999999552965164,
+                  "z": 0.30000001192092896
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "420c5a83-399c-4d5b-adf3-5a0354bf9311@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "420c5a83-399c-4d5b-adf3-5a0354bf9311@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#3",
+              "_$type": "Sprite3D",
+              "name": "EdgePebble.002",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.6800000071525574,
+                  "y": 0.019999999552965164,
+                  "z": -0.3700000047683716
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "420c5a83-399c-4d5b-adf3-5a0354bf9311@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "420c5a83-399c-4d5b-adf3-5a0354bf9311@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#4",
+              "_$type": "Sprite3D",
+              "name": "EdgePebble.003",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.6600000262260437,
+                  "y": 0.019999999552965164,
+                  "z": -0.7799999713897705
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "420c5a83-399c-4d5b-adf3-5a0354bf9311@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "420c5a83-399c-4d5b-adf3-5a0354bf9311@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_$id": "#6",
+          "_$type": "Sprite3D",
+          "name": "PathEnd",
+          "transform": {
+            "localPosition": {
+              "_$type": "Vector3",
+              "z": -1
+            }
+          }
+        },
+        {
+          "_$id": "#7",
+          "_$type": "Sprite3D",
+          "name": "PathStart",
+          "transform": {
+            "localPosition": {
+              "_$type": "Vector3",
+              "z": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

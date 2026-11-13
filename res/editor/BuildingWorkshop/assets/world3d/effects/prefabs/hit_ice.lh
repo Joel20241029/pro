@@ -1,0 +1,200 @@
+{
+  "_$ver": 1,
+  "_$id": "ppdu244l",
+  "_$type": "Sprite3D",
+  "name": "hit_ice",
+  "_$comp": [
+    {
+      "_$type": "ShurikenParticleRenderer",
+      "lightmapScaleOffset": {
+        "_$type": "Vector4"
+      },
+      "sharedMaterials": [
+        {
+          "_$uuid": "a156df09-2935-432e-bef9-d986ef7dacd0",
+          "_$type": "Material"
+        }
+      ],
+      "renderMode": 4,
+      "mesh": {
+        "_$uuid": "778a441c-2eb8-4555-936d-7ed5a4e9a45d",
+        "_$type": "Mesh"
+      },
+      "_particleSystem": {
+        "duration": 1,
+        "looping": false,
+        "playOnAwake": false,
+        "startLifetimeConstant": 0.38,
+        "startSpeedType": 2,
+        "startSpeedConstantMin": 0.8125,
+        "startSpeedConstantMax": 1.3541666666666667,
+        "startSizeType": 2,
+        "startSizeConstantMin": 0.08750000000000001,
+        "startSizeConstantMax": 0.14583333333333334,
+        "startSizeConstantSeparate": {
+          "_$type": "Vector3",
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "startSizeConstantMinSeparate": {
+          "_$type": "Vector3"
+        },
+        "startSizeConstantMaxSeparate": {
+          "_$type": "Vector3",
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "startRotationType": 2,
+        "threeDStartRotation": true,
+        "startRotationConstantSeparate": {
+          "_$type": "Vector3"
+        },
+        "startRotationConstantMinSeparate": {
+          "_$type": "Vector3"
+        },
+        "startRotationConstantMaxSeparate": {
+          "_$type": "Vector3",
+          "x": 3.141592653589793,
+          "y": 3.141592653589793,
+          "z": 3.141592653589793
+        },
+        "startColorConstant": {
+          "_$type": "Vector4",
+          "x": 0.6862745098039216,
+          "y": 0.9176470588235294,
+          "z": 1,
+          "w": 1
+        },
+        "startColorConstantMin": {
+          "_$type": "Vector4"
+        },
+        "startColorConstantMax": {
+          "_$type": "Vector4",
+          "x": 1,
+          "y": 1,
+          "z": 1,
+          "w": 1
+        },
+        "startColorGradient": {
+          "_$type": "Gradient",
+          "_colorAlphaKeysCount": 0,
+          "_colorRGBKeysCount": 0
+        },
+        "startColorGradientMin": {
+          "_$type": "Gradient",
+          "_colorAlphaKeysCount": 0,
+          "_colorRGBKeysCount": 0
+        },
+        "startColorGradientMax": {
+          "_$type": "Gradient",
+          "_colorAlphaKeysCount": 0,
+          "_colorRGBKeysCount": 0
+        },
+        "scaleMode": 0,
+        "maxParticles": 32,
+        "autoRandomSeed": false,
+        "randomSeed": {
+          "_$type": "Uint32Array",
+          "value": [
+            137
+          ]
+        },
+        "emission": {
+          "emissionRate": 0,
+          "_bursts": [
+            {
+              "_$type": "Burst",
+              "_minCount": 8,
+              "_maxCount": 8
+            }
+          ]
+        },
+        "shape": {
+          "_$type": "SphereShape",
+          "radius": 0.02
+        },
+        "colorOverLifetime": {
+          "_$type": "ColorOverLifetime",
+          "enable": true,
+          "_color": {
+            "_$type": "GradientColor",
+            "_type": 1,
+            "_gradient": {
+              "_$type": "Gradient",
+              "_alphaElements": {
+                "_$type": "Float32Array",
+                "value": [
+                  0,
+                  0.8999999761581421,
+                  0.5,
+                  0.800000011920929,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "_colorAlphaKeysCount": 3,
+              "_rgbElements": {
+                "_$type": "Float32Array",
+                "value": [
+                  0,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "_colorRGBKeysCount": 2
+            }
+          }
+        },
+        "sizeOverLifetime": {
+          "_$type": "SizeOverLifetime",
+          "enable": true,
+          "_size": {
+            "_$type": "GradientSize",
+            "_gradient": {
+              "_$type": "GradientDataNumber",
+              "_elements": {
+                "_$type": "Float32Array",
+                "value": [
+                  0,
+                  1,
+                  1,
+                  0.20000000298023224,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "_currentLength": 4
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "role": "elder",
+  "passed": true,
+  "checks": [
+    {
+      "frame": 1,
+      "feet": {
+        "L": {
+          "rigidVertexCount": 905,
+          "maxRigidResidual": 8.33000234328132e-09,
+          "maxScaleError": 8.344650268554688e-07,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": -2.3435859475284815e-08,
+          "requestedLift": 0
+        },
+        "R": {
+          "rigidVertexCount": 778,
+          "maxRigidResidual": 1.666000468656264e-08,
+          "maxScaleError": 1.6689300537109375e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 1.6880221664905548e-09,
+          "requestedLift": 0
+        }
+      }
+    },
+    {
+      "frame": 2,
+      "feet": {
+        "L": {
+          "rigidVertexCount": 905,
+          "maxRigidResidual": 1.0536712127723509e-08,
+          "maxScaleError": 7.152557373046875e-07,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 0.02200000360608101,
+          "requestedLift": 0.022
+        },
+        "R": {
+          "rigidVertexCount": 778,
+          "maxRigidResidual": 1.666000468656264e-08,
+          "maxScaleError": 1.430511474609375e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 1.1175870895385742e-08,
+          "requestedLift": 0
+        }
+      }
+    },
+    {
+      "frame": 3,
+      "feet": {
+        "L": {
+          "rigidVertexCount": 905,
+          "maxRigidResidual": 1.5359765386647212e-08,
+          "maxScaleError": 1.0728836059570312e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": -9.000359568744898e-09,
+          "requestedLift": 0
+        },
+        "R": {
+          "rigidVertexCount": 778,
+          "maxRigidResidual": 1.490298007224245e-08,
+          "maxScaleError": 1.6689300537109375e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 2.3283064365386963e-10,
+          "requestedLift": 0
+        }
+      }
+    },
+    {
+      "frame": 4,
+      "feet": {
+        "L": {
+          "rigidVertexCount": 905,
+          "maxRigidResidual": 8.33000234328132e-09,
+          "maxScaleError": 5.960464477539062e-07,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 0.0005942611023783684,
+          "requestedLift": 0
+        },
+        "R": {
+          "rigidVertexCount": 778,
+          "maxRigidResidual": 8.33000234328132e-09,
+          "maxScaleError": 1.6093254089355469e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 0.022000005468726158,
+          "requestedLift": 0.022
+        }
+      }
+    }
+  ],
+  "scope": "Saved four poses only; continuous visual gait review is also required.",
+  "inputs": [
+    {
+      "file": "elder_walk_probe.blend",
+      "sha256": "2e257752e1d936d0f18f8be05cbd5d0d338d931222960271ddddafd074be5520"
+    },
+    {
+      "file": "rig-profile.json",
+      "sha256": "cc2a7a3f594d9a779988b3684ae2f60714f9bb795b4877a9dca5705a99b20b52"
+    },
+    {
+      "file": "verify-character-feet.py",
+      "sha256": "66446fcb7d875a25e920245f55f1f698cbeb7988d673d7b58ef5868da11d5d48"
+    }
+  ]
+}

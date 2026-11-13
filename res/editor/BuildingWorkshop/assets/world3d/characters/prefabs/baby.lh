@@ -1,0 +1,178 @@
+{
+  "_$ver": 1,
+  "_$id": "pqsnonkd",
+  "_$type": "Sprite3D",
+  "name": "baby",
+  "_$comp": [
+    {
+      "_$type": "Animator",
+      "controllerLayers": [
+        {
+          "_$type": "AnimatorControllerLayer",
+          "name": "AnimatorLayer",
+          "states": [
+            {
+              "_$type": "AnimatorState",
+              "name": "idle",
+              "clipStart": 0,
+              "clip": {
+                "_$uuid": "d2aa8698-7b29-4ee3-ba49-1dce411ade1e@lani0",
+                "_$type": "AnimationClip"
+              },
+              "soloTransitions": []
+            }
+          ],
+          "defaultStateName": "idle"
+        }
+      ]
+    }
+  ],
+  "_$child": [
+    {
+      "_$id": "#7",
+      "_$type": "Sprite3D",
+      "name": "baby",
+      "_$child": [
+        {
+          "_$id": "#0",
+          "_$type": "Sprite3D",
+          "name": "FootOrigin"
+        },
+        {
+          "_$id": "#1",
+          "_$type": "Sprite3D",
+          "name": "HeadAnchor",
+          "transform": {
+            "localPosition": {
+              "_$type": "Vector3",
+              "y": 0.5120866894721985
+            }
+          }
+        },
+        {
+          "_$id": "#6",
+          "_$type": "Sprite3D",
+          "name": "Skeleton",
+          "_$child": [
+            {
+              "_$id": "#5",
+              "_$type": "Sprite3D",
+              "name": "Body",
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "d2aa8698-7b29-4ee3-ba49-1dce411ade1e@lm0",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "SkinnedMeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "d2aa8698-7b29-4ee3-ba49-1dce411ade1e@lmat0",
+                      "_$type": "Material"
+                    }
+                  ],
+                  "_bones": [
+                    {
+                      "_$ref": "#4"
+                    },
+                    {
+                      "_$ref": "#3"
+                    },
+                    {
+                      "_$ref": "#2"
+                    }
+                  ],
+                  "rootBone": {
+                    "_$ref": "#4"
+                  },
+                  "localBounds": {
+                    "_$type": "Bounds",
+                    "min": {
+                      "_$type": "Vector3",
+                      "x": -0.2180442214012146,
+                      "y": -0.00048312517032655933,
+                      "z": -0.21876573926670595
+                    },
+                    "max": {
+                      "_$type": "Vector3",
+                      "x": 0.21757160127162933,
+                      "y": 0.7204744488761463,
+                      "z": 0.21855307201402852
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "_$id": "#4",
+              "_$type": "Sprite3D",
+              "name": "Root",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "y": 0.12975206971168518,
+                  "z": 0.3353753983974457
+                },
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "x": -0.5735763996952563,
+                  "w": 0.819152069955651
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 1,
+                  "y": 0.9999999403953552,
+                  "z": 1
+                }
+              },
+              "_$child": [
+                {
+                  "_$id": "#3",
+                  "_$type": "Sprite3D",
+                  "name": "Breath",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.08640001714229584,
+                      "z": 7.450580596923828e-9
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "x": -7.450580596923828e-9
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "#2",
+                      "_$type": "Sprite3D",
+                      "name": "Head",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "y": 0.36000004410743713,
+                          "z": 1.862645149230957e-9
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": -1.4901161193847656e-8
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

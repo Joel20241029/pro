@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "effects": [
+    {
+      "id": "hit_arrow",
+      "bundle": "battle",
+      "color": "#ffe2a0",
+      "lifetime": 0.24,
+      "speed": 75,
+      "size": 6,
+      "count": 6,
+      "rate": 0,
+      "gravity": 4
+    },
+    {
+      "id": "hit_stone",
+      "bundle": "battle",
+      "color": "#bd9668",
+      "lifetime": 0.43,
+      "speed": 90,
+      "size": 8,
+      "count": 10,
+      "rate": 0,
+      "gravity": 16
+    },
+    {
+      "id": "hit_ice",
+      "bundle": "battle",
+      "color": "#afeaff",
+      "lifetime": 0.38,
+      "speed": 65,
+      "size": 7,
+      "count": 8,
+      "rate": 0,
+      "gravity": 0
+    },
+    {
+      "id": "hit_gate",
+      "bundle": "battle",
+      "color": "#d3a264",
+      "lifetime": 0.4,
+      "speed": 85,
+      "size": 7,
+      "count": 8,
+      "rate": 0,
+      "gravity": 12
+    },
+    {
+      "id": "elite_ring",
+      "bundle": "characters",
+      "color": "#ffe09a",
+      "lifetime": 0.6,
+      "speed": 0,
+      "size": 4,
+      "count": 0,
+      "rate": 20,
+      "gravity": 0
+    },
+    {
+      "id": "button_ready",
+      "bundle": "base",
+      "color": "#f04435",
+      "lifetime": 0.65,
+      "speed": 0,
+      "size": 7,
+      "count": 0,
+      "rate": 40,
+      "gravity": 0
+    }
+  ]
+}

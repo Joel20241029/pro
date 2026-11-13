@@ -1,0 +1,66 @@
+{
+  "role": "baby",
+  "status": "idle_candidate_not_integrated",
+  "reclineDegrees": -50,
+  "cameraAndLightsFixed": true,
+  "mirror": false,
+  "fps": 2,
+  "frames": [
+    {
+      "frame": 1,
+      "chestScale": 1,
+      "lowestWorldZ": -1.4901161193847656e-08,
+      "headLocalScale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "file": "baby_idle_1.png"
+    },
+    {
+      "frame": 2,
+      "chestScale": 1.01,
+      "lowestWorldZ": -0.0014942509587854147,
+      "headLocalScale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "file": "baby_idle_2.png"
+    },
+    {
+      "frame": 3,
+      "chestScale": 1,
+      "lowestWorldZ": -1.4901161193847656e-08,
+      "headLocalScale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "file": "baby_idle_3.png"
+    },
+    {
+      "frame": 4,
+      "chestScale": 0.994,
+      "lowestWorldZ": 0.0008965134038589895,
+      "headLocalScale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "file": "baby_idle_4.png"
+    }
+  ],
+  "runtime3d": false,
+  "walking": false,
+  "inputs": [
+    {
+      "file": "baby_inspect.blend",
+      "sha256": "670777e10decb7ff2e7545a98768a26a5b8a0278d4d51f3eea060ff11080285f"
+    },
+    {
+      "file": "render-baby-idle.py",
+      "sha256": "4cc5537c18a3faa97844f089075ba990d7b5a9166e4a1bfb1d6e451b06badf49"
+    }
+  ]
+}

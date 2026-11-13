@@ -1,0 +1,37 @@
+{
+  "role": "baby",
+  "sourceFile": "baby_q_raw.glb",
+  "vertices": 17813,
+  "triangles": 33890,
+  "dimensions": [
+    0.606016218662262,
+    0.630290687084198,
+    1.0
+  ],
+  "images": [
+    {
+      "name": "texture_diffuse",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "texture_metallic-texture_roughness",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "texture_normal",
+      "size": [
+        2048,
+        2048
+      ]
+    }
+  ],
+  "noDecimation": true,
+  "noTextureReduction": true,
+  "status": "geometry_and_identity_review_required"
+}

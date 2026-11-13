@@ -1,0 +1,50 @@
+{
+  "method": "actual Blender offline rendering",
+  "runtime3d": false,
+  "status": "isolated_environment_candidate_not_integrated",
+  "resolution": [
+    512,
+    512
+  ],
+  "files": [
+    {
+      "file": "campfire_base.blend",
+      "bytes": 1028550,
+      "sha256": "1f0e74e36e0a5442d0868df44f605f746f95a54f69a72c109538c82426469b6f"
+    },
+    {
+      "file": "campfire_base.png",
+      "bytes": 204854,
+      "sha256": "207fcd5c2e159d90bbab681232f345e8c4ed6aeb4a4a1e3fcfb98a179f1b1cff"
+    },
+    {
+      "file": "campfire_front.png",
+      "bytes": 164007,
+      "sha256": "54af6583d024b018d8994745350277707059b970152b882109ca9dc8c9163561"
+    },
+    {
+      "file": "fruit_apple.blend",
+      "bytes": 1462347,
+      "sha256": "06d23e479624d388d8a5da72678a6cf5a26df1c07cdad573b13dcdd2c0b445ba"
+    },
+    {
+      "file": "fruit_apple.png",
+      "bytes": 208339,
+      "sha256": "fb24cf02183ae58e60f36de6356c1d8c43ff2293c4e5dc9b2f24c1e9275e5610"
+    }
+  ],
+  "inputs": [
+    {
+      "file": "res/tools/hd2d/render-environment-props.py",
+      "sha256": "7a213f9fb7099bd181db48b0ed9bd2703f561212209ee2a3505eef7ca1b21db4"
+    },
+    {
+      "file": "res/tools/3d/build-environment.py",
+      "sha256": "dd5e6a5bfb5ca725562ee96df382b80f58ee896d4b88f3b06e307f849fac142e"
+    },
+    {
+      "file": "res/tools/3d/env_props.py",
+      "sha256": "d913db0e7e3a4a3ed886504a16f5dc81c841241afb164190b44bb8a021f91f63"
+    }
+  ]
+}

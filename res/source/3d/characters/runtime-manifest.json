@@ -1,0 +1,57 @@
+[
+  {
+    "id": "male",
+    "height": 1.804726,
+    "clips": [
+      "care",
+      "chop",
+      "farm",
+      "idle",
+      "walk"
+    ],
+    "file": "male.glb",
+    "bytes": 230528
+  },
+  {
+    "id": "female",
+    "height": 1.798501,
+    "clips": [
+      "care",
+      "chop",
+      "farm",
+      "idle",
+      "walk"
+    ],
+    "file": "female.glb",
+    "bytes": 226704
+  },
+  {
+    "id": "child",
+    "height": 1.239349,
+    "clips": [
+      "idle",
+      "walk"
+    ],
+    "file": "child.glb",
+    "bytes": 176848
+  },
+  {
+    "id": "elder",
+    "height": 1.623733,
+    "clips": [
+      "idle",
+      "walk"
+    ],
+    "file": "elder.glb",
+    "bytes": 196932
+  },
+  {
+    "id": "baby",
+    "height": 0.522537,
+    "clips": [
+      "idle"
+    ],
+    "file": "baby.glb",
+    "bytes": 137632
+  }
+]

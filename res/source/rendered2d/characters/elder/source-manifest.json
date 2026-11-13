@@ -1,0 +1,85 @@
+{
+  "status": "offline_candidate_not_integrated",
+  "method": "actual Blender offline rendering",
+  "model": "hyper3d-gen2-260112",
+  "trace_id": "20f2f3f95db7ba613d04bab943d4d3a9",
+  "reference": "reference.png",
+  "textureResolution": 2048,
+  "geometryDecimated": false,
+  "runtime3d": false,
+  "fps": 4,
+  "scriptInputs": [
+    {
+      "file": "res/tools/hd2d/inspect-character.py",
+      "sha256": "fed2f3307b0ef93239da2638c9fd81ef656274985c3f7877a0cb87d5b6bc645e"
+    },
+    {
+      "file": "res/tools/hd2d/bind-walk-character.py",
+      "sha256": "03aebe3f537eb1e184ab3f0a2546bab584f1da2f8021cd6a4528ebfed0636bd6"
+    },
+    {
+      "file": "res/tools/hd2d/character_weights.py",
+      "sha256": "674c0ded81ab19a3485b355478569358e5276d9de66c4981fc61675332cbfee9"
+    },
+    {
+      "file": "res/tools/hd2d/render-character-directions.py",
+      "sha256": "33b3877c6d3d5976ff349b06e3b1602f0123e010f94e1d07a3fd35ab8008cf78"
+    },
+    {
+      "file": "res/tools/hd2d/verify-character-feet.py",
+      "sha256": "66446fcb7d875a25e920245f55f1f698cbeb7988d673d7b58ef5868da11d5d48"
+    }
+  ],
+  "files": [
+    {
+      "file": "direction-report.json",
+      "bytes": 5617,
+      "sha256": "6a535f4154cfa8a28290b1527e1daa7a45cca1f596568b91a8da47103e77854d"
+    },
+    {
+      "file": "elder_direction_probe.blend",
+      "bytes": 12932432,
+      "sha256": "2e4590cb9587335be8e6718b8cea03f7ca13031d0e6cc4d9895abe6f85b35ff6"
+    },
+    {
+      "file": "elder_inspect.blend",
+      "bytes": 11875427,
+      "sha256": "482079bdfbb47a126e93822cd296791489e9c3d4b8c89f5ef0735e8aaed9fdfc"
+    },
+    {
+      "file": "elder_q_raw.glb",
+      "bytes": 9015052,
+      "sha256": "284b7e8790f2cbee5cdb47a3aa85f222c5e5301002ac13bf5cf0349a02ae40c8"
+    },
+    {
+      "file": "elder_walk_probe.blend",
+      "bytes": 12931112,
+      "sha256": "2e257752e1d936d0f18f8be05cbd5d0d338d931222960271ddddafd074be5520"
+    },
+    {
+      "file": "foot-validation.json",
+      "bytes": 3059,
+      "sha256": "7b8f05f256f1450816a1b466f981ded0006e2642b97c1b4e34a5ea6ed61a225a"
+    },
+    {
+      "file": "model-inspection.json",
+      "bytes": 613,
+      "sha256": "5a9c00df9bd1a95fb43efd55dd92ac0683b8c0af5a47fa364f3f5a5f1ee0a07e"
+    },
+    {
+      "file": "reference.png",
+      "bytes": 698433,
+      "sha256": "845729949a1d6741aa52ac68d6cf70b67c1ae369eeef7b7b368d95bbb1446d03"
+    },
+    {
+      "file": "rig-profile.json",
+      "bytes": 4443,
+      "sha256": "cc2a7a3f594d9a779988b3684ae2f60714f9bb795b4877a9dca5705a99b20b52"
+    },
+    {
+      "file": "walk-probe.json",
+      "bytes": 10248,
+      "sha256": "5bd17bace3ff3133defae6bd6a0068a56fec4326f0a4cee4de14c6aff635bc61"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "_$ver": 1,
+  "_$id": "70oknyia",
+  "_$type": "Sprite",
+  "name": "ARROW",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "f2hzf7ee",
+      "_$type": "Sprite",
+      "name": "Body",
+      "x": 3,
+      "y": 20,
+      "width": 122,
+      "height": 103,
+      "texture": {
+        "_$uuid": "c21ac691-8e20-4164-8362-17e903111c5e",
+        "_$type": "Texture"
+      }
+    },
+    {
+      "_$id": "8n8jni9c",
+      "_$type": "Sprite",
+      "name": "Weapon",
+      "x": 64,
+      "y": 52,
+      "width": 73,
+      "height": 60,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "texture": {
+        "_$uuid": "eb876b15-9735-4c14-b800-7b1177a66ed0",
+        "_$type": "Texture"
+      },
+      "_$comp": [
+        {
+          "_$type": "AnimatorClip2D",
+          "clip": {
+            "_$uuid": "be47e694-7aea-42df-b25a-86f7bd2c490b",
+            "_$type": "AnimationClip2D"
+          },
+          "autoPlay": false
+        }
+      ]
+    },
+    {
+      "_$id": "ol6744n4",
+      "_$type": "Sprite",
+      "name": "FrontRail",
+      "x": 22,
+      "y": 36,
+      "width": 84,
+      "height": 35,
+      "texture": {
+        "_$uuid": "62fc8f5f-2c42-4a44-a2c8-b78cb6778a1e",
+        "_$type": "Texture"
+      }
+    },
+    {
+      "_$id": "w2c9gyvp",
+      "_$type": "Sprite",
+      "name": "Footprint",
+      "x": 22,
+      "y": 95,
+      "width": 84,
+      "height": 24,
+      "visible": false
+    },
+    {
+      "_$id": "jk6hmjvd",
+      "_$type": "Sprite",
+      "name": "VisualBounds",
+      "x": 2,
+      "y": -12,
+      "width": 124,
+      "height": 136,
+      "visible": false
+    },
+    {
+      "_$id": "n9ml3efv",
+      "_$type": "Sprite",
+      "name": "SortOrigin",
+      "x": 64,
+      "y": 116,
+      "width": 0,
+      "height": 0,
+      "visible": false
+    },
+    {
+      "_$id": "id1k0hc2",
+      "_$type": "Sprite",
+      "name": "Muzzle",
+      "x": 64,
+      "y": 14,
+      "width": 0,
+      "height": 0,
+      "visible": false
+    }
+  ]
+}

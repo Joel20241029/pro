@@ -1,0 +1,506 @@
+{
+  "status": "probe_not_game_runtime",
+  "sampling": "smooth",
+  "assets": [
+    {
+      "id": "arrow_body",
+      "source": "parts/arrow_parts.png",
+      "crop": [
+        0,
+        41,
+        822,
+        694
+      ],
+      "width": 606,
+      "height": 512,
+      "bytes": 420889,
+      "sha256": "db81e85dc1dae9294b3e8fe24cae2cced0610c10cf4cecf40a850d1c9d6856d0"
+    },
+    {
+      "id": "arrow_front",
+      "source": "parts/arrow_parts.png",
+      "crop": [
+        824,
+        280,
+        563,
+        231
+      ],
+      "width": 424,
+      "height": 174,
+      "bytes": 84830,
+      "sha256": "28ce343561ee466603a71cd68c9a0ab626a8f9b2e8e2ae242918b3275259a9c0"
+    },
+    {
+      "id": "arrow_weapon",
+      "source": "parts/arrow_parts.png",
+      "crop": [
+        1511,
+        173,
+        486,
+        396
+      ],
+      "width": 368,
+      "height": 300,
+      "bytes": 128347,
+      "sha256": "47d44809db690c515a4ac8fd269f3ce312ebfcde9830cf4868ecc94d0c97ec32"
+    },
+    {
+      "id": "stone_body",
+      "source": "parts/stone_parts.png",
+      "crop": [
+        58,
+        15,
+        676,
+        671
+      ],
+      "width": 516,
+      "height": 512,
+      "bytes": 337874,
+      "sha256": "4cc42a83284904340b03951928423c32c37523717e23553f38697e68b105f1b7"
+    },
+    {
+      "id": "stone_loaded",
+      "source": "parts/stone_parts.png",
+      "crop": [
+        851,
+        230,
+        479,
+        295
+      ],
+      "width": 390,
+      "height": 240,
+      "bytes": 85694,
+      "sha256": "8308baf6001595a9fe742976e9cad6ea96743dad18872116082fb997ca5c4876"
+    },
+    {
+      "id": "frost_body",
+      "source": "parts/frost_parts.png",
+      "crop": [
+        131,
+        23,
+        771,
+        832
+      ],
+      "width": 474,
+      "height": 512,
+      "bytes": 346925,
+      "sha256": "25c9edb9c7fe4b47e1e925f7ec29ab16a09232ffa838e1974b6dd77acae6b6a6"
+    },
+    {
+      "id": "frost_core",
+      "source": "parts/frost_parts.png",
+      "crop": [
+        1158,
+        229,
+        358,
+        425
+      ],
+      "width": 216,
+      "height": 256,
+      "bytes": 64147,
+      "sha256": "74c2248c2025b9d639e8c4ded65ad0da8882b2c3c9b463615ef5bb2f311400cf"
+    },
+    {
+      "id": "grass",
+      "source": "samples/grass_ground_v2.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 196397,
+      "sha256": "6f7a50542f03089edb284b2278785289b6fba4c84231d22104c7de148a67027e"
+    },
+    {
+      "id": "button",
+      "source": "samples/button_green_v2.png",
+      "crop": [
+        47,
+        204,
+        2079,
+        314
+      ],
+      "width": 636,
+      "height": 96,
+      "bytes": 57087,
+      "sha256": "aa20b8689266d0a1043c0dc7a46317313895cdd0e65ee97a75fc005a5eca87e1"
+    },
+    {
+      "id": "raider_0",
+      "source": "motion/raider_front_walk.png",
+      "crop": [
+        197,
+        65,
+        528,
+        770
+      ],
+      "width": 176,
+      "height": 256,
+      "bytes": 66501,
+      "sha256": "4eb2d0011c1a71d3b999fc7270ae934b9c9875dc8a3a61a1a576c19cff14ebe6"
+    },
+    {
+      "id": "raider_1",
+      "source": "motion/raider_front_walk.png",
+      "crop": [
+        1084,
+        65,
+        528,
+        770
+      ],
+      "width": 176,
+      "height": 256,
+      "bytes": 65093,
+      "sha256": "169b9712fc7f6e0fb696b91949525ff55b8da10f24a44b146f411bf664e1d097"
+    },
+    {
+      "id": "male_walk_1",
+      "source": "directions/male/male_down_1.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 50398,
+      "sha256": "4dba78c0ed5a21ab8c94c3d8bfee0c5726a251b2e0a0a01c80c9075f42920ad0"
+    },
+    {
+      "id": "male_walk_2",
+      "source": "directions/male/male_down_2.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 50208,
+      "sha256": "e8044d4db8a422b7760dbb71c916a35ec1b1c96f154e0b7605f52dbb99cdb0b4"
+    },
+    {
+      "id": "male_walk_3",
+      "source": "directions/male/male_down_3.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 50703,
+      "sha256": "97d4fd88021a2b275e8b0d662196894ad19e3b25575ed5332ea1b65443acccb3"
+    },
+    {
+      "id": "male_walk_4",
+      "source": "directions/male/male_down_4.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 50034,
+      "sha256": "41451a777ce52d03630482194d418c38a7a088a79714edb52c0d99d08df51dcb"
+    },
+    {
+      "id": "road_sprite",
+      "source": "parts/road_sprite.png",
+      "width": 737,
+      "height": 1065,
+      "bytes": 176443,
+      "sha256": "e03d0cf6d1bd7d8a4e6b065d8be81d54a0fc1053f834d3500dad8d0f4519a590"
+    },
+    {
+      "id": "female_walk_1",
+      "source": "directions/female/female_down_1.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 43253,
+      "sha256": "bf5ff368513c993b8d55304aaa7ae4da1370fe29abd5e08ad8facfd000643a2c"
+    },
+    {
+      "id": "female_walk_2",
+      "source": "directions/female/female_down_2.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 42995,
+      "sha256": "41ef5d0cb403525cfed2b509113e9e6d679a6bfa674319f86d2025b06db1b025"
+    },
+    {
+      "id": "female_walk_3",
+      "source": "directions/female/female_down_3.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 43564,
+      "sha256": "3cffd4b5c1e5df2ecf57df542086764ba7c064193cb313d34c7538bc8bdd4e5e"
+    },
+    {
+      "id": "female_walk_4",
+      "source": "directions/female/female_down_4.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 43047,
+      "sha256": "e339480438d405fd2d3d240e02ef20e5d17a287aea2495d02fe4bb2ae65da3d9"
+    },
+    {
+      "id": "child_walk_1",
+      "source": "directions/child/child_down_1.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 47193,
+      "sha256": "460cbbb5bda11dd1a8c20b2c5dc6a768c07ebecdfff2855983cd0b2fa6e389d3"
+    },
+    {
+      "id": "child_walk_2",
+      "source": "directions/child/child_down_2.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 47124,
+      "sha256": "b36d5dd2ff3d5a247406e76eeef90f541742a84c149abb34435e3e4285924be2"
+    },
+    {
+      "id": "child_walk_3",
+      "source": "directions/child/child_down_3.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 47102,
+      "sha256": "b391699d3ecb9ab1289601585c4b63443dd8f0e499df0ba0dae0863aa9d16c2a"
+    },
+    {
+      "id": "child_walk_4",
+      "source": "directions/child/child_down_4.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 47106,
+      "sha256": "70eab2bd42814878c74df3eb89b64c292fcae7a9f7db114c7f7af6033b454c55"
+    },
+    {
+      "id": "elder_walk_1",
+      "source": "directions/elder/elder_down_1.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 48439,
+      "sha256": "9feb17cc011a6d63b129e81a6884532f60a6a4a217dce9eca6ec421e63e50779"
+    },
+    {
+      "id": "elder_walk_2",
+      "source": "directions/elder/elder_down_2.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 48239,
+      "sha256": "93db9fa2d4ce42c5147e12e0ca7562308a8976651a9948271c33871dafa10010"
+    },
+    {
+      "id": "elder_walk_3",
+      "source": "directions/elder/elder_down_3.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 48513,
+      "sha256": "33081830e9166c906c228702c05c7e03c60f5b3534e4951fbbea10c5bb96354e"
+    },
+    {
+      "id": "elder_walk_4",
+      "source": "directions/elder/elder_down_4.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 48378,
+      "sha256": "f6462c69c20d8144365268be2476b8f838b40ef79fad03e4954708c29a5708e3"
+    },
+    {
+      "id": "baby_idle_1",
+      "source": "directions/baby/baby_idle_1.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 40488,
+      "sha256": "93c3f5055c88a7af7e729a32f5e20116c0803360d8ab05baee7aee8a19522c90"
+    },
+    {
+      "id": "baby_idle_2",
+      "source": "directions/baby/baby_idle_2.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 40622,
+      "sha256": "56f9533399025996ff152100a524e11b9d24a83f6c2394e78ae1122c0df4a4fd"
+    },
+    {
+      "id": "baby_idle_3",
+      "source": "directions/baby/baby_idle_3.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 40488,
+      "sha256": "93c3f5055c88a7af7e729a32f5e20116c0803360d8ab05baee7aee8a19522c90"
+    },
+    {
+      "id": "baby_idle_4",
+      "source": "directions/baby/baby_idle_4.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 40372,
+      "sha256": "fa7a83bd623fc87cfb7605724e2fa17df2dbba0fd3568a3271df0a4a96e275c6"
+    },
+    {
+      "id": "env_oak",
+      "source": "environment/tree_oak_layers.png",
+      "crop": [
+        140,
+        60,
+        956,
+        824
+      ],
+      "width": 446,
+      "height": 384,
+      "bytes": 183234,
+      "sha256": "15eb96f6894d7028b18702ccd108f237faaa884699c0a021afa103ee52ef99fb"
+    },
+    {
+      "id": "env_pine",
+      "source": "environment/tree_pine_layers.png",
+      "crop": [
+        280,
+        53,
+        614,
+        850
+      ],
+      "width": 277,
+      "height": 384,
+      "bytes": 112735,
+      "sha256": "ebf0574e900923a7272aadb52f00333ca4287110f2a1a98942386a124a50fe16"
+    },
+    {
+      "id": "env_shadow",
+      "source": "environment/tree_oak_layers.png",
+      "crop": [
+        320,
+        1060,
+        690,
+        165
+      ],
+      "width": 268,
+      "height": 64,
+      "bytes": 21836,
+      "sha256": "744e56f920e5e7c3f531e28d33efb6862183ab99108e301284f712ac58347f09"
+    },
+    {
+      "id": "env_sign",
+      "source": "environment/sign.png",
+      "crop": [
+        70,
+        44,
+        1627,
+        808
+      ],
+      "width": 258,
+      "height": 128,
+      "bytes": 37968,
+      "sha256": "91fb6ac8e982cdcbaae9202a496936f80881c7c0cb8a2b21cb85b8963f6b9e22"
+    },
+    {
+      "id": "env_rocks",
+      "source": "environment/rock_cluster.png",
+      "crop": [
+        142,
+        178,
+        920,
+        923
+      ],
+      "width": 128,
+      "height": 128,
+      "bytes": 25092,
+      "sha256": "65c8c5c387dd10e7943902ac71dae415ac9014059cb602262ec4f132472de830"
+    },
+    {
+      "id": "env_flower",
+      "source": "environment/flower.png",
+      "crop": [
+        153,
+        102,
+        981,
+        956
+      ],
+      "width": 66,
+      "height": 64,
+      "bytes": 8086,
+      "sha256": "bdbb9a7c4cacd9e25196336ec7ed66f09ab0966ca915886efa6839c19a3bec62"
+    },
+    {
+      "id": "env_apple",
+      "source": "environment/fruit_apple.png",
+      "crop": [
+        96,
+        58,
+        320,
+        383
+      ],
+      "width": 53,
+      "height": 64,
+      "bytes": 5797,
+      "sha256": "a6ac9e0487255f12a2f6d079a0c8941defafec14f9e8ba88b0d0940afe663a44"
+    },
+    {
+      "id": "env_campfire",
+      "source": "environment/campfire_base.png",
+      "crop": [
+        54,
+        160,
+        408,
+        216
+      ],
+      "width": 363,
+      "height": 192,
+      "bytes": 77141,
+      "sha256": "7388dd155f59e275a8ae6bc8340def326c0d25fb04b01844156d553a25e58ce8"
+    },
+    {
+      "id": "env_campfire_front",
+      "source": "environment/campfire_front.png",
+      "crop": [
+        54,
+        160,
+        408,
+        216
+      ],
+      "width": 363,
+      "height": 192,
+      "bytes": 36403,
+      "sha256": "eb5de44bbcd40fcbf0d74e1aa10e1cb7bc6bad91f11d59eb00d0a1e2d089c5fe"
+    },
+    {
+      "id": "env_flame_1",
+      "source": "environment/campfire_flame_strip.png",
+      "crop": [
+        0,
+        88,
+        543,
+        448
+      ],
+      "width": 233,
+      "height": 192,
+      "bytes": 30000,
+      "sha256": "8a912d0c69d8729d1e24876e939c08ce06f0d4cf6c0e4bd02e9ae7f9bb7323cf"
+    },
+    {
+      "id": "env_flame_2",
+      "source": "environment/campfire_flame_strip.png",
+      "crop": [
+        543,
+        88,
+        543,
+        448
+      ],
+      "width": 233,
+      "height": 192,
+      "bytes": 32945,
+      "sha256": "e45defcafc9e5b96b5fd0eac09ccfecac9884996a082c90f85212b80f75869ef"
+    },
+    {
+      "id": "env_flame_3",
+      "source": "environment/campfire_flame_strip.png",
+      "crop": [
+        1086,
+        88,
+        543,
+        448
+      ],
+      "width": 233,
+      "height": 192,
+      "bytes": 29946,
+      "sha256": "d1f905eb501e186fe785c2289100713f1de84110f4395e3c032a867cbe5b51e8"
+    },
+    {
+      "id": "env_flame_4",
+      "source": "environment/campfire_flame_strip.png",
+      "crop": [
+        1629,
+        88,
+        543,
+        448
+      ],
+      "width": 233,
+      "height": 192,
+      "bytes": 26967,
+      "sha256": "afc47ce7f41dc05aa108faeea57f07cdf0018c45eccc74ed483a0cd162c365b1"
+    }
+  ],
+  "pngBytes": 3576643,
+  "decodedRgbaBytes": 17317220
+}

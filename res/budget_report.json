@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-12T10:36:15.569Z",
-  "runtimeAssetCount": 198,
+  "generatedAt": "2026-11-13T02:30:27.646Z",
+  "runtimeAssetCount": 264,
   "reserveAssetCount": 31,
-  "animationCount": 32,
-  "animationFrames": 108,
+  "animationCount": 37,
+  "animationFrames": 128,
   "categoryStats": {
     "buildings": {
       "count": 25,
@@ -48,9 +48,9 @@
       "reserve": 0
     },
     "enemies": {
-      "count": 20,
-      "bytes": 162846,
-      "runtime": 20,
+      "count": 80,
+      "bytes": 358808,
+      "runtime": 80,
       "reserve": 0
     },
     "building-parts": {
@@ -58,57 +58,104 @@
       "bytes": 268480,
       "runtime": 29,
       "reserve": 1
+    },
+    "enemy-parts": {
+      "count": 6,
+      "bytes": 11150,
+      "runtime": 6,
+      "reserve": 0
     }
   },
   "atlasPages": [
     {
-      "id": "world_0",
-      "path": "atlases/world_0.png",
-      "runtimeFile": "world_0.png",
+      "id": "base_0",
+      "path": "atlases/base_0.png",
+      "runtimeFile": "base_0.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1331715,
-      "sha256": "a9b5caa1c670534a54d0eb2857575b37e2dc395c7b4813fbcc5a11a1b2e1ead0",
-      "group": "world"
+      "bytes": 687488,
+      "sha256": "10ef7ab9215bd93c256f6bbf97d00f19d7a3f4edc67b888dff9e3b03eedd5b45",
+      "group": "base"
     },
     {
-      "id": "ui_0",
-      "path": "atlases/ui_0.png",
-      "runtimeFile": "ui_0.png",
+      "id": "characters_0",
+      "path": "atlases/characters_0.png",
+      "runtimeFile": "characters_0.png",
       "width": 512,
       "height": 512,
-      "bytes": 114881,
-      "sha256": "11d3f56539c9d5a42725b9853063b4b1cedacf6c1d843d16f4858c3fd61b3ca6",
-      "group": "ui"
+      "bytes": 290146,
+      "sha256": "22c4301b2e15198a7586e1be2f9886a768e8a7c24ca02ece219bfd8d8a8c386c",
+      "group": "characters"
+    },
+    {
+      "id": "characters_1",
+      "path": "atlases/characters_1.png",
+      "runtimeFile": "characters_1.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 293381,
+      "sha256": "4962ccc4630b590c0246f268402c29b4286a2c401e0c7845a1004035c327b547",
+      "group": "characters"
+    },
+    {
+      "id": "battle_0",
+      "path": "atlases/battle_0.png",
+      "runtimeFile": "battle_0.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 287577,
+      "sha256": "e10fbcfddb546dcc10d7cec3ff006731f7b793cfa4b22b7c826d107464d1400e",
+      "group": "battle"
+    },
+    {
+      "id": "battle_1",
+      "path": "atlases/battle_1.png",
+      "runtimeFile": "battle_1.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 234222,
+      "sha256": "e679e4aa888f40e2b093ce1f755d4c94e18737bcbf9debb10c1b06846f89f267",
+      "group": "battle"
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 1098272,
-    "atlasContentPixels": 937590,
-    "savedContentPixels": 160682,
-    "savedContentPercent": 14.63,
-    "trimmedAssetCount": 151,
+    "sourceCanvasPixels": 1610784,
+    "atlasContentPixels": 1247375,
+    "savedContentPixels": 363409,
+    "savedContentPercent": 22.56,
+    "trimmedAssetCount": 217,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "pngBytes": 1446596,
-    "metadataBytes": 222283,
+    "pngBytes": 1792814,
+    "metadataBytes": 227911,
     "audioBytes": 155953,
-    "totalBytes": 1824832,
+    "totalBytes": 2176678,
     "files": [
-      "atlases/world_0.png",
-      "atlases/ui_0.png",
-      "atlases/frames.json",
-      "animations.json",
-      "native/buildings.json",
-      "native/building_upgrade.mc",
-      "native/building_attack.mc",
-      "audio/village_loop.mp3",
-      "audio/battle_loop.mp3",
-      "audio/ui_click.mp3"
+      "bundles/base/frames.json",
+      "bundles/base/animations.json",
+      "bundles/base/base_0.png",
+      "bundles/base/buildings.json",
+      "bundles/base/building_upgrade.mc",
+      "bundles/base/building_attack.mc",
+      "bundles/base/village_loop.mp3",
+      "bundles/base/ui_click.mp3",
+      "bundles/base/particles.json",
+      "bundles/characters/frames.json",
+      "bundles/characters/animations.json",
+      "bundles/characters/characters_0.png",
+      "bundles/characters/characters_1.png",
+      "bundles/characters/particles.json",
+      "bundles/battle/frames.json",
+      "bundles/battle/animations.json",
+      "bundles/battle/battle_0.png",
+      "bundles/battle/battle_1.png",
+      "bundles/battle/enemies.json",
+      "bundles/battle/battle_loop.mp3",
+      "bundles/battle/particles.json"
     ]
   },
   "nineSliceCompaction": {
@@ -117,12 +164,16 @@
     "cornersPreserved": true
   },
   "budgets": {
-    "fullPackageTarget": 3500000
+    "mainPackage": 3000000,
+    "characters": 900000,
+    "battle": 1100000,
+    "fullPackageTarget": 5000000
   },
-  "sourceBytes": 46252637,
+  "sourceBytes": 49652112,
   "budgetComparison": {
-    "worldPngBytes": 1331715,
-    "uiAndEffectsPngBytes": 114881
+    "basePngBytes": 687488,
+    "charactersPngBytes": 583527,
+    "battlePngBytes": 521799
   },
   "limitations": [
     "Atlas content-pixel savings are not identical to PNG byte savings",

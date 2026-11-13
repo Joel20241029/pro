@@ -24,8 +24,16 @@ export class BuildingGameCheck {
         const { createGame, applyCommand } = load("game/VillageRules"), { gateCapacity } = load("game/Growth");
         const { BattleSimulation } = load("game/BattleSimulation");
         // 每次验收使用刚复制的白名单资源，防止编辑器进程复用上一轮图集/JSON缓存。
-        for (const name of resources) Laya.loader.clearRes(VILLAGE_RESOURCE_PACKAGE + "/" + name);
-        const art = new SpriteFrames(); await art.load();
+        const historical = architecture === "monolith" || architecture === "components";
+        for (const name of resources) Laya.loader.clearRes(historical ? VILLAGE_RESOURCE_PACKAGE + "/" + name : name);
+        const art = new SpriteFrames();
+        let preparation: any;
+        if (historical) await art.load();
+        else {
+            const { ResourcePreparation } = load("platform/ResourcePreparation");
+            preparation = new ResourcePreparation({ download: async () => true, decode: (bundle: string) => art.loadBundle(bundle) });
+            for (const bundle of ["base", "characters", "battle"]) if (!await preparation.ensure(bundle)) throw new Error(preparation.states[bundle].error);
+        }
         // 节点路径/顺序及可见属性的快照只供重构对照，不采集引擎分配的实例 ID。
         const snapshot = (node: Laya.Sprite): object => {
             const fields = ["name", "x", "y", "width", "height", "pivotX", "pivotY", "scaleX", "scaleY", "rotation", "alpha", "visible", "zIndex", "stackingRoot", "mouseEnabled", "mouseThrough"] as const;
@@ -48,7 +56,7 @@ export class BuildingGameCheck {
             // 只在内存夹具验证下排高阶塔的最长精英名，检查移动后与城门血条的间距。
             if (level === 12) for (const index of [2, 3]) { s.people[index].name = "四辈儿"; s.people[index].elite = true; }
             const platform = { window: { windowWidth: short ? 320 : 390, windowHeight: short ? 568 : 844, screenTop: 0, statusBarHeight: short ? 20 : 47, safeArea: { top: short ? 20 : 47, bottom: short ? 568 : 810 } }, menu: { top: short ? 24 : 51, bottom: short ? 56 : 83, width: 88, height: 32, left: short ? 222 : 292, right: short ? 310 : 380 } };
-            const view = new GameView(game, art, platform, () => {});
+            const view = new GameView(game, art, platform, () => {}, preparation);
             Laya.stage.addChild(view.root);
             try {
                 for (let i = 0; i < 360; i++) view.update(.05);

@@ -3,10 +3,14 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
+import { buildParticleLayouts } from './build-particle-layouts.mjs';
+import { buildEnemyLayouts } from './build-enemy-layouts.mjs';
+import { bundles, writeBundles } from './resource-bundles.mjs';
 import { buildBuildingLayouts } from './build-building-layouts.mjs';
 
 // 原始图片与可编辑配方为唯一输入；临时裁片只能放 Downloads。无额外 npm 依赖。
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+// 2026-11-13 按用户决定恢复原二维制作链；该入口重新生成 v3 图集与序列帧契约。
 const args = process.argv.slice(2), workArg = args.indexOf('--work');
 if (workArg < 0 || !args[workArg + 1]) throw new Error('用法：node res/tools/build-resources.mjs --work <Downloads/本任务目录> [--sync]');
 const work = path.resolve(args[workArg + 1]);
@@ -24,6 +28,7 @@ let nineSliceOriginalPixels = 0, nineSliceCompactPixels = 0;
 let originalArea = 0, trimmedArea = 0, trimmedCount = 0;
 
 for (const a of recipe.assets) {
+    if (!bundles[a.bundle]) throw new Error('素材缺少资源包归属：' + a.id);
     if (typeof a.runtime !== 'boolean') throw new Error('素材必须明确标注是否进入运行图集：' + a.id);
     const out = path.join(root, a.path); fs.mkdirSync(path.dirname(out), { recursive: true });
     const crop = a.sourceCropWithinCell;
@@ -59,7 +64,24 @@ for (const a of recipe.assets) {
     }
     // 部件导入源与运行裁片来自同一配方，防止编辑器看到的图和微信运行图不一致。
     if (a.category === 'building-parts' && a.runtime) fs.copyFileSync(out, path.join(root, 'editor/BuildingWorkshop/assets/buildingAuthoring/textures', a.id + '.png'));
+    if (a.alphaCutoff || a.tintLayer) {
+        const rgba = decode(out);
+        for (let i = 0; i < rgba.length; i += 4) {
+            if (a.alphaCutoff && rgba[i + 3] < a.alphaCutoff) { rgba.fill(0, i, i + 4); continue; }
+            if (!a.tintLayer || !rgba[i + 3]) continue;
+            const [r, g, b] = [rgba[i], rgba[i + 1], rgba[i + 2]], max = Math.max(r, g, b), min = Math.min(r, g, b);
+            // 只拆中间调的中性毛色/布甲；深描边、亮牙齿、鲜明眼睛及粉色口鼻留在原色层。
+            const tintable = max >= 65 && max <= 210 && ((max - min) / max < .25 || (r > g && g >= b && r / Math.max(1, g) < 1.5 && g / Math.max(1, b) < 1.55));
+            if ((a.tintLayer === 'body') !== tintable) { rgba.fill(0, i, i + 4); continue; }
+            if (a.tintLayer === 'body') rgba[i] = rgba[i + 1] = rgba[i + 2] = Math.min(245, Math.round((r * .3 + g * .59 + b * .11) * 1.2));
+        }
+        execFileSync(magick, ['-size', `${a.width}x${a.height}`, '-depth', '8', 'rgba:-', '-strip', out], { input: rgba });
+    }
     const pixels = decode(out);
+    if ((a.category === 'enemies' || a.category === 'enemy-parts') && a.runtime) {
+        const editorTextures = path.join(root, 'editor/BuildingWorkshop/assets/enemyAuthoring/textures');
+        fs.mkdirSync(editorTextures, { recursive: true }); fs.copyFileSync(out, path.join(editorTextures, a.id + '.png'));
+    }
     if (pixels.length !== a.width * a.height * 4) throw new Error(`画布尺寸不符：${a.id}`);
     let left = a.width, top = a.height, right = -1, bottom = -1;
     for (let y = 0; y < a.height; y++) for (let x = 0; x < a.width; x++) {
@@ -97,8 +119,8 @@ function splitFree(free, used) {
 }
 const pages = [], frames = {}, padding = recipe.atlas.padding;
 fs.mkdirSync(path.join(root, 'atlases'), { recursive: true });
-for (const [group, size] of [['world', recipe.atlas.worldSize], ['ui', recipe.atlas.uiSize]]) {
-    const items = runtimeAssets.filter(a => (a.category.startsWith('ui/') || a.category === 'effects') === (group === 'ui'))
+for (const [group, { size }] of Object.entries(bundles)) {
+    const items = runtimeAssets.filter(a => a.bundle === group)
         .sort((a, b) => Math.max(b._trim.w, b._trim.h) - Math.max(a._trim.w, a._trim.h) || b._trim.w * b._trim.h - a._trim.w * a._trim.h || a.id.localeCompare(b.id));
     const groupPages = [];
     for (const a of items) {
@@ -111,7 +133,7 @@ for (const [group, size] of [['world', recipe.atlas.worldSize], ['ui', recipe.at
         const used = { x: best.f.x, y: best.f.y, w, h }; best.p.free = splitFree(best.p.free, used);
         const rect = { x: used.x + padding, y: used.y + padding, w: a._trim.w, h: a._trim.h };
         best.p.placements.push({ a, rect }); a.atlasPage = best.p.id; a.atlasRect = rect;
-        a.importedLayaAtlasPath = `assets/resources/village/${best.p.id}.png`; a.importedFrameId = a.id;
+        a.importedLayaAtlasPath = `assets/resources/${group}/${best.p.id}.png`; a.importedFrameId = a.id;
     }
     for (const p of groupPages) {
         for (let i = 0; i < p.placements.length; i++) {
@@ -164,9 +186,11 @@ const publicAssets = assets.map(({ _trim, _pixels, _packedFile, ...a }) => a);
 const audio = read('audio/manifest.json');
 for (const track of audio.tracks) if (hash(path.join(root, track.runtimeFile)) !== track.sha256) throw new Error('音频成品与源清单不一致，请重建：' + track.runtimeFile);
 const buildingFiles = buildBuildingLayouts(root);
-const runtimeFiles = [...pages.map(p => p.path), 'atlases/frames.json', 'animations.json', ...buildingFiles, ...audio.tracks.map(track => track.runtimeFile)];
-write('manifest.json', { version: 3, status: 'imported_in_wechat_prototype', preferredRuntimeMode: 'atlas_plus_audio', runtimeWhitelist: runtimeFiles, assetCount: assets.length, runtimeAssetCount: runtimeAssets.length, reserveAssetCount: reserveAssets.length, assets: publicAssets, audio,
-    externalAssets: recipe.externalAssets, engineImport: { directory: 'project/LayaProject/assets/resources/village', mode: 'trimmed_shared_atlas', runtime: 'WeChat Mini Game', verificationReport: 'doc/tech/06_视觉升级与资源管线.md' } });
+const enemyFile = buildEnemyLayouts(root);
+const bundleFiles = writeBundles(root, pages, frames, recipe.animations, buildingFiles, audio, enemyFile, buildParticleLayouts(root));
+const runtimeFiles = Object.values(bundleFiles).flat();
+write('manifest.json', { version: 3, status: 'imported_in_wechat_prototype', preferredRuntimeMode: 'atlas_plus_audio', runtimeWhitelist: runtimeFiles, bundles: bundleFiles, assetCount: assets.length, runtimeAssetCount: runtimeAssets.length, reserveAssetCount: reserveAssets.length, assets: publicAssets, audio,
+    externalAssets: recipe.externalAssets, engineImport: { directory: 'project/LayaProject/assets/resources', mode: 'trimmed_bundle_atlases', runtime: 'WeChat Mini Game', verificationReport: 'doc/tech/06_视觉升级与资源管线.md' } });
 const categoryStats = {}; for (const a of assets) { const c = categoryStats[a.category] ??= { count: 0, bytes: 0, runtime: 0, reserve: 0 }; c.count++; c.bytes += a.bytes; c[a.runtime ? 'runtime' : 'reserve']++; }
 const pngBytes = pages.reduce((sum, p) => sum + p.bytes, 0), metadataBytes = runtimeFiles.filter(p => p.endsWith('.json') || p.endsWith('.mc')).reduce((sum, p) => sum + fs.statSync(path.join(root, p)).size, 0);
 const packing = { sourceCanvasPixels: originalArea, atlasContentPixels: trimmedArea, savedContentPixels: originalArea - trimmedArea, savedContentPercent: +(100 * (originalArea - trimmedArea) / originalArea).toFixed(2), trimmedAssetCount: trimmedCount, alphaThreshold: 0, nineSlicePreserved: true, paddingPerSide: padding };
@@ -174,16 +198,25 @@ write('budget_report.json', { generatedAt: new Date().toISOString(), runtimeAsse
     animationFrames: recipe.animations.animations.reduce((s, a) => s + a.frameCount, 0), categoryStats, atlasPages: pages, packing,
     selectedRuntime: { mode: 'atlas_plus_audio', pngBytes, metadataBytes, audioBytes: audio.bytes, totalBytes: pngBytes + metadataBytes + audio.bytes, files: runtimeFiles },
     nineSliceCompaction: { originalPixels: nineSliceOriginalPixels, compactPixels: nineSliceCompactPixels, cornersPreserved: true },
-    budgets: { fullPackageTarget: 3500000 }, sourceBytes: read('source/generation_records.json').records.reduce((sum, r) => sum + r.bytes, 0),
-    budgetComparison: { worldPngBytes: pages.filter(p => p.group === 'world').reduce((s, p) => s + p.bytes, 0), uiAndEffectsPngBytes: pages.filter(p => p.group === 'ui').reduce((s, p) => s + p.bytes, 0) },
+    budgets: { mainPackage: 3000000, characters: 900000, battle: 1100000, fullPackageTarget: 5000000 }, sourceBytes: read('source/generation_records.json').records.reduce((sum, r) => sum + r.bytes, 0),
+    budgetComparison: Object.fromEntries(['base', 'characters', 'battle'].map(bundle => [bundle + 'PngBytes', pages.filter(p => p.group === bundle).reduce((sum, page) => sum + page.bytes, 0)])),
     limitations: ['Atlas content-pixel savings are not identical to PNG byte savings', 'No real phone or platform upload measurement'] });
 if (Object.keys(frames).length !== runtimeAssets.length || reserveAssets.some(a => frames[a.id])) throw new Error('运行与备用素材边界不一致');
 write('validation_report.json', { date: new Date().toISOString(), status: 'passed', checks: { pngCount: assets.length, runtimeCount: runtimeAssets.length, reserveCount: reserveAssets.length, animationGroups: recipe.animations.animations.length, atlasPages: pages.length, runtimeReferencesComplete: true, reserveAssetsExcluded: true, atlasRectsAndPaddingNonOverlapping: true, exactTransparentTrimOnly: true, sourceCanvasAndPivotsMatch: true, atlasPixelsMatchSourceCrop: true, croppedAwayPixelsAllTransparent: true, directionReferencesValid: true, nineSliceCanvasPreserved: true, nineSliceCornersPreserved: true }, packing, errors: [] });
 
 // 完整画布预览与方向切换页，不进入微信包。
 for (const dir of ['preview/animations', 'preview/strips']) fs.mkdirSync(path.join(root, dir), { recursive: true });
+const previewFrames = new Map();
 for (const clip of recipe.animations.animations) {
-    const inputs = clip.frameIds.map(id => path.join(root, assets.find(a => a.id === id).path));
+    const inputs = clip.frameIds.map(id => {
+        const frame = assets.find(a => a.id === id), detail = path.join(root, frame.path);
+        if (frame.tintLayer !== 'detail') return detail;
+        // 预览必须合成身体与细节，不能把单独的原色细节层误当作完整角色。
+        const body = assets.find(a => a.id === id + '_tint'), file = `preview/enemies/frames/${id}.png`;
+        fs.mkdirSync(path.dirname(path.join(root, file)), { recursive: true });
+        run([path.join(root, body.path), detail, '-compose', 'over', '-composite', '-strip', path.join(root, file)]);
+        previewFrames.set(id, file); return path.join(root, file);
+    });
     run([...inputs, '+append', '-filter', 'point', '-resize', '200%', '-background', '#e6e1d2', '-alpha', 'remove', '-strip', path.join(root, `preview/strips/${clip.id}.png`)]);
     run(['-delay', String(Math.round(100 / clip.fps)), ...inputs, '-loop', '0', '-dispose', 'background', '-strip', path.join(root, `preview/animations/${clip.id}.gif`)]);
 }
@@ -191,7 +224,7 @@ for (const [name, list] of [['static_contact', runtimeAssets.filter(a => !a.anim
     run(['montage', ...list.map(a => path.join(root, a.path)), '-background', '#e6e1d2', '-tile', '8x', '-geometry', '128x128+8+8', '-strip', path.join(root, `preview/${name}.png`)]);
 }
 run(['montage', ...recipe.animations.animations.map(a => path.join(root, `preview/strips/${a.id}.png`)), '-background', '#e6e1d2', '-tile', '2x', '-geometry', '480x120+8+8', '-strip', path.join(root, 'preview/characters_contact.png')]);
-const clips = recipe.animations.animations.map(c => ({ ...c, urls: c.frameIds.map(id => '../' + assets.find(a => a.id === id).path) }));
+const clips = recipe.animations.animations.map(c => ({ ...c, urls: c.frameIds.map(id => '../' + (previewFrames.get(id) || assets.find(a => a.id === id).path)) }));
 const nineSlicePreview = '<h2>九宫格实际拉伸预览</h2><section>' + assets.filter(a => a.nineSlice).map(a => {
     const g = a.nineSlice, height = a.id === 'panel_parchment' ? 220 : 90;
     return `<article><strong>${a.id} · ${a.width}×${a.height}</strong><div style="box-sizing:border-box;width:280px;height:${height}px;border:solid transparent;border-width:${g.top}px ${g.right}px ${g.bottom}px ${g.left}px;border-image-source:url(../${a.path});border-image-slice:${g.top} ${g.right} ${g.bottom} ${g.left} fill;border-image-repeat:stretch"></div></article>`;
@@ -200,9 +233,11 @@ const html = `<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name
 fs.writeFileSync(path.join(root, 'preview/index.html'), html.replace('<h2>静态资源</h2>', `<h2>运行静态资源 · ${runtimeAssets.filter(a => !a.animation).length} 张</h2>`).replace('<script>const clips=', `<h2>备用源素材 · ${reserveAssets.length} 张，不进入微信包</h2><img class="contact" src="reserve_contact.png"><script>const clips=`));
 
 if (args.includes('--sync')) {
-    const dest = path.resolve(root, '../project/LayaProject/assets/resources/village'); fs.mkdirSync(dest, { recursive: true });
-    const allowed = new Set(runtimeFiles.map(p => path.basename(p)));
-    for (const name of fs.readdirSync(dest)) if (!name.endsWith('.meta') && !allowed.has(name)) throw new Error('发现非本轮运行白名单文件，请人工核对：' + name);
-    for (const name of runtimeFiles) fs.copyFileSync(path.join(root, name), path.join(dest, path.basename(name)));
+    for (const [bundle, files] of Object.entries(bundleFiles)) {
+        const dest = path.resolve(root, '../project/LayaProject/assets/resources', bundle); fs.mkdirSync(dest, { recursive: true });
+        const allowed = new Set(files.map(p => path.basename(p)));
+        for (const name of fs.readdirSync(dest)) if (!name.endsWith('.meta') && !allowed.has(name)) throw new Error('发现非本轮运行白名单文件，请人工核对：' + name);
+        for (const name of files) fs.copyFileSync(path.join(root, name), path.join(dest, path.basename(name)));
+    }
 }
 console.log(JSON.stringify({ assets: assets.length, runtimeAssets: runtimeAssets.length, reserveAssets: reserveAssets.length, clips: clips.length, pages: pages.length, runtimeBytes: pngBytes + metadataBytes + audio.bytes, packing, sync: args.includes('--sync') }));

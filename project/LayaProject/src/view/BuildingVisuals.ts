@@ -13,6 +13,7 @@ export class BuildingVisuals {
     private body: Laya.Sprite | null = null; private muzzle: Laya.Sprite | null = null;
     private upgrades: Laya.AnimatorClip2D[] = []; private attack: Laya.AnimatorClip2D | null = null;
     private above: Laya.Sprite | null = null; private aboveSort: GroundPoint | null = null;
+    private upgradePending = false;
     private elapsed = 0; private upgrading = false;
     private battle: BattleSimulation | null = null; private latestShot: Shot | null = null;
     private cachedBodyRegion: TipTarget | null = null;
@@ -42,7 +43,7 @@ export class BuildingVisuals {
     }
     sync(kind: BuildingLook | null, level: number, freshVillage: boolean, rooms = 1, damaged = false) {
         const key = `${kind}:${level}:${rooms}:${damaged}`;
-        if (freshVillage) { this.upgrading = false; this.upgrades.forEach(a => a.gotoAndStop(1)); this.latestShot = null; this.attack?.gotoAndStop(1); }
+        if (freshVillage) { this.upgradePending = false; this.upgrading = false; this.upgrades.forEach(a => a.gotoAndStop(1)); this.latestShot = null; this.attack?.gotoAndStop(1); }
         if (key === this.key) return;
         const animate = !freshVillage && kind && this.level > 0 && (level > this.level || rooms > this.rooms);
         this.key = key; this.level = level; this.rooms = rooms;
@@ -76,7 +77,12 @@ export class BuildingVisuals {
             this.badge.size(64 * scale, 24 * scale).pivot(32 * scale, 0).pos(64 * scale, 93 * scale);
             this.badge.scaleX = this.owner.scaleX;
         }
-        if (animate) { this.elapsed = 0; this.upgrading = true; this.upgrades.forEach(a => a.gotoAndStop(0)); }
+        if (animate) this.upgradePending = true;
+    }
+    /** 面板关闭后开始已有建筑升级动作；同栋连续升级只消费一次。 */
+    beginVisibleUpgrade(): boolean {
+        if (!this.upgradePending) return false;
+        this.upgradePending = false; this.elapsed = 0; this.upgrading = true; this.upgrades.forEach(a => a.gotoAndStop(0)); return true;
     }
     advance(delta: number) {
         if (!this.upgrading) return;

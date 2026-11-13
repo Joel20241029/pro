@@ -1,0 +1,587 @@
+{
+  "version": 1,
+  "date": "2026-11-13",
+  "generator": [
+    "res/tools/3d/prepare-enemies.py",
+    "res/tools/3d/enemy_rig.py"
+  ],
+  "axis": {
+    "editableUp": "+Z",
+    "editableForward": "-Y",
+    "gltfUp": "+Y",
+    "gltfForward": "+Z"
+  },
+  "totalBytes": 2203848,
+  "assets": [
+    {
+      "id": "enemy_armored",
+      "height": 1.7119778618216515,
+      "authoredHeight": 1.7,
+      "headWidth": 0.6410887837409973,
+      "sockets": {
+        "HeadAnchor": {
+          "bone": "Head",
+          "blenderRestPosition": [
+            0.0,
+            0.0003430396318435669,
+            1.7408779859542847
+          ],
+          "gltfRestPosition": [
+            0.0,
+            1.7408779859542847,
+            -0.0003430396318435669
+          ]
+        },
+        "BackAnchor": {
+          "bone": "Spine",
+          "blenderRestPosition": [
+            0.0,
+            0.17520771920681,
+            0.9605000019073486
+          ],
+          "gltfRestPosition": [
+            0.0,
+            0.9605000019073486,
+            -0.17520771920681
+          ]
+        }
+      },
+      "shoulderHeight": 1.02,
+      "skeletonFamily": "humanoid",
+      "triangles": 2600,
+      "vertices": 2085,
+      "bones": 16,
+      "actions": [
+        "idle",
+        "walk"
+      ],
+      "texture": [
+        512,
+        512
+      ],
+      "textureFormat": "JPEG",
+      "jpegQuality": 90,
+      "material": "Surface",
+      "unlit": true,
+      "outputBytes": 182524,
+      "runtime": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_armored.glb",
+      "editable": "res/source/3d/enemies/enemy_armored.blend",
+      "sha256": "ba2d711e46195d1aae99bd44f12c17ed5f616f6b4e4f196a58968f6759ae6d16",
+      "framesReviewed": 62,
+      "validation": "reimported_runtime_glb_all_frames"
+    },
+    {
+      "id": "enemy_boar",
+      "height": 1.5788321029394865,
+      "authoredHeight": 1.55,
+      "headWidth": 1.2085192203521729,
+      "sockets": {
+        "HeadAnchor": {
+          "bone": "Head",
+          "blenderRestPosition": [
+            0.0,
+            -0.6854982972145081,
+            1.6051818132400513
+          ],
+          "gltfRestPosition": [
+            0.0,
+            1.6051818132400513,
+            0.6854982972145081
+          ]
+        },
+        "BackAnchor": {
+          "bone": "Spine",
+          "blenderRestPosition": [
+            0.0,
+            0.17664200067520142,
+            1.558061122894287
+          ],
+          "gltfRestPosition": [
+            0.0,
+            1.558061122894287,
+            -0.17664200067520142
+          ]
+        }
+      },
+      "shoulderHeight": 1.0075,
+      "skeletonFamily": "quadruped",
+      "triangles": 2600,
+      "vertices": 2243,
+      "bones": 18,
+      "actions": [
+        "idle",
+        "walk"
+      ],
+      "texture": [
+        512,
+        512
+      ],
+      "textureFormat": "JPEG",
+      "jpegQuality": 90,
+      "material": "Surface",
+      "unlit": true,
+      "outputBytes": 192148,
+      "runtime": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_boar.glb",
+      "editable": "res/source/3d/enemies/enemy_boar.blend",
+      "sha256": "4fa0b59bd7099491255958db7e3d4fe9a2e180da1d06152dad4c21964d8b4e71",
+      "framesReviewed": 62,
+      "validation": "reimported_runtime_glb_all_frames"
+    },
+    {
+      "id": "enemy_chief",
+      "height": 2.246518149971962,
+      "authoredHeight": 2.25,
+      "headWidth": 1.2826611995697021,
+      "sockets": {
+        "HeadAnchor": {
+          "bone": "Head",
+          "blenderRestPosition": [
+            0.0,
+            0.0610642284154892,
+            2.2847678661346436
+          ],
+          "gltfRestPosition": [
+            0.0,
+            2.2847678661346436,
+            -0.0610642284154892
+          ]
+        },
+        "BackAnchor": {
+          "bone": "Spine",
+          "blenderRestPosition": [
+            0.0,
+            0.4957478940486908,
+            1.2937500476837158
+          ],
+          "gltfRestPosition": [
+            0.0,
+            1.2937500476837158,
+            -0.4957478940486908
+          ]
+        }
+      },
+      "shoulderHeight": 1.3725,
+      "skeletonFamily": "humanoid",
+      "triangles": 3500,
+      "vertices": 2786,
+      "bones": 16,
+      "actions": [
+        "idle",
+        "walk"
+      ],
+      "texture": [
+        512,
+        512
+      ],
+      "textureFormat": "JPEG",
+      "jpegQuality": 90,
+      "material": "Surface",
+      "unlit": true,
+      "outputBytes": 232460,
+      "runtime": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_chief.glb",
+      "editable": "res/source/3d/enemies/enemy_chief.blend",
+      "sha256": "d8a99afd09595656f929504354e767ddfe2fccba1a2b6e092c5b8c9672177d7b",
+      "framesReviewed": 62,
+      "validation": "reimported_runtime_glb_all_frames"
+    },
+    {
+      "id": "enemy_commander",
+      "height": 2.3003603350371122,
+      "authoredHeight": 2.3,
+      "headWidth": 0.8021997809410095,
+      "sockets": {
+        "HeadAnchor": {
+          "bone": "Head",
+          "blenderRestPosition": [
+            0.0,
+            0.08403952419757843,
+            2.3394601345062256
+          ],
+          "gltfRestPosition": [
+            0.0,
+            2.3394601345062256,
+            -0.08403952419757843
+          ]
+        },
+        "BackAnchor": {
+          "bone": "Spine",
+          "blenderRestPosition": [
+            0.0,
+            0.44216829538345337,
+            1.253499984741211
+          ],
+          "gltfRestPosition": [
+            0.0,
+            1.253499984741211,
+            -0.44216829538345337
+          ]
+        }
+      },
+      "shoulderHeight": 1.3339999999999999,
+      "skeletonFamily": "humanoid",
+      "triangles": 3499,
+      "vertices": 3023,
+      "bones": 16,
+      "actions": [
+        "idle",
+        "walk"
+      ],
+      "texture": [
+        512,
+        512
+      ],
+      "textureFormat": "JPEG",
+      "jpegQuality": 90,
+      "material": "Surface",
+      "unlit": true,
+      "outputBytes": 241456,
+      "runtime": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_commander.glb",
+      "editable": "res/source/3d/enemies/enemy_commander.blend",
+      "sha256": "f344a6dde8c4aa222953495e01e09c1ac7cbd680409c854c58ee7fad8fbde3f1",
+      "framesReviewed": 62,
+      "validation": "reimported_runtime_glb_all_frames"
+    },
+    {
+      "id": "enemy_disruptor",
+      "height": 1.802187843248248,
+      "authoredHeight": 1.8,
+      "headWidth": 0.5432887077331543,
+      "sockets": {
+        "HeadAnchor": {
+          "bone": "Head",
+          "blenderRestPosition": [
+            0.0,
+            0.005664810538291931,
+            1.8327878713607788
+          ],
+          "gltfRestPosition": [
+            0.0,
+            1.8327878713607788,
+            -0.005664810538291931
+          ]
+        },
+        "BackAnchor": {
+          "bone": "Spine",
+          "blenderRestPosition": [
+            0.0,
+            0.17332468926906586,
+            1.1069999933242798
+          ],
+          "gltfRestPosition": [
+            0.0,
+            1.1069999933242798,
+            -0.17332468926906586
+          ]
+        }
+      },
+      "shoulderHeight": 1.1700000000000002,
+      "skeletonFamily": "humanoid",
+      "triangles": 2599,
+      "vertices": 2334,
+      "bones": 16,
+      "actions": [
+        "idle",
+        "walk"
+      ],
+      "texture": [
+        512,
+        512
+      ],
+      "textureFormat": "JPEG",
+      "jpegQuality": 90,
+      "material": "Surface",
+      "unlit": true,
+      "outputBytes": 200416,
+      "runtime": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_disruptor.glb",
+      "editable": "res/source/3d/enemies/enemy_disruptor.blend",
+      "sha256": "dfa82c3f33e1f08485fa0819deb40b8812c7266cbdf9980763d9fff67c575373",
+      "framesReviewed": 62,
+      "validation": "reimported_runtime_glb_all_frames"
+    },
+    {
+      "id": "enemy_raider",
+      "height": 1.653175831772387,
+      "authoredHeight": 1.65,
+      "headWidth": 0.8081808686256409,
+      "sockets": {
+        "HeadAnchor": {
+          "bone": "Head",
+          "blenderRestPosition": [
+            0.0,
+            -0.004257962107658386,
+            1.6812257766723633
+          ],
+          "gltfRestPosition": [
+            0.0,
+            1.6812257766723633,
+            0.004257962107658386
+          ]
+        },
+        "BackAnchor": {
+          "bone": "Spine",
+          "blenderRestPosition": [
+            0.0,
+            0.17458079755306244,
+            0.8992499709129333
+          ],
+          "gltfRestPosition": [
+            0.0,
+            0.8992499709129333,
+            -0.17458079755306244
+          ]
+        }
+      },
+      "shoulderHeight": 0.9569999999999999,
+      "skeletonFamily": "humanoid",
+      "triangles": 2599,
+      "vertices": 2313,
+      "bones": 16,
+      "actions": [
+        "idle",
+        "walk"
+      ],
+      "texture": [
+        512,
+        512
+      ],
+      "textureFormat": "JPEG",
+      "jpegQuality": 90,
+      "material": "Surface",
+      "unlit": true,
+      "outputBytes": 197864,
+      "runtime": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_raider.glb",
+      "editable": "res/source/3d/enemies/enemy_raider.blend",
+      "sha256": "41a7fbad93c5ecdb005d3e5f208f5e99eceba0fe7a19031b7555879d59329c08",
+      "framesReviewed": 62,
+      "validation": "reimported_runtime_glb_all_frames"
+    },
+    {
+      "id": "enemy_runner",
+      "height": 1.6522308615967631,
+      "authoredHeight": 1.65,
+      "headWidth": 0.7528591156005859,
+      "sockets": {
+        "HeadAnchor": {
+          "bone": "Head",
+          "blenderRestPosition": [
+            0.0,
+            -0.0001843869686126709,
+            1.6802806854248047
+          ],
+          "gltfRestPosition": [
+            0.0,
+            1.6802806854248047,
+            0.0001843869686126709
+          ]
+        },
+        "BackAnchor": {
+          "bone": "Spine",
+          "blenderRestPosition": [
+            0.0,
+            0.10040874779224396,
+            0.9487500190734863
+          ],
+          "gltfRestPosition": [
+            0.0,
+            0.9487500190734863,
+            -0.10040874779224396
+          ]
+        }
+      },
+      "shoulderHeight": 1.0065,
+      "skeletonFamily": "humanoid",
+      "triangles": 2600,
+      "vertices": 2333,
+      "bones": 16,
+      "actions": [
+        "idle",
+        "walk"
+      ],
+      "texture": [
+        512,
+        512
+      ],
+      "textureFormat": "JPEG",
+      "jpegQuality": 90,
+      "material": "Surface",
+      "unlit": true,
+      "outputBytes": 200024,
+      "runtime": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_runner.glb",
+      "editable": "res/source/3d/enemies/enemy_runner.blend",
+      "sha256": "39606b26093168ba29044da4287a6565186cd4ca42c5f0dde5c9a9e29b9da97d",
+      "framesReviewed": 62,
+      "validation": "reimported_runtime_glb_all_frames"
+    },
+    {
+      "id": "enemy_shaman",
+      "height": 2.2936457600444555,
+      "authoredHeight": 2.3,
+      "headWidth": 1.0285011529922485,
+      "sockets": {
+        "HeadAnchor": {
+          "bone": "Head",
+          "blenderRestPosition": [
+            0.0,
+            -0.009632334113121033,
+            2.332745313644409
+          ],
+          "gltfRestPosition": [
+            0.0,
+            2.332745313644409,
+            0.009632334113121033
+          ]
+        },
+        "BackAnchor": {
+          "bone": "Spine",
+          "blenderRestPosition": [
+            0.0,
+            0.4808731973171234,
+            1.3454999923706055
+          ],
+          "gltfRestPosition": [
+            0.0,
+            1.3454999923706055,
+            -0.4808731973171234
+          ]
+        }
+      },
+      "shoulderHeight": 1.426,
+      "skeletonFamily": "humanoid",
+      "triangles": 3500,
+      "vertices": 3271,
+      "bones": 16,
+      "actions": [
+        "idle",
+        "walk"
+      ],
+      "texture": [
+        512,
+        512
+      ],
+      "textureFormat": "JPEG",
+      "jpegQuality": 90,
+      "material": "Surface",
+      "unlit": true,
+      "outputBytes": 261260,
+      "runtime": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_shaman.glb",
+      "editable": "res/source/3d/enemies/enemy_shaman.blend",
+      "sha256": "9b357a2424d478f45f140a417e799a0fa65f0fed82d5b5c8aa4bc4d7aac793ee",
+      "framesReviewed": 62,
+      "validation": "reimported_runtime_glb_all_frames"
+    },
+    {
+      "id": "enemy_tuskking",
+      "height": 2.0955476658418775,
+      "authoredHeight": 2.1,
+      "headWidth": 1.5431462526321411,
+      "sockets": {
+        "HeadAnchor": {
+          "bone": "Head",
+          "blenderRestPosition": [
+            0.0,
+            -0.8680368661880493,
+            2.1312475204467773
+          ],
+          "gltfRestPosition": [
+            0.0,
+            2.1312475204467773,
+            0.8680368661880493
+          ]
+        },
+        "BackAnchor": {
+          "bone": "Spine",
+          "blenderRestPosition": [
+            0.0,
+            0.23148193955421448,
+            1.9419735670089722
+          ],
+          "gltfRestPosition": [
+            0.0,
+            1.9419735670089722,
+            -0.23148193955421448
+          ]
+        }
+      },
+      "shoulderHeight": 1.3650000000000002,
+      "skeletonFamily": "quadruped",
+      "triangles": 3500,
+      "vertices": 3288,
+      "bones": 18,
+      "actions": [
+        "idle",
+        "walk"
+      ],
+      "texture": [
+        512,
+        512
+      ],
+      "textureFormat": "JPEG",
+      "jpegQuality": 90,
+      "material": "Surface",
+      "unlit": true,
+      "outputBytes": 256184,
+      "runtime": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_tuskking.glb",
+      "editable": "res/source/3d/enemies/enemy_tuskking.blend",
+      "sha256": "6b1b874530ac9f237a47ae635483b88cfe427658544d5779c75fcc6a10b53bf4",
+      "framesReviewed": 62,
+      "validation": "reimported_runtime_glb_all_frames"
+    },
+    {
+      "id": "enemy_wolfking",
+      "height": 2.195406027138233,
+      "authoredHeight": 2.2,
+      "headWidth": 1.3829250931739807,
+      "sockets": {
+        "HeadAnchor": {
+          "bone": "Head",
+          "blenderRestPosition": [
+            0.0,
+            -0.976028561592102,
+            2.2328062057495117
+          ],
+          "gltfRestPosition": [
+            0.0,
+            2.2328062057495117,
+            0.976028561592102
+          ]
+        },
+        "BackAnchor": {
+          "bone": "Spine",
+          "blenderRestPosition": [
+            0.0,
+            0.2611662447452545,
+            1.7783159017562866
+          ],
+          "gltfRestPosition": [
+            0.0,
+            1.7783159017562866,
+            -0.2611662447452545
+          ]
+        }
+      },
+      "shoulderHeight": 1.1660000000000001,
+      "skeletonFamily": "quadruped",
+      "triangles": 3499,
+      "vertices": 2897,
+      "bones": 18,
+      "actions": [
+        "idle",
+        "walk"
+      ],
+      "texture": [
+        512,
+        512
+      ],
+      "textureFormat": "JPEG",
+      "jpegQuality": 90,
+      "material": "Surface",
+      "unlit": true,
+      "outputBytes": 239512,
+      "runtime": "res/editor/BuildingWorkshop/assets/world3d/enemies/enemy_wolfking.glb",
+      "editable": "res/source/3d/enemies/enemy_wolfking.blend",
+      "sha256": "6db6441c48b3e7a47ea99a66375be2714189b4afe18152f80f94546170c2f59e",
+      "framesReviewed": 62,
+      "validation": "reimported_runtime_glb_all_frames"
+    }
+  ]
+}

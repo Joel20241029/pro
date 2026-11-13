@@ -1,0 +1,3762 @@
+{
+  "_$ver": 1,
+  "_$id": "o3o0pxds",
+  "_$type": "Sprite3D",
+  "name": "FARM",
+  "_$child": [
+    {
+      "_$id": "#118",
+      "_$type": "Sprite3D",
+      "name": "FARM",
+      "_$child": [
+        {
+          "_$id": "#19",
+          "_$type": "Sprite3D",
+          "name": "Level1",
+          "_$child": [
+            {
+              "_$id": "#0",
+              "_$type": "Sprite3D",
+              "name": "AboveGround"
+            },
+            {
+              "_$id": "#1",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#2",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#16",
+              "_$type": "Sprite3D",
+              "name": "Ground",
+              "_$child": [
+                {
+                  "_$id": "#3",
+                  "_$type": "Sprite3D",
+                  "name": "SoilPatch.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.06000000238418579
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm0",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat0",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat1",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#4",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.30250000953674316,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#5",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.32500001788139343,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#6",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.3474999964237213,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#7",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.32500001788139343,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#8",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.005",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.3474999964237213,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#9",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.006",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.30250000953674316,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#10",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.007",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.3474999964237213,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#11",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.008",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.30250000953674316,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#12",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.009",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.32500001788139343,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#13",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.010",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.30250000953674316,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#14",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.011",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.32500001788139343,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#15",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.012",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.3474999964237213,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#17",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            },
+            {
+              "_$id": "#18",
+              "_$type": "Sprite3D",
+              "name": "WorkSocket",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "z": 0.8500000238418579
+                }
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "#58",
+          "_$type": "Sprite3D",
+          "name": "Level12",
+          "_$child": [
+            {
+              "_$id": "#27",
+              "_$type": "Sprite3D",
+              "name": "AboveGround",
+              "_$child": [
+                {
+                  "_$id": "#20",
+                  "_$type": "Sprite3D",
+                  "name": "IrrigationTrough.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.0299999713897705,
+                      "y": 0.11999999731779099,
+                      "z": -0.10000000149011612
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat4",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#21",
+                  "_$type": "Sprite3D",
+                  "name": "Water.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.0299999713897705,
+                      "y": 0.22499999403953552,
+                      "z": -0.10000000149011612
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#23",
+                  "_$type": "Sprite3D",
+                  "name": "Waterwheel",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.149999976158142,
+                      "y": 0.6700000166893005,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "z": -0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "#22",
+                      "_$type": "Sprite3D",
+                      "name": "WheelRigid.002",
+                      "transform": {
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "y": 0.7071066619772459,
+                          "w": 0.707106900395829
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm6",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat6",
+                              "_$type": "Material"
+                            },
+                            {
+                              "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat0",
+                              "_$type": "Material"
+                            },
+                            {
+                              "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat7",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#24",
+                  "_$type": "Sprite3D",
+                  "name": "WheelBase.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.1100000143051147,
+                      "y": 0.1899999976158142,
+                      "z": -0.41999998688697815
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm7",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat8",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#26",
+                  "_$type": "Sprite3D",
+                  "name": "WheelCanopy",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.149999976158142,
+                      "z": -0.41999998688697815
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "#25",
+                      "_$type": "Sprite3D",
+                      "name": "RoofPatch.001",
+                      "transform": {
+                        "localPosition": {
+                          "_$type": "Vector3",
+                          "y": 1.3650000095367432
+                        },
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "x": 0.5,
+                          "y": 0.5,
+                          "z": -0.5,
+                          "w": 0.5
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm8",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat9",
+                              "_$type": "Material"
+                            },
+                            {
+                              "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat10",
+                              "_$type": "Material"
+                            },
+                            {
+                              "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat7",
+                              "_$type": "Material"
+                            },
+                            {
+                              "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat0",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#28",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#29",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#55",
+              "_$type": "Sprite3D",
+              "name": "Ground",
+              "_$child": [
+                {
+                  "_$id": "#30",
+                  "_$type": "Sprite3D",
+                  "name": "SoilPatch.004",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.06000000238418579
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm0",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat0",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat1",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#31",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.049",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.30250000953674316,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#32",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.050",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.44999998807907104,
+                      "y": 0.32500001788139343,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#33",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.051",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.15000000596046448,
+                      "y": 0.3474999964237213,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#34",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.052",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.15000000596046448,
+                      "y": 0.30250000953674316,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#35",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.053",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.44999998807907104,
+                      "y": 0.32500001788139343,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#36",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.054",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.3474999964237213,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#37",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.055",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.32500001788139343,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#38",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.056",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.44999998807907104,
+                      "y": 0.3474999964237213,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#39",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.057",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.15000000596046448,
+                      "y": 0.30250000953674316,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#40",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.058",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.15000000596046448,
+                      "y": 0.32500001788139343,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#41",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.059",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.44999998807907104,
+                      "y": 0.3474999964237213,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#42",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.060",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.30250000953674316,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#43",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.061",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.3474999964237213,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#44",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.062",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.44999998807907104,
+                      "y": 0.30250000953674316,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#45",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.063",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.15000000596046448,
+                      "y": 0.32500001788139343,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#46",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.064",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.15000000596046448,
+                      "y": 0.3474999964237213,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#47",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.065",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.44999998807907104,
+                      "y": 0.30250000953674316,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#48",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.066",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.32500001788139343,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#49",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.067",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.30250000953674316,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#50",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.068",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.44999998807907104,
+                      "y": 0.32500001788139343,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#51",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.069",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.15000000596046448,
+                      "y": 0.3474999964237213,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#52",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.070",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.15000000596046448,
+                      "y": 0.30250000953674316,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#53",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.071",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.44999998807907104,
+                      "y": 0.32500001788139343,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#54",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.072",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.3474999964237213,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#56",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            },
+            {
+              "_$id": "#57",
+              "_$type": "Sprite3D",
+              "name": "WorkSocket",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "z": 0.8500000238418579
+                }
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "#84",
+          "_$type": "Sprite3D",
+          "name": "Level4",
+          "_$child": [
+            {
+              "_$id": "#61",
+              "_$type": "Sprite3D",
+              "name": "AboveGround",
+              "_$child": [
+                {
+                  "_$id": "#59",
+                  "_$type": "Sprite3D",
+                  "name": "IrrigationTrough",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.0299999713897705,
+                      "y": 0.11999999731779099,
+                      "z": -0.10000000149011612
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat4",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#60",
+                  "_$type": "Sprite3D",
+                  "name": "Water",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.0299999713897705,
+                      "y": 0.22499999403953552,
+                      "z": -0.10000000149011612
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#62",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#63",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#81",
+              "_$type": "Sprite3D",
+              "name": "Ground",
+              "_$child": [
+                {
+                  "_$id": "#64",
+                  "_$type": "Sprite3D",
+                  "name": "SoilPatch.002",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.06000000238418579
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm0",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat0",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat1",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#65",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.013",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.30250000953674316,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#66",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.014",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.25,
+                      "y": 0.32500001788139343,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#67",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.015",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.25,
+                      "y": 0.3474999964237213,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#68",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.016",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.30250000953674316,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#69",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.017",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.32500001788139343,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#70",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.018",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.25,
+                      "y": 0.3474999964237213,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#71",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.019",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.25,
+                      "y": 0.30250000953674316,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#72",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.020",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.32500001788139343,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#73",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.021",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.3474999964237213,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#74",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.022",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.25,
+                      "y": 0.30250000953674316,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#75",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.023",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.25,
+                      "y": 0.32500001788139343,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#76",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.024",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.3474999964237213,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#77",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.025",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.30250000953674316,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#78",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.026",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.25,
+                      "y": 0.32500001788139343,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#79",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.027",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.25,
+                      "y": 0.3474999964237213,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#80",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.028",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.30250000953674316,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#82",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            },
+            {
+              "_$id": "#83",
+              "_$type": "Sprite3D",
+              "name": "WorkSocket",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "z": 0.8500000238418579
+                }
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "#117",
+          "_$type": "Sprite3D",
+          "name": "Level8",
+          "_$child": [
+            {
+              "_$id": "#90",
+              "_$type": "Sprite3D",
+              "name": "AboveGround",
+              "_$child": [
+                {
+                  "_$id": "#85",
+                  "_$type": "Sprite3D",
+                  "name": "IrrigationTrough.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.0299999713897705,
+                      "y": 0.11999999731779099,
+                      "z": -0.10000000149011612
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm4",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat4",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#86",
+                  "_$type": "Sprite3D",
+                  "name": "Water.001",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.0299999713897705,
+                      "y": 0.22499999403953552,
+                      "z": -0.10000000149011612
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm5",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat5",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#88",
+                  "_$type": "Sprite3D",
+                  "name": "Waterwheel",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.149999976158142,
+                      "y": 0.6700000166893005,
+                      "z": -0.41999998688697815
+                    },
+                    "localRotation": {
+                      "_$type": "Quaternion",
+                      "z": -0.7071067811865476,
+                      "w": 0.7071067811865476
+                    }
+                  },
+                  "_$child": [
+                    {
+                      "_$id": "#87",
+                      "_$type": "Sprite3D",
+                      "name": "WheelRigid.001",
+                      "transform": {
+                        "localRotation": {
+                          "_$type": "Quaternion",
+                          "y": 0.7071066619772459,
+                          "w": 0.707106900395829
+                        }
+                      },
+                      "_$comp": [
+                        {
+                          "_$type": "MeshFilter",
+                          "sharedMesh": {
+                            "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm9",
+                            "_$type": "Mesh"
+                          }
+                        },
+                        {
+                          "_$type": "MeshRenderer",
+                          "receiveShadow": true,
+                          "castShadow": true,
+                          "lightmapScaleOffset": {
+                            "_$type": "Vector4"
+                          },
+                          "sharedMaterials": [
+                            {
+                              "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat6",
+                              "_$type": "Material"
+                            },
+                            {
+                              "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat0",
+                              "_$type": "Material"
+                            },
+                            {
+                              "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat7",
+                              "_$type": "Material"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#89",
+                  "_$type": "Sprite3D",
+                  "name": "WheelBase",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 1.1100000143051147,
+                      "y": 0.1899999976158142,
+                      "z": -0.41999998688697815
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm7",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat8",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#91",
+              "_$type": "Sprite3D",
+              "name": "FootprintMax",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.800000011920929,
+                  "z": -0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#92",
+              "_$type": "Sprite3D",
+              "name": "FootprintMin",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.800000011920929,
+                  "z": 0.699999988079071
+                }
+              }
+            },
+            {
+              "_$id": "#114",
+              "_$type": "Sprite3D",
+              "name": "Ground",
+              "_$child": [
+                {
+                  "_$id": "#93",
+                  "_$type": "Sprite3D",
+                  "name": "SoilPatch.003",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.06000000238418579
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm0",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat0",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat1",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#94",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.029",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.30250000953674316,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#95",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.030",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.375,
+                      "y": 0.32500001788139343,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#96",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.031",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.3474999964237213,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#97",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.032",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.375,
+                      "y": 0.30250000953674316,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#98",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.033",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.32500001788139343,
+                      "z": 0.5199999809265137
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#99",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.034",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.32500001788139343,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#100",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.035",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.375,
+                      "y": 0.3474999964237213,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#101",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.036",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.30250000953674316,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#102",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.037",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.375,
+                      "y": 0.32500001788139343,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#103",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.038",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.3474999964237213,
+                      "z": 0.18000000715255737
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#104",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.039",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.3474999964237213,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#105",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.040",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.375,
+                      "y": 0.30250000953674316,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#106",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.041",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.32500001788139343,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#107",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.042",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.375,
+                      "y": 0.3474999964237213,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#108",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.043",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.30250000953674316,
+                      "z": -0.1599999964237213
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#109",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.044",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.75,
+                      "y": 0.30250000953674316,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#110",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.045",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": -0.375,
+                      "y": 0.32500001788139343,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#111",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.046",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "y": 0.3474999964237213,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm3",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#112",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.047",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.375,
+                      "y": 0.30250000953674316,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm1",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "_$id": "#113",
+                  "_$type": "Sprite3D",
+                  "name": "WheatPlant.048",
+                  "transform": {
+                    "localPosition": {
+                      "_$type": "Vector3",
+                      "x": 0.75,
+                      "y": 0.32500001788139343,
+                      "z": -0.5
+                    }
+                  },
+                  "_$comp": [
+                    {
+                      "_$type": "MeshFilter",
+                      "sharedMesh": {
+                        "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lm2",
+                        "_$type": "Mesh"
+                      }
+                    },
+                    {
+                      "_$type": "MeshRenderer",
+                      "receiveShadow": true,
+                      "castShadow": true,
+                      "lightmapScaleOffset": {
+                        "_$type": "Vector4"
+                      },
+                      "sharedMaterials": [
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat2",
+                          "_$type": "Material"
+                        },
+                        {
+                          "_$uuid": "630bb12f-7a21-42f6-b9c9-9fc93718e67f@lmat3",
+                          "_$type": "Material"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#115",
+              "_$type": "Sprite3D",
+              "name": "SortOrigin"
+            },
+            {
+              "_$id": "#116",
+              "_$type": "Sprite3D",
+              "name": "WorkSocket",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "z": 0.8500000238418579
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -584,6 +584,32 @@
       "sha256": "96c4b6a1d05b0c0a7bc0452376b488f654535951477cb399d3e23ccec9ce34e0",
       "bytes": 591428,
       "brief": "无按钮的浅米黄建筑文字气泡；九宫格主体和短指角分开；用户确认并追加尖端原点缩放效果。"
+    },
+    {
+      "key": "enemies_woodland_bases",
+      "path": "source/enemies/woodland_bases_v1.png",
+      "spec": null,
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-757bf514-b875-446f-8a07-dd68caa3b183.png",
+      "size": [
+        1122,
+        1402
+      ],
+      "sha256": "42ed46e44a282b2435a210a3ad01fd7883241b542f3e88593597e51ebd7b89d8",
+      "bytes": 1901319,
+      "brief": "五行四列：野猪、铁甲统领、疾风狼王、獠牙兽王、山魈长老。每行四帧行走，像素风透明背景；完整原图保留，实际行边界及共同脚底由 prepare-enemy-sources.mjs 配准。"
+    },
+    {
+      "key": "enemies_shared_accessories",
+      "path": "source/enemies/accessories_v1.png",
+      "spec": null,
+      "originalGeneratorPath": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-440d5c0b-8ce5-4046-9b8c-df6ce7a1d488.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "450903a3b38d25d843f3298a343a2e178da4ee56548bd9718156e697bf32fddf",
+      "bytes": 1498156,
+      "brief": "三列两行共享配件：头带、鹿角、羽饰、背旗、叶饰、面具。已通过 image_gen 编辑透明背景；导入时显式 alpha>=240 去掉半透明光晕，原图保留。"
     }
   ],
   "exportMethod": "ImageMagick mechanical crop/nearest-neighbor export/atlas packing; animation frames retain uniform source canvas and feet, atlas trims transparent margins and restores offsets."

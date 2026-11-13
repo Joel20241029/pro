@@ -57,7 +57,7 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
         list.forEach((q, i) => {
             const reason = p.type === "carers" ? birthUnavailableReason(s, p.id!, q.id) : null;
             const desc = `${coloredName(q, reason === null)} · ${q.sex === "MALE" ? "男" : "女"} · ${TRAITS[q.trait][0]}\n${reason !== null ? reason : p.type === "history" ? (s.favorites.includes(q.id) ? "★ 珍藏的先辈" : "已寿终 · 留念家谱") : isElder(q) ? `养老还剩 ${q.elderNights} 夜` : q.adult ? `${JOB_NAMES[q.job]} · 距退休 ${q.nights} 夜` : `成长 ${q.growth}/${RULE.growNights} · 还需照料守夜`}`;
-            const portrait = ctx.art.frameId(p.type === "history" || isElder(q) ? `villager_elder_${q.sex === "MALE" ? "male" : "female"}_idle` : q.adult ? `villager_${q.appearance}_walk` : q.growth === 0 ? "villager_baby_idle" : `villager_${q.sex === "MALE" ? "boy" : "girl"}_walk`, 0, false);
+            const portrait = ctx.art.portraitId(q, p.type === "history");
             ctx.ui.listItem(rows.content, desc, portrait, i * rowStep, () => {
                 if (p.type === "history")
                     ctx.open({ type: "ancestor", id: q.id });
@@ -90,7 +90,7 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
         const q = ancestor ? s.history.find(q => q.id === p.id)! : person(s, p.id!), parents = q.parents.map(id => { const parent = [...s.people, ...s.history].find(a => a.id === id); return parent?.name ? coloredName(parent) : "更早的家族成员"; });
         const box = ctx.modal(`${coloredName(q)} · 第 ${q.generation} 代`, `${TRAITS[q.trait].join("：")}\n${q.skill ? SKILLS[q.skill].join("：") : "成年后选择专长"}`);
         // 详情统一沿面板中轴排版；精英保留原放大尺寸，两种头像的中心高度一致。
-        ctx.ui.image(box, ctx.art.frameId(ancestor || isElder(q) ? `villager_elder_${q.sex === "MALE" ? "male" : "female"}_idle` : q.adult ? `villager_${q.appearance}_walk` : q.growth === 0 ? "villager_baby_idle" : `villager_${q.sex === "MALE" ? "boy" : "girl"}_walk`, 0, false), (box.width - (q.elite ? 140 : 112)) / 2, q.elite ? 198 : 212, q.elite ? 140 : 112);
+        ctx.ui.image(box, ctx.art.portraitId(q, ancestor), (box.width - (q.elite ? 140 : 112)) / 2, q.elite ? 198 : 212, q.elite ? 140 : 112);
         const cared = s.people.some(a => a.careChild === q.id);
         ctx.ui.label(box, ancestor ? `已寿终 · 留念家谱\n来自第 ${q.id.split(":")[0]} 个村落` : isElder(q) ? `养老还剩 ${q.elderNights} 夜\n基础口粮 ${q.trait === "trait_frugal" ? 1 : RULE.adultRation} / 夜` : q.adult ? `距退休 ${q.nights} 夜\n当前${JOB_NAMES[q.job]}` : `还需照料并守住 ${RULE.growNights - q.growth} 夜\n${cared ? "已安排照料者" : "无人照料，成长暂停"}`, UI.inset, 348, UI.contentWidth, 30, C.green, true, 76).align = "center";
         ctx.ui.label(box, parents.length ? `双亲：${parents.join("、")}` : q.origin === "TRAVELER" ? "来历：路过村落的旅人" : "来历：第一代开村人", UI.inset, 424, UI.contentWidth, 28, C.muted, false, 44).align = "center";

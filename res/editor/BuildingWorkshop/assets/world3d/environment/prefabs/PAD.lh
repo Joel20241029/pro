@@ -1,0 +1,444 @@
+{
+  "_$ver": 1,
+  "_$id": "3bm5261o",
+  "_$type": "Sprite3D",
+  "name": "PAD",
+  "_$child": [
+    {
+      "_$id": "#10",
+      "_$type": "Sprite3D",
+      "name": "PAD",
+      "_$child": [
+        {
+          "_$id": "#9",
+          "_$type": "Sprite3D",
+          "name": "Body",
+          "_$child": [
+            {
+              "_$id": "#0",
+              "_$type": "Sprite3D",
+              "name": "RingStone",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.3799999952316284,
+                  "y": 0.06499999761581421
+                },
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "y": 0.7071067215818992,
+                  "w": 0.7071068407911908
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.125,
+                  "y": 0.06499999761581421,
+                  "z": 0.10499999672174454
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lm0",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lmat0",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#1",
+              "_$type": "Sprite3D",
+              "name": "RingStone.001",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.29109689593315125,
+                  "y": 0.06499999761581421,
+                  "z": -0.2442592978477478
+                },
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "y": 0.906307777752018,
+                  "w": 0.4226182816516567
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.125,
+                  "y": 0.06499999761581421,
+                  "z": 0.10500000417232513
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#2",
+              "_$type": "Sprite3D",
+              "name": "RingStone.002",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.06598630547523499,
+                  "y": 0.06499999761581421,
+                  "z": -0.37422695755958557
+                },
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "y": 0.9961946922918269,
+                  "w": 0.08715580904100668
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.125,
+                  "y": 0.06499999761581421,
+                  "z": 0.10499998182058334
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#3",
+              "_$type": "Sprite3D",
+              "name": "RingStone.003",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.1899999976158142,
+                  "y": 0.06499999761581421,
+                  "z": -0.3290896415710449
+                },
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "y": -0.9659258182961655,
+                  "w": 0.25881907493243805
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.125,
+                  "y": 0.06499999761581421,
+                  "z": 0.10499998927116394
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lm0",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lmat0",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#4",
+              "_$type": "Sprite3D",
+              "name": "RingStone.004",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.35708320140838623,
+                  "y": 0.06499999761581421,
+                  "z": -0.12996765971183777
+                },
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "y": -0.8191520223413,
+                  "w": 0.5735764676955973
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.125,
+                  "y": 0.06499999761581421,
+                  "z": 0.10499998927116394
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#5",
+              "_$type": "Sprite3D",
+              "name": "RingStone.005",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.35708320140838623,
+                  "y": 0.06499999761581421,
+                  "z": 0.12996765971183777
+                },
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "y": -0.5735764396905743,
+                  "w": 0.819152041950629
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.1249999925494194,
+                  "y": 0.06499999761581421,
+                  "z": 0.10499998182058334
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#6",
+              "_$type": "Sprite3D",
+              "name": "RingStone.006",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": -0.1899999976158142,
+                  "y": 0.06499999761581421,
+                  "z": 0.3290896415710449
+                },
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "y": -0.25881913054432687,
+                  "w": 0.9659258033950014
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.125,
+                  "y": 0.06499999761581421,
+                  "z": 0.10500000417232513
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lm0",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lmat0",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#7",
+              "_$type": "Sprite3D",
+              "name": "RingStone.007",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.06598630547523499,
+                  "y": 0.06499999761581421,
+                  "z": 0.37422695755958557
+                },
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "y": 0.08715581643499146,
+                  "w": 0.9961946916449367
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.125,
+                  "y": 0.06499999761581421,
+                  "z": 0.10499998182058334
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_$id": "#8",
+              "_$type": "Sprite3D",
+              "name": "RingStone.008",
+              "transform": {
+                "localPosition": {
+                  "_$type": "Vector3",
+                  "x": 0.29109689593315125,
+                  "y": 0.06499999761581421,
+                  "z": 0.2442592978477478
+                },
+                "localRotation": {
+                  "_$type": "Quaternion",
+                  "y": 0.422618307780634,
+                  "w": 0.9063077655678746
+                },
+                "localScale": {
+                  "_$type": "Vector3",
+                  "x": 0.125,
+                  "y": 0.06499999761581421,
+                  "z": 0.10500000417232513
+                }
+              },
+              "_$comp": [
+                {
+                  "_$type": "MeshFilter",
+                  "sharedMesh": {
+                    "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lm1",
+                    "_$type": "Mesh"
+                  }
+                },
+                {
+                  "_$type": "MeshRenderer",
+                  "receiveShadow": true,
+                  "castShadow": true,
+                  "lightmapScaleOffset": {
+                    "_$type": "Vector4"
+                  },
+                  "sharedMaterials": [
+                    {
+                      "_$uuid": "484ec54e-5291-4456-b481-5d7828778052@lmat1",
+                      "_$type": "Material"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
