@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-/** 已确认三包制作规格；每张素材在 asset_recipe.json 显式归属，禁止跨包重复打图集。 */
-// 高清裁片保留256像素母画布；1024页减少碎页请求，三包归属与手动重试时机不变。
+/** 已确认高清四包规格；每张素材在 asset_recipe.json 显式归属，禁止跨包重复打图集。 */
+// 1024页；主包UI/地图先显示加载界面，建筑→人物顺序准备，战斗在守夜前准备，失败手动重试。
 export const bundles = { base: { size: 1024 }, buildings: { size: 1024 }, characters: { size: 1024 }, battle: { size: 1024 } };
 export function writeBundles(root, pages, frames, animations, buildingFiles, audio, enemyFile) {
     const result = {}, required = {};
@@ -22,7 +22,8 @@ export function writeBundles(root, pages, frames, animations, buildingFiles, aud
     const contract = '/** 由 res/tools/build-resources.mjs 生成的主包依赖契约；不信任下载清单自报完整。修改素材请重建，禁止手工修改。 */\n'
         + `export const RESOURCE_CONTRACT: Record<string, { frames: string[]; clips: string[] }> = ${JSON.stringify(required)};\n`
         + `export const REQUIRED_WALK_DIRECTIONS = ${JSON.stringify(animations.walkDirections)};\n`
-        + `export const REQUIRED_LABOR_DIRECTIONS = ${JSON.stringify(animations.laborDirections)};\n`;
+        + `export const REQUIRED_LABOR_DIRECTIONS = ${JSON.stringify(animations.laborDirections)};\n`
+        + `export const REQUIRED_BUILDING_LAYOUTS = ${JSON.stringify(Object.keys(JSON.parse(fs.readFileSync(path.join(root, 'native/buildings.json'))).layouts).sort())};\n`;
     fs.writeFileSync(path.resolve(root, '../project/LayaProject/src/config/ResourceManifest.ts'), contract);
     return result;
 }

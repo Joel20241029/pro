@@ -293,7 +293,7 @@ export class VillageWorld {
             else if (p.id.startsWith("tower:")) {
                 const index = Number(p.id.split(":")[1]), t = (battle ? battle.base.towers : s.towers)[index];
                 p.node.texture = t.kind ? null : this.art.get("building_tower_pad");
-                p.node.scaleX = 1; facing = TOWER_VIEW.facing[index];
+                p.node.scale(t.kind ? 1 : TOWER_VIEW.emptyScale, t.kind ? 1 : TOWER_VIEW.emptyScale); facing = TOWER_VIEW.facing[index];
                 kind = t.kind;
                 level = t.level;
             }

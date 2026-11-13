@@ -47,7 +47,6 @@ const { UiWidgets } = require(path.join(build, 'view/UiWidgets.js'));
 const { createGame } = require(path.join(build, 'game/VillageRules.js'));
 const { compareDepth } = require(path.join(build, 'view/VillageScene.js'));
 const art = {
-    particles: require("./helpers/particles.cjs").library(),
     ready: () => true,
     get: id => id, frameId: clip => clip, walk: () => ({ clip: 'villager_male_a_walk', mirror: false }),
     applyFrame(node, _id, size) { node.size(size, size).pivot(size / 2, size * 15 / 16); }

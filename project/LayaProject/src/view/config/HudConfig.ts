@@ -5,7 +5,8 @@
 export const LAYOUT = {
     width: 720, dateTop: 64, menuGap: 10, resourcesGap: 34, mapGap: 92,
     footerHeight: 242, battleMax: 700, villageMin: 260, battleMin: 440, battleRatio: .68,
-    personMin: 64, personMax: 68, personBase: 56, personGrowthHeight: 300, personGrowthStep: 40,
+    // 高清共同画布含完整四向动作留白；80～84让实际人物在390宽手机约32px高，足点/速度不变。
+    personMin: 80, personMax: 84, personBase: 56, personGrowthHeight: 300, personGrowthStep: 40,
     referenceTop: 246, referenceGate: 830, referenceBattleHeight: 584, referenceVillageHeight: 208
 } as const;
 /** 常驻 HUD 的坐标、尺寸与图文间距，单位为逻辑像素。

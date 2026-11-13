@@ -1,20 +1,20 @@
 {
   "_$ver": 1,
-  "_$id": "2546yya1",
+  "_$id": "jstwp6e1",
   "_$type": "Sprite",
   "name": "HOUSE",
   "width": 128,
   "height": 128,
   "_$child": [
     {
-      "_$id": "xqqi7p7s",
+      "_$id": "187dpigj",
       "_$type": "Sprite",
       "name": "HOUSE_1_1",
       "width": 128,
       "height": 128,
       "_$child": [
         {
-          "_$id": "k3gee338",
+          "_$id": "b3bhglzh",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -27,7 +27,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -35,7 +35,7 @@
           ],
           "_$child": [
             {
-              "_$id": "u6u8resx",
+              "_$id": "656uyxjg",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 6,
@@ -43,24 +43,24 @@
               "width": 116,
               "height": 116,
               "texture": {
-                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$uuid": "e45e877c-a4c3-4ead-93c7-768b69d3eb7b",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "tjklxg6t",
+          "_$id": "h1cdjiwk",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "ha7v1jdt",
+          "_$id": "l4xl0lg1",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -70,7 +70,7 @@
           "visible": false
         },
         {
-          "_$id": "7ya4d3yl",
+          "_$id": "ylwo7m4w",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "_$id": "wd9cny58",
+      "_$id": "3djkh50j",
       "_$type": "Sprite",
       "name": "HOUSE_1_2",
       "width": 128,
@@ -90,7 +90,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "1f8k6m6i",
+          "_$id": "f7ukqf8a",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -103,7 +103,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -111,7 +111,7 @@
           ],
           "_$child": [
             {
-              "_$id": "bl2d1nxc",
+              "_$id": "a6i41rho",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -119,12 +119,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$uuid": "e45e877c-a4c3-4ead-93c7-768b69d3eb7b",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "2h2jh0io",
+              "_$id": "dqfbfv2e",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -132,24 +132,24 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$uuid": "5f922aba-70e2-4c3d-9c82-3df4a8f544be",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "lf2767p3",
+          "_$id": "2m5gmaab",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "2i932egy",
+          "_$id": "6zsmvd20",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -159,7 +159,7 @@
           "visible": false
         },
         {
-          "_$id": "l3iie2bp",
+          "_$id": "hcpirh63",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "_$id": "fnrv22lh",
+      "_$id": "ov1cdln6",
       "_$type": "Sprite",
       "name": "HOUSE_1_3",
       "width": 128,
@@ -179,7 +179,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "0bj6zykr",
+          "_$id": "llkiyqwr",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -192,7 +192,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -200,7 +200,7 @@
           ],
           "_$child": [
             {
-              "_$id": "ab2ftc7b",
+              "_$id": "ru63zojl",
               "_$type": "Sprite",
               "name": "RearWing",
               "x": 66,
@@ -208,12 +208,12 @@
               "width": 58,
               "height": 58,
               "texture": {
-                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$uuid": "5f922aba-70e2-4c3d-9c82-3df4a8f544be",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "50h87q72",
+              "_$id": "60qpskgf",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -221,12 +221,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$uuid": "e45e877c-a4c3-4ead-93c7-768b69d3eb7b",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "osatlmga",
+              "_$id": "jzw5fr4i",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -234,24 +234,24 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$uuid": "5f922aba-70e2-4c3d-9c82-3df4a8f544be",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "4snnyf4e",
+          "_$id": "9vhkd0mt",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "9ko6vggv",
+          "_$id": "eo1ojsnf",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -261,7 +261,7 @@
           "visible": false
         },
         {
-          "_$id": "h48bdt6a",
+          "_$id": "keh73dk7",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "_$id": "hl0oux6u",
+      "_$id": "qj1pcwei",
       "_$type": "Sprite",
       "name": "HOUSE_2_1",
       "width": 128,
@@ -281,7 +281,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "xsi41ga5",
+          "_$id": "rv26ggn7",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -294,7 +294,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -302,7 +302,7 @@
           ],
           "_$child": [
             {
-              "_$id": "ec4b9bs2",
+              "_$id": "lq5lusog",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 6,
@@ -310,12 +310,12 @@
               "width": 116,
               "height": 116,
               "texture": {
-                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$uuid": "e45e877c-a4c3-4ead-93c7-768b69d3eb7b",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "7e1u7jq7",
+              "_$id": "hcwv21qm",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -323,24 +323,24 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "d27oxkia",
+          "_$id": "830qqttx",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "lejjdbac",
+          "_$id": "r17xdp0f",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -350,7 +350,7 @@
           "visible": false
         },
         {
-          "_$id": "ugz851li",
+          "_$id": "5e7z3rcp",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -362,7 +362,7 @@
       ]
     },
     {
-      "_$id": "suaib2fl",
+      "_$id": "kk5siibj",
       "_$type": "Sprite",
       "name": "HOUSE_2_2",
       "width": 128,
@@ -370,7 +370,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "x30i03c3",
+          "_$id": "kldi1zv5",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -383,7 +383,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -391,7 +391,7 @@
           ],
           "_$child": [
             {
-              "_$id": "aeypuwgk",
+              "_$id": "29memvjs",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -399,12 +399,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$uuid": "e45e877c-a4c3-4ead-93c7-768b69d3eb7b",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "b4cdpm3z",
+              "_$id": "2xqj0xcr",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -412,12 +412,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$uuid": "5f922aba-70e2-4c3d-9c82-3df4a8f544be",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "l7tq4ttq",
+              "_$id": "p7dwbg28",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -425,24 +425,24 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "f9l3clp7",
+          "_$id": "nm7qmyyg",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "tkotrq2q",
+          "_$id": "1vcr4li4",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -452,7 +452,7 @@
           "visible": false
         },
         {
-          "_$id": "yv3ee31c",
+          "_$id": "yy8kiyhy",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -464,7 +464,7 @@
       ]
     },
     {
-      "_$id": "uwfliekx",
+      "_$id": "b7d52pks",
       "_$type": "Sprite",
       "name": "HOUSE_2_3",
       "width": 128,
@@ -472,7 +472,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "znrbl684",
+          "_$id": "e6rajf9n",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -485,7 +485,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -493,7 +493,7 @@
           ],
           "_$child": [
             {
-              "_$id": "zhptbzc6",
+              "_$id": "ybl35i7h",
               "_$type": "Sprite",
               "name": "RearWing",
               "x": 66,
@@ -501,12 +501,12 @@
               "width": 58,
               "height": 58,
               "texture": {
-                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$uuid": "5f922aba-70e2-4c3d-9c82-3df4a8f544be",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "1ozet7k8",
+              "_$id": "10lni5tr",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -514,12 +514,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$uuid": "e45e877c-a4c3-4ead-93c7-768b69d3eb7b",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "rm34z7o9",
+              "_$id": "nj4vyx8d",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -527,12 +527,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$uuid": "5f922aba-70e2-4c3d-9c82-3df4a8f544be",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "c6lf804x",
+              "_$id": "blvtjgaq",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -540,24 +540,24 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "pk8429w8",
+          "_$id": "lr5cpxr0",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "thzri1if",
+          "_$id": "bs2e9ldk",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -567,7 +567,7 @@
           "visible": false
         },
         {
-          "_$id": "pojtxlm8",
+          "_$id": "hqe28mls",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -579,7 +579,7 @@
       ]
     },
     {
-      "_$id": "na6lxecb",
+      "_$id": "cnzgphzj",
       "_$type": "Sprite",
       "name": "HOUSE_3_1",
       "width": 128,
@@ -587,7 +587,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "zy7y2j5k",
+          "_$id": "gqdnrgfw",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -600,7 +600,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -608,7 +608,7 @@
           ],
           "_$child": [
             {
-              "_$id": "35bw6id6",
+              "_$id": "lthgj327",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 6,
@@ -616,12 +616,12 @@
               "width": 116,
               "height": 116,
               "texture": {
-                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$uuid": "e45e877c-a4c3-4ead-93c7-768b69d3eb7b",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "t8b80536",
+              "_$id": "bnu906sj",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -629,12 +629,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "3so7sf71",
+              "_$id": "7agu2tcf",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -642,24 +642,24 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "m2242cd6",
+          "_$id": "5rxszoi7",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "h8x1t4h3",
+          "_$id": "nr1y3rjo",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -669,7 +669,7 @@
           "visible": false
         },
         {
-          "_$id": "m8pf445i",
+          "_$id": "iw0tn48g",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -681,7 +681,7 @@
       ]
     },
     {
-      "_$id": "4wo5xpwg",
+      "_$id": "6qxg2pn9",
       "_$type": "Sprite",
       "name": "HOUSE_3_2",
       "width": 128,
@@ -689,7 +689,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "p8aslco0",
+          "_$id": "5xk67hic",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -702,7 +702,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -710,7 +710,7 @@
           ],
           "_$child": [
             {
-              "_$id": "7xe0xp4e",
+              "_$id": "nx9yha00",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -718,12 +718,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$uuid": "e45e877c-a4c3-4ead-93c7-768b69d3eb7b",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "ugw5dw0i",
+              "_$id": "fgtawl1y",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -731,12 +731,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$uuid": "5f922aba-70e2-4c3d-9c82-3df4a8f544be",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "036q97n0",
+              "_$id": "6x0dbg6q",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -744,12 +744,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "1gx4f1ac",
+              "_$id": "zaa9eqne",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -757,24 +757,24 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "ebo9o1gj",
+          "_$id": "gxhx8cnc",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "qzsawejk",
+          "_$id": "ta2mf2es",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -784,7 +784,7 @@
           "visible": false
         },
         {
-          "_$id": "962zw9nc",
+          "_$id": "ucdjux2u",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -796,7 +796,7 @@
       ]
     },
     {
-      "_$id": "r4t7abbd",
+      "_$id": "55igfvs8",
       "_$type": "Sprite",
       "name": "HOUSE_3_3",
       "width": 128,
@@ -804,7 +804,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "kbdd91jq",
+          "_$id": "t1bz2mj5",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -817,7 +817,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -825,7 +825,7 @@
           ],
           "_$child": [
             {
-              "_$id": "38esjws2",
+              "_$id": "fq4vzill",
               "_$type": "Sprite",
               "name": "RearWing",
               "x": 66,
@@ -833,12 +833,12 @@
               "width": 58,
               "height": 58,
               "texture": {
-                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$uuid": "5f922aba-70e2-4c3d-9c82-3df4a8f544be",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "txfm8k7d",
+              "_$id": "ok5n0nw3",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -846,12 +846,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$uuid": "e45e877c-a4c3-4ead-93c7-768b69d3eb7b",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "w1xbsk0w",
+              "_$id": "jf1no5xx",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -859,12 +859,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$uuid": "5f922aba-70e2-4c3d-9c82-3df4a8f544be",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "ox2leeqm",
+              "_$id": "aw7xc65v",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -872,12 +872,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "cvylpv4x",
+              "_$id": "dhz33q8p",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -885,24 +885,24 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "3jbeqt2c",
+          "_$id": "p1c2hxlq",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "f055h5yo",
+          "_$id": "zpzcpl85",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -912,7 +912,7 @@
           "visible": false
         },
         {
-          "_$id": "ahu4n298",
+          "_$id": "lus0u50m",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -924,7 +924,7 @@
       ]
     },
     {
-      "_$id": "bgw3xqtg",
+      "_$id": "uqv94chh",
       "_$type": "Sprite",
       "name": "HOUSE_4_1",
       "width": 128,
@@ -932,7 +932,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "mywgw19f",
+          "_$id": "c8aoy3ez",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -945,7 +945,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -953,7 +953,7 @@
           ],
           "_$child": [
             {
-              "_$id": "02jggwhh",
+              "_$id": "isefj2wq",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 6,
@@ -961,24 +961,24 @@
               "width": 116,
               "height": 116,
               "texture": {
-                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$uuid": "5cd25314-46d1-433c-8098-092451d3ba39",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "2pzs8nv3",
+          "_$id": "p142g99e",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "j5yo88td",
+          "_$id": "s4zyccau",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -988,7 +988,7 @@
           "visible": false
         },
         {
-          "_$id": "ed66w72c",
+          "_$id": "ec8hwutc",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1000,7 +1000,7 @@
       ]
     },
     {
-      "_$id": "yka96cbl",
+      "_$id": "vl6340i0",
       "_$type": "Sprite",
       "name": "HOUSE_4_2",
       "width": 128,
@@ -1008,7 +1008,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "uh7a7b0i",
+          "_$id": "hnsbpmvi",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1021,7 +1021,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1029,7 +1029,7 @@
           ],
           "_$child": [
             {
-              "_$id": "1aqgden5",
+              "_$id": "c7z74s2i",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -1037,12 +1037,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$uuid": "5cd25314-46d1-433c-8098-092451d3ba39",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "y45kvuku",
+              "_$id": "9q5fk9z6",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -1050,24 +1050,24 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$uuid": "08f4f695-d82e-438c-9d68-2dd477f79b92",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "s85mc3fm",
+          "_$id": "nx05o53p",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "fa665r3f",
+          "_$id": "kkt1o9v1",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -1077,7 +1077,7 @@
           "visible": false
         },
         {
-          "_$id": "i5680vzh",
+          "_$id": "x3f5e06n",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1089,7 +1089,7 @@
       ]
     },
     {
-      "_$id": "xomheszp",
+      "_$id": "5wlktj50",
       "_$type": "Sprite",
       "name": "HOUSE_4_3",
       "width": 128,
@@ -1097,7 +1097,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "00vwldc4",
+          "_$id": "ttxx3mj1",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1110,7 +1110,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1118,7 +1118,7 @@
           ],
           "_$child": [
             {
-              "_$id": "4v70golk",
+              "_$id": "zy47mdnu",
               "_$type": "Sprite",
               "name": "RearWing",
               "x": 66,
@@ -1126,12 +1126,12 @@
               "width": 58,
               "height": 58,
               "texture": {
-                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$uuid": "08f4f695-d82e-438c-9d68-2dd477f79b92",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "o849trsv",
+              "_$id": "a9hrvwf6",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -1139,12 +1139,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$uuid": "5cd25314-46d1-433c-8098-092451d3ba39",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "qlms4m7v",
+              "_$id": "uf37a3av",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -1152,24 +1152,24 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$uuid": "08f4f695-d82e-438c-9d68-2dd477f79b92",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "qewtsvkb",
+          "_$id": "tzrxz55y",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "yvabmjn0",
+          "_$id": "m9vjlv3e",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -1179,7 +1179,7 @@
           "visible": false
         },
         {
-          "_$id": "9n0ai099",
+          "_$id": "f35uzg43",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1191,7 +1191,7 @@
       ]
     },
     {
-      "_$id": "0fxgkdb4",
+      "_$id": "d0i2ox2i",
       "_$type": "Sprite",
       "name": "HOUSE_5_1",
       "width": 128,
@@ -1199,7 +1199,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "m6yu5fyv",
+          "_$id": "ee1ns3hs",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1212,7 +1212,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1220,7 +1220,7 @@
           ],
           "_$child": [
             {
-              "_$id": "ne5ifnua",
+              "_$id": "lyo8eana",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 6,
@@ -1228,12 +1228,12 @@
               "width": 116,
               "height": 116,
               "texture": {
-                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$uuid": "5cd25314-46d1-433c-8098-092451d3ba39",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "7ilipa7i",
+              "_$id": "vc81dqf9",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -1241,24 +1241,24 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "9gdi0pei",
+          "_$id": "7cejjfbi",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "9zat6bq8",
+          "_$id": "6cbvd4r6",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -1268,7 +1268,7 @@
           "visible": false
         },
         {
-          "_$id": "zu21u5mo",
+          "_$id": "9392srkd",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1280,7 +1280,7 @@
       ]
     },
     {
-      "_$id": "3msdhzna",
+      "_$id": "9klyap23",
       "_$type": "Sprite",
       "name": "HOUSE_5_2",
       "width": 128,
@@ -1288,7 +1288,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "z1xmb46o",
+          "_$id": "p6wgqrt3",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1301,7 +1301,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1309,7 +1309,7 @@
           ],
           "_$child": [
             {
-              "_$id": "c73cazc2",
+              "_$id": "wzxnikpj",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -1317,12 +1317,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$uuid": "5cd25314-46d1-433c-8098-092451d3ba39",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "a174ynqg",
+              "_$id": "ow4f6a7x",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -1330,12 +1330,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$uuid": "08f4f695-d82e-438c-9d68-2dd477f79b92",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "yvgos1dj",
+              "_$id": "fdq8y0n2",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -1343,24 +1343,24 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "r37vlc04",
+          "_$id": "m7x5od2d",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "egl63h7y",
+          "_$id": "g6k25wn2",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -1370,7 +1370,7 @@
           "visible": false
         },
         {
-          "_$id": "w6pb7mhn",
+          "_$id": "ea3dqrk5",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1382,7 +1382,7 @@
       ]
     },
     {
-      "_$id": "amojlqds",
+      "_$id": "gsgq1g0w",
       "_$type": "Sprite",
       "name": "HOUSE_5_3",
       "width": 128,
@@ -1390,7 +1390,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "ljszuypj",
+          "_$id": "nomm81wo",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1403,7 +1403,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1411,7 +1411,7 @@
           ],
           "_$child": [
             {
-              "_$id": "f237bwxu",
+              "_$id": "58vb029h",
               "_$type": "Sprite",
               "name": "RearWing",
               "x": 66,
@@ -1419,12 +1419,12 @@
               "width": 58,
               "height": 58,
               "texture": {
-                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$uuid": "08f4f695-d82e-438c-9d68-2dd477f79b92",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "vxcj3eh0",
+              "_$id": "hp46s9ri",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -1432,12 +1432,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$uuid": "5cd25314-46d1-433c-8098-092451d3ba39",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "2m5qybir",
+              "_$id": "wspkh14i",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -1445,12 +1445,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$uuid": "08f4f695-d82e-438c-9d68-2dd477f79b92",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "xjwt11vg",
+              "_$id": "z8c0in5b",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -1458,24 +1458,24 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "032q0rb7",
+          "_$id": "5ok6gbn4",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "3dl9ysfe",
+          "_$id": "8j89g6v8",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -1485,7 +1485,7 @@
           "visible": false
         },
         {
-          "_$id": "pmpsnmdr",
+          "_$id": "3gi36ufc",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1497,7 +1497,7 @@
       ]
     },
     {
-      "_$id": "xpr8kb7o",
+      "_$id": "vpr5a79v",
       "_$type": "Sprite",
       "name": "HOUSE_6_1",
       "width": 128,
@@ -1505,7 +1505,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "pljhgmht",
+          "_$id": "5jwtatwi",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1518,7 +1518,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1526,7 +1526,7 @@
           ],
           "_$child": [
             {
-              "_$id": "5mpiqrjx",
+              "_$id": "b64ufzka",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 6,
@@ -1534,12 +1534,12 @@
               "width": 116,
               "height": 116,
               "texture": {
-                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$uuid": "5cd25314-46d1-433c-8098-092451d3ba39",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "vihy2fjf",
+              "_$id": "5xyauic0",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -1547,12 +1547,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "ixp9visr",
+              "_$id": "8o4ou200",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -1560,24 +1560,24 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "ebsumd44",
+          "_$id": "l8no3vkv",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "96el3ql7",
+          "_$id": "cyohtpzu",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -1587,7 +1587,7 @@
           "visible": false
         },
         {
-          "_$id": "cz2h7nvt",
+          "_$id": "649pwhvn",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1599,7 +1599,7 @@
       ]
     },
     {
-      "_$id": "pee1je1u",
+      "_$id": "bhmulx5w",
       "_$type": "Sprite",
       "name": "HOUSE_6_2",
       "width": 128,
@@ -1607,7 +1607,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "rrhzycvt",
+          "_$id": "dtmox7wx",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1620,7 +1620,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1628,7 +1628,7 @@
           ],
           "_$child": [
             {
-              "_$id": "f02dhzoc",
+              "_$id": "47oq95ke",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -1636,12 +1636,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$uuid": "5cd25314-46d1-433c-8098-092451d3ba39",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "9ufkv1w8",
+              "_$id": "095audd2",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -1649,12 +1649,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$uuid": "08f4f695-d82e-438c-9d68-2dd477f79b92",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "nopo3xfs",
+              "_$id": "af4tod6z",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -1662,12 +1662,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "nn6bs3xr",
+              "_$id": "tjrzx9zf",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -1675,24 +1675,24 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "147362bl",
+          "_$id": "psxbve7n",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "ywxa8qki",
+          "_$id": "h2dpahrz",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -1702,7 +1702,7 @@
           "visible": false
         },
         {
-          "_$id": "0jvx8hgj",
+          "_$id": "4fvow8ja",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1714,7 +1714,7 @@
       ]
     },
     {
-      "_$id": "ow0vgtbb",
+      "_$id": "t50rpxtq",
       "_$type": "Sprite",
       "name": "HOUSE_6_3",
       "width": 128,
@@ -1722,7 +1722,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "nhcqjfv8",
+          "_$id": "hut6fsni",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1735,7 +1735,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1743,7 +1743,7 @@
           ],
           "_$child": [
             {
-              "_$id": "v5y05ke9",
+              "_$id": "yb4yms3r",
               "_$type": "Sprite",
               "name": "RearWing",
               "x": 66,
@@ -1751,12 +1751,12 @@
               "width": 58,
               "height": 58,
               "texture": {
-                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$uuid": "08f4f695-d82e-438c-9d68-2dd477f79b92",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "xpsdy84a",
+              "_$id": "dw4ik9hb",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -1764,12 +1764,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$uuid": "5cd25314-46d1-433c-8098-092451d3ba39",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "zrq17n1m",
+              "_$id": "gp5u0z3m",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -1777,12 +1777,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$uuid": "08f4f695-d82e-438c-9d68-2dd477f79b92",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "ybli60zi",
+              "_$id": "wrea8z9r",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -1790,12 +1790,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "w41988ps",
+              "_$id": "584c8anq",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -1803,24 +1803,24 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "bwoo2awc",
+          "_$id": "bqawr0rs",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "rjq3do9u",
+          "_$id": "879d0239",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -1830,7 +1830,7 @@
           "visible": false
         },
         {
-          "_$id": "dv47zd2u",
+          "_$id": "y3onp9z3",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1842,7 +1842,7 @@
       ]
     },
     {
-      "_$id": "uh2uhksa",
+      "_$id": "7aajwvsr",
       "_$type": "Sprite",
       "name": "HOUSE_7_1",
       "width": 128,
@@ -1850,7 +1850,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "gehyrl5l",
+          "_$id": "haxxlzvy",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1863,7 +1863,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1871,7 +1871,7 @@
           ],
           "_$child": [
             {
-              "_$id": "tavdzw27",
+              "_$id": "sipx7dgy",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 6,
@@ -1879,12 +1879,12 @@
               "width": 116,
               "height": 116,
               "texture": {
-                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$uuid": "5cd25314-46d1-433c-8098-092451d3ba39",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "rzoeq622",
+              "_$id": "tf520w2g",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -1892,12 +1892,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "fu3ip89s",
+              "_$id": "085afq18",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -1905,12 +1905,12 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "odyqwoju",
+              "_$id": "gsc485xx",
               "_$type": "Sprite",
               "name": "RoofEmblem",
               "x": 43,
@@ -1918,24 +1918,24 @@
               "width": 30,
               "height": 18,
               "texture": {
-                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$uuid": "01c85cc9-27dc-4800-83e1-6d0d6d61d398",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "7vhxl6v6",
+          "_$id": "dow1rfc6",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "7coyy66w",
+          "_$id": "tlci71ky",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -1945,7 +1945,7 @@
           "visible": false
         },
         {
-          "_$id": "5y9z8lld",
+          "_$id": "ia1n6rj2",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1957,7 +1957,7 @@
       ]
     },
     {
-      "_$id": "moz6hin5",
+      "_$id": "kmc9hwk7",
       "_$type": "Sprite",
       "name": "HOUSE_7_2",
       "width": 128,
@@ -1965,7 +1965,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "cj3m2upj",
+          "_$id": "dt38cahx",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1978,7 +1978,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1986,7 +1986,7 @@
           ],
           "_$child": [
             {
-              "_$id": "ynvuxm0g",
+              "_$id": "94aeed74",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -1994,12 +1994,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$uuid": "5cd25314-46d1-433c-8098-092451d3ba39",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "an32ly88",
+              "_$id": "jdyfttg7",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -2007,12 +2007,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$uuid": "08f4f695-d82e-438c-9d68-2dd477f79b92",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "omesyk0n",
+              "_$id": "vnnql0b7",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -2020,12 +2020,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "6n5av7dr",
+              "_$id": "it4zv12i",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -2033,12 +2033,12 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "g7sjkmdf",
+              "_$id": "hknai1it",
               "_$type": "Sprite",
               "name": "RoofEmblem",
               "x": 43,
@@ -2046,24 +2046,24 @@
               "width": 30,
               "height": 18,
               "texture": {
-                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$uuid": "01c85cc9-27dc-4800-83e1-6d0d6d61d398",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "j44j6k3r",
+          "_$id": "lbtnbaak",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "zokrimb9",
+          "_$id": "i26b579y",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -2073,7 +2073,7 @@
           "visible": false
         },
         {
-          "_$id": "gmogzwz0",
+          "_$id": "ipo06hk4",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -2085,7 +2085,7 @@
       ]
     },
     {
-      "_$id": "vst0epi9",
+      "_$id": "vfg2ngg6",
       "_$type": "Sprite",
       "name": "HOUSE_7_3",
       "width": 128,
@@ -2093,7 +2093,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "3jcvu0yf",
+          "_$id": "s5y3sn7h",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -2106,7 +2106,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -2114,7 +2114,7 @@
           ],
           "_$child": [
             {
-              "_$id": "9saln022",
+              "_$id": "76wfc0ya",
               "_$type": "Sprite",
               "name": "RearWing",
               "x": 66,
@@ -2122,12 +2122,12 @@
               "width": 58,
               "height": 58,
               "texture": {
-                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$uuid": "08f4f695-d82e-438c-9d68-2dd477f79b92",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "sao0lnyk",
+              "_$id": "qnbwrva9",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -2135,12 +2135,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$uuid": "5cd25314-46d1-433c-8098-092451d3ba39",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "oiozsmo9",
+              "_$id": "c0q7cub8",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -2148,12 +2148,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$uuid": "08f4f695-d82e-438c-9d68-2dd477f79b92",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "6ld0hx2r",
+              "_$id": "ztxbvh81",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -2161,12 +2161,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "kdziud9v",
+              "_$id": "p7oykqea",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -2174,12 +2174,12 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "3f605hpb",
+              "_$id": "nk4b7pvp",
               "_$type": "Sprite",
               "name": "RoofEmblem",
               "x": 43,
@@ -2187,24 +2187,24 @@
               "width": 30,
               "height": 18,
               "texture": {
-                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$uuid": "01c85cc9-27dc-4800-83e1-6d0d6d61d398",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "q767xg1j",
+          "_$id": "evpdac74",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "n047a64f",
+          "_$id": "82hcl7ib",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -2214,7 +2214,7 @@
           "visible": false
         },
         {
-          "_$id": "o4gkujul",
+          "_$id": "12e9oemt",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -2226,7 +2226,7 @@
       ]
     },
     {
-      "_$id": "itrqxe25",
+      "_$id": "011f1sjl",
       "_$type": "Sprite",
       "name": "HOUSE_8_1",
       "width": 128,
@@ -2234,7 +2234,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "yroettk1",
+          "_$id": "i5hzpsh6",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -2247,7 +2247,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -2255,7 +2255,7 @@
           ],
           "_$child": [
             {
-              "_$id": "g58043pe",
+              "_$id": "zutru12c",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 6,
@@ -2263,24 +2263,24 @@
               "width": 116,
               "height": 116,
               "texture": {
-                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$uuid": "fd49bce9-807f-42cc-8caa-3cfc984dfc18",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "k8tqfx7i",
+          "_$id": "c4dtewgf",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "z1rit01g",
+          "_$id": "zpj6htn8",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -2290,7 +2290,7 @@
           "visible": false
         },
         {
-          "_$id": "orgb9uku",
+          "_$id": "pii7re7t",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -2302,7 +2302,7 @@
       ]
     },
     {
-      "_$id": "iwjpst9f",
+      "_$id": "39t5m4pu",
       "_$type": "Sprite",
       "name": "HOUSE_8_2",
       "width": 128,
@@ -2310,7 +2310,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "gf6oku95",
+          "_$id": "70y7su7x",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -2323,7 +2323,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -2331,7 +2331,7 @@
           ],
           "_$child": [
             {
-              "_$id": "3k6w0akx",
+              "_$id": "cb7levz6",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -2339,12 +2339,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$uuid": "fd49bce9-807f-42cc-8caa-3cfc984dfc18",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "ztq0dndl",
+              "_$id": "i0culbsf",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -2352,24 +2352,24 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$uuid": "01ac41d4-1afb-4b57-95b1-688333e643f2",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "e9wreo8c",
+          "_$id": "n9clz348",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "m9p3x0va",
+          "_$id": "asls2q72",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -2379,7 +2379,7 @@
           "visible": false
         },
         {
-          "_$id": "st7il76x",
+          "_$id": "ji14gu9d",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -2391,7 +2391,7 @@
       ]
     },
     {
-      "_$id": "ib8zgn28",
+      "_$id": "10rotr4k",
       "_$type": "Sprite",
       "name": "HOUSE_8_3",
       "width": 128,
@@ -2399,7 +2399,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "q1vqa5t7",
+          "_$id": "96plszq2",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -2412,7 +2412,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -2420,7 +2420,7 @@
           ],
           "_$child": [
             {
-              "_$id": "zk523dtt",
+              "_$id": "spf87p6a",
               "_$type": "Sprite",
               "name": "RearWing",
               "x": 66,
@@ -2428,12 +2428,12 @@
               "width": 58,
               "height": 58,
               "texture": {
-                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$uuid": "01ac41d4-1afb-4b57-95b1-688333e643f2",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "15hdem8j",
+              "_$id": "p70jwkau",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -2441,12 +2441,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$uuid": "fd49bce9-807f-42cc-8caa-3cfc984dfc18",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "53veqdt9",
+              "_$id": "psqtphe0",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -2454,24 +2454,24 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$uuid": "01ac41d4-1afb-4b57-95b1-688333e643f2",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "74vqqofm",
+          "_$id": "mnjtff0k",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "2x1ps1ix",
+          "_$id": "t8cpchyt",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -2481,7 +2481,7 @@
           "visible": false
         },
         {
-          "_$id": "b37x7ah5",
+          "_$id": "gvkvkhl6",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -2493,7 +2493,7 @@
       ]
     },
     {
-      "_$id": "4p1rzha3",
+      "_$id": "n3e7jtfo",
       "_$type": "Sprite",
       "name": "HOUSE_9_1",
       "width": 128,
@@ -2501,7 +2501,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "rvg8ae3g",
+          "_$id": "v3ah8wti",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -2514,7 +2514,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -2522,7 +2522,7 @@
           ],
           "_$child": [
             {
-              "_$id": "xuqwcmih",
+              "_$id": "e6u3g2uc",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 6,
@@ -2530,12 +2530,12 @@
               "width": 116,
               "height": 116,
               "texture": {
-                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$uuid": "fd49bce9-807f-42cc-8caa-3cfc984dfc18",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "52aoh2gb",
+              "_$id": "zz7223ld",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -2543,24 +2543,24 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "yim2pncs",
+          "_$id": "zehidhis",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "a04fn6vl",
+          "_$id": "9stuwepi",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -2570,7 +2570,7 @@
           "visible": false
         },
         {
-          "_$id": "y6yjphtz",
+          "_$id": "4keh72sh",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -2582,7 +2582,7 @@
       ]
     },
     {
-      "_$id": "5px1tqnc",
+      "_$id": "d1ihae28",
       "_$type": "Sprite",
       "name": "HOUSE_9_2",
       "width": 128,
@@ -2590,7 +2590,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "q64peh2c",
+          "_$id": "jn7cktd3",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -2603,7 +2603,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -2611,7 +2611,7 @@
           ],
           "_$child": [
             {
-              "_$id": "hs2idi09",
+              "_$id": "3mj58g7j",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -2619,12 +2619,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$uuid": "fd49bce9-807f-42cc-8caa-3cfc984dfc18",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "ci3kqitg",
+              "_$id": "9uolmcjq",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -2632,12 +2632,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$uuid": "01ac41d4-1afb-4b57-95b1-688333e643f2",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "dgprwhff",
+              "_$id": "jkrnxmdj",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -2645,24 +2645,24 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "0elp4zs9",
+          "_$id": "8wyjz8eg",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "mz1qo4av",
+          "_$id": "qkpa471b",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -2672,7 +2672,7 @@
           "visible": false
         },
         {
-          "_$id": "jbb7w9x5",
+          "_$id": "jvyie3qs",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -2684,7 +2684,7 @@
       ]
     },
     {
-      "_$id": "wkial556",
+      "_$id": "o9y9s7wr",
       "_$type": "Sprite",
       "name": "HOUSE_9_3",
       "width": 128,
@@ -2692,7 +2692,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "g3rnv2fy",
+          "_$id": "jus3dim0",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -2705,7 +2705,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -2713,7 +2713,7 @@
           ],
           "_$child": [
             {
-              "_$id": "mzd54tlm",
+              "_$id": "c9vbbrtm",
               "_$type": "Sprite",
               "name": "RearWing",
               "x": 66,
@@ -2721,12 +2721,12 @@
               "width": 58,
               "height": 58,
               "texture": {
-                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$uuid": "01ac41d4-1afb-4b57-95b1-688333e643f2",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "wcieg2me",
+              "_$id": "t8pru067",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -2734,12 +2734,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$uuid": "fd49bce9-807f-42cc-8caa-3cfc984dfc18",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "stii88x7",
+              "_$id": "93wz86qc",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -2747,12 +2747,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$uuid": "01ac41d4-1afb-4b57-95b1-688333e643f2",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "pr3qpl7h",
+              "_$id": "4j1ihess",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -2760,24 +2760,24 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "l2bqdm1d",
+          "_$id": "ymqw03qo",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "l84tefiv",
+          "_$id": "wv0n1d6x",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -2787,7 +2787,7 @@
           "visible": false
         },
         {
-          "_$id": "vqq12gg5",
+          "_$id": "jkgwbxth",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -2799,7 +2799,7 @@
       ]
     },
     {
-      "_$id": "4nza6ve1",
+      "_$id": "haqbgjur",
       "_$type": "Sprite",
       "name": "HOUSE_10_1",
       "width": 128,
@@ -2807,7 +2807,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "08u9ga46",
+          "_$id": "w0uvxrz8",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -2820,7 +2820,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -2828,7 +2828,7 @@
           ],
           "_$child": [
             {
-              "_$id": "e7qfwk81",
+              "_$id": "u7n2ew6n",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 6,
@@ -2836,12 +2836,12 @@
               "width": 116,
               "height": 116,
               "texture": {
-                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$uuid": "fd49bce9-807f-42cc-8caa-3cfc984dfc18",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "fk9bhf04",
+              "_$id": "j7ttz7dh",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -2849,12 +2849,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "o5wtncu2",
+              "_$id": "zterhu3z",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -2862,24 +2862,24 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "vkl6acuw",
+          "_$id": "j6c9jxbe",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "mph65hlr",
+          "_$id": "wv3g2oxh",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -2889,7 +2889,7 @@
           "visible": false
         },
         {
-          "_$id": "u9zi22k7",
+          "_$id": "p1y8bv07",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -2901,7 +2901,7 @@
       ]
     },
     {
-      "_$id": "l96hivod",
+      "_$id": "snmm9y5a",
       "_$type": "Sprite",
       "name": "HOUSE_10_2",
       "width": 128,
@@ -2909,7 +2909,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "ywlf540a",
+          "_$id": "dca12s5d",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -2922,7 +2922,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -2930,7 +2930,7 @@
           ],
           "_$child": [
             {
-              "_$id": "nj1icmqh",
+              "_$id": "ol50ol2c",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -2938,12 +2938,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$uuid": "fd49bce9-807f-42cc-8caa-3cfc984dfc18",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "k8q9ml3h",
+              "_$id": "a556ccfm",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -2951,12 +2951,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$uuid": "01ac41d4-1afb-4b57-95b1-688333e643f2",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "vmkolon0",
+              "_$id": "87k4hs0v",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -2964,12 +2964,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "zsy8ffqy",
+              "_$id": "fiakz7dm",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -2977,24 +2977,24 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "9md0dxta",
+          "_$id": "6gqzc0jw",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "knjeleta",
+          "_$id": "uiv4i559",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -3004,7 +3004,7 @@
           "visible": false
         },
         {
-          "_$id": "gda2gv3x",
+          "_$id": "c41ykjt7",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -3016,7 +3016,7 @@
       ]
     },
     {
-      "_$id": "3rn3urzm",
+      "_$id": "uv5gl9u5",
       "_$type": "Sprite",
       "name": "HOUSE_10_3",
       "width": 128,
@@ -3024,7 +3024,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "0tm6la1n",
+          "_$id": "2xoqno3m",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -3037,7 +3037,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -3045,7 +3045,7 @@
           ],
           "_$child": [
             {
-              "_$id": "wmzyf765",
+              "_$id": "u9snawj2",
               "_$type": "Sprite",
               "name": "RearWing",
               "x": 66,
@@ -3053,12 +3053,12 @@
               "width": 58,
               "height": 58,
               "texture": {
-                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$uuid": "01ac41d4-1afb-4b57-95b1-688333e643f2",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "pp4eki6k",
+              "_$id": "r47gej24",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -3066,12 +3066,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$uuid": "fd49bce9-807f-42cc-8caa-3cfc984dfc18",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "ff7rfgjc",
+              "_$id": "se6abbwa",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -3079,12 +3079,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$uuid": "01ac41d4-1afb-4b57-95b1-688333e643f2",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "194v80i8",
+              "_$id": "3dj28s56",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -3092,12 +3092,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "l9xx6v37",
+              "_$id": "youue59y",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -3105,24 +3105,24 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "fcefz4wu",
+          "_$id": "d5umn5l1",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "bh1578hx",
+          "_$id": "dpsdzeh1",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -3132,7 +3132,7 @@
           "visible": false
         },
         {
-          "_$id": "0j4wohh9",
+          "_$id": "yyqh1wx9",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -3144,7 +3144,7 @@
       ]
     },
     {
-      "_$id": "oddjfcgf",
+      "_$id": "2q63lqs5",
       "_$type": "Sprite",
       "name": "HOUSE_11_1",
       "width": 128,
@@ -3152,7 +3152,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "7i1sr53v",
+          "_$id": "9d0y7202",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -3165,7 +3165,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -3173,7 +3173,7 @@
           ],
           "_$child": [
             {
-              "_$id": "rcudywsn",
+              "_$id": "9165v69x",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 6,
@@ -3181,12 +3181,12 @@
               "width": 116,
               "height": 116,
               "texture": {
-                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$uuid": "fd49bce9-807f-42cc-8caa-3cfc984dfc18",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "nqibcw4r",
+              "_$id": "4szpoom1",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -3194,12 +3194,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "b8ftj8hl",
+              "_$id": "fjqkju4b",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -3207,12 +3207,12 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "23izdxl6",
+              "_$id": "u0wh7dbl",
               "_$type": "Sprite",
               "name": "RoofEmblem",
               "x": 43,
@@ -3220,24 +3220,24 @@
               "width": 30,
               "height": 18,
               "texture": {
-                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$uuid": "01c85cc9-27dc-4800-83e1-6d0d6d61d398",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "qkqzh3kw",
+          "_$id": "0o2geezo",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "slvyaa8m",
+          "_$id": "om0jdrat",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -3247,7 +3247,7 @@
           "visible": false
         },
         {
-          "_$id": "zadijfdn",
+          "_$id": "4e00gogh",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -3259,7 +3259,7 @@
       ]
     },
     {
-      "_$id": "b8f5wiku",
+      "_$id": "sj77szfm",
       "_$type": "Sprite",
       "name": "HOUSE_11_2",
       "width": 128,
@@ -3267,7 +3267,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "j5zi82bw",
+          "_$id": "cr41w9jp",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -3280,7 +3280,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -3288,7 +3288,7 @@
           ],
           "_$child": [
             {
-              "_$id": "cmyqle43",
+              "_$id": "4woy1f03",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -3296,12 +3296,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$uuid": "fd49bce9-807f-42cc-8caa-3cfc984dfc18",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "ts2r1feu",
+              "_$id": "7z3n9txr",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -3309,12 +3309,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$uuid": "01ac41d4-1afb-4b57-95b1-688333e643f2",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "l7x69da8",
+              "_$id": "icwt6nbg",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -3322,12 +3322,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "kv0oymu8",
+              "_$id": "d67huf50",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -3335,12 +3335,12 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "g0fp3y8m",
+              "_$id": "enfif3bv",
               "_$type": "Sprite",
               "name": "RoofEmblem",
               "x": 43,
@@ -3348,24 +3348,24 @@
               "width": 30,
               "height": 18,
               "texture": {
-                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$uuid": "01c85cc9-27dc-4800-83e1-6d0d6d61d398",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "3w58iksi",
+          "_$id": "flewe2fy",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "jliit0ah",
+          "_$id": "bl9ay7mo",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -3375,7 +3375,7 @@
           "visible": false
         },
         {
-          "_$id": "zxbj6a6x",
+          "_$id": "urxi2f6g",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -3387,7 +3387,7 @@
       ]
     },
     {
-      "_$id": "v0nk88pe",
+      "_$id": "eint3alo",
       "_$type": "Sprite",
       "name": "HOUSE_11_3",
       "width": 128,
@@ -3395,7 +3395,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "d0dbdpe5",
+          "_$id": "xowjette",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -3408,7 +3408,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -3416,7 +3416,7 @@
           ],
           "_$child": [
             {
-              "_$id": "y0npehf8",
+              "_$id": "gq9jd2x1",
               "_$type": "Sprite",
               "name": "RearWing",
               "x": 66,
@@ -3424,12 +3424,12 @@
               "width": 58,
               "height": 58,
               "texture": {
-                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$uuid": "01ac41d4-1afb-4b57-95b1-688333e643f2",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "07qjduqz",
+              "_$id": "xcv9fnt5",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -3437,12 +3437,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$uuid": "fd49bce9-807f-42cc-8caa-3cfc984dfc18",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "iiy4qj0q",
+              "_$id": "ldy1ery3",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -3450,12 +3450,12 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$uuid": "01ac41d4-1afb-4b57-95b1-688333e643f2",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "dkk7m7cp",
+              "_$id": "qrjt7gbn",
               "_$type": "Sprite",
               "name": "WallTimbers",
               "x": 16,
@@ -3463,12 +3463,12 @@
               "width": 18,
               "height": 24,
               "texture": {
-                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "71sjzizr",
+              "_$id": "rjbxe4h0",
               "_$type": "Sprite",
               "name": "PorchLantern",
               "x": 84,
@@ -3476,12 +3476,12 @@
               "width": 15,
               "height": 26,
               "texture": {
-                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$uuid": "cb0e44a9-64d7-4790-be2a-b591948e4d2c",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "wfnqw9mh",
+              "_$id": "qxedk9yh",
               "_$type": "Sprite",
               "name": "RoofEmblem",
               "x": 43,
@@ -3489,24 +3489,24 @@
               "width": 30,
               "height": 18,
               "texture": {
-                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$uuid": "01c85cc9-27dc-4800-83e1-6d0d6d61d398",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "rrhbx9xr",
+          "_$id": "ce9mydvr",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "g1mpj9gx",
+          "_$id": "61o5wrzn",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -3516,7 +3516,7 @@
           "visible": false
         },
         {
-          "_$id": "rf06rneb",
+          "_$id": "n71tl2a3",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -3528,7 +3528,7 @@
       ]
     },
     {
-      "_$id": "lb9x4jii",
+      "_$id": "iehc2ps4",
       "_$type": "Sprite",
       "name": "HOUSE_12_1",
       "width": 128,
@@ -3536,7 +3536,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "7af0aohr",
+          "_$id": "0pk5vtkt",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -3549,7 +3549,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -3557,7 +3557,7 @@
           ],
           "_$child": [
             {
-              "_$id": "cmvkrn60",
+              "_$id": "9bzamo5x",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 6,
@@ -3565,24 +3565,24 @@
               "width": 116,
               "height": 116,
               "texture": {
-                "_$uuid": "8796059f-f97f-4d12-89b7-8cab2504d3e1",
+                "_$uuid": "f7e581a4-c471-4f08-8de0-f04955d43ee2",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "z79mcdgm",
+          "_$id": "32k7zu2x",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "ed1yxhx8",
+          "_$id": "7n4n34y6",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -3592,7 +3592,7 @@
           "visible": false
         },
         {
-          "_$id": "wxas0hg0",
+          "_$id": "5a4dnhj6",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -3604,7 +3604,7 @@
       ]
     },
     {
-      "_$id": "pk9tuyn2",
+      "_$id": "skzqyvtb",
       "_$type": "Sprite",
       "name": "HOUSE_12_2",
       "width": 128,
@@ -3612,7 +3612,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "tyvuxjzq",
+          "_$id": "sjq0v1xw",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -3625,7 +3625,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -3633,7 +3633,7 @@
           ],
           "_$child": [
             {
-              "_$id": "bpj82q68",
+              "_$id": "oa2mvpc1",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -3641,12 +3641,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "8796059f-f97f-4d12-89b7-8cab2504d3e1",
+                "_$uuid": "f7e581a4-c471-4f08-8de0-f04955d43ee2",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "5n0f80ab",
+              "_$id": "1dhbz1ik",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -3654,24 +3654,24 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "3e5f5dba-fb58-49d5-86ad-1d8ca99ddb08",
+                "_$uuid": "92fc7755-1c28-4a34-ae90-4e07c333360d",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "njz86tfe",
+          "_$id": "omfo9rj1",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "ut6sc0ae",
+          "_$id": "irvg2n0b",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -3681,7 +3681,7 @@
           "visible": false
         },
         {
-          "_$id": "cpgbt9ht",
+          "_$id": "x869a8dz",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -3693,7 +3693,7 @@
       ]
     },
     {
-      "_$id": "gkqiud0o",
+      "_$id": "ftl0hwe4",
       "_$type": "Sprite",
       "name": "HOUSE_12_3",
       "width": 128,
@@ -3701,7 +3701,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "t5vef7f4",
+          "_$id": "4yvcevs8",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -3714,7 +3714,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -3722,7 +3722,7 @@
           ],
           "_$child": [
             {
-              "_$id": "72oen67f",
+              "_$id": "ia0anag6",
               "_$type": "Sprite",
               "name": "RearWing",
               "x": 66,
@@ -3730,12 +3730,12 @@
               "width": 58,
               "height": 58,
               "texture": {
-                "_$uuid": "3e5f5dba-fb58-49d5-86ad-1d8ca99ddb08",
+                "_$uuid": "92fc7755-1c28-4a34-ae90-4e07c333360d",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "upd3z5hs",
+              "_$id": "2onzywe7",
               "_$type": "Sprite",
               "name": "MainHouse",
               "x": 7,
@@ -3743,12 +3743,12 @@
               "width": 101,
               "height": 101,
               "texture": {
-                "_$uuid": "8796059f-f97f-4d12-89b7-8cab2504d3e1",
+                "_$uuid": "f7e581a4-c471-4f08-8de0-f04955d43ee2",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "d26sbanf",
+              "_$id": "v7zkmhkb",
               "_$type": "Sprite",
               "name": "SideWing",
               "x": 78,
@@ -3756,24 +3756,24 @@
               "width": 46,
               "height": 46,
               "texture": {
-                "_$uuid": "3e5f5dba-fb58-49d5-86ad-1d8ca99ddb08",
+                "_$uuid": "92fc7755-1c28-4a34-ae90-4e07c333360d",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "rjbankyi",
+          "_$id": "e1bbft3w",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -4,
-          "y": -22,
-          "width": 136,
-          "height": 154,
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
           "visible": false
         },
         {
-          "_$id": "u2gxo7ah",
+          "_$id": "ys2gb01r",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 8,
@@ -3783,7 +3783,7 @@
           "visible": false
         },
         {
-          "_$id": "bcn26tny",
+          "_$id": "fitzzvpl",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,

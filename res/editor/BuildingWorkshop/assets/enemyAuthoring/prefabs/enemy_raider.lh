@@ -1,31 +1,31 @@
 {
   "_$ver": 1,
-  "_$id": "kk4aegif",
+  "_$id": "e6i1hz1d",
   "_$type": "Sprite",
   "name": "enemy_raider",
   "width": 96,
   "height": 96,
   "_$child": [
     {
-      "_$id": "61goppfr",
+      "_$id": "vu66ynhq",
       "_$type": "Sprite",
       "name": "Frame0",
       "width": 96,
       "height": 96,
       "_$child": [
         {
-          "_$id": "o6xmewdj",
+          "_$id": "mvg8x73f",
           "_$type": "Sprite",
           "name": "Body",
           "width": 96,
           "height": 96,
           "texture": {
-            "_$uuid": "4ece9459-12d2-44f4-8409-b0e514ffe5e2",
+            "_$uuid": "db642372-2996-4125-b566-789b363e68fd",
             "_$type": "Texture"
           }
         },
         {
-          "_$id": "5s8xw5bx",
+          "_$id": "j1w5tsf3",
           "_$type": "Sprite",
           "name": "HeadSocket",
           "x": 48,
@@ -34,7 +34,7 @@
           "height": 0
         },
         {
-          "_$id": "4vwxbmmu",
+          "_$id": "835x4iyc",
           "_$type": "Sprite",
           "name": "BackSocket",
           "x": 48,
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "_$id": "6bhuc41z",
+      "_$id": "rvbgs65r",
       "_$type": "Sprite",
       "name": "Frame1",
       "width": 96,
@@ -53,18 +53,18 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "ubvsx3b9",
+          "_$id": "0epy1p54",
           "_$type": "Sprite",
           "name": "Body",
           "width": 96,
           "height": 96,
           "texture": {
-            "_$uuid": "854c5ceb-6251-4a44-809f-aad8e4ad6d5a",
+            "_$uuid": "6dac3b04-e7db-4845-9237-251a7a11d4f8",
             "_$type": "Texture"
           }
         },
         {
-          "_$id": "vx64ommq",
+          "_$id": "enuzcp6b",
           "_$type": "Sprite",
           "name": "HeadSocket",
           "x": 48,
@@ -73,7 +73,7 @@
           "height": 0
         },
         {
-          "_$id": "ksaruyh7",
+          "_$id": "zxs63acm",
           "_$type": "Sprite",
           "name": "BackSocket",
           "x": 48,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "_$id": "ypa7ky8m",
+      "_$id": "lyhtp4or",
       "_$type": "Sprite",
       "name": "SortOrigin",
       "x": 48,
@@ -94,7 +94,7 @@
       "visible": false
     },
     {
-      "_$id": "vedy2jaa",
+      "_$id": "2a7e2z8j",
       "_$type": "Sprite",
       "name": "VisualBounds",
       "width": 96,

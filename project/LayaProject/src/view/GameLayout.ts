@@ -54,7 +54,7 @@ export class GameLayout {
         const mapHeight = this.footerTop - this.mapTop;
         const battleHeight = Math.min(LAYOUT.battleMax, mapHeight - LAYOUT.villageMin, Math.max(LAYOUT.battleMin, mapHeight * LAYOUT.battleRatio));
         this.gateY = this.mapTop + battleHeight;
-        // 成人64～68（原56）；短屏也保留可辨识尺寸，长屏不无限放大。
+        // 高清成人画布80～84；短屏也保留可辨识尺寸，长屏不无限放大。
         this.personScale = Math.min(LAYOUT.personMax, LAYOUT.personMin + Math.max(0, this.footerTop - this.gateY - LAYOUT.personGrowthHeight) / LAYOUT.personGrowthStep) / LAYOUT.personBase;
     }
     worldY(y: number): number {

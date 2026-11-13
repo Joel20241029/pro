@@ -7,13 +7,16 @@
     "bundles/base/animations.json",
     "bundles/base/base_0.png",
     "bundles/base/base_1.png",
-    "bundles/base/base_2.png",
-    "bundles/base/base_3.png",
-    "bundles/base/buildings.json",
-    "bundles/base/building_upgrade.mc",
-    "bundles/base/building_attack.mc",
     "bundles/base/village_loop.mp3",
     "bundles/base/ui_click.mp3",
+    "bundles/buildings/frames.json",
+    "bundles/buildings/animations.json",
+    "bundles/buildings/buildings_0.png",
+    "bundles/buildings/buildings_1.png",
+    "bundles/buildings/buildings_2.png",
+    "bundles/buildings/buildings.json",
+    "bundles/buildings/building_upgrade.mc",
+    "bundles/buildings/building_attack.mc",
     "bundles/characters/frames.json",
     "bundles/characters/animations.json",
     "bundles/characters/characters_0.png",
@@ -33,13 +36,18 @@
       "bundles/base/animations.json",
       "bundles/base/base_0.png",
       "bundles/base/base_1.png",
-      "bundles/base/base_2.png",
-      "bundles/base/base_3.png",
-      "bundles/base/buildings.json",
-      "bundles/base/building_upgrade.mc",
-      "bundles/base/building_attack.mc",
       "bundles/base/village_loop.mp3",
       "bundles/base/ui_click.mp3"
+    ],
+    "buildings": [
+      "bundles/buildings/frames.json",
+      "bundles/buildings/animations.json",
+      "bundles/buildings/buildings_0.png",
+      "bundles/buildings/buildings_1.png",
+      "bundles/buildings/buildings_2.png",
+      "bundles/buildings/buildings.json",
+      "bundles/buildings/building_upgrade.mc",
+      "bundles/buildings/building_attack.mc"
     ],
     "characters": [
       "bundles/characters/frames.json",
@@ -94,7 +102,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/raider_front.png",
@@ -181,7 +189,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/raider_front.png",
@@ -268,7 +276,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/runner.png",
@@ -355,7 +363,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/runner.png",
@@ -442,7 +450,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/runner.png",
@@ -529,7 +537,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/runner.png",
@@ -616,7 +624,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/armored.png",
@@ -703,7 +711,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/armored.png",
@@ -790,7 +798,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/armored.png",
@@ -877,7 +885,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/armored.png",
@@ -964,7 +972,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/boar_front_impacts.png",
@@ -1051,7 +1059,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/boar_front_impacts.png",
@@ -1138,7 +1146,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/disruptor_front.png",
@@ -1225,7 +1233,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/disruptor_front.png",
@@ -1312,7 +1320,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/chief_front_candidate.png",
@@ -1399,7 +1407,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/chief_front_other.png",
@@ -1486,7 +1494,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/commander.png",
@@ -1573,7 +1581,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/commander.png",
@@ -1660,7 +1668,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/commander.png",
@@ -1747,7 +1755,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/commander.png",
@@ -1834,7 +1842,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/wolfking.png",
@@ -1921,7 +1929,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/wolfking.png",
@@ -2008,7 +2016,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/wolfking.png",
@@ -2095,7 +2103,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/wolfking.png",
@@ -2182,7 +2190,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/tuskking.png",
@@ -2269,7 +2277,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/tuskking_opposite.png",
@@ -2356,7 +2364,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/shaman.png",
@@ -2443,7 +2451,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/shaman_opposite.png",
@@ -2530,7 +2538,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/accessories_candidate.png",
@@ -2607,7 +2615,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/accessories_candidate.png",
@@ -2684,7 +2692,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/accessories_candidate.png",
@@ -2761,7 +2769,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/accessories_candidate.png",
@@ -2838,7 +2846,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/accessories_candidate.png",
@@ -2915,7 +2923,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/accessories_candidate.png",
@@ -2992,7 +3000,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_down_1.png",
@@ -3069,7 +3077,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_down_2.png",
@@ -3146,7 +3154,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_down_3.png",
@@ -3223,7 +3231,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_down_4.png",
@@ -3300,7 +3308,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_left_1.png",
@@ -3377,7 +3385,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_left_2.png",
@@ -3454,7 +3462,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_left_3.png",
@@ -3531,7 +3539,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_left_4.png",
@@ -3608,7 +3616,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_up_1.png",
@@ -3685,7 +3693,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_up_2.png",
@@ -3762,7 +3770,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_up_3.png",
@@ -3839,7 +3847,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_up_4.png",
@@ -3916,7 +3924,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_right_1.png",
@@ -3993,7 +4001,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_right_2.png",
@@ -4070,7 +4078,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_right_3.png",
@@ -4147,7 +4155,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/male/male_right_4.png",
@@ -4224,7 +4232,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_farm_down_1.png",
@@ -4301,7 +4309,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_farm_down_2.png",
@@ -4378,7 +4386,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_farm_down_3.png",
@@ -4455,7 +4463,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_farm_down_4.png",
@@ -4532,7 +4540,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_chop_right_1.png",
@@ -4609,7 +4617,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_chop_right_2.png",
@@ -4686,7 +4694,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_chop_right_3.png",
@@ -4763,7 +4771,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_chop_right_4.png",
@@ -4840,7 +4848,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_chop_left_1.png",
@@ -4917,7 +4925,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_chop_left_2.png",
@@ -4994,7 +5002,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_chop_left_3.png",
@@ -5071,7 +5079,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_chop_left_4.png",
@@ -5148,7 +5156,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_care_right_1.png",
@@ -5225,7 +5233,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_care_right_2.png",
@@ -5302,7 +5310,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_care_right_3.png",
@@ -5379,7 +5387,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_care_right_4.png",
@@ -5456,7 +5464,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_care_left_1.png",
@@ -5533,7 +5541,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_care_left_2.png",
@@ -5610,7 +5618,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_care_left_3.png",
@@ -5687,7 +5695,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/male/labor/male_care_left_4.png",
@@ -5764,7 +5772,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_down_1.png",
@@ -5841,7 +5849,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_down_2.png",
@@ -5918,7 +5926,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_down_3.png",
@@ -5995,7 +6003,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_down_4.png",
@@ -6072,7 +6080,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_left_1.png",
@@ -6149,7 +6157,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_left_2.png",
@@ -6226,7 +6234,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_left_3.png",
@@ -6303,7 +6311,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_left_4.png",
@@ -6380,7 +6388,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_up_1.png",
@@ -6457,7 +6465,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_up_2.png",
@@ -6534,7 +6542,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_up_3.png",
@@ -6611,7 +6619,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_up_4.png",
@@ -6688,7 +6696,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_right_1.png",
@@ -6765,7 +6773,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_right_2.png",
@@ -6842,7 +6850,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_right_3.png",
@@ -6919,7 +6927,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/female/female_right_4.png",
@@ -6996,7 +7004,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_farm_down_1.png",
@@ -7073,7 +7081,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_farm_down_2.png",
@@ -7150,7 +7158,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_farm_down_3.png",
@@ -7227,7 +7235,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_farm_down_4.png",
@@ -7304,7 +7312,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_chop_right_1.png",
@@ -7381,7 +7389,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_chop_right_2.png",
@@ -7458,7 +7466,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_chop_right_3.png",
@@ -7535,7 +7543,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_chop_right_4.png",
@@ -7612,7 +7620,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_chop_left_1.png",
@@ -7689,7 +7697,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_chop_left_2.png",
@@ -7766,7 +7774,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_chop_left_3.png",
@@ -7843,7 +7851,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_chop_left_4.png",
@@ -7920,7 +7928,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_care_right_1.png",
@@ -7997,7 +8005,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_care_right_2.png",
@@ -8074,7 +8082,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_care_right_3.png",
@@ -8151,7 +8159,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_care_right_4.png",
@@ -8228,7 +8236,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_care_left_1.png",
@@ -8305,7 +8313,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_care_left_2.png",
@@ -8382,7 +8390,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_care_left_3.png",
@@ -8459,7 +8467,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/female/labor/female_care_left_4.png",
@@ -8536,7 +8544,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_down_1.png",
@@ -8613,7 +8621,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_down_2.png",
@@ -8690,7 +8698,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_down_3.png",
@@ -8767,7 +8775,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_down_4.png",
@@ -8844,7 +8852,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_left_1.png",
@@ -8921,7 +8929,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_left_2.png",
@@ -8998,7 +9006,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_left_3.png",
@@ -9075,7 +9083,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_left_4.png",
@@ -9152,7 +9160,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_up_1.png",
@@ -9229,7 +9237,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_up_2.png",
@@ -9306,7 +9314,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_up_3.png",
@@ -9383,7 +9391,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_up_4.png",
@@ -9460,7 +9468,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_right_1.png",
@@ -9537,7 +9545,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_right_2.png",
@@ -9614,7 +9622,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_right_3.png",
@@ -9691,7 +9699,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/child/child_right_4.png",
@@ -9768,7 +9776,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_down_1.png",
@@ -9845,7 +9853,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_down_2.png",
@@ -9922,7 +9930,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_down_3.png",
@@ -9999,7 +10007,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_down_4.png",
@@ -10076,7 +10084,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_left_1.png",
@@ -10153,7 +10161,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_left_2.png",
@@ -10230,7 +10238,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_left_3.png",
@@ -10307,7 +10315,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_left_4.png",
@@ -10384,7 +10392,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_up_1.png",
@@ -10461,7 +10469,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_up_2.png",
@@ -10538,7 +10546,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_up_3.png",
@@ -10615,7 +10623,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_up_4.png",
@@ -10692,7 +10700,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_right_1.png",
@@ -10769,7 +10777,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_right_2.png",
@@ -10846,7 +10854,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_right_3.png",
@@ -10923,7 +10931,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/elder/elder_right_4.png",
@@ -11000,7 +11008,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/elder/rest/elder_idle_1.png",
@@ -11077,7 +11085,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/characters/elder/rest/elder_idle_2.png",
@@ -11154,7 +11162,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/baby/baby_idle_1.png",
@@ -11231,7 +11239,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/baby/baby_idle_2.png",
@@ -11308,7 +11316,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/baby/baby_idle_3.png",
@@ -11385,7 +11393,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "design/hd2d/directions/baby/baby_idle_4.png",
@@ -11462,8 +11470,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/arrow_bases.png",
         "crop": [
@@ -11502,14 +11510,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_0",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 778,
-        "y": 246,
+        "x": 2,
+        "y": 2,
         "w": 240,
         "h": 224
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_0.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_arrow_body_0"
     },
     {
@@ -11544,8 +11552,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/arrow_bases.png",
         "crop": [
@@ -11584,14 +11592,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 2,
+        "x": 724,
+        "y": 675,
         "w": 224,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_arrow_body_1"
     },
     {
@@ -11626,8 +11634,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/arrow_bases.png",
         "crop": [
@@ -11666,14 +11674,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 220,
+        "x": 2,
         "y": 704,
         "w": 198,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_arrow_body_2"
     },
     {
@@ -11708,8 +11716,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/arrow_bases.png",
         "crop": [
@@ -11748,14 +11756,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
         "x": 2,
-        "y": 236,
+        "y": 2,
         "w": 217,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_arrow_body_3"
     },
     {
@@ -11790,8 +11798,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/stone_bases.png",
         "crop": [
@@ -11830,14 +11838,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
         "x": 2,
-        "y": 470,
+        "y": 236,
         "w": 216,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_stone_body_0"
     },
     {
@@ -11872,8 +11880,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/stone_bases.png",
         "crop": [
@@ -11912,14 +11920,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 422,
+        "x": 405,
         "y": 704,
         "w": 185,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_stone_body_1"
     },
     {
@@ -11954,8 +11962,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/stone_bases.png",
         "crop": [
@@ -11994,14 +12002,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 427,
+        "x": 417,
         "y": 2,
         "w": 189,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_stone_body_2"
     },
     {
@@ -12036,8 +12044,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/stone_bases.png",
         "crop": [
@@ -12076,14 +12084,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 223,
-        "y": 236,
+        "x": 220,
+        "y": 470,
         "w": 194,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_stone_body_3"
     },
     {
@@ -12118,8 +12126,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/frost_bases.png",
         "crop": [
@@ -12158,14 +12166,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 421,
-        "y": 236,
+        "x": 223,
+        "y": 2,
         "w": 190,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_slow_body_0"
     },
     {
@@ -12200,8 +12208,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/frost_bases.png",
         "crop": [
@@ -12240,14 +12248,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 230,
-        "y": 2,
+        "x": 222,
+        "y": 236,
         "w": 193,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_slow_body_1"
     },
     {
@@ -12282,8 +12290,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/frost_bases.png",
         "crop": [
@@ -12322,14 +12330,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 222,
-        "y": 470,
+        "x": 204,
+        "y": 704,
         "w": 197,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_slow_body_2"
     },
     {
@@ -12364,8 +12372,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/frost_bases.png",
         "crop": [
@@ -12404,14 +12412,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
         "x": 2,
-        "y": 704,
+        "y": 470,
         "w": 214,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_slow_body_3"
     },
     {
@@ -12446,8 +12454,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/houses.png",
         "crop": [
@@ -12486,14 +12494,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 487,
-        "y": 710,
+        "x": 731,
+        "y": 441,
         "w": 231,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_house_body_0"
     },
     {
@@ -12528,8 +12536,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/houses.png",
         "crop": [
@@ -12568,14 +12576,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_0",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 778,
-        "y": 474,
+        "x": 246,
+        "y": 2,
         "w": 240,
         "h": 222
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_0.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_house_body_1"
     },
     {
@@ -12610,8 +12618,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/houses.png",
         "crop": [
@@ -12650,14 +12658,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 246,
-        "y": 590,
+        "x": 490,
+        "y": 441,
         "w": 237,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_house_body_2"
     },
     {
@@ -12692,8 +12700,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/houses.png",
         "crop": [
@@ -12732,14 +12740,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 722,
-        "y": 732,
+        "x": 490,
+        "y": 675,
         "w": 230,
         "h": 230
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_house_body_3"
     },
     {
@@ -12774,8 +12782,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/farms_ground.png",
         "crop": [
@@ -12814,14 +12822,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_0",
       "atlasRect": {
         "x": 2,
-        "y": 221,
+        "y": 230,
         "w": 240,
         "h": 179
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_farm_body_0"
     },
     {
@@ -12856,8 +12864,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/farms_ground.png",
         "crop": [
@@ -12896,14 +12904,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 490,
-        "y": 410,
+        "x": 2,
+        "y": 594,
         "w": 240,
         "h": 175
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_farm_body_1"
     },
     {
@@ -12938,8 +12946,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/farms_ground.png",
         "crop": [
@@ -12978,14 +12986,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 734,
-        "y": 574,
+        "x": 246,
+        "y": 779,
         "w": 240,
         "h": 154
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_farm_body_2"
     },
     {
@@ -13020,8 +13028,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/farms_ground.png",
         "crop": [
@@ -13060,14 +13068,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 830,
+        "x": 246,
+        "y": 619,
         "w": 240,
         "h": 156
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_farm_body_3"
     },
     {
@@ -13102,8 +13110,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/logging.png",
         "crop": [
@@ -13142,14 +13150,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 734,
-        "y": 2,
+        "x": 246,
+        "y": 228,
         "w": 240,
         "h": 206
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_logging_body_0"
     },
     {
@@ -13184,8 +13192,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/logging.png",
         "crop": [
@@ -13224,14 +13232,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 734,
-        "y": 212,
+        "x": 2,
+        "y": 413,
         "w": 240,
         "h": 177
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_logging_body_1"
     },
     {
@@ -13266,8 +13274,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/logging.png",
         "crop": [
@@ -13306,14 +13314,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 246,
-        "y": 412,
+        "x": 2,
+        "y": 773,
         "w": 240,
         "h": 174
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_logging_body_2"
     },
     {
@@ -13348,8 +13356,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/logging.png",
         "crop": [
@@ -13388,14 +13396,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 734,
-        "y": 393,
+        "x": 246,
+        "y": 438,
         "w": 240,
         "h": 177
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_logging_body_3"
     },
     {
@@ -13430,8 +13438,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/gates.png",
         "crop": [
@@ -13470,14 +13478,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_0",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 740,
-        "y": 700,
+        "x": 734,
+        "y": 2,
         "w": 240,
         "h": 216
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_0.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_gate_body_0"
     },
     {
@@ -13512,8 +13520,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/gates.png",
         "crop": [
@@ -13552,14 +13560,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 2,
+        "x": 734,
+        "y": 222,
         "w": 240,
         "h": 215
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_gate_body_1"
     },
     {
@@ -13594,8 +13602,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/gates.png",
         "crop": [
@@ -13634,14 +13642,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 246,
-        "y": 2,
+        "x": 490,
+        "y": 223,
         "w": 240,
         "h": 214
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_gate_body_2"
     },
     {
@@ -13676,8 +13684,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/gates.png",
         "crop": [
@@ -13716,14 +13724,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_0",
+      "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 496,
-        "y": 662,
+        "x": 490,
+        "y": 2,
         "w": 240,
         "h": 217
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_0.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_0.png",
       "importedFrameId": "hd_gate_body_3"
     },
     {
@@ -13758,8 +13766,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/components.png",
         "crop": [
@@ -13793,14 +13801,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 804,
+        "x": 799,
         "y": 157,
         "w": 188,
         "h": 151
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_part_bow_right"
     },
     {
@@ -13835,8 +13843,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/components.png",
         "crop": [
@@ -13870,14 +13878,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 804,
+        "x": 799,
         "y": 2,
         "w": 188,
         "h": 151
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_part_bow_left"
     },
     {
@@ -13912,8 +13920,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/components.png",
         "crop": [
@@ -13947,14 +13955,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 611,
+        "x": 594,
         "y": 854,
         "w": 188,
         "h": 166
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_part_sling"
     },
     {
@@ -13989,8 +13997,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/components.png",
         "crop": [
@@ -14024,14 +14032,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 246,
-        "y": 824,
+        "x": 418,
+        "y": 470,
         "w": 185,
         "h": 188
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_part_crystals"
     },
     {
@@ -14066,8 +14074,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/components.png",
         "crop": [
@@ -14101,14 +14109,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 423,
-        "y": 470,
+        "x": 419,
+        "y": 236,
         "w": 185,
         "h": 188
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_part_rivet"
     },
     {
@@ -14143,8 +14151,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/components.png",
         "crop": [
@@ -14178,14 +14186,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 611,
+        "x": 594,
         "y": 662,
         "w": 183,
         "h": 188
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_part_banner"
     },
     {
@@ -14220,8 +14228,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/components.png",
         "crop": [
@@ -14255,14 +14263,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 793,
+        "x": 799,
         "y": 312,
         "w": 188,
         "h": 142
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_part_foundation"
     },
     {
@@ -14297,8 +14305,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/components.png",
         "crop": [
@@ -14332,14 +14340,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 804,
+        "x": 799,
         "y": 458,
         "w": 188,
         "h": 119
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_part_crest"
     },
     {
@@ -14374,8 +14382,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/components.png",
         "crop": [
@@ -14409,14 +14417,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 615,
+        "x": 608,
         "y": 236,
         "w": 174,
         "h": 188
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_part_wheel"
     },
     {
@@ -14451,8 +14459,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/components.png",
         "crop": [
@@ -14486,14 +14494,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 798,
-        "y": 654,
+        "x": 781,
+        "y": 612,
         "w": 110,
         "h": 188
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_part_lantern"
     },
     {
@@ -14528,8 +14536,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/components.png",
         "crop": [
@@ -14563,14 +14571,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 620,
+        "x": 610,
         "y": 2,
         "w": 173,
         "h": 188
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_part_grain"
     },
     {
@@ -14605,8 +14613,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/components.png",
         "crop": [
@@ -14640,14 +14648,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 612,
-        "y": 470,
+        "x": 607,
+        "y": 428,
         "w": 188,
         "h": 180
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_part_brace"
     },
     {
@@ -14682,7 +14690,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -14717,14 +14725,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_0",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 326,
-        "y": 914,
+        "x": 338,
+        "y": 423,
         "w": 84,
         "h": 96
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_0.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_food"
     },
     {
@@ -14759,7 +14767,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -14794,14 +14802,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 804,
-        "y": 581,
+        "x": 822,
+        "y": 451,
         "w": 96,
         "h": 69
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_wood"
     },
     {
@@ -14836,7 +14844,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -14873,8 +14881,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_1",
       "atlasRect": {
-        "x": 535,
-        "y": 944,
+        "x": 822,
+        "y": 373,
         "w": 96,
         "h": 74
       },
@@ -14913,7 +14921,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -14948,14 +14956,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_0",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 236,
-        "y": 914,
+        "x": 338,
+        "y": 323,
         "w": 86,
         "h": 96
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_0.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_build"
     },
     {
@@ -14990,7 +14998,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -15025,14 +15033,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 912,
-        "y": 673,
+        "x": 238,
+        "y": 415,
         "w": 96,
         "h": 86
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_house"
     },
     {
@@ -15067,7 +15075,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -15102,14 +15110,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_0",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 740,
-        "y": 920,
+        "x": 622,
+        "y": 262,
         "w": 96,
         "h": 96
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_0.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_logging"
     },
     {
@@ -15144,7 +15152,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -15179,14 +15187,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 912,
-        "y": 763,
+        "x": 922,
+        "y": 449,
         "w": 96,
         "h": 73
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_family"
     },
     {
@@ -15221,7 +15229,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -15256,14 +15264,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 2,
-        "y": 938,
+        "x": 517,
+        "y": 378,
         "w": 96,
         "h": 83
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_heart"
     },
     {
@@ -15298,7 +15306,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -15333,14 +15341,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 2,
-        "y": 920,
+        "x": 622,
+        "y": 362,
         "w": 96,
         "h": 89
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_arrow"
     },
     {
@@ -15375,7 +15383,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -15412,8 +15420,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_1",
       "atlasRect": {
-        "x": 435,
-        "y": 944,
+        "x": 722,
+        "y": 373,
         "w": 96,
         "h": 76
       },
@@ -15452,7 +15460,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -15487,14 +15495,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 102,
-        "y": 920,
+        "x": 927,
+        "y": 349,
         "w": 87,
         "h": 96
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_slow"
     },
     {
@@ -15529,7 +15537,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -15564,14 +15572,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_0",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 937,
-        "y": 920,
+        "x": 428,
+        "y": 378,
         "w": 85,
         "h": 96
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_0.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_shield"
     },
     {
@@ -15606,7 +15614,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -15641,14 +15649,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 193,
-        "y": 878,
+        "x": 2,
+        "y": 558,
         "w": 79,
         "h": 96
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_baby"
     },
     {
@@ -15683,7 +15691,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -15718,14 +15726,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 102,
-        "y": 938,
+        "x": 177,
+        "y": 505,
         "w": 96,
         "h": 83
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_view"
     },
     {
@@ -15760,7 +15768,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -15795,14 +15803,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 912,
-        "y": 581,
+        "x": 238,
+        "y": 323,
         "w": 96,
         "h": 88
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_trophy"
     },
     {
@@ -15837,7 +15845,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/icons.png",
@@ -15872,14 +15880,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_0",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 840,
-        "y": 920,
+        "x": 927,
+        "y": 249,
         "w": 93,
         "h": 96
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_0.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "icon_close"
     },
     {
@@ -15914,7 +15922,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/environment/details.png",
@@ -15991,7 +15999,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/environment/details.png",
@@ -16068,7 +16076,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/environment/details.png",
@@ -16145,7 +16153,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/generated/environment/details.png",
@@ -16222,7 +16230,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/generated/environment/details.png",
@@ -16299,7 +16307,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/generated/environment/details.png",
@@ -16376,7 +16384,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/generated/environment/details.png",
@@ -16453,7 +16461,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/generated/environment/details.png",
@@ -16530,7 +16538,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/generated/environment/details.png",
@@ -16607,7 +16615,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "characters",
       "provenance": {
         "source": "source/rendered2d/generated/environment/details.png",
@@ -16684,7 +16692,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/environment/details.png",
@@ -16719,14 +16727,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 177,
-        "y": 490,
+        "x": 663,
+        "y": 130,
         "w": 128,
         "h": 128
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "deco_pear_pair"
     },
     {
@@ -16761,7 +16769,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/environment/details.png",
@@ -16796,14 +16804,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 177,
-        "y": 754,
+        "x": 795,
+        "y": 249,
         "w": 128,
         "h": 120
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "deco_blossom_ivory"
     },
     {
@@ -16844,7 +16852,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/skins.png",
@@ -16881,8 +16889,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_0",
       "atlasRect": {
-        "x": 518,
-        "y": 398,
+        "x": 262,
+        "y": 596,
         "w": 256,
         "h": 128
       },
@@ -16927,7 +16935,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/skins.png",
@@ -16964,8 +16972,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_0",
       "atlasRect": {
-        "x": 518,
-        "y": 266,
+        "x": 2,
+        "y": 860,
         "w": 256,
         "h": 128
       },
@@ -17010,7 +17018,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/skins.png",
@@ -17047,8 +17055,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_0",
       "atlasRect": {
-        "x": 518,
-        "y": 2,
+        "x": 2,
+        "y": 596,
         "w": 256,
         "h": 128
       },
@@ -17093,7 +17101,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/skins.png",
@@ -17130,8 +17138,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_0",
       "atlasRect": {
-        "x": 518,
-        "y": 134,
+        "x": 2,
+        "y": 728,
         "w": 256,
         "h": 128
       },
@@ -17176,7 +17184,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/skins.png",
@@ -17213,8 +17221,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_0",
       "atlasRect": {
-        "x": 236,
-        "y": 518,
+        "x": 262,
+        "y": 728,
         "w": 256,
         "h": 128
       },
@@ -17259,7 +17267,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/skins.png",
@@ -17296,8 +17304,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_0",
       "atlasRect": {
-        "x": 236,
-        "y": 782,
+        "x": 522,
+        "y": 518,
         "w": 256,
         "h": 128
       },
@@ -17342,7 +17350,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/skins.png",
@@ -17379,8 +17387,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_0",
       "atlasRect": {
-        "x": 236,
-        "y": 650,
+        "x": 262,
+        "y": 860,
         "w": 256,
         "h": 128
       },
@@ -17425,7 +17433,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/skins.png",
@@ -17462,8 +17470,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_0",
       "atlasRect": {
-        "x": 496,
-        "y": 530,
+        "x": 522,
+        "y": 650,
         "w": 256,
         "h": 128
       },
@@ -17502,7 +17510,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "design/hd2d/environment/tree_oak_layers.png",
@@ -17537,14 +17545,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "base_0",
       "atlasRect": {
-        "x": 490,
-        "y": 2,
+        "x": 782,
+        "y": 518,
         "w": 240,
         "h": 206
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_0.png",
       "importedFrameId": "deco_tree_oak"
     },
     {
@@ -17579,7 +17587,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "design/hd2d/environment/tree_pine_layers.png",
@@ -17616,8 +17624,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_1",
       "atlasRect": {
-        "x": 2,
-        "y": 586,
+        "x": 490,
+        "y": 2,
         "w": 169,
         "h": 240
       },
@@ -17656,7 +17664,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "design/hd2d/environment/sign.png",
@@ -17693,8 +17701,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_1",
       "atlasRect": {
-        "x": 490,
-        "y": 589,
+        "x": 2,
+        "y": 194,
         "w": 240,
         "h": 117
       },
@@ -17733,7 +17741,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "design/hd2d/environment/rock_cluster.png",
@@ -17770,8 +17778,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_0",
       "atlasRect": {
-        "x": 778,
-        "y": 2,
+        "x": 522,
+        "y": 782,
         "w": 239,
         "h": 240
       },
@@ -17810,7 +17818,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "design/hd2d/environment/flower.png",
@@ -17847,8 +17855,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_1",
       "atlasRect": {
-        "x": 635,
-        "y": 944,
+        "x": 85,
+        "y": 558,
         "w": 80,
         "h": 78
       },
@@ -17887,7 +17895,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "design/hd2d/environment/fruit_apple.png",
@@ -17924,8 +17932,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_1",
       "atlasRect": {
-        "x": 175,
-        "y": 586,
+        "x": 722,
+        "y": 262,
         "w": 67,
         "h": 80
       },
@@ -17964,7 +17972,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/environment/decor.png",
@@ -18001,8 +18009,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_1",
       "atlasRect": {
-        "x": 2,
-        "y": 404,
+        "x": 246,
+        "y": 2,
         "w": 240,
         "h": 178
       },
@@ -18041,7 +18049,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/environment/decor.png",
@@ -18076,14 +18084,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_1",
+      "atlasPage": "base_0",
       "atlasRect": {
-        "x": 490,
-        "y": 212,
+        "x": 782,
+        "y": 728,
         "w": 240,
         "h": 194
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_0.png",
       "importedFrameId": "deco_log_pile"
     },
     {
@@ -18118,7 +18126,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/environment/decor.png",
@@ -18153,14 +18161,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_0",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 496,
-        "y": 883,
+        "x": 246,
+        "y": 184,
         "w": 240,
         "h": 135
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_0.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "building_palisade"
     },
     {
@@ -18195,7 +18203,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/environment/decor.png",
@@ -18232,8 +18240,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_1",
       "atlasRect": {
-        "x": 246,
-        "y": 220,
+        "x": 2,
+        "y": 2,
         "w": 240,
         "h": 188
       },
@@ -18272,8 +18280,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/finishing_parts.png",
         "crop": [
@@ -18307,14 +18315,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "buildings_2",
       "atlasRect": {
-        "x": 539,
-        "y": 2,
+        "x": 2,
+        "y": 360,
         "w": 140,
         "h": 176
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_2.png",
       "importedFrameId": "hd_house_wing_0"
     },
     {
@@ -18349,8 +18357,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/finishing_parts.png",
         "crop": [
@@ -18384,14 +18392,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "buildings_2",
       "atlasRect": {
-        "x": 827,
-        "y": 2,
+        "x": 2,
+        "y": 720,
         "w": 138,
         "h": 176
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_2.png",
       "importedFrameId": "hd_house_wing_1"
     },
     {
@@ -18426,8 +18434,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/finishing_parts.png",
         "crop": [
@@ -18461,14 +18469,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "buildings_2",
       "atlasRect": {
-        "x": 2,
-        "y": 362,
+        "x": 144,
+        "y": 720,
         "w": 134,
         "h": 176
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_2.png",
       "importedFrameId": "hd_house_wing_2"
     },
     {
@@ -18503,8 +18511,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/finishing_parts.png",
         "crop": [
@@ -18538,14 +18546,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "buildings_2",
       "atlasRect": {
-        "x": 683,
-        "y": 2,
+        "x": 2,
+        "y": 540,
         "w": 140,
         "h": 176
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_2.png",
       "importedFrameId": "hd_house_wing_3"
     },
     {
@@ -18580,8 +18588,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/finishing_parts.png",
         "crop": [
@@ -18615,14 +18623,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "buildings_2",
       "atlasRect": {
         "x": 2,
-        "y": 182,
+        "y": 180,
         "w": 170,
         "h": 176
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_2.png",
       "importedFrameId": "hd_gate_doors_0"
     },
     {
@@ -18657,8 +18665,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/finishing_parts.png",
         "crop": [
@@ -18692,14 +18700,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "buildings_2",
       "atlasRect": {
-        "x": 181,
+        "x": 2,
         "y": 2,
         "w": 176,
         "h": 174
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_2.png",
       "importedFrameId": "hd_gate_doors_1"
     },
     {
@@ -18734,8 +18742,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/finishing_parts.png",
         "crop": [
@@ -18769,14 +18777,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_2",
+      "atlasPage": "buildings_1",
       "atlasRect": {
-        "x": 803,
-        "y": 846,
+        "x": 786,
+        "y": 804,
         "w": 176,
         "h": 176
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_2.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_1.png",
       "importedFrameId": "hd_gate_doors_2"
     },
     {
@@ -18811,8 +18819,8 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
-      "bundle": "base",
+      "usage": "HD production",
+      "bundle": "buildings",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/finishing_parts.png",
         "crop": [
@@ -18846,14 +18854,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "buildings_2",
       "atlasRect": {
-        "x": 361,
+        "x": 182,
         "y": 2,
         "w": 174,
         "h": 176
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/buildings/buildings_2.png",
       "importedFrameId": "hd_gate_doors_3"
     },
     {
@@ -18888,7 +18896,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/finishing_parts.png",
@@ -18898,7 +18906,12 @@
           362,
           364
         ],
-        "objectBox": null,
+        "objectBox": [
+          151,
+          25,
+          84,
+          287
+        ],
         "alphaCutoff": 240,
         "fullCanvas": false,
         "sourceHash": "d49be066e113b123ee852555d898a1a6535979a84b96d4e549878c9f28feb3c1",
@@ -18923,14 +18936,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 969,
-        "y": 2,
+        "x": 182,
+        "y": 315,
         "w": 52,
         "h": 176
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "deco_torch"
     },
     {
@@ -18965,24 +18978,29 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/finishing_parts.png",
         "crop": [
-          362,
-          722,
-          362,
-          364
+          348,
+          824,
+          342,
+          160
         ],
-        "objectBox": null,
+        "objectBox": [
+          0,
+          0,
+          342,
+          160
+        ],
         "alphaCutoff": 0,
         "fullCanvas": false,
         "sourceHash": "d49be066e113b123ee852555d898a1a6535979a84b96d4e549878c9f28feb3c1",
-        "outputHash": "aa889fb6926fdf58ac212eab8554471f9a1fd33750825b9904b3a1634f7f7229"
+        "outputHash": "c15a12427b3b2eedbdfc0e0a421bd46011389ab58484f4bc312c3f62859ae477"
       },
-      "bytes": 22506,
-      "sha256": "c2bed3c944c0c9e5aeec43d43b68643a532998940c021293a5378807ad82333e",
+      "bytes": 20095,
+      "sha256": "bdbd1ec76df4abf71676ac87d5bc8f8e21a24c5196f86cbfcb4bc75d25b2c052",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 192,
@@ -18990,7 +19008,7 @@
       },
       "trimOffset": {
         "x": 8,
-        "y": 4
+        "y": 98
       },
       "atlasTrim": true,
       "displaySize": {
@@ -19000,14 +19018,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "base_0",
       "atlasRect": {
-        "x": 2,
-        "y": 2,
-        "w": 175,
-        "h": 176
+        "x": 765,
+        "y": 926,
+        "w": 176,
+        "h": 82
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_0.png",
       "importedFrameId": "shadow_actor"
     },
     {
@@ -19042,24 +19060,29 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/finishing_parts.png",
         "crop": [
-          724,
-          722,
-          362,
-          364
+          690,
+          775,
+          425,
+          260
         ],
-        "objectBox": null,
+        "objectBox": [
+          0,
+          0,
+          425,
+          260
+        ],
         "alphaCutoff": 0,
         "fullCanvas": false,
         "sourceHash": "d49be066e113b123ee852555d898a1a6535979a84b96d4e549878c9f28feb3c1",
-        "outputHash": "528d5f6cb8a3c11381629d8a31701ac07dab8fa662f01d1f6323f466cc1c17dd"
+        "outputHash": "95d4830314163a1e85cf0451cc2268b59ffd9a65e0f0a6b1241499c61ca79f1c"
       },
-      "bytes": 32199,
-      "sha256": "534707c259cfe356077027c3a6f92239a4dcbb4ac7fb53c52179753f1e3d6bf4",
+      "bytes": 26168,
+      "sha256": "46b9ecac0789281fa8c067557e7e7e77c1da39b793e8f23fbdfbf2c8cf6d048e",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 192,
@@ -19067,7 +19090,7 @@
       },
       "trimOffset": {
         "x": 8,
-        "y": 8
+        "y": 72
       },
       "atlasTrim": true,
       "displaySize": {
@@ -19077,14 +19100,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 181,
-        "y": 180,
+        "x": 2,
+        "y": 315,
         "w": 176,
-        "h": 172
+        "h": 108
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "shadow_tree"
     },
     {
@@ -19119,7 +19142,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/buildings/finishing_parts.png",
@@ -19129,7 +19152,12 @@
           362,
           364
         ],
-        "objectBox": null,
+        "objectBox": [
+          126,
+          133,
+          88,
+          71
+        ],
         "alphaCutoff": 240,
         "fullCanvas": false,
         "sourceHash": "d49be066e113b123ee852555d898a1a6535979a84b96d4e549878c9f28feb3c1",
@@ -19156,8 +19184,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_1",
       "atlasRect": {
-        "x": 435,
-        "y": 824,
+        "x": 277,
+        "y": 505,
         "w": 48,
         "h": 39
       },
@@ -19202,7 +19230,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/generated/ui/skins.png",
@@ -19237,14 +19265,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 177,
-        "y": 622,
+        "x": 490,
+        "y": 246,
         "w": 128,
         "h": 128
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "panel_portrait_frame"
     },
     {
@@ -19279,7 +19307,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/boar_front_impacts.png",
@@ -19356,7 +19384,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "battle",
       "provenance": {
         "source": "source/rendered2d/generated/enemies/boar_front_impacts.png",
@@ -19433,7 +19461,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "design/hd2d/samples/grass_ground_v2.png",
@@ -19470,7 +19498,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "base_0",
       "atlasRect": {
-        "x": 2,
+        "x": 444,
         "y": 2,
         "w": 512,
         "h": 512
@@ -19510,7 +19538,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "design/hd2d/parts/road_sprite.png",
@@ -19521,21 +19549,21 @@
           1508
         ],
         "objectBox": null,
-        "alphaCutoff": 240,
+        "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "7ae3f92f9521190a0dff00a91149202c680fa376d6f6b6536d750601a9fbc0ef",
-        "outputHash": "8ebf812deb9a6a04e11b38c45c33b1211ba0dc3b9fba4d66fa4c600a11ac299d"
+        "outputHash": "e33ebee91f84211ed03204c6017b03a8f6e372d75adacc7a961c20f92d13c4a9"
       },
-      "bytes": 78591,
-      "sha256": "1f52e249d4e4fbb368c902501b03049973351eb15505b6e039d6861e45d8a8ad",
+      "bytes": 83750,
+      "sha256": "1cbfc0f5fc69b90988d55daa5f6996553f9c7de2e52209fcb5add838ec019097",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 512,
         "h": 768
       },
       "trimOffset": {
-        "x": 132,
-        "y": 87
+        "x": 56,
+        "y": 51
       },
       "atlasTrim": true,
       "displaySize": {
@@ -19548,9 +19576,9 @@
       "atlasPage": "base_0",
       "atlasRect": {
         "x": 2,
-        "y": 518,
-        "w": 230,
-        "h": 478
+        "y": 2,
+        "w": 438,
+        "h": 590
       },
       "importedLayaAtlasPath": "assets/resources/base/base_0.png",
       "importedFrameId": "map_road"
@@ -19587,7 +19615,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/environment/campfire/campfire_1.png",
@@ -19622,14 +19650,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 2,
-        "y": 798,
+        "x": 838,
+        "y": 127,
         "w": 171,
         "h": 118
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "building_hearth_lit"
     },
     {
@@ -19664,7 +19692,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/environment/campfire/campfire_2.png",
@@ -19699,14 +19727,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "base_1",
       "atlasRect": {
         "x": 2,
-        "y": 542,
+        "y": 427,
         "w": 171,
         "h": 127
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "hearth_burn_2"
     },
     {
@@ -19741,7 +19769,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/environment/campfire/campfire_3.png",
@@ -19776,14 +19804,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 2,
-        "y": 673,
+        "x": 838,
+        "y": 2,
         "w": 171,
         "h": 121
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "hearth_burn_3"
     },
     {
@@ -19818,7 +19846,7 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "HD production staging",
+      "usage": "HD production",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/environment/campfire/campfire_4.png",
@@ -19853,14 +19881,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "base_3",
+      "atlasPage": "base_1",
       "atlasRect": {
-        "x": 140,
-        "y": 362,
+        "x": 663,
+        "y": 2,
         "w": 171,
         "h": 124
       },
-      "importedLayaAtlasPath": "assets/resources/base/base_3.png",
+      "importedLayaAtlasPath": "assets/resources/base/base_1.png",
       "importedFrameId": "hearth_burn_4"
     }
   ],

@@ -1,6 +1,6 @@
 import { WalkDirection } from "./VillagerMotion";
-import { BuildingDefinition } from "./BuildingLayout";
-import { RESOURCE_CONTRACT, REQUIRED_WALK_DIRECTIONS, REQUIRED_LABOR_DIRECTIONS } from "../config/ResourceManifest";
+import { BuildingDefinition, BuildingNode } from "./BuildingLayout";
+import { RESOURCE_CONTRACT, REQUIRED_WALK_DIRECTIONS, REQUIRED_LABOR_DIRECTIONS, REQUIRED_BUILDING_LAYOUTS } from "../config/ResourceManifest";
 import { ENEMY_LOOKS } from "./config/EnemyVisualConfig";
 import { ResourceBundle, RESOURCE_BUNDLES } from "../config/ResourceConfig";
 import { Person, isElder } from "../game/GameState";
@@ -72,7 +72,18 @@ export class SpriteFrames {
                 if (!actual || actual.clip !== pose.clip || actual.mirror !== pose.mirror || !clips.some(c => c.id === pose.clip)) throw new Error("劳动方向映射缺失：" + action + "/" + direction);
             }
             for (const clip of clips) if (this.clips.has(clip.id) || clip.fps <= 0 || !clip.frameIds.length || !clip.frameIds.every(id => created.has(id)) || !clip.frameIds.includes(clip.restFrame)) throw new Error("动画帧不完整：" + clip.id);
-            if (bundle === "buildings" && !result[2].data.layouts) throw new Error("建筑布局缺失");
+            if (bundle === "buildings") {
+                const layouts: Record<string, BuildingDefinition> = result[2].data.layouts;
+                if (!layouts || Object.keys(layouts).length !== REQUIRED_BUILDING_LAYOUTS.length || REQUIRED_BUILDING_LAYOUTS.some(id => !layouts[id])) throw new Error("建筑布局缺失");
+                const check = (node: BuildingNode) => {
+                    if (!node || !node.name || (node.frame && !created.has(node.frame)) || (node.clip && node.clip !== "upgrade" && node.clip !== "attack") || (node.children !== undefined && !Array.isArray(node.children))) throw new Error("建筑部件不完整");
+                    for (const child of node.children || []) check(child);
+                };
+                for (const layout of Object.values(layouts)) {
+                    if (layout.sort?.x !== 64 || layout.sort?.y !== 120 || !layout.bounds || !layout.footprint) throw new Error("建筑足底或范围不完整");
+                    check(layout);
+                }
+            }
             const enemyLayouts: Record<string, EnemyDefinition> = bundle === "battle" ? result[2].data.definitions : null;
             if (bundle === "battle") {
                 if (!enemyLayouts || Object.keys(enemyLayouts).length !== Object.keys(ENEMY_LOOKS).length || Object.keys(ENEMY_LOOKS).some(id => !enemyLayouts[id])) throw new Error("怪物布局缺失");

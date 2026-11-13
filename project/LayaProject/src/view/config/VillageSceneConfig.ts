@@ -25,7 +25,8 @@ export interface VillageProp extends GroundPoint {
  * 左侧1/3塔向右、右侧2/4塔向左；石塔/寒塔保持正面，箭塔只切换实际左右武器，不镜像主体。
  */
 export const TOWER_VIEW = {
-    size: 108, top: -80, canvas: 128, facing: [1, -1, 1, -1],
+    // 空塔位缩为72%，保持同一足点，避免石圈比一级塔本体更醒目；不影响射程/点击区。
+    size: 108, top: -80, canvas: 128, emptyScale: .72, facing: [1, -1, 1, -1],
     muzzle: { ARROW: { x: 92, y: 35 }, STONE: { x: 74, y: 50 }, SLOW: { x: 64, y: 32 } }
 } as const;
 /** 既有固定地图与高清母画布足底（中心、15/16 高度）。占地仅覆盖底座，屋顶/树冠可以遮住行人。 */

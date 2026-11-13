@@ -12,6 +12,10 @@
   "iOSHighPerformance+": false,
   "subpackages": [
     {
+      "name": "resources/buildings",
+      "root": "resources/buildings/"
+    },
+    {
       "name": "resources/characters",
       "root": "resources/characters/"
     },

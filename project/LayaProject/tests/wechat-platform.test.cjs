@@ -80,14 +80,14 @@ test('shared canvas allocates once, then uploads pixels without reallocation or 
 });
 
 function gameView(session, platform) {
-    const view = Object.create(GameView.prototype), overlay = new Sprite(), art = { panel() {}, particles: require("./helpers/particles.cjs").library() };
+    const view = Object.create(GameView.prototype), overlay = new Sprite(), art = { panel() {} };
     // This platform lifecycle fixture does not render glyphs; button/icon press coupling
     // is exercised with the real UiWidgets in gameplay-clarity.test.cjs.
     const ui = { image() {}, buttonIcon() {}, label: () => ({}), button: fakeButton, bindClick() {} };
     const panels = new GamePanels(session, art, platform, ui, overlay, layout, () => view.refresh(), { ready: () => true });
     panels.modal = () => { const box = new Sprite(); box.height = 860; overlay.addChild(box); return box; };
     const village = Object.create(VillageWorld.prototype);
-    Object.assign(village, { game: session, layout, scene, particles: { reset() {} }, motion: { sync() {} }, emotes: { sync() {} }, pressedTargets: new Map(), drawScenery() {} });
+    Object.assign(village, { game: session, layout, scene, motion: { sync() {} }, emotes: { sync() {} }, pressedTargets: new Map(), drawScenery() {} });
     Object.assign(view, { resources: { ready: () => true }, game: session, observedVillageRevision: session.villageRevision, platform, layout, panels, village,
         shownErrorRevision: 0, observedRun: 0, observedDawn: 0, overlay, tip: { show() {} }, anchoredTip: { hide() {} }, updateActors() {} });
     view.hud = new GameHud(session, art, ui, panels, () => view.refresh());

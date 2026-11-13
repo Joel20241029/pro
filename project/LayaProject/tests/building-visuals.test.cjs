@@ -47,7 +47,7 @@ test('all authored variants and animation extremes fit their declared visible re
  for (const [id, layout] of Object.entries(layouts)) {
   const [kind, level, rooms] = id.split('_'), { world, owner, visual } = create(); visual.sync(kind, +level, true, +rooms); visual.occluder();
   for (const scaleY of [.3, 1, 1.08]) for (const rotation of [-18, 0, 5]) {
-   visual.body.scaleY = scaleY; if (visual.muzzle) visual.muzzle.parent.rotation = rotation;
+   visual.body.scaleY = scaleY; const weapon=descendants(owner).find(n=>n.name==='Weapon');if(weapon)weapon.rotation=rotation;
    for (const node of descendants(world).filter(n => n.texture)) for (const [x, y] of [[0, 0], [node.width, 0], [0, node.height], [node.width, node.height]]) {
     const p = node.localToGlobal({ x, y }, false, world), source = { x: p.x - owner.x + owner.pivotX, y: p.y - owner.y + owner.pivotY }, b = layout.bounds;
     assert(source.x >= b.x - 1 && source.x <= b.x + b.width + 1 && source.y >= b.y - 1 && source.y <= b.y + b.height + 1, `${id} / ${node.name}: ${JSON.stringify(source)}`);
@@ -102,4 +102,12 @@ test('native muzzle includes nested weapon recoil, scale and facing; attack foll
   battle.tick = 40; battle.shots = []; a.visual.updateAttack(battle, 0); assert.equal(a.visual.attack.time, 1);
   a.visual.updateAttack(null, 0); assert.equal(a.visual.latestShot, null);
  }
+});
+
+test('right-hand arrow towers select actual left weapons without mirroring the body',()=>{
+ const a=create(),b=create();a.visual.sync('ARROW',12,true,1,false,1);b.visual.sync('ARROW',12,true,1,false,-1);
+ const right=descendants(a.owner).find(n=>n.name==='FacingRight'),left=descendants(b.owner).find(n=>n.name==='FacingLeft');
+ assert(right.visible);assert(left.visible);assert(!descendants(a.owner).find(n=>n.name==='FacingLeft').visible);assert(!descendants(b.owner).find(n=>n.name==='FacingRight').visible);
+ assert.equal(a.owner.scaleX,1);assert.equal(b.owner.scaleX,1);assert(a.visual.launchPoint().x>b.visual.launchPoint().x);
+ assert(descendants(right).some(n=>n.texture==='hd_part_bow_right'));assert(descendants(left).some(n=>n.texture==='hd_part_bow_left'));
 });

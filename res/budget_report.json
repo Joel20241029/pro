@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-13T09:06:24.805Z",
+  "generatedAt": "2026-11-13T09:24:05.415Z",
   "runtimeAssetCount": 251,
   "reserveAssetCount": 0,
   "animationCount": 48,
@@ -43,7 +43,7 @@
     },
     "decorations": {
       "count": 19,
-      "bytes": 738085,
+      "bytes": 729643,
       "runtime": 19,
       "reserve": 0
     },
@@ -55,7 +55,7 @@
     },
     "terrain": {
       "count": 2,
-      "bytes": 307071,
+      "bytes": 312230,
       "runtime": 2,
       "reserve": 0
     }
@@ -67,8 +67,8 @@
       "runtimeFile": "base_0.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1258857,
-      "sha256": "10e95efa6c252df6dd2701a934fde5db74f5318b8c744293ad539508ee979fad",
+      "bytes": 891018,
+      "sha256": "fbef11e3ca2cbeb82f3fb4a821431fefd7eaddada2cc00fba2712255fe7f06e4",
       "group": "base"
     },
     {
@@ -77,29 +77,39 @@
       "runtimeFile": "base_1.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1649567,
-      "sha256": "59d62c3f0c18ae318e98250f7402d974f12abc048c1a63e745cd16e76cc6dc97",
+      "bytes": 777880,
+      "sha256": "64f6864f48d712a832a7f26dfb3a0adbabb9f60160073ee250a47777930921a6",
       "group": "base"
     },
     {
-      "id": "base_2",
-      "path": "atlases/base_2.png",
-      "runtimeFile": "base_2.png",
+      "id": "buildings_0",
+      "path": "atlases/buildings_0.png",
+      "runtimeFile": "buildings_0.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1610793,
-      "sha256": "c8633ba934e6600d174c1abc677004a64c43e330d46fbd335b76b328ca2cec2c",
-      "group": "base"
+      "bytes": 1636854,
+      "sha256": "a7ee3d21321a3856ea42b18a97d7e925f101a8fe3ee1f8f0e7583698c50624c1",
+      "group": "buildings"
     },
     {
-      "id": "base_3",
-      "path": "atlases/base_3.png",
-      "runtimeFile": "base_3.png",
+      "id": "buildings_1",
+      "path": "atlases/buildings_1.png",
+      "runtimeFile": "buildings_1.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 644599,
-      "sha256": "3335aca8c02df8c483d8ec524c96d883aa6d52aaa27e877c17993da72d6c0e89",
-      "group": "base"
+      "bytes": 1484328,
+      "sha256": "a698dab463e30017cf482f79a2ed9ac8bd14a57b473636ae115d4838625a04cd",
+      "group": "buildings"
+    },
+    {
+      "id": "buildings_2",
+      "path": "atlases/buildings_2.png",
+      "runtimeFile": "buildings_2.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 349098,
+      "sha256": "35161e4c6cd9b39d19fd7de7430f99335a7e5b1e2d5479b26990fe64c8b58027",
+      "group": "buildings"
     },
     {
       "id": "characters_0",
@@ -164,9 +174,9 @@
   ],
   "packing": {
     "sourceCanvasPixels": 13686784,
-    "atlasContentPixels": 7551077,
-    "savedContentPixels": 6135707,
-    "savedContentPercent": 44.83,
+    "atlasContentPixels": 7671925,
+    "savedContentPixels": 6014859,
+    "savedContentPercent": 43.95,
     "trimmedAssetCount": 239,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
@@ -174,22 +184,25 @@
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "pngBytes": 11419491,
-    "metadataBytes": 147989,
+    "pngBytes": 11394853,
+    "metadataBytes": 148729,
     "audioBytes": 155953,
-    "totalBytes": 11723433,
+    "totalBytes": 11699535,
     "files": [
       "bundles/base/frames.json",
       "bundles/base/animations.json",
       "bundles/base/base_0.png",
       "bundles/base/base_1.png",
-      "bundles/base/base_2.png",
-      "bundles/base/base_3.png",
-      "bundles/base/buildings.json",
-      "bundles/base/building_upgrade.mc",
-      "bundles/base/building_attack.mc",
       "bundles/base/village_loop.mp3",
       "bundles/base/ui_click.mp3",
+      "bundles/buildings/frames.json",
+      "bundles/buildings/animations.json",
+      "bundles/buildings/buildings_0.png",
+      "bundles/buildings/buildings_1.png",
+      "bundles/buildings/buildings_2.png",
+      "bundles/buildings/buildings.json",
+      "bundles/buildings/building_upgrade.mc",
+      "bundles/buildings/building_attack.mc",
       "bundles/characters/frames.json",
       "bundles/characters/animations.json",
       "bundles/characters/characters_0.png",
@@ -210,14 +223,15 @@
     "cornersPreserved": true
   },
   "budgets": {
-    "mainPackage": 3000000,
-    "characters": 900000,
-    "battle": 1100000,
-    "fullPackageTarget": 5000000
+    "mainPackageLimit": 4194304,
+    "totalPackageLimit": 31457280,
+    "source": "doc/tech/32_高清预渲染二维美术重制.md",
+    "note": "PNG大小不是微信上传压缩大小，最终检查包含代码和引擎"
   },
   "sourceBytes": 49652112,
   "budgetComparison": {
-    "basePngBytes": 5163816,
+    "basePngBytes": 1668898,
+    "buildingsPngBytes": 3470280,
     "charactersPngBytes": 4288850,
     "battlePngBytes": 1966825
   },
