@@ -1,6 +1,46 @@
 /** 在Laya原生编辑器实例化、动画抽样并保存七类建筑与十类怪物预制体。 */
 @IEditorEnv.regClass()
 export class Hd2dProductionScene {
+    /** 只编辑现有ARROW预制体的弩组，不重建其他建筑/怪物；保存与截图均由原生Laya完成。 */
+    static async refineArrows(output: string) {
+        const fs = IEditorEnv.require('fs'), BufferClass = IEditorEnv.require('buffer').Buffer;
+        fs.mkdirSync(output, { recursive: true });
+        const file = 'buildingAuthoring/prefabs/ARROW.lh';
+        const prefab = await Laya.loader.load(file, Laya.Loader.HIERARCHY) as Laya.Prefab;
+        const root = prefab.create() as Laya.Sprite;
+        const scene = new Laya.Scene(); scene.size(1920, 380); scene.graphics.drawRect(0, 0, 1920, 380, '#a7be7b');
+        const checks: any[] = [];
+        for (let i = 0; i < root.numChildren; i++) {
+            const variant = root.getChildAt(i) as Laya.Sprite, body = variant.getChildByName('Body') as Laya.Sprite;
+            const weapon = body.getChildByName('Weapon') as Laya.Sprite;
+            for (const name of ['FacingRight', 'FacingLeft']) {
+                const facing = weapon.getChildByName(name) as Laya.Sprite;
+                facing.pos(40, 44); facing.anchorX = .5; facing.anchorY = 1; facing.scale(1.3, 1.3);
+            }
+            const anim = weapon.getComponent(Laya.AnimatorClip2D); anim.gotoAndStop(.35);
+            if (weapon.rotation === 0) throw new Error('放大后弩机未播放原攻击动画');
+            anim.gotoAndStop(1);
+            checks.push({ variant: variant.name, scale: 1.3, rotation: weapon.rotation });
+        }
+        await IEditorEnv.CreateAssetUtil.createPrefab(root, file);
+        // 同一原生实例分别绘制左右方向和全部12档，验证双弩、支架接点、发射口变换。
+        while (root.numChildren) {
+            const variant = root.getChildAt(0) as Laya.Sprite;
+            variant.visible = true; variant.pos(scene.numChildren * 160 + 16, 10); scene.addChild(variant);
+        }
+        const save = (name: string) => { const canvas = scene.drawToCanvas(1920, 380, 0, 0); fs.writeFileSync(output + '/' + name, BufferClass.from(canvas.source.toDataURL('image/png').split(',')[1], 'base64')); };
+        for (const direction of ['Right', 'Left']) {
+            for (let i = 0; i < scene.numChildren; i++) {
+                const weapon = (scene.getChildAt(i).getChildByName('Body') as Laya.Sprite).getChildByName('Weapon') as Laya.Sprite;
+                (weapon.getChildByName('FacingRight') as Laya.Sprite).visible = direction === 'Right';
+                (weapon.getChildByName('FacingLeft') as Laya.Sprite).visible = direction === 'Left';
+            }
+            save('箭塔12档_' + direction + '.png');
+        }
+        scene.destroy(true); root.destroy(true);
+        fs.writeFileSync(output + '/arrow-report.json', JSON.stringify({ file, checks }, null, 2));
+        return { file, variants: checks.length, output };
+    }
     static async build(seeds: any, recipe: any, output: string) {
         const fs = IEditorEnv.require('fs'), BufferClass = IEditorEnv.require('buffer').Buffer;
         fs.mkdirSync(output, { recursive: true });

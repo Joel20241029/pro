@@ -1,40 +1,36 @@
-# 代代守村 · 资源与编辑器源工程
+# 代代守村 · 高清二维资源与制作工程
 
-2026-11-13 最新决定：恢复原来的二维表现，取消实时 3D，也不采用“3D 渲染为二维图片”的路线。正式制作方向为原二维图集、人物与敌人序列帧、Laya 部件建筑和二维粒子；保留高清矢量 UI，人物头像恢复原人物帧。回退实施及验证状态以 [31 恢复二维场景与序列帧](../doc/tech/31_恢复二维场景与序列帧.md) 为准，本文不声明回退已完成。
+当前方案为高清预渲染二维：运行时只有二维图片、序列帧与Laya部件动画，不加载实时3D模型，全部粒子已移除。全局UI采用已确认的“明亮田园”，详见 [设计与实施范围](../doc/tech/32_高清预渲染二维美术重制.md)。下方历史记录不代表当前发布配置。
 
-## 当前制作与发布入口
+## 当前目录
 
-| 目录或文件 | 内容与用途 | 是否进入微信包 |
+| 目录 | 放什么、怎样使用 | 进入微信包 |
 | --- | --- | --- |
-| `source/` 中的二维母版与 `asset_recipe.json` | 图片、配方、提示词及生成台账 | 否，经构建产生运行图集 |
-| `editor/BuildingWorkshop/BuildingWorkshop.laya` | LayaAir 3.4.2 可编辑制作工程 | 否 |
-| `editor/BuildingWorkshop/assets/buildingAuthoring/` | 七类独立二维建筑预制体、部件、范围、挂点和时间轴 | 否，转换运行布局与动画 |
-| `editor/BuildingWorkshop/assets/enemyAuthoring/` | 5 小怪和 5 首领的二维组合预制体 | 否，转换运行数据 |
-| `editor/BuildingWorkshop/assets/particleAuthoring/` | 六种二维粒子源 | 否，转换三包粒子配置 |
-| `source/ui/hd/` | 保留的高清矢量 UI 制作说明；3D 头像仅作历史源 | 仅代码绘制，不发布 3D 头像 |
-| `runtime/`、`atlases/` | 分类散图、制作侧图集和总帧索引 | 不与 bundles 重复发布 |
-| `native/` | 二维建筑、怪物、粒子转换数据与共享动画 | 由构建选择进入对应包 |
-| `bundles/base/` | 基础地图、建筑、UI 所需资源、按钮粒子及基础音频 | 按白名单 |
-| `bundles/characters/` | 村民序列帧、原帧头像所需图片、精英脚底圈 | 按白名单 |
-| `bundles/battle/` | 十类怪物、战斗图片、命中粒子及战斗音乐 | 按白名单 |
-| `source/3d/`、`editor/BuildingWorkshop/assets/world3d/` | 停止采用的 3D 试验制作源 | 否，保留追溯 |
-| `design/`、`reference/`、`preview/`、`branding/`、`tools/` | 设计、参考、验收、平台素材和构建工具 | 否 |
+| `design/hd2d/` | 造型确认稿、四向渲染、环境设计；08号图为全局UI标准 | 否 |
+| `source/rendered2d/` | 角色模型/绑定/动作、原始生成稿、裁切配方、正式派生图 | 仅派生图打图集 |
+| `editor/BuildingWorkshop/` | Laya 3.4.2原始工程：七种建筑各一个prefab，十种怪物各一个prefab | 否 |
+| `runtime/`、`atlases/` | 分类散图与制作总图集，便于检查裁边与内容 | 否，不重复发布 |
+| `native/` | 从已保存原生prefab转换的108建筑布局、怪物挂点、两段建筑时间轴 | 按白名单 |
+| `bundles/base/` | 高清UI、草地/道路/环境、基础音频 | 主包 |
+| `bundles/buildings/` | 建筑图片、108布局、升级/攻击时间轴 | 建筑分包 |
+| `bundles/characters/` | 四类村民四向八帧、独立站姿、成人劳动、婴儿/老人休息、红心表情 | 人物分包 |
+| `bundles/battle/` | 五类小怪、五类首领、配件、普通弹道、战斗音乐 | 战斗分包 |
+| `preview/` | 由当前配方生成的预览，实际IDE验证另存Downloads | 否 |
+| `archive/`、`source/3d/` | 历史像素资源、四帧步态、实时3D试验；只供追溯 | 否 |
 
-保留 base、characters、battle 三包：主场景先显示，再准备人物，点击守夜才准备战斗资源。原分阶段加载和手动失败重试规则不变。高清面板、按钮与 UI 图标使用 `UiSurface.ts`、`UiGlyphs.ts`，人物头像使用原二维帧，不能继续引用模型渲染头像。
+先显示基础加载界面，建筑包完整后显示村庄，再准备人物；守夜前加载战斗包。失败保留手动重试。程序不混用旧资源或缺失动作替代品。
 
-正式资源构建恢复以下入口；回退中的加载器、白名单和脚本保护须同步完成后执行，不能单独改 manifest 版本绕过保护：
+## 重建与迭代
 
-```bash
-node res/tools/build-resources.mjs \
-  --work /Users/happyelements/Downloads/daidai-restore-2d-20261113/resource-build \
-  --sync
-```
+1. 修改 `source/rendered2d/production-sources.mjs` 指向的原始稿，或角色 `rig-profile.json` 和可编辑Blender源；重新离线渲染，运行足底/朝向检查。
+2. 运行 `node res/tools/hd2d/prepare-production.mjs --work <Downloads内目录>`，审查派生图及 `production_recipe.json`，再同步为 `source/asset_recipe.json`。
+3. 建筑/怪物贴图或布局改变时用 `prepare-native-prefabs.mjs` 同步贴图和种子；它不写prefab或覆盖UUID。需要重做布局时，在Laya执行 `工具 / BuildHd2dProduction`。日常小改直接编辑对应原生prefab。
+4. 运行 `node res/tools/build-resources.mjs --work <Downloads内目录> --sync`，透明裁边、外扩、校验后按白名单同步正式工程。
+5. 构建微信目录 `tryVersion/wxgame`，运行包体检查及实际微信IDE验收。构建成功不能代替手机实测。
 
-流程为二维母版与配方 → 分类散图 → 编辑器贴图同步 → 透明裁边图集；原生二维预制体 → 布局、敌人和粒子转换数据 → 三包白名单。`--sync` 同步至 `project/LayaProject/assets/resources/`。不得递归发布整个 res，也不运行 `build-world3d-resources.mjs` 作为当前发布步骤。
+图片保持平滑采样与抗锯齿。八帧行走按实际路程保持相位；停止使用独立双脚落地帧。老人采用短步、固定握杖，孩子和老人不区分男女外观。UI按可见裁框居中，奶油金边卡片和绿色底板分层，按钮/图标/文字共同按压。
 
-保留 5 小怪＋5 首领；保留四类命中粒子、精英脚底圈及大王之心红色按钮环绕，共六种二维粒子。大王之心仅在可用时提示，暂停或不可用时不持续环绕；攻击拖尾和建筑升级粒子不恢复，建筑自身升级动作、怪物红闪与伐木树摆保留。详细规则沿用 [29 第 11 节](../doc/tech/29_粒子特效与动作反馈.md#11-1013-表现精简与红色可用提示)。
-
-回退前工程快照：`/Users/happyelements/Downloads/daidai-restore-2d-20261113/before/realtime-3d-snapshot.tar.gz`。3D 历史方案和历史验证保留在 [30](../doc/tech/30_全场景3D与高清UI.md)，不能当作本轮二维验证。新资源数量看构建后的 `manifest.json`，字节看 `budget_report.json`；完整微信目录及上传体积另测，不沿用下方旧数字。
+`manifest.json` 是当前白名单，`budget_report.json` 是资源字节，`validation_report.json` 是图集验证；最终微信包体以导出目录检查报告为准。所有临时渲染/日志/IDE截图在 `~/Downloads/daidai-hd2d-full-20261113/`。
 
 ## 历史记录：1.0.13 及之前的像素管线
 

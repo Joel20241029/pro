@@ -147,8 +147,8 @@
   };
   let width = 390;
   let directionIndex=1,directionTimer=null;
-  const villagerRoles={male:{name:'成年男村民',fps:6,size:102},female:{name:'成年女村民',fps:6,size:102},
-    child:{name:'中性孩子',fps:6,size:78},elder:{name:'中性老人',fps:4,size:96},baby:{name:'中性婴儿',fps:2,size:76}};
+  const villagerRoles={male:{name:'成年男村民',fps:16,size:84},female:{name:'成年女村民',fps:16,size:84},
+    child:{name:'中性孩子',fps:16,size:72},elder:{name:'中性老人',fps:12,size:84},baby:{name:'中性婴儿',fps:2,size:76}};
   const facings={down:'向下 · 正面',up:'向上 · 背面',left:'向左 · 左侧',right:'向右 · 右侧'};
   const directionFile=(role,facing,frame)=>role==='baby'?'directions/baby/baby_idle_'+frame+'.png':
     'directions/'+role+'/'+role+'_'+facing+'_'+frame+'.png';
@@ -161,7 +161,7 @@
       const figure=document.createElement('figure'),im=new Image(),caption=document.createElement('figcaption');
       im.className='direction-frame';im.dataset.role=role;im.dataset.facing=facing;im.alt=info.name+' '+label;
       im.src=directionFile(role,facing,1);caption.textContent=label;figure.append(im,caption);grid.append(figure);directionImages.push(im);
-      for(let frame=1;frame<=4;frame++){const preload=new Image();preload.src=directionFile(role,facing,frame);}
+      for(let frame=1;frame<=(role==='baby'?4:8);frame++){const preload=new Image();preload.src=directionFile(role,facing,frame);}
     }
     row.append(heading,grid);document.getElementById('direction-gallery').append(row);
     const figure=document.createElement('figure'),im=new Image(),caption=document.createElement('figcaption');
@@ -171,19 +171,19 @@
   }
   function showDirections(elapsed) {
     directionImages.forEach(im=>{
-      const frame=elapsed===undefined?directionIndex:Math.floor(elapsed*villagerRoles[im.dataset.role].fps/1000)%4+1;
+      const frame=elapsed===undefined?(directionIndex-1)%(im.dataset.role==='baby'?4:8)+1:Math.floor(elapsed*villagerRoles[im.dataset.role].fps/1000)%(im.dataset.role==='baby'?4:8)+1;
       const file=directionFile(im.dataset.role,im.dataset.facing,frame);
       if(im.getAttribute('src')!==file)im.src=file;
     });
-    document.getElementById('direction-status').textContent=elapsed===undefined?'动作帧 '+directionIndex+' / 4':'各身份按自己的步频连续播放';
+    document.getElementById('direction-status').textContent=elapsed===undefined?'动作帧 '+directionIndex+' / 8（婴儿4帧）':'各身份按自己的步频连续播放';
   }
   document.getElementById('direction-step').addEventListener('click',()=>{
-    if(directionTimer)document.getElementById('direction-play').click();directionIndex=directionIndex%4+1;showDirections();
+    if(directionTimer)document.getElementById('direction-play').click();directionIndex=directionIndex%8+1;showDirections();
   });
   document.getElementById('direction-play').addEventListener('click',()=>{
     const b=document.getElementById('direction-play');
     if(directionTimer){clearInterval(directionTimer);directionTimer=null;b.textContent='播放四向步态';b.setAttribute('aria-pressed','false');}
-    else{const start=performance.now();directionTimer=setInterval(()=>showDirections(performance.now()-start),1000/12);b.textContent='暂停四向步态';b.setAttribute('aria-pressed','true');}
+    else{const start=performance.now();directionTimer=setInterval(()=>showDirections(performance.now()-start),1000/30);b.textContent='暂停四向步态';b.setAttribute('aria-pressed','true');}
   });
   let nativeIndex=0,nativeTimer=null;
   const nativeFrames=Array.from({length:4},(_,i)=>'validation/native_frame_'+i+'.png');

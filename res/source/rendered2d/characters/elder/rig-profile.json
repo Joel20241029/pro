@@ -1,12 +1,12 @@
 {
   "role": "elder",
-  "basis": "2026-11-13 normalized raw GLB inspection; per-role joint landmarks and silhouette, not male coordinates. Values are authoring-only unit-height proportions; changing them requires re-render and deformation review.",
+  "basis": "2026-11-13 normalized raw GLB inspection; per-role joint landmarks and silhouette, not male coordinates. Values are authoring-only unit-height proportions; changing them requires re-render and deformation review. Eight-frame opposite-phase stance/swing cycle; support shoe travels backward while the opposite foot lifts forward. Side-view stride stored for distance playback; child/elder keep their own amplitudes.",
   "groundAnchor": [
     -0.02,
     0.04,
     0
   ],
-  "fps": 4,
+  "fps": 12,
   "bones": {
     "Root": [
       [
@@ -258,56 +258,148 @@
   "elbowBend": 0,
   "poses": [
     {
-      "L": [
-        0.025,
-        0
-      ],
-      "R": [
-        -0.025,
-        0
-      ],
-      "swing": -1,
+      "swing": -1.0,
       "bodyZ": 0,
-      "bodyY": 0
-    },
-    {
+      "bodyY": 0,
+      "support": "L",
       "L": [
-        -0.004,
-        0.022
-      ],
-      "R": [
-        0.004,
-        0
-      ],
-      "swing": 0,
-      "bodyZ": 0.012,
-      "bodyY": -0.006
-    },
-    {
-      "L": [
-        -0.025,
+        -0.014,
         0
       ],
       "R": [
-        0.025,
-        0
-      ],
-      "swing": 1,
+        0.044,
+        0.0
+      ]
+    },
+    {
+      "swing": -0.707107,
       "bodyZ": 0,
-      "bodyY": 0
-    },
-    {
+      "bodyY": 0,
+      "support": "L",
       "L": [
-        0.004,
+        0.008,
         0
       ],
       "R": [
-        -0.004,
-        0.022
+        0.022,
+        0.012728
+      ]
+    },
+    {
+      "swing": -0.0,
+      "bodyZ": 0,
+      "bodyY": 0,
+      "support": "L",
+      "L": [
+        0.03,
+        0
       ],
-      "swing": 0,
-      "bodyZ": 0.012,
-      "bodyY": -0.006
+      "R": [
+        0.0,
+        0.018
+      ]
+    },
+    {
+      "swing": 0.707107,
+      "bodyZ": 0,
+      "bodyY": 0,
+      "support": "L",
+      "L": [
+        0.052,
+        0
+      ],
+      "R": [
+        -0.022,
+        0.012728
+      ]
+    },
+    {
+      "swing": 1.0,
+      "bodyZ": 0,
+      "bodyY": 0,
+      "support": "R",
+      "L": [
+        0.074,
+        0.0
+      ],
+      "R": [
+        -0.044,
+        0
+      ]
+    },
+    {
+      "swing": 0.707107,
+      "bodyZ": 0,
+      "bodyY": 0,
+      "support": "R",
+      "L": [
+        0.052,
+        0.012728
+      ],
+      "R": [
+        -0.022,
+        0
+      ]
+    },
+    {
+      "swing": 0.0,
+      "bodyZ": 0,
+      "bodyY": 0,
+      "support": "R",
+      "L": [
+        0.03,
+        0.018
+      ],
+      "R": [
+        0.0,
+        0
+      ]
+    },
+    {
+      "swing": -0.707107,
+      "bodyZ": 0,
+      "bodyY": 0,
+      "support": "R",
+      "L": [
+        0.008,
+        0.012728
+      ],
+      "R": [
+        0.022,
+        0
+      ]
     }
-  ]
+  ],
+  "walkCycle": {
+    "frames": 8,
+    "strideModelUnits": 0.176,
+    "strideCanvasPixels": 34.65846153846154,
+    "orthoScale": 1.3,
+    "cadenceBasis": "side-view grounded stride; common phase across direction changes",
+    "supportSequence": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "R",
+      "R",
+      "R",
+      "R"
+    ],
+    "basis": "Each ankle centered beneath its measured hip; original cane and torso height retained."
+  },
+  "idlePose": {
+    "L": [
+      0,
+      0
+    ],
+    "R": [
+      0,
+      0
+    ],
+    "swing": 0,
+    "bodyZ": 0,
+    "bodyY": 0,
+    "support": "BOTH"
+  }
 }

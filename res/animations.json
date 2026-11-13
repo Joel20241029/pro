@@ -245,12 +245,16 @@
         "hd_male_down_1",
         "hd_male_down_2",
         "hd_male_down_3",
-        "hd_male_down_4"
+        "hd_male_down_4",
+        "hd_male_down_5",
+        "hd_male_down_6",
+        "hd_male_down_7",
+        "hd_male_down_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_male_down_1",
+      "restFrame": "hd_male_down_idle",
       "category": "characters",
       "mapping": "male actual down",
       "canvas": {
@@ -262,7 +266,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 59.07692307692307
     },
     {
       "id": "villager_male_a_walk_left",
@@ -270,12 +275,16 @@
         "hd_male_left_1",
         "hd_male_left_2",
         "hd_male_left_3",
-        "hd_male_left_4"
+        "hd_male_left_4",
+        "hd_male_left_5",
+        "hd_male_left_6",
+        "hd_male_left_7",
+        "hd_male_left_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_male_left_1",
+      "restFrame": "hd_male_left_idle",
       "category": "characters",
       "mapping": "male actual left",
       "canvas": {
@@ -287,7 +296,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 59.07692307692307
     },
     {
       "id": "villager_male_a_walk_up",
@@ -295,12 +305,16 @@
         "hd_male_up_1",
         "hd_male_up_2",
         "hd_male_up_3",
-        "hd_male_up_4"
+        "hd_male_up_4",
+        "hd_male_up_5",
+        "hd_male_up_6",
+        "hd_male_up_7",
+        "hd_male_up_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_male_up_1",
+      "restFrame": "hd_male_up_idle",
       "category": "characters",
       "mapping": "male actual up",
       "canvas": {
@@ -312,7 +326,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 59.07692307692307
     },
     {
       "id": "villager_male_a_walk_right",
@@ -320,12 +335,16 @@
         "hd_male_right_1",
         "hd_male_right_2",
         "hd_male_right_3",
-        "hd_male_right_4"
+        "hd_male_right_4",
+        "hd_male_right_5",
+        "hd_male_right_6",
+        "hd_male_right_7",
+        "hd_male_right_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_male_right_1",
+      "restFrame": "hd_male_right_idle",
       "category": "characters",
       "mapping": "male actual right",
       "canvas": {
@@ -337,7 +356,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 59.07692307692307
     },
     {
       "id": "villager_male_a_farm",
@@ -470,12 +490,16 @@
         "hd_female_down_1",
         "hd_female_down_2",
         "hd_female_down_3",
-        "hd_female_down_4"
+        "hd_female_down_4",
+        "hd_female_down_5",
+        "hd_female_down_6",
+        "hd_female_down_7",
+        "hd_female_down_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_female_down_1",
+      "restFrame": "hd_female_down_idle",
       "category": "characters",
       "mapping": "female actual down",
       "canvas": {
@@ -487,7 +511,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 55.13846153846154
     },
     {
       "id": "villager_female_a_walk_left",
@@ -495,12 +520,16 @@
         "hd_female_left_1",
         "hd_female_left_2",
         "hd_female_left_3",
-        "hd_female_left_4"
+        "hd_female_left_4",
+        "hd_female_left_5",
+        "hd_female_left_6",
+        "hd_female_left_7",
+        "hd_female_left_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_female_left_1",
+      "restFrame": "hd_female_left_idle",
       "category": "characters",
       "mapping": "female actual left",
       "canvas": {
@@ -512,7 +541,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 55.13846153846154
     },
     {
       "id": "villager_female_a_walk_up",
@@ -520,12 +550,16 @@
         "hd_female_up_1",
         "hd_female_up_2",
         "hd_female_up_3",
-        "hd_female_up_4"
+        "hd_female_up_4",
+        "hd_female_up_5",
+        "hd_female_up_6",
+        "hd_female_up_7",
+        "hd_female_up_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_female_up_1",
+      "restFrame": "hd_female_up_idle",
       "category": "characters",
       "mapping": "female actual up",
       "canvas": {
@@ -537,7 +571,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 55.13846153846154
     },
     {
       "id": "villager_female_a_walk_right",
@@ -545,12 +580,16 @@
         "hd_female_right_1",
         "hd_female_right_2",
         "hd_female_right_3",
-        "hd_female_right_4"
+        "hd_female_right_4",
+        "hd_female_right_5",
+        "hd_female_right_6",
+        "hd_female_right_7",
+        "hd_female_right_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_female_right_1",
+      "restFrame": "hd_female_right_idle",
       "category": "characters",
       "mapping": "female actual right",
       "canvas": {
@@ -562,7 +601,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 55.13846153846154
     },
     {
       "id": "villager_female_a_harvest",
@@ -695,12 +735,16 @@
         "hd_child_down_1",
         "hd_child_down_2",
         "hd_child_down_3",
-        "hd_child_down_4"
+        "hd_child_down_4",
+        "hd_child_down_5",
+        "hd_child_down_6",
+        "hd_child_down_7",
+        "hd_child_down_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_child_down_1",
+      "restFrame": "hd_child_down_idle",
       "category": "characters",
       "mapping": "child actual down",
       "canvas": {
@@ -712,7 +756,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 51.987692307692306
     },
     {
       "id": "villager_girl_walk",
@@ -720,12 +765,16 @@
         "hd_child_down_1",
         "hd_child_down_2",
         "hd_child_down_3",
-        "hd_child_down_4"
+        "hd_child_down_4",
+        "hd_child_down_5",
+        "hd_child_down_6",
+        "hd_child_down_7",
+        "hd_child_down_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_child_down_1",
+      "restFrame": "hd_child_down_idle",
       "category": "characters",
       "mapping": "child actual down",
       "canvas": {
@@ -737,7 +786,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 51.987692307692306
     },
     {
       "id": "villager_boy_walk_left",
@@ -745,12 +795,16 @@
         "hd_child_left_1",
         "hd_child_left_2",
         "hd_child_left_3",
-        "hd_child_left_4"
+        "hd_child_left_4",
+        "hd_child_left_5",
+        "hd_child_left_6",
+        "hd_child_left_7",
+        "hd_child_left_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_child_left_1",
+      "restFrame": "hd_child_left_idle",
       "category": "characters",
       "mapping": "child actual left",
       "canvas": {
@@ -762,7 +816,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 51.987692307692306
     },
     {
       "id": "villager_girl_walk_left",
@@ -770,12 +825,16 @@
         "hd_child_left_1",
         "hd_child_left_2",
         "hd_child_left_3",
-        "hd_child_left_4"
+        "hd_child_left_4",
+        "hd_child_left_5",
+        "hd_child_left_6",
+        "hd_child_left_7",
+        "hd_child_left_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_child_left_1",
+      "restFrame": "hd_child_left_idle",
       "category": "characters",
       "mapping": "child actual left",
       "canvas": {
@@ -787,7 +846,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 51.987692307692306
     },
     {
       "id": "villager_boy_walk_up",
@@ -795,12 +855,16 @@
         "hd_child_up_1",
         "hd_child_up_2",
         "hd_child_up_3",
-        "hd_child_up_4"
+        "hd_child_up_4",
+        "hd_child_up_5",
+        "hd_child_up_6",
+        "hd_child_up_7",
+        "hd_child_up_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_child_up_1",
+      "restFrame": "hd_child_up_idle",
       "category": "characters",
       "mapping": "child actual up",
       "canvas": {
@@ -812,7 +876,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 51.987692307692306
     },
     {
       "id": "villager_girl_walk_up",
@@ -820,12 +885,16 @@
         "hd_child_up_1",
         "hd_child_up_2",
         "hd_child_up_3",
-        "hd_child_up_4"
+        "hd_child_up_4",
+        "hd_child_up_5",
+        "hd_child_up_6",
+        "hd_child_up_7",
+        "hd_child_up_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_child_up_1",
+      "restFrame": "hd_child_up_idle",
       "category": "characters",
       "mapping": "child actual up",
       "canvas": {
@@ -837,7 +906,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 51.987692307692306
     },
     {
       "id": "villager_boy_walk_right",
@@ -845,12 +915,16 @@
         "hd_child_right_1",
         "hd_child_right_2",
         "hd_child_right_3",
-        "hd_child_right_4"
+        "hd_child_right_4",
+        "hd_child_right_5",
+        "hd_child_right_6",
+        "hd_child_right_7",
+        "hd_child_right_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_child_right_1",
+      "restFrame": "hd_child_right_idle",
       "category": "characters",
       "mapping": "child actual right",
       "canvas": {
@@ -862,7 +936,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 51.987692307692306
     },
     {
       "id": "villager_girl_walk_right",
@@ -870,12 +945,16 @@
         "hd_child_right_1",
         "hd_child_right_2",
         "hd_child_right_3",
-        "hd_child_right_4"
+        "hd_child_right_4",
+        "hd_child_right_5",
+        "hd_child_right_6",
+        "hd_child_right_7",
+        "hd_child_right_8"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 8,
+      "fps": 16,
       "loop": true,
-      "restFrame": "hd_child_right_1",
+      "restFrame": "hd_child_right_idle",
       "category": "characters",
       "mapping": "child actual right",
       "canvas": {
@@ -887,7 +966,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 51.987692307692306
     },
     {
       "id": "villager_elder_male_walk",
@@ -895,12 +975,16 @@
         "hd_elder_down_1",
         "hd_elder_down_2",
         "hd_elder_down_3",
-        "hd_elder_down_4"
+        "hd_elder_down_4",
+        "hd_elder_down_5",
+        "hd_elder_down_6",
+        "hd_elder_down_7",
+        "hd_elder_down_8"
       ],
-      "frameCount": 4,
-      "fps": 4,
+      "frameCount": 8,
+      "fps": 12,
       "loop": true,
-      "restFrame": "hd_elder_down_1",
+      "restFrame": "hd_elder_down_idle",
       "category": "characters",
       "mapping": "elder actual down",
       "canvas": {
@@ -912,7 +996,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 34.65846153846154
     },
     {
       "id": "villager_elder_female_walk",
@@ -920,12 +1005,16 @@
         "hd_elder_down_1",
         "hd_elder_down_2",
         "hd_elder_down_3",
-        "hd_elder_down_4"
+        "hd_elder_down_4",
+        "hd_elder_down_5",
+        "hd_elder_down_6",
+        "hd_elder_down_7",
+        "hd_elder_down_8"
       ],
-      "frameCount": 4,
-      "fps": 4,
+      "frameCount": 8,
+      "fps": 12,
       "loop": true,
-      "restFrame": "hd_elder_down_1",
+      "restFrame": "hd_elder_down_idle",
       "category": "characters",
       "mapping": "elder actual down",
       "canvas": {
@@ -937,7 +1026,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 34.65846153846154
     },
     {
       "id": "villager_elder_male_walk_left",
@@ -945,12 +1035,16 @@
         "hd_elder_left_1",
         "hd_elder_left_2",
         "hd_elder_left_3",
-        "hd_elder_left_4"
+        "hd_elder_left_4",
+        "hd_elder_left_5",
+        "hd_elder_left_6",
+        "hd_elder_left_7",
+        "hd_elder_left_8"
       ],
-      "frameCount": 4,
-      "fps": 4,
+      "frameCount": 8,
+      "fps": 12,
       "loop": true,
-      "restFrame": "hd_elder_left_1",
+      "restFrame": "hd_elder_left_idle",
       "category": "characters",
       "mapping": "elder actual left",
       "canvas": {
@@ -962,7 +1056,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 34.65846153846154
     },
     {
       "id": "villager_elder_female_walk_left",
@@ -970,12 +1065,16 @@
         "hd_elder_left_1",
         "hd_elder_left_2",
         "hd_elder_left_3",
-        "hd_elder_left_4"
+        "hd_elder_left_4",
+        "hd_elder_left_5",
+        "hd_elder_left_6",
+        "hd_elder_left_7",
+        "hd_elder_left_8"
       ],
-      "frameCount": 4,
-      "fps": 4,
+      "frameCount": 8,
+      "fps": 12,
       "loop": true,
-      "restFrame": "hd_elder_left_1",
+      "restFrame": "hd_elder_left_idle",
       "category": "characters",
       "mapping": "elder actual left",
       "canvas": {
@@ -987,7 +1086,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 34.65846153846154
     },
     {
       "id": "villager_elder_male_walk_up",
@@ -995,12 +1095,16 @@
         "hd_elder_up_1",
         "hd_elder_up_2",
         "hd_elder_up_3",
-        "hd_elder_up_4"
+        "hd_elder_up_4",
+        "hd_elder_up_5",
+        "hd_elder_up_6",
+        "hd_elder_up_7",
+        "hd_elder_up_8"
       ],
-      "frameCount": 4,
-      "fps": 4,
+      "frameCount": 8,
+      "fps": 12,
       "loop": true,
-      "restFrame": "hd_elder_up_1",
+      "restFrame": "hd_elder_up_idle",
       "category": "characters",
       "mapping": "elder actual up",
       "canvas": {
@@ -1012,7 +1116,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 34.65846153846154
     },
     {
       "id": "villager_elder_female_walk_up",
@@ -1020,12 +1125,16 @@
         "hd_elder_up_1",
         "hd_elder_up_2",
         "hd_elder_up_3",
-        "hd_elder_up_4"
+        "hd_elder_up_4",
+        "hd_elder_up_5",
+        "hd_elder_up_6",
+        "hd_elder_up_7",
+        "hd_elder_up_8"
       ],
-      "frameCount": 4,
-      "fps": 4,
+      "frameCount": 8,
+      "fps": 12,
       "loop": true,
-      "restFrame": "hd_elder_up_1",
+      "restFrame": "hd_elder_up_idle",
       "category": "characters",
       "mapping": "elder actual up",
       "canvas": {
@@ -1037,7 +1146,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 34.65846153846154
     },
     {
       "id": "villager_elder_male_walk_right",
@@ -1045,12 +1155,16 @@
         "hd_elder_right_1",
         "hd_elder_right_2",
         "hd_elder_right_3",
-        "hd_elder_right_4"
+        "hd_elder_right_4",
+        "hd_elder_right_5",
+        "hd_elder_right_6",
+        "hd_elder_right_7",
+        "hd_elder_right_8"
       ],
-      "frameCount": 4,
-      "fps": 4,
+      "frameCount": 8,
+      "fps": 12,
       "loop": true,
-      "restFrame": "hd_elder_right_1",
+      "restFrame": "hd_elder_right_idle",
       "category": "characters",
       "mapping": "elder actual right",
       "canvas": {
@@ -1062,7 +1176,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 34.65846153846154
     },
     {
       "id": "villager_elder_female_walk_right",
@@ -1070,12 +1185,16 @@
         "hd_elder_right_1",
         "hd_elder_right_2",
         "hd_elder_right_3",
-        "hd_elder_right_4"
+        "hd_elder_right_4",
+        "hd_elder_right_5",
+        "hd_elder_right_6",
+        "hd_elder_right_7",
+        "hd_elder_right_8"
       ],
-      "frameCount": 4,
-      "fps": 4,
+      "frameCount": 8,
+      "fps": 12,
       "loop": true,
-      "restFrame": "hd_elder_right_1",
+      "restFrame": "hd_elder_right_idle",
       "category": "characters",
       "mapping": "elder actual right",
       "canvas": {
@@ -1087,7 +1206,8 @@
         "y": 217.069824
       },
       "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 34.65846153846154
     },
     {
       "id": "villager_elder_male_idle",

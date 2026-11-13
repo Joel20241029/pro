@@ -119,12 +119,17 @@ for (const [index, name] of ['band', 'antlers', 'feathers', 'banner', 'leaves', 
     importImage({ id: 'enemy_acc_' + name, source, crop: cell(source, 3, 2, index), category: 'enemy-parts', bundle: 'battle', width: 128, fitHeight: 116 });
 }
 for (const [role, identities] of Object.entries({ male: ['male_a'], female: ['female_a'], child: ['boy', 'girl'], elder: ['elder_male', 'elder_female'] })) {
+    const profile = JSON.parse(fs.readFileSync(path.join(root, `source/rendered2d/characters/${role}/rig-profile.json`)));
+    if (profile.poses.length !== 8 || !(profile.walkCycle.strideCanvasPixels > 0)) throw new Error('未完成八帧步态：' + role);
     for (const direction of ['down', 'left', 'up', 'right']) {
-        const ids = [1, 2, 3, 4].map(i => importImage({ id: `hd_${role}_${direction}_${i}`, source: `design/hd2d/directions/${role}/${role}_${direction}_${i}.png`,
+        const ids = profile.poses.map((_, index) => index + 1).map(i => importImage({ id: `hd_${role}_${direction}_${i}`, source: `design/hd2d/directions/${role}/${role}_${direction}_${i}.png`,
             category: 'characters', bundle: 'characters', width: 256, pivot: { x: 128, y: 256 * .847929 }, alphaCutoff: 0, fullCanvas: true, animation: `hd_${role}_${direction}` }));
+        const restFrame = importImage({ id: `hd_${role}_${direction}_idle`, source: `design/hd2d/directions/${role}/${role}_${direction}_idle.png`,
+            category: 'characters', bundle: 'characters', width: 256, pivot: { x: 128, y: 256 * .847929 }, alphaCutoff: 0, fullCanvas: true });
         for (const identity of identities) {
             const id = `villager_${identity}_walk${direction === 'down' ? '' : '_' + direction}`;
-            clip(id, ids, role === 'elder' ? 4 : 6, 'characters', `${role} actual ${direction}`);
+            clip(id, ids, profile.fps, 'characters', `${role} actual ${direction}`);
+            Object.assign(animations.at(-1), { restFrame, stridePixels: profile.walkCycle.strideCanvasPixels });
             (walkDirections[identity] ||= {})[direction.toUpperCase()] = { clip: id, mirror: false };
         }
     }
@@ -163,10 +168,9 @@ for (const [index, id] of detailCells.entries()) {
     importImage({ id, source, crop: cell(source, 4, 3, index), category: id.startsWith('deco') ? 'decorations' : 'effects',
         bundle: ['fx_arrow', 'fx_stone', 'fx_ice'].includes(id) ? 'battle' : id.startsWith('deco') ? 'base' : 'characters', width: 128, pivot: { x: 64, y: 128 }, fitHeight: 128, fitWidth: 128 });
 }
-for (const [index, id] of panelCells.entries()) {
-    const source = generated('ui/skins');
-    importImage({ id, source, crop: cell(source, 2, 4, index), category: 'ui/panels', width: 256, height: 128,
-        fitWidth: 256, fitHeight: 128, pivot: { x: 128, y: 128 }, nineSlice: { top: 25, right: 25, bottom: 25, left: 25, repeat: 0 } });
+for (const spec of panelCells) {
+    importImage({ ...spec, source: generated('ui/bright_skins'), category: 'ui/panels', width: 256,
+        pivot: { x: 128, y: spec.height }, alphaCutoff: 0 });
 }
 for (const spec of environmentSources) importImage({ ...spec, category: 'decorations' });
 for (const [index, id] of ['deco_bush', null, 'deco_log_pile', 'building_palisade', 'building_tower_pad'].entries()) {
@@ -183,9 +187,6 @@ for (let index = 0; index < 12; index++) {
     importImage({ id, source, crop, category: index < 8 ? 'building-parts' : index === 11 ? 'ui/panels' : 'decorations',
         width: index === 11 ? 64 : 192, alphaCutoff: [9, 10].includes(index) ? 0 : 240, isolate: index >= 8 });
 }
-const portraitSource = generated('ui/skins');
-importImage({ id: 'panel_portrait_frame', source: portraitSource, crop: cell(portraitSource, 2, 4, 5), category: 'ui/panels', width: 128, height: 128,
-    pivot: { x: 64, y: 128 }, nineSlice: { top: 22, right: 22, bottom: 22, left: 22, repeat: 0 } });
 for (const [index, id] of ['fx_hit', 'fx_slow_ring'].entries()) importImage({ id, source: generated('enemies/boar_front_impacts'),
     crop: [index * 768, 640, 768, 384], category: 'effects', bundle: 'battle', width: 128, fitWidth: 124, fitHeight: 124, pivot: { x: 64, y: 128 }, alphaCutoff: 0 });
 importImage({ id: 'tile_ground_grass', source: 'design/hd2d/samples/grass_ground_v2.png', category: 'terrain', width: 512, alphaCutoff: 0, fullCanvas: true });

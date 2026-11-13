@@ -66,6 +66,28 @@ test('body upgrades preserve ground pivot, stable reuse and precise readable lev
  v.sync(null, 0, false); assert.equal(v.parts.children.length, 0); assert.equal(v.badge.visible, false);
 });
 
+test('the northern tower keeps every upgraded weapon below the HUD on the shortest screen', () => {
+ const { GameLayout } = require(path.join(build, 'view/GameLayout.js'));
+ const { PADS } = require(path.join(build, 'game/GameConfig.js'));
+ const { frames: regions } = require('../../../res/atlases/frames.json');
+ const layout = new GameLayout({windowWidth:320,windowHeight:568,statusBarHeight:20,safeArea:{top:20,bottom:568,left:0,right:320}}, {width:88,height:32,top:24,bottom:56,left:222,right:310});
+ for(const kind of ['ARROW','STONE','SLOW']) for(let level=1;level<=12;level++) {
+  const {world,owner,visual}=create();owner.size(108,108).pos(PADS[0].x,layout.worldY(PADS[0].y)+21.25);visual.sync(kind,level,true);
+  for(const scale of [1,1.08]) for(const angle of [-18,0,5]) {
+   visual.body.scaleY=scale;descendants(owner).find(n=>n.name==='Weapon').rotation=angle;
+   for(const node of descendants(owner).filter(n=>n.texture)) {
+    let visible=true;for(let n=node;n;n=n.parent)if(!n.visible)visible=false;if(!visible)continue;
+    const f=regions[node.texture],x=f.trimOffset.x/f.sourceSize.w*node.width,y=f.trimOffset.y/f.sourceSize.h*node.height;
+    const right=x+f.rect.w/f.sourceSize.w*node.width,bottom=y+f.rect.h/f.sourceSize.h*node.height;
+    for(const [px,py] of [[x,y],[right,y],[x,bottom],[right,bottom]]) {
+     const point=node.localToGlobal({x:px,y:py},false,world);
+     assert(point.y>=layout.mapTop,`${kind}:${level} ${node.name} clips HUD by ${layout.mapTop-point.y}`);
+    }
+   }
+  }
+ }
+});
+
 test('authored hard footprints remain inside the pre-reserved navigation base', () => {
  const propFor = { HOUSE: ['building:house-a', 'building:house-b'], FARM: ['building:farm'], LOGGING: ['building:logging'], GATE: ['building:gate'], ARROW: ['tower:0'], STONE: ['tower:0'], SLOW: ['tower:0'] };
  for (const [id, layout] of Object.entries(layouts)) {

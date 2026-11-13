@@ -1,94 +1,208 @@
 {
-  "status": "four_direction_motion_candidate_not_integrated",
+  "status": "integrated_hd2d_eight_frame_walk",
   "method": "actual Blender offline rendering",
   "source": "res/source/rendered2d/characters/child/child_direction_probe.blend",
+  "walkFramesPerDirection": 8,
+  "restFramesPerDirection": 1,
+  "previewFps": 16,
+  "runtimeCadence": "actual distance / measured stride",
+  "stride": {
+    "frames": 8,
+    "strideModelUnits": 0.264,
+    "strideCanvasPixels": 51.987692307692306,
+    "orthoScale": 1.3,
+    "cadenceBasis": "side-view grounded stride; common phase across direction changes",
+    "supportSequence": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "R",
+      "R",
+      "R",
+      "R"
+    ]
+  },
   "frames": [
     {
       "file": "child_down_1.png",
-      "bytes": 252571,
-      "sha256": "b2534c2a2c8b568529fbcd6a80dc410bd0bfe551e1f4f35be3c3d0b065f602a9"
+      "bytes": 252281,
+      "sha256": "2cdcba5201254ceed1e60ea28af7ef31e0b985c1f4f559b08484b8904fae8fb3"
     },
     {
       "file": "child_down_2.png",
-      "bytes": 252633,
-      "sha256": "f8a51a062e97a9b4ffad95c07c69c162ec34107d410a04a4121ed68213c06713"
+      "bytes": 251558,
+      "sha256": "e318393469a5400f79a424d5169514bbb3b3492a8bdb43a5322f1a178cd62440"
     },
     {
       "file": "child_down_3.png",
-      "bytes": 252562,
-      "sha256": "27e584f3a9eda00bd7ebfcc1f8df5baa558e124bba2db63bcd7561dc73511a55"
+      "bytes": 251974,
+      "sha256": "16c1afc222daad1270c8f71e06b9817bffc8ef1ad437e88076052c999a86159b"
     },
     {
       "file": "child_down_4.png",
-      "bytes": 252398,
-      "sha256": "f130669f991a1573061d619065b6abf7783c959806012bd38d6cc0ef07111e2c"
+      "bytes": 251451,
+      "sha256": "c5ad4332d341ec9ffd7fec0b29ae95899a0c489c719705a0de5c487e711faedc"
+    },
+    {
+      "file": "child_down_5.png",
+      "bytes": 252370,
+      "sha256": "59bc324f419ae488aa5e53d2f1956d60598d76dc5c6fcad4d28e23c7149ddeb9"
+    },
+    {
+      "file": "child_down_6.png",
+      "bytes": 251570,
+      "sha256": "1f3e19618c4ae73e5f100defd68539d888f812d07ee0c674fab3588f9769c624"
+    },
+    {
+      "file": "child_down_7.png",
+      "bytes": 251882,
+      "sha256": "8f130a1b38ac608787210ecc462e07032491da59537acddf13030d8340e31829"
+    },
+    {
+      "file": "child_down_8.png",
+      "bytes": 251700,
+      "sha256": "d5850462d9e9490fe34feed4a6b2e2487f1a2acb385c701a5def8cc4c7cfed30"
+    },
+    {
+      "file": "child_down_idle.png",
+      "bytes": 254074,
+      "sha256": "7773dfbd540e74fee76b42d456a60fed11e5632d6670d5bb972154dd8a2f7231"
     },
     {
       "file": "child_left_1.png",
-      "bytes": 234330,
-      "sha256": "3ebc75e8cbdb099b82d92dbf3e773ecd88dadf6e96de591574075c704746df75"
+      "bytes": 234965,
+      "sha256": "0393b670299b89b514f1b19e93bfce30a6cfe9f41699b41f25fdb9a35e64a3b6"
     },
     {
       "file": "child_left_2.png",
-      "bytes": 233003,
-      "sha256": "1e7afb4c3587f15b7d8806eccca12b8ebe530e50babc836b200dc0d3edf5fcc3"
+      "bytes": 233293,
+      "sha256": "91ccd1545dfc98e306e64fd71c8936204d5dcc035d3b0b378622d9c3ad3ef5e2"
     },
     {
       "file": "child_left_3.png",
-      "bytes": 236371,
-      "sha256": "02913c712266a2c9c79fccef88f7f517d4c6da8f49bc53b2da6b10167bf1004e"
+      "bytes": 233272,
+      "sha256": "4da32295608af41191cd47ca14890af8c273a0ad4dc8ce91dc2d773b0a157008"
     },
     {
       "file": "child_left_4.png",
-      "bytes": 233844,
-      "sha256": "b0f80c6ab313fc7619cf2f7a9533e0ef867c1bed534e3bc1b193e8f11a6993b3"
+      "bytes": 234101,
+      "sha256": "d19d6aa620f786f038e4ecbd630088668faf67c081e31674773c3ab7c0eaa6f0"
+    },
+    {
+      "file": "child_left_5.png",
+      "bytes": 235416,
+      "sha256": "448889cf450d458f053acbe9bf6e2faebe10ee214c08b122265d7e0f12e821d5"
+    },
+    {
+      "file": "child_left_6.png",
+      "bytes": 233726,
+      "sha256": "07a4183690443fad1efd593593ec457f1507e2d05be5b5b0c3ebbe0d752682ea"
+    },
+    {
+      "file": "child_left_7.png",
+      "bytes": 231976,
+      "sha256": "ed593f8231954179daf050a510c0eb2d5c0cb45f2cc444c28a4e03e249751aa2"
+    },
+    {
+      "file": "child_left_8.png",
+      "bytes": 232936,
+      "sha256": "84ecef5117f3086a67107897ee5b3ab85e5bdb68db271e6cdf6f7609e5f503a7"
+    },
+    {
+      "file": "child_left_idle.png",
+      "bytes": 234243,
+      "sha256": "369f8d47e9489cd67d428e3ae4cd5826a1a65c005f545087f249f378666545b7"
     },
     {
       "file": "child_right_1.png",
-      "bytes": 236870,
-      "sha256": "65f3005c74015ac5f2f84952016568b4f5545f816950a073653959a91a19b097"
+      "bytes": 237503,
+      "sha256": "867550ef20a871a13332c183c7ba296f688191d6a6101c4056ae19066885b3ec"
     },
     {
       "file": "child_right_2.png",
-      "bytes": 236551,
-      "sha256": "1b3d9d2933227ced7f4995908168403dc565ec580ee71e5699d6cf59661b5ba9"
+      "bytes": 235812,
+      "sha256": "82639d272ceb37aad5f533b42117fd4086d3e5cc32abb959e91f0c41afe9ab97"
     },
     {
       "file": "child_right_3.png",
-      "bytes": 238390,
-      "sha256": "15b9db71a4c6731dd1434a3e53ee86e8f9bda40d851294382053467bd8b59dcf"
+      "bytes": 234783,
+      "sha256": "d65eb7e6464b369b4f17db6446378fac52716b2d950756d65d9bb93265d194f0"
     },
     {
       "file": "child_right_4.png",
-      "bytes": 234904,
-      "sha256": "ba1c8b45960247c280fe21848e2325db968286f8053f918c3c8729117ef72962"
+      "bytes": 235286,
+      "sha256": "9e772e6253deb39dd2b864552c6cb81a4a7ff2307badaf316745ce7e3bbb611d"
+    },
+    {
+      "file": "child_right_5.png",
+      "bytes": 236837,
+      "sha256": "6981208018a2745fa282253ac675e6aaa3f0841c9a75545a563fdfecf73491d9"
+    },
+    {
+      "file": "child_right_6.png",
+      "bytes": 235532,
+      "sha256": "80e6dcfbf4973f57b0694ba4670606bbb99824df486e25138493a9cdb4617033"
+    },
+    {
+      "file": "child_right_7.png",
+      "bytes": 235802,
+      "sha256": "30a6deb5ff5bcddbb6574603d82b05193fb2b19c9f911fa12fecca749220b74b"
+    },
+    {
+      "file": "child_right_8.png",
+      "bytes": 236101,
+      "sha256": "602eec9d4a59a6201daa626b004559c3584b3dd2f51ecea0b18f074f221eb65f"
+    },
+    {
+      "file": "child_right_idle.png",
+      "bytes": 236795,
+      "sha256": "efb19320a3745bb96c2755b367ce264f09218d0ff7a5b5b24efe89a4460f5474"
     },
     {
       "file": "child_up_1.png",
-      "bytes": 244407,
-      "sha256": "50dc971d77f73e43a6e5417838cb8dfbdc4721e2267a729d7cafe08ab3e2cba2"
+      "bytes": 243172,
+      "sha256": "64b64cc0b6e195a00c0f4797b4c696953e5a2fd4b4674bf5442bf0324c1db0b3"
     },
     {
       "file": "child_up_2.png",
-      "bytes": 244002,
-      "sha256": "ac8a850ec0ad6946a200e3c9da39206f8b64bf4994ce1fe4455f7a57e8154fb0"
+      "bytes": 242627,
+      "sha256": "1f36c3d8f5b373618c6eb009fd7f33e3d1ad5cc632f35e5d067631a6bf3e58e5"
     },
     {
       "file": "child_up_3.png",
-      "bytes": 244453,
-      "sha256": "4b2320a715b2aa7eb2c15b3e4f20867b1ba824d1b4605292e62048507ad3ea27"
+      "bytes": 242533,
+      "sha256": "7e2c9a30ab50b200171b091dbbaacdcc100ed3e57f49a0978aa141af1dbfe3f9"
     },
     {
       "file": "child_up_4.png",
-      "bytes": 244098,
-      "sha256": "239dd6b351b06b71634408722a6b1bc8562865e873209c4fdfd08a0deec4ff0f"
+      "bytes": 242592,
+      "sha256": "32f1b4f22de2add89363079a527c88e6ff6346882cf30420583b259011add089"
+    },
+    {
+      "file": "child_up_5.png",
+      "bytes": 243327,
+      "sha256": "5302bae29674d1a6eb7ec193c2f507b88a702cbff0205567cc56c99da61f6b75"
+    },
+    {
+      "file": "child_up_6.png",
+      "bytes": 242519,
+      "sha256": "1bcbe540c56d06f803084f24059667ff9d38690b92e51b4f07aea7ec04031eb1"
+    },
+    {
+      "file": "child_up_7.png",
+      "bytes": 242732,
+      "sha256": "c35716f117c7bc134ec1f3e3f6c85ea93db4f6410514edf0e1fe6be36ac14817"
+    },
+    {
+      "file": "child_up_8.png",
+      "bytes": 242661,
+      "sha256": "efa506f625be9d0e5c4f627e0ba2e5b31e6330f833a35ca0200f4c8a95b2b7ed"
+    },
+    {
+      "file": "child_up_idle.png",
+      "bytes": 245126,
+      "sha256": "590f569a9585143fb7388e2a82e2e14ac340138a3618779d036193f334b71b3e"
     }
-  ],
-  "frameSize": [
-    512,
-    512
-  ],
-  "fps": 6,
-  "mirror": false,
-  "cameraAndLightsFixed": true
+  ]
 }

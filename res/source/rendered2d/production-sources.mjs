@@ -33,11 +33,22 @@ export const detailCells = [
     'emote_happy', 'emote_proud', 'emote_sleepy', 'emote_peaceful',
     'emote_loving', 'emote_curious', 'deco_pear_pair', 'deco_blossom_ivory'
 ];
-/** 保留完整渐变中心，不再压成两像素的中心行。四边为实际固定边缘像素。 */
+/** 明亮田园正式皮肤。实际主体裁框保留2px抗锯齿，排除生成稿远处的透明噪点。
+ * 切边单位是高清母图像素；scale仅缩放背景绘制，文字和点击区域保持逻辑尺寸。
+ * 按钮保留完整圆角，卡片和木框分别保留各自边宽，不共用一个九宫格值。 */
 export const panelCells = [
-    'panel_button_green', 'panel_button_gold', 'panel_anchored_tip', 'panel_button_disabled',
-    'panel_button_red', 'panel_parchment', 'panel_card', 'panel_tip'
-];
+    ['panel_button_green', [31,147,361,147],128,40,.5],
+    ['panel_button_gold', [447,147,359,147],128,40,.5],
+    ['panel_button_red', [863,148,360,146],128,40,.5],
+    ['panel_button_disabled', [31,557,361,147],128,40,.5],
+    ['panel_card', [445,493,365,268],192,32,.5],
+    ['panel_card_disabled', [861,493,364,269],192,32,.5],
+    ['panel_parchment', [35,866,352,349],256,48,.75],
+    ['panel_header', [446,964,362,148],128,40,.5],
+    ['panel_tip', [861,964,362,148],128,40,.5],
+    ['panel_anchored_tip', [861,964,362,148],128,40,.5],
+    ['panel_portrait_frame', [445,493,365,268],128,24,.5]
+].map(([id,crop,height,edge,scale]) => ({id,crop,height,nineSlice:{top:edge,right:edge,bottom:edge,left:edge,repeat:0,scale}}));
 export const environmentSources = [
     { id: 'deco_tree_oak', source: 'design/hd2d/environment/tree_oak_layers.png', crop: [140, 60, 956, 824] },
     { id: 'deco_tree_pine', source: 'design/hd2d/environment/tree_pine_layers.png', crop: [280, 53, 614, 850] },

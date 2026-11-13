@@ -13,6 +13,13 @@ function journal(s: Laya.Sprite) {
 }
 const PAINTERS: Record<string, Painter> = {
     icon_settings: journal, icon_journal: journal,
+    icon_build_plus: s => {
+        // 轻立体加号：金色外沿、奶油描边和草绿内芯；不依赖字体，也不增加位图包体。
+        const p = [24, 7, 40, 7, 40, 24, 57, 24, 57, 40, 40, 40, 40, 57, 24, 57, 24, 40, 7, 40, 7, 24, 24, 24];
+        poly(s.graphics, p, "#75b52e", "#a87525", 9);
+        poly(s.graphics, p, "#75b52e", G.cream, 5);
+        line(s.graphics, [28, 12, 28, 28, 12, 28], "#d7f6a3", 3);
+    },
     icon_pause: s => { s.graphics.drawRoundRect(13, 11, 13, 42, 3, 3, 3, 3, G.cream); s.graphics.drawRoundRect(38, 11, 13, 42, 3, 3, 3, 3, G.cream); },
     icon_play: s => poly(s.graphics, [17, 10, 53, 32, 17, 54], G.cream, G.cream, 1),
     icon_speed: s => { poly(s.graphics, [5, 13, 30, 32, 5, 51], "#986128", "#986128", 1); poly(s.graphics, [32, 13, 57, 32, 32, 51], "#986128", "#986128", 1); },

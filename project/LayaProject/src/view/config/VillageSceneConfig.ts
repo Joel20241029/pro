@@ -4,6 +4,8 @@ export interface GroundPoint {
     x: number;
     y: number;
 }
+/** 伐木表现目标：树ID稳定用于预占/摇树，站点在树的村内侧；不决定生产结算。 */
+export interface LoggingStop extends GroundPoint { treeId: string; treeX: number; }
 export interface Footprint {
     left: number;
     top: number;
@@ -55,16 +57,16 @@ export const VILLAGE_PROPS: VillageProp[] = [
         { frame: "deco_apple_pair", x: .59, y: .24, size: .12, alpha: .8 }
     ] },
     // 角落圆树参考原伐木树90宽，调整至84/86宽，树冠高度超过成人；足底靠边并留出完整树冠。
-    // 花果各一簇、低透明度，无闪烁或跳动；复用林带素材，不新增贴图和寻路障碍。
-    { id: "tree:corner-blossom", frame: "deco_tree_oak", x: 38, y: 884, size: 84, footprint: null, canopyDetails: [
+    // 花果各一簇、低透明度，无闪烁或跳动；复用林带素材，仅树干底部参与寻路阻挡。
+    { id: "tree:corner-blossom", frame: "deco_tree_oak", x: 38, y: 884, size: 84, footprint: { left: 27, top: 869, right: 49, bottom: 884 }, canopyDetails: [
         { frame: "deco_blossom_ivory", x: .55, y: .28, size: .12, alpha: .78 }
     ] },
-    { id: "tree:corner-fruit", frame: "deco_tree_oak", x: 677, y: 998, size: 86, footprint: null, canopyDetails: [
+    { id: "tree:corner-fruit", frame: "deco_tree_oak", x: 677, y: 998, size: 86, footprint: { left: 666, top: 983, right: 688, bottom: 998 }, canopyDetails: [
         { frame: "deco_pear_pair", x: .25, y: .33, size: .12, alpha: .8 }
     ] },
     // 松树使用88宽，与圆树同一量级、树形稍高；根部仍在行走横向边界外，左右错位保留活动区。
-    { id: "tree:corner-pine-left", frame: "deco_tree_pine", x: 43, y: 976, size: 88, footprint: null },
-    { id: "tree:corner-pine-right", frame: "deco_tree_pine", x: 677, y: 880, size: 88, footprint: null },
+    { id: "tree:corner-pine-left", frame: "deco_tree_pine", x: 43, y: 976, size: 88, footprint: { left: 32, top: 961, right: 54, bottom: 976 } },
+    { id: "tree:corner-pine-right", frame: "deco_tree_pine", x: 677, y: 880, size: 88, footprint: { left: 666, top: 865, right: 688, bottom: 880 } },
     { id: "deco:logs", frame: "deco_log_pile", x: 571, y: 1024, size: 60, footprint: null },
     ...[[168, 292], [560, 286], [170, 477], [553, 548], [164, 668], [553, 734]].map(([x, y], i): VillageProp => ({ id: `bush:${i}`, frame: "deco_bush", x, y, size: 64, footprint: null })),
     ...[[279, 822], [441, 822]].map(([x, y], i): VillageProp => ({ id: `torch:${i}`, frame: "deco_torch", x, y, size: 62, footprint: null })),
@@ -117,12 +119,19 @@ export const VILLAGE_STOPS = {
     // 家门与火堆/休息点跨集合留出间距，避免一个回家、另一个休息时仍站在一起。
     homes: [
         ...[[58, 950], [146, 950], [194, 950], [238, 950], [182, 986], [216, 986],
-            [50, 1022], [182, 1022], [230, 1022], [586, 1018], [630, 1018], [674, 1018], [644, 970], [674, 932], [634, 875]].map(([x, y]) => ({ x, y })),
-        ...[58, 98, 140, 182, 224].map(x => ({ x, y: 874 }))
+            [50, 1022], [182, 1022], [230, 1022], [586, 1018], [630, 1018], [674, 1018], [644, 970], [674, 932], [630, 850]].map(([x, y]) => ({ x, y })),
+        // 前排两个家门点上移，给花树工位留出至少24像素的停留间距。
+        ...[58, 98, 140, 182, 224].map(x => ({ x, y: x <= 98 ? 858 : 874 }))
     ],
     farm: [{ x: 486, y: 879 }, { x: 546, y: 879 }, { x: 606, y: 879 }, { x: 486, y: 924 }, { x: 546, y: 924 }, { x: 606, y: 924 }],
-    // 工位围绕下移后的树干排列，下排仍留在短屏底部操作区之外。
-    logging: [{ x: 56, y: 994 }, { x: 142, y: 994 }, { x: 76, y: 1026 }, { x: 126, y: 1026 }],
+    // 五树各一个村内侧工位，供最多四名伐木者排他轮换；工位随各自树纵向重排。
+    logging: [
+        { treeId: "tree:logging", treeX: 98, x: 142, y: 1012 },
+        { treeId: "tree:corner-blossom", treeX: 38, x: 78, y: 884 },
+        { treeId: "tree:corner-fruit", treeX: 677, x: 628, y: 993 },
+        { treeId: "tree:corner-pine-left", treeX: 43, x: 85, y: 976 },
+        { treeId: "tree:corner-pine-right", treeX: 677, x: 635, y: 880 }
+    ] as LoggingStop[],
     // 有意包含屋后与屋前的休息点，行人绕过墙基后会自然发生遮挡切换。
     rest: CAMP_STOPS,
     children: CAMP_STOPS,

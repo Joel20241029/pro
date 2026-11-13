@@ -8,7 +8,7 @@ export class Tip extends Laya.Sprite {
     constructor(private art: SpriteFrames) {
         super(); this.name = "Tip"; this.mouseEnabled = false; this.visible = false;
         const t = this.message; t.name = "TipText"; t.font = "sans-serif"; t.fontSize = UI.tipFont;
-        t.bold = false; t.color = C.timber; t.stroke = 1; t.strokeColor = C.lightEdge;
+        t.bold = false; t.color = C.tipInk; t.stroke = .5; t.strokeColor = C.lightEdge;
         t.align = "center"; t.valign = "middle"; t.wordWrap = true; t.leading = 8;
         t.mouseEnabled = false; t.size(UI.tipWidth - 64, UI.tipMaxHeight - 56); t.pos(32, 28); this.addChild(t);
     }

@@ -1,3 +1,13 @@
+# child高清二维制作源
+
+当前正式来源：`rig-profile.json`、`child_walk_probe.blend`、`child_direction_probe.blend`。四向各八帧行走，加每向一张双脚落地站姿；图片在 `res/design/hd2d/directions/child/`。运行时按实际路程推进周期，预览帧率仅用于素材页。
+
+`foot-validation.json` 验证八姿态和站姿的脚底刚性、落地、足轴；`walk-probe.json` 保留实际姿态与杖尖数据。成年男女劳动动作仍在labor，老人另有rest；不以行走帧替代工作。
+
+完整说明见 [高清制作总说明](../../README.md)。下方为早期四帧试验历史，不代表现行帧数与接入状态。
+
+## 历史制作记录
+
 # 中性孩子离线制作源
 
 状态：四向各四帧行走候选，已具备真实离线渲染源，尚未通过完整美术与正式游戏验收。

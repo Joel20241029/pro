@@ -4,7 +4,7 @@ import { RESOURCE_CONTRACT, REQUIRED_WALK_DIRECTIONS, REQUIRED_LABOR_DIRECTIONS,
 import { ENEMY_LOOKS } from "./config/EnemyVisualConfig";
 import { ResourceBundle, RESOURCE_BUNDLES } from "../config/ResourceConfig";
 import { Person, isElder } from "../game/GameState";
-interface Frame { page: string; rect: { x: number; y: number; w: number; h: number }; sourceSize: { w: number; h: number }; trimOffset: { x: number; y: number }; pivot: { x: number; y: number }; nineSlice: { top: number; right: number; bottom: number; left: number; repeat: number } | null; }
+interface Frame { page: string; rect: { x: number; y: number; w: number; h: number }; sourceSize: { w: number; h: number }; trimOffset: { x: number; y: number }; pivot: { x: number; y: number }; nineSlice: { top: number; right: number; bottom: number; left: number; repeat: number; scale: number } | null; }
 interface Clip { id: string; frameIds: string[]; fps: number; restFrame: string; canvas: { w: number; h: number }; stridePixels?: number; }
 interface EnemyDefinition { canvas: number; fps: number; foot: { x: number; y: number }; frames: { body: string; head: { x: number; y: number }; back: { x: number; y: number } }[]; }
 /** 高清预渲染二维合同：恢复源画布、共同足底与真实方向，九宫格保留原图渐变。 */
@@ -71,7 +71,7 @@ export class SpriteFrames {
                 const actual = result[1].data.laborDirections?.[action]?.[direction];
                 if (!actual || actual.clip !== pose.clip || actual.mirror !== pose.mirror || !clips.some(c => c.id === pose.clip)) throw new Error("劳动方向映射缺失：" + action + "/" + direction);
             }
-            for (const clip of clips) if (this.clips.has(clip.id) || clip.fps <= 0 || !clip.frameIds.length || !clip.frameIds.every(id => created.has(id)) || !clip.frameIds.includes(clip.restFrame)) throw new Error("动画帧不完整：" + clip.id);
+            for (const clip of clips) if (this.clips.has(clip.id) || clip.fps <= 0 || !clip.frameIds.length || !clip.frameIds.every(id => created.has(id)) || !created.has(clip.restFrame) || !clip.canvas || (clip.id.includes("_walk") && bundle === "characters" && (clip.frameIds.length !== 8 || !(clip.stridePixels > 0)))) throw new Error("动画帧不完整：" + clip.id);
             if (bundle === "buildings") {
                 const layouts: Record<string, BuildingDefinition> = result[2].data.layouts;
                 if (!layouts || Object.keys(layouts).length !== REQUIRED_BUILDING_LAYOUTS.length || REQUIRED_BUILDING_LAYOUTS.some(id => !layouts[id])) throw new Error("建筑布局缺失");
@@ -109,6 +109,8 @@ export class SpriteFrames {
         }
     }
     get(id: string): Laya.Texture { const t = this.textures.get(id); if (!t) throw new Error(`未声明的图片：${id}`); return t; }
+    /** UI按透明裁框居中；世界动画仍使用共同母画布，不能逐帧套用此布局。 */
+    contentBounds(id: string): Readonly<Frame> { const f = this.layouts.get(id); if (!f) throw new Error(`未声明的图片：${id}`); return f; }
     frameId(clipId: string, time: number, animated = true): string {
         const clip = this.animation(clipId);
         return animated ? clip.frameIds[Math.floor(time * clip.fps) % clip.frameIds.length] : clip.restFrame;
@@ -134,7 +136,12 @@ export class SpriteFrames {
     panel(sprite: Laya.Sprite, id: string, width: number, height: number) {
         const grid = this.layouts.get(id)?.nineSlice;
         if (!grid) throw new Error("未声明的高清面板：" + id);
-        sprite.graphics.draw9Grid(this.get(id), 0, 0, width, height, [grid.top, grid.right, grid.bottom, grid.left, grid.repeat]);
+        // 只缩放高清背景的绘制坐标。短按钮缩小边宽时，图标/字体/点击尺寸保持原值。
+        const scale = Math.min(grid.scale, width / (grid.left + grid.right + 1), height / (grid.top + grid.bottom + 1));
+        sprite.graphics.save();
+        sprite.graphics.scale(scale, scale);
+        sprite.graphics.draw9Grid(this.get(id), 0, 0, width / scale, height / scale, [grid.top, grid.right, grid.bottom, grid.left, grid.repeat]);
+        sprite.graphics.restore();
     }
     destroy() { this.disposed = true; this.bundles.clear(); for (const t of this.textures.values()) t.destroy(); this.textures.clear(); this.clips.clear(); this.layouts.clear(); }
 }

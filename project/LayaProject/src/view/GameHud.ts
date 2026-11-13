@@ -22,10 +22,13 @@ export class GameHud {
     private gateGauge: Laya.Sprite | null = null;
     private bellCountdown: Laya.Text | null = null;
     private nightStatus: Laya.Text | null = null;
+    private buildHints: Laya.Sprite[] = [];
+    private hintSeconds = 0;
     constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private panels: GamePanels, private refresh: () => void) { }
     clear() {
         this.bellCountdown = null;
         this.nightStatus = null;
+        this.buildHints.length = 0;
         this.node.destroyChildren();
         this.node.graphics.clear();
     }
@@ -93,13 +96,21 @@ export class GameHud {
             const t = battle?.base.towers[i] || s.towers[i], pos = anchors.towerAnchor(i);
             const b = new Laya.Sprite();
             b.pos(scene.pads[i].x + HUD.tower.hitX, scene.pads[i].y + HUD.tower.hitY);
-            b.size(HUD.tower.hitWidth, HUD.tower.hitHeight);
+            b.size(HUD.tower.hitWidth, t.kind ? HUD.tower.hitHeight : HUD.towerBuildHint.hitHeight);
             // 塔面板只使用 open/close 配对管理的 CHOICE 暂停，不把临时调任变成手动暂停。
             this.ui.bindClick(b, () => this.panels.open({ type: "tower", index: i }));
             this.node.addChild(b);
+            if (!t.kind) {
+                const hint = HUD.towerBuildHint, icon = this.ui.image(this.node, "icon_build_plus", pos.x, pos.y + hint.gap + hint.size / 2, hint.size);
+                icon.name = `BuildTowerHint:${i}`;
+                icon.pivot(hint.size / 2, hint.size / 2);
+                icon.alpha = s.phase === "DAY" ? 1 : .55;
+                if (s.phase === "DAY") this.buildHints.push(icon);
+                continue;
+            }
             const op = t.operator ? coloredName(person(s, t.operator)) : "成年村民不足";
             // 沿用城门文字的独立字号做法，避开通用地图文字24号下限；所有塔名与姓名都对齐塔中心。
-            const label = this.ui.label(this.node, t.kind ? `${TOWERS[t.kind].name} ${amount(t.level)}阶\n${op}` : "＋ 建塔", pos.x - HUD.tower.labelWidth / 2, pos.y, HUD.tower.labelWidth, HUD.tower.font, t.operator ? C.cream : "#fff0b2", true, t.kind ? HUD.tower.occupiedHeight : HUD.tower.emptyHeight);
+            const label = this.ui.label(this.node, `${TOWERS[t.kind].name} ${amount(t.level)}阶\n${op}`, pos.x - HUD.tower.labelWidth / 2, pos.y, HUD.tower.labelWidth, HUD.tower.font, t.operator ? C.cream : "#fff0b2", true, HUD.tower.occupiedHeight);
             label.fontSize = HUD.tower.font;
             label.leading = HUD.tower.leading;
             label.stroke = HUD.tower.stroke;
@@ -169,5 +180,12 @@ export class GameHud {
             this.gateGauge.graphics.drawRect(0, 0, HUD.gate.barWidth, HUD.gate.barHeight, C.outline);
             this.gateGauge.graphics.drawRect(HUD.gate.barInset, HUD.gate.barInset, HUD.gate.fillWidth * ratio, HUD.gate.fillHeight, ratio < HUD.gate.dangerRatio ? C.red : C.gold);
         }
+    }
+    /** 与游戏共用暂停后的视觉时间，刷新HUD只重建节点，不重置呼吸相位。 */
+    advance(delta: number) {
+        const hint = HUD.towerBuildHint;
+        this.hintSeconds = (this.hintSeconds + delta) % hint.seconds;
+        const scale = 1 + Math.sin(this.hintSeconds / hint.seconds * Math.PI * 2) * hint.amplitude;
+        for (const icon of this.buildHints) icon.scale(scale, scale);
     }
 }

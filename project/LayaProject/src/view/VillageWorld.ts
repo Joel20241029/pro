@@ -92,11 +92,11 @@ export class VillageWorld {
                 const index = Number(p.id.split(":")[1]);
                 const frame = ["deco_apple_pair", "deco_blossom_pink", "deco_pear_pair", "deco_blossom_ivory"][Math.floor(index / 2) % 4];
                 // 花果在树冠内，作为树的子节点一起遮挡；不漂在更近的树或角色前面。
-                this.ui.image(node, frame, p.size * .22, p.size * .37, p.size * .19);
-                this.ui.image(node, frame, p.size * .59, p.size * .24, p.size * .17);
+                this.ui.image(node, frame, p.size * .22, p.size * .37, p.size * .19, p.size * .19, false);
+                this.ui.image(node, frame, p.size * .59, p.size * .24, p.size * .17, p.size * .17, false);
             }
             if (p.canopyDetails) for (const detail of p.canopyDetails)
-                this.ui.image(node, detail.frame, p.size * detail.x, p.size * detail.y, p.size * detail.size).alpha = detail.alpha;
+                this.ui.image(node, detail.frame, p.size * detail.x, p.size * detail.y, p.size * detail.size, p.size * detail.size, false).alpha = detail.alpha;
         }
         for (let i = 0; i < RULE.populationCap; i++) {
             const s = new Laya.Sprite();
@@ -234,11 +234,11 @@ export class VillageWorld {
             if (prop.ground || prop.id.startsWith("wall:") || prop.id.startsWith("deco:")) continue;
             const tree = prop.id.startsWith("forest:") || prop.id.startsWith("tree:");
             const width = prop.size * (tree ? shadow.treeWidth : shadow.buildingWidth);
-            const image = this.ui.image(this.scenery, tree ? "shadow_tree" : "shadow_actor", prop.x - width * shadow.centerX + shadow.x, prop.y - width * shadow.centerY + shadow.y, width);
+            const image = this.ui.image(this.scenery, tree ? "shadow_tree" : "shadow_actor", prop.x - width * shadow.centerX + shadow.x, prop.y - width * shadow.centerY + shadow.y, width, width, false);
             image.alpha = shadow.alpha;
         }
         for (const [x, at] of [[182, 399], [530, 470], [173, 591], [560, 643], [297, 628], [411, 356]])
-            this.ui.image(this.scenery, "deco_rocks", x, y(at), 36);
+            this.ui.image(this.scenery, "deco_rocks", x, y(at), 36, 36, false);
     }
     advance(delta: number): boolean {
         if (!this.game.pauses.size) {
@@ -256,10 +256,10 @@ export class VillageWorld {
         if (s && !this.game.pauses.size && (s.phase === "DAY" || s.phase === "NIGHT")) {
             this.sceneSeconds += visualDelta;
             this.motion.update(visualDelta);
-            for (const p of s.people) { const pose = this.motion.get(p.id); this.logging.sample(p.id, pose.clip, pose.elapsed, pose.animated && !pose.walking && s.phase === "DAY"); }
+            for (const p of s.people) { const pose = this.motion.get(p.id); this.logging.sample(p.id, pose.clip, pose.elapsed, pose.animated && !pose.walking && s.phase === "DAY", pose.loggingTree); }
             this.logging.retain(new Set(s.people.map(p => p.id)));
-            const tree = this.props.find(p => p.id === "tree:logging");
-            if (tree) tree.node.rotation = this.logging.advance(visualDelta);
+            this.logging.advance(visualDelta);
+            for (const tree of this.props) if (tree.id.startsWith("tree:")) tree.node.rotation = this.logging.rotation(tree.id);
             this.emotes.update(s, Math.min(RULE.frameCap, Math.max(0, delta)), id => { const pose = this.motion.get(id); return !pose.insideTower && pose.y > this.layout.worldY(840) && pose.heartElapsed === null; });
         }
         this.renderDelta += delta;

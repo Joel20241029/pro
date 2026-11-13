@@ -33,7 +33,13 @@ test('fatal snapshot outlives short 3x projectile impact interval until readable
  const b=battle(),f=new CombatPresentation(),p=new ProjectileMotion(),s=shot(0);f.sync(b,[{type:'shot',shot:s,target:1,hurt:[enemy(1,0)]}]);b.tick=7;p.update(b,undefined,undefined,undefined,f);assert(f.flashing(1));b.tick=14;p.update(b,undefined,undefined,undefined,f);assert(f.deaths.has(1));f.advance(.15);assert(!f.deaths.has(1));
 });
 test('both actual chop clips trigger only when crossing frame 3, pause and resting do not repeat',()=>{
- for(const clip of ['villager_male_a_chop','villager_female_a_chop']){const f=new LoggingFeedback();f.sample('a',clip,0,true);f.sample('a',clip,.5,true);assert.notEqual(f.advance(.04),0);f.advance(1);f.sample('a',clip,.5,true);assert.equal(f.advance(0),0);f.sample('a',clip,1.2,false);assert.equal(f.advance(.1),0);}
+ for(const clip of ['villager_male_a_chop','villager_female_a_chop']){const f=new LoggingFeedback();f.sample('a',clip,0,true,'tree:a');f.sample('a',clip,.5,true,'tree:a');f.advance(.04);assert.notEqual(f.rotation('tree:a'),0);f.advance(1);f.sample('a',clip,.5,true,'tree:a');f.advance(0);assert.equal(f.rotation('tree:a'),0);f.sample('a',clip,1.2,false,'tree:a');f.advance(.1);assert.equal(f.rotation('tree:a'),0);}
+});
+test('only the struck tree sways and a new target cannot inherit the previous strike phase',()=>{
+ const f=new LoggingFeedback(),clip='villager_male_a_chop';f.sample('a',clip,0,true,'oak');f.sample('a',clip,.5,true,'oak');f.advance(.04);
+ const old=f.rotation('oak');assert.notEqual(old,0);assert.equal(f.rotation('pine'),0);f.advance(0);assert.equal(f.rotation('oak'),old);
+ f.sample('a',clip,5,true,'pine');assert.equal(f.rotation('pine'),0);f.sample('a',clip,5.8,true,'pine');f.advance(.04);assert.notEqual(f.rotation('pine'),0);
+ f.advance(1);assert.equal(f.rotation('oak'),0);assert.equal(f.rotation('pine'),0);
 });
 test('bell availability shares pause, saved commit and battle outcome conditions',()=>{
  const g=new GameSession(new SaveStore({read:()=>null,write(){}}));g.state=createGame(7);applyCommand(g.state,{type:'NIGHT'});g.battle=new BattleSimulation(g.state);assert(g.canRingBell);for(const reason of ['ASSETS','CHOICE','BACKGROUND','SAVE_PENDING','USER']){g.pause(reason);assert(!g.canRingBell);g.resume(reason);}g.bell();assert(!g.canRingBell);

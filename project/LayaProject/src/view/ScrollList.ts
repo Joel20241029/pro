@@ -13,6 +13,7 @@ export class ScrollList extends Laya.Sprite {
     private readonly maximum: number;
     constructor(width: number, height: number, contentHeight: number, initialOffset = 0, private changed?: (offset: number) => void) {
         super(); this.name = "ScrollList"; this.size(width, height);
+        this.content.name = "panelText";
         this.maximum = Math.max(0, contentHeight - height);
         this.clipRoot.size(width - UI.scrollGutter, height); this.clipRoot.mouseEnabled = true;
         this.clipRoot.scrollRect = new Laya.Rectangle(0, 0, width - UI.scrollGutter, height);

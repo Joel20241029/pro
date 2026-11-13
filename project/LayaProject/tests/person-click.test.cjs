@@ -48,6 +48,8 @@ const { createGame } = require(path.join(build, 'game/VillageRules.js'));
 const { compareDepth } = require(path.join(build, 'view/VillageScene.js'));
 const art = {
     ready: () => true,
+    contentBounds: () => ({rect:{w:64,h:64},sourceSize:{w:64,h:64},trimOffset:{x:0,y:0}}),
+    animation: () => ({frameIds:['person'],restFrame:'person',stridePixels:48,canvas:{w:256,h:256}}),
     get: id => id, frameId: clip => clip, walk: () => ({ clip: 'villager_male_a_walk', mirror: false }),
     applyFrame(node, _id, size) { node.size(size, size).pivot(size / 2, size * 15 / 16); }
 };
@@ -59,7 +61,7 @@ function setup() {
     // 仅此单元夹具移去场景建筑；遮挡分别显式构造，原生验收另用完整建筑和实际图集。
     world.props = [];
     world.motion = { get: id => poses.get(id) };
-    state.people.forEach((p, i) => poses.set(p.id, { x: 250 + i * 70, y: 1000, insideTower: false, clip: 'villager_male_a_walk', direction: 'DOWN', elapsed: 0, animated: true, heartElapsed: null, mirror: false }));
+    state.people.forEach((p, i) => poses.set(p.id, { x: 250 + i * 70, y: 1000, insideTower: false, clip: 'villager_male_a_walk', direction: 'DOWN', elapsed: 0, walkDistance:0, walking:true, animated: true, heartElapsed: null, mirror: false }));
     world.render(false);
     return { world, game, state, poses, opened, houses };
 }

@@ -15,11 +15,11 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
         const home = new Laya.Sprite(); home.pos(34, 152); ctx.art.panel(home, "panel_card", 288, 70); box.addChild(home);
         ctx.ui.image(home, "icon_house", 12, 13, 44);
         ctx.ui.label(home, "空余住房", 66, 6, 208, 24, C.muted, false, 28);
-        ctx.ui.label(home, `${capacity(s) - s.people.length} 人`, 66, 33, 208, 28, C.green, true, 30);
+        ctx.ui.label(home, `${capacity(s) - s.people.length} 人`, 66, 32, 208, 26, C.green, true, 32);
         const food = new Laya.Sprite(); food.pos(334, 152); ctx.art.panel(food, "panel_card", 300, 70); box.addChild(food);
         ctx.ui.image(food, "icon_food", 12, 13, 44);
         ctx.ui.label(food, `迎接需 ${RULE.birthCost} 粮`, 66, 6, 220, 24, C.muted, false, 28);
-        ctx.ui.label(food, `现有 ${amount(s.food)} 粮`, 66, 33, 220, 28, s.food < RULE.birthCost ? C.red : C.timber, true, 30);
+        ctx.ui.label(food, `现有 ${amount(s.food)} 粮`, 66, 32, 220, 26, s.food < RULE.birthCost ? C.red : C.timber, true, 32);
         const canFormFamily = s.people.some(a => s.people.some(b => canMarry(s, a, b)));
         ctx.ui.button(box, !day ? "白天可安排成家" : canFormFamily ? "安排村民成家" : "暂无可成家的单身男女", 34, 236, 600, () => ctx.open({ type: "partners" }), C.green, 72, day && canFormFamily);
         ctx.ui.label(box, "已有家庭", 36, 326, 260, 28, C.ink, true, 40);
@@ -35,13 +35,15 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
                 ctx.art.panel(card, "panel_card", 584, rowHeight);
                 rows.content.addChild(card);
                 f.partners.forEach((id, partner) => {
-                    const parent = person(s, id), x = partner ? 306 : 18;
+                    // 姓名—头像—红心—头像—姓名镜像排布；头像中心232/352与红心中心292等距。
+                    const parent = person(s, id), x = partner ? 318 : 198;
                     ctx.ui.image(card, ctx.art.portraitId(parent), x, 8, 68);
-                    const name = ctx.ui.label(card, coloredName(parent), x + 74, 23, 176, 28, C.ink, true, 42);
+                    const name = ctx.ui.label(card, coloredName(parent), partner ? 392 : 16, 23, 176, 28, C.ink, true, 42);
+                    name.align = partner ? "left" : "right";
                     name.wordWrap = false;
                     name.overflow = Laya.Text.ELLIPSIS;
                 });
-                ctx.ui.image(card, "icon_heart", 267, 24, 40);
+                ctx.ui.image(card, "icon_heart", 272, 24, 40);
                 const child = s.people.find(q => !q.adult && q.parents.some(id => f.partners.includes(id)));
                 ctx.ui.image(card, "icon_baby", 20, 78, 44);
                 const carer = child ? s.people.find(q => q.careChild === child.id) : null;

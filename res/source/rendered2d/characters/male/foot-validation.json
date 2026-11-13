@@ -7,18 +7,18 @@
       "feet": {
         "L": {
           "rigidVertexCount": 479,
-          "maxRigidResidual": 2.7120522742273353e-08,
-          "maxScaleError": 2.2649765014648438e-06,
+          "maxRigidResidual": 2.2351741790771484e-08,
+          "maxScaleError": 2.0265579223632812e-06,
           "targetRotationErrorRadians": 0.0,
-          "minimumZ": -1.862645149230957e-09,
+          "minimumZ": 0.0,
           "requestedLift": 0
         },
         "R": {
           "rigidVertexCount": 472,
           "maxRigidResidual": 1.666000468656264e-08,
-          "maxScaleError": 3.159046173095703e-06,
+          "maxScaleError": 2.384185791015625e-06,
           "targetRotationErrorRadians": 0.0,
-          "minimumZ": 0.001541702076792717,
+          "minimumZ": -1.1175870895385742e-08,
           "requestedLift": 0
         }
       }
@@ -28,19 +28,19 @@
       "feet": {
         "L": {
           "rigidVertexCount": 479,
-          "maxRigidResidual": 2.2351741790771484e-08,
-          "maxScaleError": 2.2649765014648438e-06,
+          "maxRigidResidual": 3.3527612686157227e-08,
+          "maxScaleError": 1.9073486328125e-06,
           "targetRotationErrorRadians": 0.0,
-          "minimumZ": 0.05499999225139618,
-          "requestedLift": 0.055
+          "minimumZ": 1.1175870895385742e-08,
+          "requestedLift": 0
         },
         "R": {
           "rigidVertexCount": 472,
-          "maxRigidResidual": 2.1073424255447017e-08,
-          "maxScaleError": 2.4437904357910156e-06,
+          "maxRigidResidual": 1.666000468656264e-08,
+          "maxScaleError": 1.9669532775878906e-06,
           "targetRotationErrorRadians": 0.0,
-          "minimumZ": 1.862645149230957e-09,
-          "requestedLift": 0
+          "minimumZ": 0.021212995052337646,
+          "requestedLift": 0.021213
         }
       }
     },
@@ -49,19 +49,19 @@
       "feet": {
         "L": {
           "rigidVertexCount": 479,
-          "maxRigidResidual": 2.1400163496054816e-08,
-          "maxScaleError": 2.9802322387695312e-06,
+          "maxRigidResidual": 3.094458528950093e-08,
+          "maxScaleError": 2.0265579223632812e-06,
           "targetRotationErrorRadians": 0.0,
-          "minimumZ": 0.0011248812079429626,
+          "minimumZ": -1.30385160446167e-08,
           "requestedLift": 0
         },
         "R": {
           "rigidVertexCount": 472,
-          "maxRigidResidual": 1.862645149230957e-08,
-          "maxScaleError": 2.2649765014648438e-06,
+          "maxRigidResidual": 2.1073424255447017e-08,
+          "maxScaleError": 1.9669532775878906e-06,
           "targetRotationErrorRadians": 0.0,
-          "minimumZ": -1.30385160446167e-08,
-          "requestedLift": 0
+          "minimumZ": 0.030000001192092896,
+          "requestedLift": 0.03
         }
       }
     },
@@ -70,36 +70,141 @@
       "feet": {
         "L": {
           "rigidVertexCount": 479,
-          "maxRigidResidual": 2.1400163496054816e-08,
-          "maxScaleError": 2.5033950805664062e-06,
+          "maxRigidResidual": 2.1073424255447017e-08,
+          "maxScaleError": 2.205371856689453e-06,
           "targetRotationErrorRadians": 0.0,
-          "minimumZ": 6.984919309616089e-09,
+          "minimumZ": -1.862645149230957e-09,
           "requestedLift": 0
         },
         "R": {
           "rigidVertexCount": 472,
+          "maxRigidResidual": 1.666000468656264e-08,
+          "maxScaleError": 1.6689300537109375e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 0.021212995052337646,
+          "requestedLift": 0.021213
+        }
+      }
+    },
+    {
+      "frame": 5,
+      "feet": {
+        "L": {
+          "rigidVertexCount": 479,
+          "maxRigidResidual": 2.47107803102985e-08,
+          "maxScaleError": 2.2649765014648438e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 7.450580596923828e-09,
+          "requestedLift": 0
+        },
+        "R": {
+          "rigidVertexCount": 472,
+          "maxRigidResidual": 2.006130221163669e-08,
+          "maxScaleError": 1.9669532775878906e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 2.60770320892334e-08,
+          "requestedLift": 0
+        }
+      }
+    },
+    {
+      "frame": 6,
+      "feet": {
+        "L": {
+          "rigidVertexCount": 479,
+          "maxRigidResidual": 2.1073424255447017e-08,
+          "maxScaleError": 1.9073486328125e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 0.021212991327047348,
+          "requestedLift": 0.021213
+        },
+        "R": {
+          "rigidVertexCount": 472,
+          "maxRigidResidual": 2.3039648079970816e-08,
+          "maxScaleError": 1.6689300537109375e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": -1.862645149230957e-08,
+          "requestedLift": 0
+        }
+      }
+    },
+    {
+      "frame": 7,
+      "feet": {
+        "L": {
+          "rigidVertexCount": 479,
           "maxRigidResidual": 2.2351741790771484e-08,
+          "maxScaleError": 2.086162567138672e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 0.030000008642673492,
+          "requestedLift": 0.03
+        },
+        "R": {
+          "rigidVertexCount": 472,
+          "maxRigidResidual": 1.666000468656264e-08,
+          "maxScaleError": 1.8477439880371094e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 1.1175870895385742e-08,
+          "requestedLift": 0
+        }
+      }
+    },
+    {
+      "frame": 8,
+      "feet": {
+        "L": {
+          "rigidVertexCount": 479,
+          "maxRigidResidual": 3.0719530773294423e-08,
+          "maxScaleError": 1.6689300537109375e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 0.021213002502918243,
+          "requestedLift": 0.021213
+        },
+        "R": {
+          "rigidVertexCount": 472,
+          "maxRigidResidual": 1.666000468656264e-08,
           "maxScaleError": 2.205371856689453e-06,
           "targetRotationErrorRadians": 0.0,
-          "minimumZ": 0.055000003427267075,
-          "requestedLift": 0.055
+          "minimumZ": 0.0,
+          "requestedLift": 0
+        }
+      }
+    },
+    {
+      "frame": 9,
+      "feet": {
+        "L": {
+          "rigidVertexCount": 479,
+          "maxRigidResidual": 2.2351741790771484e-08,
+          "maxScaleError": 2.9206275939941406e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": -1.0501899794235214e-08,
+          "requestedLift": 0
+        },
+        "R": {
+          "rigidVertexCount": 472,
+          "maxRigidResidual": 1.666000468656264e-08,
+          "maxScaleError": 3.159046173095703e-06,
+          "targetRotationErrorRadians": 0.0,
+          "minimumZ": 0.00013062125071883202,
+          "requestedLift": 0
         }
       }
     }
   ],
-  "scope": "Saved four poses only; continuous visual gait review is also required.",
+  "scope": "Saved profile poses only; continuous visual gait review is also required.",
   "inputs": [
     {
       "file": "male_walk_probe.blend",
-      "sha256": "d3a339e236ad9f4883fee3dd67172726f307bc0f0ee26934c532e2bd5d72f86d"
+      "sha256": "6c9d1665210e67cff34b006d57fe889d549e7009f0c2b3e9e81b2c1cd710e4fe"
     },
     {
       "file": "rig-profile.json",
-      "sha256": "d5080d78d64bd5bfd7fe28ad5220a2f10f44516cf975ab4e115c8be760c62cc3"
+      "sha256": "30726c6274b7be897709652181eea5edd50bb5815c2403c23af660f8ea1def44"
     },
     {
       "file": "verify-character-feet.py",
-      "sha256": "66446fcb7d875a25e920245f55f1f698cbeb7988d673d7b58ef5868da11d5d48"
+      "sha256": "ce185f0e4f30f958f57c26706595fbea7d2257dbae62e2841884a2d6c10d08fc"
     }
   ]
 }

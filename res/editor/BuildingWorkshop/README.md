@@ -1,3 +1,15 @@
+# 高清二维建筑与怪物制作工程
+
+当前使用LayaAir 3.4.2，七种建筑各一个prefab，十种怪物各一个prefab；完整目录说明见 [上级说明](../README.md)。
+
+`工具 / BuildHd2dProduction` 读取 `res/source/rendered2d/native-layout-seeds.json` 和当前配方，原生保存17个prefab，验证108建筑布局及三种塔攻击时间轴。该菜单会重做布局，仅在明确重制时运行；日常微调直接编辑对应 `.lh`。
+
+`prepare-native-prefabs.mjs` 只同步纹理和种子，不手写原生prefab、不重写meta、不建立重复UUID制作区。历史 `hd2dProduction` staging已归档。正式构建始终从当前 `buildingAuthoring` 和 `enemyAuthoring` 转换。
+
+当前包无粒子和实时3D；下文旧菜单和数据仅用于历史版本复现，不能作为高清当前验收结果。
+
+## 历史工程说明
+
 # 建筑、怪物与粒子制作工程
 
 使用 LayaAir IDE 3.4.2 导入本目录或打开 `BuildingWorkshop.laya`。工程可独立编辑，不依赖 Downloads 中的试验项目。`engine/` 是 IDE 生成的本地引擎与声明，未纳入版本库；请使用对应版本的 IDE 生成。

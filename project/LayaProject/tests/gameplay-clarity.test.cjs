@@ -122,8 +122,25 @@ function panelView(game) {
     return view;
 }
 function imageNode(parent, id, x, y, width, height = width) {
-    const node = new Sprite().pos(x, y).size(width, height); node.name = id; parent.addChild(node); return node;
+    const node = new Sprite().pos(x, y).size(width, height); node.name = id;
+    node.pivot = (x,y) => { node.pivotX=x; node.pivotY=y; return node; };
+    node.scale = (x,y) => { node.scaleX=x; node.scaleY=y; return node; };
+    parent.addChild(node); return node;
 }
+
+test('empty tower plus keeps its phase, fixed hit bounds and disappears after construction', () => {
+    const { game }=session(),view=panelView(game);view.ui.image=imageNode;
+    const hud=new GameHud(game,view.art,view.ui,view,()=>{});
+    const layout={mapTop:280,footerTop:980,gateY:680,height:1280,safeTop:0,dateY:42,resourcesY:124};
+    const anchors={towerAnchor:i=>PADS[i],gateAnchor:()=>({x:360,y:680})};
+    hud.draw(game.state,layout,{pads:PADS},anchors);
+    const id=game.state.towers.findIndex(t=>!t.kind),hint=hud.node.getChildByName(`BuildTowerHint:${id}`);
+    assert(hint);const size=[hint.width,hint.height,hint.x,hint.y];hud.advance(.45);
+    assert(hint.scaleX>1);const scale=hint.scaleX;hud.advance(0);assert.equal(hint.scaleX,scale);assert.deepEqual([hint.width,hint.height,hint.x,hint.y],size);
+    hud.clear();hud.draw(game.state,layout,{pads:PADS},anchors);hud.advance(0);assert.equal(hud.node.getChildByName(`BuildTowerHint:${id}`).scaleX,scale);
+    game.state.towers[id]={kind:'ARROW',level:1,operator:game.state.people[0].id};hud.clear();hud.draw(game.state,layout,{pads:PADS},anchors);hud.advance(.1);
+    assert.equal(hud.node.getChildByName(`BuildTowerHint:${id}`),undefined);
+});
 
 test('help entry and all five tabs are read-only; each chapter resets its own scrolling', () => {
     const { game, values } = session(), view = panelView(game), saved = canonical([...values]), state = canonical(game.state);

@@ -59,7 +59,8 @@ export function productionBuildings() {
                     const children = [], pair = tier === 3;
                     for (let n = 0; n < (pair ? 2 : 1); n++) children.push(component('Crossbow' + n, 'bow_' + facing.toLowerCase(), pair ? n * 34 + 3 : 8, pair ? 8 : 0, pair ? 39 : 64, pair ? 34 : 44));
                     children.push({ name: 'Muzzle', x: facing === 'Right' ? 72 : 8, y: pair ? 20 : 15, width: 0, height: 0 });
-                    weapon.children.push({ name: 'Facing' + facing, x: 0, y: 0, width: 80, height: 44, visible: facing === 'Right', children });
+                    // 弩组围绕底部支架(40,44)放大30%，左右与双弩一并处理，发射口随组变换。
+                    weapon.children.push({ name: 'Facing' + facing, x: 40, y: 44, width: 80, height: 44, anchorX: .5, anchorY: 1, scaleX: 1.3, scaleY: 1.3, visible: facing === 'Right', children });
                 } else {
                     weapon.children.push(component(kind === 'STONE' ? 'Sling' : 'CrystalCore', kind === 'STONE' ? 'sling' : 'crystals', kind === 'STONE' ? 9 : 23, 0, kind === 'STONE' ? 62 : 34, 44));
                     weapon.children.push({ name: 'Muzzle', x: 40, y: kind === 'STONE' ? 24 : 9, width: 0, height: 0 });

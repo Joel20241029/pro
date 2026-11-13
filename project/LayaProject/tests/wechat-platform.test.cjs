@@ -9,6 +9,8 @@ class Sprite {
     destroy() { this.destroyed = true; this.destroyChildren(); }
     get numChildren() { return this.children.length; }
     on() {}
+    pivot(x,y) { this.pivotX=x; this.pivotY=y; return this; }
+    scale(x,y) { this.scaleX=x; this.scaleY=y; return this; }
     getChildByName(name) { return this.children.find(child => child.name === name); }
     getChildAt(index) { return this.children[index]; }
 }
@@ -83,7 +85,7 @@ function gameView(session, platform) {
     const view = Object.create(GameView.prototype), overlay = new Sprite(), art = { panel() {} };
     // This platform lifecycle fixture does not render glyphs; button/icon press coupling
     // is exercised with the real UiWidgets in gameplay-clarity.test.cjs.
-    const ui = { image() {}, buttonIcon() {}, label: () => ({}), button: fakeButton, bindClick() {} };
+    const ui = { image(parent,id,x,y,w,h=w) { const node=new Sprite(); node.pos(x,y); node.size(w,h); parent.addChild(node); return node; }, buttonIcon() {}, label: () => ({}), button: fakeButton, bindClick() {} };
     const panels = new GamePanels(session, art, platform, ui, overlay, layout, () => view.refresh(), { ready: () => true });
     panels.modal = () => { const box = new Sprite(); box.height = 860; overlay.addChild(box); return box; };
     const village = Object.create(VillageWorld.prototype);

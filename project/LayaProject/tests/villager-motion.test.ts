@@ -23,7 +23,7 @@ test("Walking faces the actual travel axis, keeps diagonal hysteresis and holds 
 });
 test("Forest and palisades have shared collision blocks and preserve both gate passages", () => {
     equal(VILLAGE_PROPS.filter(p => p.id.startsWith("forest:")).length, 30);
-    ok(navigation.obstacles.length <= 16, "decorative trees must not each expand the route graph");
+    ok(navigation.obstacles.length <= 20, "only the five working trees add trunk obstacles, not every forest decoration");
     ok(navigation.clear({ x: 274, y: 770 }, { x: 274, y: 850 }), "left gate passage blocked");
     ok(navigation.clear({ x: 446, y: 770 }, { x: 446, y: 850 }), "right gate passage blocked");
     ok(!navigation.clear({ x: 220, y: 780 }, { x: 220, y: 850 }), "wall has no collision");
@@ -247,22 +247,22 @@ test("Male and female woodcutters face the tree at every work stop before and af
     ok(original.stops.logging[0].y !== resized.stops.logging[0].y);
     for (const offset of [0, 1]) {
         const s = createGame(3), adults = s.people.slice(0, 2);
-        s.people = s.people.map((p, i) => i < original.stops.logging.length
+        s.people = s.people.map((p, i) => i < 4
             ? { ...clone(adults[(i + offset) % adults.length]), id: p.id, job: "LOGGING" }
             : { ...p, job: "WAITING" });
         const workers = s.people.filter(p => p.job === "LOGGING");
         const motion = new VillagerMotion(new VillageNavigation(original.props, original.landscape, original.bounds), original.stops);
         motion.sync(s, s.towers);
         for (const scene of [original, resized]) {
-            const tree = scene.props.find(p => p.id === "tree:logging")!, seen = new Set<string>();
+            const seen = new Set<string>();
             for (let step = 0; step < 1600 && seen.size < workers.length; step++) {
                 workers.forEach((worker, index) => {
                     const pose = motion.get(worker.id);
                     if (pose.walking) { equal(pose.mirror, false); return; }
                     if (pose.clip !== LABOR_CLIPS[worker.appearance].LOGGING) return;
-                    const stop = scene.stops.logging[index];
+                    const stop = scene.stops.logging.find(stop => stop.treeId === pose.loggingTree)!;
                     equal([pose.x, pose.y], [stop.x, stop.y]);
-                    equal(pose.mirror, stop.x > tree.x);
+                    equal(pose.mirror, stop.x > stop.treeX);
                     seen.add(worker.id);
                 });
                 motion.update(.05);

@@ -43,12 +43,14 @@ export class GamePanels implements PanelContext {
         box.size(width, height);
         box.mouseEnabled = true;
         this.art.panel(box, "panel_parchment", width, height);
+        const header = new Laya.Sprite(); header.pos(18, 17); header.mouseEnabled = false;
+        this.art.panel(header, "panel_header", width - 36, 82); box.addChild(header);
         this.overlay.addChild(box);
-        this.ui.label(box, title, 108, 34, width - 216, title.replace(/<[^>]*>/g, "").length > 12 ? 32 : UI.title, C.ink, true, 60).align = "center";
+        this.ui.label(box, title, 86, 28, width - 172, title.replace(/<[^>]*>/g, "").length > 12 ? 32 : UI.title, C.ink, true, 60).align = "center";
         this.ui.label(box, subtitle, UI.inset, 108, width - UI.inset * 2, 27, C.muted, false, 100).align = "center";
         // 用户移除左上麦穗，关闭按钮仍在右侧；底角装饰不参与九宫格拉伸。
         if (close)
-            this.ui.button(box, "×", width - 82, 24, 54, () => this.close(), C.muted, 54);
+            this.ui.button(box, "×", width - 82, 31, 54, () => this.close(), C.red, 54);
         return box;
     }
     draw(s: GameState, p: Panel) {

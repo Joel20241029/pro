@@ -1,94 +1,209 @@
 {
-  "status": "four_direction_motion_candidate_not_integrated",
+  "status": "integrated_hd2d_eight_frame_walk",
   "method": "actual Blender offline rendering",
   "source": "res/source/rendered2d/characters/elder/elder_direction_probe.blend",
+  "walkFramesPerDirection": 8,
+  "restFramesPerDirection": 1,
+  "previewFps": 12,
+  "runtimeCadence": "actual distance / measured stride",
+  "stride": {
+    "frames": 8,
+    "strideModelUnits": 0.176,
+    "strideCanvasPixels": 34.65846153846154,
+    "orthoScale": 1.3,
+    "cadenceBasis": "side-view grounded stride; common phase across direction changes",
+    "supportSequence": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "R",
+      "R",
+      "R",
+      "R"
+    ],
+    "basis": "Each ankle centered beneath its measured hip; original cane and torso height retained."
+  },
   "frames": [
     {
       "file": "elder_down_1.png",
-      "bytes": 257250,
-      "sha256": "6290f0645e3694b0a078df5d3461091b54c06dc6b080dd36a86fbf8e76c72cc9"
+      "bytes": 257327,
+      "sha256": "eb5b2bbc96e5291345a85db197d3cc3a1eee933604327c21e9fbccd6f698377b"
     },
     {
       "file": "elder_down_2.png",
-      "bytes": 257725,
-      "sha256": "ddc2f8e67a8a561e68ef16e9c4d76394feb261a4af8b58b49293acf37d9fe20a"
+      "bytes": 257157,
+      "sha256": "fcb3d8fed579ea3e534ddf0db2dd7fdf7562a660710882b64a50e50ba73fc168"
     },
     {
       "file": "elder_down_3.png",
-      "bytes": 257720,
-      "sha256": "273435c843cb7f11b8510d1bc4bbc3150de540a17489a8e4a0a9b83b06938c92"
+      "bytes": 256874,
+      "sha256": "cd9e3fc3a7d04aef72a67c043778dda88cd4c918f23b8c2857318a8e5d37bdc5"
     },
     {
       "file": "elder_down_4.png",
-      "bytes": 257912,
-      "sha256": "bfd6c2f2a2be302456b7964e311f64f4d17d1723a31409a3cdb5a5e6ab119cca"
+      "bytes": 256688,
+      "sha256": "715be96af27aaf9687761e782d75fc9bdc650d664aeb7464b39addb243292165"
+    },
+    {
+      "file": "elder_down_5.png",
+      "bytes": 256554,
+      "sha256": "8a1359f645b1a6683afa3b341680b8d929656c44ddec73e1ef3e6db94e723346"
+    },
+    {
+      "file": "elder_down_6.png",
+      "bytes": 256259,
+      "sha256": "3b3d25e54e2d352802167f61cd50ff58e8041c923dcf4f7c7dc19f67717c34e9"
+    },
+    {
+      "file": "elder_down_7.png",
+      "bytes": 256315,
+      "sha256": "e463aaf4bfab9f34dc8e9531a3439c9b7fb0eeb3065863bf7950504cc3e4e269"
+    },
+    {
+      "file": "elder_down_8.png",
+      "bytes": 256799,
+      "sha256": "1388dae0617797f0a6408686118e65b801cef80bbc650003c36a6a3e0abefb5f"
+    },
+    {
+      "file": "elder_down_idle.png",
+      "bytes": 257198,
+      "sha256": "0c1281d008e33ca4219a0870b6e31d5d56bc2235617786777665defd8148d6ca"
     },
     {
       "file": "elder_left_1.png",
-      "bytes": 245926,
-      "sha256": "dde052193cc28d6ad73b4b131ba5f01d8416ca022f5cf4827b72da04d9c844fc"
+      "bytes": 247020,
+      "sha256": "4bc0e5e125447ecaaf109fe9842d408b8dba2505d87fce09aede8858b0676765"
     },
     {
       "file": "elder_left_2.png",
-      "bytes": 246063,
-      "sha256": "72e63da71822cd3b507e303b266c1ccb56b087545a0e153a5593dc7b087b156a"
+      "bytes": 246199,
+      "sha256": "baf017be330fb00537c4103b5519f53cdce2019cc78c8c00bdbeb61e891115db"
     },
     {
       "file": "elder_left_3.png",
-      "bytes": 247145,
-      "sha256": "2a6a5ab8effd36188916c52d6f7992bff6f36ae3992dbbbb216f8bb3c5e2451e"
+      "bytes": 246256,
+      "sha256": "fbfa6ea7d79fd7270eae85fc78a920f4ddad5cb36fa88578981cc27b392efa8a"
     },
     {
       "file": "elder_left_4.png",
-      "bytes": 247608,
-      "sha256": "fbbfd5c10f0360ec3cc43a3f1c3ae36282f17f5a019cd2515cfe7d5b53293ebe"
+      "bytes": 246127,
+      "sha256": "c74285c6b6204dc5a4348199225612ec01651acf920c19254f16b0dd3dc96893"
+    },
+    {
+      "file": "elder_left_5.png",
+      "bytes": 246704,
+      "sha256": "e0d0438ca64818f7c4a8900f88c0a73ac84668277f7b5c5bb8d24c399488ff0a"
+    },
+    {
+      "file": "elder_left_6.png",
+      "bytes": 245488,
+      "sha256": "be9197febd0208b5931c381d61f262c5f00e32957000dc6fd5017558c1cbafd6"
+    },
+    {
+      "file": "elder_left_7.png",
+      "bytes": 245082,
+      "sha256": "00fc935198a974649e95da8e08924f3955147cfc6c9a67fb9ff77574a67e5923"
+    },
+    {
+      "file": "elder_left_8.png",
+      "bytes": 245719,
+      "sha256": "5e72b7267a2977b0b44e40e6da7d09ac3737aef4c358a6846be4657f609c390b"
+    },
+    {
+      "file": "elder_left_idle.png",
+      "bytes": 246100,
+      "sha256": "0f28138092f55fefcbb271fae87b95d0c2ac9ed64061c9e1a1ad2bd22db12096"
     },
     {
       "file": "elder_right_1.png",
-      "bytes": 254312,
-      "sha256": "41968398e45f922d6e17def8c873039f72ca5f1e5fc3df5a8d06c4f9313636a8"
+      "bytes": 255995,
+      "sha256": "38c6daa916206ed1daac274e22ba0194f9a46716dc9b4f1414c4f2d6d52f006e"
     },
     {
       "file": "elder_right_2.png",
-      "bytes": 256228,
-      "sha256": "855945a40b5081539fb85d5bd376228bc40b297abfae6d5791c6b8eb05afbe15"
+      "bytes": 254795,
+      "sha256": "c917c6f1da42178c3fc192452cc75b23491f1e6a4ab7a4b44ee8e942086c92da"
     },
     {
       "file": "elder_right_3.png",
-      "bytes": 255170,
-      "sha256": "68b10c95ec4eb5bbe9a31eb16970b7c7baacf5b95b9b68da1b11d9ed5261ed86"
+      "bytes": 253474,
+      "sha256": "9fec18441094e1d78746d7669d2a5afc537f29a54470ef1bbeda6f1c6cb54561"
     },
     {
       "file": "elder_right_4.png",
-      "bytes": 254630,
-      "sha256": "7017d88cc5ad19a2d27a6fe1cbf27b7b30c4f323c12b1279238aa4ee631b528f"
+      "bytes": 253020,
+      "sha256": "3ec10a871db6f362c1c61b0f4ef5e04933b13101481335a0f5fd5b514e0465da"
+    },
+    {
+      "file": "elder_right_5.png",
+      "bytes": 253627,
+      "sha256": "a0ad1608e72d437483d4e36163580ed373679cde8d37f5f862054aa9ccaefadf"
+    },
+    {
+      "file": "elder_right_6.png",
+      "bytes": 253987,
+      "sha256": "8560b802cdc400c78a36de79b0903cb6c1eea1853723d01c3c52df87c312a954"
+    },
+    {
+      "file": "elder_right_7.png",
+      "bytes": 254776,
+      "sha256": "889c2461258564b82c300ac49261b1cbe83e56e36b56ee93a3d6aa2f9cf3100d"
+    },
+    {
+      "file": "elder_right_8.png",
+      "bytes": 255445,
+      "sha256": "982bfba41b245936fc6b08a918ccf4a76844c810df694a68d8cce1c56e924f07"
+    },
+    {
+      "file": "elder_right_idle.png",
+      "bytes": 255152,
+      "sha256": "7704d685849fcaa3f932b7b0f54f3011b3ec5110a9cea3d5e727c1e650f25649"
     },
     {
       "file": "elder_up_1.png",
-      "bytes": 240180,
-      "sha256": "f2da12da84d89eaddd01a5bd609ee8c29be76251c2c507aea0da3afd3504d602"
+      "bytes": 241877,
+      "sha256": "838e5d62062955b1f05616947487c6f7bab841a3fb26d2b8d324066e3781b50e"
     },
     {
       "file": "elder_up_2.png",
-      "bytes": 240843,
-      "sha256": "a185b18f41d919cb144b254537744eb0e43679aa6dd2880198567789fbc42e88"
+      "bytes": 240500,
+      "sha256": "cdea526075011e034ef7b959f7872363db6ca3bd2019973946dd08fed6c0e42a"
     },
     {
       "file": "elder_up_3.png",
-      "bytes": 240901,
-      "sha256": "ef77d7fea0239bbd9a4cd906e0cf99828feba0547c6df1bad53f99c0ac4d0816"
+      "bytes": 240068,
+      "sha256": "60e118f77970f4ddd5757b1e52a0424d5f8638361abc45efbb209c578bc63530"
     },
     {
       "file": "elder_up_4.png",
-      "bytes": 240241,
-      "sha256": "77a1033dc4e173d3dac10b95ffafc43c2419021d8f27835377fa7e65af93837f"
+      "bytes": 240599,
+      "sha256": "f12d6585ae690bf422a697a4487aa686ef77c2daaf8d4cfca26f491e198064ba"
+    },
+    {
+      "file": "elder_up_5.png",
+      "bytes": 240810,
+      "sha256": "af093c872de785c748a3cd3bd79e63da80ccc38a35efcb4bc35c53c51308e9f0"
+    },
+    {
+      "file": "elder_up_6.png",
+      "bytes": 240459,
+      "sha256": "6f9a846cbd33ddd50b530ade72a0d2dd7d3d3b26b2bacaf3e1bba97f28549947"
+    },
+    {
+      "file": "elder_up_7.png",
+      "bytes": 240127,
+      "sha256": "a3c6f6588d1ec61274c1c718b58a7116949fd786f7add1fc81cc2b0afeb79325"
+    },
+    {
+      "file": "elder_up_8.png",
+      "bytes": 240631,
+      "sha256": "d739b2fab00da41a1bf042d92c5f2b616a0139bdfa4a9f4e5b69d9da8f2d62c9"
+    },
+    {
+      "file": "elder_up_idle.png",
+      "bytes": 240302,
+      "sha256": "e303a407b9909f4fe8ef1ad34236c04cb75a9eeba41596c57035771435201cd5"
     }
-  ],
-  "frameSize": [
-    512,
-    512
-  ],
-  "fps": 4,
-  "mirror": false,
-  "cameraAndLightsFixed": true
+  ]
 }

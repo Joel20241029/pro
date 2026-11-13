@@ -143,6 +143,7 @@ export class GameView {
         const active = !this.game.pauses.has("BACKGROUND") && !this.game.pauses.has("DISABLED");
         const visualDelta = Math.min(RULE.frameCap, Math.max(0, delta));
         if (active) this.tip.advance(visualDelta);
+        this.hud.advance(this.game.pauses.size ? 0 : visualDelta);
         if (this.village.advance(delta))
             this.updateActors();
         if (active) this.anchoredTip.advance(visualDelta);

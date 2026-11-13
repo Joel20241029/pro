@@ -1999,8 +1999,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "14e042c91614934aadd4afbc22bf38b7ad74e5d4972d2a548dfbce1ff52e7159",
-        "outputHash": "4dba78c0ed5a21ab8c94c3d8bfee0c5726a251b2e0a0a01c80c9075f42920ad0"
+        "sourceHash": "76086b1d72b0d26526cb017944fb50ef12f7144450f725b0ff5db299e7759145",
+        "outputHash": "0bb6c3ca60534e6273fdcec26d77fed9b753017d4cefae0e1125a05b8ee8925a"
       }
     },
     {
@@ -2048,8 +2048,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "acf31eda3286232eccf90a8df30ca9e9df60387750b629a0c563554f7cbb48ba",
-        "outputHash": "e8044d4db8a422b7760dbb71c916a35ec1b1c96f154e0b7605f52dbb99cdb0b4"
+        "sourceHash": "86e151db236abe5caa3d627b73058c48fbf2342a7961525bb3fd81a1f5045bbb",
+        "outputHash": "ef388b5483e4e4a66d50f688d84703bc297b93ff0c38e7e3da8c637d4c61f4da"
       }
     },
     {
@@ -2097,8 +2097,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "1fe99127dcbc78edcc36333933a80ca2c8c86c891b05daec23bf789fc1ef279d",
-        "outputHash": "97d4fd88021a2b275e8b0d662196894ad19e3b25575ed5332ea1b65443acccb3"
+        "sourceHash": "7defcb7be7491bd4db2701406b78f7ee292421b883cfccf006b791d8801134eb",
+        "outputHash": "02b378c5720d7cbe0958515f51c54d4f9102c8c128a5c4837c37ecd40caf5f63"
       }
     },
     {
@@ -2146,8 +2146,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "8a6fea8c414302efd4d8f559de380368bd30d2669e736cc72b7b179fb983178c",
-        "outputHash": "41451a777ce52d03630482194d418c38a7a088a79714edb52c0d99d08df51dcb"
+        "sourceHash": "cba4c3d2bee214bde6882064abd6d79f9e457eedc4a68ec08bc26f69b833ec3f",
+        "outputHash": "43a5a0d10eb367f3092ad264cf5e1e18d0a7b17824de6db62e3b59fa7c0b1d61"
+      }
+    },
+    {
+      "id": "hd_male_down_5",
+      "label": "hd_male_down_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_down_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_down_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_down_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "43170b41c77c8db0ea3eee9f2e84eed1660916ee99353b0e5fcd73fa833115ad",
+        "outputHash": "d61836e8a602c778c736b2603fd3395e70806aff10a0283e9bccfb46c2356c25"
+      }
+    },
+    {
+      "id": "hd_male_down_6",
+      "label": "hd_male_down_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_down_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_down_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_down_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "3c6d6c778ca116fccc847e0dd88e6c4fc9beee70a47a12984930f984202f5f27",
+        "outputHash": "108d36d3465ca9ae932d814fafc5ee859bc93f84b06ab25173bac7cf8a87feb4"
+      }
+    },
+    {
+      "id": "hd_male_down_7",
+      "label": "hd_male_down_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_down_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_down_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_down_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "6ae0ceb6a2a941b59a2ba716b3c8e8568230207151dbb881cf7bef39cd3252e2",
+        "outputHash": "a3b8cb3e2dfac404ffadc1c44d3343512fad0ceda6561014165f7830c60cb2b2"
+      }
+    },
+    {
+      "id": "hd_male_down_8",
+      "label": "hd_male_down_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_down_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_down_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_down_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "9c5be23f6a15fbf769b05a3b18ad91c75676ea11828e50f46a38c99713d76e0e",
+        "outputHash": "c0ea8d5fe5641bc3879abdd196b6908e5661ab08534015c2e0f46da8a59c5a5a"
+      }
+    },
+    {
+      "id": "hd_male_down_idle",
+      "label": "hd_male_down_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_down_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_down_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_down_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "5a8c478f1a5cd5edacda0b5279a7e176edf30e7bc4a10c2745ae9f0239c44f20",
+        "outputHash": "ae833e487650e0a36c814d10ebea67577c753bdc8e9c55994bd6741faae8ee51"
       }
     },
     {
@@ -2195,8 +2440,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "7976f6220b9f3229cd15b595f5d1abf70027c6e9c672029a7d6b47618cf81810",
-        "outputHash": "679e3b8b4a1db8c189b91c16d1614a85e44671cc1fec1073601ee45ecfb619f1"
+        "sourceHash": "ff9423920143549941b1abcdedd5852dcc46052a86e074869d245aa46580880b",
+        "outputHash": "adb6b0cd25948c27086bd1602fefd16e36d730042267eb389daa4088a530aec3"
       }
     },
     {
@@ -2244,8 +2489,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "f456311232350e47f578b02e334e2c7f7a15b3768fe955c648a742ceda7c017e",
-        "outputHash": "05e7d2ec4b59c6681299355d3553d8f199bb1482d6efb645a77f928f0a324b1b"
+        "sourceHash": "05b8f027b9bb9f5586d4bf961ce415ef50b26a57c905391a93a48d25302e8170",
+        "outputHash": "6ce1728287b72d9bb39eb9eb712a31184b429cea1204285b62f2d09ccae2ffb3"
       }
     },
     {
@@ -2293,8 +2538,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "5b65a3de1b0280d3a01a1b53dbeea123851ade20215cd3ccccd004c6a285fcb5",
-        "outputHash": "638515135a67f29ed409f2813ca83f23ff93cc5012da45f8a9b91828ac15674f"
+        "sourceHash": "ec278b7d4cd7adf0505e1f94a63371ece743aacbc2bbbb7838df57f8de1c84a7",
+        "outputHash": "bff0c8271bf2ea99a56d5ce2522649fd407aa17d36f8a7456afcffa7c5eb4aa8"
       }
     },
     {
@@ -2342,8 +2587,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "b318a4526f7ee9daf0d9f200f019dedc257a873f55d32d5ece4899bb4e069d6b",
-        "outputHash": "e40d711d95e1cfed6fcbc29cfece82952a614ac33e2dbf5c4ca112f4d16f5df8"
+        "sourceHash": "7a37626fab1d0ac8da9576cf6a1b979171022e9cd076d8ef895551554f281668",
+        "outputHash": "791fa82d80ec90009a1ecf5aa8cdaddb625c5d86590c23f3470c0bc57d4da52f"
+      }
+    },
+    {
+      "id": "hd_male_left_5",
+      "label": "hd_male_left_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_left_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_left_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_left_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "1f108105f3809d3b027d15266be580079fef4ebdd2b8d0da596b77a188601605",
+        "outputHash": "aec0fa3a4cab45063bbb86227dae4c31c55f896bbe7a7957f9187d71daf4796a"
+      }
+    },
+    {
+      "id": "hd_male_left_6",
+      "label": "hd_male_left_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_left_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_left_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_left_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "0987120db4192db6949d76c3dc879cac11aaaba17ce392ba406cf7ea99c86227",
+        "outputHash": "67a6b2cec60e38635e348c566367c95ff85b68d7cb1811585e7f7cc780b493e3"
+      }
+    },
+    {
+      "id": "hd_male_left_7",
+      "label": "hd_male_left_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_left_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_left_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_left_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "f3311ad5974a994af0ee67d77307144005883046b682c640a7f64ad1c4ff1f63",
+        "outputHash": "6fc128e55e1e62942f462a96fc9fbebbc2fad1fd5c06256e2ff89d73a3704537"
+      }
+    },
+    {
+      "id": "hd_male_left_8",
+      "label": "hd_male_left_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_left_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_left_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_left_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "be51084092587bdea4b126b3786a5b4f86232ad55490c6c8ec41ee8dbe5613f0",
+        "outputHash": "7819f02ac85e8a3c75bcbcb234124a256bd98509b9bfc2ca025a4c0632f35d96"
+      }
+    },
+    {
+      "id": "hd_male_left_idle",
+      "label": "hd_male_left_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_left_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_left_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_left_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "f1ea2cbaa2dcd4886e4f995ce4369130d614fb7f65ecc2cd8921b299444ea2d6",
+        "outputHash": "5f506c6ec756547a5c96234ae03f47e9542cf73d0832a1c55a7d759254759fa0"
       }
     },
     {
@@ -2391,8 +2881,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "d8b974813b7cc2a0d15c4e98ae905e848a2ba085139bd2b5c1c7d99df1f4172f",
-        "outputHash": "bddb011070b5512d84499e15d304f1b05ef58abcc3f56c049ff7c57ca772acfe"
+        "sourceHash": "46d162a7674ae260df87b2db8ec21fb93aec2d980d248c1d2eada4af9c2563d9",
+        "outputHash": "5e90e83568fd88047f918c0a6d38ac729761593ce00be3ffc5793558d1b37c07"
       }
     },
     {
@@ -2440,8 +2930,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "ed308623fffe2db113c12d60ea6b4f5d2282f44b33c049fdfbd38e9cddbc6946",
-        "outputHash": "d150a9c33f0f5d11b3d5f2d7cc6b36f2d2899a51d73258da02de9effff7058c8"
+        "sourceHash": "20fe1d530392dd5f6f688fd5b42fbcaed5131aa384f36abbea3b66ebe6cd516f",
+        "outputHash": "40f5c1fc67cdecdb44153739cf6a25d560cc57f90cdcff95c542bc06de7b927f"
       }
     },
     {
@@ -2489,8 +2979,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "094cec9f306c525b76594c9204d0ff14586b5cb07771627331f3811c5d457cc1",
-        "outputHash": "1bf60cd2e2eed67eb4a30a6c605b0f640c229440bd529112ec0379b3b7652fd7"
+        "sourceHash": "effa666ee99d3a5d6740de7a27028c1cfa15e0a12fec4527d19cec7aaa3ab645",
+        "outputHash": "cc30e7fd85a10adc8b2bfeb15e8ea2ab0070f4913b0110b668b06c1e23931310"
       }
     },
     {
@@ -2538,8 +3028,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "adf01d344e14757b4ef2ef9883adb80236660a5c19a44637fd1f9020d1b25a9b",
-        "outputHash": "d0392b0be4c99108e9ae841ad4f61faacf2aaf8008d72f99f3bff1e24592794c"
+        "sourceHash": "b841affe7816886194277d40bb965e59856cb2cfd4958da62a266b12e21eaf96",
+        "outputHash": "3fae1f7ce0515416e802311215b589797542ca2bbca12dcf63d35ffeee7068e6"
+      }
+    },
+    {
+      "id": "hd_male_up_5",
+      "label": "hd_male_up_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_up_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_up_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_up_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "1cc753d25c6d5526f1251003b2f49c398755e3a873e6af35754b5d77c9aa51f3",
+        "outputHash": "f840d79be005437588c9dbcf569b4f5ca2a4dcae5c5284c17e2514e0da7c9e97"
+      }
+    },
+    {
+      "id": "hd_male_up_6",
+      "label": "hd_male_up_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_up_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_up_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_up_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "072dcc3c39dd48bd06e1a98bbbd4763a4fa214393781367f28ee33ef85609953",
+        "outputHash": "b7634ca0c1a8f195a2445f2df7b16876198b7b6a41fac6e4cae8193bb19bad47"
+      }
+    },
+    {
+      "id": "hd_male_up_7",
+      "label": "hd_male_up_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_up_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_up_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_up_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "a55f5ac8583a686d8fa536634d3e8195b61137af3613c3eda9495fcf5b76eea7",
+        "outputHash": "71d3eb2ebb6c9442416f934922c4dc0bde9aef12bfe92a7902e5c2bc1a1f1eac"
+      }
+    },
+    {
+      "id": "hd_male_up_8",
+      "label": "hd_male_up_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_up_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_up_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_up_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "040d730fd615227d1643327831673817abe2d5b68a2476708f5be0114093ef07",
+        "outputHash": "4a173f97faa667f9c85e19c0b7c4956fbf2a733976aa214ffc60ccec0cf21d5f"
+      }
+    },
+    {
+      "id": "hd_male_up_idle",
+      "label": "hd_male_up_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_up_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_up_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_up_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "f3765aff66f786c4141396367b20fed14fcd6034bb444932a4dcd5444ad9dd51",
+        "outputHash": "e192d3cb909e91ede5d8ea7ef0225f5dd374c267fa95d40df411b6ba29b6aebf"
       }
     },
     {
@@ -2587,8 +3322,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "aec7528a6494fbd16e9e5114d745d7b071b5a274775b19244dd3b4d8bf9b7bc2",
-        "outputHash": "6df043978a24eac733ef048ddf5c89d0d56bb6bc3905a0da266342f12352399b"
+        "sourceHash": "3bfa05094fae615ddf1c455be5500be39abba26c411b4ce71f52f94800d87785",
+        "outputHash": "b34719f162b449589a4c0c4bf6423302a23b6d499c0faa74373de5ecc108b4b5"
       }
     },
     {
@@ -2636,8 +3371,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "a65a442e1919e63b9f53b96c9f39f26b7cf2d56f57c6f1f256948357829d095f",
-        "outputHash": "592e03a6f650e5f630fdb97322a5fae285c8c1d9d2092fe8a6e71eac38accfc5"
+        "sourceHash": "df28dec710e7ec420301e1fd3e0b805d46607670ecf49947ba8920231025db89",
+        "outputHash": "f589f44ac10bf961578a9a91308efe5a62a67279be3693632e807b5eea7d96a7"
       }
     },
     {
@@ -2685,8 +3420,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "29550e2fff4001d267e1a9db97d84869c428d10f83bb2e44cf76e96db8c95d03",
-        "outputHash": "d80deaabc095ea5c98fde65dde121a8b9fe29bb140975c5a07655b1e5e942553"
+        "sourceHash": "de5e3e3ef5eea9e1d3ccf3da798c0d2b15e1a17e9b61505029c8be04e1223b34",
+        "outputHash": "dc7af533a2add311b0c75a1f416ffd00238168ec939ebc458dce5c15571fbecf"
       }
     },
     {
@@ -2734,8 +3469,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "9ce7f0f2d27c69aa517a27372c0ab8a9709be673b525029c87b6997955d1553c",
-        "outputHash": "fe7790cc6db47a322eac968040a61a50bebff215d8d48cf2d99bc5b4a3aae2c6"
+        "sourceHash": "51958913eb9db31c5e89b58d7011752b64fbc276be60487478ca4880272044c6",
+        "outputHash": "6f97cdc1ec85866337e761356e7750e0155449cb1a358fdcb6a790b52f939fdd"
+      }
+    },
+    {
+      "id": "hd_male_right_5",
+      "label": "hd_male_right_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_right_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_right_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_right_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "09f19a081e83bc2d42f406dfd45a5a4f63d1836f059ac4d9e4eab90c098e1edf",
+        "outputHash": "d2d2486482bdf255eb5102dedea6a7f35b607772bd7f0dba81f4d16367093660"
+      }
+    },
+    {
+      "id": "hd_male_right_6",
+      "label": "hd_male_right_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_right_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_right_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_right_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "1bd0bd1f1307f400882d745a99d1b751dd191879e2025ceee2ceba6a1811e4bb",
+        "outputHash": "e7bb0c55595ec98899e725580e0173ceb241201eb520cd3a9a9cc9554c7ef682"
+      }
+    },
+    {
+      "id": "hd_male_right_7",
+      "label": "hd_male_right_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_right_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_right_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_right_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "d2194612dfd4b2edd216f86c19f2d74575d218c266e4d4006f49c10d392d548f",
+        "outputHash": "d3db49a638b93260b138cbbc49fc79da9c9531066682054940969876b3ac3f88"
+      }
+    },
+    {
+      "id": "hd_male_right_8",
+      "label": "hd_male_right_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_right_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_right_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_male_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_right_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "2948b17f0399e8f4f2e99c70cfe2f481f5ed05d4d557b98d4ea346d1a45d531f",
+        "outputHash": "79b7d6851b4d3e8cbc0a4109446fcc1c672819c1e4374d7cacdc7a85df68f741"
+      }
+    },
+    {
+      "id": "hd_male_right_idle",
+      "label": "hd_male_right_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_male_right_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_male_right_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/male/male_right_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "53b5386cd27922dfeaf29448578ab266c2561e216f94629a42bb85f48cacda43",
+        "outputHash": "d1801db4044a5c32c533c9adad6f3809987ee408efcd0d96568e4c732128677e"
       }
     },
     {
@@ -3763,8 +4743,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "406ac4d6c8bf7330e64e84e50e5ed3556aa47c01b0f3e7b34bfdb9523ad89774",
-        "outputHash": "bf5ff368513c993b8d55304aaa7ae4da1370fe29abd5e08ad8facfd000643a2c"
+        "sourceHash": "e3acc893327d53fcd23418cc695ec239d9d1a534b5059f6a4cbf77824fafd08e",
+        "outputHash": "e669b27cbea9acee8a4e1cd1f58573df971947a2ac707b1544ac3350781fa354"
       }
     },
     {
@@ -3812,8 +4792,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "fc690c64ee004fa8a47834589cda5af7cc96e9ec8f4028dd799ab8c1f7036353",
-        "outputHash": "41ef5d0cb403525cfed2b509113e9e6d679a6bfa674319f86d2025b06db1b025"
+        "sourceHash": "d1ad2dd01ed139abd5e7395c9d938214af8f451b86481d46c9caef2c3e37370c",
+        "outputHash": "399a15158b9f1c16ead571f4f8c6c476d673e128b3cc30c0a5a47b2dbf9a8879"
       }
     },
     {
@@ -3861,8 +4841,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "8c1712f0d0fef60e95556e0eef99ff6289af862d278c73326acc813425df3a1f",
-        "outputHash": "3cffd4b5c1e5df2ecf57df542086764ba7c064193cb313d34c7538bc8bdd4e5e"
+        "sourceHash": "2c06b5b0f31537f75b47992ef7b9f322d86b55c66a02761730bcee4a196028fa",
+        "outputHash": "952714e105ae96936b82ee82abb26d57e37d7cbf0e1af4968dcfe36cb631b977"
       }
     },
     {
@@ -3910,8 +4890,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "327da1a62a1bdc45939f88a5e3ff8475c0bff60145c40c04814f7d0f1a25f568",
-        "outputHash": "e339480438d405fd2d3d240e02ef20e5d17a287aea2495d02fe4bb2ae65da3d9"
+        "sourceHash": "09082742610d1fe70ab018045906218e5abaf52575620944cd321de31901e161",
+        "outputHash": "8567d3b4072a909b6c99ba578b0c103a22b6ce1018a5527533b99c213127bdc6"
+      }
+    },
+    {
+      "id": "hd_female_down_5",
+      "label": "hd_female_down_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_down_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_down_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_down_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "0f0617431ed1a3ed1f457873f6dfb5a332a1713ddf00daf22725993bd4aea99c",
+        "outputHash": "16d304bc8234b40f6883588572fa36ec669e8245e5c6c298c58dcc7cf147e31e"
+      }
+    },
+    {
+      "id": "hd_female_down_6",
+      "label": "hd_female_down_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_down_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_down_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_down_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "5cebc60624d8d6135e0e70ee61bb44eb8e926637e7033cb2bd34fe5858d761ee",
+        "outputHash": "3199bd98ed47a73ae442828d3d53c2fb383341cfebc099b492081c3bdbe85750"
+      }
+    },
+    {
+      "id": "hd_female_down_7",
+      "label": "hd_female_down_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_down_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_down_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_down_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "6eee47f496ba93eda7235638cac68820710703ddb427a7b818079f06dd84aff9",
+        "outputHash": "bb30babceca6345131612e80e44eb6f084e04fcf1fe1d1d527794f009fe9c742"
+      }
+    },
+    {
+      "id": "hd_female_down_8",
+      "label": "hd_female_down_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_down_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_down_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_down_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "e5bc63fee064dfd0f2649c2c05fc91f265d9c01e94fb0e1206ba78449401b7b0",
+        "outputHash": "930a9d6b573890d7102280816c2b22bb16c930f74ca853c2826bda1d9df4c5e8"
+      }
+    },
+    {
+      "id": "hd_female_down_idle",
+      "label": "hd_female_down_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_down_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_down_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_down_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "ebc7795b2fec1d7ae99ab76a98a403d0446b6ff673686f3a9a1a5804604f4848",
+        "outputHash": "fa843d39aeee2812dcb34768320a495a9a56935a424365d159bad55b16810264"
       }
     },
     {
@@ -3959,8 +5184,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "a4c1ecdd3d59c780ef698b025689d3069b6a1e912536ce5b1bce4f3b3993dd9c",
-        "outputHash": "520a48f69ef01129f9ff495f377063423e8265c49e4b9d22467b59c80b85abf6"
+        "sourceHash": "a8c05c0b81c2d35049506317689531955277e3a430df09c4ee79fcbfc2e96629",
+        "outputHash": "11ad15dfffe77ee0c38d9fbc9de9a98b709e8d27c89f6569b4a1bf26e52f4314"
       }
     },
     {
@@ -4008,8 +5233,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "8c7f757e5d0cf82b51a5a264efca0309aa8ef794cd8b172e5e91d16858508c91",
-        "outputHash": "0b6698a024a8f89daf9f2954e723d0d89e0c506a769d997fd6d236cb4b7fd482"
+        "sourceHash": "6990ba1c312ca8ab74665955043122c9d3b942c66bcce646a05dd9cfa774b4a3",
+        "outputHash": "4f045a2e3265762ba0f6a8b443ebbf758d21f977f611ec72d2b83e6a7fee8d13"
       }
     },
     {
@@ -4057,8 +5282,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "e764a7c92355436ce8f0f1de416d2b72a0bc0ddbeaf11729e035d83076c2927b",
-        "outputHash": "9ff62f54cea5e795fd442b914a2c33ecf8ee6f8319b859b02663788266731b83"
+        "sourceHash": "6bef1a85f1f3586f1444277fbb145548f0fab74ca47fd9a05c0044b7248e6b93",
+        "outputHash": "90200f80c1b458830d7e7aa591e373e84e7838be6e149de883adbd9651d15d0a"
       }
     },
     {
@@ -4106,8 +5331,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "d1ffc51f49b43a477c860e5b8a07588cff332b6457bbc0c80c689af8152b1ae1",
-        "outputHash": "3c01ee3ea5c4cb288b733e83c9899ef4c5a17f41870a6fc1c865b530b5d7a455"
+        "sourceHash": "582ecdbb632d51f5244264a9def643fed4ac75c4392f4ec7899ac04f87ea7556",
+        "outputHash": "5473c2472dc3b54f6843bf67871c3a033e793d2cd1c8533cf3d05a095f1e1aa0"
+      }
+    },
+    {
+      "id": "hd_female_left_5",
+      "label": "hd_female_left_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_left_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_left_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_left_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "01354f065eed39c0d084ebe3b5dc6e8b048cd348ffbd83cfa64cd2852155694b",
+        "outputHash": "eb43f1ba8f8fe5499b22ccdff676e38e690ab2a2176fe10dbad2d8cc477ddfdd"
+      }
+    },
+    {
+      "id": "hd_female_left_6",
+      "label": "hd_female_left_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_left_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_left_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_left_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "134801b0ed58e90d4e16eab8938fca3601cf7a9c967b1c5c029fb66a879c644a",
+        "outputHash": "5f4e172054776997fe5a2795e6885a1f7d07028cf80c0bb5b82aa530dfa5177a"
+      }
+    },
+    {
+      "id": "hd_female_left_7",
+      "label": "hd_female_left_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_left_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_left_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_left_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "211487966660e5db8743fbbeb4528f493d0f5748c4ad21d2c15eaf6f04376cc3",
+        "outputHash": "ec93e35eb497216f0ea075e6d24d425e4493a44dcd58ca5aca0c7f0b7b323d49"
+      }
+    },
+    {
+      "id": "hd_female_left_8",
+      "label": "hd_female_left_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_left_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_left_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_left_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "d5724eeaa36f69480c16af3d54ed74e4697cc6baabf618891b6d054ea4a7707a",
+        "outputHash": "beae7a5d341038b78c9a4457c50cfae2d3acbdb5b70760d2933d4db35d0d8189"
+      }
+    },
+    {
+      "id": "hd_female_left_idle",
+      "label": "hd_female_left_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_left_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_left_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_left_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "a6c189a03af00d0206b21bfb2b82e35c1ba380d041805c8f68ba44fc9677a6f6",
+        "outputHash": "3c8f82f764fa0016d3fe4116b320b3d1fa0223944aa4b70b972cbb2618d6802a"
       }
     },
     {
@@ -4155,8 +5625,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "b9489b639a3deea1b4df757d86f711feb9e80ab87520b350d2d2e674fcc6cc59",
-        "outputHash": "b9d6e60d62dbac764c18e7cb2d4e0a4b58a40b81b1e674a54bb3b289c23496ab"
+        "sourceHash": "c353195364f7b6955191342e6319eed9dbb18095134a2bfa9331a5d5124588c1",
+        "outputHash": "72f4b4d4d68741d8f5cae6cf11f76695638b63a937f171db8c1e5bc5f8864c06"
       }
     },
     {
@@ -4204,8 +5674,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "4f31b069261d36cc05728279f6e8844718d503f57e147f3f787f263e9d8968a1",
-        "outputHash": "f65becb02634a088b884ee04fe31694f911cbe2b79f3f4d75f5b7a2099554e88"
+        "sourceHash": "8413e46df440a3476cb1c4279d20247a169d1d5d7f98c8855b055543e738832f",
+        "outputHash": "dba496b122e61aea8855748f45db23d12841625dcd4d00642de71150a45ffbe0"
       }
     },
     {
@@ -4253,8 +5723,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "281a7b642b113a11a915646aee55a4bebe434785165a864fbb87f5784248a8be",
-        "outputHash": "cab5c3a6d6f88f7cbb49be1159f08def47ee2652a201aff71c92e88e969f50d2"
+        "sourceHash": "fd5129ab803e3279748e3a42ebb59bda23341ed3327a679e9a84d8d475cea382",
+        "outputHash": "b40d2ba4e2e5ed7ae28c9422d01094e1a84f92a61db7780521d2a4b32d0620c9"
       }
     },
     {
@@ -4302,8 +5772,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "fc82c283e561aca97088a07af17508e6e0054aee46799962fa0ab811dad8a1dc",
-        "outputHash": "1155aeb2396e9a324e05e47976b3fe439a85e6da9224c8f4ed8c381c9c50a1e9"
+        "sourceHash": "ac900272bc9e56da51df3385558fc5e1e5433fd088f025ba993286343ab4b6e8",
+        "outputHash": "1966664f908f0ca9503f09d96afdb968b2b17f7cd160fe9645e8c699e7d9d679"
+      }
+    },
+    {
+      "id": "hd_female_up_5",
+      "label": "hd_female_up_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_up_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_up_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_up_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "9174cfefddf7d83c829e4d2f37255a22b06ad2d30796ad357892f7173727f8ba",
+        "outputHash": "5bb6d4e60f7fdb31b41d319408bc7d248d1b2345e8aa31f515be42cd30b43373"
+      }
+    },
+    {
+      "id": "hd_female_up_6",
+      "label": "hd_female_up_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_up_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_up_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_up_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "3488e34e6610dd27c9a98e7d7ccc740d81344925c6fe7fa485339b1842efb2c5",
+        "outputHash": "c5f85a1a6d556e2456f473d658266978821d21e5573fef4764b5b18391705db1"
+      }
+    },
+    {
+      "id": "hd_female_up_7",
+      "label": "hd_female_up_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_up_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_up_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_up_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "73809ccf26e50e9cd9c1cf81867a17acbe0b53fdf5b9532f8addec7e75f7e7ea",
+        "outputHash": "3fcb50761ea898003f9e1d603f8f7998d4adaf8b5c59256a0d5e72d6984852fb"
+      }
+    },
+    {
+      "id": "hd_female_up_8",
+      "label": "hd_female_up_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_up_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_up_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_up_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "fbc1e1ef273d394d79081a18e228a2887acda7e6864c1607f37c5f25be03a05a",
+        "outputHash": "321493ccb15bd86543e1c85d8d982faa1931b8745d11843f8caa19c994eb05d6"
+      }
+    },
+    {
+      "id": "hd_female_up_idle",
+      "label": "hd_female_up_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_up_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_up_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_up_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "aac99563d24d113764ba99f3423286d09f15276c9596bda9422399a20fa68696",
+        "outputHash": "9f6a0305d78105369be5709f5e57382b1dbf05c69fcedf05d11d41b412f77ceb"
       }
     },
     {
@@ -4351,8 +6066,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "ffce7c85fa6fbabb4ee3e1596ae456761e32a0fa625c0441161e4de28c652716",
-        "outputHash": "3c0c2bd6e7d8898c192d88982d58a5acb6a5d84301db906f56c3d42a91d63a1f"
+        "sourceHash": "a24ff2f8624a2506f23f8b927803a34432f97a514d27ce66fa90b7ddaefcf698",
+        "outputHash": "9e38cc64c5a38c8ee1bf69d0063511ed98e2f3f6656c35dd1e19355220d50cee"
       }
     },
     {
@@ -4400,8 +6115,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "c17709b80dc38dba67f2d48c96a26f80391a8fb896ea4781fd85ffb1a2f63c68",
-        "outputHash": "9cbfb075bd37f681d860100f73a1cc1b631250af615fdee6b6f11a8682999c46"
+        "sourceHash": "fabb85ad1cb52e86f5e871a82ac4f7c29282dabc96d4697d4424f24b1a0cee9a",
+        "outputHash": "7651ac9802605c6999d590bb9319f727304404ae6aac3c80957646e5235fd2d4"
       }
     },
     {
@@ -4449,8 +6164,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "3a70134c6148298cd4d8b802c142d935fb71712979b54c1efc784a8cf41219e6",
-        "outputHash": "a433fb8f7da001967d0832ed47fa57405da2bd19a4e2516cc2d0b88800025b7e"
+        "sourceHash": "362b4383cb00078863048d9663455ac977d0db4877a4ac04ad14bdeeda1e9530",
+        "outputHash": "9bee904c16789934dad1c70eba0d94134b5e91cf88e7492d72aa3dd3247ffe05"
       }
     },
     {
@@ -4498,8 +6213,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "17c70e9682fb143af90a8d8b05173a69c050e3ff72ab1df82d0a8726de146567",
-        "outputHash": "b8e4ceb256795d01a10d8e308ca973c89543091f21190431d0b2688f3f06e6f2"
+        "sourceHash": "7a0742dc2d427370fb9148393c5078b2fe602ecf5047aedb911327423d0b8f1c",
+        "outputHash": "ea559feb399fc500c348bf1b8f34b9b71a2fbf4615420fc516fbb5a3117cf39e"
+      }
+    },
+    {
+      "id": "hd_female_right_5",
+      "label": "hd_female_right_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_right_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_right_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_right_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "9e87925cb1aad3ccf9dbaa2ea3afa3747e93de765dce0d060f96ab3d770fe834",
+        "outputHash": "12606b406fedc28e189061d2119e4c8f738c8eff857f52af132436d981d29701"
+      }
+    },
+    {
+      "id": "hd_female_right_6",
+      "label": "hd_female_right_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_right_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_right_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_right_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "d513bf7833fe547f1642082f9c04857fc719c799a89c0f2b5eed54dee6f853ba",
+        "outputHash": "fab327d6606e6f0d517afa2c9bab85b13aa852903a4422f2e6131188eb6a9ca1"
+      }
+    },
+    {
+      "id": "hd_female_right_7",
+      "label": "hd_female_right_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_right_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_right_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_right_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "92b06f573441052eebaebc4685f277af31db9dd244baa236b9b294075d98f675",
+        "outputHash": "dd695437eccd95c18559897728f5fa4949c44607403039af820c71df72343e4b"
+      }
+    },
+    {
+      "id": "hd_female_right_8",
+      "label": "hd_female_right_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_right_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_right_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_female_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_right_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "dae68a7ee29d8b1a056da585a06e624ba3e6d5d01432c479fa5ec8c593c4a3bc",
+        "outputHash": "f3993720d0f458ed82f17a63ad919bf2a7b25c18d2a1457b4dba7c5c92f05519"
+      }
+    },
+    {
+      "id": "hd_female_right_idle",
+      "label": "hd_female_right_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_female_right_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_female_right_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/female/female_right_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "96e2094190c7dd15cec749f2210797a5e955baa57478d5425a2b9238cf720698",
+        "outputHash": "122e3ca7873b7e7df81ffd38a344e4d7c07f7eb2f4483be807a87b700c044b59"
       }
     },
     {
@@ -5527,8 +7487,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "b2534c2a2c8b568529fbcd6a80dc410bd0bfe551e1f4f35be3c3d0b065f602a9",
-        "outputHash": "460cbbb5bda11dd1a8c20b2c5dc6a768c07ebecdfff2855983cd0b2fa6e389d3"
+        "sourceHash": "2cdcba5201254ceed1e60ea28af7ef31e0b985c1f4f559b08484b8904fae8fb3",
+        "outputHash": "7173e1c18eaee612f02a40a402bcf1417e6c74e9202ec3f1fae4e6305334910b"
       }
     },
     {
@@ -5576,8 +7536,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "f8a51a062e97a9b4ffad95c07c69c162ec34107d410a04a4121ed68213c06713",
-        "outputHash": "b36d5dd2ff3d5a247406e76eeef90f541742a84c149abb34435e3e4285924be2"
+        "sourceHash": "e318393469a5400f79a424d5169514bbb3b3492a8bdb43a5322f1a178cd62440",
+        "outputHash": "ee4715eabd3f7c7db1f3328e737c107af69e1d82a78dd42a428d1b96cd67565c"
       }
     },
     {
@@ -5625,8 +7585,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "27e584f3a9eda00bd7ebfcc1f8df5baa558e124bba2db63bcd7561dc73511a55",
-        "outputHash": "b391699d3ecb9ab1289601585c4b63443dd8f0e499df0ba0dae0863aa9d16c2a"
+        "sourceHash": "16c1afc222daad1270c8f71e06b9817bffc8ef1ad437e88076052c999a86159b",
+        "outputHash": "b391e56365ff1c866bd019d462c01bd85ee4b81d6cbeca1b34837b451cb3a1a9"
       }
     },
     {
@@ -5674,8 +7634,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "f130669f991a1573061d619065b6abf7783c959806012bd38d6cc0ef07111e2c",
-        "outputHash": "70eab2bd42814878c74df3eb89b64c292fcae7a9f7db114c7f7af6033b454c55"
+        "sourceHash": "c5ad4332d341ec9ffd7fec0b29ae95899a0c489c719705a0de5c487e711faedc",
+        "outputHash": "f9bf3ff3d11f76a608f7de0645955d40e0fdc4176a8b3b5927307e7dea6afd43"
+      }
+    },
+    {
+      "id": "hd_child_down_5",
+      "label": "hd_child_down_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_down_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_down_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_down_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "59bc324f419ae488aa5e53d2f1956d60598d76dc5c6fcad4d28e23c7149ddeb9",
+        "outputHash": "417eab3c209232483e76d909366b5c2baaa831dc3d78d5156c0af0c6fac34acb"
+      }
+    },
+    {
+      "id": "hd_child_down_6",
+      "label": "hd_child_down_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_down_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_down_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_down_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "1f3e19618c4ae73e5f100defd68539d888f812d07ee0c674fab3588f9769c624",
+        "outputHash": "3e4e6934a831ed3e08659f46ad328a818f38aecda19a1c90a02b55678e492953"
+      }
+    },
+    {
+      "id": "hd_child_down_7",
+      "label": "hd_child_down_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_down_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_down_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_down_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "8f130a1b38ac608787210ecc462e07032491da59537acddf13030d8340e31829",
+        "outputHash": "806fde59be240382900e55a14ce564c7925f53971006e156ad3487114e660118"
+      }
+    },
+    {
+      "id": "hd_child_down_8",
+      "label": "hd_child_down_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_down_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_down_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_down_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "d5850462d9e9490fe34feed4a6b2e2487f1a2acb385c701a5def8cc4c7cfed30",
+        "outputHash": "0e736f758ede3ea2faa03793904a115526b7ad59b408fe4f9d07df0a7bfb32c1"
+      }
+    },
+    {
+      "id": "hd_child_down_idle",
+      "label": "hd_child_down_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_down_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_down_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_down_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "7773dfbd540e74fee76b42d456a60fed11e5632d6670d5bb972154dd8a2f7231",
+        "outputHash": "34e4692556b45e146ec8821af7df339ff689b68925d9c7ec18d9b595c2d99fb5"
       }
     },
     {
@@ -5723,8 +7928,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "3ebc75e8cbdb099b82d92dbf3e773ecd88dadf6e96de591574075c704746df75",
-        "outputHash": "1b879f68410104d83407100e3059d43c08e162cf3a926a97ae71041f3d743975"
+        "sourceHash": "0393b670299b89b514f1b19e93bfce30a6cfe9f41699b41f25fdb9a35e64a3b6",
+        "outputHash": "2de4573d2a78d622dd15d0d43d364f3c6217ef46b1d634ebad4261596153c729"
       }
     },
     {
@@ -5772,8 +7977,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "1e7afb4c3587f15b7d8806eccca12b8ebe530e50babc836b200dc0d3edf5fcc3",
-        "outputHash": "bf58e9da3a93966defdb6513dad0582624d5f8743bc6b263536595ed6fcdc49c"
+        "sourceHash": "91ccd1545dfc98e306e64fd71c8936204d5dcc035d3b0b378622d9c3ad3ef5e2",
+        "outputHash": "9a2c38499f8a135545ed62ea8a8f09fc13203397b1a22ddb3e13699a3dba1a4e"
       }
     },
     {
@@ -5821,8 +8026,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "02913c712266a2c9c79fccef88f7f517d4c6da8f49bc53b2da6b10167bf1004e",
-        "outputHash": "1fab46c45fefda60c693d81299509c667d3abd52ade5732ee94d700ff564b698"
+        "sourceHash": "4da32295608af41191cd47ca14890af8c273a0ad4dc8ce91dc2d773b0a157008",
+        "outputHash": "64a8d4916a329aaea433dbb5d183fe21cdf11abdcc664f1f25f5460975441c53"
       }
     },
     {
@@ -5870,8 +8075,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "b0f80c6ab313fc7619cf2f7a9533e0ef867c1bed534e3bc1b193e8f11a6993b3",
-        "outputHash": "d519274eba37b6c1fd5db6b4da4233a4f253bc7f78b1f898542ee2694d20081f"
+        "sourceHash": "d19d6aa620f786f038e4ecbd630088668faf67c081e31674773c3ab7c0eaa6f0",
+        "outputHash": "ddbed3e225757ae7c1a384a54f2fd884e2ea31bcb2447e58f33bdced31da958c"
+      }
+    },
+    {
+      "id": "hd_child_left_5",
+      "label": "hd_child_left_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_left_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_left_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_left_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "448889cf450d458f053acbe9bf6e2faebe10ee214c08b122265d7e0f12e821d5",
+        "outputHash": "41ea0c7ce17ccf552d02b845705820176afa225d021cbb7979bbd092317b024d"
+      }
+    },
+    {
+      "id": "hd_child_left_6",
+      "label": "hd_child_left_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_left_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_left_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_left_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "07a4183690443fad1efd593593ec457f1507e2d05be5b5b0c3ebbe0d752682ea",
+        "outputHash": "91343be27807f926ef5ea6b6b1752cbf9e4fe58eea22894fbcf13ebe4f4f978d"
+      }
+    },
+    {
+      "id": "hd_child_left_7",
+      "label": "hd_child_left_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_left_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_left_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_left_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "ed593f8231954179daf050a510c0eb2d5c0cb45f2cc444c28a4e03e249751aa2",
+        "outputHash": "ab6714f98451886857887aa8080851778bcb1e5a771919da2d8e0b4520c95ce9"
+      }
+    },
+    {
+      "id": "hd_child_left_8",
+      "label": "hd_child_left_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_left_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_left_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_left_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "84ecef5117f3086a67107897ee5b3ab85e5bdb68db271e6cdf6f7609e5f503a7",
+        "outputHash": "130f4f92dcb496210ac278c245e1c64834cc66b3b94d5d39f5a39b6717f7d8e3"
+      }
+    },
+    {
+      "id": "hd_child_left_idle",
+      "label": "hd_child_left_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_left_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_left_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_left_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "369f8d47e9489cd67d428e3ae4cd5826a1a65c005f545087f249f378666545b7",
+        "outputHash": "3f49eaffb6f0fd72c60d5bfb01eaa7d834c87d36ede84ac54e517ba5bf4279f9"
       }
     },
     {
@@ -5919,8 +8369,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "50dc971d77f73e43a6e5417838cb8dfbdc4721e2267a729d7cafe08ab3e2cba2",
-        "outputHash": "464177e80ab0a8a6362670e6812aa79a9f04e4da5fec630e02d514b0fe6866b4"
+        "sourceHash": "64b64cc0b6e195a00c0f4797b4c696953e5a2fd4b4674bf5442bf0324c1db0b3",
+        "outputHash": "763fc8047df3789eced2f39d24106438838d5f3c7fa6282a6d264c3123bc4e55"
       }
     },
     {
@@ -5968,8 +8418,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "ac8a850ec0ad6946a200e3c9da39206f8b64bf4994ce1fe4455f7a57e8154fb0",
-        "outputHash": "5eae45bc65feda8db1767db452e15aa2ce5db0c888ab8070bf938e1bd936901a"
+        "sourceHash": "1f36c3d8f5b373618c6eb009fd7f33e3d1ad5cc632f35e5d067631a6bf3e58e5",
+        "outputHash": "73db40b6e222d85945e150e4187525aa0004c7aa56704e8369f8dc1db3a9b20f"
       }
     },
     {
@@ -6017,8 +8467,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "4b2320a715b2aa7eb2c15b3e4f20867b1ba824d1b4605292e62048507ad3ea27",
-        "outputHash": "4c8f71c22d97fe1b70538064e58b639eecab066650de3d775320b0412264ff38"
+        "sourceHash": "7e2c9a30ab50b200171b091dbbaacdcc100ed3e57f49a0978aa141af1dbfe3f9",
+        "outputHash": "17af1c446a130bec7ea5e04137babaad0213c7d2114c08939e5dd2a0da0bd328"
       }
     },
     {
@@ -6066,8 +8516,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "239dd6b351b06b71634408722a6b1bc8562865e873209c4fdfd08a0deec4ff0f",
-        "outputHash": "434d70558a56d1ef6b481bb5fed2c7c68f7562813dd69384edca002fc952923d"
+        "sourceHash": "32f1b4f22de2add89363079a527c88e6ff6346882cf30420583b259011add089",
+        "outputHash": "70a9854f902e3a24401a9bec4cdbfea5601d1324009b25a0a70577a5b7b68145"
+      }
+    },
+    {
+      "id": "hd_child_up_5",
+      "label": "hd_child_up_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_up_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_up_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_up_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "5302bae29674d1a6eb7ec193c2f507b88a702cbff0205567cc56c99da61f6b75",
+        "outputHash": "17e5972853863e4f5359db6eab09a62d612dfee0c71625630508d679ed095093"
+      }
+    },
+    {
+      "id": "hd_child_up_6",
+      "label": "hd_child_up_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_up_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_up_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_up_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "1bcbe540c56d06f803084f24059667ff9d38690b92e51b4f07aea7ec04031eb1",
+        "outputHash": "edb72e42dc54bf9280749c547b3fed8d23347b5792a0c5dee545e6f8ee4741bd"
+      }
+    },
+    {
+      "id": "hd_child_up_7",
+      "label": "hd_child_up_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_up_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_up_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_up_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "c35716f117c7bc134ec1f3e3f6c85ea93db4f6410514edf0e1fe6be36ac14817",
+        "outputHash": "0c8a490fe1ca5982ad2d4a3704b9a8c8c68b75d1ecb8c2f884f9856b1e50d963"
+      }
+    },
+    {
+      "id": "hd_child_up_8",
+      "label": "hd_child_up_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_up_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_up_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_up_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "efa506f625be9d0e5c4f627e0ba2e5b31e6330f833a35ca0200f4c8a95b2b7ed",
+        "outputHash": "ede207036b06ac6df2024babe3ff3bd5d1b2f102a26b9e34a7c3825f9ef00142"
+      }
+    },
+    {
+      "id": "hd_child_up_idle",
+      "label": "hd_child_up_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_up_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_up_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_up_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "590f569a9585143fb7388e2a82e2e14ac340138a3618779d036193f334b71b3e",
+        "outputHash": "e8b6e5e22df9257df8426752258f453e743a30e749e4696be09f18a2385a58d3"
       }
     },
     {
@@ -6115,8 +8810,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "65f3005c74015ac5f2f84952016568b4f5545f816950a073653959a91a19b097",
-        "outputHash": "9e1c2e83a71e8fc09c51563397d8e27a45e5f93b9da5e1a2323a56439b091116"
+        "sourceHash": "867550ef20a871a13332c183c7ba296f688191d6a6101c4056ae19066885b3ec",
+        "outputHash": "b0a6dd3df25f3d816ea89340a7a44822efdaa65900e9058dd437f272de72d426"
       }
     },
     {
@@ -6164,8 +8859,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "1b3d9d2933227ced7f4995908168403dc565ec580ee71e5699d6cf59661b5ba9",
-        "outputHash": "cd80ef73b1953c11c8a61a6ce344ef55c71b86fb351898462980383e697b137a"
+        "sourceHash": "82639d272ceb37aad5f533b42117fd4086d3e5cc32abb959e91f0c41afe9ab97",
+        "outputHash": "cd2a355c393ac65554c56781c82afd341b96fc011d4416fecc30708f866ecfa7"
       }
     },
     {
@@ -6213,8 +8908,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "15b9db71a4c6731dd1434a3e53ee86e8f9bda40d851294382053467bd8b59dcf",
-        "outputHash": "55370eaa1ceb0a8ceb8641c1712e31549c0b9efcb10dd5dc2b325cb08e61b291"
+        "sourceHash": "d65eb7e6464b369b4f17db6446378fac52716b2d950756d65d9bb93265d194f0",
+        "outputHash": "63108bddeb6688e9c050628379b7abe0869f4472b2c3ea7dd2c73b598f8c9f2b"
       }
     },
     {
@@ -6262,8 +8957,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "ba1c8b45960247c280fe21848e2325db968286f8053f918c3c8729117ef72962",
-        "outputHash": "69d4ba7a0d568b790a8ea2f2057b7f27b68334c48a1a60d460c4a21cc25a5b71"
+        "sourceHash": "9e772e6253deb39dd2b864552c6cb81a4a7ff2307badaf316745ce7e3bbb611d",
+        "outputHash": "5a749e3b2827906ca2b47e1c6e1ac2025fe2db8f4352e0ba4f28f1fdedea9bb0"
+      }
+    },
+    {
+      "id": "hd_child_right_5",
+      "label": "hd_child_right_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_right_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_right_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_right_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "6981208018a2745fa282253ac675e6aaa3f0841c9a75545a563fdfecf73491d9",
+        "outputHash": "cbaa3199d0ac466c8fa4f3d48e29a505898a80813fc6f71778cee01cda569bd7"
+      }
+    },
+    {
+      "id": "hd_child_right_6",
+      "label": "hd_child_right_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_right_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_right_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_right_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "80e6dcfbf4973f57b0694ba4670606bbb99824df486e25138493a9cdb4617033",
+        "outputHash": "6603dbfdabb19c63daa3be347e34168cc90767741f5cabd5286ec04c1563cef2"
+      }
+    },
+    {
+      "id": "hd_child_right_7",
+      "label": "hd_child_right_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_right_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_right_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_right_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "30a6deb5ff5bcddbb6574603d82b05193fb2b19c9f911fa12fecca749220b74b",
+        "outputHash": "47f18551cea0fcfe601c7e3e862372d77587559a101d470a4e844fba46758a3c"
+      }
+    },
+    {
+      "id": "hd_child_right_8",
+      "label": "hd_child_right_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_right_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_right_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_child_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_right_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "602eec9d4a59a6201daa626b004559c3584b3dd2f51ecea0b18f074f221eb65f",
+        "outputHash": "fcde06f16c68a0ec32e9eb55016991504f5607d3fbfead32aec60f71af4481fa"
+      }
+    },
+    {
+      "id": "hd_child_right_idle",
+      "label": "hd_child_right_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_child_right_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_child_right_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/child/child_right_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "efb19320a3745bb96c2755b367ce264f09218d0ff7a5b5b24efe89a4460f5474",
+        "outputHash": "434972572524611d769bd2324b674dd59d1352aa77e9e40078388b5e86f2bf16"
       }
     },
     {
@@ -6311,8 +9251,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "6290f0645e3694b0a078df5d3461091b54c06dc6b080dd36a86fbf8e76c72cc9",
-        "outputHash": "9feb17cc011a6d63b129e81a6884532f60a6a4a217dce9eca6ec421e63e50779"
+        "sourceHash": "eb5b2bbc96e5291345a85db197d3cc3a1eee933604327c21e9fbccd6f698377b",
+        "outputHash": "c4270b2c975ab9e6b63d907d0e1cfce9e4aa0366d4b7a1fbc9e08bdea1a1de56"
       }
     },
     {
@@ -6360,8 +9300,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "ddc2f8e67a8a561e68ef16e9c4d76394feb261a4af8b58b49293acf37d9fe20a",
-        "outputHash": "93db9fa2d4ce42c5147e12e0ca7562308a8976651a9948271c33871dafa10010"
+        "sourceHash": "fcb3d8fed579ea3e534ddf0db2dd7fdf7562a660710882b64a50e50ba73fc168",
+        "outputHash": "2c275250e90737e10686f3ff39033609b0be023bb005b9d1c6e700a6ceadae07"
       }
     },
     {
@@ -6409,8 +9349,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "273435c843cb7f11b8510d1bc4bbc3150de540a17489a8e4a0a9b83b06938c92",
-        "outputHash": "33081830e9166c906c228702c05c7e03c60f5b3534e4951fbbea10c5bb96354e"
+        "sourceHash": "cd9e3fc3a7d04aef72a67c043778dda88cd4c918f23b8c2857318a8e5d37bdc5",
+        "outputHash": "0ec7dd88ff231f10094d6a9c8362478b83114b4724f24987c31f1acef25f4674"
       }
     },
     {
@@ -6458,8 +9398,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "bfd6c2f2a2be302456b7964e311f64f4d17d1723a31409a3cdb5a5e6ab119cca",
-        "outputHash": "f6462c69c20d8144365268be2476b8f838b40ef79fad03e4954708c29a5708e3"
+        "sourceHash": "715be96af27aaf9687761e782d75fc9bdc650d664aeb7464b39addb243292165",
+        "outputHash": "910c3e81fbf6657cd198a911dc4bc4cfdd509de3961a5c7ce807d52472db3629"
+      }
+    },
+    {
+      "id": "hd_elder_down_5",
+      "label": "hd_elder_down_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_down_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_down_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_down_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "8a1359f645b1a6683afa3b341680b8d929656c44ddec73e1ef3e6db94e723346",
+        "outputHash": "924d68f132fe7a777f5824c7c01bcce2da77d3de157c6155d7389ace5a9e687d"
+      }
+    },
+    {
+      "id": "hd_elder_down_6",
+      "label": "hd_elder_down_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_down_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_down_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_down_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "3b3d25e54e2d352802167f61cd50ff58e8041c923dcf4f7c7dc19f67717c34e9",
+        "outputHash": "cf9a8c61058e0d115a760872226a722aff6f50684ac0c9a7ea55d309bc77bde8"
+      }
+    },
+    {
+      "id": "hd_elder_down_7",
+      "label": "hd_elder_down_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_down_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_down_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_down_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "e463aaf4bfab9f34dc8e9531a3439c9b7fb0eeb3065863bf7950504cc3e4e269",
+        "outputHash": "3d6b3d9be710426e06905f36bb41b01017cd36360411381bb19ba4d4ded0375c"
+      }
+    },
+    {
+      "id": "hd_elder_down_8",
+      "label": "hd_elder_down_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_down_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_down_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_down",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_down_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "1388dae0617797f0a6408686118e65b801cef80bbc650003c36a6a3e0abefb5f",
+        "outputHash": "af97bcbd894aa8c24466d61cd9a5cf00c639d52985e4cf0c9598da1f2feae48d"
+      }
+    },
+    {
+      "id": "hd_elder_down_idle",
+      "label": "hd_elder_down_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_down_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_down_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_down_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "0c1281d008e33ca4219a0870b6e31d5d56bc2235617786777665defd8148d6ca",
+        "outputHash": "600909168870a6c9cba443e506d4c874943f2e2e694a6afa802514743cf18897"
       }
     },
     {
@@ -6507,8 +9692,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "dde052193cc28d6ad73b4b131ba5f01d8416ca022f5cf4827b72da04d9c844fc",
-        "outputHash": "7ab531b36c23d5fdd569f33cebce8c1563c2785b0831769ce6919c2d9095bc0b"
+        "sourceHash": "4bc0e5e125447ecaaf109fe9842d408b8dba2505d87fce09aede8858b0676765",
+        "outputHash": "7994ecc4a9baf0af15fa25ef92e4567f2ba435819e48d89799e9e90b98b31e1f"
       }
     },
     {
@@ -6556,8 +9741,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "72e63da71822cd3b507e303b266c1ccb56b087545a0e153a5593dc7b087b156a",
-        "outputHash": "96fa525363c4f5425bfa4986b274bc6c0dad6e7661ce008aeb649f38bfb4ffec"
+        "sourceHash": "baf017be330fb00537c4103b5519f53cdce2019cc78c8c00bdbeb61e891115db",
+        "outputHash": "f91ebac3060265ddf2f3ea943a2b84f529eced10418fd47ddd1399449e754ce9"
       }
     },
     {
@@ -6605,8 +9790,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "2a6a5ab8effd36188916c52d6f7992bff6f36ae3992dbbbb216f8bb3c5e2451e",
-        "outputHash": "d2ed35dfc7d3edaeab43b26e27184bc49ab9f072ad046721f38c94b8d32f5bf4"
+        "sourceHash": "fbfa6ea7d79fd7270eae85fc78a920f4ddad5cb36fa88578981cc27b392efa8a",
+        "outputHash": "5075ab4203286dc46ee96e48ad8e0f174d90898ec345d7fbda4e56fd12df3ba3"
       }
     },
     {
@@ -6654,8 +9839,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "fbbfd5c10f0360ec3cc43a3f1c3ae36282f17f5a019cd2515cfe7d5b53293ebe",
-        "outputHash": "4079a4dd8c0b74534da0eefa3b588028cc01bc53c6245de6bda3096d520b1717"
+        "sourceHash": "c74285c6b6204dc5a4348199225612ec01651acf920c19254f16b0dd3dc96893",
+        "outputHash": "f7190d9267b91e89c5438fce8b9dcbc96852d5b95306a834c23173371bd1055b"
+      }
+    },
+    {
+      "id": "hd_elder_left_5",
+      "label": "hd_elder_left_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_left_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_left_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_left_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "e0d0438ca64818f7c4a8900f88c0a73ac84668277f7b5c5bb8d24c399488ff0a",
+        "outputHash": "28f658f5e35c774289752ef82008eef3717d5e1578f14781094224c906248e4d"
+      }
+    },
+    {
+      "id": "hd_elder_left_6",
+      "label": "hd_elder_left_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_left_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_left_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_left_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "be9197febd0208b5931c381d61f262c5f00e32957000dc6fd5017558c1cbafd6",
+        "outputHash": "a7ebbf1359eb93b9f69182a33a034328b575753ed6661c85d7a16e54048cf1dd"
+      }
+    },
+    {
+      "id": "hd_elder_left_7",
+      "label": "hd_elder_left_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_left_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_left_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_left_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "00fc935198a974649e95da8e08924f3955147cfc6c9a67fb9ff77574a67e5923",
+        "outputHash": "6a454228daf677e438c456005b44c9a4cc84cce70f7bd1b59a468b0057e7ffcb"
+      }
+    },
+    {
+      "id": "hd_elder_left_8",
+      "label": "hd_elder_left_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_left_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_left_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_left",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_left_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "5e72b7267a2977b0b44e40e6da7d09ac3737aef4c358a6846be4657f609c390b",
+        "outputHash": "46a289e1915151d92725212b9184abe001dd97170134e96e41e599bbb7ba8b3a"
+      }
+    },
+    {
+      "id": "hd_elder_left_idle",
+      "label": "hd_elder_left_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_left_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_left_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_left_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "0f28138092f55fefcbb271fae87b95d0c2ac9ed64061c9e1a1ad2bd22db12096",
+        "outputHash": "92e0a226591c9f4b44961010a6c42595468bb400476ab499ef1b6c1fb5e4b00a"
       }
     },
     {
@@ -6703,8 +10133,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "f2da12da84d89eaddd01a5bd609ee8c29be76251c2c507aea0da3afd3504d602",
-        "outputHash": "532c4e5020227b35055b2ad6095f8ede1dab2d36aecd338facff07b5908114e3"
+        "sourceHash": "838e5d62062955b1f05616947487c6f7bab841a3fb26d2b8d324066e3781b50e",
+        "outputHash": "72b5079947dbebe19211d312c61ed5c6658777629deca5c2378544be164dc2bd"
       }
     },
     {
@@ -6752,8 +10182,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "a185b18f41d919cb144b254537744eb0e43679aa6dd2880198567789fbc42e88",
-        "outputHash": "dd14e81a94dc796cd5ab200f64ae8a9df5154e03c148bf22ef10737389d9db16"
+        "sourceHash": "cdea526075011e034ef7b959f7872363db6ca3bd2019973946dd08fed6c0e42a",
+        "outputHash": "9b96e3efce44aeb56d0afb96aee676456634a66d0ad61d838bccff1ca170647d"
       }
     },
     {
@@ -6801,8 +10231,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "ef77d7fea0239bbd9a4cd906e0cf99828feba0547c6df1bad53f99c0ac4d0816",
-        "outputHash": "d0ab3a0b0f872caf4f38fab76b54f12ccf9fade54182f7939b0ab014aa5b1de6"
+        "sourceHash": "60e118f77970f4ddd5757b1e52a0424d5f8638361abc45efbb209c578bc63530",
+        "outputHash": "1bb8ae59e0822be5b21306c291f54ba85201d43aefd465359fc118b83e0070aa"
       }
     },
     {
@@ -6850,8 +10280,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "77a1033dc4e173d3dac10b95ffafc43c2419021d8f27835377fa7e65af93837f",
-        "outputHash": "b51e0ff40eee5e81bbc91bcbb28d5a1a014461d8d46b2ecc277d7a070b976b98"
+        "sourceHash": "f12d6585ae690bf422a697a4487aa686ef77c2daaf8d4cfca26f491e198064ba",
+        "outputHash": "3765eb3c0c964cf33f394fa9c4d4aef016cd02fa3ae66cd9e95aae32e76f804a"
+      }
+    },
+    {
+      "id": "hd_elder_up_5",
+      "label": "hd_elder_up_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_up_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_up_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_up_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "af093c872de785c748a3cd3bd79e63da80ccc38a35efcb4bc35c53c51308e9f0",
+        "outputHash": "c363df816868b458b69def3bdd1b7d737ea975c9160fb4900e286480371dc9fb"
+      }
+    },
+    {
+      "id": "hd_elder_up_6",
+      "label": "hd_elder_up_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_up_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_up_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_up_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "6f9a846cbd33ddd50b530ade72a0d2dd7d3d3b26b2bacaf3e1bba97f28549947",
+        "outputHash": "75642ce0ac1c74d2d44f829bfa36f6206a896828e6352f2437984a42e10801eb"
+      }
+    },
+    {
+      "id": "hd_elder_up_7",
+      "label": "hd_elder_up_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_up_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_up_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_up_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "a3c6f6588d1ec61274c1c718b58a7116949fd786f7add1fc81cc2b0afeb79325",
+        "outputHash": "9129cffcc373f7971b70fba196c44dd449dcb5aa0b75172a2ee79933ac725ff3"
+      }
+    },
+    {
+      "id": "hd_elder_up_8",
+      "label": "hd_elder_up_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_up_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_up_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_up",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_up_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "d739b2fab00da41a1bf042d92c5f2b616a0139bdfa4a9f4e5b69d9da8f2d62c9",
+        "outputHash": "55d63e8da285789f5caa9ac43af6bc84c6daee793a3f2abec8ef793f3f05db73"
+      }
+    },
+    {
+      "id": "hd_elder_up_idle",
+      "label": "hd_elder_up_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_up_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_up_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_up_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "e303a407b9909f4fe8ef1ad34236c04cb75a9eeba41596c57035771435201cd5",
+        "outputHash": "f5380e97cf9d75a039ed0148b0f75b61d563504785a30bd8bfe331237e5f6724"
       }
     },
     {
@@ -6899,8 +10574,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "41968398e45f922d6e17def8c873039f72ca5f1e5fc3df5a8d06c4f9313636a8",
-        "outputHash": "38f82de49015ddc98006ce47c1132da297e7889f244b63e3e6c50784b1037665"
+        "sourceHash": "38c6daa916206ed1daac274e22ba0194f9a46716dc9b4f1414c4f2d6d52f006e",
+        "outputHash": "b4f28e5265f0e0f199241bc2c2f0d52a02c16718ee208231ecbc78cc05614afb"
       }
     },
     {
@@ -6948,8 +10623,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "855945a40b5081539fb85d5bd376228bc40b297abfae6d5791c6b8eb05afbe15",
-        "outputHash": "3d63784f547b680c681940fbc24d40d207b7940368026b345188ad117273cac0"
+        "sourceHash": "c917c6f1da42178c3fc192452cc75b23491f1e6a4ab7a4b44ee8e942086c92da",
+        "outputHash": "642ea9d7a3e4c17cefd2339afa831b6053509fb9e84532fd250e65e7d32164aa"
       }
     },
     {
@@ -6997,8 +10672,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "68b10c95ec4eb5bbe9a31eb16970b7c7baacf5b95b9b68da1b11d9ed5261ed86",
-        "outputHash": "e97258798460c10ee06877c25f394e8a10b42f2e252fdde523065579bc7c374f"
+        "sourceHash": "9fec18441094e1d78746d7669d2a5afc537f29a54470ef1bbeda6f1c6cb54561",
+        "outputHash": "ce8b0c8a73c54a298027b7751ad00bf440b5dc74624e73b633255992a9457c99"
       }
     },
     {
@@ -7046,8 +10721,253 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "7017d88cc5ad19a2d27a6fe1cbf27b7b30c4f323c12b1279238aa4ee631b528f",
-        "outputHash": "6c4cfd0b6c6860fc5c53e169f1be9fc6daa4ff318093070f4dd97f100bafe6b7"
+        "sourceHash": "3ec10a871db6f362c1c61b0f4ef5e04933b13101481335a0f5fd5b514e0465da",
+        "outputHash": "908ecf17dd78b47be490d7c127d8467f3382cbe4ffc9c6dafec8f1dfde6000b6"
+      }
+    },
+    {
+      "id": "hd_elder_right_5",
+      "label": "hd_elder_right_5",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_right_5.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_right_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_right_5.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "a0ad1608e72d437483d4e36163580ed373679cde8d37f5f862054aa9ccaefadf",
+        "outputHash": "d61aeb8417cfa1ffabe0878209063de04e8ecc2086e43d4691185321bd2a04cd"
+      }
+    },
+    {
+      "id": "hd_elder_right_6",
+      "label": "hd_elder_right_6",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_right_6.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_right_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_right_6.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "8560b802cdc400c78a36de79b0903cb6c1eea1853723d01c3c52df87c312a954",
+        "outputHash": "b0b78596913cf6a26ae1898c9b80dc4b6152412edc8f406b8657c92d9120a175"
+      }
+    },
+    {
+      "id": "hd_elder_right_7",
+      "label": "hd_elder_right_7",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_right_7.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_right_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_right_7.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "889c2461258564b82c300ac49261b1cbe83e56e36b56ee93a3d6aa2f9cf3100d",
+        "outputHash": "c674875329ab568a91c6d421cebd6a94c13c8769fa5ea50e7fed6aa1f75be14d"
+      }
+    },
+    {
+      "id": "hd_elder_right_8",
+      "label": "hd_elder_right_8",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_right_8.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_right_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "hd_elder_right",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_right_8.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "982bfba41b245936fc6b08a918ccf4a76844c810df694a68d8cce1c56e924f07",
+        "outputHash": "2f7a143694ef639a7d24783217196824946a3e2cdfab5d156d7e8e0bb64d4391"
+      }
+    },
+    {
+      "id": "hd_elder_right_idle",
+      "label": "hd_elder_right_idle",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/hd_elder_right_idle.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_right_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "design/hd2d/directions/elder/elder_right_idle.png",
+        "crop": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "7704d685849fcaa3f932b7b0f54f3011b3ec5110a9cea3d5e727c1e650f25649",
+        "outputHash": "cd98dc225ad02f5216400ab70daa8d5b6fd00eb451f05d190af2ba37c20e1138"
       }
     },
     {
@@ -10842,11 +14762,12 @@
         "h": 128
       },
       "nineSlice": {
-        "top": 25,
-        "right": 25,
-        "bottom": 25,
-        "left": 25,
-        "repeat": 0
+        "top": 40,
+        "right": 40,
+        "bottom": 40,
+        "left": 40,
+        "repeat": 0,
+        "scale": 0.5
       },
       "mapping": "",
       "animation": null,
@@ -10857,18 +14778,18 @@
       "usage": "HD production",
       "bundle": "base",
       "provenance": {
-        "source": "source/rendered2d/generated/ui/skins.png",
+        "source": "source/rendered2d/generated/ui/bright_skins.png",
         "crop": [
-          0,
-          0,
-          1086,
-          181
+          31,
+          147,
+          361,
+          147
         ],
         "objectBox": null,
-        "alphaCutoff": 240,
+        "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "7461f46be32024e0e441e8c6c8494c67cec4cd01526ab0811ef19261fed21143",
-        "outputHash": "96e4825ab49dc3e766d95d8d40b408ba2e7feb99b7bcfe240448113d215e15ea"
+        "sourceHash": "38c6a50bd539162a88fb1ade6b61416ed095152a8c3b78c48e25fb75a7255ed2",
+        "outputHash": "fa1a167ba41f8acf688ceed85d873af61a5350d9bf942da3bef641d9c34b70ea"
       }
     },
     {
@@ -10897,11 +14818,12 @@
         "h": 128
       },
       "nineSlice": {
-        "top": 25,
-        "right": 25,
-        "bottom": 25,
-        "left": 25,
-        "repeat": 0
+        "top": 40,
+        "right": 40,
+        "bottom": 40,
+        "left": 40,
+        "repeat": 0,
+        "scale": 0.5
       },
       "mapping": "",
       "animation": null,
@@ -10912,128 +14834,18 @@
       "usage": "HD production",
       "bundle": "base",
       "provenance": {
-        "source": "source/rendered2d/generated/ui/skins.png",
+        "source": "source/rendered2d/generated/ui/bright_skins.png",
         "crop": [
-          1086,
-          0,
-          1086,
-          181
+          447,
+          147,
+          359,
+          147
         ],
         "objectBox": null,
-        "alphaCutoff": 240,
+        "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "7461f46be32024e0e441e8c6c8494c67cec4cd01526ab0811ef19261fed21143",
-        "outputHash": "8b4b2db58a87f5f1eba49984c084448db07599c2ab1393676e9e9ee603183e1b"
-      }
-    },
-    {
-      "id": "panel_anchored_tip",
-      "label": "panel_anchored_tip",
-      "category": "ui/panels",
-      "categoryLabel": "ui/panels",
-      "path": "runtime/ui/panels/panel_anchored_tip.png",
-      "width": 256,
-      "height": 128,
-      "pivot": {
-        "x": 128,
-        "y": 128
-      },
-      "sourceSheet": "source/rendered2d/production/ui/panels/panel_anchored_tip.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 256,
-        "h": 128
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 256,
-        "h": 128
-      },
-      "nineSlice": {
-        "top": 25,
-        "right": 25,
-        "bottom": 25,
-        "left": 25,
-        "repeat": 0
-      },
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "base",
-      "provenance": {
-        "source": "source/rendered2d/generated/ui/skins.png",
-        "crop": [
-          0,
-          181,
-          1086,
-          181
-        ],
-        "objectBox": null,
-        "alphaCutoff": 240,
-        "fullCanvas": false,
-        "sourceHash": "7461f46be32024e0e441e8c6c8494c67cec4cd01526ab0811ef19261fed21143",
-        "outputHash": "461b6e35e1eccf04e0b540f6a978c7c072852f3bb0bc547be50de2be7a3bd331"
-      }
-    },
-    {
-      "id": "panel_button_disabled",
-      "label": "panel_button_disabled",
-      "category": "ui/panels",
-      "categoryLabel": "ui/panels",
-      "path": "runtime/ui/panels/panel_button_disabled.png",
-      "width": 256,
-      "height": 128,
-      "pivot": {
-        "x": 128,
-        "y": 128
-      },
-      "sourceSheet": "source/rendered2d/production/ui/panels/panel_button_disabled.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 256,
-        "h": 128
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 256,
-        "h": 128
-      },
-      "nineSlice": {
-        "top": 25,
-        "right": 25,
-        "bottom": 25,
-        "left": 25,
-        "repeat": 0
-      },
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "base",
-      "provenance": {
-        "source": "source/rendered2d/generated/ui/skins.png",
-        "crop": [
-          1086,
-          181,
-          1086,
-          181
-        ],
-        "objectBox": null,
-        "alphaCutoff": 240,
-        "fullCanvas": false,
-        "sourceHash": "7461f46be32024e0e441e8c6c8494c67cec4cd01526ab0811ef19261fed21143",
-        "outputHash": "b58ae9b0cc4b27bfe3a67980bc2a3ed65403290697cfd38e894b55eba463b16d"
+        "sourceHash": "38c6a50bd539162a88fb1ade6b61416ed095152a8c3b78c48e25fb75a7255ed2",
+        "outputHash": "f287e39b4d0bed56d7a19fee33b6c991d6b6a99f6e63b973d28b80b8521c95b6"
       }
     },
     {
@@ -11062,11 +14874,12 @@
         "h": 128
       },
       "nineSlice": {
-        "top": 25,
-        "right": 25,
-        "bottom": 25,
-        "left": 25,
-        "repeat": 0
+        "top": 40,
+        "right": 40,
+        "bottom": 40,
+        "left": 40,
+        "repeat": 0,
+        "scale": 0.5
       },
       "mapping": "",
       "animation": null,
@@ -11077,33 +14890,33 @@
       "usage": "HD production",
       "bundle": "base",
       "provenance": {
-        "source": "source/rendered2d/generated/ui/skins.png",
+        "source": "source/rendered2d/generated/ui/bright_skins.png",
         "crop": [
-          0,
-          362,
-          1086,
-          181
+          863,
+          148,
+          360,
+          146
         ],
         "objectBox": null,
-        "alphaCutoff": 240,
+        "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "7461f46be32024e0e441e8c6c8494c67cec4cd01526ab0811ef19261fed21143",
-        "outputHash": "f8eae12f73d88f517cc6fc22f55d2cce143f3b7648f86f799986b2ac1561adce"
+        "sourceHash": "38c6a50bd539162a88fb1ade6b61416ed095152a8c3b78c48e25fb75a7255ed2",
+        "outputHash": "95499f0686d31132420d07b3e38b75bf0237b3f90723d03573d7dd32f20dc8cd"
       }
     },
     {
-      "id": "panel_parchment",
-      "label": "panel_parchment",
+      "id": "panel_button_disabled",
+      "label": "panel_button_disabled",
       "category": "ui/panels",
       "categoryLabel": "ui/panels",
-      "path": "runtime/ui/panels/panel_parchment.png",
+      "path": "runtime/ui/panels/panel_button_disabled.png",
       "width": 256,
       "height": 128,
       "pivot": {
         "x": 128,
         "y": 128
       },
-      "sourceSheet": "source/rendered2d/production/ui/panels/panel_parchment.png",
+      "sourceSheet": "source/rendered2d/production/ui/panels/panel_button_disabled.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
@@ -11117,11 +14930,12 @@
         "h": 128
       },
       "nineSlice": {
-        "top": 25,
-        "right": 25,
-        "bottom": 25,
-        "left": 25,
-        "repeat": 0
+        "top": 40,
+        "right": 40,
+        "bottom": 40,
+        "left": 40,
+        "repeat": 0,
+        "scale": 0.5
       },
       "mapping": "",
       "animation": null,
@@ -11132,18 +14946,18 @@
       "usage": "HD production",
       "bundle": "base",
       "provenance": {
-        "source": "source/rendered2d/generated/ui/skins.png",
+        "source": "source/rendered2d/generated/ui/bright_skins.png",
         "crop": [
-          1086,
-          362,
-          1086,
-          181
+          31,
+          557,
+          361,
+          147
         ],
         "objectBox": null,
-        "alphaCutoff": 240,
+        "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "7461f46be32024e0e441e8c6c8494c67cec4cd01526ab0811ef19261fed21143",
-        "outputHash": "8e4517d08c8bd1155b51464e757eff21e685ad4aef3924b8252680956b059764"
+        "sourceHash": "38c6a50bd539162a88fb1ade6b61416ed095152a8c3b78c48e25fb75a7255ed2",
+        "outputHash": "f9a0d42f948c06dbfdfe53cd619dfaebabe82e204871ffa1434b49b448fdef41"
       }
     },
     {
@@ -11153,12 +14967,180 @@
       "categoryLabel": "ui/panels",
       "path": "runtime/ui/panels/panel_card.png",
       "width": 256,
+      "height": 192,
+      "pivot": {
+        "x": 128,
+        "y": 192
+      },
+      "sourceSheet": "source/rendered2d/production/ui/panels/panel_card.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 192
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 192
+      },
+      "nineSlice": {
+        "top": 32,
+        "right": 32,
+        "bottom": 32,
+        "left": 32,
+        "repeat": 0,
+        "scale": 0.5
+      },
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/generated/ui/bright_skins.png",
+        "crop": [
+          445,
+          493,
+          365,
+          268
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": false,
+        "sourceHash": "38c6a50bd539162a88fb1ade6b61416ed095152a8c3b78c48e25fb75a7255ed2",
+        "outputHash": "f1352bd99d3d71910f4c2a3235d6ec76d0030f2e664f8620a921fe5a742a70e7"
+      }
+    },
+    {
+      "id": "panel_card_disabled",
+      "label": "panel_card_disabled",
+      "category": "ui/panels",
+      "categoryLabel": "ui/panels",
+      "path": "runtime/ui/panels/panel_card_disabled.png",
+      "width": 256,
+      "height": 192,
+      "pivot": {
+        "x": 128,
+        "y": 192
+      },
+      "sourceSheet": "source/rendered2d/production/ui/panels/panel_card_disabled.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 192
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 192
+      },
+      "nineSlice": {
+        "top": 32,
+        "right": 32,
+        "bottom": 32,
+        "left": 32,
+        "repeat": 0,
+        "scale": 0.5
+      },
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/generated/ui/bright_skins.png",
+        "crop": [
+          861,
+          493,
+          364,
+          269
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": false,
+        "sourceHash": "38c6a50bd539162a88fb1ade6b61416ed095152a8c3b78c48e25fb75a7255ed2",
+        "outputHash": "877cafbbe78d3241c01b45d0295f8c6557a5cf473f6abcbf4135ac65f60d5a5e"
+      }
+    },
+    {
+      "id": "panel_parchment",
+      "label": "panel_parchment",
+      "category": "ui/panels",
+      "categoryLabel": "ui/panels",
+      "path": "runtime/ui/panels/panel_parchment.png",
+      "width": 256,
+      "height": 256,
+      "pivot": {
+        "x": 128,
+        "y": 256
+      },
+      "sourceSheet": "source/rendered2d/production/ui/panels/panel_parchment.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "nineSlice": {
+        "top": 48,
+        "right": 48,
+        "bottom": 48,
+        "left": 48,
+        "repeat": 0,
+        "scale": 0.75
+      },
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/generated/ui/bright_skins.png",
+        "crop": [
+          35,
+          866,
+          352,
+          349
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": false,
+        "sourceHash": "38c6a50bd539162a88fb1ade6b61416ed095152a8c3b78c48e25fb75a7255ed2",
+        "outputHash": "8a963b1c3c6b397549c7d9e4c563b7fd674aa7223902171d0a3a5ba30f37d6ad"
+      }
+    },
+    {
+      "id": "panel_header",
+      "label": "panel_header",
+      "category": "ui/panels",
+      "categoryLabel": "ui/panels",
+      "path": "runtime/ui/panels/panel_header.png",
+      "width": 256,
       "height": 128,
       "pivot": {
         "x": 128,
         "y": 128
       },
-      "sourceSheet": "source/rendered2d/production/ui/panels/panel_card.png",
+      "sourceSheet": "source/rendered2d/production/ui/panels/panel_header.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
@@ -11172,11 +15154,12 @@
         "h": 128
       },
       "nineSlice": {
-        "top": 25,
-        "right": 25,
-        "bottom": 25,
-        "left": 25,
-        "repeat": 0
+        "top": 40,
+        "right": 40,
+        "bottom": 40,
+        "left": 40,
+        "repeat": 0,
+        "scale": 0.5
       },
       "mapping": "",
       "animation": null,
@@ -11187,18 +15170,18 @@
       "usage": "HD production",
       "bundle": "base",
       "provenance": {
-        "source": "source/rendered2d/generated/ui/skins.png",
+        "source": "source/rendered2d/generated/ui/bright_skins.png",
         "crop": [
-          0,
-          543,
-          1086,
-          181
+          446,
+          964,
+          362,
+          148
         ],
         "objectBox": null,
-        "alphaCutoff": 240,
+        "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "7461f46be32024e0e441e8c6c8494c67cec4cd01526ab0811ef19261fed21143",
-        "outputHash": "90ddb000173c660be34d1dbe5d4f336bf6921e1add657f6b8ee74fbb5c0613ac"
+        "sourceHash": "38c6a50bd539162a88fb1ade6b61416ed095152a8c3b78c48e25fb75a7255ed2",
+        "outputHash": "9e9b0193b43beaddef24d5900c5384e68bc36b8ce5e68a5020d637df1d5c36a7"
       }
     },
     {
@@ -11227,11 +15210,12 @@
         "h": 128
       },
       "nineSlice": {
-        "top": 25,
-        "right": 25,
-        "bottom": 25,
-        "left": 25,
-        "repeat": 0
+        "top": 40,
+        "right": 40,
+        "bottom": 40,
+        "left": 40,
+        "repeat": 0,
+        "scale": 0.5
       },
       "mapping": "",
       "animation": null,
@@ -11242,18 +15226,130 @@
       "usage": "HD production",
       "bundle": "base",
       "provenance": {
-        "source": "source/rendered2d/generated/ui/skins.png",
+        "source": "source/rendered2d/generated/ui/bright_skins.png",
         "crop": [
-          1086,
-          543,
-          1086,
-          181
+          861,
+          964,
+          362,
+          148
         ],
         "objectBox": null,
-        "alphaCutoff": 240,
+        "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "7461f46be32024e0e441e8c6c8494c67cec4cd01526ab0811ef19261fed21143",
-        "outputHash": "c0646831896fa63427a81db3845ea16ac0746f23fc1786627239c035ff4ad61c"
+        "sourceHash": "38c6a50bd539162a88fb1ade6b61416ed095152a8c3b78c48e25fb75a7255ed2",
+        "outputHash": "dfb7bb8a51d1d6679126c5954d750821a082bd6d3dc19723f498b4cd878ebf36"
+      }
+    },
+    {
+      "id": "panel_anchored_tip",
+      "label": "panel_anchored_tip",
+      "category": "ui/panels",
+      "categoryLabel": "ui/panels",
+      "path": "runtime/ui/panels/panel_anchored_tip.png",
+      "width": 256,
+      "height": 128,
+      "pivot": {
+        "x": 128,
+        "y": 128
+      },
+      "sourceSheet": "source/rendered2d/production/ui/panels/panel_anchored_tip.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 128
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 128
+      },
+      "nineSlice": {
+        "top": 40,
+        "right": 40,
+        "bottom": 40,
+        "left": 40,
+        "repeat": 0,
+        "scale": 0.5
+      },
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/generated/ui/bright_skins.png",
+        "crop": [
+          861,
+          964,
+          362,
+          148
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": false,
+        "sourceHash": "38c6a50bd539162a88fb1ade6b61416ed095152a8c3b78c48e25fb75a7255ed2",
+        "outputHash": "dfb7bb8a51d1d6679126c5954d750821a082bd6d3dc19723f498b4cd878ebf36"
+      }
+    },
+    {
+      "id": "panel_portrait_frame",
+      "label": "panel_portrait_frame",
+      "category": "ui/panels",
+      "categoryLabel": "ui/panels",
+      "path": "runtime/ui/panels/panel_portrait_frame.png",
+      "width": 256,
+      "height": 128,
+      "pivot": {
+        "x": 128,
+        "y": 128
+      },
+      "sourceSheet": "source/rendered2d/production/ui/panels/panel_portrait_frame.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 128
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 128
+      },
+      "nineSlice": {
+        "top": 24,
+        "right": 24,
+        "bottom": 24,
+        "left": 24,
+        "repeat": 0,
+        "scale": 0.5
+      },
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/generated/ui/bright_skins.png",
+        "crop": [
+          445,
+          493,
+          365,
+          268
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": false,
+        "sourceHash": "38c6a50bd539162a88fb1ade6b61416ed095152a8c3b78c48e25fb75a7255ed2",
+        "outputHash": "d9a591d16a16a7b1a1c018bd33410e1938cf8ab671c50ab041ed56f5602f6e15"
       }
     },
     {
@@ -12355,61 +16451,6 @@
       }
     },
     {
-      "id": "panel_portrait_frame",
-      "label": "panel_portrait_frame",
-      "category": "ui/panels",
-      "categoryLabel": "ui/panels",
-      "path": "runtime/ui/panels/panel_portrait_frame.png",
-      "width": 128,
-      "height": 128,
-      "pivot": {
-        "x": 64,
-        "y": 128
-      },
-      "sourceSheet": "source/rendered2d/production/ui/panels/panel_portrait_frame.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "nineSlice": {
-        "top": 22,
-        "right": 22,
-        "bottom": 22,
-        "left": 22,
-        "repeat": 0
-      },
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "base",
-      "provenance": {
-        "source": "source/rendered2d/generated/ui/skins.png",
-        "crop": [
-          1086,
-          362,
-          1086,
-          181
-        ],
-        "objectBox": null,
-        "alphaCutoff": 240,
-        "fullCanvas": false,
-        "sourceHash": "7461f46be32024e0e441e8c6c8494c67cec4cd01526ab0811ef19261fed21143",
-        "outputHash": "60ed815099066b6998f9347311aceb9519afccf4f5e42fc520d7209238a1469b"
-      }
-    },
-    {
       "id": "fx_hit",
       "label": "fx_hit",
       "category": "effects",
@@ -13049,12 +17090,16 @@
           "hd_male_down_1",
           "hd_male_down_2",
           "hd_male_down_3",
-          "hd_male_down_4"
+          "hd_male_down_4",
+          "hd_male_down_5",
+          "hd_male_down_6",
+          "hd_male_down_7",
+          "hd_male_down_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_male_down_1",
+        "restFrame": "hd_male_down_idle",
         "category": "characters",
         "mapping": "male actual down",
         "canvas": {
@@ -13066,7 +17111,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 59.07692307692307
       },
       {
         "id": "villager_male_a_walk_left",
@@ -13074,12 +17120,16 @@
           "hd_male_left_1",
           "hd_male_left_2",
           "hd_male_left_3",
-          "hd_male_left_4"
+          "hd_male_left_4",
+          "hd_male_left_5",
+          "hd_male_left_6",
+          "hd_male_left_7",
+          "hd_male_left_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_male_left_1",
+        "restFrame": "hd_male_left_idle",
         "category": "characters",
         "mapping": "male actual left",
         "canvas": {
@@ -13091,7 +17141,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 59.07692307692307
       },
       {
         "id": "villager_male_a_walk_up",
@@ -13099,12 +17150,16 @@
           "hd_male_up_1",
           "hd_male_up_2",
           "hd_male_up_3",
-          "hd_male_up_4"
+          "hd_male_up_4",
+          "hd_male_up_5",
+          "hd_male_up_6",
+          "hd_male_up_7",
+          "hd_male_up_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_male_up_1",
+        "restFrame": "hd_male_up_idle",
         "category": "characters",
         "mapping": "male actual up",
         "canvas": {
@@ -13116,7 +17171,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 59.07692307692307
       },
       {
         "id": "villager_male_a_walk_right",
@@ -13124,12 +17180,16 @@
           "hd_male_right_1",
           "hd_male_right_2",
           "hd_male_right_3",
-          "hd_male_right_4"
+          "hd_male_right_4",
+          "hd_male_right_5",
+          "hd_male_right_6",
+          "hd_male_right_7",
+          "hd_male_right_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_male_right_1",
+        "restFrame": "hd_male_right_idle",
         "category": "characters",
         "mapping": "male actual right",
         "canvas": {
@@ -13141,7 +17201,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 59.07692307692307
       },
       {
         "id": "villager_male_a_farm",
@@ -13274,12 +17335,16 @@
           "hd_female_down_1",
           "hd_female_down_2",
           "hd_female_down_3",
-          "hd_female_down_4"
+          "hd_female_down_4",
+          "hd_female_down_5",
+          "hd_female_down_6",
+          "hd_female_down_7",
+          "hd_female_down_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_female_down_1",
+        "restFrame": "hd_female_down_idle",
         "category": "characters",
         "mapping": "female actual down",
         "canvas": {
@@ -13291,7 +17356,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 55.13846153846154
       },
       {
         "id": "villager_female_a_walk_left",
@@ -13299,12 +17365,16 @@
           "hd_female_left_1",
           "hd_female_left_2",
           "hd_female_left_3",
-          "hd_female_left_4"
+          "hd_female_left_4",
+          "hd_female_left_5",
+          "hd_female_left_6",
+          "hd_female_left_7",
+          "hd_female_left_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_female_left_1",
+        "restFrame": "hd_female_left_idle",
         "category": "characters",
         "mapping": "female actual left",
         "canvas": {
@@ -13316,7 +17386,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 55.13846153846154
       },
       {
         "id": "villager_female_a_walk_up",
@@ -13324,12 +17395,16 @@
           "hd_female_up_1",
           "hd_female_up_2",
           "hd_female_up_3",
-          "hd_female_up_4"
+          "hd_female_up_4",
+          "hd_female_up_5",
+          "hd_female_up_6",
+          "hd_female_up_7",
+          "hd_female_up_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_female_up_1",
+        "restFrame": "hd_female_up_idle",
         "category": "characters",
         "mapping": "female actual up",
         "canvas": {
@@ -13341,7 +17416,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 55.13846153846154
       },
       {
         "id": "villager_female_a_walk_right",
@@ -13349,12 +17425,16 @@
           "hd_female_right_1",
           "hd_female_right_2",
           "hd_female_right_3",
-          "hd_female_right_4"
+          "hd_female_right_4",
+          "hd_female_right_5",
+          "hd_female_right_6",
+          "hd_female_right_7",
+          "hd_female_right_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_female_right_1",
+        "restFrame": "hd_female_right_idle",
         "category": "characters",
         "mapping": "female actual right",
         "canvas": {
@@ -13366,7 +17446,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 55.13846153846154
       },
       {
         "id": "villager_female_a_harvest",
@@ -13499,12 +17580,16 @@
           "hd_child_down_1",
           "hd_child_down_2",
           "hd_child_down_3",
-          "hd_child_down_4"
+          "hd_child_down_4",
+          "hd_child_down_5",
+          "hd_child_down_6",
+          "hd_child_down_7",
+          "hd_child_down_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_child_down_1",
+        "restFrame": "hd_child_down_idle",
         "category": "characters",
         "mapping": "child actual down",
         "canvas": {
@@ -13516,7 +17601,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 51.987692307692306
       },
       {
         "id": "villager_girl_walk",
@@ -13524,12 +17610,16 @@
           "hd_child_down_1",
           "hd_child_down_2",
           "hd_child_down_3",
-          "hd_child_down_4"
+          "hd_child_down_4",
+          "hd_child_down_5",
+          "hd_child_down_6",
+          "hd_child_down_7",
+          "hd_child_down_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_child_down_1",
+        "restFrame": "hd_child_down_idle",
         "category": "characters",
         "mapping": "child actual down",
         "canvas": {
@@ -13541,7 +17631,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 51.987692307692306
       },
       {
         "id": "villager_boy_walk_left",
@@ -13549,12 +17640,16 @@
           "hd_child_left_1",
           "hd_child_left_2",
           "hd_child_left_3",
-          "hd_child_left_4"
+          "hd_child_left_4",
+          "hd_child_left_5",
+          "hd_child_left_6",
+          "hd_child_left_7",
+          "hd_child_left_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_child_left_1",
+        "restFrame": "hd_child_left_idle",
         "category": "characters",
         "mapping": "child actual left",
         "canvas": {
@@ -13566,7 +17661,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 51.987692307692306
       },
       {
         "id": "villager_girl_walk_left",
@@ -13574,12 +17670,16 @@
           "hd_child_left_1",
           "hd_child_left_2",
           "hd_child_left_3",
-          "hd_child_left_4"
+          "hd_child_left_4",
+          "hd_child_left_5",
+          "hd_child_left_6",
+          "hd_child_left_7",
+          "hd_child_left_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_child_left_1",
+        "restFrame": "hd_child_left_idle",
         "category": "characters",
         "mapping": "child actual left",
         "canvas": {
@@ -13591,7 +17691,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 51.987692307692306
       },
       {
         "id": "villager_boy_walk_up",
@@ -13599,12 +17700,16 @@
           "hd_child_up_1",
           "hd_child_up_2",
           "hd_child_up_3",
-          "hd_child_up_4"
+          "hd_child_up_4",
+          "hd_child_up_5",
+          "hd_child_up_6",
+          "hd_child_up_7",
+          "hd_child_up_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_child_up_1",
+        "restFrame": "hd_child_up_idle",
         "category": "characters",
         "mapping": "child actual up",
         "canvas": {
@@ -13616,7 +17721,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 51.987692307692306
       },
       {
         "id": "villager_girl_walk_up",
@@ -13624,12 +17730,16 @@
           "hd_child_up_1",
           "hd_child_up_2",
           "hd_child_up_3",
-          "hd_child_up_4"
+          "hd_child_up_4",
+          "hd_child_up_5",
+          "hd_child_up_6",
+          "hd_child_up_7",
+          "hd_child_up_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_child_up_1",
+        "restFrame": "hd_child_up_idle",
         "category": "characters",
         "mapping": "child actual up",
         "canvas": {
@@ -13641,7 +17751,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 51.987692307692306
       },
       {
         "id": "villager_boy_walk_right",
@@ -13649,12 +17760,16 @@
           "hd_child_right_1",
           "hd_child_right_2",
           "hd_child_right_3",
-          "hd_child_right_4"
+          "hd_child_right_4",
+          "hd_child_right_5",
+          "hd_child_right_6",
+          "hd_child_right_7",
+          "hd_child_right_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_child_right_1",
+        "restFrame": "hd_child_right_idle",
         "category": "characters",
         "mapping": "child actual right",
         "canvas": {
@@ -13666,7 +17781,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 51.987692307692306
       },
       {
         "id": "villager_girl_walk_right",
@@ -13674,12 +17790,16 @@
           "hd_child_right_1",
           "hd_child_right_2",
           "hd_child_right_3",
-          "hd_child_right_4"
+          "hd_child_right_4",
+          "hd_child_right_5",
+          "hd_child_right_6",
+          "hd_child_right_7",
+          "hd_child_right_8"
         ],
-        "frameCount": 4,
-        "fps": 6,
+        "frameCount": 8,
+        "fps": 16,
         "loop": true,
-        "restFrame": "hd_child_right_1",
+        "restFrame": "hd_child_right_idle",
         "category": "characters",
         "mapping": "child actual right",
         "canvas": {
@@ -13691,7 +17811,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 51.987692307692306
       },
       {
         "id": "villager_elder_male_walk",
@@ -13699,12 +17820,16 @@
           "hd_elder_down_1",
           "hd_elder_down_2",
           "hd_elder_down_3",
-          "hd_elder_down_4"
+          "hd_elder_down_4",
+          "hd_elder_down_5",
+          "hd_elder_down_6",
+          "hd_elder_down_7",
+          "hd_elder_down_8"
         ],
-        "frameCount": 4,
-        "fps": 4,
+        "frameCount": 8,
+        "fps": 12,
         "loop": true,
-        "restFrame": "hd_elder_down_1",
+        "restFrame": "hd_elder_down_idle",
         "category": "characters",
         "mapping": "elder actual down",
         "canvas": {
@@ -13716,7 +17841,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 34.65846153846154
       },
       {
         "id": "villager_elder_female_walk",
@@ -13724,12 +17850,16 @@
           "hd_elder_down_1",
           "hd_elder_down_2",
           "hd_elder_down_3",
-          "hd_elder_down_4"
+          "hd_elder_down_4",
+          "hd_elder_down_5",
+          "hd_elder_down_6",
+          "hd_elder_down_7",
+          "hd_elder_down_8"
         ],
-        "frameCount": 4,
-        "fps": 4,
+        "frameCount": 8,
+        "fps": 12,
         "loop": true,
-        "restFrame": "hd_elder_down_1",
+        "restFrame": "hd_elder_down_idle",
         "category": "characters",
         "mapping": "elder actual down",
         "canvas": {
@@ -13741,7 +17871,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 34.65846153846154
       },
       {
         "id": "villager_elder_male_walk_left",
@@ -13749,12 +17880,16 @@
           "hd_elder_left_1",
           "hd_elder_left_2",
           "hd_elder_left_3",
-          "hd_elder_left_4"
+          "hd_elder_left_4",
+          "hd_elder_left_5",
+          "hd_elder_left_6",
+          "hd_elder_left_7",
+          "hd_elder_left_8"
         ],
-        "frameCount": 4,
-        "fps": 4,
+        "frameCount": 8,
+        "fps": 12,
         "loop": true,
-        "restFrame": "hd_elder_left_1",
+        "restFrame": "hd_elder_left_idle",
         "category": "characters",
         "mapping": "elder actual left",
         "canvas": {
@@ -13766,7 +17901,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 34.65846153846154
       },
       {
         "id": "villager_elder_female_walk_left",
@@ -13774,12 +17910,16 @@
           "hd_elder_left_1",
           "hd_elder_left_2",
           "hd_elder_left_3",
-          "hd_elder_left_4"
+          "hd_elder_left_4",
+          "hd_elder_left_5",
+          "hd_elder_left_6",
+          "hd_elder_left_7",
+          "hd_elder_left_8"
         ],
-        "frameCount": 4,
-        "fps": 4,
+        "frameCount": 8,
+        "fps": 12,
         "loop": true,
-        "restFrame": "hd_elder_left_1",
+        "restFrame": "hd_elder_left_idle",
         "category": "characters",
         "mapping": "elder actual left",
         "canvas": {
@@ -13791,7 +17931,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 34.65846153846154
       },
       {
         "id": "villager_elder_male_walk_up",
@@ -13799,12 +17940,16 @@
           "hd_elder_up_1",
           "hd_elder_up_2",
           "hd_elder_up_3",
-          "hd_elder_up_4"
+          "hd_elder_up_4",
+          "hd_elder_up_5",
+          "hd_elder_up_6",
+          "hd_elder_up_7",
+          "hd_elder_up_8"
         ],
-        "frameCount": 4,
-        "fps": 4,
+        "frameCount": 8,
+        "fps": 12,
         "loop": true,
-        "restFrame": "hd_elder_up_1",
+        "restFrame": "hd_elder_up_idle",
         "category": "characters",
         "mapping": "elder actual up",
         "canvas": {
@@ -13816,7 +17961,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 34.65846153846154
       },
       {
         "id": "villager_elder_female_walk_up",
@@ -13824,12 +17970,16 @@
           "hd_elder_up_1",
           "hd_elder_up_2",
           "hd_elder_up_3",
-          "hd_elder_up_4"
+          "hd_elder_up_4",
+          "hd_elder_up_5",
+          "hd_elder_up_6",
+          "hd_elder_up_7",
+          "hd_elder_up_8"
         ],
-        "frameCount": 4,
-        "fps": 4,
+        "frameCount": 8,
+        "fps": 12,
         "loop": true,
-        "restFrame": "hd_elder_up_1",
+        "restFrame": "hd_elder_up_idle",
         "category": "characters",
         "mapping": "elder actual up",
         "canvas": {
@@ -13841,7 +17991,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 34.65846153846154
       },
       {
         "id": "villager_elder_male_walk_right",
@@ -13849,12 +18000,16 @@
           "hd_elder_right_1",
           "hd_elder_right_2",
           "hd_elder_right_3",
-          "hd_elder_right_4"
+          "hd_elder_right_4",
+          "hd_elder_right_5",
+          "hd_elder_right_6",
+          "hd_elder_right_7",
+          "hd_elder_right_8"
         ],
-        "frameCount": 4,
-        "fps": 4,
+        "frameCount": 8,
+        "fps": 12,
         "loop": true,
-        "restFrame": "hd_elder_right_1",
+        "restFrame": "hd_elder_right_idle",
         "category": "characters",
         "mapping": "elder actual right",
         "canvas": {
@@ -13866,7 +18021,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 34.65846153846154
       },
       {
         "id": "villager_elder_female_walk_right",
@@ -13874,12 +18030,16 @@
           "hd_elder_right_1",
           "hd_elder_right_2",
           "hd_elder_right_3",
-          "hd_elder_right_4"
+          "hd_elder_right_4",
+          "hd_elder_right_5",
+          "hd_elder_right_6",
+          "hd_elder_right_7",
+          "hd_elder_right_8"
         ],
-        "frameCount": 4,
-        "fps": 4,
+        "frameCount": 8,
+        "fps": 12,
         "loop": true,
-        "restFrame": "hd_elder_right_1",
+        "restFrame": "hd_elder_right_idle",
         "category": "characters",
         "mapping": "elder actual right",
         "canvas": {
@@ -13891,7 +18051,8 @@
           "y": 217.069824
         },
         "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 34.65846153846154
       },
       {
         "id": "villager_elder_male_idle",

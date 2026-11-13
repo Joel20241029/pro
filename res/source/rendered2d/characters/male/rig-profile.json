@@ -1,12 +1,12 @@
 {
   "role": "male",
-  "basis": "2026-11-13 measured landmarks retained from the existing male high-resolution GLB. Shoe sole region now rigidly follows Foot; independent sole grounding replaces the old whole-mesh grounding. Authoring-only unit-height proportions; changing them requires four-direction deformation review.",
+  "basis": "2026-11-13 measured landmarks retained from the existing male high-resolution GLB. Shoe sole region now rigidly follows Foot; independent sole grounding replaces the old whole-mesh grounding. Authoring-only unit-height proportions; changing them requires four-direction deformation review. Eight-frame opposite-phase stance/swing cycle; support shoe travels backward while the opposite foot lifts forward. Side-view stride stored for distance playback; child/elder keep their own amplitudes.",
   "groundAnchor": [
     -0.025,
     0,
     0
   ],
-  "fps": 6,
+  "fps": 16,
   "bones": {
     "Root": [
       [
@@ -232,56 +232,147 @@
   "elbowBend": -0.12,
   "poses": [
     {
+      "swing": -1.0,
+      "bodyZ": -0.032,
+      "bodyY": 0,
+      "support": "L",
       "L": [
-        0.055,
+        -0.045,
         0
       ],
       "R": [
-        -0.055,
+        0.105,
         0
-      ],
-      "swing": -1,
-      "bodyZ": -0.018,
-      "bodyY": 0
+      ]
     },
     {
+      "swing": -0.707107,
+      "bodyZ": -0.026,
+      "bodyY": 0,
+      "support": "L",
       "L": [
-        -0.005,
-        0.055
-      ],
-      "R": [
-        0.005,
+        -0.0075,
         0
       ],
-      "swing": 0,
-      "bodyZ": -0.006,
-      "bodyY": 0
+      "R": [
+        0.0675,
+        0.021213
+      ]
     },
     {
+      "swing": -0.0,
+      "bodyZ": -0.02,
+      "bodyY": 0,
+      "support": "L",
       "L": [
-        -0.055,
+        0.03,
         0
       ],
       "R": [
-        0.055,
-        0
-      ],
-      "swing": 1,
-      "bodyZ": -0.018,
-      "bodyY": 0
+        0.03,
+        0.03
+      ]
     },
     {
+      "swing": 0.707107,
+      "bodyZ": -0.026,
+      "bodyY": 0,
+      "support": "L",
       "L": [
-        0.005,
+        0.0675,
         0
       ],
       "R": [
-        -0.005,
-        0.055
+        -0.0075,
+        0.021213
+      ]
+    },
+    {
+      "swing": 1.0,
+      "bodyZ": -0.032,
+      "bodyY": 0,
+      "support": "R",
+      "L": [
+        0.105,
+        0
       ],
-      "swing": 0,
-      "bodyZ": -0.006,
-      "bodyY": 0
+      "R": [
+        -0.045,
+        0
+      ]
+    },
+    {
+      "swing": 0.707107,
+      "bodyZ": -0.026,
+      "bodyY": 0,
+      "support": "R",
+      "L": [
+        0.0675,
+        0.021213
+      ],
+      "R": [
+        -0.0075,
+        0
+      ]
+    },
+    {
+      "swing": 0.0,
+      "bodyZ": -0.02,
+      "bodyY": 0,
+      "support": "R",
+      "L": [
+        0.03,
+        0.03
+      ],
+      "R": [
+        0.03,
+        0
+      ]
+    },
+    {
+      "swing": -0.707107,
+      "bodyZ": -0.026,
+      "bodyY": 0,
+      "support": "R",
+      "L": [
+        -0.0075,
+        0.021213
+      ],
+      "R": [
+        0.0675,
+        0
+      ]
     }
-  ]
+  ],
+  "walkCycle": {
+    "frames": 8,
+    "strideModelUnits": 0.3,
+    "strideCanvasPixels": 59.07692307692307,
+    "orthoScale": 1.3,
+    "cadenceBasis": "side-view grounded stride; common phase across direction changes",
+    "supportSequence": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "R",
+      "R",
+      "R",
+      "R"
+    ]
+  },
+  "idlePose": {
+    "L": [
+      0,
+      0
+    ],
+    "R": [
+      0,
+      0
+    ],
+    "swing": 0,
+    "bodyZ": 0,
+    "bodyY": 0,
+    "support": "BOTH"
+  }
 }

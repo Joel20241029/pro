@@ -1,96 +1,208 @@
 {
-  "status": "four_direction_walk_candidate_not_integrated",
-  "method": "Blender actual offline rendering",
+  "status": "integrated_hd2d_eight_frame_walk",
+  "method": "actual Blender offline rendering",
   "source": "res/source/rendered2d/characters/male/male_direction_probe.blend",
+  "walkFramesPerDirection": 8,
+  "restFramesPerDirection": 1,
+  "previewFps": 16,
+  "runtimeCadence": "actual distance / measured stride",
+  "stride": {
+    "frames": 8,
+    "strideModelUnits": 0.3,
+    "strideCanvasPixels": 59.07692307692307,
+    "orthoScale": 1.3,
+    "cadenceBasis": "side-view grounded stride; common phase across direction changes",
+    "supportSequence": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "R",
+      "R",
+      "R",
+      "R"
+    ]
+  },
   "frames": [
     {
       "file": "male_down_1.png",
-      "bytes": 262164,
-      "sha256": "14e042c91614934aadd4afbc22bf38b7ad74e5d4972d2a548dfbce1ff52e7159"
+      "bytes": 260833,
+      "sha256": "76086b1d72b0d26526cb017944fb50ef12f7144450f725b0ff5db299e7759145"
     },
     {
       "file": "male_down_2.png",
-      "bytes": 261935,
-      "sha256": "acf31eda3286232eccf90a8df30ca9e9df60387750b629a0c563554f7cbb48ba"
+      "bytes": 260421,
+      "sha256": "86e151db236abe5caa3d627b73058c48fbf2342a7961525bb3fd81a1f5045bbb"
     },
     {
       "file": "male_down_3.png",
-      "bytes": 263359,
-      "sha256": "1fe99127dcbc78edcc36333933a80ca2c8c86c891b05daec23bf789fc1ef279d"
+      "bytes": 260705,
+      "sha256": "7defcb7be7491bd4db2701406b78f7ee292421b883cfccf006b791d8801134eb"
     },
     {
       "file": "male_down_4.png",
-      "bytes": 262000,
-      "sha256": "8a6fea8c414302efd4d8f559de380368bd30d2669e736cc72b7b179fb983178c"
+      "bytes": 260310,
+      "sha256": "cba4c3d2bee214bde6882064abd6d79f9e457eedc4a68ec08bc26f69b833ec3f"
+    },
+    {
+      "file": "male_down_5.png",
+      "bytes": 260510,
+      "sha256": "43170b41c77c8db0ea3eee9f2e84eed1660916ee99353b0e5fcd73fa833115ad"
+    },
+    {
+      "file": "male_down_6.png",
+      "bytes": 260519,
+      "sha256": "3c6d6c778ca116fccc847e0dd88e6c4fc9beee70a47a12984930f984202f5f27"
+    },
+    {
+      "file": "male_down_7.png",
+      "bytes": 260462,
+      "sha256": "6ae0ceb6a2a941b59a2ba716b3c8e8568230207151dbb881cf7bef39cd3252e2"
+    },
+    {
+      "file": "male_down_8.png",
+      "bytes": 260239,
+      "sha256": "9c5be23f6a15fbf769b05a3b18ad91c75676ea11828e50f46a38c99713d76e0e"
+    },
+    {
+      "file": "male_down_idle.png",
+      "bytes": 264991,
+      "sha256": "5a8c478f1a5cd5edacda0b5279a7e176edf30e7bc4a10c2745ae9f0239c44f20"
     },
     {
       "file": "male_left_1.png",
-      "bytes": 238578,
-      "sha256": "7976f6220b9f3229cd15b595f5d1abf70027c6e9c672029a7d6b47618cf81810"
+      "bytes": 242666,
+      "sha256": "ff9423920143549941b1abcdedd5852dcc46052a86e074869d245aa46580880b"
     },
     {
       "file": "male_left_2.png",
-      "bytes": 238198,
-      "sha256": "f456311232350e47f578b02e334e2c7f7a15b3768fe955c648a742ceda7c017e"
+      "bytes": 240529,
+      "sha256": "05b8f027b9bb9f5586d4bf961ce415ef50b26a57c905391a93a48d25302e8170"
     },
     {
       "file": "male_left_3.png",
-      "bytes": 242178,
-      "sha256": "5b65a3de1b0280d3a01a1b53dbeea123851ade20215cd3ccccd004c6a285fcb5"
+      "bytes": 240396,
+      "sha256": "ec278b7d4cd7adf0505e1f94a63371ece743aacbc2bbbb7838df57f8de1c84a7"
     },
     {
       "file": "male_left_4.png",
-      "bytes": 239657,
-      "sha256": "b318a4526f7ee9daf0d9f200f019dedc257a873f55d32d5ece4899bb4e069d6b"
+      "bytes": 238876,
+      "sha256": "7a37626fab1d0ac8da9576cf6a1b979171022e9cd076d8ef895551554f281668"
+    },
+    {
+      "file": "male_left_5.png",
+      "bytes": 238308,
+      "sha256": "1f108105f3809d3b027d15266be580079fef4ebdd2b8d0da596b77a188601605"
+    },
+    {
+      "file": "male_left_6.png",
+      "bytes": 237429,
+      "sha256": "0987120db4192db6949d76c3dc879cac11aaaba17ce392ba406cf7ea99c86227"
+    },
+    {
+      "file": "male_left_7.png",
+      "bytes": 238499,
+      "sha256": "f3311ad5974a994af0ee67d77307144005883046b682c640a7f64ad1c4ff1f63"
+    },
+    {
+      "file": "male_left_8.png",
+      "bytes": 239864,
+      "sha256": "be51084092587bdea4b126b3786a5b4f86232ad55490c6c8ec41ee8dbe5613f0"
+    },
+    {
+      "file": "male_left_idle.png",
+      "bytes": 241415,
+      "sha256": "f1ea2cbaa2dcd4886e4f995ce4369130d614fb7f65ecc2cd8921b299444ea2d6"
     },
     {
       "file": "male_right_1.png",
-      "bytes": 239363,
-      "sha256": "aec7528a6494fbd16e9e5114d745d7b071b5a274775b19244dd3b4d8bf9b7bc2"
+      "bytes": 243168,
+      "sha256": "3bfa05094fae615ddf1c455be5500be39abba26c411b4ce71f52f94800d87785"
     },
     {
       "file": "male_right_2.png",
-      "bytes": 240134,
-      "sha256": "a65a442e1919e63b9f53b96c9f39f26b7cf2d56f57c6f1f256948357829d095f"
+      "bytes": 240120,
+      "sha256": "df28dec710e7ec420301e1fd3e0b805d46607670ecf49947ba8920231025db89"
     },
     {
       "file": "male_right_3.png",
-      "bytes": 242898,
-      "sha256": "29550e2fff4001d267e1a9db97d84869c428d10f83bb2e44cf76e96db8c95d03"
+      "bytes": 238401,
+      "sha256": "de5e3e3ef5eea9e1d3ccf3da798c0d2b15e1a17e9b61505029c8be04e1223b34"
     },
     {
       "file": "male_right_4.png",
-      "bytes": 238038,
-      "sha256": "9ce7f0f2d27c69aa517a27372c0ab8a9709be673b525029c87b6997955d1553c"
+      "bytes": 237535,
+      "sha256": "51958913eb9db31c5e89b58d7011752b64fbc276be60487478ca4880272044c6"
+    },
+    {
+      "file": "male_right_5.png",
+      "bytes": 239325,
+      "sha256": "09f19a081e83bc2d42f406dfd45a5a4f63d1836f059ac4d9e4eab90c098e1edf"
+    },
+    {
+      "file": "male_right_6.png",
+      "bytes": 238632,
+      "sha256": "1bd0bd1f1307f400882d745a99d1b751dd191879e2025ceee2ceba6a1811e4bb"
+    },
+    {
+      "file": "male_right_7.png",
+      "bytes": 239798,
+      "sha256": "d2194612dfd4b2edd216f86c19f2d74575d218c266e4d4006f49c10d392d548f"
+    },
+    {
+      "file": "male_right_8.png",
+      "bytes": 240805,
+      "sha256": "2948b17f0399e8f4f2e99c70cfe2f481f5ed05d4d557b98d4ea346d1a45d531f"
+    },
+    {
+      "file": "male_right_idle.png",
+      "bytes": 242175,
+      "sha256": "53b5386cd27922dfeaf29448578ab266c2561e216f94629a42bb85f48cacda43"
     },
     {
       "file": "male_up_1.png",
-      "bytes": 247742,
-      "sha256": "d8b974813b7cc2a0d15c4e98ae905e848a2ba085139bd2b5c1c7d99df1f4172f"
+      "bytes": 247680,
+      "sha256": "46d162a7674ae260df87b2db8ec21fb93aec2d980d248c1d2eada4af9c2563d9"
     },
     {
       "file": "male_up_2.png",
-      "bytes": 246916,
-      "sha256": "ed308623fffe2db113c12d60ea6b4f5d2282f44b33c049fdfbd38e9cddbc6946"
+      "bytes": 246370,
+      "sha256": "20fe1d530392dd5f6f688fd5b42fbcaed5131aa384f36abbea3b66ebe6cd516f"
     },
     {
       "file": "male_up_3.png",
-      "bytes": 248480,
-      "sha256": "094cec9f306c525b76594c9204d0ff14586b5cb07771627331f3811c5d457cc1"
+      "bytes": 246251,
+      "sha256": "effa666ee99d3a5d6740de7a27028c1cfa15e0a12fec4527d19cec7aaa3ab645"
     },
     {
       "file": "male_up_4.png",
-      "bytes": 246259,
-      "sha256": "adf01d344e14757b4ef2ef9883adb80236660a5c19a44637fd1f9020d1b25a9b"
+      "bytes": 246599,
+      "sha256": "b841affe7816886194277d40bb965e59856cb2cfd4958da62a266b12e21eaf96"
+    },
+    {
+      "file": "male_up_5.png",
+      "bytes": 247872,
+      "sha256": "1cc753d25c6d5526f1251003b2f49c398755e3a873e6af35754b5d77c9aa51f3"
+    },
+    {
+      "file": "male_up_6.png",
+      "bytes": 246762,
+      "sha256": "072dcc3c39dd48bd06e1a98bbbd4763a4fa214393781367f28ee33ef85609953"
+    },
+    {
+      "file": "male_up_7.png",
+      "bytes": 247436,
+      "sha256": "a55f5ac8583a686d8fa536634d3e8195b61137af3613c3eda9495fcf5b76eea7"
+    },
+    {
+      "file": "male_up_8.png",
+      "bytes": 246944,
+      "sha256": "040d730fd615227d1643327831673817abe2d5b68a2476708f5be0114093ef07"
+    },
+    {
+      "file": "male_up_idle.png",
+      "bytes": 249386,
+      "sha256": "f3765aff66f786c4141396367b20fed14fcd6034bb444932a4dcd5444ad9dd51"
     }
-  ],
-  "frameSize": [
-    512,
-    512
-  ],
-  "fps": 6,
-  "mirror": false,
-  "maxRigidError": 1.0803341865539551e-07,
-  "runtimeChanged": false,
-  "footValidation": "res/source/rendered2d/characters/male/foot-validation.json"
+  ]
 }

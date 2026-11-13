@@ -11,7 +11,7 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
     const day = s.phase === "DAY";
     if (p.type === "build") {
         const box = ctx.modal("建设村落", `木材 ${amount(s.wood)}   粮食 ${amount(s.food)}   仓储各 ${amount(storageCapacity(s))}\n红字表示材料不足，向上滑动查看更多。`);
-        const rows = new ScrollList(UI.contentWidth, 560, 6 * 196 - 12, p.scroll, offset => p.scroll = offset);
+        const rows = new ScrollList(UI.contentWidth, 560, 6 * 220 - 12, p.scroll, offset => p.scroll = offset);
         rows.pos(34, 222);
         box.addChild(rows);
         const definitions: [
@@ -28,10 +28,10 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
         ];
         definitions.forEach(([kind, level, icon, title, effect], i) => {
             const cost = upgradeCost(kind, level);
-            ctx.ui.buildRow(rows.content, i * 196, icon, `${title} · ${amount(level)} 阶`, effect, `木 ${resourceCost(s.wood, cost.wood)}  粮 ${resourceCost(s.food, cost.food)}`, upgradeUnavailableReason(s, cost), () => ctx.send({ type: "BUILD", kind: kind as "FARM" | "LOGGING" | "HOUSING" | "GATE" }));
+            ctx.ui.buildRow(rows.content, i * 220, icon, `${title} · ${amount(level)} 阶`, effect, `木 ${resourceCost(s.wood, cost.wood)}  粮 ${resourceCost(s.food, cost.food)}`, upgradeUnavailableReason(s, cost), () => ctx.send({ type: "BUILD", kind: kind as "FARM" | "LOGGING" | "HOUSING" | "GATE" }));
         });
-        ctx.ui.buildRow(rows.content, 4 * 196, "icon_build", `增建民居 · ${s.houses}/${RULE.houseMax} 间`, `住房 ${capacity(s)} → ${Math.min(RULE.populationCap, capacity(s) + RULE.houseCapacity)} 人`, `木 ${resourceCost(s.wood, RULE.houseCost)}`, !day ? "请在白天建设" : s.houses >= RULE.houseMax ? `已达 ${RULE.houseMax} 间；修缮可继续扩仓储` : s.wood < RULE.houseCost ? `还缺 ${RULE.houseCost - s.wood} 木材` : null, () => ctx.send({ type: "BUILD", kind: "HOUSE" }), "增建");
-        ctx.ui.buildRow(rows.content, 5 * 196, "icon_shield", "修复城门", `当前耐久 ${amount(s.gate)}/${amount(gateCapacity(s))}`, `木 ${resourceCost(s.wood, repairCost(s))}`, !day ? "请在白天修门" : s.gate >= gateCapacity(s) ? "城门完好，无需修复" : s.wood < repairCost(s) ? `还缺 ${repairCost(s) - s.wood} 木材` : null, () => ctx.send({ type: "REPAIR" }), "修复");
+        ctx.ui.buildRow(rows.content, 4 * 220, "icon_build", `增建民居 · ${s.houses}/${RULE.houseMax} 间`, `住房 ${capacity(s)} → ${Math.min(RULE.populationCap, capacity(s) + RULE.houseCapacity)} 人`, `木 ${resourceCost(s.wood, RULE.houseCost)}`, !day ? "请在白天建设" : s.houses >= RULE.houseMax ? `已达 ${RULE.houseMax} 间；修缮可继续扩仓储` : s.wood < RULE.houseCost ? `还缺 ${RULE.houseCost - s.wood} 木材` : null, () => ctx.send({ type: "BUILD", kind: "HOUSE" }), "增建");
+        ctx.ui.buildRow(rows.content, 5 * 220, "icon_shield", "修复城门", `当前耐久 ${amount(s.gate)}/${amount(gateCapacity(s))}`, `木 ${resourceCost(s.wood, repairCost(s))}`, !day ? "请在白天修门" : s.gate >= gateCapacity(s) ? "城门完好，无需修复" : s.wood < repairCost(s) ? `还缺 ${repairCost(s) - s.wood} 木材` : null, () => ctx.send({ type: "REPAIR" }), "修复");
         ctx.ui.label(box, "点击地图防塔，可升级或调任驻守村民。", 34, 794, 600, 26, C.muted, false, 44).align = "center";
         return;
     }

@@ -23,7 +23,7 @@ export interface MenuBounds {
     height: number;
 }
 /** 固定720宽、动态高度的纯表现布局，不修改PATH/PADS、射程或战斗推进速度。
- * 基准地图的顶边246、城墙足底830、底边1038来自原VillageScene；只映射位置，图片不拉伸。
+ * 地图北端160给高级塔顶部留白，城墙足底830、底边1038来自原VillageScene；只映射位置，图片不拉伸。
  */
 export class GameLayout {
     readonly height: number;
@@ -54,7 +54,7 @@ export class GameLayout {
         const mapHeight = this.footerTop - this.mapTop;
         const battleHeight = Math.min(LAYOUT.battleMax, mapHeight - LAYOUT.villageMin, Math.max(LAYOUT.battleMin, mapHeight * LAYOUT.battleRatio));
         this.gateY = this.mapTop + battleHeight;
-        // 高清成人画布80～84；短屏也保留可辨识尺寸，长屏不无限放大。
+        // 高清成人画布86～90；短屏也保留可辨识尺寸，长屏不无限放大。
         this.personScale = Math.min(LAYOUT.personMax, LAYOUT.personMin + Math.max(0, this.footerTop - this.gateY - LAYOUT.personGrowthHeight) / LAYOUT.personGrowthStep) / LAYOUT.personBase;
     }
     worldY(y: number): number {
