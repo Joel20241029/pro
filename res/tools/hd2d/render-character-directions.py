@@ -36,7 +36,7 @@ camera.data.ortho_scale = 1.30
 records = []
 # Same unit-height tolerance as the male test; catches detached IK targets.
 tolerance = .0001
-for frame in range(1, 5):
+for frame in range(1, len(profile['poses']) + 2):
     root.rotation_euler = (0, 0, 0)
     scene.frame_set(frame)
     bpy.context.view_layer.update()
@@ -50,7 +50,7 @@ for frame in range(1, 5):
         transform = Matrix.Translation(anchor) @ Matrix.Rotation(math.radians(angle), 4, 'Z') @ Matrix.Translation(-anchor)
         error = max((actual - transform @ original).length for actual, original in zip(vertices, baseline))
         assert error < tolerance, (role, name, frame, error)
-        file = f'{role}_{name}_{frame}.png'
+        file = f'{role}_{name}_{frame}.png' if frame <= len(profile['poses']) else f'{role}_{name}_idle.png'
         scene.render.filepath = str(output / file)
         bpy.ops.render.render(write_still=True)
         records.append({'direction': name, 'frame': frame, 'rootYawDegrees': angle,
@@ -62,7 +62,7 @@ bpy.context.view_layer.update()
 bpy.ops.wm.save_as_mainfile(filepath=str(output / f'{role}_direction_probe.blend'))
 (output / 'direction-report.json').write_text(json.dumps({
     'role': role, 'status': 'four_direction_motion_candidate_not_integrated',
-    'cameraAndLightsFixed': True, 'mirror': False, 'framesPerDirection': 4,
+    'cameraAndLightsFixed': True, 'mirror': False, 'framesPerDirection': len(profile['poses']),
     'fps': profile['fps'], 'groundAnchor': list(anchor), 'camera': list(camera.location),
     'rigidTolerance': tolerance, 'views': records,
     'inputs': [{'file': p.name, 'sha256': hashlib.sha256(p.read_bytes()).hexdigest()}

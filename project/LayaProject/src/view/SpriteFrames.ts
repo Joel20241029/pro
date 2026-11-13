@@ -5,7 +5,7 @@ import { ENEMY_LOOKS } from "./config/EnemyVisualConfig";
 import { ResourceBundle, RESOURCE_BUNDLES } from "../config/ResourceConfig";
 import { Person, isElder } from "../game/GameState";
 interface Frame { page: string; rect: { x: number; y: number; w: number; h: number }; sourceSize: { w: number; h: number }; trimOffset: { x: number; y: number }; pivot: { x: number; y: number }; nineSlice: { top: number; right: number; bottom: number; left: number; repeat: number } | null; }
-interface Clip { id: string; frameIds: string[]; fps: number; restFrame: string; }
+interface Clip { id: string; frameIds: string[]; fps: number; restFrame: string; canvas: { w: number; h: number }; stridePixels?: number; }
 interface EnemyDefinition { canvas: number; fps: number; foot: { x: number; y: number }; frames: { body: string; head: { x: number; y: number }; back: { x: number; y: number } }[]; }
 /** 高清预渲染二维合同：恢复源画布、共同足底与真实方向，九宫格保留原图渐变。 */
 export class SpriteFrames {
@@ -110,9 +110,11 @@ export class SpriteFrames {
     }
     get(id: string): Laya.Texture { const t = this.textures.get(id); if (!t) throw new Error(`未声明的图片：${id}`); return t; }
     frameId(clipId: string, time: number, animated = true): string {
-        const clip = this.clips.get(clipId); if (!clip) throw new Error(`未声明的动画：${clipId}`);
+        const clip = this.animation(clipId);
         return animated ? clip.frameIds[Math.floor(time * clip.fps) % clip.frameIds.length] : clip.restFrame;
     }
+    /** 完整母画布与整轮步幅供距离驱动行走使用；不能用裁切后的纹理宽度替代。 */
+    animation(clipId: string): Readonly<Clip> { const clip = this.clips.get(clipId); if (!clip) throw new Error(`未声明的动画：${clipId}`); return clip; }
     /** 复用原二维人物选择规则，家谱按男女老人静止帧；不改变 Person 的性别与年龄。 */
     portraitId(person: Person, historical = false): string {
         const clip = historical || isElder(person) ? `villager_elder_${person.sex === "MALE" ? "male" : "female"}_idle` : person.adult ? `villager_${person.appearance}_walk` : person.growth === 0 ? "villager_baby_idle" : `villager_${person.sex === "MALE" ? "boy" : "girl"}_walk`;

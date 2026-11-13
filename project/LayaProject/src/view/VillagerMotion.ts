@@ -17,6 +17,8 @@ export function walkDirection(dx: number, dy: number, previous: WalkDirection): 
 export interface VillagerPose extends GroundPoint {
     id: string; direction: WalkDirection; walking: boolean; insideTower: boolean; clip: string; animated: boolean; elapsed: number;
     heartElapsed: number | null; mirror: boolean;
+    /** 纯视觉累计路程；逐寻路段累计，停止、调岗和换屏都不重置，不写入存档。 */
+    walkDistance: number;
 }
 interface MovingPerson extends VillagerPose {
     signature: string; plan: Visit[]; routine: Visit[]; wedding: boolean; visit: number; route: GroundPoint[]; remaining: number; person: Person;
@@ -102,7 +104,7 @@ export class VillagerMotion {
             let m = this.people.get(p.id);
             if (!m) {
                 const home = !p.adult && p.growth === 0 ? this.stops.rest[this.campSlots.get(p.id)!] : this.stops.homes[(sequence - 1) % this.stops.homes.length];
-                m = { ...home, id: p.id, direction: "DOWN", walking: false, insideTower: false, clip: "", animated: false, elapsed: 0, heartElapsed: null, mirror: false, signature: "", plan: [], routine: [], wedding: false, visit: 0, route: [], remaining: 0, person: p };
+                m = { ...home, id: p.id, direction: "DOWN", walking: false, insideTower: false, clip: "", animated: false, elapsed: 0, heartElapsed: null, mirror: false, walkDistance: 0, signature: "", plan: [], routine: [], wedding: false, visit: 0, route: [], remaining: 0, person: p };
                 this.people.set(p.id, m);
             }
             m.person = p;
@@ -200,6 +202,7 @@ export class VillagerMotion {
             let travel = (isElder(m.person) ? MOTION.elderSpeed : m.person.adult ? MOTION.adultSpeed : MOTION.childSpeed) * dt;
             while (m.route.length && travel > 0) {
                 const next = m.route[0], d = distance(m, next), dx = next.x - m.x, dy = next.y - m.y;
+                m.walkDistance += Math.min(d, travel);
                 if (d > .01) m.direction = walkDirection(dx, dy, m.direction);
                 if (d <= travel) { m.x = next.x; m.y = next.y; travel -= d; m.route.shift(); }
                 else { m.x += dx / d * travel; m.y += (next.y - m.y) / d * travel; travel = 0; }

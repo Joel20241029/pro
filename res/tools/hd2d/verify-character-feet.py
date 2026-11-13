@@ -38,7 +38,7 @@ for vertex in mesh.data.vertices:
 assert all(sole.values()) and all(feet.values())
 
 checks = []
-for frame, pose in enumerate(profile['poses'], 1):
+for frame, pose in enumerate(profile['poses'] + [profile['idlePose']], 1):
     bpy.context.scene.frame_set(frame)
     bpy.context.view_layer.update()
     evaluated = mesh.evaluated_get(bpy.context.evaluated_depsgraph_get())
@@ -66,7 +66,7 @@ for frame, pose in enumerate(profile['poses'], 1):
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(json.dumps({
     'role': profile['role'], 'passed': True, 'checks': checks,
-    'scope': 'Saved four poses only; continuous visual gait review is also required.',
+    'scope': 'Saved profile poses only; continuous visual gait review is also required.',
     'inputs': [{'file': p.name, 'sha256': hashlib.sha256(p.read_bytes()).hexdigest()}
                for p in [source, profile_file, Path(__file__)]],
 }, indent=2) + '\n')

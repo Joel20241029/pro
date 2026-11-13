@@ -11,6 +11,7 @@ import { SpriteFrames } from "./SpriteFrames";
 import { compareDepth, layoutVillage, TOWER_VIEW, VillageNavigation, WEDDING } from "./VillageScene";
 import { GameLayout } from "./GameLayout";
 import { VillagerMotion } from "./VillagerMotion";
+import { WalkAnimation } from "./WalkAnimation";
 import { ProjectileMotion } from "./ProjectileMotion";
 import { C } from "./UiTheme";
 import { EMOTE, VillagerEmotes } from "./VillagerEmotes";
@@ -46,6 +47,7 @@ export class VillageWorld {
     scene = layoutVillage(this.layout);
     private motion = new VillagerMotion(new VillageNavigation(this.scene.props, this.scene.landscape, this.scene.bounds), this.scene.stops);
     private emotes = new VillagerEmotes();
+    private walkAnimation = new WalkAnimation(this.art);
     private feedback = new CombatPresentation();
     private logging = new LoggingFeedback();
     private projectiles = new ProjectileMotion();
@@ -189,7 +191,7 @@ export class VillageWorld {
         for (const touchId of this.pressedTargets.keys()) Laya.InputManager.cancelClick(touchId);
         this.pressedTargets.clear(); this.pickDepth = [];
         this.motion = new VillagerMotion(new VillageNavigation(this.scene.props, this.scene.landscape, this.scene.bounds), this.scene.stops);
-        this.emotes = new VillagerEmotes();
+        this.emotes = new VillagerEmotes(); this.walkAnimation = new WalkAnimation(this.art);
         this.projectiles = new ProjectileMotion();
         this.feedback = new CombatPresentation(); this.logging = new LoggingFeedback();
         this.lastBattle = null;
@@ -328,15 +330,18 @@ export class VillageWorld {
                 p.visual!.updateAttack(battle, Number(p.id.split(":")[1]));
         this.projectiles.update(battle, this.layout, this.scene.pads, index => this.props.find(p => p.id === `tower:${index}`)!.visual!.launchPoint(), this.feedback);
         this.freshBuildingVillage = false;
+        this.walkAnimation.retain(new Set(s.people.map(p => p.id)));
         if (this.art.ready("characters")) s.people.forEach((p, i) => {
             const n = this.people[i], pose = this.motion.get(p.id);
             n.visible = !pose.insideTower;
             n.name = `person:${p.id}`;
             const identity = isElder(p) ? `elder_${p.sex === "MALE" ? "male" : "female"}` : p.adult ? p.appearance : p.sex === "MALE" ? "boy" : "girl";
             const facing = pose.clip.endsWith("_walk") ? this.art.walk(identity, pose.direction) : /_(chop|care)$/.test(pose.clip) ? this.art.labor(pose.clip, pose.mirror) : { clip: pose.clip, mirror: false };
-            this.art.applyFrame(n, this.art.frameId(facing.clip, pose.elapsed, pose.animated), p.adult ? 56 : p.growth === 0 ? 42 : 48);
-            n.getGraphicBounds(false, n.hitArea as Laya.Rectangle);
             const scale = (p.elite ? ELITE.visualScale : 1) * this.layout.personScale;
+            const size = p.adult ? 56 : p.growth === 0 ? 42 : 48;
+            const frame = pose.clip.endsWith("_walk") ? this.walkAnimation.frame(pose, facing.clip, size * scale) : this.art.frameId(facing.clip, pose.elapsed, pose.animated);
+            this.art.applyFrame(n, frame, size);
+            n.getGraphicBounds(false, n.hitArea as Laya.Rectangle);
             n.pos(pose.x, pose.y);
             n.scale((facing.mirror ? -1 : 1) * scale, scale);
             if (pose.heartElapsed !== null && n.visible) {

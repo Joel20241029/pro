@@ -1,4 +1,4 @@
-"""Bind a measured villager profile, save four real poses for offline rendering.
+"""Bind a measured villager profile, save the profile’s real walking poses for offline rendering.
 
 Blender args: -- inspected.blend profile.json output_dir
 The profile is identity-specific, measured from the untouched normalized mesh.
@@ -113,9 +113,9 @@ def turn_bone(name, angle):
     rig.pose.bones[name].rotation_quaternion = Quaternion(axis, angle)
 
 scene = bpy.context.scene
-scene.render.fps, scene.frame_start, scene.frame_end = profile['fps'], 1, 4
+scene.render.fps, scene.frame_start, scene.frame_end = profile['fps'], 1, len(profile['poses']) + 1
 report = []
-for frame, pose in enumerate(profile['poses'], 1):
+for frame, pose in enumerate(profile['poses'] + [profile['idlePose']], 1):
     scene.frame_set(frame)
     for bone in rig.pose.bones:
         bone.rotation_quaternion, bone.location = (1, 0, 0, 0), (0, 0, 0)
