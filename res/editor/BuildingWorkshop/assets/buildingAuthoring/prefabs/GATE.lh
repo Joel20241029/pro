@@ -1,20 +1,20 @@
 {
   "_$ver": 1,
-  "_$id": "r8txfa4g",
+  "_$id": "j8yhfhge",
   "_$type": "Sprite",
   "name": "GATE",
   "width": 128,
   "height": 128,
   "_$child": [
     {
-      "_$id": "bdl5o6z8",
+      "_$id": "td7tceb1",
       "_$type": "Sprite",
       "name": "GATE_1_1",
       "width": 128,
       "height": 128,
       "_$child": [
         {
-          "_$id": "ja2nwc8n",
+          "_$id": "2d86e080",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -27,7 +27,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -35,81 +35,53 @@
           ],
           "_$child": [
             {
-              "_$id": "n822g5uf",
+              "_$id": "2ev0rore",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 11,
-              "y": 107,
-              "width": 106,
-              "height": 13,
+              "name": "GateStructure",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "3dfaaa95-91d6-4842-81c4-e8907036b97f",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "p09wekht",
-              "_$type": "Sprite",
-              "name": "Arch",
-              "x": 22,
-              "y": 68,
-              "width": 84,
-              "height": 47,
-              "texture": {
-                "_$uuid": "f74997e8-b2cc-4f38-b231-f9406a9298ec",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "b1a49h6k",
+              "_$id": "rhpiu9ll",
               "_$type": "Sprite",
               "name": "GateDoors",
-              "x": 44,
-              "y": 78,
-              "width": 40,
-              "height": 37,
+              "x": 38,
+              "y": 67,
+              "width": 52,
+              "height": 54,
               "texture": {
-                "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "9xdsr8ot",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 13,
-              "y": 39,
-              "width": 102,
-              "height": 43,
-              "texture": {
-                "_$uuid": "e98e280f-e8f6-4fe8-9525-8eea7695455b",
+                "_$uuid": "3a04a5fd-56b3-46ea-87c1-a5ef54024c75",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "wl2cj9fn",
-          "_$type": "Sprite",
-          "name": "Footprint",
-          "x": 12,
-          "y": 100,
-          "width": 104,
-          "height": 20,
-          "visible": false
-        },
-        {
-          "_$id": "b7lce4xc",
+          "_$id": "iw6vuxlv",
           "_$type": "Sprite",
           "name": "VisualBounds",
           "x": -4,
-          "y": -10,
+          "y": -22,
           "width": 136,
-          "height": 138,
+          "height": 154,
           "visible": false
         },
         {
-          "_$id": "2hxagfvh",
+          "_$id": "li5pefsq",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 10,
+          "y": 96,
+          "width": 108,
+          "height": 24,
+          "visible": false
+        },
+        {
+          "_$id": "y85b3lgg",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -121,7 +93,7 @@
       ]
     },
     {
-      "_$id": "jpkc6egs",
+      "_$id": "ggblhu1c",
       "_$type": "Sprite",
       "name": "GATE_2_1",
       "width": 128,
@@ -129,7 +101,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "s75c9m5z",
+          "_$id": "d7o3l8k2",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -142,7 +114,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -150,107 +122,66 @@
           ],
           "_$child": [
             {
-              "_$id": "6ux0jcpo",
+              "_$id": "wwuwmirj",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 11,
-              "y": 107,
-              "width": 106,
-              "height": 13,
+              "name": "GateStructure",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "3dfaaa95-91d6-4842-81c4-e8907036b97f",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "aourxtp7",
-              "_$type": "Sprite",
-              "name": "Arch",
-              "x": 22,
-              "y": 68,
-              "width": 84,
-              "height": 47,
-              "texture": {
-                "_$uuid": "f74997e8-b2cc-4f38-b231-f9406a9298ec",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "igopqkif",
+              "_$id": "92emfiuq",
               "_$type": "Sprite",
               "name": "GateDoors",
-              "x": 44,
-              "y": 78,
-              "width": 40,
-              "height": 37,
+              "x": 38,
+              "y": 67,
+              "width": 52,
+              "height": 54,
               "texture": {
-                "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
+                "_$uuid": "3a04a5fd-56b3-46ea-87c1-a5ef54024c75",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "sto1ddkw",
+              "_$id": "v4qdd4oo",
               "_$type": "Sprite",
-              "name": "Roof",
-              "x": 13,
-              "y": 39,
-              "width": 102,
-              "height": 43,
+              "name": "DoorRivet",
+              "x": 48,
+              "y": 83,
+              "width": 14,
+              "height": 13,
               "texture": {
-                "_$uuid": "e98e280f-e8f6-4fe8-9525-8eea7695455b",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "rhyht3eo",
-              "_$type": "Sprite",
-              "name": "LeftPillar",
-              "x": 16,
-              "y": 87,
-              "width": 19,
-              "height": 28,
-              "texture": {
-                "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "781u3z3p",
-              "_$type": "Sprite",
-              "name": "RightPillar",
-              "x": 93,
-              "y": 87,
-              "width": 19,
-              "height": 28,
-              "texture": {
-                "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
+                "_$uuid": "b93f561e-d757-4b11-8ea9-db50a29a0238",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "jgqzgbnv",
-          "_$type": "Sprite",
-          "name": "Footprint",
-          "x": 12,
-          "y": 100,
-          "width": 104,
-          "height": 20,
-          "visible": false
-        },
-        {
-          "_$id": "ryekagsh",
+          "_$id": "2nr1cn1f",
           "_$type": "Sprite",
           "name": "VisualBounds",
           "x": -4,
-          "y": -10,
+          "y": -22,
           "width": 136,
-          "height": 138,
+          "height": 154,
           "visible": false
         },
         {
-          "_$id": "3xrvt3ki",
+          "_$id": "pbr32099",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 10,
+          "y": 96,
+          "width": 108,
+          "height": 24,
+          "visible": false
+        },
+        {
+          "_$id": "7f503c6y",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -262,7 +193,7 @@
       ]
     },
     {
-      "_$id": "ws821uk9",
+      "_$id": "w0m0rul0",
       "_$type": "Sprite",
       "name": "GATE_3_1",
       "width": 128,
@@ -270,7 +201,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "arwmay3k",
+          "_$id": "8qzoltvu",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -283,7 +214,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -291,94 +222,79 @@
           ],
           "_$child": [
             {
-              "_$id": "dsxzt5at",
+              "_$id": "14ebkud7",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 11,
-              "y": 107,
-              "width": 106,
-              "height": 13,
+              "name": "GateStructure",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "3dfaaa95-91d6-4842-81c4-e8907036b97f",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "zs4ngfxb",
-              "_$type": "Sprite",
-              "name": "Arch",
-              "x": 22,
-              "y": 68,
-              "width": 84,
-              "height": 47,
-              "texture": {
-                "_$uuid": "f74997e8-b2cc-4f38-b231-f9406a9298ec",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "gu4j15cf",
+              "_$id": "a74b012f",
               "_$type": "Sprite",
               "name": "GateDoors",
-              "x": 44,
-              "y": 78,
-              "width": 40,
-              "height": 37,
+              "x": 38,
+              "y": 67,
+              "width": 52,
+              "height": 54,
               "texture": {
-                "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
+                "_$uuid": "3a04a5fd-56b3-46ea-87c1-a5ef54024c75",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "wks12s94",
+              "_$id": "fegibbqz",
               "_$type": "Sprite",
-              "name": "Roof",
-              "x": 13,
-              "y": 39,
-              "width": 102,
-              "height": 43,
+              "name": "DoorRivet",
+              "x": 48,
+              "y": 83,
+              "width": 14,
+              "height": 13,
               "texture": {
-                "_$uuid": "e98e280f-e8f6-4fe8-9525-8eea7695455b",
+                "_$uuid": "b93f561e-d757-4b11-8ea9-db50a29a0238",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "gam4jogh",
+              "_$id": "c7vna36d",
               "_$type": "Sprite",
-              "name": "PorchRoof",
-              "x": 24,
-              "y": 62,
-              "width": 80,
-              "height": 30,
+              "name": "GateEmblem",
+              "x": 45,
+              "y": 47,
+              "width": 38,
+              "height": 20,
               "texture": {
-                "_$uuid": "e98e280f-e8f6-4fe8-9525-8eea7695455b",
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "8b47b5ad",
-          "_$type": "Sprite",
-          "name": "Footprint",
-          "x": 12,
-          "y": 100,
-          "width": 104,
-          "height": 20,
-          "visible": false
-        },
-        {
-          "_$id": "w2g486tc",
+          "_$id": "040yu882",
           "_$type": "Sprite",
           "name": "VisualBounds",
           "x": -4,
-          "y": -10,
+          "y": -22,
           "width": 136,
-          "height": 138,
+          "height": 154,
           "visible": false
         },
         {
-          "_$id": "3lv22ppx",
+          "_$id": "r3pjm42e",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 10,
+          "y": 96,
+          "width": 108,
+          "height": 24,
+          "visible": false
+        },
+        {
+          "_$id": "9sbjiif9",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -390,7 +306,7 @@
       ]
     },
     {
-      "_$id": "0ilyc6q5",
+      "_$id": "q04vlr7f",
       "_$type": "Sprite",
       "name": "GATE_4_1",
       "width": 128,
@@ -398,7 +314,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "9yt7ccu4",
+          "_$id": "y2fzclvo",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -411,7 +327,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -419,107 +335,53 @@
           ],
           "_$child": [
             {
-              "_$id": "z8uk8w0p",
+              "_$id": "mpmw381d",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 11,
-              "y": 107,
-              "width": 106,
-              "height": 13,
+              "name": "GateStructure",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "93bd34ba-6f4f-4f25-8f17-48d1721ee83f",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "6whxyktp",
-              "_$type": "Sprite",
-              "name": "Arch",
-              "x": 22,
-              "y": 68,
-              "width": 84,
-              "height": 47,
-              "texture": {
-                "_$uuid": "f74997e8-b2cc-4f38-b231-f9406a9298ec",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "gq266rl0",
+              "_$id": "60w5dd7p",
               "_$type": "Sprite",
               "name": "GateDoors",
-              "x": 44,
-              "y": 78,
-              "width": 40,
-              "height": 37,
+              "x": 38,
+              "y": 67,
+              "width": 52,
+              "height": 54,
               "texture": {
-                "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "i2v7pazb",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 13,
-              "y": 39,
-              "width": 102,
-              "height": 43,
-              "texture": {
-                "_$uuid": "e1f744ae-0078-43bc-9769-a177149edf2a",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "1kol5prw",
-              "_$type": "Sprite",
-              "name": "LeftBanner",
-              "x": 15,
-              "y": 73,
-              "width": 15,
-              "height": 29,
-              "texture": {
-                "_$uuid": "55667756-97f4-43e0-b978-5880729c4c46",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "kybe9jc3",
-              "_$type": "Sprite",
-              "name": "RightBanner",
-              "x": 98,
-              "y": 73,
-              "width": 15,
-              "height": 29,
-              "texture": {
-                "_$uuid": "55667756-97f4-43e0-b978-5880729c4c46",
+                "_$uuid": "f447b704-964e-420f-8e8b-502f9c0fe4b7",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "g2kpl85v",
-          "_$type": "Sprite",
-          "name": "Footprint",
-          "x": 12,
-          "y": 100,
-          "width": 104,
-          "height": 20,
-          "visible": false
-        },
-        {
-          "_$id": "7cnezhts",
+          "_$id": "5lzquu2b",
           "_$type": "Sprite",
           "name": "VisualBounds",
           "x": -4,
-          "y": -10,
+          "y": -22,
           "width": 136,
-          "height": 138,
+          "height": 154,
           "visible": false
         },
         {
-          "_$id": "nwvrzh77",
+          "_$id": "t0p56cgp",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 10,
+          "y": 96,
+          "width": 108,
+          "height": 24,
+          "visible": false
+        },
+        {
+          "_$id": "2bxw73g6",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -531,7 +393,7 @@
       ]
     },
     {
-      "_$id": "w37oo4ln",
+      "_$id": "xw5cnipt",
       "_$type": "Sprite",
       "name": "GATE_5_1",
       "width": 128,
@@ -539,7 +401,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "wuaf8g5m",
+          "_$id": "f656w82f",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -552,7 +414,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -560,81 +422,66 @@
           ],
           "_$child": [
             {
-              "_$id": "yzw9e35p",
+              "_$id": "c8lew2hm",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 11,
-              "y": 107,
-              "width": 106,
-              "height": 13,
+              "name": "GateStructure",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "93bd34ba-6f4f-4f25-8f17-48d1721ee83f",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "yi1oiftn",
-              "_$type": "Sprite",
-              "name": "Arch",
-              "x": 22,
-              "y": 68,
-              "width": 84,
-              "height": 47,
-              "texture": {
-                "_$uuid": "2f2e9104-c271-416e-9db5-5bad2cf5b780",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "sf6baf05",
+              "_$id": "4sncr6ta",
               "_$type": "Sprite",
               "name": "GateDoors",
-              "x": 44,
-              "y": 78,
-              "width": 40,
-              "height": 37,
+              "x": 38,
+              "y": 67,
+              "width": 52,
+              "height": 54,
               "texture": {
-                "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
+                "_$uuid": "f447b704-964e-420f-8e8b-502f9c0fe4b7",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "8tj0v8id",
+              "_$id": "1xvnzg8z",
               "_$type": "Sprite",
-              "name": "Roof",
-              "x": 13,
-              "y": 39,
-              "width": 102,
-              "height": 43,
+              "name": "DoorRivet",
+              "x": 48,
+              "y": 83,
+              "width": 14,
+              "height": 13,
               "texture": {
-                "_$uuid": "e1f744ae-0078-43bc-9769-a177149edf2a",
+                "_$uuid": "b93f561e-d757-4b11-8ea9-db50a29a0238",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "adke0k2a",
-          "_$type": "Sprite",
-          "name": "Footprint",
-          "x": 12,
-          "y": 100,
-          "width": 104,
-          "height": 20,
-          "visible": false
-        },
-        {
-          "_$id": "2x5lhhxx",
+          "_$id": "3mhhftal",
           "_$type": "Sprite",
           "name": "VisualBounds",
           "x": -4,
-          "y": -10,
+          "y": -22,
           "width": 136,
-          "height": 138,
+          "height": 154,
           "visible": false
         },
         {
-          "_$id": "zs2qe8ex",
+          "_$id": "0ka3wau6",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 10,
+          "y": 96,
+          "width": 108,
+          "height": 24,
+          "visible": false
+        },
+        {
+          "_$id": "ba5tyfzf",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -646,7 +493,7 @@
       ]
     },
     {
-      "_$id": "8h9535u8",
+      "_$id": "a8kekti5",
       "_$type": "Sprite",
       "name": "GATE_6_1",
       "width": 128,
@@ -654,7 +501,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "8mpxwz6a",
+          "_$id": "vjbli3ud",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -667,7 +514,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -675,107 +522,79 @@
           ],
           "_$child": [
             {
-              "_$id": "au5g1ncr",
+              "_$id": "4h160f7x",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 11,
-              "y": 107,
-              "width": 106,
-              "height": 13,
+              "name": "GateStructure",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "93bd34ba-6f4f-4f25-8f17-48d1721ee83f",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "jvni42t9",
-              "_$type": "Sprite",
-              "name": "Arch",
-              "x": 22,
-              "y": 68,
-              "width": 84,
-              "height": 47,
-              "texture": {
-                "_$uuid": "2f2e9104-c271-416e-9db5-5bad2cf5b780",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "cty5rrpo",
+              "_$id": "ijhe5tzi",
               "_$type": "Sprite",
               "name": "GateDoors",
-              "x": 44,
-              "y": 78,
-              "width": 40,
-              "height": 37,
+              "x": 38,
+              "y": 67,
+              "width": 52,
+              "height": 54,
               "texture": {
-                "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
+                "_$uuid": "f447b704-964e-420f-8e8b-502f9c0fe4b7",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "mgwmlwed",
+              "_$id": "dvu1sf12",
               "_$type": "Sprite",
-              "name": "Roof",
-              "x": 13,
-              "y": 39,
-              "width": 102,
-              "height": 43,
+              "name": "DoorRivet",
+              "x": 48,
+              "y": 83,
+              "width": 14,
+              "height": 13,
               "texture": {
-                "_$uuid": "e1f744ae-0078-43bc-9769-a177149edf2a",
+                "_$uuid": "b93f561e-d757-4b11-8ea9-db50a29a0238",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "feolcd29",
+              "_$id": "fxumxss6",
               "_$type": "Sprite",
-              "name": "LeftPillar",
-              "x": 16,
-              "y": 87,
-              "width": 19,
-              "height": 28,
+              "name": "GateEmblem",
+              "x": 45,
+              "y": 47,
+              "width": 38,
+              "height": 20,
               "texture": {
-                "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "457mb7vr",
-              "_$type": "Sprite",
-              "name": "RightPillar",
-              "x": 93,
-              "y": 87,
-              "width": 19,
-              "height": 28,
-              "texture": {
-                "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "3squ0xzt",
-          "_$type": "Sprite",
-          "name": "Footprint",
-          "x": 12,
-          "y": 100,
-          "width": 104,
-          "height": 20,
-          "visible": false
-        },
-        {
-          "_$id": "d8d81v2i",
+          "_$id": "jabj75g3",
           "_$type": "Sprite",
           "name": "VisualBounds",
           "x": -4,
-          "y": -10,
+          "y": -22,
           "width": 136,
-          "height": 138,
+          "height": 154,
           "visible": false
         },
         {
-          "_$id": "74ly85du",
+          "_$id": "imgjkaso",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 10,
+          "y": 96,
+          "width": 108,
+          "height": 24,
+          "visible": false
+        },
+        {
+          "_$id": "ax5z3sgc",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -787,7 +606,7 @@
       ]
     },
     {
-      "_$id": "rrc1txq9",
+      "_$id": "a4t87qic",
       "_$type": "Sprite",
       "name": "GATE_7_1",
       "width": 128,
@@ -795,7 +614,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "c1gccclm",
+          "_$id": "2qvy66gr",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -808,7 +627,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -816,94 +635,92 @@
           ],
           "_$child": [
             {
-              "_$id": "p2vs4a62",
+              "_$id": "mq2ap94e",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 11,
-              "y": 107,
-              "width": 106,
-              "height": 13,
+              "name": "GateStructure",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "93bd34ba-6f4f-4f25-8f17-48d1721ee83f",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "wuptk6s0",
-              "_$type": "Sprite",
-              "name": "Arch",
-              "x": 22,
-              "y": 68,
-              "width": 84,
-              "height": 47,
-              "texture": {
-                "_$uuid": "2f2e9104-c271-416e-9db5-5bad2cf5b780",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "cnfhicxe",
+              "_$id": "0v2d8gm4",
               "_$type": "Sprite",
               "name": "GateDoors",
-              "x": 44,
+              "x": 38,
+              "y": 67,
+              "width": 52,
+              "height": 54,
+              "texture": {
+                "_$uuid": "f447b704-964e-420f-8e8b-502f9c0fe4b7",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "vp5opkhg",
+              "_$type": "Sprite",
+              "name": "DoorRivet",
+              "x": 48,
+              "y": 83,
+              "width": 14,
+              "height": 13,
+              "texture": {
+                "_$uuid": "b93f561e-d757-4b11-8ea9-db50a29a0238",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "c8qgak8y",
+              "_$type": "Sprite",
+              "name": "GateEmblem",
+              "x": 45,
+              "y": 47,
+              "width": 38,
+              "height": 20,
+              "texture": {
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "tqa16kc4",
+              "_$type": "Sprite",
+              "name": "GateBanner",
+              "x": 99,
               "y": 78,
-              "width": 40,
-              "height": 37,
-              "texture": {
-                "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "cia26gcq",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 13,
-              "y": 39,
-              "width": 102,
-              "height": 43,
-              "texture": {
-                "_$uuid": "e1f744ae-0078-43bc-9769-a177149edf2a",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "9cisyi7w",
-              "_$type": "Sprite",
-              "name": "PorchRoof",
-              "x": 24,
-              "y": 62,
-              "width": 80,
+              "width": 17,
               "height": 30,
               "texture": {
-                "_$uuid": "e1f744ae-0078-43bc-9769-a177149edf2a",
+                "_$uuid": "377ef97b-6ae4-49d7-8fc9-a0df8d1515a8",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "fk7q0fg1",
-          "_$type": "Sprite",
-          "name": "Footprint",
-          "x": 12,
-          "y": 100,
-          "width": 104,
-          "height": 20,
-          "visible": false
-        },
-        {
-          "_$id": "t00qutsi",
+          "_$id": "e5vmtenw",
           "_$type": "Sprite",
           "name": "VisualBounds",
           "x": -4,
-          "y": -10,
+          "y": -22,
           "width": 136,
-          "height": 138,
+          "height": 154,
           "visible": false
         },
         {
-          "_$id": "ui8oxv85",
+          "_$id": "xhu8d9iw",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 10,
+          "y": 96,
+          "width": 108,
+          "height": 24,
+          "visible": false
+        },
+        {
+          "_$id": "xl9ul8cv",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -915,7 +732,7 @@
       ]
     },
     {
-      "_$id": "gj5y219w",
+      "_$id": "h25zx8em",
       "_$type": "Sprite",
       "name": "GATE_8_1",
       "width": 128,
@@ -923,7 +740,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "fvmxghlu",
+          "_$id": "p99raaf9",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -936,7 +753,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -944,146 +761,53 @@
           ],
           "_$child": [
             {
-              "_$id": "vu89ua9x",
+              "_$id": "7thexn06",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 11,
-              "y": 107,
-              "width": 106,
-              "height": 13,
+              "name": "GateStructure",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "415f13fa-d2e6-42fb-8342-b5c63760e36c",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "n4g7nauh",
-              "_$type": "Sprite",
-              "name": "Arch",
-              "x": 22,
-              "y": 68,
-              "width": 84,
-              "height": 47,
-              "texture": {
-                "_$uuid": "2f2e9104-c271-416e-9db5-5bad2cf5b780",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "6nnrw4x6",
+              "_$id": "ofxdz3h5",
               "_$type": "Sprite",
               "name": "GateDoors",
-              "x": 44,
-              "y": 78,
-              "width": 40,
-              "height": 37,
+              "x": 38,
+              "y": 67,
+              "width": 52,
+              "height": 54,
               "texture": {
-                "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "m2vwoamx",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 13,
-              "y": 39,
-              "width": 102,
-              "height": 43,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "tbutwqfd",
-              "_$type": "Sprite",
-              "name": "WatchRoom",
-              "x": 36,
-              "y": 50,
-              "width": 57,
-              "height": 27,
-              "texture": {
-                "_$uuid": "8ad2f438-86a5-49b0-adb6-b3dfc78da3ac",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "yfy4fb4a",
-              "_$type": "Sprite",
-              "name": "WatchWindow",
-              "x": 49,
-              "y": 55,
-              "width": 14,
-              "height": 15,
-              "texture": {
-                "_$uuid": "849b3b81-dd57-4bb7-a306-56f292f8200e",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "0qzb0peq",
-              "_$type": "Sprite",
-              "name": "UpperRoof",
-              "x": 24,
-              "y": 29,
-              "width": 81,
-              "height": 33,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "otenisrr",
-              "_$type": "Sprite",
-              "name": "LeftBanner",
-              "x": 15,
-              "y": 73,
-              "width": 15,
-              "height": 29,
-              "texture": {
-                "_$uuid": "55667756-97f4-43e0-b978-5880729c4c46",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "y6f2710o",
-              "_$type": "Sprite",
-              "name": "RightBanner",
-              "x": 98,
-              "y": 73,
-              "width": 15,
-              "height": 29,
-              "texture": {
-                "_$uuid": "55667756-97f4-43e0-b978-5880729c4c46",
+                "_$uuid": "e194c03f-5f35-4398-82ce-e86824f3b879",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "q3ccqpu6",
-          "_$type": "Sprite",
-          "name": "Footprint",
-          "x": 12,
-          "y": 100,
-          "width": 104,
-          "height": 20,
-          "visible": false
-        },
-        {
-          "_$id": "mkd1jdct",
+          "_$id": "l61cgm8t",
           "_$type": "Sprite",
           "name": "VisualBounds",
           "x": -4,
-          "y": -10,
+          "y": -22,
           "width": 136,
-          "height": 138,
+          "height": 154,
           "visible": false
         },
         {
-          "_$id": "e86tvbim",
+          "_$id": "brknbc2z",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 10,
+          "y": 96,
+          "width": 108,
+          "height": 24,
+          "visible": false
+        },
+        {
+          "_$id": "9fps4vo0",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1095,7 +819,7 @@
       ]
     },
     {
-      "_$id": "qiuocjtf",
+      "_$id": "jblzukmn",
       "_$type": "Sprite",
       "name": "GATE_9_1",
       "width": 128,
@@ -1103,7 +827,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "8mt4hhpo",
+          "_$id": "cc6m3qsd",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1116,7 +840,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1124,120 +848,66 @@
           ],
           "_$child": [
             {
-              "_$id": "h86kr9s6",
+              "_$id": "zo6as9tj",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 11,
-              "y": 107,
-              "width": 106,
-              "height": 13,
+              "name": "GateStructure",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "415f13fa-d2e6-42fb-8342-b5c63760e36c",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "jcn0xq4m",
-              "_$type": "Sprite",
-              "name": "Arch",
-              "x": 22,
-              "y": 68,
-              "width": 84,
-              "height": 47,
-              "texture": {
-                "_$uuid": "2f2e9104-c271-416e-9db5-5bad2cf5b780",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "zpxnmxq4",
+              "_$id": "o4dmptgq",
               "_$type": "Sprite",
               "name": "GateDoors",
-              "x": 44,
-              "y": 78,
-              "width": 40,
-              "height": 37,
+              "x": 38,
+              "y": 67,
+              "width": 52,
+              "height": 54,
               "texture": {
-                "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
+                "_$uuid": "e194c03f-5f35-4398-82ce-e86824f3b879",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "x3k5us33",
+              "_$id": "zf6fpi58",
               "_$type": "Sprite",
-              "name": "Roof",
-              "x": 13,
-              "y": 39,
-              "width": 102,
-              "height": 43,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "g5r4uf31",
-              "_$type": "Sprite",
-              "name": "WatchRoom",
-              "x": 36,
-              "y": 50,
-              "width": 57,
-              "height": 27,
-              "texture": {
-                "_$uuid": "8ad2f438-86a5-49b0-adb6-b3dfc78da3ac",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "xo6yiws9",
-              "_$type": "Sprite",
-              "name": "WatchWindow",
-              "x": 49,
-              "y": 55,
+              "name": "DoorRivet",
+              "x": 48,
+              "y": 83,
               "width": 14,
-              "height": 15,
+              "height": 13,
               "texture": {
-                "_$uuid": "849b3b81-dd57-4bb7-a306-56f292f8200e",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "prgeid9g",
-              "_$type": "Sprite",
-              "name": "UpperRoof",
-              "x": 24,
-              "y": 29,
-              "width": 81,
-              "height": 33,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
+                "_$uuid": "b93f561e-d757-4b11-8ea9-db50a29a0238",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "5kdrztns",
-          "_$type": "Sprite",
-          "name": "Footprint",
-          "x": 12,
-          "y": 100,
-          "width": 104,
-          "height": 20,
-          "visible": false
-        },
-        {
-          "_$id": "xdo1d3t1",
+          "_$id": "zteeghfc",
           "_$type": "Sprite",
           "name": "VisualBounds",
           "x": -4,
-          "y": -10,
+          "y": -22,
           "width": 136,
-          "height": 138,
+          "height": 154,
           "visible": false
         },
         {
-          "_$id": "wwdut88m",
+          "_$id": "t2m0jind",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 10,
+          "y": 96,
+          "width": 108,
+          "height": 24,
+          "visible": false
+        },
+        {
+          "_$id": "gv76hi2g",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1249,7 +919,7 @@
       ]
     },
     {
-      "_$id": "4gr3ml97",
+      "_$id": "19i1djfg",
       "_$type": "Sprite",
       "name": "GATE_10_1",
       "width": 128,
@@ -1257,7 +927,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "noppgdm5",
+          "_$id": "g97nrecc",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1270,7 +940,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1278,146 +948,79 @@
           ],
           "_$child": [
             {
-              "_$id": "l9l2eqtc",
+              "_$id": "zqtky3j2",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 11,
-              "y": 107,
-              "width": 106,
-              "height": 13,
+              "name": "GateStructure",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "415f13fa-d2e6-42fb-8342-b5c63760e36c",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "v5p05cvs",
-              "_$type": "Sprite",
-              "name": "Arch",
-              "x": 22,
-              "y": 68,
-              "width": 84,
-              "height": 47,
-              "texture": {
-                "_$uuid": "2f2e9104-c271-416e-9db5-5bad2cf5b780",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "i6ewhxmb",
+              "_$id": "v6ny6265",
               "_$type": "Sprite",
               "name": "GateDoors",
-              "x": 44,
-              "y": 78,
-              "width": 40,
-              "height": 37,
+              "x": 38,
+              "y": 67,
+              "width": 52,
+              "height": 54,
               "texture": {
-                "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
+                "_$uuid": "e194c03f-5f35-4398-82ce-e86824f3b879",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "qbl2lp6o",
+              "_$id": "0b14ill3",
               "_$type": "Sprite",
-              "name": "Roof",
-              "x": 13,
-              "y": 39,
-              "width": 102,
-              "height": 43,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "xrvdgifl",
-              "_$type": "Sprite",
-              "name": "WatchRoom",
-              "x": 36,
-              "y": 50,
-              "width": 57,
-              "height": 27,
-              "texture": {
-                "_$uuid": "8ad2f438-86a5-49b0-adb6-b3dfc78da3ac",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "9mm1f1tv",
-              "_$type": "Sprite",
-              "name": "WatchWindow",
-              "x": 49,
-              "y": 55,
+              "name": "DoorRivet",
+              "x": 48,
+              "y": 83,
               "width": 14,
-              "height": 15,
+              "height": 13,
               "texture": {
-                "_$uuid": "849b3b81-dd57-4bb7-a306-56f292f8200e",
+                "_$uuid": "b93f561e-d757-4b11-8ea9-db50a29a0238",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "vx52j1hu",
+              "_$id": "0jhi0tmv",
               "_$type": "Sprite",
-              "name": "UpperRoof",
-              "x": 24,
-              "y": 29,
-              "width": 81,
-              "height": 33,
+              "name": "GateEmblem",
+              "x": 45,
+              "y": 47,
+              "width": 38,
+              "height": 20,
               "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "racwgcgt",
-              "_$type": "Sprite",
-              "name": "LeftPillar",
-              "x": 16,
-              "y": 87,
-              "width": 19,
-              "height": 28,
-              "texture": {
-                "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "x74coqwd",
-              "_$type": "Sprite",
-              "name": "RightPillar",
-              "x": 93,
-              "y": 87,
-              "width": 19,
-              "height": 28,
-              "texture": {
-                "_$uuid": "a25befd4-0760-4a4a-98d7-49dca8056dbd",
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "utr1pqrg",
-          "_$type": "Sprite",
-          "name": "Footprint",
-          "x": 12,
-          "y": 100,
-          "width": 104,
-          "height": 20,
-          "visible": false
-        },
-        {
-          "_$id": "jqdqkgwx",
+          "_$id": "0329v27e",
           "_$type": "Sprite",
           "name": "VisualBounds",
           "x": -4,
-          "y": -10,
+          "y": -22,
           "width": 136,
-          "height": 138,
+          "height": 154,
           "visible": false
         },
         {
-          "_$id": "64f54pxp",
+          "_$id": "mlwb1sl2",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 10,
+          "y": 96,
+          "width": 108,
+          "height": 24,
+          "visible": false
+        },
+        {
+          "_$id": "eomz6lca",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1429,7 +1032,7 @@
       ]
     },
     {
-      "_$id": "j6xure17",
+      "_$id": "nliqas13",
       "_$type": "Sprite",
       "name": "GATE_11_1",
       "width": 128,
@@ -1437,7 +1040,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "tusxvsuw",
+          "_$id": "tjx39ifm",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1450,7 +1053,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1458,133 +1061,92 @@
           ],
           "_$child": [
             {
-              "_$id": "duka8q8k",
+              "_$id": "kvlcecjy",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 11,
-              "y": 107,
-              "width": 106,
-              "height": 13,
+              "name": "GateStructure",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "415f13fa-d2e6-42fb-8342-b5c63760e36c",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "g56czppy",
-              "_$type": "Sprite",
-              "name": "Arch",
-              "x": 22,
-              "y": 68,
-              "width": 84,
-              "height": 47,
-              "texture": {
-                "_$uuid": "2f2e9104-c271-416e-9db5-5bad2cf5b780",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "bpddp930",
+              "_$id": "8an1e80p",
               "_$type": "Sprite",
               "name": "GateDoors",
-              "x": 44,
-              "y": 78,
-              "width": 40,
-              "height": 37,
+              "x": 38,
+              "y": 67,
+              "width": 52,
+              "height": 54,
               "texture": {
-                "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
+                "_$uuid": "e194c03f-5f35-4398-82ce-e86824f3b879",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "e7e70txd",
+              "_$id": "eef66fra",
               "_$type": "Sprite",
-              "name": "Roof",
-              "x": 13,
-              "y": 39,
-              "width": 102,
-              "height": 43,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "vlzflygm",
-              "_$type": "Sprite",
-              "name": "WatchRoom",
-              "x": 36,
-              "y": 50,
-              "width": 57,
-              "height": 27,
-              "texture": {
-                "_$uuid": "8ad2f438-86a5-49b0-adb6-b3dfc78da3ac",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "y1ts0cmn",
-              "_$type": "Sprite",
-              "name": "WatchWindow",
-              "x": 49,
-              "y": 55,
+              "name": "DoorRivet",
+              "x": 48,
+              "y": 83,
               "width": 14,
-              "height": 15,
+              "height": 13,
               "texture": {
-                "_$uuid": "849b3b81-dd57-4bb7-a306-56f292f8200e",
+                "_$uuid": "b93f561e-d757-4b11-8ea9-db50a29a0238",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "92eqq23f",
+              "_$id": "u5rynen0",
               "_$type": "Sprite",
-              "name": "UpperRoof",
-              "x": 24,
-              "y": 29,
-              "width": 81,
-              "height": 33,
+              "name": "GateEmblem",
+              "x": 45,
+              "y": 47,
+              "width": 38,
+              "height": 20,
               "texture": {
-                "_$uuid": "744bd17d-ec73-4baa-8f8f-731cd78424ef",
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "4i5kmqf0",
+              "_$id": "iucccfs3",
               "_$type": "Sprite",
-              "name": "PorchRoof",
-              "x": 24,
-              "y": 62,
-              "width": 80,
+              "name": "GateBanner",
+              "x": 99,
+              "y": 78,
+              "width": 17,
               "height": 30,
               "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
+                "_$uuid": "377ef97b-6ae4-49d7-8fc9-a0df8d1515a8",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "vu2zd4kc",
-          "_$type": "Sprite",
-          "name": "Footprint",
-          "x": 12,
-          "y": 100,
-          "width": 104,
-          "height": 20,
-          "visible": false
-        },
-        {
-          "_$id": "cd4t7qpx",
+          "_$id": "gagcesln",
           "_$type": "Sprite",
           "name": "VisualBounds",
           "x": -4,
-          "y": -10,
+          "y": -22,
           "width": 136,
-          "height": 138,
+          "height": 154,
           "visible": false
         },
         {
-          "_$id": "2lzc4d5j",
+          "_$id": "cuqt2lib",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 10,
+          "y": 96,
+          "width": 108,
+          "height": 24,
+          "visible": false
+        },
+        {
+          "_$id": "q1kiuu7c",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1596,7 +1158,7 @@
       ]
     },
     {
-      "_$id": "5orr4egy",
+      "_$id": "7nc3ypv3",
       "_$type": "Sprite",
       "name": "GATE_12_1",
       "width": 128,
@@ -1604,7 +1166,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "f0wcmesm",
+          "_$id": "1ymqsx2e",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1617,7 +1179,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1625,146 +1187,53 @@
           ],
           "_$child": [
             {
-              "_$id": "s0y0noc4",
+              "_$id": "5twwfyd1",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 11,
-              "y": 107,
-              "width": 106,
-              "height": 13,
+              "name": "GateStructure",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "f30ab0d9-64ff-46aa-8b00-ff0ce04eaf69",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "4rg58mcy",
-              "_$type": "Sprite",
-              "name": "Arch",
-              "x": 22,
-              "y": 68,
-              "width": 84,
-              "height": 47,
-              "texture": {
-                "_$uuid": "2f2e9104-c271-416e-9db5-5bad2cf5b780",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "ppabr6ix",
+              "_$id": "ruzxx5xu",
               "_$type": "Sprite",
               "name": "GateDoors",
-              "x": 44,
-              "y": 78,
-              "width": 40,
-              "height": 37,
+              "x": 38,
+              "y": 67,
+              "width": 52,
+              "height": 54,
               "texture": {
-                "_$uuid": "d1cc68a4-5258-4098-9f8c-97f2d1278899",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "zse0qrq3",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 13,
-              "y": 39,
-              "width": 102,
-              "height": 43,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "bgo1o37u",
-              "_$type": "Sprite",
-              "name": "WatchRoom",
-              "x": 36,
-              "y": 50,
-              "width": 57,
-              "height": 27,
-              "texture": {
-                "_$uuid": "8ad2f438-86a5-49b0-adb6-b3dfc78da3ac",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "6tlypicw",
-              "_$type": "Sprite",
-              "name": "WatchWindow",
-              "x": 49,
-              "y": 55,
-              "width": 14,
-              "height": 15,
-              "texture": {
-                "_$uuid": "849b3b81-dd57-4bb7-a306-56f292f8200e",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "n89jj904",
-              "_$type": "Sprite",
-              "name": "UpperRoof",
-              "x": 24,
-              "y": 29,
-              "width": 81,
-              "height": 33,
-              "texture": {
-                "_$uuid": "744bd17d-ec73-4baa-8f8f-731cd78424ef",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "zcly4cst",
-              "_$type": "Sprite",
-              "name": "LeftBanner",
-              "x": 15,
-              "y": 73,
-              "width": 15,
-              "height": 29,
-              "texture": {
-                "_$uuid": "55667756-97f4-43e0-b978-5880729c4c46",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "guo834po",
-              "_$type": "Sprite",
-              "name": "RightBanner",
-              "x": 98,
-              "y": 73,
-              "width": 15,
-              "height": 29,
-              "texture": {
-                "_$uuid": "55667756-97f4-43e0-b978-5880729c4c46",
+                "_$uuid": "8e313144-e5cc-4d92-8b34-a79d5ae19e72",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "r7e8clwe",
-          "_$type": "Sprite",
-          "name": "Footprint",
-          "x": 12,
-          "y": 100,
-          "width": 104,
-          "height": 20,
-          "visible": false
-        },
-        {
-          "_$id": "rc2dsbfl",
+          "_$id": "a1l9pwuu",
           "_$type": "Sprite",
           "name": "VisualBounds",
           "x": -4,
-          "y": -10,
+          "y": -22,
           "width": 136,
-          "height": 138,
+          "height": 154,
           "visible": false
         },
         {
-          "_$id": "h9z5vmd1",
+          "_$id": "3m4hm9ee",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 10,
+          "y": 96,
+          "width": 108,
+          "height": 24,
+          "visible": false
+        },
+        {
+          "_$id": "6yw54pmd",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,

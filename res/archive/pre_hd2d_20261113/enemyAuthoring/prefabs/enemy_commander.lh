@@ -1,0 +1,235 @@
+{
+  "_$ver": 1,
+  "_$id": "bog4a1xi",
+  "_$type": "Sprite",
+  "name": "enemy_commander",
+  "width": 96,
+  "height": 96,
+  "_$child": [
+    {
+      "_$id": "pdyd1ub1",
+      "_$type": "Sprite",
+      "name": "Frame0",
+      "width": 96,
+      "height": 96,
+      "_$child": [
+        {
+          "_$id": "d6lsg336",
+          "_$type": "Sprite",
+          "name": "TintBody",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "67c13c68-ab5c-4e47-a12e-d160d21fde50",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "dx1pygy1",
+          "_$type": "Sprite",
+          "name": "FixedDetails",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "97b31c35-dab1-422a-b177-f20661f13971",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "z89cun8q",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 20,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        },
+        {
+          "_$id": "lhu23us7",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 66,
+          "y": 47,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "ysl3af4y",
+      "_$type": "Sprite",
+      "name": "Frame1",
+      "width": 96,
+      "height": 96,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "6t3mtveu",
+          "_$type": "Sprite",
+          "name": "TintBody",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "c67e57f7-b8eb-4d95-8ba4-a7f164b69d54",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "x3tr7snu",
+          "_$type": "Sprite",
+          "name": "FixedDetails",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "c1959cdd-6497-4317-9faf-d7e1a4677829",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "iabu0bqg",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 20,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        },
+        {
+          "_$id": "6oglrn01",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 66,
+          "y": 47,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "zog5wmkz",
+      "_$type": "Sprite",
+      "name": "Frame2",
+      "width": 96,
+      "height": 96,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "vt8nz12r",
+          "_$type": "Sprite",
+          "name": "TintBody",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "f8d0ea8b-8da5-4c46-ab8c-a1124f5237ae",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "niwjhari",
+          "_$type": "Sprite",
+          "name": "FixedDetails",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "aa88e0bb-c878-4aff-9230-35712f317721",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "zot83h52",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 20,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        },
+        {
+          "_$id": "s9xqlxhp",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 66,
+          "y": 47,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "mfzdlnaw",
+      "_$type": "Sprite",
+      "name": "Frame3",
+      "width": 96,
+      "height": 96,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "ba1az8sh",
+          "_$type": "Sprite",
+          "name": "TintBody",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "f114250d-c408-49e1-b8c7-7ec5a175ae57",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "lcny1fg9",
+          "_$type": "Sprite",
+          "name": "FixedDetails",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "37c8814d-9ed5-42db-9dcf-e6650e85c5de",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "rt7xg248",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 20,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        },
+        {
+          "_$id": "cfxop1du",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 66,
+          "y": 47,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "h5i9r5ru",
+      "_$type": "Sprite",
+      "name": "SortOrigin",
+      "x": 48,
+      "y": 92,
+      "width": 0,
+      "height": 0,
+      "visible": false
+    },
+    {
+      "_$id": "zt39r0m7",
+      "_$type": "Sprite",
+      "name": "VisualBounds",
+      "width": 96,
+      "height": 96,
+      "visible": false
+    }
+  ]
+}

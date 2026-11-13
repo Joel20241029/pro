@@ -1,0 +1,186 @@
+{
+  "_$ver": 1,
+  "_$id": "a0869314",
+  "_$type": "Sprite",
+  "name": "enemy_wolfking",
+  "width": 96,
+  "height": 96,
+  "_$child": [
+    {
+      "_$id": "c72c7237",
+      "_$type": "Sprite",
+      "name": "Frame0",
+      "width": 96,
+      "height": 96,
+      "visible": true,
+      "_$child": [
+        {
+          "_$id": "6806f5e8",
+          "_$type": "Sprite",
+          "name": "Body",
+          "texture": {
+            "_$uuid": "d1ad4c24-5eb1-4cb8-8f1a-2cfa362768a7",
+            "_$type": "Texture"
+          },
+          "width": 96,
+          "height": 96
+        },
+        {
+          "_$id": "e4d0ece5",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 32,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "_$id": "2bd20cbd",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 48,
+          "y": 62,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "_$id": "8541b4cb",
+      "_$type": "Sprite",
+      "name": "Frame1",
+      "width": 96,
+      "height": 96,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "41268244",
+          "_$type": "Sprite",
+          "name": "Body",
+          "texture": {
+            "_$uuid": "126e80ff-6476-48f6-8f35-b3b51927e2ad",
+            "_$type": "Texture"
+          },
+          "width": 96,
+          "height": 96
+        },
+        {
+          "_$id": "4caeb362",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 32,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "_$id": "11c14235",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 48,
+          "y": 62,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "_$id": "4d057e9a",
+      "_$type": "Sprite",
+      "name": "Frame2",
+      "width": 96,
+      "height": 96,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "6cd1c83d",
+          "_$type": "Sprite",
+          "name": "Body",
+          "texture": {
+            "_$uuid": "c556286a-8635-4373-8dec-1eb6fbac2bbd",
+            "_$type": "Texture"
+          },
+          "width": 96,
+          "height": 96
+        },
+        {
+          "_$id": "8682c692",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 32,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "_$id": "48fe4f1a",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 48,
+          "y": 62,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "_$id": "e83cdddd",
+      "_$type": "Sprite",
+      "name": "Frame3",
+      "width": 96,
+      "height": 96,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "1cb600e2",
+          "_$type": "Sprite",
+          "name": "Body",
+          "texture": {
+            "_$uuid": "d4d1b171-a469-43cd-846f-548e52cc9a03",
+            "_$type": "Texture"
+          },
+          "width": 96,
+          "height": 96
+        },
+        {
+          "_$id": "7c13a141",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 32,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "_$id": "afbaff18",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 48,
+          "y": 62,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "_$id": "4a6a9a03",
+      "_$type": "Sprite",
+      "name": "SortOrigin",
+      "x": 48,
+      "y": 92,
+      "width": 0,
+      "height": 0,
+      "visible": false
+    },
+    {
+      "_$id": "969a571c",
+      "_$type": "Sprite",
+      "name": "VisualBounds",
+      "x": 0,
+      "y": 0,
+      "width": 96,
+      "height": 96,
+      "visible": false
+    }
+  ]
+}

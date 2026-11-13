@@ -1,20 +1,20 @@
 {
   "_$ver": 1,
-  "_$id": "h3czq5jf",
+  "_$id": "9n5oszca",
   "_$type": "Sprite",
   "name": "LOGGING",
   "width": 128,
   "height": 128,
   "_$child": [
     {
-      "_$id": "8hbwrrgw",
+      "_$id": "0r64datf",
       "_$type": "Sprite",
       "name": "LOGGING_1_1",
       "width": 128,
       "height": 128,
       "_$child": [
         {
-          "_$id": "8ll1l3f2",
+          "_$id": "jvcurs17",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -27,7 +27,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -35,81 +35,42 @@
           ],
           "_$child": [
             {
-              "_$id": "meo0m9sl",
+              "_$id": "9xwjze16",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 18,
-              "y": 105,
-              "width": 92,
-              "height": 15,
+              "name": "Workshop",
+              "x": 4,
+              "y": 8,
+              "width": 120,
+              "height": 120,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "of9jqf15",
-              "_$type": "Sprite",
-              "name": "WorkBay",
-              "x": 24,
-              "y": 67,
-              "width": 78,
-              "height": 46,
-              "texture": {
-                "_$uuid": "954dae68-9e94-41c6-b42e-4439aa484648",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "slxlfne6",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 16,
-              "y": 37,
-              "width": 96,
-              "height": 43,
-              "texture": {
-                "_$uuid": "e98e280f-e8f6-4fe8-9525-8eea7695455b",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "djnfho02",
-              "_$type": "Sprite",
-              "name": "Logs",
-              "x": 67,
-              "y": 88,
-              "width": 37,
-              "height": 27,
-              "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
+                "_$uuid": "5e39c3fa-6f10-4543-85bf-dd295e418405",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "yhrde6kd",
+          "_$id": "4cvwkljv",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "xpgk01r8",
           "_$type": "Sprite",
           "name": "Footprint",
-          "x": 22,
+          "x": 12,
           "y": 99,
-          "width": 84,
+          "width": 104,
           "height": 21,
           "visible": false
         },
         {
-          "_$id": "wxzmofz1",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "r3y2iug7",
+          "_$id": "txostp7w",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -121,7 +82,7 @@
       ]
     },
     {
-      "_$id": "rrruzk6s",
+      "_$id": "89cfzm4m",
       "_$type": "Sprite",
       "name": "LOGGING_2_1",
       "width": 128,
@@ -129,7 +90,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "ywwrpfm9",
+          "_$id": "4sdtqjrd",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -142,7 +103,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -150,94 +111,55 @@
           ],
           "_$child": [
             {
-              "_$id": "bqnf2ktg",
+              "_$id": "fdxfjx2j",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 18,
-              "y": 105,
-              "width": 92,
-              "height": 15,
+              "name": "Workshop",
+              "x": 4,
+              "y": 8,
+              "width": 120,
+              "height": 120,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "5e39c3fa-6f10-4543-85bf-dd295e418405",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "fh06rzsw",
+              "_$id": "zk4mq8by",
               "_$type": "Sprite",
-              "name": "WorkBay",
-              "x": 24,
-              "y": 66,
-              "width": 78,
-              "height": 47,
+              "name": "TimberBracing",
+              "x": 22,
+              "y": 84,
+              "width": 28,
+              "height": 29,
               "texture": {
-                "_$uuid": "954dae68-9e94-41c6-b42e-4439aa484648",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "hip33i3i",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 16,
-              "y": 36,
-              "width": 96,
-              "height": 43,
-              "texture": {
-                "_$uuid": "e98e280f-e8f6-4fe8-9525-8eea7695455b",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "64ef493j",
-              "_$type": "Sprite",
-              "name": "Logs",
-              "x": 67,
-              "y": 88,
-              "width": 37,
-              "height": 27,
-              "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "0k7rqelg",
-              "_$type": "Sprite",
-              "name": "LoadingPorch",
-              "x": 13,
-              "y": 79,
-              "width": 44,
-              "height": 36,
-              "texture": {
-                "_$uuid": "3af9de23-8980-4b7c-ad0b-51ba77ecb660",
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "wiw278bj",
+          "_$id": "08i7p11t",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "gzt1h7d9",
           "_$type": "Sprite",
           "name": "Footprint",
-          "x": 22,
+          "x": 12,
           "y": 99,
-          "width": 84,
+          "width": 104,
           "height": 21,
           "visible": false
         },
         {
-          "_$id": "qvmfrofc",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "2udia3ji",
+          "_$id": "a9wubw5t",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -249,7 +171,7 @@
       ]
     },
     {
-      "_$id": "geevkt34",
+      "_$id": "ir1fcfui",
       "_$type": "Sprite",
       "name": "LOGGING_3_1",
       "width": 128,
@@ -257,7 +179,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "g0u4yi40",
+          "_$id": "pmj375h6",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -270,7 +192,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -278,107 +200,68 @@
           ],
           "_$child": [
             {
-              "_$id": "g2mjioje",
+              "_$id": "34hryyq8",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 18,
-              "y": 105,
-              "width": 92,
-              "height": 15,
+              "name": "Workshop",
+              "x": 4,
+              "y": 8,
+              "width": 120,
+              "height": 120,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "5e39c3fa-6f10-4543-85bf-dd295e418405",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "zyy0ywpu",
+              "_$id": "fpdalbqs",
               "_$type": "Sprite",
-              "name": "WorkBay",
-              "x": 24,
-              "y": 65,
-              "width": 78,
-              "height": 48,
-              "texture": {
-                "_$uuid": "954dae68-9e94-41c6-b42e-4439aa484648",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "l8nehpoo",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 16,
-              "y": 35,
-              "width": 96,
-              "height": 43,
-              "texture": {
-                "_$uuid": "e98e280f-e8f6-4fe8-9525-8eea7695455b",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "djqh5xeq",
-              "_$type": "Sprite",
-              "name": "Logs",
-              "x": 67,
-              "y": 88,
-              "width": 37,
-              "height": 27,
-              "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "uhws9r95",
-              "_$type": "Sprite",
-              "name": "SawBench",
-              "x": 27,
-              "y": 88,
-              "width": 38,
+              "name": "TimberBracing",
+              "x": 22,
+              "y": 84,
+              "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "475e4f55-283f-4473-8c56-b4bbf00b790a",
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "vqf0r7dq",
+              "_$id": "8j4h9f8l",
               "_$type": "Sprite",
-              "name": "TimberRack",
-              "x": 17,
-              "y": 91,
-              "width": 42,
-              "height": 25,
+              "name": "SawWheel",
+              "x": 84,
+              "y": 79,
+              "width": 28,
+              "height": 33,
               "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "216r9dbs",
+          "_$id": "qcm4rm6e",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "fh2ehjym",
           "_$type": "Sprite",
           "name": "Footprint",
-          "x": 22,
+          "x": 12,
           "y": 99,
-          "width": 84,
+          "width": 104,
           "height": 21,
           "visible": false
         },
         {
-          "_$id": "yw43w2jk",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "c10klleg",
+          "_$id": "s3axrqvk",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -390,7 +273,7 @@
       ]
     },
     {
-      "_$id": "amdfo5ta",
+      "_$id": "vfsdim68",
       "_$type": "Sprite",
       "name": "LOGGING_4_1",
       "width": 128,
@@ -398,7 +281,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "qp4r77m8",
+          "_$id": "yd3lcd1a",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -411,7 +294,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -419,107 +302,42 @@
           ],
           "_$child": [
             {
-              "_$id": "1yejsh4k",
+              "_$id": "tx7v2etq",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 18,
-              "y": 105,
-              "width": 92,
-              "height": 15,
+              "name": "Workshop",
+              "x": 4,
+              "y": 8,
+              "width": 120,
+              "height": 120,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "km4sc03p",
-              "_$type": "Sprite",
-              "name": "WorkBay",
-              "x": 24,
-              "y": 64,
-              "width": 78,
-              "height": 49,
-              "texture": {
-                "_$uuid": "954dae68-9e94-41c6-b42e-4439aa484648",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "5qk1pasx",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 16,
-              "y": 34,
-              "width": 96,
-              "height": 43,
-              "texture": {
-                "_$uuid": "e1f744ae-0078-43bc-9769-a177149edf2a",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "vhz8k8sv",
-              "_$type": "Sprite",
-              "name": "Logs",
-              "x": 67,
-              "y": 88,
-              "width": 37,
-              "height": 27,
-              "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "u6ox8swm",
-              "_$type": "Sprite",
-              "name": "SawBench",
-              "x": 27,
-              "y": 88,
-              "width": 38,
-              "height": 29,
-              "texture": {
-                "_$uuid": "475e4f55-283f-4473-8c56-b4bbf00b790a",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "zwcb8mqu",
-              "_$type": "Sprite",
-              "name": "WorkingCanopy",
-              "x": 40,
-              "y": 71,
-              "width": 67,
-              "height": 43,
-              "texture": {
-                "_$uuid": "3af9de23-8980-4b7c-ad0b-51ba77ecb660",
+                "_$uuid": "b4018a44-0cf0-4e7e-8e76-68b0f0fa29df",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "5367fnyj",
+          "_$id": "aw0pv4b6",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "z8utlrkb",
           "_$type": "Sprite",
           "name": "Footprint",
-          "x": 22,
+          "x": 12,
           "y": 99,
-          "width": 84,
+          "width": 104,
           "height": 21,
           "visible": false
         },
         {
-          "_$id": "cr3f3czt",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "v0gv05g9",
+          "_$id": "sjwc8ty4",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -531,7 +349,7 @@
       ]
     },
     {
-      "_$id": "q6iv1ssb",
+      "_$id": "g65kkanx",
       "_$type": "Sprite",
       "name": "LOGGING_5_1",
       "width": 128,
@@ -539,7 +357,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "k00cnzee",
+          "_$id": "hza4bhek",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -552,7 +370,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -560,94 +378,55 @@
           ],
           "_$child": [
             {
-              "_$id": "hny3dfts",
+              "_$id": "7s6qqd3i",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 18,
-              "y": 105,
-              "width": 92,
-              "height": 15,
+              "name": "Workshop",
+              "x": 4,
+              "y": 8,
+              "width": 120,
+              "height": 120,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "b4018a44-0cf0-4e7e-8e76-68b0f0fa29df",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "3ts713b3",
+              "_$id": "l522sw3n",
               "_$type": "Sprite",
-              "name": "WorkBay",
-              "x": 24,
-              "y": 62,
-              "width": 78,
-              "height": 51,
-              "texture": {
-                "_$uuid": "954dae68-9e94-41c6-b42e-4439aa484648",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "rbl9b50m",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 16,
-              "y": 32,
-              "width": 96,
-              "height": 43,
-              "texture": {
-                "_$uuid": "e1f744ae-0078-43bc-9769-a177149edf2a",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "bvx8judt",
-              "_$type": "Sprite",
-              "name": "Logs",
-              "x": 67,
-              "y": 88,
-              "width": 37,
-              "height": 27,
-              "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "2hcjyi2a",
-              "_$type": "Sprite",
-              "name": "SawBench",
-              "x": 27,
-              "y": 88,
-              "width": 38,
+              "name": "TimberBracing",
+              "x": 22,
+              "y": 84,
+              "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "475e4f55-283f-4473-8c56-b4bbf00b790a",
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "kjddu2og",
+          "_$id": "4mdmrygy",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "mfd8iomv",
           "_$type": "Sprite",
           "name": "Footprint",
-          "x": 22,
+          "x": 12,
           "y": 99,
-          "width": 84,
+          "width": 104,
           "height": 21,
           "visible": false
         },
         {
-          "_$id": "qq1hjrz7",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "3hhr1gw1",
+          "_$id": "j6zr9z7f",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -659,7 +438,7 @@
       ]
     },
     {
-      "_$id": "1hr5cqjy",
+      "_$id": "5i8a7xqn",
       "_$type": "Sprite",
       "name": "LOGGING_6_1",
       "width": 128,
@@ -667,7 +446,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "ibvyq47a",
+          "_$id": "4w3wm25f",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -680,7 +459,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -688,107 +467,68 @@
           ],
           "_$child": [
             {
-              "_$id": "6qn6g3ei",
+              "_$id": "guzdlxi4",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 18,
-              "y": 105,
-              "width": 92,
-              "height": 15,
+              "name": "Workshop",
+              "x": 4,
+              "y": 8,
+              "width": 120,
+              "height": 120,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "b4018a44-0cf0-4e7e-8e76-68b0f0fa29df",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "040atuye",
+              "_$id": "rm7zzck2",
               "_$type": "Sprite",
-              "name": "WorkBay",
-              "x": 24,
-              "y": 61,
-              "width": 78,
-              "height": 52,
-              "texture": {
-                "_$uuid": "954dae68-9e94-41c6-b42e-4439aa484648",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "efh38i06",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 16,
-              "y": 31,
-              "width": 96,
-              "height": 43,
-              "texture": {
-                "_$uuid": "e1f744ae-0078-43bc-9769-a177149edf2a",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "fqu228bk",
-              "_$type": "Sprite",
-              "name": "Logs",
-              "x": 67,
-              "y": 88,
-              "width": 37,
-              "height": 27,
-              "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "x1tpdnm5",
-              "_$type": "Sprite",
-              "name": "SawBench",
-              "x": 27,
-              "y": 88,
-              "width": 38,
+              "name": "TimberBracing",
+              "x": 22,
+              "y": 84,
+              "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "475e4f55-283f-4473-8c56-b4bbf00b790a",
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "z62uj8tt",
+              "_$id": "aai5ihjg",
               "_$type": "Sprite",
-              "name": "LoadingPorch",
-              "x": 13,
+              "name": "SawWheel",
+              "x": 84,
               "y": 79,
-              "width": 44,
-              "height": 36,
+              "width": 28,
+              "height": 33,
               "texture": {
-                "_$uuid": "3af9de23-8980-4b7c-ad0b-51ba77ecb660",
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "kjyqup0g",
+          "_$id": "wlmkial6",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "5kj8eygg",
           "_$type": "Sprite",
           "name": "Footprint",
-          "x": 22,
+          "x": 12,
           "y": 99,
-          "width": 84,
+          "width": 104,
           "height": 21,
           "visible": false
         },
         {
-          "_$id": "1dekk2s5",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "ym9xx9sl",
+          "_$id": "ytx1lzcp",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -800,7 +540,7 @@
       ]
     },
     {
-      "_$id": "q1ulv2vd",
+      "_$id": "3utt3j76",
       "_$type": "Sprite",
       "name": "LOGGING_7_1",
       "width": 128,
@@ -808,7 +548,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "1d1ote17",
+          "_$id": "e5fhb7qj",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -821,7 +561,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -829,120 +569,81 @@
           ],
           "_$child": [
             {
-              "_$id": "6ovqkcfc",
+              "_$id": "zt63xhip",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 18,
-              "y": 105,
-              "width": 92,
-              "height": 15,
+              "name": "Workshop",
+              "x": 4,
+              "y": 8,
+              "width": 120,
+              "height": 120,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "b4018a44-0cf0-4e7e-8e76-68b0f0fa29df",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "koysznjq",
+              "_$id": "dri35jjh",
               "_$type": "Sprite",
-              "name": "WorkBay",
-              "x": 24,
-              "y": 60,
-              "width": 78,
-              "height": 53,
-              "texture": {
-                "_$uuid": "954dae68-9e94-41c6-b42e-4439aa484648",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "nlflk8t2",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 16,
-              "y": 30,
-              "width": 96,
-              "height": 43,
-              "texture": {
-                "_$uuid": "e1f744ae-0078-43bc-9769-a177149edf2a",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "h4sauw6y",
-              "_$type": "Sprite",
-              "name": "Logs",
-              "x": 67,
-              "y": 88,
-              "width": 37,
-              "height": 27,
-              "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "h8xsedh7",
-              "_$type": "Sprite",
-              "name": "SawBench",
-              "x": 27,
-              "y": 88,
-              "width": 38,
+              "name": "TimberBracing",
+              "x": 22,
+              "y": 84,
+              "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "475e4f55-283f-4473-8c56-b4bbf00b790a",
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "mq5gx5mf",
+              "_$id": "a9l0lmb3",
               "_$type": "Sprite",
-              "name": "TimberRack",
-              "x": 17,
-              "y": 91,
-              "width": 42,
-              "height": 25,
+              "name": "SawWheel",
+              "x": 84,
+              "y": 79,
+              "width": 28,
+              "height": 33,
               "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "gsbf2i1o",
+              "_$id": "lcn9ie04",
               "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 80,
-              "y": 69,
-              "width": 31,
-              "height": 39,
+              "name": "WorkshopEmblem",
+              "x": 42,
+              "y": 43,
+              "width": 30,
+              "height": 18,
               "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "6trwv444",
+          "_$id": "1x99qydm",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "6cf8bqab",
           "_$type": "Sprite",
           "name": "Footprint",
-          "x": 22,
+          "x": 12,
           "y": 99,
-          "width": 84,
+          "width": 104,
           "height": 21,
           "visible": false
         },
         {
-          "_$id": "rfeffxzn",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "t0unz8ch",
+          "_$id": "wp1ubxov",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -954,7 +655,7 @@
       ]
     },
     {
-      "_$id": "zm7bsd6q",
+      "_$id": "wswnkpz5",
       "_$type": "Sprite",
       "name": "LOGGING_8_1",
       "width": 128,
@@ -962,7 +663,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "7u6xvges",
+          "_$id": "6xqdngda",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -975,7 +676,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -983,120 +684,42 @@
           ],
           "_$child": [
             {
-              "_$id": "pog16oxs",
+              "_$id": "w9i35krr",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 18,
-              "y": 105,
-              "width": 92,
-              "height": 15,
+              "name": "Workshop",
+              "x": 4,
+              "y": 8,
+              "width": 120,
+              "height": 120,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "u0bu5uzi",
-              "_$type": "Sprite",
-              "name": "WorkBay",
-              "x": 24,
-              "y": 59,
-              "width": 78,
-              "height": 54,
-              "texture": {
-                "_$uuid": "954dae68-9e94-41c6-b42e-4439aa484648",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "a8859eii",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 16,
-              "y": 29,
-              "width": 96,
-              "height": 43,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "ukduarav",
-              "_$type": "Sprite",
-              "name": "Logs",
-              "x": 67,
-              "y": 88,
-              "width": 37,
-              "height": 27,
-              "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "d2trca9y",
-              "_$type": "Sprite",
-              "name": "SawBench",
-              "x": 27,
-              "y": 88,
-              "width": 38,
-              "height": 29,
-              "texture": {
-                "_$uuid": "475e4f55-283f-4473-8c56-b4bbf00b790a",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "hpjzoram",
-              "_$type": "Sprite",
-              "name": "WorkingCanopy",
-              "x": 40,
-              "y": 71,
-              "width": 67,
-              "height": 43,
-              "texture": {
-                "_$uuid": "3af9de23-8980-4b7c-ad0b-51ba77ecb660",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "o2dbjulo",
-              "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 80,
-              "y": 69,
-              "width": 31,
-              "height": 39,
-              "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "69c7307b-b9f4-41b1-8424-b5ddb70481f1",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "vdysli06",
+          "_$id": "viw3ssia",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "300ui6p6",
           "_$type": "Sprite",
           "name": "Footprint",
-          "x": 22,
+          "x": 12,
           "y": 99,
-          "width": 84,
+          "width": 104,
           "height": 21,
           "visible": false
         },
         {
-          "_$id": "u0bmt4af",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "wryg01vc",
+          "_$id": "rts5zach",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1108,7 +731,7 @@
       ]
     },
     {
-      "_$id": "j8c9q02j",
+      "_$id": "j23wkynt",
       "_$type": "Sprite",
       "name": "LOGGING_9_1",
       "width": 128,
@@ -1116,7 +739,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "2uidr6m2",
+          "_$id": "sysl070c",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1129,7 +752,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1137,146 +760,55 @@
           ],
           "_$child": [
             {
-              "_$id": "oguhlojb",
+              "_$id": "i5cqo66o",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 18,
-              "y": 105,
-              "width": 92,
-              "height": 15,
+              "name": "Workshop",
+              "x": 4,
+              "y": 8,
+              "width": 120,
+              "height": 120,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "69c7307b-b9f4-41b1-8424-b5ddb70481f1",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "xnrk9t5s",
+              "_$id": "kg3tdtoh",
               "_$type": "Sprite",
-              "name": "WorkBay",
-              "x": 24,
-              "y": 62,
-              "width": 78,
-              "height": 51,
-              "texture": {
-                "_$uuid": "954dae68-9e94-41c6-b42e-4439aa484648",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "4jcn2hlj",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 16,
-              "y": 32,
-              "width": 96,
-              "height": 43,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "3jaq6h8b",
-              "_$type": "Sprite",
-              "name": "Logs",
-              "x": 67,
-              "y": 88,
-              "width": 37,
-              "height": 27,
-              "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "2c5wgxt5",
-              "_$type": "Sprite",
-              "name": "SawBench",
-              "x": 27,
-              "y": 88,
-              "width": 38,
+              "name": "TimberBracing",
+              "x": 22,
+              "y": 84,
+              "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "475e4f55-283f-4473-8c56-b4bbf00b790a",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "nrllf58w",
-              "_$type": "Sprite",
-              "name": "Loft",
-              "x": 41,
-              "y": 32,
-              "width": 46,
-              "height": 34,
-              "texture": {
-                "_$uuid": "8ad2f438-86a5-49b0-adb6-b3dfc78da3ac",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "k6uzxbg8",
-              "_$type": "Sprite",
-              "name": "LoftWindow",
-              "x": 53,
-              "y": 43,
-              "width": 17,
-              "height": 17,
-              "texture": {
-                "_$uuid": "849b3b81-dd57-4bb7-a306-56f292f8200e",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "5u38n5ec",
-              "_$type": "Sprite",
-              "name": "LoftRoof",
-              "x": 32,
-              "y": 13,
-              "width": 66,
-              "height": 35,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "j3nmk97w",
-              "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 80,
-              "y": 69,
-              "width": 31,
-              "height": 39,
-              "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "a403u7vh",
+          "_$id": "yew201wi",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "5xgwk07z",
           "_$type": "Sprite",
           "name": "Footprint",
-          "x": 22,
+          "x": 12,
           "y": 99,
-          "width": 84,
+          "width": 104,
           "height": 21,
           "visible": false
         },
         {
-          "_$id": "thv68a7l",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "soyciul7",
+          "_$id": "myomn3hp",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1288,7 +820,7 @@
       ]
     },
     {
-      "_$id": "3v1hvmsh",
+      "_$id": "b7tt05d0",
       "_$type": "Sprite",
       "name": "LOGGING_10_1",
       "width": 128,
@@ -1296,7 +828,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "6b468rij",
+          "_$id": "7x7jbr9c",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1309,7 +841,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1317,159 +849,68 @@
           ],
           "_$child": [
             {
-              "_$id": "i80s3cje",
+              "_$id": "j1im3n1e",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 18,
-              "y": 105,
-              "width": 92,
-              "height": 15,
+              "name": "Workshop",
+              "x": 4,
+              "y": 8,
+              "width": 120,
+              "height": 120,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "69c7307b-b9f4-41b1-8424-b5ddb70481f1",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "8jfq2sfi",
+              "_$id": "0j19vphl",
               "_$type": "Sprite",
-              "name": "WorkBay",
-              "x": 24,
-              "y": 62,
-              "width": 78,
-              "height": 51,
-              "texture": {
-                "_$uuid": "954dae68-9e94-41c6-b42e-4439aa484648",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "jiyr7t2b",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 16,
-              "y": 32,
-              "width": 96,
-              "height": 43,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "b80luc1u",
-              "_$type": "Sprite",
-              "name": "Logs",
-              "x": 67,
-              "y": 88,
-              "width": 37,
-              "height": 27,
-              "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "6ptfes7d",
-              "_$type": "Sprite",
-              "name": "SawBench",
-              "x": 27,
-              "y": 88,
-              "width": 38,
+              "name": "TimberBracing",
+              "x": 22,
+              "y": 84,
+              "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "475e4f55-283f-4473-8c56-b4bbf00b790a",
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "0ea9i1bh",
+              "_$id": "zkapdvey",
               "_$type": "Sprite",
-              "name": "LoadingPorch",
-              "x": 13,
+              "name": "SawWheel",
+              "x": 84,
               "y": 79,
-              "width": 44,
-              "height": 36,
+              "width": 28,
+              "height": 33,
               "texture": {
-                "_$uuid": "3af9de23-8980-4b7c-ad0b-51ba77ecb660",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "obrausj5",
-              "_$type": "Sprite",
-              "name": "Loft",
-              "x": 41,
-              "y": 32,
-              "width": 46,
-              "height": 34,
-              "texture": {
-                "_$uuid": "8ad2f438-86a5-49b0-adb6-b3dfc78da3ac",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "1o7lbufn",
-              "_$type": "Sprite",
-              "name": "LoftWindow",
-              "x": 53,
-              "y": 43,
-              "width": 17,
-              "height": 17,
-              "texture": {
-                "_$uuid": "849b3b81-dd57-4bb7-a306-56f292f8200e",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "214so73e",
-              "_$type": "Sprite",
-              "name": "LoftRoof",
-              "x": 32,
-              "y": 13,
-              "width": 66,
-              "height": 35,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "d84vmez4",
-              "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 80,
-              "y": 69,
-              "width": 31,
-              "height": 39,
-              "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "d2flb2ei",
+          "_$id": "exq2nrqz",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "quu1cv5a",
           "_$type": "Sprite",
           "name": "Footprint",
-          "x": 22,
+          "x": 12,
           "y": 99,
-          "width": 84,
+          "width": 104,
           "height": 21,
           "visible": false
         },
         {
-          "_$id": "wl22ys9h",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "jt4i52mj",
+          "_$id": "ap8xprdo",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1481,7 +922,7 @@
       ]
     },
     {
-      "_$id": "21myv5oo",
+      "_$id": "8hqh4tgy",
       "_$type": "Sprite",
       "name": "LOGGING_11_1",
       "width": 128,
@@ -1489,7 +930,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "6ezvaexw",
+          "_$id": "9lxl9udg",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1502,7 +943,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1510,159 +951,81 @@
           ],
           "_$child": [
             {
-              "_$id": "9jtdzs8y",
+              "_$id": "9k4ezt3y",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 18,
-              "y": 105,
-              "width": 92,
-              "height": 15,
+              "name": "Workshop",
+              "x": 4,
+              "y": 8,
+              "width": 120,
+              "height": 120,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
+                "_$uuid": "69c7307b-b9f4-41b1-8424-b5ddb70481f1",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "puueq46s",
+              "_$id": "zn4bctjn",
               "_$type": "Sprite",
-              "name": "WorkBay",
-              "x": 24,
-              "y": 62,
-              "width": 78,
-              "height": 51,
-              "texture": {
-                "_$uuid": "954dae68-9e94-41c6-b42e-4439aa484648",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "jahbw29y",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 16,
-              "y": 32,
-              "width": 96,
-              "height": 43,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "ykp4brgo",
-              "_$type": "Sprite",
-              "name": "Logs",
-              "x": 67,
-              "y": 88,
-              "width": 37,
-              "height": 27,
-              "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "t5p3bczt",
-              "_$type": "Sprite",
-              "name": "SawBench",
-              "x": 27,
-              "y": 88,
-              "width": 38,
+              "name": "TimberBracing",
+              "x": 22,
+              "y": 84,
+              "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "475e4f55-283f-4473-8c56-b4bbf00b790a",
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "c617y6yi",
+              "_$id": "b337h7ny",
               "_$type": "Sprite",
-              "name": "TimberRack",
-              "x": 17,
-              "y": 91,
-              "width": 42,
-              "height": 25,
+              "name": "SawWheel",
+              "x": 84,
+              "y": 79,
+              "width": 28,
+              "height": 33,
               "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "1c4gozu2",
+              "_$id": "zbwwb3xf",
               "_$type": "Sprite",
-              "name": "Loft",
-              "x": 41,
-              "y": 32,
-              "width": 46,
-              "height": 34,
-              "texture": {
-                "_$uuid": "8ad2f438-86a5-49b0-adb6-b3dfc78da3ac",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "8r1f3cbn",
-              "_$type": "Sprite",
-              "name": "LoftWindow",
-              "x": 53,
+              "name": "WorkshopEmblem",
+              "x": 42,
               "y": 43,
-              "width": 17,
-              "height": 17,
+              "width": 30,
+              "height": 18,
               "texture": {
-                "_$uuid": "849b3b81-dd57-4bb7-a306-56f292f8200e",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "fevp7iof",
-              "_$type": "Sprite",
-              "name": "LoftRoof",
-              "x": 32,
-              "y": 13,
-              "width": 66,
-              "height": 35,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "6pqzz7fq",
-              "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 80,
-              "y": 69,
-              "width": 31,
-              "height": 39,
-              "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "gn9l3hn2",
+          "_$id": "9bkus7r2",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "49znwsnm",
           "_$type": "Sprite",
           "name": "Footprint",
-          "x": 22,
+          "x": 12,
           "y": 99,
-          "width": 84,
+          "width": 104,
           "height": 21,
           "visible": false
         },
         {
-          "_$id": "cjmteef6",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "eba9no97",
+          "_$id": "xndxcpmy",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1674,7 +1037,7 @@
       ]
     },
     {
-      "_$id": "4b8hlkvb",
+      "_$id": "e87aq139",
       "_$type": "Sprite",
       "name": "LOGGING_12_1",
       "width": 128,
@@ -1682,7 +1045,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "tctfsqev",
+          "_$id": "f1cmsjfw",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1695,7 +1058,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1703,159 +1066,42 @@
           ],
           "_$child": [
             {
-              "_$id": "u8xe94f3",
+              "_$id": "f8hcmbt3",
               "_$type": "Sprite",
-              "name": "Foundation",
-              "x": 18,
-              "y": 105,
-              "width": 92,
-              "height": 15,
+              "name": "Workshop",
+              "x": 4,
+              "y": 8,
+              "width": 120,
+              "height": 120,
               "texture": {
-                "_$uuid": "651ef3f6-1c8d-4cd3-8bd2-8a0536d06e00",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "hke6isru",
-              "_$type": "Sprite",
-              "name": "WorkBay",
-              "x": 24,
-              "y": 62,
-              "width": 78,
-              "height": 51,
-              "texture": {
-                "_$uuid": "954dae68-9e94-41c6-b42e-4439aa484648",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "4dia91w0",
-              "_$type": "Sprite",
-              "name": "Roof",
-              "x": 16,
-              "y": 32,
-              "width": 96,
-              "height": 43,
-              "texture": {
-                "_$uuid": "f5772144-cde5-46ec-971d-5b2d60f931d3",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "hhcp48qo",
-              "_$type": "Sprite",
-              "name": "Logs",
-              "x": 67,
-              "y": 88,
-              "width": 37,
-              "height": 27,
-              "texture": {
-                "_$uuid": "c0119831-90f6-4232-b189-3f7bd4ad3ef4",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "atyu9a6h",
-              "_$type": "Sprite",
-              "name": "SawBench",
-              "x": 27,
-              "y": 88,
-              "width": 38,
-              "height": 29,
-              "texture": {
-                "_$uuid": "475e4f55-283f-4473-8c56-b4bbf00b790a",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "wefvj0an",
-              "_$type": "Sprite",
-              "name": "WorkingCanopy",
-              "x": 40,
-              "y": 71,
-              "width": 67,
-              "height": 43,
-              "texture": {
-                "_$uuid": "3af9de23-8980-4b7c-ad0b-51ba77ecb660",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "9d47c6y4",
-              "_$type": "Sprite",
-              "name": "Loft",
-              "x": 41,
-              "y": 32,
-              "width": 46,
-              "height": 34,
-              "texture": {
-                "_$uuid": "8ad2f438-86a5-49b0-adb6-b3dfc78da3ac",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "3ixmedix",
-              "_$type": "Sprite",
-              "name": "LoftWindow",
-              "x": 53,
-              "y": 43,
-              "width": 17,
-              "height": 17,
-              "texture": {
-                "_$uuid": "849b3b81-dd57-4bb7-a306-56f292f8200e",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "9ipz7qlo",
-              "_$type": "Sprite",
-              "name": "LoftRoof",
-              "x": 32,
-              "y": 13,
-              "width": 66,
-              "height": 35,
-              "texture": {
-                "_$uuid": "744bd17d-ec73-4baa-8f8f-731cd78424ef",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "v9paw02s",
-              "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 80,
-              "y": 69,
-              "width": 31,
-              "height": 39,
-              "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "a3002365-93de-4e21-88df-7741240d2b1f",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "d69fbt6h",
+          "_$id": "2uj5fcbs",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "iy0qnuvo",
           "_$type": "Sprite",
           "name": "Footprint",
-          "x": 22,
+          "x": 12,
           "y": 99,
-          "width": 84,
+          "width": 104,
           "height": 21,
           "visible": false
         },
         {
-          "_$id": "w8xifodm",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "m84wvfjj",
+          "_$id": "qfj5qmy3",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,

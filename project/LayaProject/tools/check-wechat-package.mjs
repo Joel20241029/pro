@@ -2,8 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-// 恢复1.0.13二维版内部交付预算；与资源配方预算一致，原始字节不等于微信上传压缩大小。
-const BUDGET = { main: 3_000_000, characters: 900_000, battle: 1_100_000, total: 5_000_000 };
+// 高清四包规格。微信普通分包无独立4MiB上限，主包4MiB、合计30MiB；详见doc/tech/32。
+// 此处保守用目录原始字节校验，微信工具上传压缩量另记，不能混作同一数据。
+const BUDGET = { main: 4 * 1024 * 1024, total: 30 * 1024 * 1024 };
 const [directory, reportPath] = process.argv.slice(2);
 if (!directory || !reportPath) throw new Error('用法：node tools/check-wechat-package.mjs <微信导出目录> <Downloads内报告路径>');
 const root = path.resolve(directory), projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -14,18 +15,16 @@ walk(root);
 const read = file => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
 const game = read('game.json'), project = read('project.config.json');
 const boot = fs.readFileSync(path.join(root, 'game.js'), 'utf8');
-const modules = ['laya.particleCommon', 'laya.particle'];
-for (const module of modules) if (!files.some(f => f.path === `libs/${module}.js`) || !boot.includes(`require("libs/${module}.js")`)) errors.push('必需引擎模块未加载：' + module);
-for (const module of ['laya.d3', 'laya.webgl_3D', 'laya.particle3D']) if (files.some(f => f.path === `libs/${module}.js`) || boot.includes(`require("libs/${module}.js")`)) errors.push('二维版残留3D引擎模块：' + module);
+for (const module of ['laya.d3', 'laya.webgl_3D', 'laya.particleCommon', 'laya.particle', 'laya.particle3D']) if (files.some(f => f.path === `libs/${module}.js`) || boot.includes(`require("libs/${module}.js")`)) errors.push('高清二维包残留3D或粒子模块：' + module);
 const index = fs.readFileSync(path.join(root, 'js/index.js'), 'utf8'), match = index.match(/JSON\.parse\(`(.*?)`\)/s);
 if (!match) throw new Error('发布器启动配置格式变化，必须重新检查');
 const config = JSON.parse(match[1]);
 if (game.deviceOrientation !== 'portrait' || game.plugins) errors.push('必须竖屏且不使用引擎插件');
 if (game.openDataContext !== 'openDataContext') errors.push('未声明本地开放数据域');
 if (project.compileType !== 'game' || project.appid !== 'wx46e59dc5dc95b52f') errors.push('微信项目类型或AppID不符');
-const nativeBundles = ['characters', 'battle'];
-if (game.subPackages || game.subpackages?.length !== 2 || nativeBundles.some(name => !game.subpackages?.some(p => p.name === 'resources/' + name && p.root === 'resources/' + name + '/' && !p.independent))) errors.push('必须声明人物和战斗两个普通原生分包');
-if (config.pkgs.length !== 3 || config.pkgs.filter(p => p.path === '' && p.autoLoad === true).length !== 1 || nativeBundles.some(name => !config.pkgs.some(p => p.path === 'resources/' + name && !p.autoLoad)) || config.pkgs.some(p => p.remoteUrl)) errors.push('只有主包自动加载；两分包按时机手动加载，禁止远程URL');
+const nativeBundles = ['buildings', 'characters', 'battle'];
+if (game.subPackages || game.subpackages?.length !== 3 || nativeBundles.some(name => !game.subpackages?.some(p => p.name === 'resources/' + name && p.root === 'resources/' + name + '/' && !p.independent))) errors.push('必须声明建筑、人物和战斗三个普通原生分包');
+if (config.pkgs.length !== 4 || config.pkgs.filter(p => p.path === '' && p.autoLoad === true).length !== 1 || nativeBundles.some(name => !config.pkgs.some(p => p.path === 'resources/' + name && !p.autoLoad)) || config.pkgs.some(p => p.remoteUrl)) errors.push('只有主包自动加载；三分包按时机手动加载，禁止远程URL');
 const openFiles = ['engine.js', 'index.js', 'score-store.js', 'render.js', 'LICENSE'];
 if (files.some(f => f.path.startsWith('openDataContext/') && !openFiles.includes(path.basename(f.path)))) errors.push('开放域含未使用示例文件');
 for (const name of openFiles) if (files.find(f => f.path === 'openDataContext/' + name)?.sha256 !== hash(path.join(projectRoot, 'build-templates/wxgame/openDataContext', name))) errors.push('开放域与制作源不一致：' + name);
@@ -57,7 +56,7 @@ if (audio.tracks.filter(t => t.packageFile !== 'village_loop.mp3').reduce((n,t) 
 const total = files.reduce((n,f) => n + f.bytes, 0);
 const subpackages = nativeBundles.map(name => ({ name: 'resources/' + name, root: 'resources/' + name + '/', rawBytes: files.filter(f => f.path.startsWith('resources/' + name + '/')).reduce((n,f) => n+f.bytes,0) }));
 const mainPackageBytes = total - subpackages.reduce((n,p) => n+p.rawBytes,0);
-if (mainPackageBytes > BUDGET.main || total > BUDGET.total || subpackages.some((p,i) => p.rawBytes > BUDGET[nativeBundles[i]])) errors.push('超出二维版内部包体预算');
+if (mainPackageBytes > BUDGET.main || total > BUDGET.total) errors.push('超出主包或合计容量限制');
 if (files.some(f => /\.(map|ts|gif|glb|blend|lh|lm|lani|lmat)$/.test(f.path) || /(^|\/)(source|preview|village|world3d)\//.test(f.path))) errors.push('包含开发源、3D模型或预览资源');
 const report = { createdAt: new Date().toISOString(), root, rawDirectoryBytes: total, rawMainPackageBytes: mainPackageBytes, subpackages, internalBudgets: BUDGET, platformUploadBytes: null, platformUploadStatus: 'not_uploaded', errors: [...new Set(errors)], files };
 fs.mkdirSync(path.dirname(path.resolve(reportPath)), { recursive: true }); fs.writeFileSync(reportPath, JSON.stringify(report, null, 2) + '\n');

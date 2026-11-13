@@ -1,0 +1,1117 @@
+{
+  "_$ver": 1,
+  "_$id": "d5ee5003",
+  "_$type": "Sprite",
+  "name": "LOGGING",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "f88fe527",
+      "_$type": "Sprite",
+      "name": "LOGGING_1_1",
+      "width": 128,
+      "height": 128,
+      "visible": true,
+      "_$child": [
+        {
+          "_$id": "67e4f196",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "5419dee9",
+              "_$type": "Sprite",
+              "name": "Workshop",
+              "texture": {
+                "_$uuid": "5e39c3fa-6f10-4543-85bf-dd295e418405",
+                "_$type": "Texture"
+              },
+              "x": 4,
+              "y": 7.5,
+              "width": 120,
+              "height": 120
+            }
+          ]
+        },
+        {
+          "_$id": "f3295570",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "739a98dd",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 12,
+          "y": 99,
+          "width": 104,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "acdef092",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "cce163bb",
+      "_$type": "Sprite",
+      "name": "LOGGING_2_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "9c766a74",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "3c27be2d",
+              "_$type": "Sprite",
+              "name": "Workshop",
+              "texture": {
+                "_$uuid": "5e39c3fa-6f10-4543-85bf-dd295e418405",
+                "_$type": "Texture"
+              },
+              "x": 4,
+              "y": 7.5,
+              "width": 120,
+              "height": 120
+            },
+            {
+              "_$id": "cc03f818",
+              "_$type": "Sprite",
+              "name": "TimberBracing",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 22,
+              "y": 84,
+              "width": 28,
+              "height": 29
+            }
+          ]
+        },
+        {
+          "_$id": "368a3cc7",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "a646b11c",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 12,
+          "y": 99,
+          "width": 104,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "262b44da",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "07539b04",
+      "_$type": "Sprite",
+      "name": "LOGGING_3_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "3ef087af",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "2ddb044a",
+              "_$type": "Sprite",
+              "name": "Workshop",
+              "texture": {
+                "_$uuid": "5e39c3fa-6f10-4543-85bf-dd295e418405",
+                "_$type": "Texture"
+              },
+              "x": 4,
+              "y": 7.5,
+              "width": 120,
+              "height": 120
+            },
+            {
+              "_$id": "8a180721",
+              "_$type": "Sprite",
+              "name": "TimberBracing",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 22,
+              "y": 84,
+              "width": 28,
+              "height": 29
+            },
+            {
+              "_$id": "1a4888d9",
+              "_$type": "Sprite",
+              "name": "SawWheel",
+              "texture": {
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 79,
+              "width": 28,
+              "height": 33
+            }
+          ]
+        },
+        {
+          "_$id": "04ff09eb",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "5f911289",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 12,
+          "y": 99,
+          "width": 104,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "09f76794",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "a3ef2a6e",
+      "_$type": "Sprite",
+      "name": "LOGGING_4_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "9cee24e3",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "4494f03f",
+              "_$type": "Sprite",
+              "name": "Workshop",
+              "texture": {
+                "_$uuid": "b4018a44-0cf0-4e7e-8e76-68b0f0fa29df",
+                "_$type": "Texture"
+              },
+              "x": 4,
+              "y": 7.5,
+              "width": 120,
+              "height": 120
+            }
+          ]
+        },
+        {
+          "_$id": "a9731495",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "000968b4",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 12,
+          "y": 99,
+          "width": 104,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "8d29ecbe",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "e3fe6e23",
+      "_$type": "Sprite",
+      "name": "LOGGING_5_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "c3ce18fb",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "5b63ed4f",
+              "_$type": "Sprite",
+              "name": "Workshop",
+              "texture": {
+                "_$uuid": "b4018a44-0cf0-4e7e-8e76-68b0f0fa29df",
+                "_$type": "Texture"
+              },
+              "x": 4,
+              "y": 7.5,
+              "width": 120,
+              "height": 120
+            },
+            {
+              "_$id": "f00f63e6",
+              "_$type": "Sprite",
+              "name": "TimberBracing",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 22,
+              "y": 84,
+              "width": 28,
+              "height": 29
+            }
+          ]
+        },
+        {
+          "_$id": "a19b1ca7",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "1df2b57d",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 12,
+          "y": 99,
+          "width": 104,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "25d417e9",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "84692f6c",
+      "_$type": "Sprite",
+      "name": "LOGGING_6_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "609f8322",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "5db2d092",
+              "_$type": "Sprite",
+              "name": "Workshop",
+              "texture": {
+                "_$uuid": "b4018a44-0cf0-4e7e-8e76-68b0f0fa29df",
+                "_$type": "Texture"
+              },
+              "x": 4,
+              "y": 7.5,
+              "width": 120,
+              "height": 120
+            },
+            {
+              "_$id": "d2fc3a76",
+              "_$type": "Sprite",
+              "name": "TimberBracing",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 22,
+              "y": 84,
+              "width": 28,
+              "height": 29
+            },
+            {
+              "_$id": "067ee73a",
+              "_$type": "Sprite",
+              "name": "SawWheel",
+              "texture": {
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 79,
+              "width": 28,
+              "height": 33
+            }
+          ]
+        },
+        {
+          "_$id": "9de75808",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "460565ad",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 12,
+          "y": 99,
+          "width": 104,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "76cda898",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "1f696eaa",
+      "_$type": "Sprite",
+      "name": "LOGGING_7_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "b45ef19d",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "e9237ce1",
+              "_$type": "Sprite",
+              "name": "Workshop",
+              "texture": {
+                "_$uuid": "b4018a44-0cf0-4e7e-8e76-68b0f0fa29df",
+                "_$type": "Texture"
+              },
+              "x": 4,
+              "y": 7.5,
+              "width": 120,
+              "height": 120
+            },
+            {
+              "_$id": "cc99fbe2",
+              "_$type": "Sprite",
+              "name": "TimberBracing",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 22,
+              "y": 84,
+              "width": 28,
+              "height": 29
+            },
+            {
+              "_$id": "79581e38",
+              "_$type": "Sprite",
+              "name": "SawWheel",
+              "texture": {
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 79,
+              "width": 28,
+              "height": 33
+            },
+            {
+              "_$id": "fccbb0bc",
+              "_$type": "Sprite",
+              "name": "WorkshopEmblem",
+              "texture": {
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$type": "Texture"
+              },
+              "x": 42,
+              "y": 43,
+              "width": 30,
+              "height": 18
+            }
+          ]
+        },
+        {
+          "_$id": "e2fec812",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "cd816621",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 12,
+          "y": 99,
+          "width": 104,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "b674b94f",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "f715b7cc",
+      "_$type": "Sprite",
+      "name": "LOGGING_8_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "3571c2f5",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "64e18740",
+              "_$type": "Sprite",
+              "name": "Workshop",
+              "texture": {
+                "_$uuid": "69c7307b-b9f4-41b1-8424-b5ddb70481f1",
+                "_$type": "Texture"
+              },
+              "x": 4,
+              "y": 7.5,
+              "width": 120,
+              "height": 120
+            }
+          ]
+        },
+        {
+          "_$id": "f37d98b5",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "089362ab",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 12,
+          "y": 99,
+          "width": 104,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "35b3930b",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "03bba1d9",
+      "_$type": "Sprite",
+      "name": "LOGGING_9_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "6c150a57",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "43da2835",
+              "_$type": "Sprite",
+              "name": "Workshop",
+              "texture": {
+                "_$uuid": "69c7307b-b9f4-41b1-8424-b5ddb70481f1",
+                "_$type": "Texture"
+              },
+              "x": 4,
+              "y": 7.5,
+              "width": 120,
+              "height": 120
+            },
+            {
+              "_$id": "709346ce",
+              "_$type": "Sprite",
+              "name": "TimberBracing",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 22,
+              "y": 84,
+              "width": 28,
+              "height": 29
+            }
+          ]
+        },
+        {
+          "_$id": "a6703acb",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "d9035909",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 12,
+          "y": 99,
+          "width": 104,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "eddc322b",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "2e05185b",
+      "_$type": "Sprite",
+      "name": "LOGGING_10_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "27502208",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "ba309ce5",
+              "_$type": "Sprite",
+              "name": "Workshop",
+              "texture": {
+                "_$uuid": "69c7307b-b9f4-41b1-8424-b5ddb70481f1",
+                "_$type": "Texture"
+              },
+              "x": 4,
+              "y": 7.5,
+              "width": 120,
+              "height": 120
+            },
+            {
+              "_$id": "4fcb4dda",
+              "_$type": "Sprite",
+              "name": "TimberBracing",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 22,
+              "y": 84,
+              "width": 28,
+              "height": 29
+            },
+            {
+              "_$id": "283c86dd",
+              "_$type": "Sprite",
+              "name": "SawWheel",
+              "texture": {
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 79,
+              "width": 28,
+              "height": 33
+            }
+          ]
+        },
+        {
+          "_$id": "1d923a9f",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "db9b52bd",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 12,
+          "y": 99,
+          "width": 104,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "eaa8a817",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "95a5b930",
+      "_$type": "Sprite",
+      "name": "LOGGING_11_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "0944bc20",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "ac5120d8",
+              "_$type": "Sprite",
+              "name": "Workshop",
+              "texture": {
+                "_$uuid": "69c7307b-b9f4-41b1-8424-b5ddb70481f1",
+                "_$type": "Texture"
+              },
+              "x": 4,
+              "y": 7.5,
+              "width": 120,
+              "height": 120
+            },
+            {
+              "_$id": "c2aa6ee6",
+              "_$type": "Sprite",
+              "name": "TimberBracing",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 22,
+              "y": 84,
+              "width": 28,
+              "height": 29
+            },
+            {
+              "_$id": "97635d2d",
+              "_$type": "Sprite",
+              "name": "SawWheel",
+              "texture": {
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 79,
+              "width": 28,
+              "height": 33
+            },
+            {
+              "_$id": "22b92bf3",
+              "_$type": "Sprite",
+              "name": "WorkshopEmblem",
+              "texture": {
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$type": "Texture"
+              },
+              "x": 42,
+              "y": 43,
+              "width": 30,
+              "height": 18
+            }
+          ]
+        },
+        {
+          "_$id": "a80acd83",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "ae5032a1",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 12,
+          "y": 99,
+          "width": 104,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "f1a1f9a8",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "36377b27",
+      "_$type": "Sprite",
+      "name": "LOGGING_12_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "86fcbc24",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "8e463ca7",
+              "_$type": "Sprite",
+              "name": "Workshop",
+              "texture": {
+                "_$uuid": "a3002365-93de-4e21-88df-7741240d2b1f",
+                "_$type": "Texture"
+              },
+              "x": 4,
+              "y": 7.5,
+              "width": 120,
+              "height": 120
+            }
+          ]
+        },
+        {
+          "_$id": "4b6c0e0a",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "abe510b8",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 12,
+          "y": 99,
+          "width": 104,
+          "height": 21,
+          "visible": false
+        },
+        {
+          "_$id": "527ac533",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    }
+  ]
+}

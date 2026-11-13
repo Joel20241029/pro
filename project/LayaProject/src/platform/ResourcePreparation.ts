@@ -11,13 +11,14 @@ export interface ResourcePort {
 export class ResourcePreparation {
     readonly states: Record<ResourceBundle, PreparationState> = {
         base: { phase: "IDLE", progress: 0, slow: false, error: "" },
+        buildings: { phase: "IDLE", progress: 0, slow: false, error: "" },
         characters: { phase: "IDLE", progress: 0, slow: false, error: "" },
         battle: { phase: "IDLE", progress: 0, slow: false, error: "" }
     };
     changed = () => {};
     private tasks = new Map<ResourceBundle, Promise<boolean>>();
     private registered = new Set<ResourceBundle>();
-    private quiet: Record<ResourceBundle, number> = { base: 0, characters: 0, battle: 0 };
+    private quiet: Record<ResourceBundle, number> = { base: 0, buildings: 0, characters: 0, battle: 0 };
     private disposed = false;
     constructor(private port: ResourcePort) {}
     ready(bundle: ResourceBundle) { return this.states[bundle].phase === "READY"; }

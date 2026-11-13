@@ -10,15 +10,14 @@ export class CombatPresentation {
     private deathPositions = new Map<number, { x: number; y: number }>();
     private flashes = new Map<number, number>();
     private retired = new Set<number>();
-    readonly gateHits: { x: number; y: number }[] = [];
     sync(battle: BattleSimulation | null, events: CombatFeedback[]) {
         if (battle !== this.battle || !battle || battle.outcome) {
-            this.battle = battle; this.shots.clear(); this.deaths.clear(); this.deathPositions.clear(); this.flashes.clear(); this.retired.clear(); this.gateHits.length = 0;
+            this.battle = battle; this.shots.clear(); this.deaths.clear(); this.deathPositions.clear(); this.flashes.clear(); this.retired.clear();
         }
         if (!battle || battle.outcome) return;
         for (const event of events) {
             if (event.type === 'gate') {
-                this.gateHits.push(pointAt(event.enemy.progress)); this.deathPositions.set(event.enemy.seq, pointAt(event.enemy.progress));
+                this.deathPositions.set(event.enemy.seq, pointAt(event.enemy.progress));
                 this.retired.add(event.enemy.seq); this.deaths.delete(event.enemy.seq); this.flashes.delete(event.enemy.seq);
             } else {
                 this.shots.set(event.shot, event);

@@ -1,0 +1,3799 @@
+{
+  "_$ver": 1,
+  "_$id": "40ddfa88",
+  "_$type": "Sprite",
+  "name": "HOUSE",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "00709853",
+      "_$type": "Sprite",
+      "name": "HOUSE_1_1",
+      "width": 128,
+      "height": 128,
+      "visible": true,
+      "_$child": [
+        {
+          "_$id": "76c7ba68",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "7f7e9e23",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$type": "Texture"
+              },
+              "x": 6,
+              "y": 11.25,
+              "width": 116,
+              "height": 116
+            }
+          ]
+        },
+        {
+          "_$id": "06993d54",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "a7c1877c",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "a24cdd42",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "84dbd17c",
+      "_$type": "Sprite",
+      "name": "HOUSE_1_2",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "179e5226",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "fb0dc69d",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "aecd1f13",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            }
+          ]
+        },
+        {
+          "_$id": "43c4fe81",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "b992d9b8",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "ef5539d0",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "00502633",
+      "_$type": "Sprite",
+      "name": "HOUSE_1_3",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "8388be46",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "1dce8d9a",
+              "_$type": "Sprite",
+              "name": "RearWing",
+              "texture": {
+                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$type": "Texture"
+              },
+              "x": 66,
+              "y": 43,
+              "width": 58,
+              "height": 58
+            },
+            {
+              "_$id": "bc4e1b2d",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "aa4b9641",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            }
+          ]
+        },
+        {
+          "_$id": "3f25b3a5",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "55ddced6",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "f9122d9e",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "5aaca805",
+      "_$type": "Sprite",
+      "name": "HOUSE_2_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "0c33fddf",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "9f1ab56b",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$type": "Texture"
+              },
+              "x": 6,
+              "y": 11.25,
+              "width": 116,
+              "height": 116
+            },
+            {
+              "_$id": "20aec161",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            }
+          ]
+        },
+        {
+          "_$id": "8a00d538",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "971856c2",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "20e0bb2e",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "3b9273cd",
+      "_$type": "Sprite",
+      "name": "HOUSE_2_2",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "cdf293f5",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "792fd1af",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "83683e2b",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "97903314",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            }
+          ]
+        },
+        {
+          "_$id": "f09968b9",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "657ba574",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "1f344689",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "49a43a31",
+      "_$type": "Sprite",
+      "name": "HOUSE_2_3",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "8e5084c2",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "d04d8532",
+              "_$type": "Sprite",
+              "name": "RearWing",
+              "texture": {
+                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$type": "Texture"
+              },
+              "x": 66,
+              "y": 43,
+              "width": 58,
+              "height": 58
+            },
+            {
+              "_$id": "10783eb5",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "4fa667e9",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "7a067c7f",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            }
+          ]
+        },
+        {
+          "_$id": "aa7ce243",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "24d6fd6f",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "88d7dea7",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "a116b9e4",
+      "_$type": "Sprite",
+      "name": "HOUSE_3_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "642b6baf",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "983aa91f",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$type": "Texture"
+              },
+              "x": 6,
+              "y": 11.25,
+              "width": 116,
+              "height": 116
+            },
+            {
+              "_$id": "47aa2b2d",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "5b218c6c",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            }
+          ]
+        },
+        {
+          "_$id": "a8cdbe52",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "0d395c47",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "9c490ccf",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "bee58d0b",
+      "_$type": "Sprite",
+      "name": "HOUSE_3_2",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "77abb443",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "3650bb94",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "1ac17a3d",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "701d2173",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "d7755638",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            }
+          ]
+        },
+        {
+          "_$id": "fd68585d",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "03331650",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "c25f3879",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "1326a4ad",
+      "_$type": "Sprite",
+      "name": "HOUSE_3_3",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "442c83cd",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "22e808a7",
+              "_$type": "Sprite",
+              "name": "RearWing",
+              "texture": {
+                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$type": "Texture"
+              },
+              "x": 66,
+              "y": 43,
+              "width": 58,
+              "height": 58
+            },
+            {
+              "_$id": "37412755",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "93b0ed37-2836-4c05-8b6b-52ad11cfd25f",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "f167ede8",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "6fcee9d2-f2e4-46f3-834b-1f72a5a55ea5",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "8a6b0119",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "f34c50f6",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            }
+          ]
+        },
+        {
+          "_$id": "4c837e77",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "43346a33",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "147dde25",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "18944b07",
+      "_$type": "Sprite",
+      "name": "HOUSE_4_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "efd3dec9",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "28ca0c77",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$type": "Texture"
+              },
+              "x": 6,
+              "y": 11.25,
+              "width": 116,
+              "height": 116
+            }
+          ]
+        },
+        {
+          "_$id": "859a0154",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "6338c0d9",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "5a58253a",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "bd9da68f",
+      "_$type": "Sprite",
+      "name": "HOUSE_4_2",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "93d1271a",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "1ef3c9fc",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "b3ddf064",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            }
+          ]
+        },
+        {
+          "_$id": "152ddb73",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "7a133cae",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "dfa3b26f",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "2bf1c7f4",
+      "_$type": "Sprite",
+      "name": "HOUSE_4_3",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "1bdf9650",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "4ce7ca43",
+              "_$type": "Sprite",
+              "name": "RearWing",
+              "texture": {
+                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$type": "Texture"
+              },
+              "x": 66,
+              "y": 43,
+              "width": 58,
+              "height": 58
+            },
+            {
+              "_$id": "0255e54f",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "ff16bd27",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            }
+          ]
+        },
+        {
+          "_$id": "3b819b6a",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "50a54b2c",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "decf03f3",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "d8e0dd0a",
+      "_$type": "Sprite",
+      "name": "HOUSE_5_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "15a597ae",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "302d1f6b",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$type": "Texture"
+              },
+              "x": 6,
+              "y": 11.25,
+              "width": 116,
+              "height": 116
+            },
+            {
+              "_$id": "526b9890",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            }
+          ]
+        },
+        {
+          "_$id": "364c5524",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "2aa06c7d",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "ed916af0",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "8e1f89b2",
+      "_$type": "Sprite",
+      "name": "HOUSE_5_2",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "3d2c7dc1",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "d86d91ea",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "310a6adb",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "94af240e",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            }
+          ]
+        },
+        {
+          "_$id": "3f05c8b0",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "6af35833",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "c534e649",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "a656426e",
+      "_$type": "Sprite",
+      "name": "HOUSE_5_3",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "90c6ac55",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "227c126c",
+              "_$type": "Sprite",
+              "name": "RearWing",
+              "texture": {
+                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$type": "Texture"
+              },
+              "x": 66,
+              "y": 43,
+              "width": 58,
+              "height": 58
+            },
+            {
+              "_$id": "8e98d80f",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "a9744666",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "aa073e28",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            }
+          ]
+        },
+        {
+          "_$id": "da76b3b1",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "48cb53f4",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "0cf8f47c",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "100a327f",
+      "_$type": "Sprite",
+      "name": "HOUSE_6_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "7e5d72a0",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "33ace008",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$type": "Texture"
+              },
+              "x": 6,
+              "y": 11.25,
+              "width": 116,
+              "height": 116
+            },
+            {
+              "_$id": "61876672",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "4e4cdbd4",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            }
+          ]
+        },
+        {
+          "_$id": "c4634e62",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "e84c30bd",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "38c4afae",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "8486fd75",
+      "_$type": "Sprite",
+      "name": "HOUSE_6_2",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "b1368be8",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "f7fb1bf8",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "9dd36628",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "293bd97b",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "5e46f9b7",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            }
+          ]
+        },
+        {
+          "_$id": "7108da74",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "f3f65612",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "3dc1faaa",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "0447c603",
+      "_$type": "Sprite",
+      "name": "HOUSE_6_3",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "ca2f90a8",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "d9aeb411",
+              "_$type": "Sprite",
+              "name": "RearWing",
+              "texture": {
+                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$type": "Texture"
+              },
+              "x": 66,
+              "y": 43,
+              "width": 58,
+              "height": 58
+            },
+            {
+              "_$id": "ab8bd3ef",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "8cbb5b7f",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "ce378bd7",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "55276fcf",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            }
+          ]
+        },
+        {
+          "_$id": "02d5de77",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "d01ab01f",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "f6230ab8",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "3082c8b8",
+      "_$type": "Sprite",
+      "name": "HOUSE_7_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "3817ff2f",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "814d3e21",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$type": "Texture"
+              },
+              "x": 6,
+              "y": 11.25,
+              "width": 116,
+              "height": 116
+            },
+            {
+              "_$id": "4f53f348",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "fdbba3a2",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            },
+            {
+              "_$id": "c7cae440",
+              "_$type": "Sprite",
+              "name": "RoofEmblem",
+              "texture": {
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$type": "Texture"
+              },
+              "x": 43,
+              "y": 38,
+              "width": 30,
+              "height": 18
+            }
+          ]
+        },
+        {
+          "_$id": "d2c34bc5",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "dd61200b",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "1a4b74fe",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "ec138a52",
+      "_$type": "Sprite",
+      "name": "HOUSE_7_2",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "f43d8a4a",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "5cc60070",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "8816ceb2",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "42afb671",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "133be1af",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            },
+            {
+              "_$id": "ab4ab543",
+              "_$type": "Sprite",
+              "name": "RoofEmblem",
+              "texture": {
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$type": "Texture"
+              },
+              "x": 43,
+              "y": 38,
+              "width": 30,
+              "height": 18
+            }
+          ]
+        },
+        {
+          "_$id": "f4a29799",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "23a46d6e",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "a7151456",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "09b32e20",
+      "_$type": "Sprite",
+      "name": "HOUSE_7_3",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "b8d25d76",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "c91ca414",
+              "_$type": "Sprite",
+              "name": "RearWing",
+              "texture": {
+                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$type": "Texture"
+              },
+              "x": 66,
+              "y": 43,
+              "width": 58,
+              "height": 58
+            },
+            {
+              "_$id": "8ebb1ecd",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "be740349-7eaf-42f5-8434-d70c8ce5a42e",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "a496a2c9",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "fa0e51c9-f09f-49a2-8a75-8b01adafe18a",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "c0bb97c8",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "fd17fbdf",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            },
+            {
+              "_$id": "d074fc28",
+              "_$type": "Sprite",
+              "name": "RoofEmblem",
+              "texture": {
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$type": "Texture"
+              },
+              "x": 43,
+              "y": 38,
+              "width": 30,
+              "height": 18
+            }
+          ]
+        },
+        {
+          "_$id": "08c91e20",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "c955315c",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "7b93a7c8",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "e6f305dc",
+      "_$type": "Sprite",
+      "name": "HOUSE_8_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "1ec0a860",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "697cb111",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$type": "Texture"
+              },
+              "x": 6,
+              "y": 11.25,
+              "width": 116,
+              "height": 116
+            }
+          ]
+        },
+        {
+          "_$id": "e8e06dc1",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "c4902f87",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "95c76053",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "2a4a3581",
+      "_$type": "Sprite",
+      "name": "HOUSE_8_2",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "91ff2b8d",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "ddd12c25",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "1aac4f73",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            }
+          ]
+        },
+        {
+          "_$id": "6ae6fcf2",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "bc273fad",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "a44b76c7",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "461c4f98",
+      "_$type": "Sprite",
+      "name": "HOUSE_8_3",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "8391e3ed",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "583cd7af",
+              "_$type": "Sprite",
+              "name": "RearWing",
+              "texture": {
+                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$type": "Texture"
+              },
+              "x": 66,
+              "y": 43,
+              "width": 58,
+              "height": 58
+            },
+            {
+              "_$id": "972b1ad9",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "581518b0",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            }
+          ]
+        },
+        {
+          "_$id": "d9165eee",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "91c111fd",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "eeed5cc5",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "ea885377",
+      "_$type": "Sprite",
+      "name": "HOUSE_9_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "dcc6a7ea",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "354d73aa",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$type": "Texture"
+              },
+              "x": 6,
+              "y": 11.25,
+              "width": 116,
+              "height": 116
+            },
+            {
+              "_$id": "87d722c9",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            }
+          ]
+        },
+        {
+          "_$id": "4d05edac",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "4cec3afa",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "20014ef8",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "be1b4ab6",
+      "_$type": "Sprite",
+      "name": "HOUSE_9_2",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "a27696b5",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "5ee68f36",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "4fd7c407",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "433af740",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            }
+          ]
+        },
+        {
+          "_$id": "ebfbd278",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "e4995c97",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "f008b311",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "ec39d27a",
+      "_$type": "Sprite",
+      "name": "HOUSE_9_3",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "ecba2100",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "6657960c",
+              "_$type": "Sprite",
+              "name": "RearWing",
+              "texture": {
+                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$type": "Texture"
+              },
+              "x": 66,
+              "y": 43,
+              "width": 58,
+              "height": 58
+            },
+            {
+              "_$id": "c86da0cf",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "524d03ae",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "6200802d",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            }
+          ]
+        },
+        {
+          "_$id": "d2b07e21",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "cf10666c",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "af0d15a3",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "2a0dd70c",
+      "_$type": "Sprite",
+      "name": "HOUSE_10_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "baeacdb7",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "36c024ba",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$type": "Texture"
+              },
+              "x": 6,
+              "y": 11.25,
+              "width": 116,
+              "height": 116
+            },
+            {
+              "_$id": "2ff1b30f",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "6983e1e8",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            }
+          ]
+        },
+        {
+          "_$id": "e33a2278",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "dc19ff5b",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "29b0a5b1",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "a90b9e22",
+      "_$type": "Sprite",
+      "name": "HOUSE_10_2",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "e39e86a5",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "b9ee3cfc",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "c798f431",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "8b9d84b6",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "0d4dcd8c",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            }
+          ]
+        },
+        {
+          "_$id": "804fe6db",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "6a5057c8",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "26d124ce",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "5a96d0e9",
+      "_$type": "Sprite",
+      "name": "HOUSE_10_3",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "eb5b0472",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "79769f72",
+              "_$type": "Sprite",
+              "name": "RearWing",
+              "texture": {
+                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$type": "Texture"
+              },
+              "x": 66,
+              "y": 43,
+              "width": 58,
+              "height": 58
+            },
+            {
+              "_$id": "57edb532",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "cebb0939",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "e9a93950",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "43226849",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            }
+          ]
+        },
+        {
+          "_$id": "12ee7d6d",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "a30bd73f",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "ead995ef",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "c0070636",
+      "_$type": "Sprite",
+      "name": "HOUSE_11_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "5330cda0",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "bfb3c6cf",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$type": "Texture"
+              },
+              "x": 6,
+              "y": 11.25,
+              "width": 116,
+              "height": 116
+            },
+            {
+              "_$id": "e496242d",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "ea1e1abf",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            },
+            {
+              "_$id": "9559507c",
+              "_$type": "Sprite",
+              "name": "RoofEmblem",
+              "texture": {
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$type": "Texture"
+              },
+              "x": 43,
+              "y": 38,
+              "width": 30,
+              "height": 18
+            }
+          ]
+        },
+        {
+          "_$id": "0e0f064d",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "b92d3a07",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "aa7f738d",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "63e30228",
+      "_$type": "Sprite",
+      "name": "HOUSE_11_2",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "67862b28",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "c1a059d4",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "3f0b9ce5",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "199e3b24",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "46d34778",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            },
+            {
+              "_$id": "2b8d5765",
+              "_$type": "Sprite",
+              "name": "RoofEmblem",
+              "texture": {
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$type": "Texture"
+              },
+              "x": 43,
+              "y": 38,
+              "width": 30,
+              "height": 18
+            }
+          ]
+        },
+        {
+          "_$id": "1e2c1d3f",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "1be06f88",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "4f5e9d78",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "e7162ce7",
+      "_$type": "Sprite",
+      "name": "HOUSE_11_3",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "73d1c051",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "c727d6fc",
+              "_$type": "Sprite",
+              "name": "RearWing",
+              "texture": {
+                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$type": "Texture"
+              },
+              "x": 66,
+              "y": 43,
+              "width": 58,
+              "height": 58
+            },
+            {
+              "_$id": "54e8e85b",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "e1c2d770-b64e-4756-86b4-3cddecaedd8c",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "c5ff1ba1",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "044c9853-6b5f-4f66-8644-352ed71d69e9",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "_$id": "5a80a388",
+              "_$type": "Sprite",
+              "name": "WallTimbers",
+              "texture": {
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
+                "_$type": "Texture"
+              },
+              "x": 16,
+              "y": 86,
+              "width": 18,
+              "height": 24
+            },
+            {
+              "_$id": "b8119513",
+              "_$type": "Sprite",
+              "name": "PorchLantern",
+              "texture": {
+                "_$uuid": "27381b78-8b8c-475b-8086-3a30b2b33294",
+                "_$type": "Texture"
+              },
+              "x": 84,
+              "y": 70,
+              "width": 15,
+              "height": 26
+            },
+            {
+              "_$id": "db6bed12",
+              "_$type": "Sprite",
+              "name": "RoofEmblem",
+              "texture": {
+                "_$uuid": "bf2788f2-e6ba-4479-8bda-54d55ec403af",
+                "_$type": "Texture"
+              },
+              "x": 43,
+              "y": 38,
+              "width": 30,
+              "height": 18
+            }
+          ]
+        },
+        {
+          "_$id": "e2e13def",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "f526dc5b",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "1bb33f59",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "135b8f53",
+      "_$type": "Sprite",
+      "name": "HOUSE_12_1",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "98bee0c2",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "8882201a",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "8796059f-f97f-4d12-89b7-8cab2504d3e1",
+                "_$type": "Texture"
+              },
+              "x": 6,
+              "y": 11.25,
+              "width": 116,
+              "height": 116
+            }
+          ]
+        },
+        {
+          "_$id": "09690eaa",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "e9d33548",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "84c5ef9f",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "76d69e50",
+      "_$type": "Sprite",
+      "name": "HOUSE_12_2",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "c28e21f6",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "87ae45ae",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "8796059f-f97f-4d12-89b7-8cab2504d3e1",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "dd759b8c",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "3e5f5dba-fb58-49d5-86ad-1d8ca99ddb08",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            }
+          ]
+        },
+        {
+          "_$id": "2eead563",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "65597a00",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "8065bbcb",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    },
+    {
+      "_$id": "ea25883e",
+      "_$type": "Sprite",
+      "name": "HOUSE_12_3",
+      "width": 128,
+      "height": 128,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "87eebb52",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$comp": [
+            {
+              "_$type": "AnimatorClip2D",
+              "clip": {
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
+                "_$type": "AnimationClip2D"
+              },
+              "autoPlay": false
+            }
+          ],
+          "_$child": [
+            {
+              "_$id": "efc29d83",
+              "_$type": "Sprite",
+              "name": "RearWing",
+              "texture": {
+                "_$uuid": "3e5f5dba-fb58-49d5-86ad-1d8ca99ddb08",
+                "_$type": "Texture"
+              },
+              "x": 66,
+              "y": 43,
+              "width": 58,
+              "height": 58
+            },
+            {
+              "_$id": "37fe1f7c",
+              "_$type": "Sprite",
+              "name": "MainHouse",
+              "texture": {
+                "_$uuid": "8796059f-f97f-4d12-89b7-8cab2504d3e1",
+                "_$type": "Texture"
+              },
+              "x": 7,
+              "y": 25.3125,
+              "width": 101,
+              "height": 101
+            },
+            {
+              "_$id": "1b2458cf",
+              "_$type": "Sprite",
+              "name": "SideWing",
+              "texture": {
+                "_$uuid": "3e5f5dba-fb58-49d5-86ad-1d8ca99ddb08",
+                "_$type": "Texture"
+              },
+              "x": 78,
+              "y": 75,
+              "width": 46,
+              "height": 46
+            }
+          ]
+        },
+        {
+          "_$id": "22e0d4cc",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -12,
+          "y": -44,
+          "width": 152,
+          "height": 178,
+          "visible": false
+        },
+        {
+          "_$id": "20376ec8",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "x": 8,
+          "y": 98,
+          "width": 112,
+          "height": 22,
+          "visible": false
+        },
+        {
+          "_$id": "02786f75",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "x": 64,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "visible": false
+        }
+      ]
+    }
+  ]
+}

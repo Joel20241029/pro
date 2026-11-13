@@ -41,8 +41,8 @@ export class BuildingVisuals {
         }
         return node;
     }
-    sync(kind: BuildingLook | null, level: number, freshVillage: boolean, rooms = 1, damaged = false) {
-        const key = `${kind}:${level}:${rooms}:${damaged}`;
+    sync(kind: BuildingLook | null, level: number, freshVillage: boolean, rooms = 1, damaged = false, facing = 1) {
+        const key = `${kind}:${level}:${rooms}:${damaged}:${facing}`;
         if (freshVillage) { this.upgradePending = false; this.upgrading = false; this.upgrades.forEach(a => a.gotoAndStop(1)); this.latestShot = null; this.attack?.gotoAndStop(1); }
         if (key === this.key) return;
         const animate = !freshVillage && kind && this.level > 0 && (level > this.level || rooms > this.rooms);
@@ -59,6 +59,13 @@ export class BuildingVisuals {
         this.owner.size(this.owner.width, this.owner.width).pivot(layout.sort.x * scale, layout.sort.y * scale);
         this.parts.scale(scale, scale);
         this.body = root.getChildByName("Body") as Laya.Sprite;
+        if (kind === "ARROW") {
+            // 左右武器各自预渲染；只切换武器组，主体与固定光照不随塔位镜像。
+            const weapon = this.body.getChildByName("Weapon") as Laya.Sprite;
+            const right = weapon.getChildByName("FacingRight") as Laya.Sprite, left = weapon.getChildByName("FacingLeft") as Laya.Sprite;
+            right.visible = facing > 0; left.visible = facing < 0;
+            this.muzzle = (facing > 0 ? right : left).getChildByName("Muzzle") as Laya.Sprite;
+        }
         const upper = root.getChildByName("AboveGround") as Laya.Sprite;
         if (upper) {
             this.above = new Laya.Sprite(); this.above.name = this.owner.name + ":above";

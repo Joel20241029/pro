@@ -79,13 +79,29 @@ for kind in ['axe', 'hoe']:
     grip.parent = tool
     grip.location = (0, 0, 0)
     grip.data.materials.append(grip_mat)
-    bpy.ops.mesh.primitive_cube_add(size=1)
-    blade = bpy.context.object
+    if kind == 'axe':
+        # Broad cutting face lies in the swing plane. The former X/Z block
+        # turned edge-on in both side views and read as a hammer, not an axe.
+        profile_points = [(0, .255), (-.055, .25), (-.15, .235),
+                          (-.165, .36), (-.055, .35), (0, .34)]
+        verts = [(x, y, z) for x in [-.018, .018] for y, z in profile_points]
+        count = len(profile_points)
+        faces = [tuple(range(count - 1, -1, -1)), tuple(range(count, count * 2))]
+        faces += [(i, (i + 1) % count, (i + 1) % count + count, i + count) for i in range(count)]
+        data = bpy.data.meshes.new('ForgedAxeWedge')
+        data.from_pydata(verts, [], faces)
+        data.update()
+        blade = bpy.data.objects.new('AxeBlade', data)
+        bpy.context.collection.objects.link(blade)
+    else:
+        bpy.ops.mesh.primitive_cube_add(size=1)
+        blade = bpy.context.object
     blade.name = kind + '_BeveledBlade'
     blade.parent = tool
-    blade.location = (.045, 0, .305) if kind == 'axe' else (0, -.035, .315)
-    blade.dimensions = (.16, .035, .095) if kind == 'axe' else (.18, .11, .025)
-    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    if kind == 'hoe':
+        blade.location = (0, -.035, .315)
+        blade.dimensions = (.18, .11, .025)
+        bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
     blade.data.materials.append(iron)
     bevel = blade.modifiers.new('Soft forged edge', 'BEVEL')
     bevel.width, bevel.segments = .012, 4

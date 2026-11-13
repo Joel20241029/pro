@@ -1,20 +1,20 @@
 {
   "_$ver": 1,
-  "_$id": "nxcii396",
+  "_$id": "z3al5y9v",
   "_$type": "Sprite",
   "name": "FARM",
   "width": 128,
   "height": 128,
   "_$child": [
     {
-      "_$id": "e4oov9gp",
+      "_$id": "n8qvsrpf",
       "_$type": "Sprite",
       "name": "FARM_1_1",
       "width": 128,
       "height": 128,
       "_$child": [
         {
-          "_$id": "gm270w9r",
+          "_$id": "brvpj80m",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -27,7 +27,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -35,61 +35,30 @@
           ],
           "_$child": [
             {
-              "_$id": "t8bqwmxo",
+              "_$id": "ew1ibx8m",
               "_$type": "Sprite",
-              "name": "Plot_0_0",
-              "x": 12,
-              "y": 37,
-              "width": 49,
-              "height": 41,
+              "name": "CropGround",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "gr347r4r",
-              "_$type": "Sprite",
-              "name": "Plot_0_1",
-              "x": 64,
-              "y": 37,
-              "width": 49,
-              "height": 41,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "ah3qt3c8",
-              "_$type": "Sprite",
-              "name": "Plot_1_0",
-              "x": 12,
-              "y": 75,
-              "width": 49,
-              "height": 41,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "4oi6l44p",
-              "_$type": "Sprite",
-              "name": "Plot_1_1",
-              "x": 64,
-              "y": 75,
-              "width": 49,
-              "height": 41,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+                "_$uuid": "be520185-f492-4550-8aa9-57dc19e6e217",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "ozsbujyf",
+          "_$id": "rs260x4u",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "qypy9xv6",
           "_$type": "Sprite",
           "name": "Footprint",
           "width": 0,
@@ -97,17 +66,7 @@
           "visible": false
         },
         {
-          "_$id": "bblc24zi",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "026eeef6",
+          "_$id": "kmpgyy3f",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -119,7 +78,7 @@
       ]
     },
     {
-      "_$id": "w2fo4hea",
+      "_$id": "vyalu0b4",
       "_$type": "Sprite",
       "name": "FARM_2_1",
       "width": 128,
@@ -127,7 +86,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "yuuc9mc7",
+          "_$id": "ay1615ek",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -140,7 +99,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -148,87 +107,43 @@
           ],
           "_$child": [
             {
-              "_$id": "gujg6rmy",
+              "_$id": "u74e63e6",
               "_$type": "Sprite",
-              "name": "Plot_0_0",
-              "x": 12,
-              "y": 37,
-              "width": 49,
-              "height": 28,
+              "name": "CropGround",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+                "_$uuid": "be520185-f492-4550-8aa9-57dc19e6e217",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "2ieycq2x",
+              "_$id": "04c36li6",
               "_$type": "Sprite",
-              "name": "Plot_0_1",
-              "x": 64,
-              "y": 37,
-              "width": 49,
-              "height": 28,
+              "name": "GrainCrate",
+              "x": 8,
+              "y": 80,
+              "width": 21,
+              "height": 24,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "bsiba8iz",
-              "_$type": "Sprite",
-              "name": "Plot_1_0",
-              "x": 12,
-              "y": 62,
-              "width": 49,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "pb6ba8s2",
-              "_$type": "Sprite",
-              "name": "Plot_1_1",
-              "x": 64,
-              "y": 62,
-              "width": 49,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "zluqxlhl",
-              "_$type": "Sprite",
-              "name": "Plot_2_0",
-              "x": 12,
-              "y": 88,
-              "width": 49,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "5y0u2aql",
-              "_$type": "Sprite",
-              "name": "Plot_2_1",
-              "x": 64,
-              "y": 88,
-              "width": 49,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+                "_$uuid": "5626e6ea-dd2a-4727-81b1-5c97a69da8b6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "hus44lcm",
+          "_$id": "n40sqyuy",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "vjut3u0w",
           "_$type": "Sprite",
           "name": "Footprint",
           "width": 0,
@@ -236,17 +151,7 @@
           "visible": false
         },
         {
-          "_$id": "m3lkdl5t",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "8ka0jwep",
+          "_$id": "k8y8r595",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -258,7 +163,7 @@
       ]
     },
     {
-      "_$id": "g1eczv3b",
+      "_$id": "dt5o48on",
       "_$type": "Sprite",
       "name": "FARM_3_1",
       "width": 128,
@@ -266,7 +171,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "zqh3b8mx",
+          "_$id": "wi7ri6xl",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -279,7 +184,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -287,100 +192,56 @@
           ],
           "_$child": [
             {
-              "_$id": "61moeski",
+              "_$id": "enf2w3dt",
               "_$type": "Sprite",
-              "name": "Plot_0_0",
-              "x": 12,
-              "y": 37,
-              "width": 49,
-              "height": 28,
+              "name": "CropGround",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+                "_$uuid": "be520185-f492-4550-8aa9-57dc19e6e217",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "2lzhndg3",
+              "_$id": "nbdg0sut",
               "_$type": "Sprite",
-              "name": "Plot_0_1",
-              "x": 64,
-              "y": 37,
-              "width": 49,
-              "height": 28,
+              "name": "GrainCrate",
+              "x": 8,
+              "y": 80,
+              "width": 21,
+              "height": 24,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+                "_$uuid": "5626e6ea-dd2a-4727-81b1-5c97a69da8b6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "8pcz1wy1",
+              "_$id": "b559r0f7",
               "_$type": "Sprite",
-              "name": "Plot_1_0",
-              "x": 12,
-              "y": 62,
-              "width": 49,
-              "height": 28,
+              "name": "GrainCrate2",
+              "x": 14,
+              "y": 50,
+              "width": 18,
+              "height": 21,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "9c5lku57",
-              "_$type": "Sprite",
-              "name": "Plot_1_1",
-              "x": 64,
-              "y": 62,
-              "width": 49,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "neqqiaau",
-              "_$type": "Sprite",
-              "name": "Plot_2_0",
-              "x": 12,
-              "y": 88,
-              "width": 49,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "g5bkkyg0",
-              "_$type": "Sprite",
-              "name": "Plot_2_1",
-              "x": 64,
-              "y": 88,
-              "width": 49,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "fcwm8pj8",
-              "_$type": "Sprite",
-              "name": "Channel",
-              "x": 10,
-              "y": 91,
-              "width": 108,
-              "height": 10,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
+                "_$uuid": "5626e6ea-dd2a-4727-81b1-5c97a69da8b6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "g75nnwhc",
+          "_$id": "egkg2rlr",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "2wcoc5i3",
           "_$type": "Sprite",
           "name": "Footprint",
           "width": 0,
@@ -388,17 +249,7 @@
           "visible": false
         },
         {
-          "_$id": "0jtx74em",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "1p05oohy",
+          "_$id": "sb8un8xs",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -410,7 +261,7 @@
       ]
     },
     {
-      "_$id": "d9r4t9wg",
+      "_$id": "1awhqqsb",
       "_$type": "Sprite",
       "name": "FARM_4_1",
       "width": 128,
@@ -418,7 +269,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "wa9zcacy",
+          "_$id": "cwp28ylg",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -431,7 +282,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -439,100 +290,30 @@
           ],
           "_$child": [
             {
-              "_$id": "w7rv37qi",
+              "_$id": "3zy7v70w",
               "_$type": "Sprite",
-              "name": "Plot_0_0",
-              "x": 12,
-              "y": 37,
-              "width": 49,
-              "height": 28,
+              "name": "CropGround",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "3mda0lwa",
-              "_$type": "Sprite",
-              "name": "Plot_0_1",
-              "x": 64,
-              "y": 37,
-              "width": 49,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "4rmbbbi7",
-              "_$type": "Sprite",
-              "name": "Plot_1_0",
-              "x": 12,
-              "y": 62,
-              "width": 49,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "49xe04vn",
-              "_$type": "Sprite",
-              "name": "Plot_1_1",
-              "x": 64,
-              "y": 62,
-              "width": 49,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "5d7pokif",
-              "_$type": "Sprite",
-              "name": "Plot_2_0",
-              "x": 12,
-              "y": 88,
-              "width": 49,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "on473onh",
-              "_$type": "Sprite",
-              "name": "Plot_2_1",
-              "x": 64,
-              "y": 88,
-              "width": 49,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "afy6pcea",
-              "_$type": "Sprite",
-              "name": "Channel",
-              "x": 10,
-              "y": 110,
-              "width": 108,
-              "height": 10,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
+                "_$uuid": "a5ed6be7-2932-4233-88cc-d81ac99652af",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "6om0z3e3",
+          "_$id": "t8mfvx6i",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "cfwq77n5",
           "_$type": "Sprite",
           "name": "Footprint",
           "width": 0,
@@ -540,17 +321,7 @@
           "visible": false
         },
         {
-          "_$id": "1fxbt62s",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "sjw39e30",
+          "_$id": "8c9s5f02",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -562,7 +333,7 @@
       ]
     },
     {
-      "_$id": "ipjrb8s6",
+      "_$id": "96a0eq6a",
       "_$type": "Sprite",
       "name": "FARM_5_1",
       "width": 128,
@@ -570,7 +341,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "fh4s5qs7",
+          "_$id": "aapjq0x1",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -583,7 +354,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -591,152 +362,43 @@
           ],
           "_$child": [
             {
-              "_$id": "o0bnfdxt",
+              "_$id": "1wo6bwte",
               "_$type": "Sprite",
-              "name": "Plot_0_0",
-              "x": 12,
-              "y": 37,
-              "width": 31,
-              "height": 28,
+              "name": "CropGround",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+                "_$uuid": "a5ed6be7-2932-4233-88cc-d81ac99652af",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "o6hufp17",
+              "_$id": "gisv8ll4",
               "_$type": "Sprite",
-              "name": "Plot_0_1",
-              "x": 46,
-              "y": 37,
-              "width": 31,
-              "height": 28,
+              "name": "GrainCrate",
+              "x": 8,
+              "y": 80,
+              "width": 21,
+              "height": 24,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "8rtjcw6e",
-              "_$type": "Sprite",
-              "name": "Plot_0_2",
-              "x": 81,
-              "y": 37,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "ggl10cz7",
-              "_$type": "Sprite",
-              "name": "Plot_1_0",
-              "x": 12,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "mmqmqw7u",
-              "_$type": "Sprite",
-              "name": "Plot_1_1",
-              "x": 46,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "zuuxesb4",
-              "_$type": "Sprite",
-              "name": "Plot_1_2",
-              "x": 81,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "yqgxh1b5",
-              "_$type": "Sprite",
-              "name": "Plot_2_0",
-              "x": 12,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "j144gb5e",
-              "_$type": "Sprite",
-              "name": "Plot_2_1",
-              "x": 46,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "hf7b49mz",
-              "_$type": "Sprite",
-              "name": "Plot_2_2",
-              "x": 81,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "7tty3tn3",
-              "_$type": "Sprite",
-              "name": "Channel",
-              "x": 10,
-              "y": 91,
-              "width": 108,
-              "height": 10,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "pfaen788",
-              "_$type": "Sprite",
-              "name": "MiddleChannel",
-              "x": 10,
-              "y": 84,
-              "width": 108,
-              "height": 8,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
+                "_$uuid": "5626e6ea-dd2a-4727-81b1-5c97a69da8b6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "67ssn12z",
+          "_$id": "o0hx0qs3",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "48mrxxwk",
           "_$type": "Sprite",
           "name": "Footprint",
           "width": 0,
@@ -744,17 +406,7 @@
           "visible": false
         },
         {
-          "_$id": "gkypdjlx",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "qprm1w2i",
+          "_$id": "h9xo5h5t",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -764,43 +416,31 @@
           "visible": false
         },
         {
-          "_$id": "zld1jen1",
+          "_$id": "kulydmd7",
           "_$type": "Sprite",
           "name": "AboveGround",
           "x": 104,
           "y": 93,
-          "width": 128,
-          "height": 128,
-          "anchorX": 0.8125,
-          "anchorY": 0.7265625,
-          "_$comp": [
-            {
-              "_$type": "AnimatorClip2D",
-              "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
-                "_$type": "AnimationClip2D"
-              },
-              "autoPlay": false
-            }
-          ],
+          "width": 0,
+          "height": 0,
           "_$child": [
             {
-              "_$id": "9wvq12p2",
+              "_$id": "gka9253z",
               "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 82,
-              "y": 49,
+              "name": "WaterWheel",
+              "x": -22,
+              "y": -43,
               "width": 44,
               "height": 44,
               "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "e0agf4rt",
+          "_$id": "tq6qfk5y",
           "_$type": "Sprite",
           "name": "AboveFootprint",
           "x": 91,
@@ -812,7 +452,7 @@
       ]
     },
     {
-      "_$id": "5dien65c",
+      "_$id": "o6lalt5y",
       "_$type": "Sprite",
       "name": "FARM_6_1",
       "width": 128,
@@ -820,7 +460,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "zvq0stu1",
+          "_$id": "7h0ksad7",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -833,7 +473,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -841,152 +481,56 @@
           ],
           "_$child": [
             {
-              "_$id": "li7faycf",
+              "_$id": "6cmsy8a8",
               "_$type": "Sprite",
-              "name": "Plot_0_0",
-              "x": 12,
-              "y": 37,
-              "width": 31,
-              "height": 28,
+              "name": "CropGround",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+                "_$uuid": "a5ed6be7-2932-4233-88cc-d81ac99652af",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "dl0p4s7u",
+              "_$id": "fb1v68hu",
               "_$type": "Sprite",
-              "name": "Plot_0_1",
-              "x": 46,
-              "y": 37,
-              "width": 31,
-              "height": 28,
+              "name": "GrainCrate",
+              "x": 8,
+              "y": 80,
+              "width": 21,
+              "height": 24,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+                "_$uuid": "5626e6ea-dd2a-4727-81b1-5c97a69da8b6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "tjomhssq",
+              "_$id": "a6j4tiy2",
               "_$type": "Sprite",
-              "name": "Plot_0_2",
-              "x": 81,
-              "y": 37,
-              "width": 31,
-              "height": 28,
+              "name": "GrainCrate2",
+              "x": 14,
+              "y": 50,
+              "width": 18,
+              "height": 21,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "s9y6mi77",
-              "_$type": "Sprite",
-              "name": "Plot_1_0",
-              "x": 12,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "b6pbwxsa",
-              "_$type": "Sprite",
-              "name": "Plot_1_1",
-              "x": 46,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "x9osf8hm",
-              "_$type": "Sprite",
-              "name": "Plot_1_2",
-              "x": 81,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "wu0mnv3r",
-              "_$type": "Sprite",
-              "name": "Plot_2_0",
-              "x": 12,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "0dj0gln5",
-              "_$type": "Sprite",
-              "name": "Plot_2_1",
-              "x": 46,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "4cd3eboe",
-              "_$type": "Sprite",
-              "name": "Plot_2_2",
-              "x": 81,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "zzbm152d",
-              "_$type": "Sprite",
-              "name": "Channel",
-              "x": 10,
-              "y": 110,
-              "width": 108,
-              "height": 10,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "lza1941y",
-              "_$type": "Sprite",
-              "name": "MiddleChannel",
-              "x": 10,
-              "y": 61,
-              "width": 108,
-              "height": 8,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
+                "_$uuid": "5626e6ea-dd2a-4727-81b1-5c97a69da8b6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "7n575f16",
+          "_$id": "zx2u4qb5",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "08qzbvyk",
           "_$type": "Sprite",
           "name": "Footprint",
           "width": 0,
@@ -994,17 +538,7 @@
           "visible": false
         },
         {
-          "_$id": "4vrhwh30",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "pb4yvw0r",
+          "_$id": "jywg728f",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1014,43 +548,31 @@
           "visible": false
         },
         {
-          "_$id": "sneknemz",
+          "_$id": "l4wlhdun",
           "_$type": "Sprite",
           "name": "AboveGround",
           "x": 104,
           "y": 93,
-          "width": 128,
-          "height": 128,
-          "anchorX": 0.8125,
-          "anchorY": 0.7265625,
-          "_$comp": [
-            {
-              "_$type": "AnimatorClip2D",
-              "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
-                "_$type": "AnimationClip2D"
-              },
-              "autoPlay": false
-            }
-          ],
+          "width": 0,
+          "height": 0,
           "_$child": [
             {
-              "_$id": "0ckjttay",
+              "_$id": "2n1zmqit",
               "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 82,
-              "y": 49,
+              "name": "WaterWheel",
+              "x": -22,
+              "y": -43,
               "width": 44,
               "height": 44,
               "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "bd438o31",
+          "_$id": "dkiaryqa",
           "_$type": "Sprite",
           "name": "AboveFootprint",
           "x": 91,
@@ -1062,7 +584,7 @@
       ]
     },
     {
-      "_$id": "j3rhke9m",
+      "_$id": "bn7b172w",
       "_$type": "Sprite",
       "name": "FARM_7_1",
       "width": 128,
@@ -1070,7 +592,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "9ertoaof",
+          "_$id": "zcx9i1vr",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1083,7 +605,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1091,152 +613,69 @@
           ],
           "_$child": [
             {
-              "_$id": "zlrqf731",
+              "_$id": "b9qb40gl",
               "_$type": "Sprite",
-              "name": "Plot_0_0",
+              "name": "CropGround",
+              "width": 128,
+              "height": 128,
+              "texture": {
+                "_$uuid": "a5ed6be7-2932-4233-88cc-d81ac99652af",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "u8f613bi",
+              "_$type": "Sprite",
+              "name": "GrainCrate",
+              "x": 8,
+              "y": 80,
+              "width": 21,
+              "height": 24,
+              "texture": {
+                "_$uuid": "5626e6ea-dd2a-4727-81b1-5c97a69da8b6",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "mq35bwvf",
+              "_$type": "Sprite",
+              "name": "GrainCrate2",
+              "x": 14,
+              "y": 50,
+              "width": 18,
+              "height": 21,
+              "texture": {
+                "_$uuid": "5626e6ea-dd2a-4727-81b1-5c97a69da8b6",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "x7yc0p5x",
+              "_$type": "Sprite",
+              "name": "CrateBrace",
               "x": 12,
-              "y": 37,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "h1a9tf3d",
-              "_$type": "Sprite",
-              "name": "Plot_0_1",
-              "x": 46,
-              "y": 37,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "swbp86mf",
-              "_$type": "Sprite",
-              "name": "Plot_0_2",
-              "x": 81,
-              "y": 37,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "ij3k0tjh",
-              "_$type": "Sprite",
-              "name": "Plot_1_0",
-              "x": 12,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "bt5e7ze1",
-              "_$type": "Sprite",
-              "name": "Plot_1_1",
-              "x": 46,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "zsw2930k",
-              "_$type": "Sprite",
-              "name": "Plot_1_2",
-              "x": 81,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "nsnq6u3d",
-              "_$type": "Sprite",
-              "name": "Plot_2_0",
-              "x": 12,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "0o8q8j3b",
-              "_$type": "Sprite",
-              "name": "Plot_2_1",
-              "x": 46,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "6ms3jmzf",
-              "_$type": "Sprite",
-              "name": "Plot_2_2",
-              "x": 81,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "b2evlpi7",
-              "_$type": "Sprite",
-              "name": "Channel",
-              "x": 10,
-              "y": 91,
-              "width": 108,
-              "height": 10,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "3lkce4by",
-              "_$type": "Sprite",
-              "name": "MiddleChannel",
-              "x": 10,
               "y": 84,
-              "width": 108,
-              "height": 8,
+              "width": 18,
+              "height": 20,
               "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "obsghwa1",
+          "_$id": "4txk70fd",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "cqfo73je",
           "_$type": "Sprite",
           "name": "Footprint",
           "width": 0,
@@ -1244,17 +683,7 @@
           "visible": false
         },
         {
-          "_$id": "1dpmg6fk",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "rn7s8kdz",
+          "_$id": "n4j0nfmj",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1264,43 +693,31 @@
           "visible": false
         },
         {
-          "_$id": "63xjhzui",
+          "_$id": "scfseman",
           "_$type": "Sprite",
           "name": "AboveGround",
           "x": 104,
           "y": 93,
-          "width": 128,
-          "height": 128,
-          "anchorX": 0.8125,
-          "anchorY": 0.7265625,
-          "_$comp": [
-            {
-              "_$type": "AnimatorClip2D",
-              "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
-                "_$type": "AnimationClip2D"
-              },
-              "autoPlay": false
-            }
-          ],
+          "width": 0,
+          "height": 0,
           "_$child": [
             {
-              "_$id": "y7p6c7nr",
+              "_$id": "1os1nmam",
               "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 82,
-              "y": 49,
+              "name": "WaterWheel",
+              "x": -22,
+              "y": -43,
               "width": 44,
               "height": 44,
               "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "89cnouif",
+          "_$id": "hjc3bdd1",
           "_$type": "Sprite",
           "name": "AboveFootprint",
           "x": 91,
@@ -1312,7 +729,7 @@
       ]
     },
     {
-      "_$id": "h575hgn5",
+      "_$id": "srqd0qkn",
       "_$type": "Sprite",
       "name": "FARM_8_1",
       "width": 128,
@@ -1320,7 +737,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "8qpm954v",
+          "_$id": "vsn6nwfb",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1333,7 +750,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1341,152 +758,30 @@
           ],
           "_$child": [
             {
-              "_$id": "26enshbn",
+              "_$id": "nuc4eq10",
               "_$type": "Sprite",
-              "name": "Plot_0_0",
-              "x": 12,
-              "y": 37,
-              "width": 31,
-              "height": 28,
+              "name": "CropGround",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "k1in88n7",
-              "_$type": "Sprite",
-              "name": "Plot_0_1",
-              "x": 46,
-              "y": 37,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "o90wo8ot",
-              "_$type": "Sprite",
-              "name": "Plot_0_2",
-              "x": 81,
-              "y": 37,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "oya207qe",
-              "_$type": "Sprite",
-              "name": "Plot_1_0",
-              "x": 12,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "p4fm1yuy",
-              "_$type": "Sprite",
-              "name": "Plot_1_1",
-              "x": 46,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "16x4bn21",
-              "_$type": "Sprite",
-              "name": "Plot_1_2",
-              "x": 81,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "lmt6p0dm",
-              "_$type": "Sprite",
-              "name": "Plot_2_0",
-              "x": 12,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "574znder",
-              "_$type": "Sprite",
-              "name": "Plot_2_1",
-              "x": 46,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "ffgw64eo",
-              "_$type": "Sprite",
-              "name": "Plot_2_2",
-              "x": 81,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "ftl1fqve",
-              "_$type": "Sprite",
-              "name": "Channel",
-              "x": 10,
-              "y": 110,
-              "width": 108,
-              "height": 10,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "wm1tbtuj",
-              "_$type": "Sprite",
-              "name": "MiddleChannel",
-              "x": 10,
-              "y": 61,
-              "width": 108,
-              "height": 8,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
+                "_$uuid": "b003faa8-84c3-442e-85b3-9c824cd8a281",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "018lbecb",
+          "_$id": "29x89ijk",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "oj4jxhj1",
           "_$type": "Sprite",
           "name": "Footprint",
           "width": 0,
@@ -1494,17 +789,7 @@
           "visible": false
         },
         {
-          "_$id": "pmuqlqcb",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "ktx3y95r",
+          "_$id": "d01eg7v1",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1514,43 +799,31 @@
           "visible": false
         },
         {
-          "_$id": "hzw7jo9g",
+          "_$id": "2bgm2hsp",
           "_$type": "Sprite",
           "name": "AboveGround",
           "x": 104,
           "y": 93,
-          "width": 128,
-          "height": 128,
-          "anchorX": 0.8125,
-          "anchorY": 0.7265625,
-          "_$comp": [
-            {
-              "_$type": "AnimatorClip2D",
-              "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
-                "_$type": "AnimationClip2D"
-              },
-              "autoPlay": false
-            }
-          ],
+          "width": 0,
+          "height": 0,
           "_$child": [
             {
-              "_$id": "mxqcj9ig",
+              "_$id": "url6w1kn",
               "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 82,
-              "y": 49,
+              "name": "WaterWheel",
+              "x": -22,
+              "y": -43,
               "width": 44,
               "height": 44,
               "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "36b6g43p",
+          "_$id": "9shfzdoi",
           "_$type": "Sprite",
           "name": "AboveFootprint",
           "x": 91,
@@ -1562,7 +835,7 @@
       ]
     },
     {
-      "_$id": "q8onrzy5",
+      "_$id": "yu33sl8t",
       "_$type": "Sprite",
       "name": "FARM_9_1",
       "width": 128,
@@ -1570,7 +843,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "dvs8l8d1",
+          "_$id": "4unsy3w1",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1583,7 +856,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1591,165 +864,43 @@
           ],
           "_$child": [
             {
-              "_$id": "4ku0hgdb",
+              "_$id": "krkzkqol",
               "_$type": "Sprite",
-              "name": "Plot_0_0",
-              "x": 12,
-              "y": 37,
-              "width": 31,
-              "height": 28,
+              "name": "CropGround",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+                "_$uuid": "b003faa8-84c3-442e-85b3-9c824cd8a281",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "60n9agaw",
+              "_$id": "uvwqbdgx",
               "_$type": "Sprite",
-              "name": "Plot_0_1",
-              "x": 46,
-              "y": 37,
-              "width": 31,
-              "height": 28,
+              "name": "GrainCrate",
+              "x": 8,
+              "y": 80,
+              "width": 21,
+              "height": 24,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "yqdmiklx",
-              "_$type": "Sprite",
-              "name": "Plot_0_2",
-              "x": 81,
-              "y": 37,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "pby7rf16",
-              "_$type": "Sprite",
-              "name": "Plot_1_0",
-              "x": 12,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "2ocm4zpl",
-              "_$type": "Sprite",
-              "name": "Plot_1_1",
-              "x": 46,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "fm17683v",
-              "_$type": "Sprite",
-              "name": "Plot_1_2",
-              "x": 81,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "elwrekkm",
-              "_$type": "Sprite",
-              "name": "Plot_2_0",
-              "x": 12,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "oy9l0xij",
-              "_$type": "Sprite",
-              "name": "Plot_2_1",
-              "x": 46,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "ndd6fi0f",
-              "_$type": "Sprite",
-              "name": "Plot_2_2",
-              "x": 81,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "38irltcd",
-              "_$type": "Sprite",
-              "name": "Channel",
-              "x": 10,
-              "y": 91,
-              "width": 108,
-              "height": 10,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "givuonpd",
-              "_$type": "Sprite",
-              "name": "MiddleChannel",
-              "x": 10,
-              "y": 84,
-              "width": 108,
-              "height": 8,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "j0hximq1",
-              "_$type": "Sprite",
-              "name": "SideChannel",
-              "x": 10,
-              "y": 37,
-              "width": 108,
-              "height": 8,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
+                "_$uuid": "5626e6ea-dd2a-4727-81b1-5c97a69da8b6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "4erexjrv",
+          "_$id": "l44f5c4d",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "c30v6nlt",
           "_$type": "Sprite",
           "name": "Footprint",
           "width": 0,
@@ -1757,17 +908,7 @@
           "visible": false
         },
         {
-          "_$id": "kyatzk7e",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "proglfs9",
+          "_$id": "0kzypnbu",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -1777,43 +918,31 @@
           "visible": false
         },
         {
-          "_$id": "hhdk24z8",
+          "_$id": "nxo0j1lt",
           "_$type": "Sprite",
           "name": "AboveGround",
           "x": 104,
           "y": 93,
-          "width": 128,
-          "height": 128,
-          "anchorX": 0.8125,
-          "anchorY": 0.7265625,
-          "_$comp": [
-            {
-              "_$type": "AnimatorClip2D",
-              "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
-                "_$type": "AnimationClip2D"
-              },
-              "autoPlay": false
-            }
-          ],
+          "width": 0,
+          "height": 0,
           "_$child": [
             {
-              "_$id": "3sgtq05w",
+              "_$id": "lwiam0xr",
               "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 82,
-              "y": 49,
+              "name": "WaterWheel",
+              "x": -22,
+              "y": -43,
               "width": 44,
               "height": 44,
               "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "s3ufp0g1",
+          "_$id": "3e491cfr",
           "_$type": "Sprite",
           "name": "AboveFootprint",
           "x": 91,
@@ -1825,7 +954,7 @@
       ]
     },
     {
-      "_$id": "xsuzey9b",
+      "_$id": "t70evrah",
       "_$type": "Sprite",
       "name": "FARM_10_1",
       "width": 128,
@@ -1833,7 +962,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "nfa07zv7",
+          "_$id": "40povq41",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -1846,7 +975,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -1854,165 +983,56 @@
           ],
           "_$child": [
             {
-              "_$id": "o1hudur4",
+              "_$id": "7kgsygn3",
               "_$type": "Sprite",
-              "name": "Plot_0_0",
-              "x": 12,
-              "y": 37,
-              "width": 31,
-              "height": 28,
+              "name": "CropGround",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+                "_$uuid": "b003faa8-84c3-442e-85b3-9c824cd8a281",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "59v9k4ql",
+              "_$id": "0dcphoq3",
               "_$type": "Sprite",
-              "name": "Plot_0_1",
-              "x": 46,
-              "y": 37,
-              "width": 31,
-              "height": 28,
+              "name": "GrainCrate",
+              "x": 8,
+              "y": 80,
+              "width": 21,
+              "height": 24,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
+                "_$uuid": "5626e6ea-dd2a-4727-81b1-5c97a69da8b6",
                 "_$type": "Texture"
               }
             },
             {
-              "_$id": "q3eg39bq",
+              "_$id": "i2atzs5a",
               "_$type": "Sprite",
-              "name": "Plot_0_2",
-              "x": 81,
-              "y": 37,
-              "width": 31,
-              "height": 28,
+              "name": "GrainCrate2",
+              "x": 14,
+              "y": 50,
+              "width": 18,
+              "height": 21,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "o3nbabtk",
-              "_$type": "Sprite",
-              "name": "Plot_1_0",
-              "x": 12,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "vhbqangg",
-              "_$type": "Sprite",
-              "name": "Plot_1_1",
-              "x": 46,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "f7e8t8fe",
-              "_$type": "Sprite",
-              "name": "Plot_1_2",
-              "x": 81,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "ty379x9c",
-              "_$type": "Sprite",
-              "name": "Plot_2_0",
-              "x": 12,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "697ymie2",
-              "_$type": "Sprite",
-              "name": "Plot_2_1",
-              "x": 46,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "6w73pe6u",
-              "_$type": "Sprite",
-              "name": "Plot_2_2",
-              "x": 81,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "bibk2ini",
-              "_$type": "Sprite",
-              "name": "Channel",
-              "x": 10,
-              "y": 110,
-              "width": 108,
-              "height": 10,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "l7hd49vt",
-              "_$type": "Sprite",
-              "name": "MiddleChannel",
-              "x": 10,
-              "y": 61,
-              "width": 108,
-              "height": 8,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "9rszvw5w",
-              "_$type": "Sprite",
-              "name": "SideChannel",
-              "x": 10,
-              "y": 37,
-              "width": 108,
-              "height": 8,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
+                "_$uuid": "5626e6ea-dd2a-4727-81b1-5c97a69da8b6",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "04t2ubhi",
+          "_$id": "7d8layac",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "0wwroztw",
           "_$type": "Sprite",
           "name": "Footprint",
           "width": 0,
@@ -2020,17 +1040,7 @@
           "visible": false
         },
         {
-          "_$id": "40t8k5nx",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "w7xjdzvc",
+          "_$id": "c2g0sd65",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -2040,43 +1050,31 @@
           "visible": false
         },
         {
-          "_$id": "2s2x0ygn",
+          "_$id": "7d6ubavz",
           "_$type": "Sprite",
           "name": "AboveGround",
           "x": 104,
           "y": 93,
-          "width": 128,
-          "height": 128,
-          "anchorX": 0.8125,
-          "anchorY": 0.7265625,
-          "_$comp": [
-            {
-              "_$type": "AnimatorClip2D",
-              "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
-                "_$type": "AnimationClip2D"
-              },
-              "autoPlay": false
-            }
-          ],
+          "width": 0,
+          "height": 0,
           "_$child": [
             {
-              "_$id": "1gao3w7m",
+              "_$id": "098e8tsq",
               "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 82,
-              "y": 49,
+              "name": "WaterWheel",
+              "x": -22,
+              "y": -43,
               "width": 44,
               "height": 44,
               "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "u1ozgj64",
+          "_$id": "bmumyp60",
           "_$type": "Sprite",
           "name": "AboveFootprint",
           "x": 91,
@@ -2088,7 +1086,7 @@
       ]
     },
     {
-      "_$id": "zolpb5sl",
+      "_$id": "wyq379px",
       "_$type": "Sprite",
       "name": "FARM_11_1",
       "width": 128,
@@ -2096,7 +1094,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "ri8i9xjs",
+          "_$id": "qjs8v60x",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -2109,7 +1107,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -2117,165 +1115,69 @@
           ],
           "_$child": [
             {
-              "_$id": "chkvhg8q",
+              "_$id": "qgbcsws2",
               "_$type": "Sprite",
-              "name": "Plot_0_0",
+              "name": "CropGround",
+              "width": 128,
+              "height": 128,
+              "texture": {
+                "_$uuid": "b003faa8-84c3-442e-85b3-9c824cd8a281",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "zyc20pna",
+              "_$type": "Sprite",
+              "name": "GrainCrate",
+              "x": 8,
+              "y": 80,
+              "width": 21,
+              "height": 24,
+              "texture": {
+                "_$uuid": "5626e6ea-dd2a-4727-81b1-5c97a69da8b6",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "9xos9vqo",
+              "_$type": "Sprite",
+              "name": "GrainCrate2",
+              "x": 14,
+              "y": 50,
+              "width": 18,
+              "height": 21,
+              "texture": {
+                "_$uuid": "5626e6ea-dd2a-4727-81b1-5c97a69da8b6",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "mgwihtrw",
+              "_$type": "Sprite",
+              "name": "CrateBrace",
               "x": 12,
-              "y": 37,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "ovqprn3e",
-              "_$type": "Sprite",
-              "name": "Plot_0_1",
-              "x": 46,
-              "y": 37,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "rtikp9ln",
-              "_$type": "Sprite",
-              "name": "Plot_0_2",
-              "x": 81,
-              "y": 37,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "lsd2b6u4",
-              "_$type": "Sprite",
-              "name": "Plot_1_0",
-              "x": 12,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "ib63ltl6",
-              "_$type": "Sprite",
-              "name": "Plot_1_1",
-              "x": 46,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "l27cfx67",
-              "_$type": "Sprite",
-              "name": "Plot_1_2",
-              "x": 81,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "0wbw864i",
-              "_$type": "Sprite",
-              "name": "Plot_2_0",
-              "x": 12,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "iofbctmk",
-              "_$type": "Sprite",
-              "name": "Plot_2_1",
-              "x": 46,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "lvpigpyx",
-              "_$type": "Sprite",
-              "name": "Plot_2_2",
-              "x": 81,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "qxr7mowc",
-              "_$type": "Sprite",
-              "name": "Channel",
-              "x": 10,
-              "y": 91,
-              "width": 108,
-              "height": 10,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "3g52m36u",
-              "_$type": "Sprite",
-              "name": "MiddleChannel",
-              "x": 10,
               "y": 84,
-              "width": 108,
-              "height": 8,
+              "width": 18,
+              "height": 20,
               "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "f3x2ye5h",
-              "_$type": "Sprite",
-              "name": "SideChannel",
-              "x": 10,
-              "y": 37,
-              "width": 108,
-              "height": 8,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
+                "_$uuid": "1cd36be2-4c6c-45cb-8702-a23c86160bad",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "0d9zegpa",
+          "_$id": "sp260csc",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "zk7ks6l9",
           "_$type": "Sprite",
           "name": "Footprint",
           "width": 0,
@@ -2283,17 +1185,7 @@
           "visible": false
         },
         {
-          "_$id": "nob3wnmx",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "vle902sl",
+          "_$id": "dees1c3n",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -2303,43 +1195,31 @@
           "visible": false
         },
         {
-          "_$id": "sf2akh11",
+          "_$id": "fmdmi5bk",
           "_$type": "Sprite",
           "name": "AboveGround",
           "x": 104,
           "y": 93,
-          "width": 128,
-          "height": 128,
-          "anchorX": 0.8125,
-          "anchorY": 0.7265625,
-          "_$comp": [
-            {
-              "_$type": "AnimatorClip2D",
-              "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
-                "_$type": "AnimationClip2D"
-              },
-              "autoPlay": false
-            }
-          ],
+          "width": 0,
+          "height": 0,
           "_$child": [
             {
-              "_$id": "x1bdosso",
+              "_$id": "s0s15o3j",
               "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 82,
-              "y": 49,
+              "name": "WaterWheel",
+              "x": -22,
+              "y": -43,
               "width": 44,
               "height": 44,
               "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "lyz4qjc5",
+          "_$id": "kc3vbpdi",
           "_$type": "Sprite",
           "name": "AboveFootprint",
           "x": 91,
@@ -2351,7 +1231,7 @@
       ]
     },
     {
-      "_$id": "g4sjymgq",
+      "_$id": "oyhgjxta",
       "_$type": "Sprite",
       "name": "FARM_12_1",
       "width": 128,
@@ -2359,7 +1239,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "3bsya2ha",
+          "_$id": "v97zcs6j",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -2372,7 +1252,7 @@
             {
               "_$type": "AnimatorClip2D",
               "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
+                "_$uuid": "f7bd900b-a36e-4844-8a27-8f314674b11c",
                 "_$type": "AnimationClip2D"
               },
               "autoPlay": false
@@ -2380,165 +1260,30 @@
           ],
           "_$child": [
             {
-              "_$id": "rw0cc4cp",
+              "_$id": "zffpwff3",
               "_$type": "Sprite",
-              "name": "Plot_0_0",
-              "x": 12,
-              "y": 37,
-              "width": 31,
-              "height": 28,
+              "name": "CropGround",
+              "width": 128,
+              "height": 128,
               "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "tx0r12ds",
-              "_$type": "Sprite",
-              "name": "Plot_0_1",
-              "x": 46,
-              "y": 37,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "osfuxbbz",
-              "_$type": "Sprite",
-              "name": "Plot_0_2",
-              "x": 81,
-              "y": 37,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "eefymdu0",
-              "_$type": "Sprite",
-              "name": "Plot_1_0",
-              "x": 12,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "osfu9zx1",
-              "_$type": "Sprite",
-              "name": "Plot_1_1",
-              "x": 46,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "pay35ezi",
-              "_$type": "Sprite",
-              "name": "Plot_1_2",
-              "x": 81,
-              "y": 62,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "9bq3r4ky",
-              "_$type": "Sprite",
-              "name": "Plot_2_0",
-              "x": 12,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "4q46xn5p",
-              "_$type": "Sprite",
-              "name": "Plot_2_1",
-              "x": 46,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "jhehm041",
-              "_$type": "Sprite",
-              "name": "Plot_2_2",
-              "x": 81,
-              "y": 88,
-              "width": 31,
-              "height": 28,
-              "texture": {
-                "_$uuid": "4031e1f3-5d9c-42b5-9ea9-689edc45aba7",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "0sr1ybq8",
-              "_$type": "Sprite",
-              "name": "Channel",
-              "x": 10,
-              "y": 110,
-              "width": 108,
-              "height": 10,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "e9o6e2rp",
-              "_$type": "Sprite",
-              "name": "MiddleChannel",
-              "x": 10,
-              "y": 61,
-              "width": 108,
-              "height": 8,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "i7iy4s26",
-              "_$type": "Sprite",
-              "name": "SideChannel",
-              "x": 10,
-              "y": 37,
-              "width": 108,
-              "height": 8,
-              "texture": {
-                "_$uuid": "b060a080-497f-4d37-94ee-a1ea7c669f9f",
+                "_$uuid": "60ed45b5-ce60-4f7a-85f7-5f2ff7e0c125",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "fqthej3u",
+          "_$id": "vvmk1qbm",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "x": -4,
+          "y": -22,
+          "width": 136,
+          "height": 154,
+          "visible": false
+        },
+        {
+          "_$id": "6vi3q1pq",
           "_$type": "Sprite",
           "name": "Footprint",
           "width": 0,
@@ -2546,17 +1291,7 @@
           "visible": false
         },
         {
-          "_$id": "otan4c89",
-          "_$type": "Sprite",
-          "name": "VisualBounds",
-          "x": -4,
-          "y": -10,
-          "width": 136,
-          "height": 138,
-          "visible": false
-        },
-        {
-          "_$id": "99muilg9",
+          "_$id": "cf8ayxib",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,
@@ -2566,43 +1301,31 @@
           "visible": false
         },
         {
-          "_$id": "ba9a8xz9",
+          "_$id": "xvkmoaso",
           "_$type": "Sprite",
           "name": "AboveGround",
           "x": 104,
           "y": 93,
-          "width": 128,
-          "height": 128,
-          "anchorX": 0.8125,
-          "anchorY": 0.7265625,
-          "_$comp": [
-            {
-              "_$type": "AnimatorClip2D",
-              "clip": {
-                "_$uuid": "565a1ea1-8361-4e2b-9dc7-d4bd8f27fba2",
-                "_$type": "AnimationClip2D"
-              },
-              "autoPlay": false
-            }
-          ],
+          "width": 0,
+          "height": 0,
           "_$child": [
             {
-              "_$id": "0snrbznf",
+              "_$id": "1n6zbl2p",
               "_$type": "Sprite",
-              "name": "Wheel",
-              "x": 82,
-              "y": 49,
+              "name": "WaterWheel",
+              "x": -22,
+              "y": -43,
               "width": 44,
               "height": 44,
               "texture": {
-                "_$uuid": "f4537214-0f67-441a-9cc4-ded3d08148f2",
+                "_$uuid": "4840b139-adff-4e61-8008-5b3e439169ca",
                 "_$type": "Texture"
               }
             }
           ]
         },
         {
-          "_$id": "4edovfot",
+          "_$id": "v03mc3if",
           "_$type": "Sprite",
           "name": "AboveFootprint",
           "x": 91,

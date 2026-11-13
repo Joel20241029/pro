@@ -22,13 +22,13 @@ export interface VillageProp extends GroundPoint {
     canopyDetails?: readonly { frame: string; x: number; y: number; size: number; alpha: number }[];
 }
 /** 128px塔源画布的实际弓口/投石兜/水晶挂点；仅表现，不移动逻辑塔位或射程。
- * 左侧1/3塔向右、右侧2/4塔向左；正面石塔/寒塔保持原构图，改建必须重设镜像。
+ * 左侧1/3塔向右、右侧2/4塔向左；石塔/寒塔保持正面，箭塔只切换实际左右武器，不镜像主体。
  */
 export const TOWER_VIEW = {
     size: 108, top: -80, canvas: 128, facing: [1, -1, 1, -1],
     muzzle: { ARROW: { x: 92, y: 35 }, STONE: { x: 74, y: 50 }, SLOW: { x: 64, y: 32 } }
 } as const;
-/** 原 GameView 的固定地图与图集足底（中心、15/16 高度）。占地仅覆盖底座，屋顶/树冠可以遮住行人。 */
+/** 既有固定地图与高清母画布足底（中心、15/16 高度）。占地仅覆盖底座，屋顶/树冠可以遮住行人。 */
 function prop(id: string, frame: string, left: number, top: number, size: number, baseWidth: number, baseDepth: number): VillageProp {
     const x = left + size / 2, y = top + size * 15 / 16;
     return { id, frame, x, y, size, footprint: { left: x - baseWidth / 2, top: y - baseDepth, right: x + baseWidth / 2, bottom: y } };
@@ -67,14 +67,14 @@ export const VILLAGE_PROPS: VillageProp[] = [
     { id: "deco:logs", frame: "deco_log_pile", x: 571, y: 1024, size: 60, footprint: null },
     ...[[168, 292], [560, 286], [170, 477], [553, 548], [164, 668], [553, 734]].map(([x, y], i): VillageProp => ({ id: `bush:${i}`, frame: "deco_bush", x, y, size: 64, footprint: null })),
     ...[[279, 822], [441, 822]].map(([x, y], i): VillageProp => ({ id: `torch:${i}`, frame: "deco_torch", x, y, size: 62, footprint: null })),
-    // 用户要求民居相对人物放大约20%；保留两栋足底(108,930)/(222,920)，底座占地同步等比放大。
-    prop("building:house-a", "building_house_thatched", 38, 798.75, 140, 102, 33),
-    prop("building:house-b", "building_house_terracotta", 158, 800, 128, 94, 32),
+    // 用户要求民居相对人物放大约20%；保留两栋足底(108,930)/(222,920)，高清底座按预制体112/128宽预留123/112，避免扩建后行人穿过墙脚。
+    prop("building:house-a", "hd_house_body_0", 38, 798.75, 140, 123, 33),
+    prop("building:house-b", "hd_house_body_0", 158, 800, 128, 112, 32),
     // 田地是可站立地面，用农田自身源pivot；不加入建筑排序/导航障碍，人物真正走入垄沟。
-    { id: "building:farm", frame: "building_farm", x: 546, y: 954, size: 202, footprint: null, ground: true },
-    prop("building:logging", "building_lumber_shed", 467, 922.625, 106, 74, 28),
+    { id: "building:farm", frame: "hd_farm_body_0", x: 546, y: 954, size: 202, footprint: null, ground: true },
+    prop("building:logging", "hd_logging_body_0", 467, 922.625, 106, 87, 28),
     prop("building:hearth", "building_hearth_lit", 321, 891, 78, 44, 15),
-    prop("building:gate", "building_gate_closed", 282, 684, 156, 132, 30),
+    prop("building:gate", "hd_gate_body_0", 282, 684, 156, 132, 30),
     ...PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, 72, 28))
 ];
 export const farm = VILLAGE_PROPS.find(p => p.id === "building:farm")!;

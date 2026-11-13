@@ -27,7 +27,7 @@ export class UiWidgets {
     }
     image(parent: Laya.Sprite, id: string, x: number, y: number, w: number, h = w) {
         const s = new Laya.Sprite();
-        // 通用 UI 图标使用可缩放的原生矢量；角色、建筑仍从已加载的游戏资源读取。
+        // 播放等通用符号用原生矢量；题材图标、头像、建筑统一读取高清图集。
         if (!drawUiGlyph(s, id, w, h)) s.texture = this.art.get(id);
         s.pos(x, y); s.size(w, h); s.mouseEnabled = false; parent.addChild(s); return s;
     }

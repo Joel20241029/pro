@@ -1,0 +1,148 @@
+{
+  "role": "female",
+  "method": "offline high-resolution skinned rendering",
+  "status": "candidate_requires_contact_and_pose_visual_review",
+  "runtime3d": false,
+  "mirror": false,
+  "framesPerAction": 4,
+  "records": [
+    {
+      "action": "farm",
+      "frame": 1,
+      "palm": [
+        -0.1885206699371338,
+        -0.16576923429965973,
+        0.2201300710439682
+      ],
+      "lowestBodyZ": -1.1403194832837471e-08
+    },
+    {
+      "action": "farm",
+      "frame": 2,
+      "palm": [
+        -0.18852069973945618,
+        -0.11603235453367233,
+        0.19846941530704498
+      ],
+      "lowestBodyZ": -1.1403194832837471e-08
+    },
+    {
+      "action": "farm",
+      "frame": 3,
+      "palm": [
+        -0.18852069973945618,
+        -0.08643287420272827,
+        0.19558240473270416
+      ],
+      "lowestBodyZ": -1.1403194832837471e-08
+    },
+    {
+      "action": "farm",
+      "frame": 4,
+      "palm": [
+        -0.18852069973945618,
+        -0.1431354433298111,
+        0.20666134357452393
+      ],
+      "lowestBodyZ": -1.1403194832837471e-08
+    },
+    {
+      "action": "chop",
+      "frame": 1,
+      "palm": [
+        -0.1885206401348114,
+        -0.20292821526527405,
+        0.42985329031944275
+      ],
+      "lowestBodyZ": -1.1403194832837471e-08
+    },
+    {
+      "action": "chop",
+      "frame": 2,
+      "palm": [
+        -0.1885206401348114,
+        -0.22595079243183136,
+        0.3088730275630951
+      ],
+      "lowestBodyZ": -1.1403194832837471e-08
+    },
+    {
+      "action": "chop",
+      "frame": 3,
+      "palm": [
+        -0.18852069973945618,
+        -0.16371449828147888,
+        0.21870213747024536
+      ],
+      "lowestBodyZ": -1.1403194832837471e-08
+    },
+    {
+      "action": "chop",
+      "frame": 4,
+      "palm": [
+        -0.1885206401348114,
+        -0.2272692769765854,
+        0.35700511932373047
+      ],
+      "lowestBodyZ": -1.1403194832837471e-08
+    },
+    {
+      "action": "care",
+      "frame": 1,
+      "palm": [
+        -0.1885206699371338,
+        -0.19637389481067657,
+        0.2432185411453247
+      ],
+      "lowestBodyZ": -1.1403194832837471e-08
+    },
+    {
+      "action": "care",
+      "frame": 2,
+      "palm": [
+        -0.1885206699371338,
+        -0.22507211565971375,
+        0.2777402997016907
+      ],
+      "lowestBodyZ": -1.1403194832837471e-08
+    },
+    {
+      "action": "care",
+      "frame": 3,
+      "palm": [
+        -0.18852069973945618,
+        -0.1940411776304245,
+        0.23983339965343475
+      ],
+      "lowestBodyZ": -1.1403194832837471e-08
+    },
+    {
+      "action": "care",
+      "frame": 4,
+      "palm": [
+        -0.1885206699371338,
+        -0.1667308211326599,
+        0.22172799706459045
+      ],
+      "lowestBodyZ": -1.1403194832837471e-08
+    }
+  ],
+  "inputs": [
+    {
+      "file": "res/source/rendered2d/characters/female/female_walk_probe.blend",
+      "sha256": "6d7b4783d2b27a950b4496ad6343b5d7f2629e8ea701e68dce8d07bcde2f2654"
+    },
+    {
+      "file": "res/source/rendered2d/characters/female/rig-profile.json",
+      "sha256": "82760bc82be715065240e0b7a1b6e67c2ceb750c06f2d8f5568f923427bca976"
+    },
+    {
+      "file": "res/source/rendered2d/characters/labor-poses.json",
+      "sha256": "2e9be39da08bb27adf9391d72bfd91e51aa662dbb9dc155da6a72d62d0269202"
+    },
+    {
+      "file": "/Users/happyelements/Documents/pro/res/tools/hd2d/render-character-labor.py",
+      "sha256": "ce4500d4318d5dc972c9a07452194629aa005f3817be78968db66d91737ac526"
+    }
+  ]
+}

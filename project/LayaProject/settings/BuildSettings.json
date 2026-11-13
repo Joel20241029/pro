@@ -9,6 +9,12 @@
   "enableSubpackages": true,
   "subpackages": [
     {
+      "path": "resources/buildings",
+      "packAllAssets": true,
+      "autoLoad": false,
+      "remote": false
+    },
+    {
       "path": "resources/characters",
       "packAllAssets": true,
       "autoLoad": false,

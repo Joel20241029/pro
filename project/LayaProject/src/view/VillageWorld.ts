@@ -1,12 +1,10 @@
-import { WorldParticles } from "./WorldParticles";
 import { CombatPresentation } from "./CombatPresentation";
 import { LoggingFeedback } from "./LoggingFeedback";
-import { FEEDBACK } from "./config/FeedbackConfig";
 import { EnemyVisuals } from "./EnemyVisuals";
 import { GameSession } from "../game/GameSession";
 import { person } from "../game/VillageRules";
 import { GameState, isElder } from "../game/GameState";
-import { ELITE, PATH, RULE } from "../game/GameConfig";
+import { ELITE, RULE } from "../game/GameConfig";
 import { BattleSimulation, pointAt } from "../game/BattleSimulation";
 import { gateCapacity } from "../game/Growth";
 import { SpriteFrames } from "./SpriteFrames";
@@ -21,6 +19,7 @@ import { houseRooms } from "./BuildingLayout";
 import { UiWidgets } from "./UiWidgets";
 import { HOUSE_TIP_NAMES } from "./config/AnchoredTipConfig";
 import { HUD } from "./config/HudConfig";
+import { WORLD_ART } from "./config/WorldArtConfig";
 /** 同一份绘制深度同时用于地图点选；人物身份随当前帧写入，不能绑定到精灵池下标。 */
 interface WorldItem {
     id: string; y: number; node: Laya.Sprite;
@@ -35,6 +34,7 @@ export class VillageWorld {
     readonly emote = new Laya.Sprite();
     private people: Laya.Sprite[] = [];
     private enemies: Laya.Sprite[] = [];
+    private actorShadows: Laya.Sprite[] = [];
     private enemyVisuals: EnemyVisuals[] = [];
     private hearts: Laya.Sprite[] = [];
     private props: WorldItem[] = [];
@@ -46,7 +46,6 @@ export class VillageWorld {
     scene = layoutVillage(this.layout);
     private motion = new VillagerMotion(new VillageNavigation(this.scene.props, this.scene.landscape, this.scene.bounds), this.scene.stops);
     private emotes = new VillagerEmotes();
-    private particles = new WorldParticles(this.art.particles, this.world, this.shots);
     private feedback = new CombatPresentation();
     private logging = new LoggingFeedback();
     private projectiles = new ProjectileMotion();
@@ -55,6 +54,7 @@ export class VillageWorld {
     private lastBattleTick = 0;
     private backgroundKey = "";
     private renderDelta = 0;
+    private sceneSeconds = 0;
     private hitTop = new Laya.Point();
     private hitBottom = new Laya.Point();
     constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private layout: GameLayout,
@@ -76,10 +76,9 @@ export class VillageWorld {
                 clickNodes.push(node);
             }
             if (p.signText) {
-                // 88×52源画布：牌面横向留10%，文字框顶边为宽度的13.75%；避开两端铆钉。
-                // 文字只在牌面居中，不含下方木桩；与路牌共用足底遮挡。
-                const title = this.ui.label(node, p.signText, p.size * .1, p.size * .1375, p.size * .8, 22, "#59391e", true, p.size * .2);
-                title.fontSize = 22;
+                const sign = WORLD_ART.sign;
+                const title = this.ui.label(node, p.signText, p.size * sign.x, p.size * sign.y, p.size * sign.width, sign.font, "#59391e", true, p.size * sign.height);
+                title.fontSize = sign.font;
                 title.stroke = .7;
                 title.strokeColor = "#f8d79c";
                 title.align = "center";
@@ -125,6 +124,12 @@ export class VillageWorld {
             s.visible = false;
             this.shots.addChild(s);
             this.projectileNodes.push(s);
+        }
+        // 软投影是普通图片，不是粒子。与人物/敌人共用固定池，脚底排序让农田地面上的阴影仍可见。
+        for (let i = 0; i < this.people.length + this.enemies.length; i++) {
+            const shadow = new Laya.Sprite(); shadow.texture = this.art.get("shadow_actor");
+            shadow.name = "ContactShadow:" + i; shadow.mouseEnabled = false; shadow.visible = false;
+            shadow.alpha = WORLD_ART.shadow.alpha; this.world.addChild(shadow); this.actorShadows.push(shadow);
         }
         for (const node of clickNodes) {
             node.on(Laya.Event.MOUSE_DOWN, this, (event: Laya.Event) => {
@@ -179,7 +184,6 @@ export class VillageWorld {
     destroy() {
         for (const touchId of this.pressedTargets.keys()) Laya.InputManager.cancelClick(touchId);
         this.pressedTargets.clear();
-        this.particles.destroy();
     }
     reset() {
         for (const touchId of this.pressedTargets.keys()) Laya.InputManager.cancelClick(touchId);
@@ -187,10 +191,11 @@ export class VillageWorld {
         this.motion = new VillagerMotion(new VillageNavigation(this.scene.props, this.scene.landscape, this.scene.bounds), this.scene.stops);
         this.emotes = new VillagerEmotes();
         this.projectiles = new ProjectileMotion();
-        this.feedback = new CombatPresentation(); this.particles.reset(); this.logging = new LoggingFeedback();
+        this.feedback = new CombatPresentation(); this.logging = new LoggingFeedback();
         this.lastBattle = null;
         this.lastBattleTick = 0;
         this.renderDelta = 0;
+        this.sceneSeconds = 0;
         this.freshBuildingVillage = true;
     }
     relayout(next: GameLayout) {
@@ -214,25 +219,24 @@ export class VillageWorld {
         this.scenery.destroyChildren();
         this.scenery.graphics.clear();
         const y = (value: number) => this.layout.worldY(value);
-        this.scenery.graphics.drawRect(0, 0, 720, this.layout.height, night ? C.night : C.grass);
-        this.scenery.graphics.drawRect(0, y(780), 720, this.layout.footerTop - y(780), night ? "#6d785e" : "#b5bd86");
-        for (const tree of this.scene.props.filter(p => p.id.startsWith("forest:")))
-            this.scenery.graphics.drawEllipse(tree.x - tree.size * .38, tree.y - tree.size * .28, tree.size * .76, tree.size * .35, night ? "#304c45" : "#829956", null, 0);
-        // 先完成全部路沿，再铺完整路面，避免后一段路沿覆盖前一段路面形成尖刺接缝。
-        for (const surface of [{ width: 80, color: night ? "#696f5e" : "#a99867" }, { width: 68, color: night ? "#8d8976" : "#d3bc8a" }])
-            for (let i = 1; i < PATH.length; i++) {
-                this.scenery.graphics.drawLine(PATH[i - 1].x, y(PATH[i - 1].y), PATH[i].x, y(PATH[i].y), surface.color, surface.width);
-                this.scenery.graphics.drawCircle(PATH[i].x, y(PATH[i].y), surface.width / 2, surface.color);
-            }
-        // 固定点缀不消费业务 RNG；森林阴影、草簇与小石头为道路提供边缘层次。
+        const tint = night ? WORLD_ART.nightTint : WORLD_ART.dayTint;
+        this.scenery.graphics.drawRect(0, 0, 720, this.layout.height, C.grass);
+        const tile = WORLD_ART.grassTile;
+        for (let top = 0; top < this.layout.footerTop; top += tile) for (let left = 0; left < 720; left += tile)
+            this.scenery.graphics.drawImage(this.art.get("tile_ground_grass"), left, top, tile, tile, tint);
+        // 路面可见部分全部在城墙之前；按战场段同一比例映射，不能拿含居民区的高度混合缩放。
+        const battleScale = (y(830) - y(246)) / (830 - 246);
+        this.scenery.graphics.drawImage(this.art.get("map_road"), 0, y(0), WORLD_ART.roadWidth, WORLD_ART.roadHeight * battleScale, tint);
+        const shadow = WORLD_ART.shadow;
+        for (const prop of this.scene.props) {
+            if (prop.ground || prop.id.startsWith("wall:") || prop.id.startsWith("deco:")) continue;
+            const tree = prop.id.startsWith("forest:") || prop.id.startsWith("tree:");
+            const width = prop.size * (tree ? shadow.treeWidth : shadow.buildingWidth);
+            const image = this.ui.image(this.scenery, tree ? "shadow_tree" : "shadow_actor", prop.x - width * shadow.centerX + shadow.x, prop.y - width * shadow.centerY + shadow.y, width);
+            image.alpha = shadow.alpha;
+        }
         for (const [x, at] of [[182, 399], [530, 470], [173, 591], [560, 643], [297, 628], [411, 356]])
             this.ui.image(this.scenery, "deco_rocks", x, y(at), 36);
-        for (let i = 0; i < 26; i++) {
-            const x = i % 2 ? 560 + i % 5 * 17 : 105 + i % 5 * 16, at = y(298 + Math.floor(i / 2) * 35);
-            this.scenery.graphics.drawLine(x, at, x - 3, at - 8, night ? "#577451" : "#668445", 3);
-            this.scenery.graphics.drawLine(x, at, x + 4, at - 6, night ? "#577451" : "#668445", 3);
-        }
-        // 美术仅提供地块拼片，不将未验证接缝的地块铺满地图。
     }
     advance(delta: number): boolean {
         if (!this.game.pauses.size) {
@@ -241,15 +245,14 @@ export class VillageWorld {
         }
         const battle = this.game.battle, s = this.game.state;
         if (battle !== this.lastBattle) {
-            this.particles.clearBattle();
             this.lastBattle = battle;
             this.lastBattleTick = 0;
         }
         const visualDelta = battle ? Math.max(0, battle.tick - this.lastBattleTick) * RULE.step : Math.min(RULE.frameCap, Math.max(0, delta));
         this.lastBattleTick = battle ? battle.tick : 0;
-        this.particles.advance(delta, s?.settings.speed || 1, !this.game.pauses.size);
         if (!this.game.pauses.size) this.feedback.advance(Math.min(RULE.frameCap, Math.max(0, delta)));
         if (s && !this.game.pauses.size && (s.phase === "DAY" || s.phase === "NIGHT")) {
+            this.sceneSeconds += visualDelta;
             this.motion.update(visualDelta);
             for (const p of s.people) { const pose = this.motion.get(p.id); this.logging.sample(p.id, pose.clip, pose.elapsed, pose.animated && !pose.walking && s.phase === "DAY"); }
             this.logging.retain(new Set(s.people.map(p => p.id)));
@@ -266,12 +269,11 @@ export class VillageWorld {
     render(panelOpen: boolean) {
         const s = this.game.state, battle = this.game.battle;
         this.feedback.sync(battle, this.game.takeCombatFeedback());
-        if (!battle || battle.outcome) this.particles.clearBattle();
-        this.particles.beginPeople();
         this.bellAura.visible = false;
         this.bellAura.graphics.clear();
         this.people.forEach(n => n.visible = false);
         this.enemies.forEach(n => n.visible = false);
+        this.actorShadows.forEach(n => n.visible = false);
         this.projectileNodes.forEach(n => n.visible = false);
         this.hearts.forEach(n => { n.visible = false; n.alpha = 1; n.scale(1, 1); n.pos(0, 0); });
         this.emote.visible = false;
@@ -282,7 +284,7 @@ export class VillageWorld {
             return;
         }
         for (const p of this.props) {
-            let kind: BuildingLook | null = null, level = 0, rooms = 1, damaged = false;
+            let kind: BuildingLook | null = null, level = 0, rooms = 1, damaged = false, facing = 1;
             if (p.id === "building:gate") {
                 damaged = (battle ? battle.gate : s.gate) / gateCapacity(s) < .35;
                 kind = "GATE";
@@ -291,7 +293,7 @@ export class VillageWorld {
             else if (p.id.startsWith("tower:")) {
                 const index = Number(p.id.split(":")[1]), t = (battle ? battle.base.towers : s.towers)[index];
                 p.node.texture = t.kind ? null : this.art.get("building_tower_pad");
-                p.node.scaleX = t.kind === "ARROW" || t.kind === "STONE" ? TOWER_VIEW.facing[index] : 1;
+                p.node.scaleX = 1; facing = TOWER_VIEW.facing[index];
                 kind = t.kind;
                 level = t.level;
             }
@@ -308,7 +310,8 @@ export class VillageWorld {
                 kind = "LOGGING";
                 level = s.logging;
             }
-            p.visual?.sync(kind, level, this.freshBuildingVillage, rooms, damaged);
+            p.visual?.sync(kind, level, this.freshBuildingVillage, rooms, damaged, facing);
+            if (p.id === "building:hearth") p.node.texture = this.art.get(this.art.frameId("hearth_burn", this.sceneSeconds));
             if (!panelOpen && !this.game.pauses.size) p.visual?.beginVisibleUpgrade();
             if (HOUSE_TIP_NAMES[p.id]) {
                 const { node, bounds } = p.visual!.bodyRegion();
@@ -324,15 +327,13 @@ export class VillageWorld {
             if (p.id.startsWith("tower:"))
                 p.visual!.updateAttack(battle, Number(p.id.split(":")[1]));
         this.projectiles.update(battle, this.layout, this.scene.pads, index => this.props.find(p => p.id === `tower:${index}`)!.visual!.launchPoint(), this.feedback);
-        for (const p of this.projectiles.arrivals) this.particles.burst(FEEDBACK.attacks[p.shot.kind].hit, p.x, p.y);
-        for (const at of this.feedback.gateHits.splice(0)) this.particles.burst("hit_gate", at.x, this.layout.worldY(at.y) + FEEDBACK.targetY);
         this.freshBuildingVillage = false;
         if (this.art.ready("characters")) s.people.forEach((p, i) => {
             const n = this.people[i], pose = this.motion.get(p.id);
             n.visible = !pose.insideTower;
             n.name = `person:${p.id}`;
             const identity = isElder(p) ? `elder_${p.sex === "MALE" ? "male" : "female"}` : p.adult ? p.appearance : p.sex === "MALE" ? "boy" : "girl";
-            const facing = pose.clip.endsWith("_walk") ? this.art.walk(identity, pose.direction) : { clip: pose.clip, mirror: pose.mirror };
+            const facing = pose.clip.endsWith("_walk") ? this.art.walk(identity, pose.direction) : /_(chop|care)$/.test(pose.clip) ? this.art.labor(pose.clip, pose.mirror) : { clip: pose.clip, mirror: false };
             this.art.applyFrame(n, this.art.frameId(facing.clip, pose.elapsed, pose.animated), p.adult ? 56 : p.growth === 0 ? 42 : 48);
             n.getGraphicBounds(false, n.hitArea as Laya.Rectangle);
             const scale = (p.elite ? ELITE.visualScale : 1) * this.layout.personScale;
@@ -348,10 +349,8 @@ export class VillageWorld {
                 heart.pos(n.pivotX, n.pivotY - WEDDING.headOffset - WEDDING.rise * elapsed / WEDDING.heartSeconds);
                 heart.scale((facing.mirror ? -1 : 1) * pulse, pulse);
             }
-            if (p.elite && n.visible) depth.push({ id: n.name + ":ring", y: pose.y - .01, node: this.particles.ring(p.id, pose.x, pose.y, scale), ground: true });
             depth.push({ id: n.name, y: pose.y, node: n, personId: p.id });
         });
-        this.particles.endPeople();
         const emote = this.emotes.current;
         if (this.art.ready("characters") && emote && !panelOpen && !this.game.pauses.size && (s.phase === "DAY" || s.phase === "NIGHT")) {
             const pose = this.motion.get(emote.id);
@@ -393,9 +392,17 @@ export class VillageWorld {
                 n.visible = !p.impacted;
                 this.art.applyFrame(n, p.frame, p.size);
                 n.pos(p.x, p.y);
-                n.rotation = p.rotation;
+                n.rotation = p.rotation + (p.shot.kind === "ARROW" && !p.impacted ? WORLD_ART.arrowAngleOffset : 0);
                 n.alpha = p.alpha;
             });
+        }
+        let shadowIndex = 0;
+        for (const actor of [...this.people, ...this.enemies]) if (actor.visible) {
+            const shadow = this.actorShadows[shadowIndex++], spec = WORLD_ART.shadow;
+            const width = actor.width * Math.abs(actor.scaleX) * spec.actorWidth;
+            shadow.visible = true; shadow.size(width, width).pivot(width * spec.centerX, width * spec.centerY);
+            shadow.pos(actor.x + spec.x, actor.y + spec.y);
+            depth.push({ id: shadow.name, y: actor.y - .01, node: shadow, ground: true });
         }
         // Laya 3.4 的 zIndex 决定渲染顺序；world 为 stackingRoot，不让深度排序覆盖 HUD/弹窗。
         depth.sort(compareDepth).forEach((p, i) => p.node.zIndex = i);

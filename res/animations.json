@@ -1,252 +1,31 @@
 {
-  "version": 2,
-  "frameIdSource": "atlases/frames.json",
+  "version": 3,
   "animations": [
     {
-      "id": "villager_male_a_walk",
-      "characterId": "male_a",
-      "actionId": "walk",
-      "category": "characters",
-      "frameIds": [
-        "villager_male_a_walk_00",
-        "villager_male_a_walk_01",
-        "villager_male_a_walk_02",
-        "villager_male_a_walk_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_male_a_walk_01",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "FOUNDER/TRAVELER/BORN male variant A",
-      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_female_a_walk",
-      "characterId": "female_a",
-      "actionId": "walk",
-      "category": "characters",
-      "frameIds": [
-        "villager_female_a_walk_00",
-        "villager_female_a_walk_01",
-        "villager_female_a_walk_02",
-        "villager_female_a_walk_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_female_a_walk_01",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "female variant A",
-      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_boy_walk",
-      "characterId": "boy",
-      "actionId": "walk",
-      "category": "characters",
-      "frameIds": [
-        "villager_boy_walk_00",
-        "villager_boy_walk_01",
-        "villager_boy_walk_02",
-        "villager_boy_walk_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_boy_walk_01",
-      "canvas": {
-        "w": 64,
-        "h": 64
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "CHILD male; appearance only",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_girl_walk",
-      "characterId": "girl",
-      "actionId": "walk",
-      "category": "characters",
-      "frameIds": [
-        "villager_girl_walk_00",
-        "villager_girl_walk_01",
-        "villager_girl_walk_02",
-        "villager_girl_walk_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_girl_walk_01",
-      "canvas": {
-        "w": 64,
-        "h": 64
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "CHILD female; appearance only",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_baby_idle",
-      "characterId": "baby",
-      "actionId": "idle",
-      "category": "characters",
-      "frameIds": [
-        "villager_baby_idle_00",
-        "villager_baby_idle_01",
-        "villager_baby_idle_02",
-        "villager_baby_idle_03"
-      ],
-      "frameCount": 4,
-      "fps": 4,
-      "loop": true,
-      "restFrame": "villager_baby_idle_00",
-      "canvas": {
-        "w": 48,
-        "h": 48
-      },
-      "pivot": {
-        "x": 24,
-        "y": 46
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "Baby stays at camp nursery from birth; never uses a walking clip",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_male_a_farm",
-      "characterId": "male_a",
-      "actionId": "farm",
-      "category": "characters",
-      "frameIds": [
-        "villager_male_a_farm_00",
-        "villager_male_a_farm_01",
-        "villager_male_a_farm_02",
-        "villager_male_a_farm_03"
-      ],
-      "frameCount": 4,
-      "fps": 6,
-      "loop": true,
-      "restFrame": "villager_male_a_farm_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "male A farming",
-      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_female_a_harvest",
-      "characterId": "female_a",
-      "actionId": "harvest",
-      "category": "characters",
-      "frameIds": [
-        "villager_female_a_harvest_00",
-        "villager_female_a_harvest_01",
-        "villager_female_a_harvest_02",
-        "villager_female_a_harvest_03"
-      ],
-      "frameCount": 4,
-      "fps": 6,
-      "loop": true,
-      "restFrame": "villager_female_a_harvest_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "female A farming",
-      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected"
-    },
-    {
       "id": "enemy_raider_walk",
-      "characterId": "raider",
-      "actionId": "walk",
-      "category": "enemies",
       "frameIds": [
         "enemy_raider_walk_00",
-        "enemy_raider_walk_01",
-        "enemy_raider_walk_02",
-        "enemy_raider_walk_03"
+        "enemy_raider_walk_01"
       ],
-      "frameCount": 4,
-      "fps": 8,
+      "frameCount": 2,
+      "fps": 3,
       "loop": true,
-      "restFrame": "enemy_raider_walk_01",
+      "restFrame": "enemy_raider_walk_00",
+      "category": "enemies",
+      "mapping": "enemy_raider",
       "canvas": {
-        "w": 64,
-        "h": 64
+        "w": 256,
+        "h": 256
       },
       "pivot": {
-        "x": 32,
-        "y": 61
+        "x": 128,
+        "y": 245.33333333333334
       },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
       "clock": "battle",
-      "restartOnActionChange": true,
-      "mapping": "enemy_raider",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
-      "usageStatus": "runtime_connected"
+      "trimPolicy": "atlas_trim_restore_source_canvas"
     },
     {
       "id": "enemy_runner_walk",
-      "characterId": "runner",
-      "actionId": "walk",
-      "category": "enemies",
       "frameIds": [
         "enemy_runner_walk_00",
         "enemy_runner_walk_01",
@@ -254,29 +33,24 @@
         "enemy_runner_walk_03"
       ],
       "frameCount": 4,
-      "fps": 10,
+      "fps": 6,
       "loop": true,
-      "restFrame": "enemy_runner_walk_01",
+      "restFrame": "enemy_runner_walk_00",
+      "category": "enemies",
+      "mapping": "enemy_runner",
       "canvas": {
-        "w": 80,
-        "h": 80
+        "w": 256,
+        "h": 256
       },
       "pivot": {
-        "x": 40,
-        "y": 77
+        "x": 128,
+        "y": 245.33333333333334
       },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
       "clock": "battle",
-      "restartOnActionChange": true,
-      "mapping": "enemy_runner",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
-      "usageStatus": "runtime_connected"
+      "trimPolicy": "atlas_trim_restore_source_canvas"
     },
     {
       "id": "enemy_armored_walk",
-      "characterId": "armored",
-      "actionId": "walk",
-      "category": "enemies",
       "frameIds": [
         "enemy_armored_walk_00",
         "enemy_armored_walk_01",
@@ -286,699 +60,91 @@
       "frameCount": 4,
       "fps": 6,
       "loop": true,
-      "restFrame": "enemy_armored_walk_01",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "battle",
-      "restartOnActionChange": true,
+      "restFrame": "enemy_armored_walk_00",
+      "category": "enemies",
       "mapping": "enemy_armored",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "enemy_disruptor_walk",
-      "characterId": "disruptor",
-      "actionId": "walk",
-      "category": "enemies",
-      "frameIds": [
-        "enemy_disruptor_walk_00",
-        "enemy_disruptor_walk_01",
-        "enemy_disruptor_walk_02",
-        "enemy_disruptor_walk_03"
-      ],
-      "frameCount": 4,
-      "fps": 6,
-      "loop": true,
-      "restFrame": "enemy_disruptor_walk_01",
       "canvas": {
-        "w": 80,
-        "h": 80
+        "w": 256,
+        "h": 256
       },
       "pivot": {
-        "x": 40,
-        "y": 77
+        "x": 128,
+        "y": 245.33333333333334
       },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
       "clock": "battle",
-      "restartOnActionChange": true,
-      "mapping": "enemy_disruptor",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "enemy_chief_walk",
-      "characterId": "chief",
-      "actionId": "walk",
-      "category": "enemies",
-      "frameIds": [
-        "enemy_chief_walk_00",
-        "enemy_chief_walk_01",
-        "enemy_chief_walk_02",
-        "enemy_chief_walk_03"
-      ],
-      "frameCount": 4,
-      "fps": 6,
-      "loop": true,
-      "restFrame": "enemy_chief_walk_01",
-      "canvas": {
-        "w": 96,
-        "h": 96
-      },
-      "pivot": {
-        "x": 48,
-        "y": 92
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "battle",
-      "restartOnActionChange": true,
-      "mapping": "enemy_chief",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_male_a_walk_up",
-      "characterId": "male_a",
-      "actionId": "walk_up",
-      "category": "characters",
-      "frameIds": [
-        "villager_male_a_walk_up_00",
-        "villager_male_a_walk_up_01",
-        "villager_male_a_walk_up_02",
-        "villager_male_a_walk_up_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_male_a_walk_up_01",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "up facing walk",
-      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_female_a_walk_up",
-      "characterId": "female_a",
-      "actionId": "walk_up",
-      "category": "characters",
-      "frameIds": [
-        "villager_female_a_walk_up_00",
-        "villager_female_a_walk_up_01",
-        "villager_female_a_walk_up_02",
-        "villager_female_a_walk_up_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_female_a_walk_up_01",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "up facing walk",
-      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_boy_walk_up",
-      "characterId": "boy",
-      "actionId": "walk_up",
-      "category": "characters",
-      "frameIds": [
-        "villager_boy_walk_up_00",
-        "villager_boy_walk_up_01",
-        "villager_boy_walk_up_02",
-        "villager_boy_walk_up_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_boy_walk_up_01",
-      "canvas": {
-        "w": 64,
-        "h": 64
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "up facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_girl_walk_up",
-      "characterId": "girl",
-      "actionId": "walk_up",
-      "category": "characters",
-      "frameIds": [
-        "villager_girl_walk_up_00",
-        "villager_girl_walk_up_01",
-        "villager_girl_walk_up_02",
-        "villager_girl_walk_up_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_girl_walk_up_01",
-      "canvas": {
-        "w": 64,
-        "h": 64
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "up facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_male_a_walk_right",
-      "characterId": "male_a",
-      "actionId": "walk_right",
-      "category": "characters",
-      "frameIds": [
-        "villager_male_a_walk_right_00",
-        "villager_male_a_walk_right_01",
-        "villager_male_a_walk_right_02",
-        "villager_male_a_walk_right_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_male_a_walk_right_01",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "right facing walk",
-      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_female_a_walk_right",
-      "characterId": "female_a",
-      "actionId": "walk_right",
-      "category": "characters",
-      "frameIds": [
-        "villager_female_a_walk_right_00",
-        "villager_female_a_walk_right_01",
-        "villager_female_a_walk_right_02",
-        "villager_female_a_walk_right_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_female_a_walk_right_01",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "right facing walk",
-      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_boy_walk_right",
-      "characterId": "boy",
-      "actionId": "walk_right",
-      "category": "characters",
-      "frameIds": [
-        "villager_boy_walk_right_00",
-        "villager_boy_walk_right_01",
-        "villager_boy_walk_right_02",
-        "villager_boy_walk_right_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_boy_walk_right_01",
-      "canvas": {
-        "w": 64,
-        "h": 64
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "right facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_girl_walk_right",
-      "characterId": "girl",
-      "actionId": "walk_right",
-      "category": "characters",
-      "frameIds": [
-        "villager_girl_walk_right_00",
-        "villager_girl_walk_right_01",
-        "villager_girl_walk_right_02",
-        "villager_girl_walk_right_03"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "villager_girl_walk_right_01",
-      "canvas": {
-        "w": 64,
-        "h": 64
-      },
-      "pivot": {
-        "x": 32,
-        "y": 61
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "right facing walk",
-      "coverageStatus": "four-direction walk via down/up/right plus mirrored right",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_male_a_chop",
-      "characterId": "male_a",
-      "actionId": "chop",
-      "category": "characters",
-      "frameIds": [
-        "villager_male_a_chop_00",
-        "villager_male_a_chop_01",
-        "villager_male_a_chop_02",
-        "villager_male_a_chop_03"
-      ],
-      "frameCount": 4,
-      "fps": 6,
-      "loop": true,
-      "restFrame": "villager_male_a_chop_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "adult male LOGGING at work stop",
-      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_female_a_chop",
-      "characterId": "female_a",
-      "actionId": "chop",
-      "category": "characters",
-      "frameIds": [
-        "villager_female_a_chop_00",
-        "villager_female_a_chop_01",
-        "villager_female_a_chop_02",
-        "villager_female_a_chop_03"
-      ],
-      "frameCount": 4,
-      "fps": 6,
-      "loop": true,
-      "restFrame": "villager_female_a_chop_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "adult female LOGGING at work stop",
-      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_male_a_care",
-      "characterId": "male_a",
-      "actionId": "care",
-      "category": "characters",
-      "frameIds": [
-        "villager_male_a_care_00",
-        "villager_male_a_care_01"
-      ],
-      "frameCount": 2,
-      "fps": 4,
-      "loop": true,
-      "restFrame": "villager_male_a_care_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "CARE beside child at stable camp nursery; native facing RIGHT; mirror horizontally when child is on left",
-      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected",
-      "nativeFacing": "RIGHT"
-    },
-    {
-      "id": "villager_female_a_care",
-      "characterId": "female_a",
-      "actionId": "care",
-      "category": "characters",
-      "frameIds": [
-        "villager_female_a_care_00",
-        "villager_female_a_care_01"
-      ],
-      "frameCount": 2,
-      "fps": 4,
-      "loop": true,
-      "restFrame": "villager_female_a_care_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "CARE beside child at stable camp nursery; native facing RIGHT; mirror horizontally when child is on left",
-      "coverageStatus": "unified adult identity: walk/farm/logging/care connected",
-      "usageStatus": "runtime_connected",
-      "nativeFacing": "RIGHT"
-    },
-    {
-      "id": "villager_elder_male_walk",
-      "characterId": "elder_male",
-      "actionId": "walk",
-      "category": "characters",
-      "frameIds": [
-        "villager_elder_male_walk_00",
-        "villager_elder_male_walk_01"
-      ],
-      "frameCount": 2,
-      "fps": 4,
-      "loop": true,
-      "restFrame": "villager_elder_male_walk_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "elder_male walk: active elder phase / historical portrait",
-      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_elder_male_walk_up",
-      "characterId": "elder_male",
-      "actionId": "walk_up",
-      "category": "characters",
-      "frameIds": [
-        "villager_elder_male_walk_up_00",
-        "villager_elder_male_walk_up_01"
-      ],
-      "frameCount": 2,
-      "fps": 4,
-      "loop": true,
-      "restFrame": "villager_elder_male_walk_up_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "elder_male walk_up: active elder phase / historical portrait",
-      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_elder_male_walk_right",
-      "characterId": "elder_male",
-      "actionId": "walk_right",
-      "category": "characters",
-      "frameIds": [
-        "villager_elder_male_walk_right_00",
-        "villager_elder_male_walk_right_01"
-      ],
-      "frameCount": 2,
-      "fps": 4,
-      "loop": true,
-      "restFrame": "villager_elder_male_walk_right_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "elder_male walk_right: active elder phase / historical portrait",
-      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_elder_male_idle",
-      "characterId": "elder_male",
-      "actionId": "idle",
-      "category": "characters",
-      "frameIds": [
-        "villager_elder_male_idle_00",
-        "villager_elder_male_idle_01"
-      ],
-      "frameCount": 2,
-      "fps": 2,
-      "loop": true,
-      "restFrame": "villager_elder_male_idle_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "elder_male idle: active elder phase / historical portrait",
-      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_elder_female_walk",
-      "characterId": "elder_female",
-      "actionId": "walk",
-      "category": "characters",
-      "frameIds": [
-        "villager_elder_female_walk_00",
-        "villager_elder_female_walk_01"
-      ],
-      "frameCount": 2,
-      "fps": 4,
-      "loop": true,
-      "restFrame": "villager_elder_female_walk_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "elder_female walk: active elder phase / historical portrait",
-      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_elder_female_walk_up",
-      "characterId": "elder_female",
-      "actionId": "walk_up",
-      "category": "characters",
-      "frameIds": [
-        "villager_elder_female_walk_up_00",
-        "villager_elder_female_walk_up_01"
-      ],
-      "frameCount": 2,
-      "fps": 4,
-      "loop": true,
-      "restFrame": "villager_elder_female_walk_up_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "elder_female walk_up: active elder phase / historical portrait",
-      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_elder_female_walk_right",
-      "characterId": "elder_female",
-      "actionId": "walk_right",
-      "category": "characters",
-      "frameIds": [
-        "villager_elder_female_walk_right_00",
-        "villager_elder_female_walk_right_01"
-      ],
-      "frameCount": 2,
-      "fps": 4,
-      "loop": true,
-      "restFrame": "villager_elder_female_walk_right_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "elder_female walk_right: active elder phase / historical portrait",
-      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
-      "usageStatus": "runtime_connected"
-    },
-    {
-      "id": "villager_elder_female_idle",
-      "characterId": "elder_female",
-      "actionId": "idle",
-      "category": "characters",
-      "frameIds": [
-        "villager_elder_female_idle_00",
-        "villager_elder_female_idle_01"
-      ],
-      "frameCount": 2,
-      "fps": 2,
-      "loop": true,
-      "restFrame": "villager_elder_female_idle_00",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 77
-      },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "scene_visual_or_battle",
-      "restartOnActionChange": true,
-      "mapping": "elder_female idle: active elder phase / historical portrait",
-      "coverageStatus": "elder walk/down/up/right + idle; left mirrors right",
-      "usageStatus": "runtime_connected"
+      "trimPolicy": "atlas_trim_restore_source_canvas"
     },
     {
       "id": "enemy_boar_walk",
-      "characterId": "boar",
-      "actionId": "walk",
-      "category": "enemies",
       "frameIds": [
         "enemy_boar_walk_00",
-        "enemy_boar_walk_01",
-        "enemy_boar_walk_02",
-        "enemy_boar_walk_03"
+        "enemy_boar_walk_01"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 2,
+      "fps": 3,
       "loop": true,
-      "restFrame": "enemy_boar_walk_01",
+      "restFrame": "enemy_boar_walk_00",
+      "category": "enemies",
+      "mapping": "enemy_boar",
       "canvas": {
-        "w": 96,
-        "h": 96
+        "w": 256,
+        "h": 256
       },
       "pivot": {
-        "x": 48,
-        "y": 92
+        "x": 128,
+        "y": 245.33333333333334
       },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
       "clock": "battle",
-      "restartOnActionChange": true,
-      "mapping": "enemy_boar",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
-      "usageStatus": "runtime_connected"
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "enemy_disruptor_walk",
+      "frameIds": [
+        "enemy_disruptor_walk_00",
+        "enemy_disruptor_walk_01"
+      ],
+      "frameCount": 2,
+      "fps": 3,
+      "loop": true,
+      "restFrame": "enemy_disruptor_walk_00",
+      "category": "enemies",
+      "mapping": "enemy_disruptor",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 245.33333333333334
+      },
+      "clock": "battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "enemy_chief_walk",
+      "frameIds": [
+        "enemy_chief_walk_00",
+        "enemy_chief_walk_01"
+      ],
+      "frameCount": 2,
+      "fps": 3,
+      "loop": true,
+      "restFrame": "enemy_chief_walk_00",
+      "category": "enemies",
+      "mapping": "enemy_chief",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 245.33333333333334
+      },
+      "clock": "battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
     },
     {
       "id": "enemy_commander_walk",
-      "characterId": "commander",
-      "actionId": "walk",
-      "category": "enemies",
       "frameIds": [
         "enemy_commander_walk_00",
         "enemy_commander_walk_01",
@@ -988,27 +154,22 @@
       "frameCount": 4,
       "fps": 6,
       "loop": true,
-      "restFrame": "enemy_commander_walk_01",
+      "restFrame": "enemy_commander_walk_00",
+      "category": "enemies",
+      "mapping": "enemy_commander",
       "canvas": {
-        "w": 96,
-        "h": 96
+        "w": 256,
+        "h": 256
       },
       "pivot": {
-        "x": 48,
-        "y": 92
+        "x": 128,
+        "y": 245.33333333333334
       },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
       "clock": "battle",
-      "restartOnActionChange": true,
-      "mapping": "enemy_commander",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
-      "usageStatus": "runtime_connected"
+      "trimPolicy": "atlas_trim_restore_source_canvas"
     },
     {
       "id": "enemy_wolfking_walk",
-      "characterId": "wolfking",
-      "actionId": "walk",
-      "category": "enemies",
       "frameIds": [
         "enemy_wolfking_walk_00",
         "enemy_wolfking_walk_01",
@@ -1018,87 +179,1021 @@
       "frameCount": 4,
       "fps": 6,
       "loop": true,
-      "restFrame": "enemy_wolfking_walk_01",
+      "restFrame": "enemy_wolfking_walk_00",
+      "category": "enemies",
+      "mapping": "enemy_wolfking",
       "canvas": {
-        "w": 96,
-        "h": 96
+        "w": 256,
+        "h": 256
       },
       "pivot": {
-        "x": 48,
-        "y": 92
+        "x": 128,
+        "y": 245.33333333333334
       },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
       "clock": "battle",
-      "restartOnActionChange": true,
-      "mapping": "enemy_wolfking",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
-      "usageStatus": "runtime_connected"
+      "trimPolicy": "atlas_trim_restore_source_canvas"
     },
     {
       "id": "enemy_tuskking_walk",
-      "characterId": "tuskking",
-      "actionId": "walk",
-      "category": "enemies",
       "frameIds": [
         "enemy_tuskking_walk_00",
-        "enemy_tuskking_walk_01",
-        "enemy_tuskking_walk_02",
-        "enemy_tuskking_walk_03"
+        "enemy_tuskking_walk_01"
       ],
-      "frameCount": 4,
-      "fps": 6,
+      "frameCount": 2,
+      "fps": 3,
       "loop": true,
-      "restFrame": "enemy_tuskking_walk_01",
+      "restFrame": "enemy_tuskking_walk_00",
+      "category": "enemies",
+      "mapping": "enemy_tuskking",
       "canvas": {
-        "w": 96,
-        "h": 96
+        "w": 256,
+        "h": 256
       },
       "pivot": {
-        "x": 48,
-        "y": 92
+        "x": 128,
+        "y": 245.33333333333334
       },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
       "clock": "battle",
-      "restartOnActionChange": true,
-      "mapping": "enemy_tuskking",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
-      "usageStatus": "runtime_connected"
+      "trimPolicy": "atlas_trim_restore_source_canvas"
     },
     {
       "id": "enemy_shaman_walk",
-      "characterId": "shaman",
-      "actionId": "walk",
-      "category": "enemies",
       "frameIds": [
         "enemy_shaman_walk_00",
-        "enemy_shaman_walk_01",
-        "enemy_shaman_walk_02",
-        "enemy_shaman_walk_03"
+        "enemy_shaman_walk_01"
+      ],
+      "frameCount": 2,
+      "fps": 3,
+      "loop": true,
+      "restFrame": "enemy_shaman_walk_00",
+      "category": "enemies",
+      "mapping": "enemy_shaman",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 245.33333333333334
+      },
+      "clock": "battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_male_a_walk",
+      "frameIds": [
+        "hd_male_down_1",
+        "hd_male_down_2",
+        "hd_male_down_3",
+        "hd_male_down_4"
       ],
       "frameCount": 4,
       "fps": 6,
       "loop": true,
-      "restFrame": "enemy_shaman_walk_01",
+      "restFrame": "hd_male_down_1",
+      "category": "characters",
+      "mapping": "male actual down",
       "canvas": {
-        "w": 96,
-        "h": 96
+        "w": 256,
+        "h": 256
       },
       "pivot": {
-        "x": 48,
-        "y": 92
+        "x": 128,
+        "y": 217.069824
       },
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "clock": "battle",
-      "restartOnActionChange": true,
-      "mapping": "enemy_shaman",
-      "coverageStatus": "one_generated_action; no dedicated attack/hurt/death sequence",
-      "usageStatus": "runtime_connected"
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_male_a_walk_left",
+      "frameIds": [
+        "hd_male_left_1",
+        "hd_male_left_2",
+        "hd_male_left_3",
+        "hd_male_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_male_left_1",
+      "category": "characters",
+      "mapping": "male actual left",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_male_a_walk_up",
+      "frameIds": [
+        "hd_male_up_1",
+        "hd_male_up_2",
+        "hd_male_up_3",
+        "hd_male_up_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_male_up_1",
+      "category": "characters",
+      "mapping": "male actual up",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_male_a_walk_right",
+      "frameIds": [
+        "hd_male_right_1",
+        "hd_male_right_2",
+        "hd_male_right_3",
+        "hd_male_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_male_right_1",
+      "category": "characters",
+      "mapping": "male actual right",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_male_a_farm",
+      "frameIds": [
+        "hd_male_farm_down_1",
+        "hd_male_farm_down_2",
+        "hd_male_farm_down_3",
+        "hd_male_farm_down_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_male_farm_down_1",
+      "category": "characters",
+      "mapping": "male farm down",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_male_a_chop",
+      "frameIds": [
+        "hd_male_chop_right_1",
+        "hd_male_chop_right_2",
+        "hd_male_chop_right_3",
+        "hd_male_chop_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_male_chop_right_1",
+      "category": "characters",
+      "mapping": "male chop right",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_male_a_chop_left",
+      "frameIds": [
+        "hd_male_chop_left_1",
+        "hd_male_chop_left_2",
+        "hd_male_chop_left_3",
+        "hd_male_chop_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_male_chop_left_1",
+      "category": "characters",
+      "mapping": "male chop left",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_male_a_care",
+      "frameIds": [
+        "hd_male_care_right_1",
+        "hd_male_care_right_2",
+        "hd_male_care_right_3",
+        "hd_male_care_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_male_care_right_1",
+      "category": "characters",
+      "mapping": "male care right",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_male_a_care_left",
+      "frameIds": [
+        "hd_male_care_left_1",
+        "hd_male_care_left_2",
+        "hd_male_care_left_3",
+        "hd_male_care_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_male_care_left_1",
+      "category": "characters",
+      "mapping": "male care left",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_female_a_walk",
+      "frameIds": [
+        "hd_female_down_1",
+        "hd_female_down_2",
+        "hd_female_down_3",
+        "hd_female_down_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_female_down_1",
+      "category": "characters",
+      "mapping": "female actual down",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_female_a_walk_left",
+      "frameIds": [
+        "hd_female_left_1",
+        "hd_female_left_2",
+        "hd_female_left_3",
+        "hd_female_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_female_left_1",
+      "category": "characters",
+      "mapping": "female actual left",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_female_a_walk_up",
+      "frameIds": [
+        "hd_female_up_1",
+        "hd_female_up_2",
+        "hd_female_up_3",
+        "hd_female_up_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_female_up_1",
+      "category": "characters",
+      "mapping": "female actual up",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_female_a_walk_right",
+      "frameIds": [
+        "hd_female_right_1",
+        "hd_female_right_2",
+        "hd_female_right_3",
+        "hd_female_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_female_right_1",
+      "category": "characters",
+      "mapping": "female actual right",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_female_a_harvest",
+      "frameIds": [
+        "hd_female_farm_down_1",
+        "hd_female_farm_down_2",
+        "hd_female_farm_down_3",
+        "hd_female_farm_down_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_female_farm_down_1",
+      "category": "characters",
+      "mapping": "female farm down",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_female_a_chop",
+      "frameIds": [
+        "hd_female_chop_right_1",
+        "hd_female_chop_right_2",
+        "hd_female_chop_right_3",
+        "hd_female_chop_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_female_chop_right_1",
+      "category": "characters",
+      "mapping": "female chop right",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_female_a_chop_left",
+      "frameIds": [
+        "hd_female_chop_left_1",
+        "hd_female_chop_left_2",
+        "hd_female_chop_left_3",
+        "hd_female_chop_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_female_chop_left_1",
+      "category": "characters",
+      "mapping": "female chop left",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_female_a_care",
+      "frameIds": [
+        "hd_female_care_right_1",
+        "hd_female_care_right_2",
+        "hd_female_care_right_3",
+        "hd_female_care_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_female_care_right_1",
+      "category": "characters",
+      "mapping": "female care right",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_female_a_care_left",
+      "frameIds": [
+        "hd_female_care_left_1",
+        "hd_female_care_left_2",
+        "hd_female_care_left_3",
+        "hd_female_care_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_female_care_left_1",
+      "category": "characters",
+      "mapping": "female care left",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_boy_walk",
+      "frameIds": [
+        "hd_child_down_1",
+        "hd_child_down_2",
+        "hd_child_down_3",
+        "hd_child_down_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_child_down_1",
+      "category": "characters",
+      "mapping": "child actual down",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_girl_walk",
+      "frameIds": [
+        "hd_child_down_1",
+        "hd_child_down_2",
+        "hd_child_down_3",
+        "hd_child_down_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_child_down_1",
+      "category": "characters",
+      "mapping": "child actual down",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_boy_walk_left",
+      "frameIds": [
+        "hd_child_left_1",
+        "hd_child_left_2",
+        "hd_child_left_3",
+        "hd_child_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_child_left_1",
+      "category": "characters",
+      "mapping": "child actual left",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_girl_walk_left",
+      "frameIds": [
+        "hd_child_left_1",
+        "hd_child_left_2",
+        "hd_child_left_3",
+        "hd_child_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_child_left_1",
+      "category": "characters",
+      "mapping": "child actual left",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_boy_walk_up",
+      "frameIds": [
+        "hd_child_up_1",
+        "hd_child_up_2",
+        "hd_child_up_3",
+        "hd_child_up_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_child_up_1",
+      "category": "characters",
+      "mapping": "child actual up",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_girl_walk_up",
+      "frameIds": [
+        "hd_child_up_1",
+        "hd_child_up_2",
+        "hd_child_up_3",
+        "hd_child_up_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_child_up_1",
+      "category": "characters",
+      "mapping": "child actual up",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_boy_walk_right",
+      "frameIds": [
+        "hd_child_right_1",
+        "hd_child_right_2",
+        "hd_child_right_3",
+        "hd_child_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_child_right_1",
+      "category": "characters",
+      "mapping": "child actual right",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_girl_walk_right",
+      "frameIds": [
+        "hd_child_right_1",
+        "hd_child_right_2",
+        "hd_child_right_3",
+        "hd_child_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "hd_child_right_1",
+      "category": "characters",
+      "mapping": "child actual right",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_elder_male_walk",
+      "frameIds": [
+        "hd_elder_down_1",
+        "hd_elder_down_2",
+        "hd_elder_down_3",
+        "hd_elder_down_4"
+      ],
+      "frameCount": 4,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "hd_elder_down_1",
+      "category": "characters",
+      "mapping": "elder actual down",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_elder_female_walk",
+      "frameIds": [
+        "hd_elder_down_1",
+        "hd_elder_down_2",
+        "hd_elder_down_3",
+        "hd_elder_down_4"
+      ],
+      "frameCount": 4,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "hd_elder_down_1",
+      "category": "characters",
+      "mapping": "elder actual down",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_elder_male_walk_left",
+      "frameIds": [
+        "hd_elder_left_1",
+        "hd_elder_left_2",
+        "hd_elder_left_3",
+        "hd_elder_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "hd_elder_left_1",
+      "category": "characters",
+      "mapping": "elder actual left",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_elder_female_walk_left",
+      "frameIds": [
+        "hd_elder_left_1",
+        "hd_elder_left_2",
+        "hd_elder_left_3",
+        "hd_elder_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "hd_elder_left_1",
+      "category": "characters",
+      "mapping": "elder actual left",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_elder_male_walk_up",
+      "frameIds": [
+        "hd_elder_up_1",
+        "hd_elder_up_2",
+        "hd_elder_up_3",
+        "hd_elder_up_4"
+      ],
+      "frameCount": 4,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "hd_elder_up_1",
+      "category": "characters",
+      "mapping": "elder actual up",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_elder_female_walk_up",
+      "frameIds": [
+        "hd_elder_up_1",
+        "hd_elder_up_2",
+        "hd_elder_up_3",
+        "hd_elder_up_4"
+      ],
+      "frameCount": 4,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "hd_elder_up_1",
+      "category": "characters",
+      "mapping": "elder actual up",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_elder_male_walk_right",
+      "frameIds": [
+        "hd_elder_right_1",
+        "hd_elder_right_2",
+        "hd_elder_right_3",
+        "hd_elder_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "hd_elder_right_1",
+      "category": "characters",
+      "mapping": "elder actual right",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_elder_female_walk_right",
+      "frameIds": [
+        "hd_elder_right_1",
+        "hd_elder_right_2",
+        "hd_elder_right_3",
+        "hd_elder_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 4,
+      "loop": true,
+      "restFrame": "hd_elder_right_1",
+      "category": "characters",
+      "mapping": "elder actual right",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_elder_male_idle",
+      "frameIds": [
+        "hd_elder_idle_1",
+        "hd_elder_idle_2"
+      ],
+      "frameCount": 2,
+      "fps": 2,
+      "loop": true,
+      "restFrame": "hd_elder_idle_1",
+      "category": "characters",
+      "mapping": "gender-neutral elder rest",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_elder_female_idle",
+      "frameIds": [
+        "hd_elder_idle_1",
+        "hd_elder_idle_2"
+      ],
+      "frameCount": 2,
+      "fps": 2,
+      "loop": true,
+      "restFrame": "hd_elder_idle_1",
+      "category": "characters",
+      "mapping": "gender-neutral elder rest",
+      "canvas": {
+        "w": 256,
+        "h": 256
+      },
+      "pivot": {
+        "x": 128,
+        "y": 217.069824
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "villager_baby_idle",
+      "frameIds": [
+        "hd_baby_idle_1",
+        "hd_baby_idle_2",
+        "hd_baby_idle_3",
+        "hd_baby_idle_4"
+      ],
+      "frameCount": 4,
+      "fps": 2,
+      "loop": true,
+      "restFrame": "hd_baby_idle_1",
+      "category": "characters",
+      "mapping": "gender-neutral baby",
+      "canvas": {
+        "w": 192,
+        "h": 192
+      },
+      "pivot": {
+        "x": 96,
+        "y": 134.172864
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "hearth_burn",
+      "frameIds": [
+        "building_hearth_lit",
+        "hearth_burn_2",
+        "hearth_burn_3",
+        "hearth_burn_4"
+      ],
+      "frameCount": 4,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "building_hearth_lit",
+      "category": "decorations",
+      "mapping": "fixed back stones / flame / fixed front stones",
+      "canvas": {
+        "w": 192,
+        "h": 192
+      },
+      "pivot": {
+        "x": 96,
+        "y": 180
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
     }
   ],
   "walkDirections": {
     "male_a": {
       "DOWN": {
         "clip": "villager_male_a_walk",
+        "mirror": false
+      },
+      "LEFT": {
+        "clip": "villager_male_a_walk_left",
         "mirror": false
       },
       "UP": {
@@ -1108,15 +1203,15 @@
       "RIGHT": {
         "clip": "villager_male_a_walk_right",
         "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_male_a_walk_right",
-        "mirror": true
       }
     },
     "female_a": {
       "DOWN": {
         "clip": "villager_female_a_walk",
+        "mirror": false
+      },
+      "LEFT": {
+        "clip": "villager_female_a_walk_left",
         "mirror": false
       },
       "UP": {
@@ -1126,15 +1221,15 @@
       "RIGHT": {
         "clip": "villager_female_a_walk_right",
         "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_female_a_walk_right",
-        "mirror": true
       }
     },
     "boy": {
       "DOWN": {
         "clip": "villager_boy_walk",
+        "mirror": false
+      },
+      "LEFT": {
+        "clip": "villager_boy_walk_left",
         "mirror": false
       },
       "UP": {
@@ -1144,15 +1239,15 @@
       "RIGHT": {
         "clip": "villager_boy_walk_right",
         "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_boy_walk_right",
-        "mirror": true
       }
     },
     "girl": {
       "DOWN": {
         "clip": "villager_girl_walk",
+        "mirror": false
+      },
+      "LEFT": {
+        "clip": "villager_girl_walk_left",
         "mirror": false
       },
       "UP": {
@@ -1162,15 +1257,15 @@
       "RIGHT": {
         "clip": "villager_girl_walk_right",
         "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_girl_walk_right",
-        "mirror": true
       }
     },
     "elder_male": {
       "DOWN": {
         "clip": "villager_elder_male_walk",
+        "mirror": false
+      },
+      "LEFT": {
+        "clip": "villager_elder_male_walk_left",
         "mirror": false
       },
       "UP": {
@@ -1180,15 +1275,15 @@
       "RIGHT": {
         "clip": "villager_elder_male_walk_right",
         "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_elder_male_walk_right",
-        "mirror": true
       }
     },
     "elder_female": {
       "DOWN": {
         "clip": "villager_elder_female_walk",
+        "mirror": false
+      },
+      "LEFT": {
+        "clip": "villager_elder_female_walk_left",
         "mirror": false
       },
       "UP": {
@@ -1198,20 +1293,58 @@
       "RIGHT": {
         "clip": "villager_elder_female_walk_right",
         "mirror": false
+      }
+    }
+  },
+  "laborDirections": {
+    "villager_male_a_chop": {
+      "RIGHT": {
+        "clip": "villager_male_a_chop",
+        "mirror": false
       },
       "LEFT": {
-        "clip": "villager_elder_female_walk_right",
-        "mirror": true
+        "clip": "villager_male_a_chop_left",
+        "mirror": false
+      }
+    },
+    "villager_male_a_care": {
+      "RIGHT": {
+        "clip": "villager_male_a_care",
+        "mirror": false
+      },
+      "LEFT": {
+        "clip": "villager_male_a_care_left",
+        "mirror": false
+      }
+    },
+    "villager_female_a_chop": {
+      "RIGHT": {
+        "clip": "villager_female_a_chop",
+        "mirror": false
+      },
+      "LEFT": {
+        "clip": "villager_female_a_chop_left",
+        "mirror": false
+      }
+    },
+    "villager_female_a_care": {
+      "RIGHT": {
+        "clip": "villager_female_a_care",
+        "mirror": false
+      },
+      "LEFT": {
+        "clip": "villager_female_a_care_left",
+        "mirror": false
       }
     }
   },
   "enemyNativeFacing": {
     "enemy_raider": "DOWN",
-    "enemy_runner": "LEFT",
-    "enemy_armored": "LEFT",
+    "enemy_runner": "DOWN",
+    "enemy_armored": "DOWN",
+    "enemy_boar": "DOWN",
     "enemy_disruptor": "DOWN",
     "enemy_chief": "DOWN",
-    "enemy_boar": "DOWN",
     "enemy_commander": "DOWN",
     "enemy_wolfking": "DOWN",
     "enemy_tuskking": "DOWN",

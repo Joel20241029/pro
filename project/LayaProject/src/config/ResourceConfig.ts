@@ -1,7 +1,8 @@
-export type ResourceBundle = "base" | "characters" | "battle";
-/** 已确认三包边界（doc/tech/28）；base 属于主包，另外两项与发布分包 path 完全一致。 */
+export type ResourceBundle = "base" | "buildings" | "characters" | "battle";
+/** 高清替换经确认增加建筑包（doc/tech/32）：base为UI/基础地图，建筑齐后显示完整村庄，人物随后加载，怪物守夜前加载。 */
 export const RESOURCE_BUNDLES = {
     base: { root: "resources/base", native: false, title: "村庄" },
+    buildings: { root: "resources/buildings", native: true, title: "村庄建筑" },
     characters: { root: "resources/characters", native: true, title: "村民" },
     battle: { root: "resources/battle", native: true, title: "守夜" }
 } as const;

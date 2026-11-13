@@ -6,6 +6,7 @@ import { GameView } from "./view/GameView";
 import { StartupView } from "./view/StartupView";
 import { WechatMusic } from "./platform/WechatMusic";
 import { ResourcePreparation } from "./platform/ResourcePreparation";
+import { RESOURCE_BUNDLES } from "./config/ResourceConfig";
 const { regClass } = Laya;
 @regClass()
 export class Main extends Laya.Script {
@@ -37,16 +38,19 @@ export class Main extends Laya.Script {
         Laya.stage.on(Laya.Event.RESIZE, this, this.resize);
         this.platform = new WechatPlatform(); this.session = new GameSession(new SaveStore(this.platform));
         this.session.pause("ASSETS"); this.platform.bind(this.hide, this.show);
-        this.resources.changed = () => { this.syncResourcePause(); this.view?.refresh(); };
+        this.resources.changed = () => { this.syncResourcePause(); this.updateLoadingStatus(); this.view?.refresh(); };
         await this.startVillage();
     }
     private async startVillage() {
         if (this.starting || this.view || this.disposed) return;
         this.starting = true; this.loading!.showStatus(false);
-        const ready = await this.resources.ensure("base");
+        for (const bundle of ["base", "buildings"] as const) {
+            const ready = await this.resources.ensure(bundle);
+            if (this.disposed) { this.starting = false; return; }
+            if (!ready) { this.starting = false; this.updateLoadingStatus(); console.error("[村庄资源]", this.resources.states[bundle].error); return; }
+            if (bundle === "base") this.loading!.decorate(this.frames);
+        }
         this.starting = false;
-        if (this.disposed) return;
-        if (!ready) { this.loading!.showStatus(true); console.error("[村庄资源]", this.resources.states.base.error); return; }
         const session = this.session!;
         this.view = new GameView(session, this.frames, this.platform!, () => {
             if (!session.state || session.saves.pending || session.pauses.has("BACKGROUND") || session.pauses.has("DISABLED") || session.pauses.has("ASSETS")) return;
@@ -57,15 +61,20 @@ export class Main extends Laya.Script {
         this.music = new WechatMusic(() => this.view?.showMusicProblem());
         Laya.stage.on(Laya.Event.CLICK, this, this.interact); Laya.stage.addChild(this.view.root);
         this.loading!.destroy(); this.loading = null;
-        // 先有地图再加载人物；ASSETS 已在读档前添加，夜晚重演从第一步开始等待。
+        // 建筑齐后才构造完整地图，再加载人物；ASSETS在读档前已添加，等待期间不推进夜晚。
         session.load(); session.enter(); this.syncResourcePause();
         void this.resources.ensure("characters");
         console.log("[代代守村] 主场景已显示，分阶段准备资源");
     }
+    private updateLoadingStatus() {
+        if (!this.loading) return;
+        const bundle = this.resources.ready("base") ? "buildings" : "base";
+        this.loading.showPreparation(RESOURCE_BUNDLES[bundle].title, this.resources.states[bundle]);
+    }
     private syncResourcePause() {
         const session = this.session; if (!session) return;
         const night = session.state?.phase === "NIGHT";
-        if (!this.resources.ready("characters") || (night && !this.resources.ready("battle"))) session.pause("ASSETS");
+        if (!this.resources.ready("base") || !this.resources.ready("buildings") || !this.resources.ready("characters") || (night && !this.resources.ready("battle"))) session.pause("ASSETS");
         else if (session.pauses.has("ASSETS")) session.resume("ASSETS");
         // 夜晚读档自动准备一次；失败保留现场，由面板按钮重试，绝不逐帧重发。
         if (night && this.resources.states.battle.phase === "IDLE") void this.resources.ensure("battle");
@@ -73,6 +82,7 @@ export class Main extends Laya.Script {
     onUpdate() {
         const delta = Laya.timer.unscaledDelta / 1000;
         this.resources.advance(delta, !!this.session && !this.session.pauses.has("BACKGROUND") && !this.session.pauses.has("DISABLED"));
+        this.updateLoadingStatus();
         this.syncResourcePause(); this.session?.update(delta); this.view?.update(delta);
         if (this.session?.state) {
             this.music?.setEnabled(this.session.state.settings.music);

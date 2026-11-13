@@ -1,0 +1,108 @@
+{
+  "_$ver": 1,
+  "_$id": "01e9d3f4",
+  "_$type": "Sprite",
+  "name": "enemy_tuskking",
+  "width": 96,
+  "height": 96,
+  "_$child": [
+    {
+      "_$id": "1548135f",
+      "_$type": "Sprite",
+      "name": "Frame0",
+      "width": 96,
+      "height": 96,
+      "visible": true,
+      "_$child": [
+        {
+          "_$id": "023b46c2",
+          "_$type": "Sprite",
+          "name": "Body",
+          "texture": {
+            "_$uuid": "8d66301c-4b04-4c76-86ec-6be590bde101",
+            "_$type": "Texture"
+          },
+          "width": 96,
+          "height": 96
+        },
+        {
+          "_$id": "b4cbb157",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 32,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "_$id": "d38f2d56",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 48,
+          "y": 62,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "_$id": "c89cefd0",
+      "_$type": "Sprite",
+      "name": "Frame1",
+      "width": 96,
+      "height": 96,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "7a67e2d4",
+          "_$type": "Sprite",
+          "name": "Body",
+          "texture": {
+            "_$uuid": "8cca165b-ba7b-4288-8ac9-1bb88e0df0d0",
+            "_$type": "Texture"
+          },
+          "width": 96,
+          "height": 96
+        },
+        {
+          "_$id": "f19a5e74",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 32,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "_$id": "9ac3368f",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 48,
+          "y": 62,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "_$id": "10270675",
+      "_$type": "Sprite",
+      "name": "SortOrigin",
+      "x": 48,
+      "y": 92,
+      "width": 0,
+      "height": 0,
+      "visible": false
+    },
+    {
+      "_$id": "acb9a348",
+      "_$type": "Sprite",
+      "name": "VisualBounds",
+      "x": 0,
+      "y": 0,
+      "width": 96,
+      "height": 96,
+      "visible": false
+    }
+  ]
+}

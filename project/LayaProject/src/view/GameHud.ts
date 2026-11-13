@@ -1,4 +1,3 @@
-import { ButtonParticles } from "./ButtonParticles";
 import { HUD, LAYOUT } from "./config/HudConfig";
 import { GameSession } from "../game/GameSession";
 import { capacity, economy, person } from "../game/VillageRules";
@@ -18,16 +17,13 @@ interface WorldHudAnchors { towerAnchor(index: number): { x: number; y: number }
 /** 常驻信息与操作区。每次 refresh 重画 chrome；战斗帧只更新文字、血条，不重建按钮。 */
 export class GameHud {
     readonly node = new Laya.Sprite();
-    private bellParticles: ButtonParticles | null = null;
     private hp!: Laya.Text;
     private count!: Laya.Text;
     private gateGauge: Laya.Sprite | null = null;
     private bellCountdown: Laya.Text | null = null;
     private nightStatus: Laya.Text | null = null;
     constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private panels: GamePanels, private refresh: () => void) { }
-    advance(delta: number) { this.bellParticles?.advance(delta, this.game.canRingBell); }
     clear() {
-        this.bellParticles?.destroy(); this.bellParticles = null;
         this.bellCountdown = null;
         this.nightStatus = null;
         this.node.destroyChildren();
@@ -138,7 +134,6 @@ export class GameHud {
             this.ui.buttonIcon(speed, "icon_speed", 30);
             const bell = this.ui.button(this.node, battle?.bellUsed ? "大王之心已用" : this.game.pauses.size ? "恢复后使用" : "大王之心", 440, bottomY + 65, 252, () => this.game.bell(), C.gold, 68, this.game.canRingBell);
             this.ui.buttonIcon(bell, "icon_king_heart", 40);
-            this.bellParticles = new ButtonParticles(this.art.particles, bell.getChildAt(0) as Laya.Sprite, 252, 68);
             this.bellCountdown = bell.getChildAt(0).getChildByName("buttonText") as Laya.Text;
         }
         else

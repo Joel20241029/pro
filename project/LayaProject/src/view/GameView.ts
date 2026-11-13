@@ -146,7 +146,6 @@ export class GameView {
         if (this.village.advance(delta))
             this.updateActors();
         if (active) this.anchoredTip.advance(visualDelta);
-        this.hud.advance(visualDelta);
     }
     private updateActors() {
         this.village.render(this.overlay.numChildren > 0);
