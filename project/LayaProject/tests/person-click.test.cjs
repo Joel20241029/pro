@@ -75,7 +75,7 @@ function obstacle(f, id, y, ground = false) {
     const node = new Sprite().size(100, 100).pivot(50, 95).pos(250, y);
     f.world.world.addChild(node);
     const item = { id, y, node, ground, visual: {} };
-    f.world.pickDepth.push(item); f.world.pickDepth.sort(compareDepth); return item;
+    f.world.interaction.pickDepth.push(item); f.world.interaction.pickDepth.sort(compareDepth); return item;
 }
 
 test('map person click uses the currently displayed identity and excludes the overhead heart', () => {
@@ -83,7 +83,7 @@ test('map person click uses the currently displayed identity and excludes the ov
     tap(node, at); assert.deepEqual(f.opened, [f.state.people[0].id]);
     const heart = f.world.hearts[0]; heart.visible = true; heart.size(80, 80).pos(0, -80);
     const heartAt = heart.localToGlobal(new Point(40, 40));
-    assert.equal(f.world.pickAt(heartAt.x, heartAt.y), null);
+    assert.equal(f.world.interaction.pickAt(heartAt.x, heartAt.y), null);
 });
 test('overlapping people choose the front rendered person, independently of the input source pool slot', () => {
     const f = setup(), [front, back] = f.state.people;
@@ -108,16 +108,16 @@ test('person picking follows mirrored elite scale and parent transforms', () => 
 });
 test('a hidden tower occupant and an already removed person are not selected', () => {
     const f = setup(), node = f.world.people[0], at = point(node), id = f.state.people[0].id;
-    f.poses.get(id).insideTower = true; assert.equal(f.world.pickAt(at.x, at.y), null);
-    f.poses.get(id).insideTower = false; node.visible = false; assert.equal(f.world.pickAt(at.x, at.y), null);
-    node.visible = true; f.state.people.shift(); assert.equal(f.world.pickAt(at.x, at.y), null);
+    f.poses.get(id).insideTower = true; assert.equal(f.world.interaction.pickAt(at.x, at.y), null);
+    f.poses.get(id).insideTower = false; node.visible = false; assert.equal(f.world.interaction.pickAt(at.x, at.y), null);
+    node.visible = true; f.state.people.shift(); assert.equal(f.world.interaction.pickAt(at.x, at.y), null);
 });
 test('pool reassignment between press and release cancels the old touch rather than opening a new person', () => {
     const f = setup(), node = f.world.people[0], at = point(node), event = { touchId: 7, stageX: at.x, stageY: at.y };
-    node.event('down', event); assert.equal(f.world.pressedTargets.size, 1);
+    node.event('down', event); assert.equal(f.world.interaction.pressedTargets.size, 1);
     const first = f.state.people[0], replacement = { ...first, id: '1:99' };
     f.state.people[0] = replacement; f.poses.set(replacement.id, { ...f.poses.get(first.id) });
-    f.world.render(false); assert(cancelled.includes(7)); assert.equal(f.world.pressedTargets.size, 0);
+    f.world.render(false); assert(cancelled.includes(7)); assert.equal(f.world.interaction.pressedTargets.size, 0);
     node.event('up', event); node.event('click', event); assert.deepEqual(f.opened, []);
 });
 test('reassigning the native back-node source cancels a press even when the selected front person remains', () => {
@@ -125,10 +125,10 @@ test('reassigning the native back-node source cancels a press even when the sele
     Object.assign(f.poses.get(back.id), { x: 250, y: 990 }); f.world.render(false);
     const at = point(node), event = { touchId: 6, stageX: at.x, stageY: at.y };
     node.event('down', event);
-    assert.equal(f.world.pressedTargets.get(6).target.personId, f.state.people[0].id);
+    assert.equal(f.world.interaction.pressedTargets.get(6).target.personId, f.state.people[0].id);
     const replacement = { ...back, id: '1:98' };
     f.state.people[1] = replacement; f.poses.set(replacement.id, { ...f.poses.get(back.id) }); f.world.render(false);
-    assert(cancelled.includes(6)); assert.equal(f.world.pressedTargets.size, 0);
+    assert(cancelled.includes(6)); assert.equal(f.world.interaction.pressedTargets.size, 0);
     node.event('click', event); assert.deepEqual(f.opened, []);
 });
 test('entering a tower, moving off the original person, and resetting invalidate pending presses', () => {
@@ -138,6 +138,31 @@ test('entering a tower, moving off the original person, and resetting invalidate
     f.poses.get(id).insideTower = false; f.world.render(false); node.event('down', event);
     f.poses.get(id).x += 150; f.world.render(false); node.event('click', event); assert.deepEqual(f.opened, []);
     f.poses.get(id).x -= 150; f.world.render(false); node.event('down', event); f.world.reset();
-    assert.equal(f.world.pressedTargets.size, 0); assert.equal(f.world.pickDepth.length, 0);
+    assert.equal(f.world.interaction.pressedTargets.size, 0); assert.equal(f.world.interaction.pickDepth.length, 0);
     node.event('click', event); assert.deepEqual(f.opened, []);
+});
+
+test('new village state and motion are read after reset, without retaining the old person identity', () => {
+    const f = setup(), node = f.world.people[0], oldId = f.state.people[0].id;
+    node.event('down', { touchId: 5, ...{ stageX: point(node).x, stageY: point(node).y } });
+    f.world.reset();
+    const next = createGame(8); next.people[0].id = 'next-village:person';
+    f.game.state = next;
+    const poses = new Map(next.people.map((p, i) => [p.id, { ...f.poses.get(oldId), x: 200 + i * 70 }]));
+    f.world.motion = { get: id => poses.get(id), visiblePeople: next.people };
+    f.world.render(false);
+    node.event('click', { touchId: 5, stageX: point(node).x, stageY: point(node).y });
+    assert.deepEqual(f.opened, []);
+    tap(node, point(node)); assert.deepEqual(f.opened, ['next-village:person']);
+});
+test('moving one finger out preserves another pending selection; destruction cancels remaining touches', () => {
+    const f = setup(), [a, b] = f.world.people;
+    const ea = { touchId: 10, stageX: point(a).x, stageY: point(a).y };
+    const eb = { touchId: 11, stageX: point(b).x, stageY: point(b).y };
+    a.event('down', ea); b.event('down', eb); a.event('out', ea);
+    b.event('up', eb); b.event('click', eb);
+    assert.deepEqual(f.opened, [f.state.people[1].id]);
+    a.event('down', ea); b.event('down', eb); f.world.destroy();
+    assert(cancelled.includes(10)); assert(cancelled.includes(11));
+    a.event('click', ea); b.event('click', eb); assert.equal(f.opened.length, 1);
 });

@@ -35,6 +35,7 @@ function setup() {
     };
     global.wx={getWindowInfo:()=>({windowWidth:720,windowHeight:1280,safeArea:{top:0,bottom:1280}}),
         getStorageInfoSync:()=>({keys:[...storage.keys()]}),getStorageSync:key=>storage.get(key),setStorageSync:(key,value)=>storage.set(key,value),
+        onShareAppMessage(listener){requests.push({share:listener});},offShareAppMessage(listener){requests.push({offShare:listener});},showShareMenu(options){requests.push({shareMenu:options});},
         onHide(){},offHide(){},onShow(){},offShow(){},onAudioInterruptionBegin(){},offAudioInterruptionBegin(){},onAudioInterruptionEnd(){},offAudioInterruptionEnd(){}};
     const module={exports:{}};
     vm.runInNewContext(fs.readFileSync(mainFile,'utf8'),{module,exports:module.exports,Laya:global.Laya,console:{log(){},error(){}},require:name=>name==='./view/GameView'?{GameView}:name==='./view/StartupView'?{StartupView}:actualRequire(name)},{filename:mainFile});
@@ -188,10 +189,13 @@ test('unified portraits select full-resolution copies of the original rest pose 
 
 test('building download failure keeps startup operable, one retry, and no game state is loaded',async()=>{
  const f=setup(),start=f.main.onStart();await flush();assert.equal(f.views,0);assert.equal(f.main.session.state,null);
+ assert(f.requests.findIndex(r=>r.share)>=0);assert(f.requests.findIndex(r=>r.shareMenu)<f.requests.findIndex(r=>r.url));
+ const share=f.requests.find(r=>r.share).share;assert.equal(share().imageUrl,'share/village-share.jpg');
  f.native.get('resources/buildings').resolve(false);await start;assert(f.main.loading.failed);assert.equal(f.views,0);assert(f.main.session.pauses.has('ASSETS'));
+ assert.equal(share().title,'你能守住多少波？','card remains available when building download fails');
  const retry=f.main.startVillage();void f.main.startVillage();await flush();assert.equal(f.requests.filter(r=>r.native==='resources/buildings').length,2);
  f.native.get('resources/buildings').resolve(true);await retry;assert.equal(f.views,1);assert(f.main.frames.ready('buildings'));assert.equal(f.requests.filter(r=>r.url==='resources/base/frames.json').length,1);
- f.main.onDestroy();f.native.get('resources/characters').resolve(true);await flush();
+ f.main.onDestroy();assert.equal(f.requests.find(r=>r.offShare).offShare,share);f.native.get('resources/characters').resolve(true);await flush();
 });
 test('invalid building layout fails before scene construction and retry reuses downloaded package',async()=>{
  const f=setup(),url='resources/buildings/buildings.json',data=JSON.parse(fs.readFileSync(path.join(project,'assets',url)));
@@ -209,4 +213,41 @@ test('labor chooses real left and right pictures, all life stages share unmirror
  for(const identity of ['male_a','female_a','boy','girl','elder_male','elder_female'])for(const direction of ['DOWN','LEFT','UP','RIGHT'])assert.equal(art.walk(identity,direction).mirror,false);
  for(const identity of ['male_a','female_a'])for(const work of ['chop','care']){const clip=`villager_${identity}_${work}`,right=art.labor(clip,false),left=art.labor(clip,true);assert.notEqual(right.clip,left.clip);assert.equal(right.mirror,false);assert.equal(left.mirror,false);}
  assert.equal(art.frameId('villager_boy_walk',0),art.frameId('villager_girl_walk',0));assert.equal(art.frameId('villager_elder_male_walk',0),art.frameId('villager_elder_female_walk',0));f.main.onDestroy();
+});
+
+test('multiple broken contracts preserve the first error, roll back every new texture and retry only metadata', async () => {
+    const f = setup(); await boot(f);
+    const root = 'resources/characters/', frameURL = root + 'frames.json', animationURL = root + 'animations.json';
+    const frames = JSON.parse(fs.readFileSync(path.join(project, 'assets', frameURL)));
+    const animations = JSON.parse(fs.readFileSync(path.join(project, 'assets', animationURL)));
+    delete frames.frames[Object.keys(frames.frames)[0]];
+    animations.animations.pop(); animations.walkDirections = {}; animations.laborDirections = {};
+    f.cache.set(frameURL, { data: frames }); f.cache.set(animationURL, { data: animations });
+    const count = f.textures.length, task = f.main.resources.ensure('characters');
+    f.native.get('resources/characters').resolve(true); assert.equal(await task, false);
+    assert.equal(f.main.resources.states.characters.error, '必需素材缺失');
+    assert(!f.main.frames.ready('characters')); assert(f.textures.length > count);
+    assert(f.textures.slice(count).every(t => t.destroyed));
+    assert(f.textures.slice(0, count).every(t => !t.destroyed));
+    const retryStart = f.requests.length;
+    assert.equal(await f.main.resources.ensure('characters'), true);
+    const retries = f.requests.slice(retryStart).filter(r => r.url);
+    assert(retries.filter(r => r.url.endsWith('.json')).every(r => r.options.ignoreCache));
+    assert(retries.filter(r => r.url.endsWith('.png')).every(r => !r.options.ignoreCache));
+    f.main.onDestroy();
+});
+test('late invalid frame stops before bundle contract checks and destroys only the preceding new textures', async () => {
+    const f = setup(); await boot(f);
+    const root = 'resources/characters/', url = root + 'frames.json';
+    const data = JSON.parse(fs.readFileSync(path.join(project, 'assets', url)));
+    const ids = Object.keys(data.frames); data.frames[ids[2]].rect.w = 0;
+    const animationURL = root + 'animations.json';
+    const animations = JSON.parse(fs.readFileSync(path.join(project, 'assets', animationURL))); animations.animations = [];
+    f.cache.set(url, { data }); f.cache.set(animationURL, { data: animations });
+    const count = f.textures.length, task = f.main.resources.ensure('characters');
+    f.native.get('resources/characters').resolve(true); assert.equal(await task, false);
+    assert.equal(f.main.resources.states.characters.error, '图集帧不完整：' + ids[2]);
+    assert.equal(f.textures.length - count, 2); assert(f.textures.slice(count).every(t => t.destroyed));
+    assert(!f.main.frames.ready('characters'));
+    assert.equal(await f.main.resources.ensure('characters'), true); f.main.onDestroy();
 });

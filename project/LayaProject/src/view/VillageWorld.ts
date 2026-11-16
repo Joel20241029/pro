@@ -25,12 +25,8 @@ import { HUD } from "./config/HudConfig";
 import { WORLD_ART } from "./config/WorldArtConfig";
 import { TowerRageEffects } from "./TowerRageEffects";
 import { GateShieldEffects } from "./GateShieldEffects";
-import { RAGE_VISUAL } from "./config/RageVisualConfig";
-/** 同一份绘制深度同时用于地图点选；人物身份随当前帧写入，不能绑定到精灵池下标。 */
-interface WorldItem {
-    id: string; y: number; node: Laya.Sprite;
-    visual?: BuildingVisuals; ground?: boolean; personId?: string;
-}
+import { WorldInteraction, WorldItem } from "./WorldInteraction";
+import { ProjectileVisuals } from "./ProjectileVisuals";
 /** 地图、人物、建筑与战斗表现的唯一所有者。视觉时钟不推进 GameSession/业务随机数。 */
 export class VillageWorld {
     readonly scenery = new Laya.Sprite();
@@ -44,10 +40,7 @@ export class VillageWorld {
     private enemyVisuals: EnemyVisuals[] = [];
     private hearts: Laya.Sprite[] = [];
     private props: WorldItem[] = [];
-    private pickDepth: WorldItem[] = [];
-    private pressedTargets = new Map<number, { source: Laya.Sprite; sourceId: string; target: WorldItem }>();
-    private pickPoint = new Laya.Point();
-    private pickBounds = new Laya.Rectangle();
+    private interaction = new WorldInteraction(() => this.game.state, () => this.motion);
     private freshBuildingVillage = true;
     scene = layoutVillage(this.layout);
     private motion = new VillagerMotion(new VillageNavigation(this.scene.props, this.scene.landscape, this.scene.bounds), this.scene.stops);
@@ -56,8 +49,7 @@ export class VillageWorld {
     private feedback = new CombatPresentation();
     private logging = new LoggingFeedback();
     private projectiles = new ProjectileMotion();
-    private projectileNodes: Laya.Sprite[] = [];
-    private projectileGlows: Laya.Sprite[] = [];
+    private projectileVisuals: ProjectileVisuals;
     private rage: TowerRageEffects;
     private shield: GateShieldEffects;
     private lastBattle: BattleSimulation | null = null;
@@ -68,7 +60,7 @@ export class VillageWorld {
     private hitTop = new Laya.Point();
     private hitBottom = new Laya.Point();
     constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private layout: GameLayout,
-        private houseClicked: (name: string, visual: BuildingVisuals) => void, private personClicked: (id: string) => void) {
+        houseClicked: (name: string, visual: BuildingVisuals) => void, personClicked: (id: string) => void) {
         this.world.name = "VillageWorld";
         this.rage = new TowerRageEffects(this.world, art);
         this.shield = new GateShieldEffects(this.world, art);
@@ -130,61 +122,14 @@ export class VillageWorld {
             this.world.addChild(s);
             this.enemies.push(s); this.enemyVisuals.push(new EnemyVisuals(s, art));
         }
-        for (let i = 0; i < RULE.effectCap; i++) {
-            const glow = new Laya.Sprite(); glow.mouseEnabled = false; glow.visible = false;
-            this.shots.addChild(glow); this.projectileGlows.push(glow);
-            const s = new Laya.Sprite();
-            s.mouseEnabled = false;
-            s.visible = false;
-            this.shots.addChild(s);
-            this.projectileNodes.push(s);
-        }
+        this.projectileVisuals = new ProjectileVisuals(this.shots, art);
         // 此池仅绘制村民地影；怪物接地影已纳入自己的原生动画，不能再用独立世界节点重复绘制。
         for (let i = 0; i < this.people.length; i++) {
             const shadow = new Laya.Sprite(); shadow.texture = this.art.get("shadow_actor");
             shadow.name = "ContactShadow:" + i; shadow.mouseEnabled = false; shadow.visible = false;
             shadow.alpha = WORLD_ART.shadow.alpha; this.world.addChild(shadow); this.actorShadows.push(shadow);
         }
-        for (const node of clickNodes) {
-            node.on(Laya.Event.MOUSE_DOWN, this, (event: Laya.Event) => {
-                const target = this.pickAt(event.stageX, event.stageY);
-                if (target) this.pressedTargets.set(event.touchId, { source: node, sourceId: node.name, target });
-                else { this.pressedTargets.delete(event.touchId); Laya.InputManager.cancelClick(event.touchId); }
-            });
-            this.ui.bindClick(node, event => {
-                const down = this.pressedTargets.get(event.touchId);
-                this.pressedTargets.delete(event.touchId);
-                const target = this.pickAt(event.stageX, event.stageY);
-                if (!down || !target || !down.source.visible || down.source.name !== down.sourceId || target.id !== down.target.id || target.node !== down.target.node) return;
-                if (target.personId) this.personClicked(target.personId);
-                else this.houseClicked(HOUSE_TIP_NAMES[target.id], target.visual!);
-            });
-            node.on(Laya.Event.MOUSE_OUT, this, (event?: Laya.Event) => {
-                if (event) this.pressedTargets.delete(event.touchId);
-            });
-            node.on(Laya.Event.UNDISPLAY, this, () => {
-                for (const [touchId, down] of this.pressedTargets)
-                    if (down.source === node || down.target.node === node) {
-                        Laya.InputManager.cancelClick(touchId); this.pressedTargets.delete(touchId);
-                    }
-            });
-        }
-    }
-    /** 输入遍历不服从zIndex；逆序复用绘制深度，前景实体挡住后景，农田地面仍可点到农夫。 */
-    private pickAt(stageX: number, stageY: number): WorldItem | null {
-        const state = this.game.state;
-        if (!state) return null;
-        for (let i = this.pickDepth.length - 1; i >= 0; i--) {
-            const item = this.pickDepth[i], node = item.node;
-            if (item.ground || !node.visible || node.destroyed) continue;
-            if (item.personId && (!state.people.some(p => p.id === item.personId) || !this.motion.visiblePeople.some(p => p.id === item.personId) || this.motion.get(item.personId).insideTower)) continue;
-            node.globalToLocal(this.pickPoint.setTo(stageX, stageY));
-            // 人物只取自身贴图，红心不扩大点击范围；建筑/树木包含自己的可见部件。
-            const bounds = item.personId ? node.getGraphicBounds(false, this.pickBounds) : node.getSelfBounds(this.pickBounds, true);
-            if (bounds.contains(this.pickPoint.x, this.pickPoint.y))
-                return item.personId || HOUSE_TIP_NAMES[item.id] ? item : null;
-        }
-        return null;
+        this.interaction.bind(clickNodes, this.ui, houseClicked, personClicked);
     }
     /** 高清 HUD 沿用像素塔足底下方的标签位置，与塔的左右镜像无关。 */
     towerAnchor(index: number) {
@@ -196,13 +141,12 @@ export class VillageWorld {
         return { x: HUD.gate.x + HUD.gate.width / 2, y: this.layout.gateY + HUD.gate.barTop + HUD.gate.barHeight };
     }
     destroy() {
-        for (const touchId of this.pressedTargets.keys()) Laya.InputManager.cancelClick(touchId);
-        this.pressedTargets.clear();
+        this.interaction.cancelPresses();
     }
     reset() {
         this.shield.reset();
-        for (const touchId of this.pressedTargets.keys()) Laya.InputManager.cancelClick(touchId);
-        this.pressedTargets.clear(); this.pickDepth = [];
+        this.interaction.cancelPresses();
+        this.interaction.clearDepth();
         this.motion = new VillagerMotion(new VillageNavigation(this.scene.props, this.scene.landscape, this.scene.bounds), this.scene.stops);
         this.emotes = new VillagerEmotes(); this.walkAnimation = new WalkAnimation(this.art);
         this.projectiles = new ProjectileMotion();
@@ -297,8 +241,7 @@ export class VillageWorld {
         this.people.forEach(n => n.visible = false);
         this.enemies.forEach(n => n.visible = false);
         this.actorShadows.forEach(n => n.visible = false);
-        this.projectileNodes.forEach(n => n.visible = false);
-        this.projectileGlows.forEach(n => n.visible = false);
+        this.projectileVisuals.clear();
         this.hearts.forEach(n => { n.visible = false; n.alpha = 1; n.scale(1, 1); n.pos(0, 0); });
         this.emote.visible = false;
         const depth = this.props.slice();
@@ -306,7 +249,7 @@ export class VillageWorld {
             this.rage.update(null, []);
             this.shield.reset();
             depth.sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
-            this.pickDepth = [];
+            this.interaction.clearDepth();
             return;
         }
         for (const p of this.props) {
@@ -416,26 +359,7 @@ export class VillageWorld {
                 n.pos(at.x, this.layout.worldY(at.y));
                 depth.push({ id: n.name, y: n.y, node: n });
             });
-            this.projectiles.poses.forEach((p, i) => {
-                const n = this.projectileNodes[i];
-                n.name = `projectile:${p.shot.kind}:${p.shot.tower}:${p.shot.tick}:${i}`;
-                n.visible = !p.impacted || p.shot.empowered;
-                this.art.applyFrame(n, p.frame, p.size);
-                n.pos(p.x, p.y);
-                n.rotation = p.rotation + (p.shot.kind === "ARROW" && !p.impacted ? WORLD_ART.arrowAngleOffset : 0);
-                n.alpha = p.alpha;
-                if (p.shot.empowered && !p.impacted) {
-                    // 围绕实际裁框中心附加窄柔光，主体尺寸/发射口/弹道都不变；冰弹保留原青蓝色。
-                    const glow = this.projectileGlows[i], frame = this.art.contentBounds(p.frame);
-                    const unit = p.size / frame.sourceSize.w, angle = n.rotation * Math.PI / 180;
-                    const dx = (frame.trimOffset.x + frame.rect.w / 2 - frame.pivot.x) * unit;
-                    const dy = (frame.trimOffset.y + frame.rect.h / 2 - frame.pivot.y) * unit;
-                    const width = frame.rect.w * unit * RAGE_VISUAL.projectileScale, height = frame.rect.h * unit * RAGE_VISUAL.projectileScale;
-                    glow.texture = this.art.get("fx_rage_glow"); glow.size(width, height).pivot(width / 2, height / 2);
-                    glow.pos(p.x + dx * Math.cos(angle) - dy * Math.sin(angle), p.y + dx * Math.sin(angle) + dy * Math.cos(angle));
-                    glow.rotation = n.rotation; glow.alpha = RAGE_VISUAL.projectileAlpha; glow.visible = true;
-                }
-            });
+            this.projectileVisuals.draw(this.projectiles.poses);
         }
         let shadowIndex = 0;
         this.people.forEach(actor => { if (actor.visible) {
@@ -453,11 +377,6 @@ export class VillageWorld {
         const shieldDepth = this.shield.update(battle, { node: gate.node, visual: gate.visual! }, this.layout, events);
         [...depth, ...rageDepth, ...shieldDepth].sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
         depth.sort(compareDepth);
-        this.pickDepth = depth;
-        // 一帧内先隐藏再填充整个池，因此在最终可见性/身份确定后取消失效按下记录。
-        for (const [touchId, down] of this.pressedTargets)
-            if (!down.source.visible || down.source.name !== down.sourceId || !depth.some(p => p.id === down.target.id && p.node === down.target.node && p.node.visible)) {
-                Laya.InputManager.cancelClick(touchId); this.pressedTargets.delete(touchId);
-            }
+        this.interaction.update(depth);
     }
 }

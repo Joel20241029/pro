@@ -63,3 +63,7 @@ EnemyVariantsPreview.ls、EnemyWalkPreview.ls 是查看用的原生场景，不�
 - `工具 / VerifyParticlesInGame`：读取 `~/Downloads/daidai-release-1.0.13/checks/compiled/` 的正式游戏编译，在原生持续渲染中验证 6 种效果、长短屏、保留建筑升级动作、实际命中粒子的暂停和三倍速压力场景。输出至该任务 `checks/native/`，全部存档在内存。
 
 运行分包只装原生序列化转换后的粒子参数。发布资源、包体与验证边界见 [技术文档 29](../../../doc/tech/29_粒子特效与动作反馈.md)。
+
+## 1.0.25 阴影维护
+
+怪物预制体根节点包含独立 ContactShadow，与当前 Frame 共用父变换；原生保存与全量制作入口均支持它。导出合同升级为 v4，贴图继续引用已有 shadow_actor。具体制作流程见 [怪物制作源](assets/enemyAuthoring/README.md)，验证与发布见 [技术文档47](../../../doc/tech/47_动画内阴影与自动最高难度.md)。

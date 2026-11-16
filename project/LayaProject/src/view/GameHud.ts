@@ -31,7 +31,7 @@ export class GameHud {
     private nightStatus: Laya.Text | null = null;
     private buildHints: Laya.Sprite[] = [];
     private hintSeconds = 0;
-    constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private panels: GamePanels, private refresh: () => void) { }
+    constructor(private game: GameSession, _art: SpriteFrames, private ui: UiWidgets, private panels: GamePanels, private refresh: () => void) { }
     clear() {
         this.gateGauge = this.gateShield = null;
         this.nightControls = null;

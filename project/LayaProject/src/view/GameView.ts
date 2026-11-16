@@ -66,8 +66,12 @@ export class GameView {
     /** 保留原面板/开放域实例与人物日程，不执行命令、读档或重复请求授权。 */
     resize() {
         const next = new GameLayout(this.platform.window, this.platform.menu), previous = this.layout;
-        if (next.height === previous.height && next.safeTop === previous.safeTop && next.safeBottom === previous.safeBottom && next.dateY === previous.dateY)
+        if (next.height === previous.height && next.safeTop === previous.safeTop && next.safeBottom === previous.safeBottom && next.dateY === previous.dateY) {
+            // 等比例窗口缩放可能不改变逻辑布局；原生榜单仍需更新 CSS 像素与触摸区域。
+            for (let i = 0; i < this.overlay.numChildren; i++)
+                (this.overlay.getChildAt(i).getChildByName("FriendRankingCanvas") as RankingView)?.updateViewPort();
             return;
+        }
         this.village.relayout(next);
         this.layout = next;
         this.panels.layout = next;

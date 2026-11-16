@@ -3,20 +3,31 @@ import { TRAITS } from "../../game/GameConfig";
 import { C, UI } from "../UiTheme";
 import { ScrollList } from "../ScrollList";
 import { RankingView } from "../RankingView";
+import { RankingCanvasUnsupported } from "../../platform/WechatRankingCanvas";
+import { RANKING_CANVAS } from "../../config/RankingConfig";
 import { tacticRevealed } from "../../game/Tactics";
 import { GUIDE_CHAPTERS } from "../GameGuide";
 import { Panel, PanelContext } from "./PanelContext";
 export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel) {
     if (p.type === "ranking") {
         const box = ctx.modal("好友守村榜", "");
-        // 构造前分配请求ID，连 super()/纹理初始化失败也能定位；保留原异常，不吞掉渲染问题。
+        // 构造前分配请求ID；原生能力失败保留外框与关闭操作，并记录具体错误。
         const trace = ctx.platform.rankingDiagnostics, request = trace.begin();
+        ctx.platform.inspectRankingAuthorization(request);
+        let ranking: RankingView | null = null;
         try {
-            const ranking = new RankingView(ctx.platform, s.legacy.bestNight, request);
+            trace.record("construct_start", request);
+            ranking = new RankingView(ctx.platform, s.legacy.bestNight, request);
             ranking.pos(34, 132);
             box.addChild(ranking);
+            trace.record("attached", request);
             ranking.refreshRanking();
-        } catch (error) { trace.failure("view_error", request, error); trace.end(request, 0); throw error; }
+        } catch (error) {
+            trace.failure("view_error", request, error);
+            if (ranking) ranking.destroy(); else trace.end(request);
+            const message = error instanceof RankingCanvasUnsupported ? RANKING_CANVAS.unsupportedText : RANKING_CANVAS.unavailableText;
+            ctx.ui.label(box, message, 34, 360, 600, 30, C.ink, false, 140).align = "center";
+        }
         return;
     }
     if (p.type === "restart") {
