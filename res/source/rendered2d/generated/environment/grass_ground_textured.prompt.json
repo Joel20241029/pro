@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-13",
+  "tool": "image_gen.imagegen",
+  "intent": "edit",
+  "reference": "res/design/hd2d/samples/grass_ground_v2.png",
+  "output": "res/source/rendered2d/generated/environment/grass_ground_textured.png",
+  "transparent_background": false,
+  "prompt": "Use case: precise-object-edit.\nAsset type: production seamless grass ground texture for the existing Chinese pastoral chibi village tower-defense mobile game, 3D pre-rendered to 2D, square tile.\nEdit the attached grass tile. Keep its warm light spring-green and olive-green palette, even overall brightness, flat overhead ground plane and soft stylized 3D art direction. Change the surface from smooth cloudy plastic into visibly grassy turf: add many small groups of clearly shaped short grass blades with soft bevels, fine blades mixed into the base surface, lightly irregular tufts, restrained darker root creases and fresh pale-green tips. Create a convincing soft dense lawn, with natural patches of shorter and slightly taller grass, not just isolated leaf stickers pasted on a blank surface. At a final runtime size of 512x512, and phone display width around 270px per tile, the blade detail must still read clearly.\nKeep approximately 60 percent of the tile as quieter short turf and 40 percent with visible little grass-blade clusters, distributed organically at varying scales without a regular grid. Contrast should be moderate: enough grass texture to see immediately, but no harsh dark outlines or high contrast speckled noise. It must stay a calm background behind miniature villagers and buildings. Use softly sculpted rounded forms, subtly lit from upper left, very short local ambient occlusion.\nSeamless edge-to-edge tiling: match left/right and top/bottom edges in palette, texture density and lighting. No vignette, no big gradient, no borders, no framed swatch. No path, soil patches, trees, rocks, buildings, people, flowers, fruit, text or watermark. No camera perspective horizon; this is only ground texture. Opaque RGB background. Deliver one crisp high resolution square texture tile.",
+  "runtime": {
+    "id": "tile_ground_grass",
+    "width": 512,
+    "height": 512,
+    "tiling": "WORLD_ART.grassTile=512; existing texture tiling",
+    "scope": "Only ground texture; gameplay, paths, tower coordinates and resource count unchanged"
+  }
+}

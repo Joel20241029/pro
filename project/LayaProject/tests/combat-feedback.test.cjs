@@ -1,25 +1,33 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),path=require('node:path');
 const build=process.env.DAIDAI_TEST_BUILD;
 const {createGame,applyCommand}=require(path.join(build,'game/VillageRules'));
-const {BattleSimulation,pointAt,PATH_LENGTH}=require(path.join(build,'game/BattleSimulation'));
+const {BattleSimulation,PATH_LENGTH}=require(path.join(build,'game/BattleSimulation'));
+const {enemyPoint}=require(path.join(build,'game/BattleRoad'));
 const {GameSession}=require(path.join(build,'game/GameSession'));
 const {SaveStore}=require(path.join(build,'storage/SaveStore'));
 const {CombatPresentation}=require(path.join(build,'view/CombatPresentation'));
 const {ProjectileMotion,PROJECTILE_STYLE}=require(path.join(build,'view/ProjectileMotion'));
 const {LoggingFeedback}=require(path.join(build,'view/LoggingFeedback'));
-const {RULE}=require(path.join(build,'game/GameConfig'));
+const {RULE,PADS}=require(path.join(build,'game/GameConfig'));
 function battle(kind='ARROW') {const s=createGame(7);applyCommand(s,{type:'NIGHT'});const b=new BattleSimulation(s);b.base.towers.forEach((t,i)=>{t.kind=i===0?kind:null;t.operator=i===0?s.people[0].id:null;});b.cursor=b.base.wave.entries.length;return b;}
-function enemy(seq,hp=1000,progress=200){return {seq,kind:'enemy_raider',appearanceSeed:87,progress,hp,speed:0,slow:0,slowTicks:0,born:0,summoned:0};}
+function enemy(seq,hp=1000,progress=200){return {seq,kind:'enemy_raider',appearanceSeed:87,progress,hp,speed:0,slow:0,slowTicks:0, walkDistance: 0,born:0,summoned:0};}
 function shot(tick,kind='ARROW'){return {tower:0,x:300,y:400,kind,tick};}
 test('real stone hurt set contains splash victims; slow-only neighbors have no damage event',()=>{
  for(const kind of ['STONE','SLOW']){const b=battle(kind);b.enemies=[enemy(10),enemy(11,1000,205)];b.step();const e=b.feedback.find(e=>e.type==='shot');assert(e);assert.equal(e.hurt.length,kind==='STONE'?2:1);if(kind==='SLOW')assert.equal(b.enemies[0].slowTicks,RULE.slowTicks);}
 });
 test('multi-step session inbox captures every shot once and no event changes family RNG',()=>{
  const store=new SaveStore({read:()=>null,write(){}}),g=new GameSession(store);g.state=createGame(7);applyCommand(g.state,{type:'NIGHT'});g.battle=new BattleSimulation(g.state);g.state.settings.speed=3;
+ // 本用例验证事件收件箱，不依赖首波敌人是否已走进调整后的塔位；将静止靶放到各已建塔最近的道路点。
+ g.battle.cursor=g.battle.base.wave.entries.length;
+ g.battle.enemies=g.battle.base.towers.flatMap((tower,i)=>{
+  if(!tower.kind||!tower.operator)return[];
+  let progress=0,nearest=Infinity;for(let at=0;at<PATH_LENGTH;at++){const p=enemyPoint(enemy(100+i,1000,at)),d=Math.hypot(p.x-PADS[i].x,p.y-PADS[i].y);if(d<nearest){nearest=d;progress=at;}}
+  return[enemy(100+i,1000,progress)];
+ });
  const rng=JSON.stringify(g.state.rng);g.update(.25);const events=g.takeCombatFeedback();assert(events.some(e=>e.type==='shot'));assert.equal(new Set(events.filter(e=>e.type==='shot').map(e=>e.shot)).size,events.filter(e=>e.type==='shot').length);assert.deepEqual(g.takeCombatFeedback(),[]);assert.equal(JSON.stringify(g.state.rng),rng);
 });
 test('living target is followed, every pending shot shares death point, flash begins only at visual arrival',()=>{
- const b=battle(),f=new CombatPresentation(),a=shot(0),fatal=shot(1,'STONE');b.enemies=[enemy(1)];f.sync(b,[{type:'shot',shot:a,target:1,hurt:[enemy(1)]}]);assert(!f.flashing(1));b.enemies[0].progress=260;assert.deepEqual(f.target(a),pointAt(260));
+ const b=battle(),f=new CombatPresentation(),a=shot(0),fatal=shot(1,'STONE');b.enemies=[enemy(1)];f.sync(b,[{type:'shot',shot:a,target:1,hurt:[enemy(1)]}]);assert(!f.flashing(1));b.enemies[0].progress=260;assert.deepEqual(f.target(a),enemyPoint(b.enemies[0]));
  b.enemies=[];f.sync(b,[{type:'shot',shot:fatal,target:1,hurt:[enemy(1,0,280)]}]);assert.deepEqual(f.target(a),f.target(fatal));assert.equal(f.deaths.size,1);f.impact(fatal);assert(f.flashing(1));f.advance(.15);assert.equal(f.deaths.size,0);assert(!f.flashing(1));f.impact(a);assert.equal(f.deaths.size,0);assert(!f.flashing(1));
 });
 test('arrival still fires once if a triple-speed frame jumps beyond the entire impact interval',()=>{

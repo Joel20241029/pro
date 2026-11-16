@@ -6,6 +6,8 @@ import { C, UI } from "../UiTheme";
 import { ScrollList } from "../ScrollList";
 import { Panel, PanelContext } from "./PanelContext";
 import { coloredName } from "../ViewText";
+import { personNeedsAttention } from "../ActionHints";
+import { orderPanelRows } from "./PanelListOrder";
 export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
     const day = s.phase === "DAY";
     if (p.type === "people" || p.type === "history" || p.type === "partners" || p.type === "carers" || p.type === "operators" || p.type === "care" || p.type === "workers") {
@@ -41,6 +43,12 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
             title = "选择替换的工人";
             sub = `${JOB_NAMES[p.job!]}岗位已满，选一位村民换岗。\n原工人有其他空岗会自动补位。`;
         }
+        if (p.type === "people") list = orderPanelRows(p, list, q => q.id, q => personNeedsAttention(s, q));
+        else if (p.type === "carers") list = orderPanelRows(p, list, q => q.id, q => birthUnavailableReason(s, p.id!, q.id) === null);
+        else if (p.type === "operators") {
+            const current = (ctx.game.battle?.base.towers || s.towers)[p.index!].operator;
+            list = orderPanelRows(p, list, q => q.id, q => q.id !== current);
+        }
         const box = ctx.modal(title, sub);
         if (!list.length) {
             const message = p.type === "history" ? "家谱暂无记录\n村民寿终后会记入这里" : p.type === "partners" ? "暂无符合条件的单身男女\n可等待孩子成年或旅人加入" : p.type === "care" ? "暂无需要安排照料的孩子\n已有照料者的孩子不会重复列出" : p.type === "operators" ? "暂无成年且未退休的村民\n孩子成年或旅人加入后可驻塔" : "暂时没有符合条件的村民";
@@ -54,11 +62,12 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
         const rows = new ScrollList(UI.contentWidth, 590, Math.max(0, list.length * rowStep - (rowStep - rowHeight)), p.scroll, offset => p.scroll = offset);
         rows.pos(UI.inset, UI.listTop);
         box.addChild(rows);
-        list.forEach((q, i) => {
+        rows.setVirtualRows(list.length, rowStep, (i, row) => {
+            const q = list[i];
             const reason = p.type === "carers" ? birthUnavailableReason(s, p.id!, q.id) : null;
             const desc = `${coloredName(q, reason === null)} · ${q.sex === "MALE" ? "男" : "女"} · ${TRAITS[q.trait][0]}\n${reason !== null ? reason : p.type === "history" ? (s.favorites.includes(q.id) ? "★ 珍藏的先辈" : "已寿终 · 留念家谱") : isElder(q) ? `养老还剩 ${q.elderNights} 夜` : q.adult ? `${JOB_NAMES[q.job]} · 距退休 ${q.nights} 夜` : `成长 ${q.growth}/${RULE.growNights} · 还需照料守夜`}`;
             const portrait = ctx.art.portraitId(q, p.type === "history");
-            ctx.ui.listItem(rows.content, desc, portrait, i * rowStep, () => {
+            ctx.ui.listItem(row, desc, portrait, 0, () => {
                 if (p.type === "history")
                     ctx.open({ type: "ancestor", id: q.id });
                 else if (p.type === "partners") {

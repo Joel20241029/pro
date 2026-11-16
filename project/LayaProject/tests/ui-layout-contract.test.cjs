@@ -11,7 +11,8 @@ class Text extends Sprite{get textWidth(){return this.text.length*this.fontSize;
 global.Laya={Sprite,Text,Event:{MOUSE_DOWN:'down',MOUSE_UP:'up',MOUSE_OUT:'out',UNDISPLAY:'hidden',CLICK:'click'},InputManager:{cancelClick(){} }};
 const base=process.env.DAIDAI_TEST_BUILD;
 const {SpriteFrames}=require(path.join(base,'view/SpriteFrames.js')),{UiWidgets}=require(path.join(base,'view/UiWidgets.js'));
-const frames=require('../assets/resources/base/frames.json').frames,art=new SpriteFrames();
+// 完整世界在建筑包就绪后创建；世界阴影随建筑包，UI图标仍在基础包。
+const frames={...require('../assets/resources/base/frames.json').frames,...require('../assets/resources/buildings/frames.json').frames},art=new SpriteFrames();
 for(const [id,f]of Object.entries(frames)){art.layouts.set(id,f);art.textures.set(id,{id});}
 const near=(a,b)=>assert(Math.abs(a-b)<1e-6,`${a} != ${b}`);
 test('all nine-slice surfaces preserve drawing state and leave a positive center at actual button sizes',()=>{

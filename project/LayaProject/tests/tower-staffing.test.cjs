@@ -57,14 +57,14 @@ test('only an adult shortage leaves built towers unstaffed and empty building pa
 
 test('manual cross-tower choice swaps operators and selecting the current villager is a no-op', () => {
     const s = createGame(7), before = operators(s);
-    assignOperator(s, 0, before[1]); assert.deepEqual(operators(s), [before[1], before[0], null, null]);
+    assignOperator(s, 0, before[1]); assert.deepEqual(operators(s), [before[1], before[0], null, null, null]);
     const same = canonical(s); assignOperator(s, 0, before[1]); assert.equal(canonical(s), same); assertCoverage(s);
 });
 
 test('during a shortage the player can move the only operator to a chosen later tower', () => {
     const s = createGame(7), id = s.people[0].id; retainWorkers(s, [id]);
-    assignOperator(s, 1, id); assert.deepEqual(operators(s), [null, id, null, null]);
-    autoAssignOperators(s); assert.deepEqual(operators(s), [null, id, null, null]); assertCoverage(s);
+    assignOperator(s, 1, id); assert.deepEqual(operators(s), [null, id, null, null, null]);
+    autoAssignOperators(s); assert.deepEqual(operators(s), [null, id, null, null, null]); assertCoverage(s);
 });
 
 test('null, empty, missing, child and retired selections are rejected without modifying assignments', () => {
@@ -114,7 +114,7 @@ test('night swaps preserve battle progress and saved assignments, then resume wi
     game.pause('CHOICE'); assert.equal(game.reassign(0, original[1]), true);
     assert.deepEqual(battle.operators.slice(0, 2), [original[1], original[0]]); assert.equal(battle.tick, tick);
     assert.equal(canonical(game.state), baseline); game.resume('CHOICE'); game.update(.05);
-    assert.equal(game.battle, battle); assert.equal(battle.tick, tick + 1);
+    assert.equal(game.battle, battle); assert.equal(battle.tick, tick + game.state.settings.speed);
     const reopened = new GameSession(new SaveStore(storage)); reopened.load(); assert.deepEqual(reopened.battle.operators, original);
 });
 

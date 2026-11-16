@@ -16,6 +16,9 @@ const work = path.resolve(args[workArg + 1]);
 if (!work.startsWith('/Users/happyelements/Downloads/')) throw new Error('临时目录必须位于 Downloads');
 fs.mkdirSync(work, { recursive: true });
 const magick = process.env.VILLAGE_MAGICK || '/opt/homebrew/bin/magick';
+// 与VILLAGE_MAGICK一致的本地工具路径约定；Python环境须安装requirements-png.txt。
+// 仅无损压缩主包图集；依赖缺失或像素变化直接失败，不静默跳过包体门禁。
+const pngPython = process.env.VILLAGE_PNG_PYTHON || 'python3';
 const run = a => execFileSync(magick, a, { maxBuffer: 32 * 1024 * 1024 });
 const read = name => JSON.parse(fs.readFileSync(path.join(root, name), 'utf8'));
 const write = (name, data) => { const p = path.join(root, name); fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, JSON.stringify(data, null, 2) + '\n'); };
@@ -71,7 +74,7 @@ for (const a of recipe.assets) {
         execFileSync(magick, ['-size', `${a.width}x${a.height}`, '-depth', '8', 'rgba:-', '-strip', out], { input: rgba });
     }
     const pixels = decode(out);
-    if ((a.category === 'enemies' || a.category === 'enemy-parts') && a.runtime) {
+    if ((a.category === 'enemies' || a.category === 'enemy-parts' || a.id === 'shadow_actor') && a.runtime) {
         const editorTextures = path.join(root, 'editor/BuildingWorkshop/assets/enemyAuthoring/textures');
         fs.mkdirSync(editorTextures, { recursive: true }); fs.copyFileSync(out, path.join(editorTextures, a.id + '.png'));
     }
@@ -149,6 +152,12 @@ for (const [group, { size }] of Object.entries(bundles)) {
         for (const { a, rect } of p.placements) command.push(a._packedFile, '-geometry', `+${rect.x - padding}+${rect.y - padding}`, '-composite');
         run([...command, '-strip', out]);
         const pixels = decode(out);
+        if (group === 'base') {
+            const optimized = path.join(work, p.id + '-lossless.png');
+            execFileSync(pngPython, [path.join(root, 'tools/optimize-png-lossless.py'), out, optimized]);
+            if (!pixels.equals(decode(optimized))) throw new Error('无损PNG重编码改变了RGBA像素：' + p.id);
+            fs.copyFileSync(optimized, out);
+        }
         for (const { a, rect } of p.placements) {
             const t = a._trim;
             if (t.x < 0 || t.y < 0 || t.x + t.w > a.width || t.y + t.h > a.height) throw new Error(`裁边越界：${a.id}`);
@@ -172,7 +181,10 @@ for (const a of assets) { if (seen.has(a.id)) throw new Error('重复资源 ID�
 for (const clip of recipe.animations.animations) {
     const list = clip.frameIds.map(id => assets.find(a => a.id === id));
     const walking = clip.category === 'characters' && clip.id.includes('_walk');
-    if (clip.frameCount !== list.length || (walking ? list.length !== 8 || !(clip.stridePixels > 0) : list.length < 2 || list.length > 4) || list.some(a => !a || !a.runtime || !frames[a.id] || a.width !== clip.canvas.w || a.height !== clip.canvas.h || a.pivot.x !== clip.pivot.x || a.pivot.y !== clip.pivot.y)) throw new Error('动画运行引用、帧数、画布或 pivot 不一致：' + clip.id);
+    // 高清怪物采用小怪6帧、首领8帧的完整步态；其他人物劳动动作仍保持2～4帧。
+    const enemy = clip.category === 'enemies';
+    const badFrames = enemy ? ![6, 8].includes(list.length) || !(clip.stridePixels > 0) : walking ? list.length !== 8 || !(clip.stridePixels > 0) : list.length < 2 || list.length > 4;
+    if (clip.frameCount !== list.length || badFrames || list.some(a => !a || !a.runtime || !frames[a.id] || a.width !== clip.canvas.w || a.height !== clip.canvas.h || a.pivot.x !== clip.pivot.x || a.pivot.y !== clip.pivot.y)) throw new Error('动画运行引用、帧数、画布或 pivot 不一致：' + clip.id);
     const rest = assets.find(a => a.id === clip.restFrame);
     if (!rest || !frames[rest.id] || rest.bundle !== list[0].bundle || rest.width !== clip.canvas.w || rest.height !== clip.canvas.h || rest.pivot.x !== clip.pivot.x || rest.pivot.y !== clip.pivot.y) throw new Error('静止帧画布/足点不一致：' + clip.id);
     if (new Set(list.map(a => a.sha256)).size < 2) throw new Error('动画帧完全相同：' + clip.id);

@@ -1,15 +1,25 @@
 /** 首版规则取自 doc/design/01 与 doc/tech/01；集中调整会改变经济、存档与战斗，需升级 CONFIG_VERSION。 */
-// v13：5小怪、5首领轮换及波次外观种子（doc/tech/28）；不迁移旧开发档。
-export const CONFIG_VERSION = 13;
-/** 2026-11-11 已确认的持续成长方案（doc/tech/12）。等级不封顶，人数及工作站仍有界。
- * 成本线性增长，产出线性、战力二次增长；更改系数须复跑完整经营模拟及升级预检。
+// v18：第五塔移至上段，全年固定最高档；改变波次及旧守夜重放，沿用异版进度显式确认重开，不静默迁移。
+export const CONFIG_VERSION = 18;
+/** 持续成长基础来自 doc/tech/12，百级住宅与数量型波次按 doc/tech/46 重平衡。
+ * 设施等级不封顶，产出线性、战力与费用二次增长；更改须复跑经营模拟及升级预检。
  */
 export const GROWTH = {
     productionPerLevel: 2, storagePerLevel: 160, powerLinear: .45, powerQuadratic: .05,
-    enemyStartDay: 12, enemyLevelNights: 18,
+    // 人口上限增长后用二次成本约束经济；仓储二次项必须大于自身费用，避免扩仓死锁。
+    storageQuadratic: 12, costWoodQuadratic: 2, costFoodQuadratic: .5, laborSlotLevels: 2,
+    // 数量优先后个体线性成长，避免人口封顶、设施升级变慢时敌人平方增长形成必败墙。
+    enemyStartDay: 12, enemyLevelNights: 32,
     costWoodPerLevel: 25, costFoodPerLevel: 10,
     costs: { FARM: { wood: 40, food: 15 }, LOGGING: { wood: 35, food: 15 }, HOUSING: { wood: 30, food: 10 }, GATE: { wood: 30, food: 10 }, TOWER: { wood: 35, food: 10 } },
     repairWoodPerLevel: 5, repairFraction: .2
+} as const;
+/** doc/tech/46 已确认：住宅从1级、8容量起，每级+1，100级共107容量；不直接赠送居民。
+ * 原 houses 字段改存扩建等级。成本按当前级别计算，粮木共同限制快速扩张；改动须重新模拟。
+ */
+export const RESIDENTIAL = {
+    maxLevel: 100, initialCapacity: 8, capacityPerLevel: 1,
+    woodBase: 30, woodPerLevel: 10, woodQuadratic: .5, foodBase: 10, foodPerLevel: 5
 } as const;
 /** 已确认的柔性人口平衡：出生最多偏置25个百分点、旅人35个百分点；不使用固定交替性别。
  * 旅人保留第5天起每4夜的来访时点，成年性别断档可提前；所有来访至少间隔3次成功守夜。
@@ -27,7 +37,10 @@ export const ELITE = {
     visualScale: 1.25
 } as const;
 export const RULE = {
-    storageCap: 200, populationCap: 20, houseCapacity: 4, houseMax: 5, houseCost: 30,
+    storageCap: 200,
+    // 真实人口安全上界由住宅最终容量推导；地图绘制人数另由表现配置控制。
+    populationCap: RESIDENTIAL.initialCapacity + (RESIDENTIAL.maxLevel - 1) * RESIDENTIAL.capacityPerLevel,
+    houseMax: RESIDENTIAL.maxLevel,
     initialResource: 60, gateMax: 200, repairCost: 10,
     // 用户确认固定20粮；同村本地自然日一次、仓满截断、确认后记领取日。新开村清空日期，可再次领取。
     dailyFood: 20,
@@ -39,9 +52,13 @@ export const RULE = {
     // 成人及老人共用普通 2 粮、节俭 1 粮的口粮规则，再统一应用季节和村规。
     farmBase: 8, logBase: 6, adultRation: 2, childRation: 1,
     farmSlots: [2, 4, 6], logSlots: [2, 3, 4], towerConvert: 20,
-    yearDays: 12, seasonDays: 3, maxTier: 3, historyCap: 60, favoriteCap: 20,
-    // 15步覆盖允许计入的0.25秒×最高3倍速，不追赶后台时间，不改变固定模拟步长。
-    step: .05, frameCap: .25, maxSpeed: 3, maxSteps: 15, enemyCap: 40, planCap: 80,
+    yearDays: 12, seasonDays: 3,
+    // 用户确认从第一年起固定原最高3档，跨年不再选择；沿用WAVE.tierCount加数量，调整须验证首夜及长期经营。
+    maxTier: 3, historyCap: 60, favoriteCap: 20,
+    // 2026-11-16用户指定：原2倍为新1档、原3倍为新2档。此处存实际倍率，默认最低档；不改变单步战斗规则。
+    minSpeed: 2,
+    // 15步覆盖允许计入的0.25秒×最高档实际倍率3，不追赶后台时间，不改变固定模拟步长。
+    step: .05, frameCap: .25, maxSpeed: 3, maxSteps: 15, enemyCap: 40, planCap: 128,
     // 用户确认15个战斗秒（300步×0.05秒），每夜一次；倍速缩短现实耗时，暂停不扣时，调整需验证战斗与升版。
     bellTicks: 300,
     // 沿用原警钟攻速+50%；战斗与说明共用，乘在天赋/村规加成之后，再乘缺粮/扰阵减益。

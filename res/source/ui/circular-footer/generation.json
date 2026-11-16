@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-14",
+  "tool": "image_gen.imagegen",
+  "transparent_background": true,
+  "reference": "approved-design.png",
+  "output": "round-button-and-shield.png",
+  "purpose": "已确认圆形居中底栏的无字按钮底板与独立月亮盾牌；人物/建设等图标复用正式资源",
+  "prompt": "Create a production-ready transparent PNG sprite sheet with exactly two separated UI assets, derived faithfully from the approved green circular button. Wide 2:1 canvas, two equal square cells. Left: completely blank true round green button, frontal, warm gold beveled ring, ivory top highlight, lime-green upper-left to forest-green bottom-right, no icon or text, no long drop shadow. Right: isolated front-view gold-and-ivory shield bearing a centered golden crescent moon, symmetric silhouette, convex gold edge, same top-left lighting. Genuine transparent alpha outside both sprites. No checkerboard, text, mockup, menu, red dots, cell borders or watermark. Preserve approved reference smooth antialiasing, vivid colour, soft material detail and refined gold rim.",
+  "importer": "../../../tools/hd2d/prepare-production.mjs",
+  "runtime": {
+    "button_night_round": [
+      384,
+      384
+    ],
+    "icon_night_shield": [
+      128,
+      128
+    ]
+  }
+}

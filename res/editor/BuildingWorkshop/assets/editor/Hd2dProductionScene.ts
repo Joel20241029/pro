@@ -47,7 +47,8 @@ export class Hd2dProductionScene {
         const upgrade = await Laya.loader.load('buildingAuthoring/animations/upgrade.mc') as Laya.AnimationClip2D;
         const attack = await Laya.loader.load('buildingAuthoring/animations/attack.mc') as Laya.AnimationClip2D;
         const textures: Record<string, Laya.Texture> = {};
-        for (const item of recipe.assets.filter((a: any) => ['building-parts', 'enemies', 'enemy-parts'].includes(a.category))) {
+        const shadowFrame = seeds.enemies[0].children.find((n: any) => n.name === 'ContactShadow').frame;
+        for (const item of recipe.assets.filter((a: any) => ['building-parts', 'enemies', 'enemy-parts'].includes(a.category) || a.id === shadowFrame)) {
             const family = item.category === 'building-parts' ? 'buildingAuthoring' : 'enemyAuthoring';
             const texture = await Laya.loader.load(`${family}/textures/${item.id}.png`, Laya.Loader.IMAGE);
             if (!texture) throw new Error('高清制作纹理加载失败:' + item.id);
@@ -95,11 +96,9 @@ export class Hd2dProductionScene {
         save(scene, 1920, 1370, '建筑108变体.png'); scene.destroy(true);
         const enemies = new Laya.Scene(); enemies.size(960, 600); enemies.graphics.drawRect(0, 0, 960, 600, '#a7be7b');
         const enemyNodes = seeds.enemies.map((data: any, i: number) => { const node = create(data); node.pos(i % 5 * 192 + 32, Math.floor(i / 5) * 270 + 32).scale(1.4, 1.4); enemies.addChild(node); return node; });
-        for (let frame = 0; frame < 4; frame++) {
-            for (const node of enemyNodes) {
-                const count = node.numChildren - 2;
-                for (let i = 0; i < count; i++) (node.getChildAt(i) as Laya.Sprite).visible = i === frame % count;
-            }
+        const enemyFrames = enemyNodes.map((node: Laya.Sprite) => Array.from({ length: node.numChildren }, (_, i) => node.getChildAt(i) as Laya.Sprite).filter(n => n.name.startsWith('Frame')));
+        for (let frame = 0; frame < Math.max(...enemyFrames.map(frames => frames.length)); frame++) {
+            for (const frames of enemyFrames) frames.forEach((node, i) => node.visible = i === frame % frames.length);
             save(enemies, 960, 600, `怪物帧_${frame}.png`);
         }
         await IEditorEnv.CreateAssetUtil.createScene(enemies, 'Hd2dProductionEnemies.ls'); enemies.destroy(true);

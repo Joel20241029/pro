@@ -1,0 +1,16 @@
+{
+  "title": "防塔发射",
+  "authorship": "Original procedural short launch sound; shared by all tower types.",
+  "sampleRate": 22050,
+  "durationSeconds": 0.09,
+  "mp3Bitrate": "32k",
+  "synthesis": {
+    "frequencyHz": 740,
+    "sweepHz": 440,
+    "noiseGain": 0.35,
+    "noiseSeed": 46,
+    "attackSeconds": 0.003,
+    "peak": 0.45
+  },
+  "bundle": "battle"
+}

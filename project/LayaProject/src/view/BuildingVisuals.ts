@@ -51,7 +51,8 @@ export class BuildingVisuals {
         this.body = this.muzzle = null; this.upgrades = []; this.attack = null;
         this.cachedBodyRegion = null;
         this.latestShot = null; this.upgrading = false; this.badge.visible = false;
-        if (!kind) return;
+        // 空地已没有动画节点，同时撤销旧建筑待播动作；非空建筑的损坏/朝向重建仍保留待播升级。
+        if (!kind) { this.upgradePending = false; return; }
         this.owner.texture = null;
         const layout = this.art.buildingLayouts[buildingLayoutId(kind, level, rooms)];
         if (!layout) throw new Error("缺少编辑器建筑布局:" + key);
@@ -132,5 +133,12 @@ export class BuildingVisuals {
         if (!this.muzzle || !this.body) throw new Error("当前建筑没有发射口");
         const point = this.muzzle.localToGlobal(new Laya.Point(0, 0), false, this.owner.parent as Laya.Sprite);
         return { x: point.x, y: point.y };
+    }
+    /** 光环绕武器基部，不能使用偏向箭尖的Muzzle。跟随编辑器等级、后坐与当前塔缩放。 */
+    weaponAnchor(): GroundPoint & { scale: number } {
+        const weapon = this.body!.getChildByName("Weapon") as Laya.Sprite;
+        const parent = this.owner.parent as Laya.Sprite;
+        const point = weapon.localToGlobal(new Laya.Point(weapon.width / 2, weapon.height), false, parent);
+        return { x: point.x, y: point.y, scale: this.owner.width / 128 * Math.abs(this.owner.scaleX) };
     }
 }

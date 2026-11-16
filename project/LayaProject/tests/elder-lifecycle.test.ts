@@ -12,7 +12,7 @@ function equal(a: unknown, b: unknown) { ok(canonical(a) === canonical(b), `${JS
 function rejects(f: () => void) { let rejected = false; try { f(); } catch { rejected = true; } ok(rejected, "expected rejection"); }
 function test(name: string, f: () => void) { f(); passed++; console.log("PASS", name); }
 function dawn(s: GameState) {
-    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "SKILL" || q.kind === "POLICY" ? q.options[0] : q.kind === "TRAVELER" ? "decline" : "0" }); }
+    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "SKILL" || q.kind === "POLICY" ? q.options[0] : "decline" }); }
     applyCommand(s, { type: "FINALIZE" });
 }
 function win(s: GameState) { applyCommand(s, { type: "NIGHT" }); validateState(s); finishNight(s, RULE.gateMax, s.towers.map(t => t.operator)); validateState(s); }

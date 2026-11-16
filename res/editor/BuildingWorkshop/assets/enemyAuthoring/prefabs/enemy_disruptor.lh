@@ -1,20 +1,34 @@
 {
   "_$ver": 1,
-  "_$id": "yjcov7k5",
+  "_$id": "pog0pocw",
   "_$type": "Sprite",
   "name": "enemy_disruptor",
   "width": 96,
   "height": 96,
   "_$child": [
     {
-      "_$id": "1oyyb2n8",
+      "_$id": "c0uz7voh",
+      "_$type": "Sprite",
+      "name": "ContactShadow",
+      "x": 26,
+      "y": 66,
+      "width": 42,
+      "height": 25,
+      "alpha": 0.5,
+      "texture": {
+        "_$uuid": "ce22f075-2208-4cae-8394-6080925dceb7",
+        "_$type": "Texture"
+      }
+    },
+    {
+      "_$id": "nxd1gx5c",
       "_$type": "Sprite",
       "name": "Frame0",
       "width": 96,
       "height": 96,
       "_$child": [
         {
-          "_$id": "zh26stxu",
+          "_$id": "wvqfrn46",
           "_$type": "Sprite",
           "name": "Body",
           "width": 96,
@@ -25,7 +39,7 @@
           }
         },
         {
-          "_$id": "bb62o7nw",
+          "_$id": "hci3163i",
           "_$type": "Sprite",
           "name": "HeadSocket",
           "x": 48,
@@ -34,18 +48,18 @@
           "height": 0
         },
         {
-          "_$id": "n2efij8f",
+          "_$id": "bbgstnb4",
           "_$type": "Sprite",
           "name": "BackSocket",
           "x": 48,
-          "y": 62,
+          "y": 50,
           "width": 0,
           "height": 0
         }
       ]
     },
     {
-      "_$id": "e5q07gmd",
+      "_$id": "njnnc91t",
       "_$type": "Sprite",
       "name": "Frame1",
       "width": 96,
@@ -53,7 +67,7 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "suohzf6n",
+          "_$id": "mlhdmwiy",
           "_$type": "Sprite",
           "name": "Body",
           "width": 96,
@@ -64,7 +78,7 @@
           }
         },
         {
-          "_$id": "at1q0bya",
+          "_$id": "tn7oeezi",
           "_$type": "Sprite",
           "name": "HeadSocket",
           "x": 48,
@@ -73,28 +87,184 @@
           "height": 0
         },
         {
-          "_$id": "6auqtr5q",
+          "_$id": "apj0azdu",
           "_$type": "Sprite",
           "name": "BackSocket",
           "x": 48,
-          "y": 62,
+          "y": 50,
           "width": 0,
           "height": 0
         }
       ]
     },
     {
-      "_$id": "8mloc77b",
+      "_$id": "x458rvr1",
+      "_$type": "Sprite",
+      "name": "Frame2",
+      "width": 96,
+      "height": 96,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "swglaoe5",
+          "_$type": "Sprite",
+          "name": "Body",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "a53be64b-a546-4d6b-bd2e-9551e1968f18",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "9u7trzug",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 28,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "_$id": "bxcp3dnj",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 48,
+          "y": 49,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "_$id": "z4hgha1m",
+      "_$type": "Sprite",
+      "name": "Frame3",
+      "width": 96,
+      "height": 96,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "0qdvrc05",
+          "_$type": "Sprite",
+          "name": "Body",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "e84bf1c1-ff86-4ea8-b89f-db51571a3d45",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "hge5sk9t",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 29,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "_$id": "ii1f8wcr",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 48,
+          "y": 50,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "_$id": "jucz3zkh",
+      "_$type": "Sprite",
+      "name": "Frame4",
+      "width": 96,
+      "height": 96,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "swe4gjul",
+          "_$type": "Sprite",
+          "name": "Body",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "dcae432c-18c6-4b7a-bfe1-9196800fa143",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "lhuzyiif",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 29,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "_$id": "4uif8og4",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 48,
+          "y": 50,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "_$id": "99q1u7te",
+      "_$type": "Sprite",
+      "name": "Frame5",
+      "width": 96,
+      "height": 96,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "ggmshq4r",
+          "_$type": "Sprite",
+          "name": "Body",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "96288ae7-1701-49e7-8885-814a64d77ee3",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "bu465l5x",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 29,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "_$id": "3j7srofj",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 48,
+          "y": 50,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "_$id": "w9n6l6of",
       "_$type": "Sprite",
       "name": "SortOrigin",
       "x": 48,
-      "y": 92,
+      "y": 84,
       "width": 0,
       "height": 0,
       "visible": false
     },
     {
-      "_$id": "gvn6m5xy",
+      "_$id": "q5wncv7p",
       "_$type": "Sprite",
       "name": "VisualBounds",
       "width": 96,

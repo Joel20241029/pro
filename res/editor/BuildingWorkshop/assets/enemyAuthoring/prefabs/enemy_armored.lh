@@ -1,20 +1,48 @@
 {
   "_$ver": 1,
-  "_$id": "sref28gl",
+  "_$id": "xfv2d69l",
   "_$type": "Sprite",
   "name": "enemy_armored",
   "width": 96,
   "height": 96,
   "_$child": [
     {
-      "_$id": "ngygd5hh",
+      "_$id": "2ryiw0v9",
+      "_$type": "Sprite",
+      "name": "ContactShadow",
+      "x": 24,
+      "y": 62,
+      "width": 46,
+      "height": 28,
+      "alpha": 0.5,
+      "texture": {
+        "_$uuid": "ce22f075-2208-4cae-8394-6080925dceb7",
+        "_$type": "Texture"
+      }
+    },
+    {
+      "_$id": "dl77sc9o",
       "_$type": "Sprite",
       "name": "Frame0",
       "width": 96,
       "height": 96,
       "_$child": [
         {
-          "_$id": "hdv6kpdt",
+          "_$id": "eovoiqcx",
+          "_$type": "Sprite",
+          "name": "Accessory_banner",
+          "x": 65,
+          "y": 12,
+          "width": 36,
+          "height": 36,
+          "visible": false,
+          "texture": {
+            "_$uuid": "7289cadb-e293-40f7-83a0-7cf22622d804",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "qkjn3eds",
           "_$type": "Sprite",
           "name": "Body",
           "width": 96,
@@ -25,27 +53,27 @@
           }
         },
         {
-          "_$id": "vwqnrhk8",
+          "_$id": "ld70qrq6",
           "_$type": "Sprite",
           "name": "HeadSocket",
           "x": 48,
-          "y": 29,
+          "y": 26,
           "width": 0,
           "height": 0
         },
         {
-          "_$id": "ctvx5unq",
+          "_$id": "ktu8q735",
           "_$type": "Sprite",
           "name": "BackSocket",
           "x": 48,
-          "y": 62,
+          "y": 52,
           "width": 0,
           "height": 0
         }
       ]
     },
     {
-      "_$id": "v4gph1oa",
+      "_$id": "u6qs28d9",
       "_$type": "Sprite",
       "name": "Frame1",
       "width": 96,
@@ -53,7 +81,21 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "meb0ktpe",
+          "_$id": "5l29edn2",
+          "_$type": "Sprite",
+          "name": "Accessory_banner",
+          "x": 65,
+          "y": 12,
+          "width": 36,
+          "height": 36,
+          "visible": false,
+          "texture": {
+            "_$uuid": "7289cadb-e293-40f7-83a0-7cf22622d804",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "igvmvrcz",
           "_$type": "Sprite",
           "name": "Body",
           "width": 96,
@@ -64,27 +106,27 @@
           }
         },
         {
-          "_$id": "oyk9tcsj",
+          "_$id": "eee5nkpb",
           "_$type": "Sprite",
           "name": "HeadSocket",
           "x": 48,
-          "y": 29,
+          "y": 26,
           "width": 0,
           "height": 0
         },
         {
-          "_$id": "e1izdceb",
+          "_$id": "166ruzjg",
           "_$type": "Sprite",
           "name": "BackSocket",
           "x": 48,
-          "y": 62,
+          "y": 52,
           "width": 0,
           "height": 0
         }
       ]
     },
     {
-      "_$id": "lmm3cj37",
+      "_$id": "3t2hi46x",
       "_$type": "Sprite",
       "name": "Frame2",
       "width": 96,
@@ -92,7 +134,21 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "tonj7e4k",
+          "_$id": "ot5zhmj0",
+          "_$type": "Sprite",
+          "name": "Accessory_banner",
+          "x": 65,
+          "y": 11,
+          "width": 36,
+          "height": 36,
+          "visible": false,
+          "texture": {
+            "_$uuid": "7289cadb-e293-40f7-83a0-7cf22622d804",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "0nendw17",
           "_$type": "Sprite",
           "name": "Body",
           "width": 96,
@@ -103,27 +159,27 @@
           }
         },
         {
-          "_$id": "04nvo9ko",
+          "_$id": "p2hdgrn1",
           "_$type": "Sprite",
           "name": "HeadSocket",
           "x": 48,
-          "y": 29,
+          "y": 25,
           "width": 0,
           "height": 0
         },
         {
-          "_$id": "pwwkmvld",
+          "_$id": "ql5ah6bv",
           "_$type": "Sprite",
           "name": "BackSocket",
           "x": 48,
-          "y": 62,
+          "y": 51,
           "width": 0,
           "height": 0
         }
       ]
     },
     {
-      "_$id": "xjnso5m1",
+      "_$id": "5qdbv9to",
       "_$type": "Sprite",
       "name": "Frame3",
       "width": 96,
@@ -131,7 +187,21 @@
       "visible": false,
       "_$child": [
         {
-          "_$id": "8nny9932",
+          "_$id": "c1jisati",
+          "_$type": "Sprite",
+          "name": "Accessory_banner",
+          "x": 65,
+          "y": 12,
+          "width": 36,
+          "height": 36,
+          "visible": false,
+          "texture": {
+            "_$uuid": "7289cadb-e293-40f7-83a0-7cf22622d804",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "5uqxl690",
           "_$type": "Sprite",
           "name": "Body",
           "width": 96,
@@ -142,37 +212,143 @@
           }
         },
         {
-          "_$id": "fg5z22rn",
+          "_$id": "m3ryod1p",
           "_$type": "Sprite",
           "name": "HeadSocket",
           "x": 48,
-          "y": 29,
+          "y": 26,
           "width": 0,
           "height": 0
         },
         {
-          "_$id": "xpxp0tnf",
+          "_$id": "ochxbm01",
           "_$type": "Sprite",
           "name": "BackSocket",
           "x": 48,
-          "y": 62,
+          "y": 52,
           "width": 0,
           "height": 0
         }
       ]
     },
     {
-      "_$id": "tspcvzoa",
+      "_$id": "9fw66d3w",
+      "_$type": "Sprite",
+      "name": "Frame4",
+      "width": 96,
+      "height": 96,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "jon4b22w",
+          "_$type": "Sprite",
+          "name": "Accessory_banner",
+          "x": 65,
+          "y": 12,
+          "width": 36,
+          "height": 36,
+          "visible": false,
+          "texture": {
+            "_$uuid": "7289cadb-e293-40f7-83a0-7cf22622d804",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "kzv311ft",
+          "_$type": "Sprite",
+          "name": "Body",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "abd983b6-4867-410a-a97e-451560a4dde3",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "y7pl3abd",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 26,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "_$id": "9ecbh0eu",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 48,
+          "y": 52,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "_$id": "bsjlmy7h",
+      "_$type": "Sprite",
+      "name": "Frame5",
+      "width": 96,
+      "height": 96,
+      "visible": false,
+      "_$child": [
+        {
+          "_$id": "djvr8921",
+          "_$type": "Sprite",
+          "name": "Accessory_banner",
+          "x": 65,
+          "y": 12,
+          "width": 36,
+          "height": 36,
+          "visible": false,
+          "texture": {
+            "_$uuid": "7289cadb-e293-40f7-83a0-7cf22622d804",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "a58ibjg4",
+          "_$type": "Sprite",
+          "name": "Body",
+          "width": 96,
+          "height": 96,
+          "texture": {
+            "_$uuid": "d8876b92-bb3a-4a6e-9dbe-2d7db11a61c6",
+            "_$type": "Texture"
+          }
+        },
+        {
+          "_$id": "bjt0936e",
+          "_$type": "Sprite",
+          "name": "HeadSocket",
+          "x": 48,
+          "y": 26,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "_$id": "0mrcplfi",
+          "_$type": "Sprite",
+          "name": "BackSocket",
+          "x": 48,
+          "y": 52,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    {
+      "_$id": "vguspjny",
       "_$type": "Sprite",
       "name": "SortOrigin",
       "x": 48,
-      "y": 92,
+      "y": 82,
       "width": 0,
       "height": 0,
       "visible": false
     },
     {
-      "_$id": "ud3a3vh6",
+      "_$id": "yecvw7ax",
       "_$type": "Sprite",
       "name": "VisualBounds",
       "width": 96,

@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-15",
+  "status": "用户已选择B方案；正式制作源",
+  "tool": "image_gen built-in",
+  "source": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-80d8a01d-79b1-4889-98d0-9345d21fc4cf.png",
+  "reference": "res/design/tactics/04_百毅靓之怒_强化表现备选/B_旋刃光环.png",
+  "prompt": "Use case: stylized-concept game VFX production sprite sheet. Input is an approved concept board; use ONLY its B crimson-white orbit blades and small upward double chevron as style reference. Do not reproduce scene or text. Produce a clean transparent RGBA PNG with TWO independent equal-size cells arranged horizontally, 1536 wide by 1024 high, cell split at x=768, no borders, no labels, no background.\nLEFT CELL: exactly ONE symmetric pair of large opposing curved energy crescents arranged around a perfect CIRCULAR empty center, viewed from directly overhead, NOT an ellipse, NOT perspective, circular design centered at (384,512), entire outer diameter about 620px. Two thick tapered curved blades swirl clockwise, rotationally symmetric 180 degrees: arcs about 120 degrees each with two generous gaps between their tips. Bold deep burgundy outer edge, vivid crimson red surface, broad warm WHITE/ivory inner cores, only narrow red soft edge glow. Outer silhouettes clean and compact. The white core must remain opaque and legible when reduced. Hollow center completely transparent, about 65 percent of outer diameter; not a filled disc. Thin wispy trails and particle sparks are forbidden. This single topdown texture will be rotated by the engine THEN projected into a horizontal ellipse, so it must be perfectly round and centered. No tower, arrow, symbol or detached specks in this cell.\nRIGHT CELL: one vertical pair of stacked UPWARD pointing chevrons, centered at (1152,512). Total visible width 300px, height 280px. Each is a sharp upward V/caret, white opaque center with bold crimson red edge and a very narrow red glow, same visual language as approved buff arrows. Symmetric, clear gap between two chevrons, no stem, no star, no third chevron. Keep it isolated far from the left circle.\nStyle: crisp high-definition pre-rendered 2D game VFX, convincing sculpted highlights but clean alpha edges, red-and-white NOT orange/gold, no particle system look. Truly transparent background and hole, no checkerboard artwork, black background, environmental backdrop, text, frames, UI or drop shadow. These two sprites will be cropped separately into game assets. Match the broad blade thickness and bold red/white contrast of the concept, rather than drawing a subtle fine ring.",
+  "transparentBackground": true,
+  "crops": {
+    "fx_rage_orbit": [
+      0,
+      128,
+      768,
+      768
+    ],
+    "fx_rage_up": [
+      896,
+      256,
+      512,
+      512
+    ]
+  },
+  "rendering": "One top-down circular double-blade texture; rotate child before vertical projection, split by fixed Sprite.scrollRect above/below weapon."
+}

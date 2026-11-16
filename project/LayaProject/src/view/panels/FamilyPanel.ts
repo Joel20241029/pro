@@ -5,11 +5,12 @@ import { C, UI } from "../UiTheme";
 import { ScrollList } from "../ScrollList";
 import { Panel, PanelContext } from "./PanelContext";
 import { amount, coloredName } from "../ViewText";
+import { orderPanelRows } from "./PanelListOrder";
 export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
     const day = s.phase === "DAY";
     if (p.type === "families") {
         // 家庭卡片保留全部原因和照料信息；两栏概要与独立操作区只改变阅读层级。
-        const list = s.families, rowHeight = 266, rowStep = 280;
+        const list = orderPanelRows(p, s.families, f => f.id, f => birthUnavailableReason(s, f.id) === null), rowHeight = 266, rowStep = 280;
         const height = Math.min(UI.panelHeight, 408 + Math.max(1, list.length) * rowStep);
         const box = ctx.modal("家庭与养育", "先让单身村民成家，再迎接下一代。", true, { width: UI.panelWidth, height });
         const home = new Laya.Sprite(); home.pos(34, 152); ctx.art.panel(home, "panel_card", 288, 70); box.addChild(home);
@@ -28,12 +29,13 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
             const rows = new ScrollList(UI.contentWidth, height - 408, list.length * rowStep - (rowStep - rowHeight), p.scroll, offset => p.scroll = offset);
             rows.pos(34, 382);
             box.addChild(rows);
-            list.forEach((f, i) => {
+            rows.setVirtualRows(list.length, rowStep, (i, row) => {
+                const f = list[i];
                 const reason = birthUnavailableReason(s, f.id), card = new Laya.Sprite();
                 card.name = `family:${f.id}`;
-                card.pos(0, i * rowStep);
+                card.pos(0, 0);
                 ctx.art.panel(card, "panel_card", 584, rowHeight);
-                rows.content.addChild(card);
+                row.addChild(card);
                 f.partners.forEach((id, partner) => {
                     // 姓名—头像—红心—头像—姓名镜像排布；头像中心232/352与红心中心292等距。
                     const parent = person(s, id), x = partner ? 318 : 198;

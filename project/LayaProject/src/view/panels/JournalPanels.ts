@@ -3,28 +3,33 @@ import { TRAITS } from "../../game/GameConfig";
 import { C, UI } from "../UiTheme";
 import { ScrollList } from "../ScrollList";
 import { RankingView } from "../RankingView";
+import { tacticRevealed } from "../../game/Tactics";
 import { GUIDE_CHAPTERS } from "../GameGuide";
 import { Panel, PanelContext } from "./PanelContext";
 export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel) {
     if (p.type === "ranking") {
         const box = ctx.modal("好友守村榜", "");
-        const ranking = new RankingView(ctx.platform, s.legacy.bestNight);
-        ranking.pos(34, 132);
-        box.addChild(ranking);
-        ranking.refreshRanking();
+        // 构造前分配请求ID，连 super()/纹理初始化失败也能定位；保留原异常，不吞掉渲染问题。
+        const trace = ctx.platform.rankingDiagnostics, request = trace.begin();
+        try {
+            const ranking = new RankingView(ctx.platform, s.legacy.bestNight, request);
+            ranking.pos(34, 132);
+            box.addChild(ranking);
+            ranking.refreshRanking();
+        } catch (error) { trace.failure("view_error", request, error); trace.end(request, 0); throw error; }
         return;
     }
     if (p.type === "restart") {
         const box = ctx.modal("重新开村", "两种方式都会结束当前村落", true, { width: 620, height: 490 });
         ctx.ui.button(box, "传承开村", 38, 160, 544, () => ctx.open({ type: "inherit" }), C.green, 76);
-        ctx.ui.label(box, "保留家谱与累计，选择一项天赋", 38, 242, 544, 26, C.green, false, 40).align = "center";
+        ctx.ui.label(box, "保留家谱、累计与战技，选择一项天赋", 38, 242, 544, 26, C.green, false, 40).align = "center";
         ctx.ui.button(box, "纯净开始", 38, 304, 544, () => ctx.open({ type: "cleanStart" }), C.gold, 76);
         ctx.ui.label(box, "回到首次开村状态，只保留最高纪录", 38, 386, 544, 26, C.timber, false, 40).align = "center";
         return;
     }
     if (p.type === "cleanStart") {
         const box = ctx.modal("确认纯净开始", "当前村庄、天赋、家谱和累计进度将清空", true, { width: 620, height: 420 });
-        ctx.ui.label(box, "只保留最高守夜纪录。\n新村可重新领取一次口粮。", 38, 160, 544, 28, C.timber, false, 100).align = "center";
+        ctx.ui.label(box, "只保留最高守夜纪录，战技回到初始。\n新村可重新领取一次口粮。", 38, 160, 544, 28, C.timber, false, 100).align = "center";
         ctx.ui.button(box, "取消", 38, 300, 254, () => ctx.open({ type: "restart" }), C.muted, 76);
         ctx.ui.button(box, "确认纯净开始", 310, 300, 272, () => ctx.game.cleanStart(), C.gold, 76);
         return;
@@ -45,6 +50,7 @@ export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel) {
         content.name = `guide:${chapter.title}`;
         let y = 0;
         for (const section of chapter.sections) {
+            if (section.tactic && !tacticRevealed(s, section.tactic)) continue;
             ctx.ui.label(content, section.title, 8, y, 568, 32, C.green, true, 48);
             const body = ctx.ui.label(content, section.body, 8, y + 56, 568, 29, C.ink, false, 1000);
             // 沿用 Tip 对真实排版高度的测量，避免以字数估行造成末尾裁切。

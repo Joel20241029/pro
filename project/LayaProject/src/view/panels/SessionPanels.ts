@@ -63,10 +63,6 @@ export function drawDawn(ctx: PanelContext, s: GameState) {
         ctx.ui.label(box, `为${SEASONS[season(s.day)]}季定下村规\n持续 3 天`, 34, 226, 600, 32, C.green, true, 104).align = "center";
         q.options.forEach((id, i) => ctx.ui.button(box, `${POLICIES[id].name}\n${POLICIES[id].desc}`, 34, 378 + i * 132, 600, () => ctx.send({ type: "CHOOSE", value: id }), i === 0 ? C.gold : C.green, 102));
     }
-    else {
-        ctx.ui.label(box, "又是一年\n选择这一年的挑战", 34, 226, 600, 32, C.green, true, 104).align = "center";
-        ["安居 · 0 档", "坚守 · 1 档", "奋战 · 2 档", "无畏 · 3 档"].forEach((v, i) => ctx.ui.button(box, v, 34, 366 + i * 110, 600, () => ctx.send({ type: "CHOOSE", value: String(i) }), i === s.tier ? C.gold : C.green, 82));
-    }
 }
 export function drawGameOver(ctx: PanelContext, s: GameState) {
     if (ctx.current && ["restart", "inherit", "cleanStart"].includes(ctx.current.type)) {

@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-13",
+  "tool": "image_gen.imagegen",
+  "intent": "edit",
+  "references": [
+    "res/design/hd2d/parts/road_sprite.png",
+    "res/reference/gate_lane_reference.png"
+  ],
+  "output": "res/source/rendered2d/generated/environment/gate_lane.png",
+  "transparent_background": true,
+  "prompt": "Use case: precise-object-edit.\nAsset type: transparent 2D ground overlay for the existing high-definition chibi Chinese village game, softly rendered 3D-to-2D style.\nInput image 1 is the edit target: the existing beige winding dirt-road sprite. Turn this road material/style into ONE NEW NARROW HORIZONTAL VILLAGE FOOTPATH. Input image 2 is a visual placement/style reference ONLY: it shows the small horizontal dirt lane immediately at the foot of the palisade and gate, highlighted by a red rectangle. Do NOT copy the red rectangle or any other objects.\nOutput ONLY the isolated horizontal dirt lane with true transparent surroundings, not the whole scene. Landscape canvas, approximately 1536 by 1024. The lane extends from x=35 to x=1500, centered around y=510. It is a very long thin strip: about 70-95 pixels thick across its long horizontal run, a little wider around the central gate threshold at x=770 (about 120 pixels), not a broad highway. Keep ample transparent margin vertically. Slight soft organic horizontal waviness of only 10-15 pixels, subtly irregular worn edges. Make a faint rounded widening on the bottom edge in the center where villagers step out of the gate, NOT a large T-junction branch.\nMaterial: warm pale ochre-beige packed soil matching the first image, subtle natural compacted earth variation, a few tiny embedded specks of warm grey grit, soft muted tan edges with minimal local ambient occlusion. It must look like a well-used village path lying flat on grass, not a raised curb, not a plank, ribbon, stone slab, rectangle, outlined bar or trench. No straight cut edges, no thick dark border, no heavy cast shadow, no glowing outline. The long upper/lower edges have scattered very small fresh green blades and feathered earth at the transition, sparse enough to blend with the current grassy ground. The left/right ends taper gently into transparency.\nLighting and view: same soft upper-left light as the reference, near overhead game-ground view, no perspective horizon, no fake front vertical wall, smooth antialiasing and detailed soft 3D rendering. No buildings, fences, gate, signboards, rocks as objects, trees, flowers, people, text, borders, red annotation or checkerboard baked into pixels. Preserve true alpha outside the path. Deliver a single complete horizontal lane asset, all edges visible.",
+  "runtime": {
+    "id": "map_gate_lane",
+    "width": 512,
+    "height": 48,
+    "crop": [
+      16,
+      464,
+      1504,
+      128
+    ],
+    "alphaCutoff": 16,
+    "bundle": "base",
+    "placement": "WORLD_ART.gateLane; follows reference wall foot 830, fixed display height",
+    "scope": "Decorative ground overlay only; no changes to navigation or combat path"
+  }
+}

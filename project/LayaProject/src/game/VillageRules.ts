@@ -2,18 +2,22 @@ import { ADULT_APPEARANCE, ELITE, GROWTH, RULE, Skill, TOWERS, TowerKind, VILLAG
 import { GameState, isElder, isWorkingAdult, Job, Person } from "./GameState";
 import { SeededRandom } from "./SeededRandom";
 import { generateWave } from "./WaveGenerator";
-import { gateCapacity, laborSlots, repairCost, upgradeCost, upgradeUnavailableReason } from "./Growth";
+import { gateCapacity, laborSlots, repairCost, residentialCost, upgradeCost, upgradeUnavailableReason } from "./Growth";
 import { nextSex } from "./Population";
 import { dailyRationAmount } from "./DailyRation";
 import { person, capacity, canMarry, birthUnavailableReason, economy, policy } from "./VillageQueries";
 import { autoAssignJobs, autoAssignOperators, assignOperator } from "./VillageJobs";
 import { requireRule, spend, newId, remember, pruneHistory } from "./VillageStateOps";
+import { applyTactic } from "./Tactics";
 /** 原村务 API 保持不变；内部模块只依赖具体实现，禁止反向引用此入口。 */
 export { createGame } from "./VillageCreation";
 export { finishNight } from "./VillageLifecycle";
 export { person, policy, capacity, canMarry, birthUnavailableReason, economy } from "./VillageQueries";
 export { JOB_NAMES, autoAssignJobs, autoAssignOperators, assignOperator } from "./VillageJobs";
 export type Command = {
+    type: "TACTIC_LEARN" | "TACTIC_EQUIP";
+    id: string;
+} | {
     type: "DAILY_RATION";
     date: string;
 } | {
@@ -58,7 +62,7 @@ export type Command = {
     id: string;
 } | {
     type: "SPEED";
-    value: 1 | 2 | 3;
+    value: 2 | 3;
 } | {
     type: "MUSIC";
     enabled: boolean;
@@ -72,7 +76,7 @@ export function applyCommand(s: GameState, c: Command) {
         return;
     }
     if (c.type === "SPEED") {
-        requireRule(c.value === 1 || c.value === 2 || c.value === 3, "无效倍速");
+        requireRule(c.value === RULE.minSpeed || c.value === RULE.maxSpeed, "无效倍速");
         s.settings.speed = c.value;
         return;
     }
@@ -108,6 +112,10 @@ export function applyCommand(s: GameState, c: Command) {
     }
     requireRule(s.phase === "DAY", "请在白天安排村务");
     switch (c.type) {
+        case "TACTIC_LEARN":
+        case "TACTIC_EQUIP":
+            applyTactic(s, c.id, c.type === "TACTIC_LEARN" ? "LEARN" : "EQUIP");
+            break;
         case "JOB": {
             const p = person(s, c.id);
             requireRule(isWorkingAdult(p), "孩子和荣休老人不能安排工作");
@@ -172,7 +180,10 @@ export function applyCommand(s: GameState, c: Command) {
         case "BUILD": {
             if (c.kind === "HOUSE") {
                 requireRule(s.houses < RULE.houseMax, "民居已达上限");
-                spend(s, "wood", RULE.houseCost);
+                const cost = residentialCost(s.houses), reason = upgradeUnavailableReason(s, cost);
+                requireRule(!reason, reason!);
+                spend(s, "wood", cost.wood);
+                spend(s, "food", cost.food);
                 s.houses++;
             }
             else {
@@ -220,7 +231,7 @@ export function applyCommand(s: GameState, c: Command) {
             requireRule(s.wave !== null, "波次未准备好");
             autoAssignOperators(s);
             const e = economy(s);
-            s.night = { adults: s.people.filter(isWorkingAdult).map(p => p.id), elders: s.people.filter(isElder).map(p => p.id), cared: s.people.filter(p => isWorkingAdult(p) && p.job === "CARE").map(p => p.careChild!), hungry: e.hungry };
+            s.night = { adults: s.people.filter(isWorkingAdult).map(p => p.id), elders: s.people.filter(isElder).map(p => p.id), cared: s.people.filter(p => isWorkingAdult(p) && p.job === "CARE").map(p => p.careChild!), hungry: e.hungry, tactic: s.tactics.equipped };
             s.food = e.endFood;
             s.wood = e.endWood;
             s.phase = "NIGHT";
@@ -250,10 +261,6 @@ function choose(s: GameState, value: string) {
         case "POLICY":
             requireRule(q.options.includes(value), "村规选项无效");
             s.policy = value;
-            break;
-        case "TIER":
-            requireRule(["0", "1", "2", "3"].includes(value), "挑战档无效");
-            s.tier = Number(value);
             break;
     }
     s.choices.shift();

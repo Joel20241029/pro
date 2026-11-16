@@ -10,7 +10,7 @@ function near(a: number, b: number) { ok(Math.abs(a - b) < 1e-7, `${a} != ${b}`)
 function equal(a: unknown, b: unknown) { ok(JSON.stringify(a) === JSON.stringify(b), `${JSON.stringify(a)} != ${JSON.stringify(b)}`); }
 function test(name: string, f: () => void) { f(); passed++; console.log("PASS", name); }
 function battle() { const s = createGame(7); applyCommand(s, { type: "NIGHT" }); return new BattleSimulation(s); }
-function shot(kind: TowerKind, tick = 0): Shot { return { tower: 0, x: PADS[0].x + 120, y: PADS[0].y - 15, kind, tick }; }
+function shot(kind: TowerKind, tick = 0): Shot { return { tower: 0, x: PADS[0].x + 120, y: PADS[0].y - 15, kind, tick, empowered: false }; }
 
 test("Arrow starts at the launcher, faces its target and becomes a short impact", () => {
     for (const [dx, dy, angle] of [[120, 0, 0], [-120, 0, 180], [0, -100, -90], [0, 100, 90]]) {
@@ -75,12 +75,12 @@ test("Playing effects does not change damage, targeting, outcome or business sta
     }
     ok(observed > 0); equal([a.outcome, a.tick, a.gate, a.base], [b.outcome, b.tick, b.gate, b.base]); equal(m.poses.length, 0);
 });
-test("All three tower types launch from their visible source anchor at all four pads", () => {
+test("All three tower types launch from their visible source anchor at all five pads", () => {
     for (let tower = 0; tower < PADS.length; tower++) for (const kind of ["ARROW", "STONE", "SLOW"] as TowerKind[]) {
         const b = battle(), m = new ProjectileMotion(), s = { ...shot(kind), tower };
         b.tick = 1; b.shots = [s]; m.update(b); const start = towerLaunch(tower, kind);
         near(m.poses[0].x, start.x); near(m.poses[0].y, start.y);
-        if (kind === "ARROW") ok(tower % 2 ? start.x < PADS[tower].x : start.x > PADS[tower].x);
+        if (kind === "ARROW") ok([1, 3, 4].includes(tower) ? start.x < PADS[tower].x : start.x > PADS[tower].x);
         if (kind === "SLOW") near(start.x, PADS[tower].x);
     }
 });

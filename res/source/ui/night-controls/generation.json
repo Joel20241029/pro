@@ -1,0 +1,23 @@
+{
+  "tool": "image_gen",
+  "date": "2026-11-14",
+  "reference": [
+    "approved-design.png",
+    "../circular-footer/round-button-and-shield.png"
+  ],
+  "promptSummary": "严格匹配已确认守夜设计：左侧无字暖金橙色圆钮，右侧独立红心和金冠，透明背景、干净金边、平滑渐变；不生成文字、粒子或外部地面投影。",
+  "sourceSize": {
+    "width": 1774,
+    "height": 887
+  },
+  "outputs": {
+    "button_heart_round": [
+      384,
+      384
+    ],
+    "icon_crowned_heart": [
+      128,
+      128
+    ]
+  }
+}

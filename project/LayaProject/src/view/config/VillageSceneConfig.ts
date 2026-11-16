@@ -4,7 +4,7 @@ export interface GroundPoint {
     x: number;
     y: number;
 }
-/** 伐木表现目标：树ID稳定用于预占/摇树，站点在树的村内侧；不决定生产结算。 */
+/** 伐木表现目标：树ID稳定用于预占/摇树，站点在树的村内前侧；不决定生产结算。 */
 export interface LoggingStop extends GroundPoint { treeId: string; treeX: number; }
 export interface Footprint {
     left: number;
@@ -24,11 +24,12 @@ export interface VillageProp extends GroundPoint {
     canopyDetails?: readonly { frame: string; x: number; y: number; size: number; alpha: number }[];
 }
 /** 128px塔源画布的实际弓口/投石兜/水晶挂点；仅表现，不移动逻辑塔位或射程。
- * 左侧1/3塔向右、右侧2/4塔向左；石塔/寒塔保持正面，箭塔只切换实际左右武器，不镜像主体。
+ * 左侧1/3塔向右、右侧2/4/5塔向左；石塔/寒塔保持正面，箭塔只切换实际左右武器，不镜像主体。
  */
 export const TOWER_VIEW = {
-    // 空塔位缩为72%，保持同一足点，避免石圈比一级塔本体更醒目；不影响射程/点击区。
-    size: 108, top: -80, canvas: 128, emptyScale: .72, facing: [1, -1, 1, -1],
+    // 三种塔按反馈统一从108放大到124（约15%），top同步上移15以保留原地面足点；空石圈仍约78宽。
+    // 最大占地84×34与放大后的底座一致，三种塔预留相同可行走边界；不改变逻辑PADS或射程。
+    size: 124, top: -95, canvas: 128, emptyScale: .63, footprintWidth: 84, footprintDepth: 34, facing: [1, -1, 1, -1, -1],
     muzzle: { ARROW: { x: 92, y: 35 }, STONE: { x: 74, y: 50 }, SLOW: { x: 64, y: 32 } }
 } as const;
 /** 既有固定地图与高清母画布足底（中心、15/16 高度）。占地仅覆盖底座，屋顶/树冠可以遮住行人。 */
@@ -37,28 +38,31 @@ function prop(id: string, frame: string, left: number, top: number, size: number
     return { id, frame, x, y, size, footprint: { left: x - baseWidth / 2, top: y - baseDepth, right: x + baseWidth / 2, bottom: y } };
 }
 export const VILLAGE_PROPS: VillageProp[] = [
-    // 30棵固定树簇：大小/纵深错落并保留塔侧空隙。仅表现布点，不消耗业务随机数，也不改变林地通行边界。
+    // 30棵固定树簇：相邻大小交错至88~116，保持同一量级并保留塔侧空隙。
+    // 1号塔左下移后，旁边松树的x由112移至80，避免树冠挡住塔身；其余树脚保持。
+    // 仅表现尺寸，不消耗业务随机数，也不改变林地通行边界；花果子节点和地影随树尺寸同步。
     ...[
-        [46, 312, 100], [112, 336, 118], [16, 382, 95], [72, 380, 94], [141, 408, 90],
-        [48, 457, 112], [102, 488, 118], [63, 531, 100], [140, 556, 92],
-        [44, 606, 108], [102, 634, 116], [59, 687, 98], [132, 713, 102], [28, 736, 84], [73, 763, 114],
-        [656, 304, 102], [592, 333, 118], [625, 377, 94], [686, 413, 110], [575, 443, 90],
-        [642, 469, 120], [592, 512, 98], [678, 539, 110], [625, 580, 96],
-        [583, 619, 112], [664, 652, 100], [619, 698, 116], [687, 730, 108], [578, 756, 96], [648, 777, 94]
+        [46, 312, 108], [92, 320, 92], [16, 382, 104], [72, 380, 116], [80, 408, 96],
+        [48, 457, 102], [102, 488, 88], [63, 531, 112], [140, 556, 94],
+        [44, 606, 116], [102, 634, 96], [59, 687, 106], [132, 713, 90], [28, 736, 104], [73, 763, 114],
+        [656, 304, 98], [592, 333, 114], [625, 377, 90], [686, 413, 108], [598, 443, 94],
+        [642, 469, 116], [592, 512, 100], [678, 539, 88], [625, 580, 110],
+        [626, 619, 96], [664, 652, 114], [658, 698, 92], [687, 730, 104], [578, 756, 116], [648, 777, 94]
     ].map(([x, y, size], i): VillageProp => ({ id: `forest:${i}`, frame: i % 4 === 0 ? "deco_tree_pine" : "deco_tree_oak", x, y, size, footprint: null })),
     ...[28, 92, 156, 220, 500, 564, 628, 692].map((x, i): VillageProp => ({ id: `wall:${i}`, frame: "building_palisade", x, y: 830, size: 78, footprint: null })),
     // 村名牌靠左城墙，底座落在已有墙体安全边内；牌面与火把分开，不增加通行障碍。
     { id: "deco:village-sign", frame: "deco_village_sign", x: 178, y: 832, size: 140, footprint: null, signText: "文明里村" },
-    // 用户标注的道路北段右侧草地；复用村名木牌，120宽留开道路、右侧林带和下方石塔。
-    { id: "deco:friendship-road-sign", frame: "deco_village_sign", x: 455, y: 350, size: 120, footprint: null, signText: "友谊路" },
-    // 树足底下移30，树冠与民居分开；底座与工位同步调整，尺寸和足底排序不变。
-    { id: "tree:logging", frame: "deco_tree_oak", x: 98, y: 1012, size: 90, footprint: { left: 87, top: 997, right: 109, bottom: 1012 }, canopyDetails: [
+    // 1.0.25移到道路上段左侧，给右侧新增第五塔让位；复用木牌，保持字号与草地留白。
+    { id: "deco:friendship-road-sign", frame: "deco_village_sign", x: 270, y: 265, size: 120, footprint: null, signText: "友谊路" },
+    // 下方圆树与左侧松树横向错开66，避免圆树树冠挡住松树前的落斧动作；仍保留原高度/尺寸。
+    { id: "tree:logging", frame: "deco_tree_oak", x: 164, y: 1012, size: 90, footprint: { left: 153, top: 997, right: 175, bottom: 1012 }, canopyDetails: [
         { frame: "deco_apple_pair", x: .22, y: .37, size: .14, alpha: .85 },
         { frame: "deco_apple_pair", x: .59, y: .24, size: .12, alpha: .8 }
     ] },
     // 角落圆树参考原伐木树90宽，调整至84/86宽，树冠高度超过成人；足底靠边并留出完整树冠。
     // 花果各一簇、低透明度，无闪烁或跳动；复用林带素材，仅树干底部参与寻路阻挡。
-    { id: "tree:corner-blossom", frame: "deco_tree_oak", x: 38, y: 884, size: 84, footprint: { left: 27, top: 869, right: 49, bottom: 884 }, canopyDetails: [
+    // 花树靠城墙内侧，前侧工位与民房屋顶分开，避免人虽在树前仍被民房遮住。
+    { id: "tree:corner-blossom", frame: "deco_tree_oak", x: 38, y: 836, size: 84, footprint: { left: 27, top: 821, right: 49, bottom: 836 }, canopyDetails: [
         { frame: "deco_blossom_ivory", x: .55, y: .28, size: .12, alpha: .78 }
     ] },
     { id: "tree:corner-fruit", frame: "deco_tree_oak", x: 677, y: 998, size: 86, footprint: { left: 666, top: 983, right: 688, bottom: 998 }, canopyDetails: [
@@ -78,7 +82,7 @@ export const VILLAGE_PROPS: VillageProp[] = [
     prop("building:logging", "hd_logging_body_0", 467, 922.625, 106, 87, 28),
     prop("building:hearth", "building_hearth_lit", 321, 891, 78, 44, 15),
     prop("building:gate", "hd_gate_body_0", 282, 684, 156, 132, 30),
-    ...PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, 72, 28))
+    ...PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, TOWER_VIEW.footprintWidth, TOWER_VIEW.footprintDepth))
 ];
 export const farm = VILLAGE_PROPS.find(p => p.id === "building:farm")!;
 const wheel = FARM_WHEEL_FOOTPRINT, farmScale = farm.size / 128;
@@ -110,27 +114,30 @@ export const CAMP_STOPS: GroundPoint[] = [
 ];
 /** 成家后的纯视觉庆祝：两人到齐才显示 2.4 秒红心；不延迟成家存档，也不阻塞守夜。 */
 export const WEDDING = {
-    // 52px 红心与 86px 头顶偏移让庆祝清晰可见且不挡脸；不改变成家时序与持续时间。
-    heartSeconds: 2.4, heartSize: 52, headOffset: 86, rise: 10, fadeIn: .2, fadeOut: .5,
+    // 高清人物头顶距足底约38~43px；红心下缘放在48px处，最多上浮3px，不挡脸。
+    // 保留52px红心，位置与精英/屏幕人物缩放同步，不改变成家时序与持续时间。
+    heartSeconds: 2.4, heartSize: 52, headOffset: 48, rise: 3, fadeIn: .2, fadeOut: .5,
     pulse: .08, pulseSeconds: .8
 } as const;
 /** 站点均在占地之外。工作点对应现有最大岗位数，家门仅为表现站点，不新增住宅归属规则。 */
 export const VILLAGE_STOPS = {
     // 家门与火堆/休息点跨集合留出间距，避免一个回家、另一个休息时仍站在一起。
     homes: [
+        // 右下闲逛点向左上挪开，避免与果树前侧新工位重叠；只改变驻足位置。
         ...[[58, 950], [146, 950], [194, 950], [238, 950], [182, 986], [216, 986],
-            [50, 1022], [182, 1022], [230, 1022], [586, 1018], [630, 1018], [674, 1018], [644, 970], [674, 932], [630, 850]].map(([x, y]) => ({ x, y })),
-        // 前排两个家门点上移，给花树工位留出至少24像素的停留间距。
-        ...[58, 98, 140, 182, 224].map(x => ({ x, y: x <= 98 ? 858 : 874 }))
+            [50, 1022], [182, 1022], [230, 1022], [586, 1018], [614, 986], [674, 1018], [644, 970], [674, 932], [630, 850]].map(([x, y]) => ({ x, y })),
+        // 左侧两个家门点避开花树前的新工位，保留至少24像素的停留间距。
+        ...[58, 98, 140, 182, 224].map(x => ({ x, y: x <= 98 ? 878 : 874 }))
     ],
     farm: [{ x: 486, y: 879 }, { x: 546, y: 879 }, { x: 606, y: 879 }, { x: 486, y: 924 }, { x: 546, y: 924 }, { x: 606, y: 924 }],
-    // 五树各一个村内侧工位，供最多四名伐木者排他轮换；工位随各自树纵向重排。
+    // 五树各一个村内前侧工位，足底比树脚靠下14~16，使真实足底排序将落斧人物画在树前。
+    // 下方圆树改站左前方并保留底栏间距；其余沿原侧面靠前，排他轮换/产量和朝向判断保持。
     logging: [
-        { treeId: "tree:logging", treeX: 98, x: 142, y: 1012 },
-        { treeId: "tree:corner-blossom", treeX: 38, x: 78, y: 884 },
-        { treeId: "tree:corner-fruit", treeX: 677, x: 628, y: 993 },
-        { treeId: "tree:corner-pine-left", treeX: 43, x: 85, y: 976 },
-        { treeId: "tree:corner-pine-right", treeX: 677, x: 635, y: 880 }
+        { treeId: "tree:logging", treeX: 164, x: 118, y: 1026 },
+        { treeId: "tree:corner-blossom", treeX: 38, x: 78, y: 852 },
+        { treeId: "tree:corner-fruit", treeX: 677, x: 628, y: 1014 },
+        { treeId: "tree:corner-pine-left", treeX: 43, x: 85, y: 992 },
+        { treeId: "tree:corner-pine-right", treeX: 677, x: 646, y: 896 }
     ] as LoggingStop[],
     // 有意包含屋后与屋前的休息点，行人绕过墙基后会自然发生遮挡切换。
     rest: CAMP_STOPS,

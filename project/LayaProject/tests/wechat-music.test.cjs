@@ -48,7 +48,7 @@ test('synchronous native failure is isolated, disabled music ignores late errors
 test('battle switches once on the current BGM; a suspended switch only changes the source',()=>{
  const {music,calls,tracks}=setup();music.setEnabled(true);music.interact();
  const [bgm]=tracks;music.setBattle(true);
- assert.equal(bgm.src,'resources/battle/battle_loop.mp3');assert.equal(bgm.volume,.28);assert.equal(bgm.stops,1);
+ assert.equal(bgm.src,'resources/battle/battle_loop.mp3');assert.equal(bgm.volume,.25);assert.equal(bgm.stops,1);
  for(let i=0;i<60;i++)music.setBattle(true);
  assert.deepEqual(bgm.played,['resources/base/village_loop.mp3','resources/battle/battle_loop.mp3']);
  music.suspend();music.setBattle(false);
@@ -80,4 +80,20 @@ test('an SFX error suspends both tracks and stale errors cannot interrupt the re
  oldBgm.error({errMsg:'old BGM'});oldClick.error({errMsg:'old SFX'});
  music.click();assert.equal(calls.problems,1);assert.equal(calls.play,5);
  music.destroy();tracks[3].error({errMsg:'old SFX after destroy'});assert.equal(calls.problems,1);
+});
+test('tower volleys reuse one short SFX, throttle dense fire and stop for mute, background and interruption',()=>{
+ const {music,calls,tracks,events}=setup(),originalNow=Date.now;let clock=1000;Date.now=()=>clock;
+ try {
+  music.setEnabled(true);music.interact();music.towerShot();assert.equal(calls.created,1);
+  music.setBattle(true);music.towerShot();const shot=tracks[1];
+  assert.equal(shot.src,'resources/battle/tower_fire.mp3');assert.equal(shot.loop,false);assert.equal(shot.volume,.22);assert.equal(shot.played.length,1);
+  for(let i=0;i<15;i++)music.towerShot();assert.equal(shot.played.length,1);
+  clock+=119;music.towerShot();assert.equal(shot.played.length,1);clock++;music.towerShot();assert.equal(shot.played.length,2);
+  music.suspend();clock+=1000;music.towerShot();assert.equal(shot.played.length,2);
+  music.interact();music.towerShot();assert.equal(shot.played.length,3);
+  events.begin.forEach(fn=>fn());clock+=1000;music.towerShot();events.end.forEach(fn=>fn());music.towerShot();assert.equal(shot.played.length,3);
+  music.interact();music.towerShot();assert.equal(shot.played.length,4);
+  music.setEnabled(false);clock+=1000;music.towerShot();assert.equal(shot.played.length,4);assert.equal(calls.created,2);
+  music.destroy();assert.equal(calls.destroy,2);music.towerShot();assert.equal(shot.played.length,4);
+ } finally {Date.now=originalNow;}
 });

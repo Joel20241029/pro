@@ -23,7 +23,7 @@ export interface MenuBounds {
     height: number;
 }
 /** 固定720宽、动态高度的纯表现布局，不修改PATH/PADS、射程或战斗推进速度。
- * 地图北端160给高级塔顶部留白，城墙足底830、底边1038来自原VillageScene；只映射位置，图片不拉伸。
+ * 地图北端140给高级塔顶部留白，城墙足底830、底边1038来自原VillageScene；只映射位置，图片不拉伸。
  */
 export class GameLayout {
     readonly height: number;

@@ -1,6 +1,6 @@
 import { C, UI } from "./UiTheme";
 
-/** 小列表共用的手指拖动容器；只依赖核心 Sprite，不为最多 80 条家谱引入整个 laya.ui 模块。 */
+/** 手指拖动容器；仅依赖核心 Sprite，名册与家庭使用可见窗口，其他短列表直接挂载。 */
 export class ScrollList extends Laya.Sprite {
     readonly content = new Laya.Sprite();
     private clipRoot = new Laya.Sprite();
@@ -11,6 +11,8 @@ export class ScrollList extends Laya.Sprite {
     private dragging = false;
     private pressedTarget: Laya.Node | null = null;
     private readonly maximum: number;
+    private virtualRows: { count: number; step: number; draw: (index: number, row: Laya.Sprite) => void } | null = null;
+    private mountedRows = new Map<number, Laya.Sprite>();
     constructor(width: number, height: number, contentHeight: number, initialOffset = 0, private changed?: (offset: number) => void) {
         super(); this.name = "ScrollList"; this.size(width, height);
         this.content.name = "panelText";
@@ -33,6 +35,27 @@ export class ScrollList extends Laya.Sprite {
         this.offset = Math.max(0, Math.min(this.maximum, value)); this.content.y = -this.offset;
         this.thumb.y = this.maximum > 0 ? (this.height - this.thumb.height) * this.offset / this.maximum : 0;
         if (this.changed) this.changed(this.offset);
+        this.refreshRows();
+    }
+    /** 名册/家庭可超过百人，只挂载可见窗口前后各一行；数据和排序快照仍保留全部条目。
+     * 行离开窗口销毁其事件绑定，重新进入按固定索引绘制，避免回收节点持有上一人的回调。
+     */
+    setVirtualRows(count: number, step: number, draw: (index: number, row: Laya.Sprite) => void) {
+        this.virtualRows = { count, step, draw };
+        this.refreshRows();
+    }
+    private refreshRows() {
+        const v = this.virtualRows;
+        if (!v) return;
+        const first = Math.max(0, Math.floor(this.offset / v.step) - 1);
+        const end = Math.min(v.count, Math.ceil((this.offset + this.height) / v.step) + 1);
+        for (const [index, row] of this.mountedRows) if (index < first || index >= end) {
+            row.destroy(true); this.mountedRows.delete(index);
+        }
+        for (let i = first; i < end; i++) if (!this.mountedRows.has(i)) {
+            const row = new Laya.Sprite(); row.pos(0, i * v.step); this.content.addChild(row);
+            this.mountedRows.set(i, row); v.draw(i, row);
+        }
     }
     private beginDrag(e: Laya.Event) {
         if (this.touch !== null) return;

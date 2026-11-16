@@ -2,7 +2,7 @@ const { test } = require('node:test'), assert = require('node:assert/strict'), p
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 class Sprite {
-    constructor() { this.children = []; this.graphics = { clear() {}, drawRect() {}, drawLine() {}, drawRoundRect() {} }; }
+    constructor() { this.children = []; this.graphics = { clear() {}, drawRect() {}, drawLine() {}, drawRoundRect() {}, drawCircle() {}, drawLines() {} }; }
     pos(x, y) { this.x = x; this.y = y; } size(width, height) { this.width = width; this.height = height; }
     addChild(child) { this.children.push(child); child.parent = this; }
     destroyChildren() { for (const child of this.children) child.destroy(); this.children = []; }
@@ -20,7 +20,7 @@ class Texture2D { constructor() { this._texture = { test: true }; } setImageData
 class OpenDataContextView extends Sprite {
     constructor() { super(); this.texture = { bitmap: { destroy() {} }, setTo(bitmap) { this.bitmap = bitmap; }, destroy() { this.destroyed = true; } }; }
 }
-global.Laya = { Text: { SHRINK: 'shrink' }, Texture2D, TextureFormat: { R8G8B8A8: 1 }, SpriteUtils: { getTransformRelativeToWindow: () => ({ x: 0, y: 0, scaleX: 1, scaleY: 1 }) }, LayaGL: { textureContext: { setTextureSubImageData(...args) { uploads.push(args); } } }, Sprite, OpenDataContextView, Script: class {}, regClass: () => target => target, timer: { unscaledDelta: 0 }, Event: { CLICK: 'click' } };
+global.Laya = { Text: { SHRINK: 'shrink' }, ColorFilter: class { gray() { return this; } }, Texture2D, TextureFormat: { R8G8B8A8: 1 }, SpriteUtils: { getTransformRelativeToWindow: () => ({ x: 0, y: 0, scaleX: 1, scaleY: 1 }) }, LayaGL: { textureContext: { setTextureSubImageData(...args) { uploads.push(args); } } }, Sprite, OpenDataContextView, Script: class {}, regClass: () => target => target, timer: { unscaledDelta: 0 }, Event: { CLICK: 'click' } };
 const { WechatPlatform } = require(path.join(compiled, 'platform/WechatPlatform.js'));
 const { Main } = require(path.join(compiled, 'Main.js'));
 const { GameView } = require(path.join(compiled, 'view/GameView.js'));
@@ -80,6 +80,18 @@ test('shared canvas allocates once, then uploads pixels without reallocation or 
     for (let i = 0; i < 30; i++) texture.setImageData(source, true, false);
     assert.equal(allocations, 1); assert.equal(uploads.length, 29); assert.deepEqual(uploads[0], [texture._texture, source, 0, 0, true, false]);
 });
+test('texture diagnostics record two upload milestones and preserve the exact original upload exception', () => {
+    const { SharedCanvasTexture } = require(path.join(compiled, 'view/SharedCanvasTexture.js'));
+    const { RankingDiagnostics } = require(path.join(compiled, 'platform/RankingDiagnostics.js'));
+    const logs=[],trace=new RankingDiagnostics({getGameLogManager:()=>({log:o=>logs.push(o.value)})}),request=trace.begin();
+    const texture=new SharedCanvasTexture();texture.trace={diagnostics:trace,request};
+    for(let i=0;i<30;i++)texture.setImageData({width:600,height:680},true,false);
+    assert.deepEqual(logs.map(l=>l.event),['open','texture_allocated','texture_updated']);assert.equal(texture.uploads,30);
+    const original=Laya.LayaGL.textureContext.setTextureSubImageData,error=new Error('texSubImage2D');
+    Laya.LayaGL.textureContext.setTextureSubImageData=()=>{throw error;};
+    try{assert.throws(()=>texture.setImageData({},true,false),e=>e===error);assert.equal(logs.at(-1).event,'texture_error');}
+    finally{Laya.LayaGL.textureContext.setTextureSubImageData=original;}
+});
 
 function gameView(session, platform) {
     const view = Object.create(GameView.prototype), overlay = new Sprite(), art = { panel() {} };
@@ -89,7 +101,7 @@ function gameView(session, platform) {
     const panels = new GamePanels(session, art, platform, ui, overlay, layout, () => view.refresh(), { ready: () => true });
     panels.modal = () => { const box = new Sprite(); box.height = 860; overlay.addChild(box); return box; };
     const village = Object.create(VillageWorld.prototype);
-    Object.assign(village, { game: session, layout, scene, motion: { sync() {} }, emotes: { sync() {} }, pressedTargets: new Map(), drawScenery() {} });
+    Object.assign(village, { game: session, layout, scene, motion: { sync() {} }, emotes: { sync() {} }, shield: { reset() {} }, pressedTargets: new Map(), drawScenery() {} });
     Object.assign(view, { resources: { ready: () => true }, game: session, observedVillageRevision: session.villageRevision, platform, layout, panels, village,
         shownErrorRevision: 0, observedRun: 0, observedDawn: 0, overlay, tip: { show() {} }, anchoredTip: { hide() {} }, updateActors() {} });
     view.hud = new GameHud(session, art, ui, panels, () => view.refresh());

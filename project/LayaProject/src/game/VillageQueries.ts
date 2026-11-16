@@ -1,4 +1,4 @@
-import { ECONOMY } from "../config/RuleConfig";
+import { ECONOMY, RESIDENTIAL } from "../config/RuleConfig";
 import { ELITE, POLICIES, Policy, RULE } from "./GameConfig";
 import { GameState, isElder, isWorkingAdult, Person } from "./GameState";
 import { season } from "./WaveGenerator";
@@ -11,7 +11,7 @@ export function person(s: GameState, id: string): Person {
     return p;
 }
 export function policy(s: GameState): Partial<Policy> { return s.policy === null ? {} : POLICIES[s.policy]; }
-export function capacity(s: GameState) { return Math.min(RULE.populationCap, s.houses * RULE.houseCapacity); }
+export function capacity(s: GameState) { return RESIDENTIAL.initialCapacity + (s.houses - 1) * RESIDENTIAL.capacityPerLevel; }
 export function canMarry(s: GameState, a: Person, b: Person): boolean {
     return a.id !== b.id && isWorkingAdult(a) && isWorkingAdult(b) && a.sex !== b.sex &&
         !s.families.some(f => f.partners.includes(a.id) || f.partners.includes(b.id)) &&

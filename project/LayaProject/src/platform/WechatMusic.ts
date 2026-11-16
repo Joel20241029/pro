@@ -13,12 +13,14 @@ declare const wx: {
     onAudioInterruptionEnd(fn: () => void): void; offAudioInterruptionEnd(fn: () => void): void;
 };
 
-/** 一个村庄实例各持有一个 BGM 和点击音上下文。只由用户手势启动；后台/音频中断结束后不抢播，也不逐帧重试。
+/** 一个村庄实例各持有一个 BGM、点击音与通用发射音上下文。只由用户手势启动；后台/音频中断结束后不抢播，也不逐帧重试。
  * 失败隔离是已确认规则：保留游戏进程，提示一次，玩家关闭再打开音乐才重试。
  */
 export class WechatMusic {
     private audio: InnerAudio | null = null;
     private clickAudio: InnerAudio | null = null;
+    private towerAudio: InnerAudio | null = null;
+    private lastTowerSound = -Infinity;
     private battle = false;
     private enabled = false;
     private active = false;
@@ -92,12 +94,29 @@ export class WechatMusic {
         this.active = false;
         try { this.audio?.pause(); } catch (error) { this.fail(error); }
         try { this.clickAudio?.stop(); } catch (error) { this.fail(error); }
+        try { this.towerAudio?.stop(); } catch (error) { this.fail(error); }
+    }
+    /** 收到实际齐射才触发，场景暂停、后台、静音或中断时不播放也不排队。 */
+    towerShot() {
+        const now = Date.now();
+        if (!this.active || !this.battle || this.failed || this.interrupted || this.disposed || now - this.lastTowerSound < MUSIC.towerIntervalMs) return;
+        this.lastTowerSound = now;
+        try {
+            if (this.towerAudio) this.towerAudio.stop();
+            else {
+                const audio = this.towerAudio = wx.createInnerAudioContext();
+                audio.loop = false; audio.autoplay = false; audio.volume = MUSIC.towerVolume;
+                audio.onError(error => { if (this.towerAudio === audio) this.fail(error); });
+                audio.src = `${RESOURCE_BUNDLES.battle.root}/${MUSIC.towerFile}`;
+            }
+            if (this.active) this.towerAudio.play();
+        } catch (error) { this.fail(error); }
     }
     private releaseAudio() {
-        const music = this.audio, click = this.clickAudio;
+        const music = this.audio, click = this.clickAudio, tower = this.towerAudio;
         // 先解除引用，销毁过程中及之后的错误都不能影响当前状态。
-        this.audio = this.clickAudio = null;
-        try { music?.destroy(); } finally { click?.destroy(); }
+        this.audio = this.clickAudio = this.towerAudio = null;
+        try { music?.destroy(); } finally { try { click?.destroy(); } finally { tower?.destroy(); } }
     }
     destroy() {
         if (this.disposed) return;

@@ -1,15 +1,15 @@
 import { WalkDirection } from "./VillagerMotion";
 import { BuildingDefinition, BuildingNode } from "./BuildingLayout";
-import { RESOURCE_CONTRACT, REQUIRED_WALK_DIRECTIONS, REQUIRED_LABOR_DIRECTIONS, REQUIRED_BUILDING_LAYOUTS } from "../config/ResourceManifest";
-import { ENEMY_LOOKS } from "./config/EnemyVisualConfig";
+import { RESOURCE_CONTRACT, REQUIRED_WALK_DIRECTIONS, REQUIRED_LABOR_DIRECTIONS, REQUIRED_BUILDING_LAYOUTS, REQUIRED_ENEMY_LAYOUT_VERSION } from "../config/ResourceManifest";
+import { ENEMY_LOOKS, EnemyLayout } from "./config/EnemyVisualConfig";
+import { ENEMIES } from "../config/EnemyConfig";
 import { ResourceBundle, RESOURCE_BUNDLES } from "../config/ResourceConfig";
 import { Person, isElder } from "../game/GameState";
 interface Frame { page: string; rect: { x: number; y: number; w: number; h: number }; sourceSize: { w: number; h: number }; trimOffset: { x: number; y: number }; pivot: { x: number; y: number }; nineSlice: { top: number; right: number; bottom: number; left: number; repeat: number; scale: number } | null; }
 interface Clip { id: string; frameIds: string[]; fps: number; restFrame: string; canvas: { w: number; h: number }; stridePixels?: number; }
-interface EnemyDefinition { canvas: number; fps: number; foot: { x: number; y: number }; frames: { body: string; head: { x: number; y: number }; back: { x: number; y: number } }[]; }
 /** 高清预渲染二维合同：恢复源画布、共同足底与真实方向，九宫格保留原图渐变。 */
 export class SpriteFrames {
-    enemyLayouts: Record<string, EnemyDefinition> = {};
+    enemyLayouts: Record<string, EnemyLayout> = {};
     buildingLayouts: Record<string, BuildingDefinition> = {};
     buildingUpgrade!: Laya.AnimationClip2D;
     buildingAttack!: Laya.AnimationClip2D;
@@ -84,12 +84,25 @@ export class SpriteFrames {
                     check(layout);
                 }
             }
-            const enemyLayouts: Record<string, EnemyDefinition> = bundle === "battle" ? result[2].data.definitions : null;
+            const enemyLayouts: Record<string, EnemyLayout> = bundle === "battle" ? result[2].data.definitions : null;
             if (bundle === "battle") {
-                if (!enemyLayouts || Object.keys(enemyLayouts).length !== Object.keys(ENEMY_LOOKS).length || Object.keys(ENEMY_LOOKS).some(id => !enemyLayouts[id])) throw new Error("怪物布局缺失");
+                if (result[2].data.version !== REQUIRED_ENEMY_LAYOUT_VERSION || !enemyLayouts || Object.keys(enemyLayouts).length !== Object.keys(ENEMY_LOOKS).length || Object.keys(ENEMY_LOOKS).some(id => !enemyLayouts[id])) throw new Error("怪物布局缺失或版本不符");
                 for (const [kind, layout] of Object.entries(enemyLayouts)) {
+                    const shadow = layout.shadow;
+                    // 建筑包在主场景创建前已加载；阴影复用其中的贴图，不在战斗分包再存一份。
+                    if (!shadow || !RESOURCE_CONTRACT.buildings.frames.includes(shadow.frame) || !this.textures.has(shadow.frame) ||
+                        ![shadow.x, shadow.y, shadow.width, shadow.height, shadow.alpha].every(Number.isFinite) || shadow.width <= 0 || shadow.height <= 0 || shadow.alpha <= 0 || shadow.alpha > 1)
+                        throw new Error("怪物接地影不完整：" + kind);
                     const clip = clips.find(c => c.id === kind + "_walk");
-                    if (!clip || layout.canvas !== 96 || layout.foot.x !== 48 || layout.foot.y !== 92 || layout.fps !== clip.fps || layout.frames.length !== clip.frameIds.length || layout.frames.length < 2 || layout.frames.length > 4 || layout.frames.some((f, i) => !created.has(f.body) || f.body !== clip.frameIds[i] || !f.head || !f.back)) throw new Error("怪物帧与挂点不完整");
+                    const look = ENEMY_LOOKS[kind as keyof typeof ENEMY_LOOKS], parts = [...look.head, ...look.back].filter((id): id is string => id !== null);
+                    if (!clip || layout.canvas !== 96 || layout.foot?.x !== 48 || !Number.isFinite(layout.foot?.y) || layout.foot.y < 72 || layout.foot.y > 94 || !(layout.stride > 0) || !Number.isFinite(layout.stride) || !(clip.stridePixels > 0) || Math.abs(layout.stride / layout.canvas - clip.stridePixels / clip.canvas.w) > 1e-9 || layout.fps !== clip.fps || !Array.isArray(layout.frames) || layout.frames.length !== clip.frameIds.length || layout.frames.length !== (ENEMIES[kind as keyof typeof ENEMIES].boss ? 8 : 6)) throw new Error("怪物帧与挂点不完整");
+                    for (const [i, frame] of layout.frames.entries()) {
+                        if (!created.has(frame.body) || frame.body !== clip.frameIds[i] || !Number.isFinite(frame.x) || !Number.isFinite(frame.y) || !frame.parts || Object.keys(frame.parts).length !== parts.length) throw new Error("怪物主体或配饰缺失");
+                        for (const id of parts) {
+                            const p = frame.parts[id];
+                            if (!created.has(id) || !p || ![p.x, p.y, p.width, p.height].every(Number.isFinite) || p.width <= 0 || p.height <= 0 || typeof p.behind !== "boolean") throw new Error("怪物配饰挂点非法：" + kind + "/" + id);
+                        }
+                    }
                 }
             }
             // 完整校验完成后一次发布，失败不会把半套素材暴露给界面。
@@ -120,7 +133,8 @@ export class SpriteFrames {
     /** 复用原二维人物选择规则，家谱按男女老人静止帧；不改变 Person 的性别与年龄。 */
     portraitId(person: Person, historical = false): string {
         const clip = historical || isElder(person) ? `villager_elder_${person.sex === "MALE" ? "male" : "female"}_idle` : person.adult ? `villager_${person.appearance}_walk` : person.growth === 0 ? "villager_baby_idle" : `villager_${person.sex === "MALE" ? "boy" : "girl"}_walk`;
-        return this.frameId(clip, 0, false);
+        // 世界动作帧按显示尺寸缩小，面板用同一静止姿态的原分辨率副本；保持既有年龄/性别选择。
+        return "portrait_" + this.frameId(clip, 0, false);
     }
     /** 世界精灵统一以图集声明的足底为 pivot；尺寸、镜像、换帧不改变地面坐标。 */
     applyFrame(sprite: Laya.Sprite, id: string, size: number) {

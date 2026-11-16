@@ -13,20 +13,28 @@ import { UiWidgets } from "./UiWidgets";
 import { GamePanels } from "./GamePanels";
 import { amount, coloredName } from "./ViewText";
 import { drawHudSurface } from "./UiSurface";
+import { actionHints, actionHintsBlocked } from "./ActionHints";
+import { NightControls } from "./NightControls";
+import { canLearnTactic } from "../game/Tactics";
+import { TACTIC_UI } from "./config/TacticUiConfig";
+import { SHIELD_VISUAL } from "./config/ShieldVisualConfig";
 interface WorldHudAnchors { towerAnchor(index: number): { x: number; y: number }; gateAnchor(): { x: number; y: number }; }
 /** 常驻信息与操作区。每次 refresh 重画 chrome；战斗帧只更新文字、血条，不重建按钮。 */
 export class GameHud {
     readonly node = new Laya.Sprite();
     private hp!: Laya.Text;
-    private count!: Laya.Text;
     private gateGauge: Laya.Sprite | null = null;
-    private bellCountdown: Laya.Text | null = null;
+    private gateShield: Laya.Sprite | null = null;
+    private gateAnchorY = 0;
+    private shieldCompact = false;
+    private nightControls: NightControls | null = null;
     private nightStatus: Laya.Text | null = null;
     private buildHints: Laya.Sprite[] = [];
     private hintSeconds = 0;
     constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private panels: GamePanels, private refresh: () => void) { }
     clear() {
-        this.bellCountdown = null;
+        this.gateGauge = this.gateShield = null;
+        this.nightControls = null;
         this.nightStatus = null;
         this.buildHints.length = 0;
         this.node.destroyChildren();
@@ -46,6 +54,7 @@ export class GameHud {
     }
     draw(s: GameState, layout: GameLayout, scene: ReturnType<typeof layoutVillage>, anchors: WorldHudAnchors) {
         const battle = this.game.battle, statusY = layout.mapTop - HUD.statusHeight, bottomY = layout.footerTop;
+        const hints = actionHints(s, actionHintsBlocked(this.game)), dot = HUD.actionDot;
         this.ui.label(this.node, `第 ${Math.floor((s.day - 1) / 12) + 1} 年 · ${SEASONS[season(s.day)]}${((s.day - 1) % 3) + 1}日`, HUD.date.x, layout.dateY + HUD.date.top, HUD.date.width, HUD.date.font, C.green, true, HUD.date.height).align = "center";
         // 与人口统一为“现有/容量”；窄栏的千进制数值省略小数，始终单行显示。
         const [food, wood, storage] = [s.food, s.wood, storageCapacity(s)].map(value => amount(value, true).replace(/\.\d(?=[kmbtq]$)/, ""));
@@ -69,17 +78,29 @@ export class GameHud {
         });
         this.node.graphics.drawRect(0, statusY, LAYOUT.width, HUD.statusHeight, C.green);
         const count = s.wave?.entries.length || 0;
-        this.nightStatus = this.ui.label(this.node, s.phase === "NIGHT" ? `守夜中 · 已守 ${amount(s.completed)} 波 · 齐心护家园` : `第 ${s.day} 天 · 今夜 ${count} 名来敌 · 已守 ${amount(s.completed)} 波 · 挑战 ${s.tier}`, 28, statusY, 664, 24, "#f4edce", true, 37);
+        this.nightStatus = this.ui.label(this.node, s.phase === "NIGHT" ? `守夜中 · 已守 ${amount(s.completed)} 波 · 齐心护家园` : `第 ${s.day} 天 · 今夜 ${count} 名来敌 · 已守 ${amount(s.completed)} 波`, 28, statusY, 664, 24, "#f4edce", true, 37);
         this.nightStatus.align = "center";
         this.nightStatus.wordWrap = false;
         this.nightStatus.overflow = Laya.Text.SHRINK;
         // 首次成功守住一波才解锁；沿用已提交的传承最高纪录，重新开村仍保持入口。
         if (s.legacy.bestNight > 0) {
-            const ranking = this.ui.button(this.node, "排行", 24, layout.mapTop + 20, 142, () => this.panels.open({ type: "ranking" }), C.muted, 62);
-            ranking.name = "RankingButton";
-            this.ui.buttonIcon(ranking, "icon_trophy", 40);
+            const side = TACTIC_UI.side;
+            [{ title: "排行", panel: "ranking", icon: "icon_trophy", name: "RankingButton" },
+                { title: "战技", panel: "tactics", icon: "icon_tactic_scroll", name: "TacticsButton" }].forEach((entry, i) => {
+                const b = this.ui.button(this.node, entry.title, side.x, layout.mapTop + side.top + i * (side.size + side.gap), side.size,
+                    () => this.panels.open({ type: entry.panel }), C.muted, side.size);
+                b.name = entry.name;
+                const face = b.getChildByName("buttonFace") as Laya.Sprite;
+                this.ui.image(face, entry.icon, (side.size - side.icon) / 2, side.iconY, side.icon).name = "buttonIcon";
+                const text = face.getChildByName("buttonText") as Laya.Text;
+                text.pos(12, side.textY); text.size(side.size - 24, 32); text.fontSize = side.font;
+                if (entry.panel === "tactics" && !actionHintsBlocked(this.game) && canLearnTactic(s))
+                    this.ui.image(face, "icon_action_dot", side.size - dot.inset - dot.size / 2, dot.inset - dot.size / 2, dot.size).name = "TacticActionHint";
+            });
         }
         const gate = battle?.gate ?? s.gate, gateAnchor = anchors.gateAnchor();
+        this.gateAnchorY = gateAnchor.y;
+        this.shieldCompact = layout.gateY - layout.mapTop < SHIELD_VISUAL.compactBattleHeight;
         // 血量与血条对齐二维城门上沿，窗口重排时使用同一布局挂点。
         // 沿用资源栏的整数千进制显示，避免高等级数值变长挤到右侧塔身；血条仍按真实耐久比例绘制。
         this.hp = this.ui.label(this.node, `${amount(gate, true)}/${amount(gateCapacity(s), true)}`.replace(/\.\d(?=[kmbtq])/g, ""), gateAnchor.x - HUD.gate.width / 2, gateAnchor.y - HUD.gate.height - HUD.gate.barHeight - 5, HUD.gate.width, HUD.gate.font, C.cream, true, HUD.gate.height);
@@ -92,6 +113,11 @@ export class GameHud {
         this.gateGauge.pos(gateAnchor.x - HUD.gate.barWidth / 2, gateAnchor.y - HUD.gate.barHeight);
         this.gateGauge.mouseEnabled = false;
         this.node.addChild(this.gateGauge);
+        const shield = SHIELD_VISUAL.hud;
+        this.gateShield = this.ui.image(this.node, "icon_tactic_shield",
+            gateAnchor.x + HUD.gate.width / 2 + shield.iconGap,
+            gateAnchor.y - HUD.gate.height - HUD.gate.barHeight - 5, shield.iconSize);
+        this.gateShield.name = "GateShieldBadge"; this.gateShield.visible = !!battle?.gateProtected;
         for (let i = 0; i < scene.pads.length; i++) {
             const t = battle?.base.towers[i] || s.towers[i], pos = anchors.towerAnchor(i);
             const b = new Laya.Sprite();
@@ -124,61 +150,84 @@ export class GameHud {
         bottom.pos(0, bottomY);
         drawHudSurface(bottom, LAYOUT.width, LAYOUT.footerHeight, true);
         this.node.addChild(bottom);
+        const footer = HUD.footer;
         if (s.phase === "DAY") {
-            const e = economy(s);
-            this.count = this.ui.label(this.node, `产粮 ${amount(e.food)}   ·   口粮 ${e.rations}   ·   产木 ${amount(e.wood)}`, 28, bottomY + 16, 664, 28, e.hungry ? C.red : C.ink, true);
-            this.count.align = "center";
-            this.ui.button(this.node, "今夜来敌", 28, bottomY + 65, 185, () => this.panels.open({ type: "wave" }), C.gold, 68);
-            this.ui.button(this.node, "开始守夜", 229, bottomY + 65, 463, () => this.panels.open({ type: "start" }), C.green, 68);
+            const e = economy(s), info = footer.info, wave = footer.wave, start = footer.start;
+            const report = this.ui.label(this.node, `产粮 ${amount(e.food, true)}  ·  口粮 ${amount(e.rations, true)}  ·  产木 ${amount(e.wood, true)}`, info.x, bottomY + info.y, info.width, info.font, e.hungry ? C.red : C.ink, true, info.height);
+            report.wordWrap = false;
+            report.overflow = Laya.Text.SHRINK;
+            // 来敌入口退为信息行文字，仍复用原按钮的点击、音效和按压取消逻辑。
+            const preview = this.ui.button(this.node, `来敌 ${amount(count, true)} ›`, wave.x, bottomY + wave.y, wave.width, () => this.panels.open({ type: "wave" }), C.muted, wave.height);
+            preview.name = "button:今夜来敌";
+            const previewFace = preview.getChildByName("buttonFace") as Laya.Sprite;
+            previewFace.graphics.clear();
+            const previewText = previewFace.getChildByName("buttonText") as Laya.Text;
+            previewText.pos(0, info.y); previewText.size(wave.width, info.height);
+            previewText.fontSize = wave.font; previewText.color = C.timber; previewText.underline = true;
+            previewText.wordWrap = false; previewText.overflow = Laya.Text.SHRINK;
+            const primary = this.ui.button(this.node, "", start.x, bottomY + start.y, start.size, () => this.panels.open({ type: "start" }), C.green, start.size);
+            primary.name = "button:开始守夜";
+            const face = primary.getChildByName("buttonFace") as Laya.Sprite;
+            face.graphics.clear();
+            // 圆钮使用完整方形母画布，不能套九宫格或按可见框分别拉伸宽高。
+            this.ui.image(face, "button_night_round", 0, 0, start.size, start.size, false).name = "buttonSkin";
+            this.ui.image(face, "icon_night_shield", (start.size - start.icon) / 2, start.iconY, start.icon).name = "buttonIcon";
+            const caption = this.ui.label(face, "开始守夜", start.textX, start.textY, start.textWidth, start.font, C.lightEdge, true, start.textHeight);
+            caption.name = "buttonText"; caption.align = "center"; caption.wordWrap = false; caption.overflow = Laya.Text.SHRINK;
+            caption.stroke = start.stroke; caption.strokeColor = C.green;
         }
         else if (s.phase === "NIGHT") {
-            this.count = this.ui.label(this.node, "", 28, bottomY + 16, 660, 23, C.muted);
-            const pause = this.ui.button(this.node, this.game.pauses.has("USER") ? "继续守夜" : "暂停", 28, bottomY + 65, 190, () => {
-                if (this.game.pauses.has("USER"))
-                    this.game.resume("USER");
-                else
-                    this.game.pause("USER");
-                this.refresh();
-            }, C.green, 68);
-            this.ui.buttonIcon(pause, this.game.pauses.has("USER") ? "icon_play" : "icon_pause", 30);
-            const speed = this.ui.button(this.node, `速度 ×${s.settings.speed}`, 234, bottomY + 65, 190, () => this.panels.send({ type: "SPEED", value: s.settings.speed === 3 ? 1 : s.settings.speed === 1 ? 2 : 3 }), C.muted, 68);
-            this.ui.buttonIcon(speed, "icon_speed", 30);
-            const bell = this.ui.button(this.node, battle?.bellUsed ? "大王之心已用" : this.game.pauses.size ? "恢复后使用" : "大王之心", 440, bottomY + 65, 252, () => this.game.bell(), C.gold, 68, this.game.canRingBell);
-            this.ui.buttonIcon(bell, "icon_king_heart", 40);
-            this.bellCountdown = bell.getChildAt(0).getChildByName("buttonText") as Laya.Text;
+            this.nightControls = new NightControls(this.game, s, this.ui, this.panels, this.refresh);
+            this.nightControls.node.y = bottomY;
+            this.node.addChild(this.nightControls.node);
         }
         else
             this.ui.label(this.node, s.summary, 28, bottomY + 16, 664, 23, C.green, true, 110);
-        HUD.navigation.forEach(({ title, panel, icon }, i) => {
-            const button = this.ui.button(this.node, title, 28 + 168 * i, bottomY + 150, 160, () => this.panels.open({ type: panel }), i === 0 ? C.green : C.muted, 78);
-            this.ui.buttonIcon(button, icon, 40);
+        if (s.phase !== "NIGHT") HUD.navigation.forEach(({ title, panel, icon }, i) => {
+            const nav = footer.navigation, daytime = s.phase === "DAY";
+            const button = this.ui.button(this.node, title, daytime ? nav.xs[i] : 28 + 168 * i, bottomY + (daytime ? nav.y : 150), daytime ? nav.width : 160, () => this.panels.open({ type: panel }), C.muted, daytime ? nav.height : 78);
+            const face = button.getChildByName("buttonFace") as Laya.Sprite;
+            const text = face.getChildByName("buttonText") as Laya.Text;
+            text.fontSize = nav.font; text.color = C.ink; text.stroke = 0;
+            if (daytime) {
+                this.ui.image(face, icon, (nav.width - nav.icon) / 2, nav.iconY, nav.icon).name = "buttonIcon";
+                text.pos(nav.textX, nav.textY); text.size(nav.width - nav.textX * 2, nav.textHeight);
+                text.wordWrap = false; text.overflow = Laya.Text.SHRINK;
+            } else this.ui.buttonIcon(button, icon, 40);
+            if (hints[panel]) {
+                const badge = this.ui.image(face, "icon_action_dot", button.width - dot.inset - dot.size / 2, dot.inset - dot.size / 2, dot.size);
+                badge.name = `ActionHint:${panel}`;
+            }
         });
     }
     update() {
         const s = this.game.state, battle = this.game.battle;
         if (!s)
             return;
+        this.nightControls?.update();
         if (battle) {
             const ringing = !battle.outcome && battle.bellTicks > 0, seconds = Math.ceil(battle.bellTicks * RULE.step);
-            if (this.bellCountdown) {
-                const caption = ringing ? `鼓舞 ${seconds}秒` : battle.bellUsed ? "大王之心已用" : this.game.pauses.size ? "恢复后使用" : "大王之心";
-                if (this.bellCountdown.text !== caption) {
-                    this.bellCountdown.text = caption;
-                    this.ui.alignButtonIcon(this.bellCountdown.parent as Laya.Sprite);
-                }
+            if (this.nightStatus) {
+                const tactic = battle.tactic;
+                const effect = tactic.effect === "GATE_INVULNERABLE" ? "城门无敌" :
+                    tactic.effect === "MULTI_TARGET" ? `同时攻击 ${tactic.targets} 目标` :
+                    `${tactic.effect === "ATTACK_DAMAGE" ? "伤害" : "攻速"} +${Math.round((tactic.multiplier - 1) * 100)}%`;
+                this.nightStatus.text = ringing ? `${tactic.name} · ${effect} · 还剩 ${seconds}秒` : `守夜中 · 已守 ${amount(s.completed)} 波 · 齐心护家园`;
             }
-            if (this.nightStatus)
-                this.nightStatus.text = ringing ? `大王之心 · 攻速 +${Math.round((RULE.bellSpeedMultiplier - 1) * 100)}% · 还剩 ${seconds}秒` : `守夜中 · 已守 ${amount(s.completed)} 波 · 齐心护家园`;
             if (this.hp)
                 this.hp.text = `${amount(battle.gate, true)}/${amount(gateCapacity(s), true)}`.replace(/\.\d(?=[kmbtq])/g, "");
-            if (this.count)
-                this.count.text = `${this.game.pauses.size ? "已暂停" : "守夜中"}  ·  场上 ${battle.enemies.length}  ·  待来 ${battle.pendingCount}${battle.base.night!.hungry ? "  · 缺粮" : ""}`;
         }
         if (this.gateGauge) {
             const ratio = (battle ? battle.gate : s.gate) / gateCapacity(s);
+            const protectedGate = !!battle?.gateProtected, shield = SHIELD_VISUAL.hud;
+            const y = this.gateAnchorY - (protectedGate && !this.shieldCompact ? shield.raise : 0);
+            this.hp.fontSize = protectedGate && this.shieldCompact ? shield.compactFont : HUD.gate.font;
+            this.hp.y = y - HUD.gate.height - HUD.gate.barHeight - 5;
+            this.gateGauge.y = y - HUD.gate.barHeight;
+            if (this.gateShield) { this.gateShield.visible = protectedGate; this.gateShield.y = this.hp.y; }
             this.gateGauge.graphics.clear();
-            this.gateGauge.graphics.drawRect(0, 0, HUD.gate.barWidth, HUD.gate.barHeight, C.outline);
-            this.gateGauge.graphics.drawRect(HUD.gate.barInset, HUD.gate.barInset, HUD.gate.fillWidth * ratio, HUD.gate.fillHeight, ratio < HUD.gate.dangerRatio ? C.red : C.gold);
+            this.gateGauge.graphics.drawRect(0, 0, HUD.gate.barWidth, HUD.gate.barHeight, protectedGate ? shield.outline : C.outline);
+            this.gateGauge.graphics.drawRect(HUD.gate.barInset, HUD.gate.barInset, HUD.gate.fillWidth * ratio, HUD.gate.fillHeight, protectedGate ? shield.fill : ratio < HUD.gate.dangerRatio ? C.red : C.gold);
         }
     }
     /** 与游戏共用暂停后的视觉时间，刷新HUD只重建节点，不重置呼吸相位。 */

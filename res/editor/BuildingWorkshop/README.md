@@ -4,6 +4,8 @@
 
 `工具 / BuildHd2dProduction` 读取 `res/source/rendered2d/native-layout-seeds.json` 和当前配方，原生保存17个prefab，验证108建筑布局及三种塔攻击时间轴。该菜单会重做布局，仅在明确重制时运行；日常微调直接编辑对应 `.lh`。
 
+怪物专项校准使用 `工具 / RefineHdEnemyAttachments`：从 [逐帧配置](../../source/rendered2d/enemy-layouts.mjs) 生成的种子保存十个独立怪物 prefab，保留原 UUID，不触碰建筑。身体画布、配饰矩形及前后顺序以原生节点为准，导出合同为版本 3（小怪 6 帧、首领 8 帧、分类型足点与整轮步幅）。2026-11-16 已执行原生生成并验证 70 帧、96 组组合，制作与实测记录见 [长期经营与怪物重制](../../../doc/tech/46_长期经营与怪物重制.md)；[旧配饰校准记录](../../../doc/tech/38_怪物移动与配饰校准.md) 仅保留当时的帧数。
+
 `prepare-native-prefabs.mjs` 只同步纹理和种子，不手写原生prefab、不重写meta、不建立重复UUID制作区。历史 `hd2dProduction` staging已归档。正式构建始终从当前 `buildingAuthoring` 和 `enemyAuthoring` 转换。
 
 当前包无粒子和实时3D；下文旧菜单和数据仅用于历史版本复现，不能作为高清当前验收结果。

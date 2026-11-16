@@ -1,12 +1,14 @@
 import { preparationText } from "./ResourcePanel";
 import { capacity, economy, person } from "../../game/VillageRules";
 import { GameState, isElder, isWorkingAdult } from "../../game/GameState";
-import { ENEMIES, RULE, TOWERS, TowerKind } from "../../game/GameConfig";
-import { enemyPower, gateCapacity, laborSlots, laborYield, levelPower, repairCost, storageCapacity, UpgradeKind, upgradeCost, upgradeUnavailableReason } from "../../game/Growth";
+import { ENEMIES, PADS, RESIDENTIAL, RULE, TOWERS, TowerKind } from "../../game/GameConfig";
+import { enemyPower, gateCapacity, laborSlots, laborYield, levelPower, repairCost, residentialCost, storageCapacity, UpgradeKind, upgradeCost, upgradeUnavailableReason } from "../../game/Growth";
 import { C, UI } from "../UiTheme";
 import { ScrollList } from "../ScrollList";
 import { Panel, PanelContext } from "./PanelContext";
 import { amount, coloredName, growthPreview, resourceCost } from "../ViewText";
+import { orderPanelRows } from "./PanelListOrder";
+import { tacticDefinition } from "../../config/TacticConfig";
 export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
     const day = s.phase === "DAY";
     if (p.type === "build") {
@@ -26,12 +28,21 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
             ["HOUSING", s.housing, "icon_house", "民居修缮", `仓储 ${growthPreview(storageCapacity(s), storageCapacity({ ...s, housing: s.housing + 1 }))}`],
             ["GATE", s.gateLevel, "icon_shield", "城门加固", `耐久上限 ${growthPreview(gateCapacity(s), gateCapacity({ ...s, gateLevel: s.gateLevel + 1 }))}`]
         ];
-        definitions.forEach(([kind, level, icon, title, effect], i) => {
+        const entries = definitions.map(([kind, level, icon, title, effect]) => {
             const cost = upgradeCost(kind, level);
-            ctx.ui.buildRow(rows.content, i * 220, icon, `${title} · ${amount(level)} 阶`, effect, `木 ${resourceCost(s.wood, cost.wood)}  粮 ${resourceCost(s.food, cost.food)}`, upgradeUnavailableReason(s, cost), () => ctx.send({ type: "BUILD", kind: kind as "FARM" | "LOGGING" | "HOUSING" | "GATE" }));
+            return { id: kind as string, icon, title: `${title} · ${amount(level)} 阶`, effect,
+                cost: `木 ${resourceCost(s.wood, cost.wood)}  粮 ${resourceCost(s.food, cost.food)}`, reason: upgradeUnavailableReason(s, cost), verb: "升级",
+                action: () => ctx.send({ type: "BUILD", kind: kind as "FARM" | "LOGGING" | "HOUSING" | "GATE" }) };
         });
-        ctx.ui.buildRow(rows.content, 4 * 220, "icon_build", `增建民居 · ${s.houses}/${RULE.houseMax} 间`, `住房 ${capacity(s)} → ${Math.min(RULE.populationCap, capacity(s) + RULE.houseCapacity)} 人`, `木 ${resourceCost(s.wood, RULE.houseCost)}`, !day ? "请在白天建设" : s.houses >= RULE.houseMax ? `已达 ${RULE.houseMax} 间；修缮可继续扩仓储` : s.wood < RULE.houseCost ? `还缺 ${RULE.houseCost - s.wood} 木材` : null, () => ctx.send({ type: "BUILD", kind: "HOUSE" }), "增建");
-        ctx.ui.buildRow(rows.content, 5 * 220, "icon_shield", "修复城门", `当前耐久 ${amount(s.gate)}/${amount(gateCapacity(s))}`, `木 ${resourceCost(s.wood, repairCost(s))}`, !day ? "请在白天修门" : s.gate >= gateCapacity(s) ? "城门完好，无需修复" : s.wood < repairCost(s) ? `还缺 ${repairCost(s) - s.wood} 木材` : null, () => ctx.send({ type: "REPAIR" }), "修复");
+        const houseCost = residentialCost(s.houses);
+        entries.push(
+            { id: "HOUSE", icon: "icon_build", title: `住宅扩建 · ${s.houses}/${RULE.houseMax} 级`, effect: `住房 ${capacity(s)} → ${Math.min(RULE.populationCap, capacity(s) + RESIDENTIAL.capacityPerLevel)} 人`, cost: `木 ${resourceCost(s.wood, houseCost.wood)}  粮 ${resourceCost(s.food, houseCost.food)}`,
+                reason: s.houses >= RULE.houseMax ? `已达 ${RULE.houseMax} 级；修缮可继续扩仓储` : upgradeUnavailableReason(s, houseCost), verb: "增建", action: () => ctx.send({ type: "BUILD", kind: "HOUSE" }) },
+            { id: "REPAIR", icon: "icon_shield", title: "修复城门", effect: `当前耐久 ${amount(s.gate)}/${amount(gateCapacity(s))}`, cost: `木 ${resourceCost(s.wood, repairCost(s))}`,
+                reason: !day ? "请在白天修门" : s.gate >= gateCapacity(s) ? "城门完好，无需修复" : s.wood < repairCost(s) ? `还缺 ${repairCost(s) - s.wood} 木材` : null, verb: "修复", action: () => ctx.send({ type: "REPAIR" }) }
+        );
+        orderPanelRows(p, entries, row => row.id, row => row.reason === null).forEach((row, i) =>
+            ctx.ui.buildRow(rows.content, i * 220, row.icon, row.title, row.effect, row.cost, row.reason, row.action, row.verb));
         ctx.ui.label(box, "点击地图防塔，可升级或调任驻守村民。", 34, 794, 600, 26, C.muted, false, 44).align = "center";
         return;
     }
@@ -59,18 +70,25 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
         const e = economy(s), w = s.wave!;
         const box = ctx.modal(p.type === "start" ? "今夜，也要守住家" : "瞭望来报", `第 ${s.day} 夜 · ${w.entries.length} 名来敌 · ${({ NONE: "平常夜", FAST: "疾行来袭", STURDY: "坚韧来袭", GROUP: "结队来袭" })[w.affix]}`);
         const counts = Object.keys(ENEMIES).filter(k => w.entries.some(e => e.kind === k));
-        const rows = new ScrollList(600, 156, counts.length * 52, p.scroll, offset => p.scroll = offset);
-        rows.pos(34, 208); box.addChild(rows);
+        if (p.type === "start") {
+            const selected = tacticDefinition(s.tactics.equipped), strip = new Laya.Sprite(); strip.pos(34, 192);
+            ctx.art.panel(strip, "panel_card", 600, 64); box.addChild(strip);
+            ctx.ui.image(strip, selected.icon, 14, 12, 40);
+            ctx.ui.label(strip, `今夜携带：${selected.name}`, 64, 10, 402, 27, C.ink, true, 44);
+            ctx.ui.button(strip, "更换", 474, 8, 112, () => ctx.open({ type: "tactics", back: p }), C.green, 48, day);
+        }
+        const rows = new ScrollList(600, p.type === "start" ? 112 : 156, counts.length * 52, p.scroll, offset => p.scroll = offset);
+        rows.pos(34, p.type === "start" ? 270 : 208); box.addChild(rows);
         counts.forEach((k, i) => {
             const data = ENEMIES[k as keyof typeof ENEMIES], count = w.entries.filter(e => e.kind === k).length;
             ctx.ui.label(rows.content, `${data.name}  ×${count}`, 18, i * 52, 310, 27, data.boss ? C.red : C.ink, true, 48);
             ctx.ui.label(rows.content, `${data.boss ? "首领 · " : ""}${data.brief}`, 330, i * 52, 252, 23, data.boss ? C.red : C.muted, false, 48).align = "right";
         });
         const summary = new Laya.Sprite();
-        summary.pos(34, 380);
-        ctx.art.panel(summary, "panel_card", 600, 202);
+        summary.pos(34, p.type === "start" ? 394 : 380);
+        ctx.art.panel(summary, "panel_card", 600, p.type === "start" ? 184 : 202);
         box.addChild(summary);
-        ctx.ui.label(summary, `粮食 ${amount(s.food)} + ${amount(e.food)} - ${e.rations} → ${amount(e.endFood)}\n木材 ${amount(s.wood)} + ${amount(e.wood)} → ${amount(e.endWood)}\n驻塔 ${s.towers.filter(t => t.operator).length}/4  ·  照料 ${s.people.filter(p => p.job === "CARE").length} 人\n养老 ${s.people.filter(isElder).length} 人 · 基础口粮 ${e.elderRations}（已计入）`, 22, 20, 556, 27, C.green, true, 174);
+        ctx.ui.label(summary, `粮食 ${amount(s.food)} + ${amount(e.food)} - ${e.rations} → ${amount(e.endFood)}\n木材 ${amount(s.wood)} + ${amount(e.wood)} → ${amount(e.endWood)}\n驻塔 ${s.towers.filter(t => t.operator).length}/${PADS.length}  ·  照料 ${s.people.filter(p => p.job === "CARE").length} 人\n养老 ${s.people.filter(isElder).length} 人 · 基础口粮 ${e.elderRations}（已计入）`, 22, 20, 556, 27, C.green, true, 174);
         ctx.ui.label(box, `${e.hungry ? "口粮不足：本夜攻速降至 70%。\n" : ""}${!s.towers.some(t => t.operator) ? "无人驻塔，城门将直接承受进攻。\n" : ""}敌军强度 ×${enemyPower(s.day).toFixed(2)} · 离开后暂停，重进从本夜开头守起`, 40, 596, 588, 26, e.hungry ? C.red : C.muted, false, 100);
         const state = ctx.resources.states.battle, ready = ctx.resources.ready("battle"), failed = state.phase === "FAILED";
         if (p.type === "start" && !ready) {

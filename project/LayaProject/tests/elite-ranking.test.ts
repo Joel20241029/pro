@@ -1,6 +1,7 @@
 import { applyCommand, assignOperator, createGame, economy, finishNight } from "../src/game/VillageRules";
 import { clone, GameState, isElder } from "../src/game/GameState";
-import { ELITE, RULE, TOWERS, TowerKind } from "../src/game/GameConfig";
+import { ELITE, PADS, RULE, TOWERS, TowerKind } from "../src/game/GameConfig";
+import { enemyPoint, PATH_LENGTH } from "../src/game/BattleRoad";
 import { SeededRandom } from "../src/game/SeededRandom";
 import { BattleSimulation } from "../src/game/BattleSimulation";
 import { generateWave } from "../src/game/WaveGenerator";
@@ -12,7 +13,7 @@ function ok(v: unknown, why = "assertion failed"): asserts v { if (!v) throw new
 function eq(a: unknown, b: unknown) { ok(canonical(a) === canonical(b), `${JSON.stringify(a)} != ${JSON.stringify(b)}`); }
 function rejects(fn: () => void) { let threw = false; try { fn(); } catch { threw = true; } ok(threw); }
 function test(name: string, fn: () => void) { fn(); passed++; console.log("PASS", name); }
-function dawn(s: GameState) { while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "SKILL" || q.kind === "POLICY" ? q.options[0] : q.kind === "TRAVELER" ? "decline" : "0" }); } applyCommand(s, { type: "FINALIZE" }); }
+function dawn(s: GameState) { while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "SKILL" || q.kind === "POLICY" ? q.options[0] : "decline" }); } applyCommand(s, { type: "FINALIZE" }); }
 function win(s: GameState) { applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); validateState(s); }
 function birth(s: GameState) { applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id }); return s.people[s.people.length - 1]; }
 function seedForRoll(roll: number, traveler: boolean) {
@@ -79,8 +80,15 @@ test("All three tower types gain damage with unchanged speed/range/slow and armo
         const s = createGame(1); const p = s.people[0]; p.origin = "TRAVELER"; p.trait = "trait_frugal"; p.skill = "skill_farming";
         s.towers.forEach(t => { t.kind = null; t.level = 0; t.operator = null; }); s.towers[0].kind = kind; s.towers[0].level = 1; assignOperator(s, 0, p.id); applyCommand(s, { type: "NIGHT" });
         const normal = new BattleSimulation(s); s.people[0].elite = true; const elite = new BattleSimulation(s);
-        // 固定靶放在首个弯道内（距路径入口200），确保调位后仍处于三塔基础射程内，只检验精英伤害。
-        for (const b of [normal, elite]) { b.enemies.push({ appearanceSeed: 1, seq: 999, kind: "enemy_armored", progress: 200, hp: 500, speed: 0, slow: 0, slowTicks: 0, born: 0, summoned: 0 }); b.step(); }
+        // 用当前道路和序号计算最近靶位，避免旧固定200进度在错位行进后落到塔射程外。
+        let progress = 0, distance = Infinity;
+        for (let at = 0; at < PATH_LENGTH; at++) {
+            const target = enemyPoint({ seq: 999, kind: "enemy_armored", progress: at });
+            const d = Math.hypot(target.x - PADS[0].x, target.y - PADS[0].y);
+            if (d < distance) { progress = at; distance = d; }
+        }
+        ok(distance < TOWERS[kind].range, "elite damage fixture must be in range");
+        for (const b of [normal, elite]) { b.base.wave!.entries = []; b.enemies.push({ appearanceSeed: 1, seq: 999, kind: "enemy_armored", progress, hp: 500, speed: 0, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 }); b.step(); }
         const a = normal.enemies.find(e => e.seq === 999)!, b = elite.enemies.find(e => e.seq === 999)!;
         eq(500 - b.hp, Math.floor(TOWERS[kind].damage * 1.25 * (1 - .4 / (kind === "STONE" ? 2 : 1))));
         ok(a.progress === b.progress && a.slow === b.slow && a.slowTicks === b.slowTicks && normal.shots.length === elite.shots.length);

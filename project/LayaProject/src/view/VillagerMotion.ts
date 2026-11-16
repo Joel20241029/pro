@@ -1,6 +1,7 @@
 import { GameState, isElder, Person, Tower } from "../game/GameState";
 import { LABOR_CLIPS, RULE } from "../game/GameConfig";
 import { distance, GroundPoint, MOTION, VillageNavigation, VILLAGE_STOPS, WEDDING } from "./VillageScene";
+import { VisibleResidents } from "./VisibleResidents";
 
 interface Visit { at: GroundPoint; seconds: number; working: boolean; insideTower: boolean; }
 export type WalkDirection = "UP" | "DOWN" | "LEFT" | "RIGHT";
@@ -34,6 +35,8 @@ export class VillagerMotion {
     private campSlots = new Map<string, number>();
     private careStops = new Map<string, GroundPoint>();
     private night = false;
+    private selection = new VisibleResidents();
+    visiblePeople: readonly Person[] = [];
     /** 独立表现随机源，仅在真正分配下一棵树时抽取；可注入用于复现，不读写GameState.seed。 */
     constructor(public navigation = new VillageNavigation(), private stops = VILLAGE_STOPS, private visualRandom: () => number = Math.random) {}
     /** 只迁移显示坐标和路线，保留日程游标、驻足/动画计时、营火席位与已播放的成家记录。 */
@@ -63,16 +66,27 @@ export class VillagerMotion {
     sync(state: GameState, towers: Tower[]) {
         const newRun = this.run !== state.run;
         if (newRun) { this.people.clear(); this.campSlots.clear(); this.run = state.run; this.weddings = []; this.wedding = null; }
-        const present = new Set(state.people.map(p => p.id));
+        const families = new Set(state.families.map(f => f.id));
+        // 新婚先入队，再挑选演员。暂未进入20人窗口的家庭仍保留，轮到时才播放。
+        // 初次加载只记基线；夜间或家庭消失沿用原规则取消，不在读档后补放旧婚礼。
+        this.weddings = state.phase === "DAY" ? this.weddings.filter(w => families.has(w.family)) : [];
+        if (!newRun && state.phase === "DAY") for (const f of state.families) {
+            if (!this.knownFamilies.has(f.id)) this.weddings.push({ family: f.id, partners: f.partners.slice(), elapsed: null });
+        }
+        this.knownFamilies = families;
+        this.visiblePeople = this.selection.select(state, towers, [
+            ...(this.wedding ? this.wedding.partners : []), ...this.weddings.reduce<string[]>((ids, w) => ids.concat(w.partners), [])
+        ]);
+        const present = new Set(this.visiblePeople.map(p => p.id));
         for (const id of this.people.keys()) if (!present.has(id)) this.people.delete(id);
         this.night = state.phase === "NIGHT";
         // 先整体释放无效预占，再分配，避免按人物遍历顺序留下已退休/调岗的树。
-        for (const p of state.people) {
+        for (const p of this.visiblePeople) {
             const m = this.people.get(p.id);
             if (m && (this.night || m.wedding || !p.adult || isElder(p) || p.job !== "LOGGING")) m.loggingTree = null;
         }
         for (const id of this.campSlots.keys()) if (!present.has(id)) this.campSlots.delete(id);
-        const sorted = state.people.slice().sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+        const sorted = this.visiblePeople.slice().sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
         for (const p of sorted) if (!this.campSlots.has(p.id)) {
             const used = new Set(this.campSlots.values()), slot = this.stops.rest.findIndex((_, i) => !used.has(i));
             if (slot < 0) throw new Error("火堆站点少于在村人数");
@@ -119,15 +133,8 @@ export class VillagerMotion {
             m.signature = signature; m.routine = this.itinerary(m, this.night, tower, slot, sequence);
             if (!m.wedding) this.setPlan(m, m.routine);
         }
-        const families = new Set(state.families.map(f => f.id));
         const valid = (w: Wedding) => families.has(w.family) && w.partners.every(id => present.has(id));
         if (this.wedding && (state.phase !== "DAY" || !valid(this.wedding))) this.endWedding();
-        this.weddings = state.phase === "DAY" ? this.weddings.filter(valid) : [];
-        // 初次加载只记基线；只对当前已提交状态中新增的家庭庆祝，打开面板/读档不会重复播放。
-        if (!newRun && state.phase === "DAY") for (const f of state.families) {
-            if (!this.knownFamilies.has(f.id)) this.weddings.push({ family: f.id, partners: f.partners.slice(), elapsed: null });
-        }
-        this.knownFamilies = families;
         this.startWedding();
     }
     /** 切换日程统一从当前足底寻路；已在目的地时直接开始驻足，避免跳过第一个停留点。 */
@@ -139,6 +146,7 @@ export class VillagerMotion {
     }
     private startWedding() {
         if (this.wedding || !this.weddings.length) return;
+        if (!this.weddings[0].partners.every(id => this.people.has(id))) return;
         const w = this.weddings.shift()!; this.wedding = w;
         w.partners.forEach((id, i) => {
             const m = this.people.get(id)!; m.wedding = true; m.heartElapsed = null; m.loggingTree = null;
@@ -214,10 +222,10 @@ export class VillagerMotion {
         // 夜间驻塔到达后视为进入塔内；仍保留位置与日程，调任/天亮会自然重新显示。
         m.insideTower = !walking && m.plan[m.visit].insideTower;
     }
-    /** 调用者传实际视觉时间；传 0 表示暂停，当前位置、动作累计时间和帧均保持。 */
-    update(delta: number) {
+    /** 调用者传实际视觉时间；暂停保持动作。婚礼结束返回true，要求重选下一组可见演员。 */
+    update(delta: number): boolean {
         const dt = Math.min(RULE.frameCap * RULE.maxSpeed, Math.max(0, delta));
-        if (!dt) return;
+        if (!dt) return false;
         for (const m of this.people.values()) {
             if (m.animated) m.elapsed += dt;
             if (!m.walking) {
@@ -244,10 +252,11 @@ export class VillagerMotion {
         const w = this.wedding;
         if (w && w.partners.every(id => !this.people.get(id)!.walking)) {
             w.elapsed = w.elapsed === null ? 0 : w.elapsed + dt;
-            if (w.elapsed >= WEDDING.heartSeconds) { this.endWedding(); this.startWedding(); }
+            if (w.elapsed >= WEDDING.heartSeconds) { this.endWedding(); this.startWedding(); return true; }
             else w.partners.forEach((id, i) => {
                 const m = this.people.get(id)!; m.heartElapsed = w.elapsed; m.direction = i === 0 ? "RIGHT" : "LEFT";
             });
         }
+        return false;
     }
 }

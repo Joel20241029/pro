@@ -66,9 +66,8 @@ def battle_samples(score):
     rate, beat = score['sampleRate'], 60 / score['bpm']
     beats_per_bar = score['beatsPerBar']
     samples = [0.0] * round(rate * score['bars'] * beats_per_bar * beat)
-    percussion, synthesis = score['percussion'], score['synthesis']
+    synthesis = score['synthesis']
     arpeggio, bass = score['arpeggio'], score['bass']
-    rng = random.Random(percussion['noiseSeed'])
 
     def tone(freq, start, length, voice):
         for i in range(round(length * rate)):
@@ -81,29 +80,15 @@ def battle_samples(score):
                 value += gain * math.sin(harmonic * phase)
             samples[(round(start * rate) + i) % len(samples)] += voice['gain'] * env * value
 
-    def drum(start, kind):
-        voice = percussion['kick'] if kind == 'kick' else percussion['noise']
-        for i in range(round(voice['lengthSeconds'] * rate)):
-            t = i / rate
-            if kind == 'kick':
-                phase = voice['frequencyHz'] * t + voice['sweepDepth'] * (1 - math.exp(-t * voice['sweepRate']))
-                value = math.sin(2 * math.pi * phase)
-            else:
-                value = rng.uniform(-1, 1)
-            samples[(round(start * rate) + i) % len(samples)] += percussion['gain'] * (value * math.exp(-t * voice['decayRate']))
-
     steps_per_beat = arpeggio['stepsPerBeat']
     for bar in range(score['bars']):
         chord = score['chordsHz'][bar % len(score['chordsHz'])]
         for step in range(beats_per_bar * steps_per_beat):
             when = (bar * beats_per_bar + step / steps_per_beat) * beat
             tone(chord[step % len(chord)] * arpeggio['frequencyRatio'], when, beat * arpeggio['lengthBeats'], arpeggio)
-        for step, kind in enumerate(percussion['beatPattern']):
+        for step in range(beats_per_bar):
             when = (bar * beats_per_bar + step) * beat
             tone(chord[0] * bass['frequencyRatio'], when, bass['lengthSeconds'], bass)
-            drum(when, kind)
-        for step in range(beats_per_bar * steps_per_beat):
-            drum((bar * beats_per_bar + step / steps_per_beat + percussion['hatOffsetBeats']) * beat, 'hat')
     return samples
 
 
@@ -116,6 +101,19 @@ def click_samples(score):
         env = (min(1, t / synthesis['attackSeconds']) * math.exp(-t * synthesis['decayRate'])
                * min(1, (length - t) / synthesis['releaseSeconds']))
         samples.append(env * (math.sin(2 * math.pi * base * t) + synthesis['overtoneGain'] * math.sin(2 * math.pi * overtone * t)))
+    return samples
+
+
+def tower_samples(score):
+    rate, length, voice = score['sampleRate'], score['durationSeconds'], score['synthesis']
+    rng = random.Random(voice['noiseSeed'])
+    samples, smooth = [], 0.0
+    for i in range(round(rate * length)):
+        t = i / rate
+        smooth = smooth * .65 + rng.uniform(-1, 1) * .35
+        env = min(1, t / voice['attackSeconds']) * (1 - t / length) ** 2
+        phase = 2 * math.pi * (voice['frequencyHz'] * t - voice['sweepHz'] * t * t / (2 * length))
+        samples.append(env * (smooth * voice['noiseGain'] + math.sin(phase)))
     return samples
 
 
@@ -140,7 +138,7 @@ def build(name, render):
                     '-map_metadata', '-1', str(output)], check=True)
     subprocess.run(['ffmpeg', '-v', 'error', '-i', str(output), '-f', 'null', '-'], check=True)
     return {'title': score['title'], 'source': score_path.relative_to(root).as_posix(), 'generator': 'tools/build-audio.py',
-            'runtimeFile': output.relative_to(root).as_posix(), 'packageFile': package_file,
+            'runtimeFile': output.relative_to(root).as_posix(), 'packageFile': package_file, 'bundle': score['bundle'],
             'durationSeconds': len(pcm) / rate, 'sampleRate': rate, 'channels': 1, 'bitrate': score['mp3Bitrate'],
             'bytes': output.stat().st_size, 'sha256': hashlib.sha256(output.read_bytes()).hexdigest(),
             'sourceSha256': hashlib.sha256(score_path.read_bytes()).hexdigest(), 'sourcePeak': source_peak,
@@ -148,7 +146,7 @@ def build(name, render):
             'license': 'Original score and synthesis; no third-party samples', 'phoneListeningVerified': False}
 
 
-tracks = [build('village_loop', village_samples), build('battle_loop', battle_samples), build('ui_click', click_samples)]
+tracks = [build('village_loop', village_samples), build('battle_loop', battle_samples), build('ui_click', click_samples), build('tower_fire', tower_samples)]
 if tracks[0]['bytes'] > 120_000:
     raise ValueError('Village music exceeded the approved 120 KB target')
 if sum(track['bytes'] for track in tracks[1:]) > 80_000:
@@ -156,7 +154,9 @@ if sum(track['bytes'] for track in tracks[1:]) > 80_000:
 report = {'tracks': tracks, 'bytes': sum(track['bytes'] for track in tracks)}
 (root / 'audio/manifest.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
 if args.sync:
-    package = root.parent / 'project/LayaProject/assets/resources/village'
+    package = root.parent / 'project/LayaProject/assets/resources'
     for track in tracks:
-        shutil.copyfile(root / track['runtimeFile'], package / track['packageFile'])
+        destination = package / track['bundle'] / track['packageFile']
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(root / track['runtimeFile'], destination)
 print(json.dumps(report, ensure_ascii=False))

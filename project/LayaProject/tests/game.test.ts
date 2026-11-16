@@ -13,7 +13,7 @@ function equal(a: unknown, b: unknown) { ok(JSON.stringify(a) === JSON.stringify
 function rejects(f: () => void) { let threw = false; try { f(); } catch { threw = true; } ok(threw, "expected rejection"); }
 function test(name: string, f: () => void) { f(); passed++; console.log("PASS", name); }
 function dawn(s: GameState) {
-    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "SKILL" || q.kind === "POLICY" ? q.options[0] : q.kind === "TRAVELER" ? "decline" : "0" }); }
+    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "SKILL" || q.kind === "POLICY" ? q.options[0] : "decline" }); }
     if (s.phase === "DAWN") applyCommand(s, { type: "FINALIZE" });
 }
 class MemoryStore implements StoragePort {
@@ -52,7 +52,7 @@ test("Parents and siblings blocked, unrelated origins allowed", () => {
 });
 test("Wave budget and object limits over 10,000 days", () => {
     const s = createGame(11);
-    for (let d = 1; d <= 10000; d++) { s.day = d; s.tier = d % 4; const w = generateWave(s); equal(w.entries.reduce((a, e) => a + ENEMIES[e.kind].cost, 0), w.budget); ok(w.budget <= 66 && w.entries.length <= 80); equal(w.entries.filter(e => ENEMIES[e.kind].boss).length, d % 12 === 0 ? 1 : 0); }
+    for (let d = 1; d <= 10000; d++) { s.day = d; const w = generateWave(s); equal(w.entries.reduce((a, e) => a + ENEMIES[e.kind].cost, 0), w.budget); ok(w.budget <= RULE.planCap * Math.max(...Object.values(ENEMIES).map(e => e.cost)) && w.entries.length <= RULE.planCap); equal(w.entries.filter(e => ENEMIES[e.kind].boss).length, d % 12 === 0 ? 1 : 0); }
 });
 test("Initial battle is winnable, replay is deterministic", () => {
     const s = createGame(7); applyCommand(s, { type: "NIGHT" }); const a = new BattleSimulation(s), b = new BattleSimulation(s);
@@ -61,7 +61,7 @@ test("Initial battle is winnable, replay is deterministic", () => {
 });
 test("Gate arrival loss precedes a tower firing in same tick", () => {
     const s = createGame(1); applyCommand(s, { type: "NIGHT" }); const b = new BattleSimulation(s); b.gate = 1;
-    b.enemies.push({ appearanceSeed: 1, seq: 100, kind: "enemy_raider", progress: PATH_LENGTH - .1, hp: 1, speed: 36, slow: 0, slowTicks: 0, born: 0, summoned: 0 }); b.step(); equal(b.outcome, "LOSE"); equal(b.shots.length, 0);
+    b.enemies.push({ appearanceSeed: 1, seq: 100, kind: "enemy_raider", progress: PATH_LENGTH - .1, hp: 1, speed: 36, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 }); b.step(); equal(b.outcome, "LOSE"); equal(b.shots.length, 0);
 });
 test("Save write-before failure preserves candidate and retries once", () => {
     const m = new MemoryStore(), store = new SaveStore(m); equal(store.inspect().kind, "new"); store.prepare(createGame(1)); m.fail = "BEFORE"; rejects(() => store.commit()); const raw = store.pending!.raw; m.fail = "NONE"; store.commit(); equal(m.writes, 1); equal([...m.values.values()][0], raw); equal(new SaveStore(m).inspect().kind, "ready");
@@ -83,14 +83,14 @@ test("Night settings save keeps live battle; reload replays baseline", () => {
     g.command({ type: "SPEED", value: 2 }); ok(g.battle === live); const reloaded = new GameSession(new SaveStore(m)); reloaded.load(); equal(reloaded.battle!.tick, 0); equal(reloaded.state!.settings.speed, 2);
 });
 test("Background/resume and panel pause cannot erase user pause", () => {
-    const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.enter(); g.claimDailyRation(); g.command({ type: "NIGHT" }); g.pause("USER"); g.hide(); g.show(); g.resume("CHOICE"); g.update(2); equal(g.battle!.tick, 0); g.resume("WAIT_RESUME"); g.update(2); equal(g.battle!.tick, 0); g.resume("USER"); g.update(.05); equal(g.battle!.tick, 1);
+    const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.enter(); g.claimDailyRation(); g.command({ type: "NIGHT" }); g.pause("USER"); g.hide(); g.show(); g.resume("CHOICE"); g.update(2); equal(g.battle!.tick, 0); g.resume("WAIT_RESUME"); g.update(2); equal(g.battle!.tick, 0); g.resume("USER"); g.update(.05); equal(g.battle!.tick, RULE.minSpeed);
 });
 test("Tower dialog pause permits reassignment and resumes without changing the saved baseline", () => {
     const m = new MemoryStore(), g = new GameSession(new SaveStore(m)); g.load(); g.newVillage(); g.command({ type: "NIGHT" });
     const live = g.battle!, previous = live.operators[0], replacement = g.state!.people[4].id, baseline = JSON.stringify(g.state), writes = m.writes;
     g.reassign(0, replacement); equal(live.operators[0], previous);
     g.pause("CHOICE"); g.reassign(0, replacement); equal(live.operators[0], replacement); g.update(.1); equal(live.tick, 0);
-    g.resume("CHOICE"); g.update(.05); equal(live.tick, 1); ok(g.battle === live); equal(g.pauses.size, 0);
+    g.resume("CHOICE"); g.update(.05); equal(live.tick, RULE.minSpeed); ok(g.battle === live); equal(g.pauses.size, 0);
     equal(JSON.stringify(g.state), baseline); equal(m.writes, writes);
 });
 test("Closing tower dialog preserves an earlier manual pause", () => {
@@ -98,13 +98,13 @@ test("Closing tower dialog preserves an earlier manual pause", () => {
     const replacement = g.state!.people[4].id;
     g.pause("USER"); g.pause("CHOICE"); g.reassign(0, replacement); equal(g.battle!.operators[0], replacement);
     g.resume("CHOICE"); g.update(.1); equal(g.battle!.tick, 0); equal([...g.pauses], ["USER"]);
-    g.resume("USER"); g.update(.05); equal(g.battle!.tick, 1);
+    g.resume("USER"); g.update(.05); equal(g.battle!.tick, RULE.minSpeed);
 });
 test("Closing tower dialog does not clear background or return confirmation pauses", () => {
     const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.enter(); g.claimDailyRation(); g.command({ type: "NIGHT" });
     g.pause("CHOICE"); g.hide(); g.resume("CHOICE"); g.update(.1); equal(g.battle!.tick, 0); ok(g.pauses.has("BACKGROUND"));
     g.show(); g.update(.1); equal(g.battle!.tick, 0); ok(g.pauses.has("WAIT_RESUME"));
-    g.resume("WAIT_RESUME"); g.update(.05); equal(g.battle!.tick, 1);
+    g.resume("WAIT_RESUME"); g.update(.05); equal(g.battle!.tick, RULE.minSpeed);
 });
 test("Pending save still blocks tower reassignment under dialog pause", () => {
     const m = new MemoryStore(), g = new GameSession(new SaveStore(m)); g.load(); g.newVillage(); g.command({ type: "NIGHT" }); g.pause("CHOICE");
@@ -137,17 +137,18 @@ test("Traveler uses world RNG without advancing family RNG", () => {
     const s = createGame(12); s.day = 4; s.completed = 3;  s.wave = generateWave(s); const family = s.rng.family, world = s.rng.world;
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); equal(s.rng.family, family); ok(s.rng.world !== world); ok(s.choices.some(q => q.kind === "TRAVELER"));
 });
-test("Annual tier selected before next wave", () => {
+test("Highest tier stays fixed across the year without a difficulty choice", () => {
     const s = createGame(1); s.day = 12; s.completed = 11;  s.wave = generateWave(s);
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator));
-    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" || q.kind === "SKILL" ? q.options[0] : q.kind === "TRAVELER" ? "decline" : "3" }); }
-    equal(s.wave, null); applyCommand(s, { type: "FINALIZE" }); equal(s.wave!.tier, 3); equal(s.wave!.budget, 38);
+    ok(s.choices.every(q => ["SKILL", "TRAVELER", "POLICY"].includes(q.kind))); ok(s.choices.some(q => q.kind === "POLICY"));
+    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" || q.kind === "SKILL" ? q.options[0] : "decline" }); }
+    equal(s.day, 13); equal(s.tier, RULE.maxTier); equal(s.wave, null); const replay = clone(s); applyCommand(s, { type: "FINALIZE" }); equal(s.wave!.tier, 3); equal(s.wave, generateWave(replay));
 });
 test("400 dawn settlements keep village and history bounded", () => {
     const s = createGame(1);
     for (let day = 0; day < 400; day++) {
         applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator));
-        while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" || q.kind === "SKILL" ? q.options[0] : q.kind === "TRAVELER" ? "accept" : "0" }); }
+        while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" || q.kind === "SKILL" ? q.options[0] : "accept" }); }
         applyCommand(s, { type: "FINALIZE" }); validateState(s); ok(s.history.length <= 80 && s.people.length <= 20);
     }
     equal(s.day, 401); ok(s.history.length === 60);

@@ -121,6 +121,23 @@ test('missing Boss layout is rejected before a battle can start and can retry',a
  delete data.definitions.enemy_shaman;f.cache.set(url,{data});const task=r.ensure('battle');await flush();f.native.get('resources/battle').resolve(true);
  assert.equal(await task,false);assert(!f.main.frames.ready('battle'));assert.equal(await r.ensure('battle'),true);f.main.onDestroy();
 });
+for(const defect of ['missing-accessory','invalid-position','invalid-layer','invalid-body-offset','missing-shadow','invalid-shadow-alpha','invalid-shadow-texture']) {
+ test(`invalid enemy ${defect} rejects the entire battle bundle before publishing textures`,async()=>{
+  const f=setup();await boot(f);f.native.get('resources/characters').resolve(true);await flush();
+  const url='resources/battle/enemies.json',data=JSON.parse(fs.readFileSync(path.join(project,'assets',url)));
+  const frame=data.definitions.enemy_raider.frames[0],part=frame.parts.enemy_acc_banner;
+  if(defect==='missing-accessory')delete frame.parts.enemy_acc_banner;
+  else if(defect==='invalid-position')part.x=NaN;
+  else if(defect==='invalid-layer')part.behind='front';
+  else if(defect==='missing-shadow')delete data.definitions.enemy_raider.shadow;
+  else if(defect==='invalid-shadow-alpha')data.definitions.enemy_raider.shadow.alpha=NaN;
+  else if(defect==='invalid-shadow-texture')data.definitions.enemy_raider.shadow.frame='enemy_raider_walk_00';
+  else frame.x=Infinity;
+  f.cache.set(url,{data});const task=f.main.resources.ensure('battle');await flush();f.native.get('resources/battle').resolve(true);
+  assert.equal(await task,false);assert(!f.main.frames.ready('battle'));assert.deepEqual(f.main.frames.enemyLayouts,{});
+  assert.equal(await f.main.resources.ensure('battle'),true);f.main.onDestroy();
+ });
+}
 test('destroy while metadata is still loading prevents page decoding and texture publication',async()=>{
  const f=setup();await boot(f);const url='resources/characters/frames.json',gate=deferred();f.gates.set(url,gate);
  f.native.get('resources/characters').resolve(true);await flush();const task=f.main.resources.ensure('characters');f.main.onDestroy();const count=f.requests.length;
@@ -155,15 +172,16 @@ test('3D portrait-only frame table cannot satisfy restored 2D frame contract',as
  assert.equal(await task,false);assert(!f.main.frames.ready('characters'));
  assert.equal(await f.main.resources.ensure('characters'),true);assert(f.requests.findLast(r=>r.url===url).options.ignoreCache);f.main.onDestroy();
 });
-test('unified portraits select the original 2D rest frames for every life stage and ancestors',async()=>{
+test('unified portraits select full-resolution copies of the original rest pose for every life stage and ancestors',async()=>{
  const f=setup();await boot(f);f.native.get('resources/characters').resolve(true);await flush();const art=f.main.frames;
  for(const sex of ['MALE','FEMALE']) {
   const p={sex,appearance:sex==='MALE'?'male_a':'female_a',adult:true,elderNights:0,nights:12,growth:0};
-  assert.equal(art.portraitId(p),art.frameId(`villager_${p.appearance}_walk`,0,false));
-  assert.equal(art.portraitId(p,true),art.frameId(`villager_elder_${sex==='MALE'?'male':'female'}_idle`,0,false));
+  assert.equal(art.portraitId(p),'portrait_'+art.frameId(`villager_${p.appearance}_walk`,0,false));
+  assert.equal(art.portraitId(p,true),'portrait_'+art.frameId(`villager_elder_${sex==='MALE'?'male':'female'}_idle`,0,false));
   p.nights=0;p.elderNights=3;assert.equal(art.portraitId(p),art.portraitId(p,true));
-  p.adult=false;p.elderNights=0;assert.equal(art.portraitId(p),art.frameId('villager_baby_idle',0,false));
-  p.growth=1;assert.equal(art.portraitId(p),art.frameId(`villager_${sex==='MALE'?'boy':'girl'}_walk`,0,false));
+  p.adult=false;p.elderNights=0;assert.equal(art.portraitId(p),'portrait_'+art.frameId('villager_baby_idle',0,false));
+  p.growth=1;assert.equal(art.portraitId(p),'portrait_'+art.frameId(`villager_${sex==='MALE'?'boy':'girl'}_walk`,0,false));
+  assert(art.get(art.portraitId(p)));
  }
  f.main.onDestroy();
 });

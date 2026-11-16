@@ -2,14 +2,15 @@ const test = require('node:test'), assert = require('node:assert/strict'), path 
 const build = process.env.DAIDAI_TEST_BUILD;
 const { buildingLayoutId, houseRooms, FARM_WHEEL_FOOTPRINT } = require(path.join(build, 'view/BuildingLayout.js'));
 const { layouts } = require('../../../res/native/buildings.json');
-const { VILLAGE_PROPS } = require(path.join(build, 'view/VillageScene.js'));
+const { VILLAGE_PROPS, TOWER_VIEW } = require(path.join(build, 'view/VillageScene.js'));
 const recipe = require('../../../res/source/asset_recipe.json');
 const frames = new Set(recipe.assets.filter(a => a.runtime).map(a => a.id));
 const kinds = ['HOUSE', 'FARM', 'LOGGING', 'GATE', 'ARROW', 'STONE', 'SLOW'];
+const appearanceLevels = [1, 6, 10, 15, 19, 24, 28, 33, 37, 42, 46, 50];
 
 // Sprite matrix semantics are isolated here; actual .mc decoding/rendering is also checked in the editor.
 class Sprite {
- constructor() { Object.assign(this, { children: [], x: 0, y: 0, width: 0, height: 0, scaleX: 1, scaleY: 1, rotation: 0, alpha: 1, visible: true, anchorX: 0, anchorY: 0 }); this.graphics = { drawLines() {} }; }
+ constructor() { Object.assign(this, { children: [], x: 0, y: 0, width: 0, height: 0, scaleX: 1, scaleY: 1, rotation: 0, alpha: 1, visible: true, anchorX: 0, anchorY: 0 }); this.graphics = { calls: [], drawLines() {}, save() {}, restore() {}, alpha() {}, clear() { this.calls=[]; }, drawImage(...args) { this.calls.push(args); } }; }
  get pivotX() { return this.anchorX * this.width; } get pivotY() { return this.anchorY * this.height; }
  addChild(n) { if (n.parent) n.parent.children.splice(n.parent.children.indexOf(n), 1); n.parent = this; this.children.push(n); return n; }
  destroyChildren() { this.children.slice().forEach(n => n.destroy(true)); }
@@ -20,7 +21,7 @@ class Sprite {
  addComponent() { const owner = this; return { autoPlay: false, clip: null, gotoAndStop(t) { this.time = t; const v = t <= .5 ? t * 2 : (t - .5) * 2; owner[this.clip.kind === 'upgrade' ? 'scaleY' : 'rotation'] = this.clip.kind === 'upgrade' ? (t <= .5 ? .3 + .78 * v : 1.08 - .08 * v) : (t <= .5 ? -18 + 23 * v : 5 - 5 * v); } }; }
  localToGlobal(point, copy, relative) { let n = this, x = point.x, y = point.y; while (n && n !== relative) { const r = n.rotation * Math.PI / 180, xx = (x - n.pivotX) * n.scaleX, yy = (y - n.pivotY) * n.scaleY; x = n.x + xx * Math.cos(r) - yy * Math.sin(r); y = n.y + xx * Math.sin(r) + yy * Math.cos(r); n = n.parent; } return { x, y }; }
 }
-global.Laya = { Sprite, Text: class extends Sprite { static SHRINK = 'shrink'; }, Point: class { constructor(x, y) { this.x = x; this.y = y; } }, AnimatorClip2D: class {} };
+global.Laya = { Sprite, Text: class extends Sprite { static SHRINK = 'shrink'; }, Point: class { constructor(x, y) { this.x = x; this.y = y; } }, Rectangle: class { constructor(x,y,width,height) { Object.assign(this,{x,y,width,height}); } }, AnimatorClip2D: class {} };
 const { BuildingVisuals } = require(path.join(build, 'view/BuildingVisuals.js'));
 const art = { get: id => { assert(frames.has(id), id); return id; }, buildingLayouts: layouts, buildingUpgrade: { kind: 'upgrade', duration: () => .6 }, buildingAttack: { kind: 'attack', duration: () => .3 } };
 const create = () => { const world = new Sprite(), owner = new Sprite().size(128, 128).pos(200, 300); owner.name = 'test'; world.addChild(owner); return { world, owner, visual: new BuildingVisuals(owner, art) }; };
@@ -32,20 +33,19 @@ test('seven independent native prefabs cover every level and real room count', (
  assert.equal(Object.keys(layouts).length, 108);
  for (const kind of kinds) for (const rooms of kind === 'HOUSE' ? [1, 2, 3] : [1]) {
   let previous = '';
-  for (let level = 1; level <= 12; level++) {
+  for (const level of appearanceLevels) {
    const id = buildingLayoutId(kind, level, rooms), layout = layouts[id]; assert(layout, id); assert.deepEqual(layout.sort, { x: 64, y: 120 });
    assert.notEqual(JSON.stringify(layout.children), previous, id); previous = JSON.stringify(layout.children);
    assert.notEqual(layout.visible, false); assert(layout.children.every(n => !['Footprint', 'SortOrigin', 'VisualBounds'].includes(n.name)));
   }
  }
- for (const houses of [2, 3, 4, 5]) assert.equal(houseRooms(houses, false) + houseRooms(houses, true), houses);
- assert.deepEqual([2, 3, 4, 5].map(n => [houseRooms(n, false), houseRooms(n, true)]), [[1, 1], [2, 1], [2, 2], [3, 2]]);
- for (const level of [13, 20, 1000, 9999]) assert(layouts[buildingLayoutId('ARROW', level)]);
+ assert.deepEqual([1, 14, 26, 38, 50, 100].map(n => [houseRooms(n, false), houseRooms(n, true)]), [[1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [3, 3]]);
+ for (const level of [50, 100, 1000, 9999]) assert.equal(buildingLayoutId('ARROW', level), 'ARROW_12_1');
 });
 
 test('all authored variants and animation extremes fit their declared visible region', () => {
  for (const [id, layout] of Object.entries(layouts)) {
-  const [kind, level, rooms] = id.split('_'), { world, owner, visual } = create(); visual.sync(kind, +level, true, +rooms); visual.occluder();
+  const [kind, level, rooms] = id.split('_'), { world, owner, visual } = create(); visual.sync(kind, appearanceLevels[+level-1], true, +rooms); visual.occluder();
   for (const scaleY of [.3, 1, 1.08]) for (const rotation of [-18, 0, 5]) {
    visual.body.scaleY = scaleY; const weapon=descendants(owner).find(n=>n.name==='Weapon');if(weapon)weapon.rotation=rotation;
    for (const node of descendants(world).filter(n => n.texture)) for (const [x, y] of [[0, 0], [node.width, 0], [0, node.height], [node.width, node.height]]) {
@@ -66,13 +66,37 @@ test('body upgrades preserve ground pivot, stable reuse and precise readable lev
  v.sync(null, 0, false); assert.equal(v.parts.children.length, 0); assert.equal(v.badge.visible, false);
 });
 
+test('replacing a queued or playing upgrade with an empty pad cancels it and permits later upgrades', () => {
+ for (const playing of [false, true]) {
+  const { visual: v } = create();
+  v.sync('ARROW', 1, true); v.sync('ARROW', 2, false);
+  if (playing) { assert(v.beginVisibleUpgrade()); v.advance(.1); }
+  v.sync(null, 0, false);
+  assert.equal(v.beginVisibleUpgrade(), false); assert.equal(v.upgrading, false);
+  assert.doesNotThrow(() => v.advance(.3));
+  v.sync('ARROW', 1, false); assert.equal(v.beginVisibleUpgrade(), false);
+  v.sync('ARROW', 2, false); assert(v.beginVisibleUpgrade());
+  v.advance(.6); assert.equal(v.upgrading, false);
+ }
+});
+
+test('cosmetic rebuilds preserve queued upgrades while a fresh village cancels an identical key', () => {
+ const { visual: v } = create();
+ v.sync('GATE', 1, true); v.sync('GATE', 2, false); v.sync('GATE', 2, false, 1, true);
+ assert(v.beginVisibleUpgrade()); v.advance(.6);
+ v.sync('ARROW', 2, true); v.sync('ARROW', 3, false); v.sync('ARROW', 3, false, 1, false, -1);
+ assert(v.beginVisibleUpgrade()); v.advance(.6);
+ v.sync('ARROW', 4, false); v.sync('ARROW', 4, true);
+ assert.equal(v.beginVisibleUpgrade(), false); assert.doesNotThrow(() => v.advance(.6));
+});
+
 test('the northern tower keeps every upgraded weapon below the HUD on the shortest screen', () => {
  const { GameLayout } = require(path.join(build, 'view/GameLayout.js'));
  const { PADS } = require(path.join(build, 'game/GameConfig.js'));
  const { frames: regions } = require('../../../res/atlases/frames.json');
  const layout = new GameLayout({windowWidth:320,windowHeight:568,statusBarHeight:20,safeArea:{top:20,bottom:568,left:0,right:320}}, {width:88,height:32,top:24,bottom:56,left:222,right:310});
- for(const kind of ['ARROW','STONE','SLOW']) for(let level=1;level<=12;level++) {
-  const {world,owner,visual}=create();owner.size(108,108).pos(PADS[0].x,layout.worldY(PADS[0].y)+21.25);visual.sync(kind,level,true);
+ for(const kind of ['ARROW','STONE','SLOW']) for(const level of appearanceLevels) {
+  const {world,owner,visual}=create();owner.size(TOWER_VIEW.size,TOWER_VIEW.size).pos(PADS[0].x,layout.worldY(PADS[0].y)+TOWER_VIEW.top+TOWER_VIEW.size*15/16);visual.sync(kind,level,true);
   for(const scale of [1,1.08]) for(const angle of [-18,0,5]) {
    visual.body.scaleY=scale;descendants(owner).find(n=>n.name==='Weapon').rotation=angle;
    for(const node of descendants(owner).filter(n=>n.texture)) {
@@ -105,11 +129,11 @@ test('authored hard footprints remain inside the pre-reserved navigation base', 
 });
 
 test('farm upper structure sorts independently and leaves no stale object through rebuild/resize/restart', () => {
- const { owner, world, visual: v } = create(); v.sync('FARM', 5, true);
+ const { owner, world, visual: v } = create(); v.sync('FARM', 19, true);
  assert.deepEqual(layouts.FARM_5_1.aboveFootprint, FARM_WHEEL_FOOTPRINT);
  const upper = v.occluder(); assert.equal(upper.y, owner.y - 27); assert.equal(world.children.length, 2);
  owner.y += 80; assert.equal(v.occluder().y, upper.y + 80);
- v.sync('FARM', 6, false); assert.equal(world.children.length, 2); assert.notEqual(v.occluder().node, upper.node);
+ v.sync('FARM', 24, false); assert.equal(world.children.length, 2); assert.notEqual(v.occluder().node, upper.node);
  v.sync('FARM', 1, true); assert.equal(v.occluder(), null); assert.equal(world.children.length, 1);
 });
 
@@ -132,4 +156,34 @@ test('right-hand arrow towers select actual left weapons without mirroring the b
  assert(right.visible);assert(left.visible);assert(!descendants(a.owner).find(n=>n.name==='FacingLeft').visible);assert(!descendants(b.owner).find(n=>n.name==='FacingRight').visible);
  assert.equal(a.owner.scaleX,1);assert.equal(b.owner.scaleX,1);assert(a.visual.launchPoint().x>b.visual.launchPoint().x);
  assert(descendants(right).some(n=>n.texture==='hd_part_bow_right'));assert(descendants(left).some(n=>n.texture==='hd_part_bow_left'));
+});
+
+
+test('rage blades rotate on a fixed projected plane, freeze with battle time and remain outside building picking', () => {
+ const {TowerRageEffects}=require(path.join(build,'view/TowerRageEffects.js'));
+ const {RAGE_VISUAL}=require(path.join(build,'view/config/RageVisualConfig.js'));
+ const {RULE}=require(path.join(build,'game/GameConfig.js'));
+ for(const kind of ['ARROW','STONE','SLOW'])for(const level of [1,4,8,12]){
+  const a=create();a.visual.sync(kind,level,true);const before=descendants(a.owner).slice();
+  const art={ready:()=>true,get:id=>id}, fx=new TowerRageEffects(a.world,art);
+  const battle={tick:15,bellTicks:285,tactic:{effect:'ATTACK_DAMAGE',ticks:300},outcome:null,base:{towers:[{kind,operator:'p'},...Array(3).fill({kind:null,operator:null})]}};
+  const hosts=Array(4).fill({node:a.owner,visual:a.visual}), depth=fx.update(battle,hosts);
+  assert.equal(depth.length,2);assert.deepEqual(descendants(a.owner),before);
+  const anchor=a.visual.weaponAnchor();assert.equal(depth[0].node.x,anchor.x);assert.equal(depth[1].node.y,anchor.y-RAGE_VISUAL.centerTop[kind]*anchor.scale);
+  assert(depth[0].y<a.owner.y&&depth[1].y>a.owner.y);
+  // First observation after a 15-tick catch-up must still contain the casting flash.
+  assert(depth[1].node.graphics.calls.some(c=>c[0]==='fx_rage_hit'));
+  const snapshot=JSON.stringify(depth.map(d=>[d.node.x,d.node.y,d.node.alpha,d.node.graphics.calls]));
+  fx.update(battle,hosts);assert.equal(JSON.stringify(depth.map(d=>[d.node.x,d.node.y,d.node.alpha,d.node.graphics.calls])),snapshot);
+  const blades=descendants(a.world).filter(n=>n.texture==='fx_rage_orbit');assert.equal(blades.length,2);
+  assert.equal(blades[0].rotation,blades[1].rotation);const angle=blades[0].rotation;
+  fx.update(battle,hosts);assert.equal(blades[0].rotation,angle);
+  for(const blade of blades){assert.equal(blade.parent.scaleY,RAGE_VISUAL.ringHeightRatio);assert.deepEqual({...blade.parent.parent.scrollRect},{x:0,y:0,width:RAGE_VISUAL.orbitCanvas,height:RAGE_VISUAL.orbitCanvas*RAGE_VISUAL.ringHeightRatio/2});}
+  battle.tick+=Math.ceil(RAGE_VISUAL.castSeconds/RULE.step)+1;fx.update(battle,hosts);assert(!depth[1].node.graphics.calls.some(c=>c[0]==='fx_rage_hit'));
+  assert(blades[0].rotation>angle);assert.equal(blades[0].rotation,blades[1].rotation);
+  battle.bellTicks=0;fx.update(battle,hosts);battle.tick+=Math.ceil(RAGE_VISUAL.fadeSeconds/RULE.step)+1;
+  assert.equal(fx.update(battle,hosts).length,0);assert(!depth[0].node.visible&&!depth[1].node.visible);
+  battle.tactic.effect='ATTACK_SPEED';battle.bellTicks=300;assert.equal(fx.update(battle,hosts).length,0);
+  assert.equal(fx.update(null,[]).length,0);
+ }
 });

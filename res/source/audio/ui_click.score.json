@@ -4,5 +4,16 @@
   "sampleRate": 22050,
   "mp3Bitrate": "32k",
   "durationSeconds": 0.085,
-  "synthesis": { "attackSeconds": 0.002, "releaseSeconds": 0.01, "decayRate": 85, "frequenciesHz": [690, 1320], "overtoneGain": 0.3, "peak": 0.65 }
+  "synthesis": {
+    "attackSeconds": 0.002,
+    "releaseSeconds": 0.01,
+    "decayRate": 85,
+    "frequenciesHz": [
+      690,
+      1320
+    ],
+    "overtoneGain": 0.3,
+    "peak": 0.65
+  },
+  "bundle": "base"
 }

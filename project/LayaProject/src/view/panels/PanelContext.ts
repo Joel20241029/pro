@@ -10,6 +10,11 @@ export type Panel = {
     id?: string;
     index?: number;
     scroll?: number;
+    /** 仅本次面板进入的条目身份顺序，不进入存档。 */
+    rowOrder?: string[];
+    /** 战技详情/战前返回链仅用于当前面板，保存失败时保留，成功后按来源导航。 */
+    back?: Panel;
+    pendingTactic?: string;
     tab?: number;
     a?: string;
     job?: "FARM" | "LOGGING";
@@ -23,7 +28,7 @@ export interface PanelContext {
     readonly ui: UiWidgets;
     current: Panel | null;
     readonly refresh: () => void;
-    open(panel: Panel): void;
+    open(panel: Panel, preserve?: boolean): void;
     close(): void;
     send(command: Command, keep?: boolean): void;
     modal(title: string, subtitle: string, close?: boolean, size?: {

@@ -4,6 +4,8 @@ import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { enemySources, buildingSheets, componentCells, iconCells, detailCells, panelCells, environmentSources } from '../../source/rendered2d/production-sources.mjs';
+import { enemyMotionProfiles } from '../../source/rendered2d/enemy-layouts.mjs';
+import { runtimeTextureSizes } from '../../source/rendered2d/runtime-texture-sizes.mjs';
 
 // 技术导入：清理生成稿的低alpha背景，再统一画布/足点和平滑缩小。
 // 不绘制或替换主体，不镜像、不把静止图片伪装成行走；不会同步正式游戏。
@@ -55,6 +57,9 @@ function importImage(spec) {
     // when an alpha channel is selected. Operate on alpha bytes explicitly;
     // above the cutoff preserve both source alpha and RGB without binarizing.
     const rgba = run([input, '-crop', geometry(crop), '+repage', '-depth', '8', 'rgba:-']);
+    // 光效母图的极低alpha底雾连续归零；保留高光255，避免硬阈值切出可见的半透明断层。
+    if (spec.alphaFloor) for (let i = 3; i < rgba.length; i += 4)
+        rgba[i] = Math.round(Math.max(0, rgba[i] - spec.alphaFloor) * 255 / (255 - spec.alphaFloor));
     if (alphaCutoff) for (let i = 0; i < rgba.length; i += 4) if (rgba[i + 3] < alphaCutoff) rgba.fill(0, i, i + 4);
     execFileSync(magick, ['-size', `${crop[2]}x${crop[3]}`, '-depth', '8', 'rgba:-',
         ...(spec.motherSize ? ['-filter', 'Lanczos', '-resize', `${spec.motherSize[0]}x${spec.motherSize[1]}!`] : []), '-strip', clean], { input: rgba });
@@ -82,8 +87,9 @@ function importImage(spec) {
     const sourceSheet = path.relative(root, target), sourceRect = { x: 0, y: 0, w: width, h: height };
     assets.push({ id, label: id, category, categoryLabel: category, path: `runtime/${category}/${id}.png`, width, height,
         pivot, sourceSheet, sourceRect, sourceCropWithinCell: sourceRect, nineSlice, mapping: '', animation: spec.animation || null,
-        fitPadding: 0, resizeMode: 'stretch', sampling: 'Lanczos', runtime: true, usage: 'HD production', bundle: category === 'building-parts' ? 'buildings' : bundle,
-        provenance: { source, crop, objectBox, alphaCutoff, fullCanvas, motherSize: spec.motherSize, groupCrop: spec.groupCrop, sourceHash: hash(input), outputHash: hash(target) } });
+        // 启动页在建筑包下载前会用到草地和两棵树，必须留在底包；其余场景素材随建筑包载入。
+        fitPadding: 0, resizeMode: 'stretch', sampling: 'Lanczos', runtime: true, usage: 'HD production', bundle: ['building-parts', 'terrain', 'environment', 'buildings', 'decorations'].includes(category) && !['tile_ground_grass', 'deco_tree_oak', 'deco_tree_pine'].includes(id) ? 'buildings' : bundle,
+        provenance: { source, crop, objectBox, alphaCutoff, alphaFloor: spec.alphaFloor, fullCanvas, motherSize: spec.motherSize, groupCrop: spec.groupCrop, sourceHash: hash(input), outputHash: hash(target) } });
     return id;
 }
 function clip(id, frameIds, fps, category, mapping) {
@@ -93,30 +99,24 @@ function clip(id, frameIds, fps, category, mapping) {
         clock: category === 'enemies' ? 'battle' : 'scene_visual_or_battle', trimPolicy: 'atlas_trim_restore_source_canvas' });
 }
 for (const [kind, poses] of Object.entries(enemySources)) {
-    // 整组使用同一母画布、共同裁框、共同缩放。不同输出分辨率先换算到
-    // 第一帧母画布；不按每帧动作外轮廓单独放大，避免迈步时身体忽大忽小。
-    const firstSource = generated('enemies/' + poses[0].sheet);
-    const motherSize = (poses[0].crop || cell(firstSource, poses[0].columns, 1, poses[0].cell)).slice(2);
-    let left = motherSize[0], top = motherSize[1], right = 0, bottom = 0;
-    for (const p of poses) {
-        const source = generated('enemies/' + p.sheet), crop = p.crop || cell(source, p.columns, 1, p.cell);
-        const rgba = run([path.join(root, source), '-crop', geometry(crop), '+repage', '-filter', 'Lanczos', '-resize', `${motherSize[0]}x${motherSize[1]}!`, '-depth', '8', 'rgba:-']);
-        for (let y = 0; y < motherSize[1]; y++) for (let x = 0; x < motherSize[0]; x++) if (rgba[(y * motherSize[0] + x) * 4 + 3] >= 240) {
-            left = Math.min(left, x); top = Math.min(top, y); right = Math.max(right, x); bottom = Math.max(bottom, y);
-        }
-    }
-    const groupCrop = [left, top, right - left + 1, bottom - top + 1];
+    const profile = enemyMotionProfiles['enemy_'+kind];
+    const canvas = Math.max(256, runtimeTextureSizes.enemies[kind]);
     const ids = poses.map((p, i) => {
         const source = generated('enemies/' + p.sheet);
-        return importImage({ id: `enemy_${kind}_walk_${i.toString().padStart(2, '0')}`, source, crop: p.crop || cell(source, p.columns, 1, p.cell),
-            category: 'enemies', bundle: 'battle', width: 256, pivot: { x: 128, y: 256 * 92 / 96 }, fitHeight: 232, fitWidth: 244, motherSize, groupCrop, animation: `enemy_${kind}_walk` });
+        return importImage({ id: `enemy_${kind}_walk_${i.toString().padStart(2, '0')}`, source,
+            crop: cell(source, p.columns, p.rows, p.cell), category: 'enemies', bundle: 'battle', width: canvas,
+            pivot: { x: canvas / 2, y: canvas * profile.foot / 96 }, alphaCutoff: 0, fullCanvas: true,
+            animation: `enemy_${kind}_walk` });
     });
     clip(`enemy_${kind}_walk`, ids, poses.length * 1.5, 'enemies', `enemy_${kind}`);
+    animations[animations.length-1].stridePixels = profile.stride * canvas / 96;
     enemyNativeFacing[`enemy_${kind}`] = 'DOWN';
 }
 for (const [index, name] of ['band', 'antlers', 'feathers', 'banner', 'leaves', 'mask'].entries()) {
+    if (!['feathers', 'banner'].includes(name)) continue;
     const source = generated('enemies/accessories_candidate');
-    importImage({ id: 'enemy_acc_' + name, source, crop: cell(source, 3, 2, index), category: 'enemy-parts', bundle: 'battle', width: 128, fitHeight: 116 });
+    const canvas = Math.max(128, runtimeTextureSizes.enemyParts['enemy_acc_' + name]);
+    importImage({ id: 'enemy_acc_' + name, source, crop: cell(source, 3, 2, index), category: 'enemy-parts', bundle: 'battle', width: canvas, fitHeight: 116 / 128 * canvas, fitWidth: 112 / 128 * canvas });
 }
 for (const [role, identities] of Object.entries({ male: ['male_a'], female: ['female_a'], child: ['boy', 'girl'], elder: ['elder_male', 'elder_female'] })) {
     const profile = JSON.parse(fs.readFileSync(path.join(root, `source/rendered2d/characters/${role}/rig-profile.json`)));
@@ -172,6 +172,48 @@ for (const spec of panelCells) {
     importImage({ ...spec, source: generated('ui/bright_skins'), category: 'ui/panels', width: 256,
         pivot: { x: 128, y: spec.height }, alphaCutoff: 0 });
 }
+// 圆形底栏确认稿：只新增圆钮底图和月亮盾牌，文字/红点及四个村务图标复用原实现。
+// 按母图实际可见框裁切；16/255仅清掉远离主体的极低alpha噪点，边缘仍保留抗锯齿。
+// 384px圆钮覆盖172逻辑px在1440屏宽下的344物理px；盾牌128px覆盖62逻辑px的124物理px。
+importImage({ id: 'button_night_round', source: 'source/ui/circular-footer/round-button-and-shield.png', crop: [90, 90, 700, 707],
+    category: 'ui/buttons', width: 384, height: 384, pivot: { x: 192, y: 384 }, fitWidth: 384, fitHeight: 384, alphaCutoff: 16 });
+importImage({ id: 'icon_night_shield', source: 'source/ui/circular-footer/round-button-and-shield.png', crop: [1087, 180, 485, 521],
+    category: 'ui/icons', width: 128, height: 128, pivot: { x: 64, y: 128 }, fitWidth: 128, fitHeight: 128, alphaCutoff: 16 });
+// 守夜三按钮：完整圆钮与冠心分离，沿用白天384/128的高清采样；灰态和倒计时由Laya绘制。
+importImage({ id: 'button_heart_round', source: 'source/ui/night-controls/gold-button-and-heart.png', crop: [77, 83, 714, 718],
+    category: 'ui/buttons', width: 384, height: 384, pivot: { x: 192, y: 384 }, fitWidth: 384, fitHeight: 384, alphaCutoff: 16 });
+importImage({ id: 'icon_crowned_heart', source: 'source/ui/night-controls/gold-button-and-heart.png', crop: [1064, 140, 527, 623],
+    category: 'ui/icons', width: 128, height: 128, pivot: { x: 64, y: 128 }, fitWidth: 128, fitHeight: 128, alphaCutoff: 16 });
+// 战技入口原图独立保存；96px覆盖46逻辑px在两倍采样下的92px，裁边保留抗锯齿。
+importImage({ id: 'icon_tactic_scroll', source: 'source/ui/tactics/scroll.png', category: 'ui/icons',
+    width: 96, height: 96, pivot: { x: 48, y: 96 }, fitWidth: 96, fitHeight: 96, alphaCutoff: 16 });
+// 百毅靓之怒：图标/柔光/命中保留1.0.20原图，旧静止半环被B方案旋刃替代。
+const rageSource = 'source/effects/tactic-rage/rage-sheet.png';
+importImage({ id: 'icon_tactic_rage', source: rageSource, crop: [0, 0, 627, 627], category: 'ui/icons',
+    width: 96, height: 96, pivot: { x: 48, y: 96 }, fitWidth: 96, fitHeight: 96, alphaCutoff: 16 });
+for (const [id, crop, width, height] of [
+    ['fx_rage_glow', [0, 627, 627, 627], 96, 96],
+    ['fx_rage_hit', [627, 627, 627, 627], 64, 64]
+]) importImage({ id, source: rageSource, crop, category: 'effects', bundle: 'battle', width, height,
+    pivot: { x: width / 2, y: height / 2 }, fullCanvas: true, alphaCutoff: 0 });
+// 正俯视圆图在运行时先旋转再压扁，前后由scrollRect裁切；256px保留手机采样。
+// 只保留窄边透明渐变；原稿不裁主体、不重新画图，所有塔共享两张battle贴图。
+for (const [id, crop, width] of [
+    ['fx_rage_orbit', [0, 128, 768, 768], 256],
+    ['fx_rage_up', [896, 256, 512, 512], 64]
+]) importImage({ id, source: 'source/effects/tactic-rage/orbit-b-sheet.png', crop, category: 'effects', bundle: 'battle',
+    width, height: width, pivot: { x: width / 2, y: width / 2 }, fullCanvas: true, alphaCutoff: 0 });
+// 二楠之盾：原稿低alpha白雾不作为场景底色；光效用24/255连续归零，图标按32阈值清理。
+// 一张96px基础包图标；三张透明共享贴图随守夜battle包加载，不引入粒子与逐帧图。
+const shieldSource = 'source/effects/tactic-shield/shield-sheet.png';
+importImage({ id: 'icon_tactic_shield', source: shieldSource, crop: [208, 64, 370, 400], category: 'ui/icons',
+    width: 96, pivot: { x: 48, y: 96 }, fitWidth: 96, fitHeight: 96, alphaCutoff: 32 });
+for (const [id, crop, width, height] of [
+    ['fx_shield_dome', [820, 24, 660, 460], 256, 192],
+    ['fx_shield_ring', [64, 680, 640, 184], 256, 80],
+    ['fx_shield_hit', [960, 590, 380, 370], 96, 96]
+]) importImage({ id, source: shieldSource, crop, category: 'effects', bundle: 'battle', width, height,
+    pivot: { x: width / 2, y: height / 2 }, fullCanvas: true, alphaCutoff: 0, alphaFloor: 24 });
 for (const spec of environmentSources) importImage({ ...spec, category: 'decorations' });
 for (const [index, id] of ['deco_bush', null, 'deco_log_pile', 'building_palisade', 'building_tower_pad'].entries()) {
     if (!id) continue; // 原候选为一对火把，正式单火把来自 finishing_parts。
@@ -189,12 +231,59 @@ for (let index = 0; index < 12; index++) {
 }
 for (const [index, id] of ['fx_hit', 'fx_slow_ring'].entries()) importImage({ id, source: generated('enemies/boar_front_impacts'),
     crop: [index * 768, 640, 768, 384], category: 'effects', bundle: 'battle', width: 128, fitWidth: 124, fitHeight: 124, pivot: { x: 64, y: 128 }, alphaCutoff: 0 });
-importImage({ id: 'tile_ground_grass', source: 'design/hd2d/samples/grass_ground_v2.png', category: 'terrain', width: 512, alphaCutoff: 0, fullCanvas: true });
+importImage({ id: 'tile_ground_grass', source: 'source/rendered2d/generated/environment/grass_ground_textured.png', category: 'terrain', width: 512, alphaCutoff: 0, fullCanvas: true });
 importImage({ id: 'map_road', source: 'design/hd2d/parts/road_sprite.png', category: 'terrain', width: 512, height: 768, alphaCutoff: 0, fullCanvas: true });
+// 城门脚横路只保留母图中的窄带；清除极低alpha背景噪点，保留道路及草边的渐隐过渡。
+importImage({ id: 'map_gate_lane', source: 'source/rendered2d/generated/environment/gate_lane.png', crop: [16, 464, 1504, 128], category: 'terrain', width: 512, height: 48, alphaCutoff: 16, fullCanvas: true });
 const fireIds = [1, 2, 3, 4].map(i => importImage({ id: i === 1 ? 'building_hearth_lit' : `hearth_burn_${i}`,
     source: `source/rendered2d/environment/campfire/campfire_${i}.png`, category: 'decorations', width: 192,
     pivot: { x: 96, y: 180 }, alphaCutoff: 0, fullCanvas: true, animation: 'hearth_burn' }));
 clip('hearth_burn', fireIds, 6, 'decorations', 'fixed back stones / flame / fixed front stones');
+
+// 头像先保存原尺寸。只复用现有静止原图，不增加造型，人物选择仍由运行端原规则决定。
+for (const id of runtimeTextureSizes.portraitFrames) {
+    const original = assets.find(a => a.id === id);
+    if (!original) throw new Error('缺少独立肖像源：' + id);
+    const portrait = structuredClone(original);
+    portrait.id = 'portrait_' + id; portrait.label = portrait.id; portrait.animation = null;
+    portrait.path = `runtime/characters/${portrait.id}.png`;
+    portrait.sourceSheet = `source/rendered2d/production/characters/${portrait.id}.png`;
+    portrait.usage = 'Original-resolution panel portrait';
+    fs.copyFileSync(path.join(root, original.sourceSheet), path.join(root, portrait.sourceSheet));
+    assets.push(portrait);
+}
+// 对已对齐的完整画布统一降采样，不再trim/fit，避免左右脚、劳动工具或各方向发生位移。
+for (const asset of assets) {
+    let width = asset.width;
+    if (asset.category === 'characters' && !asset.id.startsWith('portrait_')) {
+        width = runtimeTextureSizes.characters[asset.id.split('_')[1]];
+        if (!width) throw new Error('未声明人物发布尺寸：' + asset.id);
+    } else if (asset.category === 'enemies') {
+        width = runtimeTextureSizes.enemies[asset.id.split('_')[1]];
+        if (!width) throw new Error('未声明怪物发布尺寸：' + asset.id);
+    } else if (asset.category === 'enemy-parts') {
+        width = runtimeTextureSizes.enemyParts[asset.id];
+        if (!width) throw new Error('未声明配件发布尺寸：' + asset.id);
+    } else if (Object.hasOwn(runtimeTextureSizes.buildingParts, asset.id)) width = runtimeTextureSizes.buildingParts[asset.id];
+    if (width === asset.width) continue;
+    if (width > asset.width || asset.nineSlice) throw new Error('发布尺寸不能放大或修改九宫格：' + asset.id);
+    const original = { width: asset.width, height: asset.height, pivot: { ...asset.pivot } };
+    const scale = width / asset.width, height = Math.round(asset.height * scale);
+    const target = path.join(root, asset.sourceSheet), resized = path.join(work, asset.id + '-sized.png');
+    run([target, '-filter', 'Lanczos', '-resize', `${width}x${height}!`, '-depth', '8', '-strip', resized]);
+    fs.copyFileSync(resized, target);
+    asset.width = width; asset.height = height;
+    asset.pivot = { x: original.pivot.x * scale, y: original.pivot.y * scale };
+    asset.sourceRect = { x: 0, y: 0, w: width, h: height };
+    asset.sourceCropWithinCell = { ...asset.sourceRect };
+    Object.assign(asset.provenance, { normalizedCanvas: original, runtimeScale: scale, outputHash: hash(target) });
+}
+// clip.pivot原本与首帧共用对象，必须整体换新而非原地乘，避免孩子/老人双身份重复缩放。
+for (const animation of animations) {
+    const first = assets.find(a => a.id === animation.frameIds[0]), scale = first.width / animation.canvas.w;
+    if (animation.stridePixels !== undefined) animation.stridePixels *= scale;
+    animation.canvas = { w: first.width, h: first.height }; animation.pivot = { ...first.pivot };
+}
 const recipe = { version: 4, status: 'HD staging, not published', atlas: { padding: 2, trimAlphaThreshold: 0, preserveNineSliceCanvas: true, sampling: 'linear' }, assets,
     animations: { version: 3, animations, walkDirections, laborDirections, enemyNativeFacing }, externalAssets: [] };
 fs.writeFileSync(path.join(root, 'source/rendered2d/production_recipe.json'), JSON.stringify(recipe, null, 2) + '\n');

@@ -12,12 +12,14 @@ import { drawPeoplePanel } from "./panels/PeoplePanels";
 import { drawFamilyPanel } from "./panels/FamilyPanel";
 import { drawBuildingPanel } from "./panels/BuildingPanels";
 import { drawJournalPanel } from "./panels/JournalPanels";
+import { drawTacticPanel } from "./panels/TacticPanels";
 /** 面板状态与 CHOICE 暂停的唯一所有者。绘制模块不会各自缓存面板或注册刷新回调。 */
 export class GamePanels implements PanelContext {
     current: Panel | null = null;
     constructor(readonly game: GameSession, readonly art: SpriteFrames, readonly platform: WechatPlatform, readonly ui: UiWidgets, readonly overlay: Laya.Sprite, public layout: GameLayout, readonly refresh: () => void, readonly resources: ResourcePreparation) { }
-    open(panel: Panel) {
+    open(panel: Panel, preserve = false) {
         if (!this.resources.ready("characters") || this.game.pauses.has("ASSETS")) return;
+        if (!preserve) panel.rowOrder = undefined;
         this.current = panel; this.game.pause("CHOICE"); this.refresh();
         if (panel.type === "start") void this.resources.ensure("battle");
     }
@@ -54,7 +56,17 @@ export class GamePanels implements PanelContext {
         return box;
     }
     draw(s: GameState, p: Panel) {
-        if (["people", "history", "partners", "carers", "operators", "care", "workers", "person", "ancestor"].includes(p.type))
+        if (p.pendingTactic && !this.game.saves.pending) {
+            const accepted = !this.game.error && s.tactics.equipped === p.pendingTactic;
+            delete p.pendingTactic;
+            if (accepted) {
+                const list = p.type === "tactic" ? p.back! : p;
+                p = list.back?.type === "start" ? list.back : list;
+                this.current = p;
+            }
+        }
+        if (p.type === "tactics" || p.type === "tactic") drawTacticPanel(this, s, p);
+        else if (["people", "history", "partners", "carers", "operators", "care", "workers", "person", "ancestor"].includes(p.type))
             drawPeoplePanel(this, s, p);
         else if (p.type === "families")
             drawFamilyPanel(this, s, p);

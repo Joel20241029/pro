@@ -59,8 +59,9 @@ function setup() {
     const layout = new GameLayout({ windowWidth: 390, windowHeight: 844, screenTop: 0, statusBarHeight: 47, safeArea: { top: 47, bottom: 810 } }, { bottom: 83, left: 292, width: 88, height: 32 });
     const world = new VillageWorld(game, art, new UiWidgets(art, () => {}), layout, name => houses.push(name), id => opened.push(id));
     // 仅此单元夹具移去场景建筑；遮挡分别显式构造，原生验收另用完整建筑和实际图集。
-    world.props = [];
-    world.motion = { get: id => poses.get(id) };
+    // 保留零尺寸城门挂点供护盾组件绑定；它不参与本夹具的可见遮挡或人物点选。
+    world.props = [{ id: 'building:gate', y: 0, node: new Sprite() }];
+    world.motion = { get: id => poses.get(id), get visiblePeople() { return state.people; } };
     state.people.forEach((p, i) => poses.set(p.id, { x: 250 + i * 70, y: 1000, insideTower: false, clip: 'villager_male_a_walk', direction: 'DOWN', elapsed: 0, walkDistance:0, walking:true, animated: true, heartElapsed: null, mirror: false }));
     world.render(false);
     return { world, game, state, poses, opened, houses };

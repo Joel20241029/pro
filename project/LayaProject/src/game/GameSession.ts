@@ -66,7 +66,10 @@ export class GameSession {
             if (!(this.boot?.kind === "incompatible" || (this.boot?.kind === "blocked" && this.boot.canReset))) return;
             this.submit(createGame(Date.now() >>> 0), false, "RESET"); return;
         }
-        this.submit(createGame(Date.now() >>> 0, this.state?.legacy, trait, this.state ? this.state.history : [], this.state ? this.state.favorites : []), false, "NORMAL");
+        const next = createGame(Date.now() >>> 0, this.state?.legacy, trait, this.state ? this.state.history : [], this.state ? this.state.favorites : []);
+        // 已确认传承保留学会结果；新村仍默认携带大王之心。纯净开始走独立路径。
+        if (this.state) next.tactics.learned = this.state.tactics.learned.slice();
+        this.submit(next, false, "NORMAL");
     }
     cleanStart() {
         if (!this.state || this.boot !== null || this.saves.pending) return;

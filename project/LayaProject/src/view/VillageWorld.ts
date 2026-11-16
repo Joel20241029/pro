@@ -5,11 +5,13 @@ import { GameSession } from "../game/GameSession";
 import { person } from "../game/VillageRules";
 import { GameState, isElder } from "../game/GameState";
 import { ELITE, RULE } from "../game/GameConfig";
-import { BattleSimulation, pointAt } from "../game/BattleSimulation";
+import { BattleSimulation } from "../game/BattleSimulation";
+import { enemyPoint } from "../game/BattleRoad";
 import { gateCapacity } from "../game/Growth";
 import { SpriteFrames } from "./SpriteFrames";
 import { compareDepth, layoutVillage, TOWER_VIEW, VillageNavigation, WEDDING } from "./VillageScene";
 import { GameLayout } from "./GameLayout";
+import { RESIDENT_DISPLAY } from "./VisibleResidents";
 import { VillagerMotion } from "./VillagerMotion";
 import { WalkAnimation } from "./WalkAnimation";
 import { ProjectileMotion } from "./ProjectileMotion";
@@ -21,6 +23,9 @@ import { UiWidgets } from "./UiWidgets";
 import { HOUSE_TIP_NAMES } from "./config/AnchoredTipConfig";
 import { HUD } from "./config/HudConfig";
 import { WORLD_ART } from "./config/WorldArtConfig";
+import { TowerRageEffects } from "./TowerRageEffects";
+import { GateShieldEffects } from "./GateShieldEffects";
+import { RAGE_VISUAL } from "./config/RageVisualConfig";
 /** 同一份绘制深度同时用于地图点选；人物身份随当前帧写入，不能绑定到精灵池下标。 */
 interface WorldItem {
     id: string; y: number; node: Laya.Sprite;
@@ -52,6 +57,9 @@ export class VillageWorld {
     private logging = new LoggingFeedback();
     private projectiles = new ProjectileMotion();
     private projectileNodes: Laya.Sprite[] = [];
+    private projectileGlows: Laya.Sprite[] = [];
+    private rage: TowerRageEffects;
+    private shield: GateShieldEffects;
     private lastBattle: BattleSimulation | null = null;
     private lastBattleTick = 0;
     private backgroundKey = "";
@@ -62,6 +70,8 @@ export class VillageWorld {
     constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private layout: GameLayout,
         private houseClicked: (name: string, visual: BuildingVisuals) => void, private personClicked: (id: string) => void) {
         this.world.name = "VillageWorld";
+        this.rage = new TowerRageEffects(this.world, art);
+        this.shield = new GateShieldEffects(this.world, art);
         const clickNodes: Laya.Sprite[] = [];
         for (const p of this.scene.props) {
             const node = new Laya.Sprite();
@@ -98,7 +108,7 @@ export class VillageWorld {
             if (p.canopyDetails) for (const detail of p.canopyDetails)
                 this.ui.image(node, detail.frame, p.size * detail.x, p.size * detail.y, p.size * detail.size, p.size * detail.size, false).alpha = detail.alpha;
         }
-        for (let i = 0; i < RULE.populationCap; i++) {
+        for (let i = 0; i < RESIDENT_DISPLAY.limit; i++) {
             const s = new Laya.Sprite();
             s.mouseEnabled = false;
             s.stackingRoot = true;
@@ -121,14 +131,16 @@ export class VillageWorld {
             this.enemies.push(s); this.enemyVisuals.push(new EnemyVisuals(s, art));
         }
         for (let i = 0; i < RULE.effectCap; i++) {
+            const glow = new Laya.Sprite(); glow.mouseEnabled = false; glow.visible = false;
+            this.shots.addChild(glow); this.projectileGlows.push(glow);
             const s = new Laya.Sprite();
             s.mouseEnabled = false;
             s.visible = false;
             this.shots.addChild(s);
             this.projectileNodes.push(s);
         }
-        // 软投影是普通图片，不是粒子。与人物/敌人共用固定池，脚底排序让农田地面上的阴影仍可见。
-        for (let i = 0; i < this.people.length + this.enemies.length; i++) {
+        // 此池仅绘制村民地影；怪物接地影已纳入自己的原生动画，不能再用独立世界节点重复绘制。
+        for (let i = 0; i < this.people.length; i++) {
             const shadow = new Laya.Sprite(); shadow.texture = this.art.get("shadow_actor");
             shadow.name = "ContactShadow:" + i; shadow.mouseEnabled = false; shadow.visible = false;
             shadow.alpha = WORLD_ART.shadow.alpha; this.world.addChild(shadow); this.actorShadows.push(shadow);
@@ -165,7 +177,7 @@ export class VillageWorld {
         for (let i = this.pickDepth.length - 1; i >= 0; i--) {
             const item = this.pickDepth[i], node = item.node;
             if (item.ground || !node.visible || node.destroyed) continue;
-            if (item.personId && (!state.people.some(p => p.id === item.personId) || this.motion.get(item.personId).insideTower)) continue;
+            if (item.personId && (!state.people.some(p => p.id === item.personId) || !this.motion.visiblePeople.some(p => p.id === item.personId) || this.motion.get(item.personId).insideTower)) continue;
             node.globalToLocal(this.pickPoint.setTo(stageX, stageY));
             // 人物只取自身贴图，红心不扩大点击范围；建筑/树木包含自己的可见部件。
             const bounds = item.personId ? node.getGraphicBounds(false, this.pickBounds) : node.getSelfBounds(this.pickBounds, true);
@@ -188,6 +200,7 @@ export class VillageWorld {
         this.pressedTargets.clear();
     }
     reset() {
+        this.shield.reset();
         for (const touchId of this.pressedTargets.keys()) Laya.InputManager.cancelClick(touchId);
         this.pressedTargets.clear(); this.pickDepth = [];
         this.motion = new VillagerMotion(new VillageNavigation(this.scene.props, this.scene.landscape, this.scene.bounds), this.scene.stops);
@@ -229,6 +242,9 @@ export class VillageWorld {
         // 路面可见部分全部在城墙之前；按战场段同一比例映射，不能拿含居民区的高度混合缩放。
         const battleScale = (y(830) - y(246)) / (830 - 246);
         this.scenery.graphics.drawImage(this.art.get("map_road"), 0, y(0), WORLD_ART.roadWidth, WORLD_ART.roadHeight * battleScale, tint);
+        // 门口横路在地面层，随墙脚定位；墙、门槛、路牌和行人继续按原足底顺序盖在路上。
+        const lane = WORLD_ART.gateLane;
+        this.scenery.graphics.drawImage(this.art.get("map_gate_lane"), lane.x, y(lane.anchorY) + lane.top, lane.width, lane.height, tint);
         const shadow = WORLD_ART.shadow;
         for (const prop of this.scene.props) {
             if (prop.ground || prop.id.startsWith("wall:") || prop.id.startsWith("deco:")) continue;
@@ -237,8 +253,12 @@ export class VillageWorld {
             const image = this.ui.image(this.scenery, tree ? "shadow_tree" : "shadow_actor", prop.x - width * shadow.centerX + shadow.x, prop.y - width * shadow.centerY + shadow.y, width, width, false);
             image.alpha = shadow.alpha;
         }
-        for (const [x, at] of [[182, 399], [530, 470], [173, 591], [560, 643], [297, 628], [411, 356]])
-            this.ui.image(this.scenery, "deco_rocks", x, y(at), 36, 36, false);
+        for (const rock of WORLD_ART.rocks.placements) {
+            const image = this.ui.image(this.scenery, "deco_rocks", rock.x + WORLD_ART.rocks.referenceSize / 2,
+                y(rock.y) + WORLD_ART.rocks.referenceSize, rock.size, rock.size, false);
+            image.pivot(rock.size / 2, rock.size);
+            image.scaleX = rock.scaleX;
+        }
     }
     advance(delta: number): boolean {
         if (!this.game.pauses.size) {
@@ -255,12 +275,12 @@ export class VillageWorld {
         if (!this.game.pauses.size) this.feedback.advance(Math.min(RULE.frameCap, Math.max(0, delta)));
         if (s && !this.game.pauses.size && (s.phase === "DAY" || s.phase === "NIGHT")) {
             this.sceneSeconds += visualDelta;
-            this.motion.update(visualDelta);
-            for (const p of s.people) { const pose = this.motion.get(p.id); this.logging.sample(p.id, pose.clip, pose.elapsed, pose.animated && !pose.walking && s.phase === "DAY", pose.loggingTree); }
-            this.logging.retain(new Set(s.people.map(p => p.id)));
+            if (this.motion.update(visualDelta)) this.motion.sync(s, battle ? battle.base.towers : s.towers);
+            for (const p of this.motion.visiblePeople) { const pose = this.motion.get(p.id); this.logging.sample(p.id, pose.clip, pose.elapsed, pose.animated && !pose.walking && s.phase === "DAY", pose.loggingTree); }
+            this.logging.retain(new Set(this.motion.visiblePeople.map(p => p.id)));
             this.logging.advance(visualDelta);
             for (const tree of this.props) if (tree.id.startsWith("tree:")) tree.node.rotation = this.logging.rotation(tree.id);
-            this.emotes.update(s, Math.min(RULE.frameCap, Math.max(0, delta)), id => { const pose = this.motion.get(id); return !pose.insideTower && pose.y > this.layout.worldY(840) && pose.heartElapsed === null; });
+            this.emotes.update(s, Math.min(RULE.frameCap, Math.max(0, delta)), id => { if (!this.motion.visiblePeople.some(p => p.id === id)) return false; const pose = this.motion.get(id); return !pose.insideTower && pose.y > this.layout.worldY(840) && pose.heartElapsed === null; });
         }
         this.renderDelta += delta;
         if (this.renderDelta < 1 / 30)
@@ -270,17 +290,21 @@ export class VillageWorld {
     }
     render(panelOpen: boolean) {
         const s = this.game.state, battle = this.game.battle;
-        this.feedback.sync(battle, this.game.takeCombatFeedback());
+        const events = this.game.takeCombatFeedback();
+        this.feedback.sync(battle, events);
         this.bellAura.visible = false;
         this.bellAura.graphics.clear();
         this.people.forEach(n => n.visible = false);
         this.enemies.forEach(n => n.visible = false);
         this.actorShadows.forEach(n => n.visible = false);
         this.projectileNodes.forEach(n => n.visible = false);
+        this.projectileGlows.forEach(n => n.visible = false);
         this.hearts.forEach(n => { n.visible = false; n.alpha = 1; n.scale(1, 1); n.pos(0, 0); });
         this.emote.visible = false;
         const depth = this.props.slice();
         if (!s) {
+            this.rage.update(null, []);
+            this.shield.reset();
             depth.sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
             this.pickDepth = [];
             return;
@@ -330,8 +354,8 @@ export class VillageWorld {
                 p.visual!.updateAttack(battle, Number(p.id.split(":")[1]));
         this.projectiles.update(battle, this.layout, this.scene.pads, index => this.props.find(p => p.id === `tower:${index}`)!.visual!.launchPoint(), this.feedback);
         this.freshBuildingVillage = false;
-        this.walkAnimation.retain(new Set(s.people.map(p => p.id)));
-        if (this.art.ready("characters")) s.people.forEach((p, i) => {
+        this.walkAnimation.retain(new Set(this.motion.visiblePeople.map(p => p.id)));
+        if (this.art.ready("characters")) this.motion.visiblePeople.forEach((p, i) => {
             const n = this.people[i], pose = this.motion.get(p.id);
             n.visible = !pose.insideTower;
             n.name = `person:${p.id}`;
@@ -357,21 +381,22 @@ export class VillageWorld {
             depth.push({ id: n.name, y: pose.y, node: n, personId: p.id });
         });
         const emote = this.emotes.current;
-        if (this.art.ready("characters") && emote && !panelOpen && !this.game.pauses.size && (s.phase === "DAY" || s.phase === "NIGHT")) {
+        if (this.art.ready("characters") && emote && this.motion.visiblePeople.some(p => p.id === emote.id) && !panelOpen && !this.game.pauses.size && (s.phase === "DAY" || s.phase === "NIGHT")) {
             const pose = this.motion.get(emote.id);
             if (!pose.insideTower) {
                 const owner = person(s, emote.id), scale = (owner.elite ? ELITE.visualScale : 1) * this.layout.personScale;
                 const elapsed = EMOTE.seconds - emote.remaining;
                 this.emote.visible = true;
                 this.art.applyFrame(this.emote, emote.frameId, EMOTE.size);
-                // 依人物原画布挂点，同时应用屏幕与精英缩放，只上浮3px，保持贴近头顶。
-                const headOffset = owner.adult ? 52 : 46;
+                // 高清人物四向头顶距足底约成人38~43/孩子34~37；偏移各缩短8，保留头顶间距及3px轻微上浮。
+                // 挂点继续随屏幕与精英缩放，调整只影响表情位置，不改变触发或显示时长。
+                const headOffset = owner.adult ? 44 : 38;
                 this.emote.pos(Math.max(EMOTE.size / 2, Math.min(720 - EMOTE.size / 2, pose.x)), pose.y - headOffset * scale - Math.sin(Math.min(1, elapsed / .25) * Math.PI / 2) * 3);
                 this.emote.alpha = Math.min(1, elapsed / .16, emote.remaining / .25);
             }
         }
         if (battle && this.art.ready("battle")) {
-            const ringing = !battle.outcome && battle.bellTicks > 0;
+            const ringing = !battle.outcome && battle.bellTicks > 0 && (battle.tactic.effect === "ATTACK_SPEED" || battle.tactic.effect === "MULTI_TARGET");
             if (ringing) {
                 this.bellAura.visible = true;
                 // 相位只跟随战斗tick，暂停和打开面板时冻结；最多四圈，不新增图片、计时器或逐帧节点。
@@ -382,35 +407,52 @@ export class VillageWorld {
                         this.bellAura.graphics.drawCircle(pad.x, pad.y - 40, 46 + pulse * 4, "rgba(246,207,114,0.12)", "#f6cf72", 3);
                 });
             }
-            const visibleEnemies = [...battle.enemies.map(enemy => ({ enemy, seconds: battle.tick * RULE.step + enemy.seq * .13 })), ...Array.from(this.feedback.deaths.values())];
-            visibleEnemies.slice(0, this.enemies.length).forEach(({ enemy: e, seconds }, i) => {
-                const n = this.enemies[i], at = pointAt(e.progress);
+            const visibleEnemies = [...battle.enemies.map(enemy => ({ enemy })), ...Array.from(this.feedback.deaths.values())];
+            visibleEnemies.slice(0, this.enemies.length).forEach(({ enemy: e }, i) => {
+                const n = this.enemies[i], at = enemyPoint(e);
                 n.visible = true;
                 n.name = `enemy:${e.seq}`;
-                this.enemyVisuals[i].draw(e.kind, e.appearanceSeed, seconds, this.art.enemyMirror(e.kind, pointAt(e.progress + 1).x - at.x), this.feedback.flashing(e.seq));
+                this.enemyVisuals[i].draw(e.kind, e.appearanceSeed, e.walkDistance, this.art.enemyMirror(e.kind, enemyPoint({ ...e, progress: e.progress + 1 }).x - at.x), this.feedback.flashing(e.seq));
                 n.pos(at.x, this.layout.worldY(at.y));
                 depth.push({ id: n.name, y: n.y, node: n });
             });
             this.projectiles.poses.forEach((p, i) => {
                 const n = this.projectileNodes[i];
-                n.name = `projectile:${p.shot.kind}:${p.shot.tower}:${p.shot.tick}`;
-                n.visible = !p.impacted;
+                n.name = `projectile:${p.shot.kind}:${p.shot.tower}:${p.shot.tick}:${i}`;
+                n.visible = !p.impacted || p.shot.empowered;
                 this.art.applyFrame(n, p.frame, p.size);
                 n.pos(p.x, p.y);
                 n.rotation = p.rotation + (p.shot.kind === "ARROW" && !p.impacted ? WORLD_ART.arrowAngleOffset : 0);
                 n.alpha = p.alpha;
+                if (p.shot.empowered && !p.impacted) {
+                    // 围绕实际裁框中心附加窄柔光，主体尺寸/发射口/弹道都不变；冰弹保留原青蓝色。
+                    const glow = this.projectileGlows[i], frame = this.art.contentBounds(p.frame);
+                    const unit = p.size / frame.sourceSize.w, angle = n.rotation * Math.PI / 180;
+                    const dx = (frame.trimOffset.x + frame.rect.w / 2 - frame.pivot.x) * unit;
+                    const dy = (frame.trimOffset.y + frame.rect.h / 2 - frame.pivot.y) * unit;
+                    const width = frame.rect.w * unit * RAGE_VISUAL.projectileScale, height = frame.rect.h * unit * RAGE_VISUAL.projectileScale;
+                    glow.texture = this.art.get("fx_rage_glow"); glow.size(width, height).pivot(width / 2, height / 2);
+                    glow.pos(p.x + dx * Math.cos(angle) - dy * Math.sin(angle), p.y + dx * Math.sin(angle) + dy * Math.cos(angle));
+                    glow.rotation = n.rotation; glow.alpha = RAGE_VISUAL.projectileAlpha; glow.visible = true;
+                }
             });
         }
         let shadowIndex = 0;
-        for (const actor of [...this.people, ...this.enemies]) if (actor.visible) {
+        this.people.forEach(actor => { if (actor.visible) {
             const shadow = this.actorShadows[shadowIndex++], spec = WORLD_ART.shadow;
             const width = actor.width * Math.abs(actor.scaleX) * spec.actorWidth;
-            shadow.visible = true; shadow.size(width, width).pivot(width * spec.centerX, width * spec.centerY);
+            shadow.visible = true;
+            shadow.size(width, width).pivot(width * spec.centerX, width * spec.centerY);
+            shadow.alpha = spec.alpha;
             shadow.pos(actor.x + spec.x, actor.y + spec.y);
             depth.push({ id: shadow.name, y: actor.y - .01, node: shadow, ground: true });
-        }
+        } });
         // Laya 3.4 的 zIndex 决定渲染顺序；world 为 stackingRoot，不让深度排序覆盖 HUD/弹窗。
-        depth.sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
+        const rageDepth = this.rage.update(battle, this.props.filter(p => p.id.startsWith("tower:")).map(p => ({ node: p.node, visual: p.visual! })));
+        const gate = this.props.find(p => p.id === "building:gate")!;
+        const shieldDepth = this.shield.update(battle, { node: gate.node, visual: gate.visual! }, this.layout, events);
+        [...depth, ...rageDepth, ...shieldDepth].sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
+        depth.sort(compareDepth);
         this.pickDepth = depth;
         // 一帧内先隐藏再填充整个池，因此在最终可见性/身份确定后取消失效按下记录。
         for (const [touchId, down] of this.pressedTargets)

@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-13",
+  "tool": "image_gen.imagegen",
+  "operation": "edit",
+  "reference": "farms_ground.png",
+  "output": "farms_mixed_crops.png",
+  "transparentBackground": true,
+  "prompt": "Use case: precise-object-edit. Asset type: production transparent sprite sheet for the existing portrait village game. Edit target: the attached 4-column sprite sheet of farm upgrade stages. Keep the exact same high-quality cute pre-rendered 3D-to-2D game art style, camera angle, scale, soft upper-left lighting, soil ground islands, wooden beds, stone upgrade reinforcements, irrigation channels, and four separate side-by-side stages. Maintain 4 equally spaced columns in one row, generous transparent gaps, no cropping, transparent background. ONLY CHANGE THE CROPS inside each of the four plots on EACH upgrade stage. In ALL FOUR upgrade stages consistently: back-left plot is ripe GOLDEN WHEAT; back-right plot is plump bright GREEN CABBAGES with distinct curled leaves; front-left plot is low GREEN TOMATO PLANTS with clearly visible RED RIPE TOMATOES; front-right plot is ORANGE CARROTS growing out of dark soil with leafy green tops, recognizable orange shoulders visible above soil. Each plot contains only its assigned crop and all four should look distinct at small mobile size, vivid but harmonious natural colors, clean readable silhouettes, appealing rounded chunky forms. Carrots and tomatoes must be visible as orange and red color accents, not just foliage. Preserve the cross-shaped earth walking paths between the four plots, keep beds low and open without tall fence posts so farmers can stand among crops naturally. Keep the surrounding ground island outline and stage-specific irrigation structures as close as possible to the original. No characters, no UI, no words, no numbers, no labels, no extra crops, no cast shadow outside the islands, no black or white background, no checkerboard. Deliver crisp alpha-transparent art, not a mockup.",
+  "columns": 4,
+  "rows": 1,
+  "plotCrops": {
+    "backLeft": "wheat",
+    "backRight": "cabbage",
+    "frontLeft": "tomato",
+    "frontRight": "carrot"
+  },
+  "scope": "四档农田的静态外观；经营产量、农民岗位、等级和水车挂点保持。"
+}

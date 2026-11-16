@@ -2,22 +2,18 @@
  * generated 为原始生成稿；directions/labor 为可编辑 Blender 源离线渲染。
  * 坚持真实方向，不通过镜像改变持物手或光源。未选中的 candidate 不发布。
  */
-export const enemySources = {
-    raider: [{ sheet: 'raider_front', columns: 2, cell: 0 }, { sheet: 'raider_front', columns: 2, cell: 1 }],
-    runner: [0, 1, 2, 3].map(cell => ({ sheet: 'runner', columns: 4, cell })),
-    armored: [0, 1, 2, 3].map(cell => ({ sheet: 'armored', columns: 4, cell })),
-    boar: [0, 1].map(cell => ({ sheet: 'boar_front_impacts', crop: [cell * 768, 0, 768, 640] })),
-    disruptor: [{ sheet: 'disruptor_front', columns: 2, cell: 0 }, { sheet: 'disruptor_front', columns: 2, cell: 1 }],
-    chief: [{ sheet: 'chief_front_candidate', columns: 2, cell: 0 }, { sheet: 'chief_front_other', columns: 1, cell: 0 }],
-    commander: [0, 1, 2, 3].map(cell => ({ sheet: 'commander', columns: 4, cell })),
-    wolfking: [0, 1, 2, 3].map(cell => ({ sheet: 'wolfking', columns: 4, cell })),
-    tuskking: [{ sheet: 'tuskking', columns: 4, cell: 0 }, { sheet: 'tuskking_opposite', columns: 1, cell: 0 }],
-    shaman: [{ sheet: 'shaman', columns: 4, cell: 0 }, { sheet: 'shaman_opposite', columns: 1, cell: 0 }]
-};
+/** 2026-11-16批准的新怪物：每张母图是一整套循环，固定画布不逐帧缩放。
+ * 六帧小怪/八帧首领，裁格边界采用四舍五入，支持1774×887的偶数行母图。
+ */
+export const enemySources = Object.fromEntries([
+    ['raider',6], ['runner',6], ['armored',6], ['boar',6], ['disruptor',6],
+    ['chief',8], ['commander',8], ['wolfking',8], ['tuskking',8], ['shaman',8]
+].map(([kind,count]) => [kind, Array.from({length:count}, (_,cell) => ({sheet:'rework/'+kind, columns:count/2, rows:2, cell}))]));
 /** 四个结构档对应既有1/4/8/12级；中间等级在同一主体上增添结构件。 */
 export const buildingSheets = {
     ARROW: 'arrow_bases', STONE: 'stone_bases', SLOW: 'frost_bases',
-    HOUSE: 'houses', FARM: 'farms_ground', LOGGING: 'logging', GATE: 'gates'
+    // 农田四档共用同一作物分区：后左麦、后右卷心菜、前左番茄、前右胡萝卜；只改变外观。
+    HOUSE: 'houses', FARM: 'farms_mixed_crops', LOGGING: 'logging', GATE: 'gates'
 };
 export const componentCells = [
     'bow_right', 'bow_left', 'sling', 'crystals',

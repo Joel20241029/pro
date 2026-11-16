@@ -1,6 +1,28 @@
 # 代代守村 · 高清二维资源与制作工程
 
+1.0.25 待上传：十类怪物根级 ContactShadow 已同步到独立原生 prefab，布局合同为 v4；复用现有阴影图，不新增运行图片。当前制作与验证见 [技术文档47](../doc/tech/47_动画内阴影与自动最高难度.md)。
+
+2026-11-16 已随体验版 1.0.24 上传：391 项素材、48 组动画、16 页图集；十类怪物重制为五类小怪各 6 帧、五类首领各 8 帧；新夜战音乐 64,488 字节、通用发射声 854 字节。加载界面所需草地、橡树、松树与 UI 保留底包，其余环境与阴影归建筑分包，人物包不变。微信平台已确认上传成功，下方旧版本数据均为对应历史快照。
+
+本轮原稿与提示词见 [怪物重制说明](design/monster-rework/README.md)，Laya 原始工程见 [BuildingWorkshop](editor/BuildingWorkshop/README.md)，音频曲谱与合成参数见 [声音源文件](source/audio/README.md)，实施和包体记录见 [长期经营与怪物重制](../doc/tech/46_长期经营与怪物重制.md)。修改母稿、配方或预制体后，必须走正式生成链更新运行资源，不直接修改图集。
+
+1.0.23「分裂术·超」复用基础包 `icon_arrow` 图标、三类塔原弹体和大王之心金色绘图光圈；无新增或改写图片、图集、粒子、音频和源配方。正式素材仍为 353 项、48 组动画、13 页图集，见 [45 分裂术·超设计](../doc/tech/45_分裂术超设计.md)。
+
+1.0.22新增 [二楠之盾原始素材](source/effects/tactic-shield/README.md)：96×96技能图标归基础包，256×192护罩、256×80贴地环及96×96抵挡涟漪归战斗包。正式素材353项、48组动画、13页图集；原349项导入配方未改，不新增粒子。城门按实际Body范围匹配罩体，短屏略压低罩形并保持血条原高度。设计、实现与验证见 [44 二楠之盾](../doc/tech/44_二楠之盾设计.md)。
+
+2026-11-15 百毅靓之怒采用已选B旋刃光环：256×256双弧与64×64双箭头替代两张静止半环，总素材仍为349项、48组动画。三种塔共享，运行时连续旋转及前后裁切，不新增粒子或序列帧。制作源见 [旋刃素材](source/effects/tactic-rage/README.md)，运行验收见 [43 旋刃光环](../doc/tech/43_旋刃光环表现升级.md)。下方1.0.20为上传时的历史实现。
+
+1.0.20 新增 [百毅靓之怒原始素材](source/effects/tactic-rage/README.md)，当前为 349 项素材、48 组动画、13 页图集：图标在基础包，4 张光效在战斗包。原有 344 项配方不变，不新增粒子。为留出主包空间，另保留 [开放数据域引擎母版及纯格式整理流程](source/wechat-open-data/README.md)，不降低图片质量。
+
+1.0.19 新增独立的 [战技卷轴原图及制作说明](source/ui/tactics/README.md)。正式资源为 344 项素材、48 组动画、13 页图集；其余沿用下方 1.0.18 的画质与分包。主包 PNG 无损编码增加搜索轮数，解码 RGBA 不变。战技制作和本次包体详见 [41 战技系统实施](../doc/tech/41_战技系统实施与1.0.19.md)，下方字节为历史版本快照。
+
 当前方案为高清预渲染二维：运行时只有二维图片、序列帧与Laya部件动画，不加载实时3D模型，全部粒子已移除。全局UI采用已确认的“明亮田园”，详见 [设计与实施范围](../doc/tech/32_高清预渲染二维美术重制.md)。下方历史记录不代表当前发布配置。
+
+2026-11-14 的 1.0.18 将小怪放大 15%、Boss 放大 25%，从保留的高清原稿重制 28 张身体帧及 6 张配饰，当前为 343 项素材、48 组动画、13 页图集。派生尺寸见 [runtime-texture-sizes.mjs](source/rendered2d/runtime-texture-sizes.mjs)，接地影及道路走廊提取见 [怪物接地与道路分散行走](../doc/tech/39_怪物接地与道路分散行走.md)。本次微信导出主包 4,172,972 字节，总目录 15,831,513 字节；已成功上传体验版，平台主包 4,171,677 字节、总计 15,830,217 字节，与本地目录统计分别记录。
+
+沿用 1.0.17 已校准的 [逐帧身体与配饰布局](source/rendered2d/enemy-layouts.mjs)，十个独立原生 prefab、布局和 UUID 保持不变，只同步高清贴图；原生保存记录见 [怪物移动与配饰校准](../doc/tech/38_怪物移动与配饰校准.md)。地图、UI、村民与建筑派生图未变。
+
+沿用 1.0.16 的白天绿色金边圆钮和月亮盾牌，以及守夜暖金圆钮和独立冠心。制作源与确认稿分别位于 [圆形底栏制作源](source/ui/circular-footer/README.md) 和 [守夜控件制作源](source/ui/night-controls/README.md)。主包 PNG 保留像素完全一致的无损编码；底栏状态、布局及上一版验证见 [守夜三按钮与 1.0.16](../doc/tech/37_守夜三按钮与1.0.16.md)。
 
 ## 当前目录
 
@@ -14,7 +36,7 @@
 | `bundles/base/` | 高清UI、草地/道路/环境、基础音频 | 主包 |
 | `bundles/buildings/` | 建筑图片、108布局、升级/攻击时间轴 | 建筑分包 |
 | `bundles/characters/` | 四类村民四向八帧、独立站姿、成人劳动、婴儿/老人休息、红心表情 | 人物分包 |
-| `bundles/battle/` | 五类小怪、五类首领、配件、普通弹道、战斗音乐 | 战斗分包 |
+| `bundles/battle/` | 五类小怪、五类首领、配件、普通弹道、红白旋刃战技光效、战斗音乐 | 战斗分包 |
 | `preview/` | 由当前配方生成的预览，实际IDE验证另存Downloads | 否 |
 | `archive/`、`source/3d/` | 历史像素资源、四帧步态、实时3D试验；只供追溯 | 否 |
 
@@ -23,14 +45,14 @@
 ## 重建与迭代
 
 1. 修改 `source/rendered2d/production-sources.mjs` 指向的原始稿，或角色 `rig-profile.json` 和可编辑Blender源；重新离线渲染，运行足底/朝向检查。
-2. 运行 `node res/tools/hd2d/prepare-production.mjs --work <Downloads内目录>`，审查派生图及 `production_recipe.json`，再同步为 `source/asset_recipe.json`。
-3. 建筑/怪物贴图或布局改变时用 `prepare-native-prefabs.mjs` 同步贴图和种子；它不写prefab或覆盖UUID。需要重做布局时，在Laya执行 `工具 / BuildHd2dProduction`。日常小改直接编辑对应原生prefab。
-4. 运行 `node res/tools/build-resources.mjs --work <Downloads内目录> --sync`，透明裁边、外扩、校验后按白名单同步正式工程。
+2. 按 `source/rendered2d/runtime-texture-sizes.mjs` 核对发布尺寸，运行 `node res/tools/hd2d/prepare-production.mjs --work <Downloads内目录>`，审查派生图及 `production_recipe.json`，再同步为 `source/asset_recipe.json`。导入器先规范画布，再统一缩放；静态头像独立保留原分辨率，不能直接缩母版或逐帧重新裁主体。
+3. 建筑/怪物贴图或布局改变时用 `prepare-native-prefabs.mjs` 同步贴图和种子；它不写 prefab 或覆盖 UUID。怪物布局使用 `工具 / RefineHdEnemyAttachments`，仅保存十种怪物。`工具 / BuildHd2dProduction` 会重建全部建筑和怪物，仅在明确整套重制时使用；日常小改直接编辑对应原生 prefab。
+4. 按 [工具依赖说明](tools/README.md) 安装固定版本的 PNG 无损编码依赖，再运行 `node res/tools/build-resources.mjs --work <Downloads内目录> --sync`，透明裁边、外扩、像素一致性校验后按白名单同步正式工程。
 5. 构建微信目录 `tryVersion/wxgame`，运行包体检查及实际微信IDE验收。构建成功不能代替手机实测。
 
 图片保持平滑采样与抗锯齿。八帧行走按实际路程保持相位；停止使用独立双脚落地帧。老人采用短步、固定握杖，孩子和老人不区分男女外观。UI按可见裁框居中，奶油金边卡片和绿色底板分层，按钮/图标/文字共同按压。
 
-`manifest.json` 是当前白名单，`budget_report.json` 是资源字节，`validation_report.json` 是图集验证；最终微信包体以导出目录检查报告为准。所有临时渲染/日志/IDE截图在 `~/Downloads/daidai-hd2d-full-20261113/`。
+`manifest.json` 是当前白名单，`budget_report.json` 是资源字节，`validation_report.json` 是图集验证；最终微信包体以导出目录检查报告为准。本轮纹理优化将运行图集从 13 页降至 11 页，正式导出原始字节从 16,580,328 降至 14,897,507；高清制作源保留，详见 [纹理尺寸与包体优化](../doc/tech/33_纹理尺寸与包体优化.md)。高清重制实绘在 `~/Downloads/daidai-hd2d-full-20261113/`，本轮日志、前后对照、旧派生页归档及 IDE 截图在 `~/Downloads/daidai-texture-sizing-20261113/`。
 
 ## 历史记录：1.0.13 及之前的像素管线
 
@@ -105,3 +127,8 @@ node res/tools/build-resources.mjs \
 1.0.13 保留 6 种 Laya 原生 2D 粒子：4 种命中、精英脚底圈、鲜红色大王之心边缘环绕；攻击拖尾与建筑升级粒子已移除。怪物红闪、伐木树摆和建筑原有升级动作保留。粒子复用内置白纹理，不增加图集页。源与编辑说明见 [particleAuthoring](editor/BuildingWorkshop/assets/particleAuthoring/README.md)，正式实绘见 [preview/particles](preview/particles/README.md)。
 
 `particles.json` 跟随 base、characters、battle 的既有准备与失败重试。当时运行素材白名单 21 个文件，共 2,194,813 字节；完整微信导出还包含代码和引擎，不能用素材数冒充包体。
+
+
+## 1.0.15 第二次上传
+
+怪物场景体型增加 12.5%，发布尺寸从高清母版同步提高，小怪 160、一般首领 224、兽王 240，部分配件 80/128。图集仍为 11 页，总导出目录 15,082,158 字节，主包 3,921,081 字节。相对上一份体验包增加约 0.18 MB；源稿、尺寸配置、编辑器引用图、配方及四分包同步，具体规则与回执见 [操作排序与战斗表现](../doc/tech/35_操作排序与战斗表现调整.md)。前面的纹理压缩体积为历史基线。

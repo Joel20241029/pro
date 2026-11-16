@@ -1,4 +1,5 @@
 import { GameSession } from "./game/GameSession";
+import { BattleSimulation } from "./game/BattleSimulation";
 import { SaveStore } from "./storage/SaveStore";
 import { WechatPlatform } from "./platform/WechatPlatform";
 import { SpriteFrames } from "./view/SpriteFrames";
@@ -23,6 +24,8 @@ export class Main extends Laya.Script {
     private disposed = false;
     private starting = false;
     private music: WechatMusic | null = null;
+    private soundBattle: BattleSimulation | null = null;
+    private heardVolleys = 0;
     private hide = () => { this.music?.suspend(); this.session?.hide(); };
     private show = () => { this.resize(); this.session?.show(); };
     // 微信适配器已把onWindowResize转为Stage.RESIZE，不重复注册原生事件。
@@ -83,9 +86,19 @@ export class Main extends Laya.Script {
         const delta = Laya.timer.unscaledDelta / 1000;
         this.resources.advance(delta, !!this.session && !this.session.pauses.has("BACKGROUND") && !this.session.pauses.has("DISABLED"));
         this.updateLoadingStatus();
-        this.syncResourcePause(); this.session?.update(delta); this.view?.update(delta);
+        this.syncResourcePause();
+        // update可能在最后一轮发射后完成结算并清空battle；保留该对象消费真实发射事件。
+        const finishingBattle = this.session?.battle;
+        this.session?.update(delta); this.view?.update(delta);
         if (this.session?.state) {
             this.music?.setEnabled(this.session.state.settings.music);
+            const battle = this.session.battle || finishingBattle;
+            if (battle !== this.soundBattle) { this.soundBattle = battle; this.heardVolleys = 0; }
+            if (battle && battle.volleys > this.heardVolleys) {
+                this.heardVolleys = battle.volleys;
+                // 完成结算可能打开日出面板；当帧已发生的发射仍应播放，原音频生命周期负责静音/后台。
+                if (!this.session.pauses.size || battle === finishingBattle && battle.outcome !== null) this.music?.towerShot();
+            }
             this.music?.setBattle(this.session.state.phase === "NIGHT" && this.resources.ready("battle"));
         }
         if (this.session?.state && !this.session.saves.pending) this.platform?.syncBestNight(this.session.state.legacy.bestNight);
@@ -97,5 +110,6 @@ export class Main extends Laya.Script {
         Laya.stage.off(Laya.Event.CLICK, this, this.interact); Laya.stage.off(Laya.Event.RESIZE, this, this.resize);
         this.music?.destroy(); this.music = null; this.loading?.destroy(); this.loading = null;
         this.platform?.unbind(this.hide, this.show); this.view?.destroy(); this.frames.destroy();
+        this.platform?.rankingDiagnostics.dispose();
     }
 }

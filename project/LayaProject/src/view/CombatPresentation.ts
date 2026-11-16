@@ -1,12 +1,12 @@
-import { BattleSimulation, CombatFeedback, Enemy, pointAt, Shot } from '../game/BattleSimulation';
-import { RULE } from '../game/GameConfig';
+import { BattleSimulation, CombatFeedback, Enemy, Shot } from '../game/BattleSimulation';
+import { enemyPoint } from '../game/BattleRoad';
 import { FEEDBACK } from './config/FeedbackConfig';
 /** 独立视觉时间线。死亡快照不进入 simulation.enemies；保留统一死亡位置供迟到弹道使用。 */
 export class CombatPresentation {
     private battle: BattleSimulation | null = null;
     private clock = 0;
     readonly shots = new Map<Shot, Extract<CombatFeedback, { type: 'shot' }>>();
-    readonly deaths = new Map<number, { enemy: Enemy; seconds: number; fatal: Shot; until: number | null }>();
+    readonly deaths = new Map<number, { enemy: Enemy; fatal: Shot; until: number | null }>();
     private deathPositions = new Map<number, { x: number; y: number }>();
     private flashes = new Map<number, number>();
     private retired = new Set<number>();
@@ -17,13 +17,13 @@ export class CombatPresentation {
         if (!battle || battle.outcome) return;
         for (const event of events) {
             if (event.type === 'gate') {
-                this.deathPositions.set(event.enemy.seq, pointAt(event.enemy.progress));
+                this.deathPositions.set(event.enemy.seq, enemyPoint(event.enemy));
                 this.retired.add(event.enemy.seq); this.deaths.delete(event.enemy.seq); this.flashes.delete(event.enemy.seq);
             } else {
                 this.shots.set(event.shot, event);
                 for (const enemy of event.hurt) if (enemy.hp <= 0 && !this.retired.has(enemy.seq)) {
-                    this.deathPositions.set(enemy.seq, pointAt(enemy.progress));
-                    if (!this.deaths.has(enemy.seq)) this.deaths.set(enemy.seq, { enemy, seconds: event.shot.tick * RULE.step + enemy.seq * .13, fatal: event.shot, until: null });
+                    this.deathPositions.set(enemy.seq, enemyPoint(enemy));
+                    if (!this.deaths.has(enemy.seq)) this.deaths.set(enemy.seq, { enemy, fatal: event.shot, until: null });
                 }
             }
         }
@@ -37,7 +37,7 @@ export class CombatPresentation {
         const event = this.shots.get(shot);
         if (!event) return { x: shot.x, y: shot.y }; // 现有Shot单独预览仍使用其原始落点。
         const alive = this.battle?.enemies.find(e => e.seq === event.target);
-        return alive ? pointAt(alive.progress) : this.deathPositions.get(event.target) || { x: shot.x, y: shot.y };
+        return alive ? enemyPoint(alive) : this.deathPositions.get(event.target) || { x: shot.x, y: shot.y };
     }
     impact(shot: Shot) {
         const event = this.shots.get(shot);

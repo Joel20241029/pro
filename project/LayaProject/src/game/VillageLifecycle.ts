@@ -87,7 +87,5 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
         s.choices.push({ kind: "POLICY", options: world.choices(Object.keys(POLICIES), 3) });
     }
     s.rng.world = world.state;
-    if ((s.day - 1) % RULE.yearDays === 0)
-        s.choices.push({ kind: "TIER" });
     s.summary = `守夜成功！${grown.length ? `${grown.length} 个孩子成年。` : ""}${retired.length ? `${retired.length} 位村民荣休，留村养老。` : ""}${departed.length ? `${departed.length} 位长辈安然辞世，已记入家谱。` : ""}${uncared ? `${uncared} 个孩子的照料者荣休，请重新安排。` : ""}`;
 }

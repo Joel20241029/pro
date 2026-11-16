@@ -32,6 +32,10 @@ for(const profile of profiles) test(`${profile[0]}: safe controls, expanded vill
     }
     const farm=scene.props.find(p=>p.id==='building:farm');
     for(const p of scene.stops.farm) assert([-75,-30].some(d=>Math.abs(p.y-farm.y-d)<1e-6),'farmer leaves crop rows');
+    for(const p of scene.stops.logging) {
+        const tree=scene.props.find(t=>t.id===p.treeId);
+        assert(p.y>tree.y,'woodcutter must stand in front of the assigned tree after screen layout');
+    }
     for(let i=0;i<4;i++) for(const kind of ['ARROW','STONE','SLOW']) {
         const start=towerLaunch(i,kind,scene.pads), tower=scene.props.find(p=>p.id===`tower:${i}`);
         near(start.y,tower.y-TOWER_VIEW.size*15/16+TOWER_VIEW.muzzle[kind].y*TOWER_VIEW.size/128);

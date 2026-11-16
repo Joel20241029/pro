@@ -13,7 +13,7 @@ export interface Person {
 export interface Family { id: string; partners: string[]; lastBirth: number | null; }
 export interface Tower { kind: TowerKind | null; level: number; operator: string | null; }
 export interface Wave { budget: number; tier: number; affix: "NONE" | "FAST" | "STURDY" | "GROUP"; entries: { kind: EnemyKind; tick: number; appearanceSeed: number }[]; }
-export type Choice = { kind: "SKILL"; person: string; options: Skill[] } | { kind: "TRAVELER"; person: Person } | { kind: "POLICY"; options: string[] } | { kind: "TIER" };
+export type Choice = { kind: "SKILL"; person: string; options: Skill[] } | { kind: "TRAVELER"; person: Person } | { kind: "POLICY"; options: string[] };
 export interface Legacy {
     births: number; retirees: number; bestNight: number; traits: Trait[]; nextRun: number;
     /** 每日口粮最后成功入档的本地日历日期 YYYY-MM-DD；null 表示未领过，每次新开村清空。 */
@@ -22,15 +22,18 @@ export interface Legacy {
 export interface GameState {
     run: number; nextPerson: number; nextFamily: number; day: number; completed: number;
     phase: "DAY" | "NIGHT" | "DAWN" | "GAME_OVER"; food: number; wood: number; gate: number;
+    /** 住宅扩建等级1–100，影响人口；housing是独立修缮等级，影响仓储与住宅主体外观。 */
     houses: number; housing: number; gateLevel: number; farm: number; logging: number; tier: number; policy: string | null;
     /** 上次提供旅人时的成功守夜数；谢绝也记时，新村null，不迁移旧配置。 */
     lastTraveler: number | null;
     people: Person[]; families: Family[]; towers: Tower[];
+    /** 战技学习结果与当前携带；资格由本村成功波数推导，红点不落盘。 */
+    tactics: { learned: string[]; equipped: string };
     history: Person[]; favorites: string[]; choices: Choice[];
-    wave: Wave | null; night: { adults: string[]; elders: string[]; cared: string[]; hungry: boolean } | null;
+    wave: Wave | null; night: { adults: string[]; elders: string[]; cared: string[]; hungry: boolean; tactic: string } | null;
     rng: { family: number; world: number };
     stats: { births: number; retirees: number; generation: number }; legacy: Legacy;
-    settings: { speed: 1 | 2 | 3; music: boolean }; summary: string;
+    settings: { speed: 2 | 3; music: boolean }; summary: string;
 }
 export function clone<T>(v: T): T { return JSON.parse(JSON.stringify(v)); }
 /** 工作、驻塔、照料与成家共用资格；已成年并不代表仍在劳作期。 */

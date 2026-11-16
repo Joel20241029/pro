@@ -1,0 +1,12 @@
+{
+  "generator": "image_gen",
+  "reference": "res/design/tactics/03_百毅靓之怒_全塔伤害强化.png",
+  "generatedOriginal": "/Users/happyelements/.codex/generated_images/01a1c37a-aaa3-7712-bae2-f249886a3949/exec-a721f8bc-5d13-46fa-8a47-00c4958c3a6e.png",
+  "canvas": [
+    1254,
+    1254
+  ],
+  "purpose": "透明四格素材：赤金弓箭技能图标、水平椭圆环、柔光、命中星闪",
+  "alpha": "原始透明通道；环/柔光/命中闪不做alpha截断",
+  "runtimeImport": "res/tools/hd2d/prepare-production.mjs"
+}

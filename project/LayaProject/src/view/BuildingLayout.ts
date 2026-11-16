@@ -13,12 +13,15 @@ export interface BuildingDefinition extends BuildingNode {
  * 从开村起预留，升级时不挤开人物；田畦其余区域仍可耕作。转换结果由范围测试核对。
  */
 export const FARM_WHEEL_FOOTPRINT: BuildingRegion = { x: 91, y: 85, width: 26, height: 8 };
-/** 1～12级逐级变化，后续循环四种同档高级主体，防止无限扩大占地，等级数始终精确显示。
- * 来源：tech/23。只选择表现，不参与价格、人口、战斗。修改须同步布局覆盖测试。
+/** doc/tech/46：12档外观均匀分布于1～50级，之后固定最高档，数值继续成长。
+ * 只选择表现，不参与价格、人口、战斗；保持编辑器中各建筑独立的范围与占地。
  */
 export function buildingLayoutId(kind: BuildingLook, level: number, rooms = 1) {
-    const stage = level <= 12 ? level : 9 + (level - 13) % 4;
+    const stage = 1 + Math.floor(11 * (Math.min(50, Math.max(1, level)) - 1) / 49);
     return `${kind}_${stage}_${kind === "HOUSE" ? rooms : 1}`;
 }
-/** 两个住宅根分摊真实房数：2→1+1，3→2+1，4→2+2，5→3+2，保持原导航占地。 */
-export function houseRooms(houses: number, second: boolean) { return second ? Math.floor(houses / 2) : Math.ceil(houses / 2); }
+/** 扩建前50级逐渐增加两侧厢房，最多3+3间；人口容量独立计算，避免100级挤满地图。 */
+export function houseRooms(houses: number, second: boolean) {
+    const rooms = 2 + Math.floor(4 * (Math.min(50, Math.max(1, houses)) - 1) / 49);
+    return second ? Math.floor(rooms / 2) : Math.ceil(rooms / 2);
+}
