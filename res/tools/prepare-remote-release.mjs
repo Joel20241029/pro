@@ -22,13 +22,13 @@ const destination = path.join(remoteRoot, version);
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'res/manifest.json'), 'utf8'));
 if (manifest.version !== 4) throw new Error('请先用新流程构建资源');
 const digest = data => createHash('sha256').update(data).digest('hex');
-const categories = ['music', 'characters', 'enemies', 'map', 'buildings', 'effects', 'ui'];
+const categories = ['characters', 'enemies', 'map', 'buildings', 'effects', 'ui'];
 const artifacts = new Map(), files = {};
 for (const stage of ['village', 'night']) {
     for (const bundled of manifest.stages[stage]) {
         const relative = bundled.slice('bundles/'.length);
         const [category, name, extra] = relative.split('/');
-        if (!bundled.startsWith('bundles/') || !categories.includes(category) || !/^[a-z0-9_.]+\.(png|json|mp3|mc)$/.test(name || '') || extra !== undefined || files[relative])
+        if (!bundled.startsWith('bundles/') || !categories.includes(category) || !/^[a-z0-9_.]+\.(png|json|mc)$/.test(name || '') || extra !== undefined || files[relative])
             throw new Error('运行资源路径冲突或不合法：' + bundled);
         const bytes = fs.readFileSync(path.join(root, 'res', bundled));
         if (!bytes.equals(fs.readFileSync(path.join(root, 'project/LayaProject/assets/resources/gameplay', relative))))

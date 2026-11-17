@@ -74,7 +74,7 @@ export class Main extends Laya.Script {
             }, this.resources, () => {
                 if (session.state?.settings.music && this.resources.ready("night")) this.music?.enemyDefeat();
             });
-            this.music = new WechatMusic(() => this.view?.showMusicProblem(), this.filePath);
+            this.music = new WechatMusic(() => this.view?.showMusicProblem());
             Laya.stage.on(Laya.Event.CLICK, this, this.interact);
             Laya.stage.addChild(this.view.root);
             this.loading!.destroy(); this.loading = null;

@@ -52,8 +52,6 @@
     "bundles/buildings/buildings.json",
     "bundles/buildings/building_upgrade.mc",
     "bundles/buildings/building_attack.mc",
-    "bundles/music/village_loop.mp3",
-    "bundles/music/ui_click.mp3",
     "bundles/enemies/frames.json",
     "bundles/enemies/animations.json",
     "bundles/characters/night_characters_0.png",
@@ -72,7 +70,9 @@
     "bundles/enemies/enemies_5.png",
     "bundles/effects/night_effects_0.png",
     "bundles/enemies/enemies.json",
+    "bundles/music/village_loop.mp3",
     "bundles/music/battle_loop.mp3",
+    "bundles/music/ui_click.mp3",
     "bundles/music/tower_fire.mp3",
     "bundles/music/enemy_defeat.mp3"
   ],
@@ -126,9 +126,7 @@
       "bundles/effects/village_effects_0.png",
       "bundles/buildings/buildings.json",
       "bundles/buildings/building_upgrade.mc",
-      "bundles/buildings/building_attack.mc",
-      "bundles/music/village_loop.mp3",
-      "bundles/music/ui_click.mp3"
+      "bundles/buildings/building_attack.mc"
     ],
     "night": [
       "bundles/enemies/frames.json",
@@ -148,12 +146,16 @@
       "bundles/enemies/enemies_4.png",
       "bundles/enemies/enemies_5.png",
       "bundles/effects/night_effects_0.png",
-      "bundles/enemies/enemies.json",
-      "bundles/music/battle_loop.mp3",
-      "bundles/music/tower_fire.mp3",
-      "bundles/music/enemy_defeat.mp3"
+      "bundles/enemies/enemies.json"
     ]
   },
+  "mainAudio": [
+    "bundles/music/village_loop.mp3",
+    "bundles/music/battle_loop.mp3",
+    "bundles/music/ui_click.mp3",
+    "bundles/music/tower_fire.mp3",
+    "bundles/music/enemy_defeat.mp3"
+  ],
   "assetCount": 1485,
   "runtimeAssetCount": 1479,
   "reserveAssetCount": 6,

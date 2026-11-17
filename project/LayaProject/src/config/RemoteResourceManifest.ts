@@ -1,9 +1,9 @@
 /** 由 prepare-remote-release.mjs 生成。版本目录和 Gitee 提交共同锁定已校验的资源。 */
 export const REMOTE_RESOURCE_MANIFEST = {
-    "version": "1.0.45",
-    "revision": "cc737c6980b16b87ad84bd86e2c5ff3ecc65d88f",
+    "version": "1.0.47",
+    "revision": "f865c7db29c4ab531934a83e05422b4973311a35",
     "sources": {
-        "raw": "https://gitee.com/sun-wen-sky/remote-res/raw/cc737c6980b16b87ad84bd86e2c5ff3ecc65d88f/1.0.45/"
+        "raw": "https://gitee.com/sun-wen-sky/remote-res/raw/f865c7db29c4ab531934a83e05422b4973311a35/1.0.47/"
     },
     "files": {
         "map/frames.json": {
@@ -300,18 +300,6 @@ export const REMOTE_RESOURCE_MANIFEST = {
             "sha256": "6273a65ab55bd8500b91f3cc8adba23a21fc53f62e4071388fabd8b7a1232698",
             "source": "raw"
         },
-        "music/village_loop.mp3": {
-            "stage": "village",
-            "bytes": 96462,
-            "sha256": "5fc8646055275c788d97b6c21894a311746c1ad9cd07a4fa73f14924a884bb5a",
-            "source": "raw"
-        },
-        "music/ui_click.mp3": {
-            "stage": "village",
-            "bytes": 854,
-            "sha256": "8149b864e7202c77ab2a2da117a9e765599de7adba3030ca6e84b9ce0e9678c3",
-            "source": "raw"
-        },
         "enemies/frames.json": {
             "stage": "night",
             "bytes": 61383,
@@ -418,24 +406,6 @@ export const REMOTE_RESOURCE_MANIFEST = {
             "stage": "night",
             "bytes": 8325,
             "sha256": "9249730a594e52dd6623ec423589d797ab5e18f7fd3ccdcd15e3abab1bcda99e",
-            "source": "raw"
-        },
-        "music/battle_loop.mp3": {
-            "stage": "night",
-            "bytes": 64488,
-            "sha256": "d384a4c59db72c0d9f59413890cf99040e819cd7c810e1c92f14941236100613",
-            "source": "raw"
-        },
-        "music/tower_fire.mp3": {
-            "stage": "night",
-            "bytes": 854,
-            "sha256": "887c864fe86adf3e64be7d29dc80adf87b8c18cbe9b91d13ac458933dbfedea5",
-            "source": "raw"
-        },
-        "music/enemy_defeat.mp3": {
-            "stage": "night",
-            "bytes": 2212,
-            "sha256": "f28650376487a489931b297b0597e5b50f7259f7f7f1da2327d925187a2ecb35",
             "source": "raw"
         }
     }

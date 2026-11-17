@@ -32,12 +32,12 @@ export function atlasGroup(asset) {
 }
 
 export function writeBundles(root, pages, frames, animations, buildingFiles, audio, enemyFile) {
-    const result = { village: [], night: [] }, required = {};
-    const copy = (stage, source, relative) => {
+    const result = { village: [], night: [] }, mainAudio = [], required = {};
+    const copy = (files, source, relative) => {
         const destination = path.join(root, 'bundles', relative);
         fs.mkdirSync(path.dirname(destination), { recursive: true });
         fs.copyFileSync(path.join(root, source), destination);
-        result[stage].push('bundles/' + relative);
+        files.push('bundles/' + relative);
     };
     const writeJson = (stage, relative, data) => {
         const destination = path.join(root, 'bundles', relative);
@@ -64,15 +64,13 @@ export function writeBundles(root, pages, frames, animations, buildingFiles, aud
             laborDirections: village ? animations.laborDirections : {},
             enemyNativeFacing: village ? {} : animations.enemyNativeFacing
         });
-        for (const p of selected) copy(stage, p.path, p.runtimeFile);
+        for (const p of selected) copy(result[stage], p.path, p.runtimeFile);
         for (const file of village ? buildingFiles : [enemyFile]) {
-            copy(stage, file, (village ? 'buildings/' : 'enemies/') + path.basename(file));
-        }
-        for (const track of audio.tracks.filter(t => (t.bundle === 'base') === village)) {
-            copy(stage, track.runtimeFile, 'music/' + path.basename(track.runtimeFile));
+            copy(result[stage], file, (village ? 'buildings/' : 'enemies/') + path.basename(file));
         }
         required[stage] = { frames: Object.keys(stageFrames).sort(), clips: clips.map(c => c.id).sort() };
     }
+    for (const track of audio.tracks) copy(mainAudio, track.runtimeFile, 'music/' + path.basename(track.runtimeFile));
     const buildings = JSON.parse(fs.readFileSync(path.join(root, 'native/buildings.json'))).layouts;
     const enemies = JSON.parse(fs.readFileSync(path.join(root, enemyFile)));
     const villageFrames = new Set(required.village.frames), nightFrames = new Set(required.night.frames);
@@ -103,22 +101,31 @@ export function writeBundles(root, pages, frames, animations, buildingFiles, aud
         'export const REQUIRED_BUILDING_LAYOUTS = ' + JSON.stringify(Object.keys(buildings).sort()) + ';'
     ];
     fs.writeFileSync(path.resolve(root, '../project/LayaProject/src/config/ResourceManifest.ts'), lines.join('\n') + '\n');
-    return result;
+    return { stages: result, mainAudio };
 }
 
-export function syncGameplayAssets(root, files, previousFiles) {
-    const destination = path.resolve(root, '../project/LayaProject/assets/resources/gameplay');
+export function syncGameplayAssets(root, files, previousFiles, mainAudio) {
+    const destination = path.resolve(root, '../project/LayaProject/assets/resources');
     const allowed = new Set(files.map(file => file.slice('bundles/'.length)));
+    const audio = new Set(mainAudio.map(file => file.slice('bundles/'.length)));
     // 只清理上一份发布清单明确列出的工程生成文件。
     for (const file of previousFiles) {
         if (!/^bundles\/[a-z_]+\/[a-z0-9_.]+$/.test(file)) throw new Error('历史运行文件路径不合法：' + file);
         const relative = file.slice('bundles/'.length);
-        if (allowed.has(relative)) continue;
-        fs.rmSync(path.join(destination, relative), { force: true });
-        fs.rmSync(path.join(destination, relative) + '.meta', { force: true });
+        const remote = path.join(destination, 'gameplay', relative);
+        if (!allowed.has(relative) || audio.has(relative)) {
+            fs.rmSync(remote, { force: true });
+            fs.rmSync(remote + '.meta', { force: true });
+        }
+        if (relative.startsWith('music/') && !audio.has(relative)) {
+            const local = path.join(destination, relative);
+            fs.rmSync(local, { force: true });
+            fs.rmSync(local + '.meta', { force: true });
+        }
     }
     for (const file of files) {
-        const target = path.join(destination, file.slice('bundles/'.length));
+        const relative = file.slice('bundles/'.length);
+        const target = audio.has(relative) ? path.join(destination, relative) : path.join(destination, 'gameplay', relative);
         fs.mkdirSync(path.dirname(target), { recursive: true });
         fs.copyFileSync(path.join(root, file), target);
     }

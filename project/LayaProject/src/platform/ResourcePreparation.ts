@@ -1,4 +1,5 @@
 import { ResourceStage, RESOURCE_SLOW_SECONDS } from "../config/ResourceConfig";
+import { RELEASE } from "../config/ReleaseInfo";
 
 export type PreparationPhase = "IDLE" | "DOWNLOAD" | "DECODE" | "READY" | "FAILED";
 export interface PreparationState { phase: PreparationPhase; progress: number; slow: boolean; error: string; }
@@ -69,8 +70,14 @@ export class ResourcePreparation {
         } catch (error) {
             if (notificationFailed) throw error;
             if (!this.disposed) {
+                const operation = state.phase;
                 state.phase = "FAILED";
                 state.error = error instanceof Error ? error.message : String(error);
+                console.error("[资源准备失败]", {
+                    version: RELEASE.version, build: RELEASE.build, stage, operation, progress: state.progress,
+                    // 临时签名可能随下载错误返回，保留路径和错误内容供排查。
+                    error: state.error.replace(/(https?:\/\/[^\s?#]+)[?#][^\s]*/g, "$1")
+                });
             }
             return false;
         } finally {

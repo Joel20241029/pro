@@ -19,7 +19,7 @@ function setup(){
 test('gesture starts one looping context without requiring unsupported global audio options',()=>{
  const {music,calls,tracks}=setup();music.setEnabled(true);assert.equal(calls.play,0);music.interact();music.interact();
  assert.equal(calls.created,1);assert.equal(calls.play,1);const audio=tracks[0];
- assert.equal(audio.src,'resources/gameplay/music/village_loop.mp3');assert.equal(audio.loop,true);assert.equal(audio.autoplay,false);assert.equal(audio.volume,.3);
+ assert.equal(audio.src,'resources/music/village_loop.mp3');assert.equal(audio.loop,true);assert.equal(audio.autoplay,false);assert.equal(audio.volume,.3);
  music.setEnabled(false);assert.equal(calls.pause,1);music.interact();assert.equal(calls.play,1);music.setEnabled(true);assert.equal(calls.play,1);music.interact();assert.equal(calls.play,2);assert.equal(calls.created,1);music.destroy();
 });
 test('background pauses playback and waits for next gesture to resume',()=>{
@@ -48,19 +48,19 @@ test('synchronous native failure is isolated, disabled music ignores late errors
 test('battle switches once on the current BGM; a suspended switch only changes the source',()=>{
  const {music,calls,tracks}=setup();music.setEnabled(true);music.interact();
  const [bgm]=tracks;music.setBattle(true);
- assert.equal(bgm.src,'resources/gameplay/music/battle_loop.mp3');assert.equal(bgm.volume,.25);assert.equal(bgm.stops,1);
+ assert.equal(bgm.src,'resources/music/battle_loop.mp3');assert.equal(bgm.volume,.25);assert.equal(bgm.stops,1);
  for(let i=0;i<60;i++)music.setBattle(true);
- assert.deepEqual(bgm.played,['resources/gameplay/music/village_loop.mp3','resources/gameplay/music/battle_loop.mp3']);
+ assert.deepEqual(bgm.played,['resources/music/village_loop.mp3','resources/music/battle_loop.mp3']);
  music.suspend();music.setBattle(false);
- assert.equal(bgm.src,'resources/gameplay/music/village_loop.mp3');assert.equal(bgm.volume,.3);assert.equal(calls.play,2);assert.equal(bgm.stops,1);
- music.interact();assert.equal(bgm.played[2],'resources/gameplay/music/village_loop.mp3');assert.equal(calls.created,1);music.destroy();
+ assert.equal(bgm.src,'resources/music/village_loop.mp3');assert.equal(bgm.volume,.3);assert.equal(calls.play,2);assert.equal(bgm.stops,1);
+ music.interact();assert.equal(bgm.played[2],'resources/music/village_loop.mp3');assert.equal(calls.created,1);music.destroy();
 });
 test('clicks reuse one short context and stay silent until a gesture after mute, hide, or interruption',()=>{
  const {music,calls,tracks,events}=setup();music.setBattle(true);music.setEnabled(true);music.click();assert.equal(calls.created,0);
  music.interact();music.click();music.click();music.click();
  const [bgm,click]=tracks;
- assert.equal(bgm.played[0],'resources/gameplay/music/battle_loop.mp3');assert.equal(calls.created,2);
- assert.equal(click.src,'resources/gameplay/music/ui_click.mp3');assert.equal(click.volume,.35);
+ assert.equal(bgm.played[0],'resources/music/battle_loop.mp3');assert.equal(calls.created,2);
+ assert.equal(click.src,'resources/music/ui_click.mp3');assert.equal(click.volume,.35);
  assert.equal(click.loop,false);assert.equal(click.autoplay,false);assert.equal(click.played.length,3);assert.equal(click.stops,2);
  music.setEnabled(false);music.click();music.setEnabled(true);music.click();assert.equal(click.stops,3);assert.equal(click.played.length,3);
  music.interact();music.click();music.suspend();music.click();assert.equal(click.played.length,4);assert.equal(click.stops,5);
@@ -86,7 +86,7 @@ test('tower volleys reuse one short SFX, throttle dense fire and stop for mute, 
  try {
   music.setEnabled(true);music.interact();music.towerShot();assert.equal(calls.created,1);
   music.setBattle(true);music.towerShot();const shot=tracks[1];
-  assert.equal(shot.src,'resources/gameplay/music/tower_fire.mp3');assert.equal(shot.loop,false);assert.equal(shot.volume,.22);assert.equal(shot.played.length,1);
+  assert.equal(shot.src,'resources/music/tower_fire.mp3');assert.equal(shot.loop,false);assert.equal(shot.volume,.22);assert.equal(shot.played.length,1);
   for(let i=0;i<15;i++)music.towerShot();assert.equal(shot.played.length,1);
   clock+=119;music.towerShot();assert.equal(shot.played.length,1);clock++;music.towerShot();assert.equal(shot.played.length,2);
   music.suspend();clock+=1000;music.towerShot();assert.equal(shot.played.length,2);
@@ -103,7 +103,7 @@ test('enemy defeat reuses one cue, includes the final impact after battle music,
  try {
   music.setEnabled(true);music.enemyDefeat();assert.equal(calls.created,0);
   music.interact();music.setBattle(true);music.towerShot();music.enemyDefeat();music.enemyDefeat();
-  const defeat=tracks[2];assert.equal(defeat.src,'resources/gameplay/music/enemy_defeat.mp3');
+  const defeat=tracks[2];assert.equal(defeat.src,'resources/music/enemy_defeat.mp3');
   assert.equal(defeat.loop,false);assert.equal(defeat.played.length,1);
   music.setBattle(false);clock+=449;music.enemyDefeat();assert.equal(defeat.played.length,1);
   clock++;music.enemyDefeat();assert.equal(defeat.played.length,2);

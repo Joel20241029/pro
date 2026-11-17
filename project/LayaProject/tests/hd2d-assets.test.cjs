@@ -34,7 +34,7 @@ test('five minions have six frames and five bosses have eight; native ground poi
  assert.equal(Object.keys(defs).length,10);for(const [kind,d]of Object.entries(defs)){assert.equal(recipe.animations.enemyNativeFacing[kind],'DOWN');assert.equal(d.frames.length,ENEMIES[kind].boss?8:6);assert.equal(d.frames.length/d.fps,2/3);assert(d.stride>0);
  const images=d.frames.map(f=>recipe.assets.find(a=>a.id===f.body));assert(images.every(Boolean));assert.equal(new Set(images.map(a=>a.provenance.sourceHash)).size,1);assert.equal(new Set(images.map(a=>a.provenance.outputHash)).size,images.length);for(const a of images){assert(a.provenance.fullCanvas);assert.equal(a.pivot.x/a.width,.5);assert(Math.abs(a.pivot.y/a.height-d.foot.y/d.canvas)<1e-12);}}
 });
-test('two stages cover the seven resource categories exactly once',()=>{
+test('remote stages cover six categories and game audio is available only in the main package',()=>{
  const manifest=require('../../../res/manifest.json'), ids=new Set(), all=new Set();
  assert.deepEqual(Object.keys(manifest.stages),['village','night']);
  for (const [stage,files] of Object.entries(manifest.stages)) {
@@ -44,7 +44,17 @@ test('two stages cover the seven resource categories exactly once',()=>{
   for(const file of files){assert(!all.has(file));assert(fs.existsSync(path.join(source,file)));all.add(file);}
   assert(table.pages.every(page=>files.includes('bundles/'+page.runtimeFile)));
  }
- assert.deepEqual([...new Set([...all].map(file=>file.split('/')[1]))].sort(),['buildings','characters','effects','enemies','map','music','ui']);
+ assert.deepEqual([...new Set([...all].map(file=>file.split('/')[1]))].sort(),['buildings','characters','effects','enemies','map','ui']);
+ const audio=manifest.audio.tracks.map(track=>'bundles/music/'+path.basename(track.runtimeFile));
+ assert.deepEqual(manifest.mainAudio,audio);
+ const assets=path.join(__dirname,'../assets/resources');
+ for(const file of audio){
+  const relative=file.slice('bundles/'.length);
+  assert(!all.has(file));
+  assert(fs.readFileSync(path.join(source,file)).equals(fs.readFileSync(path.join(assets,relative))));
+  assert(!fs.existsSync(path.join(assets,'gameplay',relative)));
+  all.add(file);
+ }
  assert.deepEqual([...all].sort(),[...manifest.runtimeWhitelist].sort());
  assert.deepEqual([...ids].sort(),recipe.assets.filter(a=>a.runtime).map(a=>a.id).sort());
 });
