@@ -1,6 +1,6 @@
 # 矮身 Q 版村民
 
-`approved-proportions.png` 为本版确认稿。全员统一大头、矮身比例。成年女性改穿裤装，胖男取消草帽，精英取消披风。通过不同发色、短发轮廓、发饰和服装区分角色。使用更柔和的面积光、哑光材质和高光压缩，同一布光用于头像、站姿和所有动作。
+`approved-proportions.png` 为本版确认稿。全员统一大头、矮身比例。成年女性改穿裤装，胖男取消草帽，精英取消披风。通过不同发色、短发轮廓、发饰和服装区分角色。头像、站姿与各动作统一使用角色原始材质和压暗前的布光。
 
 ## 源文件
 
@@ -8,7 +8,7 @@
 - `renders.json` 保存各动作的帧序列、脚底锚点、画布倍率和落刃帧。八类可移动角色均有八向站姿与六帧步态。六类成人的横劈为五帧，种田、照料和挥剑各四帧。摇篮婴儿使用固定足点和四拍呼吸循环。
 - `rig-landmarks.json` 保存每位角色的关节标定。各目录的 `rig-profile.json` 与行走报告保存生成所用的绑骨参数、步幅和足点。
 - `labor-poses.json` 保存动作姿势和工具安装角度。劳动报告记录落刃帧、刃口坐标、持握和相交检查。
-- `authoring/` 保存动作渲染、哑光布光与摇篮呼吸脚本，以及从标定生成绑定模板的脚本。生成绑定模板时，使用 Downloads 下的制作区，让脚本同级保留 `rig-landmarks.json` 和 `models/`。走路绑定和八向相机复用 `res/tools/hd2d/bind-walk-character.py` 与相邻 `v3/authoring/render-eight-directions.py`。
+- `authoring/` 保存动作渲染与摇篮呼吸脚本，以及从标定生成绑定模板的脚本。生成绑定模板时，使用 Downloads 下的制作区，让脚本同级保留 `rig-landmarks.json` 和 `models/`。走路绑定和八向相机复用 `res/tools/hd2d/bind-walk-character.py` 与相邻 `v3/authoring/render-eight-directions.py`。
 
 ## 接入
 

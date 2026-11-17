@@ -1,15 +1,15 @@
 /** 由 prepare-remote-release.mjs 生成。版本目录和 Gitee 提交共同锁定已校验的资源。 */
 export const REMOTE_RESOURCE_MANIFEST = {
-    "version": "1.0.43",
-    "revision": "2960ace391293bdb71c4355a30c47d679e6566b8",
+    "version": "1.0.45",
+    "revision": "cc737c6980b16b87ad84bd86e2c5ff3ecc65d88f",
     "sources": {
-        "raw": "https://gitee.com/sun-wen-sky/remote-res/raw/2960ace391293bdb71c4355a30c47d679e6566b8/1.0.43/"
+        "raw": "https://gitee.com/sun-wen-sky/remote-res/raw/cc737c6980b16b87ad84bd86e2c5ff3ecc65d88f/1.0.45/"
     },
     "files": {
         "map/frames.json": {
             "stage": "village",
             "bytes": 246824,
-            "sha256": "e2b6141d6629a62a5e447e91e684de29bb3038b7d4c89f5bc68c9798d3497ffe",
+            "sha256": "0b55a0cdb171941c25fdf436afc5cef36666aea1b066946ff7f404f311f42488",
             "source": "raw"
         },
         "characters/animations.json": {
@@ -56,224 +56,224 @@ export const REMOTE_RESOURCE_MANIFEST = {
         },
         "characters/characters_0.png": {
             "stage": "village",
-            "bytes": 1260394,
-            "sha256": "e4be9cb92335dc1bdc4126d78b4a084af539e16217bf5d1c98df7eed15324c1b",
+            "bytes": 1339704,
+            "sha256": "eeaa6ed3f0f9836ab8b1bc09698171e86d2e062c49c457ebd4b6ad290ac6ddb5",
             "source": "raw"
         },
         "characters/characters_1.png": {
             "stage": "village",
-            "bytes": 1183084,
-            "sha256": "da4cfd09c83fcb429f762a506421e7bbf699067c0e06dbfedfc8e26bc20fbfc0",
+            "bytes": 1264584,
+            "sha256": "852c1d3bcdee58944bd18f27b3a1fa4ecec029bf0b4d6403de9d607efa285a82",
             "source": "raw"
         },
         "characters/characters_2.png": {
             "stage": "village",
-            "bytes": 1221317,
-            "sha256": "edfb80f044655a688b751fa8d3e3b2891ce62eaeb473a5994359ef370aa79efb",
+            "bytes": 1303186,
+            "sha256": "f2059ef5abb627b417d26fe3f77a14d49c32371ac0f6c108b52611a367d9621f",
             "source": "raw"
         },
         "characters/characters_3.png": {
             "stage": "village",
-            "bytes": 1213964,
-            "sha256": "a8e497525a8597663cffbe1f29c0ad64657ea94958ba9abfd3c6528c58cfca26",
+            "bytes": 1312097,
+            "sha256": "4e9191faa07211b931c0795ef3dbf8d99af94d3421499c528c4a356b0885cc16",
             "source": "raw"
         },
         "characters/characters_4.png": {
             "stage": "village",
-            "bytes": 1344055,
-            "sha256": "33903a734fe426543a687230a292866912c6999dfbb33dcab5889a32aba33ad9",
+            "bytes": 1468233,
+            "sha256": "02f4d1898616d11d895ed918a954d71ee140e8f3cf483e9f9c53c46418e219dd",
             "source": "raw"
         },
         "characters/characters_5.png": {
             "stage": "village",
-            "bytes": 1290958,
-            "sha256": "b022a1851472941f10c3cd42af6e4c5c435d71f210d395295c607dbcdd41ae07",
+            "bytes": 1395317,
+            "sha256": "690cc1d77eeb8808fc6f3ca704fa4f332cbe0149fad424ac2a30fddf3a0680c2",
             "source": "raw"
         },
         "characters/characters_6.png": {
             "stage": "village",
-            "bytes": 1432581,
-            "sha256": "6503845462eb6bf75e83178754f05da5c01405589853aa8392dbe1c54ce92e3e",
+            "bytes": 1439078,
+            "sha256": "172f66ec6019d6f449e8a3fdc984a6ef9f9ff993ae907e764e34728587c37999",
             "source": "raw"
         },
         "characters/characters_7.png": {
             "stage": "village",
-            "bytes": 1210191,
-            "sha256": "fa99adf590fb5fb621f9998127bac09cf1464af3185f3f46361e4ff4a96d303d",
+            "bytes": 1213484,
+            "sha256": "75b5dbb069d18e66bf9e4e951629b548a204c38a2ce31ab0f6fd0e3e88abef1d",
             "source": "raw"
         },
         "characters/characters_8.png": {
             "stage": "village",
-            "bytes": 1361623,
-            "sha256": "5428cfd652156487c0b229cf77ba0da551945a89cf355a9306091e0d3414af4e",
+            "bytes": 1464051,
+            "sha256": "56b5569d40dd647ce82526dc8eee50a07e3515187ced301f4eb8a41522f86421",
             "source": "raw"
         },
         "characters/characters_9.png": {
             "stage": "village",
-            "bytes": 1394634,
-            "sha256": "2fa8dc6dc1cc1894cab7486ef2e2c0cb9bdad42d25cdf6a4a19b532f234a3010",
+            "bytes": 1492489,
+            "sha256": "3ddf7eb214e2b1fd9393154fcbed69408e0c3a1fba3da3c76b0847f157786e23",
             "source": "raw"
         },
         "characters/characters_10.png": {
             "stage": "village",
-            "bytes": 1357412,
-            "sha256": "b801fc494fbd22a3004525a2c35ad86edba4a548f3f16ff8fdd237a801d61e0b",
+            "bytes": 1446642,
+            "sha256": "b5cef162b5cac33977770b536eeff0c1b82aacf9e760a27d4eccb1608c75ee73",
             "source": "raw"
         },
         "characters/characters_11.png": {
             "stage": "village",
-            "bytes": 1378701,
-            "sha256": "e706088b6e370d50e881df70b8291843717f5dadbb6a3a96ed6e2469efc3bd60",
+            "bytes": 1435610,
+            "sha256": "9947525d326ab86da8244ee8d0c54a407b0d6e77d20bcf9dd946e66d18632ffd",
             "source": "raw"
         },
         "characters/characters_12.png": {
             "stage": "village",
-            "bytes": 1322704,
-            "sha256": "b9ebfca64e4edfc3169235c2d92bbd258bfe01f74f48190d5511779fb7384f78",
+            "bytes": 1411076,
+            "sha256": "8fde9ecf256ecb3304b501602cd8566560391d2c7496b0d4170f77762e8ae374",
             "source": "raw"
         },
         "characters/characters_13.png": {
             "stage": "village",
-            "bytes": 1405510,
-            "sha256": "0c6e915ac0df1e8a766ce86bcecdfaffcb1aae3c323237140b0f9b9d2b24fce8",
+            "bytes": 1509447,
+            "sha256": "9d32cf4b092e138191dfd8d42b047caeb8d92462564e4c31a13a62d835e84f14",
             "source": "raw"
         },
         "characters/characters_14.png": {
             "stage": "village",
-            "bytes": 1427140,
-            "sha256": "86ee89bba286db0a4f9cc986c2f85d05c9289eb734988f52a28f0b3ed8d60cb3",
+            "bytes": 1522742,
+            "sha256": "930b5a16cfc77bd93af5c29b5c58aa84c631a130551a15ad4f6bc12a1d3dad40",
             "source": "raw"
         },
         "characters/characters_15.png": {
             "stage": "village",
-            "bytes": 1366398,
-            "sha256": "fa17e05a37a876e7db99c807e0e4f5dd9513bf4084c86e33d0e7d58a77c245f5",
+            "bytes": 1460751,
+            "sha256": "db9afda87aa74a2b7cbdf361e265029c5958387b13aec87d375846b3b9d0afa3",
             "source": "raw"
         },
         "characters/characters_16.png": {
             "stage": "village",
-            "bytes": 1406766,
-            "sha256": "919f8655b35702c46a1a91b7b538dfa97ffdb41d7e35789dc7d0d6fd8c1673bf",
+            "bytes": 1504918,
+            "sha256": "ccbca31a6f5b0b3679c5180e986fe0f41aa5dbdb8eefd375ee88be21c5a389f5",
             "source": "raw"
         },
         "characters/characters_17.png": {
             "stage": "village",
-            "bytes": 1395413,
-            "sha256": "d75a484944085d521acc1b066de181a8d4a287cfa445bd47396581389fae7ea6",
+            "bytes": 1538436,
+            "sha256": "d99edb4dc87ee50645dcc43e210bb1910bde68a9f88b37381f0787c22ae9a6a6",
             "source": "raw"
         },
         "characters/characters_18.png": {
             "stage": "village",
-            "bytes": 1433740,
-            "sha256": "bd2ff39a38ed5bc179fadbff6a66ed37c22f076008ee7a10b25fae85af86a583",
+            "bytes": 1573475,
+            "sha256": "0c962915ee410e4af612eeca56903ee4dff996352accec147cdc24775280408c",
             "source": "raw"
         },
         "characters/characters_19.png": {
             "stage": "village",
-            "bytes": 1408236,
-            "sha256": "4755389e1ec000d1b7edfd0ee46ca5130558f98142a9992080ccf763937e2940",
+            "bytes": 1473205,
+            "sha256": "bcfb50c3deb214cc112a84679182254c2cd825415c1f0530a1a881736fd6a634",
             "source": "raw"
         },
         "characters/characters_20.png": {
             "stage": "village",
-            "bytes": 1391564,
-            "sha256": "e157ca09ebaa8df4060c4a618337e7a351acecc3c5e96230b244db908bca5084",
+            "bytes": 1497785,
+            "sha256": "e30e2ee1f598eacaad2a3f7a327862c80ed3baebc7b3ac455993ec44f651ce51",
             "source": "raw"
         },
         "characters/characters_21.png": {
             "stage": "village",
-            "bytes": 1374384,
-            "sha256": "181399366f93861d0bf07020679c21d97096cdbb2b6083e9f193b5ce9fbb2727",
+            "bytes": 1500868,
+            "sha256": "459c589e94ddf55c8f27ff0782c3f58564008dceb5862e502e285eb9947c9ab9",
             "source": "raw"
         },
         "characters/characters_22.png": {
             "stage": "village",
-            "bytes": 1303497,
-            "sha256": "2ec50579b403d38225fc0b39900f978e206a4eea4abbdc1261cc9ee57d2f2ee5",
+            "bytes": 1464299,
+            "sha256": "75f08f0f4c0c9cd4b8d951249e7480957e1e506a6f4b27fc678ff02350af523c",
             "source": "raw"
         },
         "characters/characters_23.png": {
             "stage": "village",
-            "bytes": 1256170,
-            "sha256": "c85b09b8e096bc75655d2b3f4130dfc19c487d858a0313d898c88835ddb63018",
+            "bytes": 1380245,
+            "sha256": "c42ffd1d5460e92d7f81b83512d42bc5673efc8ad913f298248d17ffa313ca1d",
             "source": "raw"
         },
         "characters/characters_24.png": {
             "stage": "village",
-            "bytes": 1331617,
-            "sha256": "de8df6777b92a73dcb7a9b02231c0cccb44f79608fab230130485e1372ae5fd6",
+            "bytes": 1421899,
+            "sha256": "0c5ccb2bdf9ff85f4736ee10f3815cd012dda068fd484f6c1eb0ad49a797b546",
             "source": "raw"
         },
         "characters/characters_25.png": {
             "stage": "village",
-            "bytes": 1315479,
-            "sha256": "649a6fdac99e819b532aa5ebf665faf7ff36a79edf5ee2b301d0962f2098e18d",
+            "bytes": 1426416,
+            "sha256": "46f28dd7447c67a966e8f001a1d582083e6e5b9d98f5f8af319b70b32850f8d7",
             "source": "raw"
         },
         "characters/characters_26.png": {
             "stage": "village",
-            "bytes": 1260104,
-            "sha256": "eb06a5e3bb4659348709422b3e86fc47a115ff0586460ae049eff1794a773392",
+            "bytes": 1236014,
+            "sha256": "4da897596da5c3bb99644050cab7fa54357e9932d4077a04e31abe773464502b",
             "source": "raw"
         },
         "characters/characters_27.png": {
             "stage": "village",
-            "bytes": 1307085,
-            "sha256": "47fda14ade808cb572aef957d83283353cbcb50140a0aeb250879fc95129681f",
+            "bytes": 1387938,
+            "sha256": "5b508a8d8a0e05d76d85eefc6c19c3c472d8bb46cf482d775cf903f465f42558",
             "source": "raw"
         },
         "characters/characters_28.png": {
             "stage": "village",
-            "bytes": 1225444,
-            "sha256": "992a90e49f02db0c4ef2fbeb504a32151af781fd29742a1d1b208c4b81cc79ae",
+            "bytes": 1240727,
+            "sha256": "65761c9536b4cabd556c4246056b7e4d83bf012b32ad9cdcf230899b89d74bb8",
             "source": "raw"
         },
         "characters/characters_29.png": {
             "stage": "village",
-            "bytes": 1208608,
-            "sha256": "285e20ca5af3a14be6ad80ed41ff91bafe3807d2ebf355c36864142e82c3fd45",
+            "bytes": 1326703,
+            "sha256": "be3c5d7bdfa674f18673f2442f58bef08962664631d8f4b15714db22f37a23b3",
             "source": "raw"
         },
         "characters/characters_30.png": {
             "stage": "village",
-            "bytes": 1215123,
-            "sha256": "e71594bfc00ae4706115451ffe92948df277ab38d45572072504fb7ee84bd9b9",
+            "bytes": 1287883,
+            "sha256": "b1924c01f5cdcf524e551321529ade47734523a580fddfa0b52f8299d290054b",
             "source": "raw"
         },
         "characters/characters_31.png": {
             "stage": "village",
-            "bytes": 1239273,
-            "sha256": "e74173deef477d357fd5bbb77c18b617f6300433980a52f531ae6a6e41295ee7",
+            "bytes": 1343412,
+            "sha256": "b383123104ab89b449a461bf2d9ddb54fd38f897fecaa9706a78365e0e646829",
             "source": "raw"
         },
         "characters/characters_32.png": {
             "stage": "village",
-            "bytes": 1192687,
-            "sha256": "4928a23e50c9c8587b4f49b9da4c5b94e19eada7a0e343b8e41da6652f0e09f2",
+            "bytes": 1312301,
+            "sha256": "0291ba5bf8b5f617aacc33d00d2aef9512e90373a72a8e8d0bade638d2fbbfaf",
             "source": "raw"
         },
         "characters/characters_33.png": {
             "stage": "village",
-            "bytes": 1196338,
-            "sha256": "244e769bac63a3e7067156e04bdbc5af4119d59350f374c4cc4356ad703953a3",
+            "bytes": 1203370,
+            "sha256": "ea21c0d725a7ce2f91f4810ec0bf74749433c786707b3fd8d50e48a97260b47f",
             "source": "raw"
         },
         "characters/characters_34.png": {
             "stage": "village",
-            "bytes": 1329945,
-            "sha256": "a234ce382bc8b50943d16bad1447a4d74b56bd73a72fab5d253a6bf4bc75f6b7",
+            "bytes": 1380510,
+            "sha256": "311e01dbea4bdaa0464a0e20ed1f0f9967d04210363fea512e9528ad6f96abc3",
             "source": "raw"
         },
         "characters/characters_35.png": {
             "stage": "village",
-            "bytes": 1428098,
-            "sha256": "9d552bf9c986bc5c217fcc9ff2dd6eea5d864f99c17d7bc7ca1cc4f7b403d38a",
+            "bytes": 1501962,
+            "sha256": "7e396aa54a5fa59cb61343f97dbd62f871d7d584e2f468e748f5587e006972c3",
             "source": "raw"
         },
         "characters/characters_36.png": {
             "stage": "village",
-            "bytes": 109177,
-            "sha256": "1d7b2a488d025c151ea4934633f23136ce1543b7b720e03c5458dd6ae2865bd2",
+            "bytes": 193313,
+            "sha256": "8a085ba468f4d8414ad623899ec6cd42de4a82d4f7ac27f327071de2c3967822",
             "source": "raw"
         },
         "effects/village_effects_0.png": {
@@ -314,8 +314,8 @@ export const REMOTE_RESOURCE_MANIFEST = {
         },
         "enemies/frames.json": {
             "stage": "night",
-            "bytes": 61381,
-            "sha256": "7b05b9bbaa415146c6e0d94f2444117c87487f3a23e3b1a055c2613f0f8f47cc",
+            "bytes": 61383,
+            "sha256": "9551ddf6c1098564ca52a77d237c05920866bbca910deef6f92eba6880902dbd",
             "source": "raw"
         },
         "enemies/animations.json": {
@@ -326,50 +326,50 @@ export const REMOTE_RESOURCE_MANIFEST = {
         },
         "characters/night_characters_0.png": {
             "stage": "night",
-            "bytes": 1104089,
-            "sha256": "c0819145270c25df6494280afd33769d5562af969dd43d0aeeb98800b0ce8c2b",
+            "bytes": 1178694,
+            "sha256": "e664bc12ece42d0ad7db74f30762a1faa79dcf87a21809c9330da3d7e34e2c00",
             "source": "raw"
         },
         "characters/night_characters_1.png": {
             "stage": "night",
-            "bytes": 984358,
-            "sha256": "cea852bfcb36d41d3514a31ce860e70aa7af5e0aeb9e9367732f778f9592aee6",
+            "bytes": 1077509,
+            "sha256": "b0ad5ed9b33fa5cf73141e3c1edac30d7adb3d93fb76d21d6574013c8458f121",
             "source": "raw"
         },
         "characters/night_characters_2.png": {
             "stage": "night",
-            "bytes": 1245887,
-            "sha256": "eb8fca2bb5a3d80ff80992e77e36d7bdd5b2c2ed01684b987756dea87cb58e58",
+            "bytes": 1329565,
+            "sha256": "02ad907dfc1d0fcb724846e5e0d5d963172e4271927ac842be839eeb9405c898",
             "source": "raw"
         },
         "characters/night_characters_3.png": {
             "stage": "night",
-            "bytes": 1351136,
-            "sha256": "45507255af1393ea6dbd1c8f7080541764c64dd9fc78f30cc4ac4e0a5cc96403",
+            "bytes": 1430025,
+            "sha256": "db9da41a330de83a70b6f7e0a2d5b410ac9329266cbef7493c3c8ba3a937d990",
             "source": "raw"
         },
         "characters/night_characters_4.png": {
             "stage": "night",
-            "bytes": 1360583,
-            "sha256": "0cbf6c7c4d8ea1382e7b1807d23168f2b04f14854f97aae50fb95f2e26ca92d8",
+            "bytes": 1380867,
+            "sha256": "9b01006b21ee2242907771180d4557fbe2378fdad356808a88f3bf6a4a6da618",
             "source": "raw"
         },
         "characters/night_characters_5.png": {
             "stage": "night",
-            "bytes": 1183815,
-            "sha256": "76ba221adf57b69a4154d8fa73f69fce6dea8cdf92c5430031e30a6dd9e492ae",
+            "bytes": 1368839,
+            "sha256": "99a9363db6ebe62016158d850c7eebbc9f2d22251ab97da55372c0a685d5f224",
             "source": "raw"
         },
         "characters/night_characters_6.png": {
             "stage": "night",
-            "bytes": 1147746,
-            "sha256": "2b424a9a377d8221f00b57866eb7176a2871d7eee4a32cccc3003fdab5a29512",
+            "bytes": 1269149,
+            "sha256": "7a77d1af838c6d323cb79412a7558be23077a8feb9773bc87de98a30647ed7b3",
             "source": "raw"
         },
         "characters/night_characters_7.png": {
             "stage": "night",
-            "bytes": 395600,
-            "sha256": "3e62fc4bd5d82e26bd3e343a961903b676fb2f0c89834f23434d664ff1e748d9",
+            "bytes": 336587,
+            "sha256": "5c008794d43760e6d7aecfb34a4070e101fe11891ee47516123bef04ba4dd094",
             "source": "raw"
         },
         "enemies/enemies_0.png": {
