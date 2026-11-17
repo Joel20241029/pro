@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:bcc94b868fc2e371900d983c80b85828137466027796c858ceca51ed29564bde
-size 259
+{
+  "_$ver": 1,
+  "_$id": "lx8mwule",
+  "_$type": "Scene",
+  "left": 0,
+  "right": 0,
+  "top": 0,
+  "bottom": 0,
+  "name": "Scene2D",
+  "_$comp": [
+    {
+      "_$type": "7bad1742-6eed-4d8d-81c0-501dc5bf03d6",
+      "scriptPath": "../src/Main.ts"
+    }
+  ]
+}
