@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { buildEnemyLayouts } from './build-enemy-layouts.mjs';
-import { bundles, writeBundles } from './resource-bundles.mjs';
+import { bundles, syncRemoteBundles, writeBundles } from './resource-bundles.mjs';
 import { buildBuildingLayouts } from './build-building-layouts.mjs';
 
 // 原始图片与可编辑配方为唯一输入；临时裁片只能放 Downloads。无额外 npm 依赖。
@@ -250,5 +250,6 @@ if (args.includes('--sync')) {
         for (const name of fs.readdirSync(dest)) if (!name.endsWith('.meta') && !allowed.has(name)) throw new Error('发现非本轮运行白名单文件，请人工核对：' + name);
         for (const name of files) fs.copyFileSync(path.join(root, name), path.join(dest, path.basename(name)));
     }
+    syncRemoteBundles(root, bundleFiles);
 }
 console.log(JSON.stringify({ assets: assets.length, runtimeAssets: runtimeAssets.length, reserveAssets: reserveAssets.length, clips: clips.length, pages: pages.length, runtimeBytes: pngBytes + metadataBytes + audio.bytes, packing, sync: args.includes('--sync') }));

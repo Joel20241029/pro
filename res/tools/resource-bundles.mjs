@@ -3,6 +3,18 @@ import path from 'node:path';
 /** 已确认高清四包规格；每张素材在 asset_recipe.json 显式归属，禁止跨包重复打图集。 */
 // 1024页；主包UI/地图先显示加载界面，建筑→人物顺序准备，战斗在守夜前准备，失败手动重试。
 export const bundles = { base: { size: 1024 }, buildings: { size: 1024 }, characters: { size: 1024 }, battle: { size: 1024 } };
+/** 按发布白名单同步远程资源目录。相同字节不重复写入，便于目录单独同步。 */
+export function syncRemoteBundles(root, bundleFiles) {
+    for (const [bundle, files] of Object.entries(bundleFiles)) {
+        const target = path.resolve(root, '../remoteRes', bundle);
+        fs.mkdirSync(target, { recursive: true });
+        for (const file of files) {
+            const source = path.join(root, file), dest = path.join(target, path.basename(file));
+            if (fs.existsSync(dest) && fs.readFileSync(source).equals(fs.readFileSync(dest))) continue;
+            fs.copyFileSync(source, dest);
+        }
+    }
+}
 export function writeBundles(root, pages, frames, animations, buildingFiles, audio, enemyFile) {
     const result = {}, required = {};
     for (const bundle of Object.keys(bundles)) {

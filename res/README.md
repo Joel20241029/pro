@@ -51,7 +51,7 @@
 1. 修改 `source/rendered2d/production-sources.mjs` 指向的原始稿，或角色 `rig-profile.json` 和可编辑Blender源；重新离线渲染，运行足底/朝向检查。
 2. 按 `source/rendered2d/runtime-texture-sizes.mjs` 核对发布尺寸，运行 `node res/tools/hd2d/prepare-production.mjs --work <Downloads内目录>`，审查派生图及 `production_recipe.json`，再同步为 `source/asset_recipe.json`。导入器先规范画布，再统一缩放；静态头像独立保留原分辨率，不能直接缩母版或逐帧重新裁主体。
 3. 建筑/怪物贴图或布局改变时用 `prepare-native-prefabs.mjs` 同步贴图和种子；它不写 prefab 或覆盖 UUID。怪物布局使用 `工具 / RefineHdEnemyAttachments`，仅保存十种怪物。`工具 / BuildHd2dProduction` 会重建全部建筑和怪物，仅在明确整套重制时使用；日常小改直接编辑对应原生 prefab。
-4. 按 [工具依赖说明](tools/README.md) 安装固定版本的 PNG 无损编码依赖，再运行 `node res/tools/build-resources.mjs --work <Downloads内目录> --sync`，透明裁边、外扩、像素一致性校验后按白名单同步正式工程。
+4. 按 [工具依赖说明](tools/README.md) 安装固定版本的 PNG 无损编码依赖，再运行 `node res/tools/build-resources.mjs --work <Downloads内目录> --sync`。透明裁边、外扩和像素校验完成后，脚本按发布白名单同时同步正式工程及 `remoteRes/`。远程资源目录保留 `base`、`buildings`、`characters`、`battle` 四个子目录。
 5. 构建微信目录 `tryVersion/wxgame`，运行包体检查及实际微信IDE验收。构建成功不能代替手机实测。
 
 图片保持平滑采样与抗锯齿。八帧行走按实际路程保持相位；停止使用独立双脚落地帧。老人采用短步、固定握杖，孩子和老人不区分男女外观。UI按可见裁框居中，奶油金边卡片和绿色底板分层，按钮/图标/文字共同按压。
