@@ -1,0 +1,310 @@
+{
+  "fps": 8,
+  "actions": {
+    "chop": {
+      "tool": "axe",
+      "poses": [
+        {
+          "spine": -3,
+          "rightArm": -32,
+          "rightElbow": -22,
+          "leftArm": -8,
+          "leftElbow": -12,
+          "toolPitch": 90,
+          "toolYaw": -46,
+          "twist": -6.6000000000000005,
+          "rightYaw": -10.5,
+          "leftYaw": 0
+        },
+        {
+          "spine": 0,
+          "rightArm": -36,
+          "rightElbow": -45,
+          "leftArm": -8,
+          "leftElbow": -14,
+          "toolPitch": 90,
+          "toolYaw": -96,
+          "twist": -13.750000000000002,
+          "rightYaw": -14,
+          "leftYaw": 0
+        },
+        {
+          "spine": -6,
+          "rightArm": -65,
+          "rightElbow": -24,
+          "leftArm": -14,
+          "leftElbow": -12,
+          "toolPitch": 90,
+          "toolYaw": -4,
+          "twist": 8.8,
+          "rightYaw": 10.5,
+          "leftYaw": 0
+        },
+        {
+          "spine": -3,
+          "rightArm": -43,
+          "rightElbow": -21,
+          "leftArm": -18,
+          "leftElbow": -12,
+          "toolPitch": 103,
+          "toolYaw": 40,
+          "twist": 12.100000000000001,
+          "rightYaw": 21,
+          "leftYaw": 0
+        },
+        {
+          "spine": -2,
+          "rightArm": -39,
+          "rightElbow": -24,
+          "leftArm": -8,
+          "leftElbow": -12,
+          "toolPitch": 90,
+          "toolYaw": 24,
+          "twist": 1.1,
+          "rightYaw": 5.6,
+          "leftYaw": 0
+        }
+      ],
+      "contactFrame": 3,
+      "directions": {
+        "down": 0,
+        "down_right": 45,
+        "right": 90,
+        "up_right": 135,
+        "up": 180,
+        "up_left": 225,
+        "left": 270,
+        "down_left": 315
+      }
+    },
+    "farm": {
+      "tool": "hoe",
+      "poses": [
+        {
+          "spine": -5,
+          "rightArm": -62,
+          "rightElbow": -36,
+          "leftArm": -21,
+          "leftElbow": -26,
+          "toolPitch": 104,
+          "toolYaw": 0,
+          "twist": 0,
+          "rightYaw": 0,
+          "leftYaw": 0
+        },
+        {
+          "spine": -14,
+          "rightArm": -48,
+          "rightElbow": -27,
+          "leftArm": -30,
+          "leftElbow": -19,
+          "toolPitch": 130,
+          "toolYaw": 0,
+          "twist": 0,
+          "rightYaw": 0,
+          "leftYaw": 0
+        },
+        {
+          "spine": -27,
+          "rightArm": -21,
+          "rightElbow": -12,
+          "leftArm": -27,
+          "leftElbow": -21,
+          "toolPitch": 161,
+          "toolYaw": 0,
+          "twist": 0,
+          "rightYaw": 0,
+          "leftYaw": 0
+        },
+        {
+          "spine": -16,
+          "rightArm": -30,
+          "rightElbow": -16,
+          "leftArm": -23,
+          "leftElbow": -16,
+          "toolPitch": 140,
+          "toolYaw": 0,
+          "twist": 0,
+          "rightYaw": 0,
+          "leftYaw": 0
+        }
+      ],
+      "contactFrame": 3,
+      "directions": {
+        "down": 0,
+        "down_right": 45,
+        "right": 90,
+        "up_right": 135,
+        "up": 180,
+        "up_left": 225,
+        "left": 270,
+        "down_left": 315
+      },
+      "bladeHeights": [
+        0.175,
+        0.086,
+        0.012,
+        0.097
+      ]
+    },
+    "care": {
+      "tool": null,
+      "poses": [
+        {
+          "spine": -6.12,
+          "rightArm": -27,
+          "rightElbow": -14,
+          "leftArm": -18.04,
+          "leftElbow": -14,
+          "toolPitch": 0,
+          "toolYaw": 0,
+          "twist": 0,
+          "rightYaw": 0,
+          "leftYaw": 0
+        },
+        {
+          "spine": -11.56,
+          "rightArm": -37,
+          "rightElbow": -15,
+          "leftArm": -29.52,
+          "leftElbow": -15,
+          "toolPitch": 0,
+          "toolYaw": 0,
+          "twist": 0,
+          "rightYaw": 0,
+          "leftYaw": 0
+        },
+        {
+          "spine": -14.280000000000001,
+          "rightArm": -46,
+          "rightElbow": -12,
+          "leftArm": -33.62,
+          "leftElbow": -16,
+          "toolPitch": 0,
+          "toolYaw": 0,
+          "twist": 0,
+          "rightYaw": 0,
+          "leftYaw": 0
+        },
+        {
+          "spine": -8.84,
+          "rightArm": -33,
+          "rightElbow": -16,
+          "leftArm": -21.32,
+          "leftElbow": -15,
+          "toolPitch": 0,
+          "toolYaw": 0,
+          "twist": 0,
+          "rightYaw": 0,
+          "leftYaw": 0
+        }
+      ],
+      "contactFrame": null,
+      "directions": {
+        "down": 0,
+        "down_right": 45,
+        "right": 90,
+        "up_right": 135,
+        "up": 180,
+        "up_left": 225,
+        "left": 270,
+        "down_left": 315
+      }
+    },
+    "strike": {
+      "tool": "sword",
+      "poses": [
+        {
+          "spine": -2,
+          "rightArm": -39,
+          "rightElbow": -23,
+          "leftArm": -19,
+          "leftElbow": -29,
+          "toolPitch": 81,
+          "toolYaw": -31,
+          "twist": 0,
+          "rightYaw": 0,
+          "leftYaw": 0
+        },
+        {
+          "spine": -2,
+          "rightArm": -47,
+          "rightElbow": -42,
+          "leftArm": -23,
+          "leftElbow": -26,
+          "toolPitch": 92,
+          "toolYaw": -85,
+          "twist": -15,
+          "rightYaw": -12,
+          "leftYaw": 0
+        },
+        {
+          "spine": -4,
+          "rightArm": -57,
+          "rightElbow": -16,
+          "leftArm": -28,
+          "leftElbow": -21,
+          "toolPitch": 89,
+          "toolYaw": 8,
+          "twist": 12,
+          "rightYaw": 13,
+          "leftYaw": 0
+        },
+        {
+          "spine": -3,
+          "rightArm": -51,
+          "rightElbow": -23,
+          "leftArm": -24,
+          "leftElbow": -30,
+          "toolPitch": 83,
+          "toolYaw": 48,
+          "twist": 14,
+          "rightYaw": 22,
+          "leftYaw": 0
+        }
+      ],
+      "contactFrame": 3,
+      "directions": {
+        "down": 0,
+        "down_right": 45,
+        "right": 90,
+        "up_right": 135,
+        "up": 180,
+        "up_left": 225,
+        "left": 270,
+        "down_left": 315
+      }
+    }
+  },
+  "actorPoseOverrides": {
+    "elite_male": {
+      "strike": {
+        "1": {
+          "rightArm": -55,
+          "rightElbow": -19,
+          "rightYaw": 18,
+          "toolYaw": -10,
+          "toolPitch": 92
+        },
+        "2": {
+          "rightArm": -56,
+          "rightElbow": -30,
+          "rightYaw": 5,
+          "toolYaw": -40,
+          "toolPitch": 100
+        }
+      }
+    },
+    "elite_female": {
+      "strike": {
+        "4": {
+          "rightArm": -43,
+          "rightElbow": -20,
+          "rightYaw": 9,
+          "toolYaw": 30,
+          "toolPitch": 91
+        }
+      }
+    }
+  }
+}

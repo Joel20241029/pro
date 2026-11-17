@@ -1,0 +1,436 @@
+{
+  "role": "elite_female",
+  "method": "offline high-resolution skinned rendering",
+  "status": "candidate_requires_contact_and_pose_visual_review",
+  "runtime3d": false,
+  "mirror": false,
+  "displayScale": 1.1538461538461537,
+  "anchor": {
+    "x": 0.5,
+    "y": 0.8015382289886475
+  },
+  "framesPerAction": {
+    "farm": 4,
+    "care": 4
+  },
+  "records": [
+    {
+      "action": "farm",
+      "frame": 1,
+      "palm": [
+        -0.17948371171951294,
+        -0.20983242988586426,
+        0.5033537745475769
+      ],
+      "lowestBodyZ": -1.4843979556644626e-07
+    },
+    {
+      "action": "farm",
+      "frame": 2,
+      "palm": [
+        -0.17948368191719055,
+        -0.2327578365802765,
+        0.4144570529460907
+      ],
+      "lowestBodyZ": -1.4843979556644626e-07
+    },
+    {
+      "action": "farm",
+      "frame": 3,
+      "palm": [
+        -0.17948351800441742,
+        -0.17275160551071167,
+        0.28519222140312195
+      ],
+      "lowestBodyZ": -1.4843979556644626e-07
+    },
+    {
+      "action": "farm",
+      "frame": 4,
+      "palm": [
+        -0.1794835925102234,
+        -0.2016672044992447,
+        0.3425319790840149
+      ],
+      "lowestBodyZ": -1.4843979556644626e-07
+    },
+    {
+      "action": "farm",
+      "direction": "down",
+      "frame": 1,
+      "toolTipScreen": [
+        0.3803441822528839,
+        0.6887460649013519
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down",
+      "frame": 2,
+      "toolTipScreen": [
+        0.3803442120552063,
+        0.8192832469940186
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down",
+      "frame": 3,
+      "toolTipScreen": [
+        0.38034433126449585,
+        0.8836462125182152
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "down",
+      "frame": 4,
+      "toolTipScreen": [
+        0.3803442716598511,
+        0.8715014457702637
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.6789711713790894,
+        0.6792963445186615
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.6551157236099243,
+        0.8136340379714966
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.6266288757324219,
+        0.8825353011488914
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "down_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.619542121887207,
+        0.8715195208787918
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.8727592825889587,
+        0.5913985371589661
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.8390225768089294,
+        0.7349114120006561
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.7987359762191772,
+        0.8147691637277603
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.7887138724327087,
+        0.8064790517091751
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.8481900095939636,
+        0.47654199600219727
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.8243345618247986,
+        0.6292300522327423
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.7958475947380066,
+        0.7200443148612976
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "up_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.7887609004974365,
+        0.7144798934459686
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up",
+      "frame": 1,
+      "toolTipScreen": [
+        0.6196557879447937,
+        0.4020081162452698
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up",
+      "frame": 2,
+      "toolTipScreen": [
+        0.6196557283401489,
+        0.5584966242313385
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up",
+      "frame": 3,
+      "toolTipScreen": [
+        0.6196556687355042,
+        0.6538492739200592
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "up",
+      "frame": 4,
+      "toolTipScreen": [
+        0.6196557283401489,
+        0.6494138240814209
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.32102885842323303,
+        0.41145777702331543
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.34488430619239807,
+        0.5641458630561829
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.3733711540699005,
+        0.6549601852893829
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "up_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.38045787811279297,
+        0.6493957340717316
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.12724073231220245,
+        0.49935561418533325
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.16097743809223175,
+        0.6428684890270233
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.20126402378082275,
+        0.7227263152599335
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.21128614246845245,
+        0.7144362032413483
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.1518099308013916,
+        0.6142121255397797
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.17566542327404022,
+        0.7485498189926147
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.2041524201631546,
+        0.8174511641263962
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "down_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.21123908460140228,
+        0.8064353615045547
+      ],
+      "contact": false
+    },
+    {
+      "action": "care",
+      "frame": 1,
+      "palm": [
+        -0.1794835925102234,
+        -0.1895422786474228,
+        0.35632097721099854
+      ],
+      "lowestBodyZ": -1.4843979556644626e-07
+    },
+    {
+      "action": "care",
+      "frame": 2,
+      "palm": [
+        -0.17948365211486816,
+        -0.2181486189365387,
+        0.35363879799842834
+      ],
+      "lowestBodyZ": -1.4843979556644626e-07
+    },
+    {
+      "action": "care",
+      "frame": 3,
+      "palm": [
+        -0.17948365211486816,
+        -0.23940110206604004,
+        0.3557499945163727
+      ],
+      "lowestBodyZ": -1.4843979556644626e-07
+    },
+    {
+      "action": "care",
+      "frame": 4,
+      "palm": [
+        -0.1794835925102234,
+        -0.20673349499702454,
+        0.3602043390274048
+      ],
+      "lowestBodyZ": -1.4843979556644626e-07
+    }
+  ],
+  "inputs": [
+    {
+      "file": "/Users/happyelements/Downloads/daidai-villager-production-20261117/models/elite_female/rig/elite_female_walk_probe.blend",
+      "sha256": "bcd372538380b9e72fe55528048c4ec67d6647ba47dee767f6b0961a66e1c363"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/daidai-villager-production-20261117/models/elite_female/rig-profile.json",
+      "sha256": "0c0f8e901894583918c9221b56b1c37c681b913b70a8b3e2f0a73c16dda59f66"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/daidai-villager-production-20261117/labor-poses.json",
+      "sha256": "2843e6060222010066ad509e85fc9cf3496eecc16a6de7f483a3eb7f4ca9817b"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/daidai-villager-production-20261117/render-care-farm-polished.py",
+      "sha256": "90ee9570224278eef3cba615ccbec764ee846d722b9a43959614007fc0ab906c"
+    }
+  ]
+}

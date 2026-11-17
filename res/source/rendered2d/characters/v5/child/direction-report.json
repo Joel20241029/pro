@@ -1,0 +1,824 @@
+{
+  "role": "child",
+  "status": "eight_direction_motion_candidate_not_integrated",
+  "cameraAndLightsFixed": true,
+  "mirror": false,
+  "framesPerDirection": 6,
+  "fps": 12,
+  "groundAnchor": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "camera": [
+    0.0,
+    -3.0,
+    1.7400000095367432
+  ],
+  "rigidTolerance": 0.0001,
+  "views": [
+    {
+      "direction": "down",
+      "frame": 1,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -9.313225746154785e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_1.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 1,
+      "rootYawDegrees": 45,
+      "maxRigidError": 8.462232866585662e-08,
+      "lowestWorldZ": -5.587935447692871e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_right_1.png"
+    },
+    {
+      "direction": "right",
+      "frame": 1,
+      "rootYawDegrees": 90,
+      "maxRigidError": 5.3726900748371916e-08,
+      "lowestWorldZ": -9.313225746154785e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_right_1.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 1,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.4675941767984784e-07,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_right_1.png"
+    },
+    {
+      "direction": "up",
+      "frame": 1,
+      "rootYawDegrees": 180,
+      "maxRigidError": 9.8843121241194e-08,
+      "lowestWorldZ": -1.30385160446167e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_1.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 1,
+      "rootYawDegrees": -135,
+      "maxRigidError": 1.0023731028343521e-07,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_left_1.png"
+    },
+    {
+      "direction": "left",
+      "frame": 1,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -9.313225746154785e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_left_1.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 1,
+      "rootYawDegrees": -45,
+      "maxRigidError": 9.245927368097646e-08,
+      "lowestWorldZ": -5.587935447692871e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_left_1.png"
+    },
+    {
+      "direction": "down",
+      "frame": 2,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -1.30385160446167e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_2.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 2,
+      "rootYawDegrees": 45,
+      "maxRigidError": 9.996002811937585e-08,
+      "lowestWorldZ": -3.5390257835388184e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_right_2.png"
+    },
+    {
+      "direction": "right",
+      "frame": 2,
+      "rootYawDegrees": 90,
+      "maxRigidError": 5.3726900748371916e-08,
+      "lowestWorldZ": -1.30385160446167e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_right_2.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 2,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.4675941767984784e-07,
+      "lowestWorldZ": -3.725290298461914e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_right_2.png"
+    },
+    {
+      "direction": "up",
+      "frame": 2,
+      "rootYawDegrees": 180,
+      "maxRigidError": 8.429369702178807e-08,
+      "lowestWorldZ": -1.4901161193847656e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_2.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 2,
+      "rootYawDegrees": -135,
+      "maxRigidError": 8.72068100476237e-08,
+      "lowestWorldZ": -3.725290298461914e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_left_2.png"
+    },
+    {
+      "direction": "left",
+      "frame": 2,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -1.30385160446167e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_left_2.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 2,
+      "rootYawDegrees": -45,
+      "maxRigidError": 9.453726962543667e-08,
+      "lowestWorldZ": -3.5390257835388184e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_left_2.png"
+    },
+    {
+      "direction": "down",
+      "frame": 3,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -5.587935447692871e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_3.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 3,
+      "rootYawDegrees": 45,
+      "maxRigidError": 9.541398640621973e-08,
+      "lowestWorldZ": -2.0489096641540527e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_right_3.png"
+    },
+    {
+      "direction": "right",
+      "frame": 3,
+      "rootYawDegrees": 90,
+      "maxRigidError": 5.3726900748371916e-08,
+      "lowestWorldZ": -5.587935447692871e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_right_3.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 3,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.4675941767984784e-07,
+      "lowestWorldZ": -2.2351741790771484e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_right_3.png"
+    },
+    {
+      "direction": "up",
+      "frame": 3,
+      "rootYawDegrees": 180,
+      "maxRigidError": 8.429369702178807e-08,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_3.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 3,
+      "rootYawDegrees": -135,
+      "maxRigidError": 9.215859231988326e-08,
+      "lowestWorldZ": -2.2351741790771484e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_left_3.png"
+    },
+    {
+      "direction": "left",
+      "frame": 3,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -5.587935447692871e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_left_3.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 3,
+      "rootYawDegrees": -45,
+      "maxRigidError": 1.0975390570354636e-07,
+      "lowestWorldZ": -2.0489096641540527e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_left_3.png"
+    },
+    {
+      "direction": "down",
+      "frame": 4,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -1.862645149230957e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_4.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 4,
+      "rootYawDegrees": 45,
+      "maxRigidError": 1.0771179418862582e-07,
+      "lowestWorldZ": -2.0489096641540527e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_right_4.png"
+    },
+    {
+      "direction": "right",
+      "frame": 4,
+      "rootYawDegrees": 90,
+      "maxRigidError": 5.3726900748371916e-08,
+      "lowestWorldZ": -1.862645149230957e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_right_4.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 4,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.50678667546486e-07,
+      "lowestWorldZ": -1.862645149230957e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_right_4.png"
+    },
+    {
+      "direction": "up",
+      "frame": 4,
+      "rootYawDegrees": 180,
+      "maxRigidError": 8.429369702178807e-08,
+      "lowestWorldZ": -3.725290298461914e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_4.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 4,
+      "rootYawDegrees": -135,
+      "maxRigidError": 8.33000234328132e-08,
+      "lowestWorldZ": -1.862645149230957e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_left_4.png"
+    },
+    {
+      "direction": "left",
+      "frame": 4,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -1.862645149230957e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_left_4.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 4,
+      "rootYawDegrees": -45,
+      "maxRigidError": 8.72068100476237e-08,
+      "lowestWorldZ": -2.0489096641540527e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_left_4.png"
+    },
+    {
+      "direction": "down",
+      "frame": 5,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_5.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 5,
+      "rootYawDegrees": 45,
+      "maxRigidError": 9.996002811937585e-08,
+      "lowestWorldZ": -3.725290298461914e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_right_5.png"
+    },
+    {
+      "direction": "right",
+      "frame": 5,
+      "rootYawDegrees": 90,
+      "maxRigidError": 5.3726900748371916e-08,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_right_5.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 5,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.6395510051150163e-07,
+      "lowestWorldZ": -2.9802322387695312e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_right_5.png"
+    },
+    {
+      "direction": "up",
+      "frame": 5,
+      "rootYawDegrees": 180,
+      "maxRigidError": 8.429369702178807e-08,
+      "lowestWorldZ": 9.313225746154785e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_5.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 5,
+      "rootYawDegrees": -135,
+      "maxRigidError": 1.011332270540165e-07,
+      "lowestWorldZ": -2.9802322387695312e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_left_5.png"
+    },
+    {
+      "direction": "left",
+      "frame": 5,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_left_5.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 5,
+      "rootYawDegrees": -45,
+      "maxRigidError": 9.453726962543667e-08,
+      "lowestWorldZ": -3.725290298461914e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_left_5.png"
+    },
+    {
+      "direction": "down",
+      "frame": 6,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_6.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 6,
+      "rootYawDegrees": 45,
+      "maxRigidError": 1.1151007970493857e-07,
+      "lowestWorldZ": 1.862645149230957e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_right_6.png"
+    },
+    {
+      "direction": "right",
+      "frame": 6,
+      "rootYawDegrees": 90,
+      "maxRigidError": 5.3726900748371916e-08,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_right_6.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 6,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.50678667546486e-07,
+      "lowestWorldZ": 9.313225746154785e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_right_6.png"
+    },
+    {
+      "direction": "up",
+      "frame": 6,
+      "rootYawDegrees": 180,
+      "maxRigidError": 8.429369702178807e-08,
+      "lowestWorldZ": 9.313225746154785e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_6.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 6,
+      "rootYawDegrees": -135,
+      "maxRigidError": 8.560065398421926e-08,
+      "lowestWorldZ": 9.313225746154785e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_left_6.png"
+    },
+    {
+      "direction": "left",
+      "frame": 6,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_left_6.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 6,
+      "rootYawDegrees": -45,
+      "maxRigidError": 9.799708752308715e-08,
+      "lowestWorldZ": 1.862645149230957e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_left_6.png"
+    },
+    {
+      "direction": "down",
+      "frame": 7,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -4.110721540939721e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_idle.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 7,
+      "rootYawDegrees": 45,
+      "maxRigidError": 1.175829328752058e-07,
+      "lowestWorldZ": -1.3853423297405243e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_right_idle.png"
+    },
+    {
+      "direction": "right",
+      "frame": 7,
+      "rootYawDegrees": 90,
+      "maxRigidError": 5.3726900748371916e-08,
+      "lowestWorldZ": -4.110721540939721e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_right_idle.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 7,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.5910086411284374e-07,
+      "lowestWorldZ": -1.419430972759983e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_right_idle.png"
+    },
+    {
+      "direction": "up",
+      "frame": 7,
+      "rootYawDegrees": 180,
+      "maxRigidError": 8.429369702178807e-08,
+      "lowestWorldZ": -7.289617798278414e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_idle.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 7,
+      "rootYawDegrees": -135,
+      "maxRigidError": 1.0361146766204246e-07,
+      "lowestWorldZ": -1.419430972759983e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_up_left_idle.png"
+    },
+    {
+      "direction": "left",
+      "frame": 7,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -4.110721540939721e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_left_idle.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 7,
+      "rootYawDegrees": -45,
+      "maxRigidError": 9.721508883461273e-08,
+      "lowestWorldZ": -1.3853423297405243e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "child_down_left_idle.png"
+    }
+  ],
+  "inputs": [
+    {
+      "file": "child_walk_probe.blend",
+      "sha256": "a153e4f97531031d00351e13784f5760c91020b6fb7c41f7615f5cab5ab0dc4b"
+    },
+    {
+      "file": "rig-profile.json",
+      "sha256": "14d6fd93885a23792e2e9da53d88494e48d3fcea9c3ff0c4e6ecbac7798f48e3"
+    },
+    {
+      "file": "render-eight-directions.py",
+      "sha256": "a008709aa344050cef7ebedd4ec3e1adc0c86428fd703ccbfcc4f399c81d7a39"
+    }
+  ],
+  "pending": "full art/shadow and gameplay direction integration",
+  "lighting": {
+    "setup": "matte, soft-area lights",
+    "scriptSha256": "3be32e8752a935b365fe82bce3fa38d3c412ed3ead9355baed2f2971c32c0547"
+  }
+}

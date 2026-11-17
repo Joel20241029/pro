@@ -1,0 +1,216 @@
+{
+  "role": "child",
+  "profile": "rig-profile.json",
+  "frames": [
+    {
+      "frame": 1,
+      "pose": {
+        "L": [
+          -0.069,
+          0
+        ],
+        "R": [
+          0.069,
+          0
+        ],
+        "support": "L",
+        "swing": -1,
+        "bodyY": 0,
+        "bodyZ": -0.036000000000000004
+      },
+      "lowestWorldZ": -7.450580596923828e-09,
+      "shoeMinimumZ": {
+        "L": -7.450580596923828e-09,
+        "R": -3.725290298461914e-09
+      },
+      "shoeVertexCounts": {
+        "L": 13981,
+        "R": 11436
+      },
+      "caneTipZ": null
+    },
+    {
+      "frame": 2,
+      "pose": {
+        "L": [
+          -0.023000000000000007,
+          0
+        ],
+        "R": [
+          0.03450000000000001,
+          0.018186533479473212
+        ],
+        "support": "L",
+        "swing": -0.5000000000000001,
+        "bodyY": 0,
+        "bodyZ": -0.027000000000000003
+      },
+      "lowestWorldZ": -1.862645149230957e-08,
+      "shoeMinimumZ": {
+        "L": -1.862645149230957e-08,
+        "R": 0.01818653754889965
+      },
+      "shoeVertexCounts": {
+        "L": 13981,
+        "R": 11436
+      },
+      "caneTipZ": null
+    },
+    {
+      "frame": 3,
+      "pose": {
+        "L": [
+          0.022999999999999993,
+          0
+        ],
+        "R": [
+          -0.03449999999999999,
+          0.018186533479473212
+        ],
+        "support": "L",
+        "swing": 0.4999999999999998,
+        "bodyY": 0,
+        "bodyZ": -0.026999999999999996
+      },
+      "lowestWorldZ": -9.313225746154785e-09,
+      "shoeMinimumZ": {
+        "L": -9.313225746154785e-09,
+        "R": 0.018186533823609352
+      },
+      "shoeVertexCounts": {
+        "L": 13981,
+        "R": 11436
+      },
+      "caneTipZ": null
+    },
+    {
+      "frame": 4,
+      "pose": {
+        "L": [
+          0.069,
+          0
+        ],
+        "R": [
+          -0.069,
+          0
+        ],
+        "support": "R",
+        "swing": 1,
+        "bodyY": 0,
+        "bodyZ": -0.036000000000000004
+      },
+      "lowestWorldZ": 3.725290298461914e-09,
+      "shoeMinimumZ": {
+        "L": 1.862645149230957e-08,
+        "R": 3.725290298461914e-09
+      },
+      "shoeVertexCounts": {
+        "L": 13981,
+        "R": 11436
+      },
+      "caneTipZ": null
+    },
+    {
+      "frame": 5,
+      "pose": {
+        "L": [
+          0.03450000000000001,
+          0.018186533479473212
+        ],
+        "R": [
+          -0.023000000000000007,
+          0
+        ],
+        "support": "R",
+        "swing": 0.5000000000000004,
+        "bodyY": 0,
+        "bodyZ": -0.027000000000000003
+      },
+      "lowestWorldZ": 1.862645149230957e-09,
+      "shoeMinimumZ": {
+        "L": 0.018186533823609352,
+        "R": 1.862645149230957e-09
+      },
+      "shoeVertexCounts": {
+        "L": 13981,
+        "R": 11436
+      },
+      "caneTipZ": null
+    },
+    {
+      "frame": 6,
+      "pose": {
+        "L": [
+          -0.03449999999999999,
+          0.018186533479473212
+        ],
+        "R": [
+          0.022999999999999993,
+          0
+        ],
+        "support": "R",
+        "swing": -0.5000000000000001,
+        "bodyY": 0,
+        "bodyZ": -0.026999999999999996
+      },
+      "lowestWorldZ": 1.862645149230957e-08,
+      "shoeMinimumZ": {
+        "L": 0.018186533823609352,
+        "R": 1.862645149230957e-08
+      },
+      "shoeVertexCounts": {
+        "L": 13981,
+        "R": 11436
+      },
+      "caneTipZ": null
+    },
+    {
+      "frame": 7,
+      "pose": {
+        "L": [
+          0,
+          0
+        ],
+        "R": [
+          0,
+          0
+        ],
+        "bodyZ": 0,
+        "bodyY": 0,
+        "swing": 0
+      },
+      "lowestWorldZ": 2.0095569652767153e-09,
+      "shoeMinimumZ": {
+        "L": 2.0095569652767153e-09,
+        "R": 1.9066646927967668e-08
+      },
+      "shoeVertexCounts": {
+        "L": 13981,
+        "R": 11436
+      },
+      "caneTipZ": null
+    }
+  ],
+  "boneCount": 16,
+  "caneRigidVertices": [],
+  "status": "four_direction_visual_review_required",
+  "runtime3d": false,
+  "inputs": [
+    {
+      "file": "child_inspect.blend",
+      "sha256": "4233cbef2aeb10991c3c72fc23119e30fb85d207a57fd6a357600e41728dafc0"
+    },
+    {
+      "file": "rig-profile.json",
+      "sha256": "c5873471dd6f9fe72de4b2218a3d0aaca2d4fb6187eedbbea4958045640b3568"
+    },
+    {
+      "file": "bind-walk-character.py",
+      "sha256": "147d617c5b188cd4609ed9b21ef62fe12a8d878ceeb9b996b91aaca53c5d99dc"
+    },
+    {
+      "file": "character_weights.py",
+      "sha256": "674c0ded81ab19a3485b355478569358e5276d9de66c4981fc61675332cbfee9"
+    }
+  ]
+}

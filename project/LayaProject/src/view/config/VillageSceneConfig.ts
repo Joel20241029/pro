@@ -38,17 +38,6 @@ function prop(id: string, frame: string, left: number, top: number, size: number
     return { id, frame, x, y, size, footprint: { left: x - baseWidth / 2, top: y - baseDepth, right: x + baseWidth / 2, bottom: y } };
 }
 export const VILLAGE_PROPS: VillageProp[] = [
-    // 30棵固定树簇：相邻大小交错至88~116，保持同一量级并保留塔侧空隙。
-    // 1号塔左下移后，旁边松树的x由112移至80，避免树冠挡住塔身；其余树脚保持。
-    // 仅表现尺寸，不消耗业务随机数，也不改变林地通行边界；花果子节点和地影随树尺寸同步。
-    ...[
-        [46, 312, 108], [92, 320, 92], [16, 382, 104], [72, 380, 116], [80, 408, 96],
-        [48, 457, 102], [102, 488, 88], [63, 531, 112], [140, 556, 94],
-        [44, 606, 116], [102, 634, 96], [59, 687, 106], [132, 713, 90], [28, 736, 104], [73, 763, 114],
-        [656, 304, 98], [592, 333, 114], [625, 377, 90], [686, 413, 108], [598, 443, 94],
-        [642, 469, 116], [592, 512, 100], [678, 539, 88], [625, 580, 110],
-        [626, 619, 96], [664, 652, 114], [658, 698, 92], [687, 730, 104], [578, 756, 116], [648, 777, 94]
-    ].map(([x, y, size], i): VillageProp => ({ id: `forest:${i}`, frame: i % 4 === 0 ? "deco_tree_pine" : "deco_tree_oak", x, y, size, footprint: null })),
     ...[28, 92, 156, 220, 500, 564, 628, 692].map((x, i): VillageProp => ({ id: `wall:${i}`, frame: "building_palisade", x, y: 830, size: 78, footprint: null })),
     // 村名牌靠左城墙，底座落在已有墙体安全边内；牌面与火把分开，不增加通行障碍。
     { id: "deco:village-sign", frame: "deco_village_sign", x: 178, y: 832, size: 140, footprint: null, signText: "文明里村" },
@@ -72,8 +61,6 @@ export const VILLAGE_PROPS: VillageProp[] = [
     { id: "tree:corner-pine-left", frame: "deco_tree_pine", x: 43, y: 976, size: 88, footprint: { left: 32, top: 961, right: 54, bottom: 976 } },
     { id: "tree:corner-pine-right", frame: "deco_tree_pine", x: 677, y: 880, size: 88, footprint: { left: 666, top: 865, right: 688, bottom: 880 } },
     { id: "deco:logs", frame: "deco_log_pile", x: 571, y: 1024, size: 60, footprint: null },
-    // 首塔斜后方灌木移出弓口和塔身的有效轮廓，保持其余树林与战斗位置。
-    ...[[129, 248], [560, 286], [170, 477], [553, 548], [164, 668], [553, 734]].map(([x, y], i): VillageProp => ({ id: `bush:${i}`, frame: "deco_bush", x, y, size: 64, footprint: null })),
     ...[[279, 822], [441, 822]].map(([x, y], i): VillageProp => ({ id: `torch:${i}`, frame: "deco_torch", x, y, size: 62, footprint: null })),
     // 用户要求民居相对人物放大约20%；保留两栋足底(108,930)/(222,920)，高清底座按预制体112/128宽预留123/112，避免扩建后行人穿过墙脚。
     prop("building:house-a", "hd_house_body_0", 38, 798.75, 140, 123, 33),
@@ -131,14 +118,14 @@ export const VILLAGE_STOPS = {
         ...[58, 98, 140, 182, 224].map(x => ({ x, y: x <= 98 ? 878 : 874 }))
     ],
     farm: [{ x: 486, y: 879 }, { x: 546, y: 879 }, { x: 606, y: 879 }, { x: 486, y: 924 }, { x: 546, y: 924 }, { x: 606, y: 924 }],
-    // 五树各一个村内前侧工位，足底比树脚靠下14~16，使真实足底排序将落斧人物画在树前。
-    // 下方圆树改站左前方并保留底栏间距；其余沿原侧面靠前，排他轮换/产量和朝向判断保持。
+    // 足底比树脚靠下14~16，使真实足底排序将伐木者画在树前。
+    // 横向距离统一为39，按普通/精英落刃的实际屏幕坐标校验，让刃口落入树干宽度。
     logging: [
-        { treeId: "tree:logging", treeX: 164, x: 118, y: 1026 },
-        { treeId: "tree:corner-blossom", treeX: 38, x: 78, y: 852 },
-        { treeId: "tree:corner-fruit", treeX: 677, x: 628, y: 1014 },
-        { treeId: "tree:corner-pine-left", treeX: 43, x: 85, y: 992 },
-        { treeId: "tree:corner-pine-right", treeX: 677, x: 646, y: 896 }
+        { treeId: "tree:logging", treeX: 164, x: 125, y: 1026 },
+        { treeId: "tree:corner-blossom", treeX: 38, x: 77, y: 852 },
+        { treeId: "tree:corner-fruit", treeX: 677, x: 638, y: 1014 },
+        { treeId: "tree:corner-pine-left", treeX: 43, x: 82, y: 992 },
+        { treeId: "tree:corner-pine-right", treeX: 677, x: 638, y: 896 }
     ] as LoggingStop[],
     // 有意包含屋后与屋前的休息点，行人绕过墙基后会自然发生遮挡切换。
     rest: CAMP_STOPS,

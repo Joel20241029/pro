@@ -1,0 +1,485 @@
+{
+  "role": "blue",
+  "method": "offline high-resolution skinned rendering",
+  "status": "candidate_requires_contact_and_pose_visual_review",
+  "runtime3d": false,
+  "mirror": false,
+  "displayScale": 1.1538461538461537,
+  "anchor": {
+    "x": 0.5,
+    "y": 0.8015382289886475
+  },
+  "framesPerAction": {
+    "chop": 5
+  },
+  "records": [
+    {
+      "action": "chop",
+      "frame": 1,
+      "palm": [
+        -0.19284752011299133,
+        -0.1329936981201172,
+        0.3611093759536743
+      ],
+      "lowestBodyZ": -1.1026827451132704e-08
+    },
+    {
+      "action": "chop",
+      "frame": 2,
+      "palm": [
+        -0.22290392220020294,
+        -0.11913516372442245,
+        0.3946473300457001
+      ],
+      "lowestBodyZ": -1.1026827451132704e-08
+    },
+    {
+      "action": "chop",
+      "frame": 3,
+      "palm": [
+        -0.08304223418235779,
+        -0.22397013008594513,
+        0.47618916630744934
+      ],
+      "lowestBodyZ": -1.1026827451132704e-08
+    },
+    {
+      "action": "chop",
+      "frame": 4,
+      "palm": [
+        -0.041395556181669235,
+        -0.21340397000312805,
+        0.43243175745010376
+      ],
+      "lowestBodyZ": -1.1026827451132704e-08
+    },
+    {
+      "action": "chop",
+      "frame": 5,
+      "palm": [
+        -0.13342447578907013,
+        -0.18278415501117706,
+        0.3796953558921814
+      ],
+      "lowestBodyZ": -1.1026827451132704e-08
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 1,
+      "toolTipScreen": [
+        0.2559657096862793,
+        0.5936838388442993
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 2,
+      "toolTipScreen": [
+        0.13994474709033966,
+        0.5081645250320435
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 3,
+      "toolTipScreen": [
+        0.5068662166595459,
+        0.5557416379451752
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 4,
+      "toolTipScreen": [
+        0.6784144043922424,
+        0.5215898156166077
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 5,
+      "toolTipScreen": [
+        0.5504452586174011,
+        0.5880787670612335
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.5160872936248779,
+        0.6299987435340881
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.31476661562919617,
+        0.5950360298156738
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.7539427280426025,
+        0.5141914188861847
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.7629525065422058,
+        0.4512743353843689
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 5,
+      "toolTipScreen": [
+        0.7350386381149292,
+        0.5425974726676941
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.766785204410553,
+        0.5849334895610809
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.5980956554412842,
+        0.6089182198047638
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.8522630929946899,
+        0.4176149368286133
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.6934565901756287,
+        0.37856245040893555
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 5,
+      "toolTipScreen": [
+        0.7819495797157288,
+        0.4602345824241638
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.8612039089202881,
+        0.48488670587539673
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.823961615562439,
+        0.5416790246963501
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.7442324757575989,
+        0.3225855231285095
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.5106364488601685,
+        0.3460478186607361
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 5,
+      "toolTipScreen": [
+        0.6636982560157776,
+        0.38923710584640503
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 1,
+      "toolTipScreen": [
+        0.7440342903137207,
+        0.38846439123153687
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 2,
+      "toolTipScreen": [
+        0.8600552082061768,
+        0.4327062964439392
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 3,
+      "toolTipScreen": [
+        0.4931337833404541,
+        0.28477001190185547
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 4,
+      "toolTipScreen": [
+        0.3215855658054352,
+        0.3727770447731018
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 5,
+      "toolTipScreen": [
+        0.4495547413825989,
+        0.37119442224502563
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.48391273617744446,
+        0.35214948654174805
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.6852334141731262,
+        0.34583473205566406
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.24605727195739746,
+        0.32632023096084595
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.2370474934577942,
+        0.4430924654006958
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 5,
+      "toolTipScreen": [
+        0.2649613916873932,
+        0.4166756868362427
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.23321481049060822,
+        0.39721477031707764
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.40190431475639343,
+        0.3319525718688965
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.14773690700531006,
+        0.42289668321609497
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.30654338002204895,
+        0.5158043503761292
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 5,
+      "toolTipScreen": [
+        0.21805042028427124,
+        0.4990386366844177
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.13879609107971191,
+        0.49726152420043945
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.17603842914104462,
+        0.3991917371749878
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.25576746463775635,
+        0.5179260969161987
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.48936352133750916,
+        0.548319011926651
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 5,
+      "toolTipScreen": [
+        0.33630168437957764,
+        0.5700360536575317
+      ],
+      "contact": false
+    }
+  ],
+  "inputs": [
+    {
+      "file": "/Users/happyelements/Downloads/daidai-villager-production-20261117/models/blue/rig/blue_walk_probe.blend",
+      "sha256": "ab44cf4a284cb71a82d813f7ebdcb47ce85194f10bc18b49d1f90d15a1da9bd4"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/daidai-villager-production-20261117/models/blue/rig-profile.json",
+      "sha256": "816155c812921a2e619079e2d89617573d9ae58ea4bd68e027a8253cb9a0ed65"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/daidai-villager-production-20261117/labor-poses.json",
+      "sha256": "2843e6060222010066ad509e85fc9cf3496eecc16a6de7f483a3eb7f4ca9817b"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/daidai-villager-production-20261117/render-axe-polished.py",
+      "sha256": "b6be57ffa94e997617219c296d1fd2ec64971460ac8cf694feda6c4a3fb451f3"
+    }
+  ]
+}

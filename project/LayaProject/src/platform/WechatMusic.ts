@@ -1,4 +1,4 @@
-import { RESOURCE_BUNDLES } from "../config/ResourceConfig";
+import { GAMEPLAY_ROOT } from "../config/ResourceConfig";
 import { MUSIC } from "../game/GameConfig";
 
 /** 仅列本游戏用到的微信官方 InnerAudioContext API；依据 minigame-api-typings。 */
@@ -33,7 +33,7 @@ export class WechatMusic {
     private failed = false;
     private interrupted = false;
     private disposed = false;
-    constructor(private problem: () => void) {
+    constructor(private problem: () => void, private filePath: (file: string) => string = file => GAMEPLAY_ROOT + "/" + file) {
         wx.onAudioInterruptionBegin(this.begin);
         wx.onAudioInterruptionEnd(this.end);
     }
@@ -66,7 +66,7 @@ export class WechatMusic {
     }
     private setMusicSource(audio: InnerAudio) {
         audio.volume = this.battle ? MUSIC.battleVolume : MUSIC.volume;
-        audio.src = `${this.battle ? RESOURCE_BUNDLES.battle.root : RESOURCE_BUNDLES.base.root}/${this.battle ? MUSIC.battleFile : MUSIC.file}`;
+        audio.src = this.filePath("music/" + (this.battle ? MUSIC.battleFile : MUSIC.file));
     }
     interact() {
         if (!this.enabled || this.active || this.failed || this.interrupted || this.disposed) return;
@@ -91,7 +91,7 @@ export class WechatMusic {
                 const audio = this.clickAudio = wx.createInnerAudioContext();
                 audio.loop = false; audio.autoplay = false; audio.volume = MUSIC.clickVolume;
                 audio.onError(error => { if (this.clickAudio === audio) this.fail(error); });
-                audio.src = `${RESOURCE_BUNDLES.base.root}/${MUSIC.clickFile}`;
+                audio.src = this.filePath("music/" + MUSIC.clickFile);
             }
             if (this.active) this.clickAudio.play();
         } catch (error) { this.fail(error); }
@@ -116,7 +116,7 @@ export class WechatMusic {
                 const audio = cue.context = wx.createInnerAudioContext();
                 audio.loop = false; audio.autoplay = false; audio.volume = cue.spec.volume;
                 audio.onError(error => { if (cue.context === audio) this.fail(error); });
-                audio.src = `${RESOURCE_BUNDLES.battle.root}/${cue.spec.file}`;
+                audio.src = this.filePath("music/" + cue.spec.file);
             }
             if (this.active) cue.context.play();
         } catch (error) { this.fail(error); }

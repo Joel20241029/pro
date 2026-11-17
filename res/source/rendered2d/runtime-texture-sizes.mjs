@@ -5,7 +5,8 @@
  */
 export const runtimeTextureSizes = {
     // 成人/老人最大90×1.25=112.5逻辑宽；孩子48×90/56×1.25=96.43；婴儿原192足够。
-    characters: { male: 240, female: 240, child: 208, elder: 240, baby: 192 },
+    // 劳动作画边界随武器取景增加，导入器在这些尺寸上乘同一倍率保持采样精度。
+    characters: { adult: 240, child: 208, elder: 240, baby: 192, portrait: 384 },
     // 1.0.35 的首领显示再加 10%，取自高清母稿。保留 96 单位挂点、2 倍采样与 5% 余量，以 8 像素对齐。
     enemies: { raider: 200, runner: 200, armored: 200, boar: 184, disruptor: 200,
         chief: 320, commander: 328, wolfking: 320, tuskking: 336, shaman: 328 },
@@ -21,7 +22,5 @@ export const runtimeTextureSizes = {
         hd_part_grain: 96, hd_part_brace: 80,
         hd_house_wing_0: 144, hd_house_wing_1: 144, hd_house_wing_2: 144, hd_house_wing_3: 144,
         hd_gate_doors_0: 160, hd_gate_doors_1: 160, hd_gate_doors_2: 160, hd_gate_doors_3: 160
-    },
-    // 旅人头像可放大到210逻辑宽并按可见框铺满，独立保留原静止图，不能随世界帧降采样。
-    portraitFrames: ['hd_male_down_idle', 'hd_female_down_idle', 'hd_child_down_idle', 'hd_elder_idle_1', 'hd_baby_idle_1']
+    }
 };

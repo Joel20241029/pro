@@ -6,7 +6,7 @@
 
 - 游戏工程：`project/LayaProject/`。
 - 原始资源与可编辑制作工程：`res/`。
-- 当前运行资源同步目录：`remoteRes/`。
+- 新版远程资源写入独立 Gitee 仓库 `/Users/happyelements/Documents/remote-res/<客户端版本>/`。保留两个仓库中已发布的所有旧版本和目录。
 - 设计和技术文档：`doc/`。
 - 微信小游戏导出目录：`tryVersion/wxgame/`。
 - 项目更新日志：`CHANGELOG.md`。
@@ -33,7 +33,9 @@
 - 上传描述覆盖自上一次成功上传以来的全部待发布变更，不能只写最后一个小修改，也不能包含尚未实现的功能。
 - 后台描述使用简洁中文，默认控制在 200 字以内（包含标点），同时遵守当前平台或用户给出的更严格限制。
 - 根据需求同步相关技术文档；资源修改同步原稿、制作配置和可编辑工程，不能只改使用中的图集。
-- 每次更新运行资源，按 `res/manifest.json` 的发布白名单同步 `remoteRes/` 下的四个资源包。现有资源构建命令的 `--sync` 会同步游戏工程及该目录。
+- 每次更新运行资源，使用 `build-resources.mjs --sync` 按 `res/manifest.json` 同步 Laya 工程，再运行 `node res/tools/prepare-remote-release.mjs <版本> --stage`，将新版本导出到独立资源仓库。
+- 在 `/Users/happyelements/Documents/remote-res/` 单独提交本轮版本目录，推送到 Gitee 的 `origin/master`，再用该仓库的完整提交 SHA 运行 `node res/tools/prepare-remote-release.mjs <版本> <已推送的完整提交 SHA> --write`。逐个核对线上文件字节后生成客户端远程资源清单，再导出验证。
+- Gitee 新版资源使用微信 `downloadFile` 合法域名 `https://gitee.com` 与 `https://raw.giteeusercontent.com`。旧版本所用域名继续保留。
 - 上传成功前标记为待上传，收到最终成功回执后再改为已上传。历史版本记录保持真实，不将历史验证冒充当前结果。
 
 ## 发布验证与交付

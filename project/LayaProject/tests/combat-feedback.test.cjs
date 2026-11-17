@@ -52,13 +52,14 @@ test('defeat cue is deferred to visual contact, coalesces combat deaths and excl
  f.discard(hidden);assert(f.deathPose(3));assert.equal(f.takeDefeatCue(),true);f.discard(hidden);
  f.sync(b,[{type:'gate',enemy:enemy(4,0,PATH_LENGTH)}]);assert.equal(f.takeDefeatCue(),false);
 });
-test('both actual chop clips trigger only when crossing frame 3, pause and resting do not repeat',()=>{
- for(const clip of ['villager_male_a_chop','villager_female_a_chop']){const f=new LoggingFeedback();f.sample('a',clip,0,true,'tree:a');f.sample('a',clip,.5,true,'tree:a');f.advance(.04);assert.notEqual(f.rotation('tree:a'),0);f.advance(1);f.sample('a',clip,.5,true,'tree:a');f.advance(0);assert.equal(f.rotation('tree:a'),0);f.sample('a',clip,1.2,false,'tree:a');f.advance(.1);assert.equal(f.rotation('tree:a'),0);}
+const chop = id => ({ id, fps: 8, frameIds: ['one', 'two', 'contact', 'release', 'recover'], contactFrame: 2 });
+test('actual chop clips follow their contact metadata, pause and resting do not repeat',()=>{
+ for(const clip of [chop('villager_blue_chop_left'),chop('villager_red_chop_right')]){const f=new LoggingFeedback();f.sample('a',clip,0,'tree:a');f.sample('a',clip,.5,'tree:a');f.advance(.04);assert.notEqual(f.rotation('tree:a'),0);f.advance(1);f.sample('a',clip,.5,'tree:a');f.advance(0);assert.equal(f.rotation('tree:a'),0);f.sample('a',null,1.2,'tree:a');f.advance(.1);assert.equal(f.rotation('tree:a'),0);}
 });
 test('only the struck tree sways and a new target cannot inherit the previous strike phase',()=>{
- const f=new LoggingFeedback(),clip='villager_male_a_chop';f.sample('a',clip,0,true,'oak');f.sample('a',clip,.5,true,'oak');f.advance(.04);
+ const f=new LoggingFeedback(),clip=chop('villager_blue_chop_left');f.sample('a',clip,0,'oak');f.sample('a',clip,.5,'oak');f.advance(.04);
  const old=f.rotation('oak');assert.notEqual(old,0);assert.equal(f.rotation('pine'),0);f.advance(0);assert.equal(f.rotation('oak'),old);
- f.sample('a',clip,5,true,'pine');assert.equal(f.rotation('pine'),0);f.sample('a',clip,5.8,true,'pine');f.advance(.04);assert.notEqual(f.rotation('pine'),0);
+ f.sample('a',clip,5,'pine');assert.equal(f.rotation('pine'),0);f.sample('a',clip,5.8,'pine');f.advance(.04);assert.notEqual(f.rotation('pine'),0);
  f.advance(1);assert.equal(f.rotation('oak'),0);assert.equal(f.rotation('pine'),0);
 });
 test('bell availability shares pause, saved commit and battle outcome conditions',()=>{

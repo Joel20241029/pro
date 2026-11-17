@@ -1,2 +1,2 @@
-/** 客户端诊断标识；version对应最近上传版本，build区分本地源码与运行资源指纹。 */
-export const RELEASE = { version: "1.0.37", build: "1.0.37-a89ca13c4b6f" } as const;
+/** 客户端诊断标识，构建指纹包含源代码、资源与微信发布配置。 */
+export const RELEASE = { version: "1.0.43", build: "1.0.43-5a8dd76395d1" } as const;

@@ -35,6 +35,6 @@ test('saved night and chief summons replay identical appearances, bounded enemy 
  assert(sawSummon);assert.equal(a.enemies.filter(e=>e.kind==='enemy_raider').length,4);
 });
 test('presentation programming error remains the original error, never a retryable download failure',async()=>{
- const r=new ResourcePreparation({download:async()=>true,decode:async()=>{}}),error=new Error('broken UI');r.changed=()=>{throw error;};
- await assert.rejects(r.ensure('characters'),e=>e===error);assert.notEqual(r.states.characters.phase,'FAILED');r.destroy();
+ const r=new ResourcePreparation({download:async()=>{},decode:async()=>{}}),error=new Error('broken UI');r.changed=()=>{throw error;};
+ await assert.rejects(r.ensure('village'),e=>e===error);assert.notEqual(r.states.village.phase,'FAILED');r.destroy();
 });

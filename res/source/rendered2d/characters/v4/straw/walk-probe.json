@@ -1,0 +1,176 @@
+{
+  "role": "straw",
+  "frames": [
+    {
+      "frame": 1,
+      "pose": {
+        "L": [
+          -0.046894909090909084,
+          0.0
+        ],
+        "R": [
+          0.046894909090909084,
+          0.0
+        ],
+        "support": "L",
+        "swing": -1,
+        "bodyY": 0,
+        "bodyZ": -0.025
+      },
+      "shoeMinimumZ": {
+        "L": -9.094591746361402e-10,
+        "R": 0.00033400242682546377
+      },
+      "lowestWorldZ": -9.094591746361402e-10,
+      "caneTipZ": null
+    },
+    {
+      "frame": 2,
+      "pose": {
+        "L": [
+          -0.015631636363636365,
+          0.0
+        ],
+        "R": [
+          0.02344745454545455,
+          0.017528354172597037
+        ],
+        "support": "L",
+        "swing": -0.5000000000000001,
+        "bodyY": 0,
+        "bodyZ": -0.025
+      },
+      "shoeMinimumZ": {
+        "L": -2.7939677238464355e-08,
+        "R": 0.017528342083096504
+      },
+      "lowestWorldZ": -2.7939677238464355e-08,
+      "caneTipZ": null
+    },
+    {
+      "frame": 3,
+      "pose": {
+        "L": [
+          0.015631636363636358,
+          0.0
+        ],
+        "R": [
+          -0.023447454545454535,
+          0.01752835417259704
+        ],
+        "support": "L",
+        "swing": 0.4999999999999998,
+        "bodyY": 0,
+        "bodyZ": -0.025
+      },
+      "shoeMinimumZ": {
+        "L": 1.862645149230957e-09,
+        "R": 0.017528356984257698
+      },
+      "lowestWorldZ": 1.862645149230957e-09,
+      "caneTipZ": null
+    },
+    {
+      "frame": 4,
+      "pose": {
+        "L": [
+          0.046894909090909084,
+          0.0
+        ],
+        "R": [
+          -0.046894909090909084,
+          0.0
+        ],
+        "support": "R",
+        "swing": 1,
+        "bodyY": 0,
+        "bodyZ": -0.025
+      },
+      "shoeMinimumZ": {
+        "L": -1.862645149230957e-09,
+        "R": 7.450580596923828e-09
+      },
+      "lowestWorldZ": -1.862645149230957e-09,
+      "caneTipZ": null
+    },
+    {
+      "frame": 5,
+      "pose": {
+        "L": [
+          0.02344745454545455,
+          0.017528354172597037
+        ],
+        "R": [
+          -0.015631636363636365,
+          0.0
+        ],
+        "support": "R",
+        "swing": 0.5000000000000004,
+        "bodyY": 0,
+        "bodyZ": -0.025
+      },
+      "shoeMinimumZ": {
+        "L": 0.0175283532589674,
+        "R": 0.0
+      },
+      "lowestWorldZ": 0.0,
+      "caneTipZ": null
+    },
+    {
+      "frame": 6,
+      "pose": {
+        "L": [
+          -0.023447454545454535,
+          0.01752835417259704
+        ],
+        "R": [
+          0.015631636363636358,
+          0.0
+        ],
+        "support": "R",
+        "swing": -0.5000000000000001,
+        "bodyY": 0,
+        "bodyZ": -0.025
+      },
+      "shoeMinimumZ": {
+        "L": 0.017528356984257698,
+        "R": -1.862645149230957e-09
+      },
+      "lowestWorldZ": -1.862645149230957e-09,
+      "caneTipZ": null
+    },
+    {
+      "frame": 7,
+      "pose": {
+        "L": [
+          0.0,
+          0.0
+        ],
+        "R": [
+          0.0,
+          0.0
+        ],
+        "swing": 0,
+        "bodyY": 0,
+        "bodyZ": 0.0
+      },
+      "shoeMinimumZ": {
+        "L": 2.0489096641540527e-08,
+        "R": 1.30385160446167e-08
+      },
+      "lowestWorldZ": 1.30385160446167e-08,
+      "caneTipZ": null
+    }
+  ],
+  "boneCount": 16,
+  "sourceSha256": "5e107ed7671082a31bb9e5fcf89cb401b3404107b8c50247f7bfcfbebfd3c3ad",
+  "proportions": {
+    "collarHeight": 0.414,
+    "sourceCollarHeight": 0.55,
+    "height": 1.0,
+    "headWidthScale": 1.33,
+    "torsoWidthScale": 1.11,
+    "strideScale": 0.6699272727272726
+  },
+  "method": "bind-space deformation with existing skin weights and independently grounded ankles"
+}

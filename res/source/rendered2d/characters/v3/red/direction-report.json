@@ -1,0 +1,820 @@
+{
+  "role": "red",
+  "status": "eight_direction_motion_candidate_not_integrated",
+  "cameraAndLightsFixed": true,
+  "mirror": false,
+  "framesPerDirection": 6,
+  "fps": 12,
+  "groundAnchor": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "camera": [
+    0.0,
+    -3.0,
+    1.7400000095367432
+  ],
+  "rigidTolerance": 0.0001,
+  "views": [
+    {
+      "direction": "down",
+      "frame": 1,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": 3.725290298461914e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_1.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 1,
+      "rootYawDegrees": 45,
+      "maxRigidError": 9.215859231988326e-08,
+      "lowestWorldZ": -4.842877388000488e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_right_1.png"
+    },
+    {
+      "direction": "right",
+      "frame": 1,
+      "rootYawDegrees": 90,
+      "maxRigidError": 4.470348358154297e-08,
+      "lowestWorldZ": 3.725290298461914e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_right_1.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 1,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.1397196755393114e-07,
+      "lowestWorldZ": -3.725290298461914e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_right_1.png"
+    },
+    {
+      "direction": "up",
+      "frame": 1,
+      "rootYawDegrees": 180,
+      "maxRigidError": 8.429369702178807e-08,
+      "lowestWorldZ": -3.725290298461914e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_1.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 1,
+      "rootYawDegrees": -135,
+      "maxRigidError": 6.999185021242475e-08,
+      "lowestWorldZ": -3.725290298461914e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_left_1.png"
+    },
+    {
+      "direction": "left",
+      "frame": 1,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": 3.725290298461914e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_left_1.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 1,
+      "rootYawDegrees": -45,
+      "maxRigidError": 7.223605897152915e-08,
+      "lowestWorldZ": -4.842877388000488e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_left_1.png"
+    },
+    {
+      "direction": "down",
+      "frame": 2,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": 0.0,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_2.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 2,
+      "rootYawDegrees": 45,
+      "maxRigidError": 1.0023731028343521e-07,
+      "lowestWorldZ": -4.842877388000488e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_right_2.png"
+    },
+    {
+      "direction": "right",
+      "frame": 2,
+      "rootYawDegrees": 90,
+      "maxRigidError": 4.470348358154297e-08,
+      "lowestWorldZ": 0.0,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_right_2.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 2,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.1733186057227569e-07,
+      "lowestWorldZ": -4.284083843231201e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_right_2.png"
+    },
+    {
+      "direction": "up",
+      "frame": 2,
+      "rootYawDegrees": 180,
+      "maxRigidError": 8.429369702178807e-08,
+      "lowestWorldZ": 3.725290298461914e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_2.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 2,
+      "rootYawDegrees": -135,
+      "maxRigidError": 9.096499865557834e-08,
+      "lowestWorldZ": -4.284083843231201e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_left_2.png"
+    },
+    {
+      "direction": "left",
+      "frame": 2,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": 0.0,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_left_2.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 2,
+      "rootYawDegrees": -45,
+      "maxRigidError": 8.503133215392624e-08,
+      "lowestWorldZ": -4.842877388000488e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_left_2.png"
+    },
+    {
+      "direction": "down",
+      "frame": 3,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_3.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 3,
+      "rootYawDegrees": 45,
+      "maxRigidError": 6.537857940340133e-08,
+      "lowestWorldZ": -4.6566128730773926e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_right_3.png"
+    },
+    {
+      "direction": "right",
+      "frame": 3,
+      "rootYawDegrees": 90,
+      "maxRigidError": 4.470348358154297e-08,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_right_3.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 3,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.0745380149674383e-07,
+      "lowestWorldZ": -4.284083843231201e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_right_3.png"
+    },
+    {
+      "direction": "up",
+      "frame": 3,
+      "rootYawDegrees": 180,
+      "maxRigidError": 8.429369702178807e-08,
+      "lowestWorldZ": -3.725290298461914e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_3.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 3,
+      "rootYawDegrees": -135,
+      "maxRigidError": 9.094592642585711e-08,
+      "lowestWorldZ": -4.284083843231201e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_left_3.png"
+    },
+    {
+      "direction": "left",
+      "frame": 3,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_left_3.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 3,
+      "rootYawDegrees": -45,
+      "maxRigidError": 8.229435248067425e-08,
+      "lowestWorldZ": -4.6566128730773926e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_left_3.png"
+    },
+    {
+      "direction": "down",
+      "frame": 4,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -3.725290298461914e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_4.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 4,
+      "rootYawDegrees": 45,
+      "maxRigidError": 6.365778852490731e-08,
+      "lowestWorldZ": -4.0978193283081055e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_right_4.png"
+    },
+    {
+      "direction": "right",
+      "frame": 4,
+      "rootYawDegrees": 90,
+      "maxRigidError": 4.470348358154297e-08,
+      "lowestWorldZ": -3.725290298461914e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_right_4.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 4,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.0745380149674383e-07,
+      "lowestWorldZ": -4.0978193283081055e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_right_4.png"
+    },
+    {
+      "direction": "up",
+      "frame": 4,
+      "rootYawDegrees": 180,
+      "maxRigidError": 8.462232866585662e-08,
+      "lowestWorldZ": 0.0,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_4.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 4,
+      "rootYawDegrees": -135,
+      "maxRigidError": 6.143906154658885e-08,
+      "lowestWorldZ": -4.0978193283081055e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_left_4.png"
+    },
+    {
+      "direction": "left",
+      "frame": 4,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": -3.725290298461914e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_left_4.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 4,
+      "rootYawDegrees": -45,
+      "maxRigidError": 7.068241373080863e-08,
+      "lowestWorldZ": -4.0978193283081055e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_left_4.png"
+    },
+    {
+      "direction": "down",
+      "frame": 5,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": 3.725290298461914e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_5.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 5,
+      "rootYawDegrees": 45,
+      "maxRigidError": 6.537857940340133e-08,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_right_5.png"
+    },
+    {
+      "direction": "right",
+      "frame": 5,
+      "rootYawDegrees": 90,
+      "maxRigidError": 4.470348358154297e-08,
+      "lowestWorldZ": 3.725290298461914e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_right_5.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 5,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.0745380149674383e-07,
+      "lowestWorldZ": -1.6763806343078613e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_right_5.png"
+    },
+    {
+      "direction": "up",
+      "frame": 5,
+      "rootYawDegrees": 180,
+      "maxRigidError": 8.429369702178807e-08,
+      "lowestWorldZ": 2.2351741790771484e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_5.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 5,
+      "rootYawDegrees": -135,
+      "maxRigidError": 7.450580596923828e-08,
+      "lowestWorldZ": -1.6763806343078613e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_left_5.png"
+    },
+    {
+      "direction": "left",
+      "frame": 5,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": 3.725290298461914e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_left_5.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 5,
+      "rootYawDegrees": -45,
+      "maxRigidError": 6.537857940340133e-08,
+      "lowestWorldZ": -7.450580596923828e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_left_5.png"
+    },
+    {
+      "direction": "down",
+      "frame": 6,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": 0.0,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_6.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 6,
+      "rootYawDegrees": 45,
+      "maxRigidError": 7.607258057840965e-08,
+      "lowestWorldZ": -2.7939677238464355e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_right_6.png"
+    },
+    {
+      "direction": "right",
+      "frame": 6,
+      "rootYawDegrees": 90,
+      "maxRigidError": 4.470348358154297e-08,
+      "lowestWorldZ": 0.0,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_right_6.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 6,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.0745380149674383e-07,
+      "lowestWorldZ": -3.725290298461914e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_right_6.png"
+    },
+    {
+      "direction": "up",
+      "frame": 6,
+      "rootYawDegrees": 180,
+      "maxRigidError": 8.429369702178807e-08,
+      "lowestWorldZ": -1.4901161193847656e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_6.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 6,
+      "rootYawDegrees": -135,
+      "maxRigidError": 8.72863420386611e-08,
+      "lowestWorldZ": -3.725290298461914e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_left_6.png"
+    },
+    {
+      "direction": "left",
+      "frame": 6,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": 0.0,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_left_6.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 6,
+      "rootYawDegrees": -45,
+      "maxRigidError": 7.347420946998902e-08,
+      "lowestWorldZ": -2.7939677238464355e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_left_6.png"
+    },
+    {
+      "direction": "down",
+      "frame": 7,
+      "rootYawDegrees": 0,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": 4.9409578650738695e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_idle.png"
+    },
+    {
+      "direction": "down_right",
+      "frame": 7,
+      "rootYawDegrees": 45,
+      "maxRigidError": 6.476543341097873e-08,
+      "lowestWorldZ": -1.7039665678453275e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_right_idle.png"
+    },
+    {
+      "direction": "right",
+      "frame": 7,
+      "rootYawDegrees": 90,
+      "maxRigidError": 4.470348358154297e-08,
+      "lowestWorldZ": 4.9409578650738695e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_right_idle.png"
+    },
+    {
+      "direction": "up_right",
+      "frame": 7,
+      "rootYawDegrees": 135,
+      "maxRigidError": 1.0745380149674383e-07,
+      "lowestWorldZ": -2.704122081809146e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_right_idle.png"
+    },
+    {
+      "direction": "up",
+      "frame": 7,
+      "rootYawDegrees": 180,
+      "maxRigidError": 8.429369702178807e-08,
+      "lowestWorldZ": -1.1836132074449779e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_idle.png"
+    },
+    {
+      "direction": "up_left",
+      "frame": 7,
+      "rootYawDegrees": -135,
+      "maxRigidError": 7.480932277420828e-08,
+      "lowestWorldZ": -2.704122081809146e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_up_left_idle.png"
+    },
+    {
+      "direction": "left",
+      "frame": 7,
+      "rootYawDegrees": -90,
+      "maxRigidError": 0.0,
+      "lowestWorldZ": 4.9409578650738695e-09,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_left_idle.png"
+    },
+    {
+      "direction": "down_left",
+      "frame": 7,
+      "rootYawDegrees": -45,
+      "maxRigidError": 6.365778852490731e-08,
+      "lowestWorldZ": -1.7039665678453275e-08,
+      "headLocalRotation": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "file": "red_down_left_idle.png"
+    }
+  ],
+  "inputs": [
+    {
+      "file": "red_walk_probe.blend",
+      "sha256": "0b0699694b4fc93f5aab8de9f19cd2150d8920e01a5b8b7a2898daad1cf7f2fc"
+    },
+    {
+      "file": "rig-profile.json",
+      "sha256": "63d8d484a778f04b05f53d5d223abde8454501a12773ce295150741cd6d19ca3"
+    },
+    {
+      "file": "render-eight-directions.py",
+      "sha256": "a008709aa344050cef7ebedd4ec3e1adc0c86428fd703ccbfcc4f399c81d7a39"
+    }
+  ],
+  "pending": "full art/shadow and gameplay direction integration"
+}

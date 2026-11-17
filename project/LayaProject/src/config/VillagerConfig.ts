@@ -10,11 +10,6 @@ export const VILLAGER_NAMES = {
     // 独立取名不推进业务随机流；修改只影响后续精英姓名，不改性别、5%概率、能力及已有村民。
     elite: ["旭勇", "智卓", "二百", "翟毅", "周博", "赵靓", "龙龙", "昭易", "明波", "宋磊", "徐超", "四辈儿"]
 } as const;
-/** 纯表现动作表：男女均具备三类劳动动画；到工位播放，移动仍使用方向 walk，不限制任职资格。 */
-export const LABOR_CLIPS: Readonly<Record<string, Readonly<Record<"FARM" | "LOGGING" | "CARE", string>>>> = {
-    male_a: { FARM: "villager_male_a_farm", LOGGING: "villager_male_a_chop", CARE: "villager_male_a_care" },
-    female_a: { FARM: "villager_female_a_harvest", LOGGING: "villager_female_a_chop", CARE: "villager_female_a_care" }
-};
 export const TRAITS = {
     trait_diligent: ["勤耕", "耕作产粮 +20%"], trait_woodwise: ["识木", "伐木产量 +20%"],
     trait_focused: ["专注", "箭楼攻速 +15%"], trait_strong: ["强健", "石塔伤害 +20%"],

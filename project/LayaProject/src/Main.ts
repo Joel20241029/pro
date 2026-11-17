@@ -5,24 +5,30 @@ import { WechatPlatform } from "./platform/WechatPlatform";
 import { SpriteFrames } from "./view/SpriteFrames";
 import { GameView } from "./view/GameView";
 import { StartupView } from "./view/StartupView";
+import { GameLayout } from "./view/GameLayout";
 import { WechatMusic } from "./platform/WechatMusic";
 import { ResourcePreparation } from "./platform/ResourcePreparation";
-import { RESOURCE_BUNDLES } from "./config/ResourceConfig";
+import { WechatRemoteResources } from "./platform/WechatRemoteResources";
+import { GAMEPLAY_ROOT } from "./config/ResourceConfig";
 const { regClass } = Laya;
 @regClass()
 export class Main extends Laya.Script {
     private platform: WechatPlatform | null = null;
     private session: GameSession | null = null;
     private view: GameView | null = null;
-    private frames = new SpriteFrames();
+    private remoteAssets = Laya.Browser?.onWXMiniGame && !Laya.LayaEnv.isPreview ? new WechatRemoteResources() : null;
+    private filePath = (file: string) => this.remoteAssets ? this.remoteAssets.path(file) : GAMEPLAY_ROOT + "/" + file;
+    private frames = new SpriteFrames((file, options) =>
+        this.remoteAssets ? this.remoteAssets.load(this.filePath(file), options) : Laya.loader.load(this.filePath(file), options)
+    );
     private resources = new ResourcePreparation({
-        // 本机微信适配器回调为0..100；协调器统一使用0..1，仅用于判断是否有实际进展。
-        download: (root, progress) => Laya.loader.loadPackage(root, percent => progress(percent / 100)),
-        decode: bundle => this.frames.loadBundle(bundle)
+        download: this.remoteAssets ? (stage, progress) => this.remoteAssets!.prepare(stage, progress) : undefined,
+        decode: stage => this.frames.loadStage(stage)
     });
     private loading: StartupView | null = null;
     private disposed = false;
     private starting = false;
+    private saveRead = false;
     private music: WechatMusic | null = null;
     private soundBattle: BattleSimulation | null = null;
     private heardVolleys = 0;
@@ -36,53 +42,61 @@ export class Main extends Laya.Script {
         this.music?.setEnabled(session.state.settings.music); this.music?.interact();
     };
     async onStart() {
-        Laya.stage.bgColor = "#f5e7c6";
-        this.loading = new StartupView(() => { void this.startVillage(); }); Laya.stage.addChild(this.loading);
+        Laya.stage.bgColor = "#162c20";
+        const platform = this.platform = new WechatPlatform();
+        this.loading = new StartupView(() => { void this.startVillage(); }, () => new GameLayout(platform.window, platform.menu));
+        Laya.stage.addChild(this.loading);
         Laya.stage.on(Laya.Event.RESIZE, this, this.resize);
-        this.platform = new WechatPlatform(); this.session = new GameSession(new SaveStore(this.platform));
-        this.session.pause("ASSETS"); this.platform.bind(this.hide, this.show);
+        this.session = new GameSession(new SaveStore(platform));
+        this.session.pause("ASSETS"); platform.bind(this.hide, this.show);
         this.resources.changed = () => { this.syncResourcePause(); this.updateLoadingStatus(); this.view?.refresh(); };
         await this.startVillage();
     }
     private async startVillage() {
         if (this.starting || this.view || this.disposed) return;
-        this.starting = true; this.loading!.showStatus(false);
-        for (const bundle of ["base", "buildings"] as const) {
-            const ready = await this.resources.ensure(bundle);
-            if (this.disposed) { this.starting = false; return; }
-            if (!ready) { this.starting = false; this.updateLoadingStatus(); console.error("[村庄资源]", this.resources.states[bundle].error); return; }
-            if (bundle === "base") this.loading!.decorate(this.frames);
+        this.starting = true;
+        try {
+            if (!await this.loading!.loadArtwork() || this.disposed) return;
+            if (!await this.resources.ensure("village") || this.disposed) return;
+            const session = this.session!;
+            // 读档可能自动补写双槽恢复。素材重试保留接受过的存档，等待期间始终暂停。
+            if (!this.saveRead) {
+                this.saveRead = true;
+                session.load();
+                session.enter();
+            }
+            if (session.state?.phase === "NIGHT" && (!await this.resources.ensure("night") || this.disposed)) return;
+            this.view = new GameView(session, this.frames, this.platform!, () => {
+                if (!session.state || session.saves.pending || session.pauses.has("BACKGROUND") || session.pauses.has("DISABLED") || session.pauses.has("ASSETS")) return;
+                this.music?.setEnabled(session.state.settings.music);
+                this.music?.setBattle(session.state.phase === "NIGHT" && this.resources.ready("night"));
+                this.music?.interact(); this.music?.click();
+            }, this.resources, () => {
+                if (session.state?.settings.music && this.resources.ready("night")) this.music?.enemyDefeat();
+            });
+            this.music = new WechatMusic(() => this.view?.showMusicProblem(), this.filePath);
+            Laya.stage.on(Laya.Event.CLICK, this, this.interact);
+            Laya.stage.addChild(this.view.root);
+            this.loading!.destroy(); this.loading = null;
+            this.syncResourcePause();
+            this.remoteAssets?.rememberRelease();
+        } finally {
+            this.starting = false;
+            this.updateLoadingStatus();
         }
-        this.starting = false;
-        const session = this.session!;
-        this.view = new GameView(session, this.frames, this.platform!, () => {
-            if (!session.state || session.saves.pending || session.pauses.has("BACKGROUND") || session.pauses.has("DISABLED") || session.pauses.has("ASSETS")) return;
-            this.music?.setEnabled(session.state.settings.music);
-            this.music?.setBattle(session.state.phase === "NIGHT" && this.resources.ready("battle"));
-            this.music?.interact(); this.music?.click();
-        }, this.resources, () => {
-            if (session.state?.settings.music && this.resources.ready("battle")) this.music?.enemyDefeat();
-        });
-        this.music = new WechatMusic(() => this.view?.showMusicProblem());
-        Laya.stage.on(Laya.Event.CLICK, this, this.interact); Laya.stage.addChild(this.view.root);
-        this.loading!.destroy(); this.loading = null;
-        // 建筑齐后才构造完整地图，再加载人物；ASSETS在读档前已添加，等待期间不推进夜晚。
-        session.load(); session.enter(); this.syncResourcePause();
-        void this.resources.ensure("characters");
-        console.log("[代代守村] 主场景已显示，分阶段准备资源");
     }
     private updateLoadingStatus() {
         if (!this.loading) return;
-        const bundle = this.resources.ready("base") ? "buildings" : "base";
-        this.loading.showPreparation(RESOURCE_BUNDLES[bundle].title, this.resources.states[bundle]);
+        const restoring = this.resources.ready("village") && this.session?.state?.phase === "NIGHT";
+        this.loading.showPreparation(restoring ? "正在恢复守夜" : "正在准备村庄", this.resources.states[restoring ? "night" : "village"]);
     }
     private syncResourcePause() {
         const session = this.session; if (!session) return;
         const night = session.state?.phase === "NIGHT";
-        if (!this.resources.ready("base") || !this.resources.ready("buildings") || !this.resources.ready("characters") || (night && !this.resources.ready("battle"))) session.pause("ASSETS");
+        if (!this.view || !this.resources.ready("village") || (night && !this.resources.ready("night"))) session.pause("ASSETS");
         else if (session.pauses.has("ASSETS")) session.resume("ASSETS");
-        // 夜晚读档自动准备一次；失败保留现场，由面板按钮重试，绝不逐帧重发。
-        if (night && this.resources.states.battle.phase === "IDLE") void this.resources.ensure("battle");
+        // 村庄内手动接受可恢复的夜间存档时，从同一入口准备守夜素材。
+        if (this.view && night && this.resources.states.night.phase === "IDLE") void this.resources.ensure("night");
     }
     onUpdate() {
         const delta = Laya.timer.unscaledDelta / 1000;
@@ -101,7 +115,7 @@ export class Main extends Laya.Script {
                 // 完成结算可能打开日出面板；当帧已发生的发射仍应播放，原音频生命周期负责静音/后台。
                 if (!this.session.pauses.size || battle === finishingBattle && battle.outcome !== null) this.music?.towerShot();
             }
-            this.music?.setBattle(this.session.state.phase === "NIGHT" && this.resources.ready("battle"));
+            this.music?.setBattle(this.session.state.phase === "NIGHT" && this.resources.ready("night"));
         }
         if (this.session?.state && !this.session.saves.pending) this.platform?.syncBestNight(this.session.state.legacy.bestNight);
     }

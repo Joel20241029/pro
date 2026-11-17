@@ -2,7 +2,7 @@ import { SpriteFrames } from "./SpriteFrames";
 import { VillagerPose } from "./VillagerMotion";
 
 /** 行走相位跟随实际路程，和劳动计时分离；保留规范化周期，换屏/成长/精英缩放不跳帧。
- * stridePixels 为离线模型一整轮左右脚的侧向步幅；四向共享节奏，避免俯视压缩造成前后向碎步。
+ * stridePixels 为离线模型一整轮左右脚的侧向步幅；八向共享节奏，避免俯视压缩造成前后向碎步。
  * 倍速已经包含在路程里，不能在此再乘一次。 */
 export class WalkAnimation {
     private cycles = new Map<string, { distance: number; phase: number }>();

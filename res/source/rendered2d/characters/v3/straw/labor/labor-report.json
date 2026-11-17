@@ -1,0 +1,1338 @@
+{
+  "role": "straw",
+  "method": "offline high-resolution skinned rendering",
+  "status": "candidate_requires_contact_and_pose_visual_review",
+  "runtime3d": false,
+  "mirror": false,
+  "displayScale": 1.1538461538461537,
+  "anchor": {
+    "x": 0.5,
+    "y": 0.8015382289886475
+  },
+  "framesPerAction": {
+    "chop": 5,
+    "farm": 4,
+    "care": 4,
+    "strike": 5
+  },
+  "records": [
+    {
+      "action": "chop",
+      "frame": 1,
+      "palm": [
+        -0.2872624397277832,
+        -0.1627258062362671,
+        0.4000162184238434
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "chop",
+      "frame": 2,
+      "palm": [
+        -0.3126198351383209,
+        -0.12550394237041473,
+        0.4453946352005005
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "chop",
+      "frame": 3,
+      "palm": [
+        -0.17385806143283844,
+        -0.2371310591697693,
+        0.5199226140975952
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "chop",
+      "frame": 4,
+      "palm": [
+        -0.12776480615139008,
+        -0.24319975078105927,
+        0.4788297116756439
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "chop",
+      "frame": 5,
+      "palm": [
+        -0.2184898406267166,
+        -0.21682114899158478,
+        0.42219823598861694
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 1,
+      "toolTipScreen": [
+        0.20291495323181152,
+        0.6089640557765961
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 2,
+      "toolTipScreen": [
+        0.07748579978942871,
+        0.5115266144275665
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 3,
+      "toolTipScreen": [
+        0.461176335811615,
+        0.5593642890453339
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 4,
+      "toolTipScreen": [
+        0.6280997395515442,
+        0.5230249762535095
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 5,
+      "toolTipScreen": [
+        0.5071219205856323,
+        0.5955027639865875
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.5004321932792664,
+        0.6562246680259705
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.2839437425136566,
+        0.6132591366767883
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.7275211811065674,
+        0.529302328824997
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.7322535514831543,
+        0.46561604738235474
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 5,
+      "toolTipScreen": [
+        0.7158869504928589,
+        0.5599745810031891
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.7976962924003601,
+        0.6087289452552795
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.6169645190238953,
+        0.6290457546710968
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.8605872988700867,
+        0.43560904264450073
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.7003563642501831,
+        0.39669567346572876
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 5,
+      "toolTipScreen": [
+        0.798188328742981,
+        0.4780757427215576
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.920573890209198,
+        0.4942992329597473
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.8814690113067627,
+        0.5496388375759125
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.7824261784553528,
+        0.3331686854362488
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.5510931611061096,
+        0.35663652420043945
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 5,
+      "toolTipScreen": [
+        0.7058150172233582,
+        0.39778149127960205
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 1,
+      "toolTipScreen": [
+        0.7970850467681885,
+        0.3799668550491333
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 2,
+      "toolTipScreen": [
+        0.9225142002105713,
+        0.42155390977859497
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 3,
+      "toolTipScreen": [
+        0.538823664188385,
+        0.2819894552230835
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 4,
+      "toolTipScreen": [
+        0.3719002306461334,
+        0.36890465021133423
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 5,
+      "toolTipScreen": [
+        0.4928780794143677,
+        0.366127073764801
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.49956783652305603,
+        0.3327062129974365
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.7160563468933105,
+        0.3198213577270508
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.27247878909111023,
+        0.3120514154434204
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.2677464187145233,
+        0.426313579082489
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 5,
+      "toolTipScreen": [
+        0.2841130793094635,
+        0.40165531635284424
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.2023037075996399,
+        0.38020193576812744
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.3830355107784271,
+        0.3040347695350647
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.1394127607345581,
+        0.40574467182159424
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.2996436059474945,
+        0.495233952999115
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 5,
+      "toolTipScreen": [
+        0.20181168615818024,
+        0.4835541248321533
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.07942608743906021,
+        0.49463164806365967
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.11853102594614029,
+        0.38344162702560425
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.21757380664348602,
+        0.5081850290298462
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.4489067792892456,
+        0.5352931320667267
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 5,
+      "toolTipScreen": [
+        0.29418495297431946,
+        0.5638483762741089
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "frame": 1,
+      "palm": [
+        -0.23941601812839508,
+        -0.2001645565032959,
+        0.5255531072616577
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "farm",
+      "frame": 2,
+      "palm": [
+        -0.23941601812839508,
+        -0.18708109855651855,
+        0.494268536567688
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "farm",
+      "frame": 3,
+      "palm": [
+        -0.23941601812839508,
+        -0.15187101066112518,
+        0.41231006383895874
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "farm",
+      "frame": 4,
+      "palm": [
+        -0.23941601812839508,
+        -0.1789102405309677,
+        0.4211701452732086
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "farm",
+      "direction": "down",
+      "frame": 1,
+      "toolTipScreen": [
+        0.34038931131362915,
+        0.6726059913635254
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down",
+      "frame": 2,
+      "toolTipScreen": [
+        0.34038931131362915,
+        0.7584565281867981
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down",
+      "frame": 3,
+      "toolTipScreen": [
+        0.34038931131362915,
+        0.8232197016477585
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "down",
+      "frame": 4,
+      "toolTipScreen": [
+        0.34038931131362915,
+        0.8172736018896103
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.6461613178253174,
+        0.6747486293315887
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.6053311228752136,
+        0.7671039551496506
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.549812912940979,
+        0.8407119065523148
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "down_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.5805619955062866,
+        0.8298670798540115
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.8663139939308167,
+        0.5931046903133392
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.8085713982582092,
+        0.7011639177799225
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.7300568222999573,
+        0.7961250394582748
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.7735425233840942,
+        0.7734536379575729
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.8718849420547485,
+        0.47550004720687866
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.8310547471046448,
+        0.5992632210254669
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.7755365371704102,
+        0.7155774831771851
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "up_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.806285560131073,
+        0.6810795366764069
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up",
+      "frame": 1,
+      "toolTipScreen": [
+        0.6596106290817261,
+        0.39082592725753784
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up",
+      "frame": 2,
+      "toolTipScreen": [
+        0.6596106290817261,
+        0.521093875169754
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up",
+      "frame": 3,
+      "toolTipScreen": [
+        0.6596106290817261,
+        0.6462529003620148
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "up",
+      "frame": 4,
+      "toolTipScreen": [
+        0.6596106290817261,
+        0.6068562269210815
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.353838711977005,
+        0.3886832594871521
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.39466890692710876,
+        0.5124464333057404
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.450187087059021,
+        0.6287606954574585
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "up_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.41943803429603577,
+        0.5942627489566803
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.13368599116802216,
+        0.4703271985054016
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.19142860174179077,
+        0.5783864557743073
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.2699432075023651,
+        0.6733475625514984
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.22645747661590576,
+        0.6506761908531189
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.12811505794525146,
+        0.5879318416118622
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.16894526779651642,
+        0.6802871525287628
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.22446346282958984,
+        0.753895103931427
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "down_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.19371439516544342,
+        0.7430502772331238
+      ],
+      "contact": false
+    },
+    {
+      "action": "care",
+      "frame": 1,
+      "palm": [
+        -0.23941601812839508,
+        -0.1835637241601944,
+        0.3886188864707947
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "care",
+      "frame": 2,
+      "palm": [
+        -0.2394160032272339,
+        -0.18325135111808777,
+        0.4449201822280884
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "care",
+      "frame": 3,
+      "palm": [
+        -0.2394160032272339,
+        -0.17786405980587006,
+        0.48091521859169006
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "care",
+      "frame": 4,
+      "palm": [
+        -0.2394160032272339,
+        -0.18700912594795227,
+        0.42231157422065735
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "strike",
+      "frame": 1,
+      "palm": [
+        -0.23941601812839508,
+        -0.2078806459903717,
+        0.41105908155441284
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "strike",
+      "frame": 2,
+      "palm": [
+        -0.3117654025554657,
+        -0.12325358390808105,
+        0.4761377274990082
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "strike",
+      "frame": 3,
+      "palm": [
+        -0.1500541716814041,
+        -0.2552081048488617,
+        0.5097247958183289
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "strike",
+      "frame": 4,
+      "palm": [
+        -0.11570484936237335,
+        -0.2478449046611786,
+        0.48482927680015564
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "strike",
+      "frame": 5,
+      "palm": [
+        -0.23941601812839508,
+        -0.2078806459903717,
+        0.41105908155441284
+      ],
+      "lowestBodyZ": -3.47384343513113e-07
+    },
+    {
+      "action": "strike",
+      "direction": "down",
+      "frame": 1,
+      "toolTipScreen": [
+        0.38632142543792725,
+        0.5984325110912323
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down",
+      "frame": 2,
+      "toolTipScreen": [
+        0.07431479543447495,
+        0.44191306829452515
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down",
+      "frame": 3,
+      "toolTipScreen": [
+        0.43336033821105957,
+        0.640828549861908
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "down",
+      "frame": 4,
+      "toolTipScreen": [
+        0.60053950548172,
+        0.6089543700218201
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down",
+      "frame": 5,
+      "toolTipScreen": [
+        0.38632142543792725,
+        0.5984325110912323
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.6704142093658447,
+        0.5893937945365906
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.215823233127594,
+        0.55500328540802
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.7412134408950806,
+        0.6130166947841644
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "down_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.8010505437850952,
+        0.5449758768081665
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_right",
+      "frame": 5,
+      "toolTipScreen": [
+        0.6704142093658447,
+        0.5893937945365906
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.8546806573867798,
+        0.5057393908500671
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.5237985849380493,
+        0.596484899520874
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.9077668786048889,
+        0.5096257328987122
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.8252102136611938,
+        0.4452044367790222
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "right",
+      "frame": 5,
+      "toolTipScreen": [
+        0.8546806573867798,
+        0.5057393908500671
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.8311799764633179,
+        0.3964729309082031
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.8178330063819885,
+        0.5420585870742798
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.8354560732841492,
+        0.39122068881988525
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "up_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.6588661670684814,
+        0.36808478832244873
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_right",
+      "frame": 5,
+      "toolTipScreen": [
+        0.8311799764633179,
+        0.3964729309082031
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up",
+      "frame": 1,
+      "toolTipScreen": [
+        0.6136785745620728,
+        0.3256012201309204
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up",
+      "frame": 2,
+      "toolTipScreen": [
+        0.9256852269172668,
+        0.4236065149307251
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up",
+      "frame": 3,
+      "toolTipScreen": [
+        0.5666396021842957,
+        0.32716166973114014
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "up",
+      "frame": 4,
+      "toolTipScreen": [
+        0.39946046471595764,
+        0.35879260301589966
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up",
+      "frame": 5,
+      "toolTipScreen": [
+        0.6136785745620728,
+        0.3256012201309204
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.32958582043647766,
+        0.33463990688323975
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.7841768264770508,
+        0.3105162978172302
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.2587866187095642,
+        0.3549734950065613
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "up_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.19894950091838837,
+        0.4227710962295532
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_left",
+      "frame": 5,
+      "toolTipScreen": [
+        0.32958582043647766,
+        0.33463990688323975
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.1453193873167038,
+        0.4182943105697632
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.47620144486427307,
+        0.2690346837043762
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.0922330990433693,
+        0.45836448669433594
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.17478978633880615,
+        0.5225425362586975
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "left",
+      "frame": 5,
+      "toolTipScreen": [
+        0.1453193873167038,
+        0.4182943105697632
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.16881997883319855,
+        0.5275607705116272
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.18216705322265625,
+        0.32346099615097046
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.16454386711120605,
+        0.5767694711685181
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "down_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.3411337733268738,
+        0.5996621549129486
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_left",
+      "frame": 5,
+      "toolTipScreen": [
+        0.16881997883319855,
+        0.5275607705116272
+      ],
+      "contact": false
+    }
+  ],
+  "inputs": [
+    {
+      "file": "/Users/happyelements/Downloads/daidai-villager-production-20261117/models/straw/rig/straw_walk_probe.blend",
+      "sha256": "5e107ed7671082a31bb9e5fcf89cb401b3404107b8c50247f7bfcfbebfd3c3ad"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/daidai-villager-production-20261117/models/straw/rig-profile.json",
+      "sha256": "ee76a0c9452a1da39b1527b1f8c0108a7d6024d36096b591d26d1070891844f5"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/daidai-villager-production-20261117/labor-poses.json",
+      "sha256": "2843e6060222010066ad509e85fc9cf3496eecc16a6de7f483a3eb7f4ca9817b"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/daidai-villager-production-20261117/render-labor-final.py",
+      "sha256": "d1e26aa976adfcfce9aaaaa50fdcccee37b3e6961800fcf5539567aa2ac1f1f3"
+    }
+  ]
+}

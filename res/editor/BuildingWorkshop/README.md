@@ -48,9 +48,9 @@
 
 - `工具 / BuildVillageEnemies`：按挂点种子，用 Laya 原生保存十种四帧预制体；会覆盖人工布局，日常编辑不用重复执行。
 - `工具 / CheckEnemyComposition`：实际验证 drawImage 局部乘色与配件整体镜像，输出 Downloads 本任务 spike 目录。
-- `工具 / VerifyEnemiesInGame`：使用当前正式代码和三包资源，渲染人物准备/失败状态、长短屏、战前列表、10 种怪物、40 敌人＋20 村民容量及四帧/变体总览。结果位于 `~/Downloads/daidai-enemies-loading-20261112/checks/native/`。
+- `工具 / VerifyEnemiesInGame`：使用历史编译与三包资源，渲染人物准备/失败状态、长短屏、战前列表、10 种怪物、40 敌人＋20 村民容量及四帧/变体总览。结果位于 `~/Downloads/daidai-enemies-loading-20261112/checks/native/`。
 
-当前 GameView 验收菜单共同读取 `~/Downloads/daidai-enemies-loading-20261112/checks/compiled/`，先用正式游戏 tsconfig 编译为 CommonJS 到该目录。CompareGameRefactor 是历史快照入口，仍需旧两份编译及 `~/Downloads/daidai-enemies-loading-20261112/archive/old-village-package/` 的锁定图集，不用新三包替代历史对照输入。
+建筑和怪物的历史 GameView 验收菜单共同读取 `~/Downloads/daidai-enemies-loading-20261112/checks/compiled/`，以及本工程保留的 `assets/resources/base`、`characters`、`battle`。CompareGameRefactor 另需旧两份编译和 `~/Downloads/daidai-enemies-loading-20261112/archive/old-village-package/` 的锁定图集。
 
 EnemyVariantsPreview.ls、EnemyWalkPreview.ls 是查看用的原生场景，不是混合怪物 prefab，不参与发布。
 

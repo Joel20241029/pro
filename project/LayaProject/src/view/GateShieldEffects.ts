@@ -35,7 +35,7 @@ export class GateShieldEffects {
         if (battle !== this.battle) { this.reset(); this.battle = battle; }
         this.back.visible = this.front.visible = false;
         if (!battle || battle.outcome || battle.tactic.effect !== "GATE_INVULNERABLE") { this.reset(); return depth; }
-        if (!gate || !this.art.ready("battle")) return depth;
+        if (!gate || !this.art.ready("night")) return depth;
         const now = battle.tick * RULE.step, active = battle.gateProtected;
         if (!this.active && active) this.startedAt = now;
         if (this.active && !active) this.endedAt = now;

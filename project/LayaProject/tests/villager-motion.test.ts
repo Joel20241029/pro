@@ -1,10 +1,11 @@
 import { applyCommand, createGame } from "../src/game/VillageRules";
 import { clone } from "../src/game/GameState";
 import { BattleSimulation } from "../src/game/BattleSimulation";
-import { LABOR_CLIPS, RULE } from "../src/game/GameConfig";
+import { RULE } from "../src/game/GameConfig";
 import { GameLayout } from "../src/view/GameLayout";
 import { compareDepth, distance, layoutVillage, MOTION, VillageNavigation, VILLAGE_PROPS, VILLAGE_STOPS, WEDDING } from "../src/view/VillageScene";
 import { VillagerMotion, walkDirection, WalkDirection } from "../src/view/VillagerMotion";
+import { villagerModel } from "../src/view/VillagerAppearance";
 
 let passed = 0;
 function ok(v: unknown, reason = "assertion failed"): asserts v { if (!v) throw new Error(reason); }
@@ -18,11 +19,14 @@ test("Walking faces the actual travel axis, keeps diagonal hysteresis and holds 
         equal(walkDirection(-4, 0, previous), "LEFT"); equal(walkDirection(4, 0, previous), "RIGHT");
         equal(walkDirection(0, 0, previous), previous);
     }
-    equal(walkDirection(10, -10.5, "RIGHT"), "RIGHT"); equal(walkDirection(10, -12, "RIGHT"), "UP");
-    equal(walkDirection(10.5, -10, "UP"), "UP"); equal(walkDirection(12, -10, "UP"), "RIGHT");
+    equal(walkDirection(10, -10, "RIGHT"), "UP_RIGHT"); equal(walkDirection(-10, -10, "UP"), "UP_LEFT");
+    equal(walkDirection(-10, 10, "DOWN"), "DOWN_LEFT"); equal(walkDirection(10, 10, "DOWN"), "DOWN_RIGHT");
+    equal(walkDirection(10, -4.5, "RIGHT"), "RIGHT"); equal(walkDirection(10, -6, "RIGHT"), "UP_RIGHT");
+    equal(walkDirection(10, -3.5, "UP_RIGHT"), "UP_RIGHT"); equal(walkDirection(10, -2.7, "UP_RIGHT"), "RIGHT");
 });
 test("Forest and palisades have shared collision blocks and preserve both gate passages", () => {
-    equal(VILLAGE_PROPS.filter(p => p.id.startsWith("forest:")).length, 30);
+    ok(!VILLAGE_PROPS.some(p => p.id.startsWith("forest:") || p.id.startsWith("bush:")), "baked landscape must not create duplicate sprites");
+    equal(VILLAGE_PROPS.filter(p => p.id.startsWith("tree:")).length, 5);
     ok(navigation.obstacles.length <= 20, "only the five working trees add trunk obstacles, not every forest decoration");
     ok(navigation.clear({ x: 274, y: 770 }, { x: 274, y: 850 }), "left gate passage blocked");
     ok(navigation.clear({ x: 446, y: 770 }, { x: 446, y: 850 }), "right gate passage blocked");
@@ -79,12 +83,15 @@ test("Moving poses match signed displacement across work, tower travel and retur
         s.people.forEach((p, index) => {
             const m = motion.get(p.id), old = previous[index], dx = m.x - old.x, dy = m.y - old.y;
             if (!m.walking && p.job === "WAITING" && s.phase === "DAY") { equal(m.direction, "DOWN"); return; }
+            if (!m.walking) return; // 到站当帧可转向树干、耕作行或孩子。
             if (Math.hypot(dx, dy) < .001) { equal(m.direction, old.direction); return; }
             directions.add(m.direction);
-            ok(m.direction === "UP" ? dy < 0 : m.direction === "DOWN" ? dy > 0 : m.direction === "LEFT" ? dx < 0 : dx > 0, "backward walking pose");
+            const facingX = m.direction.includes("RIGHT") ? 1 : m.direction.includes("LEFT") ? -1 : 0;
+            const facingY = m.direction.includes("DOWN") ? 1 : m.direction.includes("UP") ? -1 : 0;
+            ok(dx * facingX + dy * facingY > 0, "backward walking pose");
         });
     }
-    equal(directions.size, 4);
+    equal(directions.size, 8);
 });
 test("Pause and unrelated UI sync preserve position, path and current animation time", () => {
     const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers); motion.update(.2);
@@ -199,7 +206,7 @@ test("Changing a spouse's job during the ceremony restores the latest daily rout
     applyCommand(s, { type: "JOB", id: p.id, job: "FARM", replace: s.people[0].id }); motion.sync(s, s.towers);
     equal([motion.get(p.id).x, motion.get(p.id).y], [at.x, at.y]); ok(motion.get(p.id).heartElapsed !== null);
     let farmed = false;
-    for (let i = 0; i < 1400; i++) { motion.update(.05); const m = motion.get(p.id); ok(m.clip !== "villager_male_a_chop"); if (!m.walking && m.clip === "villager_male_a_farm") farmed = true; }
+    for (let i = 0; i < 1400; i++) { motion.update(.05); const m = motion.get(p.id); ok(!m.clip.endsWith("_chop")); if (!m.walking && m.clip.endsWith("_farm")) farmed = true; }
     ok(farmed);
 });
 test("Night cancels both meeting and queued weddings, and dawn does not replay them", () => {
@@ -235,13 +242,14 @@ test("Multiple new families celebrate one pair at a time with no lingering poole
     equal([...seen].sort(), [s.people[2].id, s.people[3].id, s.people[4].id, s.people[5].id].sort());
     ok(s.people.every(p => motion.get(p.id).heartElapsed === null));
 });
-test("Both adult identities play farming, chopping and caring actions after arriving at their work stop", () => {
+test("Adult villagers play farming, chopping and caring actions after arriving at their work stop", () => {
+    const actions = { FARM: "farm", LOGGING: "chop", CARE: "care" };
     for (const index of [0, 1]) for (const job of ["FARM", "LOGGING", "CARE"] as const) {
         const s = createGame(3), p = s.people[index];
         if (job === "CARE") applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: p.id });
         else if (job === "LOGGING") applyCommand(s, { type: "JOB", id: p.id, job, replace: s.people[2].id });
         const motion = new VillagerMotion(navigation); motion.sync(s, s.towers); let played = false;
-        for (let i = 0; i < 1600; i++) { motion.update(.05); const m = motion.get(p.id); if (!m.walking && m.animated && m.elapsed > .5 && m.clip === LABOR_CLIPS[p.appearance][job]) played = true; }
+        for (let i = 0; i < 1600; i++) { motion.update(.05); const m = motion.get(p.id); if (!m.walking && m.animated && m.elapsed > .5 && m.clip === `villager_${villagerModel(p)}_${actions[job]}`) played = true; }
         ok(played, `${p.appearance}/${job} never played`);
     }
 });
@@ -262,13 +270,12 @@ test("Male and female woodcutters face the tree at every work stop before and af
         for (const scene of [original, resized]) {
             const seen = new Set<string>();
             for (let step = 0; step < 1600 && seen.size < workers.length; step++) {
-                workers.forEach((worker, index) => {
+                workers.forEach(worker => {
                     const pose = motion.get(worker.id);
-                    if (pose.walking) { equal(pose.mirror, false); return; }
-                    if (pose.clip !== LABOR_CLIPS[worker.appearance].LOGGING) return;
+                    if (pose.walking || !pose.clip.endsWith("_chop")) return;
                     const stop = scene.stops.logging.find(stop => stop.treeId === pose.loggingTree)!;
                     equal([pose.x, pose.y], [stop.x, stop.y]);
-                    equal(pose.mirror, stop.x > stop.treeX);
+                    ok(pose.direction.includes(stop.x > stop.treeX ? "LEFT" : "RIGHT"));
                     seen.add(worker.id);
                 });
                 motion.update(.05);
@@ -289,15 +296,15 @@ test("Retiring in place switches to elder walks and idle without teleporting or 
     for (let i = 0; i < 2400; i++) {
         const last = elders.map(p => ({ ...motion.get(p.id) })); motion.update(.05);
         elders.forEach((p, index) => {
-            const m = motion.get(p.id), identity = p.sex === "MALE" ? "male" : "female";
+            const m = motion.get(p.id);
             ok(navigation.clear(last[index], m)); ok(distance(last[index], m) <= MOTION.elderSpeed * .05 + 1e-7);
-            ok(m.animated); equal(m.clip, `villager_elder_${identity}_${m.walking ? "walk" : "idle"}`);
+            equal(m.animated, m.walking); equal(m.clip, "villager_elder_walk");
             (m.walking ? walked : rested).add(p.id); ok(!m.insideTower);
         });
     }
     equal(walked.size, 2); equal(rested.size, 2); equal(JSON.stringify(s), state);
     s.phase = "NIGHT"; motion.sync(s, s.towers); for (let i = 0; i < 1000; i++) motion.update(.05);
-    elders.forEach(p => { const m = motion.get(p.id); ok(!m.walking && !m.insideTower && m.clip.endsWith("_idle")); });
+    elders.forEach(p => { const m = motion.get(p.id); ok(!m.walking && !m.insideTower && !m.animated); });
 });
 test("Many generations never alias home/rest slots by permanent person number", () => {
     const s = createGame(1); s.families = []; s.towers.forEach(t => t.operator = null);

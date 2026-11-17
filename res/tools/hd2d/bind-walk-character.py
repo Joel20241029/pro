@@ -65,7 +65,9 @@ for vertex in mesh.data.vertices:
         continue
     if point.z < region['legEnd']:
         names = ['Thigh.' + side, 'Shin.' + side, 'Foot.' + side]
-    elif abs(point.x - region['centerX']) > region['armOuterX'] and point.z < region['armTop']:
+    elif (abs(point.x - region['centerX']) > region['armOuterX']
+          and region.get('armBottom', region['legEnd']) <= point.z < region['armTop']
+          and point.y <= region.get('armMaxY', math.inf)):
         names = ['UpperArm.' + side, 'Forearm.' + side, 'Hand.' + side]
     else:
         names = ['Hips', 'Spine']

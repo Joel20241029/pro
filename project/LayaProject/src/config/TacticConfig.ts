@@ -64,9 +64,9 @@ export const TACTICS: readonly TacticDefinition[] = [{
 export function validateTactics(definitions: readonly TacticDefinition[] = TACTICS) {
     const seen = new Set<string>();
     for (const t of definitions) {
-        // 本阶段战技 UI 必须在基础包即可展示，缺图直接拒绝而不是替换成占位资源。
+        // 战技选择在守夜前即可打开，图标随进村素材准备。
         if (![t.id, t.name, t.icon, t.summary, t.description].every(v => typeof v === "string" && v.length > 0) ||
-            seen.has(t.id) || !RESOURCE_CONTRACT.base.frames.includes(t.icon) ||
+            seen.has(t.id) || !RESOURCE_CONTRACT.village.frames.includes(t.icon) ||
             ![t.order, t.unlockWaves, t.wood, t.food].every(n => Number.isSafeInteger(n) && n >= 0) ||
             !["ATTACK_SPEED", "ATTACK_DAMAGE", "GATE_INVULNERABLE", "MULTI_TARGET"].includes(t.effect) ||
             !Number.isSafeInteger(t.ticks) || t.ticks <= 0 || t.ticks > TACTIC_USE.cooldownTicks ||

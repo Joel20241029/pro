@@ -13,6 +13,11 @@ export class WechatBuild implements IEditorEnv.IBuildPlugin {
     }
     onCreateManifest(task: IEditorEnv.IBuildTask) {
         const fs = require("fs"), path = `${task.destPath}/game.js`;
+        const projectPath = `${task.destPath}/project.config.json`;
+        const project = JSON.parse(fs.readFileSync(projectPath, "utf8"));
+        // 发布包使用微信合法域名下载资源，开发者工具保留域名校验以便验收。
+        project.setting.urlCheck = true;
+        fs.writeFileSync(projectPath, JSON.stringify(project, null, 2) + "\n");
         const entry = fs.readFileSync(path, "utf8");
         // 原生模式必须先于 weapp-adapter，不能等主场景创建后再选。仅添加启动段，保留引擎自动生成的库与分包入口。
         const marker = "// daidai-native-ranking-startup\n";

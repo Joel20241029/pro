@@ -132,7 +132,7 @@ test('crowded childcare keeps babies stationary and carers beside them across la
         const babies=s.people.filter(p=>!p.adult).map(p=>({...m.get(p.id)}));
         const caring=new Set();
         for(let i=0;i<1500;i++){m.update(.05);for(const p of s.people){const pose=m.get(p.id);assert(fresh.nav.walkable(pose));
-            if(pose.clip.endsWith('_care')){const child=m.get(p.careChild);assert.equal(pose.mirror,child.x<pose.x);assert(Math.abs(child.x-pose.x)>=24);caring.add(p.id);}
+            if(pose.clip.endsWith('_care')){const child=m.get(p.careChild);assert(pose.direction.includes(child.x<pose.x ? "LEFT" : "RIGHT"));assert(Math.abs(child.x-pose.x)>=24);caring.add(p.id);}
         }}
         babies.forEach(p=>near(distance(p,m.get(p.id)),0));
         assert.equal(caring.size,6);

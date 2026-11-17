@@ -13,11 +13,10 @@ export class EnemyWorkshop {
             }
         };
         collect(compiled);
-        const root = path.resolve(Editor.projectPath, "../../.."), manifest = JSON.parse(fs.readFileSync(root + "/res/manifest.json", "utf8"));
         const resources: string[] = [];
-        for (const [bundle, files] of Object.entries(manifest.bundles)) {
-            const dest = Editor.projectPath + "/assets/resources/" + bundle; fs.mkdirSync(dest, { recursive: true });
-            for (const file of files as string[]) { fs.copyFileSync(root + "/res/" + file, dest + "/" + path.basename(file)); resources.push("resources/" + bundle + "/" + path.basename(file)); }
+        for (const bundle of ["base", "characters", "battle"]) {
+            const root = "resources/" + bundle;
+            for (const file of fs.readdirSync(Editor.projectPath + "/assets/" + root)) if (!file.endsWith(".meta")) resources.push(root + "/" + file);
         }
         console.log("ENEMY_GAME_VERIFIED", JSON.stringify(await Editor.scene.runScript("EnemyGameCheck.render", modules, task + "/checks/native", resources)));
     }

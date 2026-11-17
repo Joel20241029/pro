@@ -33,7 +33,7 @@ export class TowerRageEffects {
         const depth: { id: string; y: number; node: Laya.Sprite }[] = [];
         this.pairs.forEach(p => { p.back.visible = p.front.visible = false; });
         if (battle !== this.battle) { this.battle = battle; this.active = false; this.startedAt = this.endedAt = -Infinity; }
-        if (!battle || battle.outcome || battle.tactic.effect !== "ATTACK_DAMAGE" || !this.art.ready("battle")) return depth;
+        if (!battle || battle.outcome || battle.tactic.effect !== "ATTACK_DAMAGE" || !this.art.ready("night")) return depth;
         const now = battle.tick * RULE.step, active = battle.bellTicks > 0;
         // 首次看见发动起算短闪，最高档（实际倍率3）追帧不能吞掉点击反馈；真实增伤时长仍读取bellTicks。
         if (!this.active && active) this.startedAt = now;

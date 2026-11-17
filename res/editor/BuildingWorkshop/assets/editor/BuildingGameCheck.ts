@@ -44,11 +44,11 @@ export class BuildingGameCheckMenu {
             }
         };
         walk(compiled);
-        const repo = path.resolve(Editor.projectPath, "../../.."), resources: string[] = [];
-        const manifest = JSON.parse(fs.readFileSync(repo + "/res/manifest.json", "utf8"));
-        for (const [bundle, files] of Object.entries(manifest.bundles)) {
-            const dest = Editor.projectPath + "/assets/resources/" + bundle; fs.mkdirSync(dest, { recursive: true });
-            for (const file of files as string[]) { fs.copyFileSync(repo + "/res/" + file, dest + "/" + path.basename(file)); resources.push("resources/" + bundle + "/" + path.basename(file)); }
+        // 历史编译使用源工程中随它保留的三包图集。
+        const resources: string[] = [];
+        for (const bundle of ["base", "characters", "battle"]) {
+            const root = "resources/" + bundle;
+            for (const file of fs.readdirSync(Editor.projectPath + "/assets/" + root)) if (!file.endsWith(".meta")) resources.push(root + "/" + file);
         }
         const result = await Editor.scene.runScript("BuildingGameCheck.render", modules, evidence, resources, mode);
         console.log("VILLAGE_GAME_VISUAL_CHECK", JSON.stringify(result));

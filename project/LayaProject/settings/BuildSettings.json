@@ -9,22 +9,10 @@
   "enableSubpackages": true,
   "subpackages": [
     {
-      "path": "resources/buildings",
+      "path": "resources/gameplay",
       "packAllAssets": true,
       "autoLoad": false,
-      "remote": false
-    },
-    {
-      "path": "resources/characters",
-      "packAllAssets": true,
-      "autoLoad": false,
-      "remote": false
-    },
-    {
-      "path": "resources/battle",
-      "packAllAssets": true,
-      "autoLoad": false,
-      "remote": false
+      "remote": true
     }
   ],
   "enableWasmSubpackage": false,

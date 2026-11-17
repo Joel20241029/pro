@@ -1,0 +1,1909 @@
+{
+  "role": "jade",
+  "method": "offline high-resolution skinned rendering",
+  "status": "tool_edges_and_grip_recorded_for_review",
+  "runtime3d": false,
+  "mirror": false,
+  "displayScale": 1.1538461538461537,
+  "anchor": {
+    "x": 0.5,
+    "y": 0.8015382289886475
+  },
+  "framesPerAction": {
+    "chop": 5,
+    "farm": 4,
+    "care": 4,
+    "strike": 4
+  },
+  "records": [
+    {
+      "action": "chop",
+      "frame": 1,
+      "gripOffset": 0.0,
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.2032875418663025
+    },
+    {
+      "action": "chop",
+      "frame": 1,
+      "palm": [
+        -0.2883397340774536,
+        -0.08149483054876328,
+        0.2581150531768799
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "chop",
+      "frame": 2,
+      "gripOffset": 0.0,
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.24666687846183777
+    },
+    {
+      "action": "chop",
+      "frame": 2,
+      "palm": [
+        -0.302116721868515,
+        -0.04049015790224075,
+        0.30149444937705994
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "chop",
+      "frame": 3,
+      "gripOffset": 0.0,
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.2641145884990692
+    },
+    {
+      "action": "chop",
+      "frame": 3,
+      "palm": [
+        -0.20066335797309875,
+        -0.22612136602401733,
+        0.3189421594142914
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "chop",
+      "frame": 4,
+      "gripOffset": 0.0,
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.1477750986814499
+    },
+    {
+      "action": "chop",
+      "frame": 4,
+      "palm": [
+        -0.16490565240383148,
+        -0.22472739219665527,
+        0.2751457393169403
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "chop",
+      "frame": 5,
+      "gripOffset": 0.0,
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.2200067788362503
+    },
+    {
+      "action": "chop",
+      "frame": 5,
+      "palm": [
+        -0.24437834322452545,
+        -0.16221316158771515,
+        0.2748343348503113
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 1,
+      "toolTipScreen": [
+        0.2249891608953476,
+        0.6505312323570251
+      ],
+      "toolTipWorld": [
+        -0.4125162661075592,
+        -0.3746963143348694,
+        0.4015098810195923
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 2,
+      "toolTipScreen": [
+        0.09563910961151123,
+        0.5620760917663574
+      ],
+      "toolTipWorld": [
+        -0.6065413355827332,
+        -0.1338316798210144,
+        0.44488921761512756
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 3,
+      "toolTipScreen": [
+        0.4354970455169678,
+        0.6521778106689453
+      ],
+      "toolTipWorld": [
+        -0.09675443917512894,
+        -0.5271028876304626,
+        0.462336927652359
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 4,
+      "toolTipScreen": [
+        0.5898844599723816,
+        0.6862870454788208
+      ],
+      "toolTipWorld": [
+        0.13482671976089478,
+        -0.388011634349823,
+        0.3489547371864319
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down",
+      "frame": 5,
+      "toolTipScreen": [
+        0.4924467206001282,
+        0.6413925886154175
+      ],
+      "toolTipWorld": [
+        -0.01132991909980774,
+        -0.37918177247047424,
+        0.4182291030883789
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.48217153549194336,
+        0.6971843242645264
+      ],
+      "toolTipWorld": [
+        -0.026742715388536453,
+        -0.5566433668136597,
+        0.4015098810195923
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.2771625518798828,
+        0.6619969010353088
+      ],
+      "toolTipWorld": [
+        -0.3342561721801758,
+        -0.5235227346420288,
+        0.44488921761512756
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.7028682231903076,
+        0.6301344335079193
+      ],
+      "toolTipWorld": [
+        0.3043023347854614,
+        -0.4411337673664093,
+        0.462336927652359
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.7464683651924133,
+        0.6327016651630402
+      ],
+      "toolTipWorld": [
+        0.36970254778862,
+        -0.17902876436710358,
+        0.3489547371864319
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_right",
+      "frame": 5,
+      "toolTipScreen": [
+        0.6734070181846619,
+        0.614969938993454
+      ],
+      "toolTipWorld": [
+        0.2601105570793152,
+        -0.2761334776878357,
+        0.4182291030883789
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.7497975826263428,
+        0.6602286398410797
+      ],
+      "toolTipWorld": [
+        0.37469637393951416,
+        -0.4125162363052368,
+        0.4015098810195923
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.5892211198806763,
+        0.6832837164402008
+      ],
+      "toolTipWorld": [
+        0.1338317096233368,
+        -0.6065413355827332,
+        0.44488921761512756
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.8514019846916199,
+        0.5418320298194885
+      ],
+      "toolTipWorld": [
+        0.5271029472351074,
+        -0.09675440937280655,
+        0.462336927652359
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.7586744427680969,
+        0.5522258877754211
+      ],
+      "toolTipWorld": [
+        0.388011634349823,
+        0.13482674956321716,
+        0.3489547371864319
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "right",
+      "frame": 5,
+      "toolTipScreen": [
+        0.7527878880500793,
+        0.5470715761184692
+      ],
+      "toolTipWorld": [
+        0.37918180227279663,
+        -0.011329904198646545,
+        0.4182291030883789
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.871095597743988,
+        0.561312347650528
+      ],
+      "toolTipWorld": [
+        0.5566433668136597,
+        -0.026742715388536453,
+        0.4015098810195923
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.8490151762962341,
+        0.6134669780731201
+      ],
+      "toolTipWorld": [
+        0.5235227346420288,
+        -0.3342561721801758,
+        0.44488921761512756
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.7940891981124878,
+        0.43899697065353394
+      ],
+      "toolTipWorld": [
+        0.4411337673664093,
+        0.3043023347854614,
+        0.462336927652359
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.6193525195121765,
+        0.4920012950897217
+      ],
+      "toolTipWorld": [
+        0.17902876436710358,
+        0.36970254778862,
+        0.3489547371864319
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_right",
+      "frame": 5,
+      "toolTipScreen": [
+        0.6840890049934387,
+        0.4774714708328247
+      ],
+      "toolTipWorld": [
+        0.2761334776878357,
+        0.2601105570793152,
+        0.4182291030883789
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 1,
+      "toolTipScreen": [
+        0.7750108242034912,
+        0.45837920904159546
+      ],
+      "toolTipWorld": [
+        0.4125162363052368,
+        0.37469637393951416,
+        0.4015098810195923
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 2,
+      "toolTipScreen": [
+        0.904360830783844,
+        0.49344444274902344
+      ],
+      "toolTipWorld": [
+        0.6065412759780884,
+        0.13383172452449799,
+        0.44488921761512756
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 3,
+      "toolTipScreen": [
+        0.5645029544830322,
+        0.3818686008453369
+      ],
+      "toolTipWorld": [
+        0.09675439447164536,
+        0.5271028876304626,
+        0.462336927652359
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 4,
+      "toolTipScreen": [
+        0.410115510225296,
+        0.48730671405792236
+      ],
+      "toolTipWorld": [
+        -0.13482674956321716,
+        0.388011634349823,
+        0.3489547371864319
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up",
+      "frame": 5,
+      "toolTipScreen": [
+        0.507553219795227,
+        0.4469403624534607
+      ],
+      "toolTipWorld": [
+        0.011329874396324158,
+        0.37918177247047424,
+        0.4182291030883789
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.5178285241127014,
+        0.41172611713409424
+      ],
+      "toolTipWorld": [
+        0.026742763817310333,
+        0.5566433668136597,
+        0.4015098810195923
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.7228374481201172,
+        0.393523633480072
+      ],
+      "toolTipWorld": [
+        0.33425620198249817,
+        0.5235227346420288,
+        0.44488921761512756
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.29713180661201477,
+        0.4039119482040405
+      ],
+      "toolTipWorld": [
+        -0.30430230498313904,
+        0.4411337971687317,
+        0.462336927652359
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.25353166460990906,
+        0.5408920347690582
+      ],
+      "toolTipWorld": [
+        -0.3697025179862976,
+        0.17902880907058716,
+        0.3489547371864319
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "up_left",
+      "frame": 5,
+      "toolTipScreen": [
+        0.3265930116176605,
+        0.4733630418777466
+      ],
+      "toolTipWorld": [
+        -0.2601104974746704,
+        0.2761334776878357,
+        0.4182291030883789
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.2502024471759796,
+        0.4486818313598633
+      ],
+      "toolTipWorld": [
+        -0.3746963143348694,
+        0.4125162661075592,
+        0.4015098810195923
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.41077888011932373,
+        0.37223684787750244
+      ],
+      "toolTipWorld": [
+        -0.1338316798210144,
+        0.6065413355827332,
+        0.44488921761512756
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.1485980749130249,
+        0.4922143816947937
+      ],
+      "toolTipWorld": [
+        -0.5271028876304626,
+        0.09675443172454834,
+        0.462336927652359
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.24132557213306427,
+        0.6213678121566772
+      ],
+      "toolTipWorld": [
+        -0.388011634349823,
+        -0.13482671976089478,
+        0.3489547371864319
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "left",
+      "frame": 5,
+      "toolTipScreen": [
+        0.24721215665340424,
+        0.5412613749504089
+      ],
+      "toolTipWorld": [
+        -0.37918177247047424,
+        0.01132991909980774,
+        0.4182291030883789
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.12890446186065674,
+        0.5475980937480927
+      ],
+      "toolTipWorld": [
+        -0.5566433072090149,
+        0.02674281969666481,
+        0.4015098810195923
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.15098488330841064,
+        0.44205349683761597
+      ],
+      "toolTipWorld": [
+        -0.523522675037384,
+        0.33425626158714294,
+        0.44488921761512756
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.2059108018875122,
+        0.5950494408607483
+      ],
+      "toolTipWorld": [
+        -0.4411337971687317,
+        -0.30430224537849426,
+        0.462336927652359
+      ],
+      "contact": true
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.3806474506855011,
+        0.6815923750400543
+      ],
+      "toolTipWorld": [
+        -0.17902882397174835,
+        -0.3697025179862976,
+        0.3489547371864319
+      ],
+      "contact": false
+    },
+    {
+      "action": "chop",
+      "direction": "down_left",
+      "frame": 5,
+      "toolTipScreen": [
+        0.3159109950065613,
+        0.6108615100383759
+      ],
+      "toolTipWorld": [
+        -0.2761335074901581,
+        -0.2601105272769928,
+        0.4182291030883789
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "frame": 1,
+      "hoeEdgeZ": 0.17499960958957672,
+      "targetBladeZ": 0.175
+    },
+    {
+      "action": "farm",
+      "frame": 1,
+      "gripOffset": 0.0,
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.17499947547912598
+    },
+    {
+      "action": "farm",
+      "frame": 1,
+      "palm": [
+        -0.25944265723228455,
+        -0.16734720766544342,
+        0.3321812152862549
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "farm",
+      "frame": 2,
+      "hoeEdgeZ": 0.08599968254566193,
+      "targetBladeZ": 0.086
+    },
+    {
+      "action": "farm",
+      "frame": 2,
+      "gripOffset": 0.0,
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.08599968999624252
+    },
+    {
+      "action": "farm",
+      "frame": 2,
+      "palm": [
+        -0.25944265723228455,
+        -0.16951094567775726,
+        0.26368170976638794
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "farm",
+      "frame": 3,
+      "hoeEdgeZ": 0.011999577283859253,
+      "targetBladeZ": 0.012
+    },
+    {
+      "action": "farm",
+      "frame": 3,
+      "gripOffset": 0.0,
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.011999471113085747
+    },
+    {
+      "action": "farm",
+      "frame": 3,
+      "palm": [
+        -0.25944265723228455,
+        -0.10390368103981018,
+        0.18331947922706604
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "farm",
+      "frame": 4,
+      "hoeEdgeZ": 0.09699970483779907,
+      "targetBladeZ": 0.097
+    },
+    {
+      "action": "farm",
+      "frame": 4,
+      "gripOffset": 0.0,
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.09699971973896027
+    },
+    {
+      "action": "farm",
+      "frame": 4,
+      "palm": [
+        -0.25944265723228455,
+        -0.132731094956398,
+        0.21649405360221863
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "farm",
+      "direction": "down",
+      "frame": 1,
+      "toolTipScreen": [
+        0.3270382285118103,
+        0.8121240139007568
+      ],
+      "toolTipWorld": [
+        -0.25944265723228455,
+        -0.4685742259025574,
+        0.17803740501403809
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down",
+      "frame": 2,
+      "toolTipScreen": [
+        0.3270382285118103,
+        0.8645318299531937
+      ],
+      "toolTipWorld": [
+        -0.25944265723228455,
+        -0.45932355523109436,
+        0.08902021497488022
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down",
+      "frame": 3,
+      "toolTipScreen": [
+        0.3270382285118103,
+        0.894203819334507
+      ],
+      "toolTipWorld": [
+        -0.25944265723228455,
+        -0.3974606394767761,
+        0.015027031302452087
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "down",
+      "frame": 4,
+      "toolTipScreen": [
+        0.3270382285118103,
+        0.8554753512144089
+      ],
+      "toolTipWorld": [
+        -0.25944265723228455,
+        -0.4504334032535553,
+        0.10003283619880676
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.5985856056213379,
+        0.8239731043577194
+      ],
+      "toolTipWorld": [
+        0.14787836372852325,
+        -0.5147857069969177,
+        0.17803740501403809
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.594224750995636,
+        0.8770756721496582
+      ],
+      "toolTipWorld": [
+        0.14133715629577637,
+        -0.5082444548606873,
+        0.08902021497488022
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.5650622844696045,
+        0.9113936051726341
+      ],
+      "toolTipWorld": [
+        0.09759344160556793,
+        -0.4645007848739624,
+        0.015027031302452087
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "down_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.5900338888168335,
+        0.8686868399381638
+      ],
+      "toolTipWorld": [
+        0.13505086302757263,
+        -0.5019581913948059,
+        0.10003283619880676
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.8123828172683716,
+        0.7585005313158035
+      ],
+      "toolTipWorld": [
+        0.46857425570487976,
+        -0.25944265723228455,
+        0.17803740501403809
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.8062157034873962,
+        0.8132803440093994
+      ],
+      "toolTipWorld": [
+        0.45932358503341675,
+        -0.25944265723228455,
+        0.08902021497488022
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.7649737596511841,
+        0.8588145971298218
+      ],
+      "toolTipWorld": [
+        0.3974606394767761,
+        -0.25944265723228455,
+        0.015027031302452087
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.8002889752388,
+        0.8065033406019211
+      ],
+      "toolTipWorld": [
+        0.4504334330558777,
+        -0.25944265723228455,
+        0.10003283619880676
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.8431904911994934,
+        0.6540592312812805
+      ],
+      "toolTipWorld": [
+        0.5147857069969177,
+        0.14787836372852325,
+        0.17803740501403809
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.8388296365737915,
+        0.7105162441730499
+      ],
+      "toolTipWorld": [
+        0.5082444548606873,
+        0.14133715629577637,
+        0.08902021497488022
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.80966717004776,
+        0.7672668695449829
+      ],
+      "toolTipWorld": [
+        0.4645007848739624,
+        0.09759344160556793,
+        0.015027031302452087
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "up_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.834638774394989,
+        0.7053511440753937
+      ],
+      "toolTipWorld": [
+        0.5019581913948059,
+        0.13505086302757263,
+        0.10003283619880676
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up",
+      "frame": 1,
+      "toolTipScreen": [
+        0.6729617714881897,
+        0.5718294978141785
+      ],
+      "toolTipWorld": [
+        0.25944262742996216,
+        0.46857425570487976,
+        0.17803740501403809
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up",
+      "frame": 2,
+      "toolTipScreen": [
+        0.6729617714881897,
+        0.6289812624454498
+      ],
+      "toolTipWorld": [
+        0.25944262742996216,
+        0.45932358503341675,
+        0.08902021497488022
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up",
+      "frame": 3,
+      "toolTipScreen": [
+        0.6729617714881897,
+        0.690377801656723
+      ],
+      "toolTipWorld": [
+        0.25944262742996216,
+        0.3974606692790985,
+        0.015027031302452087
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "up",
+      "frame": 4,
+      "toolTipScreen": [
+        0.6729617714881897,
+        0.6244837939739227
+      ],
+      "toolTipWorld": [
+        0.25944262742996216,
+        0.4504334330558777,
+        0.10003283619880676
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.4014144539833069,
+        0.5599803924560547
+      ],
+      "toolTipWorld": [
+        -0.14787831902503967,
+        0.5147857069969177,
+        0.17803740501403809
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.4057752788066864,
+        0.6164374649524689
+      ],
+      "toolTipWorld": [
+        -0.1413370966911316,
+        0.5082444548606873,
+        0.08902021497488022
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "up_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.4349377155303955,
+        0.6731880307197571
+      ],
+      "toolTipWorld": [
+        -0.09759340435266495,
+        0.4645007848739624,
+        0.015027031302452087
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "up_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.4099661111831665,
+        0.6112723052501678
+      ],
+      "toolTipWorld": [
+        -0.13505081832408905,
+        0.5019581913948059,
+        0.10003283619880676
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.18761718273162842,
+        0.625452995300293
+      ],
+      "toolTipWorld": [
+        -0.4685742259025574,
+        0.25944265723228455,
+        0.17803740501403809
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.19378429651260376,
+        0.6802327930927277
+      ],
+      "toolTipWorld": [
+        -0.45932355523109436,
+        0.25944265723228455,
+        0.08902021497488022
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.23502624034881592,
+        0.72576704621315
+      ],
+      "toolTipWorld": [
+        -0.3974606394767761,
+        0.25944265723228455,
+        0.015027031302452087
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.19971106946468353,
+        0.6734558045864105
+      ],
+      "toolTipWorld": [
+        -0.4504334032535553,
+        0.25944265723228455,
+        0.10003283619880676
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.15680952370166779,
+        0.7298942506313324
+      ],
+      "toolTipWorld": [
+        -0.5147857069969177,
+        -0.1478782743215561,
+        0.17803740501403809
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.16117031872272491,
+        0.7829968482255936
+      ],
+      "toolTipWorld": [
+        -0.508244514465332,
+        -0.1413370668888092,
+        0.08902021497488022
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "down_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.1903328150510788,
+        0.8173147886991501
+      ],
+      "toolTipWorld": [
+        -0.4645007848739624,
+        -0.09759338945150375,
+        0.015027031302452087
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "down_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.1653612107038498,
+        0.7746079713106155
+      ],
+      "toolTipWorld": [
+        -0.5019581913948059,
+        -0.13505077362060547,
+        0.10003283619880676
+      ],
+      "contact": false
+    },
+    {
+      "action": "care",
+      "frame": 1,
+      "palm": [
+        -0.25944265723228455,
+        -0.12414798140525818,
+        0.2326665222644806
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "care",
+      "frame": 2,
+      "palm": [
+        -0.25944265723228455,
+        -0.14508377015590668,
+        0.2362743318080902
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "care",
+      "frame": 3,
+      "palm": [
+        -0.25944265723228455,
+        -0.15962722897529602,
+        0.24093453586101532
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "care",
+      "frame": 4,
+      "palm": [
+        -0.25944265723228455,
+        -0.13772858679294586,
+        0.2376781404018402
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "strike",
+      "frame": 1,
+      "gripOffset": 0.0,
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.2741195261478424
+    },
+    {
+      "action": "strike",
+      "frame": 1,
+      "palm": [
+        -0.25944265723228455,
+        -0.14648185670375824,
+        0.2739355266094208
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "strike",
+      "frame": 2,
+      "gripOffset": 0.0,
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.2936681807041168
+    },
+    {
+      "action": "strike",
+      "frame": 2,
+      "palm": [
+        -0.3057498335838318,
+        -0.049688197672367096,
+        0.3161688446998596
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "strike",
+      "frame": 3,
+      "gripOffset": 0.0,
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.2884402275085449
+    },
+    {
+      "action": "strike",
+      "frame": 3,
+      "palm": [
+        -0.1823144555091858,
+        -0.23191586136817932,
+        0.2964266240596771
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "strike",
+      "frame": 4,
+      "gripOffset": 0.0,
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.2929132282733917
+    },
+    {
+      "action": "strike",
+      "frame": 4,
+      "palm": [
+        -0.14972719550132751,
+        -0.2376786172389984,
+        0.2947777509689331
+      ],
+      "lowestBodyZ": 0.022716693580150604
+    },
+    {
+      "action": "strike",
+      "direction": "down",
+      "frame": 1,
+      "toolTipScreen": [
+        0.19579435884952545,
+        0.7172766923904419
+      ],
+      "toolTipWorld": [
+        -0.4563084542751312,
+        -0.4741215109825134,
+        0.33447566628456116
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down",
+      "frame": 2,
+      "toolTipScreen": [
+        0.03930509090423584,
+        0.6366681158542633
+      ],
+      "toolTipWorld": [
+        -0.6910423636436462,
+        -0.08339695632457733,
+        0.3026627004146576
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down",
+      "frame": 3,
+      "toolTipScreen": [
+        0.4143582284450531,
+        0.7726812809705734
+      ],
+      "toolTipWorld": [
+        -0.12846267223358154,
+        -0.6150912642478943,
+        0.30318063497543335
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "down",
+      "frame": 4,
+      "toolTipScreen": [
+        0.5904841423034668,
+        0.7179596424102783
+      ],
+      "toolTipWorld": [
+        0.1357262134552002,
+        -0.494702011346817,
+        0.34194108843803406
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.5083971619606018,
+        0.7644028067588806
+      ],
+      "toolTipWorld": [
+        0.012595735490322113,
+        -0.657913327217102,
+        0.33447566628456116
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.21355320513248444,
+        0.7556974440813065
+      ],
+      "toolTipWorld": [
+        -0.42967018485069275,
+        -0.5476112961769104,
+        0.3026627004146576
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.7293989658355713,
+        0.7497788965702057
+      ],
+      "toolTipWorld": [
+        0.34409841895103455,
+        -0.5257720351219177,
+        0.30318063497543335
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "down_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.7971866726875305,
+        0.656198650598526
+      ],
+      "toolTipWorld": [
+        0.44578003883361816,
+        -0.25383424758911133,
+        0.34194108843803406
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.8160810470581055,
+        0.7127092182636261
+      ],
+      "toolTipWorld": [
+        0.4741215407848358,
+        -0.45630842447280884,
+        0.33447566628456116
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.5555980205535889,
+        0.7924746423959732
+      ],
+      "toolTipWorld": [
+        0.08339698612689972,
+        -0.6910423636436462,
+        0.3026627004146576
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.9100608229637146,
+        0.6479046642780304
+      ],
+      "toolTipWorld": [
+        0.6150912642478943,
+        -0.12846262753009796,
+        0.30318063497543335
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.8298013210296631,
+        0.5563113391399384
+      ],
+      "toolTipWorld": [
+        0.49470198154449463,
+        0.1357262283563614,
+        0.34194108843803406
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.9386088848114014,
+        0.5924773812294006
+      ],
+      "toolTipWorld": [
+        0.657913327217102,
+        0.012595735490322113,
+        0.33447566628456116
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.8650742173194885,
+        0.7254561185836792
+      ],
+      "toolTipWorld": [
+        0.5476112961769104,
+        -0.42967018485069275,
+        0.3026627004146576
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.8505147099494934,
+        0.5267351567745209
+      ],
+      "toolTipWorld": [
+        0.5257720351219177,
+        0.34409841895103455,
+        0.30318063497543335
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "up_right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.6692228317260742,
+        0.4768103361129761
+      ],
+      "toolTipWorld": [
+        0.25383424758911133,
+        0.44578003883361816,
+        0.34194108843803406
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up",
+      "frame": 1,
+      "toolTipScreen": [
+        0.804205596446991,
+        0.47413742542266846
+      ],
+      "toolTipWorld": [
+        0.45630842447280884,
+        0.4741215705871582,
+        0.33447566628456116
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up",
+      "frame": 2,
+      "toolTipScreen": [
+        0.9606949090957642,
+        0.5939004123210907
+      ],
+      "toolTipWorld": [
+        0.6910423636436462,
+        0.0833970159292221,
+        0.3026627004146576
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up",
+      "frame": 3,
+      "toolTipScreen": [
+        0.5856417417526245,
+        0.45724982023239136
+      ],
+      "toolTipWorld": [
+        0.12846261262893677,
+        0.6150912642478943,
+        0.30318063497543335
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "up",
+      "frame": 4,
+      "toolTipScreen": [
+        0.4095158576965332,
+        0.464266300201416
+      ],
+      "toolTipWorld": [
+        -0.1357262283563614,
+        0.49470198154449463,
+        0.34194108843803406
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.49160289764404297,
+        0.42701131105422974
+      ],
+      "toolTipWorld": [
+        -0.012595675885677338,
+        0.657913327217102,
+        0.33447566628456116
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.7864468097686768,
+        0.47487109899520874
+      ],
+      "toolTipWorld": [
+        0.4296702444553375,
+        0.5476112365722656,
+        0.3026627004146576
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "up_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.2706010937690735,
+        0.4801521301269531
+      ],
+      "toolTipWorld": [
+        -0.34409835934638977,
+        0.5257720947265625,
+        0.30318063497543335
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "up_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.2028133124113083,
+        0.5260272324085236
+      ],
+      "toolTipWorld": [
+        -0.44578003883361816,
+        0.2538342773914337,
+        0.34194108843803406
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.1839189976453781,
+        0.47870486974716187
+      ],
+      "toolTipWorld": [
+        -0.4741215109825134,
+        0.4563084542751312,
+        0.33447566628456116
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.4444020390510559,
+        0.438093900680542
+      ],
+      "toolTipWorld": [
+        -0.08339695632457733,
+        0.6910423636436462,
+        0.3026627004146576
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.08993915468454361,
+        0.5820263922214508
+      ],
+      "toolTipWorld": [
+        -0.6150912642478943,
+        0.12846265733242035,
+        0.30318063497543335
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.17019866406917572,
+        0.6259145438671112
+      ],
+      "toolTipWorld": [
+        -0.494702011346817,
+        -0.1357262134552002,
+        0.34194108843803406
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.06139111518859863,
+        0.5989367067813873
+      ],
+      "toolTipWorld": [
+        -0.657913327217102,
+        -0.012595608830451965,
+        0.33447566628456116
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.13492584228515625,
+        0.5051123797893524
+      ],
+      "toolTipWorld": [
+        -0.5476112365722656,
+        0.4296703040599823,
+        0.3026627004146576
+      ],
+      "contact": false
+    },
+    {
+      "action": "strike",
+      "direction": "down_left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.1494852751493454,
+        0.7031958997249603
+      ],
+      "toolTipWorld": [
+        -0.5257720947265625,
+        -0.3440983295440674,
+        0.30318063497543335
+      ],
+      "contact": true
+    },
+    {
+      "action": "strike",
+      "direction": "down_left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.3307771384716034,
+        0.7054155468940735
+      ],
+      "toolTipWorld": [
+        -0.2538343071937561,
+        -0.44578003883361816,
+        0.34194108843803406
+      ],
+      "contact": false
+    }
+  ],
+  "inputs": [
+    {
+      "file": "/Users/happyelements/Downloads/daidai-chibi-proportions-20261117/models/jade/rig/jade_walk_probe.blend",
+      "sha256": "d942f44ee98144ce8fa7694f0487f3860946126d725f3291ff32f4c37c851f12"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/daidai-chibi-proportions-20261117/models/jade/rig/rig-profile.json",
+      "sha256": "b1fff7795c5f4551e92b039486c43f52aa8f92bc9980b15816f422b692db34bf"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/daidai-chibi-proportions-20261117/chibi-labor-poses.json",
+      "sha256": "14116d9f0e16a9240a795ae766dca397ced1dbdfdd8dfa11fa90dc981aab78b1"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/daidai-chibi-proportions-20261117/render-chibi-labor.py",
+      "sha256": "869512c3b1c09e73d4029c5f717a332e41e3be3d7415cc33e5851f23da2ffac6"
+    }
+  ]
+}

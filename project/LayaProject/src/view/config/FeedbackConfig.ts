@@ -10,7 +10,5 @@ export const FEEDBACK = {
     contactSeconds: .045,
     // 每种弹体 5 帧，按实际表现时钟约 0.21 秒播完。尺寸为 720 画布逻辑像素，落点在目标身体。
     impact: { fps: 24, frameCount: 5, size: { ARROW: 74, STONE: 85, SLOW: 80 } },
-    // 成人伐木序列为4帧、6FPS，第3帧落斧；复用原2D动作节奏，仅驱动树木反馈，不影响产出。
-    chop: { villager_male_a_chop: { fps: 6, frames: 4, impact: 3 }, villager_female_a_chop: { fps: 6, frames: 4, impact: 3 } } as Record<string, { fps: number; frames: number; impact: number }>,
     tree: { degrees: 1.6, seconds: .32, oscillations: 1.5 }
 } as const;

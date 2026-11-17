@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url';
 import { enemySources, buildingSheets, componentCells, iconCells, detailCells, panelCells, environmentSources } from '../../source/rendered2d/production-sources.mjs';
 import { enemyMotionProfiles } from '../../source/rendered2d/enemy-layouts.mjs';
 import { runtimeTextureSizes } from '../../source/rendered2d/runtime-texture-sizes.mjs';
+import { fitVillageMap } from './fit-village-map.mjs';
+import { importVillagers } from './import-villagers.mjs';
 
 // 技术导入：清理生成稿的低alpha背景，再统一画布/足点和平滑缩小。
 // 不绘制或替换主体，不镜像、不把静止图片伪装成行走；不会同步正式游戏。
@@ -21,6 +23,8 @@ const size = file => run(['identify', '-format', '%w %h', file]).toString().spli
 const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 const assets = [], animations = [], walkDirections = {}, laborDirections = {}, enemyNativeFacing = {};
 const generated = name => `source/rendered2d/generated/${name}.png`;
+// 整图已收录这些地形和点缀。原稿及裁片留作制作参考，不再随进村阶段发布。
+const bakedLandscape = new Set(['tile_ground_grass', 'map_road', 'map_gate_lane', 'deco_bush', 'deco_rocks', 'deco_blossom_pink']);
 /** 图稿等分格边缘偶有相邻单元碎片。只取最大连通主体的外框，仍保留框内
  * 全部原像素，不抹绘造型；只用于非动画的建筑/单件装饰，绝不逐帧套用。 */
 function mainObjectBox(rgba, width, height) {
@@ -91,8 +95,7 @@ function importImage(spec) {
     const sourceSheet = path.relative(root, target), sourceRect = { x: 0, y: 0, w: width, h: height };
     assets.push({ id, label: id, category, categoryLabel: category, path: `runtime/${category}/${id}.png`, width, height,
         pivot, sourceSheet, sourceRect, sourceCropWithinCell: sourceRect, nineSlice, mapping: '', animation: spec.animation || null,
-        // 启动页在建筑包下载前会用到草地和两棵树，必须留在底包；其余场景素材随建筑包载入。
-        fitPadding: 0, resizeMode: 'stretch', sampling: 'Lanczos', runtime: true, usage: 'HD production', bundle: ['building-parts', 'terrain', 'environment', 'buildings', 'decorations'].includes(category) && !['tile_ground_grass', 'deco_tree_oak', 'deco_tree_pine'].includes(id) ? 'buildings' : bundle,
+        fitPadding: 0, resizeMode: 'stretch', sampling: 'Lanczos', runtime: !bakedLandscape.has(id), usage: 'HD production', bundle: ['building-parts', 'terrain', 'environment', 'buildings', 'decorations'].includes(category) && !['tile_ground_grass', 'deco_tree_oak', 'deco_tree_pine'].includes(id) ? 'buildings' : bundle,
         provenance: { source, crop, objectBox, alphaCutoff, alphaFloor: spec.alphaFloor, fullCanvas, motherSize: spec.motherSize, groupCrop: spec.groupCrop, modulate: spec.modulate, cropRight: spec.cropRight, sourceHash: hash(input), outputHash: hash(target) } });
     return id;
 }
@@ -122,40 +125,7 @@ for (const [index, name] of ['band', 'antlers', 'feathers', 'banner', 'leaves', 
     const canvas = Math.max(128, runtimeTextureSizes.enemyParts['enemy_acc_' + name]);
     importImage({ id: 'enemy_acc_' + name, source, crop: cell(source, 3, 2, index), category: 'enemy-parts', bundle: 'battle', width: canvas, fitHeight: 116 / 128 * canvas, fitWidth: 112 / 128 * canvas });
 }
-for (const [role, identities] of Object.entries({ male: ['male_a'], female: ['female_a'], child: ['boy', 'girl'], elder: ['elder_male', 'elder_female'] })) {
-    const profile = JSON.parse(fs.readFileSync(path.join(root, `source/rendered2d/characters/${role}/rig-profile.json`)));
-    if (profile.poses.length !== 8 || !(profile.walkCycle.strideCanvasPixels > 0)) throw new Error('未完成八帧步态：' + role);
-    for (const direction of ['down', 'left', 'up', 'right']) {
-        const ids = profile.poses.map((_, index) => index + 1).map(i => importImage({ id: `hd_${role}_${direction}_${i}`, source: `design/hd2d/directions/${role}/${role}_${direction}_${i}.png`,
-            category: 'characters', bundle: 'characters', width: 256, pivot: { x: 128, y: 256 * .847929 }, alphaCutoff: 0, fullCanvas: true, animation: `hd_${role}_${direction}` }));
-        const restFrame = importImage({ id: `hd_${role}_${direction}_idle`, source: `design/hd2d/directions/${role}/${role}_${direction}_idle.png`,
-            category: 'characters', bundle: 'characters', width: 256, pivot: { x: 128, y: 256 * .847929 }, alphaCutoff: 0, fullCanvas: true });
-        for (const identity of identities) {
-            const id = `villager_${identity}_walk${direction === 'down' ? '' : '_' + direction}`;
-            clip(id, ids, profile.fps, 'characters', `${role} actual ${direction}`);
-            Object.assign(animations.at(-1), { restFrame, stridePixels: profile.walkCycle.strideCanvasPixels });
-            (walkDirections[identity] ||= {})[direction.toUpperCase()] = { clip: id, mirror: false };
-        }
-    }
-    if (role === 'elder') {
-        const ids = [1, 2].map(i => importImage({ id: `hd_elder_idle_${i}`, source: `source/rendered2d/characters/elder/rest/elder_idle_${i}.png`,
-            category: 'characters', bundle: 'characters', width: 256, pivot: { x: 128, y: 256 * .847929 }, alphaCutoff: 0, fullCanvas: true, animation: 'elder_idle' }));
-        for (const identity of identities) clip(`villager_${identity}_idle`, ids, 2, 'characters', 'gender-neutral elder rest');
-    }
-    if (role === 'male' || role === 'female') for (const action of ['farm', 'chop', 'care']) {
-        const base = `villager_${identities[0]}_${action === 'farm' && role === 'female' ? 'harvest' : action}`;
-        for (const direction of action === 'farm' ? ['down'] : ['right', 'left']) {
-            const ids = [1, 2, 3, 4].map(i => importImage({ id: `hd_${role}_${action}_${direction}_${i}`, source: `source/rendered2d/characters/${role}/labor/${role}_${action}_${direction}_${i}.png`,
-                category: 'characters', bundle: 'characters', width: 256, pivot: { x: 128, y: 256 * .847929 }, alphaCutoff: 0, fullCanvas: true, animation: base }));
-            const id = base + (direction === 'left' ? '_left' : ''); clip(id, ids, 6, 'characters', `${role} ${action} ${direction}`);
-            if (action !== 'farm') (laborDirections[base] ||= {})[direction.toUpperCase()] = { clip: id, mirror: false };
-        }
-    }
-}
-const cradle = JSON.parse(fs.readFileSync(path.join(root, 'source/rendered2d/characters/baby/cradle-report.json')));
-const babyIds = [1, 2, 3, 4].map(i => importImage({ id: `hd_baby_idle_${i}`, source: `design/hd2d/directions/baby/baby_idle_${i}.png`, category: 'characters', bundle: 'characters', width: 192,
-    pivot: { x: 192 * cradle.groundAnchor.x, y: 192 * cradle.groundAnchor.y }, alphaCutoff: 0, fullCanvas: true, animation: 'villager_baby_idle' }));
-clip('villager_baby_idle', babyIds, cradle.fps, 'characters', 'gender-neutral baby in cradle');
+importVillagers(root, importImage, clip, animations, walkDirections, laborDirections);
 for (const [kind, sheet] of Object.entries(buildingSheets)) for (let index = 0; index < 4; index++) {
     const source = generated('buildings/' + sheet);
     importImage({ id: `hd_${kind.toLowerCase()}_body_${index}`, source, crop: cell(source, 4, 1, index), category: 'building-parts', width: 256, fitHeight: 230, isolate: true });
@@ -254,36 +224,28 @@ for (const id of ['tag_recommended', 'tag_favorite']) importImage({ id, source: 
     category: 'ui/icons', width: 152, height: 50, alphaCutoff: 0, fullCanvas: true });
 importImage({ id: 'icon_baby_cry', source: 'source/rendered2d/feedback134/icon_baby_cry.png',
     category: 'effects', bundle: 'characters', width: 78, height: 68, alphaCutoff: 0, fullCanvas: true });
-// 母图减少草簇。生产调色将候选换算为比 1.0.32 稍暗的柔和草色，启动与村庄仍共用 512px 平铺贴图。
+// 历史地形组件用于复现旧版，当前画面由整图提供。
 importImage({ id: 'tile_ground_grass', source: 'source/rendered2d/generated/environment/grass_ground_soft.png', category: 'terrain', width: 512,
     alphaCutoff: 0, fullCanvas: true, modulate: '105,85,100' });
 importImage({ id: 'map_road', source: 'design/hd2d/parts/road_sprite.png', category: 'terrain', width: 512, height: 768, alphaCutoff: 0, fullCanvas: true });
 // 城门脚横路只保留母图中的窄带；清除极低alpha背景噪点，保留道路及草边的渐隐过渡。
 importImage({ id: 'map_gate_lane', source: 'source/rendered2d/generated/environment/gate_lane.png', crop: [16, 464, 1504, 128], category: 'terrain', width: 512, height: 48, alphaCutoff: 16, fullCanvas: true });
+const mapSource = generated('environment/village_map');
+const fittedMap = path.join(work, 'village-map-aligned.png');
+const { width: mapWidth, height: mapHeight, wallRow, sourceSha256, registration } =
+    fitVillageMap(root, path.join(root, mapSource), fittedMap, magick);
+importImage({ id: 'map_scene', source: path.relative(root, fittedMap), category: 'terrain', width: mapWidth, height: mapHeight,
+    pivot: { x: mapWidth / 2, y: wallRow }, alphaCutoff: 0, fullCanvas: true });
+Object.assign(assets.at(-1).provenance, { source: mapSource, sourceHash: sourceSha256, registration });
 const fireIds = [1, 2, 3, 4].map(i => importImage({ id: i === 1 ? 'building_hearth_lit' : `hearth_burn_${i}`,
     source: `source/rendered2d/environment/campfire/campfire_${i}.png`, category: 'decorations', width: 192,
     pivot: { x: 96, y: 180 }, alphaCutoff: 0, fullCanvas: true, animation: 'hearth_burn' }));
 clip('hearth_burn', fireIds, 6, 'decorations', 'fixed back stones / flame / fixed front stones');
 
-// 头像先保存原尺寸。只复用现有静止原图，不增加造型，人物选择仍由运行端原规则决定。
-for (const id of runtimeTextureSizes.portraitFrames) {
-    const original = assets.find(a => a.id === id);
-    if (!original) throw new Error('缺少独立肖像源：' + id);
-    const portrait = structuredClone(original);
-    portrait.id = 'portrait_' + id; portrait.label = portrait.id; portrait.animation = null;
-    portrait.path = `runtime/characters/${portrait.id}.png`;
-    portrait.sourceSheet = `source/rendered2d/production/characters/${portrait.id}.png`;
-    portrait.usage = 'Original-resolution panel portrait';
-    fs.copyFileSync(path.join(root, original.sourceSheet), path.join(root, portrait.sourceSheet));
-    assets.push(portrait);
-}
 // 对已对齐的完整画布统一降采样，不再trim/fit，避免左右脚、劳动工具或各方向发生位移。
 for (const asset of assets) {
     let width = asset.width;
-    if (asset.category === 'characters' && !asset.id.startsWith('portrait_')) {
-        width = runtimeTextureSizes.characters[asset.id.split('_')[1]];
-        if (!width) throw new Error('未声明人物发布尺寸：' + asset.id);
-    } else if (asset.category === 'enemies') {
+    if (asset.category === 'enemies') {
         width = runtimeTextureSizes.enemies[asset.id.split('_')[1]];
         if (!width) throw new Error('未声明怪物发布尺寸：' + asset.id);
     } else if (asset.category === 'enemy-parts') {

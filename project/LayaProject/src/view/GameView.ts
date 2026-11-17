@@ -1,5 +1,5 @@
 import { ResourcePreparation } from "../platform/ResourcePreparation";
-import { drawResourcePanel } from "./panels/ResourcePanel";
+import { drawNightResourcePanel } from "./panels/ResourcePanel";
 import { GameSession } from "../game/GameSession";
 import { RULE } from "../game/GameConfig";
 import { SpriteFrames } from "./SpriteFrames";
@@ -123,14 +123,14 @@ export class GameView {
         this.hud.clear();
         this.village.drawScenery(s?.phase === "NIGHT");
         this.hud.drawHeader(this.layout);
-        const waiting = !this.resources.ready("characters") ? "characters" : s?.phase === "NIGHT" && !this.resources.ready("battle") ? "battle" : null;
+        const restoringNight = s?.phase === "NIGHT" && !this.resources.ready("night");
         if (s) {
             this.village.sync(s, preserveOverlay);
             this.hud.draw(s, this.layout, this.village.scene, this.village, this.results.shownFeatures, this.tacticNotices.unread);
             if (this.hud.tacticBadge && this.results.revealingTactic) this.hud.tacticBadge.visible = false;
         }
         if (!preserveOverlay) this.panels.redraw(() => {
-            if (waiting) drawResourcePanel(this.panels, waiting);
+            if (restoringNight) drawNightResourcePanel(this.panels);
             else if (!s) drawBoot(this.panels);
             else drawSessionPanel(this.panels, s, () => this.results.draw(this.panels));
         });

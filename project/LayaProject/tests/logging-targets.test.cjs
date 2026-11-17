@@ -23,7 +23,7 @@ test('four woodcutters reserve distinct trees before arriving and change trees b
             if(!seen.has(p.id))seen.set(p.id,new Set());seen.get(p.id).add(pose.loggingTree);
             if(!pose.walking&&pose.clip.endsWith('_chop')){
                 const target=VILLAGE_STOPS.logging.find(t=>t.treeId===pose.loggingTree);
-                assert.equal(pose.x,target.x);assert.equal(pose.y,target.y);assert.equal(pose.mirror,target.treeX<pose.x);
+                assert.equal(pose.x,target.x);assert.equal(pose.y,target.y);assert(pose.direction.includes(target.treeX<pose.x ? "LEFT" : "RIGHT"));
             }
             previous.set(p.id,{tree:pose.loggingTree,walking:pose.walking});
         }

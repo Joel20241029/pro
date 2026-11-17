@@ -1,18 +1,19 @@
 import { FEEDBACK } from './config/FeedbackConfig';
+import { Clip } from './SpriteResourceValidation';
 /** 从实际动作帧跨越检测落斧；每棵目标树单独回弹，切换目标不能继承上一棵的帧进度。 */
 export class LoggingFeedback {
     private previous = new Map<string, { clip: string; frame: number; treeId: string }>();
     private remaining = new Map<string, number>();
-    sample(id: string, clip: string, elapsed: number, animated: boolean, treeId: string | null) {
-        const config = FEEDBACK.chop[clip], before = this.previous.get(id);
-        if (!config || !animated || !treeId) { this.previous.delete(id); return; }
-        const frame = Math.floor(elapsed * config.fps);
-        if (before?.clip === clip && before.treeId === treeId && frame > before.frame) {
-            const oldHit = Math.floor((before.frame - config.impact) / config.frames);
-            const newHit = Math.floor((frame - config.impact) / config.frames);
+    sample(id: string, clip: Readonly<Clip> | null, elapsed: number, treeId: string | null) {
+        const before = this.previous.get(id);
+        if (clip?.contactFrame === undefined || !treeId) { this.previous.delete(id); return; }
+        const frame = Math.floor(elapsed * clip.fps);
+        if (before?.clip === clip.id && before.treeId === treeId && frame > before.frame) {
+            const oldHit = Math.floor((before.frame - clip.contactFrame) / clip.frameIds.length);
+            const newHit = Math.floor((frame - clip.contactFrame) / clip.frameIds.length);
             if (newHit > oldHit) this.remaining.set(treeId, FEEDBACK.tree.seconds);
         }
-        this.previous.set(id, { clip, frame, treeId });
+        this.previous.set(id, { clip: clip.id, frame, treeId });
     }
     advance(delta: number) {
         for (const [tree, remaining] of this.remaining) {

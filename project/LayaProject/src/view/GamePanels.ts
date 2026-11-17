@@ -23,10 +23,10 @@ export class GamePanels implements PanelContext {
     private deferRankingCanvas = false;
     constructor(readonly game: GameSession, readonly art: SpriteFrames, readonly platform: WechatPlatform, readonly ui: UiWidgets, readonly overlay: Laya.Sprite, public layout: GameLayout, readonly refresh: () => void, readonly resources: ResourcePreparation, private onTacticListOpened?: () => void) { }
     open(panel: Panel, preserve = false) {
-        if (!this.resources.ready("characters") || this.game.pauses.has("ASSETS")) return;
+        if (!this.resources.ready("village") || this.game.pauses.has("ASSETS")) return;
         if (!preserve) panel.rowOrder = undefined;
         this.current = panel; this.game.pause("CHOICE"); this.refresh();
-        if (panel.type === "start") void this.resources.ensure("battle");
+        if (panel.type === "start") void this.resources.ensure("night");
     }
     close() { this.current = null; this.game.resume("CHOICE"); this.refresh(); }
     redraw(draw: () => void) {
@@ -45,7 +45,7 @@ export class GamePanels implements PanelContext {
     }
     advance(seconds: number) { return this.motion.advance(seconds, this.layout); }
     send(c: Command, keep = true) {
-        if (this.game.pauses.has("ASSETS") || (c.type === "NIGHT" && !this.resources.ready("battle"))) return;
+        if (this.game.pauses.has("ASSETS") || (c.type === "NIGHT" && !this.resources.ready("night"))) return;
         if (!keep) {
             this.current = null;
             this.game.resume("CHOICE");

@@ -86,7 +86,7 @@ test("Camp has 20 unique navigable stops; baby stays still and carers face the b
     for (const carerIndex of [0, 1]) {
         const s = createGame(4); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[carerIndex].id });
         const motion = new VillagerMotion(nav); motion.sync(s, s.towers); const baby = s.people[s.people.length - 1], original = { ...motion.get(baby.id) }; let observed = false;
-        for (let i = 0; i < 500; i++) { motion.update(.1); const p = motion.get(s.people[carerIndex].id); if (p.clip.endsWith("_care")) { const child = motion.get(baby.id); equal(p.mirror, child.x < p.x); ok(Math.abs(child.x - p.x) > Math.abs(child.y - p.y), "carer must stand to baby's side"); observed = true; } }
+        for (let i = 0; i < 500; i++) { motion.update(.1); const p = motion.get(s.people[carerIndex].id); if (p.clip.endsWith("_care")) { const child = motion.get(baby.id); ok(p.direction.includes(child.x < p.x ? "LEFT" : "RIGHT")); ok(Math.abs(child.x - p.x) > Math.abs(child.y - p.y), "carer must stand to baby's side"); observed = true; } }
         ok(observed); equal([motion.get(baby.id).x, motion.get(baby.id).y], [original.x, original.y]);
         applyCommand(s, { type: "NIGHT" }); motion.sync(s, s.towers); for (let i = 0; i < 2000; i++) motion.update(.1);
         s.people.forEach(p => { const pose = motion.get(p.id); if (s.towers.some(t => t.operator === p.id)) ok(pose.insideTower); else ok(CAMP_STOPS.some(at => distance(at, pose) < .01)); });
@@ -115,7 +115,7 @@ test("Full camps with many babies keep lateral carers and stable birth locations
         for (const baby of babies) equal([motion.get(baby.id).x, motion.get(baby.id).y], [baby.x, baby.y]);
         for (const p of s.people.filter(p => p.adult)) {
             const at = motion.get(p.id), child = motion.get(p.careChild!); ok(!at.walking && at.clip.endsWith("_care"));
-            ok(Math.abs(at.x - child.x) > Math.abs(at.y - child.y)); equal(at.mirror, child.x < at.x);
+            ok(Math.abs(at.x - child.x) > Math.abs(at.y - child.y)); ok(at.direction.includes(child.x < at.x ? "LEFT" : "RIGHT"));
         }
         for (let i = 0; i < s.people.length; i++) for (let j = i + 1; j < s.people.length; j++) ok(distance(motion.get(s.people[i].id), motion.get(s.people[j].id)) >= 22, "camp occupants overlap");
     }

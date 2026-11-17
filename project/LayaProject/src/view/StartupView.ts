@@ -1,60 +1,93 @@
-import { SpriteFrames } from "./SpriteFrames";
+import { LAUNCHER_IMAGE } from "../config/ResourceConfig";
 import { PreparationState } from "../platform/ResourcePreparation";
-import { C } from "./UiTheme";
 import { bindButtonClick } from "./ButtonFeedback";
-/** 主包读取前用原生绘制；主包完成后复用高清草地与纸面，建筑分包等待期间始终有完整加载画面。 */
+import { ResourceProgress } from "./ResourceProgress";
+import { GameLayout } from "./GameLayout";
+
+/** 左右最多各裁约 9%，限定到启动图标题以外的出血。长屏伸展底部低对比草地。 */
+const STRETCH_START = .77;
+const SAFE_ART_WIDTH = .82;
+
 export class StartupView extends Laya.Sprite {
-    private title = new Laya.Text();
-    private status = new Laya.Text();
-    private retryButton = new Laya.Sprite();
-    private retryFace = new Laya.Sprite();
-    private retryText = new Laya.Text();
-    private sheet = new Laya.Sprite();
-    private art: SpriteFrames | null = null;
-    constructor(retry: () => void) {
-        super(); this.name = "StartupView";
-        this.title.text = "代代守村"; this.title.fontSize = 50; this.title.bold = true; this.title.color = "#563d27";
-        this.status.fontSize = 28; this.status.color = "#876342"; this.status.wordWrap = true;
-        this.retryText.text = "重新准备"; this.retryText.fontSize = 30; this.retryText.color = "#533720"; this.retryText.bold = true;
-        [this.title, this.status, this.retryText].forEach(t => { t.align = "center"; t.valign = "middle"; });
-        this.sheet.mouseEnabled = false; this.addChild(this.sheet);
-        this.addChild(this.title); this.addChild(this.status); this.addChild(this.retryButton);
-        this.retryButton.size(280, 72); this.retryButton.addChild(this.retryFace); this.retryFace.addChild(this.retryText);
+    private readonly progress = new ResourceProgress("launcher");
+    private readonly retryButton = new Laya.Sprite();
+    private readonly retryFace = new Laya.Sprite();
+    private readonly retryText = new Laya.Text();
+    private top: Laya.Texture | null = null;
+    private bottom: Laya.Texture | null = null;
+    private artworkFailed = false;
+
+    constructor(retry: () => void, private readonly layout: () => GameLayout) {
+        super();
+        this.name = "StartupView";
+        this.addChild(this.progress);
+        this.addChild(this.retryButton);
+        this.retryButton.name = "LauncherRetry";
+        this.retryButton.size(280, 66);
+        this.retryButton.addChild(this.retryFace);
+        this.retryFace.addChild(this.retryText);
         this.retryFace.mouseEnabled = this.retryText.mouseEnabled = false;
+        this.retryFace.graphics.drawRoundRect(0, 0, 280, 66, 14, 14, 14, 14, "#eac17b", "#ad7a3c", 3);
+        this.retryText.text = "重新下载";
+        this.retryText.fontSize = 30;
+        this.retryText.color = "#533720";
+        this.retryText.bold = true;
+        this.retryText.align = "center";
+        this.retryText.valign = "middle";
+        this.retryText.size(280, 66);
+        this.retryButton.visible = false;
         bindButtonClick(this.retryButton, retry, this.retryFace);
-        this.retryFace.graphics.drawRect(0, 0, 280, 72, "#eac17b", "#ad7a3c", 3);
-        this.retryText.size(280, 72); this.resize(); this.showStatus(false);
+        this.resize();
     }
-    showStatus(failed: boolean) { this.status.text = failed ? "村庄素材暂未准备好\n点击下方继续" : "林间灯火，等你归来…"; this.retryButton.visible = failed; }
-    decorate(art: SpriteFrames) { this.art = art; this.resize(); }
+
+    async loadArtwork() {
+        if (this.top) return true;
+        try {
+            const texture: Laya.Texture = await Laya.loader.load(LAUNCHER_IMAGE, { type: Laya.Loader.IMAGE, ignoreCache: this.artworkFailed });
+            if (this.destroyed) return false;
+            if (!texture) throw new Error("主包启动图读取失败");
+            const split = Math.round(texture.height * STRETCH_START);
+            this.top = Laya.Texture.create(texture, 0, 0, texture.width, split);
+            this.bottom = Laya.Texture.create(texture, 0, split, texture.width, texture.height - split);
+            this.artworkFailed = false;
+            this.resize();
+            return true;
+        } catch (error) {
+            this.artworkFailed = true;
+            console.error("[启动图]", error);
+            return false;
+        }
+    }
+
     showPreparation(title: string, state: PreparationState) {
-        this.retryButton.visible = state.phase === "FAILED";
-        const text = state.phase === "FAILED" ? `${title}暂未准备好\n点击下方重试即可继续`
-            : state.slow ? `${title}仍在准备中…\n网络较慢，请稍候`
-            : state.phase === "DOWNLOAD" ? `正在准备${title} · ${Math.floor(state.progress * 100)}%\n林间灯火，等你归来…`
-            : state.phase === "DECODE" ? `正在整理${title}素材…` : "林间灯火，等你归来…";
-        if (this.status.text !== text) this.status.text = text;
+        this.retryButton.visible = this.artworkFailed || state.phase === "FAILED";
+        if (this.artworkFailed) this.progress.render("启动图载入", { phase: "FAILED", progress: 0, slow: false, error: "" });
+        else this.progress.render(title, state);
     }
+
     resize() {
         const width = Laya.stage.width, height = Laya.stage.height;
-        this.size(width, height); this.graphics.clear(); this.graphics.drawRect(0, 0, width, height, "#f5e7c6");
-        this.graphics.drawRect(22, 22, width - 44, height - 44, null, "#cda46a", 3);
-        this.sheet.graphics.clear();
-        if (this.art) {
-            this.graphics.clear();
-            for (let y = 0; y < height; y += 512) for (let x = 0; x < width; x += 512)
-                this.graphics.drawImage(this.art.get("tile_ground_grass"), x, y, 512, 512);
-            this.sheet.pos(24, height * .4 - 40);
-            this.art.panel(this.sheet, "panel_parchment", width - 48, 410);
-            this.title.color = this.status.color = C.cream;
-            this.title.stroke = this.status.stroke = 1;
-            this.title.strokeColor = this.status.strokeColor = "#334f1c";
-            this.graphics.drawImage(this.art.get("deco_tree_oak"), 30, height * .4 - 180, 172, 172);
-            this.graphics.drawImage(this.art.get("deco_tree_pine"), width - 166, height * .4 - 154, 136, 136);
-            this.retryFace.graphics.clear(); this.art.panel(this.retryFace, "panel_button_gold", 280, 72);
+        const safeBottom = Math.min(height, this.layout().safeBottom);
+        this.size(width, height);
+        this.graphics.clear();
+        this.graphics.drawRect(0, 0, width, height, "#162c20");
+        if (this.top && this.bottom) {
+            const artWidth = Math.min(width / SAFE_ART_WIDTH, Math.max(width, height * this.top.width / (this.top.height + this.bottom.height)));
+            const x = (width - artWidth) / 2;
+            const topHeight = Math.min(this.top.height * artWidth / this.top.width, height * .83);
+            this.graphics.drawImage(this.top, x, 0, artWidth, topHeight);
+            this.graphics.drawImage(this.bottom, x, topHeight, artWidth, height - topHeight);
         }
-        this.title.size(width - 80, 90).pos(40, height * .4);
-        this.status.size(width - 100, 110).pos(50, height * .4 + 110);
-        this.retryButton.pos((width - 280) / 2, height * .4 + 250);
+        const progressWidth = width * .74;
+        this.progress.setWidth(progressWidth);
+        this.progress.pos((width - progressWidth) / 2, safeBottom - 184);
+        this.retryButton.pos((width - 280) / 2, safeBottom - 94);
+    }
+
+    destroy(destroyChild = true) {
+        const top = this.top, bottom = this.bottom;
+        super.destroy(destroyChild);
+        top?.destroy();
+        bottom?.destroy();
     }
 }

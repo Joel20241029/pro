@@ -1,20 +1,14 @@
 import { GameState, isElder, isWorkingAdult, Person, Tower } from "../game/GameState";
-import { LABOR_CLIPS, RULE } from "../game/GameConfig";
+import { RULE } from "../game/GameConfig";
 import { distance, GroundPoint, MOTION, VillageNavigation, VILLAGE_STOPS, WEDDING } from "./VillageScene";
 import { VisibleResidents } from "./VisibleResidents";
+import { villagerModel, walkDirection, WalkDirection } from "./VillagerAppearance";
 
 interface Visit { at: GroundPoint; seconds: number; working: boolean; insideTower: boolean; }
-export type WalkDirection = "UP" | "DOWN" | "LEFT" | "RIGHT";
-/** 斜向拐弯时使用 15% 主轴滞回，减少方向反复切换；只影响朝向，不改速度与路线。 */
-export function walkDirection(dx: number, dy: number, previous: WalkDirection): WalkDirection {
-    if (dx === 0 && dy === 0) return previous;
-    const horizontal = previous === "LEFT" || previous === "RIGHT", threshold = 1.15;
-    if (horizontal ? Math.abs(dy) > Math.abs(dx) * threshold : Math.abs(dy) >= Math.abs(dx) / threshold) return dy < 0 ? "UP" : "DOWN";
-    return dx < 0 ? "LEFT" : "RIGHT";
-}
+export { walkDirection, WalkDirection } from "./VillagerAppearance";
 export interface VillagerPose extends GroundPoint {
     id: string; direction: WalkDirection; walking: boolean; insideTower: boolean; clip: string; animated: boolean; elapsed: number;
-    heartElapsed: number | null; mirror: boolean;
+    heartElapsed: number | null;
     /** 纯视觉累计路程；逐寻路段累计，停止、调岗和换屏都不重置，不写入存档。 */
     walkDistance: number;
     /** 从出发到休息结束预占的树；null表示当前未预占，不参与存档。 */
@@ -127,7 +121,7 @@ export class VillagerMotion {
             let m = this.people.get(p.id);
             if (!m) {
                 const home = !p.adult && p.growth === 0 ? this.stops.rest[this.campSlots.get(p.id)!] : this.stops.homes[(sequence - 1) % this.stops.homes.length];
-                m = { ...home, id: p.id, direction: "DOWN", walking: false, insideTower: false, clip: "", animated: false, elapsed: 0, heartElapsed: null, mirror: false, walkDistance: 0, loggingTree: null, lastLoggingTree: null, signature: "", plan: [], routine: [], wedding: false, visit: 0, route: [], remaining: 0, person: p };
+                m = { ...home, id: p.id, direction: "DOWN", walking: false, insideTower: false, clip: "", animated: false, elapsed: 0, heartElapsed: null, walkDistance: 0, loggingTree: null, lastLoggingTree: null, signature: "", plan: [], routine: [], wedding: false, visit: 0, route: [], remaining: 0, person: p };
                 this.people.set(p.id, m);
             }
             m.person = p;
@@ -227,26 +221,31 @@ export class VillagerMotion {
     }
     private chooseAction(m: MovingPerson, walking: boolean) {
         const p = m.person;
-        const elder = isElder(p);
-        let clip = elder ? `villager_elder_${p.sex === "MALE" ? "male" : "female"}_${walking ? "walk" : "idle"}` : p.adult ? `villager_${p.appearance}_walk` : p.growth === 0 ? "villager_baby_idle" : `villager_${p.sex === "MALE" ? "boy" : "girl"}_walk`;
-        let animated = walking || elder || (!p.adult && p.growth === 0);
+        const model = villagerModel(p);
+        let clip = model === "baby" ? "villager_baby_idle" : `villager_${model}_walk`;
+        let animated = walking || model === "baby";
         if (!walking && m.plan[m.visit].working) {
-            if (p.job !== "WAITING") { clip = LABOR_CLIPS[p.appearance][p.job]; animated = true; }
+            if (p.job === "LOGGING") {
+                const target = this.stops.logging.find(stop => stop.treeId === m.loggingTree);
+                if (!target) throw new Error("伐木动作缺少目标树");
+                // 五个工位位于树干的前侧方，侧身挥刀才能把刃送到树干上。
+                m.direction = target.treeX < m.x ? "LEFT" : "RIGHT";
+                clip = `villager_${model}_chop`;
+            } else if (p.job === "CARE" && p.careChild) {
+                const child = this.people.get(p.careChild) || this.stops.rest[this.campSlots.get(p.careChild)!];
+                m.direction = walkDirection(child.x - m.x, child.y - m.y, m.direction);
+                clip = `villager_${model}_care`;
+            } else if (p.job === "FARM") {
+                // 两排工位都位于各自作物的下方。面向种植行，转身不会移动人物足点。
+                m.direction = "UP";
+                clip = `villager_${model}_farm`;
+            }
+            animated = true;
         }
-        // 移动仍按行走方向选择 walk；驻足伐木和照料时，根据工作目标镜像原美术。
         if (m.clip !== clip || m.animated !== animated) m.elapsed = 0;
         m.clip = clip; m.animated = animated; m.walking = walking;
         if (!walking && !this.night && !m.wedding && isWorkingAdult(p) && p.job === "WAITING")
             m.direction = "DOWN";
-        m.mirror = false;
-        if (!walking && clip.endsWith("_chop")) {
-            const target = this.stops.logging.find(stop => stop.treeId === m.loggingTree);
-            if (!target) throw new Error("伐木动作缺少目标树");
-            m.mirror = target.treeX < m.x;
-        } else if (!walking && clip.endsWith("_care") && p.careChild) {
-            const child = this.people.get(p.careChild) || this.stops.rest[this.campSlots.get(p.careChild)!];
-            m.mirror = child.x < m.x;
-        }
         // 夜间驻塔到达后视为进入塔内；仍保留位置与日程，调任/天亮会自然重新显示。
         m.insideTower = !walking && m.plan[m.visit].insideTower;
     }
@@ -275,7 +274,8 @@ export class VillagerMotion {
             if (!m.route.length) { m.remaining = m.plan[m.visit].seconds; this.chooseAction(m, false); }
         }
         for (const m of this.people.values()) if (!m.walking && m.clip.endsWith("_care") && m.person.careChild) {
-            m.mirror = this.people.get(m.person.careChild)!.x < m.x;
+            const child = this.people.get(m.person.careChild)!;
+            m.direction = walkDirection(child.x - m.x, child.y - m.y, m.direction);
         }
         const w = this.wedding;
         if (w && w.partners.every(id => !this.people.get(id)!.walking)) {

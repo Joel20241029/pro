@@ -1,5 +1,11 @@
 # 代代守村 · 高清二维资源与制作工程
 
+1.0.40 使用 1122 × 1402 的高清整图。原稿在 `source/rendered2d/generated/environment/village_map.png`。配准后的 `source/rendered2d/production/terrain/map_scene.png` 把 S 形道路、横路、草地、外围林带和岩石收在一张图里。Laya 以城门墙脚为界显示同一纹理的两段，沿用短屏和长屏的战场与居民区布局。村内可伐木的树、建筑、路牌和塔按原交互及深度顺序绘制。
+
+从 1.0.39 起，微信主包携带启动 JPG。游戏资源按音乐、村民、怪物、地图、建筑、特效、UI 七类分版本发布。1.0.43 起写入独立 Gitee 仓库 `/Users/happyelements/Documents/remote-res/<版本>/`。客户端在启动图上准备进村资源，完整后显示村庄。打开守夜确认面板时再准备怪物、命中特效和战斗音频。两处进度按实际字节统计，校验通过的文件可在重试和下次进入时复用。Laya 编辑器直接读取正式工程素材。
+
+1.0.38 的主包含首屏 `base`，建筑、村民和战斗共 28 个文件使用旧远程目录。`remoteRes/` 根目录原有的四个目录专供旧版继续使用。
+
 1.0.34 增加三套命中序列、啼哭提示及两枚位图标签，怪物放大后的发布尺寸从原稿重新采样。正式图集为 403 项素材、51 组动画、17 页。制作与重建见 [命中与图标原稿](source/rendered2d/feedback134/README.md)。
 
 1.0.33 更新草地和婴儿床，同步正式配方及可编辑工程。村民短台词复用民房 Tip，取消六张闲聊表情。精英与战技共用红环，该图移入人物包。正式图集为 385 项素材、48 组动画、16 页。详见 [界面与战斗反馈](../doc/tech/55_界面与战斗反馈.md)。
@@ -30,29 +36,30 @@
 
 ## 当前目录
 
-| 目录 | 放什么、怎样使用 | 进入微信包 |
+| 目录 | 放什么、怎样使用 | 发布位置 |
 | --- | --- | --- |
 | `design/hd2d/` | 造型确认稿、四向渲染、环境设计；08号图为全局UI标准 | 否 |
 | `source/rendered2d/` | 角色模型/绑定/动作、原始生成稿、裁切配方、正式派生图 | 仅派生图打图集 |
 | `editor/BuildingWorkshop/` | Laya 3.4.2原始工程：七种建筑各一个prefab，十种怪物各一个prefab | 否 |
 | `runtime/`、`atlases/` | 分类散图与制作总图集，便于检查裁边与内容 | 否，不重复发布 |
 | `native/` | 从已保存原生prefab转换的108建筑布局、怪物挂点、两段建筑时间轴 | 按白名单 |
-| `bundles/base/` | 高清UI、草地/道路/环境、基础音频 | 主包 |
-| `bundles/buildings/` | 建筑图片、108布局、升级/攻击时间轴 | 建筑分包 |
-| `bundles/characters/` | 村民四向、独立站姿、成人劳动、床中婴儿、老人休息、婚礼红心与共享红环 | 人物分包 |
-| `bundles/battle/` | 五类小怪、五类首领、配件、普通弹道、战技强化箭头和战斗音乐 | 战斗分包 |
+| `branding/` | 启动图原稿、平台图标与分享图片 | 启动 JPG 与分享图各自随主包导出 |
+| `bundles/` | 两阶段图集、动画数据、音频和建筑布局 | 复制到版本化远程目录 |
 | `preview/` | 由当前配方生成的预览，实际IDE验证另存Downloads | 否 |
 | `archive/`、`source/3d/` | 历史像素资源、四帧步态、实时3D试验；只供追溯 | 否 |
 
-先显示基础加载界面，建筑包完整后显示村庄，再准备人物；守夜前加载战斗包。失败保留手动重试。程序不混用旧资源或缺失动作替代品。
+常规开局的第二段经守夜按钮触发。恢复夜间存档时，在启动图上完成两段准备后直接恢复战斗，加载失败可点击重试。
 
 ## 重建与迭代
 
 1. 修改 `source/rendered2d/production-sources.mjs` 指向的原始稿，或角色 `rig-profile.json` 和可编辑Blender源；重新离线渲染，运行足底/朝向检查。
 2. 按 `source/rendered2d/runtime-texture-sizes.mjs` 核对发布尺寸，运行 `node res/tools/hd2d/prepare-production.mjs --work <Downloads内目录>`，审查派生图及 `production_recipe.json`，再同步为 `source/asset_recipe.json`。导入器先规范画布，再统一缩放；静态头像独立保留原分辨率，不能直接缩母版或逐帧重新裁主体。
 3. 建筑/怪物贴图或布局改变时用 `prepare-native-prefabs.mjs` 同步贴图和种子；它不写 prefab 或覆盖 UUID。怪物布局使用 `工具 / RefineHdEnemyAttachments`，仅保存十种怪物。`工具 / BuildHd2dProduction` 会重建全部建筑和怪物，仅在明确整套重制时使用；日常小改直接编辑对应原生 prefab。
-4. 按 [工具依赖说明](tools/README.md) 安装固定版本的 PNG 无损编码依赖，再运行 `node res/tools/build-resources.mjs --work <Downloads内目录> --sync`。透明裁边、外扩和像素校验完成后，脚本按发布白名单同时同步正式工程及 `remoteRes/`。远程资源目录保留 `base`、`buildings`、`characters`、`battle` 四个子目录。
-5. 构建微信目录 `tryVersion/wxgame`，运行包体检查及实际微信IDE验收。构建成功不能代替手机实测。
+4. 运行 `node res/tools/build-resources.mjs --work <Downloads内目录> --sync`。透明裁边、外扩和像素校验完成后，脚本按发布白名单同步正式 Laya 工程。
+5. 运行 `node res/tools/prepare-remote-release.mjs <版本> --stage`，在独立资源仓库内只提交本轮版本目录并推送到 Gitee 的 `origin/master`。运行 `node res/tools/prepare-remote-release.mjs <版本> <已推送的完整提交 SHA> --write`，逐个核对实际下载文件与工程素材，再更新客户端资源清单。
+6. 构建微信目录 `tryVersion/wxgame` 并运行包体检查。将 Laya 同时产出的 `wxgame-remote` 留作核对，上传微信时选择 `wxgame`。在微信开发者工具开启域名校验，验证冷启动、守夜前下载、失败重试与缓存复用，随后验收真机。
+
+新版使用 Gitee 的提交固定地址。微信 `downloadFile` 合法域名包含初始域名 `https://gitee.com` 和跳转域名 `https://raw.giteeusercontent.com`。保留旧版所用的 `https://raw.githubusercontent.com` 和 `https://media.githubusercontent.com`。缓存按文件 SHA-256 复用，仅清理新版专用缓存内已超出保留范围的文件。存档另行存放。
 
 图片保持平滑采样与抗锯齿。八帧行走按实际路程保持相位；停止使用独立双脚落地帧。老人采用短步、固定握杖，孩子和老人不区分男女外观。UI按可见裁框居中，奶油金边卡片和绿色底板分层，按钮/图标/文字共同按压。
 

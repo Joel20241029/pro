@@ -2,7 +2,7 @@ import { CombatPresentation } from "./CombatPresentation";
 import { LoggingFeedback } from "./LoggingFeedback";
 import { EnemyVisuals } from "./EnemyVisuals";
 import { GameSession } from "../game/GameSession";
-import { GameState, isElder } from "../game/GameState";
+import { GameState, isWorkingAdult } from "../game/GameState";
 import { ELITE, RULE } from "../game/GameConfig";
 import { BattleSimulation } from "../game/BattleSimulation";
 import { enemyPoint } from "../game/BattleRoad";
@@ -12,6 +12,7 @@ import { compareDepth, layoutVillage, TOWER_VIEW, VillageNavigation, WEDDING } f
 import { GameLayout } from "./GameLayout";
 import { RESIDENT_DISPLAY } from "./VisibleResidents";
 import { VillagerMotion } from "./VillagerMotion";
+import { villagerModel, walkDirection } from "./VillagerAppearance";
 import { WalkAnimation } from "./WalkAnimation";
 import { ProjectileMotion } from "./ProjectileMotion";
 import { C } from "./UiTheme";
@@ -23,7 +24,7 @@ import { BuildingLook, BuildingVisuals } from "./BuildingVisuals";
 import { houseRooms } from "./BuildingLayout";
 import { UiWidgets } from "./UiWidgets";
 import { HOUSE_TIP_NAMES } from "./config/AnchoredTipConfig";
-import { HUD } from "./config/HudConfig";
+import { HUD, LAYOUT } from "./config/HudConfig";
 import { WORLD_ART } from "./config/WorldArtConfig";
 import { TowerRageEffects } from "./TowerRageEffects";
 import { GateShieldEffects } from "./GateShieldEffects";
@@ -64,6 +65,8 @@ export class VillageWorld {
     private shield: GateShieldEffects;
     private lastBattle: BattleSimulation | null = null;
     private lastBattleTick = 0;
+    /** 城门受击时的营火警戒动作，时间用场景时钟，不写入战斗或存档。 */
+    private guardCueAt = -Infinity;
     private backgroundKey = "";
     private renderDelta = 0;
     private sceneSeconds = 0;
@@ -99,13 +102,6 @@ export class VillageWorld {
                 title.valign = "middle";
                 title.wordWrap = false;
                 title.overflow = Laya.Text.SHRINK;
-            }
-            if (p.id.startsWith("forest:") && Number(p.id.split(":")[1]) % 2 === 1) {
-                const index = Number(p.id.split(":")[1]);
-                const frame = ["deco_apple_pair", "deco_blossom_pink", "deco_pear_pair", "deco_blossom_ivory"][Math.floor(index / 2) % 4];
-                // 花果在树冠内，作为树的子节点一起遮挡；不漂在更近的树或角色前面。
-                this.ui.image(node, frame, p.size * .22, p.size * .37, p.size * .19, p.size * .19, false);
-                this.ui.image(node, frame, p.size * .59, p.size * .24, p.size * .17, p.size * .17, false);
             }
             if (p.canopyDetails) for (const detail of p.canopyDetails)
                 this.ui.image(node, detail.frame, p.size * detail.x, p.size * detail.y, p.size * detail.size, p.size * detail.size, false).alpha = detail.alpha;
@@ -171,6 +167,7 @@ export class VillageWorld {
         this.feedbackFrame = -1;
         this.lastBattle = null;
         this.lastBattleTick = 0;
+        this.guardCueAt = -Infinity;
         this.renderDelta = 0;
         this.sceneSeconds = 0;
         this.freshBuildingVillage = true;
@@ -197,31 +194,24 @@ export class VillageWorld {
         this.backgroundKey = key;
         this.scenery.destroyChildren();
         this.scenery.graphics.clear();
-        const y = (value: number) => this.layout.worldY(value);
+        const { mapTop, gateY, footerTop, height } = this.layout;
         const tint = night ? WORLD_ART.nightTint : WORLD_ART.dayTint;
-        this.scenery.graphics.drawRect(0, 0, 720, this.layout.height, C.grass);
-        const tile = WORLD_ART.grassTile;
-        for (let top = 0; top < this.layout.footerTop; top += tile) for (let left = 0; left < 720; left += tile)
-            this.scenery.graphics.drawImage(this.art.get("tile_ground_grass"), left, top, tile, tile, tint);
-        // 路面可见部分全部在城墙之前；按战场段同一比例映射，不能拿含居民区的高度混合缩放。
-        const battleScale = (y(830) - y(246)) / (830 - 246);
-        this.scenery.graphics.drawImage(this.art.get("map_road"), 0, y(0), WORLD_ART.roadWidth, WORLD_ART.roadHeight * battleScale, tint);
-        // 门口横路在地面层，随墙脚定位；墙、门槛、路牌和行人继续按原足底顺序盖在路上。
-        const lane = WORLD_ART.gateLane;
-        this.scenery.graphics.drawImage(this.art.get("map_gate_lane"), lane.x, y(lane.anchorY) + lane.top, lane.width, lane.height, tint);
+        const texture = this.art.get(WORLD_ART.terrain), terrain = this.art.contentBounds(WORLD_ART.terrain);
+        const uv = texture.uv, wallV = uv[1] + (uv[5] - uv[1]) * (terrain.pivot.y / terrain.sourceSize.h);
+        const graphics = this.scenery.graphics;
+        graphics.drawRect(0, 0, LAYOUT.width, height, C.grass);
+        // 同一不旋转图集帧的两段共享墙脚像素和屏幕坐标，保持土路与动态对象在所有比例下对齐。
+        graphics.drawTexture(texture, 0, mapTop, LAYOUT.width, gateY - mapTop, null, 1, tint, null,
+            [uv[0], uv[1], uv[2], uv[3], uv[4], wallV, uv[6], wallV]);
+        graphics.drawTexture(texture, 0, gateY, LAYOUT.width, footerTop - gateY, null, 1, tint, null,
+            [uv[0], wallV, uv[2], wallV, uv[4], uv[5], uv[6], uv[7]]);
         const shadow = WORLD_ART.shadow;
         for (const prop of this.scene.props) {
             if (prop.ground || prop.id.startsWith("wall:") || prop.id.startsWith("deco:")) continue;
-            const tree = prop.id.startsWith("forest:") || prop.id.startsWith("tree:");
+            const tree = prop.id.startsWith("tree:");
             const width = prop.size * (tree ? shadow.treeWidth : shadow.buildingWidth);
             const image = this.ui.image(this.scenery, tree ? "shadow_tree" : "shadow_actor", prop.x - width * shadow.centerX + shadow.x, prop.y - width * shadow.centerY + shadow.y, width, width, false);
             image.alpha = shadow.alpha;
-        }
-        for (const rock of WORLD_ART.rocks.placements) {
-            const image = this.ui.image(this.scenery, "deco_rocks", rock.x + WORLD_ART.rocks.referenceSize / 2,
-                y(rock.y) + WORLD_ART.rocks.referenceSize, rock.size, rock.size, false);
-            image.pivot(rock.size / 2, rock.size);
-            image.scaleX = rock.scaleX;
         }
     }
     advance(delta: number): boolean {
@@ -233,6 +223,7 @@ export class VillageWorld {
         if (battle !== this.lastBattle) {
             this.lastBattle = battle;
             this.lastBattleTick = 0;
+            this.guardCueAt = -Infinity;
         }
         const visualDelta = battle ? Math.max(0, battle.tick - this.lastBattleTick) * RULE.step : Math.min(RULE.frameCap, Math.max(0, delta));
         this.lastBattleTick = battle ? battle.tick : 0;
@@ -241,7 +232,11 @@ export class VillageWorld {
         if (s && !this.game.pauses.size && (s.phase === "DAY" || s.phase === "NIGHT")) {
             this.sceneSeconds += visualDelta;
             if (this.motion.update(visualDelta)) this.motion.sync(s, battle ? battle.base.towers : s.towers);
-            for (const p of this.motion.visiblePeople) { const pose = this.motion.get(p.id); this.logging.sample(p.id, pose.clip, pose.elapsed, pose.animated && !pose.walking && s.phase === "DAY", pose.loggingTree); }
+            if (this.art.ready("village")) for (const p of this.motion.visiblePeople) {
+                const pose = this.motion.get(p.id), chopping = s.phase === "DAY" && pose.clip.endsWith("_chop");
+                const clip = chopping ? this.art.animation(this.art.labor(pose.clip, pose.direction).clip) : null;
+                this.logging.sample(p.id, clip, pose.elapsed, pose.loggingTree);
+            }
             this.logging.retain(new Set(this.motion.visiblePeople.map(p => p.id)));
             this.logging.advance(visualDelta);
             for (const tree of this.props) if (tree.id.startsWith("tree:")) tree.node.rotation = this.logging.rotation(tree.id);
@@ -267,6 +262,7 @@ export class VillageWorld {
         const s = this.game.state, battle = this.game.battle;
         const presentation = this.game.presentationBattle;
         const events = this.game.takeCombatFeedback();
+        if (battle && !battle.outcome && events.some(event => event.type === "gate")) this.guardCueAt = this.sceneSeconds;
         this.feedback.sync(presentation, events);
         this.bellAura.visible = false;
         this.bellAura.graphics.clear();
@@ -334,16 +330,27 @@ export class VillageWorld {
         if (this.feedback.takeDefeatCue() && !this.game.pauses.size) this.playDefeat?.();
         this.freshBuildingVillage = false;
         this.walkAnimation.retain(new Set(this.motion.visiblePeople.map(p => p.id)));
-        if (this.art.ready("characters")) this.motion.visiblePeople.forEach((p, i) => {
+        const gate = this.props.find(p => p.id === "building:gate")!;
+        if (this.art.ready("village")) this.motion.visiblePeople.forEach((p, i) => {
             const n = this.people[i], pose = this.motion.get(p.id);
             n.visible = !pose.insideTower;
             n.name = `person:${p.id}`;
-            const identity = isElder(p) ? `elder_${p.sex === "MALE" ? "male" : "female"}` : p.adult ? p.appearance : p.sex === "MALE" ? "boy" : "girl";
-            const facing = pose.clip.endsWith("_walk") ? this.art.walk(identity, pose.direction) : /_(chop|care)$/.test(pose.clip) ? this.art.labor(pose.clip, pose.mirror) : { clip: pose.clip, mirror: false };
+            const model = villagerModel(p), walkingClip = pose.clip.endsWith("_walk");
+            const facing = walkingClip ? this.art.walk(model, pose.direction) : model === "baby" ? { clip: pose.clip, mirror: false } : this.art.labor(pose.clip, pose.direction);
             const scale = (p.elite ? ELITE.visualScale : 1) * this.layout.personScale;
             const size = p.adult ? 56 : p.growth === 0 ? 42 : 48;
-            const frame = pose.clip.endsWith("_walk") ? this.walkAnimation.frame(pose, facing.clip, size * scale) : this.art.frameId(facing.clip, pose.elapsed, pose.animated);
-            this.art.applyFrame(n, frame, size);
+            let displayScale = this.art.animation(facing.clip).displayScale ?? 1;
+            let frame = walkingClip ? this.walkAnimation.frame(pose, facing.clip, size * scale) : this.art.frameId(facing.clip, pose.elapsed, pose.animated);
+            if (battle && !battle.outcome && Number.isFinite(this.guardCueAt) && this.art.ready("night") && n.visible && !pose.walking && isWorkingAdult(p)) {
+                const direction = walkDirection(gate.node.x - pose.x, gate.node.y - pose.y, pose.direction);
+                const strike = this.art.animation(`villager_${model}_strike_${direction.toLowerCase()}`);
+                const step = Math.floor((this.sceneSeconds - this.guardCueAt) * strike.fps);
+                if (step >= 0 && step < strike.frameIds.length) {
+                    frame = strike.frameIds[step];
+                    displayScale = strike.displayScale;
+                }
+            }
+            this.art.applyFrame(n, frame, size * displayScale);
             n.getGraphicBounds(false, n.hitArea as Laya.Rectangle);
             n.pos(pose.x, pose.y);
             n.scale((facing.mirror ? -1 : 1) * scale, scale);
@@ -384,7 +391,7 @@ export class VillageWorld {
             this.cryIcon.alpha = Math.min(1, age / .1, (CRY.duration - age) / .16);
             this.cryIcon.visible = true;
         }
-        if (battle && this.art.ready("battle")) {
+        if (battle && this.art.ready("night")) {
             const ringing = !battle.outcome && battle.bellTicks > 0 && (battle.tactic.effect === "ATTACK_SPEED" || battle.tactic.effect === "MULTI_TARGET");
             if (ringing) {
                 this.bellAura.visible = true;
@@ -397,7 +404,7 @@ export class VillageWorld {
                 });
             }
         }
-        if (presentation && this.art.ready("battle")) {
+        if (presentation && this.art.ready("night")) {
             const visibleEnemies = [...(presentation.outcome ? [] : presentation.enemies).map(enemy => ({ enemy })), ...Array.from(this.feedback.deaths.values())];
             this.reserveEnemies(visibleEnemies.length);
             visibleEnemies.forEach(({ enemy: e }, i) => {
@@ -422,7 +429,6 @@ export class VillageWorld {
         } });
         // Laya 3.4 的 zIndex 决定渲染顺序；world 为 stackingRoot，不让深度排序覆盖 HUD/弹窗。
         const rageDepth = this.rage.update(battle, this.props.filter(p => p.id.startsWith("tower:")).map(p => ({ node: p.node, visual: p.visual! })));
-        const gate = this.props.find(p => p.id === "building:gate")!;
         const shieldDepth = this.shield.update(battle, { node: gate.node, visual: gate.visual! }, this.layout, events);
         [...depth, ...rageDepth, ...shieldDepth].sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
         depth.sort(compareDepth);

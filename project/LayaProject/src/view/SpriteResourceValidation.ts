@@ -1,10 +1,10 @@
-import { ResourceBundle } from "../config/ResourceConfig";
+import { ResourceStage } from "../config/ResourceConfig";
 import { RESOURCE_CONTRACT, REQUIRED_WALK_DIRECTIONS, REQUIRED_LABOR_DIRECTIONS, REQUIRED_BUILDING_LAYOUTS, REQUIRED_ENEMY_LAYOUT_VERSION } from "../config/ResourceManifest";
 import { BuildingDefinition, BuildingNode } from "./BuildingLayout";
 import { ENEMY_LOOKS, EnemyLayout } from "./config/EnemyVisualConfig";
 import { ENEMIES } from "../config/EnemyConfig";
 
-export interface Clip { id: string; frameIds: string[]; fps: number; restFrame: string; canvas: { w: number; h: number }; stridePixels?: number; }
+export interface Clip { id: string; frameIds: string[]; fps: number; restFrame: string; canvas: { w: number; h: number }; stridePixels?: number; contactFrame?: number; displayScale?: number; }
 interface AnimationManifest {
     animations: Clip[];
     walkDirections?: Record<string, Record<string, { clip: string; mirror: boolean }>>;
@@ -17,29 +17,37 @@ interface LayoutManifest {
 }
 /**
  * 仅检查新建贴图之后的完整包合同，保持原错误顺序和文案。
- * 不创建/发布/销毁贴图，不改缓存；读取失败及回收仍由 SpriteFrames.loadBundle 负责。
+ * 读取失败及贴图回收由 SpriteFrames.loadStage 负责。
  */
-export function validateSpriteBundle(content: {
-    bundle: ResourceBundle;
+export function validateSpriteStage(content: {
+    stage: ResourceStage;
     created: ReadonlyMap<string, Laya.Texture>;
     animations: AnimationManifest;
     definitions?: LayoutManifest;
 }, loaded: { textures: ReadonlyMap<string, Laya.Texture>; clips: ReadonlyMap<string, Clip> }) {
-    const { bundle, created, animations, definitions } = content;
+    const { stage, created, animations, definitions } = content;
     const clips = animations.animations;
-    const required = RESOURCE_CONTRACT[bundle];
+    const required = RESOURCE_CONTRACT[stage];
     if (created.size !== required.frames.length || required.frames.some(id => !created.has(id))) throw new Error("必需素材缺失");
     if (!Array.isArray(clips) || clips.length !== required.clips.length || required.clips.some(id => !clips.some(c => c.id === id))) throw new Error("必需动画缺失");
-    if (bundle === "characters") for (const [identity, directions] of Object.entries(REQUIRED_WALK_DIRECTIONS)) for (const [direction, pose] of Object.entries(directions)) {
+    if (stage === "village") for (const [identity, directions] of Object.entries(REQUIRED_WALK_DIRECTIONS)) for (const [direction, pose] of Object.entries(directions)) {
         const actual = animations.walkDirections?.[identity]?.[direction];
         if (!actual || actual.clip !== pose.clip || actual.mirror !== pose.mirror) throw new Error("人物方向映射缺失：" + identity + "/" + direction);
     }
-    if (bundle === "characters") for (const [action, directions] of Object.entries(REQUIRED_LABOR_DIRECTIONS)) for (const [direction, pose] of Object.entries(directions)) {
+    if (stage === "village") for (const [action, directions] of Object.entries(REQUIRED_LABOR_DIRECTIONS)) for (const [direction, pose] of Object.entries(directions)) {
         const actual = animations.laborDirections?.[action]?.[direction];
         if (!actual || actual.clip !== pose.clip || actual.mirror !== pose.mirror || !clips.some(c => c.id === pose.clip)) throw new Error("劳动方向映射缺失：" + action + "/" + direction);
     }
-    for (const clip of clips) if (loaded.clips.has(clip.id) || clip.fps <= 0 || !clip.frameIds.length || !clip.frameIds.every(id => created.has(id)) || !created.has(clip.restFrame) || !clip.canvas || (clip.id.includes("_walk") && bundle === "characters" && (clip.frameIds.length !== 8 || !(clip.stridePixels > 0)))) throw new Error("动画帧不完整：" + clip.id);
-    if (bundle === "buildings") {
+    for (const clip of clips) {
+        const directContact = clip.id.includes("_chop_");
+        if (loaded.clips.has(clip.id) || !Number.isFinite(clip.fps) || clip.fps <= 0 || clip.frameIds.length < 2 ||
+            !clip.frameIds.every(id => created.has(id)) || !created.has(clip.restFrame) || !clip.canvas ||
+            (clip.displayScale !== undefined && (!Number.isFinite(clip.displayScale) || clip.displayScale <= 0)) ||
+            (clip.id.includes("_walk") && stage === "village" && !(clip.stridePixels > 0)) ||
+            (directContact && (!Number.isInteger(clip.contactFrame) || clip.contactFrame < 0 || clip.contactFrame >= clip.frameIds.length)))
+            throw new Error("动画帧不完整：" + clip.id);
+    }
+    if (stage === "village") {
         const layouts: Record<string, BuildingDefinition> = definitions.layouts;
         if (!layouts || Object.keys(layouts).length !== REQUIRED_BUILDING_LAYOUTS.length || REQUIRED_BUILDING_LAYOUTS.some(id => !layouts[id])) throw new Error("建筑布局缺失");
         const check = (node: BuildingNode) => {
@@ -51,13 +59,13 @@ export function validateSpriteBundle(content: {
             check(layout);
         }
     }
-    const enemyLayouts: Record<string, EnemyLayout> = bundle === "battle" ? definitions.definitions : null;
-    if (bundle === "battle") {
+    const enemyLayouts: Record<string, EnemyLayout> = stage === "night" ? definitions.definitions : null;
+    if (stage === "night") {
         if (definitions.version !== REQUIRED_ENEMY_LAYOUT_VERSION || !enemyLayouts || Object.keys(enemyLayouts).length !== Object.keys(ENEMY_LOOKS).length || Object.keys(ENEMY_LOOKS).some(id => !enemyLayouts[id])) throw new Error("怪物布局缺失或版本不符");
         for (const [kind, layout] of Object.entries(enemyLayouts)) {
             const shadow = layout.shadow;
-            // 建筑包在主场景创建前已加载；阴影复用其中的贴图，不在战斗分包再存一份。
-            if (!shadow || !RESOURCE_CONTRACT.buildings.frames.includes(shadow.frame) || !loaded.textures.has(shadow.frame) ||
+            // 怪物共享进村阶段已载入的影子。
+            if (!shadow || !RESOURCE_CONTRACT.village.frames.includes(shadow.frame) || !loaded.textures.has(shadow.frame) ||
                 ![shadow.x, shadow.y, shadow.width, shadow.height, shadow.alpha].every(Number.isFinite) || shadow.width <= 0 || shadow.height <= 0 || shadow.alpha <= 0 || shadow.alpha > 1)
                 throw new Error("怪物接地影不完整：" + kind);
             const clip = clips.find(c => c.id === kind + "_walk");

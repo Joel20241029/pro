@@ -8,7 +8,9 @@ const fixtureRoot = path.resolve(compiled, '../../startup-fixtures'); fs.mkdirSy
 function fixture(entry = 'require("weapp-adapter.js");\nrequire("js/bundle.js");\n') {
     const dir = fs.mkdtempSync(path.join(fixtureRoot, 'native-'));
     fs.writeFileSync(path.join(dir, 'game.js'), entry);
+    fs.writeFileSync(path.join(dir, 'project.config.json'), JSON.stringify({ setting: { urlCheck: false, es6: false } }));
     const build = new WechatBuild(); build.onCreateManifest({ destPath: dir });
+    assert.deepEqual(JSON.parse(fs.readFileSync(path.join(dir, 'project.config.json'), 'utf8')), { setting: { urlCheck: true, es6: false } });
     return { dir, build, entry: fs.readFileSync(path.join(dir, 'game.js'), 'utf8') };
 }
 test('generated entry selects native screen mode and hides it before loading the WeChat adapter', () => {
