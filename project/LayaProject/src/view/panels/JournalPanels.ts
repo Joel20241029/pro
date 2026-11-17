@@ -8,25 +8,29 @@ import { RANKING_CANVAS } from "../../config/RankingConfig";
 import { tacticRevealed } from "../../game/Tactics";
 import { GUIDE_CHAPTERS } from "../GameGuide";
 import { Panel, PanelContext } from "./PanelContext";
-export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel) {
+import { replayButtonPress } from "../ButtonFeedback";
+export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel, deferRankingCanvas = false) {
     if (p.type === "ranking") {
         const box = ctx.modal("好友守村榜", "");
         // 构造前分配请求ID；原生能力失败保留外框与关闭操作，并记录具体错误。
         const trace = ctx.platform.rankingDiagnostics, request = trace.begin();
         ctx.platform.inspectRankingAuthorization(request);
         let ranking: RankingView | null = null;
+        const showError = (error: unknown) => {
+            trace.failure("view_error", request, error);
+            if (ranking) ranking.destroy(); else trace.end(request);
+            const message = error instanceof RankingCanvasUnsupported ? RANKING_CANVAS.unsupportedText : RANKING_CANVAS.unavailableText;
+            ctx.ui.label(box, message, 34, 360, 600, 30, C.ink, false, 140).align = "center";
+        };
         try {
             trace.record("construct_start", request);
             ranking = new RankingView(ctx.platform, s.legacy.bestNight, request);
             ranking.pos(34, 132);
             box.addChild(ranking);
             trace.record("attached", request);
-            ranking.refreshRanking();
+            ranking.refreshRanking(deferRankingCanvas ? showError : undefined);
         } catch (error) {
-            trace.failure("view_error", request, error);
-            if (ranking) ranking.destroy(); else trace.end(request);
-            const message = error instanceof RankingCanvasUnsupported ? RANKING_CANVAS.unsupportedText : RANKING_CANVAS.unavailableText;
-            ctx.ui.label(box, message, 34, 360, 600, 30, C.ink, false, 140).align = "center";
+            showError(error);
         }
         return;
     }
@@ -55,8 +59,14 @@ export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel) {
     }
     if (p.type === "guide") {
         const active = p.tab === undefined ? 0 : p.tab, chapter = GUIDE_CHAPTERS[active];
-        const box = ctx.modal("玩法说明", "点标签切换章节，正文可上下滑动。\n遇到灰色按钮，先看条目中的具体原因。");
-        GUIDE_CHAPTERS.forEach((entry, i) => ctx.ui.button(box, entry.title, 34 + i * 122, 218, 112, () => ctx.open({ type: "guide", tab: i }), i === active ? C.gold : C.muted, 72));
+        const box = ctx.modal("玩法说明", "", true, undefined, "点标签切换章节，正文可上下滑动。灰色按钮旁会标出当前限制。");
+        GUIDE_CHAPTERS.forEach((entry, i) => {
+            const button = ctx.ui.button(box, entry.title, 34 + i * 122, 122, 112, () => {
+                if (p.tab === i) return;
+                p.tab = i; p.scroll = 0; p.tabFeedback = true; ctx.refresh();
+            }, i === active ? C.gold : C.green, 72);
+            if (i === active && p.tabFeedback) { replayButtonPress(button); delete p.tabFeedback; }
+        });
         const content = new Laya.Sprite();
         content.name = `guide:${chapter.title}`;
         let y = 0;
@@ -69,15 +79,14 @@ export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel) {
             y += 56 + body.height + 28;
         }
         content.size(UI.contentWidth - UI.scrollGutter, y);
-        const rows = new ScrollList(UI.contentWidth, 510, y, p.scroll, offset => p.scroll = offset);
-        rows.pos(34, 314);
+        const rows = new ScrollList(UI.contentWidth, 606, y, p.scroll, offset => p.scroll = offset);
+        rows.pos(34, 218);
         rows.content.addChild(content);
         box.addChild(rows);
         return;
     }
-    const box = ctx.modal("村落小记", "村落进度本地保存，无离线收益。\n好友榜同步最高守村纪录。");
-    ctx.ui.button(box, s.settings.music ? "游戏声音 · 开" : "游戏声音 · 关", 34, 224, 600, () => ctx.send({ type: "MUSIC", enabled: !s.settings.music }), s.settings.music ? C.green : C.muted, 76);
-    ctx.ui.button(box, "玩法说明", 34, 326, 600, () => ctx.open({ type: "guide", tab: 0 }), C.gold, 80);
-    ["不清楚条件、资源或大王之心？打开玩法说明。", "灰色条目会提前写明还缺什么。", "白天准备好生产、家庭和防线，再去守夜。"].forEach((tip, i) => ctx.ui.label(box, tip, 44, 444 + i * 82, 580, 28, C.ink, false, 76));
-    ctx.ui.button(box, "重新开村…", 34, 754, 600, () => ctx.open({ type: "restart" }), C.red, 76);
+    const box = ctx.modal("设置", "", true, { width: 620, height: 450 }, "村落进度保存在本机。离开期间没有收益或损耗。好友榜同步最高守村纪录。");
+    ctx.ui.button(box, s.settings.music ? "游戏声音 · 开" : "游戏声音 · 关", 40, 132, 540, () => ctx.send({ type: "MUSIC", enabled: !s.settings.music }), s.settings.music ? C.green : C.muted, 76);
+    ctx.ui.button(box, "玩法说明", 40, 230, 540, () => ctx.open({ type: "guide", tab: 0 }), C.gold, 76);
+    ctx.ui.button(box, "重新开村…", 40, 334, 540, () => ctx.open({ type: "restart" }), C.red, 76);
 }

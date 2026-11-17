@@ -59,7 +59,7 @@ export const RULE = {
     minSpeed: 2,
     // 15步覆盖允许计入的0.25秒×最高档实际倍率3，不追赶后台时间，不改变固定模拟步长。
     step: .05, frameCap: .25, maxSpeed: 3, maxSteps: 15, enemyCap: 40, planCap: 128,
-    // 用户确认15个战斗秒（300步×0.05秒），每夜一次；倍速缩短现实耗时，暂停不扣时，调整需验证战斗与升版。
+    // 进攻战技持续 15 个战斗秒（300 步×0.05 秒）。每夜施放与冷却规则见 TacticConfig。
     bellTicks: 300,
     // 沿用原警钟攻速+50%；战斗与说明共用，乘在天赋/村规加成之后，再乘缺粮/扰阵减益。
     bellSpeedMultiplier: 1.5,

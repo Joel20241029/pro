@@ -18,9 +18,13 @@ export const PADS = [{ x: 175, y: 350 }, { x: 470, y: 450 }, { x: 300, y: 560 },
 export const WAVE = {
     // doc/tech/46：常规数量从8向72平滑增长；年度轻重波与挑战档增加少量数量，不无限堆同屏对象。
     initialCount: 8, additionalCount: 64, countGrowthNights: 72, tierCount: 3,
+    // 1.0.34 的轻度压力，度过前八夜后写入新波次快照。只提高小怪生命，已排好的夜晚继续读原快照。
+    ordinaryPressureDay: 9, ordinaryHealthPercent: 106,
     seasonPulse: [0, 2, -1, 4],
-    // 最长48战斗秒完成计划入场；拥堵继续排队，不丢怪。前24只保持原24秒窗口。
+    // 数量公式仍从 24 个战斗秒起算。历史已排波次允许最后一只在 48 秒入场。
     spawnCountThreshold: 24, extraSpawnTicks: 10, maxSpawnTicks: 960,
+    // 1.0.35：新波次限制在 28～42 个战斗秒。首夜留出二次施放时间，密集后期收紧。
+    spawnWindowTicks: { minimum: 560, maximum: 840 },
     affixStartDay: 7, affixes: ["NONE", "FAST", "STURDY", "GROUP"], seasonalWeight: 2, groupSize: 3
 } as const;
 /** 原 BattleSimulation 的词缀、天赋、专长及减速参数，单位为倍率/逻辑距离/战斗步。

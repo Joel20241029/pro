@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-16T07:01:16.521Z",
-  "runtimeAssetCount": 391,
+  "generatedAt": "2026-11-17T02:25:07.869Z",
+  "runtimeAssetCount": 403,
   "reserveAssetCount": 0,
-  "animationCount": 48,
-  "animationFrames": 314,
+  "animationCount": 51,
+  "animationFrames": 329,
   "categoryStats": {
     "enemies": {
       "count": 70,
-      "bytes": 6607110,
+      "bytes": 8525917,
       "runtime": 70,
       "reserve": 0
     },
@@ -19,7 +19,7 @@
     },
     "characters": {
       "count": 195,
-      "bytes": 7148674,
+      "bytes": 7178431,
       "runtime": 195,
       "reserve": 0
     },
@@ -30,15 +30,15 @@
       "reserve": 0
     },
     "ui/icons": {
-      "count": 21,
-      "bytes": 345279,
-      "runtime": 21,
+      "count": 23,
+      "bytes": 358323,
+      "runtime": 23,
       "reserve": 0
     },
     "effects": {
-      "count": 19,
-      "bytes": 417784,
-      "runtime": 19,
+      "count": 29,
+      "bytes": 319370,
+      "runtime": 29,
       "reserve": 0
     },
     "decorations": {
@@ -61,7 +61,7 @@
     },
     "terrain": {
       "count": 3,
-      "bytes": 551709,
+      "bytes": 464337,
       "runtime": 3,
       "reserve": 0
     }
@@ -73,8 +73,8 @@
       "runtimeFile": "base_0.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1228290,
-      "sha256": "1d476ca4dd4f61617a7e6263742ebb94d480fff4892b8145e7e75f2848873a79",
+      "bytes": 1142720,
+      "sha256": "420066ee2afcd7a7bf862b776cddc94ccd2c568af768ba03c80a510c4e2e0e89",
       "group": "base"
     },
     {
@@ -123,8 +123,8 @@
       "runtimeFile": "characters_0.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1343281,
-      "sha256": "aa97e0230576d6f135e4a2b0d44c9d553d16b4fa49d4dd61ee1a1ae81eaf2b0a",
+      "bytes": 1172175,
+      "sha256": "f8bd390f69b25e4c56d84101004c1109032819479541da5763a75e421131f864",
       "group": "characters"
     },
     {
@@ -133,8 +133,8 @@
       "runtimeFile": "characters_1.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1285312,
-      "sha256": "776d63e3ce066c7928b0daabdb384e2d52e3de1c51e8b3229b714b834293154f",
+      "bytes": 1308412,
+      "sha256": "6ef57601d735dea8a0de022737feafecc099ee7635e0ad29b413bb8c88927a1a",
       "group": "characters"
     },
     {
@@ -143,8 +143,8 @@
       "runtimeFile": "characters_2.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1131990,
-      "sha256": "dd4c7cb8a80ff5031db8b362d6d77e63082af3088d28287cedbacc8660c5346a",
+      "bytes": 1221278,
+      "sha256": "e6cee1a370696470551e253a784e98d2c4b87d8d34cab7ade54123a6aed466e9",
       "group": "characters"
     },
     {
@@ -153,8 +153,8 @@
       "runtimeFile": "characters_3.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1292512,
-      "sha256": "da0a9834b759f662cce683e210764f545cf26586c59211072737a83e1931218f",
+      "bytes": 1211989,
+      "sha256": "c2649d9c4077f2e15426fdde1bca11b559daab45e473f30bb56dae0e405017bc",
       "group": "characters"
     },
     {
@@ -163,8 +163,8 @@
       "runtimeFile": "characters_4.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1219428,
-      "sha256": "8a6162cd16c4b1c314d45c6ea9b104451cff627acc6547b91ffa8a832eff2e92",
+      "bytes": 1232051,
+      "sha256": "557677d35cbfdf5a9fe217afe6e706e9a362d3b53effa40c377c5cba9aa3261d",
       "group": "characters"
     },
     {
@@ -173,8 +173,8 @@
       "runtimeFile": "characters_5.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 346072,
-      "sha256": "cc641b22e6da1e4565f3d34381efda69bc0be0ea649ef445cfd614addeb132fc",
+      "bytes": 403746,
+      "sha256": "e196d5499b54eaa251784ec19944d7a5c4f9402dfc6ebe4db804718289fd4676",
       "group": "characters"
     },
     {
@@ -183,8 +183,8 @@
       "runtimeFile": "battle_0.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1312145,
-      "sha256": "e244cf3aa522b281a8f886469055e91bc1684af2995b4d2362d85a123e4cec4b",
+      "bytes": 1342482,
+      "sha256": "aac040f37edfe067e0836d6e04c817c520acd09bc016b4c8e11f1a3bbbe2420b",
       "group": "battle"
     },
     {
@@ -193,8 +193,8 @@
       "runtimeFile": "battle_1.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 2073583,
-      "sha256": "f80ae27090099a406f8ff39dd204ad7c253ecbe03e7046d612d4eaabe9d1cd6b",
+      "bytes": 1626224,
+      "sha256": "fbe9d2be8ce04095a5c06b5d2a7e0d995003d39e41eac075d0c09d0a6fb61e7f",
       "group": "battle"
     },
     {
@@ -203,8 +203,8 @@
       "runtimeFile": "battle_2.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1554875,
-      "sha256": "4afa57993a5f8e87b15a341676e75764b8576c6f12397c46e728a41293bd55d0",
+      "bytes": 1872028,
+      "sha256": "08adea46fc8d064eb626129b97cc3ee29783a3e0f11b717f3f4d23e83fd04196",
       "group": "battle"
     },
     {
@@ -213,8 +213,8 @@
       "runtimeFile": "battle_3.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 1521980,
-      "sha256": "2bd14cdc5b7a9565055d0897d733673dd43888fbd0d184c00dd038cfb21d9272",
+      "bytes": 1402499,
+      "sha256": "3d14b50f5c3b18cfcb6e5d6d1de27545ee6a65f1bdbe7d2aff8565ee39698064",
       "group": "battle"
     },
     {
@@ -223,27 +223,37 @@
       "runtimeFile": "battle_4.png",
       "width": 1024,
       "height": 1024,
-      "bytes": 495081,
-      "sha256": "960bdfab6bbd0dee933676eb5b6c20e242fd9a80b7953f403738c7efd9f1958f",
+      "bytes": 1433866,
+      "sha256": "5e725cc54e464b32d4a8b4478c3e5d22dd5148e9d14fffdbb654f0e2bd648085",
+      "group": "battle"
+    },
+    {
+      "id": "battle_5",
+      "path": "atlases/battle_5.png",
+      "runtimeFile": "battle_5.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 1180451,
+      "sha256": "59860150ef6351c81f182b199d2b781e89faae6dfb81dab383559a1774d70286",
       "group": "battle"
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 19699200,
-    "atlasContentPixels": 12322015,
-    "savedContentPixels": 7377185,
-    "savedContentPercent": 37.45,
-    "trimmedAssetCount": 342,
+    "sourceCanvasPixels": 21041816,
+    "atlasContentPixels": 13580625,
+    "savedContentPixels": 7461191,
+    "savedContentPercent": 35.46,
+    "trimmedAssetCount": 353,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "pngBytes": 19015189,
-    "metadataBytes": 186166,
-    "audioBytes": 162658,
-    "totalBytes": 19364013,
+    "pngBytes": 20760561,
+    "metadataBytes": 190012,
+    "audioBytes": 164870,
+    "totalBytes": 21115443,
     "files": [
       "bundles/base/frames.json",
       "bundles/base/animations.json",
@@ -274,9 +284,11 @@
       "bundles/battle/battle_2.png",
       "bundles/battle/battle_3.png",
       "bundles/battle/battle_4.png",
+      "bundles/battle/battle_5.png",
       "bundles/battle/enemies.json",
       "bundles/battle/battle_loop.mp3",
-      "bundles/battle/tower_fire.mp3"
+      "bundles/battle/tower_fire.mp3",
+      "bundles/battle/enemy_defeat.mp3"
     ]
   },
   "nineSliceCompaction": {
@@ -292,10 +304,10 @@
   },
   "sourceBytes": 49652112,
   "budgetComparison": {
-    "basePngBytes": 1698601,
+    "basePngBytes": 1613031,
     "buildingsPngBytes": 3740329,
-    "charactersPngBytes": 6618595,
-    "battlePngBytes": 6957664
+    "charactersPngBytes": 6549651,
+    "battlePngBytes": 8857550
   },
   "limitations": [
     "Atlas content-pixel savings are not identical to PNG byte savings",

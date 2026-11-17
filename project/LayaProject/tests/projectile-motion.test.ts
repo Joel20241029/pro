@@ -18,8 +18,10 @@ test("Arrow starts at the launcher, faces its target and becomes a short impact"
         b.shots = [s]; b.tick = 1; m.update(b);
         const p = m.poses[0]; equal(p.frame, "fx_arrow"); near(p.x, start.x); near(p.y, start.y); near(p.rotation, angle);
         b.tick = 3; m.update(b); near(p.x, start.x + dx * .1 / PROJECTILE_STYLE.ARROW.flight);
-        b.tick = 6; m.update(b); equal(p.frame, "fx_hit"); near(p.x, s.x); near(p.y, s.y - 20); ok(p.alpha > 0 && p.alpha < 1);
-        b.tick = 9; m.update(b); equal(m.poses.length, 0);
+        b.tick = 6; m.update(b); equal(p.frame, "fx_arrow"); ok(p.contact); near(p.x, s.x); near(p.y, s.y - 20); near(p.alpha, 1);
+        b.tick = 7; m.update(b); equal(p.frame, "fx_hit"); ok(p.alpha > 0 && p.alpha < 1);
+        b.tick = 10; m.update(b); equal(p.impactFrame, "fx_impact_arrow_5");
+        b.tick = 11; m.update(b); equal(m.poses.length, 0);
     }
 });
 test("Stone follows a rotating arc and survives removal from the five-tick event queue", () => {
@@ -28,13 +30,13 @@ test("Stone follows a rotating arc and survives removal from the five-tick event
     const start = towerLaunch(0, "STONE");
     near(p.x, (start.x + s.x) / 2); near(p.y, (start.y + s.y - 20) / 2 - PROJECTILE_STYLE.STONE.arc); ok(p.rotation > 0);
     b.shots = []; b.tick = 7; m.update(b); equal(m.poses.length, 1); equal(p.frame, "fx_stone");
-    b.tick = 9; m.update(b); equal(p.frame, "fx_hit"); near(p.x, s.x); near(p.y, s.y - 20);
+    b.tick = 9; m.update(b); equal(p.frame, "fx_stone"); ok(p.contact); near(p.x, s.x); near(p.y, s.y - 20);
     b.tick = 14; m.update(b); equal(m.poses.length, 0);
 });
 test("Repeated view refresh never duplicates or replays a Shot", () => {
     const b = battle(), m = new ProjectileMotion(); b.tick = 1; b.shots = [shot("ARROW")];
     for (let i = 0; i < 30; i++) m.update(b); equal(m.poses.length, 1);
-    b.tick = 20; m.update(b); equal(m.arrivals.length, 1); m.update(b); equal(m.arrivals.length, 0); equal(m.poses.length, 0);
+    b.tick = 20; m.update(b); equal(m.arrivals.length, 1); m.update(b); equal(m.arrivals.length, 0); equal(m.poses.length, 1); ok(m.poses[0].contact); b.tick += 5; m.update(b); equal(m.poses.length, 0);
 });
 test("Paused ticks freeze every property, batched ticks match individually advanced ticks", () => {
     const b = battle(), m = new ProjectileMotion(); b.tick = 1; b.shots = [shot("STONE")]; m.update(b);
@@ -60,12 +62,13 @@ test("Effect pool is bounded and fully expires", () => {
     const b = battle(), m = new ProjectileMotion(); b.tick = 1;
     b.shots = Array.from({ length: RULE.effectCap + 10 }, (_, i) => ({ ...shot("STONE"), x: 200 + i }));
     m.update(b); equal(m.poses.length, RULE.effectCap); equal(m.poses[0].shot, b.shots[10]);
-    b.shots = []; b.tick = 20; m.update(b); equal(m.arrivals.length, RULE.effectCap); m.update(b); equal(m.poses.length, 0);
+    b.shots = []; b.tick = 20; m.update(b); equal(m.arrivals.length, RULE.effectCap); m.update(b); equal(m.poses.length, RULE.effectCap); b.tick += 5; m.update(b); equal(m.poses.length, 0);
 });
 test("Frost projectile becomes the existing frost ring and fades", () => {
     const b = battle(), m = new ProjectileMotion(); b.shots = [shot("SLOW")]; b.tick = 1; m.update(b); equal(m.poses[0].frame, "fx_ice");
-    b.tick = 8; m.update(b); equal(m.poses[0].frame, "fx_slow_ring"); ok(m.poses[0].alpha > 0 && m.poses[0].alpha < 1);
-    b.tick = 12; m.update(b); equal(m.poses.length, 0);
+    b.tick = 8; m.update(b); equal(m.poses[0].frame, "fx_ice"); ok(m.poses[0].contact);
+    b.tick = 9; m.update(b); equal(m.poses[0].frame, "fx_slow_ring"); ok(m.poses[0].alpha > 0 && m.poses[0].alpha < 1);
+    b.tick = 13; m.update(b); equal(m.poses.length, 0);
 });
 test("Playing effects does not change damage, targeting, outcome or business state", () => {
     const a = battle(), b = battle(), m = new ProjectileMotion(); let observed = 0;

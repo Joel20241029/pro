@@ -1,6 +1,10 @@
 import { RULE } from "./RuleConfig";
 import { RESOURCE_CONTRACT } from "./ResourceManifest";
 
+/** 每场守夜最多两次，按下即开始计算 21 个战斗秒。效果、冷却和暂停共用固定战斗步。 */
+export const TACTIC_USE = { perNight: 2, cooldownTicks: 21 / RULE.step } as const;
+const useDescription = `每夜最多 ${TACTIC_USE.perNight} 次，冷却 ${TACTIC_USE.cooldownTicks * RULE.step} 个战斗秒。`;
+
 /** 村庄战技与村民专长分离；目录只登记已实现的效果。
  * 波数是当前村庄成功防守数，木粮为一次学习费用，已学会后的更换/施放免费。
  * 持续时间使用固定战斗步，暂停与倍速由原战斗时钟管理；更改效果需重新调平。
@@ -27,13 +31,13 @@ export const SPLIT_TACTIC = "SPLIT_SUPER";
 export const TACTICS: readonly TacticDefinition[] = [{
     id: DEFAULT_TACTIC, name: "大王之心", icon: "icon_crowned_heart", order: 0,
     summary: "全塔攻速 +50% · 持续 15 秒",
-    description: "全部驻塔攻速 +50%，持续 15 个战斗秒。\n每夜 1 次，免费使用，单次伤害不变。\n1 倍约 7.5 秒，2 倍约 5 秒，暂停冻结。",
+    description: `全部驻塔攻速 +50%，持续 15 个战斗秒。\n${useDescription}\n单次伤害不变，暂停时冻结计时。`,
     unlockWaves: 0, wood: 0, food: 0,
     effect: "ATTACK_SPEED", ticks: RULE.bellTicks, multiplier: RULE.bellSpeedMultiplier
 }, {
     id: RAGE_TACTIC, name: "百毅靓之怒", icon: "icon_tactic_rage", order: 1,
     summary: "全塔伤害 +50% · 持续 15 秒",
-    description: "全部驻塔伤害 +50%，持续 15 个战斗秒。\n每夜 1 次，免费使用，攻速与减速不变。\n1 倍约 7.5 秒，2 倍约 5 秒，暂停冻结。",
+    description: `全部驻塔伤害 +50%，持续 15 个战斗秒。\n${useDescription}\n攻速与减速维持原效果。`,
     // doc/tech/46：首个年度首领后开放，12波、180木90粮；学习后免费切换/施放。
     unlockWaves: 12, wood: 180, food: 90,
     // 与大王之心等长；独立伤害乘区1.5在既有护甲和最终取整前计算，不新增破甲。
@@ -41,7 +45,7 @@ export const TACTICS: readonly TacticDefinition[] = [{
 }, {
     id: SHIELD_TACTIC, name: "二楠之盾", icon: "icon_tactic_shield", order: 2,
     summary: "城门无敌 · 持续 8 秒",
-    description: "城门免疫所有触门伤害，持续 8 个战斗秒。\n每夜 1 次，不恢复耐久，敌人到门后仍退场。\n1 倍约 4 秒，2 倍约 2.7 秒，暂停冻结。",
+    description: `城门免疫所有触门伤害，持续 8 个战斗秒。\n${useDescription}\n敌人到门后退场，城门保持当前耐久。`,
     // doc/tech/46：第三年度后开放，36波、600木300粮，形成中期目标。
     unlockWaves: 36, wood: 600, food: 300,
     // 8个战斗秒覆盖普通怪和首领；仅阻止扣城门耐久，不改变攻击、退场和结算。
@@ -49,7 +53,7 @@ export const TACTICS: readonly TacticDefinition[] = [{
 }, {
     id: SPLIT_TACTIC, name: "分裂术·超", icon: "icon_arrow", order: 3,
     summary: "全塔齐射 3 目标 · 持续 15 秒",
-    description: "全塔最多齐射 3 目标，持续 15 战斗秒。\n每夜 1 次，攻速与单发伤害不变。\n石塔同轮不叠伤，寒塔减速不变。",
+    description: `全塔最多齐射 3 目标，持续 15 个战斗秒。\n${useDescription}\n石塔同轮每只怪只受一次伤，寒塔照常减速。`,
     // doc/tech/46：第六年度后开放，72波、1500木750粮；保留三目标齐射原规则。
     unlockWaves: 72, wood: 1500, food: 750,
     // 与大王之心等长；每轮最多3个独立主目标，不足时不重复选人，不增加射程或攻速。
@@ -64,7 +68,8 @@ export function validateTactics(definitions: readonly TacticDefinition[] = TACTI
         if (![t.id, t.name, t.icon, t.summary, t.description].every(v => typeof v === "string" && v.length > 0) ||
             seen.has(t.id) || !RESOURCE_CONTRACT.base.frames.includes(t.icon) ||
             ![t.order, t.unlockWaves, t.wood, t.food].every(n => Number.isSafeInteger(n) && n >= 0) ||
-            !["ATTACK_SPEED", "ATTACK_DAMAGE", "GATE_INVULNERABLE", "MULTI_TARGET"].includes(t.effect) || !Number.isSafeInteger(t.ticks) || t.ticks <= 0 ||
+            !["ATTACK_SPEED", "ATTACK_DAMAGE", "GATE_INVULNERABLE", "MULTI_TARGET"].includes(t.effect) ||
+            !Number.isSafeInteger(t.ticks) || t.ticks <= 0 || t.ticks > TACTIC_USE.cooldownTicks ||
             (t.effect === "MULTI_TARGET" ? !Number.isSafeInteger(t.targets) || t.targets < 2 || t.targets > RULE.enemyCap || "multiplier" in t :
                 t.effect === "GATE_INVULNERABLE" ? "multiplier" in t : !Number.isFinite(t.multiplier) || t.multiplier <= 0))
             throw new Error("战技配置无效");

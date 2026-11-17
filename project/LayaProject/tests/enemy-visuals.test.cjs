@@ -5,9 +5,17 @@ const {EnemyVisuals}=require(path.join(built,'view/EnemyVisuals.js'));
 const {ENEMY_LOOKS,ENEMY_PALETTES,ENEMY_SCALES}=require(path.join(built,'view/config/EnemyVisualConfig.js'));
 const {FEEDBACK}=require(path.join(built,'view/config/FeedbackConfig.js'));
 const definitions=require('../../../res/native/enemies.json').definitions;
+class Sprite {
+ constructor(){this.calls=[];this.children=[];this.graphics={clear:()=>this.calls.length=0,drawImage:(...args)=>this.calls.push(args),drawTexture:(...args)=>this.calls.push(args)};}
+ addChild(child){this.children.push(child);}
+ scale(x,y){this.scaleX=x;this.scaleY=y;return this;}
+ size(w,h){this.width=w;this.height=h;return this;}
+ pivot(x,y){this.pivotX=x;this.pivotY=y;return this;}
+}
+global.Laya={Sprite};
 function fixture(){
- const calls=[];const node={graphics:{clear(){calls.length=0;},drawImage(...args){calls.push(args);},drawTexture(...args){calls.push(args);}},scale(x,y){this.scaleX=x;this.scaleY=y;return this;},size(w,h){this.width=w;this.height=h;return this;},pivot(x,y){this.pivotX=x;this.pivotY=y;return this;}};
- return {node,calls,visual:new EnemyVisuals(node,{enemyLayouts:definitions,get:id=>id})};
+ const node=new Sprite(),visual=new EnemyVisuals(node,{enemyLayouts:definitions,get:id=>id});
+ return {node,visual,get calls(){return [...node.calls,...node.children[0].calls];}};
 }
 test('every published accessory combination draws exactly once with valid native placement, stable feet and the original seed choices',()=>{
  const f=fixture();let samples=0;
@@ -37,10 +45,12 @@ test('boar body registration keeps ground position stable; mirror and hit feedba
  f.visual.draw(kind,seed,step+.001,false);
  assert.equal(f.calls.find(c=>c[0]===def.frames[1].body)[1],0);
  assert.deepEqual(f.calls[0],shadow);
- f.visual.draw(kind,seed,step+.001,true,true);
+ f.visual.draw(kind,seed,step+.001,true,true,undefined,FEEDBACK.hitShake.pixels);
  assert(f.node.scaleX<0);assert(f.calls.slice(1).every(c=>c[5]===FEEDBACK.flashColor));assert.deepEqual(f.calls[0],shadow);
+ assert(Math.abs(f.node.children[0].x*f.node.scaleX-FEEDBACK.hitShake.pixels)<1e-9);
  f.visual.draw('enemy_raider',8,0,false);
  assert.deepEqual(f.calls.map(c=>c[0]),['shadow_actor','enemy_raider_walk_00']);assert(f.node.scaleX>0);
+ assert.equal(f.node.children[0].x,0);
 });
 test('ground shadow and feet share the same transform across movement, scale, mirror and all seventy poses',()=>{
  const f=fixture();let samples=0;

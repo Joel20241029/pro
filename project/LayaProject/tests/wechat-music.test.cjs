@@ -97,3 +97,20 @@ test('tower volleys reuse one short SFX, throttle dense fire and stop for mute, 
   music.destroy();assert.equal(calls.destroy,2);music.towerShot();assert.equal(shot.played.length,4);
  } finally {Date.now=originalNow;}
 });
+test('enemy defeat reuses one cue, includes the final impact after battle music, and obeys audio lifecycle',()=>{
+ const {music,calls,tracks,events}=setup(),originalNow=Date.now;
+ let clock=1000;Date.now=()=>clock;
+ try {
+  music.setEnabled(true);music.enemyDefeat();assert.equal(calls.created,0);
+  music.interact();music.setBattle(true);music.towerShot();music.enemyDefeat();music.enemyDefeat();
+  const defeat=tracks[2];assert.equal(defeat.src,'resources/battle/enemy_defeat.mp3');
+  assert.equal(defeat.loop,false);assert.equal(defeat.played.length,1);
+  music.setBattle(false);clock+=449;music.enemyDefeat();assert.equal(defeat.played.length,1);
+  clock++;music.enemyDefeat();assert.equal(defeat.played.length,2);
+  events.begin.forEach(fn=>fn());clock+=1000;music.enemyDefeat();events.end.forEach(fn=>fn());
+  music.enemyDefeat();assert.equal(defeat.played.length,2);assert(defeat.stops>=2);
+  music.interact();music.enemyDefeat();music.setEnabled(false);clock+=1000;music.enemyDefeat();
+  assert.equal(defeat.played.length,3);assert.equal(calls.created,3);
+  music.destroy();assert.equal(calls.destroy,3);
+ } finally {Date.now=originalNow;}
+});

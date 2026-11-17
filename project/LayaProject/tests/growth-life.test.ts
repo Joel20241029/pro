@@ -11,7 +11,8 @@ import { GameSession } from "../src/game/GameSession";
 import { SaveStore } from "../src/storage/SaveStore";
 import { CAMP_STOPS, distance, VillageNavigation } from "../src/view/VillageScene";
 import { VillagerMotion } from "../src/view/VillagerMotion";
-import { EMOTE, VillagerEmotes } from "../src/view/VillagerEmotes";
+import { VillagerThoughts } from "../src/view/VillagerThoughts";
+import { SPEECH, VILLAGER_LINES } from "../src/view/config/VillagerSpeechConfig";
 let passed = 0;
 function ok(value: unknown, message = "assertion failed"): asserts value { if (!value) throw new Error(message); }
 function equal(a: unknown, b: unknown) { ok(JSON.stringify(a) === JSON.stringify(b), `${JSON.stringify(a)} != ${JSON.stringify(b)}`); }
@@ -92,12 +93,15 @@ test("Camp has 20 unique navigable stops; baby stays still and carers face the b
         equal([motion.get(baby.id).x, motion.get(baby.id).y], [original.x, original.y]);
     }
 });
-test("Emotes do not change business RNG, skips hidden guards and retires stale lifecycle events", () => {
-    const s = createGame(7), emotes = new VillagerEmotes(); emotes.sync(s); const before = JSON.stringify(s);
-    emotes.update(s, EMOTE.initialWait + .1, () => false); equal(emotes.current, null); equal(JSON.stringify(s), before);
-    const p = s.people[0]; p.nights = 2; emotes.sync(s); emotes.update(s, .1, () => true); ok(emotes.current?.priority); equal(emotes.current!.id, p.id);
-    emotes.update(s, 0, () => true); equal(emotes.current!.remaining, EMOTE.seconds);
-    s.people = s.people.filter(q => q.id !== p.id); emotes.sync(s); equal(emotes.current, null);
+test("Thoughts use short configurable lines, skip hidden speakers and keep a village-wide cooldown", () => {
+    const s = createGame(7), thoughts = new VillagerThoughts(); thoughts.sync(s); const before = JSON.stringify(s);
+    thoughts.update(s, SPEECH.initialWait + .1, () => false); equal(thoughts.current, null); equal(JSON.stringify(s), before);
+    const p = s.people[0]; p.nights = 2; thoughts.sync(s); thoughts.update(s, .1, () => true);
+    ok(thoughts.current?.priority); equal(thoughts.current!.id, p.id);
+    ok(VILLAGER_LINES.retire.some(line => line === thoughts.current!.text));
+    thoughts.update(s, 0, () => true); equal(thoughts.current!.remaining, 2);
+    s.people = s.people.filter(q => q.id !== p.id); thoughts.sync(s); equal(thoughts.current, null);
+    thoughts.update(s, SPEECH.idleMin - .1, () => true); equal(thoughts.current, null);
 });
 test("Full camps with many babies keep lateral carers and stable birth locations across repeated syncs", () => {
     for (const adults of [1, 4, 10]) for (let target = adults; target < 20; target++) {

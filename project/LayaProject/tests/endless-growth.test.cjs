@@ -71,11 +71,18 @@ test('five pads start with two towers and validate all five occupants',()=>{
  const b=structuredClone(s);b.towers.pop();assert.throws(()=>validateState(b));
 });
 test('quantity curve grows within fixed budgets and a full on-screen queue never drops pending enemies',()=>{
+ const {WAVE}=read('config/DefenseConfig');
  const counts=[];
  for(const day of [1,13,37,73,301,1000001]){
   const s=createGame(7);s.day=day;s.completed=day-1;s.legacy.bestNight=s.completed;s.tier=3;s.wave=generateWave(s);
-  assert(s.wave.entries.length<=RULE.planCap);assert(s.wave.entries.every(e=>e.tick<=960));validateState(s);counts.push(s.wave.entries.length);
+  const expected=Math.min(WAVE.spawnWindowTicks.maximum,Math.max(WAVE.spawnWindowTicks.minimum,
+   RULE.spawnTicks+Math.max(0,s.wave.entries.length-WAVE.spawnCountThreshold)*WAVE.extraSpawnTicks));
+  assert(s.wave.entries.length<=RULE.planCap);assert.equal(s.wave.entries.at(-1).tick,expected);
+  validateState(s);counts.push(s.wave.entries.length);
  }
+ const historical=createGame(7);historical.wave.entries.at(-1).tick=WAVE.maxSpawnTicks;
+ validateState(historical);applyCommand(historical,{type:'NIGHT'});
+ assert.equal(new BattleSimulation(historical).base.wave.entries.at(-1).tick,960);
  assert(counts[3]>counts[0]*2);assert(counts.at(-1)<=85);
  const s=createGame(7);applyCommand(s,{type:'NIGHT'});s.towers.forEach(t=>{t.kind=null;t.level=0;t.operator=null;});
  s.wave={budget:100*ENEMIES.enemy_raider.cost,tier:s.tier,affix:'NONE',entries:Array.from({length:100},(_,i)=>({kind:'enemy_raider',tick:0,appearanceSeed:i}))};

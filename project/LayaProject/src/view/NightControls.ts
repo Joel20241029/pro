@@ -1,3 +1,4 @@
+import { TACTIC_USE } from "../config/TacticConfig";
 import { GameSession } from "../game/GameSession";
 import { GameState } from "../game/GameState";
 import { RULE } from "../game/GameConfig";
@@ -18,6 +19,7 @@ export class NightControls {
     private readonly ring = new Laya.Sprite();
     private muted = false;
     private shownTicks = -1;
+    private shownClock: "active" | "cooldown" | null = null;
 
     constructor(private game: GameSession, state: GameState, ui: UiWidgets, panels: GamePanels, refresh: () => void) {
         this.node.name = "NightControls";
@@ -68,9 +70,13 @@ export class NightControls {
         const battle = this.game.battle;
         if (!battle) return;
         const ringing = !battle.outcome && battle.bellTicks > 0;
-        const seconds = Math.ceil(battle.bellTicks * RULE.step), enabled = this.game.canRingBell;
+        const cooling = !ringing && battle.tacticUsesLeft > 0 && battle.tacticCooldownTicks > 0;
+        const clock = ringing ? "active" : cooling ? "cooldown" : null;
+        const ticks = ringing ? battle.bellTicks : cooling ? battle.tacticCooldownTicks : 0;
+        const seconds = Math.ceil(ticks * RULE.step / this.game.state!.settings.speed);
+        const enabled = this.game.canRingBell;
         this.heart.mouseEnabled = enabled;
-        // 生效中的暂停保持金色与原剩余量；已用或尚未使用但暂停才置灰，文字不跟随滤镜。
+        // 生效中保留金色；冷却、用尽和暂停待用时置灰，文字继续保持对比度。
         const muted = !ringing && !enabled;
         if (muted !== this.muted) {
             // Laya会给effect绑定所属Sprite，清除filters时销毁它；不能跨节点共享或解除后重用。
@@ -79,19 +85,22 @@ export class NightControls {
             this.muted = muted;
         }
         this.status.text = `${this.game.pauses.size ? "已暂停" : "守夜中"} · 场上 ${amount(battle.enemies.length, true)} · 待来 ${amount(battle.pendingCount, true)}${battle.base.night!.hungry ? " · 缺粮" : ""}`;
-        this.note.text = ringing ? `${seconds}秒` : battle.bellUsed ? "本夜已用" : this.game.pauses.size ? "暂停中" : "";
-        const ticks = ringing ? battle.bellTicks : 0;
-        if (this.shownTicks === ticks) return;
-        this.shownTicks = ticks;
+        if (ringing) this.note.text = `生效 ${seconds}秒`;
+        else if (cooling) this.note.text = `冷却 ${seconds}秒`;
+        else if (!battle.tacticUsesLeft) this.note.text = "已用完";
+        else this.note.text = this.game.pauses.size ? "暂停中" : `可用 ${battle.tacticUsesLeft} 次`;
+        if (this.shownTicks === ticks && this.shownClock === clock) return;
+        this.shownTicks = ticks; this.shownClock = clock;
         this.ring.graphics.clear();
-        if (!ringing) return;
+        if (!clock) return;
         const cfg = HUD.night.ring, center = HUD.footer.start.size / 2;
-        this.ring.graphics.drawCircle(center, center, cfg.radius, null, cfg.track, cfg.width);
-        const points: number[] = [], end = Math.PI * 2 * ticks / battle.tactic.ticks;
+        this.ring.graphics.drawCircle(center, center, cfg.radius, null, cooling ? cfg.cooldownTrack : cfg.track, cfg.width);
+        const span = cooling ? TACTIC_USE.cooldownTicks - battle.tactic.ticks : battle.tactic.ticks;
+        const points: number[] = [], end = Math.PI * 2 * ticks / span;
         for (let i = 0; i <= cfg.segments; i++) {
             const angle = -Math.PI / 2 + end * i / cfg.segments;
             points.push(center + Math.cos(angle) * cfg.radius, center + Math.sin(angle) * cfg.radius);
         }
-        this.ring.graphics.drawLines(0, 0, points, cfg.color, cfg.width);
+        this.ring.graphics.drawLines(0, 0, points, cooling ? cfg.cooldownColor : cfg.color, cfg.width);
     }
 }

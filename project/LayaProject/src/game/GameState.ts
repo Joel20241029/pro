@@ -12,7 +12,12 @@ export interface Person {
 }
 export interface Family { id: string; partners: string[]; lastBirth: number | null; }
 export interface Tower { kind: TowerKind | null; level: number; operator: string | null; }
-export interface Wave { budget: number; tier: number; affix: "NONE" | "FAST" | "STURDY" | "GROUP"; entries: { kind: EnemyKind; tick: number; appearanceSeed: number }[]; }
+export interface Wave {
+    budget: number; tier: number; affix: "NONE" | "FAST" | "STURDY" | "GROUP";
+    entries: { kind: EnemyKind; tick: number; appearanceSeed: number }[];
+    /** 第九夜之后新排的波次冻结普通怪生命倍率。旧波次缺省为原值，继续按已保存的阵容回放。 */
+    ordinaryHealthPercent?: number;
+}
 export type Choice = { kind: "SKILL"; person: string; options: Skill[] } | { kind: "TRAVELER"; person: Person } | { kind: "POLICY"; options: string[] };
 export interface Legacy {
     births: number; retirees: number; bestNight: number; traits: Trait[]; nextRun: number;
@@ -27,7 +32,7 @@ export interface GameState {
     /** 上次提供旅人时的成功守夜数；谢绝也记时，新村null，不迁移旧配置。 */
     lastTraveler: number | null;
     people: Person[]; families: Family[]; towers: Tower[];
-    /** 战技学习结果与当前携带；资格由本村成功波数推导，红点不落盘。 */
+    /** 战技学习结果与当前携带；资格由本村成功波数推导，查看提醒使用独立的界面记录。 */
     tactics: { learned: string[]; equipped: string };
     history: Person[]; favorites: string[]; choices: Choice[];
     wave: Wave | null; night: { adults: string[]; elders: string[]; cared: string[]; hungry: boolean; tactic: string } | null;

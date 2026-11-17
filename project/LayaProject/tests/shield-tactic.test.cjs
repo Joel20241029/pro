@@ -84,13 +84,14 @@ test('blocking a summoning chief preserves already spawned children, then stops 
     b.step(); assert.equal(b.enemies.length,1); assert.equal(b.feedback.filter(e=>e.type==='gate'&&e.blocked).length,2);
     while(b.tick<RULE.summonTicks.at(-1)+2)b.step(); assert.equal(b.pendingCount,0); assert.equal(b.enemies.length,1);
 });
-test('last blocked enemy wins immediately and still clears in-flight death and red-flash records', () => {
+test('last blocked enemy wins immediately while its non-flashing death finishes visually', () => {
     const b = battle(); b.enemies=[enemy(0)]; b.gate=1; b.bell(); b.step();
     assert.equal(b.outcome,'WIN'); assert.equal(b.gate,1); assert(b.feedback[0].blocked);
     const presentation=new CombatPresentation(); presentation.sync(b,b.feedback);
-    assert.equal(presentation.shots.size,0); assert.equal(presentation.deaths.size,0);
+    assert.equal(presentation.shots.size,0); assert.equal(presentation.deaths.size,1); assert(!presentation.flashing(0));
+    presentation.advance(.87); assert.equal(presentation.deaths.size,0);
     const active=battle(); const e=enemy(0); active.enemies.push(e); active.bell(); active.step();
-    presentation.sync(active,active.feedback); assert(presentation.retired.has(0)); assert(!presentation.flashes.has(0));
+    presentation.sync(active,active.feedback); assert(presentation.deathPose(0)); assert(!presentation.flashes.has(0));
 });
 test('shield does not change tower damage, cadence or crowd-control', () => {
     for(const kind of ['ARROW','STONE','SLOW']) {
@@ -110,7 +111,8 @@ test('pause, reassignment and 3x keep the same shield; reopen restarts saved pre
 test('session settles final block without holding the night open for visual feedback', () => {
     const f=fixture(),g=f.game;g.state.food=100;g.command({type:'NIGHT'});const b=g.battle;
     b.base.towers.forEach(t=>{t.kind=null;t.operator=null;});b.cursor=b.base.wave.entries.length;b.enemies=[enemy(0)];b.gate=1;g.bell();g.update(.05);
-    assert.equal(g.battle,null);assert.equal(g.state.completed,37);assert.equal(g.state.gate,1);assert.deepEqual(g.takeCombatFeedback(),[]);
+    assert.equal(g.battle,null);assert.equal(g.state.completed,37);assert.equal(g.state.gate,1);assert.equal(g.presentationBattle,b);
+    const events=g.takeCombatFeedback();assert.equal(events.length,1);assert(events[0].blocked);assert.deepEqual(g.takeCombatFeedback(),[]);
 });
 
 class Sprite {

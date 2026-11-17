@@ -31,9 +31,13 @@ export function generateWave(s: GameState): Wave {
     if (kinds.length > RULE.planCap)
         throw new Error("波次超出配置上限");
     const groups = affix === "GROUP" ? Math.ceil(kinds.length / WAVE.groupSize) : kinds.length;
-    const spawnTicks = Math.min(WAVE.maxSpawnTicks, RULE.spawnTicks + Math.max(0, count - WAVE.spawnCountThreshold) * WAVE.extraSpawnTicks);
+    const plannedTicks = RULE.spawnTicks + Math.max(0, count - WAVE.spawnCountThreshold) * WAVE.extraSpawnTicks;
+    const { minimum, maximum } = WAVE.spawnWindowTicks;
+    const spawnTicks = Math.min(maximum, Math.max(minimum, plannedTicks));
     const entries = kinds.map((kind, i) => ({ kind, appearanceSeed: appearanceSeed(APPEARANCE_DOMAIN.wave, s.rng.world, s.day, i), tick: groups <= 1 ? 0 : Math.floor((affix === "GROUP" ? Math.floor(i / WAVE.groupSize) : i) * spawnTicks / (groups - 1)) }));
     const budget = kinds.reduce((sum, kind) => sum + ENEMIES[kind].cost, 0);
     s.rng.world = rng.state;
-    return { budget, affix, tier: s.tier, entries };
+    const wave: Wave = { budget, affix, tier: s.tier, entries };
+    if (s.day >= WAVE.ordinaryPressureDay) wave.ordinaryHealthPercent = WAVE.ordinaryHealthPercent;
+    return wave;
 }

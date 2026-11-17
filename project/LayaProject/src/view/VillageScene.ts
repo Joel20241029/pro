@@ -30,7 +30,7 @@ export function layoutVillage(layout: GameLayout) {
         logging: VILLAGE_STOPS.logging.map(stop => {
             const before = VILLAGE_PROPS.find(p => p.id === stop.treeId)!, after = props.find(p => p.id === stop.treeId)!;
             return { ...stop, treeX: after.x, y: after.y + stop.y - before.y };
-        }), rest: camp, children: camp,
+        }), rest: camp, children: camp, waiting: VILLAGE_STOPS.waiting.map(point),
         wedding: VILLAGE_STOPS.wedding.map(point), towers: pads.map(p => ({ x: p.x, y: p.y + 54 }))
     };
     const farmShift = props.find(p => p.id === "building:farm")!.y - farm.y;

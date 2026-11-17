@@ -30,11 +30,11 @@ export function drawBoot(ctx: PanelContext) {
             ctx.ui.button(box, "确认放弃损坏进度，重新开村", 34, 622, 600, () => ctx.game.newVillage(undefined, true), C.red, 80);
         return;
     }
-    const box = ctx.modal("一处村落，代代相守", "白天安排耕作与家庭，夜晚守住城门。孩子继承双亲天赋，长大后接过守村的责任。", false);
+    const box = ctx.modal("一处村落，代代相守", "白天经营村庄，夜晚守住城门。", false, undefined,
+        "可安排村民耕作、驻塔、成家与照料孩子。孩子继承双亲之一的天赋，成年后可选专长。");
     ctx.ui.image(box, "icon_house", 239, 228, 190);
     ctx.ui.label(box, "先让村民成家，迎接孩子、安排照料。\n守住两夜，再为孩子选择一项专长。", 42, 450, 584, 30, C.green, true, 122).align = "center";
     ctx.ui.button(box, "开村 · 从这一代开始", 34, 646, 600, () => ctx.game.newVillage(), C.gold, 84);
-    ctx.ui.label(box, "单机存档 · 随时暂停 · 没有最后一关", 34, 758, 600, 28, C.muted).align = "center";
 }
 export function drawPending(ctx: PanelContext) {
     const box = ctx.modal("正在核对保存结果", "本次操作已冻结，重试会核对同一份进度，不会再扣资源或再次结算。", false);
@@ -45,7 +45,10 @@ export function drawDawn(ctx: PanelContext, s: GameState) {
     const q = s.choices[0];
     if (!q)
         return;
-    const box = ctx.modal("天亮了 · 新的一天", s.summary, false);
+    const help = q.kind === "SKILL" ? "孩子成年后选定一项专长。专长会影响生产、照料或驻防表现。"
+        : q.kind === "TRAVELER" ? "有空余住房就能接纳旅人。谢绝后可在白天扩建民居，等待下一位旅人。"
+            : `村规持续 ${RULE.seasonDays} 天，换季后可以再选。绿色为提升，红色为代价。`;
+    const box = ctx.modal("天亮了 · 新的一天", s.summary, false, undefined, help);
     if (q.kind === "SKILL") {
         ctx.ui.label(box, `${coloredName(person(s, q.person))} 成年了\n选择一项专长：`, 34, 226, 600, 32, C.green, true, 104).align = "center";
         q.options.forEach((k, i) => ctx.ui.button(box, SKILLS[k].join("\n"), 34, 378 + i * 132, 600, () => ctx.send({ type: "CHOOSE", value: k }), i === 0 ? C.gold : C.green, 102));
@@ -53,16 +56,39 @@ export function drawDawn(ctx: PanelContext, s: GameState) {
     else if (q.kind === "TRAVELER") {
         ctx.ui.image(box, ctx.art.portraitId(q.person), q.person.elite ? 229 : 250, 200, q.person.elite ? 210 : 168);
         ctx.ui.label(box, `${coloredName(q.person)} 希望加入村落\n天赋：${TRAITS[q.person.trait][0]}  ·  专长：${SKILLS[q.person.skill!][0]}\n民居 ${s.people.length}/${capacity(s)}`, 34, 408, 600, 30, C.green, true, 155).align = "center";
-        if (q.person.elite)
-            ctx.ui.label(box, `耕伐 +50% · 塔伤 +25% · 照料 +${ELITE.careFoodBonus} 粮\n劳作 ${ELITE.adultNights} 夜 · 养老 ${ELITE.elderNights} 夜`, 34, 550, 600, 28, C.timber, true, 68).align = "center";
+        if (q.person.elite) {
+            ctx.ui.label(box, `耕伐 +50% · 塔伤 +25% · 劳作 ${ELITE.adultNights} 夜 · 养老 ${ELITE.elderNights} 夜`, 34, 548, 600, 24, C.timber, true, 38).align = "center";
+            ctx.ui.iconValue(box, "icon_food", `照料 +${ELITE.careFoodBonus}`, 34, 585, 600, 34, C.cream, 24);
+        }
         const full = s.people.length >= capacity(s);
         ctx.ui.button(box, full ? "住房已满，无法接纳" : "欢迎加入", 34, 626, 600, () => ctx.send({ type: "CHOOSE", value: "accept" }), C.gold, 78, !full);
         ctx.ui.button(box, !full ? "礼貌谢绝" : s.people.length >= RULE.populationCap ? "先谢绝，等待村中空出名额" : "先谢绝，白天增建民居", 34, 744, 600, () => ctx.send({ type: "CHOOSE", value: "decline" }), C.muted, 78);
     }
     else if (q.kind === "POLICY") {
-        ctx.ui.label(box, `为${SEASONS[season(s.day)]}季定下村规\n持续 3 天`, 34, 226, 600, 32, C.green, true, 104).align = "center";
-        q.options.forEach((id, i) => ctx.ui.button(box, `${POLICIES[id].name}\n${POLICIES[id].desc}`, 34, 378 + i * 132, 600, () => ctx.send({ type: "CHOOSE", value: id }), i === 0 ? C.gold : C.green, 102));
+        ctx.ui.label(box, `为${SEASONS[season(s.day)]}季定下村规\n持续 ${RULE.seasonDays} 天`, 34, 226, 600, 32, C.green, true, 104).align = "center";
+        q.options.forEach((id, i) => drawPolicyOption(ctx, box, id, 378 + i * 132));
     }
+}
+/** 村规直接以定义的数值绘制，不另维护一份可能与实际效果不一致的说明。 */
+function drawPolicyOption(ctx: PanelContext, box: Laya.Sprite, id: string, y: number) {
+    const policy = POLICIES[id];
+    const button = ctx.ui.button(box, policy.name, 34, y, 600, () => ctx.send({ type: "CHOOSE", value: id }), C.muted, 104);
+    const face = button.getChildByName("buttonFace") as Laya.Sprite, name = face.getChildByName("buttonText") as Laya.Text;
+    name.y = 8; name.height = 43;
+    const effects = [
+        { title: "产出", value: policy.food, icon: "icon_food" }, { title: "产出", value: policy.wood, icon: "icon_wood" },
+        { title: "口粮", value: policy.ration, icon: "icon_food", reduces: true }, { title: "照料", value: policy.care, icon: "icon_food", absolute: true },
+        { title: "攻速", value: policy.speed }, { title: "伤害", value: policy.damage }, { title: "射程", value: policy.range },
+        { title: "箭楼攻速", value: policy.arrowSpeed }, { title: "石塔攻速", value: policy.stoneSpeed },
+        { title: "石塔伤害", value: policy.stoneDamage }, { title: "减速", value: policy.slow },
+        { title: "修门效果", value: policy.repair }, { title: "城门受伤", value: policy.gate, reduces: true }
+    ].filter(entry => entry.value !== undefined);
+    effects.forEach(({ title, value, icon, reduces, absolute }, i) => {
+        const text = `${title} ${value! > 0 ? "+" : "−"}${Math.round(Math.abs(value!) * (absolute ? 1 : 100))}${absolute ? "" : "%"}`;
+        const w = 560 / effects.length, x = 20 + i * w, color = (value! > 0) !== !!reduces ? C.green : C.red;
+        if (icon) ctx.ui.iconValue(face, icon, text, x, 55, w, 36, color, 24);
+        else ctx.ui.label(face, text, x, 55, w, 24, color, true, 36).align = "center";
+    });
 }
 export function drawGameOver(ctx: PanelContext, s: GameState) {
     if (ctx.current && ["restart", "inherit", "cleanStart"].includes(ctx.current.type)) {
@@ -76,28 +102,26 @@ export function drawGameOver(ctx: PanelContext, s: GameState) {
     ctx.ui.button(box, "传承开村", 34, 748, 286, () => ctx.open({ type: "inherit" }), C.green, 82);
     ctx.ui.button(box, "纯净开始", 338, 748, 296, () => ctx.open({ type: "cleanStart" }), C.gold, 82);
 }
-/** 与旧 refresh 相同的面板优先级：保存、口粮、返回、失败、清晨、主动面板。 */
-export function drawSessionPanel(ctx: PanelContext, s: GameState) {
+/** 保存、口粮和回前台先处理，随后是结算，再接失败、清晨或普通界面。 */
+export function drawSessionPanel(ctx: PanelContext, s: GameState, drawResult?: () => boolean) {
     if (ctx.game.saves.pending)
         drawPending(ctx);
     else if (ctx.game.dailyRationDate !== null) {
         const amount = dailyRationAmount(s, ctx.game.dailyRationDate)!;
-        const box = ctx.modal("每日口粮", `每日补给 ${RULE.dailyFood} 粮`, false, { width: 540, height: 402 });
-        const reward = ctx.ui.label(box, `＋${amount} 粮`, 0, 168, 230, 42, amount ? C.green : C.muted, true, 64);
-        reward.width = Math.ceil(reward.textWidth) + 4;
-        const rewardLeft = (540 - 88 - 12 - reward.width) / 2;
-        ctx.ui.image(box, "icon_food", rewardLeft, 156, 88);
-        reward.x = rewardLeft + 100;
-        const detail = amount === 0 ? "粮仓已满，本次到账 0 粮\n本村今日不再发放" : amount < RULE.dailyFood ? `仓储仅剩 ${amount}，本次入库 ${amount} 粮\n本村今日不再发放` : "确认后入库，本村今日仅领一次";
+        const box = ctx.modal("每日口粮", "", false, { width: 540, height: 382 }, `本村每天可领一次。每日补给 ${RULE.dailyFood} 粮，放不下时按剩余仓储发放。`);
+        ctx.ui.label(box, "本次到账", 34, 114, 472, 28, C.cream, true, 40).align = "center";
+        ctx.ui.iconValue(box, "icon_food", `+${amount}`, 34, 160, 472, 61, amount ? C.cream : C.muted, 42);
+        const detail = amount === 0 ? "仓储已满，确认后计为已领" : amount < RULE.dailyFood ? "按剩余仓储发放，今天只领一次" : "确认后入库，本村今日仅领一次";
         const note = ctx.ui.label(box, detail, 34, 238, 472, 28, C.muted, false, 64);
         note.align = "center";
         note.valign = "middle";
-        ctx.ui.button(box, ctx.game.pauses.has("WAIT_RESUME") ? "确认并继续" : "确认领取", 130, 308, 280, () => ctx.game.claimDailyRation(), C.gold, 72);
+        ctx.ui.button(box, ctx.game.pauses.has("WAIT_RESUME") ? "确认并继续" : "确认领取", 130, 292, 280, () => ctx.game.claimDailyRation(), C.gold, 68);
     }
     else if (ctx.game.pauses.has("WAIT_RESUME")) {
         const box = ctx.modal("欢迎回来", "村庄已暂停，欢迎回来。\n离开期间没有收益或损耗。", false, { width: 540, height: 300 });
         ctx.ui.button(box, "继续游戏", 130, 202, 280, () => { ctx.game.resume("WAIT_RESUME"); ctx.refresh(); }, C.gold, 72);
     }
+    else if (!ctx.game.pauses.has("BACKGROUND") && drawResult?.()) return;
     else if (s.phase === "GAME_OVER")
         drawGameOver(ctx, s);
     else if (s.phase === "DAWN")

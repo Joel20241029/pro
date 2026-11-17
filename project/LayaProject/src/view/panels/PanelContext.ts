@@ -16,6 +16,12 @@ export type Panel = {
     back?: Panel;
     pendingTactic?: string;
     tab?: number;
+    /** 标签换页后为新的选中按钮延续松手动效，在本次渲染消费。 */
+    tabFeedback?: boolean;
+    /** 家庭的成家、养育列表各自保留本次打开的滚动位置。 */
+    familyScroll?: [number?, number?];
+    /** 名册按岗位存放当前查看的滚动位置和排序。 */
+    rosterViews?: { scroll?: number; rowOrder?: string[] }[];
     a?: string;
     job?: "FARM" | "LOGGING";
 };
@@ -34,6 +40,6 @@ export interface PanelContext {
     modal(title: string, subtitle: string, close?: boolean, size?: {
         width: number;
         height: number;
-    }): Laya.Sprite;
+    }, help?: string): Laya.Sprite;
     draw(state: GameState, panel: Panel): void;
 }

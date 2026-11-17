@@ -1,4 +1,4 @@
-import { GameState, isElder, Person, Tower } from "../game/GameState";
+import { GameState, isElder, isWorkingAdult, Person, Tower } from "../game/GameState";
 import { LABOR_CLIPS, RULE } from "../game/GameConfig";
 import { distance, GroundPoint, MOTION, VillageNavigation, VILLAGE_STOPS, WEDDING } from "./VillageScene";
 import { VisibleResidents } from "./VisibleResidents";
@@ -34,6 +34,7 @@ export class VillagerMotion {
     private wedding: Wedding | null = null;
     private campSlots = new Map<string, number>();
     private careStops = new Map<string, GroundPoint>();
+    private waitingSlots = new Map<string, number>();
     private night = false;
     private selection = new VisibleResidents();
     visiblePeople: readonly Person[] = [];
@@ -65,7 +66,7 @@ export class VillagerMotion {
     get(id: string): Readonly<VillagerPose> { const p = this.people.get(id); if (!p) throw new Error(`未同步村民表现：${id}`); return p; }
     sync(state: GameState, towers: Tower[]) {
         const newRun = this.run !== state.run;
-        if (newRun) { this.people.clear(); this.campSlots.clear(); this.run = state.run; this.weddings = []; this.wedding = null; }
+        if (newRun) { this.people.clear(); this.campSlots.clear(); this.waitingSlots.clear(); this.run = state.run; this.weddings = []; this.wedding = null; }
         const families = new Set(state.families.map(f => f.id));
         // 新婚先入队，再挑选演员。暂未进入20人窗口的家庭仍保留，轮到时才播放。
         // 初次加载只记基线；夜间或家庭消失沿用原规则取消，不在读档后补放旧婚礼。
@@ -117,11 +118,12 @@ export class VillagerMotion {
             }
             reserved.add(p.id);
         }
+        if (!this.night) this.placeWaitingResidents(sorted);
         for (const p of sorted) {
             const sequence = this.campSlots.get(p.id)! + 1, tower = towers.findIndex(t => t.operator === p.id);
             const coworkers = sorted.filter(q => q.adult && q.job === p.job), slot = p.job === "LOGGING" ? 0 : coworkers.findIndex(q => q.id === p.id);
             const careStop = this.careStops.get(p.id);
-            const signature = `${state.phase === "NIGHT" ? "NIGHT" : "DAY"}:${p.adult}:${isElder(p)}:${p.growth}:${p.appearance}:${p.job}:${p.careChild}:${slot}:${tower}:${this.campSlots.get(p.id)}:${careStop?.x}:${careStop?.y}`;
+            const signature = `${state.phase === "NIGHT" ? "NIGHT" : "DAY"}:${p.adult}:${isElder(p)}:${p.growth}:${p.appearance}:${p.job}:${p.careChild}:${slot}:${tower}:${this.campSlots.get(p.id)}:${careStop?.x}:${careStop?.y}:${this.waitingSlots.get(p.id)}`;
             let m = this.people.get(p.id);
             if (!m) {
                 const home = !p.adult && p.growth === 0 ? this.stops.rest[this.campSlots.get(p.id)!] : this.stops.homes[(sequence - 1) % this.stops.homes.length];
@@ -136,6 +138,30 @@ export class VillagerMotion {
         const valid = (w: Wedding) => families.has(w.family) && w.partners.every(id => present.has(id));
         if (this.wedding && (state.phase !== "DAY" || !valid(this.wedding))) this.endWedding();
         this.startWedding();
+    }
+    private placeWaitingResidents(people: readonly Person[]) {
+        const waiting = people.filter(p => isWorkingAdult(p) && p.job === "WAITING");
+        const claimed = new Set(waiting.map(p => p.id));
+        const reserved = [...this.stops.logging, ...this.stops.wedding];
+        for (const p of people) if (!claimed.has(p.id)) {
+            const slot = this.campSlots.get(p.id)!;
+            reserved.push(this.careStops.get(p.id) ?? this.stops.rest[slot]);
+            if (p.adult || p.growth > 0) reserved.push(this.stops.homes[slot]);
+        }
+        const open = this.stops.waiting.map((at, i) => ({ at, i })).filter(({ at }) =>
+            this.navigation.walkable(at) && reserved.every(point => distance(point, at) >= 17)).map(({ i }) => i);
+        const old = this.waitingSlots, next = new Map<string, number>();
+        for (const p of waiting) {
+            const index = old.get(p.id);
+            const slot = index === undefined ? -1 : open.indexOf(index);
+            if (slot >= 0) next.set(p.id, open.splice(slot, 1)[0]);
+        }
+        for (const p of waiting) if (!next.has(p.id)) {
+            const index = open.shift();
+            if (index === undefined) throw new Error("火堆下方待命站位不足");
+            next.set(p.id, index);
+        }
+        this.waitingSlots = next;
     }
     /** 切换日程统一从当前足底寻路；已在目的地时直接开始驻足，避免跳过第一个停留点。 */
     private setPlan(m: MovingPerson, plan: Visit[]) {
@@ -197,7 +223,7 @@ export class VillagerMotion {
         if (p.job === "CARE") {
             return [visit(camp, dwell, true), visit(home, MOTION.restSeconds)];
         }
-        return [visit(rest, MOTION.restSeconds + (sequence % 3) * MOTION.staggerSeconds), visit(home, MOTION.restSeconds)];
+        return [visit(this.stops.waiting[this.waitingSlots.get(p.id)!], Infinity)];
     }
     private chooseAction(m: MovingPerson, walking: boolean) {
         const p = m.person;
@@ -210,6 +236,8 @@ export class VillagerMotion {
         // 移动仍按行走方向选择 walk；驻足伐木和照料时，根据工作目标镜像原美术。
         if (m.clip !== clip || m.animated !== animated) m.elapsed = 0;
         m.clip = clip; m.animated = animated; m.walking = walking;
+        if (!walking && !this.night && !m.wedding && isWorkingAdult(p) && p.job === "WAITING")
+            m.direction = "DOWN";
         m.mirror = false;
         if (!walking && clip.endsWith("_chop")) {
             const target = this.stops.logging.find(stop => stop.treeId === m.loggingTree);

@@ -1,11 +1,13 @@
 import { SpriteFrames } from "./SpriteFrames";
 import { PreparationState } from "../platform/ResourcePreparation";
 import { C } from "./UiTheme";
+import { bindButtonClick } from "./ButtonFeedback";
 /** 主包读取前用原生绘制；主包完成后复用高清草地与纸面，建筑分包等待期间始终有完整加载画面。 */
 export class StartupView extends Laya.Sprite {
     private title = new Laya.Text();
     private status = new Laya.Text();
     private retryButton = new Laya.Sprite();
+    private retryFace = new Laya.Sprite();
     private retryText = new Laya.Text();
     private sheet = new Laya.Sprite();
     private art: SpriteFrames | null = null;
@@ -16,9 +18,11 @@ export class StartupView extends Laya.Sprite {
         this.retryText.text = "重新准备"; this.retryText.fontSize = 30; this.retryText.color = "#533720"; this.retryText.bold = true;
         [this.title, this.status, this.retryText].forEach(t => { t.align = "center"; t.valign = "middle"; });
         this.sheet.mouseEnabled = false; this.addChild(this.sheet);
-        this.addChild(this.title); this.addChild(this.status); this.addChild(this.retryButton); this.retryButton.addChild(this.retryText);
-        this.retryButton.size(280, 72); this.retryButton.mouseEnabled = true; this.retryButton.on(Laya.Event.CLICK, this, retry);
-        this.retryButton.graphics.drawRect(0, 0, 280, 72, "#eac17b", "#ad7a3c", 3);
+        this.addChild(this.title); this.addChild(this.status); this.addChild(this.retryButton);
+        this.retryButton.size(280, 72); this.retryButton.addChild(this.retryFace); this.retryFace.addChild(this.retryText);
+        this.retryFace.mouseEnabled = this.retryText.mouseEnabled = false;
+        bindButtonClick(this.retryButton, retry, this.retryFace);
+        this.retryFace.graphics.drawRect(0, 0, 280, 72, "#eac17b", "#ad7a3c", 3);
         this.retryText.size(280, 72); this.resize(); this.showStatus(false);
     }
     showStatus(failed: boolean) { this.status.text = failed ? "村庄素材暂未准备好\n点击下方继续" : "林间灯火，等你归来…"; this.retryButton.visible = failed; }
@@ -47,7 +51,7 @@ export class StartupView extends Laya.Sprite {
             this.title.strokeColor = this.status.strokeColor = "#334f1c";
             this.graphics.drawImage(this.art.get("deco_tree_oak"), 30, height * .4 - 180, 172, 172);
             this.graphics.drawImage(this.art.get("deco_tree_pine"), width - 166, height * .4 - 154, 136, 136);
-            this.retryButton.graphics.clear(); this.art.panel(this.retryButton, "panel_button_gold", 280, 72);
+            this.retryFace.graphics.clear(); this.art.panel(this.retryFace, "panel_button_gold", 280, 72);
         }
         this.title.size(width - 80, 90).pos(40, height * .4);
         this.status.size(width - 100, 110).pos(50, height * .4 + 110);

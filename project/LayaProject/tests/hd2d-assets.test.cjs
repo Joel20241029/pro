@@ -16,11 +16,16 @@ test('each native enemy prefab owns one bottom-layer contact shadow and exports 
 });
 test('HD replacement contains only selected source images; pixels and native prefab sources are traceable',()=>{
  const ids=new Set();for(const a of recipe.assets){assert(!ids.has(a.id));ids.add(a.id);assert(a.runtime);assert(a.sourceSheet.startsWith('source/rendered2d/production/'));assert(fs.existsSync(path.join(source,a.sourceSheet)));assert.equal(a.sampling,'Lanczos');assert(a.provenance.sourceHash);assert(a.provenance.outputHash);if(a.category==='building-parts')assert.equal(a.bundle,'buildings');}
- assert.equal(recipe.assets.length,391);assert(recipe.assets.filter(a=>a.nineSlice).every(a=>a.height>=128 && a.nineSlice.scale>0));
+ assert.equal(recipe.assets.length,403);assert(!recipe.assets.some(a=>a.id.startsWith("emote_")));assert(recipe.assets.filter(a=>a.nineSlice).every(a=>a.height>=128 && a.nineSlice.scale>0));
+ for (const kind of ['arrow','stone','slow']){
+  const clip=recipe.animations.animations.find(a=>a.id==='fx_impact_'+kind);assert.equal(clip.frameCount,5);assert.equal(clip.loop,false);
+  for(const id of clip.frameIds){const a=recipe.assets.find(f=>f.id===id); assert.equal(a.bundle,'battle'); assert.deepEqual(a.pivot,{x:40,y:40});}
+ }
  assert.equal(recipe.assets.find(a=>a.id==='icon_tactic_shield').bundle,'base');
  for(const id of ['fx_shield_dome','fx_shield_ring','fx_shield_hit'])assert.equal(recipe.assets.find(a=>a.id===id).bundle,'battle');
  assert.equal(recipe.assets.find(a=>a.id==='icon_tactic_rage').bundle,'base');
- for(const id of ['fx_rage_orbit','fx_rage_up','fx_rage_glow','fx_rage_hit'])assert.equal(recipe.assets.find(a=>a.id===id).bundle,'battle');
+ assert.equal(recipe.assets.find(a=>a.id==='fx_rage_orbit').bundle,'characters');
+ for(const id of ['fx_rage_up','fx_rage_glow','fx_rage_hit'])assert.equal(recipe.assets.find(a=>a.id===id).bundle,'battle');
  assert(!recipe.assets.some(a=>/^fx_rage_ring_/.test(a.id)));
  assert(!recipe.assets.some(a=>a.tintLayer));assert(!recipe.assets.some(a=>/particle/.test(a.id)));
 });

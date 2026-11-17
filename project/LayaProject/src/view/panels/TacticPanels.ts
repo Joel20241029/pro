@@ -1,10 +1,10 @@
-import { DEFAULT_TACTIC, TACTICS, tacticDefinition } from "../../config/TacticConfig";
+import { DEFAULT_TACTIC, TACTIC_USE, TACTICS, tacticDefinition } from "../../config/TacticConfig";
 import { GameState } from "../../game/GameState";
 import { tacticRevealed, tacticUnavailableReason } from "../../game/Tactics";
 import { actionHintsBlocked } from "../ActionHints";
 import { ScrollList } from "../ScrollList";
 import { C, UI } from "../UiTheme";
-import { amount, resourceCost } from "../ViewText";
+import { amount, reasonBesideCost } from "../ViewText";
 import { TACTIC_UI as V } from "../config/TacticUiConfig";
 import { Panel, PanelContext } from "./PanelContext";
 
@@ -27,16 +27,14 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
     if (p.type === "tactics") {
         const count = revealed.length + (next ? 1 : 0);
         const height = Math.min(UI.panelHeight, V.listTop + count * V.rowStep - 12 + V.footer);
-        const box = ctx.modal("守村战技", "", true, { width: UI.panelWidth, height });
+        const box = ctx.modal("守村战技", "", true, { width: UI.panelWidth, height },
+            `每夜携带一个战技，最多用 ${TACTIC_USE.perNight} 次。冷却结束可再次使用。点卡片看效果和学习条件，学会后可在白天免费换用。`);
         const resources = new Laya.Sprite(); resources.pos(34, 112);
         ctx.art.panel(resources, "panel_card", 600, 62); box.addChild(resources);
         const waves = ctx.ui.label(resources, `已守 ${amount(s.completed)} 波`, 16, 10, 200, 26, C.ink, true, 42);
-        ctx.ui.image(resources, "icon_wood", 240, 17, 30);
-        const wood = ctx.ui.label(resources, `木 ${amount(s.wood)}`, 278, 10, 136, 26, C.ink, true, 42);
-        ctx.ui.image(resources, "icon_food", 422, 17, 30);
-        const food = ctx.ui.label(resources, `粮 ${amount(s.food)}`, 460, 10, 128, 26, C.ink, true, 42);
-        for (const text of [waves, wood, food]) { text.wordWrap = false; text.overflow = Laya.Text.SHRINK; }
-        ctx.ui.label(box, "每夜携带 1 个 · 使用 1 次", 34, 182, 600, 26, C.cream, true, 40).align = "center";
+        waves.wordWrap = false; waves.overflow = Laya.Text.SHRINK;
+        ctx.ui.iconValue(resources, "icon_wood", amount(s.wood, true), 220, 8, 175, 46, C.timber, 26);
+        ctx.ui.iconValue(resources, "icon_food", amount(s.food, true), 407, 8, 174, 46, C.green, 26);
         if (!p.rowOrder) {
             const rank = (id: string) => s.tactics.equipped === id ? 0 :
                 s.tactics.learned.includes(id) ? 2 : !tacticUnavailableReason(s, id, "LEARN") ? 1 :
@@ -58,10 +56,10 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
             const title = ctx.ui.label(card, t.name, V.rowTextX, 16, V.rowTextWidth, 31, C.ink, true, 42);
             title.wordWrap = false; title.overflow = Laya.Text.SHRINK;
             ctx.ui.label(card, t.summary, V.rowTextX, 62, V.rowTextWidth, 25, C.green, false, 58);
-            ctx.ui.label(card, learned ? id === DEFAULT_TACTIC ? "开局自带 · 免费使用" : "已学会 · 更换免费" :
-                `木 ${resourceCost(s.wood, t.wood)}  粮 ${resourceCost(s.food, t.food)}`, V.rowTextX, 122, V.rowTextWidth, 24, C.timber, false, 32);
-            const note = learned ? s.phase === "DAY" ? "点击卡片查看详情" : "天亮后可更换" :
-                reason || `已守 ${amount(s.completed)}/${t.unlockWaves} 波`;
+            if (learned) ctx.ui.label(card, id === DEFAULT_TACTIC ? "开局自带" : "已学会", V.rowTextX, 122, V.rowTextWidth, 24, C.timber, false, 32);
+            else ctx.ui.materialCosts(card, s, t, V.rowTextX, 121, V.rowTextWidth, 33);
+            const note = learned ? s.phase === "DAY" ? "" : "天亮后可更换" :
+                reasonBesideCost(reason) ?? (reason ? "材料不足" : `已守 ${amount(s.completed)}/${t.unlockWaves} 波`);
             const label = ctx.ui.label(card, note, 20, 158, 340, 24, reason && !learned ? C.red : C.green, false, 48);
             label.wordWrap = false; label.overflow = Laya.Text.SHRINK;
             const action = ctx.ui.button(card, equipped ? "已携带" : learned ? "携带" : "学习并携带", V.actionX, V.actionY, V.actionWidth,
@@ -75,18 +73,20 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
         if (next) {
             const card = new Laya.Sprite(); card.name = "UnknownTactic"; card.pos(0, revealed.length * V.rowStep);
             ctx.art.panel(card, "panel_card_disabled", 584, V.rowHeight); rows.content.addChild(card);
-            ctx.ui.label(card, "?", 22, 24, 100, 68, C.gold, true, 108).align = "center";
-            ctx.ui.label(card, "未知战技", 146, 40, 410, 32, C.ink, true, 48);
-            ctx.ui.label(card, `守住 ${next.unlockWaves} 波后揭晓`, 146, 100, 410, 27, C.muted, false, 54);
+            const mark = ctx.ui.label(card, "?", 16, 0, 116, 106, C.timber, true, V.rowHeight);
+            mark.align = "center"; mark.valign = "middle"; mark.wordWrap = false;
+            ctx.ui.label(card, "未知战技", 146, 55, 410, 32, C.ink, true, 48);
+            ctx.ui.label(card, `守住 ${next.unlockWaves} 波后揭晓`, 146, 109, 410, 27, C.muted, false, 54);
         }
-        ctx.ui.label(box, s.phase === "DAY" ? "学会后免费更换 · 守夜前选好战技" : "守夜期间仅可查看", 34, height - V.footer + 6, 600, 24, C.cream, false, 36).align = "center";
+        if (s.phase === "NIGHT") ctx.ui.label(box, "守夜期间仅可查看", 34, height - V.footer + 2, 600, 24, C.cream, false, 34).align = "center";
         if (p.back) ctx.ui.button(box, "‹", 30, 32, 54, () => ctx.open(p.back!, true), C.green, 54);
         return;
     }
     const t = tacticDefinition(p.id!), learned = s.tactics.learned.includes(t.id), equipped = s.tactics.equipped === t.id;
     const reason = tacticUnavailableReason(s, t.id, learned ? "EQUIP" : "LEARN");
     const height = learned ? V.detailOwnedHeight : V.detailLearnHeight;
-    const box = ctx.modal("战技详情", "", true, { width: UI.panelWidth, height });
+    const box = ctx.modal("战技详情", "", true, { width: UI.panelWidth, height },
+        "满足守夜波数和材料要求后可学习并携带。已学会的战技可在白天免费更换。");
     if (p.back) ctx.ui.button(box, "‹", 30, 32, 54, () => ctx.open(p.back!, true), C.green, 54);
     const paper = new Laya.Sprite(); paper.pos(34, 112);
     ctx.art.panel(paper, "panel_card", 600, height - 228); box.addChild(paper);
@@ -98,20 +98,15 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
     description.pos(24, 222); description.content.addChild(desc); paper.addChild(description);
     if (learned) ctx.ui.label(paper, t.id === DEFAULT_TACTIC ? "初始战技 · 已学会" : "已学会 · 更换免费", 24, 366, 552, 27, C.green, true, 44).align = "center";
     else {
-        const enough = s.wood >= t.wood && s.food >= t.food;
-        const lines = [
-            ["学习条件", `已守 ${amount(s.completed)}/${t.unlockWaves} 波`],
-            ["学习消耗", `木 ${t.wood} · 粮 ${t.food}`],
-            ["当前拥有", `木 ${resourceCost(s.wood, t.wood)} · 粮 ${resourceCost(s.food, t.food)}`],
-            ["学习后剩余", enough ? `木 ${amount(s.wood - t.wood)} · 粮 ${amount(s.food - t.food)}` : "材料不足"]
-        ];
-        lines.forEach(([title, value], i) => {
-            ctx.ui.label(paper, title, 24, 350 + i * 48, 176, 26, C.ink, true, 40);
-            const text = ctx.ui.label(paper, value, 206, 350 + i * 48, 370, 26, i === 0 && s.completed < t.unlockWaves || i === 3 && !enough ? C.red : C.green, false, 40);
-            text.wordWrap = false; text.overflow = Laya.Text.SHRINK;
-        });
+        ctx.ui.label(paper, `学习条件   已守 ${amount(s.completed)}/${t.unlockWaves} 波`, 24, 358, 552, 28,
+            s.completed < t.unlockWaves ? C.red : C.green, true, 48);
+        ctx.ui.label(paper, "学习费用", 24, 418, 144, 27, C.ink, true, 43);
+        ctx.ui.materialCosts(paper, s, t, 178, 419, 390, 43);
+        ctx.ui.label(paper, "当前库存", 24, 474, 144, 27, C.ink, true, 43);
+        ctx.ui.iconValue(paper, "icon_wood", amount(s.wood, true), 178, 474, 193, 42, C.timber, 26, "left");
+        ctx.ui.iconValue(paper, "icon_food", amount(s.food, true), 373, 474, 193, 42, C.green, 26, "left");
     }
-    const caption = equipped ? "已携带" : reason || (learned ? "携带" : "学习并携带");
+    const caption = equipped ? "已携带" : reasonBesideCost(reason) ?? (reason ? "材料不足" : learned ? "携带" : "学习并携带");
     const action = ctx.ui.button(box, caption, 54, height - 96, 560, () => selectTactic(ctx, p, t.id, learned), C.green, 66, !blocked && !reason);
     const actionText = (action.getChildByName("buttonFace") as Laya.Sprite).getChildByName("buttonText") as Laya.Text;
     actionText.wordWrap = false; actionText.overflow = Laya.Text.SHRINK;

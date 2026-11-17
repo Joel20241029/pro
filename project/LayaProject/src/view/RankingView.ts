@@ -4,6 +4,7 @@ import { RANKING_CANVAS } from "../config/RankingConfig";
 /** 仅作面板内布局与销毁占位；榜单由微信 screenCanvas 直接上屏，不创建 Laya 纹理。 */
 export class RankingView extends Laya.Sprite {
     private requestRevision = 0;
+    private revealError?: (error: unknown) => void;
     constructor(private platform: WechatPlatform, private bestNight: number, private requestId: string) {
         super();
         this.name = "FriendRankingCanvas";
@@ -18,19 +19,33 @@ export class RankingView extends Laya.Sprite {
     }
     /** 原生 CSS 与官方 Layout 触摸坐标共用同一窗口矩形；不再乘 DPR 或重复加安全区。 */
     updateViewPort() {
-        if (!this.parent || this.destroyed || !this.platform.rankingCanvas.owns(this.requestId)) return;
+        if (this.revealError || !this.parent || this.destroyed || !this.platform.rankingCanvas.owns(this.requestId)) return;
         const box = this.screenBounds();
         this.platform.rankingCanvas.move(this.requestId, box);
         this.platform.rankingDiagnostics.record("viewport", this.requestId, box);
         this.platform.postRanking({ type: "updateViewPort", box }, this.requestId);
     }
+    /** 外框停在最终位置后才显示画布；权限与数据请求已在点击时发起。 */
+    reveal() {
+        const report = this.revealError;
+        if (!report || !this.parent || this.destroyed || !this.platform.rankingCanvas.owns(this.requestId)) return;
+        this.revealError = undefined;
+        try {
+            this.platform.rankingCanvas.show(this.requestId, this.screenBounds());
+            this.updateViewPort();
+        } catch (error) { report(error); }
+    }
     private sampleRender() { if (!this.destroyed) this.platform.rankingCanvas.observe(this.requestId, this.displayedInStage); }
-    refreshRanking() {
+    refreshRanking(revealError?: (error: unknown) => void) {
         if (!this.parent || this.destroyed) return;
         this.platform.rankingDiagnostics.record("refresh_start", this.requestId);
         const revision = ++this.requestRevision;
-        this.platform.rankingCanvas.show(this.requestId, this.screenBounds());
-        this.updateViewPort();
+        this.revealError = revealError;
+        const box = this.screenBounds();
+        this.platform.rankingCanvas.show(this.requestId, revealError ? null : box);
+        // 开放域 Layout 必须先取得排版视口才能绘制，实际画布在弹入期间继续藏在屏外。
+        if (revealError) this.platform.postRanking({ type: "updateViewPort", box }, this.requestId);
+        else this.updateViewPort();
         this.platform.postRanking({ showRanking: true, bestNight: this.bestNight }, this.requestId);
         const isCurrent = () => !this.destroyed && revision === this.requestRevision && this.platform.rankingCanvas.owns(this.requestId);
         this.platform.authorizeRanking(isCurrent, error => {

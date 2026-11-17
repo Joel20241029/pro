@@ -1,0 +1,7 @@
+{
+  "model": "image_gen",
+  "reference": "source/rendered2d/generated/environment/grass_ground_textured.png",
+  "output": "source/rendered2d/generated/environment/grass_ground_soft.png",
+  "prompt": "Edit the attached square grass tile for the Chinese pastoral chibi game 代代守村. Preserve the softly sculpted pre-rendered 3D-to-2D overhead grass, the fine continuous turf backdrop, even lighting and small ground scale. Make the overall spring green only slightly dimmer and more muted toward warm olive (roughly 5% darker, less intense green, absolutely no murky gray/brown shift). Thin out the distinct raised grass tufts substantially: retain small naturally scattered low blade pockets with generous stretches of quiet short turf, about one third fewer distinct tufts, and soften the dense hairlike tiny blades so it reads cleanly on a handheld screen. Keep the grassy warmth and visible natural detail, no bare dirt and no smudgy flat blur. Matching opposite tile border color, texture density and lighting, preserve seamless repeated tiling. No shadows from off-screen objects, vignette, borders, plants other than grass, stones, leaves, road, text, logo, clipping or other objects. Deliver one opaque edge-to-edge square texture only.",
+  "runtime": { "asset": "tile_ground_grass", "size": [512, 512], "modulate": "105,85,100" }
+}

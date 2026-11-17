@@ -83,13 +83,17 @@ function importImage(spec) {
             '-background', 'none', '-gravity', 'south', '-extent', `${width}x${Math.round(pivot.y)}`,
             '-gravity', 'north', '-extent', `${width}x${height}`);
     }
+    if (spec.modulate) command.push('-modulate', spec.modulate);
+    // 额外裁掉成图右侧的孤点，按原点补回透明画布，避免重新缩放主体。
+    if (spec.cropRight) command.push('-gravity', 'northwest', '-crop', geometry([0, 0, width - spec.cropRight, height]),
+        '+repage', '-compose', 'Copy', '-background', 'none', '-extent', `${width}x${height}`);
     if (!nineSlice) run([...command, '-strip', target]);
     const sourceSheet = path.relative(root, target), sourceRect = { x: 0, y: 0, w: width, h: height };
     assets.push({ id, label: id, category, categoryLabel: category, path: `runtime/${category}/${id}.png`, width, height,
         pivot, sourceSheet, sourceRect, sourceCropWithinCell: sourceRect, nineSlice, mapping: '', animation: spec.animation || null,
         // 启动页在建筑包下载前会用到草地和两棵树，必须留在底包；其余场景素材随建筑包载入。
         fitPadding: 0, resizeMode: 'stretch', sampling: 'Lanczos', runtime: true, usage: 'HD production', bundle: ['building-parts', 'terrain', 'environment', 'buildings', 'decorations'].includes(category) && !['tile_ground_grass', 'deco_tree_oak', 'deco_tree_pine'].includes(id) ? 'buildings' : bundle,
-        provenance: { source, crop, objectBox, alphaCutoff, alphaFloor: spec.alphaFloor, fullCanvas, motherSize: spec.motherSize, groupCrop: spec.groupCrop, sourceHash: hash(input), outputHash: hash(target) } });
+        provenance: { source, crop, objectBox, alphaCutoff, alphaFloor: spec.alphaFloor, fullCanvas, motherSize: spec.motherSize, groupCrop: spec.groupCrop, modulate: spec.modulate, cropRight: spec.cropRight, sourceHash: hash(input), outputHash: hash(target) } });
     return id;
 }
 function clip(id, frameIds, fps, category, mapping) {
@@ -148,9 +152,10 @@ for (const [role, identities] of Object.entries({ male: ['male_a'], female: ['fe
         }
     }
 }
+const cradle = JSON.parse(fs.readFileSync(path.join(root, 'source/rendered2d/characters/baby/cradle-report.json')));
 const babyIds = [1, 2, 3, 4].map(i => importImage({ id: `hd_baby_idle_${i}`, source: `design/hd2d/directions/baby/baby_idle_${i}.png`, category: 'characters', bundle: 'characters', width: 192,
-    pivot: { x: 96, y: 192 * .698817 }, alphaCutoff: 0, fullCanvas: true, animation: 'villager_baby_idle' }));
-clip('villager_baby_idle', babyIds, 2, 'characters', 'gender-neutral baby');
+    pivot: { x: 192 * cradle.groundAnchor.x, y: 192 * cradle.groundAnchor.y }, alphaCutoff: 0, fullCanvas: true, animation: 'villager_baby_idle' }));
+clip('villager_baby_idle', babyIds, cradle.fps, 'characters', 'gender-neutral baby in cradle');
 for (const [kind, sheet] of Object.entries(buildingSheets)) for (let index = 0; index < 4; index++) {
     const source = generated('buildings/' + sheet);
     importImage({ id: `hd_${kind.toLowerCase()}_body_${index}`, source, crop: cell(source, 4, 1, index), category: 'building-parts', width: 256, fitHeight: 230, isolate: true });
@@ -161,9 +166,12 @@ for (const [index, name] of componentCells.entries()) {
 }
 for (const [index, name] of iconCells.entries()) {
     const source = generated('ui/icons');
-    importImage({ id: 'icon_' + name, source, crop: cell(source, 4, 4, index), category: 'ui/icons', width: 96, pivot: { x: 48, y: 96 }, fitHeight: 96, fitWidth: 96 });
+    // 木材成图第 93～95 列有孤点。只裁这三列，保留原 96×96 画布与锚点。
+    importImage({ id: 'icon_' + name, source, crop: cell(source, 4, 4, index), category: 'ui/icons', width: 96,
+        pivot: { x: 48, y: 96 }, fitHeight: 96, fitWidth: 96, cropRight: name === 'wood' ? 3 : undefined });
 }
 for (const [index, id] of detailCells.entries()) {
+    if (id.startsWith('emote_')) continue; // 对话共用民房气泡，原始美术稿留档，六张旧表情停止出包。
     const source = generated('environment/details');
     importImage({ id, source, crop: cell(source, 4, 3, index), category: id.startsWith('deco') ? 'decorations' : 'effects',
         bundle: ['fx_arrow', 'fx_stone', 'fx_ice'].includes(id) ? 'battle' : id.startsWith('deco') ? 'base' : 'characters', width: 128, pivot: { x: 64, y: 128 }, fitHeight: 128, fitWidth: 128 });
@@ -197,11 +205,11 @@ for (const [id, crop, width, height] of [
 ]) importImage({ id, source: rageSource, crop, category: 'effects', bundle: 'battle', width, height,
     pivot: { x: width / 2, y: height / 2 }, fullCanvas: true, alphaCutoff: 0 });
 // 正俯视圆图在运行时先旋转再压扁，前后由scrollRect裁切；256px保留手机采样。
-// 只保留窄边透明渐变；原稿不裁主体、不重新画图，所有塔共享两张battle贴图。
+// 正圆红环由白天精英和守夜战技共用，随人物包就绪；战技箭头仍在战斗包。
 for (const [id, crop, width] of [
     ['fx_rage_orbit', [0, 128, 768, 768], 256],
     ['fx_rage_up', [896, 256, 512, 512], 64]
-]) importImage({ id, source: 'source/effects/tactic-rage/orbit-b-sheet.png', crop, category: 'effects', bundle: 'battle',
+]) importImage({ id, source: 'source/effects/tactic-rage/orbit-b-sheet.png', crop, category: 'effects', bundle: id === 'fx_rage_orbit' ? 'characters' : 'battle',
     width, height: width, pivot: { x: width / 2, y: width / 2 }, fullCanvas: true, alphaCutoff: 0 });
 // 二楠之盾：原稿低alpha白雾不作为场景底色；光效用24/255连续归零，图标按32阈值清理。
 // 一张96px基础包图标；三张透明共享贴图随守夜battle包加载，不引入粒子与逐帧图。
@@ -231,7 +239,24 @@ for (let index = 0; index < 12; index++) {
 }
 for (const [index, id] of ['fx_hit', 'fx_slow_ring'].entries()) importImage({ id, source: generated('enemies/boar_front_impacts'),
     crop: [index * 768, 640, 768, 384], category: 'effects', bundle: 'battle', width: 128, fitWidth: 124, fitHeight: 124, pivot: { x: 64, y: 128 }, alphaCutoff: 0 });
-importImage({ id: 'tile_ground_grass', source: 'source/rendered2d/generated/environment/grass_ground_textured.png', category: 'terrain', width: 512, alphaCutoff: 0, fullCanvas: true });
+// 三套命中关键帧同画布同中心；裁边由图集处理，保持每帧的实际接触点。
+for (const kind of ['arrow', 'stone', 'slow']) {
+    const animation = `fx_impact_${kind}`;
+    const ids = [1, 2, 3, 4, 5].map(frame => {
+        const id = `${animation}_${frame}`;
+        return importImage({ id, source: `source/rendered2d/feedback134/${id}.png`, category: 'effects',
+            bundle: 'battle', width: 80, pivot: { x: 40, y: 40 }, alphaCutoff: 0, fullCanvas: true, animation });
+    });
+    clip(animation, ids, 24, 'effects', kind);
+    animations.at(-1).loop = false;
+}
+for (const id of ['tag_recommended', 'tag_favorite']) importImage({ id, source: `source/rendered2d/feedback134/${id}.png`,
+    category: 'ui/icons', width: 152, height: 50, alphaCutoff: 0, fullCanvas: true });
+importImage({ id: 'icon_baby_cry', source: 'source/rendered2d/feedback134/icon_baby_cry.png',
+    category: 'effects', bundle: 'characters', width: 78, height: 68, alphaCutoff: 0, fullCanvas: true });
+// 母图减少草簇。生产调色将候选换算为比 1.0.32 稍暗的柔和草色，启动与村庄仍共用 512px 平铺贴图。
+importImage({ id: 'tile_ground_grass', source: 'source/rendered2d/generated/environment/grass_ground_soft.png', category: 'terrain', width: 512,
+    alphaCutoff: 0, fullCanvas: true, modulate: '105,85,100' });
 importImage({ id: 'map_road', source: 'design/hd2d/parts/road_sprite.png', category: 'terrain', width: 512, height: 768, alphaCutoff: 0, fullCanvas: true });
 // 城门脚横路只保留母图中的窄带；清除极低alpha背景噪点，保留道路及草边的渐隐过渡。
 importImage({ id: 'map_gate_lane', source: 'source/rendered2d/generated/environment/gate_lane.png', crop: [16, 464, 1504, 128], category: 'terrain', width: 512, height: 48, alphaCutoff: 16, fullCanvas: true });

@@ -2,7 +2,6 @@ import { CombatPresentation } from "./CombatPresentation";
 import { LoggingFeedback } from "./LoggingFeedback";
 import { EnemyVisuals } from "./EnemyVisuals";
 import { GameSession } from "../game/GameSession";
-import { person } from "../game/VillageRules";
 import { GameState, isElder } from "../game/GameState";
 import { ELITE, RULE } from "../game/GameConfig";
 import { BattleSimulation } from "../game/BattleSimulation";
@@ -16,7 +15,10 @@ import { VillagerMotion } from "./VillagerMotion";
 import { WalkAnimation } from "./WalkAnimation";
 import { ProjectileMotion } from "./ProjectileMotion";
 import { C } from "./UiTheme";
-import { EMOTE, VillagerEmotes } from "./VillagerEmotes";
+import { AnchoredTip } from "./AnchoredTip";
+import { VillagerThought, VillagerThoughts } from "./VillagerThoughts";
+import { CRY, NewbornCry } from "./NewbornCry";
+import { SPEECH } from "./config/VillagerSpeechConfig";
 import { BuildingLook, BuildingVisuals } from "./BuildingVisuals";
 import { houseRooms } from "./BuildingLayout";
 import { UiWidgets } from "./UiWidgets";
@@ -33,10 +35,12 @@ export class VillageWorld {
     readonly world = new Laya.Sprite();
     readonly shots = new Laya.Sprite();
     readonly bellAura = new Laya.Sprite();
-    readonly emote = new Laya.Sprite();
+    readonly speechTip = new AnchoredTip(this.art, SPEECH.width, SPEECH.height, SPEECH.font, true);
+    readonly cryIcon = new Laya.Sprite();
     private people: Laya.Sprite[] = [];
     private enemies: Laya.Sprite[] = [];
     private actorShadows: Laya.Sprite[] = [];
+    private eliteRings: { plane: Laya.Sprite; disc: Laya.Sprite }[] = [];
     private enemyVisuals: EnemyVisuals[] = [];
     private hearts: Laya.Sprite[] = [];
     private props: WorldItem[] = [];
@@ -44,9 +48,15 @@ export class VillageWorld {
     private freshBuildingVillage = true;
     scene = layoutVillage(this.layout);
     private motion = new VillagerMotion(new VillageNavigation(this.scene.props, this.scene.landscape, this.scene.bounds), this.scene.stops);
-    private emotes = new VillagerEmotes();
+    private thoughts = new VillagerThoughts();
+    private crying = new NewbornCry();
+    private cryPoint = new Laya.Point();
+    private residentCuesBlocked = false;
+    private shownThought: VillagerThought | null = null;
     private walkAnimation = new WalkAnimation(this.art);
     private feedback = new CombatPresentation();
+    // 结算会同步刷新；同一 Laya 帧随后收到的旧 delta 不得跳过刚出现的接触/红闪。
+    private feedbackFrame = -1;
     private logging = new LoggingFeedback();
     private projectiles = new ProjectileMotion();
     private projectileVisuals: ProjectileVisuals;
@@ -60,7 +70,7 @@ export class VillageWorld {
     private hitTop = new Laya.Point();
     private hitBottom = new Laya.Point();
     constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private layout: GameLayout,
-        houseClicked: (name: string, visual: BuildingVisuals) => void, personClicked: (id: string) => void) {
+        houseClicked: (name: string, visual: BuildingVisuals) => void, personClicked: (id: string) => void, private playDefeat?: () => void) {
         this.world.name = "VillageWorld";
         this.rage = new TowerRageEffects(this.world, art);
         this.shield = new GateShieldEffects(this.world, art);
@@ -116,18 +126,17 @@ export class VillageWorld {
             s.addChild(heart);
             this.hearts.push(heart);
         }
-        for (let i = 0; i < RULE.enemyCap * 2; i++) {
-            const s = new Laya.Sprite();
-            s.mouseEnabled = false;
-            this.world.addChild(s);
-            this.enemies.push(s); this.enemyVisuals.push(new EnemyVisuals(s, art));
-        }
+        this.reserveEnemies(RULE.enemyCap * 2);
         this.projectileVisuals = new ProjectileVisuals(this.shots, art);
         // 此池仅绘制村民地影；怪物接地影已纳入自己的原生动画，不能再用独立世界节点重复绘制。
         for (let i = 0; i < this.people.length; i++) {
             const shadow = new Laya.Sprite(); shadow.texture = this.art.get("shadow_actor");
             shadow.name = "ContactShadow:" + i; shadow.mouseEnabled = false; shadow.visible = false;
             shadow.alpha = WORLD_ART.shadow.alpha; this.world.addChild(shadow); this.actorShadows.push(shadow);
+            const plane = new Laya.Sprite(), disc = new Laya.Sprite();
+            plane.name = "EliteFootRing:" + i; plane.visible = false;
+            plane.mouseEnabled = disc.mouseEnabled = false;
+            plane.addChild(disc); this.world.addChild(plane); this.eliteRings.push({ plane, disc });
         }
         this.interaction.bind(clickNodes, this.ui, houseClicked, personClicked);
     }
@@ -143,14 +152,23 @@ export class VillageWorld {
     destroy() {
         this.interaction.cancelPresses();
     }
+    /** 尸体停留时活怪仍会入场；池只增长到实际峰值，随后复用，禁止按原容量静默漏画死亡动画。 */
+    private reserveEnemies(count: number) {
+        while (this.enemies.length < count) {
+            const node = new Laya.Sprite(); node.mouseEnabled = false; node.visible = false;
+            this.world.addChild(node); this.enemies.push(node); this.enemyVisuals.push(new EnemyVisuals(node, this.art));
+        }
+    }
     reset() {
         this.shield.reset();
         this.interaction.cancelPresses();
         this.interaction.clearDepth();
         this.motion = new VillagerMotion(new VillageNavigation(this.scene.props, this.scene.landscape, this.scene.bounds), this.scene.stops);
-        this.emotes = new VillagerEmotes(); this.walkAnimation = new WalkAnimation(this.art);
+        this.thoughts = new VillagerThoughts(); this.crying = new NewbornCry(); this.cryIcon.visible = false;
+        this.hideSpeech(); this.walkAnimation = new WalkAnimation(this.art);
         this.projectiles = new ProjectileMotion();
         this.feedback = new CombatPresentation(); this.logging = new LoggingFeedback();
+        this.feedbackFrame = -1;
         this.lastBattle = null;
         this.lastBattleTick = 0;
         this.renderDelta = 0;
@@ -168,8 +186,10 @@ export class VillageWorld {
     sync(s: GameState, preserveOverlay: boolean) {
         if (!preserveOverlay)
             this.motion.sync(s, this.game.battle ? this.game.battle.base.towers : s.towers);
-        this.emotes.sync(s);
+        this.thoughts.sync(s);
+        this.crying.sync(s.people);
     }
+    hideSpeech() { this.thoughts.current = this.shownThought = null; this.speechTip.hide(); }
     drawScenery(night: boolean) {
         const key = night ? "night" : "day";
         if (this.backgroundKey === key)
@@ -216,7 +236,8 @@ export class VillageWorld {
         }
         const visualDelta = battle ? Math.max(0, battle.tick - this.lastBattleTick) * RULE.step : Math.min(RULE.frameCap, Math.max(0, delta));
         this.lastBattleTick = battle ? battle.tick : 0;
-        if (!this.game.pauses.size) this.feedback.advance(Math.min(RULE.frameCap, Math.max(0, delta)));
+        if (!this.game.pauses.size && this.feedbackFrame !== Laya.timer.currFrame)
+            this.feedback.advance(Math.min(RULE.frameCap, Math.max(0, delta)));
         if (s && !this.game.pauses.size && (s.phase === "DAY" || s.phase === "NIGHT")) {
             this.sceneSeconds += visualDelta;
             if (this.motion.update(visualDelta)) this.motion.sync(s, battle ? battle.base.towers : s.towers);
@@ -224,7 +245,16 @@ export class VillageWorld {
             this.logging.retain(new Set(this.motion.visiblePeople.map(p => p.id)));
             this.logging.advance(visualDelta);
             for (const tree of this.props) if (tree.id.startsWith("tree:")) tree.node.rotation = this.logging.rotation(tree.id);
-            this.emotes.update(s, Math.min(RULE.frameCap, Math.max(0, delta)), id => { if (!this.motion.visiblePeople.some(p => p.id === id)) return false; const pose = this.motion.get(id); return !pose.insideTower && pose.y > this.layout.worldY(840) && pose.heartElapsed === null; });
+            if (s.phase === "DAY" && !this.residentCuesBlocked) {
+                const visible = (id: string) => {
+                    if (!this.motion.visiblePeople.some(p => p.id === id)) return false;
+                    const pose = this.motion.get(id);
+                    return !pose.insideTower && pose.y > this.layout.worldY(840) && pose.heartElapsed === null;
+                };
+                this.crying.advance(visualDelta, !this.thoughts.current, visible);
+                if (!this.crying.current) this.thoughts.update(s, visualDelta, visible);
+                this.speechTip.advance(visualDelta);
+            }
         }
         this.renderDelta += delta;
         if (this.renderDelta < 1 / 30)
@@ -232,18 +262,23 @@ export class VillageWorld {
         this.renderDelta = 0;
         return true;
     }
-    render(panelOpen: boolean) {
+    render(panelOpen: boolean, houseTipOpen = false) {
+        this.feedbackFrame = Laya.timer.currFrame;
         const s = this.game.state, battle = this.game.battle;
+        const presentation = this.game.presentationBattle;
         const events = this.game.takeCombatFeedback();
-        this.feedback.sync(battle, events);
+        this.feedback.sync(presentation, events);
         this.bellAura.visible = false;
         this.bellAura.graphics.clear();
         this.people.forEach(n => n.visible = false);
         this.enemies.forEach(n => n.visible = false);
         this.actorShadows.forEach(n => n.visible = false);
+        this.eliteRings.forEach(({ plane }) => plane.visible = false);
         this.projectileVisuals.clear();
         this.hearts.forEach(n => { n.visible = false; n.alpha = 1; n.scale(1, 1); n.pos(0, 0); });
-        this.emote.visible = false;
+        this.cryIcon.visible = false;
+        this.residentCuesBlocked = panelOpen || houseTipOpen || this.game.pauses.size > 0 || s?.phase !== "DAY";
+        if (this.residentCuesBlocked) { this.hideSpeech(); this.crying.dismiss(); }
         const depth = this.props.slice();
         if (!s) {
             this.rage.update(null, []);
@@ -295,7 +330,8 @@ export class VillageWorld {
         for (const p of this.props)
             if (p.id.startsWith("tower:"))
                 p.visual!.updateAttack(battle, Number(p.id.split(":")[1]));
-        this.projectiles.update(battle, this.layout, this.scene.pads, index => this.props.find(p => p.id === `tower:${index}`)!.visual!.launchPoint(), this.feedback);
+        this.projectiles.update(presentation, this.layout, this.scene.pads, index => this.props.find(p => p.id === `tower:${index}`)!.visual!.launchPoint(), this.feedback);
+        if (this.feedback.takeDefeatCue() && !this.game.pauses.size) this.playDefeat?.();
         this.freshBuildingVillage = false;
         this.walkAnimation.retain(new Set(this.motion.visiblePeople.map(p => p.id)));
         if (this.art.ready("characters")) this.motion.visiblePeople.forEach((p, i) => {
@@ -311,6 +347,15 @@ export class VillageWorld {
             n.getGraphicBounds(false, n.hitArea as Laya.Rectangle);
             n.pos(pose.x, pose.y);
             n.scale((facing.mirror ? -1 : 1) * scale, scale);
+            if (p.elite && n.visible) {
+                const { plane, disc } = this.eliteRings[i], ring = WORLD_ART.eliteRing, width = ring.width * scale;
+                if (!disc.texture) disc.texture = this.art.get(ring.frame);
+                disc.size(width, width).pivot(width / 2, width / 2);
+                disc.rotation = this.sceneSeconds / ring.turnSeconds * 360 % 360;
+                plane.pos(pose.x, pose.y + 1).scale(1, ring.heightRatio);
+                plane.alpha = ring.alpha; plane.visible = true;
+                depth.push({ id: plane.name, y: pose.y - .003, node: plane, ground: true });
+            }
             if (pose.heartElapsed !== null && n.visible) {
                 const heart = this.hearts[i], elapsed = pose.heartElapsed;
                 if (!heart.texture) this.art.applyFrame(heart, "fx_hearts", WEDDING.heartSize);
@@ -323,20 +368,21 @@ export class VillageWorld {
             }
             depth.push({ id: n.name, y: pose.y, node: n, personId: p.id });
         });
-        const emote = this.emotes.current;
-        if (this.art.ready("characters") && emote && this.motion.visiblePeople.some(p => p.id === emote.id) && !panelOpen && !this.game.pauses.size && (s.phase === "DAY" || s.phase === "NIGHT")) {
-            const pose = this.motion.get(emote.id);
-            if (!pose.insideTower) {
-                const owner = person(s, emote.id), scale = (owner.elite ? ELITE.visualScale : 1) * this.layout.personScale;
-                const elapsed = EMOTE.seconds - emote.remaining;
-                this.emote.visible = true;
-                this.art.applyFrame(this.emote, emote.frameId, EMOTE.size);
-                // 高清人物四向头顶距足底约成人38~43/孩子34~37；偏移各缩短8，保留头顶间距及3px轻微上浮。
-                // 挂点继续随屏幕与精英缩放，调整只影响表情位置，不改变触发或显示时长。
-                const headOffset = owner.adult ? 44 : 38;
-                this.emote.pos(Math.max(EMOTE.size / 2, Math.min(720 - EMOTE.size / 2, pose.x)), pose.y - headOffset * scale - Math.sin(Math.min(1, elapsed / .25) * Math.PI / 2) * 3);
-                this.emote.alpha = Math.min(1, elapsed / .16, emote.remaining / .25);
-            }
+        const thought = this.thoughts.current;
+        const speaker = thought && this.people.find(node => node.visible && node.name === `person:${thought.id}`);
+        if (!speaker || !thought) this.hideSpeech();
+        else if (thought !== this.shownThought) {
+            this.shownThought = thought;
+            this.speechTip.show(thought.text, () => ({ node: speaker, bounds: speaker.hitArea as Laya.Rectangle }));
+        } else this.speechTip.advance(0);
+        const baby = this.crying.current && this.people.find(n => n.visible && n.name === `person:${this.crying.current}`);
+        if (baby && this.cryIcon.parent) {
+            if (!this.cryIcon.texture) this.art.applyFrame(this.cryIcon, "icon_baby_cry", CRY.size);
+            const bounds = baby.hitArea as Laya.Rectangle, age = this.crying.elapsed;
+            baby.localToGlobal(this.cryPoint.setTo(bounds.x + bounds.width / 2, bounds.y), false, this.cryIcon.parent as Laya.Sprite);
+            this.cryIcon.pos(this.cryPoint.x, this.cryPoint.y - 5 - 2 * Math.sin(age * 10));
+            this.cryIcon.alpha = Math.min(1, age / .1, (CRY.duration - age) / .16);
+            this.cryIcon.visible = true;
         }
         if (battle && this.art.ready("battle")) {
             const ringing = !battle.outcome && battle.bellTicks > 0 && (battle.tactic.effect === "ATTACK_SPEED" || battle.tactic.effect === "MULTI_TARGET");
@@ -350,12 +396,15 @@ export class VillageWorld {
                         this.bellAura.graphics.drawCircle(pad.x, pad.y - 40, 46 + pulse * 4, "rgba(246,207,114,0.12)", "#f6cf72", 3);
                 });
             }
-            const visibleEnemies = [...battle.enemies.map(enemy => ({ enemy })), ...Array.from(this.feedback.deaths.values())];
-            visibleEnemies.slice(0, this.enemies.length).forEach(({ enemy: e }, i) => {
+        }
+        if (presentation && this.art.ready("battle")) {
+            const visibleEnemies = [...(presentation.outcome ? [] : presentation.enemies).map(enemy => ({ enemy })), ...Array.from(this.feedback.deaths.values())];
+            this.reserveEnemies(visibleEnemies.length);
+            visibleEnemies.forEach(({ enemy: e }, i) => {
                 const n = this.enemies[i], at = enemyPoint(e);
                 n.visible = true;
                 n.name = `enemy:${e.seq}`;
-                this.enemyVisuals[i].draw(e.kind, e.appearanceSeed, e.walkDistance, this.art.enemyMirror(e.kind, enemyPoint({ ...e, progress: e.progress + 1 }).x - at.x), this.feedback.flashing(e.seq));
+                this.enemyVisuals[i].draw(e.kind, e.appearanceSeed, e.walkDistance, this.art.enemyMirror(e.kind, enemyPoint({ ...e, progress: e.progress + 1 }).x - at.x), this.feedback.flashing(e.seq), this.feedback.deathPose(e.seq), this.feedback.hitShake(e.seq));
                 n.pos(at.x, this.layout.worldY(at.y));
                 depth.push({ id: n.name, y: n.y, node: n });
             });

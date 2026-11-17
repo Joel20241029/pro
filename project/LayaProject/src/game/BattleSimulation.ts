@@ -6,7 +6,7 @@ export { pointAt, PATH_LENGTH } from "./BattleRoad";
 import { clone, GameState } from "./GameState";
 import { assignOperator, person, policy } from "./VillageRules";
 import { enemyPower, levelPower } from "./Growth";
-import { TacticDefinition, tacticDefinition } from "../config/TacticConfig";
+import { TACTIC_USE, TacticDefinition, tacticDefinition } from "../config/TacticConfig";
 export interface Enemy {
     seq: number;
     kind: EnemyKind;
@@ -43,7 +43,8 @@ export class BattleSimulation {
     /** 累计有效齐射次数，仅供音效观察；分裂的三枚弹体仍计一次，不影响伤害或快照。 */
     volleys = 0;
     gate: number;
-    bellUsed = false;
+    private tacticUses = 0;
+    private nextTacticTick = 0;
     bellTicks = 0;
     outcome: "WIN" | "LOSE" | null = null;
     private cursor = 0;
@@ -63,16 +64,22 @@ export class BattleSimulation {
     }
     get operators() { return this.base.towers.map(t => t.operator); }
     get pendingCount() { return this.base.wave!.entries.length - this.cursor + this.queued.length; }
+    get tacticUsesLeft() { return TACTIC_USE.perNight - this.tacticUses; }
+    get tacticCooldownTicks() { return Math.max(0, this.nextTacticTick - this.tick); }
+    get canCastTactic() { return !this.outcome && this.tacticUsesLeft > 0 && this.tacticCooldownTicks === 0; }
     /** 与扣血判定共用：最后一个有效步保护该步全部触门者，步末才减时。 */
     get gateProtected() { return !this.outcome && this.bellTicks > 0 && this.tactic.effect === "GATE_INVULNERABLE"; }
-    bell() { if (!this.bellUsed && !this.outcome) {
-        this.bellUsed = true;
+    bell() {
+        if (!this.canCastTactic) return;
+        this.tacticUses++;
+        this.nextTacticTick = this.tick + TACTIC_USE.cooldownTicks;
         this.bellTicks = this.tactic.ticks;
-    } }
+    }
     reassign(index: number, id: string) { assignOperator(this.base, index, id); }
     private spawn(kind: EnemyKind, progress: number, seed: number) {
-        const data = ENEMIES[kind], affix = this.base.wave!.affix;
-        const hp = Math.ceil(data.hp * enemyPower(this.base.day) * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1));
+        const data = ENEMIES[kind], { affix, ordinaryHealthPercent } = this.base.wave!;
+        const healthScale = data.boss ? 1 : (ordinaryHealthPercent ?? 100) / 100;
+        const hp = Math.ceil(data.hp * enemyPower(this.base.day) * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1) * healthScale);
         this.enemies.push({ seq: this.seq++, kind, appearanceSeed: seed, progress, walkDistance: 0, hp, speed: data.speed * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
     }
     step() {

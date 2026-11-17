@@ -22,16 +22,17 @@ export const HUD = {
     settings: { x: 28, top: -36, width: 126, height: 60 },
     date: { x: 232, top: 0, width: 256, font: 26, height: 34 },
     // 高清图标按可见裁框居中后与文字同高；44px图文区及8px间距避免透明留白造成错位。
-    resource: { x: 28, step: 226, width: 212, textY: 4, textWidth: 154, font: 30, minFont: 20, height: 44, icon: 44, iconY: 4, gap: 8, textPadding: 4 },
+    resource: { x: 28, step: 226, width: 212, textY: 0, textWidth: 154, font: 30, minFont: 20, height: 44, icon: 44, iconY: 4, gap: 8, textPadding: 4 },
     gate: { x: 304, top: -162, width: 112, font: 22, height: 28, stroke: 1.5, barX: 316, barTop: -130, barWidth: 88, barHeight: 7, barInset: 2, fillWidth: 84, fillHeight: 3, dangerRatio: .35 },
     // 四塔说明贴近足底（pad.y-95+124*15/16），统一居中且不按塔位左右偏移。
     // 20号字、2px行距和轻描边让长精英名也与短屏城门分开；144宽保持两行，点击区另按放大后的塔身配置。
     tower: { hitX: -68, hitY: -98, hitWidth: 136, hitHeight: 152, labelWidth: 144, top: 24, font: 20, leading: 2, stroke: 1.5, occupiedHeight: 44, emptyHeight: 28 },
-    // 可建塔提示只作轻微平滑呼吸，不改变点击范围；1.8秒/±6%由本轮视觉评审确定。
-    towerBuildHint: { size: 40, gap: 4, hitHeight: 176, seconds: 1.8, amplitude: .06 },
+    // 加号挂在空底座中心，较明显的呼吸帮助找出可建位置。命中区域仍用固定矩形。
+    towerBuildHint: { size: 42, centerAbovePad: 29, hitHeight: 176, seconds: 1.65, amplitude: .16 },
     // 按钮右上角28px矢量红点，圆心内缩7px，约14px手机显示；随 buttonFace 按压，不遮图文。
     // 仅底部村务按钮使用，地图防塔不再放红点。
-    actionDot: { size: 28, inset: 7 },
+    // 所有可操作和新战技红点共用放大 1.5 倍后的尺寸；内收重定中心以保留边框留白。
+    actionDot: { size: 42, inset: 14 },
     /** 已确认的圆形居中底栏（720×242）：白天两侧各两个村务入口，主按钮整图等比显示。
      * 字号/颜色由同一配置与 C 控制；按钮按下仍整体下移3px，底边保留至少13px安全留白。
      * 仅改变HUD布局，不调整地图高度、守夜确认、下载重试或战斗操作。
@@ -44,13 +45,13 @@ export const HUD = {
     },
     /** 2026-11-14已确认的守夜三按钮；沿用白天圆钮中心和242高底栏，地图不重排。
      * 环外径184，含3px按压后下沿235，保留7px安全留白；状态行截至40，避开环顶48。
-     * 数值均为720宽的逻辑像素，只影响表现；倒计时总长必须读取RULE.bellTicks。
+     * 数值均为720宽的逻辑像素，只影响表现。冷却环用灰绿色与金色生效环区分。
      */
     night: {
         status: { x: 28, y: 8, width: 664, height: 32, font: 24 },
         side: { xs: [72, 504], y: 92, width: 144, height: 112, icon: 44, iconY: 12, textY: 68, textHeight: 34, font: 28 },
         heart: { icon: 60, iconY: 20, textY: 86, textHeight: 40, noteY: 128, noteHeight: 28, noteFont: 22, stroke: 1.4 },
-        ring: { radius: 90, width: 4, segments: 64, color: "#fff0a3", track: "#a76b26" }
+        ring: { radius: 90, width: 4, segments: 64, color: "#fff0a3", track: "#a76b26", cooldownColor: "#e6eddb", cooldownTrack: "#80916e" }
     },
     navigation: [
         { title: "村民", panel: "people", icon: "icon_population" },

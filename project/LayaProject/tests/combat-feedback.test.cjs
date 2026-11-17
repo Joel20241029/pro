@@ -28,17 +28,29 @@ test('multi-step session inbox captures every shot once and no event changes fam
 });
 test('living target is followed, every pending shot shares death point, flash begins only at visual arrival',()=>{
  const b=battle(),f=new CombatPresentation(),a=shot(0),fatal=shot(1,'STONE');b.enemies=[enemy(1)];f.sync(b,[{type:'shot',shot:a,target:1,hurt:[enemy(1)]}]);assert(!f.flashing(1));b.enemies[0].progress=260;assert.deepEqual(f.target(a),enemyPoint(b.enemies[0]));
- b.enemies=[];f.sync(b,[{type:'shot',shot:fatal,target:1,hurt:[enemy(1,0,280)]}]);assert.deepEqual(f.target(a),f.target(fatal));assert.equal(f.deaths.size,1);f.impact(fatal);assert(f.flashing(1));f.advance(.15);assert.equal(f.deaths.size,0);assert(!f.flashing(1));f.impact(a);assert.equal(f.deaths.size,0);assert(!f.flashing(1));
+ b.enemies=[];f.sync(b,[{type:'shot',shot:fatal,target:1,hurt:[enemy(1,0,280)]}]);assert.deepEqual(f.target(a),f.target(fatal));assert.equal(f.deaths.size,1);f.impact(fatal);assert(f.flashing(1));f.advance(.15);assert.equal(f.deaths.size,1);assert(!f.flashing(1));const started=f.deaths.get(1).started;f.impact(a);assert.equal(f.deaths.get(1).started,started);assert(!f.flashing(1));f.advance(.72);assert.equal(f.deaths.size,0);
 });
 test('arrival still fires once if a triple-speed frame jumps beyond the entire impact interval',()=>{
  const b=battle(),f=new CombatPresentation(),p=new ProjectileMotion(),s=shot(0);b.enemies=[enemy(1)];b.tick=1;f.sync(b,[{type:'shot',shot:s,target:1,hurt:[enemy(1)]}]);p.update(b,undefined,undefined,undefined,f);assert.equal(p.arrivals.length,0);
  b.tick=16;p.update(b,undefined,undefined,undefined,f);assert.equal(p.arrivals.length,1);assert(f.flashing(1));p.update(b,undefined,undefined,undefined,f);assert.equal(p.arrivals.length,0);
 });
 test('gate collision and battle replacement retire visual state; no old event replay',()=>{
- const b=battle(),f=new CombatPresentation(),s=shot(0);f.sync(b,[{type:'shot',shot:s,target:1,hurt:[enemy(1,0)]}]);f.sync(b,[{type:'gate',enemy:enemy(1,0,PATH_LENGTH)}]);assert.equal(f.deaths.size,0);f.sync(null,[]);assert.equal(f.shots.size,0);
+ const b=battle(),f=new CombatPresentation(),s=shot(0);f.sync(b,[{type:'shot',shot:s,target:1,hurt:[enemy(1,0)]}]);f.sync(b,[{type:'gate',enemy:enemy(1,0,PATH_LENGTH)}]);assert.equal(f.deaths.size,1);assert.equal(f.deaths.get(1).fatal,null);assert(f.deathPose(1));f.sync(null,[]);assert.equal(f.deaths.size,0);assert.equal(f.shots.size,0);
 });
-test('fatal snapshot outlives short 3x projectile impact interval until readable wall-clock flash ends',()=>{
- const b=battle(),f=new CombatPresentation(),p=new ProjectileMotion(),s=shot(0);f.sync(b,[{type:'shot',shot:s,target:1,hurt:[enemy(1,0)]}]);b.tick=7;p.update(b,undefined,undefined,undefined,f);assert(f.flashing(1));b.tick=14;p.update(b,undefined,undefined,undefined,f);assert(f.deaths.has(1));f.advance(.15);assert(!f.deaths.has(1));
+test('fatal snapshot outlives short 3x projectile impact interval through the full death animation',()=>{
+ const b=battle(),f=new CombatPresentation(),p=new ProjectileMotion(),s=shot(0);f.sync(b,[{type:'shot',shot:s,target:1,hurt:[enemy(1,0)]}]);b.tick=7;p.update(b,undefined,undefined,undefined,f);assert(f.flashing(1));b.tick=14;p.update(b,undefined,undefined,undefined,f);assert(f.deaths.has(1));f.advance(.15);assert(f.deaths.has(1));assert(!f.flashing(1));f.advance(.72);assert(!f.deaths.has(1));
+});
+test('defeat cue is deferred to visual contact, coalesces combat deaths and excludes gate exits',()=>{
+ const b=battle(),f=new CombatPresentation(),p=new ProjectileMotion(),fatal=shot(0,'STONE');
+ b.tick=1;b.outcome='WIN';
+ f.sync(b,[{type:'shot',shot:fatal,target:1,hurt:[enemy(1,0),enemy(2,0)]}]);
+ p.update(b,undefined,undefined,undefined,f);assert.equal(f.takeDefeatCue(),false);
+ f.advance(PROJECTILE_STYLE.STONE.flight+.01);p.update(b,undefined,undefined,undefined,f);
+ assert.equal(f.takeDefeatCue(),true);assert(f.deathPose(1));assert(f.deathPose(2));
+ f.impact(fatal);f.discard(fatal);assert.equal(f.takeDefeatCue(),false);
+ const hidden=shot(2);f.sync(b,[{type:'shot',shot:hidden,target:3,hurt:[enemy(3,0)]}]);
+ f.discard(hidden);assert(f.deathPose(3));assert.equal(f.takeDefeatCue(),true);f.discard(hidden);
+ f.sync(b,[{type:'gate',enemy:enemy(4,0,PATH_LENGTH)}]);assert.equal(f.takeDefeatCue(),false);
 });
 test('both actual chop clips trigger only when crossing frame 3, pause and resting do not repeat',()=>{
  for(const clip of ['villager_male_a_chop','villager_female_a_chop']){const f=new LoggingFeedback();f.sample('a',clip,0,true,'tree:a');f.sample('a',clip,.5,true,'tree:a');f.advance(.04);assert.notEqual(f.rotation('tree:a'),0);f.advance(1);f.sample('a',clip,.5,true,'tree:a');f.advance(0);assert.equal(f.rotation('tree:a'),0);f.sample('a',clip,1.2,false,'tree:a');f.advance(.1);assert.equal(f.rotation('tree:a'),0);}

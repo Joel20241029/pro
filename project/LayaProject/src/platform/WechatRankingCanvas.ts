@@ -38,12 +38,14 @@ export class WechatRankingCanvas {
         return this.opened;
     }
     owns(request: string) { return this.owner === request; }
-    show(request: string, box: RankingViewport) {
+    show(request: string, box: RankingViewport | null) {
         const canvas = this.context.canvas;
         // 先取得拥有权；原生 style 部分写入失败时，面板销毁仍能将已露出的画布隐藏。
         this.owner = request;
-        this.place(canvas, box);
-        this.diagnostics.record("native_show", request, box);
+        if (box) {
+            this.place(canvas, box);
+            this.diagnostics.record("native_show", request, box);
+        } else this.conceal(canvas);
     }
     move(request: string, box: RankingViewport) {
         if (!this.owns(request)) return;

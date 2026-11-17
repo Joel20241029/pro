@@ -18,16 +18,16 @@
       "category": "enemies",
       "mapping": "enemy_raider",
       "canvas": {
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 60
+      "stridePixels": 62.5
     },
     {
       "id": "enemy_runner_walk",
@@ -46,16 +46,16 @@
       "category": "enemies",
       "mapping": "enemy_runner",
       "canvas": {
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 68
+      "stridePixels": 70.83333333333334
     },
     {
       "id": "enemy_armored_walk",
@@ -74,16 +74,16 @@
       "category": "enemies",
       "mapping": "enemy_armored",
       "canvas": {
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 48
+      "stridePixels": 50
     },
     {
       "id": "enemy_boar_walk",
@@ -102,16 +102,16 @@
       "category": "enemies",
       "mapping": "enemy_boar",
       "canvas": {
-        "w": 176,
-        "h": 176
+        "w": 184,
+        "h": 184
       },
       "pivot": {
-        "x": 88,
-        "y": 157.66666666666669
+        "x": 92,
+        "y": 164.83333333333334
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 44
+      "stridePixels": 46
     },
     {
       "id": "enemy_disruptor_walk",
@@ -130,16 +130,16 @@
       "category": "enemies",
       "mapping": "enemy_disruptor",
       "canvas": {
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 56
+      "stridePixels": 58.333333333333336
     },
     {
       "id": "enemy_chief_walk",
@@ -160,16 +160,16 @@
       "category": "enemies",
       "mapping": "enemy_chief",
       "canvas": {
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 68
+      "stridePixels": 80
     },
     {
       "id": "enemy_commander_walk",
@@ -190,16 +190,16 @@
       "category": "enemies",
       "mapping": "enemy_commander",
       "canvas": {
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 68
+      "stridePixels": 82
     },
     {
       "id": "enemy_wolfking_walk",
@@ -220,16 +220,16 @@
       "category": "enemies",
       "mapping": "enemy_wolfking",
       "canvas": {
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 85
+      "stridePixels": 100
     },
     {
       "id": "enemy_tuskking_walk",
@@ -250,16 +250,16 @@
       "category": "enemies",
       "mapping": "enemy_tuskking",
       "canvas": {
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "pivot": {
-        "x": 144,
-        "y": 258
+        "x": 168,
+        "y": 301
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 60
+      "stridePixels": 70
     },
     {
       "id": "enemy_shaman_walk",
@@ -280,16 +280,16 @@
       "category": "enemies",
       "mapping": "enemy_shaman",
       "canvas": {
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 68
+      "stridePixels": 82
     },
     {
       "id": "villager_male_a_walk",
@@ -1320,14 +1320,92 @@
       "loop": true,
       "restFrame": "hd_baby_idle_1",
       "category": "characters",
-      "mapping": "gender-neutral baby",
+      "mapping": "gender-neutral baby in cradle",
       "canvas": {
         "w": 192,
         "h": 192
       },
       "pivot": {
-        "x": 96,
-        "y": 134.172864
+        "x": 95.9999885559082,
+        "y": 124.48734283447266
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "fx_impact_arrow",
+      "frameIds": [
+        "fx_impact_arrow_1",
+        "fx_impact_arrow_2",
+        "fx_impact_arrow_3",
+        "fx_impact_arrow_4",
+        "fx_impact_arrow_5"
+      ],
+      "frameCount": 5,
+      "fps": 24,
+      "loop": false,
+      "restFrame": "fx_impact_arrow_1",
+      "category": "effects",
+      "mapping": "arrow",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "fx_impact_stone",
+      "frameIds": [
+        "fx_impact_stone_1",
+        "fx_impact_stone_2",
+        "fx_impact_stone_3",
+        "fx_impact_stone_4",
+        "fx_impact_stone_5"
+      ],
+      "frameCount": 5,
+      "fps": 24,
+      "loop": false,
+      "restFrame": "fx_impact_stone_1",
+      "category": "effects",
+      "mapping": "stone",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "fx_impact_slow",
+      "frameIds": [
+        "fx_impact_slow_1",
+        "fx_impact_slow_2",
+        "fx_impact_slow_3",
+        "fx_impact_slow_4",
+        "fx_impact_slow_5"
+      ],
+      "frameCount": 5,
+      "fps": 24,
+      "loop": false,
+      "restFrame": "fx_impact_slow_1",
+      "category": "effects",
+      "mapping": "slow",
+      "canvas": {
+        "w": 80,
+        "h": 80
+      },
+      "pivot": {
+        "x": 40,
+        "y": 40
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas"

@@ -70,7 +70,7 @@ test('roof attachment is re-read after a building replacement, movement and scal
 test('view clock ignores battle speed and stops advancing tips while backgrounded or disabled', () => {
     const { tip, target } = setup(), pauses = new Set();
     const view = Object.create(GameView.prototype);
-    Object.assign(view, { hud: { advance() {} }, game: { pauses, speed: 3 }, anchoredTip: tip, tip: { advance() {} }, village: { advance() { return false; } } });
+    Object.assign(view, { hud: { advance() {} }, panels: { advance() { return false; } }, results: { advance() {}, hideFlights() {} }, game: { pauses, speed: 3 }, overlay: { numChildren: 0 }, reminder: { tick() {} }, anchoredTip: tip, tip: { advance() {} }, village: { advance() { return false; } } });
     tip.show('佟楼', () => target);
     for (let i = 0; i < 30; i++) view.update(.05);
     assert(tip.visible);
@@ -84,7 +84,7 @@ test('view clock ignores battle speed and stops advancing tips while backgrounde
 
 test('any actual modal hides a bubble, including automatic panels without a current panel type', () => {
     const { tip, target } = setup(), view = Object.create(GameView.prototype);
-    Object.assign(view, { village: { render() {} }, hud: { update() {} }, panels: { current: null }, overlay: { numChildren: 0 }, anchoredTip: tip });
+    Object.assign(view, { village: { render() {} }, hud: { update() {} }, panels: { current: null }, overlay: { numChildren: 0 }, anchoredTip: tip, reminder: { hide() {} } });
     tip.show('南楼', () => target); view.updateActors(); assert(tip.visible);
     view.overlay.numChildren = 1; view.updateActors(); assert.equal(tip.visible, false);
     view.overlay.numChildren = 0; view.updateActors(); assert.equal(tip.visible, false);

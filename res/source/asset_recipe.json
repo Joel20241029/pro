@@ -14,24 +14,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_raider_walk_00.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_raider_walk_00.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -54,7 +54,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "8297caba9b336533312284b2f6afa90dd432a37d6257e456db37fabd13525a84",
-        "outputHash": "cdc2244e5a5894073a3c75d9d913ceccfa63f010e389ac5bd90cd6feb02e30e5",
+        "outputHash": "47ef857240509e4fcf500624f34d941ac30bb48d2f557b8960fc159a485b0314",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -63,7 +63,7 @@
             "y": 224
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -72,24 +72,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_raider_walk_01.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_raider_walk_01.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -112,7 +112,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "8297caba9b336533312284b2f6afa90dd432a37d6257e456db37fabd13525a84",
-        "outputHash": "2318687e8df2b0338684365980ace67624474d664c5e72e21ac36227f3ad8a82",
+        "outputHash": "7688c3238d8a54100d69490197c63acb325bae0021554a7aeb527d656732d311",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -121,7 +121,7 @@
             "y": 224
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -130,24 +130,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_raider_walk_02.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_raider_walk_02.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -170,7 +170,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "8297caba9b336533312284b2f6afa90dd432a37d6257e456db37fabd13525a84",
-        "outputHash": "bd96f743bdbb0543fc0fa01ed29dd74a2935c98b13b7d3f6ab754325ede6b58e",
+        "outputHash": "5e062abac4aa17ba6c12af83bd83c5a3446595bc7170207278f74817aaa9c8ae",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -179,7 +179,7 @@
             "y": 224
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -188,24 +188,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_raider_walk_03.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_raider_walk_03.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -228,7 +228,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "8297caba9b336533312284b2f6afa90dd432a37d6257e456db37fabd13525a84",
-        "outputHash": "23a93283b8e8d8ac9773dc8f8fa84fd23f6c0b95bcbcdb0423e41bdaa0e292ed",
+        "outputHash": "507c4c87a5caba015dac219fe999a53539b37b557c45901283bbefc9849abf2f",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -237,7 +237,7 @@
             "y": 224
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -246,24 +246,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_raider_walk_04.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_raider_walk_04.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -286,7 +286,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "8297caba9b336533312284b2f6afa90dd432a37d6257e456db37fabd13525a84",
-        "outputHash": "4325874bb2a514bc25ce6cbfb785b3ac51bf0f30d03131a44d52ec23f8341023",
+        "outputHash": "ff58ea93c26f526281c96c2db25b82564f30cd134b7b8aa630066d59ae92cee6",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -295,7 +295,7 @@
             "y": 224
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -304,24 +304,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_raider_walk_05.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_raider_walk_05.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -344,7 +344,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "8297caba9b336533312284b2f6afa90dd432a37d6257e456db37fabd13525a84",
-        "outputHash": "5c868a224ae603c7286f0bc8be88346745ca5c1a45fb2adf26d11f3bc23be6e0",
+        "outputHash": "264631925b2ac14c51d9a1bc0d8d8cf80ad5f04eff30ea29cd3c82ed7e54082a",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -353,7 +353,7 @@
             "y": 224
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -362,24 +362,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_runner_walk_00.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_runner_walk_00.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -402,7 +402,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "fa9b03da50e3ff05ec511b1cb30e265b82f9566b33a7c1f500e5f1c9c44784f6",
-        "outputHash": "ad625b0806411dd83fedb1309ac4ecbb6ab86987133249e9fb2ba7eafebbba5a",
+        "outputHash": "40b9e0c00d137f6b7dd29db7c5e5a96b8c573d6c3607ca80d0719a556e59b305",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -411,7 +411,7 @@
             "y": 218.66666666666666
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -420,24 +420,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_runner_walk_01.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_runner_walk_01.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -460,7 +460,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "fa9b03da50e3ff05ec511b1cb30e265b82f9566b33a7c1f500e5f1c9c44784f6",
-        "outputHash": "7e6e46aa395058cb214249c84df089b405f77642831a9e0fbfea0b627640e40b",
+        "outputHash": "2529025b8a8bf6128b297778fd9a6752e8e9e66940fbc77319da8fcb7be36803",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -469,7 +469,7 @@
             "y": 218.66666666666666
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -478,24 +478,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_runner_walk_02.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_runner_walk_02.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -518,7 +518,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "fa9b03da50e3ff05ec511b1cb30e265b82f9566b33a7c1f500e5f1c9c44784f6",
-        "outputHash": "e9ee0a668b7fd2f9b4947899c83ab975de368b929eecbf17e9a7e883b1cfa64f",
+        "outputHash": "d99d07862230be29c6b38a600b08bb3ac1ebe2caa105231b0fba9e7270437514",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -527,7 +527,7 @@
             "y": 218.66666666666666
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -536,24 +536,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_runner_walk_03.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_runner_walk_03.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -576,7 +576,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "fa9b03da50e3ff05ec511b1cb30e265b82f9566b33a7c1f500e5f1c9c44784f6",
-        "outputHash": "c5d984c627ef44c7bffc014546c040906106dea36b492aae681a3e1bd9286901",
+        "outputHash": "34222da306d36a7b12c06c6710f0b746e9b6d5d22e342046cba19aff498fc786",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -585,7 +585,7 @@
             "y": 218.66666666666666
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -594,24 +594,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_runner_walk_04.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_runner_walk_04.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -634,7 +634,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "fa9b03da50e3ff05ec511b1cb30e265b82f9566b33a7c1f500e5f1c9c44784f6",
-        "outputHash": "499da54b453025ee8661f0484708af665d20b041b23ae58758cd5706a919f9e9",
+        "outputHash": "4e2a2ccae5c43a1ad29dc4b75a90559a9efff7820b278b77cd9435506aa80689",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -643,7 +643,7 @@
             "y": 218.66666666666666
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -652,24 +652,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_runner_walk_05.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_runner_walk_05.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -692,7 +692,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "fa9b03da50e3ff05ec511b1cb30e265b82f9566b33a7c1f500e5f1c9c44784f6",
-        "outputHash": "59873a8aa7062a6e29d2054cb6c93a43cad9ed975db0b794cd4ba9f7049cb186",
+        "outputHash": "ce23b7cd81081fd8c0dbf2e8fe6582ff6dffca498892cdfbb73f3584817a2daa",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -701,7 +701,7 @@
             "y": 218.66666666666666
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -710,24 +710,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_armored_walk_00.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_armored_walk_00.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -750,7 +750,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b3197a088605e5edcfca10eaa4604e1e86055cb382e08147f9af600915f37220",
-        "outputHash": "129c7607db349be5ae35dd9543a8989976bca8d2fc1765300a0c0b1b390de072",
+        "outputHash": "52a8c00d82368ab6c5efa36675c3f4271e2ff3db72041270abf55861744b2506",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -759,7 +759,7 @@
             "y": 218.66666666666666
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -768,24 +768,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_armored_walk_01.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_armored_walk_01.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -808,7 +808,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b3197a088605e5edcfca10eaa4604e1e86055cb382e08147f9af600915f37220",
-        "outputHash": "1c43d89b6bac4d8dbca3998a1f9cf3b134a6484f165d45e22118c142c214cf83",
+        "outputHash": "ed49093a5fad8c1a6386bdcc1ba0e59a1763b0521013927cd380ca4fe0894b95",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -817,7 +817,7 @@
             "y": 218.66666666666666
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -826,24 +826,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_armored_walk_02.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_armored_walk_02.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -866,7 +866,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b3197a088605e5edcfca10eaa4604e1e86055cb382e08147f9af600915f37220",
-        "outputHash": "bf8210dc1b27b371853bc1ab2c2bff60a54091a3a4d7a5b16dc8cbd1af286643",
+        "outputHash": "130fcb9658ae8cfca66cfca48ea7a468c24c83735f18e8ef9f51b905249bf8d5",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -875,7 +875,7 @@
             "y": 218.66666666666666
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -884,24 +884,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_armored_walk_03.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_armored_walk_03.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -924,7 +924,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b3197a088605e5edcfca10eaa4604e1e86055cb382e08147f9af600915f37220",
-        "outputHash": "47baf6106677338fa0d0b6616354483f1182ba1b0d777a3a002a7eb4ee09c492",
+        "outputHash": "60dc570e85adfa1236d1b4402c470fad349a1f24283048c96126f3599d9a5d27",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -933,7 +933,7 @@
             "y": 218.66666666666666
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -942,24 +942,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_armored_walk_04.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_armored_walk_04.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -982,7 +982,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b3197a088605e5edcfca10eaa4604e1e86055cb382e08147f9af600915f37220",
-        "outputHash": "eb29fbc564451b3f933efcab87179c390803c650c61fcae98ccffa6bfb142b42",
+        "outputHash": "3c42a2ced30459b29e299b09a2943abf694c602101f9b6adaecb4988c0a9f905",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -991,7 +991,7 @@
             "y": 218.66666666666666
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -1000,24 +1000,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_armored_walk_05.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 164
+        "x": 100,
+        "y": 170.83333333333331
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_armored_walk_05.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -1040,7 +1040,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b3197a088605e5edcfca10eaa4604e1e86055cb382e08147f9af600915f37220",
-        "outputHash": "5d319c9943a2e2d0bb66117a9305714629036decbd0b7c75f632e4bd213e17ca",
+        "outputHash": "b6aed0442f505ed5600577dc4b441c88c73199f3e117d28a6a278bc94d0d9914",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -1049,7 +1049,7 @@
             "y": 218.66666666666666
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -1058,24 +1058,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_boar_walk_00.png",
-      "width": 176,
-      "height": 176,
+      "width": 184,
+      "height": 184,
       "pivot": {
-        "x": 88,
-        "y": 157.66666666666669
+        "x": 92,
+        "y": 164.83333333333334
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_boar_walk_00.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 176,
-        "h": 176
+        "w": 184,
+        "h": 184
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 176,
-        "h": 176
+        "w": 184,
+        "h": 184
       },
       "nineSlice": null,
       "mapping": "",
@@ -1098,7 +1098,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "9339f4858d817cdf15a1fd62308cad44607f6220e2498e577cb4f1587d3744fc",
-        "outputHash": "a39cf260e096cffb7b1f44638df974a58b4cafbecc4f91e83aadf3964b1be071",
+        "outputHash": "80623fa66b96f3d15313156148673576c3d6dae4de1f55e2ffe4d32b29525254",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -1107,7 +1107,7 @@
             "y": 229.33333333333334
           }
         },
-        "runtimeScale": 0.6875
+        "runtimeScale": 0.71875
       }
     },
     {
@@ -1116,24 +1116,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_boar_walk_01.png",
-      "width": 176,
-      "height": 176,
+      "width": 184,
+      "height": 184,
       "pivot": {
-        "x": 88,
-        "y": 157.66666666666669
+        "x": 92,
+        "y": 164.83333333333334
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_boar_walk_01.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 176,
-        "h": 176
+        "w": 184,
+        "h": 184
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 176,
-        "h": 176
+        "w": 184,
+        "h": 184
       },
       "nineSlice": null,
       "mapping": "",
@@ -1156,7 +1156,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "9339f4858d817cdf15a1fd62308cad44607f6220e2498e577cb4f1587d3744fc",
-        "outputHash": "f70333ddb95eb22cfb43d6e50fc0a9710a8f7c486b6068f31f89fe29ffeb809f",
+        "outputHash": "65762151087493e55c93464d5c41fcd2078a805c6bc6ff21e548ec6e67b9ea25",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -1165,7 +1165,7 @@
             "y": 229.33333333333334
           }
         },
-        "runtimeScale": 0.6875
+        "runtimeScale": 0.71875
       }
     },
     {
@@ -1174,24 +1174,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_boar_walk_02.png",
-      "width": 176,
-      "height": 176,
+      "width": 184,
+      "height": 184,
       "pivot": {
-        "x": 88,
-        "y": 157.66666666666669
+        "x": 92,
+        "y": 164.83333333333334
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_boar_walk_02.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 176,
-        "h": 176
+        "w": 184,
+        "h": 184
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 176,
-        "h": 176
+        "w": 184,
+        "h": 184
       },
       "nineSlice": null,
       "mapping": "",
@@ -1214,7 +1214,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "9339f4858d817cdf15a1fd62308cad44607f6220e2498e577cb4f1587d3744fc",
-        "outputHash": "c591a6ceb4837e24346f66f7d079df6de8cce6952ceb09632077da9cfab38bbe",
+        "outputHash": "81542b933b2c152d329bfce7e36b3d79a912a0e556dec6acf1af6801f5b8856e",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -1223,7 +1223,7 @@
             "y": 229.33333333333334
           }
         },
-        "runtimeScale": 0.6875
+        "runtimeScale": 0.71875
       }
     },
     {
@@ -1232,24 +1232,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_boar_walk_03.png",
-      "width": 176,
-      "height": 176,
+      "width": 184,
+      "height": 184,
       "pivot": {
-        "x": 88,
-        "y": 157.66666666666669
+        "x": 92,
+        "y": 164.83333333333334
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_boar_walk_03.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 176,
-        "h": 176
+        "w": 184,
+        "h": 184
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 176,
-        "h": 176
+        "w": 184,
+        "h": 184
       },
       "nineSlice": null,
       "mapping": "",
@@ -1272,7 +1272,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "9339f4858d817cdf15a1fd62308cad44607f6220e2498e577cb4f1587d3744fc",
-        "outputHash": "92ba64f538e215f0f035fd421546aa7dc5c851c585ca710b5a2e9a82a0433580",
+        "outputHash": "727da074e730d0f9c4ebdc1232210d0ead986e7caf5ccb932c649960a6e2352d",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -1281,7 +1281,7 @@
             "y": 229.33333333333334
           }
         },
-        "runtimeScale": 0.6875
+        "runtimeScale": 0.71875
       }
     },
     {
@@ -1290,24 +1290,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_boar_walk_04.png",
-      "width": 176,
-      "height": 176,
+      "width": 184,
+      "height": 184,
       "pivot": {
-        "x": 88,
-        "y": 157.66666666666669
+        "x": 92,
+        "y": 164.83333333333334
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_boar_walk_04.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 176,
-        "h": 176
+        "w": 184,
+        "h": 184
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 176,
-        "h": 176
+        "w": 184,
+        "h": 184
       },
       "nineSlice": null,
       "mapping": "",
@@ -1330,7 +1330,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "9339f4858d817cdf15a1fd62308cad44607f6220e2498e577cb4f1587d3744fc",
-        "outputHash": "9957967c05508ee5bd9f74da2bf39188a79283bb606baf88ed19358cc01e96b5",
+        "outputHash": "359caaee7079594601953ab3f9f6901ac2b683470fb2072064229f321900d44d",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -1339,7 +1339,7 @@
             "y": 229.33333333333334
           }
         },
-        "runtimeScale": 0.6875
+        "runtimeScale": 0.71875
       }
     },
     {
@@ -1348,24 +1348,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_boar_walk_05.png",
-      "width": 176,
-      "height": 176,
+      "width": 184,
+      "height": 184,
       "pivot": {
-        "x": 88,
-        "y": 157.66666666666669
+        "x": 92,
+        "y": 164.83333333333334
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_boar_walk_05.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 176,
-        "h": 176
+        "w": 184,
+        "h": 184
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 176,
-        "h": 176
+        "w": 184,
+        "h": 184
       },
       "nineSlice": null,
       "mapping": "",
@@ -1388,7 +1388,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "9339f4858d817cdf15a1fd62308cad44607f6220e2498e577cb4f1587d3744fc",
-        "outputHash": "96778a7b177853e1a79b36b90c7c1980fc0fff4dd1e6805d217517cb5f33ee24",
+        "outputHash": "e5485571c5e716338bfef2399c6bb709a3a32041f00d3a46e9ead88c66a70009",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -1397,7 +1397,7 @@
             "y": 229.33333333333334
           }
         },
-        "runtimeScale": 0.6875
+        "runtimeScale": 0.71875
       }
     },
     {
@@ -1406,24 +1406,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_disruptor_walk_00.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_disruptor_walk_00.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -1446,7 +1446,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b5c0e79e0efa6b4e0c0f91f12f0231277042f5d76f078a9d4999de766f4df240",
-        "outputHash": "1e7e5c1d43c239c3c9aa887399fa264b74df88298b35625766d24a36e4cc15ab",
+        "outputHash": "8fa6e987b4b6db7bf93898dc9f242d64cfe7d7de756dbda6383146833cad0f47",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -1455,7 +1455,7 @@
             "y": 224
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -1464,24 +1464,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_disruptor_walk_01.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_disruptor_walk_01.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -1504,7 +1504,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b5c0e79e0efa6b4e0c0f91f12f0231277042f5d76f078a9d4999de766f4df240",
-        "outputHash": "2bb244a0d6d8cb68006cf413c93fd85df0e8cf02b048be73dba5c76fbad0c29f",
+        "outputHash": "4ed6fc8c5c17920795fc67fb613a01b10d7f26d7d33e623cd8fba9c9d5a2612b",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -1513,7 +1513,7 @@
             "y": 224
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -1522,24 +1522,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_disruptor_walk_02.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_disruptor_walk_02.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -1562,7 +1562,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b5c0e79e0efa6b4e0c0f91f12f0231277042f5d76f078a9d4999de766f4df240",
-        "outputHash": "8c15d2967e581cfcabce8483f7dd7521ddfa8f323c97d3da33b843b9129f91b8",
+        "outputHash": "1d8be2d7be7f03415da260049df411dd08e3521eaf5ca01ae5249ec1033f6122",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -1571,7 +1571,7 @@
             "y": 224
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -1580,24 +1580,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_disruptor_walk_03.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_disruptor_walk_03.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -1620,7 +1620,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b5c0e79e0efa6b4e0c0f91f12f0231277042f5d76f078a9d4999de766f4df240",
-        "outputHash": "9c70bb7bf49645b7cf931b766ebc4ebfb1e8294a2573f58b1094a7743689340d",
+        "outputHash": "fc2da8aef819dab989f656a4bd04cb9205beae9702e966f1accf4751d85b9bbd",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -1629,7 +1629,7 @@
             "y": 224
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -1638,24 +1638,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_disruptor_walk_04.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_disruptor_walk_04.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -1678,7 +1678,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b5c0e79e0efa6b4e0c0f91f12f0231277042f5d76f078a9d4999de766f4df240",
-        "outputHash": "d86610a74bca3c00bb6787e131e9056203012704fd0a4280d9600a6d8c3beb5b",
+        "outputHash": "68df4c07cbf335827fbb09f6b3fa6447db2bb5ebd54a7926e58b7ffa426ab0b6",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -1687,7 +1687,7 @@
             "y": 224
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -1696,24 +1696,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_disruptor_walk_05.png",
-      "width": 192,
-      "height": 192,
+      "width": 200,
+      "height": 200,
       "pivot": {
-        "x": 96,
-        "y": 168
+        "x": 100,
+        "y": 175
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_disruptor_walk_05.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 192,
-        "h": 192
+        "w": 200,
+        "h": 200
       },
       "nineSlice": null,
       "mapping": "",
@@ -1736,7 +1736,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b5c0e79e0efa6b4e0c0f91f12f0231277042f5d76f078a9d4999de766f4df240",
-        "outputHash": "c18d6885c2ee21ef8b6189d68e2e53d2028e28ed3dc5574b6bd29b1d20af80cc",
+        "outputHash": "b008a794a8f4f5c22cd392381069c5ee1eeeb93c149ad6c065dd1fd6dadb11b0",
         "normalizedCanvas": {
           "width": 256,
           "height": 256,
@@ -1745,7 +1745,7 @@
             "y": 224
           }
         },
-        "runtimeScale": 0.75
+        "runtimeScale": 0.78125
       }
     },
     {
@@ -1754,24 +1754,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_chief_walk_00.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_chief_walk_00.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -1794,7 +1794,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "dc1f0b8c936d10add6f0ea5bf894e1e90ef71f4cb38c5ae35d00aa34c99a8772",
-        "outputHash": "b8ac7d08ce93bc3d9ac03b576cb90a53ab5236ad1e7c95062910cba8ea111551"
+        "outputHash": "a2c11c3224a56a09a43c16fd95d666937c96bada29635173f8f4f8e32fbdd76c"
       }
     },
     {
@@ -1803,24 +1803,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_chief_walk_01.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_chief_walk_01.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -1843,7 +1843,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "dc1f0b8c936d10add6f0ea5bf894e1e90ef71f4cb38c5ae35d00aa34c99a8772",
-        "outputHash": "8efd03dd11a5e009111c7ef42c7e414f896c323361a3c9643b85493ea723d1ce"
+        "outputHash": "9194276b4aaa7c37f8594c7c2f2424c16934af2335d87c728ec09ad1fe7eed8d"
       }
     },
     {
@@ -1852,24 +1852,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_chief_walk_02.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_chief_walk_02.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -1892,7 +1892,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "dc1f0b8c936d10add6f0ea5bf894e1e90ef71f4cb38c5ae35d00aa34c99a8772",
-        "outputHash": "08cbc6efe65ace3cf94a1efa098ce4ceb326cc19acd7dcce933d181f39002e5b"
+        "outputHash": "0e7ae254af8b6b4f3f181757780ac5929ed835ba7fb966eb29326fd51ee3757d"
       }
     },
     {
@@ -1901,24 +1901,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_chief_walk_03.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_chief_walk_03.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -1941,7 +1941,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "dc1f0b8c936d10add6f0ea5bf894e1e90ef71f4cb38c5ae35d00aa34c99a8772",
-        "outputHash": "62d4e712bad961c85edd9f61a1e58ce1baf4e37870b0bc0baa1c7866e87290c6"
+        "outputHash": "853bf4d5d535da3d42b294efbb79c943958c65e8fd0760d919b91121bd7ef771"
       }
     },
     {
@@ -1950,24 +1950,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_chief_walk_04.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_chief_walk_04.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -1990,7 +1990,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "dc1f0b8c936d10add6f0ea5bf894e1e90ef71f4cb38c5ae35d00aa34c99a8772",
-        "outputHash": "fc020e4c546276e818b76a22ed361d18fd5db7f0d9700af1c7e116c0b7997dfc"
+        "outputHash": "7127533b64dc177098b17c5e8e5f7237b903209a5724cbe449ec3d80763c9fab"
       }
     },
     {
@@ -1999,24 +1999,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_chief_walk_05.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_chief_walk_05.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -2039,7 +2039,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "dc1f0b8c936d10add6f0ea5bf894e1e90ef71f4cb38c5ae35d00aa34c99a8772",
-        "outputHash": "ffb717cbecd2ac4c9c7d43bbd5fc6b973aeb831ddf377efe37daaefbc94ee447"
+        "outputHash": "413ef62c48f64231b4a26af89dcc5bb59f72018775e2518f134937c38e65f969"
       }
     },
     {
@@ -2048,24 +2048,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_chief_walk_06.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_chief_walk_06.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -2088,7 +2088,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "dc1f0b8c936d10add6f0ea5bf894e1e90ef71f4cb38c5ae35d00aa34c99a8772",
-        "outputHash": "64c1de90faeea6aade087d6cfa12b84ef8e36dc2b45e6cab6403506ecf3303b0"
+        "outputHash": "90f2b6eb1ba6503f79b863bcbc1e0165c8e93e66158edb733eb2bc4746f9562e"
       }
     },
     {
@@ -2097,24 +2097,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_chief_walk_07.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_chief_walk_07.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -2137,7 +2137,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "dc1f0b8c936d10add6f0ea5bf894e1e90ef71f4cb38c5ae35d00aa34c99a8772",
-        "outputHash": "0b8a80a327c5aa00f49683d5e61c0662822f64b3b985b80d3cab65f45f5a4d64"
+        "outputHash": "17a8b03f2646b69eead3e6f1db5150c4bb1f4b1a6f5f36ad1e58ac31cb8f34f2"
       }
     },
     {
@@ -2146,24 +2146,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_commander_walk_00.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_commander_walk_00.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -2186,7 +2186,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b880f89ca77a8937ec7e6556da3d052662e815dcce4d69aad30159839a02ee36",
-        "outputHash": "535d7011bc768e65a8a65d38bfeb9614ebb613896dda49a7b96690376d0a973e"
+        "outputHash": "310a181b77030e6ef845a5101907efd0d4719a27fb2c88fe7ade7b467968903c"
       }
     },
     {
@@ -2195,24 +2195,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_commander_walk_01.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_commander_walk_01.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -2235,7 +2235,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b880f89ca77a8937ec7e6556da3d052662e815dcce4d69aad30159839a02ee36",
-        "outputHash": "a4ecb021b3c0881feb00de24ca56a925a8c8663a2708900975a2e3665e9326d4"
+        "outputHash": "2e2ef9388c4e6a650ed5e78e5854b1243dabd4900bcb15f849c6ac027f02ea4c"
       }
     },
     {
@@ -2244,24 +2244,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_commander_walk_02.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_commander_walk_02.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -2284,7 +2284,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b880f89ca77a8937ec7e6556da3d052662e815dcce4d69aad30159839a02ee36",
-        "outputHash": "553604802471237670f00741996e07e5d194059a40d943e4088ef979bce54f87"
+        "outputHash": "db1210fc0243a446ce562b4a3d5a3454bafb8867290268c5f0e61886db054c71"
       }
     },
     {
@@ -2293,24 +2293,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_commander_walk_03.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_commander_walk_03.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -2333,7 +2333,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b880f89ca77a8937ec7e6556da3d052662e815dcce4d69aad30159839a02ee36",
-        "outputHash": "d6b60c2b7f14f54125b1e3176d07a7353f59175c63d0a60707ae7d4b3038d212"
+        "outputHash": "4e3de659e644fb1ac0a7008142d1c8b32e0f0aa286f0af8fff4dc3cdf982f56a"
       }
     },
     {
@@ -2342,24 +2342,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_commander_walk_04.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_commander_walk_04.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -2382,7 +2382,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b880f89ca77a8937ec7e6556da3d052662e815dcce4d69aad30159839a02ee36",
-        "outputHash": "de43b4f01c53511c65a11010d85721e6bc039a266a19c01a6fcbd1b149af815a"
+        "outputHash": "ededa74a176e0b3af9c8b87f2448bf2b415596ad00c4e75509c28e04dd0e02cd"
       }
     },
     {
@@ -2391,24 +2391,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_commander_walk_05.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_commander_walk_05.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -2431,7 +2431,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b880f89ca77a8937ec7e6556da3d052662e815dcce4d69aad30159839a02ee36",
-        "outputHash": "10e2eedc60b8c31f081f959aa296075a819ca2269d50576ec7670aac394ca2d4"
+        "outputHash": "da14cc2801048baf6ae4bb4a7eee0b0656ed4af2312aadc7bd018e42637ddfe6"
       }
     },
     {
@@ -2440,24 +2440,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_commander_walk_06.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_commander_walk_06.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -2480,7 +2480,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b880f89ca77a8937ec7e6556da3d052662e815dcce4d69aad30159839a02ee36",
-        "outputHash": "7f21d092944033894316ad7f17a8a99dd1e03a4807d92f1d316e55230d585417"
+        "outputHash": "234ce7857f1f19b1b9e9dce8bc7726543fca40f98f486ff6db010969332170bd"
       }
     },
     {
@@ -2489,24 +2489,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_commander_walk_07.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_commander_walk_07.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -2529,7 +2529,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "b880f89ca77a8937ec7e6556da3d052662e815dcce4d69aad30159839a02ee36",
-        "outputHash": "bc3821bda08fc1080f784acb72a788343be31b3b10c7e13f79cfe9cf5d9d5f77"
+        "outputHash": "023b4640a730b597dd97d90adb31452750d9ca45cdf1a5132c80227667e26918"
       }
     },
     {
@@ -2538,24 +2538,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_wolfking_walk_00.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_wolfking_walk_00.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -2578,7 +2578,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "a24eb45201031689671df51c5718bb1f6b87deb1ad916c42ff729851b68ec176",
-        "outputHash": "a44bd457346695e85a5cad9ef9e7ee7f2fab87931addc2b4a6c692d1417e525f"
+        "outputHash": "6b594f319bdc252e9ab3251e45ab0b0ff71a8fd2ba277e5450d0a5ce44a36f7a"
       }
     },
     {
@@ -2587,24 +2587,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_wolfking_walk_01.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_wolfking_walk_01.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -2627,7 +2627,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "a24eb45201031689671df51c5718bb1f6b87deb1ad916c42ff729851b68ec176",
-        "outputHash": "fddc40ecd8086df7d3c46e336502a24c39dc7bff525ee04682f4e640150b6191"
+        "outputHash": "e968befd8ec92de17015fe401ac04c96ee2b7146b391defb1066be2c8ff50a94"
       }
     },
     {
@@ -2636,24 +2636,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_wolfking_walk_02.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_wolfking_walk_02.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -2676,7 +2676,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "a24eb45201031689671df51c5718bb1f6b87deb1ad916c42ff729851b68ec176",
-        "outputHash": "6e8606124017e942db370559893fedaf771c1277e43b925f57388e2a89c8c36d"
+        "outputHash": "0b1932942087bab691fc25eacb18ddf72cb56814ed41297a0c85cd683759c32e"
       }
     },
     {
@@ -2685,24 +2685,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_wolfking_walk_03.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_wolfking_walk_03.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -2725,7 +2725,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "a24eb45201031689671df51c5718bb1f6b87deb1ad916c42ff729851b68ec176",
-        "outputHash": "3ab208b02d9d24e89bc387d97df135b161875101528738803cb910328f78c25d"
+        "outputHash": "8f7e773a79b642636b13f185ee1232149c261278a726652118166c1795e19e7b"
       }
     },
     {
@@ -2734,24 +2734,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_wolfking_walk_04.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_wolfking_walk_04.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -2774,7 +2774,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "a24eb45201031689671df51c5718bb1f6b87deb1ad916c42ff729851b68ec176",
-        "outputHash": "2c39543fca2e453ebeeb274b05d2da866c4651b4738b01057b6e571b71b7e9bb"
+        "outputHash": "effa582e92abece772fd1db40a5d85b5a4c0073499d7302cafbb0938a58d5c66"
       }
     },
     {
@@ -2783,24 +2783,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_wolfking_walk_05.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_wolfking_walk_05.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -2823,7 +2823,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "a24eb45201031689671df51c5718bb1f6b87deb1ad916c42ff729851b68ec176",
-        "outputHash": "2ca2c40d3560d2bc17b46dd397279d36cb477c27fb72add5b2e5d50d84939063"
+        "outputHash": "27f7549d90f9820aaa33243001a8d14c6b02bbec530128e96171f2b794920a62"
       }
     },
     {
@@ -2832,24 +2832,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_wolfking_walk_06.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_wolfking_walk_06.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -2872,7 +2872,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "a24eb45201031689671df51c5718bb1f6b87deb1ad916c42ff729851b68ec176",
-        "outputHash": "a35223747a3d3cc348307f238203d00e4e90479ac487877d55da5c4f76d2c195"
+        "outputHash": "fbb2291afd141e1a0118c02f1c9523098db58d9de49e55e5f35d7f01e24408f4"
       }
     },
     {
@@ -2881,24 +2881,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_wolfking_walk_07.png",
-      "width": 272,
-      "height": 272,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 160,
+        "y": 286.6666666666667
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_wolfking_walk_07.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -2921,7 +2921,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "a24eb45201031689671df51c5718bb1f6b87deb1ad916c42ff729851b68ec176",
-        "outputHash": "e77138691f425d6c4720c596e37e78b24838b03f386533407dd942aa38de58d6"
+        "outputHash": "0b70f132b4723969cc6f27c584e630b1d6ea5983fdaa56facb7b53eb99499066"
       }
     },
     {
@@ -2930,24 +2930,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_tuskking_walk_00.png",
-      "width": 288,
-      "height": 288,
+      "width": 336,
+      "height": 336,
       "pivot": {
-        "x": 144,
-        "y": 258
+        "x": 168,
+        "y": 301
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_tuskking_walk_00.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "nineSlice": null,
       "mapping": "",
@@ -2970,7 +2970,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "3ed6249376b4464de1d9d2116878cc441ccfbb955339ef226fc82d7bd86d7ade",
-        "outputHash": "d15908a992a41cdc99e11d09c060bb20bcc53ae8f3884034c6d0ee92a881f4bd"
+        "outputHash": "b5a2f4ce58a6cbb2a6e1686f6087064ff34dbfeff93eed97aa54c17e362ce3d9"
       }
     },
     {
@@ -2979,24 +2979,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_tuskking_walk_01.png",
-      "width": 288,
-      "height": 288,
+      "width": 336,
+      "height": 336,
       "pivot": {
-        "x": 144,
-        "y": 258
+        "x": 168,
+        "y": 301
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_tuskking_walk_01.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "nineSlice": null,
       "mapping": "",
@@ -3019,7 +3019,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "3ed6249376b4464de1d9d2116878cc441ccfbb955339ef226fc82d7bd86d7ade",
-        "outputHash": "9cc33c495ba1a12a9ea6a124b9dd1583ed849b57d6acad8fe5ba82d55770b404"
+        "outputHash": "6b5a8c46c861016d582a07ca44cbc0ece8b15ead2360c2175701ef736248297a"
       }
     },
     {
@@ -3028,24 +3028,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_tuskking_walk_02.png",
-      "width": 288,
-      "height": 288,
+      "width": 336,
+      "height": 336,
       "pivot": {
-        "x": 144,
-        "y": 258
+        "x": 168,
+        "y": 301
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_tuskking_walk_02.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "nineSlice": null,
       "mapping": "",
@@ -3068,7 +3068,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "3ed6249376b4464de1d9d2116878cc441ccfbb955339ef226fc82d7bd86d7ade",
-        "outputHash": "94c967fce5aae18e28d08deac38abeffd9fbd9ef221dcdd3538049c0596a51c8"
+        "outputHash": "70a998975492a82a7596eca9d84b8539d5e23775be184254ee4f82249b2855fd"
       }
     },
     {
@@ -3077,24 +3077,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_tuskking_walk_03.png",
-      "width": 288,
-      "height": 288,
+      "width": 336,
+      "height": 336,
       "pivot": {
-        "x": 144,
-        "y": 258
+        "x": 168,
+        "y": 301
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_tuskking_walk_03.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "nineSlice": null,
       "mapping": "",
@@ -3117,7 +3117,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "3ed6249376b4464de1d9d2116878cc441ccfbb955339ef226fc82d7bd86d7ade",
-        "outputHash": "b02c5a5fbfba1da49476d572545ab41d3a9296b606dfc681eb69b34e8439721b"
+        "outputHash": "4cf99342df929f8d5f2eb00e290f9ede82a59d5884a581af04addaf4f9ea7466"
       }
     },
     {
@@ -3126,24 +3126,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_tuskking_walk_04.png",
-      "width": 288,
-      "height": 288,
+      "width": 336,
+      "height": 336,
       "pivot": {
-        "x": 144,
-        "y": 258
+        "x": 168,
+        "y": 301
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_tuskking_walk_04.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "nineSlice": null,
       "mapping": "",
@@ -3166,7 +3166,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "3ed6249376b4464de1d9d2116878cc441ccfbb955339ef226fc82d7bd86d7ade",
-        "outputHash": "62e297de9126c278f6e4ee66d279eee05a9ec31d1cee605b8b376ed2360c4f84"
+        "outputHash": "38cac4d678b65c37564e95aacacc0effac2bb9cf57cf806e4efbccc6f068dfa1"
       }
     },
     {
@@ -3175,24 +3175,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_tuskking_walk_05.png",
-      "width": 288,
-      "height": 288,
+      "width": 336,
+      "height": 336,
       "pivot": {
-        "x": 144,
-        "y": 258
+        "x": 168,
+        "y": 301
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_tuskking_walk_05.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "nineSlice": null,
       "mapping": "",
@@ -3215,7 +3215,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "3ed6249376b4464de1d9d2116878cc441ccfbb955339ef226fc82d7bd86d7ade",
-        "outputHash": "bda82ebca4d6f843718a44492bc73faa3bef8bb7e38bbe6efc0d9c2b87ec5223"
+        "outputHash": "a6dc8c68c2da4b5e3d85f9d37e0c36d60acdce0963900673cd88e1eb112efba2"
       }
     },
     {
@@ -3224,24 +3224,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_tuskking_walk_06.png",
-      "width": 288,
-      "height": 288,
+      "width": 336,
+      "height": 336,
       "pivot": {
-        "x": 144,
-        "y": 258
+        "x": 168,
+        "y": 301
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_tuskking_walk_06.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "nineSlice": null,
       "mapping": "",
@@ -3264,7 +3264,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "3ed6249376b4464de1d9d2116878cc441ccfbb955339ef226fc82d7bd86d7ade",
-        "outputHash": "eee9baf4f62397510913b4f2bd015ebb2851cdd8930bae11bd54c61c108d43c8"
+        "outputHash": "c5fec1e86351a2dce3f580c79a298200ccd9cc526ebc1f9f32d3b7bd0abab380"
       }
     },
     {
@@ -3273,24 +3273,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_tuskking_walk_07.png",
-      "width": 288,
-      "height": 288,
+      "width": 336,
+      "height": 336,
       "pivot": {
-        "x": 144,
-        "y": 258
+        "x": 168,
+        "y": 301
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_tuskking_walk_07.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 288,
-        "h": 288
+        "w": 336,
+        "h": 336
       },
       "nineSlice": null,
       "mapping": "",
@@ -3313,7 +3313,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "3ed6249376b4464de1d9d2116878cc441ccfbb955339ef226fc82d7bd86d7ade",
-        "outputHash": "6b816a0e6d9a956dfda93e9a6587c2267d627ba9dcfdcd7cbef4cefe23d3f638"
+        "outputHash": "e3c55e6e6fc5a6a754172d5ffa37a5fbc9004182ca771832697d4dffcc7ff4a6"
       }
     },
     {
@@ -3322,24 +3322,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_shaman_walk_00.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_shaman_walk_00.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -3362,7 +3362,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "18c6404939fb164adec059935a17a5ff610a53afe23445dc6c99f54f265b014d",
-        "outputHash": "5b7f0dd4ea98e1fa06f71cde4097d15e3cd598431d42a2841762ad9b203e8cd0"
+        "outputHash": "a4d50fb88e95e2da125723c3f843625306e50627cba8964a5cbe823f8c42aa04"
       }
     },
     {
@@ -3371,24 +3371,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_shaman_walk_01.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_shaman_walk_01.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -3411,7 +3411,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "18c6404939fb164adec059935a17a5ff610a53afe23445dc6c99f54f265b014d",
-        "outputHash": "b0561c80972acb863a4570775d8782355870e185801027397265a9cc8f955490"
+        "outputHash": "056929abb152bf52ba1fe1b9e556e4fde7a62c7df4609b5b14017b4fea3c0011"
       }
     },
     {
@@ -3420,24 +3420,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_shaman_walk_02.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_shaman_walk_02.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -3460,7 +3460,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "18c6404939fb164adec059935a17a5ff610a53afe23445dc6c99f54f265b014d",
-        "outputHash": "59303a0c13c1751adbdcd62f417026d034b689a538884e0fb6e4da3fd13311c1"
+        "outputHash": "2ee571b89241afb2d19388c066894b2542eec73ae7086d3d0cc18f7b76edacb6"
       }
     },
     {
@@ -3469,24 +3469,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_shaman_walk_03.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_shaman_walk_03.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -3509,7 +3509,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "18c6404939fb164adec059935a17a5ff610a53afe23445dc6c99f54f265b014d",
-        "outputHash": "dea5778799e55475804f60e206bc1ceaf2721c609194f5fe02afd7fffd3d91be"
+        "outputHash": "001c247ca1efe264db8b4af8a2f7c4d46d68d43ee0bfcd47d1237b3497cd2357"
       }
     },
     {
@@ -3518,24 +3518,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_shaman_walk_04.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_shaman_walk_04.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -3558,7 +3558,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "18c6404939fb164adec059935a17a5ff610a53afe23445dc6c99f54f265b014d",
-        "outputHash": "b082f6304742beebcf551d1c0e6885f4c96f33f3bd56bcb82066b808dd0b4d39"
+        "outputHash": "658bbefd51468882acd470d15db1713e8bbc5c214aad9fdf9b29f156bce561dd"
       }
     },
     {
@@ -3567,24 +3567,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_shaman_walk_05.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_shaman_walk_05.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -3607,7 +3607,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "18c6404939fb164adec059935a17a5ff610a53afe23445dc6c99f54f265b014d",
-        "outputHash": "617494bb0783b9fbf7c6e688f37fc2e2169c745cff0dc2d4da561c124077448f"
+        "outputHash": "923954b7fce74760e67c764c035decf8b2236d093f4ed676270e0c991429fae8"
       }
     },
     {
@@ -3616,24 +3616,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_shaman_walk_06.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_shaman_walk_06.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -3656,7 +3656,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "18c6404939fb164adec059935a17a5ff610a53afe23445dc6c99f54f265b014d",
-        "outputHash": "a5a7eb4fa80092527b73bc440a22a8605fcf568ba4e3300cfdcba212ca52a7eb"
+        "outputHash": "1813e8da8d981b84574288e0a9803b51c5ad9a5cce5affe720c0e753353e2c03"
       }
     },
     {
@@ -3665,24 +3665,24 @@
       "category": "enemies",
       "categoryLabel": "enemies",
       "path": "runtime/enemies/enemy_shaman_walk_07.png",
-      "width": 272,
-      "height": 272,
+      "width": 328,
+      "height": 328,
       "pivot": {
-        "x": 136,
-        "y": 243.66666666666666
+        "x": 164,
+        "y": 293.8333333333333
       },
       "sourceSheet": "source/rendered2d/production/enemies/enemy_shaman_walk_07.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 272,
-        "h": 272
+        "w": 328,
+        "h": 328
       },
       "nineSlice": null,
       "mapping": "",
@@ -3705,7 +3705,7 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "18c6404939fb164adec059935a17a5ff610a53afe23445dc6c99f54f265b014d",
-        "outputHash": "2e5ba49b553fecb92fcefa0a818c87b66919cdf3bbd6810b0897e276fa2cbced"
+        "outputHash": "f2bdf3c40544cea549c2037ac514fe50c0b73ab1baf30460fff49b929527dfb7"
       }
     },
     {
@@ -14612,8 +14612,8 @@
       "width": 192,
       "height": 192,
       "pivot": {
-        "x": 96,
-        "y": 134.172864
+        "x": 95.9999885559082,
+        "y": 124.48734283447266
       },
       "sourceSheet": "source/rendered2d/production/characters/hd_baby_idle_1.png",
       "sourceRect": {
@@ -14648,8 +14648,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "61fa4491b416253426d32d492245b20cbf60fa2ffdf0c528850cb639039cbd67",
-        "outputHash": "473f28b62e79fb65fdfec0f53fabc565727f4bd9220c106a6a6b950f987031ce"
+        "sourceHash": "587c9d54ff80812e700fb47e94487519e0cd1bb05a78b002d61f0daff3c4dc25",
+        "outputHash": "1efaa6d3406929bf69a3f0886d19998d4ee0983d66da0321f339c6570b617fc4"
       }
     },
     {
@@ -14661,8 +14661,8 @@
       "width": 192,
       "height": 192,
       "pivot": {
-        "x": 96,
-        "y": 134.172864
+        "x": 95.9999885559082,
+        "y": 124.48734283447266
       },
       "sourceSheet": "source/rendered2d/production/characters/hd_baby_idle_2.png",
       "sourceRect": {
@@ -14697,8 +14697,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "c742910c9c38553094910563d0890cfc378c7067f32fc5a2c149be5e0dc6182d",
-        "outputHash": "131e8a6917a382e7f12f6a32a13125948cb941d620a0badb1798992b3bb07e4b"
+        "sourceHash": "748fc4078e406ad3521ea5f880b28c19fffeec6e1fa002a3ff2d753faefb412a",
+        "outputHash": "f0c9f209a02e2bdead9053a8a0734bc1998498fc740d6dbfc3f2f0f84ceaf6b2"
       }
     },
     {
@@ -14710,8 +14710,8 @@
       "width": 192,
       "height": 192,
       "pivot": {
-        "x": 96,
-        "y": 134.172864
+        "x": 95.9999885559082,
+        "y": 124.48734283447266
       },
       "sourceSheet": "source/rendered2d/production/characters/hd_baby_idle_3.png",
       "sourceRect": {
@@ -14746,8 +14746,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "4842ead7b9bcba12204fb736262b80e90c52308c399478b787a3a67c73a072c1",
-        "outputHash": "473f28b62e79fb65fdfec0f53fabc565727f4bd9220c106a6a6b950f987031ce"
+        "sourceHash": "e6ffaae0637b74903987744aab83d1fea4d1349e7785a9b41eaa266dc74ccad3",
+        "outputHash": "1efaa6d3406929bf69a3f0886d19998d4ee0983d66da0321f339c6570b617fc4"
       }
     },
     {
@@ -14759,8 +14759,8 @@
       "width": 192,
       "height": 192,
       "pivot": {
-        "x": 96,
-        "y": 134.172864
+        "x": 95.9999885559082,
+        "y": 124.48734283447266
       },
       "sourceSheet": "source/rendered2d/production/characters/hd_baby_idle_4.png",
       "sourceRect": {
@@ -14795,8 +14795,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "4a39ec10077c17fbd76d94e424705004299ffd71d241ac194f2298771714d073",
-        "outputHash": "71efc9b9c51708364463193471d99ee1616b944122724fbaaf874af8d21f6f52"
+        "sourceHash": "fce52382b968f22be60c860faeb8fd6d1655b6e535225dae1e9180777f740ba7",
+        "outputHash": "0fe26aefef19a15705c6a262a28432b897096157ae450b8df93e0d7717ca0d9b"
       }
     },
     {
@@ -17146,8 +17146,9 @@
         "objectBox": null,
         "alphaCutoff": 240,
         "fullCanvas": false,
+        "cropRight": 3,
         "sourceHash": "aa7024b298438f25bf3058c424085e05f5c6314f94597c03332a13ae3a78c80c",
-        "outputHash": "71c793761e5adae8be82f21965849291ebb0a91604caa9453add17d49064526a"
+        "outputHash": "bb3003f1b69ccf1d5780c244ee906c5efc174e78f5506909ea4d56176a0f1ac6"
       }
     },
     {
@@ -18030,300 +18031,6 @@
         "fullCanvas": false,
         "sourceHash": "8d2aff0771e2c3a533584495cde0468de83fb75a92cbdc13fa4324f2cfa169bf",
         "outputHash": "af7e19492997c0390d103a6d8aefcd02250e25e67795509eab691770a466578c"
-      }
-    },
-    {
-      "id": "emote_happy",
-      "label": "emote_happy",
-      "category": "effects",
-      "categoryLabel": "effects",
-      "path": "runtime/effects/emote_happy.png",
-      "width": 128,
-      "height": 128,
-      "pivot": {
-        "x": 64,
-        "y": 128
-      },
-      "sourceSheet": "source/rendered2d/production/effects/emote_happy.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/generated/environment/details.png",
-        "crop": [
-          0,
-          362,
-          362,
-          362
-        ],
-        "objectBox": null,
-        "alphaCutoff": 240,
-        "fullCanvas": false,
-        "sourceHash": "8d2aff0771e2c3a533584495cde0468de83fb75a92cbdc13fa4324f2cfa169bf",
-        "outputHash": "6578ca1291f1cfd0b4dd173a327bcbab74dd39320312100d432322d974ec69ab"
-      }
-    },
-    {
-      "id": "emote_proud",
-      "label": "emote_proud",
-      "category": "effects",
-      "categoryLabel": "effects",
-      "path": "runtime/effects/emote_proud.png",
-      "width": 128,
-      "height": 128,
-      "pivot": {
-        "x": 64,
-        "y": 128
-      },
-      "sourceSheet": "source/rendered2d/production/effects/emote_proud.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/generated/environment/details.png",
-        "crop": [
-          362,
-          362,
-          362,
-          362
-        ],
-        "objectBox": null,
-        "alphaCutoff": 240,
-        "fullCanvas": false,
-        "sourceHash": "8d2aff0771e2c3a533584495cde0468de83fb75a92cbdc13fa4324f2cfa169bf",
-        "outputHash": "8177f998c9f5ca7d09a71c1738f062f39f1c048b9f9effad0756cbcaa60a12fd"
-      }
-    },
-    {
-      "id": "emote_sleepy",
-      "label": "emote_sleepy",
-      "category": "effects",
-      "categoryLabel": "effects",
-      "path": "runtime/effects/emote_sleepy.png",
-      "width": 128,
-      "height": 128,
-      "pivot": {
-        "x": 64,
-        "y": 128
-      },
-      "sourceSheet": "source/rendered2d/production/effects/emote_sleepy.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/generated/environment/details.png",
-        "crop": [
-          724,
-          362,
-          362,
-          362
-        ],
-        "objectBox": null,
-        "alphaCutoff": 240,
-        "fullCanvas": false,
-        "sourceHash": "8d2aff0771e2c3a533584495cde0468de83fb75a92cbdc13fa4324f2cfa169bf",
-        "outputHash": "674bb91690f705a1ce73260d0d34036025b77265909e2d893eaf878ee8710238"
-      }
-    },
-    {
-      "id": "emote_peaceful",
-      "label": "emote_peaceful",
-      "category": "effects",
-      "categoryLabel": "effects",
-      "path": "runtime/effects/emote_peaceful.png",
-      "width": 128,
-      "height": 128,
-      "pivot": {
-        "x": 64,
-        "y": 128
-      },
-      "sourceSheet": "source/rendered2d/production/effects/emote_peaceful.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/generated/environment/details.png",
-        "crop": [
-          1086,
-          362,
-          362,
-          362
-        ],
-        "objectBox": null,
-        "alphaCutoff": 240,
-        "fullCanvas": false,
-        "sourceHash": "8d2aff0771e2c3a533584495cde0468de83fb75a92cbdc13fa4324f2cfa169bf",
-        "outputHash": "001156fe6ca61c1e798a5b829b0326e23d023d15c673dfbe626c7ffce6f2ba7f"
-      }
-    },
-    {
-      "id": "emote_loving",
-      "label": "emote_loving",
-      "category": "effects",
-      "categoryLabel": "effects",
-      "path": "runtime/effects/emote_loving.png",
-      "width": 128,
-      "height": 128,
-      "pivot": {
-        "x": 64,
-        "y": 128
-      },
-      "sourceSheet": "source/rendered2d/production/effects/emote_loving.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/generated/environment/details.png",
-        "crop": [
-          0,
-          724,
-          362,
-          362
-        ],
-        "objectBox": null,
-        "alphaCutoff": 240,
-        "fullCanvas": false,
-        "sourceHash": "8d2aff0771e2c3a533584495cde0468de83fb75a92cbdc13fa4324f2cfa169bf",
-        "outputHash": "dff328af820c337df46390a02c3b3f43462d87b3d1a4361c09f2e1ece74d0e2d"
-      }
-    },
-    {
-      "id": "emote_curious",
-      "label": "emote_curious",
-      "category": "effects",
-      "categoryLabel": "effects",
-      "path": "runtime/effects/emote_curious.png",
-      "width": 128,
-      "height": 128,
-      "pivot": {
-        "x": 64,
-        "y": 128
-      },
-      "sourceSheet": "source/rendered2d/production/effects/emote_curious.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 128,
-        "h": 128
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/generated/environment/details.png",
-        "crop": [
-          362,
-          724,
-          362,
-          362
-        ],
-        "objectBox": null,
-        "alphaCutoff": 240,
-        "fullCanvas": false,
-        "sourceHash": "8d2aff0771e2c3a533584495cde0468de83fb75a92cbdc13fa4324f2cfa169bf",
-        "outputHash": "d83f057b53fd50a188efec270544d9469438300a61bb251edf748f1d152f1e3b"
       }
     },
     {
@@ -19465,7 +19172,7 @@
       "sampling": "Lanczos",
       "runtime": true,
       "usage": "HD production",
-      "bundle": "battle",
+      "bundle": "characters",
       "provenance": {
         "source": "source/effects/tactic-rage/orbit-b-sheet.png",
         "crop": [
@@ -20998,6 +20705,888 @@
       }
     },
     {
+      "id": "fx_impact_arrow_1",
+      "label": "fx_impact_arrow_1",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_arrow_1.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_arrow_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_arrow",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_arrow_1.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "82d17c0e907275164b9bd387c8bc33820543c5e2b180cd6e1dda68e108ce95e4",
+        "outputHash": "694ca0eb9f55ffcdec7504eab01e49bbde0b469e65e2994124e9e6ff6f54faad"
+      }
+    },
+    {
+      "id": "fx_impact_arrow_2",
+      "label": "fx_impact_arrow_2",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_arrow_2.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_arrow_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_arrow",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_arrow_2.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "684e6814441ef6d6f613bcd99b1506c1fc4671bdffdb452d7d218b83d5e4d47e",
+        "outputHash": "f1066b3fce70f2f7d048f6319fba762e55c9004c88bacb401485fa6075f5468c"
+      }
+    },
+    {
+      "id": "fx_impact_arrow_3",
+      "label": "fx_impact_arrow_3",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_arrow_3.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_arrow_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_arrow",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_arrow_3.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "761e79da43c495984199ce9b11b57442dac04cf534d459baa6a5a14b80581fea",
+        "outputHash": "e9495c52ef6e11e1d693a9ad0e874627807f578191cb26b53fbdf7303cb91a1c"
+      }
+    },
+    {
+      "id": "fx_impact_arrow_4",
+      "label": "fx_impact_arrow_4",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_arrow_4.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_arrow_4.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_arrow",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_arrow_4.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "46bb541fe98ceaa6ce7fffef2fd6217f048a9fd3c4385f7d1fd073eb9c1b58bd",
+        "outputHash": "fc52eb4d4058fd76488f20f34dd8819ec62879566052784f5a6ef7d45ff8f776"
+      }
+    },
+    {
+      "id": "fx_impact_arrow_5",
+      "label": "fx_impact_arrow_5",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_arrow_5.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_arrow_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_arrow",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_arrow_5.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "8a049e04d454cdd72be06c3104c500e981ceea5c89dc8df40cf6e0736e0ad657",
+        "outputHash": "6c7ac3415148ce74c28fa5536574b3946d74da8349813d2a95311777ec158838"
+      }
+    },
+    {
+      "id": "fx_impact_stone_1",
+      "label": "fx_impact_stone_1",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_stone_1.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_stone_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_stone",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_stone_1.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "f164281cb4b659bc0aa7dee8cb681c7902dee4755391842ed22cf0b4157a3a72",
+        "outputHash": "682642378cc1c7c171d895baa552e82b3b188a0246be6a7f79b97c8e075efad7"
+      }
+    },
+    {
+      "id": "fx_impact_stone_2",
+      "label": "fx_impact_stone_2",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_stone_2.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_stone_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_stone",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_stone_2.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "1fb280b4dd5c1e88e7101e287997a667a2c792fbad71e938024d32c8190c1fdf",
+        "outputHash": "fd896c212b95e5c266b8c0533878076e3fa60bcae794b774adeacf78c0dd26bb"
+      }
+    },
+    {
+      "id": "fx_impact_stone_3",
+      "label": "fx_impact_stone_3",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_stone_3.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_stone_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_stone",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_stone_3.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "eb36c4b4901ba58521d836a45ba8a0b4f758fd6b548717011abffc7cf9277996",
+        "outputHash": "6e6ccd8fef4e750f57c58fc7facc65572599153ca1f5bd8e7273ea5523718da7"
+      }
+    },
+    {
+      "id": "fx_impact_stone_4",
+      "label": "fx_impact_stone_4",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_stone_4.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_stone_4.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_stone",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_stone_4.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "85f60d26cac981b41ae45445196054426b55f8543945878fe3fce5f12fb75a5b",
+        "outputHash": "bee35f9799cf5e6a0ce40ca836a88083d0e2065d7246b0298bf6bd8164331cb9"
+      }
+    },
+    {
+      "id": "fx_impact_stone_5",
+      "label": "fx_impact_stone_5",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_stone_5.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_stone_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_stone",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_stone_5.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "5eb4af8689b60a7453cf38e8f6f69f1806f4e7b676a61f6ff1125901d58956fc",
+        "outputHash": "b784b13fa51bf32d04cf7000904a2e0ff6d0daf9cba914e47dea23dad5e7329d"
+      }
+    },
+    {
+      "id": "fx_impact_slow_1",
+      "label": "fx_impact_slow_1",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_slow_1.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_slow_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_slow",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_slow_1.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "50a668482a138fd42ea083dcdcbbb126ff4cdb2a54ace1d2ee71c6f44e4ec6c4",
+        "outputHash": "23895dd98927ef5cdc30810846743b9d2a60e9a2099ed7d7c86e7033d3d5f5e2"
+      }
+    },
+    {
+      "id": "fx_impact_slow_2",
+      "label": "fx_impact_slow_2",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_slow_2.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_slow_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_slow",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_slow_2.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "2c07aa9baf823b2df8740143d491e9a81a7ea1d04ac7816b388a23a6a6390551",
+        "outputHash": "1aacbe5723940ee4e9882c8423fe9538f97ce9a89f2fcbfe9f8294b59e39c165"
+      }
+    },
+    {
+      "id": "fx_impact_slow_3",
+      "label": "fx_impact_slow_3",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_slow_3.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_slow_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_slow",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_slow_3.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "bd9181155a0e64ac6a267361bf45c40839b0723adf2f893ef20973eec1a3bf35",
+        "outputHash": "8d6a57bc72860f333bcef4484e3ef67e88fcdad76757f9e53b78c6170f0764b6"
+      }
+    },
+    {
+      "id": "fx_impact_slow_4",
+      "label": "fx_impact_slow_4",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_slow_4.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_slow_4.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_slow",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_slow_4.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "9ee3613232ffaa86b6045e2234e4e8497093e99fc21a6e8c507dbd7d67509291",
+        "outputHash": "dcea2963aad28b4c1df170b9c999ee11251c48ed48053796dc758567af5363dc"
+      }
+    },
+    {
+      "id": "fx_impact_slow_5",
+      "label": "fx_impact_slow_5",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_impact_slow_5.png",
+      "width": 80,
+      "height": 80,
+      "pivot": {
+        "x": 40,
+        "y": 40
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_impact_slow_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_impact_slow",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/fx_impact_slow_5.png",
+        "crop": [
+          0,
+          0,
+          80,
+          80
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "6c1809626a90ce599fa0a93cb16e9c5d7ac51f19ea080a2a13a78e5966b454fc",
+        "outputHash": "a383ba13f0a266484628cbb046a22448f0a08609e0f675d4efdb5a1059ad206f"
+      }
+    },
+    {
+      "id": "tag_recommended",
+      "label": "tag_recommended",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/tag_recommended.png",
+      "width": 152,
+      "height": 50,
+      "pivot": {
+        "x": 76,
+        "y": 46.875
+      },
+      "sourceSheet": "source/rendered2d/production/ui/icons/tag_recommended.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 152,
+        "h": 50
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 152,
+        "h": 50
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/tag_recommended.png",
+        "crop": [
+          0,
+          0,
+          152,
+          50
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "0220da0a6052f483e3e4fe79cd9bcbc9d18b055e0b36c6e729d149e8064fb028",
+        "outputHash": "67742fc0f391a13851851b7628d3b534ff4d6a991b81ccf9fcb842e2806fb42b"
+      }
+    },
+    {
+      "id": "tag_favorite",
+      "label": "tag_favorite",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/tag_favorite.png",
+      "width": 152,
+      "height": 50,
+      "pivot": {
+        "x": 76,
+        "y": 46.875
+      },
+      "sourceSheet": "source/rendered2d/production/ui/icons/tag_favorite.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 152,
+        "h": 50
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 152,
+        "h": 50
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/tag_favorite.png",
+        "crop": [
+          0,
+          0,
+          152,
+          50
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "5a6b453b7903d489db8b6e76dd46c6f1a02f533ad3bd32f99659a2978c04c03f",
+        "outputHash": "34f9ad2ae6f8cf16b746cbfb72d07eef2da5c60df11d00ca92a35b5987bf5643"
+      }
+    },
+    {
+      "id": "icon_baby_cry",
+      "label": "icon_baby_cry",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/icon_baby_cry.png",
+      "width": 78,
+      "height": 68,
+      "pivot": {
+        "x": 39,
+        "y": 63.75
+      },
+      "sourceSheet": "source/rendered2d/production/effects/icon_baby_cry.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 78,
+        "h": 68
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 78,
+        "h": 68
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "characters",
+      "provenance": {
+        "source": "source/rendered2d/feedback134/icon_baby_cry.png",
+        "crop": [
+          0,
+          0,
+          78,
+          68
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": true,
+        "sourceHash": "5125e0081a3d752d56e3bb287741253a1d2f87259157efa67f80417049c35eac",
+        "outputHash": "fc7eea7c82efc86a6909c761ec3509b1b1c705a7e07a6d5a4db6bbb875a0eaf0"
+      }
+    },
+    {
       "id": "tile_ground_grass",
       "label": "tile_ground_grass",
       "category": "terrain",
@@ -21032,7 +21621,7 @@
       "usage": "HD production",
       "bundle": "base",
       "provenance": {
-        "source": "source/rendered2d/generated/environment/grass_ground_textured.png",
+        "source": "source/rendered2d/generated/environment/grass_ground_soft.png",
         "crop": [
           0,
           0,
@@ -21042,8 +21631,9 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "e7a8acf0acacd8dedee6ddc67e209c8927d7514574447bc17700a793adb256cd",
-        "outputHash": "d6ca1553ce8ae58de43d1a271f096150f9053db1c0ba04cbf0462c1070d35de5"
+        "modulate": "105,85,100",
+        "sourceHash": "257a244ee0fea4222220165a05448120c2be0eb427918dc780d3894dd855566d",
+        "outputHash": "163f6cc2d4bc41a0b14bffaa63593e750321886b04f0e7212543a1165c1c0eee"
       }
     },
     {
@@ -21545,8 +22135,8 @@
       "width": 192,
       "height": 192,
       "pivot": {
-        "x": 96,
-        "y": 134.172864
+        "x": 95.9999885559082,
+        "y": 124.48734283447266
       },
       "sourceSheet": "source/rendered2d/production/characters/portrait_hd_baby_idle_1.png",
       "sourceRect": {
@@ -21581,8 +22171,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "61fa4491b416253426d32d492245b20cbf60fa2ffdf0c528850cb639039cbd67",
-        "outputHash": "473f28b62e79fb65fdfec0f53fabc565727f4bd9220c106a6a6b950f987031ce"
+        "sourceHash": "587c9d54ff80812e700fb47e94487519e0cd1bb05a78b002d61f0daff3c4dc25",
+        "outputHash": "1efaa6d3406929bf69a3f0886d19998d4ee0983d66da0321f339c6570b617fc4"
       }
     }
   ],
@@ -21606,16 +22196,16 @@
         "category": "enemies",
         "mapping": "enemy_raider",
         "canvas": {
-          "w": 192,
-          "h": 192
+          "w": 200,
+          "h": 200
         },
         "pivot": {
-          "x": 96,
-          "y": 168
+          "x": 100,
+          "y": 175
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 60
+        "stridePixels": 62.5
       },
       {
         "id": "enemy_runner_walk",
@@ -21634,16 +22224,16 @@
         "category": "enemies",
         "mapping": "enemy_runner",
         "canvas": {
-          "w": 192,
-          "h": 192
+          "w": 200,
+          "h": 200
         },
         "pivot": {
-          "x": 96,
-          "y": 164
+          "x": 100,
+          "y": 170.83333333333331
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 68
+        "stridePixels": 70.83333333333334
       },
       {
         "id": "enemy_armored_walk",
@@ -21662,16 +22252,16 @@
         "category": "enemies",
         "mapping": "enemy_armored",
         "canvas": {
-          "w": 192,
-          "h": 192
+          "w": 200,
+          "h": 200
         },
         "pivot": {
-          "x": 96,
-          "y": 164
+          "x": 100,
+          "y": 170.83333333333331
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 48
+        "stridePixels": 50
       },
       {
         "id": "enemy_boar_walk",
@@ -21690,16 +22280,16 @@
         "category": "enemies",
         "mapping": "enemy_boar",
         "canvas": {
-          "w": 176,
-          "h": 176
+          "w": 184,
+          "h": 184
         },
         "pivot": {
-          "x": 88,
-          "y": 157.66666666666669
+          "x": 92,
+          "y": 164.83333333333334
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 44
+        "stridePixels": 46
       },
       {
         "id": "enemy_disruptor_walk",
@@ -21718,16 +22308,16 @@
         "category": "enemies",
         "mapping": "enemy_disruptor",
         "canvas": {
-          "w": 192,
-          "h": 192
+          "w": 200,
+          "h": 200
         },
         "pivot": {
-          "x": 96,
-          "y": 168
+          "x": 100,
+          "y": 175
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 56
+        "stridePixels": 58.333333333333336
       },
       {
         "id": "enemy_chief_walk",
@@ -21748,16 +22338,16 @@
         "category": "enemies",
         "mapping": "enemy_chief",
         "canvas": {
-          "w": 272,
-          "h": 272
+          "w": 320,
+          "h": 320
         },
         "pivot": {
-          "x": 136,
-          "y": 243.66666666666666
+          "x": 160,
+          "y": 286.6666666666667
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 68
+        "stridePixels": 80
       },
       {
         "id": "enemy_commander_walk",
@@ -21778,16 +22368,16 @@
         "category": "enemies",
         "mapping": "enemy_commander",
         "canvas": {
-          "w": 272,
-          "h": 272
+          "w": 328,
+          "h": 328
         },
         "pivot": {
-          "x": 136,
-          "y": 243.66666666666666
+          "x": 164,
+          "y": 293.8333333333333
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 68
+        "stridePixels": 82
       },
       {
         "id": "enemy_wolfking_walk",
@@ -21808,16 +22398,16 @@
         "category": "enemies",
         "mapping": "enemy_wolfking",
         "canvas": {
-          "w": 272,
-          "h": 272
+          "w": 320,
+          "h": 320
         },
         "pivot": {
-          "x": 136,
-          "y": 243.66666666666666
+          "x": 160,
+          "y": 286.6666666666667
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 85
+        "stridePixels": 100
       },
       {
         "id": "enemy_tuskking_walk",
@@ -21838,16 +22428,16 @@
         "category": "enemies",
         "mapping": "enemy_tuskking",
         "canvas": {
-          "w": 288,
-          "h": 288
+          "w": 336,
+          "h": 336
         },
         "pivot": {
-          "x": 144,
-          "y": 258
+          "x": 168,
+          "y": 301
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 60
+        "stridePixels": 70
       },
       {
         "id": "enemy_shaman_walk",
@@ -21868,16 +22458,16 @@
         "category": "enemies",
         "mapping": "enemy_shaman",
         "canvas": {
-          "w": 272,
-          "h": 272
+          "w": 328,
+          "h": 328
         },
         "pivot": {
-          "x": 136,
-          "y": 243.66666666666666
+          "x": 164,
+          "y": 293.8333333333333
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 68
+        "stridePixels": 82
       },
       {
         "id": "villager_male_a_walk",
@@ -22908,14 +23498,92 @@
         "loop": true,
         "restFrame": "hd_baby_idle_1",
         "category": "characters",
-        "mapping": "gender-neutral baby",
+        "mapping": "gender-neutral baby in cradle",
         "canvas": {
           "w": 192,
           "h": 192
         },
         "pivot": {
-          "x": 96,
-          "y": 134.172864
+          "x": 95.9999885559082,
+          "y": 124.48734283447266
+        },
+        "clock": "scene_visual_or_battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "fx_impact_arrow",
+        "frameIds": [
+          "fx_impact_arrow_1",
+          "fx_impact_arrow_2",
+          "fx_impact_arrow_3",
+          "fx_impact_arrow_4",
+          "fx_impact_arrow_5"
+        ],
+        "frameCount": 5,
+        "fps": 24,
+        "loop": false,
+        "restFrame": "fx_impact_arrow_1",
+        "category": "effects",
+        "mapping": "arrow",
+        "canvas": {
+          "w": 80,
+          "h": 80
+        },
+        "pivot": {
+          "x": 40,
+          "y": 40
+        },
+        "clock": "scene_visual_or_battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "fx_impact_stone",
+        "frameIds": [
+          "fx_impact_stone_1",
+          "fx_impact_stone_2",
+          "fx_impact_stone_3",
+          "fx_impact_stone_4",
+          "fx_impact_stone_5"
+        ],
+        "frameCount": 5,
+        "fps": 24,
+        "loop": false,
+        "restFrame": "fx_impact_stone_1",
+        "category": "effects",
+        "mapping": "stone",
+        "canvas": {
+          "w": 80,
+          "h": 80
+        },
+        "pivot": {
+          "x": 40,
+          "y": 40
+        },
+        "clock": "scene_visual_or_battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "fx_impact_slow",
+        "frameIds": [
+          "fx_impact_slow_1",
+          "fx_impact_slow_2",
+          "fx_impact_slow_3",
+          "fx_impact_slow_4",
+          "fx_impact_slow_5"
+        ],
+        "frameCount": 5,
+        "fps": 24,
+        "loop": false,
+        "restFrame": "fx_impact_slow_1",
+        "category": "effects",
+        "mapping": "slow",
+        "canvas": {
+          "w": 80,
+          "h": 80
+        },
+        "pivot": {
+          "x": 40,
+          "y": 40
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas"

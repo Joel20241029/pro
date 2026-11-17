@@ -183,7 +183,8 @@ for (const clip of recipe.animations.animations) {
     const walking = clip.category === 'characters' && clip.id.includes('_walk');
     // 高清怪物采用小怪6帧、首领8帧的完整步态；其他人物劳动动作仍保持2～4帧。
     const enemy = clip.category === 'enemies';
-    const badFrames = enemy ? ![6, 8].includes(list.length) || !(clip.stridePixels > 0) : walking ? list.length !== 8 || !(clip.stridePixels > 0) : list.length < 2 || list.length > 4;
+    const oneShot = clip.category === 'effects' && clip.loop === false;
+    const badFrames = enemy ? ![6, 8].includes(list.length) || !(clip.stridePixels > 0) : walking ? list.length !== 8 || !(clip.stridePixels > 0) : list.length < 2 || list.length > (oneShot ? 8 : 4);
     if (clip.frameCount !== list.length || badFrames || list.some(a => !a || !a.runtime || !frames[a.id] || a.width !== clip.canvas.w || a.height !== clip.canvas.h || a.pivot.x !== clip.pivot.x || a.pivot.y !== clip.pivot.y)) throw new Error('动画运行引用、帧数、画布或 pivot 不一致：' + clip.id);
     const rest = assets.find(a => a.id === clip.restFrame);
     if (!rest || !frames[rest.id] || rest.bundle !== list[0].bundle || rest.width !== clip.canvas.w || rest.height !== clip.canvas.h || rest.pivot.x !== clip.pivot.x || rest.pivot.y !== clip.pivot.y) throw new Error('静止帧画布/足点不一致：' + clip.id);

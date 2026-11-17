@@ -25,7 +25,8 @@ export const UI = {
     conditionRowHeight: 170, conditionRowStep: 180,
     // 纯触控表现参数（逻辑像素）：给滑块留白，超过 8px 的移动视为拖动，避免抬指误点条目。
     scrollGutter: 16, scrollDragThreshold: 8, scrollThumbMin: 32, scrollWheelStep: 24,
-    pressedOffset: 3,
+    // 建设信息使用一行效果和一行费用，尾行留给必要限制。此高度也用于塔升级。
+    buildRowHeight: 184, buildRowGap: 12,
     // Tip 总显示2秒（包含淡入/淡出），按用户指定；位置由GameLayout放在实际安全区中心。
     tipSeconds: 2, tipFadeIn: .16, tipFadeOut: .28, tipWidth: 600, tipFont: 30, tipMaxHeight: 800
 } as const;

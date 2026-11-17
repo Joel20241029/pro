@@ -16,6 +16,8 @@ export const WORLD_ART = {
     ] },
     // 阴影贴图中心位于192画布约(96,142)，软边保留alpha。地面投影向右下偏移，照明来自左上。
     shadow: { centerX: .5, centerY: .74, actorWidth: .72, buildingWidth: .94, treeWidth: .88, alpha: .36, x: 4, y: 3 },
+    // 复用百毅靓之怒的俯视红环，放在精英脚下压扁成地面椭圆。相位和尺寸仅为身份提示。
+    eliteRing: { frame: "fx_rage_orbit", width: 59, heightRatio: .43, turnSeconds: 3.2, alpha: .73 },
     // 高清牌面为256×144母画布，下方木桩不参与文字居中。
     sign: { x: .08, y: .18, width: .84, height: .22, font: 22 },
     // 原箭矢素材朝右上45度；显示时补偿这一角度，不改变飞行轨迹或逻辑命中。

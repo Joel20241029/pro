@@ -81,13 +81,16 @@ test('boosted impact remains visible across a full 3x catch-up, freezes on pause
     const b = battle(), feedback = new CombatPresentation(), motion = new ProjectileMotion(); b.bell(); b.step();
     feedback.sync(b, b.feedback); motion.update(b, undefined, undefined, undefined, feedback); const pose = motion.poses[0]; assert(pose.shot.empowered);
     b.bellTicks = 0; b.tick += 15; motion.update(b, undefined, undefined, undefined, feedback);
-    assert.equal(motion.arrivals.length, 1); assert.equal(pose.frame, 'fx_rage_hit'); assert.equal(pose.alpha, 1);
+    assert.equal(motion.arrivals.length, 1); assert.equal(pose.frame, 'fx_arrow'); assert(pose.contact); assert.equal(pose.alpha, 1);
     motion.update(b, undefined, undefined, undefined, feedback); assert.equal(motion.arrivals.length, 0); assert.equal(pose.alpha, 1);
-    b.tick++; motion.update(b, undefined, undefined, undefined, feedback); assert(pose.alpha > 0 && pose.alpha < 1);
-    b.tick += 3; motion.update(b, undefined, undefined, undefined, feedback); assert.equal(motion.poses.length, 0); assert.equal(feedback.shots.size, 0);
+    b.tick++; feedback.advance(.05); motion.update(b, undefined, undefined, undefined, feedback); assert.equal(pose.frame, 'fx_rage_hit'); assert(pose.alpha > 0 && pose.alpha < 1);
+    b.tick += 3; feedback.advance(.15); motion.update(b, undefined, undefined, undefined, feedback); assert.equal(pose.impactFrame, 'fx_impact_arrow_5');
+    feedback.advance(.02); motion.update(b, undefined, undefined, undefined, feedback);
+    assert.equal(motion.poses.length, 0); assert.equal(feedback.shots.size, 0);
     motion.update(null); assert.equal(motion.poses.length, 0);
 });
 test('ordinary shot in flight does not acquire rage after casting', () => {
     const b = battle(), motion = new ProjectileMotion(); b.step(); const shot = b.shots[0]; motion.update(b); b.bell();
-    b.tick += 6; motion.update(b); assert.equal(shot.empowered, false); assert.equal(motion.poses[0].frame, 'fx_hit');
+    b.tick += 6; motion.update(b); assert.equal(shot.empowered, false); assert.equal(motion.poses[0].frame, 'fx_arrow');
+    b.tick++; motion.update(b); assert.equal(motion.poses[0].frame, 'fx_hit');
 });

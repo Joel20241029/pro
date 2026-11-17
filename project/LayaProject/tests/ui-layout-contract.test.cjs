@@ -3,12 +3,15 @@ class Sprite{
  constructor(){this.name='';this.children=[];this.x=this.y=0;this.events={};this.graphics={save(){},scale(){},draw9Grid(){},restore(){}};}
  size(width,height){Object.assign(this,{width,height});return this;}
  pos(x,y){Object.assign(this,{x,y});return this;}
+ pivot(pivotX,pivotY){Object.assign(this,{pivotX,pivotY});return this;}
+ scale(scaleX,scaleY){Object.assign(this,{scaleX,scaleY});return this;}
  addChild(c){c.parent=this;this.children.push(c);return c;}
  getChildByName(name){return this.children.find(c=>c.name===name);}
  on(type,caller,fn){this.events[type]=fn.bind(caller);}
 }
 class Text extends Sprite{get textWidth(){return this.text.length*this.fontSize;}}
-global.Laya={Sprite,Text,Event:{MOUSE_DOWN:'down',MOUSE_UP:'up',MOUSE_OUT:'out',UNDISPLAY:'hidden',CLICK:'click'},InputManager:{cancelClick(){} }};
+const Tween={killAll(){},create(target){return {duration(){return this;},to(key,value){target[key]=value;return this;},ease(){return this;}};}};
+global.Laya={Sprite,Text,Tween,Ease:{elasticOut(){}},Event:{MOUSE_DOWN:'down',MOUSE_UP:'up',MOUSE_OUT:'out',UNDISPLAY:'hidden',CLICK:'click'},InputManager:{cancelClick(){} }};
 const base=process.env.DAIDAI_TEST_BUILD;
 const {SpriteFrames}=require(path.join(base,'view/SpriteFrames.js')),{UiWidgets}=require(path.join(base,'view/UiWidgets.js'));
 // 完整世界在建筑包就绪后创建；世界阴影随建筑包，UI图标仍在基础包。
@@ -37,5 +40,6 @@ test('world shadows keep the authored canvas and contact anchor instead of using
 test('the skin, caption and icon share one pressed face with a fixed outer hit area',()=>{
  const ui=new UiWidgets(art,()=>{}),button=ui.button(new Sprite(),'建设',10,20,160,()=>{});ui.buttonIcon(button,'icon_build',40);
  const face=button.getChildByName('buttonFace');assert(face.getChildByName('buttonIcon'));assert(face.getChildByName('buttonText'));
- button.events.down({touchId:1});assert(face.y>0);assert.equal(button.y,20);button.events.up({touchId:1});assert.equal(face.y,0);
+ const center=[face.x,face.y];button.events.down({touchId:1});assert(face.scaleX>1&&face.scaleY<1);
+ assert.deepEqual([face.x,face.y],center);assert.equal(button.y,20);button.events.up({touchId:1});assert.equal(face.scaleY,1);
 });

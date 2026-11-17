@@ -25,6 +25,24 @@ test('first night uses highest-tier quantity and stays winnable across founding 
   applyCommand(s,{type:'NIGHT'});const b=new BattleSimulation(s);while(!b.outcome&&b.tick<12000)b.step();assert.equal(b.outcome,'WIN');
  }
 });
+test('slight pressure applies only to new wave snapshots and survives the integer save format',()=>{
+ const s=createGame(15);Object.assign(s,{day:12,completed:11});s.legacy.bestNight=11;s.wave=generateWave(s);
+ assert.equal(s.wave.ordinaryHealthPercent,106);
+ const old=JSON.parse(JSON.stringify(s));delete old.wave.ordinaryHealthPercent;
+ function saveBattle(state){
+  applyCommand(state,{type:'NIGHT'});
+  const entries=new Map(),port={read:k=>entries.get(k)||null,write:(k,v)=>entries.set(k,v)};
+  const store=new SaveStore(port);store.inspect();store.prepare(state);store.commit();
+  const loaded=new SaveStore(port).inspect();assert.equal(loaded.kind,'ready');
+  return new BattleSimulation(loaded.state);
+ }
+ const before=saveBattle(old),after=saveBattle(s);
+ assert.notEqual(before.base.wave.ordinaryHealthPercent,after.base.wave.ordinaryHealthPercent);
+ for(const [kind,increased]of [['enemy_raider',true],['enemy_chief',false]]){
+  before.spawn(kind,0,1); after.spawn(kind,0,1);
+  assert.equal(after.enemies.at(-1).hp>before.enemies.at(-1).hp,increased);
+ }
+});
 test('current saves reject lower difficulty and removed annual choice instead of silently migrating them',()=>{
  for(let tier=0;tier<RULE.maxTier;tier++){
   const s=createGame(1);s.tier=tier;s.wave=generateWave(s);assert.throws(()=>validateState(s));

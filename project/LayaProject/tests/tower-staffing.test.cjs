@@ -119,8 +119,11 @@ test('night swaps preserve battle progress and saved assignments, then resume wi
 });
 
 test('tower panel offers replacement but no release action, and explains auto staffing', () => {
-    const s = createGame(7), buttons = [], labels = [], view = {};
-    Object.assign(view, { game: { state: s, battle: null, pauses: new Set() }, modal: () => new Sprite(), ui: { buildRow() {}, label(parent, text) { labels.push(text); return {}; }, button(parent, text) { buttons.push(text); } } });
+    const s = createGame(7), buttons = [], view = {}; let help;
+    Object.assign(view, { game: { state: s, battle: null, pauses: new Set() },
+        modal(title, overview, close, size, text) { help = text; return new Sprite(); },
+        ui: { buildRow() {}, iconValue() {}, label() { return {}; },
+            button(parent, text) { buttons.push(text); return { getChildByName: () => ({ getChildByName: () => ({}) }) }; } } });
     drawBuildingPanel(view, s, { type: 'tower', index: 0 });
-    assert(buttons.includes('更换驻守村民')); assert(!buttons.some(text => text.includes('释放'))); assert(labels.some(text => text.includes('自动安排成年且未退休的村民')));
+    assert(buttons.includes('更换驻守村民')); assert(!buttons.some(text => text.includes('释放'))); assert(help.includes('自动补上可用成年人'));
 });

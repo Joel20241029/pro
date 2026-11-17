@@ -1,4 +1,4 @@
-"""Reproduce the original village, battle and click audio. WAV/intermediates go only to Downloads."""
+"""Reproduce the original music and game sounds. WAV intermediates go to Downloads."""
 import argparse
 import array
 import hashlib
@@ -117,6 +117,46 @@ def tower_samples(score):
     return samples
 
 
+def defeat_samples(score):
+    rate, length, voice = score['sampleRate'], score['durationSeconds'], score['synthesis']
+    high, low = voice['pitchHz']
+    rng = random.Random(voice['noiseSeed'])
+    # 两次极短停顿把同一口气分成三声。共振峰给声带激励加上喉音的音色。
+    formants = []
+    for frequency, bandwidth, gain in voice['formants']:
+        radius = math.exp(-math.pi * bandwidth / rate)
+        formants.append([2 * radius * math.cos(2 * math.pi * frequency / rate), radius ** 2, gain * (1 - radius), 0., 0.])
+    phase, last_flow, noise = 0., 0., 0.
+    samples = []
+    for i in range(round(rate * length)):
+        t = i / rate
+        envelope = sum(gain * math.sin(math.pi * (t - start) / span) ** 1.3
+                       for start, span, gain in voice['bursts'] if start <= t < start + span)
+        pitch = low + (high - low) * (1 - t / length) ** 1.2
+        pitch += voice['jitterHz'] * (math.sin(2 * math.pi * 19 * t) + .4 * math.sin(2 * math.pi * 31 * t))
+        phase = (phase + pitch / rate) % 2
+        cycle = phase % 1
+        opened, closed = voice['glottalPhase']
+        if cycle < opened:
+            flow = .5 - .5 * math.cos(math.pi * cycle / opened)
+        elif cycle < closed:
+            flow = .5 + .5 * math.cos(math.pi * (cycle - opened) / (closed - opened))
+        else:
+            flow = 0.
+        flow *= 1 if phase < 1 else voice['creakGain']
+        noise += .32 * (rng.uniform(-1, 1) - noise)
+        excitation = flow - last_flow + voice['breathGain'] * noise
+        last_flow = flow
+        resonant = 0.
+        for band in formants:
+            pole, damping, gain, last, before = band
+            frame = pole * last - damping * before + gain * excitation
+            band[3], band[4] = frame, last
+            resonant += frame
+        samples.append(envelope * (resonant + voice['throatGain'] * excitation))
+    return samples
+
+
 def build(name, render):
     score_path = root / f'source/audio/{name}.score.json'
     score = json.loads(score_path.read_text())
@@ -146,11 +186,14 @@ def build(name, render):
             'license': 'Original score and synthesis; no third-party samples', 'phoneListeningVerified': False}
 
 
-tracks = [build('village_loop', village_samples), build('battle_loop', battle_samples), build('ui_click', click_samples), build('tower_fire', tower_samples)]
+tracks = [build('village_loop', village_samples), build('battle_loop', battle_samples), build('ui_click', click_samples),
+          build('tower_fire', tower_samples), build('enemy_defeat', defeat_samples)]
 if tracks[0]['bytes'] > 120_000:
     raise ValueError('Village music exceeded the approved 120 KB target')
 if sum(track['bytes'] for track in tracks[1:]) > 80_000:
-    raise ValueError('Battle and click audio exceeded the approved 80 KB target')
+    raise ValueError('Battle and interface audio exceeded the approved 80 KB target')
+if tracks[-1]['bytes'] > 3_000:
+    raise ValueError('Enemy defeat sound exceeded the approved 3 KB target')
 report = {'tracks': tracks, 'bytes': sum(track['bytes'] for track in tracks)}
 (root / 'audio/manifest.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
 if args.sync:

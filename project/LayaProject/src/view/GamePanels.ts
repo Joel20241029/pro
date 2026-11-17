@@ -11,12 +11,17 @@ import { Panel, PanelContext } from "./panels/PanelContext";
 import { drawPeoplePanel } from "./panels/PeoplePanels";
 import { drawFamilyPanel } from "./panels/FamilyPanel";
 import { drawBuildingPanel } from "./panels/BuildingPanels";
+import { drawWavePanel } from "./panels/WavePanel";
 import { drawJournalPanel } from "./panels/JournalPanels";
 import { drawTacticPanel } from "./panels/TacticPanels";
+import { PanelMotion } from "./PanelMotion";
+import { attachPanelHelp } from "./PanelHelp";
 /** 面板状态与 CHOICE 暂停的唯一所有者。绘制模块不会各自缓存面板或注册刷新回调。 */
 export class GamePanels implements PanelContext {
     current: Panel | null = null;
-    constructor(readonly game: GameSession, readonly art: SpriteFrames, readonly platform: WechatPlatform, readonly ui: UiWidgets, readonly overlay: Laya.Sprite, public layout: GameLayout, readonly refresh: () => void, readonly resources: ResourcePreparation) { }
+    private motion = new PanelMotion(this.overlay);
+    private deferRankingCanvas = false;
+    constructor(readonly game: GameSession, readonly art: SpriteFrames, readonly platform: WechatPlatform, readonly ui: UiWidgets, readonly overlay: Laya.Sprite, public layout: GameLayout, readonly refresh: () => void, readonly resources: ResourcePreparation, private onTacticListOpened?: () => void) { }
     open(panel: Panel, preserve = false) {
         if (!this.resources.ready("characters") || this.game.pauses.has("ASSETS")) return;
         if (!preserve) panel.rowOrder = undefined;
@@ -24,6 +29,21 @@ export class GamePanels implements PanelContext {
         if (panel.type === "start") void this.resources.ensure("battle");
     }
     close() { this.current = null; this.game.resume("CHOICE"); this.refresh(); }
+    redraw(draw: () => void) {
+        const animate = !this.game.pauses.has("BACKGROUND") && !this.game.pauses.has("DISABLED");
+        this.motion.redraw(this.layout, animate, () => {
+            this.deferRankingCanvas = animate;
+            try { draw(); }
+            finally { this.deferRankingCanvas = false; }
+            return this.current;
+        });
+    }
+    relayout(layout: GameLayout) {
+        const previous = this.layout;
+        this.layout = layout;
+        this.motion.relayout(layout, previous.height !== layout.height || previous.safeTop !== layout.safeTop || previous.safeBottom !== layout.safeBottom);
+    }
+    advance(seconds: number) { return this.motion.advance(seconds, this.layout); }
     send(c: Command, keep = true) {
         if (this.game.pauses.has("ASSETS") || (c.type === "NIGHT" && !this.resources.ready("battle"))) return;
         if (!keep) {
@@ -35,9 +55,7 @@ export class GamePanels implements PanelContext {
     modal(title: string, subtitle: string, close = true, size?: {
         width: number;
         height: number;
-    }) {
-        this.overlay.mouseThrough = false;
-        this.overlay.graphics.drawRect(0, 0, 720, this.layout.height, "rgba(28,36,25,0.56)");
+    }, help?: string) {
         const width = size ? size.width : UI.panelWidth, height = size ? size.height : UI.panelHeight;
         const box = new Laya.Sprite();
         box.name = `panel:${title}`;
@@ -48,8 +66,11 @@ export class GamePanels implements PanelContext {
         const header = new Laya.Sprite(); header.pos(18, 17); header.mouseEnabled = false;
         this.art.panel(header, "panel_header", width - 36, 82); box.addChild(header);
         this.overlay.addChild(box);
-        this.ui.label(box, title, 86, 28, width - 172, title.replace(/<[^>]*>/g, "").length > 12 ? 32 : UI.title, C.ink, true, 60).align = "center";
-        this.ui.label(box, subtitle, UI.inset, 108, width - UI.inset * 2, 27, C.muted, false, 100).align = "center";
+        const headingInset = help ? 154 : 86;
+        const heading = this.ui.label(box, title, headingInset, 28, width - headingInset * 2, title.replace(/<[^>]*>/g, "").length > 12 ? 32 : UI.title, C.ink, true, 60);
+        heading.align = "center"; heading.wordWrap = false; heading.overflow = Laya.Text.SHRINK;
+        if (subtitle) this.ui.label(box, subtitle, UI.inset, 108, width - UI.inset * 2, 27, C.muted, false, 100).align = "center";
+        if (help) attachPanelHelp(box, heading, help, this.art, this.ui);
         // 用户移除左上麦穗，关闭按钮仍在右侧；底角装饰不参与九宫格拉伸。
         if (close)
             this.ui.button(box, "×", width - 82, 31, 54, () => this.close(), C.red, 54);
@@ -70,9 +91,12 @@ export class GamePanels implements PanelContext {
             drawPeoplePanel(this, s, p);
         else if (p.type === "families")
             drawFamilyPanel(this, s, p);
-        else if (["build", "tower", "wave", "start"].includes(p.type))
+        else if (p.type === "wave" || p.type === "start")
+            drawWavePanel(this, s, p);
+        else if (p.type === "build" || p.type === "tower")
             drawBuildingPanel(this, s, p);
         else
-            drawJournalPanel(this, s, p);
+            drawJournalPanel(this, s, p, this.deferRankingCanvas);
+        if (p.type === "tactics") this.onTacticListOpened?.();
     }
 }

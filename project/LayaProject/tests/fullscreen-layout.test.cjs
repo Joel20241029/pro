@@ -142,14 +142,16 @@ test('crowded childcare keeps babies stationary and carers beside them across la
 test('layout resize without screenTop preserves the visible popup and updates the open-data touch viewport without authorization', () => {
     global.Laya={Sprite:class{},OpenDataContextView:class{},Texture2D:class{}};
     const {GameView}=require(path.join(compiled,'view/GameView.js'));
+    const {GamePanels}=require(path.join(compiled,'view/GamePanels.js'));
     const {VillageWorld}=require(path.join(compiled,'view/VillageWorld.js'));
     const old=layout(profiles[4]),data=sceneAt(old),game=createGame(7),motion=new VillagerMotion(data.nav,data.scene.stops);motion.sync(game,game.towers);
     let viewportUpdates=0,refreshes=0,clears=0; const ranking={updateViewPort(){viewportUpdates++;}};
-    const box={height:860,y:0,getChildByName(name){assert.equal(name,'FriendRankingCanvas');return ranking;}};
+    const box={width:668,height:860,y:0,pos(x,y){this.x=x;this.y=y;},scale(){},getChildByName(name){assert.equal(name,'FriendRankingCanvas');return ranking;}};
     const overlay={numChildren:1,graphics:{clear(){clears++;},drawRect(){}},size(){},getChildAt(){return box;}};
     const view=Object.create(GameView.prototype), w={windowWidth:360,windowHeight:880,statusBarHeight:28,safeArea:{top:28,bottom:856,left:0,right:360}}, menu={width:88,height:32,top:32,bottom:64,left:262,right:350};
     const village=Object.create(VillageWorld.prototype); Object.assign(village,{layout:old,scene:data.scene,motion,props:data.scene.props.map(p=>({...p,node:{pos(){}}}))});
-    Object.assign(view,{layout:old,village,panels:{layout:old},platform:{window:w,menu},root:{size(){}},overlay,tip:{pos(){}},refresh(preserve){assert.equal(preserve,true);refreshes++;}});
+    const panels=new GamePanels(game,{}, {}, {},overlay,old,()=>{},{});
+    Object.assign(view,{layout:old,village,panels,platform:{window:w,menu},root:{size(){}},overlay,tip:{pos(){}},refresh(preserve){assert.equal(preserve,true);refreshes++;}});
     const before=JSON.stringify(game);view.resize();assert.equal(view.overlay,overlay);assert.equal(view.overlay.getChildAt(0),box);assert.equal(viewportUpdates,1);
     assert(Number.isFinite(box.y));assert(box.y>=view.layout.safeTop);assert(box.y+box.height<=view.layout.safeBottom);
     near(box.y,view.layout.safeTop+(view.layout.safeBottom-view.layout.safeTop-box.height)/2);view.resize();assert.equal(refreshes,1);assert.equal(clears,1);assert.equal(JSON.stringify(game),before);

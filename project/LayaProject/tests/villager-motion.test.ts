@@ -48,7 +48,7 @@ test("A walk from behind a house goes around its foundation", () => {
     const tied = [{ id: "person:1:2", y: 950 }, { id: "enemy:2", y: 950 }, { id: "building:a", y: 950 }];
     equal(tied.slice().reverse().sort(compareDepth), tied.slice().sort(compareDepth));
 });
-test("All founders actually walk, work and rest while business data stays unchanged", () => {
+test("Working founders keep their routines while idle founders face forward at stationary posts", () => {
     const s = createGame(17), before = JSON.stringify(s), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     const initial = s.people.map(p => ({ ...motion.get(p.id) }));
     const traveled = new Set<string>(), working = new Set<string>(), rested = new Set<string>();
@@ -63,7 +63,12 @@ test("All founders actually walk, work and rest while business data stays unchan
             if (!m.walking && VILLAGE_STOPS.rest.some(p => distance(p, m) < .01)) rested.add(p.id);
         });
     }
-    equal(traveled.size, s.people.length); ok(working.size >= 3); equal(rested.size, s.people.length); equal(JSON.stringify(s), before);
+    const waiting = s.people.filter(p => p.job === "WAITING");
+    equal(traveled.size, s.people.length); ok(working.size >= 3); equal(rested.size, s.people.length - waiting.length);
+    const idle = waiting.map(p => ({ ...motion.get(p.id) }));
+    idle.forEach(m => { ok(!m.walking && !m.animated && m.direction === "DOWN"); ok(VILLAGE_STOPS.waiting.some(p => distance(p, m) < .01)); });
+    motion.update(.25); idle.forEach(m => equal([motion.get(m.id).x, motion.get(m.id).y], [m.x, m.y]));
+    equal(JSON.stringify(s), before);
 });
 test("Moving poses match signed displacement across work, tower travel and return", () => {
     const s = createGame(17), motion = new VillagerMotion(navigation), directions = new Set<WalkDirection>(); motion.sync(s, s.towers);
@@ -73,6 +78,7 @@ test("Moving poses match signed displacement across work, tower travel and retur
         const previous = s.people.map(p => ({ ...motion.get(p.id) })); motion.update(.05);
         s.people.forEach((p, index) => {
             const m = motion.get(p.id), old = previous[index], dx = m.x - old.x, dy = m.y - old.y;
+            if (!m.walking && p.job === "WAITING" && s.phase === "DAY") { equal(m.direction, "DOWN"); return; }
             if (Math.hypot(dx, dy) < .001) { equal(m.direction, old.direction); return; }
             directions.add(m.direction);
             ok(m.direction === "UP" ? dy < 0 : m.direction === "DOWN" ? dy > 0 : m.direction === "LEFT" ? dx < 0 : dx > 0, "backward walking pose");
@@ -138,7 +144,7 @@ test("Babies stay home, children walk, growth retains position, retired people a
     // 新儿童沿用自己的稳定活动位，先完成最多一次短驻足，再离开婴儿位置行走。
     for (let i = 0; i < 50 && !motion.get(child.id).walking; i++) motion.update(.1);
     ok(motion.get(child.id).walking);
-    const feet = { ...motion.get(child.id) }; child.adult = true; child.job = "WAITING"; motion.sync(s, s.towers);
+    const feet = { ...motion.get(child.id) }; child.adult = true; child.nights = RULE.adultNights; child.job = "WAITING"; motion.sync(s, s.towers);
     equal([motion.get(child.id).x, motion.get(child.id).y], [feet.x, feet.y]);
     s.people.splice(0, 1); motion.sync(s, s.towers); equal(motion.count, s.people.length);
     const next = createGame(99); next.run = s.run + 1; next.people.forEach(p => p.id = `${next.run}:${p.id.split(":")[1]}`);

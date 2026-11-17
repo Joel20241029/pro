@@ -6,10 +6,9 @@
 export const runtimeTextureSizes = {
     // 成人/老人最大90×1.25=112.5逻辑宽；孩子48×90/56×1.25=96.43；婴儿原192足够。
     characters: { male: 240, female: 240, child: 208, elder: 240, baby: 192 },
-    // 1.0.18小怪再放大15%、Boss再放大25%：最大134.55逻辑px，2倍采样+5%需282.56px。
-    // 规范化画布直接从原始高清稿重新取样，96单位原生布局/挂件和足点不变。
-    enemies: { raider: 192, runner: 192, armored: 192, boar: 176, disruptor: 192,
-        chief: 272, commander: 272, wolfking: 272, tuskking: 288, shaman: 272 },
+    // 1.0.35 的首领显示再加 10%，取自高清母稿。保留 96 单位挂点、2 倍采样与 5% 余量，以 8 像素对齐。
+    enemies: { raider: 200, runner: 200, armored: 200, boar: 184, disruptor: 200,
+        chief: 320, commander: 328, wolfking: 320, tuskking: 336, shaman: 328 },
     // 配件实际宽高取enemy-layouts.mjs每帧矩形；叶饰最大92/96×134.55，2倍+5%取272。
     enemyParts: { enemy_acc_band: 144, enemy_acc_antlers: 160, enemy_acc_feathers: 96,
         enemy_acc_mask: 80, enemy_acc_banner: 144, enemy_acc_leaves: 272 },

@@ -2,6 +2,7 @@ const { test } = require('node:test'), assert = require('node:assert/strict'), p
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 const { RULE, TOWERS, PADS } = require(path.join(compiled, 'game/GameConfig.js'));
+const { TACTIC_USE } = require(path.join(compiled, 'config/TacticConfig.js'));
 const { createGame, applyCommand, birthUnavailableReason } = require(path.join(compiled, 'game/VillageRules.js'));
 const { BattleSimulation, pointAt, PATH_LENGTH } = require(path.join(compiled, 'game/BattleSimulation.js'));
 const { GameSession } = require(path.join(compiled, 'game/GameSession.js'));
@@ -20,13 +21,20 @@ function longBattle(s = createGame(7)) {
     return new BattleSimulation(s);
 }
 
-test('bell lasts exactly 300 simulation steps; duplicate use never refreshes it', () => {
+test('bell lasts 300 steps and only the cooldown boundary permits a second cast', () => {
     const b = longBattle(); assert.equal(RULE.bellTicks * RULE.step, 15); b.bell();
     for (let i = 0; i < RULE.bellTicks - 1; i++) b.step();
     assert.equal(b.bellTicks, 1); b.bell(); assert.equal(b.bellTicks, 1);
     b.step(); assert.equal(b.bellTicks, 0); b.bell(); assert.equal(b.bellTicks, 0);
-    assert.equal(b.bellUsed, true);
-    const next = new BattleSimulation(b.base); assert.equal(next.bellUsed, false); assert.equal(next.bellTicks, 0);
+    assert.equal(b.tacticUsesLeft, 1);
+    while (b.tick < TACTIC_USE.cooldownTicks - 1) b.step();
+    b.bell(); assert.equal(b.canCastTactic, false); assert.equal(b.tacticCooldownTicks, 1);
+    b.step(); assert.equal(b.canCastTactic, true); b.bell();
+    assert.equal(b.bellTicks, RULE.bellTicks); assert.equal(b.tacticUsesLeft, 0);
+    while (b.tacticCooldownTicks) b.step();
+    b.bell(); assert.equal(b.bellTicks, 0); assert.equal(b.canCastTactic, false);
+    const next = new BattleSimulation(b.base);
+    assert.equal(next.tacticUsesLeft, TACTIC_USE.perNight); assert.equal(next.bellTicks + next.tacticCooldownTicks, 0);
 });
 
 test('two speed levels keep 15 combat seconds and take 7.5/5 real seconds', () => {
@@ -127,7 +135,10 @@ class Sprite {
     event(event, data) { this.handlers[event]?.(data); }
     off() {}
 }
-global.Laya = { Sprite, ColorFilter: class { gray() { return this; } }, Text: { SHRINK: 'shrink' }, Rectangle: class {}, OpenDataContextView: class {}, Texture2D: class {}, Event: { CLICK: 'click', MOUSE_DOWN: 'down', MOUSE_UP: 'up', MOUSE_OUT: 'out', UNDISPLAY: 'undisplay' } };
+const Tween = { killAll() {}, create(target) {
+    return { duration() { return this; }, to(key, value) { target[key] = value; return this; }, ease() { return this; } };
+} };
+global.Laya = { Sprite, Tween, Ease: { elasticOut: () => 1 }, ColorFilter: class { gray() { return this; } }, Text: { SHRINK: 'shrink' }, Rectangle: class {}, OpenDataContextView: class {}, Texture2D: class {}, Event: { CLICK: 'click', MOUSE_DOWN: 'down', MOUSE_UP: 'up', MOUSE_OUT: 'out', UNDISPLAY: 'undisplay' } };
 const { GamePanels } = require(path.join(compiled, 'view/GamePanels.js'));
 const { GameHud } = require(path.join(compiled, 'view/GameHud.js'));
 
@@ -136,19 +147,19 @@ test('night status names the equipped effect rather than calling every tactic at
     const hud = Object.create(GameHud.prototype); hud.game = game; hud.nightStatus = { text: '' };
     for (const [effect, name, label] of [['ATTACK_SPEED','大王之心','攻速'],['ATTACK_DAMAGE','百毅靓之怒','伤害']]) {
         game.battle = { outcome: null, bellTicks: 300, tactic: { effect, name, multiplier: 1.5 } };
-        hud.update(); assert.equal(hud.nightStatus.text, `${name} · ${label} +50% · 还剩 15秒`);
+        hud.update(); assert.equal(hud.nightStatus.text, `${name} · ${label} +50% · 还剩 8秒`);
     }
 });
 const { UiWidgets } = require(path.join(compiled, 'view/UiWidgets.js'));
 const { GUIDE_CHAPTERS } = require(path.join(compiled, 'view/GameGuide.js'));
-function panelView(game) {
-    const art = { panel() {} }, view = new GamePanels(game, art, {}, null, new Sprite(), {}, () => {
+function panelView(game, overlay = new Sprite()) {
+    const art = { panel() {}, get: id => id, contentBounds: () => ({rect:{w:64,h:64},sourceSize:{w:64,h:64},trimOffset:{x:0,y:0}}) }, view = new GamePanels(game, art, {}, null, overlay, {}, () => {
         if (view.current) view.draw(game.state, view.current);
     }, { ready: () => true });
     const ui = new UiWidgets(art, () => view.clickSounds++);
     Object.assign(view, { resources: { ready: () => true }, ui, clickSounds: 0, modal() { this.box = new Sprite(); return this.box; } });
     ui.label = (parent, text, x, y, w, font, color, bold, h) => {
-        const node = new Sprite().pos(x, y).size(w, h); node.text = text; node.textHeight = 200; node.textWidth = text.replace(/<[^>]*>/g, '').length * (font || 28); parent.addChild(node); return node;
+        const node = new Sprite().pos(x, y).size(w, h); node.text = text; node.fontSize = font; node.textHeight = 200; node.textWidth = text.replace(/<[^>]*>/g, '').length * (font || 28); parent.addChild(node); return node;
     };
     return view;
 }
@@ -174,8 +185,9 @@ test('night controls preserve pause/speed/bell rules and restore village navigat
     const heartFace = () => button('大王之心').getChildByName('buttonFace');
     assert.equal(controls().children.filter(n=>n.name.startsWith('button:')).length,3);
     for(const name of ['村民','家庭','建设','家谱']) assert.equal(hud.node.getChildByName('button:'+name),undefined);
-    button('大王之心').event('click'); assert(game.battle.bellUsed);
-    assert.equal(heartFace().getChildByName('HeartState').text,'15秒');
+    assert.equal(heartFace().getChildByName('HeartState').text, '可用 2 次');
+    button('大王之心').event('click'); assert.equal(game.battle.tacticUsesLeft, 1);
+    assert.equal(heartFace().getChildByName('HeartState').text,'生效 8秒');
     assert.equal(button('大王之心').mouseEnabled,false);
     button('暂停').event('click'); assert(game.pauses.has('USER'));
     const remaining = game.battle.bellTicks; game.update(1); hud.update();
@@ -190,9 +202,17 @@ test('night controls preserve pause/speed/bell rules and restore village navigat
     game.pause('CHOICE'); button('继续守夜').event('click');
     assert(!game.pauses.has('USER')); assert(game.pauses.has('CHOICE'));
     game.resume('CHOICE'); draw();
-    for(let i=0;i<RULE.bellTicks;i++) game.update(RULE.step);
-    hud.update(); assert.equal(heartFace().getChildByName('HeartState').text,'本夜已用');
+    for(let i=0;i<RULE.bellTicks / RULE.minSpeed;i++) game.update(RULE.step);
+    hud.update(); assert.equal(heartFace().getChildByName('HeartState').text,'冷却 3秒');
     assert.equal(button('大王之心').mouseEnabled,false); assert.equal(heartFace().getChildByName('buttonSkin').filters.length,1);
+    const cooling = game.battle.tacticCooldownTicks;
+    button('速度 ×1').event('click'); assert.equal(game.battle.tacticCooldownTicks, cooling);
+    assert.equal(heartFace().getChildByName('HeartState').text, '冷却 2秒');
+    while (game.battle.tacticCooldownTicks) game.update(RULE.step);
+    hud.update(); assert.equal(heartFace().getChildByName('HeartState').text, '可用 1 次');
+    button('大王之心').event('click'); assert.equal(game.battle.tacticUsesLeft, 0);
+    while (game.battle.bellTicks) game.update(RULE.step);
+    hud.update(); assert.equal(heartFace().getChildByName('HeartState').text, '已用完');
     game.newVillage(); assert.equal(hud.node.getChildByName('NightControls'),undefined);
     for(const name of ['村民','家庭','建设','家谱']) assert(hud.node.getChildByName('button:'+name));
 });
@@ -239,7 +259,7 @@ test('action badges follow the pressed button face, sit on its upper-right corne
     for(const [name,panel] of [['家庭','families'],['建设','build']]) {
         const button=hud.node.getChildByName('button:'+name),face=button.getChildByName('buttonFace'),badge=face.getChildByName('ActionHint:'+panel);
         assert(badge);assert.equal(badge.mouseEnabled,false);assert(badge.width>20);assert(badge.y<0);assert(badge.x+badge.width>button.width);assert(badge.x+badge.width<button.width+8);
-        button.event('down',{touchId:1});assert(face.y>0);assert.equal(badge.parent,face);button.event('up',{touchId:1});assert.equal(face.y,0);
+        button.event('down',{touchId:1});assert(face.scaleX>1&&face.scaleY<1);assert.equal(badge.parent,face);button.event('up',{touchId:1});assert.equal(face.scaleY,1);
     }
     assert(!hud.node.children.some(n=>n.name.startsWith('TowerActionHint:')));
     assert.equal(hud.node.getChildByName('button:家谱').getChildByName('buttonFace').getChildByName('ActionHint:history'),undefined);
@@ -273,7 +293,7 @@ test('leaving a pressed button, ranking entry or tower cancels the engine click 
     hud.drawHeader(layout); hud.draw(game.state, layout, { pads: PADS }, anchors);
     const { tower: target } = require(path.join(compiled, 'view/config/HudConfig.js')).HUD;
     const tower = hud.node.children.find(n => n.x === PADS[0].x + target.hitX && n.y === PADS[0].y + target.hitY && n.width === target.hitWidth);
-    const entries = [hud.node.getChildByName('button:小记'), hud.node.getChildByName('RankingButton'), tower];
+    const entries = [hud.node.getChildByName('button:设置'), hud.node.getChildByName('RankingButton'), tower];
     const cancelled = [];
     Laya.InputManager = { cancelClick: id => cancelled.push(id) };
     for (const [index, entry] of entries.entries()) {
@@ -303,10 +323,10 @@ test('leaving a pressed button, ranking entry or tower cancels the engine click 
     const button = entries[0], face = button.getChildAt(0);
     const icon = face.getChildByName('buttonIcon'); assert(icon); assert.equal(icon.parent, face);
     const localIconPosition = [icon.x, icon.y];
-    button.event('down', { touchId: 16 }); assert.notEqual(face.y, 0);
+    button.event('down', { touchId: 16 }); assert(face.scaleX > 1 && face.scaleY < 1);
     assert.deepEqual([icon.x, icon.y], localIconPosition, 'icon remains on the same pressed face rather than shifting separately');
     button.event('out'); // ScrollList already cancelled its pointer and sends a visual reset without event data.
-    assert.equal(face.y, 0);
+    assert.deepEqual([face.scaleX,face.scaleY],[1,1]);
     assert.deepEqual(cancelled, [0, 1, 2]);
 });
 
@@ -322,7 +342,7 @@ test('opening and closing help removes only CHOICE, leaving independent pauses i
 test('tower building is disabled before payment when short of wood or during night', () => {
     const { game } = session(), view = panelView(game); view.ui.image = () => ({}); view.ui.buildRow = () => {};
     game.state.wood = TOWERS.ARROW.cost - 1; view.open({ type: 'tower', index: 2 });
-    const unavailable = view.box.children.find(n => n.name.startsWith('button:箭楼')); assert(unavailable.name.includes('还缺 1 木')); assert(!unavailable.handlers.click);
+    const unavailable = view.box.children.find(n => n.name.startsWith('button:箭楼')); assert.equal(unavailable.getChildByName('buttonFace').getChildByName('readout:icon_wood').getChildByName('readoutText').text, (TOWERS.ARROW.cost-1)+'/'+TOWERS.ARROW.cost); assert(!unavailable.handlers.click);
     game.state.wood++; view.open({ type: 'tower', index: 2 }); assert(view.box.children.find(n => n.name.startsWith('button:箭楼')).handlers.click);
     game.command({ type: 'NIGHT' }); view.open({ type: 'tower', index: 2 });
     assert(!view.box.children.find(n => n.name.startsWith('button:箭楼')).handlers.click);
@@ -342,7 +362,7 @@ test('clean-start choice requires confirmation, cancellation is read-only and in
 test('resizing an open guide preserves its panel, scroll list, offset and pause without writing a save', () => {
     const { GameView } = require(path.join(compiled, 'view/GameView.js'));
     const { GameLayout } = require(path.join(compiled, 'view/GameLayout.js'));
-    const { game, values } = session(), panels = panelView(game), overlay = new Sprite();
+    const { game, values } = session(), overlay = new Sprite(), panels = panelView(game, overlay);
     panels.modal = () => { const box = new Sprite().size(668, 860); overlay.addChild(box); return box; };
     panels.open({ type: 'guide', tab: 4 });
     const box = overlay.getChildAt(0), rows = box.getChildByName('ScrollList'); rows.setOffset(rows.maximum);
@@ -351,7 +371,7 @@ test('resizing an open guide preserves its panel, scroll list, offset and pause 
     const menu = { width: 88, height: 32, top: 51, bottom: 83, left: 292, right: 380 };
     const view = Object.create(GameView.prototype);
     Object.assign(view, { resources: { ready: () => true }, game, panels, overlay, layout: new GameLayout(window, menu), platform: { window: { ...window, windowHeight: 900, safeArea: { top: 47, bottom: 866 } }, menu },
-        root: new Sprite(), tip: { pos() {} }, observedVillageRevision: game.villageRevision,
+        root: new Sprite(), tip: { pos() {} }, results:{observe(){}}, tacticNotices:{observe(){}}, observedVillageRevision: game.villageRevision,
         village: { scene: { pads: PADS }, relayout() {}, sync() {}, drawScenery() {}, towerAnchor: i => PADS[i], gateAnchor: () => ({ x: 360, y: 680 }) }, updateActors() {} });
     view.hud = new GameHud(game, panels.art, panels.ui, panels, () => view.refresh()); panels.ui.image = imageNode;
     view.resize();
@@ -362,7 +382,7 @@ test('resizing an open guide preserves its panel, scroll list, offset and pause 
 
 test('construction orders available rows on entry but refreshes conditions in place after purchase',()=>{
     const {game}=session(),view=panelView(game);game.state.wood=30;game.state.food=10;
-    let drawn=[];view.ui.buildRow=(parent,y,icon,title,effect,cost,reason,action)=>drawn.push({title,reason,action});
+    let drawn=[];view.ui.buildRow=(parent,y,icon,title,effect,owned,cost,reason,action)=>drawn.push({title,reason,action});
     view.open({type:'build'});assert.deepEqual(view.current.rowOrder,['HOUSING','GATE','HOUSE','FARM','LOGGING','REPAIR']);
     assert(drawn[0].title.startsWith('民居修缮'));assert.equal(drawn[0].reason,null);view.current.scroll=90;
     drawn[0].action();drawn=[];view.refresh();assert(drawn[0].title.startsWith('民居修缮'));assert(drawn[0].reason);assert.equal(view.current.scroll,90);
@@ -372,16 +392,77 @@ test('family readiness reorders on entry only; current card data and button stat
     const {game}=session(),view=panelView(game);view.ui.image=imageNode;view.art.portraitId=q=>q.id;
     applyCommand(game.state,{type:'FAMILY',a:game.state.people[4].id,b:game.state.people[5].id});
     const [a,b]=game.state.families;a.lastBirth=game.state.completed;
-    view.open({type:'families'});assert.deepEqual(view.current.rowOrder,[b.id,a.id]);
+    view.open({type:'families',tab:1});assert.deepEqual(view.current.rowOrder,[b.id,a.id]);
     const cards=()=>view.box.getChildByName('ScrollList').content.children.map(row=>row.children[0]);
     assert.equal(cards()[0].name,'family:'+b.id);assert(cards()[0].getChildByName('button:迎接孩子'));
     game.state.food=0;view.refresh();assert.equal(cards()[0].name,'family:'+b.id);assert(cards()[0].getChildByName('button:暂不可迎接'));
-    view.close();view.open({type:'families'});assert.equal(cards()[0].name,'family:'+a.id);
+    view.close();view.open({type:'families',tab:1});assert.equal(cards()[0].name,'family:'+a.id);
+});
+test('family tabs isolate actionable dots and preserve their own scroll positions without writes', () => {
+    const { game, values } = session(), view = panelView(game), s = game.state;
+    view.ui.image = imageNode; view.art.portraitId = p => p.id;
+    const tab = caption => view.box.getChildByName('button:' + caption);
+    const dot = caption => !!tab(caption).getChildByName('buttonFace').getChildByName('FamilyTabActionHint');
+    const pick = caption => tab(caption).event('click');
+    s.food = 0;
+    const panel = { type: 'families' }, save = canonical([...values]);
+    view.open(panel);
+    assert.deepEqual([dot('成家'), dot('养育')], [false, false]);
+    assert(view.box.getChildByName('button:安排村民成家').getChildByName('buttonFace').getChildByName('MarriageActionHint'));
+    pick('养育');
+    assert.equal(view.current, panel);
+    assert.equal(view.box.getChildByName('button:安排村民成家'), undefined);
+    assert(view.box.children.some(n=>n.text==='家庭养育'));
+    s.food = RULE.birthCost;
+    view.refresh();
+    assert.deepEqual([dot('成家'), dot('养育')], [true, false]);
+    pick('成家'); assert.deepEqual([dot('成家'), dot('养育')], [false, true]);
+
+    const adults = s.families[0].partners.map(id => s.people.find(p => p.id === id));
+    s.houses = 39;
+    s.people = []; s.families = [];
+    for (let i = 0; i < 20; i++) {
+        const parents = adults.map((p, j) => ({ ...p, id: `1:${2 * i + j + 1}`, nights: RULE.parentMinNights }));
+        s.people.push(...parents);
+        s.families.push({ id: `1:f${i + 1}`, partners: parents.map(p => p.id), lastBirth: null });
+    }
+    view.open({ type: 'families' });
+    assert.deepEqual([dot('成家'), dot('养育')], [false, true]);
+    const rows = () => view.box.getChildByName('ScrollList');
+    rows().setOffset(710);
+    pick('养育');
+    assert.equal(rows().offset, 0);
+    rows().setOffset(1030);
+    assert(rows().content.children.length < 6);
+    pick('成家'); assert.equal(rows().offset, 710);
+    pick('养育'); assert.equal(rows().offset, 1030);
+    s.nextPerson = Number.MAX_SAFE_INTEGER;
+    view.refresh();
+    assert.deepEqual([dot('成家'), dot('养育')], [false, false]);
+    assert.equal(rows().offset, 1030);
+    assert.equal(canonical([...values]), save);
 });
 test('night operator selection reads live reassignment and puts the current guard last',()=>{
-    const {game}=session(),view=panelView(game);view.art.portraitId=q=>q.id;view.ui.listItem=()=>{};
-    game.command({type:'NIGHT'});game.pause('CHOICE');const id=game.state.people[4].id;assert(game.reassign(0,id));
+    const {game}=session(),view=panelView(game), tagged=[];
+    view.art.portraitId=q=>q.id;
+    view.ui.listItem=(_parent,_desc,portrait)=>portrait;
+    view.ui.personRibbon=(id,frame)=>{ assert.equal(frame,'tag_recommended'); tagged.push(id); };
+    const pendingGuard=game.state.people[4], spare=game.state.people[5], released=game.state.towers[0].operator;
+    pendingGuard.job='WAITING'; spare.job='WAITING'; spare.skill='skill_archery';
+    game.command({type:'NIGHT'});game.pause('CHOICE');const id=pendingGuard.id;assert(game.reassign(0,id));
     assert.notEqual(game.state.towers[0].operator,id);view.open({type:'operators',index:0});assert.equal(view.current.rowOrder.at(-1),id);
+    assert.equal(view.current.rowOrder[0],released);
+    assert.deepEqual(tagged,[released,spare.id]); assert.equal(view.current.rowOrder.length,game.state.people.length);
+});
+test('role recommendations shortlist three pending adults by benefit and retain stable ties',()=>{
+    const { recommendedPeople }=require(path.join(compiled,'view/RoleRecommendations'));
+    const s=createGame(7), template=s.people[0];
+    const candidate=(id,extra={})=>({...template,id,job:'WAITING',trait:'trait_frugal',skill:'skill_farming',...extra});
+    const people=[candidate('working',{job:'FARM',elite:true}),candidate('first'),candidate('second'),candidate('third'),
+        candidate('elite',{elite:true}),candidate('guard',{elite:true}),candidate('elder',{nights:0})];
+    const towers=[{...s.towers[0],operator:'guard'}];
+    assert.deepEqual(recommendedPeople(people,'FARM',towers).map(p=>p.id),['elite','first','second']);
+    assert.deepEqual(recommendedPeople(people,'CARE',towers).map(p=>p.id),['elite']);
 });
 test('a 107-person roster mounts only the window and each remounted callback targets the correct person',()=>{
     const {game}=session(),view=panelView(game),template=game.state.people[0];

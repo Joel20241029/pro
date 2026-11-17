@@ -2,12 +2,12 @@ const { test, after } = require('node:test'), assert = require('node:assert/stri
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 const read = name => require(path.join(compiled, name + '.js'));
-const { TACTICS, DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, validateTactics, tacticDefinition } = read('config/TacticConfig');
+const { TACTIC_USE, TACTICS, DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, validateTactics, tacticDefinition } = read('config/TacticConfig');
 const { RULE } = read('game/GameConfig');
 const { createGame, applyCommand } = read('game/VillageRules');
 const { clone } = read('game/GameState');
 const { GameSession } = read('game/GameSession');
-const { BattleSimulation } = read('game/BattleSimulation');
+const { BattleSimulation, PATH_LENGTH } = read('game/BattleSimulation');
 const { tacticUnavailableReason, canLearnTactic } = read('game/Tactics');
 const { SaveStore } = read('storage/SaveStore');
 const { validateState } = read('storage/StateValidation');
@@ -136,8 +136,29 @@ test('heart still casts with no visible enemies, and pause, speed or reassign ne
     assert.equal(f.game.battle, battle); f.game.update(.1);
     assert.equal(battle.bellTicks, RULE.bellTicks - 6); assert.equal(f.game.canRingBell, false);
     f.game.bell(); assert.equal(battle.bellTicks, RULE.bellTicks - 6);
-    const reopened = f.reopen(); assert.equal(reopened.battle.tick, 0); assert.equal(reopened.battle.bellUsed, false);
+    const reopened = f.reopen(); assert.equal(reopened.battle.tick, 0);
+    assert.equal(reopened.battle.tacticUsesLeft, TACTIC_USE.perNight); assert.equal(reopened.battle.tacticCooldownTicks, 0);
     assert.equal(reopened.battle.tactic.id, battle.tactic.id);
+});
+
+test('each equipped tactic can start a second full effect after 21 battle seconds', () => {
+    assert.equal(TACTIC_USE.cooldownTicks * RULE.step, 21);
+    for (const tactic of production) {
+        const s = state(tactic.unlockWaves); s.tactics.learned = [...new Set([DEFAULT_TACTIC, tactic.id])];
+        s.tactics.equipped = tactic.id; s.wave.entries = [{...s.wave.entries[0], tick: 950}];
+        applyCommand(s, { type: 'NIGHT' });
+        const b = new BattleSimulation(s);
+        b.bell(); assert.equal(b.bellTicks, tactic.ticks);
+        while (b.tick < TACTIC_USE.cooldownTicks) b.step();
+        assert.equal(b.bellTicks, 0); assert.equal(b.canCastTactic, true);
+        b.bell(); assert.equal(b.bellTicks, tactic.ticks); assert.equal(b.canCastTactic, false);
+        const gate = b.gate;
+        if (tactic.effect === 'GATE_INVULNERABLE') {
+            b.enemies = [{seq: 0, kind: 'enemy_raider', appearanceSeed: 87, progress: PATH_LENGTH - .01, hp: 100,
+                speed: 1, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0}];
+            b.step(); assert.equal(b.gate, gate); assert(b.feedback.some(e => e.type === 'gate' && e.blocked));
+        }
+    }
 });
 
 test('ongoing battle owns a copy of its tactic config', () => {
@@ -173,11 +194,11 @@ test('save validation refuses unknown IDs, missing initial, duplicates and misma
 test('detail navigation returns only after committed purchase, preserves list order and keeps choice pause', () => {
     // 绘图函数以记录器替换，测试真实 GamePanels 生命周期，不需要伪造 Canvas 的像素行为。
     global.Laya = { Sprite: class {}, Text: class {}, Texture2D: class {}, OpenDataContextView: class {} };
-    const tacticPanels = read('view/panels/TacticPanels'), buildingPanels = read('view/panels/BuildingPanels');
-    const originalTactic = tacticPanels.drawTacticPanel, originalBuilding = buildingPanels.drawBuildingPanel;
+    const tacticPanels = read('view/panels/TacticPanels'), buildingPanels = read('view/panels/WavePanel');
+    const originalTactic = tacticPanels.drawTacticPanel, originalBuilding = buildingPanels.drawWavePanel;
     const { GamePanels } = read('view/GamePanels'); const drawn = [];
     tacticPanels.drawTacticPanel = (_ctx, _s, p) => drawn.push(p);
-    buildingPanels.drawBuildingPanel = (_ctx, _s, p) => drawn.push(p);
+    buildingPanels.drawWavePanel = (_ctx, _s, p) => drawn.push(p);
     try {
         for (const fromStart of [false, true]) {
             const f = fixture(), start = { type: 'start' }, order = [DEFAULT_TACTIC, learnedId];
@@ -198,5 +219,5 @@ test('detail navigation returns only after committed purchase, preserves list or
             f.game.pause('USER'); panels.close();
             assert(!f.game.pauses.has('CHOICE')); assert(f.game.pauses.has('USER'));
         }
-    } finally { tacticPanels.drawTacticPanel = originalTactic; buildingPanels.drawBuildingPanel = originalBuilding; }
+    } finally { tacticPanels.drawTacticPanel = originalTactic; buildingPanels.drawWavePanel = originalBuilding; }
 });

@@ -72,7 +72,8 @@ export const VILLAGE_PROPS: VillageProp[] = [
     { id: "tree:corner-pine-left", frame: "deco_tree_pine", x: 43, y: 976, size: 88, footprint: { left: 32, top: 961, right: 54, bottom: 976 } },
     { id: "tree:corner-pine-right", frame: "deco_tree_pine", x: 677, y: 880, size: 88, footprint: { left: 666, top: 865, right: 688, bottom: 880 } },
     { id: "deco:logs", frame: "deco_log_pile", x: 571, y: 1024, size: 60, footprint: null },
-    ...[[168, 292], [560, 286], [170, 477], [553, 548], [164, 668], [553, 734]].map(([x, y], i): VillageProp => ({ id: `bush:${i}`, frame: "deco_bush", x, y, size: 64, footprint: null })),
+    // 首塔斜后方灌木移出弓口和塔身的有效轮廓，保持其余树林与战斗位置。
+    ...[[129, 248], [560, 286], [170, 477], [553, 548], [164, 668], [553, 734]].map(([x, y], i): VillageProp => ({ id: `bush:${i}`, frame: "deco_bush", x, y, size: 64, footprint: null })),
     ...[[279, 822], [441, 822]].map(([x, y], i): VillageProp => ({ id: `torch:${i}`, frame: "deco_torch", x, y, size: 62, footprint: null })),
     // 用户要求民居相对人物放大约20%；保留两栋足底(108,930)/(222,920)，高清底座按预制体112/128宽预留123/112，避免扩建后行人穿过墙脚。
     prop("building:house-a", "hd_house_body_0", 38, 798.75, 140, 123, 33),
@@ -142,6 +143,10 @@ export const VILLAGE_STOPS = {
     // 有意包含屋后与屋前的休息点，行人绕过墙基后会自然发生遮挡切换。
     rest: CAMP_STOPS,
     children: CAMP_STOPS,
+    // 火堆下方两排供待命村民驻足。中心优先，实时排除建筑与已用站位，满员仍保留安全间距。
+    waiting: Array.from({ length: 32 }, (_, i) => ({ x: 68 + 38 * (i % 16), y: i < 16 ? 1022 : 988 }))
+        .filter(({ x }) => x < 486 || x > 562)
+        .sort((a, b) => b.y - a.y || Math.abs(a.x - 360) - Math.abs(b.x - 360)),
     // 篝火前的双人会合点，与所有家门/工作点共用导航和足底遮挡；不新增建筑或家庭归属。
     wedding: [{ x: 330, y: 990 }, { x: 370, y: 990 }],
     towers: PADS.map(p => ({ x: p.x, y: p.y + 54 }))

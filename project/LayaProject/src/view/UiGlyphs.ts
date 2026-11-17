@@ -15,8 +15,9 @@ function journal(s: Laya.Sprite) {
 const PAINTERS: Record<string, Painter> = {
     icon_settings: journal, icon_journal: journal,
     icon_action_dot: s => {
-        s.graphics.drawCircle(32, 32, 27, "#e94735", G.cream, 5);
-        s.graphics.drawCircle(25, 23, 7, "#ff9c79");
+        s.graphics.drawCircle(32, 33, 28, "#a52520");
+        s.graphics.drawCircle(32, 30, 25, "#f0312f", "#fff2bf", 4);
+        s.graphics.drawCircle(25, 21, 6, "#ffb398");
     },
     icon_build_plus: s => {
         // 轻立体加号：金色外沿、奶油描边和草绿内芯；不依赖字体，也不增加位图包体。

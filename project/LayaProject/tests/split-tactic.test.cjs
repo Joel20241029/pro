@@ -87,7 +87,7 @@ test('three lethal overlapping stone centers each own their fatal shot; shared s
     b.tick += 9; motion.update(b, undefined, undefined, undefined, f);
     assert.equal(motion.arrivals.length, 3);
     for (let i = 0; i < 4; i++) assert(f.flashing(i));
-    f.advance(.2); assert.equal(f.deaths.size, 0);
+    f.advance(.2); assert.equal(f.deaths.size, 4); f.advance(.67); assert.equal(f.deaths.size, 0);
     b.tick += 5; motion.update(b, undefined, undefined, undefined, f); assert.equal(f.shots.size, 0);
 });
 
@@ -156,19 +156,20 @@ test('max catch-up preserves all volley events and normal four-tower load fits t
         for (let tick = 0; tick < RULE.bellTicks; tick += 15) {
             const events = []; for (let j = 0; j < 15; j++) { b.step(); events.push(...b.feedback); }
             launched += events.filter(e => e.type === 'shot').length;
-            f.sync(b, events); p.update(b, undefined, undefined, undefined, f); arrived += p.arrivals.length; maxPoses = Math.max(maxPoses, p.poses.length);
+            f.advance(.25); f.sync(b, events); p.update(b, undefined, undefined, undefined, f); arrived += p.arrivals.length; maxPoses = Math.max(maxPoses, p.poses.length);
         }
         assert(launched > 50 && arrived > 40); assert(maxPoses <= RULE.effectCap); assert.equal(forcedDiscard, 0, kind);
     }
 });
 
-test('forced visual overflow retires orphan fatal snapshots without changing gameplay', () => {
+test('forced visual overflow begins orphan death animations without a false flash or gameplay change', () => {
     const b = battle(), f = new CombatPresentation(), p = new ProjectileMotion(); b.tick = 1;
     const events = Array.from({ length: RULE.effectCap + 4 }, (_, i) => ({ type: 'shot', target: i + 100,
         shot: { tower: 0, x: 300 + i, y: 400, kind: 'ARROW', tick: 0, empowered: false }, hurt: [enemy(i + 100, 200, 0)] }));
     f.sync(b, events); p.update(b, undefined, undefined, undefined, f);
-    assert.equal(p.poses.length, RULE.effectCap); assert.equal(f.deaths.size, RULE.effectCap); assert.equal(f.shots.size, RULE.effectCap);
-    for (let i = 100; i < 104; i++) assert(!f.deaths.has(i));
+    assert.equal(p.poses.length, RULE.effectCap); assert.equal(f.deaths.size, RULE.effectCap + 4); assert.equal(f.shots.size, RULE.effectCap);
+    for (let i = 100; i < 104; i++) { assert(f.deathPose(i)); assert(!f.flashing(i)); }
+    f.advance(.87); for (let i = 100; i < 104; i++) assert(!f.deaths.has(i));
     assert.deepEqual(b.enemies.map(e => e.hp), [100000, 100000, 100000]);
 });
 
@@ -182,6 +183,6 @@ test('purchase persists once; pause, reassign, triple speed and cold reload keep
     g.resume('CHOICE'); g.command({ type: 'SPEED', value: 3 }); g.update(.1); assert.equal(b.bellTicks, 294);
     g.bell(); assert.equal(b.bellTicks, 294);
     const reopened = new GameSession(new SaveStore(port)); reopened.load();
-    assert.equal(reopened.battle.tactic.id, SPLIT_TACTIC); assert.equal(reopened.battle.bellUsed, false);
+    assert.equal(reopened.battle.tactic.id, SPLIT_TACTIC); assert.equal(reopened.battle.tacticUsesLeft, 2);
     assert(reopened.state.tactics.learned.includes(SPLIT_TACTIC));
 });

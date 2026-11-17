@@ -40,13 +40,14 @@ class Sprite {
 }
 class Text extends Sprite {}
 const cancelled = [];
-global.Laya = { Sprite, Text, Point, Rectangle, Event: { MOUSE_DOWN: 'down', MOUSE_UP: 'up', MOUSE_OUT: 'out', CLICK: 'click', UNDISPLAY: 'undisplay' }, InputManager: { cancelClick: id => cancelled.push(id) } };
+global.Laya = { Sprite, Text, Point, Rectangle, timer: { currFrame: 0 }, Event: { MOUSE_DOWN: 'down', MOUSE_UP: 'up', MOUSE_OUT: 'out', CLICK: 'click', UNDISPLAY: 'undisplay' }, InputManager: { cancelClick: id => cancelled.push(id) } };
 const { VillageWorld } = require(path.join(build, 'view/VillageWorld.js'));
 const { GameLayout } = require(path.join(build, 'view/GameLayout.js'));
 const { UiWidgets } = require(path.join(build, 'view/UiWidgets.js'));
 const { createGame } = require(path.join(build, 'game/VillageRules.js'));
 const { compareDepth } = require(path.join(build, 'view/VillageScene.js'));
 const art = {
+    panel() {},
     ready: () => true,
     contentBounds: () => ({rect:{w:64,h:64},sourceSize:{w:64,h:64},trimOffset:{x:0,y:0}}),
     animation: () => ({frameIds:['person'],restFrame:'person',stridePixels:48,canvas:{w:256,h:256}}),

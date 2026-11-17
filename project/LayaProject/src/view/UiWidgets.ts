@@ -1,6 +1,13 @@
 import { SpriteFrames } from "./SpriteFrames";
 import { C, UI, PANEL_TEXT } from "./UiTheme";
 import { drawUiGlyph } from "./UiGlyphs";
+import { bindButtonClick } from "./ButtonFeedback";
+import { amount, reasonBesideCost } from "./ViewText";
+import { HUD } from "./config/HudConfig";
+
+type Materials = { wood: number; food: number };
+export type MaterialCost = Partial<Materials>;
+const MATERIALS = ["wood", "food"] as const;
 /** 同一套按钮/图文节点与触控约定；只绘制控件，不持有面板、存档或暂停状态。 */
 export class UiWidgets {
     constructor(private art: SpriteFrames, private playClick: () => void) { }
@@ -48,6 +55,43 @@ export class UiWidgets {
         }
         s.pos(x, y); s.size(w, h); s.mouseEnabled = false; parent.addChild(s); return s;
     }
+    /** 有效图形用图集 alpha 裁框，文字取当前字体的实际字形上下沿。旧 Canvas 没提供字形边界时采用其排版行中心。 */
+    private glyphInk(text: Laya.Text) {
+        const ctx = Laya.Browser?.context;
+        if (!ctx) return { offset: 0, height: text.fontSize };
+        ctx.save();
+        ctx.font = `${text.bold ? "bold " : ""}${text.fontSize}px ${text.font}`;
+        ctx.textBaseline = "middle";
+        const ink = ctx.measureText(text.text.replace(/<[^>]+>/g, "")), line = ctx.measureText("g有");
+        ctx.restore();
+        if (!(ink.actualBoundingBoxAscent + ink.actualBoundingBoxDescent > 0))
+            return { offset: 0, height: text.fontSize };
+        const offset = (ink.actualBoundingBoxDescent - ink.actualBoundingBoxAscent - line.actualBoundingBoxDescent + line.actualBoundingBoxAscent) / 2;
+        return { offset, height: ink.actualBoundingBoxAscent + ink.actualBoundingBoxDescent };
+    }
+    iconValue(parent: Laya.Sprite, id: string, value: string, x: number, y: number, width: number, height: number, color = C.ink, font = 28, align: "left" | "center" = "center") {
+        const group = new Laya.Sprite(); group.name = `readout:${id}`; group.pos(x, y).size(width, height); parent.addChild(group);
+        const text = this.label(group, value, 0, 0, width, font, color, true, height);
+        text.name = "readoutText"; text.wordWrap = false; text.valign = "middle"; text.overflow = Laya.Text.SHRINK;
+        text.fontSize = font;
+        const gap = 8, ink = this.glyphInk(text), size = Math.max(24, Math.min(height - 6, ink.height + 4));
+        const frame = this.art.contentBounds(id).rect;
+        const iconWidth = Math.min(size * 1.35, size * frame.w / frame.h);
+        const textWidth = Math.min(width - iconWidth - gap, Math.ceil(text.textWidth) + 4);
+        const left = align === "left" ? 0 : (width - iconWidth - gap - textWidth) / 2;
+        const icon = this.image(group, id, left, (height - size) / 2 + ink.offset, iconWidth, size);
+        icon.name = "readoutIcon";
+        text.x = left + iconWidth + gap; text.width = textWidth;
+        return icon;
+    }
+    materialCosts(parent: Laya.Sprite, owned: Materials, cost: MaterialCost, x: number, y: number, width: number, height: number) {
+        const active = MATERIALS.filter(key => cost[key] !== undefined);
+        for (const [i, key] of active.entries()) {
+            const required = cost[key]!, short = owned[key] < required, cell = width / active.length;
+            this.iconValue(parent, `icon_${key}`, short ? `${amount(owned[key], true)}/${required}` : String(required),
+                x + i * cell, y, cell, height, short ? C.red : C.timber, 25, "left");
+        }
+    }
     /** 图标与文案共享按压面层；内容变化时仍以实际字宽居中，不依赖固定文字位置。 */
     buttonIcon(button: Laya.Sprite, id: string, size = 40) {
         const face = button.getChildByName("buttonFace") as Laya.Sprite;
@@ -63,28 +107,51 @@ export class UiWidgets {
         const textWidth = Math.min(Math.ceil(text.textWidth) + 4, width - icon.width - gap - 24);
         const left = (width - icon.width - gap - textWidth) / 2;
         icon.x = left;
+        icon.y = text.y + (text.height - icon.height) / 2 + this.glyphInk(text).offset;
         text.x = left + icon.width + gap; text.width = textWidth;
         text.wordWrap = false; text.overflow = Laya.Text.SHRINK;
     }
+    /** 操作提醒放在图文层上，按压时跟随按钮，尺寸由 HUD 和面板共用。 */
+    actionBadge(button: Laya.Sprite, name: string) {
+        const face = button.getChildByName("buttonFace") as Laya.Sprite, { size, inset } = HUD.actionDot;
+        const badge = this.image(face, "icon_action_dot", button.width - inset - size / 2, inset - size / 2, size);
+        badge.name = name;
+        return badge;
+    }
+    /** 图片含字，统一挂在按钮右上角；名单条目同时给文本预留标签宽度。 */
+    personRibbon(button: Laya.Sprite, frame: "tag_recommended" | "tag_favorite", listRow = false) {
+        const face = button.getChildByName("buttonFace") as Laya.Sprite, width = listRow ? 110 : 94;
+        const ribbon = this.image(face, frame, button.width - width - 10, listRow ? 7 : -10, width, 34);
+        ribbon.name = frame;
+        if (listRow) {
+            const copy = face.getChildByName("buttonText") as Laya.Text;
+            copy.width = ribbon.x - copy.x - 6;
+            copy.wordWrap = false; copy.overflow = Laya.Text.SHRINK;
+        }
+    }
     /** 建设条目共用图标、效果和材料布局；整个条目可点，原因直接可见，不再靠点击后弹Tip解释。 */
-    buildRow(parent: Laya.Sprite, y: number, icon: string, title: string, effect: string, cost: string, reason: string | null, action: () => void, caption = "升级") {
-        const row = this.button(parent, "", 0, y, 584, action, C.muted, 208, !reason);
+    buildRow(parent: Laya.Sprite, y: number, icon: string, title: string, effect: string, owned: Materials, cost: MaterialCost | null, reason: string | null, action: () => void, caption = "升级") {
+        const row = this.button(parent, "", 0, y, UI.contentWidth - UI.scrollGutter, action, C.muted, UI.buildRowHeight, !reason);
         const face = row.getChildAt(0) as Laya.Sprite;
-        const frame = new Laya.Sprite(); frame.pos(20, 22);
-        this.art.panel(frame, reason ? "panel_card_disabled" : "panel_portrait_frame", 102, 102);
+        const frame = new Laya.Sprite(); frame.pos(16, (UI.buildRowHeight - 112) / 2);
+        this.art.panel(frame, reason ? "panel_card_disabled" : "panel_portrait_frame", 112, 112);
         frame.mouseEnabled = false; face.addChild(frame);
-        this.image(frame, icon, 8, 8, 86).alpha = reason ? .55 : 1;
-        const titleText = this.label(face, title, 140, 16, 420, 30, C.ink, true, 42);
+        this.image(frame, icon, 7, 7, 98).alpha = reason ? .55 : 1;
+        const copyWidth = 282, badgeWidth = 132, badgeHeight = 62;
+        const titleText = this.label(face, title, 140, 14, copyWidth, 28, C.ink, true, 40);
         titleText.wordWrap = false; titleText.overflow = Laya.Text.SHRINK;
-        const effectText = this.label(face, effect, 140, 58, 420, 26, C.green, false, 36);
+        const effectText = this.label(face, effect, 140, 56, copyWidth, 25, C.green, false, 36);
         effectText.wordWrap = false; effectText.overflow = Laya.Text.SHRINK;
-        // 费用与原因独立显示，不根据“缺/不足”等文案反推状态。
-        this.label(face, cost, 140, 96, 420, 24, C.timber, false, 34);
-        const note = this.label(face, reason || "材料齐备，可以操作", 24, 138, 416, 24, reason ? C.red : C.green, false, 58);
-        note.valign = "middle";
-        const badge = new Laya.Sprite(); badge.pos(452, 148); badge.mouseEnabled = false;
-        this.art.panel(badge, reason ? "panel_button_disabled" : "panel_button_green", 110, 44); face.addChild(badge);
-        this.label(badge, reason ? "未满足" : caption, 9, 5, 92, 24, C.cream, true, 34).align = "center";
+        if (cost) this.materialCosts(face, owned, cost, 140, 96, copyWidth, 38);
+        const note = reasonBesideCost(reason);
+        if (note) {
+            const label = this.label(face, note, 140, 138, copyWidth, 24, C.red, false, 34);
+            label.wordWrap = false; label.overflow = Laya.Text.SHRINK;
+        }
+        const badge = new Laya.Sprite(); badge.pos(row.width - badgeWidth - 16, (row.height - badgeHeight) / 2); badge.mouseEnabled = false;
+        badge.name = "BuildAction";
+        this.art.panel(badge, reason ? "panel_button_disabled" : "panel_button_green", badgeWidth, badgeHeight); face.addChild(badge);
+        this.label(badge, reason ? "未满足" : caption, 8, 8, badgeWidth - 16, 28, C.cream, true, badgeHeight - 16).align = "center";
         return row;
     }
     /** 村民与家庭共用图文条目：头像留独立区域，文字不挤进边框，滚动仍由ScrollList取消误触。 */
@@ -107,33 +174,7 @@ export class UiWidgets {
     }
     /** 有效点击保留原事件坐标，供民房交叠区域选择前景目标；取消点击和音效仍走同一入口。 */
     bindClick(target: Laya.Sprite, action: (event: Laya.Event) => void, face?: Laya.Sprite) {
-        const pressed = new Set<number>();
-        target.mouseEnabled = true;
-        target.on(Laya.Event.MOUSE_DOWN, this, (e: Laya.Event) => {
-            pressed.add(e.touchId);
-            if (face)
-                face.y = UI.pressedOffset;
-        });
-        const release = () => {
-            if (face && !pressed.size)
-                face.y = 0;
-        };
-        target.on(Laya.Event.MOUSE_UP, this, (e: Laya.Event) => { pressed.delete(e.touchId); release(); });
-        target.on(Laya.Event.MOUSE_OUT, this, (e?: Laya.Event) => {
-            // ScrollList 手动发送无事件参数的 MOUSE_OUT 前已取消其拖动手指。
-            if (!e) {
-                if (face)
-                    face.y = 0;
-                return;
-            }
-            // 引擎短距离移出仍可能以按下目标生成 CLICK。只取消曾在此按下的手指。
-            if (pressed.delete(e.touchId)) {
-                Laya.InputManager.cancelClick(e.touchId);
-                release();
-            }
-        });
-        target.on(Laya.Event.UNDISPLAY, this, () => { pressed.clear(); release(); });
-        target.on(Laya.Event.CLICK, this, (event: Laya.Event) => { this.playClick(); action(event); });
+        bindButtonClick(target, event => { this.playClick(); action(event); }, face);
     }
     button(parent: Laya.Sprite, title: string, x: number, y: number, w: number, action: () => void, color = C.green, h = 72, enabled = true) {
         const b = new Laya.Sprite();

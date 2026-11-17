@@ -17,14 +17,23 @@ export function personNeedsAttention(s: GameState, p: Person): boolean {
     return (p.job === "WAITING" && vacancy) || (p.job !== "CARE" &&
         s.people.some(child => !child.adult && !s.people.some(a => a.careChild === child.id)));
 }
+/** 家庭入口与两个标签共用可执行条件；红点由当前可办事项决定。 */
+export function familyActionHints(s: GameState, blocked: boolean) {
+    if (blocked || s.phase !== "DAY") return { marriage: false, nurture: false };
+    const adults = s.people.filter(isWorkingAdult);
+    return {
+        marriage: Number.isSafeInteger(s.nextFamily + 1) && adults.some((a, i) => adults.slice(i + 1).some(b => canMarry(s, a, b))),
+        nurture: Number.isSafeInteger(s.nextPerson + 1) && s.families.some(f => birthUnavailableReason(s, f.id) === null)
+    };
+}
 /** 只读可执行事项；复用命令预检，不抽随机数、不扣资源、不写档。只在 HUD refresh 时计算。 */
 export function actionHints(s: GameState, blocked: boolean) {
     const hints = { people: false, families: false, build: false, history: false };
     if (blocked || s.phase !== "DAY") return hints;
     const adults = s.people.filter(isWorkingAdult);
     hints.people = adults.some(p => personNeedsAttention(s, p));
-    hints.families = (Number.isSafeInteger(s.nextFamily + 1) && adults.some((a, i) => adults.slice(i + 1).some(b => canMarry(s, a, b)))) ||
-        (Number.isSafeInteger(s.nextPerson + 1) && s.families.some(f => birthUnavailableReason(s, f.id) === null));
+    const { marriage, nurture } = familyActionHints(s, blocked);
+    hints.families = marriage || nurture;
     const buildings: [UpgradeKind, number][] = [["FARM", s.farm], ["LOGGING", s.logging], ["HOUSING", s.housing], ["GATE", s.gateLevel]];
     hints.build = buildings.some(([kind, level]) => upgradeUnavailableReason(s, upgradeCost(kind, level)) === null) ||
         (s.houses < RULE.houseMax && upgradeUnavailableReason(s, residentialCost(s.houses)) === null) || (s.gate < gateCapacity(s) && s.wood >= repairCost(s));

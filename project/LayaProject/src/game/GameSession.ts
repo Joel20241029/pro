@@ -7,6 +7,9 @@ import { dailyRationAmount, localRationDate } from "./DailyRation";
 export type Pause = "USER" | "BACKGROUND" | "WAIT_RESUME" | "CHOICE" | "SAVE_PENDING" | "DISABLED" | "DAILY_RATION" | "ASSETS";
 export class GameSession {
     state: GameState | null = null; battle: BattleSimulation | null = null;
+    /** 仅供最终弹道/死亡演出；结算与保存不等待它，新夜/新村/成功读档即清理，不写入存档。 */
+    private finishedBattle: BattleSimulation | null = null;
+    get presentationBattle() { return this.battle ?? this.finishedBattle; }
     /** 跨一帧多个逻辑步的表现信箱；换战斗时清空，结算不等待动画。 */
     private combatFeedback: CombatFeedback[] = [];
     takeCombatFeedback(): CombatFeedback[] { const events = this.combatFeedback; this.combatFeedback = []; return events; }
@@ -51,14 +54,14 @@ export class GameSession {
         if (this.saves.pending) { this.retry(); return; }
         try {
             this.boot = this.saves.inspect(); this.error = "";
-            if (this.boot.kind === "ready") this.accept(this.boot.state);
+            if (this.boot.kind === "ready") { this.finishedBattle = null; this.combatFeedback = []; this.accept(this.boot.state); }
             else if (this.boot.kind === "complete-clean-start") {
                 this.pendingNewVillage = true; this.pauses.add("SAVE_PENDING"); this.retry();
             } else this.changed();
         }
         catch (e) { this.error = String(e); this.boot = { kind: "blocked", reason: "微信存档暂时读取失败。请重试，未新建或覆盖进度。", canReset: false }; this.changed(); }
     }
-    recover() { if (this.boot?.kind === "recover") this.accept(this.boot.state); }
+    recover() { if (this.boot?.kind === "recover") { this.finishedBattle = null; this.combatFeedback = []; this.accept(this.boot.state); } }
     newVillage(trait?: Trait, reset = false) {
         if (this.saves.pending) return;
         if (this.visitDate !== null) this.visitDate = this.today();
@@ -87,7 +90,11 @@ export class GameSession {
             this.dailyRationDate = null;
         }
         this.state = s; this.boot = null; this.error = ""; this.pauses.delete("SAVE_PENDING");
-        if (!sameNight) { this.combatFeedback = []; this.battle = s.phase === "NIGHT" ? new BattleSimulation(s) : null; this.accumulator = 0; }
+        if (!sameNight) {
+            // 清晨递归FINALIZE及结算保存重试保留尚未消费的最终事件；不能把最后一击清掉。
+            if (newVillage || s.phase === "NIGHT") { this.finishedBattle = null; this.combatFeedback = []; }
+            this.battle = s.phase === "NIGHT" ? new BattleSimulation(s) : null; this.accumulator = 0;
+        }
         this.continuingBattle = false;
         if (s.phase === "DAWN" && s.choices.length === 0) { this.command({ type: "FINALIZE" }); return; }
         this.checkDailyRation();
@@ -115,7 +122,7 @@ export class GameSession {
     resume(reason: Pause) { this.pauses.delete(reason); this.accumulator = 0; }
     hide = () => { this.pause("BACKGROUND"); this.changed(); };
     show = () => { this.resume("BACKGROUND"); this.pause("WAIT_RESUME"); this.enter(); };
-    get canRingBell() { return this.state?.phase === "NIGHT" && !!this.battle && !this.battle.outcome && !this.battle.bellUsed && !this.pauses.size && !this.saves.pending; }
+    get canRingBell() { return this.state?.phase === "NIGHT" && this.battle?.canCastTactic === true && !this.pauses.size && !this.saves.pending; }
     bell() { if (this.canRingBell) { this.battle.bell(); this.changed(); } }
     reassign(index: number, id: string) {
         // 夜间调任允许手动暂停或面板临时暂停；关闭面板只解除 CHOICE，其余暂停仍由各自流程管理。
@@ -131,6 +138,7 @@ export class GameSession {
             this.accumulator -= RULE.step; this.battle.step();
             this.combatFeedback.push(...this.battle.feedback);
             if (this.battle.outcome) {
+                this.finishedBattle = this.battle;
                 const next = clone(this.state); finishNight(next, this.battle.gate, this.battle.operators); this.submit(next); break;
             }
         }
