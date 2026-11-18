@@ -46,6 +46,21 @@
                 "_$uuid": "7d7b6f8c-c684-479d-ba14-23aef1f455be",
                 "_$type": "Texture"
               }
+            },
+            {
+              "_$id": "pfdiz0gs",
+              "_$type": "Sprite",
+              "name": "AmbientWorkTool",
+              "x": 92,
+              "y": 88,
+              "width": 10,
+              "height": 22,
+              "anchorX": 0.5,
+              "anchorY": 0.08,
+              "texture": {
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
+                "_$type": "Texture"
+              }
             }
           ]
         },
@@ -132,7 +147,22 @@
               "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "um20o6x0",
+              "_$type": "Sprite",
+              "name": "AmbientWorkTool",
+              "x": 92,
+              "y": 88,
+              "width": 10,
+              "height": 22,
+              "anchorX": 0.5,
+              "anchorY": 0.08,
+              "texture": {
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             }
@@ -221,7 +251,7 @@
               "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             },
@@ -229,12 +259,29 @@
               "_$id": "6fbfzaav",
               "_$type": "Sprite",
               "name": "SawWheel",
-              "x": 84,
-              "y": 79,
+              "x": 98,
+              "y": 96,
               "width": 28,
               "height": 33,
+              "anchorX": 0.5,
+              "anchorY": 0.5,
               "texture": {
                 "_$uuid": "7944596e-94f6-4c58-9993-821ea5ce5d83",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "j5oky99d",
+              "_$type": "Sprite",
+              "name": "AmbientWorkTool",
+              "x": 92,
+              "y": 88,
+              "width": 10,
+              "height": 22,
+              "anchorX": 0.5,
+              "anchorY": 0.08,
+              "texture": {
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             }
@@ -311,6 +358,21 @@
               "height": 120,
               "texture": {
                 "_$uuid": "aa6116ae-7de8-49fc-af36-6fa2b75b55d5",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "hjxuupdt",
+              "_$type": "Sprite",
+              "name": "AmbientWorkTool",
+              "x": 92,
+              "y": 88,
+              "width": 10,
+              "height": 22,
+              "anchorX": 0.5,
+              "anchorY": 0.08,
+              "texture": {
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             }
@@ -399,7 +461,22 @@
               "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "lgvncpqq",
+              "_$type": "Sprite",
+              "name": "AmbientWorkTool",
+              "x": 92,
+              "y": 88,
+              "width": 10,
+              "height": 22,
+              "anchorX": 0.5,
+              "anchorY": 0.08,
+              "texture": {
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             }
@@ -488,7 +565,7 @@
               "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             },
@@ -496,12 +573,29 @@
               "_$id": "d5kim2yp",
               "_$type": "Sprite",
               "name": "SawWheel",
-              "x": 84,
-              "y": 79,
+              "x": 98,
+              "y": 96,
               "width": 28,
               "height": 33,
+              "anchorX": 0.5,
+              "anchorY": 0.5,
               "texture": {
                 "_$uuid": "7944596e-94f6-4c58-9993-821ea5ce5d83",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "jy34ne7s",
+              "_$type": "Sprite",
+              "name": "AmbientWorkTool",
+              "x": 92,
+              "y": 88,
+              "width": 10,
+              "height": 22,
+              "anchorX": 0.5,
+              "anchorY": 0.08,
+              "texture": {
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             }
@@ -590,7 +684,7 @@
               "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             },
@@ -598,10 +692,12 @@
               "_$id": "l670vbq7",
               "_$type": "Sprite",
               "name": "SawWheel",
-              "x": 84,
-              "y": 79,
+              "x": 98,
+              "y": 96,
               "width": 28,
               "height": 33,
+              "anchorX": 0.5,
+              "anchorY": 0.5,
               "texture": {
                 "_$uuid": "7944596e-94f6-4c58-9993-821ea5ce5d83",
                 "_$type": "Texture"
@@ -616,7 +712,22 @@
               "width": 30,
               "height": 18,
               "texture": {
-                "_$uuid": "01c85cc9-27dc-4800-83e1-6d0d6d61d398",
+                "_$uuid": "63a98a0f-979a-4e1c-aca9-aba77601c317",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "fvoprgiq",
+              "_$type": "Sprite",
+              "name": "AmbientWorkTool",
+              "x": 92,
+              "y": 88,
+              "width": 10,
+              "height": 22,
+              "anchorX": 0.5,
+              "anchorY": 0.08,
+              "texture": {
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             }
@@ -693,6 +804,21 @@
               "height": 120,
               "texture": {
                 "_$uuid": "9256dd12-4b05-4589-831b-199f85db5036",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "gy720coz",
+              "_$type": "Sprite",
+              "name": "AmbientWorkTool",
+              "x": 92,
+              "y": 88,
+              "width": 10,
+              "height": 22,
+              "anchorX": 0.5,
+              "anchorY": 0.08,
+              "texture": {
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             }
@@ -781,7 +907,22 @@
               "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "dw4ui9hq",
+              "_$type": "Sprite",
+              "name": "AmbientWorkTool",
+              "x": 92,
+              "y": 88,
+              "width": 10,
+              "height": 22,
+              "anchorX": 0.5,
+              "anchorY": 0.08,
+              "texture": {
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             }
@@ -870,7 +1011,7 @@
               "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             },
@@ -878,12 +1019,29 @@
               "_$id": "3982r9uv",
               "_$type": "Sprite",
               "name": "SawWheel",
-              "x": 84,
-              "y": 79,
+              "x": 98,
+              "y": 96,
               "width": 28,
               "height": 33,
+              "anchorX": 0.5,
+              "anchorY": 0.5,
               "texture": {
                 "_$uuid": "7944596e-94f6-4c58-9993-821ea5ce5d83",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "5z9utgfm",
+              "_$type": "Sprite",
+              "name": "AmbientWorkTool",
+              "x": 92,
+              "y": 88,
+              "width": 10,
+              "height": 22,
+              "anchorX": 0.5,
+              "anchorY": 0.08,
+              "texture": {
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             }
@@ -972,7 +1130,7 @@
               "width": 28,
               "height": 29,
               "texture": {
-                "_$uuid": "e9b9ec3c-bf01-43e9-89da-9f5f58a31da6",
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             },
@@ -980,10 +1138,12 @@
               "_$id": "gp4fi1le",
               "_$type": "Sprite",
               "name": "SawWheel",
-              "x": 84,
-              "y": 79,
+              "x": 98,
+              "y": 96,
               "width": 28,
               "height": 33,
+              "anchorX": 0.5,
+              "anchorY": 0.5,
               "texture": {
                 "_$uuid": "7944596e-94f6-4c58-9993-821ea5ce5d83",
                 "_$type": "Texture"
@@ -998,7 +1158,22 @@
               "width": 30,
               "height": 18,
               "texture": {
-                "_$uuid": "01c85cc9-27dc-4800-83e1-6d0d6d61d398",
+                "_$uuid": "63a98a0f-979a-4e1c-aca9-aba77601c317",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "5k5hmgok",
+              "_$type": "Sprite",
+              "name": "AmbientWorkTool",
+              "x": 92,
+              "y": 88,
+              "width": 10,
+              "height": 22,
+              "anchorX": 0.5,
+              "anchorY": 0.08,
+              "texture": {
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             }
@@ -1075,6 +1250,21 @@
               "height": 120,
               "texture": {
                 "_$uuid": "161e69dc-2b56-4aca-bc79-cd9fd7ad2223",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "bm9uaerv",
+              "_$type": "Sprite",
+              "name": "AmbientWorkTool",
+              "x": 92,
+              "y": 88,
+              "width": 10,
+              "height": 22,
+              "anchorX": 0.5,
+              "anchorY": 0.08,
+              "texture": {
+                "_$uuid": "9b133af2-69ed-4cf0-a0aa-5f6a0d0540ba",
                 "_$type": "Texture"
               }
             }

@@ -7,7 +7,7 @@ export const ADULT_APPEARANCE = { MALE: "male_a", FEMALE: "female_a" } as const;
 export const VILLAGER_NAMES = {
     child: ["禾", "桃", "松", "竹", "杏", "川"], traveler: ["行舟", "云溪", "山青", "晚晴"],
     // 用户指定的12个名字：仅新生/来访精英使用，男女共用，不加编号。
-    // 独立取名不推进业务随机流；修改只影响后续精英姓名，不改性别、5%概率、能力及已有村民。
+    // 独立取名不推进业务随机流；修改只影响后续精英姓名，概率及能力由 ELITE 配置。
     elite: ["旭勇", "智卓", "二百", "翟毅", "周博", "赵靓", "龙龙", "昭易", "明波", "宋磊", "徐超", "四辈儿"]
 } as const;
 export const TRAITS = {

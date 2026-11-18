@@ -23,7 +23,10 @@ class Sprite {
 }
 global.Laya = { Sprite, Text: class extends Sprite { static SHRINK = 'shrink'; }, Point: class { constructor(x, y) { this.x = x; this.y = y; } }, Rectangle: class { constructor(x,y,width,height) { Object.assign(this,{x,y,width,height}); } }, AnimatorClip2D: class {} };
 const { BuildingVisuals } = require(path.join(build, 'view/BuildingVisuals.js'));
-const art = { get: id => { assert(frames.has(id), id); return id; }, buildingLayouts: layouts, buildingUpgrade: { kind: 'upgrade', duration: () => .6 }, buildingAttack: { kind: 'attack', duration: () => .3 } };
+const clips = new Map(recipe.animations.animations.map(clip => [clip.id, clip]));
+const art = { get: id => { assert(frames.has(id), id); return id; }, frameId: (id, time) => {
+ const clip = clips.get(id); assert(clip, id); return clip.frameIds[Math.floor(time * clip.fps) % clip.frameIds.length];
+}, buildingLayouts: layouts, buildingUpgrade: { kind: 'upgrade', duration: () => .6 }, buildingAttack: { kind: 'attack', duration: () => .3 } };
 const create = () => { const world = new Sprite(), owner = new Sprite().size(128, 128).pos(200, 300); owner.name = 'test'; world.addChild(owner); return { world, owner, visual: new BuildingVisuals(owner, art) }; };
 const descendants = n => [n, ...n.children.flatMap(descendants)];
 
@@ -54,6 +57,52 @@ test('all authored variants and animation extremes fit their declared visible re
    }
   }
  }
+});
+
+test('all village variants animate at any level and use half-size building art', () => {
+ const frameSizes = new Map(recipe.assets.map(a => [a.id, a.width]));
+ assert.equal(frameSizes.get('hd_house_body_0'), 128);
+ assert.equal(frameSizes.get('hd_farm_body_3'), 128);
+ assert.equal(frameSizes.get('hd_logging_body_0'), 120);
+ assert.equal(frameSizes.get('hd_gate_body_2'), 128);
+ assert.equal(frameSizes.get('deco_torch'), 96);
+ assert.equal(frameSizes.get('hearth_burn_4'), 96);
+ assert.equal(clips.get('torch_burn').frameIds.length, 3);
+ for (const [id, layout] of Object.entries(layouts)) {
+  const [kind, stage, rooms] = id.split('_');
+  if (!['HOUSE', 'FARM', 'LOGGING', 'GATE'].includes(kind)) continue;
+  const { visual, owner } = create();
+  visual.sync(kind, appearanceLevels[+stage-1], true, +rooms);
+  const children = descendants(owner);
+  if (kind === 'HOUSE') assert.equal(children.filter(n => n.name === 'AmbientWindow').length, +rooms, id);
+  if (kind === 'LOGGING') assert(children.some(n => n.name === 'AmbientWorkTool'), id);
+  if (kind === 'FARM') {
+   const ground = children.find(n => n.name === 'CropGround');
+   const tier = ground.texture.split('_').at(-1);
+   assert.deepEqual(ground.children.map(n => n.texture), [0, 1, 2, 3].map(plot => `farm_crop_${tier}_${plot}_0`));
+  }
+  visual.advance(.47, true, true);
+  const authored = JSON.stringify(layout);
+  for (const part of ['brace','rivet','crest','banner']) assert(!authored.includes('"hd_part_'+part+'"'), id);
+ }
+});
+
+test('expanding without more visible rooms and consecutive upgrades each play a cue', () => {
+ const { visual: v } = create();
+ v.sync('HOUSE', 1, true, 1, false, 1, 1);
+ const root = v.parts.children[0];
+ v.sync('HOUSE', 1, false, 1, false, 1, 2);
+ v.sync('HOUSE', 1, false, 1, false, 1, 3);
+ assert.equal(v.parts.children[0], root);
+ for (let i = 0; i < 2; i++) {
+  assert(v.beginVisibleUpgrade());
+  assert(!v.beginVisibleUpgrade());
+  v.advance(.3);
+  assert(v.upgradeFlare() > .98);
+  v.advance(.3);
+  assert.equal(v.upgradeFlare(), 0);
+ }
+ assert(!v.beginVisibleUpgrade());
 });
 
 test('body upgrades preserve ground pivot, stable reuse and precise readable level badge', () => {

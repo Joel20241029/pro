@@ -26,12 +26,14 @@ export const RESIDENTIAL = {
  * 两种人口都为空时为50%，计数排除老人。调整会影响后续出生/旅人，不重抽已经生成的人。
  */
 export const POPULATION = { birthBias: .25, travelerBias: .35, firstTravelerDay: 5, travelerPeriod: 4, travelerMinNights: 3 } as const;
-/** 用户确认的稀有村民规则：仅新生儿/旅人独立抽取，不遗传、不重抽，创始人普通。
+/** 用户确认的稀有村民规则：新生儿与来访旅人独立抽取，不遗传、不重抽，创始人普通。
+ * 1.0.52 按常规经营约每7～8波新增一位精英调平；概率只用于尚未生成的村民。
  * 产出与伤害在原加成后乘倍率、最后取整；照料只额外产粮，不缩短两夜成长。
  * 寿命按成功守夜计算，口粮沿 RULE；改动影响经济、战斗与存档校验，须同步版本。
  */
 export const ELITE = {
-    chancePercent: 5, chanceScale: 100, productionMultiplier: 1.5, damageMultiplier: 1.25,
+    birthChancePercent: 15, travelerChancePercent: 45, chanceScale: 100,
+    productionMultiplier: 1.5, damageMultiplier: 1.25,
     careFoodBonus: 1, adultNights: 18, elderNights: 5,
     // 纯表现缩放，各人生阶段沿用原动画与足底，不改变寻路、速度和住房占用。
     visualScale: 1.25

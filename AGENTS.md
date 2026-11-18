@@ -35,7 +35,7 @@
 - 根据需求同步相关技术文档；资源修改同步原稿、制作配置和可编辑工程，不能只改使用中的图集。
 - 每次更新运行资源，使用 `build-resources.mjs --sync` 按 `res/manifest.json` 同步 Laya 工程，再运行 `node res/tools/prepare-remote-release.mjs <版本> --stage`，将新版本导出到独立资源仓库。
 - 在 `/Users/happyelements/Documents/remote-res/` 单独提交本轮版本目录，推送到 Gitee 的 `origin/master`，再用该仓库的完整提交 SHA 运行 `node res/tools/prepare-remote-release.mjs <版本> <已推送的完整提交 SHA> --write`。逐个核对线上文件字节后生成客户端远程资源清单，再导出验证。
-- 仅改代码的版本复用最近一次已校验的资源版本。新版上传成功后，用普通 Git 提交清理 Gitee 主分支上早于最近两版的版本号目录，再核对当前和历史固定提交的下载地址。版本目录清理不得重写 Git 历史。
+- 仅改代码的版本复用最近一次已校验的资源版本。Gitee 保留现有版本目录，旧版本由用户手动清理。
 - Gitee 新版资源使用微信 `downloadFile` 合法域名 `https://gitee.com` 与 `https://raw.giteeusercontent.com`。旧版本所用域名继续保留。
 - 上传成功前标记为待上传，收到最终成功回执后再改为已上传。历史版本记录保持真实，不将历史验证冒充当前结果。
 

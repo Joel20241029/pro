@@ -162,7 +162,7 @@ export function applyCommand(s: GameState, c: Command) {
             const id = newId(s);
             // 主随机流保留原姓名→精英的抽样顺序；精英用命名前快照取名，不影响后续玩法抽样。
             const nameState = rng.state, nameIndex = rng.range(VILLAGER_NAMES.child.length);
-            const elite = rng.range(ELITE.chanceScale) < ELITE.chancePercent;
+            const elite = rng.range(ELITE.chanceScale) < ELITE.birthChancePercent;
             const name = elite ? VILLAGER_NAMES.elite[new SeededRandom(nameState).range(VILLAGER_NAMES.elite.length)]
                 : `小${VILLAGER_NAMES.child[nameIndex]}${s.nextPerson - 1}`;
             const child: Person = { id, name, sex, origin: "BORN", elite, appearance: ADULT_APPEARANCE[sex], trait, skill: null, generation: Math.max(...parents.map(p => p.generation)) + 1, parents: f.partners.slice(), ancestors: Array.from(new Set([...f.partners, ...parents[0].ancestors, ...parents[1].ancestors])), adult: false, nights: 0, elderNights: 0, growth: 0, job: "WAITING", careChild: null };

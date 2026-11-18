@@ -11,7 +11,7 @@ const { CombatPresentation } = read('view/CombatPresentation');
 const { RULE } = read('game/GameConfig');
 
 function learned() {
-    const s = createGame(7); s.completed = 12; s.day = 13; s.wood = 180; s.food = 90;
+    const s = createGame(7); s.completed = 10; s.day = 11; s.wood = 40; s.food = 20;
     applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC }); return s;
 }
 function enemy(seq, kind = 'enemy_raider') {
@@ -24,15 +24,15 @@ function battle(kind = 'ARROW', tactic = RAGE_TACTIC) {
     const operator = b.base.people[0]; operator.trait = 'trait_fertile'; operator.skill = null; operator.elite = false;
     b.cursor = b.base.wave.entries.length; b.enemies = [enemy(0)]; return b;
 }
-test('rage learns at twelve current-village wins with one exact 180 wood + 90 food debit', () => {
+test('rage learns at ten current-village wins with one exact 40 wood + 20 food debit', () => {
     const t = tacticDefinition(RAGE_TACTIC);
-    assert.deepEqual([t.name, t.unlockWaves, t.wood, t.food, t.effect, t.multiplier, t.ticks * RULE.step], ['百毅靓之怒', 12, 180, 90, 'ATTACK_DAMAGE', 1.5, 15]);
-    const s = createGame(7); s.completed = 11; s.day = 12; s.legacy.bestNight = 100;
+    assert.deepEqual([t.name, t.unlockWaves, t.wood, t.food, t.effect, t.multiplier, t.ticks * RULE.step], ['百毅靓之怒', 10, 40, 20, 'ATTACK_DAMAGE', 1.5, 15]);
+    const s = createGame(7); s.completed = 9; s.day = 10; s.legacy.bestNight = 100;
     assert.equal(tacticUnavailableReason(s, RAGE_TACTIC, 'LEARN'), '还需守住 1 波'); assert(!canLearnTactic(s));
     const old = clone(s); assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC })); assert.deepEqual(s, old);
-    s.completed = 12; s.day = 13; s.wood = 180; s.food = 89;
+    s.completed = 10; s.day = 11; s.wood = 40; s.food = 19;
     assert.equal(tacticUnavailableReason(s, RAGE_TACTIC, 'LEARN'), '还缺 1 粮');
-    s.food = 90; assert(canLearnTactic(s)); applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC });
+    s.food = 20; assert(canLearnTactic(s)); applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC });
     assert.deepEqual([s.wood, s.food, s.tactics.equipped], [0, 0, RAGE_TACTIC]); assert(!canLearnTactic(s));
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC }));
     applyCommand(s, { type: 'TACTIC_EQUIP', id: DEFAULT_TACTIC }); applyCommand(s, { type: 'TACTIC_EQUIP', id: RAGE_TACTIC });

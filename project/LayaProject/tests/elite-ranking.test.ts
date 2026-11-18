@@ -1,6 +1,6 @@
 import { applyCommand, assignOperator, createGame, economy, finishNight } from "../src/game/VillageRules";
 import { clone, GameState, isElder } from "../src/game/GameState";
-import { ELITE, PADS, RULE, TOWERS, TowerKind } from "../src/game/GameConfig";
+import { ELITE, PADS, RULE, TOWERS, TowerKind, VILLAGER_NAMES } from "../src/game/GameConfig";
 import { enemyPoint, PATH_LENGTH } from "../src/game/BattleRoad";
 import { SeededRandom } from "../src/game/SeededRandom";
 import { BattleSimulation } from "../src/game/BattleSimulation";
@@ -20,8 +20,10 @@ function seedForRoll(roll: number, traveler: boolean) {
     for (let seed = 1; seed < 10000; seed++) {
         const s = createGame(seed); if (traveler) { s.day = 4; s.wave = generateWave(s); }
         const rng = new SeededRandom(traveler ? s.rng.world : s.rng.family);
-        rng.range(2); rng.range(traveler ? 5 : 2); if (!traveler) rng.range(7);
-        if (rng.range(100) === roll) return seed;
+        rng.next();
+        if (!traveler && s.people[0].trait !== s.people[1].trait) rng.range(2);
+        rng.range((traveler ? VILLAGER_NAMES.traveler : VILLAGER_NAMES.child).length);
+        if (rng.range(ELITE.chanceScale) === roll) return seed;
     }
     throw new Error("boundary seed not found");
 }
@@ -30,19 +32,19 @@ class Memory implements StoragePort {
     read(key: string) { return this.map.get(key) ?? null; }
     write(key: string, value: string) { if (this.fail) throw new Error("quota"); this.map.set(key, value); }
 }
-test("Founders are ordinary; 4/100 is elite and 5/100 is ordinary for both birth and traveler", () => {
-    for (const roll of [4, 5]) for (const traveler of [false, true]) {
+test("Founders are ordinary; newborn and traveler elite draws use the 15% and 45% boundaries", () => {
+    for (const [traveler, cutoff] of [[false, 15], [true, 45]] as const) for (const roll of [cutoff - 1, cutoff]) {
         const s = createGame(seedForRoll(roll, traveler)); ok(s.people.every(p => !p.elite));
-        if (!traveler) eq(birth(s).elite, roll === 4);
+        if (!traveler) eq(birth(s).elite, roll < cutoff);
         else {
             s.day = 4; s.completed = s.legacy.bestNight = 3; s.wave = generateWave(s); win(s);
             const q = s.choices.find(q => q.kind === "TRAVELER"); ok(q && q.kind === "TRAVELER");
-            eq(q.person.elite, roll === 4); eq(q.person.nights, roll === 4 ? 18 : 12); validateState(s);
+            eq(q.person.elite, roll < cutoff); eq(q.person.nights, roll < cutoff ? 18 : 12); validateState(s);
         }
     }
 });
 test("Elite parents do not change the independent newborn draw", () => {
-    for (const roll of [4, 5]) {
+    for (const roll of [ELITE.birthChancePercent - 1, ELITE.birthChancePercent]) {
         const ordinary = createGame(seedForRoll(roll, false)), elite = clone(ordinary);
         elite.people.slice(0, 2).forEach(p => { p.origin = "TRAVELER"; p.elite = true; });
         eq(birth(ordinary).elite, birth(elite).elite); eq(ordinary.rng.family, elite.rng.family); validateState(elite);

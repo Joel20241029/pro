@@ -18,9 +18,10 @@ export function pointAt(progress: number) {
     return PATH[PATH.length - 1];
 }
 
-/** 取整个足部纵深内左右边界的交集；各段线性，因此只需区间端点和经过的采样行。 */
-export function roadFootprintBounds(y: number, kind: EnemyKind) {
-    const size = ENEMIES[kind].boss ? ROAD_MOVEMENT.boss : ROAD_MOVEMENT.ordinary;
+type RoadFootprint = { halfWidth: number; back: number; front: number };
+/** 取整个足部纵深内左右边界的交集；怪物与临时冲锋角色复用同一道路剖面。 */
+export function roadFootprintBounds(y: number, footprint: EnemyKind | RoadFootprint) {
+    const size = typeof footprint === "string" ? (ENEMIES[footprint].boss ? ROAD_MOVEMENT.boss : ROAD_MOVEMENT.ordinary) : footprint;
     const top = y - size.back, bottom = y + size.front;
     const first = ROAD_PROFILE[0][0], step = ROAD_PROFILE[1][0] - first;
     if (!Number.isFinite(y) || top < first || bottom > ROAD_PROFILE[ROAD_PROFILE.length - 1][0]) throw new Error('怪物足点超出道路采样范围');
@@ -33,7 +34,7 @@ export function roadFootprintBounds(y: number, kind: EnemyKind) {
     sample(top); sample(bottom);
     for (let at = first + (Math.floor((top - first) / step) + 1) * step; at < bottom; at += step) sample(at);
     left += size.halfWidth; right -= size.halfWidth;
-    if (left > right) throw new Error('路面不足以容纳怪物足部：' + kind);
+    if (left > right) throw new Error('路面不足以容纳足部：' + (typeof footprint === "string" ? footprint : y));
     return { left, right };
 }
 

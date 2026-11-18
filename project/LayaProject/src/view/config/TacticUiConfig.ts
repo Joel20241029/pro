@@ -8,7 +8,8 @@ export const TACTIC_UI = {
     listTop: 192, rowHeight: 216, rowStep: 228, footer: 54,
     icon: 104, rowTextX: 142, rowTextWidth: 418,
     actionX: 376, actionY: 158, actionWidth: 188, actionHeight: 48,
-    detailOwnedHeight: 688, detailLearnHeight: 848, detailIcon: 136
+    // 详情图标与效果并排，为传闻留出独立阅读区域。
+    detailOwnedHeight: 608, detailLearnHeight: 848, detailIcon: 108
 } as const;
 
 /** 首波解锁演出与左侧入口共用图标和身份，调整顺序须同时检查飞行落点。 */

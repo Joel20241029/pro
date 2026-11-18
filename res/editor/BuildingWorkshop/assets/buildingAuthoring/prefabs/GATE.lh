@@ -154,7 +154,7 @@
               "width": 14,
               "height": 13,
               "texture": {
-                "_$uuid": "da7f8441-90c3-4792-8ba7-736e3fab4f3e",
+                "_$uuid": "71e84dfb-8ad7-4973-b8b7-6dca6e2363ab",
                 "_$type": "Texture"
               }
             }
@@ -254,7 +254,7 @@
               "width": 14,
               "height": 13,
               "texture": {
-                "_$uuid": "da7f8441-90c3-4792-8ba7-736e3fab4f3e",
+                "_$uuid": "71e84dfb-8ad7-4973-b8b7-6dca6e2363ab",
                 "_$type": "Texture"
               }
             },
@@ -267,7 +267,7 @@
               "width": 38,
               "height": 20,
               "texture": {
-                "_$uuid": "01c85cc9-27dc-4800-83e1-6d0d6d61d398",
+                "_$uuid": "63a98a0f-979a-4e1c-aca9-aba77601c317",
                 "_$type": "Texture"
               }
             }
@@ -454,7 +454,7 @@
               "width": 14,
               "height": 13,
               "texture": {
-                "_$uuid": "da7f8441-90c3-4792-8ba7-736e3fab4f3e",
+                "_$uuid": "71e84dfb-8ad7-4973-b8b7-6dca6e2363ab",
                 "_$type": "Texture"
               }
             }
@@ -554,7 +554,7 @@
               "width": 14,
               "height": 13,
               "texture": {
-                "_$uuid": "da7f8441-90c3-4792-8ba7-736e3fab4f3e",
+                "_$uuid": "71e84dfb-8ad7-4973-b8b7-6dca6e2363ab",
                 "_$type": "Texture"
               }
             },
@@ -567,7 +567,7 @@
               "width": 38,
               "height": 20,
               "texture": {
-                "_$uuid": "01c85cc9-27dc-4800-83e1-6d0d6d61d398",
+                "_$uuid": "63a98a0f-979a-4e1c-aca9-aba77601c317",
                 "_$type": "Texture"
               }
             }
@@ -667,7 +667,7 @@
               "width": 14,
               "height": 13,
               "texture": {
-                "_$uuid": "da7f8441-90c3-4792-8ba7-736e3fab4f3e",
+                "_$uuid": "71e84dfb-8ad7-4973-b8b7-6dca6e2363ab",
                 "_$type": "Texture"
               }
             },
@@ -680,7 +680,7 @@
               "width": 38,
               "height": 20,
               "texture": {
-                "_$uuid": "01c85cc9-27dc-4800-83e1-6d0d6d61d398",
+                "_$uuid": "63a98a0f-979a-4e1c-aca9-aba77601c317",
                 "_$type": "Texture"
               }
             },
@@ -688,12 +688,14 @@
               "_$id": "5eb9bd4h",
               "_$type": "Sprite",
               "name": "GateBanner",
-              "x": 99,
-              "y": 78,
+              "x": 108,
+              "y": 82,
               "width": 17,
               "height": 30,
+              "anchorX": 0.5,
+              "anchorY": 0.12,
               "texture": {
-                "_$uuid": "c34b44c9-63ba-46c1-83f4-f9e064d19fbf",
+                "_$uuid": "b241f601-98e7-4eb3-a888-b22150d028fa",
                 "_$type": "Texture"
               }
             }
@@ -880,7 +882,7 @@
               "width": 14,
               "height": 13,
               "texture": {
-                "_$uuid": "da7f8441-90c3-4792-8ba7-736e3fab4f3e",
+                "_$uuid": "71e84dfb-8ad7-4973-b8b7-6dca6e2363ab",
                 "_$type": "Texture"
               }
             }
@@ -980,7 +982,7 @@
               "width": 14,
               "height": 13,
               "texture": {
-                "_$uuid": "da7f8441-90c3-4792-8ba7-736e3fab4f3e",
+                "_$uuid": "71e84dfb-8ad7-4973-b8b7-6dca6e2363ab",
                 "_$type": "Texture"
               }
             },
@@ -993,7 +995,7 @@
               "width": 38,
               "height": 20,
               "texture": {
-                "_$uuid": "01c85cc9-27dc-4800-83e1-6d0d6d61d398",
+                "_$uuid": "63a98a0f-979a-4e1c-aca9-aba77601c317",
                 "_$type": "Texture"
               }
             }
@@ -1093,7 +1095,7 @@
               "width": 14,
               "height": 13,
               "texture": {
-                "_$uuid": "da7f8441-90c3-4792-8ba7-736e3fab4f3e",
+                "_$uuid": "71e84dfb-8ad7-4973-b8b7-6dca6e2363ab",
                 "_$type": "Texture"
               }
             },
@@ -1106,7 +1108,7 @@
               "width": 38,
               "height": 20,
               "texture": {
-                "_$uuid": "01c85cc9-27dc-4800-83e1-6d0d6d61d398",
+                "_$uuid": "63a98a0f-979a-4e1c-aca9-aba77601c317",
                 "_$type": "Texture"
               }
             },
@@ -1114,12 +1116,14 @@
               "_$id": "g539xogn",
               "_$type": "Sprite",
               "name": "GateBanner",
-              "x": 99,
-              "y": 78,
+              "x": 108,
+              "y": 82,
               "width": 17,
               "height": 30,
+              "anchorX": 0.5,
+              "anchorY": 0.12,
               "texture": {
-                "_$uuid": "c34b44c9-63ba-46c1-83f4-f9e064d19fbf",
+                "_$uuid": "b241f601-98e7-4eb3-a888-b22150d028fa",
                 "_$type": "Texture"
               }
             }

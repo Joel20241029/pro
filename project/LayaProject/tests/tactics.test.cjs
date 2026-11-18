@@ -2,7 +2,7 @@ const { test, after } = require('node:test'), assert = require('node:assert/stri
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 const read = name => require(path.join(compiled, name + '.js'));
-const { TACTIC_USE, TACTICS, DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, validateTactics, tacticDefinition } = read('config/TacticConfig');
+const { TACTIC_USE, TACTICS, DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC, validateTactics, tacticDefinition } = read('config/TacticConfig');
 const { RULE } = read('game/GameConfig');
 const { createGame, applyCommand } = read('game/VillageRules');
 const { clone } = read('game/GameState');
@@ -42,8 +42,8 @@ function fixture(s = state()) {
     return { game: reopen(), reopen, port, values, writes };
 }
 
-test('production includes rage, shield and split while preserving the free heart combat parameters', () => {
-    assert.deepEqual(production.map(t => t.id), [DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC]);
+test('production includes the summon while preserving the free heart combat parameters', () => {
+    assert.deepEqual(production.map(t => t.id), [DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC]);
     const t = production[0];
     assert.equal(t.wood + t.food + t.unlockWaves, 0);
     assert.equal(t.ticks, RULE.bellTicks); assert.equal(t.multiplier, RULE.bellSpeedMultiplier);
@@ -141,9 +141,9 @@ test('heart still casts with no visible enemies, and pause, speed or reassign ne
     assert.equal(reopened.battle.tactic.id, battle.tactic.id);
 });
 
-test('each equipped tactic can start a second full effect after 21 battle seconds', () => {
+test('two-use tactics can start a second full effect after 21 battle seconds', () => {
     assert.equal(TACTIC_USE.cooldownTicks * RULE.step, 21);
-    for (const tactic of production) {
+    for (const tactic of production.filter(t => t.usesPerNight === 2)) {
         const s = state(tactic.unlockWaves); s.tactics.learned = [...new Set([DEFAULT_TACTIC, tactic.id])];
         s.tactics.equipped = tactic.id; s.wave.entries = [{...s.wave.entries[0], tick: 950}];
         applyCommand(s, { type: 'NIGHT' });

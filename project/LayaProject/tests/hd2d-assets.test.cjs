@@ -77,7 +77,7 @@ test('the full-size terrain uses one village atlas page and keeps its gate align
  assert.deepEqual(frame.pivot,asset.pivot);
  assert.equal(Object.values(table.frames).filter(f=>f.page===frame.page).length,1);
  assert.equal(table.pages.find(p=>p.id===frame.page).runtimeFile,'map/terrain_0.png');
- const reserves=['deco_blossom_pink','deco_bush','deco_rocks','map_gate_lane','map_road','tile_ground_grass'];
+ const reserves=['deco_blossom_pink','deco_bush','deco_rocks','hd_part_brace','map_gate_lane','map_road','tile_ground_grass'];
  assert.deepEqual(recipe.assets.filter(a=>!a.runtime).map(a=>a.id).sort(),reserves);
  for(const id of reserves)assert(!table.frames[id],id);
 });
@@ -99,9 +99,9 @@ test('resizing preserves normalized feet and stride; panel portraits retain thei
  const portraits=recipe.assets.filter(a=>a.id.startsWith('portrait_'));assert.equal(portraits.length,9);
  for(const a of portraits){assert.equal(a.width,384);assert(!a.provenance.runtimeScale);assert(byId.has(a.id.slice('portrait_'.length)));}
 });
-test('enlarged enemies and every attachment retain two physical pixels per logical pixel plus five percent sampling margin',()=>{
+test('half-size enemies and attachments retain one texture pixel per maximum logical pixel plus five percent sampling margin',()=>{
  const {ENEMY_LOOKS,ENEMY_SCALES}=require(path.join(process.env.DAIDAI_TEST_BUILD,'view/config/EnemyVisualConfig'));
- const assets=new Map(recipe.assets.map(a=>[a.id,a])),sampling=2*1.05*Math.max(...ENEMY_SCALES);
+ const assets=new Map(recipe.assets.map(a=>[a.id,a])),sampling=1.05*Math.max(...ENEMY_SCALES);
  for(const [kind,look]of Object.entries(ENEMY_LOOKS))for(const frame of defs[kind].frames){
   assert(assets.get(frame.body).width>=look.size*sampling,frame.body);
   for(const [id,part]of Object.entries(frame.parts))assert(assets.get(id).width>=part.width/96*look.size*sampling,kind+'/'+id);

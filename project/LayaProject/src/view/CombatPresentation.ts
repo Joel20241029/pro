@@ -2,6 +2,7 @@ import { BattleSimulation, CombatFeedback, Enemy, Shot } from '../game/BattleSim
 import { enemyPoint } from '../game/BattleRoad';
 import { FEEDBACK } from './config/FeedbackConfig';
 import { RULE } from '../game/GameConfig';
+interface Defeat { enemy: Enemy; fatal: Shot | null; started: number | null; }
 /** 独立视觉时间线。死亡快照不进入 simulation.enemies；保留统一死亡位置供迟到弹道使用。 */
 export class CombatPresentation {
     private battle: BattleSimulation | null = null;
@@ -12,7 +13,7 @@ export class CombatPresentation {
     /** 逻辑结算后仅补完在途弹体，绝不改写 simulation.tick 或重新运行战斗。 */
     get presentationTick() { return this.battle ? this.battle.tick + this.tailSeconds / RULE.step : 0; }
     readonly shots = new Map<Shot, Extract<CombatFeedback, { type: 'shot' }>>();
-    readonly deaths = new Map<number, { enemy: Enemy; fatal: Shot | null; started: number | null }>();
+    readonly deaths = new Map<number, Defeat>();
     private deathPositions = new Map<number, { x: number; y: number }>();
     private flashes = new Map<number, number>();
     private retired = new Set<number>();
@@ -27,6 +28,12 @@ export class CombatPresentation {
                 this.deathPositions.set(event.enemy.seq, enemyPoint(event.enemy));
                 this.flashes.delete(event.enemy.seq);
                 if (!this.retired.has(event.enemy.seq)) this.deaths.set(event.enemy.seq, { enemy: event.enemy, fatal: null, started: this.clock });
+            } else if (event.type === 'summon') {
+                const death: Defeat = { enemy: event.enemy, fatal: null, started: null };
+                this.deathPositions.set(event.enemy.seq, enemyPoint(event.enemy));
+                this.deaths.set(event.enemy.seq, death);
+                this.flashes.delete(event.enemy.seq);
+                this.startDefeat(death);
             } else {
                 this.shots.set(event.shot, event);
                 for (const enemy of event.hurt) if (enemy.hp <= 0 && !this.retired.has(enemy.seq)) {

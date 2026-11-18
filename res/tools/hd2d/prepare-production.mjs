@@ -8,6 +8,7 @@ import { enemyMotionProfiles } from '../../source/rendered2d/enemy-layouts.mjs';
 import { runtimeTextureSizes } from '../../source/rendered2d/runtime-texture-sizes.mjs';
 import { fitVillageMap } from './fit-village-map.mjs';
 import { importVillagers } from './import-villagers.mjs';
+import { prepareVillageMotion } from './prepare-village-motion.mjs';
 
 // 技术导入：清理生成稿的低alpha背景，再统一画布/足点和平滑缩小。
 // 不绘制或替换主体，不镜像、不把静止图片伪装成行走；不会同步正式游戏。
@@ -107,7 +108,8 @@ function clip(id, frameIds, fps, category, mapping) {
 }
 for (const [kind, poses] of Object.entries(enemySources)) {
     const profile = enemyMotionProfiles['enemy_'+kind];
-    const canvas = Math.max(256, runtimeTextureSizes.enemies[kind]);
+    // 归一化阶段沿用1.0.49的原画布，发布阶段再整体缩小，保留首领原始取景和足底比例。
+    const canvas = Math.max(256, runtimeTextureSizes.enemies[kind] * 2);
     const ids = poses.map((p, i) => {
         const source = generated('enemies/' + p.sheet);
         return importImage({ id: `enemy_${kind}_walk_${i.toString().padStart(2, '0')}`, source,
@@ -122,7 +124,7 @@ for (const [kind, poses] of Object.entries(enemySources)) {
 for (const [index, name] of ['band', 'antlers', 'feathers', 'banner', 'leaves', 'mask'].entries()) {
     if (!['feathers', 'banner'].includes(name)) continue;
     const source = generated('enemies/accessories_candidate');
-    const canvas = Math.max(128, runtimeTextureSizes.enemyParts['enemy_acc_' + name]);
+    const canvas = Math.max(128, runtimeTextureSizes.enemyParts['enemy_acc_' + name] * 2);
     importImage({ id: 'enemy_acc_' + name, source, crop: cell(source, 3, 2, index), category: 'enemy-parts', bundle: 'battle', width: canvas, fitHeight: 116 / 128 * canvas, fitWidth: 112 / 128 * canvas });
 }
 importVillagers(root, importImage, clip, animations, walkDirections, laborDirections);
@@ -244,6 +246,8 @@ clip('hearth_burn', fireIds, 6, 'decorations', 'fixed back stones / flame / fixe
 
 // 对已对齐的完整画布统一降采样，不再trim/fit，避免左右脚、劳动工具或各方向发生位移。
 for (const asset of assets) {
+    // 高分辨率支撑木只用于生成可编辑的半尺寸配件，所有实际摆放改用后者。
+    if (asset.id === 'hd_part_brace') asset.runtime = false;
     let width = asset.width;
     if (asset.category === 'enemies') {
         width = runtimeTextureSizes.enemies[asset.id.split('_')[1]];
@@ -265,6 +269,7 @@ for (const asset of assets) {
     asset.sourceCropWithinCell = { ...asset.sourceRect };
     Object.assign(asset.provenance, { normalizedCanvas: original, runtimeScale: scale, outputHash: hash(target) });
 }
+prepareVillageMotion({ root, work, assets, run, importImage, clip });
 // clip.pivot原本与首帧共用对象，必须整体换新而非原地乘，避免孩子/老人双身份重复缩放。
 for (const animation of animations) {
     const first = assets.find(a => a.id === animation.frameIds[0]), scale = first.width / animation.canvas.w;

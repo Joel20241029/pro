@@ -126,22 +126,26 @@ for (const [group, { category, standalone }] of Object.entries(atlasGroups)) {
     const items = runtimeAssets.filter(a => a.atlasGroup === group)
         .sort((a, b) => Math.max(b._trim.w, b._trim.h) - Math.max(a._trim.w, a._trim.h) || b._trim.w * b._trim.h - a._trim.w * a._trim.h || a.id.localeCompare(b.id));
     if (standalone && items.length !== 1) throw new Error('整图页需要唯一素材：' + group);
-    const pageWidth = standalone ? items[0]._trim.w + padding * 2 : pageSize;
-    const pageHeight = standalone ? items[0]._trim.h + padding * 2 : pageSize;
+    const packWidth = standalone ? items[0]._trim.w + padding * 2 : pageSize;
+    const packHeight = standalone ? items[0]._trim.h + padding * 2 : pageSize;
     const groupPages = [];
     for (const a of items) {
         const w = a._trim.w + padding * 2, h = a._trim.h + padding * 2; let best = null;
-        if (w > pageWidth || h > pageHeight) throw new Error(`单图超过页尺寸：${a.id}`);
+        if (w > packWidth || h > packHeight) throw new Error(`单图超过页尺寸：${a.id}`);
         for (const p of groupPages) for (const f of p.free) if (w <= f.w && h <= f.h) {
             const score = Math.min(f.w - w, f.h - h); if (!best || score < best.score) best = { p, f, score };
         }
-        if (!best) { const p = { id: `${group}_${groupPages.length}`, free: [{ x: 0, y: 0, w: pageWidth, h: pageHeight }], placements: [] }; groupPages.push(p); best = { p, f: p.free[0] }; }
+        if (!best) { const p = { id: `${group}_${groupPages.length}`, free: [{ x: 0, y: 0, w: packWidth, h: packHeight }], placements: [] }; groupPages.push(p); best = { p, f: p.free[0] }; }
         const used = { x: best.f.x, y: best.f.y, w, h }; best.p.free = splitFree(best.p.free, used);
         const rect = { x: used.x + padding, y: used.y + padding, w: a._trim.w, h: a._trim.h };
         best.p.placements.push({ a, rect }); a.atlasPage = best.p.id; a.atlasRect = rect;
         a.importedLayaAtlasPath = `assets/resources/gameplay/${category}/${best.p.id}.png`; a.importedFrameId = a.id;
     }
     for (const p of groupPages) {
+        // 建筑和怪物的尾页保留原排版和外扩，按二次幂裁掉空白纹理行列。
+        const compact = (group === 'buildings' || group === 'enemies') && p === groupPages.at(-1);
+        const pageWidth = compact ? 2 ** Math.ceil(Math.log2(Math.max(...p.placements.map(({ rect }) => rect.x + rect.w + padding)))) : packWidth;
+        const pageHeight = compact ? 2 ** Math.ceil(Math.log2(Math.max(...p.placements.map(({ rect }) => rect.y + rect.h + padding)))) : packHeight;
         for (let i = 0; i < p.placements.length; i++) {
             const r = p.placements[i].rect;
             if (r.x < padding || r.y < padding || r.x + r.w + padding > pageWidth || r.y + r.h + padding > pageHeight) throw new Error('图集矩形或间隔越界：' + p.placements[i].a.id);

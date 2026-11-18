@@ -23,7 +23,9 @@ for(const profile of profiles) test(`${profile[0]}: safe controls, expanded vill
     const l=layout(profile), {scene,nav}=sceneAt(l), [name,w,h,top,bottom,mt,mb]=profile;
     near(l.height,h*720/w); near(l.safeTop,top*720/w); near(l.safeBottom,bottom*720/w);
     assert(l.dateY>=mb*720/w+10-1e-6); assert(l.footerTop+228<=l.safeBottom);
-    assert(l.footerTop-l.gateY>=260); assert(l.personScale*56>=86 && l.personScale*56<=90);
+    assert(l.footerTop-l.gateY>=260);
+    const adultCanvas = l.personScale * 56;
+    assert(adultCanvas >= 90.3 - 1e-6 && adultCanvas <= 94.5 + 1e-6);
     assert(l.safeBottom-l.safeTop>=860, 'full panel must fit safe region');
     for(const [key,stops] of Object.entries(scene.stops)) for(const p of stops) {
         assert(nav.walkable(p),`${name}:${key} ${JSON.stringify(p)}`);

@@ -7,7 +7,7 @@ import { VillagerPose } from "./VillagerMotion";
 export class WalkAnimation {
     private cycles = new Map<string, { distance: number; phase: number }>();
     constructor(private art: SpriteFrames) {}
-    frame(pose: Readonly<VillagerPose>, clipId: string, displayWidth: number) {
+    frame(pose: Readonly<Pick<VillagerPose, "id" | "walkDistance" | "walking">>, clipId: string, displayWidth: number) {
         const clip = this.art.animation(clipId);
         if (!(clip.stridePixels > 0)) throw new Error("行走动画缺少完整周期步幅：" + clipId);
         let cycle = this.cycles.get(pose.id);

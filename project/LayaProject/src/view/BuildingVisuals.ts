@@ -3,6 +3,7 @@ import { BuildingLook, BuildingNode, buildingLayoutId } from "./BuildingLayout";
 import { BattleSimulation, Shot } from "../game/BattleSimulation";
 import { RULE } from "../game/GameConfig";
 import { GroundPoint } from "./VillageScene";
+import { BuildingAmbient } from "./BuildingAmbient";
 import { TipTarget } from "./AnchoredTip";
 export { BuildingLook } from "./BuildingLayout";
 
@@ -13,11 +14,15 @@ export class BuildingVisuals {
     private body: Laya.Sprite | null = null; private muzzle: Laya.Sprite | null = null;
     private upgrades: Laya.AnimatorClip2D[] = []; private attack: Laya.AnimatorClip2D | null = null;
     private above: Laya.Sprite | null = null; private aboveSort: GroundPoint | null = null;
-    private upgradePending = false;
+    private upgradePending = 0;
+    private expansion = 0;
+    private gateFlare = 0;
+    private ambient: BuildingAmbient;
     private elapsed = 0; private upgrading = false;
     private battle: BattleSimulation | null = null; private latestShot: Shot | null = null;
     private cachedBodyRegion: TipTarget | null = null;
     constructor(private owner: Laya.Sprite, private art: SpriteFrames) {
+        this.ambient = new BuildingAmbient(art, owner.name.endsWith("house-b") ? 1.17 : 0);
         this.parts.name = "EditorBuilding"; this.parts.mouseEnabled = false; owner.addChild(this.parts);
         this.badge.name = "UpgradeLevel"; this.badge.mouseEnabled = false;
         this.badge.wordWrap = false; this.badge.overflow = Laya.Text.SHRINK; this.badge.bold = true;
@@ -31,6 +36,7 @@ export class BuildingVisuals {
         for (const property of ["x", "y", "width", "height", "anchorX", "anchorY", "scaleX", "scaleY", "rotation", "alpha", "visible"] as const)
             if (data[property] !== undefined) (node as any)[property] = data[property];
         parent.addChild(node);
+        this.ambient.bind(node, data.frame);
         if (data.name === "Muzzle") this.muzzle = node;
         for (const child of data.children || []) this.create(child, node);
         if (data.clip) {
@@ -41,18 +47,24 @@ export class BuildingVisuals {
         }
         return node;
     }
-    sync(kind: BuildingLook | null, level: number, freshVillage: boolean, rooms = 1, damaged = false, facing = 1) {
+    sync(kind: BuildingLook | null, level: number, freshVillage: boolean, rooms = 1, damaged = false, facing = 1, expansion = 0) {
         const key = `${kind}:${level}:${rooms}:${damaged}:${facing}`;
-        if (freshVillage) { this.upgradePending = false; this.upgrading = false; this.upgrades.forEach(a => a.gotoAndStop(1)); this.latestShot = null; this.attack?.gotoAndStop(1); }
+        if (freshVillage) {
+            this.upgradePending = 0; this.upgrading = false; this.gateFlare = 0; this.ambient.reset();
+            this.upgrades.forEach(a => a.gotoAndStop(1)); this.latestShot = null; this.attack?.gotoAndStop(1);
+        } else if (kind && this.level > 0) {
+            const gains = Math.max(level - this.level, expansion - this.expansion, rooms - this.rooms, 0);
+            if (kind === "HOUSE" || kind === "FARM" || kind === "LOGGING" || kind === "GATE") this.upgradePending += gains;
+            else if (gains) this.upgradePending = 1;
+        }
+        this.expansion = expansion;
         if (key === this.key) return;
-        const animate = !freshVillage && kind && this.level > 0 && (level > this.level || rooms > this.rooms);
         this.key = key; this.level = level; this.rooms = rooms;
         this.parts.destroyChildren(); this.above?.destroy(true); this.above = null; this.aboveSort = null;
-        this.body = this.muzzle = null; this.upgrades = []; this.attack = null;
+        this.body = this.muzzle = null; this.upgrades = []; this.attack = null; this.ambient.clear();
         this.cachedBodyRegion = null;
-        this.latestShot = null; this.upgrading = false; this.badge.visible = false;
-        // 空地已没有动画节点，同时撤销旧建筑待播动作；非空建筑的损坏/朝向重建仍保留待播升级。
-        if (!kind) { this.upgradePending = false; return; }
+        this.latestShot = null; this.badge.visible = false;
+        if (!kind) { this.upgradePending = 0; this.upgrading = false; return; }
         this.owner.texture = null;
         const layout = this.art.buildingLayouts[buildingLayoutId(kind, level, rooms)];
         if (!layout) throw new Error("缺少编辑器建筑布局:" + key);
@@ -85,19 +97,24 @@ export class BuildingVisuals {
             this.badge.size(64 * scale, 24 * scale).pivot(32 * scale, 0).pos(64 * scale, 93 * scale);
             this.badge.scaleX = this.owner.scaleX;
         }
-        if (animate) this.upgradePending = true;
     }
-    /** 面板关闭后开始已有建筑升级动作；同栋连续升级只消费一次。 */
+    /** 面板完全关闭后按每次升级依次播放，动画仍附在各自的部件上。 */
     beginVisibleUpgrade(): boolean {
-        if (!this.upgradePending) return false;
-        this.upgradePending = false; this.elapsed = 0; this.upgrading = true; this.upgrades.forEach(a => a.gotoAndStop(0)); return true;
+        if (!this.upgradePending || this.upgrading) return false;
+        this.upgradePending--; this.elapsed = 0; this.upgrading = true;
+        this.upgrades.forEach(a => a.gotoAndStop(0)); return true;
     }
-    advance(delta: number) {
-        if (!this.upgrading) return;
-        this.elapsed += delta;
-        const progress = Math.min(1, this.elapsed / this.upgrades[0].clip.duration());
-        this.upgrades.forEach(a => a.gotoAndStop(progress)); this.upgrading = progress < 1;
+    advance(delta: number, night = false, working = false) {
+        let progress = 1;
+        if (this.upgrading) {
+            this.elapsed += delta;
+            progress = Math.min(1, this.elapsed / this.upgrades[0].clip.duration());
+            this.upgrades.forEach(a => a.gotoAndStop(progress)); this.upgrading = progress < 1;
+        }
+        this.gateFlare = this.upgrading ? Math.sin(Math.PI * progress) : 0;
+        this.ambient.advance(delta, progress, night, working);
     }
+    upgradeFlare() { return this.gateFlare; }
     /** 实际贴图范围用于民房点击和屋顶提示；编辑器bounds含安全留白，不能作为屋顶。
      * 只缓存Body本地范围；坐标换算仍取当前缩放，升级动画与窗口重排不会留下旧挂点。
      */

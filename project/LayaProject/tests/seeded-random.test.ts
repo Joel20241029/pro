@@ -47,10 +47,10 @@ test("Repeated birth draw cadence does not lock inheritance or distort elite rar
             nextSex(population, rng);
             if (rng.range(2) === 0) firstParent++;
             rng.range(VILLAGER_NAMES.child.length);
-            if (rng.range(ELITE.chanceScale) < ELITE.chancePercent) elites++;
+            if (rng.range(ELITE.chanceScale) < ELITE.birthChancePercent) elites++;
         }
         ok(firstParent >= 49000 && firstParent <= 51000, `parent distribution for seed ${seed}: ${firstParent}`);
-        ok(elites >= 4500 && elites <= 5500, `elite distribution for seed ${seed}: ${elites}`);
+        ok(elites >= 14500 && elites <= 15500, `elite distribution for seed ${seed}: ${elites}`);
     }
 });
 test("Actual BIRTH commands inherit from both parents across the saved family stream", () => {

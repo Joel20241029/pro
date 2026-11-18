@@ -77,24 +77,24 @@
       "phoneListeningVerified": false
     },
     {
-      "title": "怪物击倒喉音",
+      "title": "怪物击倒",
       "source": "source/audio/enemy_defeat.score.json",
       "generator": "tools/build-audio.py",
       "runtimeFile": "audio/enemy_defeat.mp3",
       "packageFile": "enemy_defeat.mp3",
       "bundle": "battle",
-      "durationSeconds": 0.43002267573696146,
+      "durationSeconds": 0.28,
       "sampleRate": 22050,
       "channels": 1,
       "bitrate": "32k",
-      "bytes": 2212,
-      "sha256": "f28650376487a489931b297b0597e5b50f7259f7f7f1da2327d925187a2ecb35",
-      "sourceSha256": "99653a3dadb709231dba877672fa254437704bf42db43444f6d379dd5a3bf09e",
+      "bytes": 1585,
+      "sha256": "0c797880a5a13c65939b9679bb28eb00841dc56971362bfb001ea96a49be9ba4",
+      "sourceSha256": "a44c5e309335d9fdbaeafc234b4b179605ecae4d8645db5d3ae5a58def5bf9c6",
       "sourcePeak": 0.66,
       "sourceBoundaryDifference": 0.0,
       "license": "Original score and synthesis; no third-party samples",
       "phoneListeningVerified": false
     }
   ],
-  "bytes": 164870
+  "bytes": 164243
 }

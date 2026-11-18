@@ -129,7 +129,7 @@ function gameView(session, platform) {
         const box = new Sprite().size(size.width, size.height); box.name = 'panel:' + title; overlay.addChild(box); return box;
     };
     const village = Object.create(VillageWorld.prototype);
-    Object.assign(village, { game: session, layout, scene, motion: { sync() {} }, thoughts: { sync() {} }, crying: { sync() {} }, cryIcon: new Sprite(), speechTip: { hide() {} }, shield: { reset() {} }, interaction: { cancelPresses() {}, clearDepth() {} }, drawScenery() {} });
+    Object.assign(village, { game: session, layout, scene, motion: { sync() {} }, thoughts: { sync() {} }, crying: { sync() {} }, cryIcon: new Sprite(), speechTip: { hide() {} }, shield: { reset() {} }, summon: { reset() {} }, interaction: { cancelPresses() {}, clearDepth() {} }, drawScenery() {} });
     Object.assign(view, { resources: { ready: () => true }, game: session, observedVillageRevision: session.villageRevision, platform, layout, panels, village,
         shownErrorRevision: 0, observedRun: 0, observedDawn: 0, overlay, tip: { show() {} }, anchoredTip: { hide() {} },
         reminder: { reset() {}, tick() {}, hide() {} }, tacticNotices: new TacticNotices(platform), updateActors() {} });
@@ -205,14 +205,14 @@ test('a committed defeat opens restart directly without collection or an unlock'
 });
 test('new tactic marks survive reload and are cleared by viewing, rollback and a clean restart', () => {
     const local = new Map(), port = { read:k => local.get(k) ?? null, write:(k,v) => local.set(k,v) };
-    const state = createGame(73); state.completed = 11;
+    const state = createGame(73); state.completed = 9;
     const notices = new TacticNotices(port); notices.observe(state, false); assert(!notices.unread);
-    state.completed = 12; notices.observe(state, false); assert(notices.unread);
+    state.completed = 10; notices.observe(state, false); assert(notices.unread);
     let restored = new TacticNotices(port); restored.observe(state, false); assert(restored.unread);
     restored.markSeen(); restored = new TacticNotices(port); restored.observe(state, false); assert(!restored.unread);
-    state.completed = 36; restored.observe(state, false); assert(restored.unread);
-    state.completed = 35; restored.observe(state, false); assert(!restored.unread);
-    state.completed = 36; restored.observe(state, false); assert(restored.unread);
+    state.completed = 20; restored.observe(state, false); assert(restored.unread);
+    state.completed = 19; restored.observe(state, false); assert(!restored.unread);
+    state.completed = 20; restored.observe(state, false); assert(restored.unread);
     state.completed = 0; restored.observe(state, true); assert(!restored.unread);
 });
 test('ranking panel is a tall list with no extra controls and authorizes as soon as opened', () => {

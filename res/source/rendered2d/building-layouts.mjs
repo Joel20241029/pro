@@ -6,6 +6,8 @@ const picture = (name, frame, x, y, width, height) => ({ name, frame, x, y, widt
 const region = (name, x, y, width, height) => ({ name, x, y, width, height, visible: false });
 const component = (name, part, x, y, width, height) => picture(name, 'hd_part_' + part, x, y, width, height);
 const major = [1, 4, 8, 12];
+// 这四个半尺寸派生图已用于村内，箭塔也复用。村外石塔与寒塔仍用各自的原尺寸部件。
+const sharedReducedParts = new Set(['hd_part_brace', 'hd_part_rivet', 'hd_part_crest', 'hd_part_banner']);
 export function productionBuildings() {
     const result = {};
     for (const kind of ['HOUSE', 'FARM', 'LOGGING', 'GATE', 'ARROW', 'STONE', 'SLOW']) {
@@ -68,6 +70,8 @@ export function productionBuildings() {
                 nodes.push(weapon);
                 footprint = [22, 100, 84, 20];
             }
+            if (kind !== 'STONE' && kind !== 'SLOW') for (const node of nodes)
+                if (sharedReducedParts.has(node.frame)) node.frame = node.frame.replace('hd_part_', 'hd_village_part_');
             const children = [{ name: 'Body', x: 64, y: 120, width: 128, height: 128, anchorX: .5, anchorY: 15 / 16, clip: 'upgrade', children: nodes },
                 // 包含最高寒塔、1.08倍升级峰值与武器后坐；导航仍只使用独立Footprint。
                 region('VisualBounds', -12, -44, 152, 178), region('Footprint', ...footprint), region('SortOrigin', 64, 120, 0, 0)];

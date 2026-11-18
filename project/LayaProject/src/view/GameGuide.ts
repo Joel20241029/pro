@@ -1,5 +1,10 @@
 import { ELITE, GROWTH, RULE, TOWERS } from "../game/GameConfig";
-import { TACTIC_USE } from "../config/TacticConfig";
+import { RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC, TACTIC_USE, tacticDefinition } from "../config/TacticConfig";
+
+function tacticRequirement(id: string) {
+    const { unlockWaves, wood, food } = tacticDefinition(id);
+    return `当前村庄守住 ${unlockWaves} 波后，可用 ${wood} 木、${food} 粮学会。`;
+}
 
 /** 游戏内只读手册：依据当前 VillageRules/Growth/BattleSimulation，数值引用同一配置。
  * 章节仅用于表现，不写存档、不提交命令；改玩法时同步说明，避免单独维护另一份数值表。
@@ -21,7 +26,7 @@ export const GUIDE_CHAPTERS: ReadonlyArray<{ title: string; sections: ReadonlyAr
         { title: "退休后仍是村里的一员", body: `劳作时间用完会变成老人，退出工作和驻塔，不能再成家、生育或照料。普通老人养老 ${RULE.elderNights} 个成功守夜夜晚，精英 ${ELITE.elderNights} 夜；仍吃口粮、占住房。养老结束后寿终离村，进入家谱，才空出人口名额。` },
         { title: "家谱留住先辈", body: `家谱只记录已寿终的村民，刚退休的老人仍在名册中。普通记录保留最近 ${RULE.historyCap} 位，可珍藏 ${RULE.favoriteCap} 位；珍藏满了可先取消一位，再收藏其他先辈。` },
         { title: "旅人补充新伙伴", body: "清晨可能有旅人来访，可以欢迎或谢绝。有空住房才能接纳；清晨不能临时建房，满员可先谢绝，再在白天准备住房。成年男女出现断档时，会优先带来缺少的性别，但来访有间隔，不会每夜都补人。" },
-        { title: "遇见精英村民", body: `新生儿和旅人各有 ${ELITE.chancePercent}% 概率成为精英，体型更大。耕作和伐木产量 +${Math.round((ELITE.productionMultiplier - 1) * 100)}%，驻塔伤害 +${Math.round((ELITE.damageMultiplier - 1) * 100)}%，照料额外产 ${ELITE.careFoodBonus} 粮。寿命更长，口粮规则不变；精英身份不直接遗传，孩子仍需照料 ${RULE.growNights} 夜成年。` }
+        { title: "遇见精英村民", body: `新生儿有 ${ELITE.birthChancePercent}% 概率成为精英，来访旅人有 ${ELITE.travelerChancePercent}% 概率是精英。精英体型更大，耕作和伐木产量 +${Math.round((ELITE.productionMultiplier - 1) * 100)}%，驻塔伤害 +${Math.round((ELITE.damageMultiplier - 1) * 100)}%，照料额外产 ${ELITE.careFoodBonus} 粮。寿命更长，口粮规则不变；精英身份不直接遗传，孩子仍需照料 ${RULE.growNights} 夜成年。` }
     ] },
     { title: "家庭", sections: [
         { title: "怎样让两个人成家", body: "打开“家庭”，在“成家”页点“安排村民成家”，再依次选择两位村民。双方要已成年、未退休、没有配偶，且为一男一女。直系亲属、兄弟姐妹不能成家。成家不消耗资源，村民会走到一起并出现红心。" },
@@ -46,11 +51,12 @@ export const GUIDE_CHAPTERS: ReadonlyArray<{ title: string; sections: ReadonlyAr
         { title: "五类小怪，各有特点", body: "灰牙劫掠者是基础来敌；赤帽疾行者移动快；铁鬃卫士护甲高；石背野猪厚血、撞门较重；苔角巫医会降低附近防塔攻速。战前列表显示本夜的种类、数量和特点，向上滑动可看全。颜色和配件只改变外观，不额外增加属性。" },
         { title: "每年一场首领战", body: `每 ${RULE.yearDays} 夜出现一位首领：裂岩食人魔会召唤援兵；黑铁督军护甲高；霜脊狼王速度快；熔牙巨兽血量厚、撞门重；古木祭司会扰乱塔的攻速。前五场依次登场，之后循环；夜数和词缀仍会影响强度。` },
         { title: "先准备资源，再确认守夜", body: "启动图上的进度条会显示准备情况，地图、建筑和村民齐备后进入村庄。点击开始守夜时准备战斗素材，完成后再确认出战。准备期间不扣资源、不推进时间。失败可点重试，已经下载的文件会留在缓存中。" },
-        { title: "战技：白天准备，守夜施放", body: `首次守住一波后，排行下方出现战技入口。每夜携带一种，免费使用至多 ${TACTIC_USE.perNight} 次，白天可切换。按下即开始冷却 ${TACTIC_USE.cooldownTicks * RULE.step} 个战斗秒，按钮按当前倍速计时。暂停时计时冻结，下一夜次数重置。大王之心开局自带，其余按守住波数逐个揭晓。界面仅预告下一种未知战技，揭晓后用木材和粮食学习。传承保留已学会战技，纯净开始恢复初始战技。` },
+        { title: "战技：白天准备，守夜施放", body: `首次守住一波后，排行下方出现战技入口。每夜携带一种，白天可免费切换。能用 ${TACTIC_USE.perNight} 次的战技，按下后冷却 ${TACTIC_USE.cooldownTicks * RULE.step} 个战斗秒，按钮按当前倍速计时。暂停时计时冻结，下一夜次数重置。大王之心开局自带，其余按守住波数逐个揭晓。界面仅预告下一种未知战技，揭晓后用木材和粮食学习。传承保留已学会战技，纯净开始恢复初始战技。` },
         { title: "大王之心：短时加速集火", body: `所有已驻人的塔攻速提高 ${Math.round((RULE.bellSpeedMultiplier - 1) * 100)}%，持续 ${RULE.bellTicks * RULE.step} 个战斗秒。塔上金色光圈与倒计时表示正在生效。等敌人进入射程、比较密集时再用，单次伤害不变。` },
-        { tactic: "BAIYILIANG_RAGE", title: "百毅靓之怒：强化每次攻击", body: "全塔伤害提高50%，持续15个战斗秒。箭塔强化单体伤害，石塔强化范围伤害，寒塔只强化主目标伤害，减速不变。塔顶红白旋刃与倒计时表示正在生效。" },
-        { tactic: "ERNAN_SHIELD", title: "二楠之盾：守住最后一道门", body: "当前村庄守住36波后，可用600木、300粮学会。城门免疫触门伤害8个战斗秒。敌人到门仍退场，不回血、不反伤。青蓝护罩和倒计时表示生效，1倍约4现实秒，2倍约2.7现实秒。" },
-        { tactic: "SPLIT_SUPER", title: "分裂术·超：三目标齐射", body: "守住72波后，用1500木、750粮学会。全塔每次同时攻击射程内至多3个不同目标，持续15个战斗秒。攻速、射程和单发伤害不变，石塔同轮溅射不叠伤，寒塔保留减速。金色光圈与倒计时表示生效。" },
+        { tactic: RAGE_TACTIC, title: "百毅靓之怒：强化每次攻击", body: `${tacticRequirement(RAGE_TACTIC)}全塔伤害提高50%，持续15个战斗秒。箭塔强化单体伤害，石塔强化范围伤害，寒塔只强化主目标伤害，减速不变。塔顶红白旋刃与倒计时表示正在生效。` },
+        { tactic: SHIELD_TACTIC, title: "二楠之盾：守住最后一道门", body: `${tacticRequirement(SHIELD_TACTIC)}城门免疫触门伤害8个战斗秒。敌人到门仍退场，不回血、不反伤。青蓝护罩和倒计时表示生效，1倍约4现实秒，2倍约2.7现实秒。` },
+        { tactic: SPLIT_TACTIC, title: "分裂术·超：三目标齐射", body: `${tacticRequirement(SPLIT_TACTIC)}全塔每次同时攻击射程内至多3个不同目标，持续15个战斗秒。攻速、射程和单发伤害不变，石塔同轮溅射不叠伤，寒塔保留减速。金色光圈与倒计时表示生效。` },
+        { tactic: SUMMON_TACTIC, title: "智卓的召唤：分身冲锋", body: `${tacticRequirement(SUMMON_TACTIC)}分身在城门前集结后陆续沿路冲锋。每名分身撞上第一个敌人时，与敌人一同退场，对首领也有效。每夜可用 ${tacticDefinition(SUMMON_TACTIC).usesPerNight} 次。` },
         { title: "倍速、暂停与换人", body: "可切换 1 倍、2 倍两档，默认 1 倍，2 倍推进更快。战技按战斗时间计时，切档不重置持续时间，暂停时不扣时间。15 战斗秒在两档分别约为 7.5、5 现实秒。打开面板临时暂停，关闭后继续；若你主动点过暂停，仍需点“继续守夜”。夜间调任不重置防塔攻击冷却或本夜技能次数。" },
         { title: "缺粮和缺人的后果", body: `口粮不足仍能开始守夜，但当夜防塔攻速降至 ${Math.round(RULE.hungerSpeed * 100)}%；大王之心和缺粮按倍率相乘。没有合格成年人驻守的塔不会攻击。请在出战预览检查资源与人数，这些是风险提醒，不会强制阻止你开始。` },
         { title: "季节与村规", body: `每季 ${RULE.seasonDays} 夜，每年 ${RULE.yearDays} 夜。春季有利耕作、秋季有利伐木，冬季口粮增加。清晨可选择持续一季的村规。守夜从第一年起固定采用最高 ${RULE.maxTier} 档，跨年自动延续，不再选择难度。村庄可以持续经营，没有预制的最后一关。` }

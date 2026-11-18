@@ -13,7 +13,7 @@ const { GameSession } = read('game/GameSession');
 const { SaveStore } = read('storage/SaveStore');
 
 function learned() {
-    const s = createGame(7); s.housing = 7; s.completed = 72; s.day = 73; s.legacy.bestNight = 72; s.wood = 1500; s.food = 750;
+    const s = createGame(7); s.completed = 30; s.day = 31; s.legacy.bestNight = 30; s.wood = 80; s.food = 40;
     applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC }); return s;
 }
 function enemy(seq, progress = 260 - seq, hp = 100000, kind = 'enemy_raider') {
@@ -29,16 +29,16 @@ function battle(kind = 'ARROW', active = true) {
 }
 const shots = b => b.feedback.filter(e => e.type === 'shot');
 
-test('split uses the approved name, cost, seventy-two current-village wins and fifteen combat seconds', () => {
+test('split uses the approved name, cost, thirty current-village wins and fifteen combat seconds', () => {
     const t = tacticDefinition(SPLIT_TACTIC);
     assert.deepEqual([t.name, t.effect, t.targets, t.ticks * RULE.step, t.unlockWaves, t.wood, t.food],
-        ['分裂术·超', 'MULTI_TARGET', 3, 15, 72, 1500, 750]);
-    const s = createGame(7); s.housing = 7; s.completed = 71; s.day = 72; s.legacy.bestNight = 100;
+        ['分裂术·超', 'MULTI_TARGET', 3, 15, 30, 80, 40]);
+    const s = createGame(7); s.completed = 29; s.day = 30; s.legacy.bestNight = 100;
     assert.equal(tacticUnavailableReason(s, SPLIT_TACTIC, 'LEARN'), '还需守住 1 波');
     const before = clone(s); assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC })); assert.deepEqual(s, before);
-    s.completed = 72; s.day = 73; s.wood = 1499; s.food = 749;
+    s.completed = 30; s.day = 31; s.wood = 79; s.food = 39;
     assert.equal(tacticUnavailableReason(s, SPLIT_TACTIC, 'LEARN'), '还缺 1 木、1 粮');
-    s.wood = 1500; s.food = 750; applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC });
+    s.wood = 80; s.food = 40; applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC });
     assert.deepEqual([s.wood, s.food, s.tactics.equipped], [0, 0, SPLIT_TACTIC]);
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC }));
     applyCommand(s, { type: 'TACTIC_EQUIP', id: DEFAULT_TACTIC }); applyCommand(s, { type: 'TACTIC_EQUIP', id: SPLIT_TACTIC });

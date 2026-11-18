@@ -75,7 +75,7 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
         const sex = nextSex(s.people, world, true);
         // 与出生一致，保留世界随机流的原消费顺序，命名分支不改变精英、天赋和专长结果。
         const nameState = world.state, nameIndex = world.range(VILLAGER_NAMES.traveler.length);
-        const elite = world.range(ELITE.chanceScale) < ELITE.chancePercent;
+        const elite = world.range(ELITE.chanceScale) < ELITE.travelerChancePercent;
         const name = elite ? VILLAGER_NAMES.elite[new SeededRandom(nameState).range(VILLAGER_NAMES.elite.length)]
             : VILLAGER_NAMES.traveler[nameIndex];
         const traveler: Person = { id: newId(s), name, sex, origin: "TRAVELER", elite, appearance: ADULT_APPEARANCE[sex], trait: (Object.keys(TRAITS) as Trait[])[world.range(8)], skill: (Object.keys(SKILLS) as Skill[])[world.range(6)], generation: 1, parents: [], ancestors: [], adult: true, nights: elite ? ELITE.adultNights : RULE.adultNights, elderNights: 0, growth: 0, job: "WAITING", careChild: null };

@@ -30,6 +30,7 @@ import { TowerRageEffects } from "./TowerRageEffects";
 import { GateShieldEffects } from "./GateShieldEffects";
 import { WorldInteraction, WorldItem } from "./WorldInteraction";
 import { ProjectileVisuals } from "./ProjectileVisuals";
+import { SummonChargeVisuals } from "./SummonChargeVisuals";
 /** 地图、人物、建筑与战斗表现的唯一所有者。视觉时钟不推进 GameSession/业务随机数。 */
 export class VillageWorld {
     readonly scenery = new Laya.Sprite();
@@ -63,6 +64,7 @@ export class VillageWorld {
     private projectileVisuals: ProjectileVisuals;
     private rage: TowerRageEffects;
     private shield: GateShieldEffects;
+    private summon: SummonChargeVisuals;
     private lastBattle: BattleSimulation | null = null;
     private lastBattleTick = 0;
     /** 城门受击时的营火警戒动作，时间用场景时钟，不写入战斗或存档。 */
@@ -70,6 +72,8 @@ export class VillageWorld {
     private backgroundKey = "";
     private renderDelta = 0;
     private sceneSeconds = 0;
+    private villageMotionSeconds = 0;
+    private torchGlows = new Map<string,Laya.Sprite>();
     private hitTop = new Laya.Point();
     private hitBottom = new Laya.Point();
     constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private layout: GameLayout,
@@ -77,6 +81,7 @@ export class VillageWorld {
         this.world.name = "VillageWorld";
         this.rage = new TowerRageEffects(this.world, art);
         this.shield = new GateShieldEffects(this.world, art);
+        this.summon = new SummonChargeVisuals(this.world, art);
         const clickNodes: Laya.Sprite[] = [];
         for (const p of this.scene.props) {
             const node = new Laya.Sprite();
@@ -86,6 +91,11 @@ export class VillageWorld {
             this.art.applyFrame(node, p.frame, p.size);
             node.pos(p.x, p.y);
             this.world.addChild(node);
+            if (p.id.startsWith("torch:")) {
+                const size = p.size, glow = this.ui.image(node,"hd_village_window_glow",size*.27,size*.02,size*.46,size*.4,false);
+                glow.alpha = 0;
+                this.torchGlows.set(p.id,glow);
+            }
             const upgradeable = p.id.startsWith("tower:") || (p.id.startsWith("building:") && p.id !== "building:hearth");
             this.props.push({ id: p.id, y: p.ground ? -1 : p.y, node, ground: p.ground, visual: upgradeable ? new BuildingVisuals(node, art) : undefined });
             if (HOUSE_TIP_NAMES[p.id]) {
@@ -157,6 +167,7 @@ export class VillageWorld {
     }
     reset() {
         this.shield.reset();
+        this.summon.reset();
         this.interaction.cancelPresses();
         this.interaction.clearDepth();
         this.motion = new VillagerMotion(new VillageNavigation(this.scene.props, this.scene.landscape, this.scene.bounds), this.scene.stops);
@@ -170,6 +181,7 @@ export class VillageWorld {
         this.guardCueAt = -Infinity;
         this.renderDelta = 0;
         this.sceneSeconds = 0;
+        this.villageMotionSeconds = 0;
         this.freshBuildingVillage = true;
     }
     relayout(next: GameLayout) {
@@ -215,11 +227,14 @@ export class VillageWorld {
         }
     }
     advance(delta: number): boolean {
+        const s = this.game.state;
         if (!this.game.pauses.size) {
             const visualTime = Math.min(RULE.frameCap, Math.max(0, delta));
-            this.props.forEach(p => p.visual?.advance(visualTime));
+            if (s?.phase === "DAY" || s?.phase === "NIGHT") this.villageMotionSeconds += visualTime;
+            const chopping = s?.phase === "DAY" && this.motion.visiblePeople.some(person => this.motion.get(person.id).clip.endsWith("_chop"));
+            this.props.forEach(p => p.visual?.advance(visualTime, s?.phase === "NIGHT", p.id === "building:logging" && chopping));
         }
-        const battle = this.game.battle, s = this.game.state;
+        const battle = this.game.battle;
         if (battle !== this.lastBattle) {
             this.lastBattle = battle;
             this.lastBattleTick = 0;
@@ -310,8 +325,14 @@ export class VillageWorld {
                 kind = "LOGGING";
                 level = s.logging;
             }
-            p.visual?.sync(kind, level, this.freshBuildingVillage, rooms, damaged, facing);
-            if (p.id === "building:hearth") p.node.texture = this.art.get(this.art.frameId("hearth_burn", this.sceneSeconds));
+            p.visual?.sync(kind, level, this.freshBuildingVillage, rooms, damaged, facing, kind === "HOUSE" ? s.houses : 0);
+            if (p.id === "building:hearth") p.node.texture = this.art.get(this.art.frameId("hearth_burn", this.villageMotionSeconds));
+            if (p.id.startsWith("torch:")) {
+                const gateFlare = this.props.find(item => item.id === "building:gate")!.visual!.upgradeFlare();
+                const phase = p.id === "torch:1" ? .19 : 0;
+                p.node.texture = this.art.get(this.art.frameId("torch_burn", this.villageMotionSeconds + phase + gateFlare * .24));
+                this.torchGlows.get(p.id)!.alpha = .08 + .07 * Math.sin((this.villageMotionSeconds + phase) * 11) + gateFlare * .45;
+            }
             if (!panelOpen && !this.game.pauses.size) p.visual?.beginVisibleUpgrade();
             if (HOUSE_TIP_NAMES[p.id]) {
                 const { node, bounds } = p.visual!.bodyRegion();
@@ -430,7 +451,8 @@ export class VillageWorld {
         // Laya 3.4 的 zIndex 决定渲染顺序；world 为 stackingRoot，不让深度排序覆盖 HUD/弹窗。
         const rageDepth = this.rage.update(battle, this.props.filter(p => p.id.startsWith("tower:")).map(p => ({ node: p.node, visual: p.visual! })));
         const shieldDepth = this.shield.update(battle, { node: gate.node, visual: gate.visual! }, this.layout, events);
-        [...depth, ...rageDepth, ...shieldDepth].sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
+        const summonDepth = this.summon.update(presentation, this.layout, events, this.feedback.time);
+        [...depth, ...rageDepth, ...shieldDepth, ...summonDepth].sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
         depth.sort(compareDepth);
         this.interaction.update(depth);
     }

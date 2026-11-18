@@ -90,8 +90,8 @@ test('quantity curve grows within fixed budgets and a full on-screen queue never
  for(let i=0;i<3;i++){b.step();assert(b.enemies.length<=40);emitted+=b.enemies.length;b.enemies=[];}
  assert.equal(emitted,100);assert.equal(b.cursor,100);b.step();assert.equal(b.outcome,'WIN');
 });
-test('skills are revealed at twelve, thirty-six and seventy-two wins, while inherited skills stay visible',()=>{
+test('skills are revealed every ten wins, while inherited skills stay visible',()=>{
  const s=createGame(7), ids=TACTICS.map(t=>t.id);
- for(const [wins,count]of [[0,1],[11,1],[12,2],[35,2],[36,3],[71,3],[72,4]]){s.completed=wins;assert.equal(ids.filter(id=>tacticRevealed(s,id)).length,count);}
+ for(const [wins,count]of [[0,1],[9,1],[10,2],[19,2],[20,3],[29,3],[30,4],[39,4],[40,5]]){s.completed=wins;assert.equal(ids.filter(id=>tacticRevealed(s,id)).length,count);}
  s.completed=0;s.tactics.learned.push(ids[3]);assert(tacticRevealed(s,ids[3]));assert(!tacticRevealed(s,ids[2]));
 });

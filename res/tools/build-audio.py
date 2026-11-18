@@ -118,42 +118,16 @@ def tower_samples(score):
 
 
 def defeat_samples(score):
-    rate, length, voice = score['sampleRate'], score['durationSeconds'], score['synthesis']
-    high, low = voice['pitchHz']
-    rng = random.Random(voice['noiseSeed'])
-    # 两次极短停顿把同一口气分成三声。共振峰给声带激励加上喉音的音色。
-    formants = []
-    for frequency, bandwidth, gain in voice['formants']:
-        radius = math.exp(-math.pi * bandwidth / rate)
-        formants.append([2 * radius * math.cos(2 * math.pi * frequency / rate), radius ** 2, gain * (1 - radius), 0., 0.])
-    phase, last_flow, noise = 0., 0., 0.
-    samples = []
-    for i in range(round(rate * length)):
-        t = i / rate
-        envelope = sum(gain * math.sin(math.pi * (t - start) / span) ** 1.3
-                       for start, span, gain in voice['bursts'] if start <= t < start + span)
-        pitch = low + (high - low) * (1 - t / length) ** 1.2
-        pitch += voice['jitterHz'] * (math.sin(2 * math.pi * 19 * t) + .4 * math.sin(2 * math.pi * 31 * t))
-        phase = (phase + pitch / rate) % 2
-        cycle = phase % 1
-        opened, closed = voice['glottalPhase']
-        if cycle < opened:
-            flow = .5 - .5 * math.cos(math.pi * cycle / opened)
-        elif cycle < closed:
-            flow = .5 + .5 * math.cos(math.pi * (cycle - opened) / (closed - opened))
-        else:
-            flow = 0.
-        flow *= 1 if phase < 1 else voice['creakGain']
-        noise += .32 * (rng.uniform(-1, 1) - noise)
-        excitation = flow - last_flow + voice['breathGain'] * noise
-        last_flow = flow
-        resonant = 0.
-        for band in formants:
-            pole, damping, gain, last, before = band
-            frame = pole * last - damping * before + gain * excitation
-            band[3], band[4] = frame, last
-            resonant += frame
-        samples.append(envelope * (resonant + voice['throatGain'] * excitation))
+    # 以首次上传的母带为源，保留原始波形和时长。
+    master = root / score['masterWav']
+    if hashlib.sha256(master.read_bytes()).hexdigest() != score['masterSha256']:
+        raise ValueError('Enemy defeat master does not match the archived 1.0.35 WAV')
+    with wave.open(str(master), 'rb') as wav:
+        expected = (1, 2, score['sampleRate'], round(score['sampleRate'] * score['durationSeconds']))
+        if wav.getparams()[:4] != expected:
+            raise ValueError('Enemy defeat master has unexpected channels, rate or duration')
+        samples = array.array('h')
+        samples.frombytes(wav.readframes(wav.getnframes()))
     return samples
 
 

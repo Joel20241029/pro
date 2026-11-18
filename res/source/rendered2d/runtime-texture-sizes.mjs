@@ -1,26 +1,31 @@
 /** 发布纹理尺寸，单位为像素，不是场景显示尺寸。
- * 依据：720逻辑宽，覆盖1440物理宽（2倍），最大精英/升级缩放后再留5%余量，向上取16倍数。
+ * 其他纹理按720逻辑宽覆盖1440物理宽，最大升级缩放后再留5%余量。
  * 2026-11-13核对全部108建筑布局及人物/怪物入口；见 doc/tech/33_纹理尺寸与包体优化.md。
  * 只缩规范化后的完整画布，不重新fit主体；修改场景最大尺寸时须重查本表，不能改母版或玩法。
  */
 export const runtimeTextureSizes = {
-    // 成人/老人最大90×1.25=112.5逻辑宽；孩子48×90/56×1.25=96.43；婴儿原192足够。
-    // 劳动作画边界随武器取景增加，导入器在这些尺寸上乘同一倍率保持采样精度。
-    characters: { adult: 240, child: 208, elder: 240, baby: 192, portrait: 384 },
-    // 1.0.35 的首领显示再加 10%，取自高清母稿。保留 96 单位挂点、2 倍采样与 5% 余量，以 8 像素对齐。
-    enemies: { raider: 200, runner: 200, armored: 200, boar: 184, disruptor: 200,
-        chief: 320, commander: 328, wolfking: 320, tuskking: 336, shaman: 328 },
-    // 配件实际宽高取enemy-layouts.mjs每帧矩形；叶饰最大92/96×134.55，2倍+5%取272。
-    enemyParts: { enemy_acc_band: 144, enemy_acc_antlers: 160, enemy_acc_feathers: 96,
-        enemy_acc_mask: 80, enemy_acc_banner: 144, enemy_acc_leaves: 272 },
-    // 从全部等级/房数布局测最大宽高，含升级1.08倍。未列的主体/弓弩保留原尺寸。
+    // 按390逻辑宽/3倍屏对照，村民动画从母版以旧宽高的一半重采样。
+    // 劳作仍按动作取景倍率扩画布，头像仍用384像素供详情面板展示。
+    characters: { adult: 120, child: 104, elder: 120, baby: 96, portrait: 384 },
+    // 十种怪物和独立配饰按1.0.49发布宽高各减半，96单位挂点和帧序沿用已校准布局。
+    enemies: { raider: 100, runner: 100, armored: 100, boar: 92, disruptor: 100,
+        chief: 160, commander: 164, wolfking: 160, tuskking: 168, shaman: 164 },
+    enemyParts: { enemy_acc_band: 72, enemy_acc_antlers: 80, enemy_acc_feathers: 48,
+        enemy_acc_mask: 40, enemy_acc_banner: 72, enemy_acc_leaves: 136 },
+    // 箭塔主体和双向弩机按1.0.49发布宽高各减半，显示尺寸仍取原生预制体。
     buildingParts: {
-        hd_arrow_body_0: 240, hd_stone_body_0: 240, hd_slow_body_0: 240,
-        hd_logging_body_0: 240, hd_logging_body_1: 240, hd_logging_body_2: 240, hd_logging_body_3: 240,
+        hd_arrow_body_0: 120, hd_arrow_body_1: 128, hd_arrow_body_2: 128, hd_arrow_body_3: 128,
+        hd_part_bow_left: 96, hd_part_bow_right: 96, hd_stone_body_0: 240, hd_slow_body_0: 240,
+        // 村内主体和独占配件取1.0.48发布宽度的一半，编辑器显示尺寸继续用各自的128单位布局。
+        hd_house_body_0: 128, hd_house_body_1: 128, hd_house_body_2: 128, hd_house_body_3: 128,
+        hd_farm_body_0: 128, hd_farm_body_1: 128, hd_farm_body_2: 128, hd_farm_body_3: 128,
+        hd_gate_body_0: 128, hd_gate_body_1: 128, hd_gate_body_2: 128, hd_gate_body_3: 128,
+        hd_logging_body_0: 120, hd_logging_body_1: 120, hd_logging_body_2: 120, hd_logging_body_3: 120,
         hd_part_sling: 144, hd_part_crystals: 112, hd_part_rivet: 48, hd_part_banner: 96,
-        hd_part_foundation: 64, hd_part_crest: 112, hd_part_wheel: 160, hd_part_lantern: 80,
-        hd_part_grain: 96, hd_part_brace: 80,
-        hd_house_wing_0: 144, hd_house_wing_1: 144, hd_house_wing_2: 144, hd_house_wing_3: 144,
-        hd_gate_doors_0: 160, hd_gate_doors_1: 160, hd_gate_doors_2: 160, hd_gate_doors_3: 160
+        hd_part_foundation: 64, hd_part_crest: 112, hd_part_wheel: 80, hd_part_lantern: 40,
+        hd_part_grain: 48, hd_part_brace: 80,
+        hd_house_wing_0: 72, hd_house_wing_1: 72, hd_house_wing_2: 72, hd_house_wing_3: 72,
+        hd_gate_doors_0: 80, hd_gate_doors_1: 80, hd_gate_doors_2: 80, hd_gate_doors_3: 80,
+        deco_torch: 96, building_hearth_lit: 96, hearth_burn_2: 96, hearth_burn_3: 96, hearth_burn_4: 96
     }
 };

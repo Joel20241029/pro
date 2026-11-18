@@ -1,4 +1,5 @@
-import { DEFAULT_TACTIC, TACTIC_USE, TACTICS, tacticDefinition } from "../../config/TacticConfig";
+import { DEFAULT_TACTIC, TACTICS, TACTIC_USE, tacticDefinition } from "../../config/TacticConfig";
+import { RULE } from "../../config/RuleConfig";
 import { GameState } from "../../game/GameState";
 import { tacticRevealed, tacticUnavailableReason } from "../../game/Tactics";
 import { actionHintsBlocked } from "../ActionHints";
@@ -28,7 +29,7 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
         const count = revealed.length + (next ? 1 : 0);
         const height = Math.min(UI.panelHeight, V.listTop + count * V.rowStep - 12 + V.footer);
         const box = ctx.modal("守村战技", "", true, { width: UI.panelWidth, height },
-            `每夜携带一个战技，最多用 ${TACTIC_USE.perNight} 次。冷却结束可再次使用。点卡片看效果和学习条件，学会后可在白天免费换用。`);
+            "点击卡片查看详情。");
         const resources = new Laya.Sprite(); resources.pos(34, 112);
         ctx.art.panel(resources, "panel_card", 600, 62); box.addChild(resources);
         const waves = ctx.ui.label(resources, `已守 ${amount(s.completed)} 波`, 16, 10, 200, 26, C.ink, true, 42);
@@ -85,19 +86,23 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
     const t = tacticDefinition(p.id!), learned = s.tactics.learned.includes(t.id), equipped = s.tactics.equipped === t.id;
     const reason = tacticUnavailableReason(s, t.id, learned ? "EQUIP" : "LEARN");
     const height = learned ? V.detailOwnedHeight : V.detailLearnHeight;
-    const box = ctx.modal("战技详情", "", true, { width: UI.panelWidth, height },
-        "满足守夜波数和材料要求后可学习并携带。已学会的战技可在白天免费更换。");
+    const box = ctx.modal("战技详情", "", true, { width: UI.panelWidth, height });
     if (p.back) ctx.ui.button(box, "‹", 30, 32, 54, () => ctx.open(p.back!, true), C.green, 54);
     const paper = new Laya.Sprite(); paper.pos(34, 112);
     ctx.art.panel(paper, "panel_card", 600, height - 228); box.addChild(paper);
-    ctx.ui.image(paper, t.icon, (600 - V.detailIcon) / 2, 22, V.detailIcon);
-    ctx.ui.label(paper, t.name, 24, 170, 552, 34, C.ink, true, 46).align = "center";
-    const desc = ctx.ui.label(paper, t.description, 0, 0, 536, 26, C.ink, false, 122);
-    desc.align = "center"; desc.height = Math.max(122, desc.textHeight);
-    const description = new ScrollList(552, 122, desc.height); description.content.name = "TacticDescription";
-    description.pos(24, 222); description.content.addChild(desc); paper.addChild(description);
-    if (learned) ctx.ui.label(paper, t.id === DEFAULT_TACTIC ? "初始战技 · 已学会" : "已学会 · 更换免费", 24, 366, 552, 27, C.green, true, 44).align = "center";
-    else {
+    ctx.ui.image(paper, t.icon, 30, 32, V.detailIcon);
+    ctx.ui.label(paper, t.name, 164, 36, 406, 34, C.ink, true, 46);
+    ctx.ui.label(paper, t.effect === "SUMMON_CHARGE" ? `${t.summary}（含首领）` : t.summary, 164, 88, 406, 25, C.green, false, 72);
+    const usage = t.usesPerNight === 1 ? "每夜 1 次" :
+        `每夜 ${t.usesPerNight} 次 · 冷却 ${TACTIC_USE.cooldownTicks * RULE.step} 秒`;
+    ctx.ui.label(paper, usage, 164, 161, 406, 24, C.ink, false, 38);
+    ctx.ui.label(paper, "村中传闻", 30, 214, 540, 27, C.timber, true, 40);
+    const lore = ctx.ui.label(paper, t.lore, 0, 0, 520, 26, C.ink, false, 90);
+    lore.height = Math.max(90, lore.textHeight);
+    const story = new ScrollList(540, 90, lore.height);
+    story.content.name = "TacticLore";
+    story.pos(30, 254); story.content.addChild(lore); paper.addChild(story);
+    if (!learned) {
         ctx.ui.label(paper, `学习条件   已守 ${amount(s.completed)}/${t.unlockWaves} 波`, 24, 358, 552, 28,
             s.completed < t.unlockWaves ? C.red : C.green, true, 48);
         ctx.ui.label(paper, "学习费用", 24, 418, 144, 27, C.ink, true, 43);

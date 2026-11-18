@@ -1,20 +1,11 @@
 {
-  "title": "怪物击倒喉音",
-  "authorship": "Original voiced synthesis with three descending guttural bursts.",
+  "title": "怪物击倒",
+  "authorship": "Original synthesized cue first shipped in 1.0.35.",
+  "masterWav": "source/audio/enemy_defeat.master.wav",
+  "masterSha256": "fb2eb6aab453d2ff8c75b139335065b0ee4c8762883cc869ea8d702b16904ce1",
   "sampleRate": 22050,
-  "durationSeconds": 0.43,
+  "durationSeconds": 0.28,
   "mp3Bitrate": "32k",
-  "synthesis": {
-    "pitchHz": [128, 76],
-    "formants": [[520, 140, 1.0], [1160, 190, 0.46], [2130, 290, 0.15]],
-    "bursts": [[0.004, 0.151, 1.0], [0.166, 0.118, 0.72], [0.294, 0.126, 0.57]],
-    "glottalPhase": [0.5, 0.65],
-    "creakGain": 0.58,
-    "jitterHz": 4.0,
-    "breathGain": 0.08,
-    "throatGain": 0.24,
-    "noiseSeed": 135,
-    "peak": 0.66
-  },
+  "synthesis": { "peak": 0.66 },
   "bundle": "battle"
 }

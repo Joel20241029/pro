@@ -7,6 +7,7 @@ import { clone, GameState } from "./GameState";
 import { assignOperator, person, policy } from "./VillageRules";
 import { enemyPower, levelPower } from "./Growth";
 import { TACTIC_USE, TacticDefinition, tacticDefinition } from "../config/TacticConfig";
+import { EnemyRoadStep, SummonCharge, SummonCollision } from "./SummonCharge";
 export interface Enemy {
     seq: number;
     kind: EnemyKind;
@@ -32,7 +33,8 @@ export interface Shot {
 }
 /** 只读表现事件：快照不参与伤害、索敌或存档；每步由 GameSession 收集。 */
 export type CombatFeedback = { type: "shot"; shot: Shot; target: number; hurt: Enemy[] } |
-    { type: "gate"; enemy: Enemy; blocked: boolean; tick: number; x: number; y: number };
+    { type: "gate"; enemy: Enemy; blocked: boolean; tick: number; x: number; y: number } |
+    ({ type: "summon"; tick: number } & SummonCollision);
 export class BattleSimulation {
     readonly base: GameState;
     readonly tactic: TacticDefinition;
@@ -46,6 +48,7 @@ export class BattleSimulation {
     private tacticUses = 0;
     private nextTacticTick = 0;
     bellTicks = 0;
+    summonCharge: SummonCharge | null = null;
     outcome: "WIN" | "LOSE" | null = null;
     private cursor = 0;
     private seq = 0;
@@ -64,7 +67,7 @@ export class BattleSimulation {
     }
     get operators() { return this.base.towers.map(t => t.operator); }
     get pendingCount() { return this.base.wave!.entries.length - this.cursor + this.queued.length; }
-    get tacticUsesLeft() { return TACTIC_USE.perNight - this.tacticUses; }
+    get tacticUsesLeft() { return this.tactic.usesPerNight - this.tacticUses; }
     get tacticCooldownTicks() { return Math.max(0, this.nextTacticTick - this.tick); }
     get canCastTactic() { return !this.outcome && this.tacticUsesLeft > 0 && this.tacticCooldownTicks === 0; }
     /** 与扣血判定共用：最后一个有效步保护该步全部触门者，步末才减时。 */
@@ -74,6 +77,7 @@ export class BattleSimulation {
         this.tacticUses++;
         this.nextTacticTick = this.tick + TACTIC_USE.cooldownTicks;
         this.bellTicks = this.tactic.ticks;
+        if (this.tactic.effect === "SUMMON_CHARGE") this.summonCharge = new SummonCharge();
     }
     reassign(index: number, id: string) { assignOperator(this.base, index, id); }
     private spawn(kind: EnemyKind, progress: number, seed: number) {
@@ -100,12 +104,26 @@ export class BattleSimulation {
         }
         const existingSlow = new Set(this.enemies.filter(e => e.slowTicks > 0).map(e => e.seq));
         const refreshed = new Set<number>(), po = policy(this.base);
+        const rush = this.summonCharge?.active ? this.summonCharge : null;
+        const traces: EnemyRoadStep[] = [];
         for (const e of this.enemies) {
+            const startProgress = e.progress;
             const before = enemyPoint(e);
             e.progress += e.speed * RULE.step * (e.slowTicks > 0 ? 1 - e.slow : 1);
             const after = enemyPoint(e);
             e.walkDistance += Math.hypot(after.x - before.x, after.y - before.y);
-            if (e.progress >= PATH_LENGTH) {
+            if (rush && e.hp > 0) {
+                const end = e.progress >= PATH_LENGTH
+                    ? Math.max(0, (PATH_LENGTH - startProgress) / (e.progress - startProgress || 1)) : 1;
+                traces.push({ enemy: e, startProgress, from: before, to: after, end });
+            }
+        }
+        if (rush) {
+            for (const hit of rush.advance(traces)) this.feedback.push({ type: "summon", tick: this.tick, ...hit });
+            if (!rush.active) this.bellTicks = 0;
+        }
+        for (const e of this.enemies) {
+            if (e.hp > 0 && e.progress >= PATH_LENGTH) {
                 const blocked = this.gateProtected, at = enemyPoint(e);
                 if (!blocked) this.gate -= Math.ceil(ENEMIES[e.kind].gate * enemyPower(this.base.day) * (1 + (po.gate || 0)));
                 e.hp = 0;

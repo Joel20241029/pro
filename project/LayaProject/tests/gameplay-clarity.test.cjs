@@ -476,12 +476,22 @@ test('a 107-person roster mounts only the window and each remounted callback tar
 test('tactic list reveals only the next mystery card and guide/direct detail never leak future names',()=>{
     const {game}=session(),view=panelView(game),{TACTICS}=require(path.join(compiled,'config/TacticConfig'));
     view.ui.image=imageNode;const labels=n=>[n.text||'',...n.children.flatMap(labels)].join(' ');
-    for(const [waves,revealed]of [[0,1],[12,2],[36,3],[72,4]]){
+    for(const [waves,revealed]of [[0,1],[9,1],[10,2],[19,2],[20,3],[29,3],[30,4],[39,4],[40,5]]){
         game.state.completed=waves;view.open({type:'tactics'});const content=view.box.getChildByName('ScrollList').content;
         assert.equal(content.children.filter(c=>c.name.startsWith('TacticCard:')).length,revealed);
-        assert.equal(content.children.filter(c=>c.name==='UnknownTactic').length,revealed<4?1:0);
+        assert.equal(content.children.filter(c=>c.name==='UnknownTactic').length,revealed<TACTICS.length?1:0);
         for(const t of TACTICS.slice(revealed))assert(!labels(view.box).includes(t.name));
+        for(const t of TACTICS)assert(!labels(view.box).includes(t.lore));
     }
-    game.state.completed=0;view.open({type:'tactic',id:TACTICS[3].id});assert(!labels(view.box).includes(TACTICS[3].name));
+    game.state.completed=39;view.open({type:'tactic',id:TACTICS[4].id});assert(!labels(view.box).includes(TACTICS[4].name));
+    assert(!labels(view.box).includes('村中传闻'));
+    game.state.completed=40;
+    for(const t of TACTICS){
+        view.open({type:'tactic',id:t.id});const detail=labels(view.box);
+        assert(detail.includes(t.summary) && detail.includes('村中传闻') && detail.includes(t.lore));
+        assert(detail.includes(t.usesPerNight===1?'每夜 1 次':'每夜 2 次 · 冷却 21 秒'));
+        assert.equal(detail.includes('冷却'),t.usesPerNight>1);
+    }
+    game.state.completed=0;
     view.open({type:'guide',tab:4});for(const t of TACTICS.slice(1))assert(!labels(view.box).includes(t.name));
 });

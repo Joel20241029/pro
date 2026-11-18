@@ -12,7 +12,7 @@ const { RULE, ENEMIES } = read('game/GameConfig');
 const { enemyPower } = read('game/Growth');
 const { CombatPresentation } = read('view/CombatPresentation');
 function learned() {
-    const s = createGame(7); s.housing = 4; s.completed = 36; s.day = 37; s.legacy.bestNight = 36; s.wood = 600; s.food = 300;
+    const s = createGame(7); s.completed = 20; s.day = 21; s.legacy.bestNight = 20; s.wood = 60; s.food = 30;
     applyCommand(s, { type: 'TACTIC_LEARN', id: SHIELD_TACTIC }); return s;
 }
 function enemy(seq, kind = 'enemy_raider', progress = PATH_LENGTH - 1, speed = 40) {
@@ -31,17 +31,17 @@ function fixture() {
     const reopen = () => { const g = new GameSession(new SaveStore(port)); g.load(); return g; };
     return { game: reopen(), reopen };
 }
-test('shield requires thirty-six current wins and one atomic 600 wood / 300 food purchase', () => {
+test('shield requires twenty current wins and one atomic 60 wood / 30 food purchase', () => {
     const t = tacticDefinition(SHIELD_TACTIC);
-    assert.deepEqual([t.name,t.unlockWaves,t.wood,t.food,t.ticks * RULE.step,t.effect], ['二楠之盾',36,600,300,8,'GATE_INVULNERABLE']);
+    assert.deepEqual([t.name,t.unlockWaves,t.wood,t.food,t.ticks * RULE.step,t.effect], ['二楠之盾',20,60,30,8,'GATE_INVULNERABLE']);
     assert(!('multiplier' in t));
     assert.throws(() => validateTactics(TACTICS.map(x => x.id === SHIELD_TACTIC ? {...x,multiplier:1} : x)));
-    const s = createGame(7); s.housing = 4; s.day = 36; s.completed = 35; s.legacy.bestNight = 99;
+    const s = createGame(7); s.day = 20; s.completed = 19; s.legacy.bestNight = 99;
     assert.equal(tacticUnavailableReason(s, SHIELD_TACTIC, 'LEARN'),'还需守住 1 波');
     const old = clone(s); assert.throws(() => applyCommand(s,{type:'TACTIC_LEARN',id:SHIELD_TACTIC})); assert.deepEqual(s,old);
-    s.day = 37; s.completed = 36; s.wood = 599; s.food = 299;
+    s.day = 21; s.completed = 20; s.wood = 59; s.food = 29;
     assert.equal(tacticUnavailableReason(s,SHIELD_TACTIC,'LEARN'),'还缺 1 木、1 粮');
-    s.wood = 600; s.food = 300; applyCommand(s,{type:'TACTIC_LEARN',id:SHIELD_TACTIC});
+    s.wood = 60; s.food = 30; applyCommand(s,{type:'TACTIC_LEARN',id:SHIELD_TACTIC});
     assert.deepEqual([s.wood,s.food,s.tactics.equipped],[0,0,SHIELD_TACTIC]);
     assert.throws(() => applyCommand(s,{type:'TACTIC_LEARN',id:SHIELD_TACTIC}));
     applyCommand(s,{type:'TACTIC_EQUIP',id:DEFAULT_TACTIC}); applyCommand(s,{type:'TACTIC_EQUIP',id:SHIELD_TACTIC});
@@ -111,7 +111,7 @@ test('pause, reassignment and 3x keep the same shield; reopen restarts saved pre
 test('session settles final block without holding the night open for visual feedback', () => {
     const f=fixture(),g=f.game;g.state.food=100;g.command({type:'NIGHT'});const b=g.battle;
     b.base.towers.forEach(t=>{t.kind=null;t.operator=null;});b.cursor=b.base.wave.entries.length;b.enemies=[enemy(0)];b.gate=1;g.bell();g.update(.05);
-    assert.equal(g.battle,null);assert.equal(g.state.completed,37);assert.equal(g.state.gate,1);assert.equal(g.presentationBattle,b);
+    assert.equal(g.battle,null);assert.equal(g.state.completed,21);assert.equal(g.state.gate,1);assert.equal(g.presentationBattle,b);
     const events=g.takeCombatFeedback();assert.equal(events.length,1);assert(events[0].blocked);assert.deepEqual(g.takeCombatFeedback(),[]);
 });
 

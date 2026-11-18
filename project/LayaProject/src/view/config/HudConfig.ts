@@ -7,6 +7,8 @@ export const LAYOUT = {
     footerHeight: 242, battleMax: 700, villageMin: 260, battleMin: 440, battleRatio: .68,
     // 高清共同画布含完整四向动作留白；按2026-11-13反馈再放大约7%，足点/速度不变，步幅随显示尺寸换算。
     personMin: 86, personMax: 90, personBase: 56, personGrowthHeight: 300, personGrowthStep: 40,
+    // 390逻辑宽对照后确定：地图村民放大5%，保留足点及行走目标。砍树接触检查覆盖6个成年模型和5棵树。
+    personDisplayScale: 1.05,
     // 战场北端多露出86逻辑像素草地，给首塔12级武器及升级回弹留顶边空隙；居民区和总地图高度不变。
     // 第五塔在道路北段，北端多留20逻辑单位以容纳最高寒塔；仍固定城墙830，保持地图/寻路同一映射。
     referenceTop: 140, referenceGate: 830, referenceBattleHeight: 690, referenceVillageHeight: 208
