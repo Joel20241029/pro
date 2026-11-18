@@ -84,9 +84,9 @@ export const LANDSCAPE_FOOTPRINTS: Footprint[] = [
 ];
 /** 纯表现参数：逻辑像素/秒与秒；调整只改变行走节奏、驻足时间和离建筑的距离，不参与生产/战斗结算。 */
 export const MOTION = {
-    adultSpeed: 40, childSpeed: 31,
-    // 老人沿同一可行走路径慢行，仅表现用；不会延迟口粮、养老夜数或守夜结算。
-    elderSpeed: 24, clearance: 7, cornerGap: 1,
+    adultSpeed: 40, childSpeed: 31, clearance: 7, cornerGap: 1,
+    // 摇椅只围绕接地点轻摆，座位及寿命不被动画推进。
+    elderRock: { periodSeconds: 2.8, angleDegrees: 3 },
     workSeconds: 4.5, restSeconds: 1.8, staggerSeconds: .23,
     bounds: { left: 44, top: 275, right: 676, bottom: 1028 }
 } as const;

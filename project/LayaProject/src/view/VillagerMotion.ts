@@ -89,7 +89,7 @@ export class VillagerMotion {
         }
         // 先保护孩子的固定位置，再把照料者与最近的非孩子位置交换；满员也不会重叠或挪动婴儿。
         this.careStops.clear();
-        const reserved = new Set(sorted.filter(p => !p.adult).map(p => p.id));
+        const reserved = new Set(sorted.filter(p => !p.adult || isElder(p)).map(p => p.id));
         for (const p of sorted) if (p.job === "CARE" && p.careChild) {
             const child = this.stops.rest[this.campSlots.get(p.careChild)!], old = this.campSlots.get(p.id)!;
             const slots = this.stops.rest.map((at, i) => ({ i, d: distance(at, child), owner: sorted.find(q => this.campSlots.get(q.id) === i)?.id }))
@@ -160,6 +160,7 @@ export class VillagerMotion {
     /** 切换日程统一从当前足底寻路；已在目的地时直接开始驻足，避免跳过第一个停留点。 */
     private setPlan(m: MovingPerson, plan: Visit[]) {
         m.plan = plan; m.visit = 0;
+        if (isElder(m.person)) { m.x = plan[0].at.x; m.y = plan[0].at.y; }
         const walking = distance(m, plan[0].at) > .01;
         m.route = walking ? this.navigation.route(m, plan[0].at) : [];
         m.remaining = walking ? 0 : plan[0].seconds; this.chooseAction(m, walking);
@@ -198,11 +199,10 @@ export class VillagerMotion {
         const home = this.stops.homes[(sequence - 1) % this.stops.homes.length];
         const visit = (at: GroundPoint, seconds: number, working = false): Visit => ({ at, seconds, working, insideTower: false });
         const camp = this.careStops.get(p.id) || this.stops.rest[this.campSlots.get(p.id)!];
-        if (!p.adult && p.growth === 0) return [visit(camp, Infinity)];
+        if (isElder(p) || !p.adult && p.growth === 0) return [visit(camp, Infinity)];
         if (night) return [{ ...visit(tower >= 0 ? this.stops.towers[tower] : camp, Infinity, tower < 0 && p.job === "CARE"), insideTower: tower >= 0 }];
         const rest = this.stops.rest[(sequence - 1) % this.stops.rest.length];
         const dwell = MOTION.workSeconds + (sequence % 4) * MOTION.staggerSeconds;
-        if (isElder(p)) return [visit(rest, dwell), visit(home, dwell)];
         if (!p.adult) return [visit(this.stops.children[sequence - 1], MOTION.restSeconds), visit(home, MOTION.restSeconds)];
         if (p.job === "LOGGING") {
             // 婚礼期间只缓存日程；真正恢复工作前由endWedding选择树，不提前占位。
@@ -222,8 +222,8 @@ export class VillagerMotion {
     private chooseAction(m: MovingPerson, walking: boolean) {
         const p = m.person;
         const model = villagerModel(p);
-        let clip = model === "baby" ? "villager_baby_idle" : `villager_${model}_walk`;
-        let animated = walking || model === "baby";
+        let clip = model === "baby" ? "villager_baby_idle" : model === "elder" ? "hd_elder_chair" : `villager_${model}_walk`;
+        let animated = walking || model === "baby" || model === "elder";
         if (!walking && m.plan[m.visit].working) {
             if (p.job === "LOGGING") {
                 const target = this.stops.logging.find(stop => stop.treeId === m.loggingTree);
@@ -263,7 +263,7 @@ export class VillagerMotion {
                     m.plan[m.visit].at = this.chooseLoggingTree(m);
                 m.route = this.navigation.route(m, m.plan[m.visit].at); this.chooseAction(m, true);
             }
-            let travel = (isElder(m.person) ? MOTION.elderSpeed : m.person.adult ? MOTION.adultSpeed : MOTION.childSpeed) * dt;
+            let travel = (m.person.adult ? MOTION.adultSpeed : MOTION.childSpeed) * dt;
             while (m.route.length && travel > 0) {
                 const next = m.route[0], d = distance(m, next), dx = next.x - m.x, dy = next.y - m.y;
                 m.walkDistance += Math.min(d, travel);

@@ -95,6 +95,7 @@ export class SpriteFrames {
     /** 头像与地图共用角色身份；家谱使用老人静止姿势。 */
     portraitId(person: Person, historical = false): string {
         const model = villagerModel(person, historical);
+        if (model === "elder") return "portrait_hd_elder_down_idle";
         const clip = model === "baby" ? "villager_baby_idle" : this.walk(model, "DOWN").clip;
         return "portrait_" + this.frameId(clip, 0, false);
     }

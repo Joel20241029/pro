@@ -54,10 +54,12 @@ export class NightControls {
             const iconSize = cfg.heart.icon * ratio;
             const icon = ui.image(face, tactic.icon, (size - iconSize) / 2, cfg.heart.iconY * ratio, iconSize);
             icon.name = "buttonIcon";
-            const title = ui.label(face, tactic.name, main.textX * ratio, cfg.heart.textY * ratio, main.textWidth * ratio, Math.round(main.font * ratio), C.lightEdge, true, cfg.heart.textHeight * ratio);
+            const textWidth = cfg.heart.textWidth * ratio, noteWidth = cfg.heart.noteWidth * ratio;
+            const title = ui.label(face, tactic.name, (size - textWidth) / 2, cfg.heart.textY * ratio, textWidth, cfg.heart.textFont, C.lightEdge, true, cfg.heart.textHeight * ratio);
             title.name = "buttonText"; title.align = "center"; title.wordWrap = false; title.overflow = Laya.Text.SHRINK;
-            title.stroke = cfg.heart.stroke; title.strokeColor = C.outline;
-            const note = ui.label(face, "", main.textX * ratio, cfg.heart.noteY * ratio, main.textWidth * ratio, Math.round(cfg.heart.noteFont * ratio), C.lightEdge, true, cfg.heart.noteHeight * ratio);
+            title.fontSize = Math.round(cfg.heart.textFont * ratio); title.stroke = cfg.heart.stroke * ratio; title.strokeColor = C.outline;
+            const note = ui.label(face, "", (size - noteWidth) / 2, cfg.heart.noteY * ratio, noteWidth, cfg.heart.noteFont, C.lightEdge, true, cfg.heart.noteHeight * ratio);
+            note.fontSize = Math.round(cfg.heart.noteFont * ratio);
             note.name = "HeartState"; note.align = "center"; note.wordWrap = false; note.overflow = Laya.Text.SHRINK;
             const ring = new Laya.Sprite(); ring.name = "HeartCountdownRing"; ring.mouseEnabled = false;
             ring.scale(ratio, ratio); face.addChild(ring);

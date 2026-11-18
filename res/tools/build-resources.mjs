@@ -243,7 +243,10 @@ for (const groups of [recipe.animations.walkDirections, recipe.animations.laborD
         if (Object.keys(map).length !== directions.length || directionClips.some(clip => !clip) ||
             new Set(directionClips).size !== directions.length) throw new Error('四方向引用不完整：' + character);
         const first = directionClips[0];
-        if (directionClips.some(c => c.canvas.w !== first.canvas.w || c.canvas.h !== first.canvas.h || c.pivot.x !== first.pivot.x || c.pivot.y !== first.pivot.y || c.frameCount !== first.frameCount || c.fps !== first.fps)) throw new Error('四方向画布/足底/帧数/帧率不一致：' + character);
+        const walking = groups === recipe.animations.walkDirections;
+        if (directionClips.some(c => c.canvas.w !== first.canvas.w || c.canvas.h !== first.canvas.h || c.pivot.x !== first.pivot.x || c.pivot.y !== first.pivot.y ||
+            (walking ? c.frameCount / c.fps !== first.frameCount / first.fps || c.stridePixels !== first.stridePixels : c.frameCount !== first.frameCount || c.fps !== first.fps)))
+            throw new Error('四方向画布、足底或动画节拍不一致：' + character);
     }
 }
 write('atlases/frames.json', { format: 'daidai-village-rects', version: 2, coordinateSystem: 'top-left pixels', padding, rotated: Object.values(frames).some(f => f.rotated), trimmed: true, trimAlphaThreshold: 0, pages, frames });

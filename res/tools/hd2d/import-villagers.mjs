@@ -5,8 +5,10 @@ import { runtimeTextureSizes } from '../../source/rendered2d/runtime-texture-siz
 // Rendered independently from the four cardinal cameras. Diagonal masters stay in authoring.
 export const villagerDirections = ['down', 'right', 'up', 'left'];
 const adults = ['blue', 'straw', 'red', 'jade', 'elite_male', 'elite_female'];
-const roles = [...adults, 'child', 'elder'];
+const roles = [...adults, 'child'];
 const adultActions = ['chop', 'farm', 'care'];
+// 保留六帧步态中每只脚的起点与过渡，左右半周期各两帧，整轮步幅沿用母片参数。
+const rearPoseIndices = [0, 1, 3, 4];
 
 /** 导入经四向检查的预渲染母片。静止图、足底和步幅共同锁定，不逐帧重定位。 */
 export function importVillagers(root, importImage, clip, animations, walkDirections, laborDirections) {
@@ -26,13 +28,14 @@ export function importVillagers(root, importImage, clip, animations, walkDirecti
         const walkMap = walkDirections[role] = {};
         for (const direction of villagerDirections) {
             const base = `hd_${role}_${direction}`;
-            const files = spec.walk.map(index => `${role}/walk/${role}_${direction}_${index}.png`);
+            const poses = direction === 'up' ? rearPoseIndices.map(i => spec.walk[i]) : spec.walk;
+            const files = poses.map(index => `${role}/walk/${role}_${direction}_${index}.png`);
             const ids = files.map((file, i) => frame(base + '_' + i, file, spec.anchor, width));
             const restFile = `${role}/walk/${role}_${direction}_idle.png`;
             const restFrame = frame(base + '_idle', restFile, spec.anchor, width);
             if (direction === 'down') portraits.push({ restFrame, restFile, anchor: spec.anchor });
             const id = `villager_${role}_walk_${direction}`;
-            clip(id, ids, profile.fps, 'characters', id);
+            clip(id, ids, profile.fps * poses.length / spec.walk.length, 'characters', id);
             Object.assign(animations.at(-1), { restFrame, stridePixels: profile.walkCycle.strideCanvasPixels / 256 * width });
             walkMap[direction.toUpperCase()] = { clip: id, mirror: false };
         }
@@ -54,6 +57,10 @@ export function importVillagers(root, importImage, clip, animations, walkDirecti
             }
         }
     }
+    const elder = manifest.elder;
+    const seat = read('elder/rest/chair-anchor.json');
+    frame('hd_elder_chair', 'elder/rest/' + seat.render, seat.anchor, runtimeTextureSizes.characters.elder);
+    portraits.push({ restFrame: 'hd_elder_down_idle', restFile: 'elder/walk/elder_down_idle.png', anchor: elder.anchor });
     const baby = manifest.baby;
     const images = new Map();
     const babyIds = baby.frames.map(index => {
