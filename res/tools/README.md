@@ -19,7 +19,15 @@
 
 怪物的身体及配饰位置从 [enemy-layouts.mjs](../source/rendered2d/enemy-layouts.mjs) 同步到种子，再由 Laya 菜单 `RefineHdEnemyAttachments` 保存原生 prefab；最后运行 `build-resources.mjs --work <Downloads任务目录> --sync`。`build-enemy-layouts.mjs` 读取实际 `.lh` 的身体偏移、配饰矩形和前后层级，生成版本 2 合同。不要只手改派生 JSON，也不要为怪物单项修改执行全量建筑重建。
 
-构建工程素材后，按版本导出到 `/Users/happyelements/Documents/remote-res/`。只提交该版本目录，推送到 Gitee 的 `origin/master`，用资源仓库的完整提交 SHA 核对线上字节并更新客户端清单。微信后台的 `downloadFile` 合法域名须包含 `https://gitee.com` 和 `https://raw.giteeusercontent.com`，供初始请求和跳转使用。
+散件使用 AnySize 图集：单边上限 1024，页尺寸收紧到实际占位（含防串色外扩）；在不增加页数的候选中比较总像素。清单的 `rect` 是图集上的物理尺寸，`rotated: true` 表示存入时顺时针旋转 90°。Laya 读帧恢复原朝向，源画布、裁边偏移和脚点仍按原朝向记录；九宫格和整图地图不旋转。不透明整图地图通过无损排版和外扩检查后，以质量 94、4:4:4 编码为 JPG。
+
+村民发布上、下、左、右四向独立走路、站姿和劳动母片。画布足点、实测步幅及动作节拍随清单导出。
+
+两段加载的图集、动画与布局数据及 Gitee 发布清单使用 `.vdata`，内容仍为 UTF-8 JSON。工程源码和制作配方保留 JSON。
+
+构建工程素材后，按版本导出到 `/Users/happyelements/Documents/remote-res/`。远程导出使用 Arm `astcenc`（可通过 `DAIDAI_ASTCENC` 指向可执行文件）生成 KTX1 图页：UI 和含高清头像的图页用 4×4，其余用 6×6。保持 PNG/JPG 原图、裁边和旋转契约；支持 ASTC 的微信运行时每页只下载 KTX，不支持则取原图。有下载或读取错误时沿用原有重试。
+
+只提交该版本目录，推送到 Gitee 的 `origin/master`，用资源仓库的完整提交 SHA 核对线上字节并更新客户端清单。微信后台的 `downloadFile` 合法域名须包含 `https://gitee.com` 和 `https://raw.giteeusercontent.com`，供初始请求和跳转使用。
 
 ```bash
 node res/tools/build-resources.mjs \

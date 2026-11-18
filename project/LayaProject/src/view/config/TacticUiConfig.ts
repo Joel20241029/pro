@@ -4,12 +4,12 @@
 export const TACTIC_UI = {
     // 一号塔点击区左边界为107；徽章右沿102，四种屏幕和三类塔均保留5px逻辑间隔。
     side: { x: 6, top: 12, size: 96, gap: 12, icon: 44, iconY: 8, textY: 55, font: 26 },
-    // 资源行与列表留 18px，白天底边只留卡片边距。战斗限制保留一行。
-    listTop: 192, rowHeight: 216, rowStep: 228, footer: 54,
-    icon: 104, rowTextX: 142, rowTextWidth: 418,
-    actionX: 376, actionY: 158, actionWidth: 188, actionHeight: 48,
-    // 详情图标与效果并排，为传闻留出独立阅读区域。
-    detailOwnedHeight: 608, detailLearnHeight: 848, detailIcon: 108
+    // 紧凑条目留一行给费用、限制及操作。战斗时在列表下单独说明暂不可换。
+    listTop: 112, rowHeight: 174, rowStep: 186, footer: 54,
+    icon: 96, rowTextX: 136, rowTextWidth: 420,
+    actionX: 376, actionY: 112, actionWidth: 188, actionHeight: 48,
+    // 展开传闻高度按真实文字测量，这里只定义边距、标题区和动作行。
+    detail: { top: 112, width: 600, inset: 28, icon: 96, loreTop: 164, actionHeight: 66, gap: 20 }
 } as const;
 
 /** 首波解锁演出与左侧入口共用图标和身份，调整顺序须同时检查飞行落点。 */

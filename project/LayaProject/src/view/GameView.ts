@@ -13,6 +13,8 @@ import { GameHud } from "./GameHud";
 import { GamePanels } from "./GamePanels";
 import { NightResultPresentation } from "./NightResultPresentation";
 import { StartNightReminder } from "./StartNightReminder";
+import { StarterGuide } from "./StarterGuide";
+import { STARTER_LESSONS } from "./config/StarterGuideConfig";
 import { TacticNotices } from "./TacticNotices";
 import { drawBoot, drawSessionPanel } from "./panels/SessionPanels";
 /** 会话到表现的唯一刷新入口；各表现模块不自行订阅 changed，避免同步命令导致重复刷新。 */
@@ -23,6 +25,7 @@ export class GameView {
     private ui = new UiWidgets(this.art, this.playClick);
     private anchoredTip = new AnchoredTip(this.art);
     private reminder = new StartNightReminder(this.art);
+    private starterGuide = new StarterGuide(this.platform, this.art, this.ui);
     private tacticNotices = new TacticNotices(this.platform);
     private village = new VillageWorld(this.game, this.art, this.ui, this.layout, (name, visual) => {
         const phase = this.game.state?.phase;
@@ -68,6 +71,12 @@ export class GameView {
         this.reminder.stackingRoot = true;
         this.root.addChild(this.reminder);
         this.ui.bindClick(this.reminder, () => this.panels.open({ type: "start" }));
+        this.starterGuide.node.zIndex = this.reminder.zIndex;
+        this.starterGuide.node.stackingRoot = true;
+        this.starterGuide.spotlight.zIndex = this.reminder.zIndex;
+        this.starterGuide.spotlight.stackingRoot = true;
+        this.root.addChild(this.starterGuide.spotlight);
+        this.root.addChild(this.starterGuide.node);
         this.tip = new Tip(art);
         this.tip.stackingRoot = true;
         this.tip.zIndex = 6;
@@ -109,6 +118,7 @@ export class GameView {
             this.tip.visible = false;
             this.anchoredTip.hide();
             this.reminder.reset();
+            this.starterGuide.hide();
         }
         if (this.shownErrorRevision !== this.game.errorRevision) {
             this.shownErrorRevision = this.game.errorRevision;
@@ -148,8 +158,12 @@ export class GameView {
         if (this.village.advance(delta) || panelClosed)
             this.updateActors();
         if (active) this.anchoredTip.advance(visualDelta);
-        const canPrompt = active && !this.game.pauses.size && !this.overlay.numChildren && !this.anchoredTip.visible && this.game.state?.phase === "DAY";
-        this.reminder.tick(this.game.state?.day ?? 0, canPrompt ? this.hud.startButton : null, visualDelta);
+        const day = this.game.state;
+        const canPrompt = active && !this.game.pauses.size && !this.overlay.numChildren && !this.anchoredTip.visible && day?.phase === "DAY";
+        const lesson = canPrompt ? STARTER_LESSONS[day!.completed] : undefined;
+        this.starterGuide.tick(lesson ? day!.completed + 1 : null, this.layout, visualDelta,
+            lesson ? this.hud.guideTargets[lesson.target] : undefined);
+        this.reminder.tick(day?.day ?? 0, canPrompt && !this.starterGuide.node.visible ? this.hud.startButton : null, visualDelta);
     }
     private updateActors() {
         this.village.render(this.overlay.numChildren > 0, this.anchoredTip.visible);

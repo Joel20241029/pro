@@ -5,8 +5,8 @@ const {createGame}=require(path.join(process.env.DAIDAI_TEST_BUILD,'game/Village
 const recipe=require('../../../res/source/rendered2d/production_recipe.json');
 const clips=new Map(recipe.animations.animations.map(c=>[c.id,c]));
 const art={animation:id=>clips.get(id)};
-test('eight movable models have eight true views, neutral rests and a measured stride',()=>{
- for(const identity of ['blue','straw','red','jade','elite_male','elite_female','child','elder']) for(const direction of ['_down','_down_right','_right','_up_right','_up','_up_left','_left','_down_left']){
+test('eight movable models have four true views, neutral rests and a measured stride',()=>{
+ for(const identity of ['blue','straw','red','jade','elite_male','elite_female','child','elder']) for(const direction of ['_down','_right','_up','_left']){
   const c=clips.get(`villager_${identity}_walk${direction}`);
   assert(c.frameIds.length >= 2);assert(!c.frameIds.includes(c.restFrame));assert(c.stridePixels>0);
   const frames=c.frameIds.map(id=>recipe.assets.find(a=>a.id===id));

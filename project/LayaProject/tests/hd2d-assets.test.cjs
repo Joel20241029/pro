@@ -16,7 +16,15 @@ test('each native enemy prefab owns one bottom-layer contact shadow and exports 
 });
 test('HD replacement contains only selected source images; pixels and native prefab sources are traceable',()=>{
  const ids=new Set();for(const a of recipe.assets){assert(!ids.has(a.id));ids.add(a.id);assert.equal(typeof a.runtime,'boolean');assert(a.sourceSheet.startsWith('source/rendered2d/production/'));assert(fs.existsSync(path.join(source,a.sourceSheet)));assert.equal(a.sampling,'Lanczos');assert(a.provenance.sourceHash);assert(a.provenance.outputHash);if(a.category==='building-parts')assert.equal(a.bundle,'buildings');}
- assert.equal(Object.keys(recipe.animations.walkDirections).length,8);assert(!recipe.assets.some(a=>a.id.startsWith("emote_")));assert(recipe.assets.filter(a=>a.nineSlice).every(a=>a.height>=128 && a.nineSlice.scale>0));
+ assert.equal(Object.keys(recipe.animations.walkDirections).length,8);
+ for(const groups of [recipe.animations.walkDirections,recipe.animations.laborDirections]){
+  for(const directions of Object.values(groups)){
+   assert.deepEqual(Object.keys(directions).sort(),['DOWN','LEFT','RIGHT','UP']);
+   assert.equal(new Set(Object.values(directions).map(direction=>direction.clip)).size,4);
+   assert(Object.values(directions).every(direction=>direction.mirror===false));
+  }
+ }
+ assert(!recipe.assets.some(a=>a.category==='characters'&&/_(up|down)_(left|right)_/.test(a.id)));assert(!recipe.assets.some(a=>a.id.startsWith("emote_")));assert(recipe.assets.filter(a=>a.nineSlice).every(a=>a.height>=128 && a.nineSlice.scale>0));
  for (const kind of ['arrow','stone','slow']){
   const clip=recipe.animations.animations.find(a=>a.id==='fx_impact_'+kind);assert.equal(clip.frameCount,5);assert.equal(clip.loop,false);
   for(const id of clip.frameIds){const a=recipe.assets.find(f=>f.id===id); assert.equal(a.bundle,'battle'); assert.deepEqual(a.pivot,{x:40,y:40});}
@@ -38,7 +46,7 @@ test('remote stages cover six categories and game audio is available only in the
  const manifest=require('../../../res/manifest.json'), ids=new Set(), all=new Set();
  assert.deepEqual(Object.keys(manifest.stages),['village','night']);
  for (const [stage,files] of Object.entries(manifest.stages)) {
-  const table=require(path.join(source,'bundles',stage==='village'?'map':'enemies','frames.json'));
+  const table=JSON.parse(fs.readFileSync(path.join(source,'bundles',stage==='village'?'map':'enemies','frames.vdata'), 'utf8'));
   assert.equal(table.stage,stage);
   for(const id of Object.keys(table.frames)){assert(!ids.has(id));ids.add(id);}
   for(const file of files){assert(!all.has(file));assert(fs.existsSync(path.join(source,file)));all.add(file);}
@@ -58,10 +66,27 @@ test('remote stages cover six categories and game audio is available only in the
  assert.deepEqual([...all].sort(),[...manifest.runtimeWhitelist].sort());
  assert.deepEqual([...ids].sort(),recipe.assets.filter(a=>a.runtime).map(a=>a.id).sort());
 });
+test('AnySize pages end at the last padded slot and rotation preserves the logical crop',()=>{
+ const atlas=require('../../../res/atlases/frames.json');
+ const {padding,frames}=atlas;
+ assert(Object.values(frames).some(frame=>frame.rotated));
+ assert(atlas.pages.some(page=>page.width!==page.height && page.width%2===1));
+ for(const page of atlas.pages){
+  const packed=Object.values(frames).filter(frame=>frame.page===page.id);
+  assert.equal(page.width,Math.max(...packed.map(({rect})=>rect.x+rect.w+padding)));
+  assert.equal(page.height,Math.max(...packed.map(({rect})=>rect.y+rect.h+padding)));
+  if(page.group!=='terrain')assert(Math.max(page.width,page.height)<=1024);
+  for(const {rect,sourceSize,trimOffset,rotated,nineSlice} of packed){
+   assert(!rotated || (!nineSlice && page.group!=='terrain'));
+   assert(trimOffset.x+(rotated?rect.h:rect.w)<=sourceSize.w);
+   assert(trimOffset.y+(rotated?rect.w:rect.h)<=sourceSize.h);
+  }
+ }
+});
 test('the full-size terrain uses one village atlas page and keeps its gate alignment',()=>{
  const {LAYOUT}=require(path.join(process.env.DAIDAI_TEST_BUILD,'view/config/HudConfig'));
  const {WORLD_ART}=require(path.join(process.env.DAIDAI_TEST_BUILD,'view/config/WorldArtConfig'));
- const table=require(path.join(source,'bundles/map/frames.json'));
+ const table=JSON.parse(fs.readFileSync(path.join(source,'bundles/map/frames.vdata'), 'utf8'));
  const asset=recipe.assets.find(a=>a.id===WORLD_ART.terrain), frame=table.frames[asset.id];
  const fit=asset.provenance.registration;
  assert.equal(fit.referenceWidth,LAYOUT.width);
@@ -76,10 +101,19 @@ test('the full-size terrain uses one village atlas page and keeps its gate align
  assert.deepEqual(frame.trimOffset,{x:0,y:0});
  assert.deepEqual(frame.pivot,asset.pivot);
  assert.equal(Object.values(table.frames).filter(f=>f.page===frame.page).length,1);
- assert.equal(table.pages.find(p=>p.id===frame.page).runtimeFile,'map/terrain_0.png');
+ assert.equal(table.pages.find(p=>p.id===frame.page).runtimeFile,'map/terrain_0.jpg');
+ const jpg=fs.readFileSync(path.join(source,'bundles/map/terrain_0.jpg'));
+ assert.equal(jpg.readUInt16BE(0),0xffd8);
  const reserves=['deco_blossom_pink','deco_bush','deco_rocks','hd_part_brace','map_gate_lane','map_road','tile_ground_grass'];
  assert.deepEqual(recipe.assets.filter(a=>!a.runtime).map(a=>a.id).sort(),reserves);
  for(const id of reserves)assert(!table.frames[id],id);
+});
+test('villager combat clips and pages stay out of both resource stages',()=>{
+ const manifest=require('../../../res/manifest.json');
+ assert(!recipe.animations.animations.some(clip=>/^villager_.*_strike_/.test(clip.id)));
+ assert(!recipe.assets.some(asset=>asset.category==='characters'&&asset.bundle==='battle'));
+ assert(!manifest.runtimeWhitelist.some(file=>file.includes('night_characters')));
+ assert(!manifest.runtimeWhitelist.includes('bundles/map/terrain_0.png'));
 });
 test('resizing preserves normalized feet and stride; panel portraits retain their original resolution',()=>{
  const byId=new Map(recipe.assets.map(a=>[a.id,a]));

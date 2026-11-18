@@ -13,16 +13,20 @@ function equal(a: unknown, b: unknown) { ok(JSON.stringify(a) === JSON.stringify
 function test(name: string, f: () => void) { f(); passed++; console.log("PASS", name); }
 const navigation = new VillageNavigation();
 
-test("Walking faces the actual travel axis, keeps diagonal hysteresis and holds at rest", () => {
+test("Walking faces the actual travel axis, keeps hysteresis at the diagonal boundary and holds at rest", () => {
     for (const previous of ["UP", "DOWN", "LEFT", "RIGHT"] as WalkDirection[]) {
         equal(walkDirection(0, -4, previous), "UP"); equal(walkDirection(0, 4, previous), "DOWN");
         equal(walkDirection(-4, 0, previous), "LEFT"); equal(walkDirection(4, 0, previous), "RIGHT");
         equal(walkDirection(0, 0, previous), previous);
     }
-    equal(walkDirection(10, -10, "RIGHT"), "UP_RIGHT"); equal(walkDirection(-10, -10, "UP"), "UP_LEFT");
-    equal(walkDirection(-10, 10, "DOWN"), "DOWN_LEFT"); equal(walkDirection(10, 10, "DOWN"), "DOWN_RIGHT");
-    equal(walkDirection(10, -4.5, "RIGHT"), "RIGHT"); equal(walkDirection(10, -6, "RIGHT"), "UP_RIGHT");
-    equal(walkDirection(10, -3.5, "UP_RIGHT"), "UP_RIGHT"); equal(walkDirection(10, -2.7, "UP_RIGHT"), "RIGHT");
+    equal(walkDirection(10, -10, "RIGHT"), "RIGHT");
+    equal(walkDirection(-10, -10, "UP"), "UP");
+    equal(walkDirection(-10, 10, "DOWN"), "DOWN");
+    equal(walkDirection(10, 10, "DOWN"), "DOWN");
+    equal(walkDirection(10, -11, "RIGHT"), "RIGHT");
+    equal(walkDirection(10, -13, "RIGHT"), "UP");
+    equal(walkDirection(11, -10, "UP"), "UP");
+    equal(walkDirection(13, -10, "UP"), "RIGHT");
 });
 test("Forest and palisades have shared collision blocks and preserve both gate passages", () => {
     ok(!VILLAGE_PROPS.some(p => p.id.startsWith("forest:") || p.id.startsWith("bush:")), "baked landscape must not create duplicate sprites");
@@ -91,7 +95,7 @@ test("Moving poses match signed displacement across work, tower travel and retur
             ok(dx * facingX + dy * facingY > 0, "backward walking pose");
         });
     }
-    equal(directions.size, 8);
+    equal(directions.size, 4);
 });
 test("Pause and unrelated UI sync preserve position, path and current animation time", () => {
     const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers); motion.update(.2);

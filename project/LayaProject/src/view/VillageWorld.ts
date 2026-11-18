@@ -2,7 +2,7 @@ import { CombatPresentation } from "./CombatPresentation";
 import { LoggingFeedback } from "./LoggingFeedback";
 import { EnemyVisuals } from "./EnemyVisuals";
 import { GameSession } from "../game/GameSession";
-import { GameState, isWorkingAdult } from "../game/GameState";
+import { GameState } from "../game/GameState";
 import { ELITE, RULE } from "../game/GameConfig";
 import { BattleSimulation } from "../game/BattleSimulation";
 import { enemyPoint } from "../game/BattleRoad";
@@ -12,7 +12,7 @@ import { compareDepth, layoutVillage, TOWER_VIEW, VillageNavigation, WEDDING } f
 import { GameLayout } from "./GameLayout";
 import { RESIDENT_DISPLAY } from "./VisibleResidents";
 import { VillagerMotion } from "./VillagerMotion";
-import { villagerModel, walkDirection } from "./VillagerAppearance";
+import { villagerModel } from "./VillagerAppearance";
 import { WalkAnimation } from "./WalkAnimation";
 import { ProjectileMotion } from "./ProjectileMotion";
 import { C } from "./UiTheme";
@@ -68,7 +68,6 @@ export class VillageWorld {
     private lastBattle: BattleSimulation | null = null;
     private lastBattleTick = 0;
     /** 城门受击时的营火警戒动作，时间用场景时钟，不写入战斗或存档。 */
-    private guardCueAt = -Infinity;
     private backgroundKey = "";
     private renderDelta = 0;
     private sceneSeconds = 0;
@@ -178,7 +177,6 @@ export class VillageWorld {
         this.feedbackFrame = -1;
         this.lastBattle = null;
         this.lastBattleTick = 0;
-        this.guardCueAt = -Infinity;
         this.renderDelta = 0;
         this.sceneSeconds = 0;
         this.villageMotionSeconds = 0;
@@ -238,7 +236,6 @@ export class VillageWorld {
         if (battle !== this.lastBattle) {
             this.lastBattle = battle;
             this.lastBattleTick = 0;
-            this.guardCueAt = -Infinity;
         }
         const visualDelta = battle ? Math.max(0, battle.tick - this.lastBattleTick) * RULE.step : Math.min(RULE.frameCap, Math.max(0, delta));
         this.lastBattleTick = battle ? battle.tick : 0;
@@ -277,7 +274,6 @@ export class VillageWorld {
         const s = this.game.state, battle = this.game.battle;
         const presentation = this.game.presentationBattle;
         const events = this.game.takeCombatFeedback();
-        if (battle && !battle.outcome && events.some(event => event.type === "gate")) this.guardCueAt = this.sceneSeconds;
         this.feedback.sync(presentation, events);
         this.bellAura.visible = false;
         this.bellAura.graphics.clear();
@@ -360,17 +356,8 @@ export class VillageWorld {
             const facing = walkingClip ? this.art.walk(model, pose.direction) : model === "baby" ? { clip: pose.clip, mirror: false } : this.art.labor(pose.clip, pose.direction);
             const scale = (p.elite ? ELITE.visualScale : 1) * this.layout.personScale;
             const size = p.adult ? 56 : p.growth === 0 ? 42 : 48;
-            let displayScale = this.art.animation(facing.clip).displayScale ?? 1;
-            let frame = walkingClip ? this.walkAnimation.frame(pose, facing.clip, size * scale) : this.art.frameId(facing.clip, pose.elapsed, pose.animated);
-            if (battle && !battle.outcome && Number.isFinite(this.guardCueAt) && this.art.ready("night") && n.visible && !pose.walking && isWorkingAdult(p)) {
-                const direction = walkDirection(gate.node.x - pose.x, gate.node.y - pose.y, pose.direction);
-                const strike = this.art.animation(`villager_${model}_strike_${direction.toLowerCase()}`);
-                const step = Math.floor((this.sceneSeconds - this.guardCueAt) * strike.fps);
-                if (step >= 0 && step < strike.frameIds.length) {
-                    frame = strike.frameIds[step];
-                    displayScale = strike.displayScale;
-                }
-            }
+            const displayScale = this.art.animation(facing.clip).displayScale ?? 1;
+            const frame = walkingClip ? this.walkAnimation.frame(pose, facing.clip, size * scale) : this.art.frameId(facing.clip, pose.elapsed, pose.animated);
             this.art.applyFrame(n, frame, size * displayScale);
             n.getGraphicBounds(false, n.hitArea as Laya.Rectangle);
             n.pos(pose.x, pose.y);

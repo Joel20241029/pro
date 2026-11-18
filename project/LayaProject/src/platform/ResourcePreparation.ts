@@ -1,10 +1,11 @@
 import { ResourceStage, RESOURCE_SLOW_SECONDS } from "../config/ResourceConfig";
 import { RELEASE } from "../config/ReleaseInfo";
+import { AssetAttempt, AssetDiagnostics, assetError } from "./AssetDiagnostics";
 
 export type PreparationPhase = "IDLE" | "DOWNLOAD" | "DECODE" | "READY" | "FAILED";
 export interface PreparationState { phase: PreparationPhase; progress: number; slow: boolean; error: string; }
 export interface ResourcePort {
-    download?(stage: ResourceStage, progress: (value: number) => void): Promise<void>;
+    download?(stage: ResourceStage, progress: (value: number) => void, attempt?: AssetAttempt): Promise<void>;
     decode(stage: ResourceStage): Promise<void>;
 }
 
@@ -19,7 +20,7 @@ export class ResourcePreparation {
     private quiet: Record<ResourceStage, number> = { village: 0, night: 0 };
     private disposed = false;
 
-    constructor(private port: ResourcePort) {}
+    constructor(private port: ResourcePort, private diagnostics?: AssetDiagnostics) {}
 
     ready(stage: ResourceStage) { return this.states[stage].phase === "READY"; }
 
@@ -37,6 +38,7 @@ export class ResourcePreparation {
     private async prepare(stage: ResourceStage) {
         if (this.disposed) return false;
         const state = this.states[stage];
+        const attempt = this.diagnostics?.begin(stage);
         let notificationFailed = false;
         const publish = () => {
             if (this.disposed) return;
@@ -58,7 +60,7 @@ export class ResourcePreparation {
                     const wasSlow = state.slow;
                     state.slow = false; this.quiet[stage] = 0;
                     if (wasSlow) publish();
-                });
+                }, attempt);
             }
             if (this.disposed) return false;
             state.phase = "DECODE"; state.progress = 1; state.slow = false; this.quiet[stage] = 0;
@@ -66,6 +68,7 @@ export class ResourcePreparation {
             await this.port.decode(stage);
             if (this.disposed) return false;
             state.phase = "READY";
+            if (attempt) this.diagnostics?.record(attempt, "ready");
             return true;
         } catch (error) {
             if (notificationFailed) throw error;
@@ -75,9 +78,12 @@ export class ResourcePreparation {
                 state.error = error instanceof Error ? error.message : String(error);
                 console.error("[资源准备失败]", {
                     version: RELEASE.version, build: RELEASE.build, stage, operation, progress: state.progress,
-                    // 临时签名可能随下载错误返回，保留路径和错误内容供排查。
-                    error: state.error.replace(/(https?:\/\/[^\s?#]+)[?#][^\s]*/g, "$1")
+                    ...assetError(error)
                 });
+                if (attempt) {
+                    this.diagnostics?.record(attempt, "failed", { operation, progress: state.progress, ...assetError(error) }, "error");
+                    this.diagnostics?.network(attempt, "failure");
+                }
             }
             return false;
         } finally {

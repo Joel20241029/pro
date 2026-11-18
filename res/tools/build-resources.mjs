@@ -5,6 +5,7 @@ import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { buildEnemyLayouts } from './build-enemy-layouts.mjs';
 import { atlasGroup, atlasGroups, syncGameplayAssets, writeBundles } from './resource-bundles.mjs';
+import { villagerDirections } from './hd2d/import-villagers.mjs';
 import { buildBuildingLayouts } from './build-building-layouts.mjs';
 
 // 原始图片与可编辑配方为唯一输入；临时裁片只能放 Downloads。无额外 npm 依赖。
@@ -120,32 +121,53 @@ function splitFree(free, used) {
 }
 const pages = [], frames = {}, padding = recipe.atlas.padding;
 fs.mkdirSync(path.join(root, 'atlases'), { recursive: true });
-// 保留当前设备已验收的 1024 像素页尺寸，调整分类时不重采样素材。
+// 1024 是普通页的设备上限，不是输出尺寸。搜索矩形容器，再裁到实际占位边缘。
 const pageSize = 1024;
-for (const [group, { category, standalone }] of Object.entries(atlasGroups)) {
+const pageEnvelopes = [[1024, 1024], [768, 1024], [1024, 768], [896, 1024], [1024, 896], [896, 896], [960, 1024], [1024, 960]];
+function pack(items, packWidth, packHeight, allowRotation) {
+    const groupPages = [];
+    for (const a of items) {
+        const w = a._trim.w + padding * 2, h = a._trim.h + padding * 2;
+        if (w > packWidth || h > packHeight) return null;
+        const options = allowRotation && !a.nineSlice && w !== h ? [[w, h, false], [h, w, true]] : [[w, h, false]];
+        let best = null;
+        for (const p of groupPages) for (const f of p.free) for (const [width, height, rotated] of options) {
+            if (width > f.w || height > f.h) continue;
+            const score = Math.min(f.w - width, f.h - height);
+            if (!best || score < best.score) best = { p, f, width, height, rotated, score };
+        }
+        if (!best) {
+            const p = { free: [{ x: 0, y: 0, w: packWidth, h: packHeight }], placements: [], width: 0, height: 0 };
+            groupPages.push(p);
+            best = { p, f: p.free[0], width: w, height: h, rotated: false };
+        }
+        const { p, f, width, height, rotated } = best;
+        const used = { x: f.x, y: f.y, w: width, h: height };
+        p.free = splitFree(p.free, used);
+        p.width = Math.max(p.width, used.x + width);
+        p.height = Math.max(p.height, used.y + height);
+        p.placements.push({ a, rotated, rect: { x: used.x + padding, y: used.y + padding, w: width - padding * 2, h: height - padding * 2 } });
+    }
+    return groupPages;
+}
+const atlasArea = list => list.reduce((sum, page) => sum + page.width * page.height, 0);
+for (const [group, { category, standalone, jpegQuality }] of Object.entries(atlasGroups)) {
     const items = runtimeAssets.filter(a => a.atlasGroup === group)
         .sort((a, b) => Math.max(b._trim.w, b._trim.h) - Math.max(a._trim.w, a._trim.h) || b._trim.w * b._trim.h - a._trim.w * a._trim.h || a.id.localeCompare(b.id));
     if (standalone && items.length !== 1) throw new Error('整图页需要唯一素材：' + group);
     const packWidth = standalone ? items[0]._trim.w + padding * 2 : pageSize;
     const packHeight = standalone ? items[0]._trim.h + padding * 2 : pageSize;
-    const groupPages = [];
-    for (const a of items) {
-        const w = a._trim.w + padding * 2, h = a._trim.h + padding * 2; let best = null;
-        if (w > packWidth || h > packHeight) throw new Error(`单图超过页尺寸：${a.id}`);
-        for (const p of groupPages) for (const f of p.free) if (w <= f.w && h <= f.h) {
-            const score = Math.min(f.w - w, f.h - h); if (!best || score < best.score) best = { p, f, score };
-        }
-        if (!best) { const p = { id: `${group}_${groupPages.length}`, free: [{ x: 0, y: 0, w: packWidth, h: packHeight }], placements: [] }; groupPages.push(p); best = { p, f: p.free[0] }; }
-        const used = { x: best.f.x, y: best.f.y, w, h }; best.p.free = splitFree(best.p.free, used);
-        const rect = { x: used.x + padding, y: used.y + padding, w: a._trim.w, h: a._trim.h };
-        best.p.placements.push({ a, rect }); a.atlasPage = best.p.id; a.atlasRect = rect;
-        a.importedLayaAtlasPath = `assets/resources/gameplay/${category}/${best.p.id}.png`; a.importedFrameId = a.id;
+    const baseline = pack(items, packWidth, packHeight, false);
+    if (!baseline) throw new Error('散件超过图页上限：' + group);
+    let groupPages = baseline;
+    if (!standalone) for (const [width, height] of pageEnvelopes) for (const rotate of [false, true]) {
+        const candidate = pack(items, width, height, rotate);
+        if (!candidate || candidate.length > baseline.length) continue;
+        if (atlasArea(candidate) < atlasArea(groupPages) ||
+            (atlasArea(candidate) === atlasArea(groupPages) && candidate.length < groupPages.length)) groupPages = candidate;
     }
-    for (const p of groupPages) {
-        // 建筑和怪物的尾页保留原排版和外扩，按二次幂裁掉空白纹理行列。
-        const compact = (group === 'buildings' || group === 'enemies') && p === groupPages.at(-1);
-        const pageWidth = compact ? 2 ** Math.ceil(Math.log2(Math.max(...p.placements.map(({ rect }) => rect.x + rect.w + padding)))) : packWidth;
-        const pageHeight = compact ? 2 ** Math.ceil(Math.log2(Math.max(...p.placements.map(({ rect }) => rect.y + rect.h + padding)))) : packHeight;
+    for (const [index, p] of groupPages.entries()) {
+        const id = `${group}_${index}`, { width: pageWidth, height: pageHeight } = p;
         for (let i = 0; i < p.placements.length; i++) {
             const r = p.placements[i].rect;
             if (r.x < padding || r.y < padding || r.x + r.w + padding > pageWidth || r.y + r.h + padding > pageHeight) throw new Error('图集矩形或间隔越界：' + p.placements[i].a.id);
@@ -154,11 +176,17 @@ for (const [group, { category, standalone }] of Object.entries(atlasGroups)) {
                 if (r.x - padding < q.x + q.w + padding && q.x - padding < r.x + r.w + padding && r.y - padding < q.y + q.h + padding && q.y - padding < r.y + r.h + padding) throw new Error('图集占位重叠：' + p.placements[i].a.id);
             }
         }
-        const name = `atlases/${p.id}.png`, out = path.join(root, name), command = ['-size', `${pageWidth}x${pageHeight}`, 'canvas:none'];
-        for (const { a, rect } of p.placements) command.push(a._packedFile, '-geometry', `+${rect.x - padding}+${rect.y - padding}`, '-composite');
-        run([...command, '-strip', out]);
-        const pixels = decode(out);
-        for (const { a, rect } of p.placements) {
+        const filename = `${id}.${jpegQuality ? 'jpg' : 'png'}`, name = 'atlases/' + filename;
+        const out = path.join(root, name), lossless = jpegQuality ? path.join(work, id + '-lossless.png') : out;
+        const command = ['-size', `${pageWidth}x${pageHeight}`, 'canvas:none'];
+        for (const { a, rect, rotated } of p.placements) {
+            if (rotated) command.push('(', a._packedFile, '-rotate', '90', '+repage', ')');
+            else command.push(a._packedFile);
+            command.push('-geometry', `+${rect.x - padding}+${rect.y - padding}`, '-composite');
+        }
+        run([...command, '-strip', lossless]);
+        const pixels = decode(lossless);
+        for (const { a, rect, rotated } of p.placements) {
             const t = a._trim;
             if (t.x < 0 || t.y < 0 || t.x + t.w > a.width || t.y + t.h > a.height) throw new Error(`裁边越界：${a.id}`);
             for (let y = 0; y < a.height; y++) for (let x = 0; x < a.width; x++) {
@@ -167,13 +195,28 @@ for (const [group, { category, standalone }] of Object.entries(atlasGroups)) {
                     if (a._pixels[i + 3] > recipe.atlas.trimAlphaThreshold) throw new Error(`删除有效像素：${a.id}`);
                     continue;
                 }
-                const j = ((rect.y + y - t.y) * pageWidth + rect.x + x - t.x) * 4;
+                const dx = x - t.x, dy = y - t.y;
+                const j = ((rect.y + (rotated ? dx : dy)) * pageWidth + rect.x + (rotated ? t.h - 1 - dy : dx)) * 4;
                 if (Math.abs(a._pixels[i + 3] - pixels[j + 3]) > 1) throw new Error(`图集 alpha 不一致：${a.id}`);
                 for (let c = 0; c < 3; c++) if (Math.abs(a._pixels[i + c] * a._pixels[i + 3] / 255 - pixels[j + c] * pixels[j + 3] / 255) > 1.05) throw new Error(`图集像素不一致：${a.id}`);
             }
-            frames[a.id] = { page: p.id, rect, sourceSize: { w: a.width, h: a.height }, trimOffset: a.trimOffset, pivot: a.pivot, nineSlice: a.nineSlice };
+            for (let y = -padding; y < t.h + padding; y++) for (let x = -padding; x < t.w + padding; x++) {
+                if (x >= 0 && y >= 0 && x < t.w && y < t.h) continue;
+                const i = ((t.y + Math.max(0, Math.min(t.h - 1, y))) * a.width + t.x + Math.max(0, Math.min(t.w - 1, x))) * 4;
+                const j = ((rect.y + (rotated ? x : y)) * pageWidth + rect.x + (rotated ? t.h - 1 - y : x)) * 4;
+                if (Math.abs(a._pixels[i + 3] - pixels[j + 3]) > 1) throw new Error('图集外扩 alpha 不一致：' + a.id);
+                for (let c = 0; c < 3; c++) if (Math.abs(a._pixels[i + c] * a._pixels[i + 3] / 255 - pixels[j + c] * pixels[j + 3] / 255) > 1.05) throw new Error('图集外扩像素不一致：' + a.id);
+            }
+            a.atlasPage = id; a.atlasRect = rect; if (rotated) a.atlasRotated = true;
+            a.importedLayaAtlasPath = `assets/resources/gameplay/${category}/${filename}`; a.importedFrameId = a.id;
+            frames[a.id] = { page: id, rect, ...(rotated ? { rotated } : {}), sourceSize: { w: a.width, h: a.height }, trimOffset: a.trimOffset, pivot: a.pivot, nineSlice: a.nineSlice };
         }
-        pages.push({ id: p.id, path: name, runtimeFile: category + '/' + p.id + '.png', width: pageWidth, height: pageHeight, bytes: fs.statSync(out).size, sha256: hash(out), group });
+        if (jpegQuality) {
+            if (!standalone || run([lossless, '-format', '%[opaque]', 'info:']).toString() !== 'True')
+                throw new Error('只有不透明整图可输出 JPEG：' + id);
+            run([lossless, '-alpha', 'off', '-sampling-factor', '4:4:4', '-quality', String(jpegQuality), '-strip', out]);
+        }
+        pages.push({ id, path: name, runtimeFile: category + '/' + filename, width: pageWidth, height: pageHeight, bytes: fs.statSync(out).size, sha256: hash(out), group });
     }
 }
 const seen = new Set();
@@ -192,14 +235,18 @@ for (const clip of recipe.animations.animations) {
     if (!rest || !frames[rest.id] || rest.atlasGroup !== list[0].atlasGroup || rest.width !== clip.canvas.w || rest.height !== clip.canvas.h || rest.pivot.x !== clip.pivot.x || rest.pivot.y !== clip.pivot.y) throw new Error('静止帧画布/足点不一致：' + clip.id);
     if (new Set(list.map(a => a.sha256)).size < 2) throw new Error('动画帧完全相同：' + clip.id);
 }
-for (const [character, map] of Object.entries(recipe.animations.walkDirections)) {
-    const directionClips = ['DOWN', 'DOWN_RIGHT', 'RIGHT', 'UP_RIGHT', 'UP', 'UP_LEFT', 'LEFT', 'DOWN_LEFT']
-        .map(direction => !map[direction]?.mirror && recipe.animations.animations.find(a => a.id === map[direction]?.clip));
-    if (directionClips.some(c => !c)) throw new Error('八方向引用不完整：' + character);
-    const first = directionClips[0];
-    if (directionClips.some(c => c.canvas.w !== first.canvas.w || c.canvas.h !== first.canvas.h || c.pivot.x !== first.pivot.x || c.pivot.y !== first.pivot.y || c.frameCount !== first.frameCount || c.fps !== first.fps)) throw new Error('八方向画布/足底/帧数/帧率不一致：' + character);
+const directions = villagerDirections.map(name => name.toUpperCase());
+for (const groups of [recipe.animations.walkDirections, recipe.animations.laborDirections]) {
+    for (const [character, map] of Object.entries(groups)) {
+        const directionClips = directions.map(direction => !map[direction]?.mirror &&
+            recipe.animations.animations.find(clip => clip.id === map[direction]?.clip));
+        if (Object.keys(map).length !== directions.length || directionClips.some(clip => !clip) ||
+            new Set(directionClips).size !== directions.length) throw new Error('四方向引用不完整：' + character);
+        const first = directionClips[0];
+        if (directionClips.some(c => c.canvas.w !== first.canvas.w || c.canvas.h !== first.canvas.h || c.pivot.x !== first.pivot.x || c.pivot.y !== first.pivot.y || c.frameCount !== first.frameCount || c.fps !== first.fps)) throw new Error('四方向画布/足底/帧数/帧率不一致：' + character);
+    }
 }
-write('atlases/frames.json', { format: 'daidai-village-rects', version: 2, coordinateSystem: 'top-left pixels', padding, rotated: false, trimmed: true, trimAlphaThreshold: 0, pages, frames });
+write('atlases/frames.json', { format: 'daidai-village-rects', version: 2, coordinateSystem: 'top-left pixels', padding, rotated: Object.values(frames).some(f => f.rotated), trimmed: true, trimAlphaThreshold: 0, pages, frames });
 write('animations.json', recipe.animations);
 const publicAssets = assets.map(({ _trim, _pixels, _packedFile, ...a }) => a);
 const audio = read('audio/manifest.json');
@@ -211,14 +258,14 @@ const runtimeFiles = [...Object.values(bundleFiles).flat(), ...mainAudio];
 write('manifest.json', { version: 4, status: 'versioned_remote', preferredRuntimeMode: 'atlas_plus_audio', runtimeWhitelist: runtimeFiles, stages: bundleFiles, mainAudio, assetCount: assets.length, runtimeAssetCount: runtimeAssets.length, reserveAssetCount: reserveAssets.length, assets: publicAssets, audio,
     externalAssets: recipe.externalAssets, engineImport: { directory: 'project/LayaProject/assets/resources/gameplay', mode: 'two_stage_atlases', runtime: 'WeChat Mini Game', verificationReport: 'doc/tech/06_视觉升级与资源管线.md' } });
 const categoryStats = {}; for (const a of assets) { const c = categoryStats[a.category] ??= { count: 0, bytes: 0, runtime: 0, reserve: 0 }; c.count++; c.bytes += a.bytes; c[a.runtime ? 'runtime' : 'reserve']++; }
-const pngBytes = pages.reduce((sum, p) => sum + p.bytes, 0), metadataBytes = runtimeFiles.filter(p => p.endsWith('.json') || p.endsWith('.mc')).reduce((sum, p) => sum + fs.statSync(path.join(root, p)).size, 0);
+const atlasImageBytes = pages.reduce((sum, p) => sum + p.bytes, 0), metadataBytes = runtimeFiles.filter(p => p.endsWith('.vdata') || p.endsWith('.mc')).reduce((sum, p) => sum + fs.statSync(path.join(root, p)).size, 0);
 const packing = { sourceCanvasPixels: originalArea, atlasContentPixels: trimmedArea, savedContentPixels: originalArea - trimmedArea, savedContentPercent: +(100 * (originalArea - trimmedArea) / originalArea).toFixed(2), trimmedAssetCount: trimmedCount, alphaThreshold: 0, nineSlicePreserved: true, paddingPerSide: padding };
 write('budget_report.json', { generatedAt: new Date().toISOString(), runtimeAssetCount: runtimeAssets.length, reserveAssetCount: reserveAssets.length, animationCount: recipe.animations.animations.length,
     animationFrames: recipe.animations.animations.reduce((s, a) => s + a.frameCount, 0), categoryStats, atlasPages: pages, packing,
-    selectedRuntime: { mode: 'atlas_plus_audio', pngBytes, metadataBytes, audioBytes: audio.bytes, totalBytes: pngBytes + metadataBytes + audio.bytes, files: runtimeFiles },
+    selectedRuntime: { mode: 'atlas_plus_audio', atlasImageBytes, metadataBytes, audioBytes: audio.bytes, totalBytes: atlasImageBytes + metadataBytes + audio.bytes, files: runtimeFiles },
     nineSliceCompaction: { originalPixels: nineSliceOriginalPixels, compactPixels: nineSliceCompactPixels, cornersPreserved: true },
     budgets: { mainPackageLimit: 4 * 1024 * 1024, totalPackageLimit: 30 * 1024 * 1024, source: 'doc/tech/32_高清预渲染二维美术重制.md', note: 'PNG大小不是微信上传压缩大小，最终检查包含代码和引擎' }, sourceBytes: read('source/generation_records.json').records.reduce((sum, r) => sum + r.bytes, 0),
-    budgetComparison: Object.fromEntries(Object.keys(bundleFiles).map(stage => [stage + 'PngBytes', pages.filter(p => atlasGroups[p.group].stage === stage).reduce((sum, page) => sum + page.bytes, 0)])),
+    budgetComparison: Object.fromEntries(Object.keys(bundleFiles).map(stage => [stage + 'AtlasImageBytes', pages.filter(p => atlasGroups[p.group].stage === stage).reduce((sum, page) => sum + page.bytes, 0)])),
     limitations: ['Atlas content-pixel savings are not identical to PNG byte savings', 'No real phone or platform upload measurement'] });
 if (Object.keys(frames).length !== runtimeAssets.length || reserveAssets.some(a => frames[a.id])) throw new Error('运行与备用素材边界不一致');
 write('validation_report.json', { date: new Date().toISOString(), status: 'passed', checks: { pngCount: assets.length, runtimeCount: runtimeAssets.length, reserveCount: reserveAssets.length, animationGroups: recipe.animations.animations.length, atlasPages: pages.length, runtimeReferencesComplete: true, reserveAssetsExcluded: true, atlasRectsAndPaddingNonOverlapping: true, exactTransparentTrimOnly: true, sourceCanvasAndPivotsMatch: true, atlasPixelsMatchSourceCrop: true, croppedAwayPixelsAllTransparent: true, directionReferencesValid: true, nineSliceCanvasPreserved: true, nineSliceCornersPreserved: true }, packing, errors: [] });
@@ -245,8 +292,8 @@ const nineSlicePreview = '<h2>九宫格实际拉伸预览</h2><section>' + asset
     const scale = Math.min(g.scale || 1, 280 / (g.left + g.right + 1), height / (g.top + g.bottom + 1));
     return `<article><strong>${a.id} · ${a.width}×${a.height}</strong><div style="box-sizing:border-box;width:280px;height:${height}px;border:solid transparent;border-width:${g.top * scale}px ${g.right * scale}px ${g.bottom * scale}px ${g.left * scale}px;border-image-source:url(../${a.path});border-image-slice:${g.top} ${g.right} ${g.bottom} ${g.left} fill;border-image-repeat:stretch"></div></article>`;
 }).join('') + '</section>';
-const html = `<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>代代守村 · 可迭代资源预览</title><style>body{margin:0;padding:32px;background:#e9e0c9;color:#392c20;font:16px/1.7 system-ui}h1{margin:0}button{font:inherit;padding:8px 20px}section{display:flex;flex-wrap:wrap;gap:20px;margin:24px 0}article{background:#fff4d8;border:2px solid #ae854b;padding:14px;text-align:center;min-width:190px}.sprite{height:176px;display:flex;align-items:center;justify-content:center;background:#dce0c7}img{image-rendering:auto}small{display:block}a{color:#5b723c}.contact{max-width:100%}</style><h1>代代守村 · 方向与资源预览</h1><p>${assets.length} 张源画布 / ${clips.length} 组动画 / ${pages.length} 页图集。打图集裁透明边，源画布与脚底保持完整。裁边减少内容占用 ${packing.savedContentPercent}%。</p><button id="pause">暂停 / 播放</button><button id="step">下一帧</button><h2>八方向连续转向</h2><section id="turns"></section><h2>全部动作</h2><section id="clips"></section>${nineSlicePreview}<h2>静态资源</h2><img class="contact" src="static_contact.png"><script>const clips=${JSON.stringify(clips)},dirs=${JSON.stringify(recipe.animations.walkDirections)};let elapsed=0,last=performance.now(),paused=false;document.querySelector('#pause').onclick=()=>paused=!paused;document.querySelector('#step').onclick=()=>{paused=true;elapsed+=125;render()};const card=(title)=>{let e=document.createElement('article');e.innerHTML='<strong>'+title+'</strong><div class="sprite"><img width="144" height="144"></div><small></small>';return e};const cards=clips.map(c=>{let e=card(c.id);document.querySelector('#clips').append(e);return e});const turns=Object.keys(dirs).map(k=>{let e=card(k);document.querySelector('#turns').append(e);return e});function render(){clips.forEach((c,i)=>{cards[i].querySelector('img').src=c.urls[Math.floor(elapsed*c.fps/1000)%c.frameCount];cards[i].querySelector('small').textContent=c.frameCount+'帧 · '+c.fps+'FPS'});Object.keys(dirs).forEach((k,i)=>{const headings=Object.keys(dirs[k]),direction=headings[Math.floor(elapsed/1600)%headings.length],d=dirs[k][direction],c=clips.find(c=>c.id===d.clip),img=turns[i].querySelector('img');img.src=c.urls[Math.floor(elapsed*c.fps/1000)%c.frameCount];img.style.transform=d.mirror?'scaleX(-1)':'';turns[i].querySelector('small').textContent=direction})}function tick(now){if(!paused)elapsed+=Math.min(100,now-last);last=now;render();requestAnimationFrame(tick)}requestAnimationFrame(tick)</script></html>`;
+const html = `<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>代代守村 · 可迭代资源预览</title><style>body{margin:0;padding:32px;background:#e9e0c9;color:#392c20;font:16px/1.7 system-ui}h1{margin:0}button{font:inherit;padding:8px 20px}section{display:flex;flex-wrap:wrap;gap:20px;margin:24px 0}article{background:#fff4d8;border:2px solid #ae854b;padding:14px;text-align:center;min-width:190px}.sprite{height:176px;display:flex;align-items:center;justify-content:center;background:#dce0c7}img{image-rendering:auto}small{display:block}a{color:#5b723c}.contact{max-width:100%}</style><h1>代代守村 · 方向与资源预览</h1><p>${assets.length} 张源画布 / ${clips.length} 组动画 / ${pages.length} 页图集。打图集裁透明边，源画布与脚底保持完整。裁边减少内容占用 ${packing.savedContentPercent}%。</p><button id="pause">暂停 / 播放</button><button id="step">下一帧</button><h2>四方向连续转向</h2><section id="turns"></section><h2>全部动作</h2><section id="clips"></section>${nineSlicePreview}<h2>静态资源</h2><img class="contact" src="static_contact.png"><script>const clips=${JSON.stringify(clips)},dirs=${JSON.stringify(recipe.animations.walkDirections)};let elapsed=0,last=performance.now(),paused=false;document.querySelector('#pause').onclick=()=>paused=!paused;document.querySelector('#step').onclick=()=>{paused=true;elapsed+=125;render()};const card=(title)=>{let e=document.createElement('article');e.innerHTML='<strong>'+title+'</strong><div class="sprite"><img width="144" height="144"></div><small></small>';return e};const cards=clips.map(c=>{let e=card(c.id);document.querySelector('#clips').append(e);return e});const turns=Object.keys(dirs).map(k=>{let e=card(k);document.querySelector('#turns').append(e);return e});function render(){clips.forEach((c,i)=>{cards[i].querySelector('img').src=c.urls[Math.floor(elapsed*c.fps/1000)%c.frameCount];cards[i].querySelector('small').textContent=c.frameCount+'帧 · '+c.fps+'FPS'});Object.keys(dirs).forEach((k,i)=>{const headings=Object.keys(dirs[k]),direction=headings[Math.floor(elapsed/1600)%headings.length],d=dirs[k][direction],c=clips.find(c=>c.id===d.clip),img=turns[i].querySelector('img');img.src=c.urls[Math.floor(elapsed*c.fps/1000)%c.frameCount];img.style.transform=d.mirror?'scaleX(-1)':'';turns[i].querySelector('small').textContent=direction})}function tick(now){if(!paused)elapsed+=Math.min(100,now-last);last=now;render();requestAnimationFrame(tick)}requestAnimationFrame(tick)</script></html>`;
 fs.writeFileSync(path.join(root, 'preview/index.html'), html.replace('<h2>静态资源</h2>', `<h2>运行静态资源 · ${staticAssets.length} 张</h2>`));
 
 if (args.includes('--sync')) syncGameplayAssets(root, runtimeFiles, previousFiles, mainAudio);
-console.log(JSON.stringify({ assets: assets.length, runtimeAssets: runtimeAssets.length, reserveAssets: reserveAssets.length, clips: clips.length, pages: pages.length, runtimeBytes: pngBytes + metadataBytes + audio.bytes, packing, sync: args.includes('--sync') }));
+console.log(JSON.stringify({ assets: assets.length, runtimeAssets: runtimeAssets.length, reserveAssets: reserveAssets.length, clips: clips.length, pages: pages.length, runtimeBytes: atlasImageBytes + metadataBytes + audio.bytes, packing, sync: args.includes('--sync') }));

@@ -3,12 +3,12 @@ import path from 'node:path';
 
 export const atlasGroups = {
     ui: { category: 'ui', stage: 'village' },
-    // 单张整图保持原采样尺寸，普通散件继续使用 1024px 页。
-    terrain: { category: 'map', stage: 'village', standalone: true },
+    // 单张整图保持原采样尺寸；散件页按实际占位输出。
+    // 不透明整图使用已选的 94 品质及全色度采样；保留草纹和路边颜色。
+    terrain: { category: 'map', stage: 'village', standalone: true, jpegQuality: 94 },
     map: { category: 'map', stage: 'village' },
     buildings: { category: 'buildings', stage: 'village' },
     characters: { category: 'characters', stage: 'village' },
-    night_characters: { category: 'characters', stage: 'night' },
     village_effects: { category: 'effects', stage: 'village' },
     enemies: { category: 'enemies', stage: 'night' },
     night_effects: { category: 'effects', stage: 'night' }
@@ -23,7 +23,7 @@ export function atlasGroup(asset) {
         case 'terrain': return 'terrain';
         case 'decorations': return 'map';
         case 'building-parts': return 'buildings';
-        case 'characters': return asset.bundle === 'battle' ? 'night_characters' : 'characters';
+        case 'characters': return 'characters';
         case 'enemies':
         case 'enemy-parts': return 'enemies';
         case 'effects': return villageEffects.has(asset.id) ? 'village_effects' : 'night_effects';
@@ -55,10 +55,10 @@ export function writeBundles(root, pages, frames, animations, buildingFiles, aud
             if (!stageFrames[clip.restFrame] || !clip.frameIds.every(id => stageFrames[id]))
                 throw new Error('动画跨越加载阶段：' + clip.id);
         }
-        writeJson(stage, (village ? 'map' : 'enemies') + '/frames.json', {
+        writeJson(stage, (village ? 'map' : 'enemies') + '/frames.vdata', {
             version: 4, stage, pages: selected.map(p => ({ id: p.id, runtimeFile: p.runtimeFile })), frames: stageFrames
         });
-        writeJson(stage, (village ? 'characters' : 'enemies') + '/animations.json', {
+        writeJson(stage, (village ? 'characters' : 'enemies') + '/animations.vdata', {
             animations: clips,
             walkDirections: village ? animations.walkDirections : {},
             laborDirections: village ? animations.laborDirections : {},
@@ -66,7 +66,7 @@ export function writeBundles(root, pages, frames, animations, buildingFiles, aud
         });
         for (const p of selected) copy(result[stage], p.path, p.runtimeFile);
         for (const file of village ? buildingFiles : [enemyFile]) {
-            copy(result[stage], file, (village ? 'buildings/' : 'enemies/') + path.basename(file));
+            copy(result[stage], file, (village ? 'buildings/' : 'enemies/') + path.basename(file).replace(/\.json$/, '.vdata'));
         }
         required[stage] = { frames: Object.keys(stageFrames).sort(), clips: clips.map(c => c.id).sort() };
     }

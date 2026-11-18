@@ -108,7 +108,7 @@ test("Closing tower dialog does not clear background or return confirmation paus
 });
 test("Pending save still blocks tower reassignment under dialog pause", () => {
     const m = new MemoryStore(), g = new GameSession(new SaveStore(m)); g.load(); g.newVillage(); g.command({ type: "NIGHT" }); g.pause("CHOICE");
-    const operator = g.battle!.operators[0], replacement = g.state!.people[4].id; m.fail = "BEFORE"; g.command({ type: "SPEED", value: 2 }); ok(g.saves.pending);
+    const operator = g.battle!.operators[0], replacement = g.state!.people[4].id; m.fail = "BEFORE"; g.command({ type: "DAILY_RATION", date: "2026-11-18" }); ok(g.saves.pending);
     g.reassign(0, replacement); equal(g.battle!.operators[0], operator); g.resume("CHOICE"); g.update(.1); equal(g.battle!.tick, 0); ok(g.pauses.has("SAVE_PENDING"));
     m.fail = "NONE"; g.retry(); g.pause("CHOICE"); g.reassign(0, replacement); equal(g.battle!.operators[0], replacement);
 });

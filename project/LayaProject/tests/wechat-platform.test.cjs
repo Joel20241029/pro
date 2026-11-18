@@ -56,6 +56,13 @@ test('score sync is deduplicated and does not invoke friend/privacy APIs', () =>
     const s = setup(); s.platform.syncBestNight(0); s.platform.syncBestNight(3); s.platform.syncBestNight(3); s.platform.syncBestNight(2);
     assert.deepEqual(s.messages, [{ bestNight: 3 }]); assert.equal(s.privacy.length, 0); assert.equal(s.authorization.length, 0);
 });
+test('ranking messages carry the same diagnostic request into the open data context', () => {
+    const s=setup(), request=s.platform.rankingDiagnostics.begin();
+    s.platform.postRanking({showRanking:true},request);
+    s.platform.postRanking({refreshRanking:true},request);
+    s.platform.postRanking({type:'close'},request);
+    assert(s.messages.every(message=>message.diagnosticRequest===request));
+});
 test('platform message exceptions do not propagate or retry every frame', () => {
     const s = setup(); let calls = 0; s.wx.getOpenDataContext = () => { calls++; throw new Error('SDK failed'); };
     assert.doesNotThrow(() => { s.platform.syncBestNight(3); s.platform.syncBestNight(3); }); assert.equal(calls, 1);
@@ -132,7 +139,8 @@ function gameView(session, platform) {
     Object.assign(village, { game: session, layout, scene, motion: { sync() {} }, thoughts: { sync() {} }, crying: { sync() {} }, cryIcon: new Sprite(), speechTip: { hide() {} }, shield: { reset() {} }, summon: { reset() {} }, interaction: { cancelPresses() {}, clearDepth() {} }, drawScenery() {} });
     Object.assign(view, { resources: { ready: () => true }, game: session, observedVillageRevision: session.villageRevision, platform, layout, panels, village,
         shownErrorRevision: 0, observedRun: 0, observedDawn: 0, overlay, tip: { show() {} }, anchoredTip: { hide() {} },
-        reminder: { reset() {}, tick() {}, hide() {} }, tacticNotices: new TacticNotices(platform), updateActors() {} });
+        reminder: { reset() {}, tick() {}, hide() {} }, starterGuide: { hide() {}, tick() {}, node: { visible: false } },
+        tacticNotices: new TacticNotices(platform), updateActors() {} });
     view.hud = new GameHud(session, art, ui, panels, () => view.refresh());
     view.results = new NightResultPresentation(ui, view.hud, () => view.refresh());
     const parent = new Sprite(); [view.hud.node,overlay,view.results.layer].forEach(node=>parent.addChild(node));

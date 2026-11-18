@@ -1,5 +1,6 @@
 import { ELITE, GROWTH, RULE, TOWERS } from "../game/GameConfig";
 import { RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC, TACTIC_USE, tacticDefinition } from "../config/TacticConfig";
+import { STARTER_LESSONS } from "./config/StarterGuideConfig";
 
 function tacticRequirement(id: string) {
     const { unlockWaves, wood, food } = tacticDefinition(id);
@@ -11,6 +12,7 @@ function tacticRequirement(id: string) {
  */
 export const GUIDE_CHAPTERS: ReadonlyArray<{ title: string; sections: ReadonlyArray<{ title: string; body: string; tactic?: string }> }> = [
     { title: "起步", sections: [
+        { title: "智卓的前五波指引", body: STARTER_LESSONS.map(({ title, text }, index) => `第 ${index + 1} 波 · ${title}\n${text}`).join("\n\n") },
         { title: "先经营，再守夜", body: "白天没有倒计时，可以安排工作、成家、迎接孩子和建设。准备好后点“开始守夜”，先查看产出、口粮和防线，再确认出战。守住后进入新一天，继续经营同一座村庄。" },
         { title: "粮、木、人分别是什么", body: "麦穗代表粮食，用于口粮、迎接孩子和升级。木料代表木材，用于建设、升级及修门。图标旁的 80/200 表示现有 80、最多储存 200。双人图标旁的 6/8 表示在村 6 人、住房可容纳 8 人，孩子和老人也占名额。k 表示千，m 表示百万，b 表示十亿，t 表示万亿，q 表示千万亿。" },
         { title: "开村与每日口粮", body: `每天进入游戏可确认领取 ${RULE.dailyFood} 粮，按设备本地日期算一天。粮仓放不下时只补到上限，面板写明实际到账；满仓为 0，确认后也计作当天已领。同一村庄当天重进不重复领取；每次重新开村可再领一份，不累计补领。夜间领取只补库存，不能解除已经开始的当夜缺粮减益。` },
@@ -51,7 +53,7 @@ export const GUIDE_CHAPTERS: ReadonlyArray<{ title: string; sections: ReadonlyAr
         { title: "五类小怪，各有特点", body: "灰牙劫掠者是基础来敌；赤帽疾行者移动快；铁鬃卫士护甲高；石背野猪厚血、撞门较重；苔角巫医会降低附近防塔攻速。战前列表显示本夜的种类、数量和特点，向上滑动可看全。颜色和配件只改变外观，不额外增加属性。" },
         { title: "每年一场首领战", body: `每 ${RULE.yearDays} 夜出现一位首领：裂岩食人魔会召唤援兵；黑铁督军护甲高；霜脊狼王速度快；熔牙巨兽血量厚、撞门重；古木祭司会扰乱塔的攻速。前五场依次登场，之后循环；夜数和词缀仍会影响强度。` },
         { title: "先准备资源，再确认守夜", body: "启动图上的进度条会显示准备情况，地图、建筑和村民齐备后进入村庄。点击开始守夜时准备战斗素材，完成后再确认出战。准备期间不扣资源、不推进时间。失败可点重试，已经下载的文件会留在缓存中。" },
-        { title: "战技：白天准备，守夜施放", body: `首次守住一波后，排行下方出现战技入口。每夜携带一种，白天可免费切换。能用 ${TACTIC_USE.perNight} 次的战技，按下后冷却 ${TACTIC_USE.cooldownTicks * RULE.step} 个战斗秒，按钮按当前倍速计时。暂停时计时冻结，下一夜次数重置。大王之心开局自带，其余按守住波数逐个揭晓。界面仅预告下一种未知战技，揭晓后用木材和粮食学习。传承保留已学会战技，纯净开始恢复初始战技。` },
+        { title: "战技：白天准备，守夜施放", body: `首次守住一波后，排行下方出现战技入口。每夜携带一种，白天可免费切换。能用 ${TACTIC_USE.perNight} 次的战技，按下后冷却 ${TACTIC_USE.cooldownTicks * RULE.step} 个战斗秒，按钮按当前倍速计时。暂停时计时冻结，下一夜次数重置。大王之心开局自带，其余按守住波数逐个揭晓。点问号卡片可阅读未解锁战技的传闻。达到解锁波数后可查看效果，并用木材和粮食学习。传承保留已学会战技，纯净开始恢复初始战技。` },
         { title: "大王之心：短时加速集火", body: `所有已驻人的塔攻速提高 ${Math.round((RULE.bellSpeedMultiplier - 1) * 100)}%，持续 ${RULE.bellTicks * RULE.step} 个战斗秒。塔上金色光圈与倒计时表示正在生效。等敌人进入射程、比较密集时再用，单次伤害不变。` },
         { tactic: RAGE_TACTIC, title: "百毅靓之怒：强化每次攻击", body: `${tacticRequirement(RAGE_TACTIC)}全塔伤害提高50%，持续15个战斗秒。箭塔强化单体伤害，石塔强化范围伤害，寒塔只强化主目标伤害，减速不变。塔顶红白旋刃与倒计时表示正在生效。` },
         { tactic: SHIELD_TACTIC, title: "二楠之盾：守住最后一道门", body: `${tacticRequirement(SHIELD_TACTIC)}城门免疫触门伤害8个战斗秒。敌人到门仍退场，不回血、不反伤。青蓝护罩和倒计时表示生效，1倍约4现实秒，2倍约2.7现实秒。` },

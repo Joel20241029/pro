@@ -17,6 +17,7 @@ import { actionHints, actionHintsBlocked } from "./ActionHints";
 import { NightControls } from "./NightControls";
 import { SIDE_FEATURES, TACTIC_UI } from "./config/TacticUiConfig";
 import { SHIELD_VISUAL } from "./config/ShieldVisualConfig";
+import type { StarterTarget } from "./config/StarterGuideConfig";
 interface WorldHudAnchors { towerAnchor(index: number): { x: number; y: number }; gateAnchor(): { x: number; y: number }; }
 /** 常驻信息与操作区。每次 refresh 重画 chrome；战斗帧只更新文字、血条，不重建按钮。 */
 export class GameHud {
@@ -32,6 +33,7 @@ export class GameHud {
     private hintSeconds = 0;
     readonly materialIcons: Partial<Record<"food" | "wood", Laya.Sprite>> = {};
     readonly featureButtons: Laya.Sprite[] = [];
+    guideTargets: Partial<Record<StarterTarget, Laya.Sprite>> = {};
     startButton: Laya.Sprite | null = null;
     tacticBadge: Laya.Sprite | null = null;
     constructor(private game: GameSession, _art: SpriteFrames, private ui: UiWidgets, private panels: GamePanels, private refresh: () => void) { }
@@ -41,6 +43,7 @@ export class GameHud {
         this.nightStatus = null;
         this.buildHints.length = 0;
         this.startButton = this.tacticBadge = null;
+        this.guideTargets = {};
         delete this.materialIcons.food; delete this.materialIcons.wood;
         this.featureButtons.length = 0;
         this.node.destroyChildren();
@@ -85,6 +88,7 @@ export class GameHud {
                 b.name = entry.name;
                 b.visible = i < shownFeatures;
                 this.featureButtons.push(b);
+                if (entry.panel === "tactics") this.guideTargets.tactics = b;
                 const face = b.getChildByName("buttonFace") as Laya.Sprite;
                 this.ui.image(face, entry.icon, (side.size - side.icon) / 2, side.iconY, side.icon).name = "buttonIcon";
                 const text = face.getChildByName("buttonText") as Laya.Text;
@@ -113,6 +117,9 @@ export class GameHud {
             gateAnchor.x + HUD.gate.width / 2 + shield.iconGap,
             gateAnchor.y - HUD.gate.height - HUD.gate.barHeight - 5, shield.iconSize);
         this.gateShield.name = "GateShieldBadge"; this.gateShield.visible = !!battle?.gateProtected;
+        const emptyPad = s.towers.findIndex(t => !t.kind);
+        // 第四波从真实可点塔位中优先指向首个空位，建满时教玩家使用第一座塔。
+        const guidePad = emptyPad < 0 ? 0 : emptyPad;
         for (let i = 0; i < scene.pads.length; i++) {
             const t = battle?.base.towers[i] || s.towers[i], pos = anchors.towerAnchor(i);
             const b = new Laya.Sprite();
@@ -121,6 +128,7 @@ export class GameHud {
             // 塔面板只使用 open/close 配对管理的 CHOICE 暂停，不把临时调任变成手动暂停。
             this.ui.bindClick(b, () => this.panels.open({ type: "tower", index: i }));
             this.node.addChild(b);
+            if (i === guidePad) this.guideTargets.tower = b;
             if (!t.kind) {
                 const hint = HUD.towerBuildHint, icon = this.ui.image(this.node, "icon_build_plus", pos.x, scene.pads[i].y - hint.centerAbovePad, hint.size);
                 icon.name = `BuildTowerHint:${i}`;
@@ -163,6 +171,7 @@ export class GameHud {
             previewText.wordWrap = false; previewText.overflow = Laya.Text.SHRINK;
             const primary = this.ui.button(this.node, "", start.x, bottomY + start.y, start.size, () => this.panels.open({ type: "start" }), C.green, start.size);
             this.startButton = primary;
+            this.guideTargets.start = primary;
             primary.name = "button:开始守夜";
             const face = primary.getChildByName("buttonFace") as Laya.Sprite;
             face.graphics.clear();
@@ -183,6 +192,7 @@ export class GameHud {
         if (s.phase !== "NIGHT") HUD.navigation.forEach(({ title, panel, icon }, i) => {
             const nav = footer.navigation, daytime = s.phase === "DAY";
             const button = this.ui.button(this.node, title, daytime ? nav.xs[i] : 28 + 168 * i, bottomY + (daytime ? nav.y : 150), daytime ? nav.width : 160, () => this.panels.open({ type: panel }), C.muted, daytime ? nav.height : 78);
+            if (panel === "people" || panel === "families") this.guideTargets[panel] = button;
             const face = button.getChildByName("buttonFace") as Laya.Sprite;
             const text = face.getChildByName("buttonText") as Laya.Text;
             text.fontSize = nav.font; text.color = C.ink; text.stroke = 0;

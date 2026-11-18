@@ -1,9 +1,9 @@
 import { isElder, Person } from "../game/GameState";
 
-/** 顺序与离线角色转台一致。从镜头前方开始，按 45 度轮换八个独立方向。 */
-const DIRECTIONS = ["DOWN", "DOWN_RIGHT", "RIGHT", "UP_RIGHT", "UP", "UP_LEFT", "LEFT", "DOWN_LEFT"] as const;
+/** 顺序与离线角色转台一致。从镜头前方开始，按 90 度轮换四个独立方向。 */
+const DIRECTIONS = ["DOWN", "RIGHT", "UP", "LEFT"] as const;
 export type WalkDirection = typeof DIRECTIONS[number];
-const SECTOR = Math.PI / 4;
+const SECTOR = 2 * Math.PI / DIRECTIONS.length;
 /** 转向时留出 5 度滞回，吸收同一扇区交界处的寻路线段扰动。 */
 const TURN_MARGIN = 5 * Math.PI / 180;
 

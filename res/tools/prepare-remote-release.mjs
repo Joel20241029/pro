@@ -2,6 +2,7 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
@@ -28,7 +29,7 @@ for (const stage of ['village', 'night']) {
     for (const bundled of manifest.stages[stage]) {
         const relative = bundled.slice('bundles/'.length);
         const [category, name, extra] = relative.split('/');
-        if (!bundled.startsWith('bundles/') || !categories.includes(category) || !/^[a-z0-9_.]+\.(png|json|mc)$/.test(name || '') || extra !== undefined || files[relative])
+        if (!bundled.startsWith('bundles/') || !categories.includes(category) || !/^[a-z0-9_.]+\.(png|jpg|vdata|mc)$/.test(name || '') || extra !== undefined || files[relative])
             throw new Error('运行资源路径冲突或不合法：' + bundled);
         const bytes = fs.readFileSync(path.join(root, 'res', bundled));
         if (!bytes.equals(fs.readFileSync(path.join(root, 'project/LayaProject/assets/resources/gameplay', relative))))
@@ -37,8 +38,36 @@ for (const stage of ['village', 'night']) {
         files[relative] = { stage, bytes: bytes.length, sha256: digest(bytes) };
     }
 }
+// 保持现有帧表/外扩：只替换整页存储格式。高清头像和 UI 优先保细节，其余采用 6×6。
+const atlas = JSON.parse(fs.readFileSync(path.join(root, 'res/atlases/frames.json'), 'utf8'));
+const portraitPages = new Set(Object.entries(atlas.frames).filter(([id]) => id.startsWith('portrait_')).map(([, frame]) => frame.page));
+const encoder = process.env.DAIDAI_ASTCENC || 'astcenc';
+const work = path.join(os.homedir(), 'Downloads', 'daidai-astc-build', version);
+const stagedAlready = fs.existsSync(destination);
+for (const page of atlas.pages) {
+    const original = files[page.runtimeFile], relative = page.runtimeFile.replace(/\.(png|jpg)$/, '.ktx');
+    if (!original || original.sha256 !== page.sha256 || relative === page.runtimeFile || files[relative])
+        throw new Error('图页与 ASTC 输入清单不符：' + page.runtimeFile);
+    const block = page.group === 'ui' || portraitPages.has(page.id) ? 4 : 6;
+    const target = stagedAlready ? path.join(destination, relative) : path.join(work, relative);
+    if (!stagedAlready) {
+        if (revision !== '--stage') throw new Error('先生成远程资源版本：' + version);
+        fs.mkdirSync(path.dirname(target), { recursive: true });
+        // Laya 的 2D 混合需要预乘像素，GPU 上传压缩块时不会替我们转换。
+        execFileSync(encoder, ['-cl', path.join(root, 'res/bundles', page.runtimeFile), target, `${block}x${block}`, '-thorough', '-pp-premultiply']);
+    }
+    const data = fs.readFileSync(target), payload = Math.ceil(page.width / block) * Math.ceil(page.height / block) * 16;
+    const level = data.length >= 68 ? 64 + data.readUInt32LE(60) : -1;
+    if (data.subarray(0, 12).toString('hex') !== 'ab4b5458203131bb0d0a1a0a' ||
+        data.readUInt32LE(12) !== 0x04030201 || data.readUInt32LE(28) !== (block === 4 ? 37808 : 37812) ||
+        data.readUInt32LE(36) !== page.width || data.readUInt32LE(40) !== page.height ||
+        data.readUInt32LE(56) !== 1 || level + 4 + payload !== data.length || data.readUInt32LE(level) !== payload)
+        throw new Error('ASTC 图页格式或尺寸不符：' + relative);
+    artifacts.set(relative, data);
+    files[relative] = { stage: original.stage, bytes: data.length, sha256: digest(data), astcFor: page.runtimeFile };
+}
 const bytes = Object.values(files).reduce((sum, item) => sum + item.bytes, 0);
-artifacts.set('manifest.json', Buffer.from(JSON.stringify({ schema: 1, version, files }, null, 2) + '\n'));
+artifacts.set('manifest.vdata', Buffer.from(JSON.stringify({ schema: 1, version, files }, null, 2) + '\n'));
 if (revision === '--stage' && !fs.existsSync(destination)) {
     fs.mkdirSync(destination);
     try {

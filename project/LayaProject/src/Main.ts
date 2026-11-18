@@ -22,9 +22,9 @@ export class Main extends Laya.Script {
         this.remoteAssets ? this.remoteAssets.load(this.filePath(file), options) : Laya.loader.load(this.filePath(file), options)
     );
     private resources = new ResourcePreparation({
-        download: this.remoteAssets ? (stage, progress) => this.remoteAssets!.prepare(stage, progress) : undefined,
+        download: this.remoteAssets ? (stage, progress, attempt) => this.remoteAssets!.prepare(stage, progress, attempt) : undefined,
         decode: stage => this.frames.loadStage(stage)
-    });
+    }, this.remoteAssets?.diagnostics);
     private loading: StartupView | null = null;
     private disposed = false;
     private starting = false;

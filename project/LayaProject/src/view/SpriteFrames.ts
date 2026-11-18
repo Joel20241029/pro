@@ -5,6 +5,7 @@ import { Clip, validateSpriteStage } from "./SpriteResourceValidation";
 import { GAMEPLAY_ROOT, ResourceStage, STAGE_METADATA } from "../config/ResourceConfig";
 import { Person } from "../game/GameState";
 interface Frame { page: string; rect: { x: number; y: number; w: number; h: number }; sourceSize: { w: number; h: number }; trimOffset: { x: number; y: number }; pivot: { x: number; y: number }; nineSlice: { top: number; right: number; bottom: number; left: number; repeat: number; scale: number } | null; }
+type PackedFrame = Frame & { rotated?: boolean };
 /** 高清预渲染二维合同：恢复源画布、共同足底与真实方向，九宫格保留原图渐变。 */
 export class SpriteFrames {
     enemyLayouts: Record<string, EnemyLayout> = {};
@@ -39,14 +40,17 @@ export class SpriteFrames {
         if (this.disposed) throw new Error("资源容器已经销毁");
         if (this.ready(stage)) return;
         const metadata = STAGE_METADATA[stage];
-        const result = await this.readBatch(metadata.map(file => ({ url: file, type: file.endsWith(".json") ? Laya.Loader.JSON : undefined })));
+        const result = await this.readBatch(metadata.map(file => ({ url: file, type: file.endsWith(".vdata") ? Laya.Loader.JSON : undefined })));
         if (this.disposed) throw new Error("资源容器已经销毁");
         const created = new Map<string, Laya.Texture>();
+        const logicalFrames = new Map<string, Frame>();
         try {
             const table = result[0].data;
             if (table.stage !== stage || table.version !== 4 || !table.pages?.length || !table.frames) throw new Error("图集清单与加载阶段不匹配");
             const descriptors = table.pages as { id: string; runtimeFile: string }[];
-            if (new Set(descriptors.map(p => p.id)).size !== descriptors.length || descriptors.some(p => !/^[a-z_]+\/[a-z0-9_]+\.png$/.test(p.runtimeFile))) throw new Error("图集页名不合法");
+            if (new Set(descriptors.map(p => p.id)).size !== descriptors.length || descriptors.some(p =>
+                !/^[a-z_]+\/[a-z0-9_]+\.png$/.test(p.runtimeFile) &&
+                !(p.id === "terrain_0" && p.runtimeFile === "map/terrain_0.jpg"))) throw new Error("图集页名不合法");
             const loaded = await this.readBatch(descriptors.map(p => ({ url: p.runtimeFile, type: Laya.Loader.IMAGE })));
             if (this.disposed) throw new Error("资源容器已经销毁");
             const pages: Record<string, Laya.Texture> = {}; descriptors.forEach((p, i) => {
@@ -54,15 +58,17 @@ export class SpriteFrames {
                 // 远程图集由缓存路径读取，沿用原分包 fileconfig 的各向异性等级。
                 pages[p.id].bitmap.anisoLevel = 1;
             });
-            const frames: Record<string, Frame> = table.frames, clips: Clip[] = result[1].data.animations;
+            const frames: Record<string, PackedFrame> = table.frames, clips: Clip[] = result[1].data.animations;
             for (const id of Object.keys(frames)) {
                 const f = frames[id], r = f.rect, page = pages[f.page];
                 if (this.textures.has(id) || !page || !r || r.w <= 0 || r.h <= 0 || r.x < 0 || r.y < 0 || r.x + r.w > page.width || r.y + r.h > page.height || !f.sourceSize || !f.trimOffset || !f.pivot) throw new Error("图集帧不完整：" + id);
-                created.set(id, Laya.Texture.create(page, r.x, r.y, r.w, r.h, f.trimOffset.x, f.trimOffset.y, f.sourceSize.w, f.sourceSize.h));
+                if ((f.rotated !== undefined && typeof f.rotated !== "boolean") || (f.rotated && f.nineSlice)) throw new Error("图集旋转标记不合法：" + id);
+                created.set(id, Laya.Texture.create(page, r.x, r.y, r.w, r.h, f.trimOffset.x, f.trimOffset.y, f.sourceSize.w, f.sourceSize.h, f.rotated === true));
+                logicalFrames.set(id, f.rotated ? { ...f, rect: { ...r, w: r.h, h: r.w } } : f);
             }
             const enemyLayouts = validateSpriteStage({ stage, created, animations: result[1].data, definitions: result[2].data }, { textures: this.textures, clips: this.clips });
             // 完整校验完成后一次发布，失败不会把半套素材暴露给界面。
-            for (const [id, texture] of created) { this.textures.set(id, texture); this.layouts.set(id, frames[id]); }
+            for (const [id, texture] of created) { this.textures.set(id, texture); this.layouts.set(id, logicalFrames.get(id)!); }
             for (const clip of clips) this.clips.set(clip.id, clip);
             Object.assign(this.directions, result[1].data.walkDirections);
             Object.assign(this.laborDirections, result[1].data.laborDirections);

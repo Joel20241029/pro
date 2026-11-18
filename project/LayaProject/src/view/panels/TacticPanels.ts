@@ -1,11 +1,11 @@
-import { DEFAULT_TACTIC, TACTICS, TACTIC_USE, tacticDefinition } from "../../config/TacticConfig";
+import { TACTICS, TACTIC_USE, tacticDefinition } from "../../config/TacticConfig";
 import { RULE } from "../../config/RuleConfig";
 import { GameState } from "../../game/GameState";
 import { tacticRevealed, tacticUnavailableReason } from "../../game/Tactics";
 import { actionHintsBlocked } from "../ActionHints";
 import { ScrollList } from "../ScrollList";
 import { C, UI } from "../UiTheme";
-import { amount, reasonBesideCost } from "../ViewText";
+import { reasonBesideCost } from "../ViewText";
 import { TACTIC_UI as V } from "../config/TacticUiConfig";
 import { Panel, PanelContext } from "./PanelContext";
 
@@ -17,29 +17,16 @@ function selectTactic(ctx: PanelContext, p: Panel, id: string, learned: boolean)
 
 export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
     const blocked = actionHintsBlocked(ctx.game);
-    const revealed = TACTICS.filter(t => tacticRevealed(s, t.id));
-    const next = TACTICS.filter(t => !tacticRevealed(s, t.id)).sort((a, b) => a.unlockWaves - b.unlockWaves)[0];
-    // 详情入口也遵循揭晓规则；旧导航快照不能越过未知卡直接展示技能名称和效果。
-    if (p.type === "tactic" && !tacticRevealed(s, p.id!)) {
-        const box = ctx.modal("未知战技", "", true, { width: UI.panelWidth, height: 340 });
-        ctx.ui.label(box, `守住 ${tacticDefinition(p.id!).unlockWaves} 波后揭晓`, 34, 152, 600, 30, C.cream, true, 72).align = "center";
-        return;
-    }
     if (p.type === "tactics") {
-        const count = revealed.length + (next ? 1 : 0);
+        const revealed = TACTICS.filter(t => tacticRevealed(s, t.id));
+        const locked = TACTICS.filter(t => !tacticRevealed(s, t.id)).sort((a, b) => a.unlockWaves - b.unlockWaves);
+        const count = TACTICS.length;
         const height = Math.min(UI.panelHeight, V.listTop + count * V.rowStep - 12 + V.footer);
         const box = ctx.modal("守村战技", "", true, { width: UI.panelWidth, height },
             "点击卡片查看详情。");
-        const resources = new Laya.Sprite(); resources.pos(34, 112);
-        ctx.art.panel(resources, "panel_card", 600, 62); box.addChild(resources);
-        const waves = ctx.ui.label(resources, `已守 ${amount(s.completed)} 波`, 16, 10, 200, 26, C.ink, true, 42);
-        waves.wordWrap = false; waves.overflow = Laya.Text.SHRINK;
-        ctx.ui.iconValue(resources, "icon_wood", amount(s.wood, true), 220, 8, 175, 46, C.timber, 26);
-        ctx.ui.iconValue(resources, "icon_food", amount(s.food, true), 407, 8, 174, 46, C.green, 26);
         if (!p.rowOrder) {
             const rank = (id: string) => s.tactics.equipped === id ? 0 :
-                s.tactics.learned.includes(id) ? 2 : !tacticUnavailableReason(s, id, "LEARN") ? 1 :
-                    s.completed >= tacticDefinition(id).unlockWaves ? 3 : 4;
+                s.tactics.learned.includes(id) ? 2 : !tacticUnavailableReason(s, id, "LEARN") ? 1 : 3;
             p.rowOrder = revealed.slice().sort((a, b) => rank(a.id) - rank(b.id) || a.order - b.order).map(t => t.id);
         }
         const rows = new ScrollList(UI.contentWidth, height - V.listTop - V.footer, count * V.rowStep - 12, p.scroll, y => p.scroll = y);
@@ -53,16 +40,11 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
             // 正文与操作按钮是同级命中节点，点学习不会冒泡成打开详情；拖动由ScrollList取消点击。
             const body = new Laya.Sprite(); body.size(584, V.rowHeight); card.addChild(body);
             ctx.ui.bindClick(body, () => ctx.open({ type: "tactic", id, back: p }));
-            ctx.ui.image(card, t.icon, 20, 24, V.icon).alpha = !learned && reason ? .6 : 1;
-            const title = ctx.ui.label(card, t.name, V.rowTextX, 16, V.rowTextWidth, 31, C.ink, true, 42);
+            ctx.ui.image(card, t.icon, 20, 31, V.icon).alpha = !learned && reason ? .6 : 1;
+            const title = ctx.ui.label(card, t.name, V.rowTextX, 12, V.rowTextWidth, 31, C.ink, true, 42);
             title.wordWrap = false; title.overflow = Laya.Text.SHRINK;
-            ctx.ui.label(card, t.summary, V.rowTextX, 62, V.rowTextWidth, 25, C.green, false, 58);
-            if (learned) ctx.ui.label(card, id === DEFAULT_TACTIC ? "开局自带" : "已学会", V.rowTextX, 122, V.rowTextWidth, 24, C.timber, false, 32);
-            else ctx.ui.materialCosts(card, s, t, V.rowTextX, 121, V.rowTextWidth, 33);
-            const note = learned ? s.phase === "DAY" ? "" : "天亮后可更换" :
-                reasonBesideCost(reason) ?? (reason ? "材料不足" : `已守 ${amount(s.completed)}/${t.unlockWaves} 波`);
-            const label = ctx.ui.label(card, note, 20, 158, 340, 24, reason && !learned ? C.red : C.green, false, 48);
-            label.wordWrap = false; label.overflow = Laya.Text.SHRINK;
+            ctx.ui.label(card, t.summary, V.rowTextX, 52, V.rowTextWidth, 25, C.green, false, 58);
+            if (!learned) ctx.ui.materialCosts(card, s, t, V.rowTextX, V.actionY + 6, V.actionX - V.rowTextX - 12, 36);
             const action = ctx.ui.button(card, equipped ? "已携带" : learned ? "携带" : "学习并携带", V.actionX, V.actionY, V.actionWidth,
                 () => selectTactic(ctx, p, id, learned), equipped ? C.gold : C.green, V.actionHeight, !blocked && !reason);
             if (equipped) {
@@ -71,48 +53,53 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
                 (face.getChildByName("buttonText") as Laya.Text).color = C.ink;
             }
         });
-        if (next) {
-            const card = new Laya.Sprite(); card.name = "UnknownTactic"; card.pos(0, revealed.length * V.rowStep);
+        locked.forEach((t, index) => {
+            const card = new Laya.Sprite(); card.name = "UnknownTactic"; card.pos(0, (revealed.length + index) * V.rowStep);
             ctx.art.panel(card, "panel_card_disabled", 584, V.rowHeight); rows.content.addChild(card);
             const mark = ctx.ui.label(card, "?", 16, 0, 116, 106, C.timber, true, V.rowHeight);
             mark.align = "center"; mark.valign = "middle"; mark.wordWrap = false;
-            ctx.ui.label(card, "未知战技", 146, 55, 410, 32, C.ink, true, 48);
-            ctx.ui.label(card, `守住 ${next.unlockWaves} 波后揭晓`, 146, 109, 410, 27, C.muted, false, 54);
-        }
+            ctx.ui.label(card, "未知战技", 146, 32, 410, 32, C.ink, true, 48);
+            ctx.ui.label(card, `守住 ${t.unlockWaves} 波后解锁`, 146, 77, 410, 27, C.muted, false, 38);
+            ctx.ui.button(card, "查看传闻", V.actionX, V.actionY, V.actionWidth,
+                () => ctx.open({ type: "tactic", id: t.id, back: p }), C.green, V.actionHeight);
+        });
         if (s.phase === "NIGHT") ctx.ui.label(box, "守夜期间仅可查看", 34, height - V.footer + 2, 600, 24, C.cream, false, 34).align = "center";
         if (p.back) ctx.ui.button(box, "‹", 30, 32, 54, () => ctx.open(p.back!, true), C.green, 54);
         return;
     }
-    const t = tacticDefinition(p.id!), learned = s.tactics.learned.includes(t.id), equipped = s.tactics.equipped === t.id;
-    const reason = tacticUnavailableReason(s, t.id, learned ? "EQUIP" : "LEARN");
-    const height = learned ? V.detailOwnedHeight : V.detailLearnHeight;
-    const box = ctx.modal("战技详情", "", true, { width: UI.panelWidth, height });
-    if (p.back) ctx.ui.button(box, "‹", 30, 32, 54, () => ctx.open(p.back!, true), C.green, 54);
-    const paper = new Laya.Sprite(); paper.pos(34, 112);
-    ctx.art.panel(paper, "panel_card", 600, height - 228); box.addChild(paper);
-    ctx.ui.image(paper, t.icon, 30, 32, V.detailIcon);
-    ctx.ui.label(paper, t.name, 164, 36, 406, 34, C.ink, true, 46);
-    ctx.ui.label(paper, t.effect === "SUMMON_CHARGE" ? `${t.summary}（含首领）` : t.summary, 164, 88, 406, 25, C.green, false, 72);
-    const usage = t.usesPerNight === 1 ? "每夜 1 次" :
-        `每夜 ${t.usesPerNight} 次 · 冷却 ${TACTIC_USE.cooldownTicks * RULE.step} 秒`;
-    ctx.ui.label(paper, usage, 164, 161, 406, 24, C.ink, false, 38);
-    ctx.ui.label(paper, "村中传闻", 30, 214, 540, 27, C.timber, true, 40);
-    const lore = ctx.ui.label(paper, t.lore, 0, 0, 520, 26, C.ink, false, 90);
-    lore.height = Math.max(90, lore.textHeight);
-    const story = new ScrollList(540, 90, lore.height);
-    story.content.name = "TacticLore";
-    story.pos(30, 254); story.content.addChild(lore); paper.addChild(story);
-    if (!learned) {
-        ctx.ui.label(paper, `学习条件   已守 ${amount(s.completed)}/${t.unlockWaves} 波`, 24, 358, 552, 28,
-            s.completed < t.unlockWaves ? C.red : C.green, true, 48);
-        ctx.ui.label(paper, "学习费用", 24, 418, 144, 27, C.ink, true, 43);
-        ctx.ui.materialCosts(paper, s, t, 178, 419, 390, 43);
-        ctx.ui.label(paper, "当前库存", 24, 474, 144, 27, C.ink, true, 43);
-        ctx.ui.iconValue(paper, "icon_wood", amount(s.wood, true), 178, 474, 193, 42, C.timber, 26, "left");
-        ctx.ui.iconValue(paper, "icon_food", amount(s.food, true), 373, 474, 193, 42, C.green, 26, "left");
+    const t = tacticDefinition(p.id!), revealed = tacticRevealed(s, t.id), learned = s.tactics.learned.includes(t.id);
+    const { top, width, inset, icon, loreTop, actionHeight, gap } = V.detail;
+    const paper = new Laya.Sprite(); paper.pos(UI.inset, top);
+    const textWidth = width - 2 * inset;
+    if (revealed) {
+        const textX = inset + icon + gap, effectWidth = width - textX - inset;
+        ctx.ui.image(paper, t.icon, inset, inset, icon);
+        ctx.ui.label(paper, t.name, textX, 16, effectWidth, 34, C.ink, true, 44);
+        ctx.ui.label(paper, t.effect === "SUMMON_CHARGE" ? `${t.summary}（含首领）` : t.summary, textX, 57, effectWidth, 25, C.green, false, 62);
+        const cooldown = t.usesPerNight > 1 ? ` · 冷却 ${TACTIC_USE.cooldownTicks * RULE.step} 秒` : "";
+        ctx.ui.label(paper, `每夜 ${t.usesPerNight} 次${cooldown}`, textX, 117, effectWidth, 24, C.muted, false, 36);
+        ctx.ui.label(paper, "村中传闻", inset, loreTop - 8, textWidth, 27, C.timber, true, 40);
     }
+    const lore = ctx.ui.label(paper, t.lore, inset, revealed ? loreTop + 39 : inset, textWidth, 28, C.ink, false, UI.panelHeight);
+    lore.name = "TacticLore";
+    lore.height = Math.ceil(lore.textHeight) + 4;
+    let paperHeight = lore.y + lore.height + inset;
+    if (revealed && !learned) {
+        const costTop = paperHeight - inset + gap;
+        ctx.ui.label(paper, "学习费用", inset, costTop, 140, 26, C.timber, true, 40);
+        ctx.ui.materialCosts(paper, s, t, inset + 152, costTop, textWidth - 152, 40);
+        paperHeight = costTop + 40 + inset;
+    }
+    ctx.art.panel(paper, "panel_card", width, paperHeight);
+    const actionTop = top + paperHeight + gap;
+    const height = actionTop + (revealed ? actionHeight + gap : 0);
+    const box = ctx.modal(revealed ? "战技详情" : "村中传闻", "", true, { width: UI.panelWidth, height });
+    if (p.back) ctx.ui.button(box, "‹", 30, 32, 54, () => ctx.open(p.back!, true), C.green, 54);
+    box.addChild(paper);
+    if (!revealed) return;
+    const equipped = s.tactics.equipped === t.id, reason = tacticUnavailableReason(s, t.id, learned ? "EQUIP" : "LEARN");
     const caption = equipped ? "已携带" : reasonBesideCost(reason) ?? (reason ? "材料不足" : learned ? "携带" : "学习并携带");
-    const action = ctx.ui.button(box, caption, 54, height - 96, 560, () => selectTactic(ctx, p, t.id, learned), C.green, 66, !blocked && !reason);
+    const action = ctx.ui.button(box, caption, 54, actionTop, 560, () => selectTactic(ctx, p, t.id, learned), C.green, actionHeight, !blocked && !reason);
     const actionText = (action.getChildByName("buttonFace") as Laya.Sprite).getChildByName("buttonText") as Laya.Text;
     actionText.wordWrap = false; actionText.overflow = Laya.Text.SHRINK;
 }

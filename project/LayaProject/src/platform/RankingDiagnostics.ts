@@ -45,17 +45,19 @@ export class RankingDiagnostics {
     private logger: GameLogger | null = null;
     private count = 0;
     private sequence = 0;
+    private openedAt = 0;
     private active: string | null = null;
     private errors = new Set<string>();
     private deliveryWarning = false;
     private deliveryConfirmed = false;
+    private environment = "unavailable";
     private readonly runtimeError = (error: string) => { if (this.active) this.failure("runtime_error", this.active, error); };
     constructor(private platform: RankingLogPlatform) {
         const common: Record<string, string> = { version: RELEASE.version, build: RELEASE.build, render: RANKING_CANVAS.mode, env: "unavailable" };
         // 环境采样只作诊断，失败不阻止独立初始化日志；仅提取版本和平台，不传整份设备/账户对象。
         try {
             const app = platform.getAccountInfoSync?.().miniProgram;
-            if (app && ["release", "trial", "develop"].includes(app.envVersion)) common.env = app.envVersion;
+            if (app && ["release", "trial", "develop"].includes(app.envVersion)) common.env = this.environment = app.envVersion;
             if (app?.version && /^[\w.-]{1,40}$/.test(app.version)) common.codeVersion = app.version;
             const base = platform.getAppBaseInfo?.();
             if (base?.version && /^[\w.-]{1,40}$/.test(base.version)) common.wechatVersion = base.version;
@@ -70,6 +72,7 @@ export class RankingDiagnostics {
     }
     begin(): string {
         const id = `${Date.now().toString(36)}-${++this.sequence}`;
+        this.openedAt = Date.now();
         this.active = id;
         this.record("open", id);
         return id;
@@ -77,14 +80,16 @@ export class RankingDiagnostics {
     record(event: RankingEvent, request: string | null, fields: Fields = {}, level: LogLevel = "info") {
         if (this.count >= EVENT_BUDGET) return;
         this.count++;
-        const value = { event, request, sequence: this.count, time: Date.now(), ...fields };
+        const time = Date.now();
+        const value = { event, request, sequence: this.count, time, version: RELEASE.version, build: RELEASE.build, env: this.environment,
+            elapsedMs: request && request === this.active ? time - this.openedAt : undefined, ...fields };
+        try { console.info("[ranking-diagnostic]", RELEASE.build, value); } catch (_) { /* 本地输出与后台上报隔离。 */ }
         try {
             if (this.logger) this.logger.log({ key: "ranking", level, value, success: () => {
                 if (this.deliveryConfirmed) return;
                 this.deliveryConfirmed = true;
                 try { console.info("[ranking-diagnostic] 微信日志接口已接受首条上报", RELEASE.build); } catch (_) { /* 不影响游戏及异步回调。 */ }
             }, fail: () => this.warnDelivery() });
-            else console.info("[ranking-diagnostic]", RELEASE.build, value);
         } catch (_) { this.warnDelivery(); }
     }
     failure(event: RankingEvent, request: string | null, error: unknown) {

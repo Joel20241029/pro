@@ -49,7 +49,7 @@ function assertMirrored(f, raw) {
     assert.equal(JSON.parse(raw).commitType, 'CLEAN_START');
 }
 
-test('clean start equals a fresh village apart from its best night and schedules a fresh same-day ration', () => {
+test('clean start equals a fresh village apart from its best night and device settings, and schedules a fresh same-day ration', () => {
     const original = createGame(2), retired = { ...original.people[0], nights: 0, elderNights: 0, job: 'WAITING' };
     const extraTrait = Object.keys(TRAITS).find(trait => !original.legacy.traits.includes(trait));
     original.legacy.traits.push(extraTrait);
@@ -63,7 +63,7 @@ test('clean start equals a fresh village apart from its best night and schedules
     game.enter(); game.update(.01);
     for (const pause of ['USER', 'CHOICE', 'BACKGROUND', 'WAIT_RESUME', 'DISABLED']) game.pause(pause);
     start(game);
-    expected.legacy.bestNight = 17;
+    expected.legacy.bestNight = 17; expected.settings.speed = 3;
     assert.deepEqual(game.state, expected);
     assert.equal(game.battle, null); assert.equal(game.accumulator, 0); assert.equal(game.villageRevision, 1);
     assert.deepEqual([...game.pauses].sort(), ['BACKGROUND', 'DAILY_RATION', 'DISABLED', 'WAIT_RESUME']);
@@ -209,7 +209,7 @@ test('ordinary run-one day-one startup and a higher normal save do not trigger c
     f.game.newVillage(); assert.equal(f.game.villageRevision, 1); assert.equal(f.writes.length, 1);
     const ordinary = f.reopen(); assert.equal(ordinary.state.run, 1); assert.equal(ordinary.state.day, 1);
     assert.equal(ordinary.villageRevision, 0); assert.equal(f.writes.length, 1);
-    start(ordinary); ordinary.command({ type: 'SPEED', value: 3 });
+    start(ordinary); ordinary.command({ type: 'BUILD', kind: 'FARM' });
     assert.notEqual(f.values.get(keys[0]), f.values.get(keys[1]));
     const reopened = f.reopen();
     assert.deepEqual(reopened.state, ordinary.state); assert.equal(reopened.villageRevision, 0);

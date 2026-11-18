@@ -1,3 +1,4 @@
+const fs = require('node:fs');
 const {test}=require('node:test'),assert=require('node:assert/strict'),path=require('node:path');
 class Sprite{
  constructor(){this.name='';this.children=[];this.x=this.y=0;this.events={};this.graphics={save(){},scale(){},draw9Grid(){},restore(){}};}
@@ -15,7 +16,7 @@ global.Laya={Sprite,Text,Tween,Ease:{elasticOut(){}},Event:{MOUSE_DOWN:'down',MO
 const base=process.env.DAIDAI_TEST_BUILD;
 const {SpriteFrames}=require(path.join(base,'view/SpriteFrames.js')),{UiWidgets}=require(path.join(base,'view/UiWidgets.js'));
 // 完整世界在建筑包就绪后创建；世界阴影随建筑包，UI图标仍在基础包。
-const frames=require('../assets/resources/gameplay/map/frames.json').frames,art=new SpriteFrames();
+const frames=JSON.parse(fs.readFileSync(path.join(__dirname, '../assets/resources/gameplay/map/frames.vdata'), 'utf8')).frames,art=new SpriteFrames();
 for(const [id,f]of Object.entries(frames)){art.layouts.set(id,f);art.textures.set(id,{id});}
 const near=(a,b)=>assert(Math.abs(a-b)<1e-6,`${a} != ${b}`);
 test('all nine-slice surfaces preserve drawing state and leave a positive center at actual button sizes',()=>{

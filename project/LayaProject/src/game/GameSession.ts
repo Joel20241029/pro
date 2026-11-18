@@ -3,6 +3,7 @@ import { clone, GameState } from "./GameState";
 import { RULE, Trait } from "./GameConfig";
 import { applyCommand, Command, createGame, finishNight } from "./VillageRules";
 import { LoadResult, SaveMode, SaveStore } from "../storage/SaveStore";
+import { DeviceSettings } from "../storage/DeviceSettings";
 import { dailyRationAmount, localRationDate } from "./DailyRation";
 export type Pause = "USER" | "BACKGROUND" | "WAIT_RESUME" | "CHOICE" | "SAVE_PENDING" | "DISABLED" | "DAILY_RATION" | "ASSETS";
 export class GameSession {
@@ -28,6 +29,7 @@ export class GameSession {
     /** 只在进入/返回/重开时更新；不会在常驻跨午夜时自动打断游戏。 */
     private visitDate: string | null = null;
     dailyRationDate: string | null = null;
+    private deviceSettings = new DeviceSettings(this.saves.port);
     constructor(readonly saves: SaveStore, private today = () => localRationDate(new Date())) {}
     enter() { this.visitDate = this.today(); this.checkDailyRation(); this.changed(); }
     /** 与状态接受共用调度：清晨/失败/启动/保存先完成，安全时才暂停领取。 */
@@ -82,6 +84,8 @@ export class GameSession {
         this.submit(next, false, "CLEAN_START");
     }
     private accept(s: GameState, newVillage = false) {
+        const settings = this.deviceSettings.resolve(s.settings);
+        if (s.settings.music !== settings.music || s.settings.speed !== settings.speed) s = { ...s, settings };
         const sameNight = !newVillage && this.continuingBattle && this.battle !== null && s.phase === "NIGHT";
         if (newVillage) {
             this.currentVillageRevision++;
@@ -102,6 +106,7 @@ export class GameSession {
     }
     private submit(next: GameState, keepBattle = false, start?: SaveMode) {
         try {
+            if (start !== undefined) next.settings = this.deviceSettings.resolve(next.settings);
             this.saves.prepare(next, start); this.continuingBattle = keepBattle; this.pendingNewVillage = start !== undefined;
             this.pauses.add("SAVE_PENDING"); this.retry();
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
@@ -115,7 +120,16 @@ export class GameSession {
     }
     command(c: Command) {
         if (!this.state || this.saves.pending || (c.type === "NIGHT" && this.pauses.has("ASSETS"))) return;
-        try { const next = clone(this.state); applyCommand(next, c); this.submit(next, next.phase === "NIGHT" && this.state.phase === "NIGHT"); }
+        try {
+            const next = clone(this.state);
+            applyCommand(next, c);
+            if (c.type === "MUSIC" || c.type === "SPEED") {
+                this.deviceSettings.write(next.settings);
+                this.state = next; this.error = ""; this.changed();
+                return;
+            }
+            this.submit(next, next.phase === "NIGHT" && this.state.phase === "NIGHT");
+        }
         catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
     pause(reason: Pause) { this.pauses.add(reason); this.accumulator = 0; }

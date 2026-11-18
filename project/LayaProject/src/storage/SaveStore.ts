@@ -1,10 +1,11 @@
 import { CONFIG_VERSION } from "../game/GameConfig";
 import { GameState } from "../game/GameState";
 import { validateState } from "./StateValidation";
+import { ANNUAL_CHALLENGE_CONFIG, migrateAnnualChallenge } from "./VillageSaveMigration";
 /** 微信实现将读异常向外抛出；null 只能表示 keys 列表确认键不存在。 */
 export interface StoragePort { read(key: string): string | null; write(key: string, value: string): void; }
 const KEYS = ["daidai_village.save.a", "daidai_village.save.b"];
-/** 双槽存档格式 3：波次外观种子与提交类型参与校验；修改格式版本会阻止载入旧格式。 */
+/** 双槽封套格式 3。只在旧格式无法安全兼容时升级；业务规则的转换按来源配置执行。 */
 const SCHEMA_VERSION = 3;
 /** 普通进度轮换单槽；纯净开局的标记让启动时可补齐同一份双槽候选。 */
 type CommitType = "NORMAL" | "CLEAN_START";
@@ -24,17 +25,21 @@ export function crc32(value: string): string {
     for (let i = 0; i < utf8.length; i++) { crc ^= utf8.charCodeAt(i); for (let b = 0; b < 8; b++) crc = (crc >>> 1) ^ (crc & 1 ? 0xedb88320 : 0); }
     return ((crc ^ 0xffffffff) >>> 0).toString(16).padStart(8, "0");
 }
-type Slot = { kind: "missing" } | { kind: "valid"; data: Envelope } | { kind: "corrupt" | "version" };
+type ValidSlot = { kind: "valid"; data: Envelope; state: GameState };
+type Slot = { kind: "missing" } | ValidSlot | { kind: "corrupt" | "version" };
 function decode(raw: string | null): Slot {
     if (raw === null) return { kind: "missing" };
     try {
         const e: Envelope = JSON.parse(raw);
         if (!e || !Number.isSafeInteger(e.schemaVersion) || !Number.isSafeInteger(e.configVersion)) return { kind: "corrupt" };
-        if (e.schemaVersion !== SCHEMA_VERSION || e.configVersion !== CONFIG_VERSION) return { kind: "version" };
+        if (e.schemaVersion !== SCHEMA_VERSION ||
+            (e.configVersion !== CONFIG_VERSION && e.configVersion !== ANNUAL_CHALLENGE_CONFIG)) return { kind: "version" };
         if (e.commitType !== "NORMAL" && e.commitType !== "CLEAN_START") return { kind: "corrupt" };
         const { checksum, ...body } = e;
         if (typeof checksum !== "string" || crc32(canonical(body)) !== checksum || !Number.isSafeInteger(e.revision) || e.revision < 1 || typeof e.commitId !== "string" || !e.commitId.length) return { kind: "corrupt" };
-        validateState(e.payload); return { kind: "valid", data: e };
+        const payload = e.configVersion === ANNUAL_CHALLENGE_CONFIG ? migrateAnnualChallenge(e.payload) : e.payload;
+        validateState(payload);
+        return { kind: "valid", data: e, state: payload };
     } catch { return { kind: "corrupt" }; }
 }
 /** 补写结果对应已重建的 pending，双槽核对成功前不发布其状态。 */
@@ -43,25 +48,25 @@ interface Pending { raw: string; state: GameState; revision: number; target: num
 export class SaveStore {
     private baseline: (string | null)[] = []; private revision = 0; private active = -1;
     pending: Pending | null = null;
-    constructor(private port: StoragePort) {}
+    constructor(readonly port: StoragePort) {}
     inspect(): LoadResult {
         this.baseline = KEYS.map(k => this.port.read(k));
         const slots = this.baseline.map(decode);
         if (slots.some(s => s.kind === "version")) return { kind: "incompatible", reason: "旧进度来自其他版本，当前版本无法读取。\n确认前保留旧进度，重开后替换旧进度。" };
-        const valid = slots.map((s, i) => ({ s, i })).filter(v => v.s.kind === "valid") as { s: { kind: "valid"; data: Envelope }; i: number }[];
+        const valid = slots.map((s, i) => ({ s, i })).filter(v => v.s.kind === "valid") as { s: ValidSlot; i: number }[];
         if (!valid.length) {
             if (slots.every(s => s.kind === "missing")) { this.revision = 0; this.active = -1; return { kind: "new" }; }
             return { kind: "blocked", reason: "无法读取有效进度。可保留存档退出，或明确确认重新开村。", canReset: true };
         }
         valid.sort((a, b) => b.s.data.revision - a.s.data.revision);
         if (valid.length === 2 && valid[0].s.data.revision === valid[1].s.data.revision && this.baseline[0] !== this.baseline[1]) return { kind: "blocked", reason: "两个存档版本冲突，未覆盖任何进度。", canReset: false };
-        const { i, s: { data } } = valid[0]; this.revision = data.revision; this.active = i;
+        const { i, s: { data, state } } = valid[0]; this.revision = data.revision; this.active = i;
         if (data.commitType === "CLEAN_START" && this.baseline[0] !== this.baseline[1]) {
             // 异版与同 revision 冲突已拒绝。保留原始候选字节，只补低 revision、空槽或坏槽。
-            this.pending = { raw: this.baseline[i]!, state: data.payload, revision: data.revision, target: i, baseline: this.baseline.slice(), mode: "CLEAN_START" };
+            this.pending = { raw: this.baseline[i]!, state, revision: data.revision, target: i, baseline: this.baseline.slice(), mode: "CLEAN_START" };
             return { kind: "complete-clean-start" };
         }
-        return { kind: slots.some(s => s.kind === "corrupt") ? "recover" : "ready", state: data.payload };
+        return { kind: slots.some(s => s.kind === "corrupt") ? "recover" : "ready", state };
     }
     /** RESET 仅由玩家确认放弃异版或损坏进度后传入；同一候选替换双槽，不做旧档迁移。 */
     prepare(state: GameState, mode: SaveMode = "NORMAL") {

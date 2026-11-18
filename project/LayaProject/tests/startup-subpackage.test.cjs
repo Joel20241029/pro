@@ -5,8 +5,8 @@ const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw Error('Set DAIDAI_TEST_BUILD under Downloads');
 const mainFile = path.join(compiled, 'Main.js'), actualRequire = createRequire(mainFile);
 const project = path.resolve(__dirname, '..'), root = 'resources/gameplay/';
-const villageFrames = root + 'map/frames.json', villageAnimations = root + 'characters/animations.json';
-const enemyLayouts = root + 'enemies/enemies.json';
+const villageFrames = root + 'map/frames.vdata', villageAnimations = root + 'characters/animations.vdata';
+const enemyLayouts = root + 'enemies/enemies.vdata';
 const read = file => JSON.parse(fs.readFileSync(path.join(project, 'assets', file), 'utf8'));
 const flush = () => new Promise(setImmediate);
 function deferred() {
@@ -47,12 +47,17 @@ function setup() {
                 if (gates.has(url)) { const value = await gates.get(url).promise; cache.set(url, value); return value; }
                 const file = path.join(project, 'assets', url);
                 let value;
-                if (url.endsWith('.json')) value = { data: read(url) };
+                if (url.endsWith('.vdata')) { assert.equal(options.type, Laya.Loader.JSON); value = { data: read(url) }; }
                 else if (url.endsWith('.mc')) { assert(fs.statSync(file).size > 0); value = { binary: file }; }
                 else {
                     const bytes = fs.readFileSync(file);
-                    assert(url.endsWith('.png'), url);
-                    value = { width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20), bitmap: {} };
+                    if (url === root + 'map/terrain_0.jpg') {
+                        assert.equal(bytes.readUInt16BE(0), 0xffd8);
+                        value = { width: 1126, height: 1406, bitmap: {} };
+                    } else {
+                        assert(url.endsWith('.png'), url);
+                        value = { width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20), bitmap: {} };
+                    }
                 }
                 cache.set(url, value);
                 return value;
@@ -211,7 +216,7 @@ for (const [label, file, mutate] of [
     ['missing frame', villageFrames, data => { delete data.frames[Object.keys(data.frames)[0]]; }],
     ['incomplete clips', villageAnimations, data => data.animations.pop()],
     ['missing labor directions', villageAnimations, data => { data.laborDirections = {}; }],
-    ['invalid building layout', root + 'buildings/buildings.json', data => { delete data.layouts.HOUSE_1_1; }],
+    ['invalid building layout', root + 'buildings/buildings.vdata', data => { delete data.layouts.HOUSE_1_1; }],
     ['invalid late frame', villageFrames, data => { data.frames[Object.keys(data.frames)[2]].rect.w = 0; }]
 ]) test(label + ' rolls back staged textures and retries metadata', async () => {
     const f = setup(), data = read(file); mutate(data); f.cache.set(file, { data });
@@ -249,7 +254,7 @@ test('daytime scene includes real directions, full portraits and the shared effe
     const art = f.main.frames;
     for (const name of ['shadow_actor', 'fx_rage_orbit', 'fx_hearts', 'icon_baby_cry']) assert(art.get(name));
     for (const identity of ['blue', 'straw', 'red', 'jade', 'elite_male', 'elite_female', 'child', 'elder'])
-        for (const direction of ['DOWN', 'DOWN_RIGHT', 'RIGHT', 'UP_RIGHT', 'UP', 'UP_LEFT', 'LEFT', 'DOWN_LEFT']) assert.equal(art.walk(identity, direction).mirror, false);
+        for (const direction of ['DOWN', 'RIGHT', 'UP', 'LEFT']) assert.equal(art.walk(identity, direction).mirror, false);
     for (const sex of ['MALE', 'FEMALE']) {
         const person = { id: "1:1", sex, appearance: sex === 'MALE' ? 'male_a' : 'female_a', adult: true, elderNights: 0, nights: 12, growth: 0 };
         assert(art.get(art.portraitId(person)));

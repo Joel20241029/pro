@@ -67,7 +67,7 @@ export class WechatPlatform implements StoragePort {
     }
     postRanking(message: object, request: string | null = null): void {
         try {
-            this.rankingCanvas.context.postMessage(message);
+            this.rankingCanvas.context.postMessage(request ? { ...message, diagnosticRequest: request } : message);
             // 仅说明主域调用返回；不是开放域已绘制、成绩已上传或好友数据已读取的确认。
             const kind = "showRanking" in message ? "show" : "refreshRanking" in message ? "refresh" : "authorizationError" in message ? "authorization" : (message as { type?: string }).type === "close" ? "close" : "type" in message ? "viewport" : "score";
             this.rankingDiagnostics.record("message_returned", request, { message: kind });

@@ -138,7 +138,7 @@ class Sprite {
 const Tween = { killAll() {}, create(target) {
     return { duration() { return this; }, to(key, value) { target[key] = value; return this; }, ease() { return this; } };
 } };
-global.Laya = { Sprite, Tween, Ease: { elasticOut: () => 1 }, ColorFilter: class { gray() { return this; } }, Text: { SHRINK: 'shrink' }, Rectangle: class {}, OpenDataContextView: class {}, Texture2D: class {}, Event: { CLICK: 'click', MOUSE_DOWN: 'down', MOUSE_UP: 'up', MOUSE_OUT: 'out', UNDISPLAY: 'undisplay' } };
+global.Laya = { Sprite, Point: class { setTo(x,y) { Object.assign(this,{x,y}); return this; } }, Tween, Ease: { elasticOut: () => 1 }, ColorFilter: class { gray() { return this; } }, Text: { SHRINK: 'shrink' }, Rectangle: class {}, OpenDataContextView: class {}, Texture2D: class {}, Event: { CLICK: 'click', MOUSE_DOWN: 'down', MOUSE_UP: 'up', MOUSE_OUT: 'out', UNDISPLAY: 'undisplay' } };
 const { GamePanels } = require(path.join(compiled, 'view/GamePanels.js'));
 const { GameHud } = require(path.join(compiled, 'view/GameHud.js'));
 
@@ -473,25 +473,101 @@ test('a 107-person roster mounts only the window and each remounted callback tar
     const last=rows.content.children.at(-1).children[0];assert.equal(last.name,'1:107');view.open=p=>clicks.push(p);last.event('click');
     assert.deepEqual(clicks,[{type:'person',id:'1:107'}]);rows.setOffset(0);assert.equal(rows.content.children[0].children[0].name,'1:1');
 });
-test('tactic list reveals only the next mystery card and guide/direct detail never leak future names',()=>{
+test('all locked tactics have anonymous cards and their details are read-only until unlocked',()=>{
     const {game}=session(),view=panelView(game),{TACTICS}=require(path.join(compiled,'config/TacticConfig'));
     view.ui.image=imageNode;const labels=n=>[n.text||'',...n.children.flatMap(labels)].join(' ');
+    const nodes=n=>[n,...n.children.flatMap(nodes)];
     for(const [waves,revealed]of [[0,1],[9,1],[10,2],[19,2],[20,3],[29,3],[30,4],[39,4],[40,5]]){
         game.state.completed=waves;view.open({type:'tactics'});const content=view.box.getChildByName('ScrollList').content;
         assert.equal(content.children.filter(c=>c.name.startsWith('TacticCard:')).length,revealed);
-        assert.equal(content.children.filter(c=>c.name==='UnknownTactic').length,revealed<TACTICS.length?1:0);
+        assert.equal(content.children.filter(c=>c.name==='UnknownTactic').length,TACTICS.length-revealed);
         for(const t of TACTICS.slice(revealed))assert(!labels(view.box).includes(t.name));
         for(const t of TACTICS)assert(!labels(view.box).includes(t.lore));
     }
-    game.state.completed=39;view.open({type:'tactic',id:TACTICS[4].id});assert(!labels(view.box).includes(TACTICS[4].name));
-    assert(!labels(view.box).includes('村中传闻'));
-    game.state.completed=40;
+    game.state.completed=1;
+    view.open({type:'tactics'});
+    const list=view.current, rows=view.box.getChildByName('ScrollList');
+    rows.setOffset(rows.maximum);
+    rows.content.children.at(-1).getChildByName('button:查看传闻').event('click');
+    assert.equal(view.current.id,TACTICS[4].id);
+    assert.equal(view.current.back,list);
+    const before=JSON.stringify(game.state.tactics);
+    assert.deepEqual(nodes(view.box).filter(node=>node.name.startsWith('button:')).map(node=>node.name),['button:‹']);
+    view.box.getChildByName('button:‹').event('click');
+    assert.equal(view.current,list);assert.equal(list.scroll,rows.maximum);
     for(const t of TACTICS){
         view.open({type:'tactic',id:t.id});const detail=labels(view.box);
-        assert(detail.includes(t.summary) && detail.includes('村中传闻') && detail.includes(t.lore));
+        const lore=nodes(view.box).find(node=>node.name==='TacticLore');
+        assert.equal(lore.text,t.lore);assert(lore.height>=lore.textHeight);
+        assert(!nodes(view.box).some(node=>node.name==='ScrollList'));
+        if(t.unlockWaves>game.state.completed){
+            assert.equal(detail.trim(),t.lore);
+            assert(!nodes(view.box).some(node=>node.name===t.icon||node.name.startsWith('button:')));
+            continue;
+        }
+        assert(detail.includes(t.summary) && detail.includes('村中传闻'));
         assert(detail.includes(t.usesPerNight===1?'每夜 1 次':'每夜 2 次 · 冷却 21 秒'));
         assert.equal(detail.includes('冷却'),t.usesPerNight>1);
     }
+    assert.equal(JSON.stringify(game.state.tactics),before);
+    game.state.completed=10;const tactic=TACTICS[1];
+    game.state.wood=1;view.open({type:'tactic',id:tactic.id});
+    assert(labels(view.box).includes('学习费用') && labels(view.box).includes('1/40'));
+    assert(!labels(view.box).includes('当前库存'));
+    game.state.wood=tactic.wood;game.state.food=tactic.food;
+    const commands=[];view.send=command=>commands.push(command);
+    view.open({type:'tactic',id:tactic.id});view.box.getChildByName('button:学习并携带').event('click');
+    assert.deepEqual(commands,[{type:'TACTIC_LEARN',id:tactic.id}]);
     game.state.completed=0;
     view.open({type:'guide',tab:4});for(const t of TACTICS.slice(1))assert(!labels(view.box).includes(t.name));
+});
+
+test('Zhizhuo tips cover the first five waves, remember progress and allow skipping the rest',()=>{
+    const { StarterGuide }=require(path.join(compiled,'view/StarterGuide.js'));
+    const { STARTER_LESSONS }=require(path.join(compiled,'view/config/StarterGuideConfig.js'));
+    const {game}=session(),view=panelView(game),records=new Map(),layout={footerTop:920};
+    view.ui.image=imageNode;
+    const root=new Sprite().size(720,1200),port={read:key=>records.get(key)??null,write:(key,value)=>records.set(key,value)};
+    const attach=()=>{const guide=new StarterGuide(port,view.art,view.ui);root.addChild(guide.node);return guide;};
+    const guide=attach();
+    guide.tick(null,layout,0);assert(!guide.node.visible);assert.equal(records.size,0);
+    guide.tick(6,layout,0);assert(!guide.node.visible);assert.equal(records.size,0);
+    for(let wave=1;wave<=5;wave++){
+        guide.tick(wave,layout,0);
+        assert(guide.node.visible && guide.node.mouseThrough);
+        assert(guide.node.children.some(node=>node.text===STARTER_LESSONS[wave-1].text));
+        assert(guide.node.y+guide.node.height<layout.footerTop);
+        assert.equal(game.pauses.size,0);
+        if(wave===1)guide.tick(wave,layout,9);
+        else guide.node.getChildByName('button:知道了').event('click');
+        guide.tick(wave,layout,0);assert(!guide.node.visible);
+    }
+    const reopened=attach();reopened.tick(1,layout,0);assert(!reopened.node.visible);
+    records.clear();const migrated=attach();migrated.tick(3,layout,0);
+    assert(migrated.node.children.some(node=>node.text===STARTER_LESSONS[2].text));
+    migrated.tick(null,layout,0);assert(!migrated.node.visible);
+    migrated.tick(4,layout,0);migrated.node.getChildByName('button:跳过引导').event('click');
+    const skipped=attach();skipped.tick(5,layout,0);assert(!skipped.node.visible);
+    assert(STARTER_LESSONS.every(lesson=>GUIDE_CHAPTERS[0].sections[0].body.includes(lesson.text)));
+});
+
+test('guide shade leaves a live target window and disappears with the guide',()=>{
+    const { StarterGuide }=require(path.join(compiled,'view/StarterGuide.js'));
+    const view=panelView(session().game),root=new Sprite().size(720,1200),layout={footerTop:960,safeTop:40};
+    const guide=new StarterGuide({read:()=>null,write(){}},view.art,view.ui),rects=[];
+    root.addChild(guide.spotlight);root.addChild(guide.node);
+    guide.spotlight.graphics.drawRect=(...args)=>rects.push(args);
+    const target=new Sprite().pos(300,1020).size(120,110);
+    target.visible=true;target.localToGlobal=point=>point.setTo(target.x+point.x,target.y+point.y);
+    guide.tick(1,layout,0,target);
+    assert(guide.spotlight.visible && !guide.spotlight.mouseEnabled);
+    assert.deepEqual(rects.at(-1).slice(0,5),[292,1012,136,126,null]);
+    target.y=650;
+    guide.tick(1,layout,0,target);
+    assert(guide.node.y+guide.node.height<target.y-8);
+    target.visible=false;guide.tick(1,layout,0,target);
+    assert(guide.node.visible && !guide.spotlight.visible);
+    target.visible=true;guide.tick(1,layout,0,target);
+    guide.tick(null,layout,0,target);
+    assert(!guide.node.visible && !guide.spotlight.visible);
 });

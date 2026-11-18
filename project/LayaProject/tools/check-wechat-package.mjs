@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-// 首屏在微信主包，其他运行素材从 GitHub 下载。仅微信目录占用平台包体。
+// 首屏在微信主包，其他运行素材从 Gitee 下载。仅微信目录占用平台包体。
 // 此处保守用目录原始字节校验，微信工具上传压缩量另记，不能混作同一数据。
 const BUDGET = { main: 4 * 1024 * 1024, total: 30 * 1024 * 1024 };
 const [directory, reportPath, remoteDirectory] = process.argv.slice(2);
@@ -46,19 +46,38 @@ const launcher = 'resources/launcher.jpg';
 const launcherAsset = files.find(file => file.path === launcher);
 if (!mainFiles.includes(launcher) || launcherAsset?.sha256 !== hash(path.join(projectRoot, 'assets', launcher)))
     errors.push('主包启动图缺失或与工程字节不一致');
-const allowedMain = new Set([launcher, 'resources/layaAir.png']);
+const audioPaths = manifest.mainAudio.map(file => file.replace(/^bundles\//, 'resources/'));
+const allowedMain = new Set([launcher, 'resources/layaAir.png', ...audioPaths]);
+for (const file of audioPaths) {
+    if (files.find(entry => entry.path === file)?.sha256 !== hash(path.join(projectRoot, 'assets', file)))
+        errors.push('主包音频缺失或与工程不一致：' + file);
+}
 if ([...mainFiles, ...files.map(file => file.path)].some(file => file.startsWith('resources/') && !allowedMain.has(file)))
     errors.push('主包包含需要按阶段下载的资源');
 const filesByPath = new Map(remoteFiles.map(file => [file.path, file]));
 const exported = file => prefix + file + (file.endsWith('.mc') ? '.bin' : '');
-const expectedRemote = [...Object.keys(client.files).map(exported), prefix + 'fileconfig.json', prefix + 'game.js'].sort();
+const originalPaths = Object.entries(client.files).filter(([, entry]) => !entry.astcFor).map(([file]) => file);
+const expectedRemote = [...originalPaths.map(exported), prefix + 'fileconfig.json', prefix + 'game.js'].sort();
 if (JSON.stringify(expectedRemote) !== JSON.stringify([...filesByPath.keys()].sort()))
     errors.push('Laya 包外素材与版本清单不一致');
-if (Object.keys(client.files).length !== manifest.runtimeWhitelist.length) errors.push('客户端远程资源清单过期');
+const GITEE = 'https://gitee.com/sun-wen-sky/remote-res/raw/';
+const mirrorRoot = path.resolve(resRoot, '../../remote-res', client.version);
+const mirror = read('manifest.vdata', mirrorRoot);
+if (mirror.version !== client.version || Object.keys(mirror.files).length !== Object.keys(client.files).length)
+    errors.push('Gitee 发布清单与客户端不一致');
+for (const [file, item] of Object.entries(client.files)) {
+    const stamped = mirror.files[file];
+    if (stamped?.sha256 !== item.sha256 || stamped.stage !== item.stage || stamped.bytes !== item.bytes ||
+        stamped.astcFor !== item.astcFor || hash(path.join(mirrorRoot, file)) !== item.sha256)
+        errors.push('Gitee 发布字节不一致：' + file);
+    if (client.sources[item.source] !== GITEE + client.revision + '/' + client.version + '/')
+        errors.push('下载地址未绑定版本和提交：' + file);
+}
+if (originalPaths.length !== Object.values(manifest.stages).flat().length) errors.push('客户端远程资源清单过期');
 const remote = [];
 for (const [stage, paths] of Object.entries(manifest.stages)) {
-    const table = read(prefix + (stage === 'village' ? 'map' : 'enemies') + '/frames.json', remoteRoot);
-    const animations = read(prefix + (stage === 'village' ? 'characters' : 'enemies') + '/animations.json', remoteRoot);
+    const table = read(prefix + (stage === 'village' ? 'map' : 'enemies') + '/frames.vdata', remoteRoot);
+    const animations = read(prefix + (stage === 'village' ? 'characters' : 'enemies') + '/animations.vdata', remoteRoot);
     if (table.stage !== stage || !table.pages.length || table.pages.some(page => client.files[page.runtimeFile]?.stage !== stage))
         errors.push('图集页的阶段归属不一致：' + stage);
     for (const clip of animations.animations)
@@ -69,17 +88,15 @@ for (const [stage, paths] of Object.entries(manifest.stages)) {
         const source = path.join(projectRoot, 'assets', prefix, file), sourceHash = hash(source);
         if (hash(path.join(resRoot, bundled)) !== sourceHash || filesByPath.get(exported(file))?.sha256 !== sourceHash)
             errors.push('制作素材、工程或包外导出不一致：' + file);
-        const mirror = path.resolve(resRoot, '../remoteRes', client.version, file);
-        if (item?.stage !== stage || item.sha256 !== sourceHash || item.bytes !== fs.statSync(source).size || hash(mirror) !== sourceHash)
-            errors.push('GitHub 版本内容与导出不一致：' + file);
-        if (!client.sources[item?.source]?.endsWith('/' + client.revision + '/remoteRes/' + client.version + '/'))
-            errors.push('下载地址未绑定版本和提交：' + file);
+        if (item?.stage !== stage || item.sha256 !== sourceHash || item.bytes !== fs.statSync(source).size)
+            errors.push('Gitee 版本内容与导出不一致：' + file);
         bytes += fs.statSync(source).size;
     }
     remote.push({ stage, files: paths.length, bytes });
 }
 const release = fs.readFileSync(path.join(projectRoot, 'src/config/ReleaseInfo.ts'), 'utf8');
-if (release.match(/version: "([^"]+)"/)?.[1] !== client.version) errors.push('微信包与远程资源版本不一致');
+const build = release.match(/build: "([^"]+)"/)?.[1];
+if (!build || !bundleCode.includes(build)) errors.push('微信包与源码构建指纹不一致');
 const total = files.reduce((n,f) => n + f.bytes, 0);
 const mainPackageBytes = total;
 if (mainPackageBytes > BUDGET.main || total > BUDGET.total) errors.push('超出主包或合计容量限制');
