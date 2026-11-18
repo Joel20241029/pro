@@ -1,5 +1,5 @@
 import { ELITE, GROWTH, RULE, TOWERS } from "../game/GameConfig";
-import { RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC, TACTIC_USE, tacticDefinition } from "../config/TacticConfig";
+import { MIND_LOCK_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_CHARGE, SUMMON_TACTIC, TACTIC_NIGHT_USES, TACTIC_SLOTS, TACTIC_USE, tacticDefinition } from "../config/TacticConfig";
 import { STARTER_LESSONS } from "./config/StarterGuideConfig";
 
 function tacticRequirement(id: string) {
@@ -53,12 +53,14 @@ export const GUIDE_CHAPTERS: ReadonlyArray<{ title: string; sections: ReadonlyAr
         { title: "五类小怪，各有特点", body: "灰牙劫掠者是基础来敌；赤帽疾行者移动快；铁鬃卫士护甲高；石背野猪厚血、撞门较重；苔角巫医会降低附近防塔攻速。战前列表显示本夜的种类、数量和特点，向上滑动可看全。颜色和配件只改变外观，不额外增加属性。" },
         { title: "每年一场首领战", body: `每 ${RULE.yearDays} 夜出现一位首领：裂岩食人魔会召唤援兵；黑铁督军护甲高；霜脊狼王速度快；熔牙巨兽血量厚、撞门重；古木祭司会扰乱塔的攻速。前五场依次登场，之后循环；夜数和词缀仍会影响强度。` },
         { title: "先准备资源，再确认守夜", body: "启动图上的进度条会显示准备情况，地图、建筑和村民齐备后进入村庄。点击开始守夜时准备战斗素材，完成后再确认出战。准备期间不扣资源、不推进时间。失败可点重试，已经下载的文件会留在缓存中。" },
-        { title: "战技：白天准备，守夜施放", body: `首次守住一波后，排行下方出现战技入口。每夜携带一种，白天可免费切换。能用 ${TACTIC_USE.perNight} 次的战技，按下后冷却 ${TACTIC_USE.cooldownTicks * RULE.step} 个战斗秒，按钮按当前倍速计时。暂停时计时冻结，下一夜次数重置。大王之心开局自带，其余按守住波数逐个揭晓。点问号卡片可阅读未解锁战技的传闻。达到解锁波数后可查看效果，并用木材和粮食学习。传承保留已学会战技，纯净开始恢复初始战技。` },
+        { title: "战技：白天装配，守夜施放", body: `首次守住一波后，排行下方出现战技入口。大王之心和第一槽开局自带；${TACTIC_SLOTS.map((s, i) => `第${i + 2}槽守住${s.unlockWaves}波可用${s.wood}木＋${s.food}粮解锁`).join("，")}。白天选槽免费换战技，同一战技只能占一槽。各战技共享 ${TACTIC_NIGHT_USES[0]} 次施放机会，开齐三槽后增至 ${TACTIC_NIGHT_USES[2]} 次。` },
+        { title: "战技：共享间隔与冷却", body: `同时只生效一种战技，结束后等 ${TACTIC_USE.recoveryTicks * RULE.step} 个战斗秒再用下一个。可重复使用的战技从施放开始各自冷却 ${TACTIC_USE.cooldownTicks * RULE.step} 个战斗秒；暂停时计时冻结，新一夜次数和冷却重置。未解锁的战技可点问号看传闻。传承保留已学战技和已开槽位，纯净开始恢复初始状态。` },
         { title: "大王之心：短时加速集火", body: `所有已驻人的塔攻速提高 ${Math.round((RULE.bellSpeedMultiplier - 1) * 100)}%，持续 ${RULE.bellTicks * RULE.step} 个战斗秒。塔上金色光圈与倒计时表示正在生效。等敌人进入射程、比较密集时再用，单次伤害不变。` },
         { tactic: RAGE_TACTIC, title: "百毅靓之怒：强化每次攻击", body: `${tacticRequirement(RAGE_TACTIC)}全塔伤害提高50%，持续15个战斗秒。箭塔强化单体伤害，石塔强化范围伤害，寒塔只强化主目标伤害，减速不变。塔顶红白旋刃与倒计时表示正在生效。` },
         { tactic: SHIELD_TACTIC, title: "二楠之盾：守住最后一道门", body: `${tacticRequirement(SHIELD_TACTIC)}城门免疫触门伤害8个战斗秒。敌人到门仍退场，不回血、不反伤。青蓝护罩和倒计时表示生效，1倍约4现实秒，2倍约2.7现实秒。` },
-        { tactic: SPLIT_TACTIC, title: "分裂术·超：三目标齐射", body: `${tacticRequirement(SPLIT_TACTIC)}全塔每次同时攻击射程内至多3个不同目标，持续15个战斗秒。攻速、射程和单发伤害不变，石塔同轮溅射不叠伤，寒塔保留减速。金色光圈与倒计时表示生效。` },
-        { tactic: SUMMON_TACTIC, title: "智卓的召唤：分身冲锋", body: `${tacticRequirement(SUMMON_TACTIC)}分身在城门前集结后陆续沿路冲锋。每名分身撞上第一个敌人时，与敌人一同退场，对首领也有效。每夜可用 ${tacticDefinition(SUMMON_TACTIC).usesPerNight} 次。` },
+        { tactic: SPLIT_TACTIC, title: "分裂术·超：三目标齐射", body: `${tacticRequirement(SPLIT_TACTIC)}全塔每次同时攻击射程内至多3个不同目标，持续${tacticDefinition(SPLIT_TACTIC).ticks * RULE.step}个战斗秒。攻速、射程和单发伤害不变，石塔同轮溅射不叠伤，寒塔保留减速。金色光圈与倒计时表示生效。` },
+        { tactic: SUMMON_TACTIC, title: "智卓的召唤：分身冲锋", body: `${tacticRequirement(SUMMON_TACTIC)}${SUMMON_CHARGE.count}名分身在城门前集结，沿路冲锋，一人换一只小怪。每撞到首领一次，扣其最大生命的${SUMMON_CHARGE.bossHitPercent}%，对每只首领单次最多扣${SUMMON_CHARGE.bossMaxPercent}%。达到上限后，其余分身继续冲锋。每夜可用一次。` },
+        { tactic: MIND_LOCK_TACTIC, title: "宋磊·留诊：全场停步", body: `${tacticRequirement(MIND_LOCK_TACTIC)}全场怪物停步${tacticDefinition(MIND_LOCK_TACTIC).ticks * RULE.step}个战斗秒，首领和这段时间新入场的怪物也受影响。塔可照常攻击，首领仍会召唤或干扰防塔。每夜可用一次。` },
         { title: "倍速、暂停与换人", body: "可切换 1 倍、2 倍两档，默认 1 倍，2 倍推进更快。战技按战斗时间计时，切档不重置持续时间，暂停时不扣时间。15 战斗秒在两档分别约为 7.5、5 现实秒。打开面板临时暂停，关闭后继续；若你主动点过暂停，仍需点“继续守夜”。夜间调任不重置防塔攻击冷却或本夜技能次数。" },
         { title: "缺粮和缺人的后果", body: `口粮不足仍能开始守夜，但当夜防塔攻速降至 ${Math.round(RULE.hungerSpeed * 100)}%；大王之心和缺粮按倍率相乘。没有合格成年人驻守的塔不会攻击。请在出战预览检查资源与人数，这些是风险提醒，不会强制阻止你开始。` },
         { title: "季节与村规", body: `每季 ${RULE.seasonDays} 夜，每年 ${RULE.yearDays} 夜。春季有利耕作、秋季有利伐木，冬季口粮增加。清晨可选择持续一季的村规。守夜从第一年起固定采用最高 ${RULE.maxTier} 档，跨年自动延续，不再选择难度。村庄可以持续经营，没有预制的最后一关。` }

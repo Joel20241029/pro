@@ -3,6 +3,7 @@ import { ENEMIES, PADS, RULE } from "../../game/GameConfig";
 import { GameState } from "../../game/GameState";
 import { enemyPower } from "../../game/Growth";
 import { economy } from "../../game/VillageRules";
+import { equippedTactics } from "../../game/Tactics";
 import { ScrollList } from "../ScrollList";
 import { C, UI } from "../UiTheme";
 import { amount } from "../ViewText";
@@ -28,9 +29,19 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel) {
         "来敌数量按种类统计。敌军倍率是本夜的生命与撞门基准，词缀会再改变来敌。开始守夜时先结算生产与口粮，再按仓储保留库存。夜战中退出后重进，从本夜开头守起。");
     ctx.ui.label(box, `第 ${s.day} 夜 · 预计来敌 ${wave.entries.length} 名 · ${AFFIX_NAME[wave.affix]}`, 34, 108, 600, 29, C.cream, true, 48).align = "center";
     if (start) {
-        const selected = tacticDefinition(s.tactics.equipped), strip = new Laya.Sprite(); strip.pos(34, 162);
+        const selected = equippedTactics(s).filter(id => id !== null).map(tacticDefinition);
+        const strip = new Laya.Sprite(); strip.pos(34, 162);
         ctx.art.panel(strip, "panel_card", 600, 62); box.addChild(strip);
-        ctx.ui.iconValue(strip, selected.icon, `携带 ${selected.name}`, 18, 8, 438, 46, C.ink, 28, "left");
+        const width = 440 / selected.length;
+        for (const [i, tactic] of selected.entries()) {
+            if (selected.length === 1) ctx.ui.iconValue(strip, tactic.icon, `携带 ${tactic.name}`, 18, 8, 438, 46, C.ink, 28, "left");
+            else {
+                const x = 18 + i * width;
+                ctx.ui.image(strip, tactic.icon, x, 16, 30);
+                const name = ctx.ui.label(strip, tactic.name, x + 35, 8, width - 40, 22, C.ink, true, 46);
+                name.wordWrap = false; name.overflow = Laya.Text.SHRINK;
+            }
+        }
         ctx.ui.button(strip, "更换", 474, 7, 112, () => ctx.open({ type: "tactics", back: p }), C.green, 48, day);
     }
     ctx.ui.label(box, "敌人／数量", 38, enemyTop, 264, 27, C.cream, true, 39);

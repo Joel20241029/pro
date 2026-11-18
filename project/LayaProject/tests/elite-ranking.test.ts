@@ -90,7 +90,7 @@ test("All three tower types gain damage with unchanged speed/range/slow and armo
             if (d < distance) { progress = at; distance = d; }
         }
         ok(distance < TOWERS[kind].range, "elite damage fixture must be in range");
-        for (const b of [normal, elite]) { b.base.wave!.entries = []; b.enemies.push({ appearanceSeed: 1, seq: 999, kind: "enemy_armored", progress, hp: 500, speed: 0, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 }); b.step(); }
+        for (const b of [normal, elite]) { b.base.wave!.entries = []; b.enemies.push({ appearanceSeed: 1, seq: 999, kind: "enemy_armored", progress, hp: 500, maxHp: 500, speed: 0, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 }); b.step(); }
         const a = normal.enemies.find(e => e.seq === 999)!, b = elite.enemies.find(e => e.seq === 999)!;
         eq(500 - b.hp, Math.floor(TOWERS[kind].damage * 1.25 * (1 - .4 / (kind === "STONE" ? 2 : 1))));
         ok(a.progress === b.progress && a.slow === b.slow && a.slowTicks === b.slowTicks && normal.shots.length === elite.shots.length);

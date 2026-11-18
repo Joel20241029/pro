@@ -61,7 +61,7 @@ test("Initial battle is winnable, replay is deterministic", () => {
 });
 test("Gate arrival loss precedes a tower firing in same tick", () => {
     const s = createGame(1); applyCommand(s, { type: "NIGHT" }); const b = new BattleSimulation(s); b.gate = 1;
-    b.enemies.push({ appearanceSeed: 1, seq: 100, kind: "enemy_raider", progress: PATH_LENGTH - .1, hp: 1, speed: 36, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 }); b.step(); equal(b.outcome, "LOSE"); equal(b.shots.length, 0);
+    b.enemies.push({ appearanceSeed: 1, seq: 100, kind: "enemy_raider", progress: PATH_LENGTH - .1, hp: 1, maxHp: 1, speed: 36, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 }); b.step(); equal(b.outcome, "LOSE"); equal(b.shots.length, 0);
 });
 test("Save write-before failure preserves candidate and retries once", () => {
     const m = new MemoryStore(), store = new SaveStore(m); equal(store.inspect().kind, "new"); store.prepare(createGame(1)); m.fail = "BEFORE"; rejects(() => store.commit()); const raw = store.pending!.raw; m.fail = "NONE"; store.commit(); equal(m.writes, 1); equal([...m.values.values()][0], raw); equal(new SaveStore(m).inspect().kind, "ready");

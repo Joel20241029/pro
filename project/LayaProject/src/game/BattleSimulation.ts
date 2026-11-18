@@ -49,7 +49,7 @@ export class BattleSimulation {
     volleys = 0;
     gate: number;
     private tacticUses = 0;
-    private readonly tacticBudget: number;
+    readonly tacticBudget: number;
     private readonly personal = new Map<string, { uses: number; readyAt: number }>();
     private sharedReadyAt = 0;
     bellTicks = 0;

@@ -14,6 +14,7 @@ import { drawBuildingPanel } from "./panels/BuildingPanels";
 import { drawWavePanel } from "./panels/WavePanel";
 import { drawJournalPanel } from "./panels/JournalPanels";
 import { drawTacticPanel } from "./panels/TacticPanels";
+import { equippedTactics } from "../game/Tactics";
 import { PanelMotion } from "./PanelMotion";
 import { attachPanelHelp } from "./PanelHelp";
 /** 面板状态与 CHOICE 暂停的唯一所有者。绘制模块不会各自缓存面板或注册刷新回调。 */
@@ -78,11 +79,11 @@ export class GamePanels implements PanelContext {
     }
     draw(s: GameState, p: Panel) {
         if (p.pendingTactic && !this.game.saves.pending) {
-            const accepted = !this.game.error && s.tactics.equipped === p.pendingTactic;
+            const accepted = !this.game.error && equippedTactics(s)[p.pendingTactic.slot] === p.pendingTactic.id;
             delete p.pendingTactic;
             if (accepted) {
                 const list = p.type === "tactic" ? p.back! : p;
-                p = list.back?.type === "start" ? list.back : list;
+                p = list?.back?.type === "start" && equippedTactics(s).length === 1 ? list.back : list ?? p;
                 this.current = p;
             }
         }

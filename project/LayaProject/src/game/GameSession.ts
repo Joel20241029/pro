@@ -75,7 +75,7 @@ export class GameSession {
         // 已确认传承保留学会结果；新村仍默认携带大王之心。纯净开始走独立路径。
         if (this.state) {
             next.tactics.learned = this.state.tactics.learned.slice();
-            if (this.state.tactics.extraSlots) next.tactics.extraSlots = this.state.tactics.extraSlots.map(() => null);
+            if (this.state.tactics.extraSlots) next.tactics.extraSlots = this.state.tactics.extraSlots.map((): null => null);
         }
         this.submit(next, false, "NORMAL");
     }

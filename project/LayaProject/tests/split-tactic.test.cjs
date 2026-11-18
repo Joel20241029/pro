@@ -29,10 +29,10 @@ function battle(kind = 'ARROW', active = true) {
 }
 const shots = b => b.feedback.filter(e => e.type === 'shot');
 
-test('split uses the approved name, cost, thirty current-village wins and fifteen combat seconds', () => {
+test('split uses the approved name, cost, thirty current-village wins and twelve combat seconds', () => {
     const t = tacticDefinition(SPLIT_TACTIC);
     assert.deepEqual([t.name, t.effect, t.targets, t.ticks * RULE.step, t.unlockWaves, t.wood, t.food],
-        ['分裂术·超', 'MULTI_TARGET', 3, 15, 30, 80, 40]);
+        ['分裂术·超', 'MULTI_TARGET', 3, 12, 30, 80, 40]);
     const s = createGame(7); s.completed = 29; s.day = 30; s.legacy.bestNight = 100;
     assert.equal(tacticUnavailableReason(s, SPLIT_TACTIC, 'LEARN'), '还需守住 1 波');
     const before = clone(s); assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC })); assert.deepEqual(s, before);
@@ -178,10 +178,11 @@ test('purchase persists once; pause, reassign, triple speed and cold reload keep
     const saves = new SaveStore(port); saves.inspect(); saves.prepare(learned()); saves.commit();
     const g = new GameSession(saves); g.load(); g.state.food = 100; g.command({ type: 'NIGHT' });
     const b = g.battle; assert.equal(b.tactic.id, SPLIT_TACTIC); assert.equal(g.state.night.tactic, SPLIT_TACTIC);
-    g.bell(); assert.equal(b.bellTicks, 300); g.pause('CHOICE'); g.update(.25); assert.equal(b.bellTicks, 300);
-    assert(g.reassign(0, g.state.people[2].id)); assert.equal(g.battle, b); assert.equal(b.bellTicks, 300);
-    g.resume('CHOICE'); g.command({ type: 'SPEED', value: 3 }); g.update(.1); assert.equal(b.bellTicks, 294);
-    g.bell(); assert.equal(b.bellTicks, 294);
+    const duration = tacticDefinition(SPLIT_TACTIC).ticks;
+    g.bell(); assert.equal(b.bellTicks, duration); g.pause('CHOICE'); g.update(.25); assert.equal(b.bellTicks, duration);
+    assert(g.reassign(0, g.state.people[2].id)); assert.equal(g.battle, b); assert.equal(b.bellTicks, duration);
+    g.resume('CHOICE'); g.command({ type: 'SPEED', value: 3 }); g.update(.1); assert.equal(b.bellTicks, duration - 6);
+    g.bell(); assert.equal(b.bellTicks, duration - 6);
     const reopened = new GameSession(new SaveStore(port)); reopened.load();
     assert.equal(reopened.battle.tactic.id, SPLIT_TACTIC); assert.equal(reopened.battle.tacticUsesLeft, 2);
     assert(reopened.state.tactics.learned.includes(SPLIT_TACTIC));

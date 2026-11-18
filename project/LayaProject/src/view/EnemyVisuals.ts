@@ -10,16 +10,10 @@ const MIND_VISUAL = { sway: 2.5, cycle: .55, markSize: 24, violet: "#6739a2", li
 export class EnemyVisuals {
     private key = "";
     private body = new Laya.Sprite();
-    private mark = new Laya.Sprite();
+    private mark?: Laya.Sprite;
     constructor(readonly node: Laya.Sprite, private art: SpriteFrames) {
         this.body.name = "EnemyBody"; this.body.mouseEnabled = false;
         node.addChild(this.body);
-        this.mark.name = "MindLockMark"; this.mark.mouseEnabled = false; this.mark.visible = false;
-        const g = this.mark.graphics;
-        g.drawCircle(0, 0, MIND_VISUAL.markSize / 2, MIND_VISUAL.violet, MIND_VISUAL.light, 1.5);
-        g.drawCurves(0, 0, [1, 4, -6, 4, -5, -2, -3, -7, 3, -6, 8, -3, 4, 2, 0, 4, -1, 0, 0, -2, 2, -1], MIND_VISUAL.light, 1.8);
-        this.mark.size(MIND_VISUAL.markSize, MIND_VISUAL.markSize);
-        node.addChild(this.mark);
     }
     draw(kind: EnemyKind, seed: number, walkDistance: number, mirror: boolean, flashing = false, death?: { scaleY: number; alpha: number }, shake = 0, mindTime?: number) {
         const definition = this.art.enemyLayouts[kind], look = ENEMY_LOOKS[kind];
@@ -36,12 +30,21 @@ export class EnemyVisuals {
         const phase = mindTime === undefined ? 0 : mindTime / MIND_VISUAL.cycle * Math.PI * 2 + seed % 7;
         this.body.x = (shake + (mindTime === undefined ? 0 : MIND_VISUAL.sway * Math.sin(phase))) / (mirror ? -scale : scale);
         const frame = definition.frames[index], canvas = definition.canvas;
-        this.mark.visible = mindTime !== undefined;
-        if (this.mark.visible) {
+        if (mindTime !== undefined) {
+            if (!this.mark) {
+                this.mark = new Laya.Sprite();
+                this.mark.name = "MindLockMark"; this.mark.mouseEnabled = false;
+                const g = this.mark.graphics;
+                g.drawCircle(0, 0, MIND_VISUAL.markSize / 2, MIND_VISUAL.violet, MIND_VISUAL.light, 1.5);
+                g.drawCurves(0, 0, [1, 4, -6, 4, -5, -2, -3, -7, 3, -6, 8, -3, 4, 2, 0, 4, -1, 0, 0, -2, 2, -1], MIND_VISUAL.light, 1.8);
+                this.mark.size(MIND_VISUAL.markSize, MIND_VISUAL.markSize);
+                this.node.addChild(this.mark);
+            }
+            this.mark.visible = true;
             this.mark.pos(definition.foot.x, frame.y + canvas * .06 - MIND_VISUAL.markSize * .58 / scale);
             this.mark.scale((mirror ? -1 : 1) / scale, 1 / scale);
             this.mark.rotation = Math.sin(phase) * 12;
-        }
+        } else if (this.mark) this.mark.visible = false;
         if (key === this.key) return;
         this.key = key;
         this.node.size(canvas, canvas).pivot(definition.foot.x, definition.foot.y);

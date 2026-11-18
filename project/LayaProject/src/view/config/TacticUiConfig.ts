@@ -6,6 +6,8 @@ export const TACTIC_UI = {
     side: { x: 6, top: 12, size: 96, gap: 12, icon: 44, iconY: 8, textY: 55, font: 26 },
     // 紧凑条目留一行给费用、限制及操作。战斗时在列表下单独说明暂不可换。
     listTop: 112, rowHeight: 174, rowStep: 186, footer: 54,
+    // 三个等宽槽按钮及一行当选槽操作，同一张卡展示解锁材料。
+    slots: { top: 108, x: 34, width: 190, gap: 15, height: 56, actionY: 68, actionH: 44, bodyGap: 124 },
     icon: 96, rowTextX: 136, rowTextWidth: 420,
     actionX: 376, actionY: 112, actionWidth: 188, actionHeight: 48,
     // 展开传闻高度按真实文字测量，这里只定义边距、标题区和动作行。

@@ -477,7 +477,7 @@ test('all locked tactics have anonymous cards and their details are read-only un
     const {game}=session(),view=panelView(game),{TACTICS}=require(path.join(compiled,'config/TacticConfig'));
     view.ui.image=imageNode;const labels=n=>[n.text||'',...n.children.flatMap(labels)].join(' ');
     const nodes=n=>[n,...n.children.flatMap(nodes)];
-    for(const [waves,revealed]of [[0,1],[9,1],[10,2],[19,2],[20,3],[29,3],[30,4],[39,4],[40,5]]){
+    for(const [waves,revealed]of [[0,1],[9,1],[10,2],[19,2],[20,3],[29,3],[30,4],[39,4],[40,5],[49,5],[50,6]]){
         game.state.completed=waves;view.open({type:'tactics'});const content=view.box.getChildByName('ScrollList').content;
         assert.equal(content.children.filter(c=>c.name.startsWith('TacticCard:')).length,revealed);
         assert.equal(content.children.filter(c=>c.name==='UnknownTactic').length,TACTICS.length-revealed);
@@ -489,7 +489,7 @@ test('all locked tactics have anonymous cards and their details are read-only un
     const list=view.current, rows=view.box.getChildByName('ScrollList');
     rows.setOffset(rows.maximum);
     rows.content.children.at(-1).getChildByName('button:查看传闻').event('click');
-    assert.equal(view.current.id,TACTICS[4].id);
+    assert.equal(view.current.id,TACTICS.at(-1).id);
     assert.equal(view.current.back,list);
     const before=JSON.stringify(game.state.tactics);
     assert.deepEqual(nodes(view.box).filter(node=>node.name.startsWith('button:')).map(node=>node.name),['button:‹']);
@@ -517,7 +517,7 @@ test('all locked tactics have anonymous cards and their details are read-only un
     game.state.wood=tactic.wood;game.state.food=tactic.food;
     const commands=[];view.send=command=>commands.push(command);
     view.open({type:'tactic',id:tactic.id});view.box.getChildByName('button:学习并携带').event('click');
-    assert.deepEqual(commands,[{type:'TACTIC_LEARN',id:tactic.id}]);
+    assert.deepEqual(commands,[{type:'TACTIC_LEARN',id:tactic.id,slot:0}]);
     game.state.completed=0;
     view.open({type:'guide',tab:4});for(const t of TACTICS.slice(1))assert(!labels(view.box).includes(t.name));
 });

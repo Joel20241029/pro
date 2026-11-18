@@ -23,7 +23,7 @@ function state() {
 }
 
 function enemy(seq, progress, speed = 0, kind = 'enemy_raider') {
-    return { seq, kind, appearanceSeed: seq, progress, hp: 100000, speed, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
+    return { seq, kind, appearanceSeed: seq, progress, hp: 100000, maxHp: 100000, speed, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
 }
 
 function setup(b) {
@@ -78,8 +78,8 @@ test('20 units gather without stepping and follow the curved road to its end; a 
     while (b.tacticCooldownTicks > 0) b.step();
     b.bell();
     assert.equal(b.summonCharge, rush);
-    assert.equal(b.tacticUsesLeft, 0);
-    assert.equal(new BattleSimulation(b.base).tacticUsesLeft, 1);
+    assert.equal(b.usesLeftFor(b.tactic), 0);
+    assert.equal(new BattleSimulation(b.base).usesLeftFor(b.tactic), 1);
 });
 
 test('swept collisions consume exactly one summon per living enemy, with a cap of twenty', () => {
@@ -111,6 +111,27 @@ test('scattered summons can make contact on either edge in straight and curved s
     }
 });
 
+test('summon caps boss damage at 45% per cast and surviving bosses flash without defeat cues', () => {
+    const b = battle();
+    const boss = enemy(8, 410, 0, 'enemy_commander');
+    const small = enemy(9, 140);
+    b.enemies = [boss, small];
+    gathered(b);
+    const bossHits = [], view = new CombatPresentation();
+    while (b.summonCharge.active) {
+        b.step();
+        for (const hit of b.feedback.filter(e => e.type === 'summon' && e.enemy.seq === boss.seq)) {
+            bossHits.push(hit.enemy.hp);
+            view.sync(b, [hit]);
+            assert(view.flashing(boss.seq));
+            assert(!view.deaths.has(boss.seq));
+            assert(!view.takeDefeatCue());
+        }
+    }
+    assert.deepEqual(bossHits, [85_000, 70_000, 55_000]);
+    assert.equal(small.hp, 0, 'remaining summons run past the capped boss');
+});
+
 test('scattered summons start in stages, move at different speeds and can overtake', () => {
     const b = battle(); b.enemies[0].hp = 0;
     b.base.wave.entries.push({ tick: 5000, kind: 'enemy_raider', appearanceSeed: 1 });
@@ -137,13 +158,14 @@ test('scattered summons start in stages, move at different speeds and can overta
     assert(overtook);
 });
 
-test('boss contact before the gate wins, while an arrival before any contact still damages the gate', () => {
+test('boss contact before the gate applies percentage damage and a surviving boss can still reach the gate', () => {
     const b = battle(); gathered(b);
     b.enemies.push(enemy(0, PATH_LENGTH - 9, 400, 'enemy_commander'));
     b.enemies.push(enemy(1, PATH_LENGTH, 40));
     b.step();
     const hit = b.feedback.find(e => e.type === 'summon');
     assert.equal(hit.enemy.kind, 'enemy_commander');
+    assert.equal(hit.enemy.hp, 85000);
     assert(hit.enemy.progress < PATH_LENGTH);
     const { x, y } = enemyPoint(hit.enemy);
     assert(Math.hypot(x - hit.at.x, y - hit.at.y) <= SUMMON_CHARGE.contact.boss.x);
@@ -164,7 +186,7 @@ test('a new charge respects saved speed and pauses, and the last hit settles imm
     assert.equal(b.tick, SUMMON_CHARGE.gatherTicks);
     assert(b.summonCharge.villagers.every(v => v.distance === 0));
     const start = b.summonCharge.villagers[0].progress;
-    b.enemies = [enemy(0, start - 18, 70, 'enemy_commander'), enemy(1, start - 10)];
+    b.enemies = [enemy(0, start - 18, 70), enemy(1, start - 10)];
     b.enemies[1].hp = 0; // A lethal tower hit from an earlier combat step cannot consume another unit.
     g.update(RULE.step);
     assert.equal(g.battle, null);

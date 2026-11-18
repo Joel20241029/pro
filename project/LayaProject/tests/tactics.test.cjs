@@ -2,7 +2,7 @@ const { test, after } = require('node:test'), assert = require('node:assert/stri
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 const read = name => require(path.join(compiled, name + '.js'));
-const { TACTIC_USE, TACTICS, DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC, validateTactics, tacticDefinition } = read('config/TacticConfig');
+const { TACTIC_USE, TACTICS, DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC, MIND_LOCK_TACTIC, validateTactics, tacticDefinition } = read('config/TacticConfig');
 const { RULE } = read('game/GameConfig');
 const { createGame, applyCommand } = read('game/VillageRules');
 const { clone } = read('game/GameState');
@@ -43,7 +43,7 @@ function fixture(s = state()) {
 }
 
 test('production includes the summon while preserving the free heart combat parameters', () => {
-    assert.deepEqual(production.map(t => t.id), [DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC]);
+    assert.deepEqual(production.map(t => t.id), [DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC, MIND_LOCK_TACTIC]);
     const t = production[0];
     assert.equal(t.wood + t.food + t.unlockWaves, 0);
     assert.equal(t.ticks, RULE.bellTicks); assert.equal(t.multiplier, RULE.bellSpeedMultiplier);
@@ -207,9 +207,9 @@ test('detail navigation returns only after committed purchase, preserves list or
             const render = () => { if (panels.current) panels.draw(f.game.state, panels.current); };
             const panels = new GamePanels(f.game, {}, {}, {}, {}, {}, render, { ready: () => true });
             f.game.changed = render; panels.open(detail);
-            detail.pendingTactic = learnedId; f.port.failure = 'before';
+            detail.pendingTactic = {id: learnedId, slot: 0}; f.port.failure = 'before';
             panels.send({ type: 'TACTIC_LEARN', id: learnedId });
-            assert.equal(panels.current, detail); assert.equal(detail.pendingTactic, learnedId);
+            assert.equal(panels.current, detail); assert.deepEqual(detail.pendingTactic, {id: learnedId, slot: 0});
             f.port.failure = null; f.game.retry();
             assert.equal(panels.current, fromStart ? start : list);
             assert.equal(list.rowOrder, order); assert.equal(list.scroll, 84);

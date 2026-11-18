@@ -14,7 +14,8 @@ export type Panel = {
     rowOrder?: string[];
     /** 战技详情/战前返回链仅用于当前面板，保存失败时保留，成功后按来源导航。 */
     back?: Panel;
-    pendingTactic?: string;
+    pendingTactic?: { id: string; slot: number };
+    tacticSlot?: number;
     tab?: number;
     /** 标签换页后为新的选中按钮延续松手动效，在本次渲染消费。 */
     tabFeedback?: boolean;

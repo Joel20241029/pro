@@ -18,7 +18,7 @@ function battleAt(index: number, kind: TowerKind) {
 }
 /** 高耐久测试靶从入口完整走到城门，让后排塔也有目标；仅测试夹具增加 HP，不修改正式敌人数值。 */
 function durableRunner(): Enemy {
-    return { seq: 100, appearanceSeed: 1, kind: "enemy_runner", progress: 0, hp: 1000000, speed: ENEMIES.enemy_runner.speed * 1.1, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
+    return { seq: 100, appearanceSeed: 1, kind: "enemy_runner", progress: 0, hp: 1000000, maxHp: 1000000, speed: ENEMIES.enemy_runner.speed * 1.1, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
 }
 function collectShots(battle: BattleSimulation): Shot[] {
     const shots: Shot[] = [];

@@ -14,7 +14,7 @@ export class NightControls {
     readonly node = new Laya.Sprite();
     private readonly status: Laya.Text;
     private readonly buttons: { tactic: TacticDefinition; heart: Laya.Sprite; skin: Laya.Sprite; icon: Laya.Sprite; note: Laya.Text;
-        ring: Laya.Sprite; ratio: number; muted: boolean; shownTicks: number; shownClock: string | null }[];
+        ring: Laya.Sprite; muted: boolean; shownTicks: number; shownClock: string | null }[];
 
     constructor(private game: GameSession, state: GameState, ui: UiWidgets, panels: GamePanels, refresh: () => void) {
         this.node.name = "NightControls";
@@ -61,7 +61,7 @@ export class NightControls {
             note.name = "HeartState"; note.align = "center"; note.wordWrap = false; note.overflow = Laya.Text.SHRINK;
             const ring = new Laya.Sprite(); ring.name = "HeartCountdownRing"; ring.mouseEnabled = false;
             ring.scale(ratio, ratio); face.addChild(ring);
-            return { tactic, heart, skin, icon, note, ring, ratio, muted: false, shownTicks: -1, shownClock: null };
+            return { tactic, heart, skin, icon, note, ring, muted: false, shownTicks: -1, shownClock: null as string | null };
         });
         this.update();
     }

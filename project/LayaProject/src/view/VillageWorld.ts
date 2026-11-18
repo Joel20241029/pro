@@ -415,7 +415,7 @@ export class VillageWorld {
         if (presentation && this.art.ready("night")) {
             const mindTime = presentation.mindLocked ? presentation.tick * RULE.step : undefined;
             const visibleEnemies = [...(presentation.outcome ? [] : presentation.enemies).map(enemy => ({ enemy, mindTime })),
-                ...Array.from(this.feedback.deaths.values(), ({ enemy }) => ({ enemy, mindTime: undefined }))];
+                ...Array.from(this.feedback.deaths.values(), ({ enemy }) => ({ enemy, mindTime: undefined as number | undefined }))];
             this.reserveEnemies(visibleEnemies.length);
             visibleEnemies.forEach(({ enemy: e, mindTime }, i) => {
                 const n = this.enemies[i], at = enemyPoint(e);
