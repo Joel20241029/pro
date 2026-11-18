@@ -52,6 +52,8 @@ export const HUD = {
     night: {
         status: { x: 28, y: 8, width: 664, height: 32, font: 24 },
         side: { xs: [72, 504], y: 92, width: 144, height: 112, icon: 44, iconY: 12, textY: 68, textHeight: 34, font: 28 },
+        // 三枚战技居中等距，左右为暂停和倍速；下面保留安全区留白。
+        multi: { sideXs: [18, 602], sideWidth: 100, center: 360, pitch: 138, size: 124, y: 72 },
         heart: { icon: 60, iconY: 20, textY: 86, textHeight: 40, noteY: 128, noteHeight: 28, noteFont: 22, stroke: 1.4 },
         ring: { radius: 90, width: 4, segments: 64, color: "#fff0a3", track: "#a76b26", cooldownColor: "#e6eddb", cooldownTrack: "#80916e" }
     },

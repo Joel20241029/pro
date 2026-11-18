@@ -216,7 +216,8 @@ export class GameHud {
                 const effect = tactic.effect === "GATE_INVULNERABLE" ? "城门无敌" :
                     tactic.effect === "MULTI_TARGET" ? `同时攻击 ${tactic.targets} 目标` :
                     tactic.effect === "SUMMON_CHARGE" ? (battle.summonCharge?.gathered === 1 ? "分身冲锋中" : "分身集结中") :
-                    `${tactic.effect === "ATTACK_DAMAGE" ? "伤害" : "攻速"} +${Math.round((tactic.multiplier - 1) * 100)}%`;
+                    tactic.effect === "MIND_LOCK" ? "全场定身" : "multiplier" in tactic ?
+                        `${tactic.effect === "ATTACK_DAMAGE" ? "伤害" : "攻速"} +${Math.round((tactic.multiplier - 1) * 100)}%` : "";
                 const duration = tactic.effect === "SUMMON_CHARGE" ? "" : ` · 还剩 ${seconds}秒`;
                 this.nightStatus.text = ringing ? `${tactic.name} · ${effect}${duration}` : `守夜中 · 已守 ${amount(s.completed)} 波 · 齐心护家园`;
             }

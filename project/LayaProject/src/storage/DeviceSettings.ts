@@ -12,7 +12,7 @@ export class DeviceSettings {
 
     resolve(previous: Settings): Settings {
         if (!this.current) {
-            this.current = { ...previous };
+            this.current = { speed: previous.speed, music: previous.music };
             try {
                 const raw = this.storage.read(KEY);
                 if (raw !== null) {
@@ -20,7 +20,7 @@ export class DeviceSettings {
                     if (!saved || typeof saved.music !== "boolean" ||
                         (saved.speed !== RULE.minSpeed && saved.speed !== RULE.maxSpeed))
                         throw new Error("设备设置数据无效");
-                    this.current = saved;
+                    this.current = { speed: saved.speed, music: saved.music };
                 }
             } catch (error) { console.warn("[设备设置] 使用存档中的有效设置", error); }
         }
@@ -42,6 +42,6 @@ export class DeviceSettings {
             console.warn("[设备设置] 保存失败", error);
             throw new Error("本次设置未能保存，请重试");
         }
-        this.current = { ...settings };
+        this.current = { speed: settings.speed, music: settings.music };
     }
 }

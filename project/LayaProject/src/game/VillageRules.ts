@@ -8,7 +8,7 @@ import { dailyRationAmount } from "./DailyRation";
 import { person, capacity, canMarry, birthUnavailableReason, economy, policy } from "./VillageQueries";
 import { autoAssignJobs, autoAssignOperators, assignOperator } from "./VillageJobs";
 import { requireRule, spend, newId, remember, pruneHistory } from "./VillageStateOps";
-import { applyTactic } from "./Tactics";
+import { applyTactic, unlockTacticSlot } from "./Tactics";
 /** 原村务 API 保持不变；内部模块只依赖具体实现，禁止反向引用此入口。 */
 export { createGame } from "./VillageCreation";
 export { finishNight } from "./VillageLifecycle";
@@ -17,6 +17,10 @@ export { JOB_NAMES, autoAssignJobs, autoAssignOperators, assignOperator } from "
 export type Command = {
     type: "TACTIC_LEARN" | "TACTIC_EQUIP";
     id: string;
+    slot?: number;
+} | {
+    type: "TACTIC_UNLOCK_SLOT" | "TACTIC_CLEAR_SLOT";
+    slot: number;
 } | {
     type: "DAILY_RATION";
     date: string;
@@ -114,7 +118,14 @@ export function applyCommand(s: GameState, c: Command) {
     switch (c.type) {
         case "TACTIC_LEARN":
         case "TACTIC_EQUIP":
-            applyTactic(s, c.id, c.type === "TACTIC_LEARN" ? "LEARN" : "EQUIP");
+            applyTactic(s, c.id, c.type === "TACTIC_LEARN" ? "LEARN" : "EQUIP", c.slot);
+            break;
+        case "TACTIC_UNLOCK_SLOT":
+            unlockTacticSlot(s, c.slot);
+            break;
+        case "TACTIC_CLEAR_SLOT":
+            requireRule(Number.isInteger(c.slot) && c.slot > 0 && !!s.tactics.extraSlots?.[c.slot - 1], "该槽位没有战技");
+            s.tactics.extraSlots![c.slot - 1] = null;
             break;
         case "JOB": {
             const p = person(s, c.id);
@@ -232,6 +243,7 @@ export function applyCommand(s: GameState, c: Command) {
             autoAssignOperators(s);
             const e = economy(s);
             s.night = { adults: s.people.filter(isWorkingAdult).map(p => p.id), elders: s.people.filter(isElder).map(p => p.id), cared: s.people.filter(p => isWorkingAdult(p) && p.job === "CARE").map(p => p.careChild!), hungry: e.hungry, tactic: s.tactics.equipped };
+            if (s.tactics.extraSlots) s.night.extraSlots = s.tactics.extraSlots.slice();
             s.food = e.endFood;
             s.wood = e.endWood;
             s.phase = "NIGHT";

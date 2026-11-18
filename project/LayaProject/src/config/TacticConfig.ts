@@ -2,8 +2,11 @@ import { RULE } from "./RuleConfig";
 import { RESOURCE_CONTRACT } from "./ResourceManifest";
 import { PATH_LENGTH } from "../game/BattleRoad";
 
-/** 每场守夜最多两次，按下即开始计算 21 个战斗秒。效果、冷却和暂停共用固定战斗步。 */
-export const TACTIC_USE = { perNight: 2, cooldownTicks: 21 / RULE.step } as const;
+/** 单战技至多两次，从施放开始计个人冷却；共享间隔从本次效果结束开始计。 */
+export const TACTIC_USE = { perNight: 2, cooldownTicks: 21 / RULE.step, recoveryTicks: 4 / RULE.step } as const;
+/** 额外槽按次序购买；门槛错开战技学习，第三槽才增加守夜的共享次数。 */
+export const TACTIC_SLOTS = [{ unlockWaves: 15, wood: 80, food: 40 }, { unlockWaves: 35, wood: 160, food: 80 }] as const;
+export const TACTIC_NIGHT_USES = [2, 2, 3] as const;
 
 /** 村庄战技与村民专长分离；目录只登记已实现的效果。
  * 波数是当前村庄成功防守数，木粮为一次学习费用，已学会后的更换/施放免费。
@@ -20,7 +23,7 @@ export type TacticDefinition = TacticBase & (
     { effect: "ATTACK_SPEED" | "ATTACK_DAMAGE"; multiplier: number } |
     { effect: "MULTI_TARGET"; targets: number } |
     { effect: "GATE_INVULNERABLE" } |
-    { effect: "SUMMON_CHARGE" }
+    { effect: "SUMMON_CHARGE" | "MIND_LOCK" }
 );
 /** 本轮确认的分身冲锋节奏；时间用战斗步，距离用720图宽逻辑单位。 */
 const summonPace = { gatherTicks: 12, startDelayTicks: 7, minSpeed: 125, maxSpeed: 175, gateInset: 7 } as const;
@@ -32,6 +35,8 @@ export const SUMMON_CHARGE = {
     footprint: { halfWidth: 10, back: 16, front: 3 },
     // 半径涵盖分身与怪物的脚部，首领占地更宽。纵深以脚底而非头部或武器判定。
     contact: { ordinary: { x: 24, y: 14 }, boss: { x: 33, y: 19 } },
+    // 对每只首领每次冲锋最多结算三次伤害；百分比基于出生生命值。
+    bossHitPercent: 15, bossMaxPercent: 45,
     // 覆盖最迟起跑和最慢分身跑完整段路；全员退场时提前结束。
     maxTicks: summonPace.gatherTicks + summonPace.startDelayTicks +
         Math.ceil((PATH_LENGTH - summonPace.gateInset) / (summonPace.minSpeed * RULE.step)),
@@ -46,6 +51,8 @@ export const SHIELD_TACTIC = "ERNAN_SHIELD";
 export const SPLIT_TACTIC = "SPLIT_SUPER";
 /** 1.0.53 的召唤战技标识，用于战前快照和已学战技列表。 */
 export const SUMMON_TACTIC = "ZHIZHUO_SUMMON";
+/** 留诊战技的稳定存档标识；显示名称可独立调整。 */
+export const MIND_LOCK_TACTIC = "SONGLEI_MIND_LOCK";
 export const TACTICS: readonly TacticDefinition[] = [{
     id: DEFAULT_TACTIC, name: "大王之心", icon: "icon_crowned_heart", order: 0,
     summary: "全塔攻速 +50% · 持续 15 秒",
@@ -70,19 +77,26 @@ export const TACTICS: readonly TacticDefinition[] = [{
     effect: "GATE_INVULNERABLE", ticks: 8 / RULE.step, usesPerNight: TACTIC_USE.perNight
 }, {
     id: SPLIT_TACTIC, name: "分裂术·超", icon: "icon_arrow", order: 3,
-    summary: "全塔齐射 3 目标 · 持续 15 秒",
+    summary: "全塔齐射 3 目标 · 持续 12 秒",
     lore: "相传，守塔人超生得一副讨喜的模样，风流之名传遍了整条友谊路。他能一面同三个姑娘调笑，一面盯住三路来敌。后来，守塔人学会了他的三路齐射，至于他怎么哄得三个姑娘都不生气，至今无人参透。",
     // 第三项在守住30波后开放，保留三目标齐射原规则。
     unlockWaves: 30, wood: 80, food: 40,
-    // 与大王之心等长；每轮最多3个独立主目标，不足时不重复选人，不增加射程或攻速。
-    effect: "MULTI_TARGET", ticks: RULE.bellTicks, usesPerNight: TACTIC_USE.perNight, targets: 3
+    // 多槽启用后缩短至12秒，保持每轮三目标及各塔原攻速。
+    effect: "MULTI_TARGET", ticks: 12 / RULE.step, usesPerNight: TACTIC_USE.perNight, targets: 3
 }, {
     id: SUMMON_TACTIC, name: "智卓的召唤", icon: "portrait_hd_straw_down_idle", order: 4,
-    summary: `召出 ${SUMMON_CHARGE.count} 名分身冲锋 · 一人换一怪`,
+    summary: `召出 ${SUMMON_CHARGE.count} 名分身 · 一人换一小怪，对首领最多造成 ${SUMMON_CHARGE.bossMaxPercent}% 最大生命伤害`,
     lore: "智卓是文明里村的第一任村长，深得民心。相传，他无需战鼓，也无需号角。只消一声召唤，便有无数老谭儿甘愿为他赴阵，至死不退。",
     // 延续每10波揭晓。一次性学习费用低于初级仓储，施放不扣粮木及村庄人口。
     unlockWaves: 40, wood: 120, food: 60,
     effect: "SUMMON_CHARGE", ticks: SUMMON_CHARGE.maxTicks, usesPerNight: SUMMON_CHARGE.usesPerNight
+}, {
+    id: MIND_LOCK_TACTIC, name: "宋磊·留诊", icon: "icon_view", order: 5,
+    summary: "全场怪物停步 6 秒 · 首领也会停步",
+    lore: "吴家窑诊所的旧簿里，宋磊的名字排在头一页。他早年替村民诊心，最常开的医嘱是少动心思。后来他弃医从淫，自己头一个违了医嘱。村里至今还留着他的诊签，背面只写四个字：「照我说的。」",
+    // 第六项延续十波间隔。全场定身每夜限一次，避免轮番拖住整波怪物。
+    unlockWaves: 50, wood: 160, food: 80,
+    effect: "MIND_LOCK", ticks: 6 / RULE.step, usesPerNight: 1
 }];
 
 /** 配置错误直接暴露，不能把未知技能静默当成默认技能。供启动与配置测试共用。 */
@@ -93,7 +107,7 @@ export function validateTactics(definitions: readonly TacticDefinition[] = TACTI
         if (![t.id, t.name, t.icon, t.summary, t.lore].every(v => typeof v === "string" && v.trim().length > 0) ||
             seen.has(t.id) || !RESOURCE_CONTRACT.village.frames.includes(t.icon) ||
             ![t.order, t.unlockWaves, t.wood, t.food].every(n => Number.isSafeInteger(n) && n >= 0) ||
-            !["ATTACK_SPEED", "ATTACK_DAMAGE", "GATE_INVULNERABLE", "MULTI_TARGET", "SUMMON_CHARGE"].includes(t.effect) ||
+            !["ATTACK_SPEED", "ATTACK_DAMAGE", "GATE_INVULNERABLE", "MULTI_TARGET", "SUMMON_CHARGE", "MIND_LOCK"].includes(t.effect) ||
             !Number.isSafeInteger(t.usesPerNight) || t.usesPerNight < 1 || t.usesPerNight > TACTIC_USE.perNight ||
             !Number.isSafeInteger(t.ticks) || t.ticks <= 0 || t.ticks > TACTIC_USE.cooldownTicks ||
             (t.effect === "MULTI_TARGET" ? !Number.isSafeInteger(t.targets) || t.targets < 2 || t.targets > RULE.enemyCap || "multiplier" in t :

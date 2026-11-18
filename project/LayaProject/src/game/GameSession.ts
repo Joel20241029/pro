@@ -73,7 +73,10 @@ export class GameSession {
         }
         const next = createGame(Date.now() >>> 0, this.state?.legacy, trait, this.state ? this.state.history : [], this.state ? this.state.favorites : []);
         // 已确认传承保留学会结果；新村仍默认携带大王之心。纯净开始走独立路径。
-        if (this.state) next.tactics.learned = this.state.tactics.learned.slice();
+        if (this.state) {
+            next.tactics.learned = this.state.tactics.learned.slice();
+            if (this.state.tactics.extraSlots) next.tactics.extraSlots = this.state.tactics.extraSlots.map(() => null);
+        }
         this.submit(next, false, "NORMAL");
     }
     cleanStart() {
@@ -136,8 +139,9 @@ export class GameSession {
     resume(reason: Pause) { this.pauses.delete(reason); this.accumulator = 0; }
     hide = () => { this.pause("BACKGROUND"); this.changed(); };
     show = () => { this.resume("BACKGROUND"); this.pause("WAIT_RESUME"); this.enter(); };
-    get canRingBell() { return this.state?.phase === "NIGHT" && this.battle?.canCastTactic === true && !this.pauses.size && !this.saves.pending; }
-    bell() { if (this.canRingBell) { this.battle.bell(); this.changed(); } }
+    get canRingBell() { return this.canCast(this.battle?.tactics[0].id); }
+    canCast(id?: string) { return this.state?.phase === "NIGHT" && id !== undefined && this.battle?.canCast(id) === true && !this.pauses.size && !this.saves.pending; }
+    bell(id = this.battle?.tactics[0].id) { if (this.canCast(id)) { this.battle.bell(id); this.changed(); } }
     reassign(index: number, id: string) {
         // 夜间调任允许手动暂停或面板临时暂停；关闭面板只解除 CHOICE，其余暂停仍由各自流程管理。
         if (this.pauses.has("ASSETS") || !this.battle || (!this.pauses.has("USER") && !this.pauses.has("CHOICE")) || this.saves.pending) return false;

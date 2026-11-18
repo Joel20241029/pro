@@ -6,7 +6,7 @@ export { pointAt, PATH_LENGTH } from "./BattleRoad";
 import { clone, GameState } from "./GameState";
 import { assignOperator, person, policy } from "./VillageRules";
 import { enemyPower, levelPower } from "./Growth";
-import { TACTIC_USE, TacticDefinition, tacticDefinition } from "../config/TacticConfig";
+import { TACTIC_NIGHT_USES, TACTIC_USE, TacticDefinition, tacticDefinition } from "../config/TacticConfig";
 import { EnemyRoadStep, SummonCharge, SummonCollision } from "./SummonCharge";
 export interface Enemy {
     seq: number;
@@ -16,6 +16,7 @@ export interface Enemy {
     /** 累计实际二维路程；出生横向偏移不计，减速会同步放慢步态，不进入业务存档。 */
     walkDistance: number;
     hp: number;
+    maxHp: number;
     speed: number;
     slow: number;
     slowTicks: number;
@@ -37,7 +38,9 @@ export type CombatFeedback = { type: "shot"; shot: Shot; target: number; hurt: E
     ({ type: "summon"; tick: number } & SummonCollision);
 export class BattleSimulation {
     readonly base: GameState;
-    readonly tactic: TacticDefinition;
+    readonly tactics: readonly TacticDefinition[];
+    /** 当前或最近一次发动的战技，供效果退场动画继续读取。 */
+    tactic: TacticDefinition;
     enemies: Enemy[] = [];
     shots: Shot[] = [];
     feedback: CombatFeedback[] = [];
@@ -46,7 +49,9 @@ export class BattleSimulation {
     volleys = 0;
     gate: number;
     private tacticUses = 0;
-    private nextTacticTick = 0;
+    private readonly tacticBudget: number;
+    private readonly personal = new Map<string, { uses: number; readyAt: number }>();
+    private sharedReadyAt = 0;
     bellTicks = 0;
     summonCharge: SummonCharge | null = null;
     outcome: "WIN" | "LOSE" | null = null;
@@ -62,20 +67,31 @@ export class BattleSimulation {
         if (state.phase !== "NIGHT" || !state.wave || !state.night)
             throw new Error("缺少已保存的战前状态");
         this.base = clone(state);
-        this.tactic = { ...tacticDefinition(state.night.tactic) };
+        const loadout = [state.night.tactic, ...(state.night.extraSlots ?? [])];
+        this.tactics = loadout.filter(id => id !== null).map(id => ({ ...tacticDefinition(id) }));
+        this.tactic = this.tactics[0];
+        this.tacticBudget = TACTIC_NIGHT_USES[loadout.length - 1];
         this.gate = state.gate;
     }
     get operators() { return this.base.towers.map(t => t.operator); }
     get pendingCount() { return this.base.wave!.entries.length - this.cursor + this.queued.length; }
-    get tacticUsesLeft() { return this.tactic.usesPerNight - this.tacticUses; }
-    get tacticCooldownTicks() { return Math.max(0, this.nextTacticTick - this.tick); }
-    get canCastTactic() { return !this.outcome && this.tacticUsesLeft > 0 && this.tacticCooldownTicks === 0; }
+    get tacticUsesLeft() { return this.tacticBudget - this.tacticUses; }
+    get tacticCooldownTicks() { return this.cooldownFor(this.tactics[0].id); }
+    get canCastTactic() { return this.canCast(this.tactics[0].id); }
+    get mindLocked() { return !this.outcome && this.bellTicks > 0 && this.tactic.effect === "MIND_LOCK"; }
+    usesLeftFor(tactic: TacticDefinition) { return tactic.usesPerNight - (this.personal.get(tactic.id)?.uses ?? 0); }
+    cooldownFor(id: string) { return Math.max(0, this.sharedReadyAt - this.tick, (this.personal.get(id)?.readyAt ?? 0) - this.tick); }
+    canCast(id: string) {
+        const tactic = this.tactics.find(t => t.id === id);
+        return !!tactic && !this.outcome && this.bellTicks === 0 && this.tacticUsesLeft > 0 && this.usesLeftFor(tactic) > 0 && this.cooldownFor(id) === 0;
+    }
     /** 与扣血判定共用：最后一个有效步保护该步全部触门者，步末才减时。 */
     get gateProtected() { return !this.outcome && this.bellTicks > 0 && this.tactic.effect === "GATE_INVULNERABLE"; }
-    bell() {
-        if (!this.canCastTactic) return;
+    bell(id = this.tactics[0].id) {
+        if (!this.canCast(id)) return;
+        this.tactic = this.tactics.find(t => t.id === id)!;
         this.tacticUses++;
-        this.nextTacticTick = this.tick + TACTIC_USE.cooldownTicks;
+        this.personal.set(id, { uses: (this.personal.get(id)?.uses ?? 0) + 1, readyAt: this.tick + TACTIC_USE.cooldownTicks });
         this.bellTicks = this.tactic.ticks;
         if (this.tactic.effect === "SUMMON_CHARGE") this.summonCharge = new SummonCharge();
     }
@@ -84,7 +100,7 @@ export class BattleSimulation {
         const data = ENEMIES[kind], { affix, ordinaryHealthPercent } = this.base.wave!;
         const healthScale = data.boss ? 1 : (ordinaryHealthPercent ?? 100) / 100;
         const hp = Math.ceil(data.hp * enemyPower(this.base.day) * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1) * healthScale);
-        this.enemies.push({ seq: this.seq++, kind, appearanceSeed: seed, progress, walkDistance: 0, hp, speed: data.speed * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
+        this.enemies.push({ seq: this.seq++, kind, appearanceSeed: seed, progress, walkDistance: 0, hp, maxHp: hp, speed: data.speed * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
     }
     step() {
         if (this.outcome)
@@ -105,11 +121,12 @@ export class BattleSimulation {
         const existingSlow = new Set(this.enemies.filter(e => e.slowTicks > 0).map(e => e.seq));
         const refreshed = new Set<number>(), po = policy(this.base);
         const rush = this.summonCharge?.active ? this.summonCharge : null;
+        const hadEffect = this.bellTicks > 0, frozen = this.mindLocked;
         const traces: EnemyRoadStep[] = [];
         for (const e of this.enemies) {
             const startProgress = e.progress;
             const before = enemyPoint(e);
-            e.progress += e.speed * RULE.step * (e.slowTicks > 0 ? 1 - e.slow : 1);
+            if (!frozen) e.progress += e.speed * RULE.step * (e.slowTicks > 0 ? 1 - e.slow : 1);
             const after = enemyPoint(e);
             e.walkDistance += Math.hypot(after.x - before.x, after.y - before.y);
             if (rush && e.hp > 0) {
@@ -208,6 +225,7 @@ export class BattleSimulation {
                 e.slowTicks--;
         if (this.bellTicks > 0)
             this.bellTicks--;
+        if (hadEffect && this.bellTicks === 0) this.sharedReadyAt = this.tick + 1 + TACTIC_USE.recoveryTicks;
         this.tick++;
     }
 }

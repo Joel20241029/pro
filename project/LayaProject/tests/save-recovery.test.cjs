@@ -85,6 +85,8 @@ test('device settings inherit legacy values and write independently of a running
     game.command({ type: 'MUSIC', enabled: true });
     assert.equal(game.battle, battle);
     assert.deepEqual(keys.map(key => storage.read(key)), snapshot);
+    // Newer device settings may add fields that the village checksum cannot serialize.
+    storage.values.set('daidai_village.device_settings', '{"speed":2,"music":true,"interfaceScale":1.5}');
     const reopened = session(storage);
     assert.deepEqual(reopened.state.settings, { speed: 2, music: true });
     reopened.cleanStart();

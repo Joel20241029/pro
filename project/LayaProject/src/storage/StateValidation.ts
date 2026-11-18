@@ -4,7 +4,7 @@ import { gateCapacity, laborSlots, levelPower, storageCapacity } from "../game/G
 import { validRationDate } from "../game/DailyRation";
 import { capacity } from "../game/VillageQueries";
 import { WAVE } from "../config/DefenseConfig";
-import { DEFAULT_TACTIC, TACTICS } from "../config/TacticConfig";
+import { DEFAULT_TACTIC, TACTICS, TACTIC_SLOTS } from "../config/TacticConfig";
 /** 与生成器共用预算配置；覆盖一年末、累计跨年加成及最高挑战档，调难度后不会误拒合法存档。 */
 const MAX_WAVE_BUDGET = RULE.planCap * Math.max(...Object.values(ENEMIES).map(e => e.cost));
 function check(v: unknown, message = "存档数据不完整"): asserts v { if (!v) throw new Error(message); }
@@ -32,6 +32,12 @@ export function validateState(s: GameState) {
     check(["DAY", "NIGHT", "DAWN", "GAME_OVER"].includes(s.phase));
     check(s.tactics && ids(s.tactics.learned, TACTICS.length) && s.tactics.learned.includes(DEFAULT_TACTIC) &&
         s.tactics.learned.every(id => TACTICS.some(t => t.id === id)) && s.tactics.learned.includes(s.tactics.equipped), "战技存档无效");
+    const extra = s.tactics.extraSlots;
+    if (extra !== undefined) {
+        check(Array.isArray(extra) && extra.length <= TACTIC_SLOTS.length && extra.every(id => id === null || s.tactics.learned.includes(id)), "战技槽存档无效");
+        const carried = [s.tactics.equipped, ...extra.filter(id => id !== null)];
+        check(new Set(carried).size === carried.length, "战技槽重复携带");
+    }
     check(int(s.housing, 1) && int(s.gateLevel, 1) && int(storageCapacity(s), RULE.storageCap) && int(gateCapacity(s), RULE.gateMax));
     check(int(s.food, 0, storageCapacity(s)) && int(s.wood, 0, storageCapacity(s)) && int(s.gate, 0, gateCapacity(s)) && (s.phase === "GAME_OVER" ? s.gate === 0 : s.gate > 0));
     check(int(s.houses, 1, RULE.houseMax) && int(s.farm, 1) && int(s.logging, 1) && s.tier === RULE.maxTier && (s.policy === null || own(s.policy, POLICIES)));
@@ -81,6 +87,9 @@ export function validateState(s: GameState) {
     } else check(s.wave === null);
     if (s.phase === "NIGHT") {
         check(s.night && s.night.tactic === s.tactics.equipped, "本夜战技快照不一致");
+        const nightExtra = s.night.extraSlots;
+        check(nightExtra === undefined ? extra === undefined : Array.isArray(nightExtra) && nightExtra.length === extra?.length &&
+            nightExtra.every((id, i) => id === extra[i]), "本夜战技槽快照不一致");
         check(s.night && ids(s.night.adults, RULE.populationCap) && ids(s.night.elders, RULE.populationCap) && ids(s.night.cared, RULE.populationCap) && typeof s.night.hungry === "boolean");
         check(s.night.adults.length === workers.length && s.night.adults.every(id => workers.some(p => p.id === id)));
         check(s.night.elders.length === elders.length && s.night.elders.every(id => elders.some(p => p.id === id)));

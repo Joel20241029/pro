@@ -2,17 +2,26 @@ import { FEEDBACK } from "./config/FeedbackConfig";
 import { EnemyKind } from "../config/EnemyConfig";
 import { SpriteFrames } from "./SpriteFrames";
 import { ENEMY_LOOKS, ENEMY_PALETTES, ENEMY_SCALES } from "./config/EnemyVisualConfig";
+/** 留诊只摆动身体，脚底阴影、受击点与头顶的状态符号保留同一地图锚点。 */
+const MIND_VISUAL = { sway: 2.5, cycle: .55, markSize: 24, violet: "#6739a2", light: "#f3dcff" } as const;
 /** 一个敌人一个复用容器；阴影、帧序列和挂件共用源画布、脚底与父变换。
  * 每个池位只在换帧/换身份时重绘，绝不逐步创建纹理或滤镜。
  */
 export class EnemyVisuals {
     private key = "";
     private body = new Laya.Sprite();
+    private mark = new Laya.Sprite();
     constructor(readonly node: Laya.Sprite, private art: SpriteFrames) {
         this.body.name = "EnemyBody"; this.body.mouseEnabled = false;
         node.addChild(this.body);
+        this.mark.name = "MindLockMark"; this.mark.mouseEnabled = false; this.mark.visible = false;
+        const g = this.mark.graphics;
+        g.drawCircle(0, 0, MIND_VISUAL.markSize / 2, MIND_VISUAL.violet, MIND_VISUAL.light, 1.5);
+        g.drawCurves(0, 0, [1, 4, -6, 4, -5, -2, -3, -7, 3, -6, 8, -3, 4, 2, 0, 4, -1, 0, 0, -2, 2, -1], MIND_VISUAL.light, 1.8);
+        this.mark.size(MIND_VISUAL.markSize, MIND_VISUAL.markSize);
+        node.addChild(this.mark);
     }
-    draw(kind: EnemyKind, seed: number, walkDistance: number, mirror: boolean, flashing = false, death?: { scaleY: number; alpha: number }, shake = 0) {
+    draw(kind: EnemyKind, seed: number, walkDistance: number, mirror: boolean, flashing = false, death?: { scaleY: number; alpha: number }, shake = 0, mindTime?: number) {
         const definition = this.art.enemyLayouts[kind], look = ENEMY_LOOKS[kind];
         if (!definition) throw new Error("未声明的怪物布局：" + kind);
         let value = seed >>> 0;
@@ -24,10 +33,17 @@ export class EnemyVisuals {
         // 复用节点必须在缓存提前返回前恢复透明度/高度，尸体不能污染下一个活怪。
         this.node.scale(mirror ? -scale : scale, scale * (death ? death.scaleY : 1));
         this.node.alpha = death ? death.alpha : 1;
-        this.body.x = shake / (mirror ? -scale : scale);
+        const phase = mindTime === undefined ? 0 : mindTime / MIND_VISUAL.cycle * Math.PI * 2 + seed % 7;
+        this.body.x = (shake + (mindTime === undefined ? 0 : MIND_VISUAL.sway * Math.sin(phase))) / (mirror ? -scale : scale);
+        const frame = definition.frames[index], canvas = definition.canvas;
+        this.mark.visible = mindTime !== undefined;
+        if (this.mark.visible) {
+            this.mark.pos(definition.foot.x, frame.y + canvas * .06 - MIND_VISUAL.markSize * .58 / scale);
+            this.mark.scale((mirror ? -1 : 1) / scale, 1 / scale);
+            this.mark.rotation = Math.sin(phase) * 12;
+        }
         if (key === this.key) return;
         this.key = key;
-        const frame = definition.frames[index], canvas = definition.canvas;
         this.node.size(canvas, canvas).pivot(definition.foot.x, definition.foot.y);
         this.node.graphics.clear();
         this.body.graphics.clear();

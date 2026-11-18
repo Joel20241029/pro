@@ -42,6 +42,7 @@ function contactTime(unit: RoadStep, target: EnemyRoadStep) {
 /** 临时冲锋队列。位移、命中和可见足点共用同一坐标，不进村民名册或存档。 */
 export class SummonCharge {
     private age = 0;
+    private readonly bossDamagePercent = new Map<number, number>();
     readonly villagers: SummonedVillager[] = Array.from({ length: C.count }, (_, index) => {
         // 用与20互质的步长遍历横向与速度分位；错开顺序，重播不消耗村庄随机数。
         const last = C.count - 1;
@@ -85,8 +86,14 @@ export class SummonCharge {
         for (const { time, unit, step, target } of contacts) {
             const enemy = target.enemy;
             if (unit.retired || enemy.hp <= 0) continue;
+            if (ENEMIES[enemy.kind].boss) {
+                const prior = this.bossDamagePercent.get(enemy.seq) ?? 0;
+                if (prior >= C.bossMaxPercent) continue;
+                const next = prior + C.bossHitPercent;
+                enemy.hp -= Math.floor(enemy.maxHp * next / 100) - Math.floor(enemy.maxHp * prior / 100);
+                this.bossDamagePercent.set(enemy.seq, next);
+            } else enemy.hp = 0;
             unit.retired = true;
-            enemy.hp = 0;
             const dx = step.to.x - step.from.x, dy = step.to.y - step.from.y, t = time / (step.end || 1);
             const progress = target.startProgress + (enemy.progress - target.startProgress) * time;
             hits.push({ enemy: { ...enemy, progress }, index: unit.index, at: { x: step.from.x + dx * t, y: step.from.y + dy * t }, dx, dy });

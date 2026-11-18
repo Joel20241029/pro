@@ -413,13 +413,15 @@ export class VillageWorld {
             }
         }
         if (presentation && this.art.ready("night")) {
-            const visibleEnemies = [...(presentation.outcome ? [] : presentation.enemies).map(enemy => ({ enemy })), ...Array.from(this.feedback.deaths.values())];
+            const mindTime = presentation.mindLocked ? presentation.tick * RULE.step : undefined;
+            const visibleEnemies = [...(presentation.outcome ? [] : presentation.enemies).map(enemy => ({ enemy, mindTime })),
+                ...Array.from(this.feedback.deaths.values(), ({ enemy }) => ({ enemy, mindTime: undefined }))];
             this.reserveEnemies(visibleEnemies.length);
-            visibleEnemies.forEach(({ enemy: e }, i) => {
+            visibleEnemies.forEach(({ enemy: e, mindTime }, i) => {
                 const n = this.enemies[i], at = enemyPoint(e);
                 n.visible = true;
                 n.name = `enemy:${e.seq}`;
-                this.enemyVisuals[i].draw(e.kind, e.appearanceSeed, e.walkDistance, this.art.enemyMirror(e.kind, enemyPoint({ ...e, progress: e.progress + 1 }).x - at.x), this.feedback.flashing(e.seq), this.feedback.deathPose(e.seq), this.feedback.hitShake(e.seq));
+                this.enemyVisuals[i].draw(e.kind, e.appearanceSeed, e.walkDistance, this.art.enemyMirror(e.kind, enemyPoint({ ...e, progress: e.progress + 1 }).x - at.x), this.feedback.flashing(e.seq), this.feedback.deathPose(e.seq), this.feedback.hitShake(e.seq), mindTime);
                 n.pos(at.x, this.layout.worldY(at.y));
                 depth.push({ id: n.name, y: n.y, node: n });
             });

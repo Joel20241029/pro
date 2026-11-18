@@ -33,9 +33,10 @@ export interface GameState {
     lastTraveler: number | null;
     people: Person[]; families: Family[]; towers: Tower[];
     /** 战技学习结果与当前携带；资格由本村成功波数推导，查看提醒使用独立的界面记录。 */
-    tactics: { learned: string[]; equipped: string };
+    // 旧档携带项仍是第一槽。额外数组的长度记录已购槽数，null 表示空槽。
+    tactics: { learned: string[]; equipped: string; extraSlots?: (string | null)[] };
     history: Person[]; favorites: string[]; choices: Choice[];
-    wave: Wave | null; night: { adults: string[]; elders: string[]; cared: string[]; hungry: boolean; tactic: string } | null;
+    wave: Wave | null; night: { adults: string[]; elders: string[]; cared: string[]; hungry: boolean; tactic: string; extraSlots?: (string | null)[] } | null;
     rng: { family: number; world: number };
     stats: { births: number; retirees: number; generation: number }; legacy: Legacy;
     settings: { speed: 2 | 3; music: boolean }; summary: string;

@@ -29,6 +29,10 @@ export class CombatPresentation {
                 this.flashes.delete(event.enemy.seq);
                 if (!this.retired.has(event.enemy.seq)) this.deaths.set(event.enemy.seq, { enemy: event.enemy, fatal: null, started: this.clock });
             } else if (event.type === 'summon') {
+                if (event.enemy.hp > 0) {
+                    this.flashes.set(event.enemy.seq, this.clock + FEEDBACK.flashSeconds);
+                    continue;
+                }
                 const death: Defeat = { enemy: event.enemy, fatal: null, started: null };
                 this.deathPositions.set(event.enemy.seq, enemyPoint(event.enemy));
                 this.deaths.set(event.enemy.seq, death);
