@@ -5,6 +5,7 @@ import type { BattleSimulation, CombatFeedback } from "../game/BattleSimulation"
 import { GameSession } from "../game/GameSession";
 import { GameLayout } from "./GameLayout";
 import { LAYOUT } from "./config/HudConfig";
+import { FEEDBACK } from "./config/FeedbackConfig";
 import { SpriteFrames } from "./SpriteFrames";
 import { UiWidgets } from "./UiWidgets";
 
@@ -96,7 +97,7 @@ export class TimedBlastVisuals {
         if (!this.art.ready("night")) return;
         this.impact ??= new Laya.Sprite();
         if (!this.impact.parent) { this.impact.name = "TimedBlastImpact"; this.impact.mouseEnabled = false; this.node.addChild(this.impact); }
-        this.art.applyFrame(this.impact, this.art.frameId("fx_impact_stone", age), V.impactSize * (.65 + progress * .4));
+        this.art.applyFrame(this.impact, this.art.frameId("fx_impact_stone", age), V.impactSize * (.65 + progress * .4) * FEEDBACK.impactScale);
         this.impact.pos(hit.x, layout.worldY(hit.y));
         this.impact.alpha = 1 - progress ** 2;
         this.impact.visible = true;

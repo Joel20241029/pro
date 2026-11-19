@@ -93,7 +93,8 @@ export class ProjectileMotion {
                 } else {
                     const t = Math.min(1, (tick - p.impactTick!) * RULE.step / (shot.empowered ? RAGE_VISUAL.hitSeconds : style.impact));
                     p.frame = shot.empowered ? "fx_rage_hit" : style.hit; p.rotation = 0;
-                    p.size = (shot.empowered ? RAGE_VISUAL.hitSize[shot.kind] : style.hitSize) * (.7 + .3 * t); p.alpha = 1 - t;
+                    p.size = (shot.empowered ? RAGE_VISUAL.hitSize[shot.kind] : style.hitSize) * (.7 + .3 * t) * FEEDBACK.impactScale;
+                    p.alpha = 1 - t;
                 }
             }
         }

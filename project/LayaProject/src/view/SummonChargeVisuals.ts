@@ -5,6 +5,7 @@ import type { GameLayout } from "./GameLayout";
 import type { SpriteFrames } from "./SpriteFrames";
 import { walkDirection, WalkDirection } from "./VillagerAppearance";
 import { WalkAnimation } from "./WalkAnimation";
+import { FEEDBACK } from "./config/FeedbackConfig";
 
 /** 错列可读性及固定表现长度。距离以720逻辑画布为基准，收尾秒数从首个可见命中起算。 */
 const V = { model: "straw", canvas: 42, fadeDistance: 48, aftermath: .32, endFade: .22 } as const;
@@ -102,6 +103,7 @@ export class SummonChargeVisuals {
             if (!node.visible || !hit) continue;
             const enemy = enemyPoint(hit.enemy), x = (hit.at.x + enemy.x) / 2, y = (hit.at.y + enemy.y) / 2;
             node.pos(x, layout.worldY(y));
+            node.scale(FEEDBACK.impactScale, FEEDBACK.impactScale);
             node.alpha = 1 - t;
             node.graphics.clear();
             const spread = 1 - (1 - t) * (1 - t);

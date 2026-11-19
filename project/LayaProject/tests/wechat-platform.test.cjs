@@ -36,6 +36,7 @@ const { GameView } = require(path.join(compiled, 'view/GameView.js'));
 const { GamePanels } = require(path.join(compiled, 'view/GamePanels.js'));
 const { GameHud } = require(path.join(compiled, 'view/GameHud.js'));
 const { NightResultPresentation } = require(path.join(compiled, 'view/NightResultPresentation.js'));
+const { FEEDBACK } = require(path.join(compiled, 'view/config/FeedbackConfig.js'));
 const { TacticNotices } = require(path.join(compiled, 'view/TacticNotices.js'));
 Laya.Point = class { setTo(x, y) { this.x = x; this.y = y; return this; } };
 const { VillageWorld } = require(path.join(compiled, 'view/VillageWorld.js'));
@@ -138,7 +139,7 @@ function gameView(session, platform) {
         const box = new Sprite().size(size.width, size.height); box.name = 'panel:' + title; overlay.addChild(box); return box;
     };
     const village = Object.create(VillageWorld.prototype);
-    Object.assign(village, { game: session, layout, scene, motion: { sync() {} }, thoughts: { sync() {} }, crying: { sync() {} }, cryIcon: new Sprite(), speechTip: { hide() {} }, shield: { reset() {} }, summon: { reset() {} }, interaction: { cancelPresses() {}, clearDepth() {} }, drawScenery() {} });
+    Object.assign(village, { game: session, layout, scene, feedback: { hasPatrolImpact: false }, motion: { sync() {} }, thoughts: { sync() {} }, crying: { sync() {} }, cryIcon: new Sprite(), speechTip: { hide() {} }, shield: { reset() {} }, summon: { reset() {} }, interaction: { cancelPresses() {}, clearDepth() {} }, drawScenery() {} });
     Object.assign(view, { resources: { ready: () => true }, game: session, observedVillageRevision: session.villageRevision, platform, layout, panels, village,
         shownErrorRevision: 0, observedRun: 0, observedDawn: 0, overlay, tip: { show() {} }, anchoredTip: { hide() {} },
         reminder: { reset() {}, tick() {}, hide() {} }, patrolGuide: { hide() {}, tick() {}, node: { visible: false } }, starterGuide: { hide() {}, tick() {}, node: { visible: false } },
@@ -148,6 +149,27 @@ function gameView(session, platform) {
     const parent = new Sprite(); [view.hud.node,overlay,view.results.layer].forEach(node=>parent.addChild(node));
     return view;
 }
+test('the terminal patrol ring plays before both the victory and defeat panels', () => {
+    for (const outcome of ['WIN', 'LOSE']) {
+        for (const hitInFinalStep of [true, false]) {
+            const base = createGame(7); applyCommand(base, { type: 'NIGHT' });
+            const state = JSON.parse(JSON.stringify(base));
+            finishNight(state, outcome === 'WIN' ? base.gate : 0, base.towers.map(t => t.operator));
+            const battle = { outcome, base, feedback: hitInFinalStep ? [{ type: 'patrol' }] : [] };
+            const game = { battle: null, presentationBattle: battle, saves: { pending: false } };
+            let refreshes = 0;
+            const view = new NightResultPresentation({}, {}, () => refreshes++);
+            view.observe(game, state, !hitInFinalStep);
+            assert(view.playingFinalImpact); assert(view.draw({}));
+            view.advance(FEEDBACK.patrolImpact.seconds);
+            assert(view.playingFinalImpact); assert.equal(refreshes, 0);
+            view.advance(FEEDBACK.finalImpactSeconds - FEEDBACK.patrolImpact.seconds);
+            assert(!view.playingFinalImpact); assert.equal(refreshes, 1);
+            assert.equal(view.active, outcome === 'WIN');
+            view.observe(game, state, false); assert(!view.playingFinalImpact);
+        }
+    }
+});
 test('first committed win retains the summary through collection and reveals only the ranking on landing', () => {
     const s = setup(), session = new GameSession(new SaveStore(s.platform)); session.load(); session.newVillage();
     const view = gameView(session, s.platform), main = new Main(); main.platform = s.platform; main.session = session;

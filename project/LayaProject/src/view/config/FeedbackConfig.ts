@@ -8,13 +8,20 @@ export const FEEDBACK = {
     death: { squashSeconds: .12, scaleY: .22, holdSeconds: .5, fadeSeconds: .24 },
     // 让落点上的弹体至少停留一个30FPS画面；同帧refresh不会提前删掉接触姿态，不改变伤害时点。
     contactSeconds: .045,
+    // 按玩家要求将已有命中特效的显示宽高翻倍，覆盖弹道、战技和巡防，只改变画面大小。
+    impactScale: 2,
     // 每种弹体 5 帧，按实际表现时钟约 0.21 秒播完。尺寸为 720 画布逻辑像素，落点在目标身体。
     impact: { fps: 24, frameCount: 5, size: { ARROW: 74, STONE: 85, SLOW: 80 } },
-    // 连点与怜悯复用石弹帧。连点结束的结算面板留出约两帧缓冲；只影响演出。
-    tacticBurst: { finishSeconds: .28, bodySizeScale: 1.12 },
+    // 连点与怜悯复用石弹帧。终场连点或巡防命中结束后留出渲染缓冲，再打开胜负面板。
+    tacticBurst: { bodySizeScale: 1.12 },
+    finalImpactSeconds: .28,
+    // 维持巡防原有的 0.22 秒金色扩散圈，尺寸跟随全局命中特效缩放，时长只用于表现。
+    patrolImpact: { seconds: .22, radiusX: 11, radiusY: 7, spreadX: 16, spreadY: 9, lineWidth: 3, color: "#ffe6b6" },
     // 周博回血的红十字挂在受影响怪物头顶，按表现时间向上浮起并淡出。
     loveHeal: { seconds: .9, lift: 18, size: 28, stroke: 6, red: "#ff3943" },
-    // 逻辑画布上的中毒标记大小及头顶留白，普通怪和首领共用。
-    poisonMark: { size: 32, gap: 8 },
+    // 头顶状态并排占位，以逻辑画布像素计。间距按最宽的毒标留白，普通怪和首领共用同一显示尺寸。
+    enemyStatus: { spacing: 34, lift: 24 },
+    poisonMark: { size: 32 },
+    frostMark: { size: 24, alpha: .84 },
     tree: { degrees: 1.6, seconds: .32, oscillations: 1.5 }
 } as const;

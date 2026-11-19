@@ -40,7 +40,7 @@ export class ProjectileVisuals {
             n.alpha = p.alpha;
             const glow = this.projectileGlows[i];
             if (p.impactFrame) {
-                this.art.applyFrame(glow, p.impactFrame, FEEDBACK.impact.size[p.shot.kind]);
+                this.art.applyFrame(glow, p.impactFrame, FEEDBACK.impact.size[p.shot.kind] * FEEDBACK.impactScale);
                 glow.name = `impact:${p.shot.kind}:${i}`;
                 glow.pos(p.x + p.impactShift!, p.y);
                 glow.rotation = p.impactAngle!;

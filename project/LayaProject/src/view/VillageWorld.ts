@@ -86,6 +86,7 @@ export class VillageWorld {
     private torchGlows = new Map<string,Laya.Sprite>();
     private hitTop = new Laya.Point();
     private hitBottom = new Laya.Point();
+    get hasPatrolImpact() { return this.feedback.hasPatrolImpact; }
     constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private layout: GameLayout,
         houseClicked: (name: string, visual: BuildingVisuals) => void, personClicked: (id: string) => void, private playDefeat?: () => void, patrolClicked?: () => void) {
         this.world.name = "VillageWorld";
@@ -319,7 +320,7 @@ export class VillageWorld {
         booth.node.visible = !!s;
         booth.node.mouseEnabled = !!s && !panelOpen;
         if (!s) {
-            this.patrolVisuals.update(null, this.layout, [], 0);
+            this.patrolVisuals.update(null, this.layout);
             this.rage.update(null, []);
             this.shield.reset();
             depth.sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
@@ -467,7 +468,8 @@ export class VillageWorld {
         }
         if (presentation && this.art.ready("night")) {
             const mindTime = presentation.mindLocked ? presentation.tick * RULE.step : undefined;
-            const visibleEnemies = [...(presentation.outcome ? [] : presentation.enemies).map(enemy => ({ enemy, mindTime })),
+            const living = presentation.outcome ? presentation.enemies.filter(enemy => this.feedback.patrolImpactAge(enemy.seq) !== undefined) : presentation.enemies;
+            const visibleEnemies = [...living.map(enemy => ({ enemy, mindTime })),
                 ...Array.from(this.feedback.deaths.values(), ({ enemy }) => ({ enemy, mindTime: undefined as number | undefined }))];
             this.reserveEnemies(visibleEnemies.length);
             visibleEnemies.forEach(({ enemy: e, mindTime }, i) => {
@@ -477,7 +479,8 @@ export class VillageWorld {
                 this.enemyVisuals[i].draw(e.kind, e.appearanceSeed, e.walkDistance,
                     this.art.enemyMirror(e.kind, enemyPoint({ ...e, progress: e.progress + 1 }).x - at.x),
                     this.feedback.flashing(e.seq), this.feedback.deathPose(e.seq), this.feedback.hitShake(e.seq), mindTime,
-                    this.feedback.zhouLoveCue(e.seq), e.hp > 0 && presentation.isPoisoned(e.seq), this.feedback.burstAge(e.seq));
+                    this.feedback.zhouLoveCue(e.seq), e.hp > 0 && presentation.isPoisoned(e.seq), this.feedback.burstAge(e.seq),
+                    e.hp > 0 && e.slowTicks > 0 && this.feedback.frosted(e.seq), this.feedback.patrolImpactAge(e.seq));
                 n.pos(at.x, this.layout.worldY(at.y));
                 depth.push({ id: n.name, y: n.y, node: n });
             });
@@ -497,7 +500,7 @@ export class VillageWorld {
         const rageDepth = this.rage.update(battle, this.props.filter(p => p.id.startsWith("tower:")).map(p => ({ node: p.node, visual: p.visual! })));
         const shieldDepth = this.shield.update(battle, { node: gate.node, visual: gate.visual! }, this.layout, events);
         const summonDepth = this.summon.update(presentation, this.layout, events, this.feedback.time);
-        const patrolDepth = this.patrolVisuals.update(presentation, this.layout, events, this.feedback.time);
+        const patrolDepth = this.patrolVisuals.update(presentation, this.layout);
         [...depth, ...rageDepth, ...shieldDepth, ...summonDepth, ...patrolDepth].sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
         depth.sort(compareDepth);
         this.interaction.update(depth);

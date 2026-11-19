@@ -133,6 +133,8 @@ test('reinforcements add to an existing wave without changing its spawn duration
 
 test('squads grow for three levels and later upgrade only damage, with distinct speeds, lanes and departure times', () => {
     const stats = [1, 2, 3, 4, 5].map(level => patrolStats(level));
+    assert.deepEqual(PATROL.squad.speeds, [19, 21.5, 24.5, 27]);
+    assert.equal(PATROL.legacy.speed, 46);
     assert.deepEqual(stats.map(s => s.count), [2, 3, 4, 4, 4]);
     assert.deepEqual(stats.map(s => s.damage), [16, 16, 16, 20, 24]);
     assert(stats.every(s => s.seconds === 7.5));

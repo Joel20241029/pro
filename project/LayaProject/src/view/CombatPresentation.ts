@@ -17,22 +17,31 @@ export class CombatPresentation {
     readonly deaths = new Map<number, Defeat>();
     private deathPositions = new Map<number, { x: number; y: number }>();
     private flashes = new Map<number, number>();
+    private visibleFrost = new Set<number>();
     private retired = new Set<number>();
     private loveTargets = new Map<number, { cleared: boolean; started: number }>();
     private burstTargets = new Map<number, number>();
+    private patrolHits = new Map<number, number>();
     sync(battle: BattleSimulation | null, events: CombatFeedback[]) {
         if (battle !== this.battle || !battle) {
             this.battle = battle; this.shots.clear(); this.deaths.clear(); this.deathPositions.clear(); this.flashes.clear(); this.retired.clear();
             this.loveTargets.clear(); this.burstTargets.clear();
+            this.visibleFrost.clear();
+            this.patrolHits.clear();
             this.tailSeconds = 0; this.defeatCue = false;
         }
         if (!battle) return;
+        if (this.visibleFrost.size) {
+            const active = new Set(battle.enemies.filter(e => e.hp > 0 && e.slowTicks > 0).map(e => e.seq));
+            for (const seq of this.visibleFrost) if (!active.has(seq)) this.visibleFrost.delete(seq);
+        }
         for (const event of events) {
             if (event.type === 'gate') {
                 this.deathPositions.set(event.enemy.seq, enemyPoint(event.enemy));
                 this.flashes.delete(event.enemy.seq);
                 if (!this.retired.has(event.enemy.seq)) this.deaths.set(event.enemy.seq, { enemy: event.enemy, fatal: null, started: this.clock });
             } else if (event.type === 'summon' || event.type === 'patrol') {
+                if (event.type === 'patrol') this.patrolHits.set(event.enemy.seq, this.clock);
                 this.immediateHit(event.enemy);
             } else if (event.type === 'handSpeed' || event.type === 'mercy') {
                 for (const enemy of event.hurt) {
@@ -72,6 +81,8 @@ export class CombatPresentation {
         for (const [seq, end] of this.flashes) if (end <= this.clock) this.flashes.delete(seq);
         for (const [seq, started] of this.burstTargets)
             if (this.clock - started >= FEEDBACK.impact.frameCount / FEEDBACK.impact.fps) this.burstTargets.delete(seq);
+        for (const [seq, started] of this.patrolHits)
+            if (this.clock - started >= FEEDBACK.patrolImpact.seconds) this.patrolHits.delete(seq);
         for (const [seq, cue] of this.loveTargets) {
             const seconds = cue.cleared ? FEEDBACK.impact.frameCount / FEEDBACK.impact.fps : FEEDBACK.loveHeal.seconds;
             if (this.clock - cue.started >= seconds) this.loveTargets.delete(seq);
@@ -85,6 +96,11 @@ export class CombatPresentation {
     }
     burstAge(seq: number) {
         const started = this.burstTargets.get(seq);
+        return started === undefined ? undefined : this.clock - started;
+    }
+    get hasPatrolImpact() { return this.patrolHits.size > 0; }
+    patrolImpactAge(seq: number) {
+        const started = this.patrolHits.get(seq);
         return started === undefined ? undefined : this.clock - started;
     }
     /** 死亡帧固定于快照；只压缩脚底以上的高度并淡出，等待致死弹体时仍保持完整身形。 */
@@ -105,6 +121,7 @@ export class CombatPresentation {
     impact(shot: Shot) {
         const event = this.shots.get(shot);
         if (!event) return;
+        this.revealFrost(shot);
         for (const enemy of event.hurt) {
             if (this.retired.has(enemy.seq)) continue;
             const death = this.deaths.get(enemy.seq);
@@ -114,6 +131,7 @@ export class CombatPresentation {
         }
     }
     flashing(seq: number) { return this.flashes.has(seq); }
+    frosted(seq: number) { return this.visibleFrost.has(seq); }
     hitShake(seq: number) {
         const end = this.flashes.get(seq);
         if (end === undefined) return 0;
@@ -124,7 +142,15 @@ export class CombatPresentation {
     /** 超出原弹道装饰上限时直接开始死亡过渡，不伪造红闪，也不留下等不到致死弹体的快照。 */
     discard(shot: Shot) {
         for (const death of this.deaths.values()) if (death.fatal === shot && death.started === null) this.startDefeat(death);
+        this.revealFrost(shot);
         this.shots.delete(shot);
+    }
+    /** 冰弹抵达后标记实际减速目标。弹道被表现上限省略时仍显示生效的状态。 */
+    private revealFrost(shot: Shot) {
+        const targets = this.shots.get(shot)?.slowed;
+        if (!targets || !this.battle) return;
+        for (const enemy of this.battle.enemies)
+            if (enemy.hp > 0 && enemy.slowTicks > 0 && targets.includes(enemy.seq)) this.visibleFrost.add(enemy.seq);
     }
     private startDefeat(death: { started: number | null }) {
         death.started = this.clock;

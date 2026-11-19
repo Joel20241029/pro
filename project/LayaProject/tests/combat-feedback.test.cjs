@@ -8,12 +8,41 @@ const {SaveStore}=require(path.join(build,'storage/SaveStore'));
 const {CombatPresentation}=require(path.join(build,'view/CombatPresentation'));
 const {ProjectileMotion,PROJECTILE_STYLE}=require(path.join(build,'view/ProjectileMotion'));
 const {LoggingFeedback}=require(path.join(build,'view/LoggingFeedback'));
+const {FEEDBACK}=require(path.join(build,'view/config/FeedbackConfig'));
 const {RULE,PADS}=require(path.join(build,'game/GameConfig'));
 function battle(kind='ARROW') {const s=createGame(7);applyCommand(s,{type:'NIGHT'});const b=new BattleSimulation(s);b.base.towers.forEach((t,i)=>{t.kind=i===0?kind:null;t.operator=i===0?s.people[0].id:null;});b.cursor=b.base.wave.entries.length;return b;}
 function enemy(seq,hp=1000,progress=200){return {seq,kind:'enemy_raider',appearanceSeed:87,progress,hp,speed:0,slow:0,slowTicks:0, walkDistance: 0,born:0,summoned:0};}
 function shot(tick,kind='ARROW'){return {tower:0,x:300,y:400,kind,tick};}
+test('patrol hit clock belongs to the target through movement, a finishing blow and battle replacement',()=>{
+ const b=battle(),f=new CombatPresentation(),a=enemy(1),c=enemy(2);
+ const hit=(enemy,tick)=>({type:'patrol',tick,enemy:{...enemy},index:tick,at:enemyPoint(enemy),dx:0,dy:-1});
+ b.enemies=[a,c];f.sync(b,[hit(a,0)]);assert(f.hasPatrolImpact);assert.equal(f.patrolImpactAge(a.seq),0);
+ a.progress+=20;f.advance(.11);assert.equal(f.patrolImpactAge(a.seq),.11);assert.equal(f.patrolImpactAge(c.seq),undefined);
+ b.enemies=[];a.hp=c.hp=0;b.outcome='WIN';f.sync(b,[hit(a,1),hit(c,1)]);
+ assert(f.deathPose(a.seq)&&f.deathPose(c.seq));assert.equal(f.patrolImpactAge(a.seq),0);
+ f.advance(FEEDBACK.patrolImpact.seconds-.01);assert(f.hasPatrolImpact);
+ f.advance(.02);assert(!f.hasPatrolImpact);assert(f.deathPose(a.seq));
+ f.sync(b,[hit(a,2)]);f.sync(battle(),[]);assert(!f.hasPatrolImpact);
+});
 test('real stone hurt set contains splash victims; slow-only neighbors have no damage event',()=>{
  for(const kind of ['STONE','SLOW']){const b=battle(kind);b.enemies=[enemy(10),enemy(11,1000,205)];b.step();const e=b.feedback.find(e=>e.type==='shot');assert(e);assert.equal(e.hurt.length,kind==='STONE'?2:1);if(kind==='SLOW')assert.equal(b.enemies[0].slowTicks,RULE.slowTicks);}
+});
+test('frost reaches living splash targets at visual impact and clears with the underlying slow',()=>{
+ const b=battle('SLOW'),f=new CombatPresentation(),p=new ProjectileMotion(),a=enemy(10),neighbor=enemy(11,1000,205),far=enemy(12,1000,PATH_LENGTH-1);
+ b.enemies=[a,neighbor,far];b.step();
+ const e=b.feedback.find(e=>e.type==='shot');
+ assert.deepEqual(e.slowed,[a.seq,neighbor.seq]);assert.equal(e.hurt.length,1);
+ f.sync(b,b.feedback);p.update(b,undefined,undefined,undefined,f);
+ assert(!f.frosted(a.seq)&&!f.frosted(neighbor.seq));
+ b.tick+=Math.ceil(PROJECTILE_STYLE.SLOW.flight/RULE.step);
+ p.update(b,undefined,undefined,undefined,f);
+ assert(f.frosted(a.seq)&&f.frosted(neighbor.seq)&&!f.frosted(far.seq));
+ assert(!f.flashing(e.slowed.find(seq=>seq!==e.target)));
+ a.slowTicks=0;neighbor.hp=0;f.sync(b,[]);
+ assert(!f.frosted(a.seq)&&!f.frosted(neighbor.seq));
+ const dropped={...e.shot};a.slowTicks=RULE.slowTicks;f.sync(b,[{...e,shot:dropped}]);f.discard(dropped);
+ assert(f.frosted(a.seq)&&!f.frosted(neighbor.seq));
+ f.sync(battle('SLOW'),[]);assert(!f.frosted(a.seq));
 });
 test('multi-step session inbox captures every shot once and no event changes family RNG',()=>{
  const store=new SaveStore({read:()=>null,write(){}}),g=new GameSession(store);g.state=createGame(7);applyCommand(g.state,{type:'NIGHT'});g.battle=new BattleSimulation(g.state);g.state.settings.speed=3;

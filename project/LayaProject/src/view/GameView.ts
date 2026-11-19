@@ -20,6 +20,7 @@ import { PATROL_PROP } from "./config/VillageSceneConfig";
 import { PATROL_GUIDE_KEY, PATROL_LESSONS, STARTER_LESSONS } from "./config/StarterGuideConfig";
 import { TacticNotices } from "./TacticNotices";
 import { drawBoot, drawSessionPanel } from "./panels/SessionPanels";
+import { TRAVELER_TITLE } from "./panels/TravelerPanel";
 /** 会话到表现的唯一刷新入口；各表现模块不自行订阅 changed，避免同步命令导致重复刷新。 */
 export class GameView {
     readonly root = new Laya.Sprite();
@@ -125,7 +126,8 @@ export class GameView {
         this.tip.pos(360, (next.safeTop + next.safeBottom) / 2);
         this.panels.relayout(next);
         const panel = this.panels.current?.type;
-        this.refresh(panel !== "person" && panel !== "ancestor");
+        const travelerOpen = this.overlay.numChildren > 0 && this.overlay.getChildAt(0).name === `panel:${TRAVELER_TITLE}`;
+        this.refresh(panel !== "person" && panel !== "ancestor" && !travelerOpen);
     }
     refresh(preserveOverlay = false) {
         const s = this.game.state;
@@ -147,7 +149,7 @@ export class GameView {
             if (s && this.game.error && !this.game.saves.pending)
                 this.tip.show(this.game.error);
         }
-        this.results.observe(this.game, s);
+        this.results.observe(this.game, s, this.village.hasPatrolImpact);
         if (s) this.tacticNotices.observe(s, newVillage);
         if (this.panels.current?.type === "start") this.reminder.reset();
         if (this.game.saves.pending)
@@ -164,7 +166,7 @@ export class GameView {
         if (!preserveOverlay) this.panels.redraw(() => {
             if (restoringNight) drawNightResourcePanel(this.panels);
             else if (!s) drawBoot(this.panels);
-            else drawSessionPanel(this.panels, s, () => this.results.draw(this.panels));
+            else drawSessionPanel(this.panels, s, this.layout.safeBottom - this.layout.safeTop, () => this.results.draw(this.panels));
         });
         this.updateActors();
         this.handSpeed.update(this.layout, 0, this.overlay.numChildren > 0, this.results.playingFinalImpact);

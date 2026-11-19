@@ -59,7 +59,7 @@ export class NightResultPresentation {
         this.shownFeatures = SIDE_FEATURES.length;
     }
 
-    observe(game: GameSession, s: GameState | null) {
+    observe(game: GameSession, s: GameState | null, patrolImpactPlaying: boolean) {
         this.hideFlights();
         const flight = this.dailyFlight;
         if (flight && flight.elapsed === null && !game.saves.pending) {
@@ -67,7 +67,15 @@ export class NightResultPresentation {
             else this.dailyFlight = null;
         }
         const battle = game.presentationBattle;
-        if (!s || game.battle || game.saves.pending || battle?.outcome !== "WIN" || battle === this.lastResult || battle.base.run !== s.run) return;
+        if (!s || game.battle || game.saves.pending || !battle?.outcome || battle === this.lastResult || battle.base.run !== s.run) return;
+        const patrolImpact = patrolImpactPlaying || battle.feedback.some(event => event.type === "patrol");
+        if (battle.outcome === "LOSE") {
+            if (s.phase !== "GAME_OVER" || !patrolImpact) return;
+            this.lastResult = battle;
+            this.phase = "impact";
+            this.elapsed = 0;
+            return;
+        }
         const committed = s.completed === battle.base.completed + 1 && (s.phase === "DAWN" || s.phase === "DAY");
         if (!committed) return;
         const production = economy(battle.base);
@@ -80,7 +88,7 @@ export class NightResultPresentation {
         });
         this.newTactic = TACTICS.find(t => !tacticRevealed(battle.base, t.id) && tacticRevealed(s, t.id)) ?? null;
         this.shownFeatures = this.featureUnlock < 0 ? SIDE_FEATURES.length : this.featureUnlock;
-        this.phase = battle.feedback.some(event => event.type === "handSpeed" && event.hurt.length) ? "impact" : "summary";
+        this.phase = patrolImpact || battle.feedback.some(event => event.type === "handSpeed" && event.hurt.length) ? "impact" : "summary";
         this.elapsed = 0;
     }
 
@@ -96,8 +104,8 @@ export class NightResultPresentation {
     }
 
     draw(ctx: PanelContext): boolean {
-        if (!this.phase || !this.result) return false;
         if (this.phase === "impact") return true;
+        if (!this.phase || !this.result) return false;
         if (this.phase === "unlock" || this.phase === "tactic") {
             const view = this.phase === "unlock" ? drawFeatureUnlock(ctx, this.featureUnlock) : drawTacticUnlock(ctx, this.newTactic!);
             this.box = view.box; this.sources = view.sources;
@@ -124,7 +132,7 @@ export class NightResultPresentation {
         }
         if (this.phase === "impact") {
             this.elapsed += seconds;
-            if (this.elapsed >= FEEDBACK.tacticBurst.finishSeconds) this.next("summary");
+            if (this.elapsed >= FEEDBACK.finalImpactSeconds) this.next(this.result ? "summary" : null);
             return;
         }
         if (!this.phase || this.phase === "summary" || !this.box?.displayedInStage || !this.box.mouseEnabled) return;

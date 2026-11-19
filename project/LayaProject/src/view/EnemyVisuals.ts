@@ -16,12 +16,14 @@ export class EnemyVisuals {
     private mark?: Laya.Sprite;
     private loveCue?: Laya.Sprite;
     private poisonMark?: Laya.Sprite;
+    private frostMark?: Laya.Sprite;
     private burstImpact?: Laya.Sprite;
+    private patrolImpact?: Laya.Sprite;
     constructor(readonly node: Laya.Sprite, private art: SpriteFrames) {
         this.body.name = "EnemyBody"; this.body.mouseEnabled = false;
         node.addChild(this.body);
     }
-    draw(kind: EnemyKind, seed: number, walkDistance: number, mirror: boolean, flashing = false, death?: { scaleY: number; alpha: number }, shake = 0, mindTime?: number, love?: ZhouLoveCue, poisoned = false, burstAge?: number) {
+    draw(kind: EnemyKind, seed: number, walkDistance: number, mirror: boolean, flashing = false, death?: { scaleY: number; alpha: number }, shake = 0, mindTime?: number, love?: ZhouLoveCue, poisoned = false, burstAge?: number, frosted = false, patrolImpactAge?: number) {
         const definition = this.art.enemyLayouts[kind], look = ENEMY_LOOKS[kind];
         if (!definition) throw new Error("未声明的怪物布局：" + kind);
         let value = seed >>> 0;
@@ -36,6 +38,10 @@ export class EnemyVisuals {
         const phase = mindTime === undefined ? 0 : mindTime / MIND_VISUAL.cycle * Math.PI * 2 + seed % 7;
         this.body.x = (shake + (mindTime === undefined ? 0 : MIND_VISUAL.sway * Math.sin(phase))) / (mirror ? -scale : scale);
         const frame = definition.frames[index], canvas = definition.canvas;
+        const statusCount = Number(mindTime !== undefined) + Number(frosted) + Number(poisoned);
+        const statusStep = FEEDBACK.enemyStatus.spacing / (mirror ? -scale : scale);
+        const statusX = definition.foot.x - (statusCount - 1) * statusStep / 2;
+        const statusY = frame.y + canvas * .06 - FEEDBACK.enemyStatus.lift / scale;
         if (mindTime !== undefined) {
             if (!this.mark) {
                 this.mark = new Laya.Sprite();
@@ -47,12 +53,27 @@ export class EnemyVisuals {
                 this.node.addChild(this.mark);
             }
             this.mark.visible = true;
-            this.mark.pos(definition.foot.x, frame.y + canvas * .06 - MIND_VISUAL.markSize * .58 / scale);
+            this.mark.pos(statusX, statusY);
             this.mark.scale((mirror ? -1 : 1) / scale, 1 / scale);
             this.mark.rotation = Math.sin(phase) * 12;
         } else if (this.mark) this.mark.visible = false;
+        if (frosted) {
+            if (!this.frostMark) {
+                this.frostMark = new Laya.Sprite();
+                this.frostMark.name = "FrostMark";
+                this.frostMark.mouseEnabled = false;
+                const { size, alpha } = FEEDBACK.frostMark;
+                this.art.applyFrame(this.frostMark, "icon_slow", size);
+                this.frostMark.pivot(size / 2, this.frostMark.height / 2);
+                this.frostMark.alpha = alpha;
+                this.node.addChild(this.frostMark);
+            }
+            this.frostMark.visible = true;
+            this.frostMark.pos(statusX + Number(mindTime !== undefined) * statusStep, statusY);
+            this.frostMark.scale((mirror ? -1 : 1) / scale, 1 / scale);
+        } else if (this.frostMark) this.frostMark.visible = false;
         if (poisoned) {
-            const { size, gap } = FEEDBACK.poisonMark;
+            const { size } = FEEDBACK.poisonMark;
             if (!this.poisonMark) {
                 this.poisonMark = new Laya.Sprite();
                 this.poisonMark.name = "DragonPoisonMark";
@@ -62,7 +83,7 @@ export class EnemyVisuals {
                 this.node.addChild(this.poisonMark);
             }
             this.poisonMark.visible = true;
-            this.poisonMark.pos(definition.foot.x, frame.y + canvas * .06 - gap / scale);
+            this.poisonMark.pos(statusX + (statusCount - 1) * statusStep, statusY + size / 2 / scale);
             this.poisonMark.scale((mirror ? -1 : 1) / scale, 1 / scale);
         } else if (this.poisonMark) this.poisonMark.visible = false;
         if (love && (love.cleared || !death)) {
@@ -77,7 +98,7 @@ export class EnemyVisuals {
             if (love.cleared) {
                 cue.name = "ZhouLoveArrowImpact";
                 g.clear();
-                this.art.applyFrame(cue, this.art.frameId("fx_impact_arrow", love.age), FEEDBACK.impact.size.ARROW);
+                this.art.applyFrame(cue, this.art.frameId("fx_impact_arrow", love.age), FEEDBACK.impact.size.ARROW * FEEDBACK.impactScale);
                 cue.pos(definition.foot.x, definition.foot.y + (frame.y + canvas * .46 - definition.foot.y) / (death?.scaleY ?? 1));
                 cue.alpha = 1;
             } else {
@@ -99,12 +120,28 @@ export class EnemyVisuals {
                 this.node.addChild(this.burstImpact);
             }
             const impact = this.burstImpact, squash = death?.scaleY ?? 1;
-            this.art.applyFrame(impact, this.art.frameId("fx_impact_stone", burstAge), size * FEEDBACK.tacticBurst.bodySizeScale);
+            this.art.applyFrame(impact, this.art.frameId("fx_impact_stone", burstAge), size * FEEDBACK.tacticBurst.bodySizeScale * FEEDBACK.impactScale);
             // 与周博受击共用身体中部位置；爆裂不随死亡的压扁动画收缩。
             impact.pos(definition.foot.x + this.body.x, definition.foot.y + (frame.y + canvas * .46 - definition.foot.y) / squash);
             impact.scale((mirror ? -1 : 1) / scale, 1 / (scale * squash));
             impact.visible = true;
         } else if (this.burstImpact) this.burstImpact.visible = false;
+        if (patrolImpactAge !== undefined) {
+            if (!this.patrolImpact) {
+                this.patrolImpact = new Laya.Sprite();
+                this.patrolImpact.name = "PatrolImpact";
+                this.patrolImpact.mouseEnabled = false;
+                this.node.addChild(this.patrolImpact);
+            }
+            const impact = this.patrolImpact, spec = FEEDBACK.patrolImpact, t = patrolImpactAge / spec.seconds;
+            impact.graphics.clear();
+            impact.graphics.drawEllipse(0, 0, spec.radiusX + spec.spreadX * t, spec.radiusY + spec.spreadY * t, null, spec.color, spec.lineWidth);
+            // 落点随身体抖动和压扁，冲击圈本身维持屏幕比例。
+            impact.pos(definition.foot.x + this.body.x, frame.y + canvas * .46);
+            impact.scale(FEEDBACK.impactScale / scale, FEEDBACK.impactScale / (scale * (death?.scaleY ?? 1)));
+            impact.alpha = 1 - t;
+            impact.visible = true;
+        } else if (this.patrolImpact) this.patrolImpact.visible = false;
         if (key === this.key) return;
         this.key = key;
         this.node.size(canvas, canvas).pivot(definition.foot.x, definition.foot.y);

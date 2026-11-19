@@ -69,7 +69,7 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
     ctx.ui.image(box, frame, 50, 171, 140);
     const stats = patrolStats(level, current);
     ctx.ui.label(box, current ? `队长 · ${coloredName(current)}` : `${PATROL.role}待任命`, 214, 174, 408, 30, C.cream, true, 46);
-    ctx.ui.label(box, `每批派出 ${stats.count} 人${current ? ` · 每 ${stats.seconds} 秒一批` : ""}`, 214, 226, 408, 26, C.cream, false, 46);
+    ctx.ui.label(box, `每批派出 ${stats.count} 人${current ? ` · 约 ${Math.round(stats.seconds)} 秒一批` : ""}`, 214, 226, 408, 26, C.cream, false, 46);
     const next = patrolStats(level + 1, current);
     const row = new Laya.Sprite(); row.pos(34, 320); box.addChild(row);
     const build = ctx.ui.buildRow(row, 0, frame, `升级至 ${amount(level + 1)} 级`,

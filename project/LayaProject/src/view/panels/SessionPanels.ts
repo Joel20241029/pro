@@ -1,12 +1,12 @@
-import { capacity, person } from "../../game/VillageRules";
+import { person } from "../../game/VillageRules";
 import { GameState } from "../../game/GameState";
-import { VILLAGER_QUALITY } from "../../config/VillagerQuality";
-import { POLICIES, RULE, SEASONS, SKILLS, TRAITS } from "../../game/GameConfig";
+import { POLICIES, RULE, SEASONS, SKILLS } from "../../game/GameConfig";
 import { season } from "../../game/WaveGenerator";
 import { C, UI } from "../UiTheme";
 import { dailyRationAmount } from "../../game/DailyRation";
 import { PanelContext } from "./PanelContext";
 import { coloredName } from "../ViewText";
+import { drawTravelerPanel } from "./TravelerPanel";
 export function drawBoot(ctx: PanelContext) {
     const b = ctx.game.boot;
     if (ctx.game.saves.pending) {
@@ -49,12 +49,15 @@ export function drawPending(ctx: PanelContext) {
     ctx.ui.label(box, ctx.game.error || "正在保存…", 40, 199, width - 80, 28, C.red, false, 64).align = "center";
     ctx.ui.centerButton(box, "重试保存", buttonY, () => ctx.game.retry(), C.gold);
 }
-export function drawDawn(ctx: PanelContext, s: GameState) {
+function drawDawn(ctx: PanelContext, s: GameState, safeHeight: number) {
     const q = s.choices[0];
     if (!q)
         return;
+    if (q.kind === "TRAVELER") {
+        drawTravelerPanel(ctx, s, q.person, safeHeight);
+        return;
+    }
     const help = q.kind === "SKILL" ? "孩子成年后选定一项专长。专长会影响生产、照料或驻防表现。"
-        : q.kind === "TRAVELER" ? "有空余住房就能接纳旅人。谢绝后可在白天扩建民居，等待下一位旅人。"
             : `村规持续 ${RULE.seasonDays} 天，换季后可以再选。绿色为提升，红色为代价。`;
     const box = ctx.modal("天亮了 · 新的一天", s.summary, false, undefined, help);
     const optionWidth = 500, optionHeight = 112;
@@ -62,24 +65,6 @@ export function drawDawn(ctx: PanelContext, s: GameState) {
         ctx.ui.label(box, `${coloredName(person(s, q.person))} 成年了\n选择一项专长：`, 34, 226, 600, 32, C.green, true, 104).align = "center";
         q.options.forEach((k, i) => ctx.ui.button(box, SKILLS[k].join("\n"), (box.width - optionWidth) / 2, 378 + i * 132,
             optionWidth, () => ctx.send({ type: "CHOOSE", value: k }), i === 0 ? C.gold : C.green, optionHeight));
-    }
-    else if (q.kind === "TRAVELER") {
-        const quality = VILLAGER_QUALITY[q.person.quality], special = q.person.quality !== "COMMON";
-        ctx.ui.image(box, ctx.art.portraitId(q.person), special ? 229 : 250, 200, special ? 210 : 168);
-        ctx.ui.label(box, `${coloredName(q.person)} 希望加入村落\n天赋：${TRAITS[q.person.trait][0]}  ·  专长：${SKILLS[q.person.skill!][0]}\n民居 ${s.people.length}/${capacity(s)}`, 34, 408, 600, 30, C.green, true, 155).align = "center";
-        if (special) {
-            ctx.ui.label(box, `耕伐 +${Math.round((quality.production - 1) * 100)}% · 塔伤 +${Math.round((quality.damage - 1) * 100)}%`,
-                UI.inset, 544, UI.contentWidth, UI.body, C.timber, true, 38).align = "center";
-            const detailY = 584, detailHeight = 36, detailWidth = UI.contentWidth / 3;
-            ctx.ui.label(box, `劳作 ${quality.adultNights} 夜`, UI.inset, detailY, detailWidth, UI.body, C.cream, true, detailHeight).align = "center";
-            ctx.ui.label(box, `养老 ${quality.elderNights} 夜`, UI.inset + detailWidth, detailY, detailWidth, UI.body, C.cream, true, detailHeight).align = "center";
-            ctx.ui.iconValue(box, "icon_food", `照料 +${quality.careFood}`, UI.inset + detailWidth * 2, detailY, detailWidth, detailHeight, C.cream, UI.body);
-        }
-        const full = s.people.length >= capacity(s);
-        if (full) ctx.ui.label(box, s.people.length >= RULE.populationCap ? "村民已满，可等待空出名额" : "住房已满，白天可增建民居",
-            UI.inset, 624, UI.contentWidth, 27, C.muted, false, 40).align = "center";
-        ctx.ui.button(box, "欢迎加入", 104, 674, 250, () => ctx.send({ type: "CHOOSE", value: "accept" }), C.gold, 88, !full);
-        ctx.ui.button(box, "礼貌谢绝", 386, 674, 172, () => ctx.send({ type: "CHOOSE", value: "decline" }), C.muted, 88);
     }
     else if (q.kind === "POLICY") {
         ctx.ui.label(box, `为${SEASONS[season(s.day)]}季定下村规\n持续 ${RULE.seasonDays} 天`, 34, 226, 600, 32, C.green, true, 104).align = "center";
@@ -120,7 +105,7 @@ export function drawGameOver(ctx: PanelContext, s: GameState) {
     ctx.ui.centerButton(box, "重新开村", UI.panelHeight - buttonHeight - UI.action.bottom, () => ctx.open({ type: "restart" }), C.gold, true, 328, buttonHeight);
 }
 /** 保存、口粮和回前台先处理，随后是结算，再接失败、清晨或普通界面。 */
-export function drawSessionPanel(ctx: PanelContext, s: GameState, drawResult?: () => boolean) {
+export function drawSessionPanel(ctx: PanelContext, s: GameState, safeHeight: number, drawResult?: () => boolean) {
     if (ctx.game.saves.pending)
         drawPending(ctx);
     else if (ctx.game.dailyRationDate !== null) {
@@ -144,7 +129,7 @@ export function drawSessionPanel(ctx: PanelContext, s: GameState, drawResult?: (
     else if (s.phase === "GAME_OVER")
         drawGameOver(ctx, s);
     else if (s.phase === "DAWN")
-        drawDawn(ctx, s);
+        drawDawn(ctx, s, safeHeight);
     // 切后台只释放已打开的开放域；回前台点“继续游戏”后再请求授权与绘制。
     else if (ctx.current && !ctx.game.pauses.has("BACKGROUND"))
         ctx.draw(s, ctx.current);

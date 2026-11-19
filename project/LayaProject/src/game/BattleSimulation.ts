@@ -36,7 +36,7 @@ export interface Shot {
     empowered: boolean;
 }
 /** 只读表现事件：快照不参与伤害、索敌或存档；每步由 GameSession 收集。 */
-export type CombatFeedback = { type: "shot"; shot: Shot; target: number; hurt: Enemy[] } |
+export type CombatFeedback = { type: "shot"; shot: Shot; target: number; hurt: Enemy[]; slowed?: number[] } |
     { type: "gate"; enemy: Enemy; blocked: boolean; tick: number; x: number; y: number } |
     { type: "blast"; at: RoadPoint; hurt: Enemy[]; tick: number } |
     { type: "handSpeed"; hurt: Enemy[]; tick: number } |
@@ -349,19 +349,23 @@ export class BattleSimulation {
                     const armor = ENEMIES[e.kind].armor;
                     e.hp -= Math.max(1, Math.floor(t.damage * levelPower(tower.level) * (1 + bonus) * VILLAGER_QUALITY[p.quality].damage * tacticDamage * (1 - armor / (tower.kind === "STONE" ? COMBAT.stoneArmorDivisor : 1))));
                 }
-                if (tower.kind === "SLOW") {
+                const slowed: number[] | undefined = tower.kind === "SLOW" ? [] : undefined;
+                if (slowed) {
                     const strength = Math.min(COMBAT.slowMax, COMBAT.slowBase + (p.trait === "trait_patient" ? COMBAT.patientSlow : 0) + (p.skill === "skill_warding" ? COMBAT.wardingSlow : 0) + (po.slow || 0));
                     for (const e of nearby)
                         if (!e.slowTicks || strength >= e.slow) {
                             e.slow = strength;
                             e.slowTicks = RULE.slowTicks;
                             refreshed.add(e.seq);
-                            if (e.hp > 0) this.tasks?.frost.add(e.seq);
+                            if (e.hp > 0) {
+                                slowed.push(e.seq);
+                                this.tasks?.frost.add(e.seq);
+                            }
                         }
                 }
                 const shot: Shot = { tower: i, x: center.x, y: center.y, kind: tower.kind, tick: this.tick, empowered };
                 this.shots.push(shot);
-                this.feedback.push({ type: "shot", shot, target: target.seq, hurt: hurt.map(e => ({ ...e })) });
+                this.feedback.push({ type: "shot", shot, target: target.seq, hurt: hurt.map(e => ({ ...e })), ...(slowed?.length ? { slowed } : {}) });
             }
         }
         const poison = this.poison;

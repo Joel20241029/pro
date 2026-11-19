@@ -1,7 +1,7 @@
 import { PATROL } from "../../config/PatrolConfig";
 import { ECONOMY } from "../../config/RuleConfig";
 import { VILLAGER_QUALITY } from "../../config/VillagerQuality";
-import { RULE, SKILLS, TRAITS } from "../../game/GameConfig";
+import { RULE } from "../../game/GameConfig";
 import { GameState, isElder, isWorkingAdult } from "../../game/GameState";
 import { laborSlots } from "../../game/Growth";
 import { JOB_NAMES, person } from "../../game/VillageRules";
@@ -9,6 +9,7 @@ import { recommendedPeople } from "../RoleRecommendations";
 import { ScrollList } from "../ScrollList";
 import { C, UI } from "../UiTheme";
 import { Panel, PanelContext } from "./PanelContext";
+import { drawResidentTalent, drawResidentQuality, residentCardText } from "./ResidentCards";
 
 /** 审稿版的卡片尺度，单位为逻辑像素。留白同时给短屏的面板回弹预留空间。 */
 const DETAIL = { top: 118, bottom: 49, screenMargin: 24, gap: 19, profile: 206, talent: 170, bonus: 156,
@@ -42,11 +43,7 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
         parent.addChild(node); y += height + DETAIL.gap;
         return node;
     };
-    const text = (node: Laya.Sprite, value: string, x: number, y: number, width: number, height: number, size: number, color = C.ink, bold = false) => {
-        const label = ctx.ui.label(node, value, x, y, width, size, color, bold, height);
-        label.wordWrap = false; label.overflow = Laya.Text.SHRINK; label.valign = "middle";
-        return label;
-    };
+    const text = residentCardText.bind(null, ctx);
     const heading = (node: Laya.Sprite, value: string) => text(node, value, 26, 14, 300, 43, 33, C.ink, true);
     const bio = card("profile", DETAIL.profile);
     if (special) text(bio, quality.label, 28, 20, 111, 40, 27, q.quality === "HERO" ? C.heroName : C.timber, true);
@@ -60,33 +57,8 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
     bio.graphics.drawEllipse(487, 99, 70, 70, "#f7e4b9", null, 0);
     ctx.ui.image(bio, ctx.art.portraitId(q, ancestor), 415, 29, 144, 146);
 
-    const talent = card("talent", DETAIL.talent);
-    heading(talent, "天赋与专长");
-    const trait = TRAITS[q.trait], skill = q.skill ? SKILLS[q.skill] : null;
-    const effect = (title: string, description: string, row: number, resource?: { icon: string; value: string }) => {
-        text(talent, title, 28, row, 100, 40, 28, C.green, true);
-        const line = text(talent, description, 143, row, 425, 40, 27);
-        if (resource) ctx.ui.iconValue(talent, resource.icon, resource.value,
-            143 + Math.ceil(line.textWidth) + 14, row, 116, 40, C.timber, 27, "left");
-    };
-    if (q.trait === "trait_frugal") effect(trait[0], "成人每日口粮", 70, { icon: "icon_food", value: String(ECONOMY.frugalRation) });
-    else effect(trait[0], q.trait === "trait_diligent" ? `耕作产出 +${Math.round(ECONOMY.diligentFood * 100)}%` : trait[1], 70);
-    if (q.skill === "skill_nurturing") effect(skill![0], "照料孩子时产出", 114, { icon: "icon_food", value: String(ECONOMY.nurturingFood) });
-    else if (q.skill === "skill_farming" || q.skill === "skill_logging") effect(skill![0], "产量", 114, {
-        icon: q.skill === "skill_farming" ? "icon_food" : "icon_wood",
-        value: `+${Math.round((q.skill === "skill_farming" ? ECONOMY.farmingFood : ECONOMY.loggingWood) * 100)}%`
-    });
-    else effect(skill?.[0] ?? "专长", skill?.[1] ?? "成年后选择", 114);
-
-    if (special) {
-        const bonus = card("bonus", DETAIL.bonus);
-        heading(bonus, `${quality.label}加成`);
-        text(bonus, `耕伐 +${Math.round((quality.production - 1) * 100)}%`, 27, 65, 176, 40, 28, C.green, true);
-        text(bonus, `塔伤 +${Math.round((quality.damage - 1) * 100)}%`, 221, 65, 178, 40, 28, C.green, true);
-        text(bonus, "照料", 404, 65, 68, 40, 27, C.green, true);
-        ctx.ui.iconValue(bonus, "icon_food", `+${quality.careFood}`, 471, 65, 98, 40, C.green, 27, "left");
-        text(bonus, `劳作 ${quality.adultNights} 夜 · 养老 ${quality.elderNights} 夜`, 28, 110, 520, 32, 24, C.muted);
-    }
+    drawResidentTalent(ctx, card("talent", DETAIL.talent), q);
+    if (special) drawResidentQuality(ctx, card("bonus", DETAIL.bonus), quality);
 
     const status = card(worker && !ancestor ? "jobs" : "status", statusHeight);
     if (ancestor) {
