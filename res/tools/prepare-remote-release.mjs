@@ -29,7 +29,7 @@ for (const stage of ['village', 'night']) {
     for (const bundled of manifest.stages[stage]) {
         const relative = bundled.slice('bundles/'.length);
         const [category, name, extra] = relative.split('/');
-        if (!bundled.startsWith('bundles/') || !categories.includes(category) || !/^[a-z0-9_.]+\.(png|jpg|vdata|mc)$/.test(name || '') || extra !== undefined || files[relative])
+        if (!bundled.startsWith('bundles/') || !categories.includes(category) || !/^[a-z0-9_.]+\.(png|jpg|bin|mc)$/.test(name || '') || extra !== undefined || files[relative])
             throw new Error('运行资源路径冲突或不合法：' + bundled);
         const bytes = fs.readFileSync(path.join(root, 'res', bundled));
         if (!bytes.equals(fs.readFileSync(path.join(root, 'project/LayaProject/assets/resources/gameplay', relative))))
@@ -67,7 +67,7 @@ for (const page of atlas.pages) {
     files[relative] = { stage: original.stage, bytes: data.length, sha256: digest(data), astcFor: page.runtimeFile };
 }
 const bytes = Object.values(files).reduce((sum, item) => sum + item.bytes, 0);
-artifacts.set('manifest.vdata', Buffer.from(JSON.stringify({ schema: 1, version, files }, null, 2) + '\n'));
+artifacts.set('manifest.bin', Buffer.from(JSON.stringify({ schema: 1, version, files }, null, 2) + '\n'));
 if (revision === '--stage' && !fs.existsSync(destination)) {
     fs.mkdirSync(destination);
     try {

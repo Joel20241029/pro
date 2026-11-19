@@ -8,7 +8,7 @@ const CLOTH = { lantern: 5, banner: 4, upgrade: 13 };
 export class BuildingAmbient {
     private time = 0;
     private nodes: { node: Laya.Sprite; frame?: string }[] = [];
-    constructor(private readonly art: SpriteFrames, private readonly offset: number) {}
+    constructor(private readonly art: SpriteFrames) {}
     clear() { this.nodes.length = 0; }
     reset() { this.time = 0; }
     bind(node: Laya.Sprite, frame?: string) {
@@ -16,7 +16,7 @@ export class BuildingAmbient {
     }
     advance(delta: number, progress: number, night: boolean, working: boolean) {
         this.time += delta;
-        const time = this.time + this.offset;
+        const time = this.time;
         const pulse = Math.sin(Math.PI * progress);
         for (const {node, frame} of this.nodes) {
             switch (node.name) {

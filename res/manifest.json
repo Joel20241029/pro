@@ -3,8 +3,8 @@
   "status": "versioned_remote",
   "preferredRuntimeMode": "atlas_plus_audio",
   "runtimeWhitelist": [
-    "bundles/map/frames.vdata",
-    "bundles/characters/animations.vdata",
+    "bundles/map/frames.bin",
+    "bundles/characters/animations.bin",
     "bundles/ui/ui_0.png",
     "bundles/ui/ui_1.png",
     "bundles/map/terrain_0.jpg",
@@ -17,15 +17,15 @@
     "bundles/characters/characters_4.png",
     "bundles/characters/characters_5.png",
     "bundles/effects/village_effects_0.png",
-    "bundles/buildings/buildings.vdata",
+    "bundles/buildings/buildings.bin",
     "bundles/buildings/building_upgrade.mc",
     "bundles/buildings/building_attack.mc",
-    "bundles/enemies/frames.vdata",
-    "bundles/enemies/animations.vdata",
+    "bundles/enemies/frames.bin",
+    "bundles/enemies/animations.bin",
     "bundles/enemies/enemies_0.png",
     "bundles/enemies/enemies_1.png",
     "bundles/effects/night_effects_0.png",
-    "bundles/enemies/enemies.vdata",
+    "bundles/enemies/enemies.bin",
     "bundles/music/village_loop.mp3",
     "bundles/music/battle_loop.mp3",
     "bundles/music/ui_click.mp3",
@@ -34,8 +34,8 @@
   ],
   "stages": {
     "village": [
-      "bundles/map/frames.vdata",
-      "bundles/characters/animations.vdata",
+      "bundles/map/frames.bin",
+      "bundles/characters/animations.bin",
       "bundles/ui/ui_0.png",
       "bundles/ui/ui_1.png",
       "bundles/map/terrain_0.jpg",
@@ -48,17 +48,17 @@
       "bundles/characters/characters_4.png",
       "bundles/characters/characters_5.png",
       "bundles/effects/village_effects_0.png",
-      "bundles/buildings/buildings.vdata",
+      "bundles/buildings/buildings.bin",
       "bundles/buildings/building_upgrade.mc",
       "bundles/buildings/building_attack.mc"
     ],
     "night": [
-      "bundles/enemies/frames.vdata",
-      "bundles/enemies/animations.vdata",
+      "bundles/enemies/frames.bin",
+      "bundles/enemies/animations.bin",
       "bundles/enemies/enemies_0.png",
       "bundles/enemies/enemies_1.png",
       "bundles/effects/night_effects_0.png",
-      "bundles/enemies/enemies.vdata"
+      "bundles/enemies/enemies.bin"
     ]
   },
   "mainAudio": [

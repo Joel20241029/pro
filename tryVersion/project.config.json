@@ -1,0 +1,32 @@
+{
+  "appid": "wx46e59dc5dc95b52f",
+  "projectname": "代代守村 1.0.71 今日全模块试玩",
+  "compileType": "game",
+  "libVersion": "latest",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": true,
+    "minified": false,
+    "newFeature": true
+  },
+  "packOptions": {
+    "ignore": [
+      {
+        "type": "folder",
+        "value": "wxgame"
+      },
+      {
+        "type": "folder",
+        "value": "wxgame-remote"
+      }
+    ],
+    "include": []
+  },
+  "watchOptions": {
+    "ignore": [
+      "wxgame/**",
+      "wxgame-remote/**"
+    ]
+  }
+}

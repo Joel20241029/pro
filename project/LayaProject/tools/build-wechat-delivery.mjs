@@ -18,7 +18,6 @@ const stages = ['village', 'night'];
 const release = 'src/config/ReleaseInfo.ts';
 const json = (file, value) => fs.writeFileSync(file, JSON.stringify(value, null, 2) + '\n');
 const digest = data => createHash('sha256').update(data).digest('hex');
-const nativeInputName = name => name.endsWith('.vdata') ? name + '.bin' : name;
 fs.mkdirSync(work, { recursive: true });
 const buildDir = fs.mkdtempSync(path.join(work, 'build-'));
 const staging = path.join(buildDir, 'project');
@@ -41,7 +40,7 @@ if (delivery === 'native') {
         if (!stages.includes(entry.stage) || /\.(png|jpg)$/.test(name)) throw new Error('原生分包要求全部图集有 ASTC：' + name);
         const data = fs.readFileSync(path.join(mirror, name));
         if (data.length !== entry.bytes || digest(data) !== entry.sha256) throw new Error('本地资源与已校验版本不符：' + name);
-        const target = path.join(gameplay, entry.stage, nativeInputName(name));
+        const target = path.join(gameplay, entry.stage, name);
         fs.mkdirSync(path.dirname(target), { recursive: true });
         fs.writeFileSync(target, data);
     }

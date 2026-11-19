@@ -42,7 +42,7 @@ test('seven independent native prefabs cover every level and real room count', (
    assert.notEqual(layout.visible, false); assert(layout.children.every(n => !['Footprint', 'SortOrigin', 'VisualBounds'].includes(n.name)));
   }
  }
- assert.deepEqual([1, 14, 26, 38, 50, 100].map(n => [houseRooms(n, false), houseRooms(n, true)]), [[1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [3, 3]]);
+ assert.deepEqual([1, 14, 26, 38, 50, 100].map(houseRooms), [1, 2, 2, 3, 3, 3]);
  for (const level of [50, 100, 1000, 9999]) assert.equal(buildingLayoutId('ARROW', level), 'ARROW_12_1');
 });
 
@@ -162,7 +162,7 @@ test('the northern tower keeps every upgraded weapon below the HUD on the shorte
 });
 
 test('authored hard footprints remain inside the pre-reserved navigation base', () => {
- const propFor = { HOUSE: ['building:house-a', 'building:house-b'], FARM: ['building:farm'], LOGGING: ['building:logging'], GATE: ['building:gate'], ARROW: ['tower:0'], STONE: ['tower:0'], SLOW: ['tower:0'] };
+ const propFor = { HOUSE: ['building:house-a'], FARM: ['building:farm'], LOGGING: ['building:logging'], GATE: ['building:gate'], ARROW: ['tower:0'], STONE: ['tower:0'], SLOW: ['tower:0'] };
  for (const [id, layout] of Object.entries(layouts)) {
   for (const region of [layout.bounds, layout.footprint, ...(layout.aboveFootprint ? [layout.aboveFootprint] : [])]) {
    assert(Object.values(region).every(Number.isFinite), id); assert(region.width >= 0 && region.height >= 0, id);

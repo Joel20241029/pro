@@ -55,10 +55,10 @@ export function writeBundles(root, pages, frames, animations, buildingFiles, aud
             if (!stageFrames[clip.restFrame] || !clip.frameIds.every(id => stageFrames[id]))
                 throw new Error('动画跨越加载阶段：' + clip.id);
         }
-        writeJson(stage, (village ? 'map' : 'enemies') + '/frames.vdata', {
+        writeJson(stage, (village ? 'map' : 'enemies') + '/frames.bin', {
             version: 4, stage, pages: selected.map(p => ({ id: p.id, runtimeFile: p.runtimeFile })), frames: stageFrames
         });
-        writeJson(stage, (village ? 'characters' : 'enemies') + '/animations.vdata', {
+        writeJson(stage, (village ? 'characters' : 'enemies') + '/animations.bin', {
             animations: clips,
             walkDirections: village ? animations.walkDirections : {},
             laborDirections: village ? animations.laborDirections : {},
@@ -66,7 +66,7 @@ export function writeBundles(root, pages, frames, animations, buildingFiles, aud
         });
         for (const p of selected) copy(result[stage], p.path, p.runtimeFile);
         for (const file of village ? buildingFiles : [enemyFile]) {
-            copy(result[stage], file, (village ? 'buildings/' : 'enemies/') + path.basename(file).replace(/\.json$/, '.vdata'));
+            copy(result[stage], file, (village ? 'buildings/' : 'enemies/') + path.basename(file).replace(/\.json$/, '.bin'));
         }
         required[stage] = { frames: Object.keys(stageFrames).sort(), clips: clips.map(c => c.id).sort() };
     }

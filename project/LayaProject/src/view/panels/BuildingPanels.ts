@@ -1,4 +1,4 @@
-import { patrolBuildReason } from "../../game/PatrolRules";
+import { patrolBuildReason, patrolCaptain, patrolCost } from "../../game/PatrolRules";
 import { PATROL } from "../../config/PatrolConfig";
 import { capacity, person } from "../../game/VillageRules";
 import { GameState, isWorkingAdult } from "../../game/GameState";
@@ -20,13 +20,6 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
         const cap = amount(storageCapacity(s), true);
         ctx.ui.iconValue(stock, "icon_food", `${amount(s.food, true)}/${cap}`, 134, 6, 214, 50, C.green);
         ctx.ui.iconValue(stock, "icon_wood", `${amount(s.wood, true)}/${cap}`, 362, 6, 216, 50, C.timber);
-        const patrolOpen = s.completed >= PATROL.unlock;
-        if (patrolOpen) {
-            const button = ctx.ui.centerButton(box, PATROL.building, 184,
-                () => ctx.open({ type: "patrol" }), C.gold, true, UI.action.width, 78);
-            const canAppoint = s.patrol && !s.patrol.captain && s.people.some(isWorkingAdult);
-            if (day && (canAppoint || patrolBuildReason(s) === null)) ctx.ui.actionBadge(button, "PatrolActionDot");
-        }
         const definitions: [
             UpgradeKind,
             number,
@@ -45,6 +38,15 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
                 cost: cost as MaterialCost | null, reason: upgradeUnavailableReason(s, cost), verb: "升级",
                 action: () => ctx.send({ type: "BUILD", kind: kind as "FARM" | "LOGGING" | "HOUSING" | "GATE" }) };
         });
+        if (s.completed >= PATROL.unlock) {
+            const level = s.patrol?.level ?? 0, captain = patrolCaptain(s);
+            entries.unshift({
+                id: "PATROL", icon: `patrol_booth_${level >= 9 ? 2 : level >= 5 ? 1 : 0}`,
+                title: level ? `${PATROL.building} · ${amount(level)} 级` : PATROL.building,
+                effect: captain ? `队长 · ${coloredName(captain)}` : level ? "队长待任命" : "未建造 · 夜间巡防",
+                cost: patrolCost(s), reason: null, verb: "去查看", action: () => ctx.open({ type: "patrol", back: p })
+            });
+        }
         const houseCost = residentialCost(s.houses);
         entries.push(
             { id: "HOUSE", icon: "icon_build", title: `住宅扩建 · ${s.houses}/${RULE.houseMax} 级`, effect: `住房 ${capacity(s)} → ${Math.min(RULE.populationCap, capacity(s) + RESIDENTIAL.capacityPerLevel)} 人`, cost: s.houses >= RULE.houseMax ? null : houseCost,
@@ -53,11 +55,20 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
                 reason: !day ? "请在白天修门" : s.gate >= gateCapacity(s) ? "城门完好，无需修复" : s.wood < repairCost(s) ? "材料不足" : null, verb: "修复", action: () => ctx.send({ type: "REPAIR" }) }
         );
         const step = UI.buildRowHeight + UI.buildRowGap;
-        const top = patrolOpen ? 286 : 199;
+        const top = 199;
         const rows = new ScrollList(UI.contentWidth, UI.panelHeight - top - 41, entries.length * step - UI.buildRowGap, p.scroll, offset => p.scroll = offset);
         rows.pos(UI.inset, top); box.addChild(rows);
-        orderPanelRows(p, entries, row => row.id, row => row.reason === null).forEach((row, i) =>
-            ctx.ui.buildRow(rows.content, i * step, row.icon, row.title, row.effect, s, row.cost, row.reason, row.action, row.verb));
+        orderPanelRows(p, entries, row => row.id, row => row.reason === null).forEach((row, i) => {
+            const button = ctx.ui.buildRow(rows.content, i * step, row.icon, row.title, row.effect, s, row.cost, row.reason, row.action, row.verb);
+            if (row.id === "PATROL") {
+                button.name = "PatrolConstructionCard";
+                const canAppoint = s.patrol && !s.patrol.captain && s.people.some(isWorkingAdult);
+                if (day && (canAppoint || patrolBuildReason(s) === null)) {
+                    const badge = ctx.ui.actionBadge(button, "PatrolActionDot");
+                    badge.pos(button.width - badge.width - 8, 8);
+                }
+            }
+        });
         return;
     }
     if (p.type === "tower") {

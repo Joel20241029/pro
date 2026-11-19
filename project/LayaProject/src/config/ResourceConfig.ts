@@ -10,6 +10,6 @@ export const MUSIC_ROOT = "resources/music";
 export const RESOURCE_SLOW_SECONDS = 30;
 /** 进村阶段的两个原生建筑时间轴与布局一同载入，守夜复用。 */
 export const STAGE_METADATA = {
-    village: ["map/frames.vdata", "characters/animations.vdata", "buildings/buildings.vdata", "buildings/building_upgrade.mc", "buildings/building_attack.mc"],
-    night: ["enemies/frames.vdata", "enemies/animations.vdata", "enemies/enemies.vdata"]
+    village: ["map/frames.bin", "characters/animations.bin", "buildings/buildings.bin", "buildings/building_upgrade.mc", "buildings/building_attack.mc"],
+    night: ["enemies/frames.bin", "enemies/animations.bin", "enemies/enemies.bin"]
 } as const;

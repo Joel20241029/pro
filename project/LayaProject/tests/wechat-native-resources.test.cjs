@@ -42,15 +42,15 @@ test('each stage resolves to its own KTX or existing logical metadata and movie 
     const { resources, loads, reads } = environment(true, async () => true);
     await resources.load('village', 'map/terrain_0.jpg', { type: 'image', ignoreCache: true });
     await resources.load('night', 'effects/night_effects_0.png', { type: 'image' });
-    await resources.load('night', 'enemies/frames.vdata', { type: 'json' });
+    await resources.load('night', 'enemies/frames.bin', { type: 'json' });
     await resources.load('village', 'buildings/building_upgrade.mc', {});
     assert.deepEqual(loads.map(x => x.url), [
         'resources/gameplay/village/map/terrain_0.ktx',
         'resources/gameplay/night/effects/night_effects_0.ktx',
-        'resources/gameplay/night/enemies/frames.vdata',
+        'resources/gameplay/night/enemies/frames.bin',
         'resources/gameplay/village/buildings/building_upgrade.mc'
     ]);
-    assert.deepEqual(reads, [{ file: 'resources/gameplay/night/enemies/frames.vdata.bin', encoding: 'utf8' }]);
+    assert.deepEqual(reads, [{ file: 'resources/gameplay/night/enemies/frames.bin', encoding: 'utf8' }]);
     assert.deepEqual(loads[2].registered, { purpose: 'stage' });
     assert.deepEqual(Laya.Loader.preLoadedMap, {});
     assert.equal(loads[0].options.ignoreCache, true);

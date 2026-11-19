@@ -75,10 +75,13 @@ test('on step sixty blast kills the entire circle, including armored enemies and
     assert(!b.bell(BLAST_TACTIC));
     const center = enemy(0, 'enemy_raider', 120, 900);
     const edge = enemy(1, 'enemy_raider', 38, 900);
-    const outside = enemy(2, 'enemy_raider', 0, 900);
+    const expandedEdge = enemy(2, 'enemy_raider', 0, 900);
     const armored = enemy(3, 'enemy_armored', 120, 900);
     const boss = enemy(4, 'enemy_commander', 120, 1000);
-    b.enemies = [center, edge, outside, armored, boss];
+    const outside = enemy(5, 'enemy_raider', 265, 900);
+    const expandedFoot = enemyPoint(expandedEdge);
+    assert(Math.hypot(expandedFoot.x - castPoint.x, expandedFoot.y - castPoint.y) > 115);
+    b.enemies = [center, edge, expandedEdge, armored, boss, outside];
     const point = { ...castPoint };
     assert(b.bell(BLAST_TACTIC, point)); point.x = 0;
     assert(!b.canCast(DEFAULT_TACTIC));
@@ -88,7 +91,7 @@ test('on step sixty blast kills the entire circle, including armored enemies and
     assert.deepEqual(b.enemies.map(e => [e.seq, e.hp]), [[outside.seq, outside.maxHp]]);
     const blast = b.feedback.find(e => e.type === 'blast');
     assert.deepEqual(blast.at, castPoint);
-    assert.deepEqual(blast.hurt.map(e => [e.seq, e.hp]), [[0, 0], [1, 0], [3, 0], [4, 0]]);
+    assert.deepEqual(blast.hurt.map(e => [e.seq, e.hp]), [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0]]);
     assert.equal(b.cooldownFor(DEFAULT_TACTIC), TACTIC_USE.recoveryTicks);
     for (let i = 0; i < TACTIC_USE.recoveryTicks; i++) b.step();
     assert(b.canCast(DEFAULT_TACTIC));

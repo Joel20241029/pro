@@ -8,7 +8,8 @@
 - 原始资源与可编辑制作工程：`res/`。
 - 新版远程资源写入独立 Gitee 仓库 `/Users/happyelements/Documents/remote-res/<资源版本>/`。Gitee 主分支仅保留最新和上一版的版本号目录，根目录的历史兼容资源和已发布的 Git 提交继续保留。
 - 设计和技术文档：`doc/`。
-- 微信小游戏导出目录：`tryVersion/wxgame/`。
+- 微信小游戏标准候选包：`tryVersion/wxgame/`。
+- IDE 全模块本地试玩：直接使用 `tryVersion/` 根目录，试玩专用存档隔离。根目录的微信打包配置排除 `wxgame/` 和 `wxgame-remote/`，标准候选包按原路径单独上传。
 - 项目更新日志：`CHANGELOG.md`。
 
 ## 每个版本上传前单独确认

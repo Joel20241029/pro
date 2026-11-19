@@ -46,7 +46,7 @@ test('remote stages cover six categories and game audio is available only in the
  const manifest=require('../../../res/manifest.json'), ids=new Set(), all=new Set();
  assert.deepEqual(Object.keys(manifest.stages),['village','night']);
  for (const [stage,files] of Object.entries(manifest.stages)) {
-  const table=JSON.parse(fs.readFileSync(path.join(source,'bundles',stage==='village'?'map':'enemies','frames.vdata'), 'utf8'));
+  const table=JSON.parse(fs.readFileSync(path.join(source,'bundles',stage==='village'?'map':'enemies','frames.bin'), 'utf8'));
   assert.equal(table.stage,stage);
   for(const id of Object.keys(table.frames)){assert(!ids.has(id));ids.add(id);}
   for(const file of files){assert(!all.has(file));assert(fs.existsSync(path.join(source,file)));all.add(file);}
@@ -86,7 +86,7 @@ test('AnySize pages end at the last padded slot and rotation preserves the logic
 test('the full-size terrain uses one village atlas page and keeps its gate alignment',()=>{
  const {LAYOUT}=require(path.join(process.env.DAIDAI_TEST_BUILD,'view/config/HudConfig'));
  const {WORLD_ART}=require(path.join(process.env.DAIDAI_TEST_BUILD,'view/config/WorldArtConfig'));
- const table=JSON.parse(fs.readFileSync(path.join(source,'bundles/map/frames.vdata'), 'utf8'));
+ const table=JSON.parse(fs.readFileSync(path.join(source,'bundles/map/frames.bin'), 'utf8'));
  const asset=recipe.assets.find(a=>a.id===WORLD_ART.terrain), frame=table.frames[asset.id];
  const fit=asset.provenance.registration;
  assert.equal(fit.referenceWidth,LAYOUT.width);

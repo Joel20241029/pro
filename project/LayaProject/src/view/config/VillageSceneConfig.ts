@@ -37,7 +37,7 @@ function prop(id: string, frame: string, left: number, top: number, size: number
     const x = left + size / 2, y = top + size * 15 / 16;
     return { id, frame, x, y, size, footprint: { left: x - baseWidth / 2, top: y - baseDepth, right: x + baseWidth / 2, bottom: y } };
 }
-/** 城门右后侧的固定占地，三档主体共用脚底，避开紧邻门的火把。 */
+/** 村内西侧的巡防建筑，与佟楼正面错开。三档主体共用占地。 */
 export const PATROL_PROP = "building:patrol";
 export const VILLAGE_PROPS: VillageProp[] = [
     ...[28, 92, 156, 220, 500, 564, 628, 692].map((x, i): VillageProp => ({ id: `wall:${i}`, frame: "building_palisade", x, y: 830, size: 78, footprint: null })),
@@ -62,16 +62,15 @@ export const VILLAGE_PROPS: VillageProp[] = [
     // 松树使用88宽，与圆树同一量级、树形稍高；根部仍在行走横向边界外，左右错位保留活动区。
     { id: "tree:corner-pine-left", frame: "deco_tree_pine", x: 43, y: 976, size: 88, footprint: { left: 32, top: 961, right: 54, bottom: 976 } },
     { id: "tree:corner-pine-right", frame: "deco_tree_pine", x: 677, y: 880, size: 88, footprint: { left: 666, top: 865, right: 688, bottom: 880 } },
-    { id: "deco:logs", frame: "deco_log_pile", x: 571, y: 1024, size: 60, footprint: null },
+    { id: "deco:logs", frame: "deco_log_pile", x: 588, y: 1024, size: 60, footprint: null },
     ...[[279, 822], [441, 822]].map(([x, y], i): VillageProp => ({ id: `torch:${i}`, frame: "deco_torch", x, y, size: 62, footprint: null })),
-    // 用户要求民居相对人物放大约20%；保留两栋足底(108,930)/(222,920)，高清底座按预制体112/128宽预留123/112，避免扩建后行人穿过墙脚。
-    prop("building:house-a", "hd_house_body_0", 38, 798.75, 140, 123, 33),
-    prop("building:house-b", "hd_house_body_0", 158, 800, 128, 112, 32),
+    // 保留佟楼的 140px 外观，底座按满级厢房宽度预留，扩建时村民仍能绕开墙脚。
+    prop("building:house-a", "hd_house_body_0", 38, 794.75, 140, 123, 33),
     // 田地是可站立地面，用农田自身源pivot；不加入建筑排序/导航障碍，人物真正走入垄沟。
     { id: "building:farm", frame: "hd_farm_body_0", x: 546, y: 954, size: 202, footprint: null, ground: true },
-    prop("building:logging", "hd_logging_body_0", 467, 922.625, 106, 87, 28),
+    prop("building:logging", "hd_logging_body_0", 482, 922.625, 106, 87, 28),
     prop("building:hearth", "building_hearth_lit", 321, 891, 78, 44, 15),
-    prop(PATROL_PROP, "patrol_booth_0", 482, 766, 100, 69, 29),
+    prop(PATROL_PROP, "patrol_booth_0", 152, 801.25, 148, 102, 43),
     prop("building:gate", "hd_gate_body_0", 282, 684, 156, 132, 30),
     ...PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, TOWER_VIEW.footprintWidth, TOWER_VIEW.footprintDepth))
 ];
@@ -114,9 +113,9 @@ export const WEDDING = {
 export const VILLAGE_STOPS = {
     // 家门与火堆/休息点跨集合留出间距，避免一个回家、另一个休息时仍站在一起。
     homes: [
-        // 右下闲逛点向左上挪开，避免与果树前侧新工位重叠；只改变驻足位置。
-        ...[[58, 950], [146, 950], [194, 950], [238, 950], [182, 986], [216, 986],
-            [50, 1022], [182, 1022], [230, 1022], [586, 1018], [614, 986], [674, 1018], [644, 970], [674, 932], [630, 850]].map(([x, y]) => ({ x, y })),
+        // 左侧站位沿佟楼与巡防建筑前缘排布，右侧避开伐木场底座。
+        ...[[58, 950], [107, 950], [151, 950], [193, 968], [238, 968], [188, 989],
+            [50, 1022], [182, 1022], [230, 1022], [599, 995], [614, 986], [674, 1018], [644, 970], [674, 932], [630, 850]].map(([x, y]) => ({ x, y })),
         // 左侧两个家门点避开花树前的新工位，保留至少24像素的停留间距。
         ...[58, 98, 140, 182, 224].map(x => ({ x, y: x <= 98 ? 878 : 874 }))
     ],
@@ -135,7 +134,7 @@ export const VILLAGE_STOPS = {
     children: CAMP_STOPS,
     // 火堆下方两排供待命村民驻足。中心优先，实时排除建筑与已用站位，满员仍保留安全间距。
     waiting: Array.from({ length: 32 }, (_, i) => ({ x: 68 + 38 * (i % 16), y: i < 16 ? 1022 : 988 }))
-        .filter(({ x }) => x < 486 || x > 562)
+        .filter(({ x }) => x < 484 || x > 591)
         .sort((a, b) => b.y - a.y || Math.abs(a.x - 360) - Math.abs(b.x - 360)),
     // 篝火前的双人会合点，与所有家门/工作点共用导航和足底遮挡；不新增建筑或家庭归属。
     wedding: [{ x: 330, y: 990 }, { x: 370, y: 990 }],

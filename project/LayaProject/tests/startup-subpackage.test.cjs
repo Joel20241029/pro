@@ -5,8 +5,8 @@ const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw Error('Set DAIDAI_TEST_BUILD under Downloads');
 const mainFile = path.join(compiled, 'Main.js'), actualRequire = createRequire(mainFile);
 const project = path.resolve(__dirname, '..'), root = 'resources/gameplay/';
-const villageFrames = root + 'map/frames.vdata', villageAnimations = root + 'characters/animations.vdata';
-const enemyLayouts = root + 'enemies/enemies.vdata';
+const villageFrames = root + 'map/frames.bin', villageAnimations = root + 'characters/animations.bin';
+const enemyLayouts = root + 'enemies/enemies.bin';
 const read = file => JSON.parse(fs.readFileSync(path.join(project, 'assets', file), 'utf8'));
 const flush = () => new Promise(setImmediate);
 function deferred() {
@@ -47,7 +47,7 @@ function setup() {
                 if (gates.has(url)) { const value = await gates.get(url).promise; cache.set(url, value); return value; }
                 const file = path.join(project, 'assets', url);
                 let value;
-                if (url.endsWith('.vdata')) { assert.equal(options.type, Laya.Loader.JSON); value = { data: read(url) }; }
+                if (url.endsWith('.bin')) { assert.equal(options.type, Laya.Loader.JSON); value = { data: read(url) }; }
                 else if (url.endsWith('.mc')) { assert(fs.statSync(file).size > 0); value = { binary: file }; }
                 else {
                     const bytes = fs.readFileSync(file);
@@ -216,7 +216,7 @@ for (const [label, file, mutate] of [
     ['missing frame', villageFrames, data => { delete data.frames[Object.keys(data.frames)[0]]; }],
     ['incomplete clips', villageAnimations, data => data.animations.pop()],
     ['missing labor directions', villageAnimations, data => { data.laborDirections = {}; }],
-    ['invalid building layout', root + 'buildings/buildings.vdata', data => { delete data.layouts.HOUSE_1_1; }],
+    ['invalid building layout', root + 'buildings/buildings.bin', data => { delete data.layouts.HOUSE_1_1; }],
     ['invalid late frame', villageFrames, data => { data.frames[Object.keys(data.frames)[2]].rect.w = 0; }]
 ]) test(label + ' rolls back staged textures and retries metadata', async () => {
     const f = setup(), data = read(file); mutate(data); f.cache.set(file, { data });

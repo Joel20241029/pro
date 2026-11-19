@@ -20,6 +20,7 @@ import { patrolBuildReason } from "../game/PatrolRules";
 import { PATROL_GUIDE_KEY, PATROL_LESSONS, STARTER_LESSONS } from "./config/StarterGuideConfig";
 import { TacticNotices } from "./TacticNotices";
 import { drawBoot, drawSessionPanel } from "./panels/SessionPanels";
+import { ScrollList } from "./ScrollList";
 /** 会话到表现的唯一刷新入口；各表现模块不自行订阅 changed，避免同步命令导致重复刷新。 */
 export class GameView {
     readonly root = new Laya.Sprite();
@@ -195,7 +196,14 @@ export class GameView {
             if (canPrompt && !day.patrol) {
                 patrolStep = 1; patrolTarget = this.hud.guideTargets.build;
             } else if (day.phase === "DAY" && panel?.type === "build" && !day.patrol && box) {
-                patrolStep = 2; patrolTarget = box.getChildByName(`button:${PATROL.building}`) as Laya.Sprite;
+                const list = box.getChildByName("ScrollList") as ScrollList | null;
+                const card = list?.content.getChildByName("PatrolConstructionCard") as Laya.Sprite | undefined;
+                if (list && card) {
+                    const top = card.y + list.content.y;
+                    if (top >= 0 && top + card.height <= list.height) {
+                        patrolStep = 2; patrolTarget = card;
+                    }
+                }
             } else if (day.phase === "DAY" && panel?.type === "patrol" && !day.patrol && box && !patrolBuildReason(day)) {
                 patrolStep = 3; patrolTarget = box.getChildAt(box.numChildren - 1)?.getChildByName("PatrolBuildAction") as Laya.Sprite;
             } else if (day.phase === "DAY" && panel?.type === "patrol" && day.patrol && !day.patrol.captain && box) {

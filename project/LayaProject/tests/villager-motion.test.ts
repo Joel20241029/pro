@@ -47,8 +47,7 @@ test("Every real map stop is reachable without crossing any footprint", () => {
     }
 });
 test("A walk from behind a house goes around its foundation", () => {
-    // 左侧民居门前现有伐木树；此用例单独验证房屋绕行，选择门前无第二障碍的右屋。
-    const house = VILLAGE_PROPS.find(p => p.id === "building:house-b")!;
+    const house = VILLAGE_PROPS.find(p => p.id === "building:house-a")!;
     const behind = { x: house.x, y: house.footprint!.top - MOTION.clearance - 20 }, front = { x: house.x, y: house.footprint!.bottom + MOTION.clearance + 24 };
     ok(!navigation.clear(behind, front)); const route = navigation.route(behind, front); ok(route.length > 1);
     ok(compareDepth({ id: "person:1:1", y: behind.y }, house) < 0);

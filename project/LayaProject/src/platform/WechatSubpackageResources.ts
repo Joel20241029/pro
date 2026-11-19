@@ -36,8 +36,8 @@ export class WechatSubpackageResources {
         if (options.type === Laya.Loader.JSON) {
             const cached = !options.ignoreCache && Laya.loader.getRes(url, options.type);
             if (cached) return cached;
-            // 微信原生代码包只允许读取受支持的后缀。配置内容和 Laya 的逻辑 URL 保持原样。
-            const text = await Laya.PAL.fs.readFile(url + ".bin", "utf8") as string;
+            // 元数据以 .bin 打进原生分包，内容是 UTF-8 JSON，直接读取包内文件名。
+            const text = await Laya.PAL.fs.readFile(url, "utf8") as string;
             const key = Laya.URL.formatURL(url);
             Laya.Loader.preLoadedMap[key] = JSON.parse(text);
             try { return await Laya.loader.load(url, options); }

@@ -20,8 +20,8 @@ export function buildingLayoutId(kind: BuildingLook, level: number, rooms = 1) {
     const stage = 1 + Math.floor(11 * (Math.min(50, Math.max(1, level)) - 1) / 49);
     return `${kind}_${stage}_${kind === "HOUSE" ? rooms : 1}`;
 }
-/** 扩建前50级逐渐增加两侧厢房，最多3+3间；人口容量独立计算，避免100级挤满地图。 */
-export function houseRooms(houses: number, second: boolean) {
+/** 保留佟楼扩建前 50 级的外观梯度，最多显示 3 间，住房容量独立结算。 */
+export function houseRooms(houses: number) {
     const rooms = 2 + Math.floor(4 * (Math.min(50, Math.max(1, houses)) - 1) / 49);
-    return second ? Math.floor(rooms / 2) : Math.ceil(rooms / 2);
+    return Math.ceil(rooms / 2);
 }

@@ -46,14 +46,14 @@ test('bubble grows and shrinks around its fixed pointer, then disappears at two 
     assert(tip.scaleX < 1); tip.advance(.11); assert.equal(tip.visible, false); assert.equal(tip.target, null);
 });
 
-test('repeated clicks restart the lifetime and another house replaces the single visible message', () => {
+test('repeated clicks restart the lifetime and a new target replaces the single visible message', () => {
     const { tip, target } = setup();
-    assert.equal(HOUSE_TIP_NAMES['building:house-a'], '佟楼'); assert.equal(HOUSE_TIP_NAMES['building:house-b'], '南楼');
+    assert.deepEqual(HOUSE_TIP_NAMES, { 'building:house-a': '佟楼' });
     tip.show('佟楼', () => target); tip.advance(1.5); tip.show('佟楼', () => target); tip.advance(1);
     assert(tip.visible);
     const other = { node: new Sprite().pos(240, 720), bounds: new Rectangle(0, 20, 100, 100) };
-    tip.show('南楼', () => other); tip.advance(.2);
-    assert.equal(tip.getChildByName('AnchoredTipText').text, '南楼'); near(tip.x, 290);
+    tip.show('友谊路', () => other); tip.advance(.2);
+    assert.equal(tip.getChildByName('AnchoredTipText').text, '友谊路'); near(tip.x, 290);
     tip.advance(1.81); assert.equal(tip.visible, false); tip.advance(10); assert.equal(tip.visible, false);
 });
 

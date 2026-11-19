@@ -62,6 +62,7 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
     const appointY = 520, appointHeight = 82;
     const box = ctx.modal(PATROL.building, level ? `${amount(level)} 级` : "守夜巡防建筑", true,
         { width: UI.panelWidth, height: level ? appointY + appointHeight + UI.action.bottom : 614 }, "任命队长后，淡紫儿会从城门出击，沿友谊路迎敌。队长品质和天赋影响伤害、出勤间隔。");
+    if (panel.back) ctx.ui.button(box, "返回", 34, 108, 120, back, C.muted, 54);
     const frame = `patrol_booth_${level >= 9 ? 2 : level >= 5 ? 1 : 0}`;
     ctx.ui.image(box, frame, 50, 171, 140);
     const stats = patrolStats(Math.max(1, level), current);

@@ -73,7 +73,7 @@ if (native) {
         const metadata = read(dir + '/fileconfig.json');
         const recordedTextures = new Set(configFiles(metadata));
         for (const [file, item] of expected) {
-            const name = dir + '/' + file + (/\.(mc|vdata)$/.test(file) ? '.bin' : '');
+            const name = dir + '/' + file + (file.endsWith('.mc') ? '.bin' : '');
             const packed = packageFiles.find(x => x.path === name);
             if (/\.(png|jpg)$/.test(file) || packed?.sha256 !== item.sha256 || packed?.bytes !== item.bytes) errors.push('原生分包文件或哈希不符：' + name);
             if (file.endsWith('.ktx') && !recordedTextures.has(name)) errors.push('未注册 ASTC 图页：' + name);
@@ -82,8 +82,8 @@ if (native) {
         for (const name of ['game.js', 'fileconfig.json']) if (!names.delete(dir + '/' + name)) errors.push('原生分包缺少入口：' + dir);
         if (names.size) errors.push('原生分包含多余文件：' + [...names].join(','));
         const category = stage === 'village' ? 'map' : 'enemies';
-        const table = read(dir + '/' + category + '/frames.vdata.bin');
-        const animations = read(dir + '/' + (stage === 'village' ? 'characters' : 'enemies') + '/animations.vdata.bin');
+        const table = read(dir + '/' + category + '/frames.bin');
+        const animations = read(dir + '/' + (stage === 'village' ? 'characters' : 'enemies') + '/animations.bin');
         if (table.stage !== stage || !table.pages.length || table.pages.some(page =>
             client.files[page.runtimeFile.replace(/\.(png|jpg)$/, '.ktx')]?.stage !== stage))
             errors.push('原生图集页阶段归属不一致：' + stage);
@@ -99,7 +99,7 @@ if (native) {
         errors.push('Laya 包外素材与版本清单不一致');
     const GITEE = 'https://gitee.com/sun-wen-sky/remote-res/raw/';
     const mirrorRoot = path.resolve(resRoot, '../../remote-res', client.version);
-    const mirror = read('manifest.vdata', mirrorRoot);
+    const mirror = read('manifest.bin', mirrorRoot);
     if (mirror.version !== client.version || Object.keys(mirror.files).length !== Object.keys(client.files).length)
         errors.push('Gitee 发布清单与客户端不一致');
     for (const [file, item] of Object.entries(client.files)) {
@@ -112,8 +112,8 @@ if (native) {
     }
     if (originalPaths.length !== Object.values(manifest.stages).flat().length) errors.push('客户端远程资源清单过期');
     for (const [stage, paths] of Object.entries(manifest.stages)) {
-        const table = read(prefix + (stage === 'village' ? 'map' : 'enemies') + '/frames.vdata', remoteRoot);
-        const animations = read(prefix + (stage === 'village' ? 'characters' : 'enemies') + '/animations.vdata', remoteRoot);
+        const table = read(prefix + (stage === 'village' ? 'map' : 'enemies') + '/frames.bin', remoteRoot);
+        const animations = read(prefix + (stage === 'village' ? 'characters' : 'enemies') + '/animations.bin', remoteRoot);
         if (table.stage !== stage || !table.pages.length || table.pages.some(page => client.files[page.runtimeFile]?.stage !== stage))
             errors.push('图集页的阶段归属不一致：' + stage);
         for (const clip of animations.animations)

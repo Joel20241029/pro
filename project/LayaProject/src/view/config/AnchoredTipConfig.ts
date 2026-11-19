@@ -11,8 +11,7 @@ export const ANCHORED_TIP = {
     seconds: UI.tipSeconds, growSeconds: .16, shrinkSeconds: .28
 } as const;
 
-/** 两栋现有住宅的显示名，不表示居民归属或增加房数；扩建仍沿用原建筑根。 */
+/** 地图住宅的显示名，扩建仍沿用原建筑根。 */
 export const HOUSE_TIP_NAMES: Readonly<Record<string, string>> = {
-    "building:house-a": "佟楼",
-    "building:house-b": "南楼"
+    "building:house-a": "佟楼"
 };

@@ -8,8 +8,8 @@ import { LAYOUT } from "./config/HudConfig";
 import { SpriteFrames } from "./SpriteFrames";
 import { UiWidgets } from "./UiWidgets";
 
-/** 选点提示及爆炸只读战斗位置。波纹用实时时钟，倒数用可暂停的战斗时钟。 */
-const V = { segments: 48, shell: 34, impactSize: 152, burstSeconds: .48, blinkSeconds: .6, blinkCount: 2 } as const;
+/** 波纹用实时时钟，倒数用可暂停的战斗时钟。路面弹体放大至 50 逻辑像素方便辨认。 */
+const V = { segments: 48, shell: 50, impactSize: 152, burstSeconds: .48, blinkSeconds: .6, blinkCount: 2 } as const;
 
 export class TimedBlastVisuals {
     readonly node = new Laya.Sprite();

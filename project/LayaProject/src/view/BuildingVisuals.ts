@@ -22,7 +22,7 @@ export class BuildingVisuals {
     private battle: BattleSimulation | null = null; private latestShot: Shot | null = null;
     private cachedBodyRegion: TipTarget | null = null;
     constructor(private owner: Laya.Sprite, private art: SpriteFrames) {
-        this.ambient = new BuildingAmbient(art, owner.name.endsWith("house-b") ? 1.17 : 0);
+        this.ambient = new BuildingAmbient(art);
         this.parts.name = "EditorBuilding"; this.parts.mouseEnabled = false; owner.addChild(this.parts);
         this.badge.name = "UpgradeLevel"; this.badge.mouseEnabled = false;
         this.badge.wordWrap = false; this.badge.overflow = Laya.Text.SHRINK; this.badge.bold = true;

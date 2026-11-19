@@ -149,7 +149,7 @@ export class WechatRemoteResources {
             const keep = new Set<string>();
             for (const item of recent) for (const file of item.files) keep.add(file);
             for (const file of this.fs.readdirSync(this.cache)) {
-                if (/^[a-f0-9]{64}\.(png|jpg|ktx|json|vdata|mp3|mc\.bin)$/.test(file) && !keep.has(file))
+                if (/^[a-f0-9]{64}\.(png|jpg|ktx|json|vdata|bin|mp3|mc\.bin)$/.test(file) && !keep.has(file))
                     this.fs.unlinkSync(this.cache + "/" + file);
             }
         } catch (error) {

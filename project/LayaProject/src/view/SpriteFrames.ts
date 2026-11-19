@@ -41,7 +41,7 @@ export class SpriteFrames {
         if (this.disposed) throw new Error("资源容器已经销毁");
         if (this.ready(stage)) return;
         const metadata = STAGE_METADATA[stage];
-        const result = await this.readBatch(stage, metadata.map(file => ({ url: file, type: file.endsWith(".vdata") ? Laya.Loader.JSON : undefined })));
+        const result = await this.readBatch(stage, metadata.map(file => ({ url: file, type: file.endsWith(".bin") ? Laya.Loader.JSON : undefined })));
         if (this.disposed) throw new Error("资源容器已经销毁");
         const created = new Map<string, Laya.Texture>();
         const logicalFrames = new Map<string, Frame>();

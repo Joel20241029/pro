@@ -1,18 +1,18 @@
 /** 由 prepare-remote-release.mjs 生成。版本目录和 Gitee 提交共同锁定已校验的资源。 */
 export const REMOTE_RESOURCE_MANIFEST = {
-    "version": "1.0.71",
-    "revision": "da58b8a278aa10ef7e18063e04b8741418cc9e56",
+    "version": "1.0.72",
+    "revision": "d8acd9df0c0086153de190dd088983e51a56834c",
     "sources": {
-        "raw": "https://gitee.com/sun-wen-sky/remote-res/raw/da58b8a278aa10ef7e18063e04b8741418cc9e56/1.0.71/"
+        "raw": "https://gitee.com/sun-wen-sky/remote-res/raw/d8acd9df0c0086153de190dd088983e51a56834c/1.0.72/"
     },
     "files": {
-        "map/frames.vdata": {
+        "map/frames.bin": {
             "stage": "village",
             "bytes": 139364,
             "sha256": "4a509519080bf0efc26f8bf88b2d1c2dc2ae9e0fc6abaf9e3a31dc7148c0f9eb",
             "source": "raw"
         },
-        "characters/animations.vdata": {
+        "characters/animations.bin": {
             "stage": "village",
             "bytes": 60829,
             "sha256": "19f91a8ab09a37aaef0c0587792b58c5a51e93a8f02f0c314076e33d3a8b2870",
@@ -90,7 +90,7 @@ export const REMOTE_RESOURCE_MANIFEST = {
             "sha256": "6359c575de07cf01af3d4172c6e86bfc1449900c5ccfc18a91169613c9e7f5ed",
             "source": "raw"
         },
-        "buildings/buildings.vdata": {
+        "buildings/buildings.bin": {
             "stage": "village",
             "bytes": 93220,
             "sha256": "e5a8f0555a6fe9b5ac79416fd4e1e2e7acc5c496c44124272a1e7be24c42d76c",
@@ -108,13 +108,13 @@ export const REMOTE_RESOURCE_MANIFEST = {
             "sha256": "6273a65ab55bd8500b91f3cc8adba23a21fc53f62e4071388fabd8b7a1232698",
             "source": "raw"
         },
-        "enemies/frames.vdata": {
+        "enemies/frames.bin": {
             "stage": "night",
             "bytes": 19207,
             "sha256": "91dd7df16ddfbe69a579ee46b499f7a79a7b3a5cb42cdf5937e01f5cc27e62f2",
             "source": "raw"
         },
-        "enemies/animations.vdata": {
+        "enemies/animations.bin": {
             "stage": "night",
             "bytes": 6174,
             "sha256": "797418a03c36b22e7568114468aa185d61314b37d6c1576ea87c0cc63d3de354",
@@ -138,7 +138,7 @@ export const REMOTE_RESOURCE_MANIFEST = {
             "sha256": "7ed32996133abf9316ce8a8ac15f1e574054710393b49aa89903376a079723ad",
             "source": "raw"
         },
-        "enemies/enemies.vdata": {
+        "enemies/enemies.bin": {
             "stage": "night",
             "bytes": 8325,
             "sha256": "9249730a594e52dd6623ec423589d797ab5e18f7fd3ccdcd15e3abab1bcda99e",

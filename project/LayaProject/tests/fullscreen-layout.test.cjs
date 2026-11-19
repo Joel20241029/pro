@@ -27,9 +27,16 @@ for(const profile of profiles) test(`${profile[0]}: safe controls, expanded vill
     const adultCanvas = l.personScale * 56;
     assert(adultCanvas >= 90.3 - 1e-6 && adultCanvas <= 94.5 + 1e-6);
     assert(l.safeBottom-l.safeTop>=860, 'full panel must fit safe region');
-    for(const [key,stops] of Object.entries(scene.stops)) for(const p of stops) {
-        assert(nav.walkable(p),`${name}:${key} ${JSON.stringify(p)}`);
-        let at=scene.stops.homes[0]; for(const end of nav.route(at,p)) { assert(nav.clear(at,end)); at=end; }
+    assert.deepEqual(scene.props.filter(p=>p.id.startsWith('building:house-')).map(p=>p.id), ['building:house-a']);
+    const patrol=scene.props.find(p=>p.id==='building:patrol');
+    const built=new VillageNavigation(scene.props,scene.landscape,scene.bounds,true);
+    near(patrol.size,148); near(patrol.x,226);
+    const patrolBase={x:patrol.x,y:patrol.y};
+    assert(nav.walkable(patrolBase)); assert(!built.walkable(patrolBase));
+    for(const navigation of [nav,built]) for(const [key,stops] of Object.entries(scene.stops)) for(const p of stops) {
+        assert(navigation.walkable(p),`${name}:${key} ${JSON.stringify(p)}`);
+        let at=scene.stops.homes[0];
+        for(const end of navigation.route(at,p)) { assert(navigation.clear(at,end)); at=end; }
         near(distance(at,p),0);
     }
     const farm=scene.props.find(p=>p.id==='building:farm');

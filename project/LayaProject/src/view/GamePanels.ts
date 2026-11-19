@@ -129,7 +129,10 @@ export class GamePanels implements PanelContext {
                 this.current = p;
             }
         }
-        if ((p.type === "patrolConfirm" || p.type === "patrolCandidates") && p.id && s.patrol?.captain === p.id) this.current = p = { type: "patrol" };
+        if ((p.type === "patrolConfirm" || p.type === "patrolCandidates") && p.id && s.patrol?.captain === p.id) {
+            const detail = p.type === "patrolConfirm" ? p.back?.back : p.back;
+            this.current = p = detail ?? { type: "patrol" };
+        }
         if (p.type.startsWith("patrol")) drawPatrolPanel(this, s, p);
         else if (p.type === "mercyConfirm") drawMercyConfirm(this, s);
         else if (p.type === "tactics" || p.type === "tactic" || p.type === "tacticSlotUnlock") drawTacticPanel(this, s, p);

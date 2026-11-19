@@ -10,7 +10,7 @@ export type StarterTarget = typeof STARTER_LESSONS[number]["target"] | "build";
 /** 淡紫儿引导独立查看记录；旧档也可看到新系统，跳过不会改变五波引导进度。 */
 export const PATROL_LESSONS = [
     { text: "粉红色的回忆开放了。点「建设」，看看新的守夜帮手。" },
-    { text: "点「粉红色的回忆」，看看建造需要多少粮木。" },
+    { text: "在建设列表找到「粉红色的回忆」，点「去查看」了解费用。" },
     { text: "材料齐了就能建造。缺材料也可以照常守夜。" },
     { text: "点「任命队长」。队长白天照常工作，夜里只能领队或驻塔。" },
     { text: "淡紫儿从城门出发了！他会沿着友谊路迎敌。" },

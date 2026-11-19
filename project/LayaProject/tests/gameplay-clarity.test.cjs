@@ -173,6 +173,58 @@ function imageNode(parent, id, x, y, width, height = width) {
     parent.addChild(node); return node;
 }
 
+test('the patrol card opens from the construction list without materials and returns to the same list', () => {
+    const { game } = session(), view = panelView(game);
+    const { generateWave } = require(path.join(compiled, 'game/WaveGenerator.js'));
+    view.ui.image = imageNode;
+    view.art.portraitId = () => 'portrait';
+    game.changed = () => { if (view.current) view.draw(game.state, view.current); };
+    const list = () => view.box.getChildByName('ScrollList');
+    const card = () => list().content.getChildByName('PatrolConstructionCard');
+    const badge = () => card().getChildByName('buttonFace').getChildByName('PatrolActionDot');
+    view.open({ type: 'build' });
+    assert.equal(card(), undefined);
+
+    const s = game.state;
+    s.completed = s.legacy.bestNight = 5;
+    s.day = 6; s.wave = generateWave(s); s.food = s.wood = 0;
+    const build = { type: 'build', scroll: 14 };
+    view.open(build);
+    assert(!view.box.getChildByName('button:粉红色的回忆'));
+    const row = card(), before = canonical(s);
+    assert(row.mouseEnabled);
+    assert(!badge());
+    assert.equal(row.getChildByName('buttonFace').getChildByName('BuildAction').getChildAt(0).text, '去查看');
+    row.event('click');
+    assert.equal(view.current.type, 'patrol');
+    assert.equal(canonical(game.state), before);
+    assert(!view.box.children.at(-1).getChildByName('PatrolBuildAction').mouseEnabled);
+    view.box.getChildByName('button:返回').event('click');
+    assert.equal(view.current, build);
+    assert.equal(list().offset, 14);
+
+    s.food = s.wood = 100;
+    view.draw(s, build);
+    assert(badge() && badge().y >= 0 && badge().x + badge().width <= card().width);
+    card().event('click');
+    const detail = view.current;
+    view.box.children.at(-1).getChildByName('PatrolBuildAction').event('click');
+    assert.equal(game.state.patrol.level, 1);
+    assert.deepEqual([game.state.wood, game.state.food], [55, 80]);
+    view.box.getChildByName('button:任命队长').event('click');
+    const free = game.state.people.find(p => p.adult && p.nights > 0 && !game.state.towers.some(t => t.operator === p.id));
+    view.send({ type: 'PATROL_CAPTAIN', id: free.id });
+    assert.equal(view.current, detail);
+    assert.equal(game.state.patrol.captain, free.id);
+    view.box.getChildByName('button:返回').event('click');
+    assert.equal(view.current, build);
+    assert.equal(list().offset, 14);
+    assert(badge());
+    game.state.food = game.state.wood = 0;
+    view.draw(game.state, build);
+    assert(card().mouseEnabled && !badge());
+});
+
 test('night controls preserve pause/speed/bell rules and restore village navigation after night', () => {
     const { game } = session(), view = panelView(game); view.ui.image = imageNode;
     const layout = {mapTop:280,footerTop:980,gateY:680,height:1280,safeTop:0,dateY:42,resourcesY:124};

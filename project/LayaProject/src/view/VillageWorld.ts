@@ -229,7 +229,8 @@ export class VillageWorld {
     }
     hideSpeech() { this.thoughts.current = this.shownThought = null; this.speechTip.hide(); }
     drawScenery(night: boolean) {
-        const key = night ? "night" : "day";
+        const patrolVisible = !!this.game.state?.patrol;
+        const key = (night ? "night" : "day") + (patrolVisible ? ":patrol" : "");
         if (this.backgroundKey === key)
             return;
         this.backgroundKey = key;
@@ -248,7 +249,7 @@ export class VillageWorld {
             [uv[0], wallV, uv[2], wallV, uv[4], uv[5], uv[6], uv[7]]);
         const shadow = WORLD_ART.shadow;
         for (const prop of this.scene.props) {
-            if (prop.ground || prop.id.startsWith("wall:") || prop.id.startsWith("deco:")) continue;
+            if (prop.ground || (!patrolVisible && prop.id === PATROL_PROP) || prop.id.startsWith("wall:") || prop.id.startsWith("deco:")) continue;
             const tree = prop.id.startsWith("tree:");
             const width = prop.size * (tree ? shadow.treeWidth : shadow.buildingWidth);
             const image = this.ui.image(this.scenery, tree ? "shadow_tree" : "shadow_actor", prop.x - width * shadow.centerX + shadow.x, prop.y - width * shadow.centerY + shadow.y, width, width, false);
@@ -338,14 +339,15 @@ export class VillageWorld {
             let kind: BuildingLook | null = null, level = 0, rooms = 1, damaged = false, facing = 1;
             if (p.id === PATROL_PROP && s.patrol) {
                 const tier = s.patrol.level >= 9 ? 2 : s.patrol.level >= 5 ? 1 : 0;
-                this.art.applyFrame(p.node, `patrol_booth_${tier}`, 100);
+                const size = p.node.width;
+                this.art.applyFrame(p.node, `patrol_booth_${tier}`, size);
                 const timer = this.patrolTimer!, glow = this.patrolGlow!, patrol = battle?.patrol;
                 timer.visible = !!battle;
                 timer.text = patrol ? `${Math.ceil(patrol.secondsUntil(battle!.tick))} 秒` : "待任命";
                 glow.visible = !!battle;
                 if (glow.visible) {
                     glow.graphics.clear();
-                    glow.graphics.drawEllipse(37, 51, 22, 19, "rgba(255,151,175,0.20)", null, 0);
+                    glow.graphics.drawEllipse(size * .37, size * .51, size * .22, size * .19, "rgba(255,151,175,0.20)", null, 0);
                 }
                 glow.alpha = .55 + .45 * Math.sin(this.sceneSeconds * 4);
             }
@@ -364,7 +366,7 @@ export class VillageWorld {
             else if (p.id.startsWith("building:house-")) {
                 kind = "HOUSE";
                 level = s.housing;
-                rooms = houseRooms(s.houses, p.id === "building:house-b");
+                rooms = houseRooms(s.houses);
             }
             else if (p.id === "building:farm") {
                 kind = "FARM";

@@ -91,7 +91,7 @@ class Sprite {
 global.Laya = { Sprite, Script: class {}, regClass: () => c => c, timer: { currFrame: 0 } };
 const { EnemyVisuals } = read('view/EnemyVisuals'), { ProjectileVisuals } = read('view/ProjectileVisuals'), { VillageWorld } = read('view/VillageWorld');
 const project = path.resolve(__dirname, '..');
-const layouts = JSON.parse(fs.readFileSync(path.join(project, 'assets/resources/gameplay/enemies/enemies.vdata'))).definitions;
+const layouts = JSON.parse(fs.readFileSync(path.join(project, 'assets/resources/gameplay/enemies/enemies.bin'))).definitions;
 test('last-kill synchronous render cannot spend the old frame delta before contact reaches the screen', () => {
     for (const delta of [.05, .15, .25]) {
         const b = battle(), f = new CombatPresentation(), p = new ProjectileMotion(), event = fatal(b);
@@ -126,7 +126,7 @@ test('a burst exceeding eighty visible bodies expands reusable slots instead of 
     world.reserveEnemies(40); assert.equal(world.enemies.length, 125); assert.equal(world.world.children.length, 125);
 });
 test('rotated arrow tip and stone/ice image centers land on the same target point used by hit feedback', () => {
-    const table = JSON.parse(fs.readFileSync(path.join(project, 'assets/resources/gameplay/enemies/frames.vdata'))).frames;
+    const table = JSON.parse(fs.readFileSync(path.join(project, 'assets/resources/gameplay/enemies/frames.bin'))).frames;
     const art = { contentBounds: id => table[id], applyFrame(n, id, size) { const f = table[id]; n.size(size, size * f.sourceSize.h / f.sourceSize.w); n.pivot(f.pivot.x * size / f.sourceSize.w, f.pivot.y * size / f.sourceSize.w); }, get: id => id };
     const visual = new ProjectileVisuals(new Sprite(), art);
     for (const kind of ['ARROW', 'STONE', 'SLOW']) for (const rotation of [-90, 0, 90, 180]) {

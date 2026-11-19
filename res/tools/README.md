@@ -25,7 +25,7 @@
 
 老人发布一张坐摇椅的画面和一张头像。摇椅原稿和可编辑场景位于 `source/rendered2d/characters/v5/elder/rest/`。以 `elder/elder_walk.blend` 为基础，由 `v5/authoring/render-elder-chair.py` 渲染。运行时围绕图集记录的椅脚接地点轻摆。四向行走母片留在制作目录。
 
-两段加载的图集、动画与布局数据及 Gitee 发布清单使用 `.vdata`，内容仍为 UTF-8 JSON。工程源码和制作配方保留 JSON。
+两段加载的图集帧表、动画、布局数据及 Gitee 发布清单使用单后缀 `.bin`，内容是 UTF-8 JSON。制作配方与可编辑源文件保留 JSON。
 
 构建工程素材后，按版本导出到 `/Users/happyelements/Documents/remote-res/`。远程导出使用 Arm `astcenc`（可通过 `DAIDAI_ASTCENC` 指向可执行文件）生成 KTX1 图页：UI 和含高清头像的图页用 4×4，其余用 6×6。保持 PNG/JPG 原图、裁边和旋转契约；支持 ASTC 的微信运行时每页只下载 KTX，不支持则取原图。有下载或读取错误时沿用原有重试。
 

@@ -53,10 +53,10 @@ export const SPLIT_TACTIC = "SPLIT_SUPER";
 export const SUMMON_TACTIC = "ZHIZHUO_SUMMON";
 /** 留诊战技的稳定存档标识；显示名称可独立调整。 */
 export const MIND_LOCK_TACTIC = "SONGLEI_MIND_LOCK";
-/** 泻火沿用原外圈作为唯一击杀范围；半径为地图逻辑像素，范围预告与判定共用。 */
+/** 泻火的唯一击杀半径为 124 地图逻辑像素，按反馈从 115 略增，预览、波纹与判定共用。 */
 export const BLAST_TACTIC = "MENGZHAOYI_BLAST";
 export const TIMED_BLAST = {
-    icon: "icon_tactic_blast", delaySeconds: 3, radius: 115
+    icon: "icon_tactic_blast", delaySeconds: 3, radius: 124
 } as const;
 /** 连点战技的稳定存档标识。用最大生命比例维持后期作用，首领倍率保留撞门压力。 */
 export const HAND_SPEED_TACTIC = "MINGBO_HAND_SPEED";
