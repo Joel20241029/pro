@@ -190,7 +190,7 @@ test('the patrol card opens from the construction list without materials and ret
     s.day = 6; s.wave = generateWave(s); s.food = s.wood = 0;
     const build = { type: 'build', scroll: 14 };
     view.open(build);
-    assert(!view.box.getChildByName('button:粉红色的回忆'));
+    assert(!view.box.getChildByName('button:淡紫儿之家'));
     const row = card(), before = canonical(s);
     assert(row.mouseEnabled);
     assert(!badge());
@@ -211,7 +211,7 @@ test('the patrol card opens from the construction list without materials and ret
     view.box.children.at(-1).getChildByName('PatrolBuildAction').event('click');
     assert.equal(game.state.patrol.level, 1);
     assert.deepEqual([game.state.wood, game.state.food], [55, 80]);
-    view.box.getChildByName('button:任命队长').event('click');
+    view.box.getChildByName('button:任命淡紫队长').event('click');
     const free = game.state.people.find(p => p.adult && p.nights > 0 && !game.state.towers.some(t => t.operator === p.id));
     view.send({ type: 'PATROL_CAPTAIN', id: free.id });
     assert.equal(view.current, detail);

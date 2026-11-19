@@ -21,7 +21,6 @@ import { KING_MERCY_TACTIC } from "../config/TacticConfig";
 import { equippedTactics } from "../game/Tactics";
 import { PanelMotion } from "./PanelMotion";
 import { drawPatrolPanel } from "./panels/PatrolPanels";
-import { PATROL } from "../config/PatrolConfig";
 import { attachPanelHelp } from "./PanelHelp";
 /** 独立的设备提示记录，与五波指引及村庄进度无关。仅玩家主动跳过时写入。 */
 const SLOT_GUIDE_KEY = "daidai_village.tactic_slot_guide_dismissed";
@@ -40,7 +39,6 @@ export class GamePanels implements PanelContext {
         if (panel.type === "dailyTasks" && (!featureUnlocked(bestNight, "dailyTasks") || this.game.state?.phase !== "DAY")) return;
         if (panel.type === "ranking" && !featureUnlocked(bestNight, "ranking")) return;
         if (["tactics", "tactic", "tacticSlotUnlock"].includes(panel.type) && !featureUnlocked(bestNight, "tactics")) return;
-        if (panel.type.startsWith("patrol") && bestNight < PATROL.unlock) return;
         if (!preserve) panel.rowOrder = undefined;
         this.current = panel; this.game.pause("CHOICE"); this.refresh();
         if (panel.type === "start") void this.resources.ensure("night");
@@ -133,7 +131,7 @@ export class GamePanels implements PanelContext {
                 this.current = p;
             }
         }
-        if ((p.type === "patrolConfirm" || p.type === "patrolCandidates") && p.id && s.patrol?.captain === p.id) {
+        if ((p.type === "patrolConfirm" || p.type === "patrolCandidates") && p.id && s.patrol.captain === p.id) {
             const detail = p.type === "patrolConfirm" ? p.back?.back : p.back;
             this.current = p = detail ?? { type: "patrol" };
         }

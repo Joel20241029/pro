@@ -1,7 +1,7 @@
 import { PADS, TowerKind } from "../game/GameConfig";
 import { GameLayout } from "./GameLayout";
 import { farm } from "./config/VillageSceneConfig";
-import { GroundPoint, Footprint, PATROL_PROP, TOWER_VIEW, VILLAGE_PROPS, LANDSCAPE_FOOTPRINTS, MOTION, CAMP_STOPS, VILLAGE_STOPS } from "./config/VillageSceneConfig";
+import { GroundPoint, Footprint, TOWER_VIEW, VILLAGE_PROPS, LANDSCAPE_FOOTPRINTS, MOTION, CAMP_STOPS, VILLAGE_STOPS } from "./config/VillageSceneConfig";
 export { GroundPoint, Footprint, VillageProp, TOWER_VIEW, VILLAGE_PROPS, LANDSCAPE_FOOTPRINTS, MOTION, CAMP_STOPS, WEDDING, VILLAGE_STOPS } from "./config/VillageSceneConfig";
 export function towerLaunch(index: number, kind: TowerKind, pads: readonly GroundPoint[] = PADS): GroundPoint {
     const pad = pads[index], at = TOWER_VIEW.muzzle[kind], scale = TOWER_VIEW.size / TOWER_VIEW.canvas;
@@ -57,8 +57,8 @@ export class VillageNavigation {
         to: number;
         cost: number;
     }[][] = [];
-    constructor(props = VILLAGE_PROPS, landscape = LANDSCAPE_FOOTPRINTS, readonly bounds: Footprint = MOTION.bounds, patrolBuilt = false) {
-        this.obstacles = [...props.filter(p => p.footprint && (patrolBuilt || p.id !== PATROL_PROP)).map(p => p.footprint!), ...landscape].map(r => ({
+    constructor(props = VILLAGE_PROPS, landscape = LANDSCAPE_FOOTPRINTS, readonly bounds: Footprint = MOTION.bounds) {
+        this.obstacles = [...props.filter(p => p.footprint).map(p => p.footprint!), ...landscape].map(r => ({
             left: r.left - MOTION.clearance, top: r.top - MOTION.clearance,
             right: r.right + MOTION.clearance, bottom: r.bottom + MOTION.clearance
         }));

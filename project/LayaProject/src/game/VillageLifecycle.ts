@@ -52,7 +52,7 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
         if (t.operator && retiredIds.includes(t.operator))
             t.operator = null;
     });
-    if (s.patrol?.captain && retiredIds.includes(s.patrol.captain)) s.patrol.captain = null;
+    if (s.patrol.captain && retiredIds.includes(s.patrol.captain)) s.patrol.captain = null;
     // 老人在村时保留婚姻和亲缘；寿终才腾出人口、解除婚姻并进入有界家谱。
     for (const p of departed) {
         p.ancestors = [];

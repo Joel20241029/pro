@@ -8,7 +8,7 @@ import type { WorldItem } from "./WorldInteraction";
 const LOOK = { spriteSize: 49, hitSeconds: .22 };
 export class PatrolVisuals {
     private nodes: { root: Laya.Sprite; body: Laya.Sprite }[] = [];
-    private impact: { node: Laya.Sprite; hit: Extract<CombatFeedback, { type: "patrol" }>; until: number } | null = null;
+    private impacts: { node: Laya.Sprite; x: number; y: number; until: number }[] = [];
     private active: BattleSimulation | null = null;
     constructor(private world: Laya.Sprite, private art: SpriteFrames) {}
 
@@ -16,12 +16,12 @@ export class PatrolVisuals {
         const patrol = battle?.outcome ? null : battle?.patrol;
         for (const { root } of this.nodes) root.visible = false;
         if (battle !== this.active) {
-            this.impact?.node.destroy();
-            this.impact = null;
+            for (const impact of this.impacts) impact.node.destroy();
+            this.impacts = [];
             this.active = battle;
         }
         const depth: WorldItem[] = [];
-        if (patrol && !this.nodes.length) for (let i = 0; i < PATROL.maxActive; i++) {
+        if (patrol && !this.nodes.length) for (let i = 0; i < PATROL.squad.maxActive; i++) {
             const root = new Laya.Sprite(), body = new Laya.Sprite();
             root.name = `PatrolActor:${i}`;
             root.mouseEnabled = body.mouseEnabled = false;
@@ -40,18 +40,23 @@ export class PatrolVisuals {
             depth.push({ id: root.name, y: root.y, node: root });
         });
         for (const hit of events) if (hit.type === "patrol") {
-            const node = this.impact?.node ?? this.world.addChild(new Laya.Sprite());
-            node.mouseEnabled = false;
-            node.name = "PatrolImpact";
-            this.impact = { node, hit, until: clock + LOOK.hitSeconds };
+            let impact = this.impacts.find(effect => effect.until <= clock);
+            if (!impact) {
+                if (this.impacts.length < PATROL.squad.maxActive) {
+                    const node = new Laya.Sprite(); node.mouseEnabled = false;
+                    node.name = `PatrolImpact:${this.impacts.length}`; this.world.addChild(node);
+                    impact = { node, x: 0, y: 0, until: 0 }; this.impacts.push(impact);
+                } else impact = this.impacts.reduce((oldest, effect) => effect.until < oldest.until ? effect : oldest);
+            }
+            impact.x = hit.at.x; impact.y = hit.at.y; impact.until = clock + LOOK.hitSeconds;
         }
-        if (this.impact) {
-            const { node, hit, until } = this.impact, remaining = Math.max(0, until - clock) / LOOK.hitSeconds;
+        for (const { node, x, y, until } of this.impacts) {
+            const remaining = Math.max(0, until - clock) / LOOK.hitSeconds;
             node.visible = remaining > 0;
             if (node.visible) {
                 node.graphics.clear();
                 node.graphics.drawEllipse(0, -5, 11 + 16 * (1 - remaining), 7 + 9 * (1 - remaining), null, "#ffe6b6", 3);
-                node.pos(hit.at.x, layout.worldY(hit.at.y));
+                node.pos(x, layout.worldY(y));
                 node.alpha = remaining;
                 depth.push({ id: node.name, y: node.y + 1, node });
             }

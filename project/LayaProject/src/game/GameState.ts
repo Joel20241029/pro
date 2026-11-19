@@ -34,8 +34,8 @@ export interface GameState {
     /** 上次提供旅人时的成功守夜数；谢绝也记时，新村null，不迁移旧配置。 */
     lastTraveler: number | null;
     people: Person[]; families: Family[]; towers: Tower[];
-    /** 1.0.70 旧档与新开村省略未建建筑。夜战只读战前快照。 */
-    patrol?: { level: number; captain: string | null };
+    /** 开局即有此建筑，夜战只读战前快照。 */
+    patrol: { level: number; captain: string | null };
     /** 战技学习结果与当前携带；资格由本村成功波数推导，查看提醒使用独立的界面记录。 */
     // 旧档携带项仍是第一槽。额外数组的长度记录已购槽数，null 表示空槽。
     tactics: {
@@ -48,6 +48,8 @@ export interface GameState {
         adults: string[]; elders: string[]; cared: string[]; hungry: boolean; tactic: string; extraSlots?: (string | null)[];
         /** 与献纳和门血同笔保存，夜间冷启动恢复已用次数并排除施放当夜。 */
         mercySpent?: true;
+        /** 新开夜战固定小队规则。1.0.71 夜战缺少标记，继续按单人巡防重放。 */
+        patrolSquad?: true;
     } | null;
     rng: { family: number; world: number };
     stats: { births: number; retirees: number; generation: number }; legacy: Legacy;

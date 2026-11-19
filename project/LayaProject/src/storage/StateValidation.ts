@@ -79,12 +79,10 @@ export function validateState(s: GameState) {
         if (t.operator !== null) { check(workers.some(p => p.id === t.operator)); operators.push(t.operator); }
     }
     check(new Set(operators).size === operators.length && ids(s.favorites, RULE.favoriteCap) && s.favorites.every(id => s.history.some(p => p.id === id)));
-    if (s.patrol !== undefined) {
-        check(s.patrol && s.completed >= PATROL.unlock && int(s.patrol.level, 1) &&
-            int(patrolStats(s.patrol.level).damage, 1), "淡紫儿建筑数据无效");
-        check(s.patrol.captain === null || workers.some(p => p.id === s.patrol!.captain &&
-            !operators.includes(p.id) && int(patrolStats(s.patrol!.level, p).damage, 1)), "淡紫儿队长数据无效");
-    }
+    const { patrol } = s;
+    check(patrol && int(patrol.level, PATROL.startLevel) && int(patrolStats(patrol.level).damage, 1), "淡紫儿建筑数据无效");
+    check(patrol.captain === null || workers.some(p => p.id === patrol.captain &&
+        !operators.includes(p.id) && int(patrolStats(patrol.level, p, s.phase !== "NIGHT" || s.night?.patrolSquad === true).damage, 1)), "淡紫队长数据无效");
     check(Array.isArray(s.choices) && s.choices.length <= RULE.populationCap + 3);
     for (const q of s.choices) {
         check(q && ["SKILL", "TRAVELER", "POLICY"].includes(q.kind));
@@ -104,6 +102,7 @@ export function validateState(s: GameState) {
     } else check(s.wave === null);
     if (s.phase === "NIGHT") {
         check(s.night && s.night.tactic === s.tactics.equipped, "本夜战技快照不一致");
+        if (s.night.patrolSquad !== undefined) check(s.night.patrolSquad === true && !!patrol.captain, "本夜淡紫儿出征规则无效");
         const nightExtra = s.night.extraSlots;
         check(nightExtra === undefined ? extra === undefined : Array.isArray(nightExtra) && nightExtra.length === extra?.length &&
             nightExtra.every((id, i) => id === extra[i]), "本夜战技槽快照不一致");

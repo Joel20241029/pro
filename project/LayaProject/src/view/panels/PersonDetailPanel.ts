@@ -27,7 +27,7 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
     const help = ancestor ? `珍藏最多 ${RULE.favoriteCap} 位，满了可先取消一位。普通家谱保留最近 ${RULE.historyCap} 位先辈。`
         : elder ? "养老的人仍占一个住房名额，口粮计入全村。成功守夜推进晚年，寿终后记入家谱。"
             : !q.adult ? "孩子由成年村民照料，成功守夜才能成长。在成人详情中安排照料。"
-                : "白天工作与夜间岗位互不占用。夜间可驻塔，或在粉红色的回忆担任淡紫儿队长。";
+                : `白天工作与夜间岗位互不占用。夜间可驻塔，或在${PATROL.building}担任${PATROL.role}。`;
     const box = ctx.modal(ancestor ? "先辈详情" : "村民详情", "", true, { width: UI.panelWidth, height }, help);
     let parent = box, x: number = UI.inset, y: number = DETAIL.top;
     if (height < preferredHeight) {
@@ -112,7 +112,7 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
     heading(status, "工作与照料");
     status.graphics.drawRoundRect(395, 17, 180, 40, 14, 14, 14, 14, "#e9eed3");
     text(status, `距退休 ${q.nights} 夜`, 399, 17, 172, 40, 24, C.green, true).align = "center";
-    const captain = q.id === s.patrol?.captain;
+    const captain = q.id === s.patrol.captain;
     text(status, "白天岗位", 27, 69, 145, 31, 25, C.muted);
     text(status, JOB_NAMES[q.job], 28, 101, 152, 40, 33, C.ink, true);
     if (captain) text(status, `夜间 · ${PATROL.role}`, canAssign ? 28 : 315, canAssign ? 143 : 100, canAssign ? 272 : 255, 24, 24, C.muted);

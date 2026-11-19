@@ -1,3 +1,4 @@
+import { PATROL } from "../config/PatrolConfig";
 import { VILLAGER_QUALITY } from "../config/VillagerQuality";
 import { GROWTH, RULE, TOWERS } from "../game/GameConfig";
 import { BLAST_TACTIC, DRAGON_POISON, DRAGON_POISON_TACTIC, HAND_SPEED, HAND_SPEED_TACTIC, KING_MERCY, KING_MERCY_TACTIC, MIND_LOCK_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_CHARGE, SUMMON_TACTIC, TACTIC_NIGHT_USES, TACTIC_SLOTS, TACTIC_USE, TIMED_BLAST, tacticDefinition, ZHOU_LOVE_HEAL, ZHOU_LOVE_TACTIC } from "../config/TacticConfig";
@@ -44,7 +45,7 @@ export const GUIDE_CHAPTERS: ReadonlyArray<{ title: string; sections: ReadonlyAr
         { title: "增建民居增加住的人", body: "住宅扩建从1级8名额开始，每升1级增加1个名额，最多100级、107人。扩建消耗木材和粮食，费用随等级增长，条目会显示具体数额。孩子和老人也占住房。地图最多同时展示20人，名册、工作产出、口粮和成长仍按全员结算。" },
         { title: "修缮民居增加存的资源", body: "修缮提高粮、木各自的仓储，扩建提高人口容量，两者独立。修缮级别越高，仓储增长越多；费用超出仓储时先修缮，再攒材料。" },
         { title: "农田与伐木场持续提效", body: "升级提高每位工人的产量，前3级沿用初阶岗位，之后每2级再增加1个岗位。新增空岗会自动安排待安排村民。地图仅展示部分工人，未出镜的工人仍正常产出。" },
-        { title: "粉红色的回忆", body: "守住第 5 波后可建造。白天任命淡紫儿队长，夜里淡紫儿会从城门出击，沿友谊路迎敌。队长仍可做白天的工作，夜间不能同时驻塔。升级能提高伤害、缩短出勤间隔。" },
+        { title: PATROL.building, body: `开村自带 ${PATROL.startLevel} 级。白天点「${PATROL.appoint}」，夜里淡紫儿会组队出门迎敌。前期每级多派一人，满 ${PATROL.squad.maxSize} 人后提升单人伤害。队长仍可做白天的工作，夜间不能同时驻塔。` },
         { title: "城门加固与修复", body: `加固提高城门耐久上限，并补上本次增加的耐久，原有损伤仍保留。修复针对受损城门，每次基础恢复上限的 ${Math.round(GROWTH.repairFraction * 100)}%，受村规影响，最多恢复到满。城门完好时无需修复。` },
         { title: "建塔、改建与升级", body: "五个固定塔位，开局已建箭楼和石塔，其余3个空位可自行建设。建成后自动安排成年人。改建花20木，保留等级和驻守者；升级提高伤害。建设在白天进行，夜间可以换人。" },
         { title: "越往后越需要建设", body: "住宅可扩建到100级，其余设施与防塔数值可以持续提升。外观在前50级逐步变化，50级后保持最高档。升级需木材和粮食，费用逐渐增加；要兼顾生产、仓储、防线和代际接班。" }

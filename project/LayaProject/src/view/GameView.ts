@@ -208,9 +208,10 @@ export class GameView {
             } else if (day.phase === "DAY" && panel?.type === "patrol" && !day.patrol && box && !patrolBuildReason(day)) {
                 patrolStep = 3; patrolTarget = box.getChildAt(box.numChildren - 1)?.getChildByName("PatrolBuildAction") as Laya.Sprite;
             } else if (day.phase === "DAY" && panel?.type === "patrol" && day.patrol && !day.patrol.captain && box) {
-                patrolStep = 4; patrolTarget = box.getChildByName("button:任命队长") as Laya.Sprite;
+                patrolStep = 4; patrolTarget = box.getChildByName(`button:${PATROL.appoint}`) as Laya.Sprite;
             } else if (day.phase === "NIGHT" && !this.overlay.numChildren && !this.game.pauses.size && !worldFrozen && this.game.battle?.patrol?.deployments) {
-                patrolStep = 5; patrolTarget = this.village.world.getChildByName("PatrolActor:0")?.getChildAt(0) as Laya.Sprite;
+                const actor = this.village.world.getChildByName("PatrolActor:0") as Laya.Sprite | undefined;
+                if (actor?.visible) { patrolStep = 5; patrolTarget = actor.getChildAt(0) as Laya.Sprite; }
             }
         }
         this.patrolGuide.tick(patrolStep, this.layout, visualDelta, patrolTarget);

@@ -1,4 +1,4 @@
-import { patrolBuildReason, patrolCaptain, patrolCost } from "../../game/PatrolRules";
+import { patrolUpgradeReason, patrolCaptain, patrolCost } from "../../game/PatrolRules";
 import { PATROL } from "../../config/PatrolConfig";
 import { capacity, person } from "../../game/VillageRules";
 import { GameState, isWorkingAdult } from "../../game/GameState";
@@ -38,15 +38,13 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
                 cost: cost as MaterialCost | null, reason: upgradeUnavailableReason(s, cost), verb: "升级",
                 action: () => ctx.send({ type: "BUILD", kind: kind as "FARM" | "LOGGING" | "HOUSING" | "GATE" }) };
         });
-        if (s.completed >= PATROL.unlock) {
-            const level = s.patrol?.level ?? 0, captain = patrolCaptain(s);
-            entries.unshift({
-                id: "PATROL", icon: `patrol_booth_${level >= 9 ? 2 : level >= 5 ? 1 : 0}`,
-                title: level ? `${PATROL.building} · ${amount(level)} 级` : PATROL.building,
-                effect: captain ? `队长 · ${coloredName(captain)}` : level ? "队长待任命" : "未建造 · 夜间巡防",
-                cost: patrolCost(s), reason: null, verb: "去查看", action: () => ctx.open({ type: "patrol", back: p })
-            });
-        }
+        const level = s.patrol.level, captain = patrolCaptain(s);
+        entries.unshift({
+            id: "PATROL", icon: `patrol_booth_${level >= 9 ? 2 : level >= 5 ? 1 : 0}`,
+            title: `${PATROL.building} · ${amount(level)} 级`,
+            effect: captain ? `队长 · ${coloredName(captain)}` : `${PATROL.role}待任命`,
+            cost: patrolCost(s), reason: null, verb: "去查看", action: () => ctx.open({ type: "patrol", back: p })
+        });
         const houseCost = residentialCost(s.houses);
         entries.push(
             { id: "HOUSE", icon: "icon_build", title: `住宅扩建 · ${s.houses}/${RULE.houseMax} 级`, effect: `住房 ${capacity(s)} → ${Math.min(RULE.populationCap, capacity(s) + RESIDENTIAL.capacityPerLevel)} 人`, cost: s.houses >= RULE.houseMax ? null : houseCost,
@@ -62,8 +60,8 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
             const button = ctx.ui.buildRow(rows.content, i * step, row.icon, row.title, row.effect, s, row.cost, row.reason, row.action, row.verb);
             if (row.id === "PATROL") {
                 button.name = "PatrolConstructionCard";
-                const canAppoint = s.patrol && !s.patrol.captain && s.people.some(isWorkingAdult);
-                if (day && (canAppoint || patrolBuildReason(s) === null)) {
+                const canAppoint = !s.patrol.captain && s.people.some(isWorkingAdult);
+                if (day && (canAppoint || patrolUpgradeReason(s) === null)) {
                     const badge = ctx.ui.actionBadge(button, "PatrolActionDot");
                     badge.pos(button.width - badge.width - 8, 8);
                 }
@@ -93,7 +91,7 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
             ctx.ui.buildRow(rowParent, 0, t.kind === "ARROW" ? "icon_arrow" : t.kind === "STONE" ? "icon_stone" : "icon_slow", `升级至 ${amount(t.level + 1)} 阶`, `基础伤害 ${growthPreview(Math.floor(TOWERS[t.kind].damage * levelPower(t.level)), Math.floor(TOWERS[t.kind].damage * levelPower(t.level + 1)))}`, s, cost, upgradeUnavailableReason(s, cost), () => ctx.send({ type: "UPGRADE", index: i }));
         }
         if (t.kind) {
-            const canAssign = s.people.some(q => isWorkingAdult(q) && q.id !== s.patrol?.captain);
+            const canAssign = s.people.some(q => isWorkingAdult(q) && q.id !== s.patrol.captain);
             if (!canAssign) ctx.ui.label(box, "暂无可驻塔的成年人", UI.inset, 492, UI.contentWidth, 26, C.muted, false, 30).align = "center";
             ctx.ui.centerButton(box, t.operator ? "更换驻守村民" : "安排驻守村民", dutyY, () => ctx.open({ type: "operators", index: i }), C.green, canAssign);
         }

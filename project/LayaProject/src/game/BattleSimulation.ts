@@ -83,7 +83,7 @@ export class BattleSimulation {
             throw new Error("缺少已保存的战前状态");
         this.base = clone(state);
         this.denseWave = isDenseWave(state.wave.ordinaryHealthPercent);
-        this.patrol = this.base.patrol?.captain ? new Patrol(this.base) : null;
+        this.patrol = this.base.patrol.captain ? new Patrol(this.base) : null;
         const loadout = [state.night.tactic, ...(state.night.extraSlots ?? [])];
         this.tactics = loadout.filter(id => id !== null).map(id => ({ ...tacticDefinition(id) }));
         this.tactic = this.tactics[0];
@@ -264,7 +264,7 @@ export class BattleSimulation {
             if (!frozen) e.progress += e.speed * RULE.step * (e.slowTicks > 0 ? 1 - e.slow : 1);
             const after = enemyPoint(e);
             e.walkDistance += Math.hypot(after.x - before.x, after.y - before.y);
-            if (this.patrol && e.hp > 0) patrolTargets.push({ enemy: e, at: after });
+            if (this.patrol && e.hp > 0) patrolTargets.push({ enemy: e, fromY: before.y, at: after });
             if (rush && e.hp > 0) {
                 const end = e.progress >= PATH_LENGTH
                     ? Math.max(0, (PATH_LENGTH - startProgress) / (e.progress - startProgress || 1)) : 1;

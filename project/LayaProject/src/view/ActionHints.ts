@@ -1,4 +1,4 @@
-import { patrolBuildReason } from "../game/PatrolRules";
+import { patrolUpgradeReason } from "../game/PatrolRules";
 import { GameSession, Pause } from "../game/GameSession";
 import { GameState, isWorkingAdult, Person } from "../game/GameState";
 import { RULE } from "../game/GameConfig";
@@ -36,7 +36,7 @@ export function actionHints(s: GameState, blocked: boolean) {
     const { marriage, nurture } = familyActionHints(s, blocked);
     hints.families = marriage || nurture;
     const buildings: [UpgradeKind, number][] = [["FARM", s.farm], ["LOGGING", s.logging], ["HOUSING", s.housing], ["GATE", s.gateLevel]];
-    hints.build = patrolBuildReason(s) === null || (!!s.patrol && !s.patrol.captain && adults.length > 0) || buildings.some(([kind, level]) => upgradeUnavailableReason(s, upgradeCost(kind, level)) === null) ||
+    hints.build = patrolUpgradeReason(s) === null || (!s.patrol.captain && adults.length > 0) || buildings.some(([kind, level]) => upgradeUnavailableReason(s, upgradeCost(kind, level)) === null) ||
         (s.houses < RULE.houseMax && upgradeUnavailableReason(s, residentialCost(s.houses)) === null) || (s.gate < gateCapacity(s) && s.wood >= repairCost(s));
     return hints;
 }

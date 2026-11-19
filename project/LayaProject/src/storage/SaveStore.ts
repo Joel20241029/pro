@@ -1,3 +1,4 @@
+import { PATROL } from "../config/PatrolConfig";
 import { CONFIG_VERSION } from "../game/GameConfig";
 import { GameState } from "../game/GameState";
 import { validateState } from "./StateValidation";
@@ -35,8 +36,12 @@ function decode(raw: string | null): Slot {
         if (e.commitType !== "NORMAL" && e.commitType !== "CLEAN_START") return { kind: "corrupt" };
         const { checksum, ...body } = e;
         if (typeof checksum !== "string" || crc32(canonical(body)) !== checksum || !Number.isSafeInteger(e.revision) || e.revision < 1 || typeof e.commitId !== "string" || !e.commitId.length) return { kind: "corrupt" };
-        validateState(e.payload);
-        return { kind: "valid", data: e, state: e.payload };
+        // 已校验版本与校验和。旧村缺少巡防建筑时补齐运行态，保留双槽原始字节直到正常保存。
+        const payload = e.payload;
+        const state = payload && typeof payload === "object" && !Object.prototype.hasOwnProperty.call(payload, "patrol")
+            ? { ...payload, patrol: { level: PATROL.startLevel, captain: null } } : payload;
+        validateState(state);
+        return { kind: "valid", data: e, state };
     } catch { return { kind: "corrupt" }; }
 }
 /** 补写结果对应已重建的 pending，双槽核对成功前不发布其状态。 */

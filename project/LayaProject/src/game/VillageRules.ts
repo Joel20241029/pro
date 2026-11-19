@@ -9,7 +9,7 @@ import { dailyRationAmount } from "./DailyRation";
 import { person, capacity, canMarry, birthUnavailableReason, economy, policy } from "./VillageQueries";
 import { autoAssignJobs, autoAssignOperators, assignOperator } from "./VillageJobs";
 import { requireRule, spend, newId, remember, pruneHistory } from "./VillageStateOps";
-import { patrolBuildReason, patrolCost } from "./PatrolRules";
+import { patrolUpgradeReason, patrolCost } from "./PatrolRules";
 import { applyTactic, unlockTacticSlot } from "./Tactics";
 /** 原村务 API 保持不变；内部模块只依赖具体实现，禁止反向引用此入口。 */
 export { createGame } from "./VillageCreation";
@@ -44,7 +44,7 @@ export type Command = {
     type: "BUILD";
     kind: "HOUSE" | "FARM" | "LOGGING" | "HOUSING" | "GATE";
 } | {
-    type: "PATROL_BUILD";
+    type: "PATROL_UPGRADE";
 } | {
     type: "PATROL_CAPTAIN";
     id: string;
@@ -217,18 +217,17 @@ export function applyCommand(s: GameState, c: Command) {
             }
             break;
         }
-        case "PATROL_BUILD": {
-            const reason = patrolBuildReason(s);
+        case "PATROL_UPGRADE": {
+            const reason = patrolUpgradeReason(s);
             requireRule(reason === null, reason!);
             const { wood, food } = patrolCost(s);
             spend(s, "wood", wood);
             spend(s, "food", food);
-            if (s.patrol) s.patrol.level++;
-            else s.patrol = { level: 1, captain: null };
+            s.patrol.level++;
             break;
         }
         case "PATROL_CAPTAIN": {
-            requireRule(s.patrol && isWorkingAdult(person(s, c.id)), "请选择成年且未荣休的村民");
+            requireRule(isWorkingAdult(person(s, c.id)), "请选择成年且未荣休的村民");
             const tower = s.towers.find(t => t.operator === c.id);
             if (tower) tower.operator = null;
             s.patrol.captain = c.id;
@@ -269,6 +268,7 @@ export function applyCommand(s: GameState, c: Command) {
             const e = economy(s);
             s.night = { adults: s.people.filter(isWorkingAdult).map(p => p.id), elders: s.people.filter(isElder).map(p => p.id), cared: s.people.filter(p => isWorkingAdult(p) && p.job === "CARE").map(p => p.careChild!), hungry: e.hungry, tactic: s.tactics.equipped };
             if (s.tactics.extraSlots) s.night.extraSlots = s.tactics.extraSlots.slice();
+            if (s.patrol.captain) s.night.patrolSquad = true;
             s.food = e.endFood;
             s.wood = e.endWood;
             s.phase = "NIGHT";

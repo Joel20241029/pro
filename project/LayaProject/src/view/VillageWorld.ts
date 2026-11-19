@@ -54,13 +54,12 @@ export class VillageWorld {
     private interaction = new WorldInteraction(() => this.game.state, () => this.motion);
     private freshBuildingVillage = true;
     scene = layoutVillage(this.layout);
-    private patrolBuilt = false;
     private patrolVisuals = new PatrolVisuals(this.world, this.art);
     private patrolTimer: Laya.Text | undefined;
     private patrolGlow: Laya.Sprite | undefined;
     private motion = new VillagerMotion(this.navigation(), this.scene.stops);
     private navigation(scene = this.scene) {
-        return new VillageNavigation(scene.props, scene.landscape, scene.bounds, this.patrolBuilt);
+        return new VillageNavigation(scene.props, scene.landscape, scene.bounds);
     }
     private thoughts = new VillagerThoughts();
     private crying = new NewbornCry();
@@ -195,7 +194,6 @@ export class VillageWorld {
         this.summon.reset();
         this.interaction.cancelPresses();
         this.interaction.clearDepth();
-        this.patrolBuilt = false;
         this.motion = new VillagerMotion(this.navigation(), this.scene.stops);
         this.thoughts = new VillagerThoughts(); this.crying = new NewbornCry(); this.cryIcon.visible = false;
         this.hideSpeech(); this.walkAnimation = new WalkAnimation(this.art);
@@ -218,10 +216,6 @@ export class VillageWorld {
         this.props.forEach((p, i) => { const at = scene.props[i]; p.y = at.ground ? -1 : at.y; p.node.pos(at.x, at.y); });
     }
     sync(s: GameState, preserveOverlay: boolean) {
-        if (!!this.patrolBuilt !== !!s.patrol) {
-            this.patrolBuilt = !!s.patrol;
-            this.motion.relayout(this.navigation(), this.scene.stops, p => p);
-        }
         if (!preserveOverlay)
             this.motion.sync(s, this.game.battle ? this.game.battle.base.towers : s.towers);
         this.thoughts.sync(s);
@@ -229,8 +223,7 @@ export class VillageWorld {
     }
     hideSpeech() { this.thoughts.current = this.shownThought = null; this.speechTip.hide(); }
     drawScenery(night: boolean) {
-        const patrolVisible = !!this.game.state?.patrol;
-        const key = (night ? "night" : "day") + (patrolVisible ? ":patrol" : "");
+        const key = night ? "night" : "day";
         if (this.backgroundKey === key)
             return;
         this.backgroundKey = key;
@@ -249,7 +242,7 @@ export class VillageWorld {
             [uv[0], wallV, uv[2], wallV, uv[4], uv[5], uv[6], uv[7]]);
         const shadow = WORLD_ART.shadow;
         for (const prop of this.scene.props) {
-            if (prop.ground || (!patrolVisible && prop.id === PATROL_PROP) || prop.id.startsWith("wall:") || prop.id.startsWith("deco:")) continue;
+            if (prop.ground || prop.id.startsWith("wall:") || prop.id.startsWith("deco:")) continue;
             const tree = prop.id.startsWith("tree:");
             const width = prop.size * (tree ? shadow.treeWidth : shadow.buildingWidth);
             const image = this.ui.image(this.scenery, tree ? "shadow_tree" : "shadow_actor", prop.x - width * shadow.centerX + shadow.x, prop.y - width * shadow.centerY + shadow.y, width, width, false);
@@ -323,10 +316,8 @@ export class VillageWorld {
         if (this.residentCuesBlocked) { this.hideSpeech(); this.crying.dismiss(); }
         const depth = this.props.slice();
         const booth = this.props.find(item => item.id === PATROL_PROP)!;
-        if (booth) {
-            booth.node.visible = !!s?.patrol;
-            booth.node.mouseEnabled = !!s?.patrol && !panelOpen;
-        }
+        booth.node.visible = !!s;
+        booth.node.mouseEnabled = !!s && !panelOpen;
         if (!s) {
             this.patrolVisuals.update(null, this.layout, [], 0);
             this.rage.update(null, []);
@@ -337,7 +328,7 @@ export class VillageWorld {
         }
         for (const p of this.props) {
             let kind: BuildingLook | null = null, level = 0, rooms = 1, damaged = false, facing = 1;
-            if (p.id === PATROL_PROP && s.patrol) {
+            if (p.id === PATROL_PROP) {
                 const tier = s.patrol.level >= 9 ? 2 : s.patrol.level >= 5 ? 1 : 0;
                 const size = p.node.width;
                 this.art.applyFrame(p.node, `patrol_booth_${tier}`, size);

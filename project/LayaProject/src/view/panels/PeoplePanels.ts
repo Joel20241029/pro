@@ -42,7 +42,7 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
             sub = "选定后迎接孩子。人选转为照料，夜间仍可驻塔。红字显示现有／所需。";
         }
         if (p.type === "operators") {
-            list = s.people.filter(q => isWorkingAdult(q) && q.id !== s.patrol?.captain);
+            list = s.people.filter(q => isWorkingAdult(q) && q.id !== s.patrol.captain);
             const tower = towers[p.index!];
             role = tower.kind ?? undefined; currentOperator = tower.operator;
             title = "安排驻塔";
@@ -102,7 +102,7 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
         rows.setVirtualRows(list.length, rowStep, (i, row) => {
             const q = list[i];
             const reason = p.type === "carers" ? birthUnavailableReason(s, p.id!, q.id) : null;
-            const desc = `${coloredName(q, reason === null)} · ${q.sex === "MALE" ? "男" : "女"} · ${TRAITS[q.trait][0]}\n${reason !== null ? reasonBesideCost(reason) ?? "费用不足，缺口见上方" : p.type === "history" ? "已寿终 · 留念家谱" : isElder(q) ? `养老还剩 ${q.elderNights} 夜` : q.adult ? `${q.id === s.patrol?.captain ? PATROL.role : JOB_NAMES[q.job]} · 距退休 ${q.nights} 夜` : `成长 ${q.growth}/${RULE.growNights} · 还需照料守夜`}`;
+            const desc = `${coloredName(q, reason === null)} · ${q.sex === "MALE" ? "男" : "女"} · ${TRAITS[q.trait][0]}\n${reason !== null ? reasonBesideCost(reason) ?? "费用不足，缺口见上方" : p.type === "history" ? "已寿终 · 留念家谱" : isElder(q) ? `养老还剩 ${q.elderNights} 夜` : q.adult ? `${q.id === s.patrol.captain ? PATROL.role : JOB_NAMES[q.job]} · 距退休 ${q.nights} 夜` : `成长 ${q.growth}/${RULE.growNights} · 还需照料守夜`}`;
             const portrait = ctx.art.portraitId(q, p.type === "history");
             const entry = ctx.ui.listItem(row, desc, portrait, 0, () => {
                 if (p.type === "history")

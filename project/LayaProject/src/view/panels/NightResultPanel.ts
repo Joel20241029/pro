@@ -33,7 +33,7 @@ export function drawNightResult(ctx: PanelContext, result: NightResult, flying: 
         const text = ctx.ui.label(box, result.recap, 44, 372, 580, 28, C.cream, false, 131);
         text.align = "center"; text.valign = "middle"; text.overflow = Laya.Text.SHRINK;
     }
-    if (result.patrol) ctx.ui.label(box, `淡紫儿出勤 ${result.patrol.deployments} 次 · 击败 ${result.patrol.kills} 名来敌`,
+    if (result.patrol) ctx.ui.label(box, `淡紫儿出征 ${result.patrol.deployments} 人次 · 击败 ${result.patrol.kills} 名来敌`,
         44, result.recap ? 512 : 366, 580, 29, C.cream, true, 42).align = "center";
     ctx.ui.centerButton(box, flying ? "正在收下…" : "收下", collectY, collect, C.gold, !flying, 312, collectHeight);
     return { box, sources: [food, wood] };

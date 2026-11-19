@@ -1,3 +1,4 @@
+import { PATROL } from "../config/PatrolConfig";
 import { GameState, isWorkingAdult, Job } from "./GameState";
 import { laborSlots } from "./Growth";
 import { person } from "./VillageQueries";
@@ -34,7 +35,7 @@ export function autoAssignJobs(s: GameState) {
 /** 已建塔有成年村民就补满；沿用在村顺序与塔位顺序，不换已有驻守、不占白天岗位、不消耗随机数。 */
 export function autoAssignOperators(s: GameState) {
     const assigned = new Set(s.towers.map(t => t.operator).filter(id => id !== null));
-    const available = s.people.filter(p => isWorkingAdult(p) && !assigned.has(p.id) && p.id !== s.patrol?.captain);
+    const available = s.people.filter(p => isWorkingAdult(p) && !assigned.has(p.id) && p.id !== s.patrol.captain);
     for (const tower of s.towers)
         if (tower.kind && !tower.operator && available.length)
             tower.operator = available.shift()!.id;
@@ -44,7 +45,7 @@ export function assignOperator(s: GameState, index: number, id: string) {
     requireRule(t && t.kind !== null, "此处尚未建塔");
     requireRule(typeof id === "string" && id.length > 0, "请选择驻守村民");
     requireRule(isWorkingAdult(person(s, id)), "驻塔需要已成年且未退休的村民");
-    requireRule(id !== s.patrol?.captain, "淡紫儿队长不能同时驻塔");
+    requireRule(id !== s.patrol.captain, `${PATROL.role}不能同时驻塔`);
     const previous = s.towers.find(tower => tower !== t && tower.operator === id);
     if (previous)
         previous.operator = t.operator;

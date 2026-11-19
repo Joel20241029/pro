@@ -3,6 +3,7 @@ import { clone, GameState, Legacy, Person, Tower } from "./GameState";
 import { generateWave } from "./WaveGenerator";
 import { autoAssignJobs, autoAssignOperators } from "./VillageJobs";
 import { requireRule, newId, remember } from "./VillageStateOps";
+import { PATROL } from "../config/PatrolConfig";
 import { DEFAULT_TACTIC } from "../config/TacticConfig";
 export function createGame(seed: number, old?: Legacy, inherited?: Trait, history: Person[] = [], favorites: string[] = []): GameState {
     // 口粮按当前村庄领取；即使传承其他记录，新村也从未领取开始。
@@ -15,6 +16,7 @@ export function createGame(seed: number, old?: Legacy, inherited?: Trait, histor
         phase: "DAY", food: RULE.initialResource, wood: RULE.initialResource, gate: RULE.gateMax,
         houses: 1, housing: 1, gateLevel: 1, farm: 1, logging: 1, tier: RULE.maxTier, policy: null, lastTraveler: null,
         people: [], families: [], towers: [], history: clone(history), favorites: favorites.slice(), choices: [], wave: null, night: null,
+        patrol: { level: PATROL.startLevel, captain: null },
         tactics: { learned: [DEFAULT_TACTIC], equipped: DEFAULT_TACTIC },
         // 家庭与世界通过不同固定掩码分离；战斗不使用随机数，重进不重新取时间。
         rng: { family: (seed ^ 0xa341316c) >>> 0, world: (seed ^ 0xc8013ea4) >>> 0 },
