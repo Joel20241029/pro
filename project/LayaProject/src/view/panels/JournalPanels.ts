@@ -34,11 +34,12 @@ export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel, defe
         return;
     }
     if (p.type === "restart") {
-        const box = ctx.modal("确认重新开村", "", false, { width: 620, height: 398 });
+        const footerY = 282, footerHeight = 78;
+        const box = ctx.modal("确认重新开村", "", false, { width: 620, height: footerY + footerHeight + UI.action.bottom });
         ctx.ui.label(box, "当前村庄的全部进度将清空。", 38, 123, 544, 31, C.cream, true, 48).align = "center";
         ctx.ui.label(box, "确认后从第一天开始。\n已同步的微信好友榜成绩会保留。", 38, 188, 544, 27, C.cream, false, 82).align = "center";
-        ctx.ui.button(box, "取消", 38, 297, 254, () => p.back ? ctx.open(p.back) : ctx.close(), C.muted, 72);
-        ctx.ui.button(box, "确认重新开村", 320, 297, 262, () => ctx.game.newVillage(), C.gold, 72);
+        ctx.ui.button(box, "取消", 70, footerY, 180, () => p.back ? ctx.open(p.back) : ctx.close(), C.muted, footerHeight);
+        ctx.ui.button(box, "确认重新开村", 274, footerY, 268, () => ctx.game.newVillage(), C.gold, footerHeight);
         return;
     }
     if (p.type === "guide") {
@@ -69,8 +70,11 @@ export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel, defe
         box.addChild(rows);
         return;
     }
-    const box = ctx.modal("设置", "", true, { width: 620, height: 450 }, "村落进度保存在本机。离开期间没有收益或损耗。好友榜同步最高守村纪录。");
-    ctx.ui.button(box, s.settings.music ? "游戏声音 · 开" : "游戏声音 · 关", 40, 132, 540, () => ctx.send({ type: "MUSIC", enabled: !s.settings.music }), s.settings.music ? C.green : C.muted, 76);
-    ctx.ui.button(box, "玩法说明", 40, 230, 540, () => ctx.open({ type: "guide", tab: 0 }), C.gold, 76);
-    ctx.ui.button(box, "重新开村…", 40, 334, 540, () => ctx.open({ type: "restart", back: p }), C.red, 76);
+    const actionWidth = 312, actionHeight = 86, restartY = 336;
+    const box = ctx.modal("设置", "", true, { width: 620, height: restartY + actionHeight + UI.action.bottom },
+        "村落进度保存在本机。离开期间没有收益或损耗。好友榜同步最高守村纪录。");
+    ctx.ui.centerButton(box, s.settings.music ? "游戏声音 · 开" : "游戏声音 · 关", 128, () => ctx.send({ type: "MUSIC", enabled: !s.settings.music }),
+        s.settings.music ? C.green : C.muted, true, actionWidth, actionHeight);
+    ctx.ui.centerButton(box, "玩法说明", 232, () => ctx.open({ type: "guide", tab: 0 }), C.gold, true, actionWidth, actionHeight);
+    ctx.ui.centerButton(box, "重新开村…", restartY, () => ctx.open({ type: "restart", back: p }), C.red, true, actionWidth, actionHeight);
 }

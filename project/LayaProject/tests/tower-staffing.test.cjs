@@ -122,7 +122,7 @@ test('tower panel offers replacement but no release action, and explains auto st
     const s = createGame(7), buttons = [], view = {}; let help;
     Object.assign(view, { game: { state: s, battle: null, pauses: new Set() },
         modal(title, overview, close, size, text) { help = text; return new Sprite(); },
-        ui: { buildRow() {}, iconValue() {}, label() { return {}; },
+        ui: { buildRow() {}, iconValue() {}, label() { return {}; }, centerButton(parent, text) { buttons.push(text); },
             button(parent, text) { buttons.push(text); return { getChildByName: () => ({ getChildByName: () => ({}) }) }; } } });
     drawBuildingPanel(view, s, { type: 'tower', index: 0 });
     assert(buttons.includes('更换驻守村民')); assert(!buttons.some(text => text.includes('释放'))); assert(help.includes('自动补上可用成年人'));

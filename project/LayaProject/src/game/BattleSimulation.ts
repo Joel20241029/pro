@@ -9,7 +9,7 @@ import { assignOperator, person, policy } from "./VillageRules";
 import { enemyPower, gateCapacity, levelPower } from "./Growth";
 import { DRAGON_POISON, HAND_SPEED, KING_MERCY_TACTIC, TACTIC_NIGHT_USES, TACTIC_USE, TIMED_BLAST, TacticDefinition, tacticDefinition, ZHOU_LOVE_HEAL } from "../config/TacticConfig";
 import { EnemyRoadStep, SummonCharge, SummonCollision } from "./SummonCharge";
-import { Patrol } from "./Patrol";
+import { Patrol, PatrolTarget } from "./Patrol";
 import type { DailyTaskCombat } from "./DailyTaskCombat";
 export interface Enemy {
     seq: number;
@@ -255,13 +255,15 @@ export class BattleSimulation {
         const rush = this.summonCharge?.active ? this.summonCharge : null;
         const hadEffect = this.bellTicks > 0, frozen = this.mindLocked;
         const traces: EnemyRoadStep[] = [];
+        const patrolTargets: PatrolTarget[] = [];
         for (const e of this.enemies) {
             const startProgress = e.progress;
             const before = enemyPoint(e);
             if (!frozen) e.progress += e.speed * RULE.step * (e.slowTicks > 0 ? 1 - e.slow : 1);
             const after = enemyPoint(e);
             e.walkDistance += Math.hypot(after.x - before.x, after.y - before.y);
-            if ((rush || this.patrol) && e.hp > 0) {
+            if (this.patrol && e.hp > 0) patrolTargets.push({ enemy: e, at: after });
+            if (rush && e.hp > 0) {
                 const end = e.progress >= PATH_LENGTH
                     ? Math.max(0, (PATH_LENGTH - startProgress) / (e.progress - startProgress || 1)) : 1;
                 traces.push({ enemy: e, startProgress, from: before, to: after, end });
@@ -272,7 +274,8 @@ export class BattleSimulation {
             if (!rush.active) this.bellTicks = 0;
         }
         let patrolPoisonKills = 0;
-        if (this.patrol) for (const hit of this.patrol.advance(this.tick, traces)) {
+        // 淡紫儿先于撞门扣血，同一战斗步只由仍存活的到门敌人伤害城门。
+        if (this.patrol) for (const hit of this.patrol.advance(this.tick, patrolTargets)) {
             this.feedback.push({ type: "patrol", tick: this.tick, ...hit });
             if (hit.enemy.hp <= 0 && this.poison?.targets.delete(hit.enemy.seq)) patrolPoisonKills++;
         }

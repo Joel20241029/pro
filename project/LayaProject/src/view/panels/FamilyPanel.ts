@@ -13,10 +13,10 @@ import { reasonBesideCost } from "../ViewText";
 /** 旧版奶油卡片与绿色面板上的双页布局。列表独立留出滚动槽，较大的双亲头像共用一条中心线。 */
 const FAMILY_UI = {
     tabs: { top: 115, height: 68, gap: 16 },
-    rowsTop: 368,
+    rowsTop: { marriage: 385, unavailable: 402, nurture: 368 },
     rowGap: 14,
     marriageHeight: 194,
-    nurtureHeight: 434,
+    nurtureHeight: 446,
     portrait: 106
 } as const;
 
@@ -49,8 +49,9 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
         if (ready && i !== tab) ctx.ui.actionBadge(button, "FamilyTabActionHint");
     });
 
-    const subtitle = nurture ? "已成家的村民可以迎接孩子，并安排照料。" : "为成年、未退休的单身男女安排成家。";
-    ctx.ui.label(box, subtitle, UI.inset, 195, UI.contentWidth, 27, C.muted, false, 40).align = "center";
+    const subtitle = nurture ? "已成家的村民可以迎接孩子，并安排照料。" : hints.marriage ? "为成年、未退休的单身男女安排成家。"
+        : s.phase !== "DAY" ? "白天可安排成家" : !Number.isSafeInteger(s.nextFamily + 1) ? "家庭编号已达安全范围" : "暂无可成家的单身男女";
+    ctx.ui.label(box, subtitle, UI.inset, !nurture && !hints.marriage ? 214 : 195, UI.contentWidth, 27, C.muted, false, 40).align = "center";
     if (nurture) {
         const home = new Laya.Sprite(); home.pos(UI.inset, 241); ctx.art.panel(home, "panel_card", tabWidth, 70); box.addChild(home);
         ctx.ui.iconValue(home, "icon_house", `空余住房 ${capacity(s) - s.people.length} 人`, 10, 7, tabWidth - 20, 56, C.ink, 26);
@@ -59,15 +60,13 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
         ctx.ui.iconValue(food, "icon_food", `${amount(s.food, true)}/${RULE.birthCost}`, 142, 9, tabWidth - 152, 52,
             s.food < RULE.birthCost ? C.red : C.timber, 26);
     } else {
-        const label = s.phase !== "DAY" ? "白天可安排成家"
-            : !Number.isSafeInteger(s.nextFamily + 1) ? "家庭编号已达安全范围"
-            : hints.marriage ? "安排村民成家" : "暂无可成家的单身男女";
-        const button = ctx.ui.button(box, label, UI.inset, 241, UI.contentWidth, () => ctx.open({ type: "partners" }), C.green, 70, hints.marriage);
+        const button = ctx.ui.centerButton(box, "安排村民成家", hints.marriage ? 240 : 256, () => ctx.open({ type: "partners" }), C.green, hints.marriage);
         if (hints.marriage) ctx.ui.actionBadge(button, "MarriageActionHint");
     }
-    ctx.ui.label(box, nurture ? "家庭养育" : "已有家庭", UI.inset + 2, 325, 320, 28, C.ink, true, 40);
+    const rowsTop = FAMILY_UI.rowsTop[nurture ? "nurture" : hints.marriage ? "marriage" : "unavailable"];
+    ctx.ui.label(box, nurture ? "家庭养育" : "已有家庭", UI.inset + 2, rowsTop - 42, 320, 28, C.ink, true, 40);
 
-    const rowsTop = FAMILY_UI.rowsTop, viewport = UI.panelHeight - rowsTop - UI.inset;
+    const viewport = UI.panelHeight - rowsTop - UI.inset;
     if (!s.families.length) {
         const text = nurture ? "还没有可以养育的家庭\n先到「成家」安排村民"
             : hints.marriage ? "还没有家庭\n点击上方按钮，为村民牵线吧" : "还没有家庭\n可以等孩子成年或旅人加入";

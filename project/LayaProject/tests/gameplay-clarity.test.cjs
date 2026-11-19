@@ -157,7 +157,10 @@ function panelView(game, overlay = new Sprite()) {
         if (view.current) view.draw(game.state, view.current);
     }, { ready: () => true });
     const ui = new UiWidgets(art, () => view.clickSounds++);
-    Object.assign(view, { resources: { ready: () => true }, ui, clickSounds: 0, modal() { this.box = new Sprite(); return this.box; } });
+    Object.assign(view, { resources: { ready: () => true }, ui, clickSounds: 0, modal(title, subtitle, close, size = { width: 668, height: 860 }) {
+        this.box = new Sprite().size(size.width, size.height);
+        return this.box;
+    } });
     ui.label = (parent, text, x, y, w, font, color, bold, h) => {
         const node = new Sprite().pos(x, y).size(w, h); node.text = text; node.fontSize = font; node.textHeight = 200; node.textWidth = text.replace(/<[^>]*>/g, '').length * (font || 28); parent.addChild(node); return node;
     };
@@ -357,6 +360,26 @@ test('settings restart asks once, cancellation is read-only and confirmation sta
     view.box.getChildByName('button:取消').event('click'); assert.equal(view.current.type,'settings');assert.equal(canonical([...values]),saved);
     view.box.getChildByName('button:重新开村…').event('click'); const revision=game.villageRevision;
     view.box.getChildByName('button:确认重新开村').event('click');assert.equal(game.villageRevision,revision+1);assert.equal(game.state.run,1);assert.equal(game.state.legacy.lastRationDate,null);
+});
+
+test('centered actions and paired confirmation buttons keep room above the lower gold frame', () => {
+    const {game}=session(), view=panelView(game);
+    view.ui.image=imageNode; view.art.portraitId=p=>p.id;
+    view.open({type:'families'});
+    const marriage=view.box.getChildByName('button:安排村民成家');
+    assert.deepEqual([marriage.width,marriage.height,marriage.x*2+marriage.width],[320,92,view.box.width]);
+    assert(view.box.getChildByName('ScrollList').y>marriage.y+marriage.height);
+    for(const [type,secondary,primary] of [
+        ['restart','取消','确认重新开村'],['mercyConfirm','暂缓','确认奉王'],['tacticSlotUnlock','取消','确认解锁']
+    ]){
+        view.draw(game.state,{type,index:1,back:{type:'tactics'}});
+        const cancel=view.box.getChildByName('button:'+secondary);
+        const confirm=view.box.getChildByName('button:'+primary);
+        assert.equal(cancel.y,confirm.y);
+        assert.equal(cancel.height,confirm.height);
+        assert(confirm.width>cancel.width && confirm.x>cancel.x+cancel.width);
+        assert.equal(view.box.height-confirm.y-confirm.height,48);
+    }
 });
 
 test('resizing an open guide preserves its panel, scroll list, offset and pause without writing a save', () => {

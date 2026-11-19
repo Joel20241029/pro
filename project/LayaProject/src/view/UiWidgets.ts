@@ -160,17 +160,29 @@ export class UiWidgets {
         const face = row.getChildAt(0) as Laya.Sprite;
         const text = face.getChildByName("buttonText") as Laya.Text;
         text.pos(116, 14);
-        text.size(446, height - 28);
+        text.size(enabled ? 404 : 446, height - 28);
         text.align = "left";
         text.fontSize = 28;
         text.leading = 6;
+        text.wordWrap = false;
+        text.overflow = Laya.Text.SHRINK;
         const frame = new Laya.Sprite();
         frame.pos(20, 15);
         this.art.panel(frame, "panel_portrait_frame", 88, 88);
         frame.mouseEnabled = false;
         face.addChild(frame);
         this.image(frame, icon, 4, 4, 80).alpha = enabled ? 1 : .5;
+        if (enabled) this.label(face, "›", row.width - 60, height - 60, 48, 40, C.ink, true, 45).align = "center";
         return row;
+    }
+    /** 面板独立操作沿用原按钮的皮肤、红点与按压层。较长文案在可用宽度内自适应字号。 */
+    centerButton(parent: Laya.Sprite, title: string, y: number, action: () => void, color = C.green, enabled = true,
+        width: number = UI.action.width, height: number = UI.action.height) {
+        const button = this.button(parent, title, (parent.width - width) / 2, y, width, action, color, height, enabled);
+        const text = button.getChildByName("buttonFace").getChildByName("buttonText") as Laya.Text;
+        text.wordWrap = false;
+        text.overflow = Laya.Text.SHRINK;
+        return button;
     }
     /** 有效点击保留原事件坐标，供民房交叠区域选择前景目标；取消点击和音效仍走同一入口。 */
     bindClick(target: Laya.Sprite, action: (event: Laya.Event) => void, face?: Laya.Sprite) {

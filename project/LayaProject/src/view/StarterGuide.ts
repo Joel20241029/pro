@@ -3,7 +3,7 @@ import { StoragePort } from "../storage/SaveStore";
 import { GameLayout } from "./GameLayout";
 import { SpriteFrames } from "./SpriteFrames";
 import { UiWidgets } from "./UiWidgets";
-import { C } from "./UiTheme";
+import { C, UI } from "./UiTheme";
 import { STARTER_LESSONS } from "./config/StarterGuideConfig";
 
 /** 设备已显示到的引导波次。跳过时记到最后一波，与村落存档独立。 */
@@ -108,7 +108,7 @@ export class StarterGuide {
         const text = this.ui.label(this.node, lesson.text, textX, 56, textWidth, 27, C.ink, false, 200);
         text.height = Math.ceil(text.textHeight) + 4;
         const actionTop = Math.max(inset + portrait, text.y + text.height) + gap;
-        const height = actionTop + actionHeight + inset;
+        const height = actionTop + actionHeight + UI.action.bottom;
         this.art.panel(paper, "panel_card", width, height);
         this.ui.button(this.node, "跳过引导", inset, actionTop, 166, () => {
             this.saveSeen(this.lessons.length);

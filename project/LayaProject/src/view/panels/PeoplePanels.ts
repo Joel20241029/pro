@@ -162,7 +162,10 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
         }
         if (ancestor) {
             const favorite = s.favorites.includes(q.id), full = s.favorites.length >= RULE.favoriteCap;
-            const button = ctx.ui.button(box, favorite ? "取消珍藏" : full ? `珍藏已满 ${RULE.favoriteCap} 位` : "珍藏这位先辈", 34, special ? 556 : 510, 600, () => ctx.send({ type: "FAVORITE", id: q.id }), C.gold, 78, favorite || !full);
+            const buttonY = special ? 556 : 510;
+            if (!favorite && full) ctx.ui.label(box, `珍藏已满 ${RULE.favoriteCap} 位`, UI.inset, buttonY, UI.contentWidth, 27, C.muted, false, 40).align = "center";
+            const button = ctx.ui.centerButton(box, favorite ? "取消珍藏" : "珍藏这位先辈", favorite || !full ? buttonY : buttonY + 44,
+                () => ctx.send({ type: "FAVORITE", id: q.id }), C.gold, favorite || !full);
             if (favorite) ctx.ui.personRibbon(button, "tag_favorite");
             return;
         }
@@ -180,7 +183,9 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
                 if (recommendedPeople(s.people, job, towers).includes(q)) ctx.ui.personRibbon(button, "tag_recommended");
             });
             const needsCare = needsCarer();
-            const care = ctx.ui.button(box, needsCare ? "安排照料孩子" : "暂无需要照料的孩子", 34, special ? 648 : 596, 600, () => ctx.open({ type: "care", id: q.id }), C.green, 78, needsCare);
+            const careY = special ? 648 : 596;
+            if (!needsCare) ctx.ui.label(box, "暂无需要照料的孩子", UI.inset, careY - 4, UI.contentWidth, 26, C.muted, false, 36).align = "center";
+            const care = ctx.ui.centerButton(box, "安排照料孩子", needsCare ? careY : careY + 32, () => ctx.open({ type: "care", id: q.id }), C.green, needsCare);
             if (needsCare && recommendedPeople(s.people, "CARE", towers).includes(q)) ctx.ui.personRibbon(care, "tag_recommended");
         }
         return;

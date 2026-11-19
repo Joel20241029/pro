@@ -23,6 +23,8 @@ export const UI = {
     body: 28, button: 30, title: 38, mapLabel: 24,
     panelWidth: 668, panelHeight: 860,
     inset: 34, contentWidth: 600, listTop: 222, listStep: 128, listHeight: 118,
+    // 审稿尺寸（720 逻辑宽）。底部操作距外框 48，预留金边和回弹空间；单按钮居中，成对操作同高。
+    action: { width: 320, height: 92, bottom: 48, pairHeight: 76 },
     // 带具体条件的家庭/照料条目容纳姓名和两行原因；行高与步长一起使用，避免文字压住边框。
     conditionRowHeight: 170, conditionRowStep: 180,
     // 纯触控表现参数（逻辑像素）：给滑块留白，超过 8px 的移动视为拖动，避免抬指误点条目。

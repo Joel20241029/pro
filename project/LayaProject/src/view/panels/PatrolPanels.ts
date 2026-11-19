@@ -17,12 +17,13 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
         const i = s.towers.findIndex(t => t.operator === panel.id);
         const occupant = next.people.find(q => q.id === next.towers[i]?.operator);
         const candidate = patrolCaptain(next)!;
-        const box = ctx.modal("确认调任", "", false, { width: 586, height: 346 });
+        const footerY = 250;
+        const box = ctx.modal("确认调任", "", false, { width: 586, height: footerY + UI.action.pairHeight + UI.action.bottom });
         const text = ctx.ui.label(box, `${coloredName(candidate)} 改任${PATROL.role}\n第 ${i + 1} 塔位${occupant ? `由 ${coloredName(occupant)} 补位` : "将暂时空岗"}`,
             34, 116, 518, 30, C.cream, false, 108);
         text.align = "center";
-        ctx.ui.button(box, "取消", 34, 256, 210, back, C.muted, 64);
-        ctx.ui.button(box, "确认任命", 268, 256, 284, () => ctx.send({ type: "PATROL_CAPTAIN", id: candidate.id }), C.gold, 64, day);
+        ctx.ui.button(box, "取消", 69, footerY, 170, back, C.muted, UI.action.pairHeight);
+        ctx.ui.button(box, "确认任命", 263, footerY, 254, () => ctx.send({ type: "PATROL_CAPTAIN", id: candidate.id }), C.gold, UI.action.pairHeight, day);
         return;
     }
     if (panel.type === "patrolCandidates") {
@@ -58,8 +59,9 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
         });
         return;
     }
+    const appointY = 520, appointHeight = 82;
     const box = ctx.modal(PATROL.building, level ? `${amount(level)} 级` : "守夜巡防建筑", true,
-        { width: UI.panelWidth, height: 614 }, "任命队长后，淡紫儿会从城门出击，沿友谊路迎敌。队长品质和天赋影响伤害、出勤间隔。");
+        { width: UI.panelWidth, height: level ? appointY + appointHeight + UI.action.bottom : 614 }, "任命队长后，淡紫儿会从城门出击，沿友谊路迎敌。队长品质和天赋影响伤害、出勤间隔。");
     const frame = `patrol_booth_${level >= 9 ? 2 : level >= 5 ? 1 : 0}`;
     ctx.ui.image(box, frame, 50, 171, 140);
     const stats = patrolStats(Math.max(1, level), current);
@@ -71,6 +73,6 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
         level ? `伤害 ${amount(stats.damage)} → ${amount(next.damage)} · ${stats.seconds} → ${next.seconds} 秒` : `守夜时从城门派出${PATROL.actor}`,
         s, patrolCost(s), patrolBuildReason(s), () => ctx.send({ type: "PATROL_BUILD" }), level ? "升级" : "建造");
     build.name = "PatrolBuildAction";
-    if (level) ctx.ui.button(box, current ? "更换队长" : "任命队长", 34, 530, 600,
-        () => ctx.open({ type: "patrolCandidates", back: panel }), C.gold, 56, day);
+    if (level) ctx.ui.centerButton(box, current ? "更换队长" : "任命队长", appointY,
+        () => ctx.open({ type: "patrolCandidates", back: panel }), C.gold, day, 312, appointHeight);
 }

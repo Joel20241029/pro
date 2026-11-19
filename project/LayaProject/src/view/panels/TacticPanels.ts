@@ -19,7 +19,8 @@ function selectTactic(ctx: PanelContext, p: Panel, id: string, learned: boolean,
 
 export function drawMercyConfirm(ctx: PanelContext, s: GameState) {
     const v = V.mercy, contentWidth = v.width - 2 * v.inset, cost = mercyOffering(s);
-    const box = ctx.modal(tacticDefinition(KING_MERCY_TACTIC).name, "", false, { width: v.width, height: v.height });
+    const height = v.footerY + UI.action.pairHeight + UI.action.bottom;
+    const box = ctx.modal(tacticDefinition(KING_MERCY_TACTIC).name, "", false, { width: v.width, height });
     ctx.ui.label(box, "你可愿奉旭勇为文明里村的大王？", v.inset, v.questionY, contentWidth, 29, C.cream, true, 40).align = "center";
     ctx.ui.label(box, "献出当前一半粮木。\n大王将击败在场敌军，修满城门。", v.inset, v.effectY, contentWidth, 26, C.cream, false, v.effectH).align = "center";
     const materials = new Laya.Sprite(), cell = contentWidth / 2, readoutY = (v.costH - v.readoutH) / 2;
@@ -28,9 +29,9 @@ export function drawMercyConfirm(ctx: PanelContext, s: GameState) {
     ctx.ui.iconValue(materials, "icon_wood", cost.wood ? `−${cost.wood}` : "0", 0, readoutY, cell, v.readoutH, cost.wood ? C.ink : C.red, 29);
     ctx.ui.iconValue(materials, "icon_food", cost.food ? `−${cost.food}` : "0", cell, readoutY, cell, v.readoutH, cost.food ? C.ink : C.red, 29);
     if (cost.reason) ctx.ui.label(box, cost.reason, v.inset, v.reasonY, contentWidth, 24, C.red, true, 32).align = "center";
-    ctx.ui.button(box, "暂缓", v.inset, v.footerY, v.cancelW, () => ctx.close(), C.muted, v.buttonH);
-    ctx.ui.button(box, "确认奉王", v.width - v.inset - v.confirmW, v.footerY, v.confirmW,
-        () => ctx.game.confirmMercy(), C.gold, v.buttonH, cost.reason === null);
+    ctx.ui.button(box, "暂缓", v.cancelX, v.footerY, v.cancelW, () => ctx.close(), C.muted, UI.action.pairHeight);
+    ctx.ui.button(box, "确认奉王", v.confirmX, v.footerY, v.confirmW,
+        () => ctx.game.confirmMercy(), C.gold, UI.action.pairHeight, cost.reason === null);
 }
 
 export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
@@ -39,7 +40,8 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
     if (p.type === "tacticSlotUnlock") {
         const index = p.index!, cost = TACTIC_SLOTS[index - 1], reason = slotUnavailableReason(s, index);
         const v = V.unlock, contentWidth = v.width - 2 * UI.inset;
-        const box = ctx.modal(`解锁第 ${index + 1} 槽`, "", false, { width: v.width, height: v.height });
+        const box = ctx.modal(`解锁第 ${index + 1} 槽`, "", false,
+            { width: v.width, height: v.footerY + UI.action.pairHeight + UI.action.bottom });
         const casts = TACTIC_NIGHT_USES[index];
         const benefit = casts > TACTIC_NIGHT_USES[index - 1] ? `可多带一个战技 · 每夜共 ${casts} 次` : "守夜可多带一个战技";
         ctx.ui.label(box, benefit, UI.inset, v.conditionY, contentWidth, 27, C.cream, true, 42).align = "center";
@@ -49,11 +51,11 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
         ctx.art.panel(materials, "panel_card", contentWidth, 46);
         ctx.ui.materialCosts(materials, s, cost, 90, 1, 310, 44);
         if (reason) ctx.ui.label(box, reason, UI.inset, v.reasonY, contentWidth, 24, C.red, false, 30).align = "center";
-        ctx.ui.button(box, "取消", UI.inset, v.footerY, 152, () => ctx.open(p.back!, true), C.muted, v.buttonH);
-        ctx.ui.button(box, "确认解锁", 202, v.footerY, v.width - 202 - UI.inset, () => {
+        ctx.ui.button(box, "取消", v.cancelX, v.footerY, v.cancelW, () => ctx.open(p.back!, true), C.muted, UI.action.pairHeight);
+        ctx.ui.button(box, "确认解锁", v.confirmX, v.footerY, v.confirmW, () => {
             p.pendingSlotUnlock = index;
             ctx.send({ type: "TACTIC_UNLOCK_SLOT", slot: index });
-        }, C.gold, v.buttonH, !blocked && !reason);
+        }, C.gold, UI.action.pairHeight, !blocked && !reason);
         return;
     }
     if (p.type === "tactics") {
@@ -118,7 +120,7 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
             const summary = ctx.ui.label(card, t.effect === "SUMMON_CHARGE" ? "分身沿路冲锋 · 可伤首领" : t.summary,
                 V.rowTextX, 52, V.rowTextWidth, 25, C.green, false, twoLines ? 62 : 58);
             if (twoLines) summary.leading = 0;
-            if (!learned) ctx.ui.materialCosts(card, s, t, V.rowTextX, V.actionY + 6, V.actionX - V.rowTextX - 12, 36);
+            if (!learned) ctx.ui.materialCosts(card, s, t, V.rowTextX, V.actionY + 10, V.actionX - V.rowTextX - 12, 36);
             const action = ctx.ui.button(card, equipped >= 0 ? `已装槽 ${equipped + 1}` : learned ? "携带" : "学习并携带", V.actionX, V.actionY, V.actionWidth,
                 () => selectTactic(ctx, p, id, learned, slot), equipped >= 0 ? C.gold : C.green, V.actionHeight, !blocked && !reason);
             if (equipped >= 0) {
@@ -152,7 +154,7 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
     }
     const t = tacticDefinition(p.id!), revealed = tacticRevealed(s, t.id), learned = s.tactics.learned.includes(t.id);
     const loreTitle = t.effect === "ZHOU_LOVE" || t.effect === "DRAGON_POISON" ? "村中密闻" : "村中传闻";
-    const { top, width, inset, icon, loreTop, actionHeight, gap } = V.detail;
+    const { top, width, inset, icon, loreTop, gap } = V.detail;
     const paper = new Laya.Sprite(); paper.pos(UI.inset, top);
     const textWidth = width - 2 * inset;
     if (revealed) {
@@ -179,15 +181,17 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel) {
         paperHeight = costTop + 40 + inset;
     }
     ctx.art.panel(paper, "panel_card", width, paperHeight);
+    const reason = revealed ? tacticUnavailableReason(s, t.id, learned ? "EQUIP" : "LEARN", slot) : null;
+    const equipped = loadout.indexOf(t.id);
+    const note = reason === "已携带" ? null : reasonBesideCost(reason) ?? (reason ? "费用不足，缺口见上方" : null);
     const actionTop = top + paperHeight + gap;
-    const height = actionTop + (revealed ? actionHeight + gap : 0);
+    const noteHeight = note ? 42 : 0, buttonY = actionTop + noteHeight;
+    const height = revealed ? buttonY + UI.action.height + UI.action.bottom : actionTop;
     const box = ctx.modal(revealed ? "战技详情" : loreTitle, "", true, { width: UI.panelWidth, height });
     if (p.back) ctx.ui.button(box, "‹", 30, 32, 54, () => ctx.open(p.back!, true), C.green, 54);
     box.addChild(paper);
     if (!revealed) return;
-    const equipped = loadout.indexOf(t.id), reason = tacticUnavailableReason(s, t.id, learned ? "EQUIP" : "LEARN", slot);
-    const caption = equipped >= 0 ? `已装槽 ${equipped + 1}` : reasonBesideCost(reason) ?? (reason ?? (learned ? "携带" : "学习并携带"));
-    const action = ctx.ui.button(box, caption, 54, actionTop, 560, () => selectTactic(ctx, p, t.id, learned, slot), C.green, actionHeight, !blocked && !reason);
-    const actionText = (action.getChildByName("buttonFace") as Laya.Sprite).getChildByName("buttonText") as Laya.Text;
-    actionText.wordWrap = false; actionText.overflow = Laya.Text.SHRINK;
+    if (note) ctx.ui.label(box, note, UI.inset, actionTop - 3, UI.contentWidth, 26, C.red, false, noteHeight).align = "center";
+    const caption = equipped >= 0 ? `已装槽 ${equipped + 1}` : learned ? "携带" : "学习并携带";
+    ctx.ui.centerButton(box, caption, buttonY, () => selectTactic(ctx, p, t.id, learned, slot), C.green, !blocked && !reason);
 }

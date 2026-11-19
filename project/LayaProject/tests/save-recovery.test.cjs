@@ -99,10 +99,10 @@ test('incompatible popup offers a working explicit reset instead of an ineffecti
     const buttons = [], modals = [], view = {};
     Object.assign(view, {
         game, modal(title, reason, close) { modals.push({ title, reason, close }); return {}; },
-        ui: { label() { return {}; }, button(parent, text, x, y, width, action) { buttons.push({ text, action }); } }
+        ui: { label() { return {}; }, centerButton(parent, text, y, action) { buttons.push({ text, action }); } }
     });
     drawBoot(view); assert.equal(modals[0].close, false); assert.match(modals[0].reason, /替换旧进度/);
-    assert.equal(buttons.length, 1); assert.match(buttons[0].text, /确认放弃旧进度/); assert.doesNotMatch(buttons[0].text, /重新读取/);
+    assert.equal(buttons.length, 1); assert.equal(buttons[0].text, '重新开村');
     buttons[0].action(); assertNewVillage(game, storage);
 });
 

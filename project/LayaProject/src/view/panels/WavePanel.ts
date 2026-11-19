@@ -28,7 +28,7 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel) {
     const prepareTop = riskTop + risk.length * riskHeight;
     const state = ctx.resources.states.night, ready = ctx.resources.ready("night"), failed = state.phase === "FAILED";
     const preparing = start && !ready, buttonTop = prepareTop + (preparing ? 66 : 0) + 6;
-    const box = ctx.modal(start ? "今夜，也要守住家" : "瞭望来报", "", true, { width: UI.panelWidth, height: buttonTop + 94 },
+    const box = ctx.modal(start ? "今夜，也要守住家" : "瞭望来报", "", true, { width: UI.panelWidth, height: buttonTop + UI.action.height + UI.action.bottom },
         "来敌数量按种类统计。敌军倍率是本夜的生命与撞门基准，词缀会再改变来敌。开始守夜时先结算生产与口粮，再按仓储保留库存。夜战中退出后重进，从本夜开头守起。");
     ctx.ui.label(box, `第 ${s.day} 夜 · 预计来敌 ${wave.entries.length} 名 · ${AFFIX_NAME[wave.affix]}`, 34, 108, 600, 29, C.cream, true, 48).align = "center";
     if (start) {
@@ -90,7 +90,7 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel) {
         progress.pos(34, prepareTop);
         box.addChild(progress);
         progress.watch("正在准备守夜", state);
-        ctx.ui.button(box, failed ? "重试准备守夜" : "确认安排 · 开始守夜", 34, buttonTop, 600, () => { void ctx.resources.ensure("night"); }, C.gold, 72, day && failed);
-    } else ctx.ui.button(box, start ? "确认安排 · 开始守夜" : "准备守夜", 34, buttonTop, 600,
-        () => start ? ctx.send({ type: "NIGHT" }, false) : ctx.open({ type: "start" }), C.gold, 72, day);
+        ctx.ui.centerButton(box, failed ? "重试准备守夜" : "开始守夜", buttonTop, () => { void ctx.resources.ensure("night"); }, C.gold, day && failed);
+    } else ctx.ui.centerButton(box, start ? "开始守夜" : "准备守夜", buttonTop,
+        () => start ? ctx.send({ type: "NIGHT" }, false) : ctx.open({ type: "start" }), C.gold, day);
 }

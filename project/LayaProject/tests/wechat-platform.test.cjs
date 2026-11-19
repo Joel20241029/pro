@@ -131,7 +131,8 @@ function gameView(session, platform) {
     const ui = { image(parent,id,x,y,w,h=w) { return parent.addChild(new Sprite().pos(x,y).size(w,h)); },
         iconValue(parent,id,value,x,y,w,h){const node=parent.addChild(new Sprite().pos(x,y).size(w,h)); node.text=value; return node;},
         actionBadge(button, name) { const dot = button.getChildByName('buttonFace').addChild(new Sprite()); dot.name = name; return dot; },
-        buttonIcon() {}, label: () => ({}), button: fakeButton, bindClick() {} };
+        buttonIcon() {}, label: () => ({}), button: fakeButton,
+        centerButton: require(path.join(compiled, 'view/UiWidgets.js')).UiWidgets.prototype.centerButton, bindClick() {} };
     const panels = new GamePanels(session, art, platform, ui, overlay, layout, () => view.refresh(), { ready: () => true });
     panels.modal = (title, sub, close, size = {width:668,height:860}) => {
         const box = new Sprite().size(size.width, size.height); box.name = 'panel:' + title; overlay.addChild(box); return box;

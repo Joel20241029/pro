@@ -63,7 +63,9 @@ export function drawDailyTaskPanel(ctx: PanelContext, s: GameState, claim: (task
         }
         const icon = ctx.ui.iconValue(card, `icon_${task.material}`, `+${task.reward}`, 22, 105, 218, 42, C.timber, 30, "left");
         const label = status === "ready" ? "领取奖励" : status === "claimed" ? "已领取" : status === "full" ? "仓储不足" : "进行中";
-        ctx.ui.button(card, label, 365, 78, 212, () => claim(task, day!.date, icon), status === "ready" ? C.gold : C.muted, 62, status === "ready");
+        const claimable = status === "ready";
+        ctx.ui.button(card, label, claimable ? 391 : 365, claimable ? 67 : 78, claimable ? 190 : 212,
+            () => claim(task, day!.date, icon), claimable ? C.gold : C.muted, claimable ? 76 : 62, claimable);
         if (status === "full") {
             const missing = task.reward - (storageCapacity(s) - s[task.material]);
             const note = ctx.ui.label(card, `需腾出 ${missing} 格`, 157, 109, 194, 21, C.red, false, 33);

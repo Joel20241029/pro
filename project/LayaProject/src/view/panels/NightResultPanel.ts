@@ -16,7 +16,8 @@ export type NightResult = {
 };
 
 export function drawNightResult(ctx: PanelContext, result: NightResult, flying: boolean, collect: () => void) {
-    const height = (result.recap ? 632 : 494) + (result.patrol ? 54 : 0);
+    const collectY = (result.recap ? 524 : 386) + (result.patrol ? 54 : 0), collectHeight = 88;
+    const height = collectY + collectHeight + UI.action.bottom;
     const box = ctx.modal("守夜成功", `第 ${result.night} 夜结算`, false, { width: UI.panelWidth, height },
         flying ? undefined : "开战时先结算今日生产和本夜口粮，再按仓储保留库存。「收下」后可继续。");
     const card = new Laya.Sprite(); card.pos(34, 168); ctx.art.panel(card, "panel_card", 600, 180); box.addChild(card);
@@ -34,7 +35,7 @@ export function drawNightResult(ctx: PanelContext, result: NightResult, flying: 
     }
     if (result.patrol) ctx.ui.label(box, `淡紫儿出勤 ${result.patrol.deployments} 次 · 击败 ${result.patrol.kills} 名来敌`,
         44, result.recap ? 512 : 366, 580, 29, C.cream, true, 42).align = "center";
-    ctx.ui.button(box, flying ? "正在收下…" : "收下", 168, height - 108, 332, collect, C.gold, 76, !flying);
+    ctx.ui.centerButton(box, flying ? "正在收下…" : "收下", collectY, collect, C.gold, !flying, 312, collectHeight);
     return { box, sources: [food, wood] };
 }
 
