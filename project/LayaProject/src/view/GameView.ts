@@ -125,7 +125,8 @@ export class GameView {
         this.root.size(720, next.height);
         this.tip.pos(360, (next.safeTop + next.safeBottom) / 2);
         this.panels.relayout(next);
-        this.refresh(true);
+        const panel = this.panels.current?.type;
+        this.refresh(panel !== "person" && panel !== "ancestor");
     }
     refresh(preserveOverlay = false) {
         const s = this.game.state;

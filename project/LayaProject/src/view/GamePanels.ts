@@ -11,6 +11,7 @@ import { UiWidgets } from "./UiWidgets";
 import { C, UI } from "./UiTheme";
 import { Panel, PanelContext } from "./panels/PanelContext";
 import { drawPeoplePanel } from "./panels/PeoplePanels";
+import { drawPersonDetailPanel } from "./panels/PersonDetailPanel";
 import { drawFamilyPanel } from "./panels/FamilyPanel";
 import { drawBuildingPanel } from "./panels/BuildingPanels";
 import { drawWavePanel } from "./panels/WavePanel";
@@ -111,6 +112,9 @@ export class GamePanels implements PanelContext {
         return box;
     }
     draw(s: GameState, p: Panel) {
+        // 取消珍藏可能让旧记录立即离开家谱范围，详情随列表更新返回家谱。
+        if (p.type === "ancestor" && !s.history.some(person => person.id === p.id))
+            this.current = p = { type: "history" };
         if (p.pendingSlotUnlock !== undefined && !this.game.saves.pending) {
             const slot = p.pendingSlotUnlock, list = p.back;
             delete p.pendingSlotUnlock;
@@ -136,7 +140,9 @@ export class GamePanels implements PanelContext {
         if (p.type.startsWith("patrol")) drawPatrolPanel(this, s, p);
         else if (p.type === "mercyConfirm") drawMercyConfirm(this, s);
         else if (p.type === "tactics" || p.type === "tactic" || p.type === "tacticSlotUnlock") drawTacticPanel(this, s, p);
-        else if (["people", "history", "partners", "carers", "operators", "care", "workers", "person", "ancestor"].includes(p.type))
+        else if (p.type === "person" || p.type === "ancestor")
+            drawPersonDetailPanel(this, s, p, this.layout.safeBottom - this.layout.safeTop);
+        else if (["people", "history", "partners", "carers", "operators", "care", "workers"].includes(p.type))
             drawPeoplePanel(this, s, p);
         else if (p.type === "dailyTasks")
             drawDailyTaskPanel(this, s, (task, date, icon) => this.onDailyClaim?.(task.kind, date, icon));
