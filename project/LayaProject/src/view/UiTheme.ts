@@ -8,13 +8,15 @@ export const C = {
     // 浅麦金 Tip 底图的暖棕正文，中心区域对比度≥5.26:1；仅用于短提示，不改变警示语义。
     tipInk: "#754317",
     // 用户指定：姓名按性别区分；深蓝/橘黄的深色阶保证羊皮纸背景上的可读性。
-    maleName: "#276b9c", femaleName: "#ba741a"
+    maleName: "#276b9c", femaleName: "#ba741a",
+    heroName: "#783b98", legendaryName: "#9b590f"
 };
 /** 绿色内底上的语义色。仅供面板正文/标题与说明滚动层，奶油卡片和HUD保留深色正文。
  * 状态和性别仍用同一含义，浅色阶配深绿细描边，避免直接把深绿字放在绿色底板上。 */
 export const PANEL_TEXT: Readonly<Record<string, string>> = {
     [C.ink]: "#fff9e9", [C.muted]: "#f3edc6", [C.green]: "#f1ffc4",
-    [C.timber]: "#ffe4a2", [C.red]: "#ffcf9f", [C.maleName]: "#c8edff", [C.femaleName]: "#ffe1a0"
+    [C.timber]: "#ffe4a2", [C.red]: "#ffcf9f", [C.maleName]: "#c8edff", [C.femaleName]: "#ffe1a0",
+    [C.heroName]: "#f2d0ff", [C.legendaryName]: "#ffe19a"
 };
 /** 标题/正文/按钮按手机约一半缩放后的阅读尺寸设置；滚动列表保持同一列宽和行距。 */
 export const UI = {

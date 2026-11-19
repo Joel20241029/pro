@@ -100,8 +100,8 @@ test("Retirement save failures retry the same transition without repeating age, 
     }
 });
 test("Only current save version is read; old/future data is not migrated or automatically deleted", () => {
-    for (const version of [1, 2, 3, CONFIG_VERSION + 1]) {
-        const m = new MemoryStore(), body = { schemaVersion: 3, configVersion: version, revision: 1, commitId: "other-version", commitType: "NORMAL", payload: createGame(1) };
+    for (const version of [1, 2, 3, 17, 18, CONFIG_VERSION + 1]) {
+        const m = new MemoryStore(), body = { schemaVersion: 4, configVersion: version, revision: 1, commitId: "other-version", commitType: "NORMAL", payload: createGame(1) };
         const raw = canonical({ ...body, checksum: crc32(canonical(body)) }); m.values.set("daidai_village.save.a", raw);
         const g = new GameSession(new SaveStore(m)); g.load(); equal(g.state, null); equal(g.boot?.kind, "incompatible"); equal(m.values.get("daidai_village.save.a"), raw); equal(m.writes, 0);
     }

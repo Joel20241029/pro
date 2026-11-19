@@ -290,25 +290,25 @@ test("Male and female woodcutters face the tree at every work stop before and af
         }
     }
 });
-test("Retiring in place switches to elder walks and idle without teleporting or mutating game state", () => {
+test("Retirement seats elders in separate chairs that keep rocking in place from daytime to night", () => {
     const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     for (let i = 0; i < 30; i++) motion.update(.1);
-    const elders = s.people.slice(0, 2), before = elders.map(p => ({ ...motion.get(p.id) }));
+    const elders = s.people.slice(0, 2);
     elders.forEach(p => { p.nights = 0; p.elderNights = RULE.elderNights; p.job = "WAITING"; }); motion.sync(s, s.towers);
-    elders.forEach((p, i) => equal([motion.get(p.id).x, motion.get(p.id).y], [before[i].x, before[i].y]));
-    const state = JSON.stringify(s), walked = new Set<string>(), rested = new Set<string>();
-    for (let i = 0; i < 2400; i++) {
-        const last = elders.map(p => ({ ...motion.get(p.id) })); motion.update(.05);
-        elders.forEach((p, index) => {
+    const seats = elders.map(p => ({ ...motion.get(p.id) }));
+    ok(distance(seats[0], seats[1]) > 0);
+    for (const phase of ["DAY", "NIGHT"] as const) {
+        s.phase = phase; motion.sync(s, s.towers);
+        const state = JSON.stringify(s);
+        motion.update(.4);
+        elders.forEach((p, i) => {
             const m = motion.get(p.id);
-            ok(navigation.clear(last[index], m)); ok(distance(last[index], m) <= MOTION.elderSpeed * .05 + 1e-7);
-            equal(m.animated, m.walking); equal(m.clip, "villager_elder_walk");
-            (m.walking ? walked : rested).add(p.id); ok(!m.insideTower);
+            equal([m.x, m.y, m.walkDistance], [seats[i].x, seats[i].y, seats[i].walkDistance]);
+            ok(navigation.walkable(m) && m.elapsed > 0 && m.animated && !m.walking && !m.insideTower);
+            equal(m.clip, "hd_elder_chair");
         });
+        equal(JSON.stringify(s), state);
     }
-    equal(walked.size, 2); equal(rested.size, 2); equal(JSON.stringify(s), state);
-    s.phase = "NIGHT"; motion.sync(s, s.towers); for (let i = 0; i < 1000; i++) motion.update(.05);
-    elders.forEach(p => { const m = motion.get(p.id); ok(!m.walking && !m.insideTower && !m.animated); });
 });
 test("Many generations never alias home/rest slots by permanent person number", () => {
     const s = createGame(1); s.families = []; s.towers.forEach(t => t.operator = null);

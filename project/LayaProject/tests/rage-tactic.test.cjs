@@ -4,14 +4,15 @@ const read = file => require(path.join(build, file));
 const { createGame, applyCommand } = read('game/VillageRules');
 const { clone } = read('game/GameState');
 const { BattleSimulation } = read('game/BattleSimulation');
-const { RAGE_TACTIC, DEFAULT_TACTIC, tacticDefinition } = read('config/TacticConfig');
+const { RAGE_TACTIC, SHIELD_TACTIC, DEFAULT_TACTIC, tacticDefinition } = read('config/TacticConfig');
 const { tacticUnavailableReason, canLearnTactic } = read('game/Tactics');
 const { ProjectileMotion } = read('view/ProjectileMotion');
 const { CombatPresentation } = read('view/CombatPresentation');
 const { RULE } = read('game/GameConfig');
 
 function learned() {
-    const s = createGame(7); s.completed = 10; s.day = 11; s.wood = 40; s.food = 20;
+    const s = createGame(7); const t = tacticDefinition(RAGE_TACTIC);
+    s.completed = t.unlockWaves; s.day = s.completed + 1; s.wood = t.wood; s.food = t.food;
     applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC }); return s;
 }
 function enemy(seq, kind = 'enemy_raider') {
@@ -21,16 +22,16 @@ function battle(kind = 'ARROW', tactic = RAGE_TACTIC) {
     const s = learned(); s.food = 100; s.policy = null; s.tactics.equipped = tactic;
     applyCommand(s, { type: 'NIGHT' }); const b = new BattleSimulation(s);
     b.base.towers.forEach((t, i) => { t.kind = i === 0 ? kind : null; t.level = 1; t.operator = i === 0 ? s.people[0].id : null; });
-    const operator = b.base.people[0]; operator.trait = 'trait_fertile'; operator.skill = null; operator.elite = false;
+    const operator = b.base.people[0]; operator.trait = 'trait_fertile'; operator.skill = null; operator.quality = "COMMON";
     b.cursor = b.base.wave.entries.length; b.enemies = [enemy(0)]; return b;
 }
-test('rage learns at ten current-village wins with one exact 40 wood + 20 food debit', () => {
+test('rage learns at ten current-village wins with one exact 45 wood + 20 food debit', () => {
     const t = tacticDefinition(RAGE_TACTIC);
-    assert.deepEqual([t.name, t.unlockWaves, t.wood, t.food, t.effect, t.multiplier, t.ticks * RULE.step], ['百毅靓之怒', 10, 40, 20, 'ATTACK_DAMAGE', 1.5, 15]);
-    const s = createGame(7); s.completed = 9; s.day = 10; s.legacy.bestNight = 100;
+    assert.deepEqual([t.name, t.unlockWaves, t.wood, t.food, t.effect, t.multiplier, t.ticks * RULE.step], ['百毅靓之怒', 10, 45, 20, 'ATTACK_DAMAGE', 1.5, 15]);
+    const s = createGame(7); s.completed = 9; s.day = 10; s.legacy.bestNight = 100; s.tactics.learned.push(SHIELD_TACTIC);
     assert.equal(tacticUnavailableReason(s, RAGE_TACTIC, 'LEARN'), '还需守住 1 波'); assert(!canLearnTactic(s));
     const old = clone(s); assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC })); assert.deepEqual(s, old);
-    s.completed = 10; s.day = 11; s.wood = 40; s.food = 19;
+    s.completed = 10; s.day = 11; s.wood = 45; s.food = 19;
     assert.equal(tacticUnavailableReason(s, RAGE_TACTIC, 'LEARN'), '还缺 1 粮');
     s.food = 20; assert(canLearnTactic(s)); applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC });
     assert.deepEqual([s.wood, s.food, s.tactics.equipped], [0, 0, RAGE_TACTIC]); assert(!canLearnTactic(s));
@@ -70,7 +71,7 @@ test('rage preserves firing schedule; heart still speeds attacks without increas
     assert.equal(plain.enemies[0].hp, heart.enemies[0].hp); assert.equal(heart.shots[0].empowered, false);
 });
 test('rage multiplies accumulated bonuses and keeps the last active attack snapshot after expiry', () => {
-    const b = battle('STONE'); b.base.people[0].elite = true; b.base.people[0].trait = 'trait_strong';
+    const b = battle('STONE'); b.base.people[0].quality = "ELITE"; b.base.people[0].trait = 'trait_strong';
     b.base.people[0].skill = 'skill_throwing'; b.base.policy = 'policy_stones';
     b.bell(); b.bellTicks = 1; b.step();
     // 22 * (1 + .2 + .25 + .25) * 1.25 elite * 1.5 rage = 70.125 => 70.

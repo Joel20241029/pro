@@ -1,5 +1,6 @@
 import { ECONOMY } from "../config/RuleConfig";
-import { ELITE, TowerKind, Skill, Trait } from "../game/GameConfig";
+import { VILLAGER_QUALITY } from "../config/VillagerQuality";
+import { TowerKind, Skill, Trait } from "../game/GameConfig";
 import { isWorkingAdult, Person, Tower } from "../game/GameState";
 
 export type WorkRole = "FARM" | "LOGGING" | "CARE";
@@ -19,14 +20,15 @@ const BENEFITS: Record<Role, { trait?: Trait; skill: Skill }> = {
 function roleBenefit(person: Person, role: Role) {
     const { trait, skill } = BENEFITS[role];
     const traitMatch = Number(person.trait === trait), skillMatch = Number(person.skill === skill);
-    if (role === "CARE") return skillMatch * ECONOMY.nurturingFood + Number(person.elite) * ELITE.careFoodBonus;
+    const quality = VILLAGER_QUALITY[person.quality];
+    if (role === "CARE") return skillMatch * ECONOMY.nurturingFood + quality.careFood;
     if (role === "FARM" || role === "LOGGING") {
         const traitBonus = role === "FARM" ? ECONOMY.diligentFood : ECONOMY.woodwiseWood;
         const skillBonus = role === "FARM" ? ECONOMY.farmingFood : ECONOMY.loggingWood;
-        return (person.elite ? ELITE.productionMultiplier : 1) * (1 + traitMatch * traitBonus + skillMatch * skillBonus) - 1;
+        return quality.production * (1 + traitMatch * traitBonus + skillMatch * skillBonus) - 1;
     }
     // 伤害、攻速、射程和减速不能直接比较百分数。先推荐在当前塔种有更多项加成的人。
-    return traitMatch + skillMatch + Number(person.elite) + Number(person.trait === "trait_farsight" || person.trait === "trait_nimble");
+    return traitMatch + skillMatch + (quality.damage - 1) / (VILLAGER_QUALITY.ELITE.damage - 1) + Number(person.trait === "trait_farsight" || person.trait === "trait_nimble");
 }
 
 export function recommendedPeople(candidates: readonly Person[], role: Role, towers: readonly Tower[]): Person[] {

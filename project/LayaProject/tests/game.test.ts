@@ -4,7 +4,8 @@ import { SeededRandom } from "../src/game/SeededRandom";
 import { BattleSimulation, PATH_LENGTH } from "../src/game/BattleSimulation";
 import { GameSession } from "../src/game/GameSession";
 import { generateWave } from "../src/game/WaveGenerator";
-import { ELITE, ENEMIES, RULE } from "../src/game/GameConfig";
+import { VILLAGER_QUALITY } from "../src/config/VillagerQuality";
+import { ENEMIES, RULE } from "../src/game/GameConfig";
 import { canonical, crc32, SaveStore, StoragePort } from "../src/storage/SaveStore";
 import { validateState } from "../src/storage/StateValidation";
 let passed = 0;
@@ -37,7 +38,7 @@ test("Birth once, two cared wins, new adult receives its configured lifespan", (
     const child = s.people[6]; ok(child.parents.length === 2); ok(child.trait === s.people[0].trait || child.trait === s.people[1].trait);
     rejects(() => applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[5].id }));
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); dawn(s); equal(child.growth, 1);
-    applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); validateState(s); equal(child.nights, child.elite ? ELITE.adultNights : RULE.adultNights); ok(child.adult); equal(s.people[1].job, "WAITING"); ok(s.choices[0].kind === "SKILL"); dawn(s); validateState(s);
+    applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); validateState(s); equal(child.nights, VILLAGER_QUALITY[child.quality].adultNights); ok(child.adult); equal(s.people[1].job, "WAITING"); ok(s.choices[0].kind === "SKILL"); dawn(s); validateState(s);
 });
 test("Uncared child does not grow; failed night does not age", () => {
     const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id }); applyCommand(s, { type: "JOB", id: s.people[1].id, job: "WAITING" });

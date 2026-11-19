@@ -37,6 +37,8 @@ function prop(id: string, frame: string, left: number, top: number, size: number
     const x = left + size / 2, y = top + size * 15 / 16;
     return { id, frame, x, y, size, footprint: { left: x - baseWidth / 2, top: y - baseDepth, right: x + baseWidth / 2, bottom: y } };
 }
+/** 城门右后侧的固定占地，三档主体共用脚底，避开紧邻门的火把。 */
+export const PATROL_PROP = "building:patrol";
 export const VILLAGE_PROPS: VillageProp[] = [
     ...[28, 92, 156, 220, 500, 564, 628, 692].map((x, i): VillageProp => ({ id: `wall:${i}`, frame: "building_palisade", x, y: 830, size: 78, footprint: null })),
     // 村名牌靠左城墙，底座落在已有墙体安全边内；牌面与火把分开，不增加通行障碍。
@@ -69,6 +71,7 @@ export const VILLAGE_PROPS: VillageProp[] = [
     { id: "building:farm", frame: "hd_farm_body_0", x: 546, y: 954, size: 202, footprint: null, ground: true },
     prop("building:logging", "hd_logging_body_0", 467, 922.625, 106, 87, 28),
     prop("building:hearth", "building_hearth_lit", 321, 891, 78, 44, 15),
+    prop(PATROL_PROP, "patrol_booth_0", 482, 766, 100, 69, 29),
     prop("building:gate", "hd_gate_body_0", 282, 684, 156, 132, 30),
     ...PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, TOWER_VIEW.footprintWidth, TOWER_VIEW.footprintDepth))
 ];

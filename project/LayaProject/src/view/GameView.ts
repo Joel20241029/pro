@@ -10,11 +10,14 @@ import { WechatPlatform } from "../platform/WechatPlatform";
 import { UiWidgets } from "./UiWidgets";
 import { VillageWorld } from "./VillageWorld";
 import { GameHud } from "./GameHud";
+import { HandSpeedVisuals } from "./HandSpeedVisuals";
 import { GamePanels } from "./GamePanels";
 import { NightResultPresentation } from "./NightResultPresentation";
 import { StartNightReminder } from "./StartNightReminder";
 import { StarterGuide } from "./StarterGuide";
-import { STARTER_LESSONS } from "./config/StarterGuideConfig";
+import { PATROL } from "../config/PatrolConfig";
+import { patrolBuildReason } from "../game/PatrolRules";
+import { PATROL_GUIDE_KEY, PATROL_LESSONS, STARTER_LESSONS } from "./config/StarterGuideConfig";
 import { TacticNotices } from "./TacticNotices";
 import { drawBoot, drawSessionPanel } from "./panels/SessionPanels";
 /** 会话到表现的唯一刷新入口；各表现模块不自行订阅 changed，避免同步命令导致重复刷新。 */
@@ -23,9 +26,11 @@ export class GameView {
     private overlay = new Laya.Sprite();
     private layout = new GameLayout(this.platform.window, this.platform.menu);
     private ui = new UiWidgets(this.art, this.playClick);
+    private handSpeed = new HandSpeedVisuals(this.game, this.ui);
     private anchoredTip = new AnchoredTip(this.art);
     private reminder = new StartNightReminder(this.art);
     private starterGuide = new StarterGuide(this.platform, this.art, this.ui);
+    private patrolGuide = new StarterGuide(this.platform, this.art, this.ui, PATROL_LESSONS, PATROL_GUIDE_KEY);
     private tacticNotices = new TacticNotices(this.platform);
     private village = new VillageWorld(this.game, this.art, this.ui, this.layout, (name, visual) => {
         const phase = this.game.state?.phase;
@@ -37,11 +42,13 @@ export class GameView {
         const state = this.game.state;
         if (state && !this.overlay.numChildren && (state.phase === "DAY" || state.phase === "NIGHT") && state.people.some(p => p.id === id))
             this.panels.open({ type: "person", id });
-    }, this.playDefeat);
+    }, this.playDefeat, () => {
+        if (!this.overlay.numChildren && this.game.state?.patrol) this.panels.open({ type: "patrol" });
+    });
     private panels = new GamePanels(this.game, this.art, this.platform, this.ui, this.overlay, this.layout, () => this.refresh(), this.resources, () => {
         this.tacticNotices.markSeen();
         if (this.hud.tacticBadge) this.hud.tacticBadge.visible = false;
-    });
+    }, (kind, date, icon) => this.results.claimDaily(this.game, kind, date, icon));
     private hud = new GameHud(this.game, this.art, this.ui, this.panels, () => this.refresh());
     private results = new NightResultPresentation(this.ui, this.hud, () => this.refresh());
     private tip: Tip;
@@ -59,6 +66,9 @@ export class GameView {
         this.village.bellAura.mouseEnabled = false;
         this.village.bellAura.visible = false;
         this.root.addChild(this.village.bellAura);
+        this.village.blast.node.stackingRoot = true;
+        this.village.blast.node.zIndex = 2;
+        this.root.addChild(this.village.blast.node);
         this.village.speechTip.name = "VillagerThought";
         this.village.speechTip.zIndex = 3;
         this.root.addChild(this.village.speechTip);
@@ -77,6 +87,13 @@ export class GameView {
         this.starterGuide.spotlight.stackingRoot = true;
         this.root.addChild(this.starterGuide.spotlight);
         this.root.addChild(this.starterGuide.node);
+        this.patrolGuide.spotlight.name = "PatrolGuideSpotlight";
+        this.patrolGuide.node.name = "PatrolGuide";
+        for (const layer of [this.patrolGuide.spotlight, this.patrolGuide.node]) {
+            layer.stackingRoot = true;
+            layer.zIndex = 6;
+            this.root.addChild(layer);
+        }
         this.tip = new Tip(art);
         this.tip.stackingRoot = true;
         this.tip.zIndex = 6;
@@ -85,6 +102,9 @@ export class GameView {
         this.results.layer.stackingRoot = true;
         this.results.layer.zIndex = 7;
         this.root.addChild(this.results.layer);
+        this.handSpeed.node.stackingRoot = true;
+        this.handSpeed.node.zIndex = this.results.layer.zIndex + 1;
+        this.root.addChild(this.handSpeed.node);
         this.overlay.size(720, this.layout.height);
         this.overlay.mouseEnabled = true;
         this.overlay.mouseThrough = true;
@@ -119,6 +139,7 @@ export class GameView {
             this.anchoredTip.hide();
             this.reminder.reset();
             this.starterGuide.hide();
+            this.patrolGuide.hide();
         }
         if (this.shownErrorRevision !== this.game.errorRevision) {
             this.shownErrorRevision = this.game.errorRevision;
@@ -131,7 +152,7 @@ export class GameView {
         if (this.game.saves.pending)
             this.tip.visible = false;
         this.hud.clear();
-        this.village.drawScenery(s?.phase === "NIGHT");
+        this.village.drawScenery(s?.phase === "NIGHT" || this.results.playingFinalImpact);
         this.hud.drawHeader(this.layout);
         const restoringNight = s?.phase === "NIGHT" && !this.resources.ready("night");
         if (s) {
@@ -145,28 +166,49 @@ export class GameView {
             else drawSessionPanel(this.panels, s, () => this.results.draw(this.panels));
         });
         this.updateActors();
+        this.handSpeed.update(this.layout, 0, this.overlay.numChildren > 0, this.results.playingFinalImpact);
     }
     update(delta: number) {
         const active = !this.game.pauses.has("BACKGROUND") && !this.game.pauses.has("DISABLED");
         const visualDelta = Math.min(RULE.frameCap, Math.max(0, delta));
+        const counting = !!this.game.battle?.handSpeed;
+        const wasCounting = this.handSpeed.counting;
+        const worldFrozen = counting || wasCounting;
         const panelClosed = active && this.panels.advance(visualDelta);
         if (active && !this.game.pauses.has("WAIT_RESUME") && !this.game.pauses.has("DAILY_RATION") && !this.game.pauses.has("ASSETS") && !this.game.pauses.has("SAVE_PENDING"))
             this.results.advance(visualDelta);
         else this.results.hideFlights();
-        if (active) this.tip.advance(visualDelta);
-        this.hud.advance(this.game.pauses.size ? 0 : visualDelta);
-        if (this.village.advance(delta) || panelClosed)
+        if (active && !worldFrozen) this.tip.advance(visualDelta);
+        this.hud.advance(this.game.pauses.size || worldFrozen ? 0 : visualDelta);
+        if (this.village.advance(delta, worldFrozen) || panelClosed || counting !== wasCounting)
             this.updateActors();
-        if (active) this.anchoredTip.advance(visualDelta);
+        this.handSpeed.update(this.layout, visualDelta, this.overlay.numChildren > 0, this.results.playingFinalImpact);
+        if (active && !worldFrozen) this.anchoredTip.advance(visualDelta);
         const day = this.game.state;
         const canPrompt = active && !this.game.pauses.size && !this.overlay.numChildren && !this.anchoredTip.visible && day?.phase === "DAY";
         const lesson = canPrompt ? STARTER_LESSONS[day!.completed] : undefined;
         this.starterGuide.tick(lesson ? day!.completed + 1 : null, this.layout, visualDelta,
             lesson ? this.hud.guideTargets[lesson.target] : undefined);
-        this.reminder.tick(day?.day ?? 0, canPrompt && !this.starterGuide.node.visible ? this.hud.startButton : null, visualDelta);
+        let patrolStep: number | null = null, patrolTarget: Laya.Sprite | undefined;
+        if (active && day && day.completed >= PATROL.unlock && !this.results.active && !this.game.saves.pending) {
+            const panel = this.panels.current, box = this.overlay.numChildren ? this.overlay.getChildAt(this.overlay.numChildren - 1) as Laya.Sprite : undefined;
+            if (canPrompt && !day.patrol) {
+                patrolStep = 1; patrolTarget = this.hud.guideTargets.build;
+            } else if (day.phase === "DAY" && panel?.type === "build" && !day.patrol && box) {
+                patrolStep = 2; patrolTarget = box.getChildByName(`button:${PATROL.building}`) as Laya.Sprite;
+            } else if (day.phase === "DAY" && panel?.type === "patrol" && !day.patrol && box && !patrolBuildReason(day)) {
+                patrolStep = 3; patrolTarget = box.getChildAt(box.numChildren - 1)?.getChildByName("PatrolBuildAction") as Laya.Sprite;
+            } else if (day.phase === "DAY" && panel?.type === "patrol" && day.patrol && !day.patrol.captain && box) {
+                patrolStep = 4; patrolTarget = box.getChildByName("button:任命队长") as Laya.Sprite;
+            } else if (day.phase === "NIGHT" && !this.overlay.numChildren && !this.game.pauses.size && !worldFrozen && this.game.battle?.patrol?.deployments) {
+                patrolStep = 5; patrolTarget = this.village.world.getChildByName("PatrolActor:0")?.getChildAt(0) as Laya.Sprite;
+            }
+        }
+        this.patrolGuide.tick(patrolStep, this.layout, visualDelta, patrolTarget);
+        this.reminder.tick(day?.day ?? 0, canPrompt && !this.starterGuide.node.visible && !this.patrolGuide.node.visible ? this.hud.startButton : null, visualDelta);
     }
     private updateActors() {
-        this.village.render(this.overlay.numChildren > 0, this.anchoredTip.visible);
+        if (this.village.render(this.overlay.numChildren > 0, this.anchoredTip.visible)) this.tip.show("大王怜悯你");
         this.hud.update();
         // 每日口粮/欢迎回来等自动面板也通过overlay显示，不仅检查主动打开的panels.current。
         if (this.overlay.numChildren) { this.anchoredTip.hide(); this.reminder.hide(); }

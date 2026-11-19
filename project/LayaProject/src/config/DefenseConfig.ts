@@ -18,11 +18,13 @@ export const PADS = [{ x: 175, y: 350 }, { x: 470, y: 450 }, { x: 300, y: 560 },
 export const WAVE = {
     // doc/tech/46：常规数量从8向72平滑增长；年度轻重波与挑战档增加少量数量，不无限堆同屏对象。
     initialCount: 8, additionalCount: 64, countGrowthNights: 72, tierCount: 3,
-    // 1.0.34 的轻度压力，度过前八夜后写入新波次快照。只提高小怪生命，已排好的夜晚继续读原快照。
-    ordinaryPressureDay: 9, ordinaryHealthPercent: 106,
+    // 第九夜起仅提升小怪生命，所有波次都保存明确的百分比。
+    baseHealthPercent: 100, ordinaryPressureDay: 9, ordinaryHealthPercent: 106,
+    // 保护前24波，每12波再加1名，最多4名。补充快怪、厚甲和野猪，和原队列共用上场节奏。
+    qualityPressure: { after: 24, step: 12, max: 4, kinds: ["enemy_runner", "enemy_armored", "enemy_boar"] },
     seasonPulse: [0, 2, -1, 4],
-    // 数量公式仍从 24 个战斗秒起算。历史已排波次允许最后一只在 48 秒入场。
-    spawnCountThreshold: 24, extraSpawnTicks: 10, maxSpawnTicks: 960,
+    // 数量公式从 24 个战斗秒起算，实际入场时长由后面的上下限收敛。
+    spawnCountThreshold: 24, extraSpawnTicks: 10,
     // 1.0.35：新波次限制在 28～42 个战斗秒。首夜留出二次施放时间，密集后期收紧。
     spawnWindowTicks: { minimum: 560, maximum: 840 },
     affixStartDay: 7, affixes: ["NONE", "FAST", "STURDY", "GROUP"], seasonalWeight: 2, groupSize: 3

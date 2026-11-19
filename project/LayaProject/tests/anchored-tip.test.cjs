@@ -70,7 +70,8 @@ test('roof attachment is re-read after a building replacement, movement and scal
 test('view clock ignores battle speed and stops advancing tips while backgrounded or disabled', () => {
     const { tip, target } = setup(), pauses = new Set();
     const view = Object.create(GameView.prototype);
-    Object.assign(view, { hud: { advance() {} }, panels: { advance() { return false; } }, results: { advance() {}, hideFlights() {} }, game: { pauses, speed: 3 }, overlay: { numChildren: 0 }, reminder: { tick() {} }, starterGuide: { tick() {}, node: { visible: false } }, anchoredTip: tip, tip: { advance() {} }, village: { advance() { return false; } } });
+    view.handSpeed = { counting: false, update() {} };
+    Object.assign(view, { hud: { advance() {} }, panels: { advance() { return false; } }, results: { advance() {}, hideFlights() {} }, game: { pauses, speed: 3 }, overlay: { numChildren: 0 }, reminder: { tick() {} }, patrolGuide: { hide() {}, tick() {}, node: { visible: false } }, starterGuide: { tick() {}, node: { visible: false } }, anchoredTip: tip, tip: { advance() {} }, village: { advance() { return false; } } });
     tip.show('佟楼', () => target);
     for (let i = 0; i < 30; i++) view.update(.05);
     assert(tip.visible);

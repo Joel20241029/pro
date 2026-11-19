@@ -1,10 +1,17 @@
-import { TACTICS, TACTIC_SLOTS, tacticDefinition } from "../config/TacticConfig";
+import { KING_MERCY, TACTICS, TACTIC_SLOTS, tacticDefinition } from "../config/TacticConfig";
 import { GameState } from "./GameState";
 import { storageCapacity } from "./Growth";
 import { requireRule } from "./VillageStateOps";
 
 export type TacticAction = "LEARN" | "EQUIP";
 export function equippedTactics(s: GameState) { return [s.tactics.equipped, ...(s.tactics.extraSlots ?? [])]; }
+/** 确认面板和扣费共用当前库存。两种材料都必须能献纳至少一点。 */
+export function mercyOffering(s: Pick<GameState, "food" | "wood">) {
+    const wood = Math.ceil(s.wood * KING_MERCY.offeringPercent / 100);
+    const food = Math.ceil(s.food * KING_MERCY.offeringPercent / 100);
+    const missing = !wood && !food ? "粮食和木材" : !wood ? "木材" : !food ? "粮食" : null;
+    return { wood, food, reason: missing === null ? null : `${missing}不足，祈求未成` };
+}
 /** 已学会的传承战技始终可见；其余守住对应波数才揭晓，列表和说明书共用。 */
 export function tacticRevealed(s: GameState, id: string): boolean {
     return s.tactics.learned.includes(id) || s.completed >= tacticDefinition(id).unlockWaves;

@@ -1,6 +1,7 @@
 export type ResourceStage = "village" | "night";
-/** 供 Laya 编辑器预览。微信发布版将 gameplay 整组导出在包外。 */
+/** 保留 Laya 制作路径；临时原生构建在隔离项目中生成两个普通分包。 */
 export const GAMEPLAY_ROOT = "resources/gameplay";
+export const NATIVE_RESOURCE_ROOTS = { village: GAMEPLAY_ROOT + "/village", night: GAMEPLAY_ROOT + "/night" } as const;
 /** 在绘制启动页时从微信主包读取，再开始准备远程资源。 */
 export const LAUNCHER_IMAGE = "resources/launcher.jpg";
 /** 白天、守夜音乐和音效随微信主包导出，供原生音频直接读取。 */

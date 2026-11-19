@@ -5,10 +5,10 @@ const {createGame}=require(path.join(process.env.DAIDAI_TEST_BUILD,'game/Village
 const recipe=require('../../../res/source/rendered2d/production_recipe.json');
 const clips=new Map(recipe.animations.animations.map(c=>[c.id,c]));
 const art={animation:id=>clips.get(id)};
-test('eight movable models have four true views, neutral rests and a measured stride',()=>{
- for(const identity of ['blue','straw','red','jade','elite_male','elite_female','child','elder']) for(const direction of ['_down','_right','_up','_left']){
+test('seven walking models retain true views and the same gait period with a four-frame back view',()=>{
+ for(const identity of ['blue','straw','red','jade','elite_male','elite_female','child']) for(const direction of ['_down','_right','_up','_left']){
   const c=clips.get(`villager_${identity}_walk${direction}`);
-  assert(c.frameIds.length >= 2);assert(!c.frameIds.includes(c.restFrame));assert(c.stridePixels>0);
+  assert.equal(c.frameIds.length,direction==='_up'?4:6);assert.equal(c.frameIds.length/c.fps,.5);assert(!c.frameIds.includes(c.restFrame));assert(c.stridePixels>0);
   const frames=c.frameIds.map(id=>recipe.assets.find(a=>a.id===id));
   assert.equal(new Set(frames.map(a=>a.provenance.outputHash)).size,c.frameIds.length);
   assert(frames.every(a=>a.width===c.canvas.w && a.pivot.y===frames[0].pivot.y));
@@ -23,6 +23,8 @@ test('distance drives both feet; stop/start and direction changes retain the sam
   pose.walking=false;assert.equal(walk.frame(pose,id,width),c.restFrame);
   pose.walking=true;assert.equal(walk.frame(pose,id,width),c.frameIds[i]);
   assert.equal(walk.frame(pose,right,width),clips.get(right).frameIds[i]);
+  const up=clips.get('villager_blue_walk_up');
+  assert.equal(walk.frame(pose,up.id,width),up.frameIds[Math.floor((i+.1)*up.frameCount/count)]);
  }
  // A resize must not recalculate the past distance with the new scale.
  assert.equal(walk.frame(pose,id,width*1.25),c.frameIds[count-1]);

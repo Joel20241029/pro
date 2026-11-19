@@ -13,8 +13,8 @@ export const atlasGroups = {
     enemies: { category: 'enemies', stage: 'night' },
     night_effects: { category: 'effects', stage: 'night' }
 };
-/** 这三张特效在白天出现，其中红环由精英和战技共用。 */
-const villageEffects = new Set(['fx_hearts', 'icon_baby_cry', 'fx_rage_orbit']);
+/** 村内常驻特效及已加载的战技红环，三种品质小图共用此图页。 */
+const villageEffects = new Set(['fx_hearts', 'icon_baby_cry', 'fx_rage_orbit', 'fx_quality_elite', 'fx_quality_hero', 'fx_quality_legendary']);
 
 export function atlasGroup(asset) {
     const category = asset.category.split('/')[0];

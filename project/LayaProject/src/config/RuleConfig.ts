@@ -1,6 +1,7 @@
-/** 记录村庄保存采用的规则。更新先验证旧档继续读取或转换，仅在无法安全兼容时升版。 */
-// v18：第五塔移至上段，全年固定最高档；配置 17 由存档读取端转换。
-export const CONFIG_VERSION = 18;
+import { PATROL } from "./PatrolConfig";
+
+/** v19 使用四档村民品质和中后期波次规则；当前村庄存档只接受此配置版本。 */
+export const CONFIG_VERSION = 19;
 /** 持续成长基础来自 doc/tech/12，百级住宅与数量型波次按 doc/tech/46 重平衡。
  * 设施等级不封顶，产出线性、战力与费用二次增长；更改须复跑经营模拟及升级预检。
  */
@@ -11,7 +12,7 @@ export const GROWTH = {
     // 数量优先后个体线性成长，避免人口封顶、设施升级变慢时敌人平方增长形成必败墙。
     enemyStartDay: 12, enemyLevelNights: 32,
     costWoodPerLevel: 25, costFoodPerLevel: 10,
-    costs: { FARM: { wood: 40, food: 15 }, LOGGING: { wood: 35, food: 15 }, HOUSING: { wood: 30, food: 10 }, GATE: { wood: 30, food: 10 }, TOWER: { wood: 35, food: 10 } },
+    costs: { FARM: { wood: 40, food: 15 }, LOGGING: { wood: 35, food: 15 }, HOUSING: { wood: 30, food: 10 }, GATE: { wood: 30, food: 10 }, TOWER: { wood: 35, food: 10 }, PATROL: PATROL.upgrade },
     repairWoodPerLevel: 5, repairFraction: .2
 } as const;
 /** doc/tech/46 已确认：住宅从1级、8容量起，每级+1，100级共107容量；不直接赠送居民。
@@ -26,18 +27,6 @@ export const RESIDENTIAL = {
  * 两种人口都为空时为50%，计数排除老人。调整会影响后续出生/旅人，不重抽已经生成的人。
  */
 export const POPULATION = { birthBias: .25, travelerBias: .35, firstTravelerDay: 5, travelerPeriod: 4, travelerMinNights: 3 } as const;
-/** 用户确认的稀有村民规则：新生儿与来访旅人独立抽取，不遗传、不重抽，创始人普通。
- * 1.0.52 按常规经营约每7～8波新增一位精英调平；概率只用于尚未生成的村民。
- * 产出与伤害在原加成后乘倍率、最后取整；照料只额外产粮，不缩短两夜成长。
- * 寿命按成功守夜计算，口粮沿 RULE；改动影响经济、战斗与存档校验，须同步版本。
- */
-export const ELITE = {
-    birthChancePercent: 15, travelerChancePercent: 45, chanceScale: 100,
-    productionMultiplier: 1.5, damageMultiplier: 1.25,
-    careFoodBonus: 1, adultNights: 18, elderNights: 5,
-    // 纯表现缩放，各人生阶段沿用原动画与足底，不改变寻路、速度和住房占用。
-    visualScale: 1.25
-} as const;
 export const RULE = {
     storageCap: 200,
     // 真实人口安全上界由住宅最终容量推导；地图绘制人数另由表现配置控制。

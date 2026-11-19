@@ -1,5 +1,6 @@
 import { SeededRandom } from "../src/game/SeededRandom";
-import { ELITE, VILLAGER_NAMES } from "../src/game/GameConfig";
+import { QUALITY_CHANCE_SCALE, VILLAGER_QUALITY } from "../src/config/VillagerQuality";
+import { VILLAGER_NAMES } from "../src/game/GameConfig";
 import { createGame, applyCommand } from "../src/game/VillageRules";
 import { nextSex } from "../src/game/Population";
 
@@ -47,7 +48,7 @@ test("Repeated birth draw cadence does not lock inheritance or distort elite rar
             nextSex(population, rng);
             if (rng.range(2) === 0) firstParent++;
             rng.range(VILLAGER_NAMES.child.length);
-            if (rng.range(ELITE.chanceScale) < ELITE.birthChancePercent) elites++;
+            if (rng.range(QUALITY_CHANCE_SCALE) < VILLAGER_QUALITY.ELITE.birth) elites++;
         }
         ok(firstParent >= 49000 && firstParent <= 51000, `parent distribution for seed ${seed}: ${firstParent}`);
         ok(elites >= 14500 && elites <= 15500, `elite distribution for seed ${seed}: ${elites}`);

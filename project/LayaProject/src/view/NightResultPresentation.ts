@@ -1,3 +1,5 @@
+import { FEATURE_WINS, TaskKind, TaskMaterial } from "../config/DailyTaskConfig";
+import { activeDailyTasks } from "../game/DailyTaskState";
 import { BattleSimulation } from "../game/BattleSimulation";
 import { TACTICS, TacticDefinition } from "../config/TacticConfig";
 import { GameSession } from "../game/GameSession";
@@ -5,9 +7,10 @@ import { GameState } from "../game/GameState";
 import { tacticRevealed } from "../game/Tactics";
 import { economy } from "../game/VillageQueries";
 import { GameHud } from "./GameHud";
+import { FEEDBACK } from "./config/FeedbackConfig";
 import { UiWidgets } from "./UiWidgets";
 import { SIDE_FEATURES } from "./config/TacticUiConfig";
-import { drawFirstUnlock, drawNightResult, drawTacticUnlock, NightResult } from "./panels/NightResultPanel";
+import { drawFeatureUnlock, drawNightResult, drawTacticUnlock, NightResult } from "./panels/NightResultPanel";
 import { PanelContext } from "./panels/PanelContext";
 
 /** 实时表现秒。首解锁先让玩家看清功能，再依次飞向左侧，落点稍微放大后回稳。 */
@@ -16,12 +19,14 @@ const MOTION = {
     grow: .24, hold: .14, flight: .42, collectTail: .08,
     // 对应 1.0.34 的峰值约 96 和 122 像素的约 3.3 倍。
     gainPeak: 315, tacticPeak: 403,
-    unlockNotice: .46, unlockSeconds: .62, unlockStagger: .24, popSeconds: .32,
+    unlockNotice: .46, unlockSeconds: .62, popSeconds: .32,
     featureSize: 84
 } as const;
 const RAISED_FLIGHT_SECONDS = MOTION.grow + MOTION.hold + MOTION.flight;
 const MATERIAL_KEYS = ["food", "wood"] as const;
-type Stage = "summary" | "collect" | "unlock" | "tactic";
+type FlightPoint = { x: number; y: number; size: number };
+type DailyFlight = { kind: TaskKind; date: string; material: TaskMaterial; source: FlightPoint; raised: FlightPoint; elapsed: number | null };
+type Stage = "impact" | "summary" | "collect" | "unlock" | "tactic";
 
 /** 只消费已提交的本次战斗结果。领取和解锁均为表现，不写存档、不发命令。 */
 export class NightResultPresentation {
@@ -29,7 +34,8 @@ export class NightResultPresentation {
     private tiles: Laya.Sprite[] = [];
     private lastResult: BattleSimulation | null = null;
     private result: NightResult | null = null;
-    private firstUnlock = false;
+    private featureUnlock = -1;
+    private dailyFlight: DailyFlight | null = null;
     private newTactic: TacticDefinition | null = null;
     private phase: Stage | null = null;
     private elapsed = 0;
@@ -37,13 +43,17 @@ export class NightResultPresentation {
     private sources: Laya.Sprite[] = [];
     private point = new Laya.Point();
     shownFeatures: number = SIDE_FEATURES.length;
+    get active() { return this.phase !== null; }
     get revealingTactic() { return this.newTactic !== null; }
+    get playingFinalImpact() { return this.phase === "impact"; }
 
     constructor(private ui: UiWidgets, private hud: GameHud, private refresh: () => void) {
         this.layer.name = "NightFlights"; this.layer.mouseEnabled = false;
     }
 
     reset() {
+        this.dailyFlight = null;
+        this.featureUnlock = -1;
         this.lastResult = null; this.result = null; this.phase = null; this.box = null; this.sources = []; this.newTactic = null;
         this.hideFlights();
         this.shownFeatures = SIDE_FEATURES.length;
@@ -51,6 +61,11 @@ export class NightResultPresentation {
 
     observe(game: GameSession, s: GameState | null) {
         this.hideFlights();
+        const flight = this.dailyFlight;
+        if (flight && flight.elapsed === null && !game.saves.pending) {
+            if (s && activeDailyTasks(s, flight.date)?.tasks.some(task => task.kind === flight.kind && task.claimed)) flight.elapsed = 0;
+            else this.dailyFlight = null;
+        }
         const battle = game.presentationBattle;
         if (!s || game.battle || game.saves.pending || battle?.outcome !== "WIN" || battle === this.lastResult || battle.base.run !== s.run) return;
         const committed = s.completed === battle.base.completed + 1 && (s.phase === "DAWN" || s.phase === "DAY");
@@ -58,17 +73,33 @@ export class NightResultPresentation {
         const production = economy(battle.base);
         this.lastResult = battle;
         this.result = { night: battle.base.day, food: production.food, wood: production.wood, rations: production.rations,
-            stock: { food: s.food, wood: s.wood }, recap: s.summary.replace(/^守夜成功！/, "") };
-        this.firstUnlock = battle.base.legacy.bestNight === 0 && s.legacy.bestNight > 0;
+            stock: { food: s.food, wood: s.wood }, patrol: battle.patrol ?? undefined, recap: s.summary.replace(/^守夜成功！/, "") };
+        this.featureUnlock = SIDE_FEATURES.findIndex(feature => {
+            const threshold = FEATURE_WINS[feature.panel];
+            return battle.base.legacy.bestNight < threshold && threshold <= s.legacy.bestNight;
+        });
         this.newTactic = TACTICS.find(t => !tacticRevealed(battle.base, t.id) && tacticRevealed(s, t.id)) ?? null;
-        this.shownFeatures = this.firstUnlock ? 0 : SIDE_FEATURES.length;
-        this.phase = "summary"; this.elapsed = 0;
+        this.shownFeatures = this.featureUnlock < 0 ? SIDE_FEATURES.length : this.featureUnlock;
+        this.phase = battle.feedback.some(event => event.type === "handSpeed" && event.hurt.length) ? "impact" : "summary";
+        this.elapsed = 0;
+    }
+
+    claimDaily(game: GameSession, kind: TaskKind, date: string, icon: Laya.Sprite) {
+        if (this.dailyFlight || !game.state || game.saves.pending) return;
+        const task = activeDailyTasks(game.state, date)?.tasks.find(t => t.kind === kind && !t.claimed);
+        const box = icon.parent?.parent?.parent as Laya.Sprite | undefined;
+        if (!task || !box) return;
+        // Successful commits rebuild the panel and HUD. Snapshot the old source and use the live HUD target.
+        this.dailyFlight = { kind, date, material: task.material, source: this.center(icon), raised: this.center(box), elapsed: null };
+        game.claimTask(kind, date);
+        if (this.dailyFlight?.elapsed === null && !game.saves.pending) this.dailyFlight = null;
     }
 
     draw(ctx: PanelContext): boolean {
         if (!this.phase || !this.result) return false;
+        if (this.phase === "impact") return true;
         if (this.phase === "unlock" || this.phase === "tactic") {
-            const view = this.phase === "unlock" ? drawFirstUnlock(ctx) : drawTacticUnlock(ctx, this.newTactic!);
+            const view = this.phase === "unlock" ? drawFeatureUnlock(ctx, this.featureUnlock) : drawTacticUnlock(ctx, this.newTactic!);
             this.box = view.box; this.sources = view.sources;
         } else {
             const view = drawNightResult(ctx, this.result, this.phase === "collect", () => {
@@ -83,6 +114,19 @@ export class NightResultPresentation {
 
     advance(seconds: number) {
         this.hideFlights();
+        const flight = this.dailyFlight;
+        if (flight && flight.elapsed !== null) {
+            const target = this.hud.materialIcons[flight.material];
+            if (target && flight.elapsed < RAISED_FLIGHT_SECONDS) {
+                this.raisedFlight(0, `icon_${flight.material}`, flight.source, target, flight.raised, MOTION.gainPeak, flight.elapsed);
+                flight.elapsed += seconds;
+            } else this.dailyFlight = null;
+        }
+        if (this.phase === "impact") {
+            this.elapsed += seconds;
+            if (this.elapsed >= FEEDBACK.tacticBurst.finishSeconds) this.next("summary");
+            return;
+        }
         if (!this.phase || this.phase === "summary" || !this.box?.displayedInStage || !this.box.mouseEnabled) return;
         this.elapsed += seconds;
         if (this.phase === "collect") {
@@ -94,10 +138,10 @@ export class NightResultPresentation {
                 const elapsed = this.elapsed - sequenceSeconds;
                 sequenceSeconds += RAISED_FLIGHT_SECONDS;
                 if (elapsed >= 0 && elapsed < RAISED_FLIGHT_SECONDS)
-                    this.raisedFlight(i, `icon_${key}`, this.sources[i], target, this.center(this.box!), MOTION.gainPeak, elapsed);
+                    this.raisedFlight(i, `icon_${key}`, this.center(this.sources[i]), target, this.center(this.box!), MOTION.gainPeak, elapsed);
             });
             if (this.elapsed >= sequenceSeconds + MOTION.collectTail)
-                this.next(this.firstUnlock ? "unlock" : this.newTactic ? "tactic" : null);
+                this.next(this.featureUnlock >= 0 ? "unlock" : this.newTactic ? "tactic" : null);
             return;
         }
         if (this.phase === "tactic") {
@@ -106,7 +150,7 @@ export class NightResultPresentation {
             if (target && age >= 0) {
                 const source = this.sources[0];
                 source.visible = false;
-                if (age < RAISED_FLIGHT_SECONDS) this.raisedFlight(0, this.newTactic!.icon, source, target, this.center(source), MOTION.tacticPeak, age);
+                if (age < RAISED_FLIGHT_SECONDS) this.raisedFlight(0, this.newTactic!.icon, this.center(source), target, this.center(source), MOTION.tacticPeak, age);
                 else {
                     if (this.hud.tacticBadge) this.hud.tacticBadge.visible = true;
                     this.pop(target, age - RAISED_FLIGHT_SECONDS);
@@ -115,23 +159,25 @@ export class NightResultPresentation {
             if (age >= RAISED_FLIGHT_SECONDS + MOTION.popSeconds) this.next(null);
             return;
         }
-        SIDE_FEATURES.forEach((feature, i) => {
-            const progress = (this.elapsed - MOTION.unlockNotice - i * MOTION.unlockStagger) / MOTION.unlockSeconds;
-            const target = this.hud.featureButtons[i];
-            if (!target || progress < 0) return;
-            this.sources[i].visible = false;
-            if (progress < 1) this.fly(i, feature.icon, MOTION.featureSize, this.sources[i], target, progress);
+        const index = this.featureUnlock, feature = SIDE_FEATURES[index];
+        const progress = (this.elapsed - MOTION.unlockNotice) / MOTION.unlockSeconds;
+        const target = this.hud.featureButtons[index];
+        if (target && progress >= 0) {
+            const source = this.sources[0];
+            source.visible = false;
+            if (progress < 1) this.fly(index, feature.icon, MOTION.featureSize, source, target, progress);
             else {
-                target.visible = true;
-                this.shownFeatures = Math.max(this.shownFeatures, i + 1);
+                target.visible = true; target.mouseEnabled = true;
+                this.shownFeatures = index + 1;
                 this.pop(target, (progress - 1) * MOTION.unlockSeconds);
             }
-        });
-        if (this.elapsed >= MOTION.unlockNotice + MOTION.unlockSeconds + (SIDE_FEATURES.length - 1) * MOTION.unlockStagger + MOTION.popSeconds)
-            this.next(null);
+        }
+        if (this.elapsed >= MOTION.unlockNotice + MOTION.unlockSeconds + MOTION.popSeconds)
+            this.next(this.newTactic ? "tactic" : null);
     }
 
     private next(phase: Stage | null) {
+        if (this.phase === "unlock") this.shownFeatures = SIDE_FEATURES.length;
         this.phase = phase; this.elapsed = 0;
         this.hideFlights(); this.box = null;
         if (phase === null) { this.result = null; this.newTactic = null; }
@@ -151,7 +197,7 @@ export class NightResultPresentation {
     }
     private center(node: Laya.Sprite) {
         node.localToGlobal(this.point.setTo(node.width / 2, node.height / 2), false, this.layer.parent as Laya.Sprite);
-        return { x: this.point.x, y: this.point.y };
+        return { x: this.point.x, y: this.point.y, size: Math.max(node.width, node.height) };
     }
     private pop(button: Laya.Sprite, elapsed: number) {
         const t = Math.min(1, elapsed / MOTION.popSeconds), scale = 1 + .26 * (1 - t) * Math.cos(t * Math.PI * 2);
@@ -166,13 +212,13 @@ export class NightResultPresentation {
         this.curve(tile, this.center(from), this.center(to), t, index ? 1 : -1);
         tile.scale(.72 + .37 * t, .72 + .37 * t);
     }
-    private raisedFlight(index: number, id: string, from: Laya.Sprite, to: Laya.Sprite, raised: { x: number; y: number }, peak: number, elapsed: number) {
-        const tile = this.tile(index, id, peak), start = this.center(from);
+    private raisedFlight(index: number, id: string, start: FlightPoint, to: Laya.Sprite, raised: { x: number; y: number }, peak: number, elapsed: number) {
+        const tile = this.tile(index, id, peak);
         let scale: number;
         if (elapsed < MOTION.grow + MOTION.hold) {
             const t = Math.min(1, elapsed / MOTION.grow) ** 2;
             tile.pos(start.x + (raised.x - start.x) * t, start.y + (raised.y - start.y) * t);
-            const initialScale = Math.max(from.width, from.height) / peak;
+            const initialScale = start.size / peak;
             scale = initialScale + (1 - initialScale) * t;
         } else {
             const t = ((elapsed - MOTION.grow - MOTION.hold) / MOTION.flight) ** 2;

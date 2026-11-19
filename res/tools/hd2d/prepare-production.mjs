@@ -177,12 +177,20 @@ for (const [id, crop, width, height] of [
 ]) importImage({ id, source: rageSource, crop, category: 'effects', bundle: 'battle', width, height,
     pivot: { x: width / 2, y: height / 2 }, fullCanvas: true, alphaCutoff: 0 });
 // 正俯视圆图在运行时先旋转再压扁，前后由scrollRect裁切；256px保留手机采样。
-// 正圆红环由白天精英和守夜战技共用，随人物包就绪；战技箭头仍在战斗包。
+// 战技红环随村内特效页就绪，战技箭头仍在战斗包。
 for (const [id, crop, width] of [
     ['fx_rage_orbit', [0, 128, 768, 768], 256],
     ['fx_rage_up', [896, 256, 512, 512], 64]
 ]) importImage({ id, source: 'source/effects/tactic-rage/orbit-b-sheet.png', crop, category: 'effects', bundle: id === 'fx_rage_orbit' ? 'characters' : 'battle',
     width, height: width, pivot: { x: width / 2, y: width / 2 }, fullCanvas: true, alphaCutoff: 0 });
+// 三档足底光环保留俯视圆形，游戏里共用原足底投影。
+const qualitySource = 'source/effects/villager-quality/aura-sheet.png';
+for (const [index, quality] of ['elite', 'hero', 'legendary'].entries()) {
+    importImage({ id: 'fx_quality_' + quality, source: qualitySource, crop: cell(qualitySource, 3, 1, index),
+        category: 'effects', bundle: 'characters', width: 64, pivot: { x: 32, y: 32 }, fullCanvas: true, alphaCutoff: 28 });
+    // 给 64px 运行画布留 5px 安全边，收去缩小后低 alpha 杂边。
+    Object.assign(assets.at(-1), { fitPadding: 10, alphaCutoff: 48, usage: '村民足底品质光环' });
+}
 // 二楠之盾：原稿低alpha白雾不作为场景底色；光效用24/255连续归零，图标按32阈值清理。
 // 一张96px基础包图标；三张透明共享贴图随守夜battle包加载，不引入粒子与逐帧图。
 const shieldSource = 'source/effects/tactic-shield/shield-sheet.png';

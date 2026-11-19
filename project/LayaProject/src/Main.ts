@@ -9,22 +9,29 @@ import { GameLayout } from "./view/GameLayout";
 import { WechatMusic } from "./platform/WechatMusic";
 import { ResourcePreparation } from "./platform/ResourcePreparation";
 import { WechatRemoteResources } from "./platform/WechatRemoteResources";
+import { WechatSubpackageResources } from "./platform/WechatSubpackageResources";
 import { GAMEPLAY_ROOT } from "./config/ResourceConfig";
+// 由微信构建插件从实际导出的分包声明设置。编辑器预览继续读取制作资源。
+declare const GameGlobal: { daidaiNativeResources?: boolean };
 const { regClass } = Laya;
 @regClass()
 export class Main extends Laya.Script {
     private platform: WechatPlatform | null = null;
     private session: GameSession | null = null;
     private view: GameView | null = null;
-    private remoteAssets = Laya.Browser?.onWXMiniGame && !Laya.LayaEnv.isPreview ? new WechatRemoteResources() : null;
-    private filePath = (file: string) => this.remoteAssets ? this.remoteAssets.path(file) : GAMEPLAY_ROOT + "/" + file;
-    private frames = new SpriteFrames((file, options) =>
-        this.remoteAssets ? this.remoteAssets.load(this.filePath(file), options) : Laya.loader.load(this.filePath(file), options)
-    );
+    private readonly wechatBuild = Laya.Browser?.onWXMiniGame && !Laya.LayaEnv.isPreview;
+    private readonly nativeAssets = this.wechatBuild && typeof GameGlobal !== "undefined" && GameGlobal.daidaiNativeResources
+        ? new WechatSubpackageResources() : null;
+    private readonly remoteAssets = this.wechatBuild && !this.nativeAssets ? new WechatRemoteResources() : null;
+    private frames = new SpriteFrames((file, options, stage) => {
+        if (this.nativeAssets) return this.nativeAssets.load(stage, file, options);
+        if (this.remoteAssets) return this.remoteAssets.load(this.remoteAssets.path(file), options);
+        return Laya.loader.load(GAMEPLAY_ROOT + "/" + file, options);
+    });
     private resources = new ResourcePreparation({
-        download: this.remoteAssets ? (stage, progress, attempt) => this.remoteAssets!.prepare(stage, progress, attempt) : undefined,
+        download: (this.nativeAssets ?? this.remoteAssets)?.prepare.bind(this.nativeAssets ?? this.remoteAssets),
         decode: stage => this.frames.loadStage(stage)
-    }, this.remoteAssets?.diagnostics);
+    }, (this.nativeAssets ?? this.remoteAssets)?.diagnostics);
     private loading: StartupView | null = null;
     private disposed = false;
     private starting = false;

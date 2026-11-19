@@ -1,4 +1,5 @@
-import { ADULT_APPEARANCE, ELITE, POLICIES, RULE, SKILLS, Skill, TRAITS, Trait, VILLAGER_NAMES } from "./GameConfig";
+import { QUALITY_CHANCE_SCALE, rollVillagerQuality, VILLAGER_QUALITY } from "../config/VillagerQuality";
+import { ADULT_APPEARANCE, POLICIES, RULE, SKILLS, Skill, TRAITS, Trait, VILLAGER_NAMES } from "./GameConfig";
 import { GameState, Person } from "./GameState";
 import { SeededRandom } from "./SeededRandom";
 import { nextSex, travelerDue } from "./Population";
@@ -16,6 +17,8 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
         s.summary = `守住 ${s.completed} 夜，传承至第 ${s.stats.generation} 代，迎来 ${s.stats.births} 个孩子，${s.stats.retirees} 位村民荣休。`;
         return;
     }
+    const mercy = s.tactics.mercyCooldown;
+    if (mercy && mercy.wavesLeft > 0 && !s.night.mercySpent) mercy.wavesLeft--;
     const rng = new SeededRandom(s.rng.family), world = new SeededRandom(s.rng.world);
     // 只递减入夜时已经在养老的人，新荣休者从下一夜开始计时，失败夜已在上方返回。
     for (const id of s.night.elders)
@@ -28,7 +31,7 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
         const p = person(s, id);
         if (!p.adult && ++p.growth >= RULE.growNights) {
             p.adult = true;
-            p.nights = p.elite ? ELITE.adultNights : RULE.adultNights;
+            p.nights = VILLAGER_QUALITY[p.quality].adultNights;
             p.job = "WAITING";
             grown.push(p);
         }
@@ -41,7 +44,7 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
     const retired = s.night.adults.map(id => person(s, id)).filter(p => p.nights === 0), retiredIds = retired.map(p => p.id);
     const uncared = retired.filter(p => p.careChild && !person(s, p.careChild).adult).length;
     for (const p of retired) {
-        p.elderNights = p.elite ? ELITE.elderNights : RULE.elderNights;
+        p.elderNights = VILLAGER_QUALITY[p.quality].elderNights;
         p.job = "WAITING";
         p.careChild = null;
     }
@@ -49,6 +52,7 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
         if (t.operator && retiredIds.includes(t.operator))
             t.operator = null;
     });
+    if (s.patrol?.captain && retiredIds.includes(s.patrol.captain)) s.patrol.captain = null;
     // 老人在村时保留婚姻和亲缘；寿终才腾出人口、解除婚姻并进入有界家谱。
     for (const p of departed) {
         p.ancestors = [];
@@ -73,12 +77,12 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
     if (travelerDue(s, capacity(s))) {
         s.lastTraveler = s.completed;
         const sex = nextSex(s.people, world, true);
-        // 与出生一致，保留世界随机流的原消费顺序，命名分支不改变精英、天赋和专长结果。
+        // 与出生共用品质抽取和姓名池，姓名分支不推进世界随机流。
         const nameState = world.state, nameIndex = world.range(VILLAGER_NAMES.traveler.length);
-        const elite = world.range(ELITE.chanceScale) < ELITE.travelerChancePercent;
-        const name = elite ? VILLAGER_NAMES.elite[new SeededRandom(nameState).range(VILLAGER_NAMES.elite.length)]
+        const quality = rollVillagerQuality(world.range(QUALITY_CHANCE_SCALE), s.completed, "traveler");
+        const name = quality !== "COMMON" ? VILLAGER_NAMES.special[new SeededRandom(nameState).range(VILLAGER_NAMES.special.length)]
             : VILLAGER_NAMES.traveler[nameIndex];
-        const traveler: Person = { id: newId(s), name, sex, origin: "TRAVELER", elite, appearance: ADULT_APPEARANCE[sex], trait: (Object.keys(TRAITS) as Trait[])[world.range(8)], skill: (Object.keys(SKILLS) as Skill[])[world.range(6)], generation: 1, parents: [], ancestors: [], adult: true, nights: elite ? ELITE.adultNights : RULE.adultNights, elderNights: 0, growth: 0, job: "WAITING", careChild: null };
+        const traveler: Person = { id: newId(s), name, sex, origin: "TRAVELER", quality, appearance: ADULT_APPEARANCE[sex], trait: (Object.keys(TRAITS) as Trait[])[world.range(8)], skill: (Object.keys(SKILLS) as Skill[])[world.range(6)], generation: 1, parents: [], ancestors: [], adult: true, nights: VILLAGER_QUALITY[quality].adultNights, elderNights: 0, growth: 0, job: "WAITING", careChild: null };
         s.choices.push({ kind: "TRAVELER", person: traveler });
     }
     s.rng.family = rng.state;

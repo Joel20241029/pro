@@ -1,12 +1,11 @@
 import { CONFIG_VERSION } from "../game/GameConfig";
 import { GameState } from "../game/GameState";
 import { validateState } from "./StateValidation";
-import { ANNUAL_CHALLENGE_CONFIG, migrateAnnualChallenge } from "./VillageSaveMigration";
 /** 微信实现将读异常向外抛出；null 只能表示 keys 列表确认键不存在。 */
 export interface StoragePort { read(key: string): string | null; write(key: string, value: string): void; }
 const KEYS = ["daidai_village.save.a", "daidai_village.save.b"];
 /** 双槽封套格式 3。只在旧格式无法安全兼容时升级；业务规则的转换按来源配置执行。 */
-const SCHEMA_VERSION = 3;
+const SCHEMA_VERSION = 4;
 /** 普通进度轮换单槽；纯净开局的标记让启动时可补齐同一份双槽候选。 */
 type CommitType = "NORMAL" | "CLEAN_START";
 /** RESET 是异版/坏档的显式覆盖流程；写出的仍是普通存档，不参与纯净开局补写。 */
@@ -32,14 +31,12 @@ function decode(raw: string | null): Slot {
     try {
         const e: Envelope = JSON.parse(raw);
         if (!e || !Number.isSafeInteger(e.schemaVersion) || !Number.isSafeInteger(e.configVersion)) return { kind: "corrupt" };
-        if (e.schemaVersion !== SCHEMA_VERSION ||
-            (e.configVersion !== CONFIG_VERSION && e.configVersion !== ANNUAL_CHALLENGE_CONFIG)) return { kind: "version" };
+        if (e.schemaVersion !== SCHEMA_VERSION || e.configVersion !== CONFIG_VERSION) return { kind: "version" };
         if (e.commitType !== "NORMAL" && e.commitType !== "CLEAN_START") return { kind: "corrupt" };
         const { checksum, ...body } = e;
         if (typeof checksum !== "string" || crc32(canonical(body)) !== checksum || !Number.isSafeInteger(e.revision) || e.revision < 1 || typeof e.commitId !== "string" || !e.commitId.length) return { kind: "corrupt" };
-        const payload = e.configVersion === ANNUAL_CHALLENGE_CONFIG ? migrateAnnualChallenge(e.payload) : e.payload;
-        validateState(payload);
-        return { kind: "valid", data: e, state: payload };
+        validateState(e.payload);
+        return { kind: "valid", data: e, state: e.payload };
     } catch { return { kind: "corrupt" }; }
 }
 /** 补写结果对应已重建的 pending，双槽核对成功前不发布其状态。 */

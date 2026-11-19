@@ -252,8 +252,8 @@ for (const [label, alter] of [
 test('daytime scene includes real directions, full portraits and the shared effects', async () => {
     const f = setup(); await boot(f);
     const art = f.main.frames;
-    for (const name of ['shadow_actor', 'fx_rage_orbit', 'fx_hearts', 'icon_baby_cry']) assert(art.get(name));
-    for (const identity of ['blue', 'straw', 'red', 'jade', 'elite_male', 'elite_female', 'child', 'elder'])
+    for (const name of ['shadow_actor', 'fx_rage_orbit', 'fx_hearts', 'icon_baby_cry', 'hd_elder_chair']) assert(art.get(name));
+    for (const identity of ['blue', 'straw', 'red', 'jade', 'elite_male', 'elite_female', 'child'])
         for (const direction of ['DOWN', 'RIGHT', 'UP', 'LEFT']) assert.equal(art.walk(identity, direction).mirror, false);
     for (const sex of ['MALE', 'FEMALE']) {
         const person = { id: "1:1", sex, appearance: sex === 'MALE' ? 'male_a' : 'female_a', adult: true, elderNights: 0, nights: 12, growth: 0 };
@@ -262,7 +262,7 @@ test('daytime scene includes real directions, full portraits and the shared effe
         const labor = sex === 'MALE' ? 'villager_blue_chop' : 'villager_red_chop';
         assert.notEqual(art.labor(labor, "RIGHT").clip, art.labor(labor, "LEFT").clip);
         person.adult = false; assert(art.get(art.portraitId(person)));
-        person.growth = 1; assert(art.get(art.portraitId(person)));
+        person.growth = 1; assert.equal(art.portraitId(person), art.portraitId({ ...person, sex: sex === 'MALE' ? 'FEMALE' : 'MALE' })); assert(art.get(art.portraitId(person)));
     }
     f.main.onDestroy();
 });

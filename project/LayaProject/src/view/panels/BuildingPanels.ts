@@ -1,3 +1,5 @@
+import { patrolBuildReason } from "../../game/PatrolRules";
+import { PATROL } from "../../config/PatrolConfig";
 import { capacity, person } from "../../game/VillageRules";
 import { GameState, isWorkingAdult } from "../../game/GameState";
 import { RESIDENTIAL, RULE, TOWERS, TowerKind } from "../../game/GameConfig";
@@ -18,6 +20,13 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
         const cap = amount(storageCapacity(s), true);
         ctx.ui.iconValue(stock, "icon_food", `${amount(s.food, true)}/${cap}`, 134, 6, 214, 50, C.green);
         ctx.ui.iconValue(stock, "icon_wood", `${amount(s.wood, true)}/${cap}`, 362, 6, 216, 50, C.timber);
+        const patrolOpen = s.completed >= PATROL.unlock;
+        if (patrolOpen) {
+            const button = ctx.ui.button(box, PATROL.building, 34, 187, 600,
+                () => ctx.open({ type: "patrol" }), C.gold, 66);
+            const canAppoint = s.patrol && !s.patrol.captain && s.people.some(isWorkingAdult);
+            if (day && (canAppoint || patrolBuildReason(s) === null)) ctx.ui.actionBadge(button, "PatrolActionDot");
+        }
         const definitions: [
             UpgradeKind,
             number,
@@ -44,8 +53,8 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
                 reason: !day ? "请在白天修门" : s.gate >= gateCapacity(s) ? "城门完好，无需修复" : s.wood < repairCost(s) ? "材料不足" : null, verb: "修复", action: () => ctx.send({ type: "REPAIR" }) }
         );
         const step = UI.buildRowHeight + UI.buildRowGap;
-        const rows = new ScrollList(UI.contentWidth, 620, entries.length * step - UI.buildRowGap, p.scroll, offset => p.scroll = offset);
-        rows.pos(34, 199); box.addChild(rows);
+        const rows = new ScrollList(UI.contentWidth, patrolOpen ? 548 : 620, entries.length * step - UI.buildRowGap, p.scroll, offset => p.scroll = offset);
+        rows.pos(34, patrolOpen ? 271 : 199); box.addChild(rows);
         orderPanelRows(p, entries, row => row.id, row => row.reason === null).forEach((row, i) =>
             ctx.ui.buildRow(rows.content, i * step, row.icon, row.title, row.effect, s, row.cost, row.reason, row.action, row.verb));
         return;
@@ -69,7 +78,7 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
             box.addChild(rowParent);
             ctx.ui.buildRow(rowParent, 0, t.kind === "ARROW" ? "icon_arrow" : t.kind === "STONE" ? "icon_stone" : "icon_slow", `升级至 ${amount(t.level + 1)} 阶`, `基础伤害 ${growthPreview(Math.floor(TOWERS[t.kind].damage * levelPower(t.level)), Math.floor(TOWERS[t.kind].damage * levelPower(t.level + 1)))}`, s, cost, upgradeUnavailableReason(s, cost), () => ctx.send({ type: "UPGRADE", index: i }));
         }
-        if (t.kind) ctx.ui.button(box, t.operator ? "更换驻守村民" : "暂无可驻塔的成年人", 34, 526, 600, () => ctx.open({ type: "operators", index: i }), C.green, 78, s.people.some(isWorkingAdult));
+        if (t.kind) ctx.ui.button(box, t.operator ? "更换驻守村民" : "暂无可驻塔的成年人", 34, 526, 600, () => ctx.open({ type: "operators", index: i }), C.green, 78, s.people.some(q => isWorkingAdult(q) && q.id !== s.patrol?.captain));
         if (!day && t.kind)
             ctx.ui.label(box, ctx.game.pauses.has("USER") ? "已手动暂停。关闭后点“继续守夜”。" : "调任期间暂停，关闭后自动继续。", 34, 626, 600, 28, C.muted, false, 52).align = "center";
         return;

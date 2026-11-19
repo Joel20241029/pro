@@ -1,5 +1,6 @@
 import { ECONOMY, RESIDENTIAL } from "../config/RuleConfig";
-import { ELITE, POLICIES, Policy, RULE } from "./GameConfig";
+import { VILLAGER_QUALITY } from "../config/VillagerQuality";
+import { POLICIES, Policy, RULE } from "./GameConfig";
 import { GameState, isElder, isWorkingAdult, Person } from "./GameState";
 import { season } from "./WaveGenerator";
 import { laborYield, storageCapacity } from "./Growth";
@@ -60,13 +61,13 @@ export function economy(s: GameState) {
             elderRations += ration;
         if (!isWorkingAdult(p))
             continue;
-        const production = p.elite ? ELITE.productionMultiplier : 1;
+        const { production, careFood } = VILLAGER_QUALITY[p.quality];
         if (p.job === "FARM")
             food += Math.floor(production * laborYield("FARM", s.farm) * (1 + (p.trait === "trait_diligent" ? ECONOMY.diligentFood : 0) + (p.skill === "skill_farming" ? ECONOMY.farmingFood : 0) + (season(s.day) === 0 ? ECONOMY.springFood : 0) + (po.food || 0)));
         if (p.job === "LOGGING")
             wood += Math.floor(production * laborYield("LOGGING", s.logging) * (1 + (p.trait === "trait_woodwise" ? ECONOMY.woodwiseWood : 0) + (p.skill === "skill_logging" ? ECONOMY.loggingWood : 0) + (season(s.day) === 2 ? ECONOMY.autumnWood : 0) + (po.wood || 0)));
         if (p.job === "CARE" && s.people.some(c => c.id === p.careChild && !c.adult))
-            food += (p.skill === "skill_nurturing" ? ECONOMY.nurturingFood : 0) + (po.care || 0) + (p.elite ? ELITE.careFoodBonus : 0);
+            food += (p.skill === "skill_nurturing" ? ECONOMY.nurturingFood : 0) + (po.care || 0) + careFood;
     }
     rations = Math.ceil(rations * (1 + (season(s.day) === 3 ? ECONOMY.winterRation : 0) + (po.ration || 0)));
     // elderRations 是已包含在总口粮中的基础值，仅供 UI 解释；不可再次扣除或单独向上取整。

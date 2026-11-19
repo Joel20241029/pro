@@ -21,13 +21,14 @@ export class SpriteFrames {
     private stages = new Set<ResourceStage>();
     private failedUrls = new Set<string>();
     private disposed = false;
-    constructor(private readFile = (file: string, options: Laya.ILoadOptions) => Laya.loader.load(GAMEPLAY_ROOT + "/" + file, options)) {}
+    constructor(private readFile: (file: string, options: Laya.ILoadOptions, stage: ResourceStage) => Promise<any> =
+        (file, options) => Laya.loader.load(GAMEPLAY_ROOT + "/" + file, options)) {}
     ready(stage: ResourceStage) { return this.stages.has(stage); }
     /** 失败 URL 绕过 Laya 的 null 缓存；成功图页继续复用。同批请求全部结算后才允许下一次手动重试。 */
-    private async readBatch(requests: { url: string; type?: string }[]) {
+    private async readBatch(stage: ResourceStage, requests: { url: string; type?: string }[]) {
         const results = await Promise.all(requests.map(async request => {
             try {
-                const value = await this.readFile(request.url, { type: request.type, ignoreCache: this.failedUrls.has(request.url) });
+                const value = await this.readFile(request.url, { type: request.type, ignoreCache: this.failedUrls.has(request.url) }, stage);
                 if (!value) throw new Error("素材读取失败：" + request.url);
                 this.failedUrls.delete(request.url); return { value, error: null as unknown };
             } catch (error) { this.failedUrls.add(request.url); return { value: null, error }; }
@@ -40,7 +41,7 @@ export class SpriteFrames {
         if (this.disposed) throw new Error("资源容器已经销毁");
         if (this.ready(stage)) return;
         const metadata = STAGE_METADATA[stage];
-        const result = await this.readBatch(metadata.map(file => ({ url: file, type: file.endsWith(".vdata") ? Laya.Loader.JSON : undefined })));
+        const result = await this.readBatch(stage, metadata.map(file => ({ url: file, type: file.endsWith(".vdata") ? Laya.Loader.JSON : undefined })));
         if (this.disposed) throw new Error("资源容器已经销毁");
         const created = new Map<string, Laya.Texture>();
         const logicalFrames = new Map<string, Frame>();
@@ -51,7 +52,7 @@ export class SpriteFrames {
             if (new Set(descriptors.map(p => p.id)).size !== descriptors.length || descriptors.some(p =>
                 !/^[a-z_]+\/[a-z0-9_]+\.png$/.test(p.runtimeFile) &&
                 !(p.id === "terrain_0" && p.runtimeFile === "map/terrain_0.jpg"))) throw new Error("图集页名不合法");
-            const loaded = await this.readBatch(descriptors.map(p => ({ url: p.runtimeFile, type: Laya.Loader.IMAGE })));
+            const loaded = await this.readBatch(stage, descriptors.map(p => ({ url: p.runtimeFile, type: Laya.Loader.IMAGE })));
             if (this.disposed) throw new Error("资源容器已经销毁");
             const pages: Record<string, Laya.Texture> = {}; descriptors.forEach((p, i) => {
                 pages[p.id] = loaded[i]; pages[p.id].bitmap.filterMode = Laya.FilterMode.Bilinear;

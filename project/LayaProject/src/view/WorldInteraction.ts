@@ -2,6 +2,7 @@ import { GameState } from "../game/GameState";
 import { BuildingVisuals } from "./BuildingVisuals";
 import { VillagerMotion } from "./VillagerMotion";
 import { UiWidgets } from "./UiWidgets";
+import { PATROL_PROP } from "./config/VillageSceneConfig";
 import { HOUSE_TIP_NAMES } from "./config/AnchoredTipConfig";
 
 /** 同一份绘制深度同时用于地图点选；人物身份随当前帧写入，不能绑定到精灵池下标。 */
@@ -16,7 +17,7 @@ export class WorldInteraction {
     private pickPoint = new Laya.Point();
     private pickBounds = new Laya.Rectangle();
     constructor(private state: () => GameState | null, private motion: () => VillagerMotion) { }
-    bind(clickNodes: Laya.Sprite[], ui: UiWidgets, houseClicked: (name: string, visual: BuildingVisuals) => void, personClicked: (id: string) => void) {
+    bind(clickNodes: Laya.Sprite[], ui: UiWidgets, houseClicked: (name: string, visual: BuildingVisuals) => void, personClicked: (id: string) => void, patrolClicked?: () => void) {
         for (const node of clickNodes) {
             node.on(Laya.Event.MOUSE_DOWN, this, (event: Laya.Event) => {
                 const target = this.pickAt(event.stageX, event.stageY);
@@ -29,6 +30,7 @@ export class WorldInteraction {
                 const target = this.pickAt(event.stageX, event.stageY);
                 if (!down || !target || !down.source.visible || down.source.name !== down.sourceId || target.id !== down.target.id || target.node !== down.target.node) return;
                 if (target.personId) personClicked(target.personId);
+                else if (target.id === PATROL_PROP) patrolClicked?.();
                 else houseClicked(HOUSE_TIP_NAMES[target.id], target.visual!);
             });
             node.on(Laya.Event.MOUSE_OUT, this, (event?: Laya.Event) => {
@@ -54,7 +56,7 @@ export class WorldInteraction {
             // 人物只取自身贴图，红心不扩大点击范围；建筑/树木包含自己的可见部件。
             const bounds = item.personId ? node.getGraphicBounds(false, this.pickBounds) : node.getSelfBounds(this.pickBounds, true);
             if (bounds.contains(this.pickPoint.x, this.pickPoint.y))
-                return item.personId || HOUSE_TIP_NAMES[item.id] ? item : null;
+                return item.personId || HOUSE_TIP_NAMES[item.id] || item.id === PATROL_PROP ? item : null;
         }
         return null;
     }

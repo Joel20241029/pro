@@ -9,7 +9,7 @@ global.Laya = { Sprite: class {}, OpenDataContextView: class {}, Texture2D: clas
 const { drawBoot } = require(path.join(compiled, 'view/panels/SessionPanels.js'));
 const keys = ['daidai_village.save.a', 'daidai_village.save.b'];
 
-function envelope(configVersion, revision = 1, seed = 1, schemaVersion = 3) {
+function envelope(configVersion, revision = 1, seed = 1, schemaVersion = 4) {
     const body = { schemaVersion, configVersion, revision, commitId: `fixture:${seed}:${revision}`, commitType: 'NORMAL', payload: createGame(seed) };
     return canonical({ ...body, checksum: crc32(canonical(body)) });
 }
@@ -44,25 +44,17 @@ function assertNewVillage(game, storage) {
     assert.deepEqual(reopened.state, game.state); assert.equal(storage.writes.length, writes);
 }
 
-test('17/18 mixed slots retain the newest validated progress and migrate only on normal save', () => {
-    const body = JSON.parse(envelope(17, 5));
-    delete body.checksum;
-    body.payload.tier = body.payload.wave.tier = 0;
-    const raw = canonical({ ...body, checksum: crc32(canonical(body)) });
-    const storage = new MemoryStore([raw, envelope(CONFIG_VERSION, 4)]);
-    const game = session(storage);
-    assert.equal(game.state.tier, 3);
-    assert.deepEqual(game.state.wave.entries, body.payload.wave.entries);
-    assert.equal(storage.values.get(keys[0]), raw);
+test('a prior annual-challenge save remains untouched until the player chooses to restart', () => {
+    const raw = envelope(17, 5, 1, 3);
+    const current = envelope(CONFIG_VERSION, 4);
+    const storage = new MemoryStore([raw, current]), game = session(storage);
+    assert.equal(game.boot.kind, 'incompatible');
+    assert.equal(game.state, null);
     assert.equal(storage.writes.length, 0);
-    game.command({ type: 'NIGHT' });
-    const written = JSON.parse(storage.values.get(keys[1]));
-    assert.equal(written.configVersion, CONFIG_VERSION);
-    assert.equal(written.revision, 6);
-    assert.equal(storage.values.get(keys[0]), raw);
-    assert.equal(session(storage).state.phase, 'NIGHT');
-    const wrong = canonical({ ...body, checksum: '00000000' });
-    assert.equal(session(new MemoryStore([wrong, null])).boot.kind, 'blocked');
+    assert.deepEqual(keys.map(k => storage.read(k)), [raw, current]);
+    game.newVillage(true);
+    assertNewVillage(game, storage);
+    assert(game.state.people.every(p => p.quality === 'COMMON'));
 });
 
 test('device settings inherit legacy values and write independently of a running battle and village slots', () => {
@@ -89,14 +81,12 @@ test('device settings inherit legacy values and write independently of a running
     storage.values.set('daidai_village.device_settings', '{"speed":2,"music":true,"interfaceScale":1.5}');
     const reopened = session(storage);
     assert.deepEqual(reopened.state.settings, { speed: 2, music: true });
-    reopened.cleanStart();
-    assert.deepEqual(reopened.state.settings, { speed: 2, music: true });
     reopened.newVillage();
     assert.deepEqual(reopened.state.settings, { speed: 2, music: true });
 });
 
 test('old/future config and schema mismatches preserve both original slots until explicit reset', () => {
-    for (const raw of [envelope(CONFIG_VERSION - 2), envelope(CONFIG_VERSION + 1), envelope(CONFIG_VERSION, 1, 1, 1), envelope(CONFIG_VERSION, 1, 1, 4)]) {
+    for (const raw of [envelope(CONFIG_VERSION - 2), envelope(CONFIG_VERSION + 1), envelope(CONFIG_VERSION, 1, 1, 1), envelope(CONFIG_VERSION, 1, 1, 5)]) {
         const storage = new MemoryStore([raw, raw]), game = session(storage);
         assert.equal(game.boot.kind, 'incompatible'); assert.equal(game.state, null);
         game.retry(); assert.equal(game.boot.kind, 'incompatible');
@@ -120,7 +110,7 @@ test('confirmed reset handles both foreign, mixed, missing and corrupt slots and
     const foreign = envelope(CONFIG_VERSION - 2), current = envelope(CONFIG_VERSION, 100);
     for (const slots of [[foreign, foreign], [foreign, current], [current, foreign], [foreign, null], [null, foreign], [foreign, 'broken'], ['broken', foreign]]) {
         const storage = new MemoryStore(slots), game = session(storage);
-        storage.values.set('ranking-independent-record', 'untouched'); game.newVillage(undefined, true);
+        storage.values.set('ranking-independent-record', 'untouched'); game.newVillage(true);
         assertNewVillage(game, storage); assert.equal(storage.values.get('ranking-independent-record'), 'untouched');
         assert.equal(storage.writes.length, 2);
         game.command({ type: 'SPEED', value: 3 }); assert.equal(storage.writes.length, 3);
@@ -131,16 +121,16 @@ test('confirmed reset handles both foreign, mixed, missing and corrupt slots and
 test('confirmed corrupt-save reset also replaces both slots and no longer asks for recovery on next startup', () => {
     const storage = new MemoryStore(['broken-a', 'broken-b']), game = session(storage);
     assert.equal(game.boot.kind, 'blocked'); assert.equal(game.boot.canReset, true); assert.equal(storage.writes.length, 0);
-    game.newVillage(undefined, true); assertNewVillage(game, storage);
+    game.newVillage(true); assertNewVillage(game, storage);
 });
 
 for (const attempt of [1, 2]) for (const mode of ['before', 'after']) {
     test(`reset write ${attempt} ${mode}-write failure retries the same candidate without duplicate village creation`, () => {
         const storage = new MemoryStore([envelope(CONFIG_VERSION - 2), envelope(CONFIG_VERSION - 2)]), game = session(storage);
-        storage.fail = { attempt, mode }; game.newVillage(undefined, true);
+        storage.fail = { attempt, mode }; game.newVillage(true);
         assert.equal(game.state, null); assert(game.pauses.has('SAVE_PENDING'));
         const pending = game.saves.pending, raw = pending.raw;
-        game.newVillage(undefined, true); assert.equal(game.saves.pending, pending);
+        game.newVillage(true); assert.equal(game.saves.pending, pending);
         storage.fail = null; game.retry(); assertNewVillage(game, storage);
         assert.equal(game.state, pending.state); assert.equal(storage.writes.length, 2);
         assert(storage.writes.every(([, value]) => value === raw)); assert.equal(game.pauses.has('SAVE_PENDING'), false);
@@ -150,7 +140,7 @@ for (const attempt of [1, 2]) for (const mode of ['before', 'after']) {
 for (const mode of ['throw', 'mismatch']) {
     test(`reset final verification ${mode} keeps the pending candidate until both slots are verified`, () => {
         const storage = new MemoryStore([envelope(CONFIG_VERSION - 2), envelope(CONFIG_VERSION - 2)]), game = session(storage);
-        storage.verifyFailure = mode; game.newVillage(undefined, true);
+        storage.verifyFailure = mode; game.newVillage(true);
         assert.equal(game.state, null); assert(game.saves.pending); assert.equal(storage.writes.length, 2);
         const candidate = game.saves.pending.state;
         assert.deepEqual(session(storage).state, candidate);
@@ -162,17 +152,17 @@ test('mixed-version reset interrupted between writes never resurrects the old hi
     for (const foreignIndex of [0, 1]) {
         const slots = [envelope(CONFIG_VERSION, 100), envelope(CONFIG_VERSION, 100)]; slots[foreignIndex] = envelope(CONFIG_VERSION - 2);
         const storage = new MemoryStore(slots), game = session(storage);
-        storage.fail = { attempt: 2, mode: 'before' }; game.newVillage(undefined, true);
+        storage.fail = { attempt: 2, mode: 'before' }; game.newVillage(true);
         assert.equal(storage.writes[0][0], keys[1 - foreignIndex]);
         assert.equal(storage.values.get(keys[foreignIndex]), slots[foreignIndex]);
         const restarted = session(storage); assert.equal(restarted.state, null); assert.equal(restarted.boot.kind, 'incompatible');
-        storage.fail = null; restarted.newVillage(undefined, true); assertNewVillage(restarted, storage);
+        storage.fail = null; restarted.newVillage(true); assertNewVillage(restarted, storage);
     }
 });
 
 test('both foreign slots still require explicit reset after an interruption between writes', () => {
     const storage = new MemoryStore([envelope(CONFIG_VERSION - 2), envelope(CONFIG_VERSION - 2)]), game = session(storage);
-    storage.fail = { attempt: 2, mode: 'before' }; game.newVillage(undefined, true);
+    storage.fail = { attempt: 2, mode: 'before' }; game.newVillage(true);
     const restarted = session(storage); assert.equal(restarted.state, null); assert.equal(restarted.boot.kind, 'incompatible');
     assert.equal(storage.writes.length, 1);
 });
@@ -181,7 +171,7 @@ test('reset refuses any concurrent slot change, including deletion or corruption
     for (const index of [0, 1]) for (const changed of [null, 'other-corruption', envelope(CONFIG_VERSION, 200, 9)]) {
         const storage = new MemoryStore([envelope(CONFIG_VERSION - 2), envelope(CONFIG_VERSION - 2)]), game = session(storage);
         if (changed === null) storage.values.delete(keys[index]); else storage.values.set(keys[index], changed);
-        const before = [...storage.values]; game.newVillage(undefined, true);
+        const before = [...storage.values]; game.newVillage(true);
         assert.equal(game.state, null); assert.match(game.error, /确认重开后发生变化/);
         assert.equal(storage.writes.length, 0); assert.deepEqual([...storage.values], before);
     }
@@ -189,7 +179,7 @@ test('reset refuses any concurrent slot change, including deletion or corruption
 
 test('pending reset retry refuses a new concurrent record after a partial write', () => {
     const storage = new MemoryStore([envelope(CONFIG_VERSION - 2), envelope(CONFIG_VERSION - 2)]), game = session(storage);
-    storage.fail = { attempt: 2, mode: 'before' }; game.newVillage(undefined, true);
+    storage.fail = { attempt: 2, mode: 'before' }; game.newVillage(true);
     const concurrent = envelope(CONFIG_VERSION, 200, 9); storage.values.set(keys[1], concurrent); storage.fail = null;
     game.retry(); assert.equal(game.state, null); assert.equal(storage.writes.length, 1); assert.equal(storage.values.get(keys[1]), concurrent);
 });
@@ -199,7 +189,7 @@ test('reset cannot bypass unavailable reads, conflicting valid saves, or normal 
     const conflict = new MemoryStore([envelope(CONFIG_VERSION, 10, 1), envelope(CONFIG_VERSION, 10, 2)]);
     const valid = new MemoryStore([envelope(CONFIG_VERSION), null]);
     for (const storage of [unreadable, conflict, valid, new MemoryStore([null, null])]) {
-        const game = session(storage), original = game.state; game.newVillage(undefined, true);
+        const game = session(storage), original = game.state; game.newVillage(true);
         assert.equal(storage.writes.length, 0); assert.equal(game.state, original); assert.equal(game.saves.pending, null);
     }
 });
@@ -214,6 +204,6 @@ test('explicit incompatible reset does not inherit stale in-memory legacy or his
     const storage = new MemoryStore([envelope(CONFIG_VERSION), null]), game = session(storage);
     game.state.legacy.bestNight = 99; game.state.legacy.births = 12;
     const foreign = envelope(CONFIG_VERSION - 2); storage.values.set(keys[0], foreign); storage.values.set(keys[1], foreign); game.load();
-    assert.equal(game.boot.kind, 'incompatible'); game.newVillage(undefined, true); assertNewVillage(game, storage);
+    assert.equal(game.boot.kind, 'incompatible'); game.newVillage(true); assertNewVillage(game, storage);
     assert.equal(game.state.legacy.bestNight, 0); assert.equal(game.state.legacy.births, 0); assert.deepEqual(game.state.history, []);
 });

@@ -160,7 +160,10 @@ for (const [group, { category, standalone, jpegQuality }] of Object.entries(atla
     const baseline = pack(items, packWidth, packHeight, false);
     if (!baseline) throw new Error('散件超过图页上限：' + group);
     let groupPages = baseline;
-    if (!standalone) for (const [width, height] of pageEnvelopes) for (const rotate of [false, true]) {
+    // 村内特效的大环决定最窄边，尝试把小图填入该宽度的空位。
+    const envelopes = group === 'village_effects'
+        ? [[items[0]._trim.w + padding * 2, pageSize], ...pageEnvelopes] : pageEnvelopes;
+    if (!standalone) for (const [width, height] of envelopes) for (const rotate of [false, true]) {
         const candidate = pack(items, width, height, rotate);
         if (!candidate || candidate.length > baseline.length) continue;
         if (atlasArea(candidate) < atlasArea(groupPages) ||

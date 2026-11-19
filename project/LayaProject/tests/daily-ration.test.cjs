@@ -115,11 +115,11 @@ test('background and disabled states cannot accept the visible reward', () => {
     }
 });
 
-test('dawn choices and game over finish before reward; inheritance can claim again on the same day', () => {
+test('dawn choices and game over finish before reward; a new village can claim again on the same day', () => {
     const dawn = createGame(7); dawn.phase = 'DAWN'; dawn.wave = null; dawn.choices = [{ kind: 'POLICY', options: Object.keys(POLICIES).slice(0, 3) }];
     const first = fixture(dawn).game; first.enter(); assert.equal(first.dailyRationDate, null);
     first.command({ type: 'CHOOSE', value: dawn.choices[0].options[0] }); assert.equal(first.state.phase, 'DAY'); assert.equal(first.dailyRationDate, '2026-11-11');
-    first.claimDailyRation(); first.newVillage(first.state.legacy.traits[0]);
+    first.claimDailyRation(); first.newVillage();
     assert.equal(first.state.legacy.lastRationDate, null); assert.equal(first.dailyRationDate, '2026-11-11'); assert.equal(first.state.food, RULE.initialResource);
     first.claimDailyRation(); assert.equal(first.state.food, RULE.initialResource + RULE.dailyFood);
     const lost = createGame(3); lost.phase = 'GAME_OVER'; lost.gate = 0; lost.wave = null;

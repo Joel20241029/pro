@@ -14,10 +14,10 @@ const { RULE } = read('config/RuleConfig');
 
 function state() {
     const s = createGame(52);
-    s.legacy.bestNight = s.completed = 40;
-    s.day = 41;
+    s.legacy.bestNight = s.completed = 60;
+    s.day = 61;
     s.wave = generateWave(s);
-    s.wood = 150; s.food = 110;
+    s.wood = 190; s.food = 110;
     applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC });
     return s;
 }
@@ -44,14 +44,14 @@ function gathered(b) {
     for (let i = 0; i < SUMMON_CHARGE.gatherTicks; i++) b.step();
 }
 
-test('summon reveals at 40 current wins and costs 120 wood and 60 food once', () => {
+test('summon reveals at 35 current wins and costs 160 wood and 80 food once', () => {
     const s = createGame(2);
-    s.completed = 39; s.legacy.bestNight = 62; s.wood = 120; s.food = 60;
+    s.completed = 34; s.legacy.bestNight = 62; s.wood = 160; s.food = 80;
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC }), /还需守住 1 波/);
-    s.completed = 40; s.wood = 119;
+    s.completed = 35; s.wood = 159;
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC }), /还缺/);
-    assert.deepEqual([s.wood, s.food], [119, 60]);
-    s.wood = 120; applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC });
+    assert.deepEqual([s.wood, s.food], [159, 80]);
+    s.wood = 160; applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC });
     assert.deepEqual([s.wood, s.food, s.tactics.equipped], [0, 0, SUMMON_TACTIC]);
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC }));
     assert.equal(tacticDefinition(SUMMON_TACTIC).usesPerNight, 1);
@@ -190,7 +190,7 @@ test('a new charge respects saved speed and pauses, and the last hit settles imm
     b.enemies[1].hp = 0; // A lethal tower hit from an earlier combat step cannot consume another unit.
     g.update(RULE.step);
     assert.equal(g.battle, null);
-    assert.equal(g.state.completed, 41);
+    assert.equal(g.state.completed, 61);
     assert.equal(g.presentationBattle, b);
     assert.equal(b.summonCharge.villagers.filter(v => v.retired).length, 1);
     const view = new CombatPresentation(), events = g.takeCombatFeedback();
@@ -199,6 +199,6 @@ test('a new charge respects saved speed and pauses, and the last hit settles imm
     assert(view.deathPose(0)); assert(!view.deathPose(1)); assert(view.takeDefeatCue()); assert(!view.takeDefeatCue());
     assert.deepEqual(g.state.tactics, b.base.tactics);
     const reopened = new GameSession(new SaveStore(port)); reopened.load();
-    assert.equal(reopened.state.completed, 41);
+    assert.equal(reopened.state.completed, 61);
     assert.equal(reopened.state.tactics.equipped, SUMMON_TACTIC);
 });

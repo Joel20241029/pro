@@ -16,7 +16,7 @@ test('each native enemy prefab owns one bottom-layer contact shadow and exports 
 });
 test('HD replacement contains only selected source images; pixels and native prefab sources are traceable',()=>{
  const ids=new Set();for(const a of recipe.assets){assert(!ids.has(a.id));ids.add(a.id);assert.equal(typeof a.runtime,'boolean');assert(a.sourceSheet.startsWith('source/rendered2d/production/'));assert(fs.existsSync(path.join(source,a.sourceSheet)));assert.equal(a.sampling,'Lanczos');assert(a.provenance.sourceHash);assert(a.provenance.outputHash);if(a.category==='building-parts')assert.equal(a.bundle,'buildings');}
- assert.equal(Object.keys(recipe.animations.walkDirections).length,8);
+ assert.equal(Object.keys(recipe.animations.walkDirections).length,7);
  for(const groups of [recipe.animations.walkDirections,recipe.animations.laborDirections]){
   for(const directions of Object.values(groups)){
    assert.deepEqual(Object.keys(directions).sort(),['DOWN','LEFT','RIGHT','UP']);
@@ -125,13 +125,16 @@ test('resizing preserves normalized feet and stride; panel portraits retain thei
  }
  for(const clip of recipe.animations.animations){
   const a=byId.get(clip.frameIds[0]);assert.deepEqual(clip.canvas,{w:a.width,h:a.height});assert.deepEqual(clip.pivot,a.pivot);
+  if(clip.id==='patrol_walk'){assert.equal(clip.frameCount,4);assert(clip.stridePixels>clip.canvas.w/2);continue;}
   if(clip.stridePixels===undefined)continue;
   if(a.category==='enemies') { const d=defs[a.id.replace(/_walk_\d+$/,'')];assert(Math.abs(clip.stridePixels/clip.canvas.w-d.stride/d.canvas)<1e-12);continue; }
   const role=clip.id.slice('villager_'.length).split('_walk_')[0],profile=require(path.join(source,`source/rendered2d/characters/v5/${role}/rig-profile.json`));
   assert(Math.abs(clip.stridePixels/clip.canvas.w-profile.walkCycle.strideCanvasPixels/256)<1e-12);
  }
  const portraits=recipe.assets.filter(a=>a.id.startsWith('portrait_'));assert.equal(portraits.length,9);
- for(const a of portraits){assert.equal(a.width,384);assert(!a.provenance.runtimeScale);assert(byId.has(a.id.slice('portrait_'.length)));}
+ for(const a of portraits){assert.equal(a.width,384);assert(!a.provenance.runtimeScale);assert(a.id==='portrait_hd_elder_down_idle'||byId.has(a.id.slice('portrait_'.length)));}
+ assert(byId.has('hd_elder_chair'));
+ assert(!recipe.assets.some(a=>/^hd_elder_(down|up|left|right)_/.test(a.id)));
 });
 test('half-size enemies and attachments retain one texture pixel per maximum logical pixel plus five percent sampling margin',()=>{
  const {ENEMY_LOOKS,ENEMY_SCALES}=require(path.join(process.env.DAIDAI_TEST_BUILD,'view/config/EnemyVisualConfig'));

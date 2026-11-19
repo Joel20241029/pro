@@ -38,7 +38,7 @@ export class VillagerThoughts {
         const candidates = s.people.filter(p => (p.adult || p.growth > 0) && visible(p.id));
         if (!candidates.length) return;
         const p = event ? s.people.find(p => p.id === event.id)! : candidates[Math.floor(this.sample() * candidates.length)];
-        const lines = event ? VILLAGER_LINES[event.moment as "retire" | "farewell"] : isElder(p) ? VILLAGER_LINES.elder : !p.adult ? VILLAGER_LINES.child : p.elite ? VILLAGER_LINES.elite : VILLAGER_LINES[p.job];
+        const lines = event ? VILLAGER_LINES[event.moment as "retire" | "farewell"] : isElder(p) ? VILLAGER_LINES.elder : !p.adult ? VILLAGER_LINES.child : p.quality !== "COMMON" ? VILLAGER_LINES.special : VILLAGER_LINES[p.job];
         this.current = { id: p.id, text: lines[Math.floor(this.sample() * lines.length)], remaining: SPEECH.seconds, priority: !!event, moment: event ? event.moment : "ordinary" };
         this.wait = SPEECH.idleMin + this.sample() * SPEECH.idleSpread;
     }

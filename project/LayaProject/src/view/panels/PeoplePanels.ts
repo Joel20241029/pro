@@ -1,6 +1,8 @@
+import { PATROL } from "../../config/PatrolConfig";
 import { JOB_NAMES, person, canMarry, birthUnavailableReason } from "../../game/VillageRules";
 import { GameState, isElder, isWorkingAdult, Person } from "../../game/GameState";
-import { ELITE, RULE, SKILLS, TRAITS, TowerKind } from "../../game/GameConfig";
+import { VILLAGER_QUALITY } from "../../config/VillagerQuality";
+import { RULE, SKILLS, TRAITS, TowerKind } from "../../game/GameConfig";
 import { laborSlots } from "../../game/Growth";
 import { C, UI } from "../UiTheme";
 import { ScrollList } from "../ScrollList";
@@ -42,11 +44,11 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
             sub = "选定后迎接孩子。人选转为照料，夜间仍可驻塔。红字显示现有／所需。";
         }
         if (p.type === "operators") {
-            list = s.people.filter(isWorkingAdult);
+            list = s.people.filter(q => isWorkingAdult(q) && q.id !== s.patrol?.captain);
             const tower = towers[p.index!];
             role = tower.kind ?? undefined; currentOperator = tower.operator;
             title = "安排驻塔";
-            sub = "空位自动补人，已驻塔者可直接对调。\n夜间换人只影响本夜，重进恢复战前安排。";
+            sub = "空位自动补人，已驻塔者可直接对调；队长不参与驻塔。\n夜间换人只影响本夜，重进恢复战前安排。";
         }
         if (p.type === "care") {
             list = s.people.filter(q => !q.adult && !s.people.some(a => a.careChild === q.id));
@@ -102,7 +104,7 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
         rows.setVirtualRows(list.length, rowStep, (i, row) => {
             const q = list[i];
             const reason = p.type === "carers" ? birthUnavailableReason(s, p.id!, q.id) : null;
-            const desc = `${coloredName(q, reason === null)} · ${q.sex === "MALE" ? "男" : "女"} · ${TRAITS[q.trait][0]}\n${reason !== null ? reasonBesideCost(reason) ?? "费用不足，缺口见上方" : p.type === "history" ? "已寿终 · 留念家谱" : isElder(q) ? `养老还剩 ${q.elderNights} 夜` : q.adult ? `${JOB_NAMES[q.job]} · 距退休 ${q.nights} 夜` : `成长 ${q.growth}/${RULE.growNights} · 还需照料守夜`}`;
+            const desc = `${coloredName(q, reason === null)} · ${q.sex === "MALE" ? "男" : "女"} · ${TRAITS[q.trait][0]}\n${reason !== null ? reasonBesideCost(reason) ?? "费用不足，缺口见上方" : p.type === "history" ? "已寿终 · 留念家谱" : isElder(q) ? `养老还剩 ${q.elderNights} 夜` : q.adult ? `${q.id === s.patrol?.captain ? PATROL.role : JOB_NAMES[q.job]} · 距退休 ${q.nights} 夜` : `成长 ${q.growth}/${RULE.growNights} · 还需照料守夜`}`;
             const portrait = ctx.art.portraitId(q, p.type === "history");
             const entry = ctx.ui.listItem(row, desc, portrait, 0, () => {
                 if (p.type === "history")
@@ -139,27 +141,28 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
         const help = ancestor ? `珍藏最多 ${RULE.favoriteCap} 位，满了可先取消一位。普通家谱保留最近 ${RULE.historyCap} 位先辈。`
             : isElder(q) ? "养老的人仍占一个住房名额，口粮计入全村。成功守夜推进晚年，寿终后记入家谱。"
                 : !q.adult ? "孩子由成年村民照料，成功守夜才能成长。在成人详情中安排照料。"
-                    : "白天岗位和夜间驻塔互不占用。工作在这里安排，驻塔点地图上的塔更换。";
+                    : "白天工作与夜间岗位互不占用。夜间可驻塔，或在粉红色的回忆担任淡紫儿队长。";
         const box = ctx.modal(`${coloredName(q)} · 第 ${q.generation} 代`, `${TRAITS[q.trait].join("：")}\n${q.skill ? SKILLS[q.skill].join("：") : "成年后选择专长"}`, true, undefined, help);
-        // 详情统一沿面板中轴排版；精英保留原放大尺寸，两种头像的中心高度一致。
-        ctx.ui.image(box, ctx.art.portraitId(q, ancestor), (box.width - (q.elite ? 140 : 112)) / 2, q.elite ? 198 : 212, q.elite ? 140 : 112);
+        const quality = VILLAGER_QUALITY[q.quality], special = q.quality !== "COMMON";
+        // 所有品质的头像共享中心。
+        ctx.ui.image(box, ctx.art.portraitId(q, ancestor), (box.width - (special ? 140 : 112)) / 2, special ? 198 : 212, special ? 140 : 112);
         const cared = s.people.some(a => a.careChild === q.id);
-        ctx.ui.label(box, ancestor ? `已寿终 · 留念家谱\n来自第 ${q.id.split(":")[0]} 个村落` : isElder(q) ? `养老还剩 ${q.elderNights} 夜` : q.adult ? `距退休 ${q.nights} 夜\n当前${JOB_NAMES[q.job]}` : `还需照料并守住 ${RULE.growNights - q.growth} 夜\n${cared ? "已安排照料者" : "无人照料，成长暂停"}`, UI.inset, 348, UI.contentWidth, 30, C.green, true, isElder(q) ? 39 : 76).align = "center";
+        ctx.ui.label(box, ancestor ? `已寿终 · 留念家谱\n来自第 ${q.id.split(":")[0]} 个村落` : isElder(q) ? `养老还剩 ${q.elderNights} 夜` : q.adult ? `距退休 ${q.nights} 夜\n${JOB_NAMES[q.job]}${q.id === s.patrol?.captain ? ` · ${PATROL.role}` : ""}` : `还需照料并守住 ${RULE.growNights - q.growth} 夜\n${cared ? "已安排照料者" : "无人照料，成长暂停"}`, UI.inset, 348, UI.contentWidth, 30, C.green, true, isElder(q) ? 39 : 76).align = "center";
         if (isElder(q)) ctx.ui.iconValue(box, "icon_food", `基础口粮 ${q.trait === "trait_frugal" ? 1 : RULE.adultRation}/夜`, UI.inset, 387, UI.contentWidth, 40, C.cream);
         ctx.ui.label(box, parents.length ? `双亲：${parents.join("、")}` : q.origin === "TRAVELER" ? "来历：路过村落的旅人" : "来历：第一代开村人", UI.inset, 426, UI.contentWidth, 28, C.muted, false, 42).align = "center";
-        if (q.elite) {
-            const productionBonus = Math.round((ELITE.productionMultiplier - 1) * 100);
-            const damageBonus = Math.round((ELITE.damageMultiplier - 1) * 100);
+        if (special) {
+            const productionBonus = Math.round((quality.production - 1) * 100);
+            const damageBonus = Math.round((quality.damage - 1) * 100);
             const production = ctx.ui.label(box, `耕伐 +${productionBonus}% · 塔伤 +${damageBonus}%`, 34, 468, 294, 28, C.timber, true, 40);
-            const lifespan = ctx.ui.label(box, `劳作 ${ELITE.adultNights} 夜 · 养老 ${ELITE.elderNights} 夜`, 340, 468, 294, 28, C.timber, true, 40);
+            const lifespan = ctx.ui.label(box, `劳作 ${quality.adultNights} 夜 · 养老 ${quality.elderNights} 夜`, 340, 468, 294, 28, C.timber, true, 40);
             for (const text of [production, lifespan]) {
                 text.align = "center"; text.wordWrap = false; text.overflow = Laya.Text.SHRINK;
             }
-            ctx.ui.iconValue(box, "icon_food", `照料 +${ELITE.careFoodBonus}`, 34, 508, 600, 38, C.cream, 25);
+            ctx.ui.iconValue(box, "icon_food", `照料 +${quality.careFood}`, 34, 508, 600, 38, C.cream, 25);
         }
         if (ancestor) {
             const favorite = s.favorites.includes(q.id), full = s.favorites.length >= RULE.favoriteCap;
-            const button = ctx.ui.button(box, favorite ? "取消珍藏" : full ? `珍藏已满 ${RULE.favoriteCap} 位` : "珍藏这位先辈", 34, q.elite ? 556 : 510, 600, () => ctx.send({ type: "FAVORITE", id: q.id }), C.gold, 78, favorite || !full);
+            const button = ctx.ui.button(box, favorite ? "取消珍藏" : full ? `珍藏已满 ${RULE.favoriteCap} 位` : "珍藏这位先辈", 34, special ? 556 : 510, 600, () => ctx.send({ type: "FAVORITE", id: q.id }), C.gold, 78, favorite || !full);
             if (favorite) ctx.ui.personRibbon(button, "tag_favorite");
             return;
         }
@@ -168,7 +171,7 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
             (["FARM", "LOGGING"] as const).forEach((job, i) => {
                 const full = s.people.filter(a => a.job === job).length >= laborSlots(job, job === "FARM" ? s.farm : s.logging);
                 const current = q.job === job;
-                const button = ctx.ui.button(box, `${JOB_NAMES[job]}${current ? " · 当前" : full ? " · 换人" : ""}`, 34 + i * 308, q.elite ? 556 : 484, 292, () => {
+                const button = ctx.ui.button(box, `${JOB_NAMES[job]}${current ? " · 当前" : full ? " · 换人" : ""}`, 34 + i * 308, special ? 556 : 484, 292, () => {
                     if (full && !current)
                         ctx.open({ type: "workers", id: q.id, job });
                     else
@@ -177,7 +180,7 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
                 if (recommendedPeople(s.people, job, towers).includes(q)) ctx.ui.personRibbon(button, "tag_recommended");
             });
             const needsCare = needsCarer();
-            const care = ctx.ui.button(box, needsCare ? "安排照料孩子" : "暂无需要照料的孩子", 34, q.elite ? 648 : 596, 600, () => ctx.open({ type: "care", id: q.id }), C.green, 78, needsCare);
+            const care = ctx.ui.button(box, needsCare ? "安排照料孩子" : "暂无需要照料的孩子", 34, special ? 648 : 596, 600, () => ctx.open({ type: "care", id: q.id }), C.green, 78, needsCare);
             if (needsCare && recommendedPeople(s.people, "CARE", towers).includes(q)) ctx.ui.personRibbon(care, "tag_recommended");
         }
         return;

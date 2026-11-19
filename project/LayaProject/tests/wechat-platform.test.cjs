@@ -125,6 +125,7 @@ test('native SDK gate compares numeric versions and never creates default-mode c
 
 function gameView(session, platform) {
     const view = Object.create(GameView.prototype), overlay = new Sprite(), art = { panel() {} };
+    view.handSpeed = { counting: false, update() {} };
     // This platform lifecycle fixture does not render glyphs; button/icon press coupling
     // is exercised with the real UiWidgets in gameplay-clarity.test.cjs.
     const ui = { image(parent,id,x,y,w,h=w) { return parent.addChild(new Sprite().pos(x,y).size(w,h)); },
@@ -139,14 +140,14 @@ function gameView(session, platform) {
     Object.assign(village, { game: session, layout, scene, motion: { sync() {} }, thoughts: { sync() {} }, crying: { sync() {} }, cryIcon: new Sprite(), speechTip: { hide() {} }, shield: { reset() {} }, summon: { reset() {} }, interaction: { cancelPresses() {}, clearDepth() {} }, drawScenery() {} });
     Object.assign(view, { resources: { ready: () => true }, game: session, observedVillageRevision: session.villageRevision, platform, layout, panels, village,
         shownErrorRevision: 0, observedRun: 0, observedDawn: 0, overlay, tip: { show() {} }, anchoredTip: { hide() {} },
-        reminder: { reset() {}, tick() {}, hide() {} }, starterGuide: { hide() {}, tick() {}, node: { visible: false } },
+        reminder: { reset() {}, tick() {}, hide() {} }, patrolGuide: { hide() {}, tick() {}, node: { visible: false } }, starterGuide: { hide() {}, tick() {}, node: { visible: false } },
         tacticNotices: new TacticNotices(platform), updateActors() {} });
     view.hud = new GameHud(session, art, ui, panels, () => view.refresh());
     view.results = new NightResultPresentation(ui, view.hud, () => view.refresh());
     const parent = new Sprite(); [view.hud.node,overlay,view.results.layer].forEach(node=>parent.addChild(node));
     return view;
 }
-test('first committed win retains the summary through collection, reveals each entry on landing and syncs the score', () => {
+test('first committed win retains the summary through collection and reveals only the ranking on landing', () => {
     const s = setup(), session = new GameSession(new SaveStore(s.platform)); session.load(); session.newVillage();
     const view = gameView(session, s.platform), main = new Main(); main.platform = s.platform; main.session = session;
     session.changed = () => view.refresh(); view.refresh(); assert.equal(view.hud.node.getChildByName('RankingButton'), undefined);
@@ -155,7 +156,7 @@ test('first committed win retains the summary through collection, reveals each e
     const box = () => view.overlay.getChildAt(0), ranking = () => view.hud.node.getChildByName('RankingButton');
     const tactics = () => view.hud.node.getChildByName('TacticsButton');
     assert.equal(session.state.completed, 1); assert.equal(box().name, 'panel:守夜成功');
-    assert.equal(ranking().visible, false); assert.equal(tactics().visible, false);
+    assert.equal(ranking().visible, false); assert.equal(tactics(), undefined);
     main.onUpdate(); assert.deepEqual(s.messages, [{ bestNight: 1 }]);
     const stock = [session.state.food,session.state.wood];
     view.panels.advance(.24);
@@ -180,12 +181,12 @@ test('first committed win retains the summary through collection, reveals each e
     view.results.advance(.64); view.panels.advance(.24);
     assert.equal(box().name, 'panel:功能解锁');
     view.results.advance(1.12);
-    assert.equal(ranking().visible, true); assert.equal(tactics().visible, false);
+    assert.equal(ranking().visible, true); assert.equal(tactics(), undefined);
     view.results.advance(.67);
-    assert.equal(ranking().visible, true); assert.equal(tactics().visible, true);
+    assert.equal(ranking().visible, true); assert.equal(tactics(), undefined);
     assert.deepEqual([session.state.food,session.state.wood],stock);
     assert.equal(s.privacy.length,0);
-    session.newVillage(); assert.equal(session.state.completed, 0); assert(view.hud.node.getChildByName('RankingButton'));
+    session.newVillage(); assert.equal(session.state.completed, 0); assert.equal(view.hud.node.getChildByName('RankingButton'), undefined);
 });
 test('failed first wave and an uncommitted victory do not unlock ranking', () => {
     const s = setup(), session = new GameSession(new SaveStore(s.platform)); session.load(); session.newVillage();
@@ -205,11 +206,17 @@ test('a committed defeat opens restart directly without collection or an unlock'
     const box=()=>view.overlay.getChildAt(0);
     assert.equal(session.state.phase,'GAME_OVER');
     const stored=JSON.stringify([...env.storage]);
-    assert.equal(box().name,'panel:灯火未尽，传承不息');
+    assert.equal(box().name,'panel:守夜失败');
     assert.equal(box().getChildByName('button:收下'),undefined);
     view.results.advance(2); assert.equal(view.results.layer.visible,false);
     assert.equal(view.hud.node.getChildByName('RankingButton'),undefined);
     assert.equal(JSON.stringify([...env.storage]),stored);
+    box().getChildByName('button:重新开村').action();
+    assert.equal(box().name, 'panel:确认重新开村');
+    assert.equal(JSON.stringify([...env.storage]),stored);
+    box().getChildByName('button:确认重新开村').action();
+    assert.equal(session.state.phase,'DAY');
+    assert.equal(session.state.day,1);
 });
 test('new tactic marks survive reload and are cleared by viewing, rollback and a clean restart', () => {
     const local = new Map(), port = { read:k => local.get(k) ?? null, write:(k,v) => local.set(k,v) };
@@ -218,9 +225,9 @@ test('new tactic marks survive reload and are cleared by viewing, rollback and a
     state.completed = 10; notices.observe(state, false); assert(notices.unread);
     let restored = new TacticNotices(port); restored.observe(state, false); assert(restored.unread);
     restored.markSeen(); restored = new TacticNotices(port); restored.observe(state, false); assert(!restored.unread);
-    state.completed = 20; restored.observe(state, false); assert(restored.unread);
-    state.completed = 19; restored.observe(state, false); assert(!restored.unread);
-    state.completed = 20; restored.observe(state, false); assert(restored.unread);
+    state.completed = 15; restored.observe(state, false); assert(restored.unread);
+    state.completed = 14; restored.observe(state, false); assert(!restored.unread);
+    state.completed = 15; restored.observe(state, false); assert(restored.unread);
     state.completed = 0; restored.observe(state, true); assert(!restored.unread);
 });
 test('ranking panel is a tall list with no extra controls and authorizes as soon as opened', () => {
@@ -238,13 +245,14 @@ test('pure restart of run one resets view schedules, pending panels and effects 
     const env = setup(), session = new GameSession(new SaveStore(env.platform)); session.load(); session.newVillage();
     const view = gameView(session, env.platform), oldMotion = view.village.motion, oldThoughts = view.village.thoughts;
     let houseTipHidden = false; view.anchoredTip.hide = () => { houseTipHidden = true; };
-    view.panels.current = {type:'cleanStart'}; view.tip.visible = true; session.changed=()=>view.refresh();
-    session.cleanStart(); assert.equal(session.state.run,1); assert.equal(view.panels.current,null); assert.notEqual(view.village.motion,oldMotion); assert.notEqual(view.village.thoughts,oldThoughts); assert.equal(view.tip.visible,false);
+    view.panels.current = {type:'restart'}; view.tip.visible = true; session.changed=()=>view.refresh();
+    session.newVillage(); assert.equal(session.state.run,1); assert.equal(view.panels.current,null); assert.notEqual(view.village.motion,oldMotion); assert.notEqual(view.village.thoughts,oldThoughts); assert.equal(view.tip.visible,false);
     assert(houseTipHidden, 'pure restart must clear the house tip target as well');
 });
 
 test('ranking resize retains the live instance and pending authorization; closing invalidates it once', () => {
     const env = setup(), session = new GameSession(new SaveStore(env.platform)); session.load(); session.newVillage();
+    session.state.legacy.bestNight = 1;
     const view = gameView(session, env.platform); view.root = { size() {} }; view.tip.pos = () => {};
     view.village.relayout = () => {};
     env.wx.getWindowInfo = () => ({ windowWidth: 390, windowHeight: 900, statusBarHeight: 47, safeArea: { top: 47, bottom: 866 } });
@@ -308,6 +316,7 @@ test('panel refresh keeps entry progress and exit blocks input until the backdro
 
 test('closing ranking during entry hides the canvas and prevents stale authorization from claiming a reopened panel', () => {
     const env = setup(), session = new GameSession(new SaveStore(env.platform)); session.load(); session.newVillage();
+    session.state.legacy.bestNight = 1;
     const view = gameView(session, env.platform);
     session.changed = () => view.refresh();
     view.panels.open({ type: 'ranking' });
@@ -375,6 +384,7 @@ test('old native board callbacks, movement and destruction cannot affect a newer
 });
 test('same logical layout still updates native CSS bounds and Layout touch coordinates after screen scaling', () => {
     const s = setup(), session = new GameSession(new SaveStore(s.platform)); session.load(); session.newVillage();
+    session.state.legacy.bestNight = 1;
     const view = gameView(session, s.platform); view.root = { size() {} }; view.tip.pos = () => {};
     view.panels.open({ type: 'ranking' });
     view.panels.advance(.24);

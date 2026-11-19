@@ -21,13 +21,13 @@ export interface SummonedVillager {
 }
 export interface SummonCollision { enemy: Enemy; index: number; at: Point; dx: number; dy: number; }
 
-function lanePoint(progress: number, lane: number): Point {
+export function lanePoint(progress: number, lane: number): Point {
     const { y } = pointAt(progress);
     const { left, right } = roadFootprintBounds(y, C.footprint);
     return { x: (left + right) / 2 + (right - left) * lane, y };
 }
 
-function contactTime(unit: RoadStep, target: EnemyRoadStep) {
+export function contactTime(unit: RoadStep, target: EnemyRoadStep) {
     const size = ENEMIES[target.enemy.kind].boss ? C.contact.boss : C.contact.ordinary;
     // 相对位移与按脚部尺寸归一化的圆相交。除以 end，保留截断前的速度。
     const x = (unit.from.x - target.from.x) / size.x, y = (unit.from.y - target.from.y) / size.y;

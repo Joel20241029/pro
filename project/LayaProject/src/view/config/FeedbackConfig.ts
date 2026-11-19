@@ -10,5 +10,11 @@ export const FEEDBACK = {
     contactSeconds: .045,
     // 每种弹体 5 帧，按实际表现时钟约 0.21 秒播完。尺寸为 720 画布逻辑像素，落点在目标身体。
     impact: { fps: 24, frameCount: 5, size: { ARROW: 74, STONE: 85, SLOW: 80 } },
+    // 连点与怜悯复用石弹帧。连点结束的结算面板留出约两帧缓冲；只影响演出。
+    tacticBurst: { finishSeconds: .28, bodySizeScale: 1.12 },
+    // 周博回血的红十字挂在受影响怪物头顶，按表现时间向上浮起并淡出。
+    loveHeal: { seconds: .9, lift: 18, size: 28, stroke: 6, red: "#ff3943" },
+    // 逻辑画布上的中毒标记大小及头顶留白，普通怪和首领共用。
+    poisonMark: { size: 32, gap: 8 },
     tree: { degrees: 1.6, seconds: .32, oscillations: 1.5 }
 } as const;

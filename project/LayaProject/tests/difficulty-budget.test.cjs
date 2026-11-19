@@ -25,7 +25,7 @@ test('first night uses highest-tier quantity and stays winnable across founding 
   applyCommand(s,{type:'NIGHT'});const b=new BattleSimulation(s);while(!b.outcome&&b.tick<12000)b.step();assert.equal(b.outcome,'WIN');
  }
 });
-test('slight pressure applies only to new wave snapshots and survives the integer save format',()=>{
+test('ordinary health is mandatory in latest saved waves and does not boost boss health',()=>{
  const s=createGame(15);Object.assign(s,{day:12,completed:11});s.legacy.bestNight=11;s.wave=generateWave(s);
  assert.equal(s.wave.ordinaryHealthPercent,106);
  const old=JSON.parse(JSON.stringify(s));delete old.wave.ordinaryHealthPercent;
@@ -36,11 +36,24 @@ test('slight pressure applies only to new wave snapshots and survives the intege
   const loaded=new SaveStore(port).inspect();assert.equal(loaded.kind,'ready');
   return new BattleSimulation(loaded.state);
  }
- const before=saveBattle(old),after=saveBattle(s);
+ assert.throws(()=>validateState(old));
+ const after=saveBattle(s),before = new BattleSimulation(after.base);
+ before.base.wave.ordinaryHealthPercent = WAVE.baseHealthPercent;
  assert.notEqual(before.base.wave.ordinaryHealthPercent,after.base.wave.ordinaryHealthPercent);
  for(const [kind,increased]of [['enemy_raider',true],['enemy_chief',false]]){
   before.spawn(kind,0,1); after.spawn(kind,0,1);
   assert.equal(after.enemies.at(-1).hp>before.enemies.at(-1).hp,increased);
+ }
+});
+test('quality-era pressure adds zero to four mixed enemies on the planned curve',()=>{
+ const {season}=require(path.join(root,'game/WaveGenerator'));
+ for (const [day,extra] of [[24,0],[25,0],[35,0],[36,1],[48,2],[49,2],[60,3],[72,4],[1000004,4]]) {
+  const s=createGame(7); s.day=day; s.completed=s.legacy.bestNight=day-1; s.wave=generateWave(s);
+  const baseline=WAVE.initialCount+Math.floor(WAVE.additionalCount*(1-Math.exp(-(day-1)/WAVE.countGrowthNights)))+WAVE.seasonPulse[season(day)]+WAVE.tierCount*RULE.maxTier;
+  const patrolSupport = day >= 25 ? 2 : day >= 13 ? 1 : 0;
+  assert.equal(s.wave.entries.length,baseline+extra+patrolSupport);
+  assert.equal(s.wave.entries.filter(e=>e.kind.startsWith('enemy_')&&['enemy_chief','enemy_commander','enemy_wolfking','enemy_tuskking','enemy_shaman'].includes(e.kind)).length,day%12===0?1:0);
+  validateState(s);
  }
 });
 test('current saves reject lower difficulty and removed annual choice instead of silently migrating them',()=>{

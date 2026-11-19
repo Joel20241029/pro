@@ -1,3 +1,6 @@
+import { patrolCaptain, patrolStats } from "../../game/PatrolRules";
+import { WAVE } from "../../config/DefenseConfig";
+import { featureUnlocked } from "../../config/DailyTaskConfig";
 import { tacticDefinition } from "../../config/TacticConfig";
 import { ENEMIES, PADS, RULE } from "../../game/GameConfig";
 import { GameState } from "../../game/GameState";
@@ -18,9 +21,9 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel) {
     const enemies = Object.entries(ENEMIES).filter(([kind]) => wave.entries.some(entry => entry.kind === kind));
     const enemyTop = start ? 236 : 169;
     const enemyRow = 52, enemyHeight = Math.min(start ? 2 : 4, enemies.length) * enemyRow;
-    const summaryTop = enemyTop + 44 + enemyHeight + 14, summaryHeight = 236;
+    const summaryTop = enemyTop + 44 + enemyHeight + 14, summaryHeight = s.patrol ? 276 : 236;
     const risk = [e.hungry ? `口粮不足，塔攻速降至 ${Math.round(RULE.hungerSpeed * 100)}%。` : "",
-        !s.towers.some(t => t.operator) ? "无人驻塔，城门将直接承受进攻。" : ""].filter(Boolean);
+        !s.towers.some(t => t.operator) ? "无人驻塔，城门风险较高。" : ""].filter(Boolean);
     const riskTop = summaryTop + summaryHeight + 8, riskHeight = 36;
     const prepareTop = riskTop + risk.length * riskHeight;
     const state = ctx.resources.states.night, ready = ctx.resources.ready("night"), failed = state.phase === "FAILED";
@@ -34,15 +37,16 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel) {
         ctx.art.panel(strip, "panel_card", 600, 62); box.addChild(strip);
         const width = 440 / selected.length;
         for (const [i, tactic] of selected.entries()) {
-            if (selected.length === 1) ctx.ui.iconValue(strip, tactic.icon, `携带 ${tactic.name}`, 18, 8, 438, 46, C.ink, 28, "left");
+            if (selected.length === 1 && tactic.effect !== "TIMED_BLAST" && tactic.effect !== "HAND_SPEED" && tactic.effect !== "DRAGON_POISON") ctx.ui.iconValue(strip, tactic.icon, `携带 ${tactic.name}`, 18, 8, 438, 46, C.ink, 28, "left");
             else {
                 const x = 18 + i * width;
                 ctx.ui.image(strip, tactic.icon, x, 16, 30);
-                const name = ctx.ui.label(strip, tactic.name, x + 35, 8, width - 40, 22, C.ink, true, 46);
+                const name = ctx.ui.label(strip, selected.length === 1 ? `携带 ${tactic.name}` : tactic.name, x + 35, 8, width - 40, selected.length === 1 ? 28 : 22, C.ink, true, 46);
                 name.wordWrap = false; name.overflow = Laya.Text.SHRINK;
             }
         }
-        ctx.ui.button(strip, "更换", 474, 7, 112, () => ctx.open({ type: "tactics", back: p }), C.green, 48, day);
+        if (featureUnlocked(s.legacy.bestNight, "tactics"))
+            ctx.ui.button(strip, "更换", 474, 7, 112, () => ctx.open({ type: "tactics", back: p }), C.green, 48, day);
     }
     ctx.ui.label(box, "敌人／数量", 38, enemyTop, 264, 27, C.cream, true, 39);
     const features = ctx.ui.label(box, "特点", 338, enemyTop, 290, 26, C.cream, false, 39);
@@ -70,8 +74,13 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel) {
         ctx.ui.iconValue(summary, "icon_food", food, 208, y, 144, 40, color, 26, "left");
         if (wood) ctx.ui.iconValue(summary, "icon_wood", wood, 392, y, 183, 40, color, 26, "left");
     });
-    const pressure = wave.ordinaryHealthPercent ? ` · 小怪生命另 +${wave.ordinaryHealthPercent - 100}%` : "";
+    const pressure = wave.ordinaryHealthPercent > WAVE.baseHealthPercent ? ` · 小怪生命另 +${wave.ordinaryHealthPercent - WAVE.baseHealthPercent}%` : "";
     ctx.ui.label(summary, `生命／撞门基准 ×${enemyPower(s.day).toFixed(2)}${pressure}`, 22, 190, 556, 24, C.muted, false, 32);
+    if (s.patrol) {
+        const captain = patrolCaptain(s), stats = patrolStats(s.patrol.level, captain);
+        ctx.ui.label(summary, captain ? `淡紫儿就绪 · ${amount(stats.damage)} 伤害／${stats.seconds} 秒` : "淡紫儿待命 · 尚未任命队长",
+            22, 224, 556, 30, captain ? C.green : C.muted, true, 40);
+    }
     risk.forEach((message, i) => {
         ctx.ui.label(box, message, 34, riskTop + i * riskHeight, 600, 28, C.red, true, riskHeight).align = "center";
     });

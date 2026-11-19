@@ -20,7 +20,7 @@ export function createGame(seed: number, old?: Legacy, inherited?: Trait, histor
         rng: { family: (seed ^ 0xa341316c) >>> 0, world: (seed ^ 0xc8013ea4) >>> 0 },
         stats: { births: 0, retirees: 0, generation: 1 }, legacy, settings: { speed: RULE.minSpeed, music: true }, summary: ""
     };
-    s.people = FOUNDERS.map((f, i): Person => ({ id: newId(s), name: f.name, sex: f.sex, origin: "FOUNDER", elite: false, appearance: f.appearance, trait: i === 0 && inherited ? inherited : f.trait, skill: f.skill, generation: 1, parents: [], ancestors: [], adult: true, nights: f.nights, elderNights: 0, growth: 0, job: f.job, careChild: null }));
+    s.people = FOUNDERS.map((f, i): Person => ({ id: newId(s), name: f.name, sex: f.sex, origin: "FOUNDER", quality: "COMMON", appearance: f.appearance, trait: i === 0 && inherited ? inherited : f.trait, skill: f.skill, generation: 1, parents: [], ancestors: [], adult: true, nights: f.nights, elderNights: 0, growth: 0, job: f.job, careChild: null }));
     s.families.push({ id: `${s.run}:f1`, partners: [s.people[0].id, s.people[1].id], lastBirth: null });
     s.towers = PADS.map((_, i): Tower => i === 0 ? { kind: "ARROW", level: 1, operator: s.people[3].id } : i === 1 ? { kind: "STONE", level: 1, operator: s.people[2].id } : { kind: null, level: 0, operator: null });
     s.people.forEach(p => remember(s, p.trait));

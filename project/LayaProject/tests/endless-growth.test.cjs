@@ -75,23 +75,23 @@ test('quantity curve grows within fixed budgets and a full on-screen queue never
  const counts=[];
  for(const day of [1,13,37,73,301,1000001]){
   const s=createGame(7);s.day=day;s.completed=day-1;s.legacy.bestNight=s.completed;s.tier=3;s.wave=generateWave(s);
+  const support = day >= 25 ? 2 : day >= 13 ? 1 : 0;
   const expected=Math.min(WAVE.spawnWindowTicks.maximum,Math.max(WAVE.spawnWindowTicks.minimum,
-   RULE.spawnTicks+Math.max(0,s.wave.entries.length-WAVE.spawnCountThreshold)*WAVE.extraSpawnTicks));
+   RULE.spawnTicks+Math.max(0,s.wave.entries.length-support-WAVE.spawnCountThreshold)*WAVE.extraSpawnTicks));
   assert(s.wave.entries.length<=RULE.planCap);assert.equal(s.wave.entries.at(-1).tick,expected);
   validateState(s);counts.push(s.wave.entries.length);
  }
- const historical=createGame(7);historical.wave.entries.at(-1).tick=WAVE.maxSpawnTicks;
- validateState(historical);applyCommand(historical,{type:'NIGHT'});
- assert.equal(new BattleSimulation(historical).base.wave.entries.at(-1).tick,960);
- assert(counts[3]>counts[0]*2);assert(counts.at(-1)<=85);
+ const historical=createGame(7);historical.wave.entries.at(-1).tick=WAVE.spawnWindowTicks.maximum+1;
+ assert.throws(()=>validateState(historical));
+ assert(counts[3]>counts[0]*2);assert(counts.at(-1)<=91);
  const s=createGame(7);applyCommand(s,{type:'NIGHT'});s.towers.forEach(t=>{t.kind=null;t.level=0;t.operator=null;});
- s.wave={budget:100*ENEMIES.enemy_raider.cost,tier:s.tier,affix:'NONE',entries:Array.from({length:100},(_,i)=>({kind:'enemy_raider',tick:0,appearanceSeed:i}))};
+ s.wave={budget:100*ENEMIES.enemy_raider.cost,tier:s.tier,affix:'NONE',ordinaryHealthPercent:100,entries:Array.from({length:100},(_,i)=>({kind:'enemy_raider',tick:0,appearanceSeed:i}))};
  const b=new BattleSimulation(s);let emitted=0;
  for(let i=0;i<3;i++){b.step();assert(b.enemies.length<=40);emitted+=b.enemies.length;b.enemies=[];}
  assert.equal(emitted,100);assert.equal(b.cursor,100);b.step();assert.equal(b.outcome,'WIN');
 });
-test('skills are revealed every ten wins, while inherited skills stay visible',()=>{
+test('skills are revealed every five wins, while inherited skills stay visible',()=>{
  const s=createGame(7), ids=TACTICS.map(t=>t.id);
- for(const [wins,count]of [[0,1],[9,1],[10,2],[19,2],[20,3],[29,3],[30,4],[39,4],[40,5]]){s.completed=wins;assert.equal(ids.filter(id=>tacticRevealed(s,id)).length,count);}
+ for(const [wins,count]of [[0,1],[4,1],[5,2],[9,2],[10,3],[14,3],[15,4],[19,4],[20,5],[24,5],[25,6],[29,6],[30,7],[34,7],[35,8],[39,8],[40,9],[44,9],[45,10]]){s.completed=wins;assert.equal(ids.filter(id=>tacticRevealed(s,id)).length,count);}
  s.completed=0;s.tactics.learned.push(ids[3]);assert(tacticRevealed(s,ids[3]));assert(!tacticRevealed(s,ids[2]));
 });

@@ -9,11 +9,11 @@ const kinds: TowerKind[] = ["ARROW", "STONE", "SLOW"];
 /** 中性操作员排除远见、弓术、精英和村规加成，只检查塔位本身。 */
 function battleAt(index: number, kind: TowerKind) {
     const s = createGame(17);
-    s.people.forEach(p => { p.trait = "trait_frugal"; p.skill = "skill_farming"; p.elite = false; });
+    s.people.forEach(p => { p.trait = "trait_frugal"; p.skill = "skill_farming"; p.quality = "COMMON"; });
     s.policy = null;
     s.towers = PADS.map((_, i) => ({ kind: i === index ? kind : null, level: i === index ? 1 : 0, operator: i === index ? s.people[0].id : null }));
     applyCommand(s, { type: "NIGHT" });
-    s.wave = { budget: ENEMIES.enemy_raider.cost, tier: s.tier, affix: "NONE", entries: [{ kind: "enemy_raider", tick: 0, appearanceSeed: 1 }] };
+    s.wave = { budget: ENEMIES.enemy_raider.cost, tier: s.tier, affix: "NONE", ordinaryHealthPercent: 100, entries: [{ kind: "enemy_raider", tick: 0, appearanceSeed: 1 }] };
     return new BattleSimulation(s);
 }
 /** 高耐久测试靶从入口完整走到城门，让后排塔也有目标；仅测试夹具增加 HP，不修改正式敌人数值。 */

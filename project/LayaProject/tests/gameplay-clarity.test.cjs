@@ -83,7 +83,7 @@ test('bell increases actual fire rate by 50%, hunger multiplies it, damage stays
     for (const [bell, hungry] of [[false, false], [true, false], [true, true]]) {
         const b = longBattle(); b.base.towers.slice(1).forEach(t => t.operator = null);
         b.base.policy = null; b.base.night.hungry = hungry;
-        const op = b.base.people.find(p => p.id === b.operators[0]); op.trait = 'trait_frugal'; op.skill = 'skill_farming'; op.elite = false;
+        const op = b.base.people.find(p => p.id === b.operators[0]); op.trait = 'trait_frugal'; op.skill = 'skill_farming'; op.quality = "COMMON";
         let progress = 0, distance = Infinity;
         for (let at = 0; at < PATH_LENGTH; at++) {
             const p = pointAt(at), d = Math.hypot(p.x - PADS[0].x, p.y - PADS[0].y);
@@ -349,14 +349,14 @@ test('tower building is disabled before payment when short of wood or during nig
 });
 
 
-test('clean-start choice requires confirmation, cancellation is read-only and inheritance stays available', () => {
+test('settings restart asks once, cancellation is read-only and confirmation starts at day one', () => {
     const {game,values}=session(),view=panelView(game); const initial=canonical(game.state),saved=canonical([...values]);
-    view.open({type:'restart'}); assert(view.box.getChildByName('button:传承开村'));
-    view.box.getChildByName('button:纯净开始').event('click'); assert.equal(view.current.type,'cleanStart');
+    view.open({type:'settings'});
+    view.box.getChildByName('button:重新开村…').event('click'); assert.equal(view.current.type,'restart');
     assert.equal(canonical(game.state),initial); assert.equal(canonical([...values]),saved);
-    view.box.getChildByName('button:取消').event('click'); assert.equal(view.current.type,'restart');assert.equal(canonical([...values]),saved);
-    view.box.getChildByName('button:纯净开始').event('click'); const revision=game.villageRevision;
-    view.box.getChildByName('button:确认纯净开始').event('click');assert.equal(game.villageRevision,revision+1);assert.equal(game.state.run,1);assert.equal(game.state.legacy.lastRationDate,null);
+    view.box.getChildByName('button:取消').event('click'); assert.equal(view.current.type,'settings');assert.equal(canonical([...values]),saved);
+    view.box.getChildByName('button:重新开村…').event('click'); const revision=game.villageRevision;
+    view.box.getChildByName('button:确认重新开村').event('click');assert.equal(game.villageRevision,revision+1);assert.equal(game.state.run,1);assert.equal(game.state.legacy.lastRationDate,null);
 });
 
 test('resizing an open guide preserves its panel, scroll list, offset and pause without writing a save', () => {
@@ -370,6 +370,7 @@ test('resizing an open guide preserves its panel, scroll list, offset and pause 
     const window = { windowWidth: 390, windowHeight: 844, statusBarHeight: 47, safeArea: { top: 47, bottom: 810 } };
     const menu = { width: 88, height: 32, top: 51, bottom: 83, left: 292, right: 380 };
     const view = Object.create(GameView.prototype);
+    view.handSpeed = { update() {} };
     Object.assign(view, { resources: { ready: () => true }, game, panels, overlay, layout: new GameLayout(window, menu), platform: { window: { ...window, windowHeight: 900, safeArea: { top: 47, bottom: 866 } }, menu },
         root: new Sprite(), tip: { pos() {} }, results:{observe(){}}, tacticNotices:{observe(){}}, observedVillageRevision: game.villageRevision,
         village: { scene: { pads: PADS }, relayout() {}, sync() {}, drawScenery() {}, towerAnchor: i => PADS[i], gateAnchor: () => ({ x: 360, y: 680 }) }, updateActors() {} });
@@ -458,8 +459,8 @@ test('role recommendations shortlist three pending adults by benefit and retain 
     const { recommendedPeople }=require(path.join(compiled,'view/RoleRecommendations'));
     const s=createGame(7), template=s.people[0];
     const candidate=(id,extra={})=>({...template,id,job:'WAITING',trait:'trait_frugal',skill:'skill_farming',...extra});
-    const people=[candidate('working',{job:'FARM',elite:true}),candidate('first'),candidate('second'),candidate('third'),
-        candidate('elite',{elite:true}),candidate('guard',{elite:true}),candidate('elder',{nights:0})];
+    const people=[candidate('working',{job:'FARM',quality:"ELITE"}),candidate('first'),candidate('second'),candidate('third'),
+        candidate('elite',{quality:"ELITE"}),candidate('guard',{quality:"ELITE"}),candidate('elder',{nights:0})];
     const towers=[{...s.towers[0],operator:'guard'}];
     assert.deepEqual(recommendedPeople(people,'FARM',towers).map(p=>p.id),['elite','first','second']);
     assert.deepEqual(recommendedPeople(people,'CARE',towers).map(p=>p.id),['elite']);
@@ -477,7 +478,8 @@ test('all locked tactics have anonymous cards and their details are read-only un
     const {game}=session(),view=panelView(game),{TACTICS}=require(path.join(compiled,'config/TacticConfig'));
     view.ui.image=imageNode;const labels=n=>[n.text||'',...n.children.flatMap(labels)].join(' ');
     const nodes=n=>[n,...n.children.flatMap(nodes)];
-    for(const [waves,revealed]of [[0,1],[9,1],[10,2],[19,2],[20,3],[29,3],[30,4],[39,4],[40,5],[49,5],[50,6]]){
+    game.state.legacy.bestNight=3;
+    for(const [waves,revealed]of [[3,1],[4,1],[5,2],[9,2],[10,3],[14,3],[15,4],[19,4],[20,5],[24,5],[25,6],[29,6],[30,7],[34,7],[35,8],[39,8],[40,9],[44,9],[45,10],[49,10],[50,11]]){
         game.state.completed=waves;view.open({type:'tactics'});const content=view.box.getChildByName('ScrollList').content;
         assert.equal(content.children.filter(c=>c.name.startsWith('TacticCard:')).length,revealed);
         assert.equal(content.children.filter(c=>c.name==='UnknownTactic').length,TACTICS.length-revealed);
@@ -505,14 +507,14 @@ test('all locked tactics have anonymous cards and their details are read-only un
             assert(!nodes(view.box).some(node=>node.name===t.icon||node.name.startsWith('button:')));
             continue;
         }
-        assert(detail.includes(t.summary) && detail.includes('村中传闻'));
+        assert(detail.includes(t.summary) && detail.includes(['ZHOU_LOVE','DRAGON_POISON'].includes(t.effect) ? '村中密闻' : '村中传闻'));
         assert(detail.includes(t.usesPerNight===1?'每夜 1 次':'每夜 2 次 · 冷却 21 秒'));
         assert.equal(detail.includes('冷却'),t.usesPerNight>1);
     }
     assert.equal(JSON.stringify(game.state.tactics),before);
     game.state.completed=10;const tactic=TACTICS[1];
     game.state.wood=1;view.open({type:'tactic',id:tactic.id});
-    assert(labels(view.box).includes('学习费用') && labels(view.box).includes('1/40'));
+    assert(labels(view.box).includes('学习费用') && labels(view.box).includes('1/30'));
     assert(!labels(view.box).includes('当前库存'));
     game.state.wood=tactic.wood;game.state.food=tactic.food;
     const commands=[];view.send=command=>commands.push(command);
@@ -520,6 +522,87 @@ test('all locked tactics have anonymous cards and their details are read-only un
     assert.deepEqual(commands,[{type:'TACTIC_LEARN',id:tactic.id,slot:0}]);
     game.state.completed=0;
     view.open({type:'guide',tab:4});for(const t of TACTICS.slice(1))assert(!labels(view.box).includes(t.name));
+});
+
+test('round slots open a separate confirmation, and the spotlight guide can be skipped across views', () => {
+    const { game, values } = session(), view = panelView(game);
+    view.ui.image = imageNode;
+    const guide = () => view.box.getChildByName('TacticSlotGuide');
+    const choose = i => view.box.getChildByName(`TacticSlot:${i}`).event('click');
+    const confirm = () => view.box.getChildByName('button:确认解锁');
+    const panel = { type: 'tactics', scroll: 186 };
+    game.state.completed = game.state.legacy.bestNight = 14;
+    view.open(panel);
+    const icon = view.box.getChildByName('TacticSlot:1').getChildByName('buttonFace').getChildByName('TacticSlotIcon');
+    assert.equal(icon.width, icon.height);
+    assert(!guide() && !view.box.getChildByName('TacticSlotUnlock'));
+    const before = canonical(game.state);
+    choose(2);
+    assert(!confirm().handlers.click);
+    assert(view.box.children.some(node => node.text === '还需守住 1 波'));
+    assert.equal(canonical(game.state), before);
+    view.box.getChildByName('button:取消').event('click');
+    assert.equal(view.current, panel);
+    assert.equal(panel.scroll, 186);
+    game.state.completed = 15; game.state.wood = 75; game.state.food = 100; view.refresh();
+    assert(guide());
+    assert.equal(view.box.getChildByName('TacticSlotSpotlight').mouseEnabled, false);
+    const rows = view.box.getChildByName('ScrollList');
+    assert(rows.y >= guide().y + guide().height && rows.height >= 380 && rows.maximum > 0);
+    choose(2);
+    assert(view.box.children.some(node => node.text === '还缺 5 木'));
+    assert(!confirm().handlers.click);
+    view.box.getChildByName('button:取消').event('click');
+    choose(3);
+    assert(view.box.children.some(node => node.text === '请按顺序解锁战技槽'));
+    assert(!confirm().handlers.click);
+    view.box.getChildByName('button:取消').event('click');
+    view.box.getChildByName('button:跳过').event('click');
+    assert(!guide());
+    assert.equal(values.get('daidai_village.tactic_slot_guide_dismissed'), '1');
+    const reopened = panelView(game); reopened.ui.image = imageNode;
+    reopened.open({ type: 'tactics' });
+    assert(!reopened.box.getChildByName('TacticSlotGuide'));
+    game.state.wood = 100; game.state.phase = 'NIGHT'; view.refresh(); choose(2);
+    assert(view.box.children.some(node => node.text === '天亮后可解锁战技槽'));
+    assert(!confirm().handlers.click && !guide());
+});
+
+test('slot purchase selects the new empty slot only after a successful save or retry', () => {
+    const { game } = session(), view = panelView(game);
+    const { generateWave } = require(path.join(compiled, 'game/WaveGenerator.js'));
+    view.ui.image = imageNode;
+    const panel = { type: 'tactics', scroll: 186 };
+    const progress = wins => {
+        Object.assign(game.state, { completed: wins, day: wins + 1, wood: 200, food: 200 });
+        game.state.legacy.bestNight = wins;
+        game.state.wave = generateWave(game.state);
+    };
+    progress(15);
+    view.open(panel);
+    game.changed = () => view.refresh();
+    const original = game.saves.port.write;
+    game.saves.port.write = () => { throw Error('一次写盘错误'); };
+    view.box.getChildByName('TacticSlot:2').event('click');
+    const confirmation = view.current;
+    view.box.getChildByName('button:确认解锁').event('click');
+    assert(game.saves.pending);
+    assert.equal(panel.tacticSlot, undefined);
+    assert.equal(confirmation.pendingSlotUnlock, 1);
+    assert.equal(game.state.wood, 200);
+    game.saves.port.write = original;
+    game.retry();
+    assert.equal(panel.tacticSlot, 1);
+    assert.equal(panel.scroll, 0);
+    assert.equal(confirmation.pendingSlotUnlock, undefined);
+    assert.equal(view.current, panel);
+    assert.deepEqual([game.state.wood, game.state.food, game.state.tactics.extraSlots], [120, 160, [null]]);
+    progress(35); view.refresh();
+    view.box.getChildByName('TacticSlot:3').event('click');
+    view.box.getChildByName('button:确认解锁').event('click');
+    assert.equal(panel.tacticSlot, 2);
+    assert.deepEqual([game.state.wood, game.state.food, game.state.tactics.extraSlots], [40, 120, [null, null]]);
+    assert(!view.box.getChildByName('TacticSlotUnlock'));
 });
 
 test('Zhizhuo tips cover the first five waves, remember progress and allow skipping the rest',()=>{

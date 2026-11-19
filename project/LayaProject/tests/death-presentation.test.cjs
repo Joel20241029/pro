@@ -74,7 +74,7 @@ test('failed final save retries without duplicating damage or feedback; pure res
     assert(g.saves.pending); assert.equal(g.presentationBattle, b); const tick = b.tick;
     const events = g.takeCombatFeedback(); assert(events.length); failWrites(false); g.retry();
     assert.equal(g.battle, null); assert.equal(g.presentationBattle, b); assert.equal(b.tick, tick); assert.deepEqual(g.takeCombatFeedback(), []);
-    g.cleanStart(); assert.equal(g.presentationBattle, null);
+    g.newVillage(); assert.equal(g.presentationBattle, null);
 });
 test('defeat preserves the gate death snapshot but does not keep living monsters displayed', () => {
     const { g, b } = endingSession(1, true); g.update(.05); assert.equal(g.state.phase, 'GAME_OVER'); assert.equal(g.battle, null);
@@ -96,9 +96,9 @@ test('last-kill synchronous render cannot spend the old frame delta before conta
     for (const delta of [.05, .15, .25]) {
         const b = battle(), f = new CombatPresentation(), p = new ProjectileMotion(), event = fatal(b);
         const world = Object.create(VillageWorld.prototype);
-        Object.assign(world, { feedback: f, feedbackFrame: -1, props: [], people: [], enemies: [], actorShadows: [], eliteRings: [], hearts: [],
-            bellAura: new Sprite(), cryIcon: new Sprite(), crying: { dismiss() {} }, hideSpeech() {}, projectileVisuals: { clear() {} }, rage: { update() {} }, shield: { reset() {} },
-            interaction: { clearDepth() {} }, renderDelta: 0, lastBattle: null, lastBattleTick: 0,
+        Object.assign(world, { feedback: f, feedbackFrame: -1, props: [], people: [], enemies: [], actorShadows: [], qualityRings: [], hearts: [],
+            bellAura: new Sprite(), cryIcon: new Sprite(), crying: { dismiss() {} }, hideSpeech() {}, projectileVisuals: { clear() {} }, rage: { update() {} }, patrolVisuals: { update() { return []; } }, shield: { reset() {} },
+            interaction: { clearDepth() {} }, blast: { update() {} }, handSpeed: { update() {} }, renderDelta: 0, lastBattle: null, lastBattleTick: 0,
             game: { state: null, battle: null, presentationBattle: b, pauses: new Set(), takeCombatFeedback: () => [event] } });
         b.tick = 20; b.outcome = 'WIN'; Laya.timer.currFrame = 100;
         world.render(false); p.update(b, undefined, undefined, undefined, f);

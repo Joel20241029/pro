@@ -1,6 +1,7 @@
 import { applyCommand, assignOperator, createGame, economy, finishNight } from "../src/game/VillageRules";
 import { clone, GameState, isElder } from "../src/game/GameState";
-import { ELITE, PADS, RULE, TOWERS, TowerKind, VILLAGER_NAMES } from "../src/game/GameConfig";
+import { PADS, RULE, TOWERS, TowerKind, VILLAGER_NAMES } from "../src/game/GameConfig";
+import { QUALITY_CHANCE_SCALE, VILLAGER_QUALITY, rollVillagerQuality } from "../src/config/VillagerQuality";
 import { enemyPoint, PATH_LENGTH } from "../src/game/BattleRoad";
 import { SeededRandom } from "../src/game/SeededRandom";
 import { BattleSimulation } from "../src/game/BattleSimulation";
@@ -23,7 +24,7 @@ function seedForRoll(roll: number, traveler: boolean) {
         rng.next();
         if (!traveler && s.people[0].trait !== s.people[1].trait) rng.range(2);
         rng.range((traveler ? VILLAGER_NAMES.traveler : VILLAGER_NAMES.child).length);
-        if (rng.range(ELITE.chanceScale) === roll) return seed;
+        if (rng.range(QUALITY_CHANCE_SCALE) === roll) return seed;
     }
     throw new Error("boundary seed not found");
 }
@@ -34,20 +35,42 @@ class Memory implements StoragePort {
 }
 test("Founders are ordinary; newborn and traveler elite draws use the 15% and 45% boundaries", () => {
     for (const [traveler, cutoff] of [[false, 15], [true, 45]] as const) for (const roll of [cutoff - 1, cutoff]) {
-        const s = createGame(seedForRoll(roll, traveler)); ok(s.people.every(p => !p.elite));
-        if (!traveler) eq(birth(s).elite, roll < cutoff);
+        const s = createGame(seedForRoll(roll, traveler)); ok(s.people.every(p => p.quality === "COMMON"));
+        if (!traveler) eq(birth(s).quality, roll < cutoff ? "ELITE" : "COMMON");
         else {
             s.day = 4; s.completed = s.legacy.bestNight = 3; s.wave = generateWave(s); win(s);
             const q = s.choices.find(q => q.kind === "TRAVELER"); ok(q && q.kind === "TRAVELER");
-            eq(q.person.elite, roll < cutoff); eq(q.person.nights, roll < cutoff ? 18 : 12); validateState(s);
+            eq(q.person.quality, roll < cutoff ? "ELITE" : "COMMON"); eq(q.person.nights, roll < cutoff ? 18 : 12); validateState(s);
         }
     }
 });
+test("Hero and legendary enter only at the approved thresholds and occupy independent integer intervals", () => {
+    for (const [source, elite, hero, legendary] of [["birth", 15, 3, 1], ["traveler", 45, 7, 3]] as const) {
+        for (const completed of [0, 11, 12, 29, 30, 100]) {
+            const rows = Array.from({ length: QUALITY_CHANCE_SCALE }, (_, roll) => rollVillagerQuality(roll, completed, source));
+            eq(rows.filter(q => q === "ELITE").length, elite);
+            eq(rows.filter(q => q === "HERO").length, completed >= 12 ? hero : 0);
+            eq(rows.filter(q => q === "LEGENDARY").length, completed >= 30 ? legendary : 0);
+        }
+    }
+});
+test("Hero and legendary quality use the configured lifetime from adulthood through recorded history", () => {
+    for (const quality of ["HERO", "LEGENDARY"] as const) {
+        const s = createGame(7), child = birth(s), spec = VILLAGER_QUALITY[quality];
+        child.quality = quality;
+        win(s); dawn(s); win(s); dawn(s);
+        eq(child.nights, spec.adultNights);
+        child.nights = 1;
+        win(s); dawn(s); eq(child.elderNights, spec.elderNights);
+        child.elderNights = 1;
+        win(s); eq(s.history.find(p => p.id === child.id)!.quality, quality);
+    }
+});
 test("Elite parents do not change the independent newborn draw", () => {
-    for (const roll of [ELITE.birthChancePercent - 1, ELITE.birthChancePercent]) {
+    for (const roll of [VILLAGER_QUALITY.ELITE.birth - 1, VILLAGER_QUALITY.ELITE.birth]) {
         const ordinary = createGame(seedForRoll(roll, false)), elite = clone(ordinary);
-        elite.people.slice(0, 2).forEach(p => { p.origin = "TRAVELER"; p.elite = true; });
-        eq(birth(ordinary).elite, birth(elite).elite); eq(ordinary.rng.family, elite.rng.family); validateState(elite);
+        elite.people.slice(0, 2).forEach(p => { p.origin = "TRAVELER"; p.quality = "ELITE"; });
+        eq(birth(ordinary).quality, birth(elite).quality); eq(ordinary.rng.family, elite.rng.family); validateState(elite);
     }
 });
 test("Birth pending commit retry and reload preserve the exact elite draw", () => {
@@ -55,33 +78,33 @@ test("Birth pending commit retry and reload preserve the exact elite draw", () =
     const g = new GameSession(new SaveStore(m)); g.load(); m.fail = true;
     g.command({ type: "BIRTH", family: g.state!.families[0].id, carer: g.state!.people[1].id });
     eq(g.state!.people.length, 6); const raw = g.saves.pending!.raw; m.fail = false; g.retry();
-    eq(g.state!.people.length, 7); ok(g.state!.people[6].elite); ok([...m.map.values()].includes(raw));
+    eq(g.state!.people.length, 7); ok(g.state!.people[6].quality === "ELITE"); ok([...m.map.values()].includes(raw));
     const again = new GameSession(new SaveStore(m)); again.load(); eq(again.state, g.state);
 });
 test("Traveler choice survives save/reload and accepting never rerolls", () => {
     const s = createGame(seedForRoll(4, true)); s.day = 4; s.completed = s.legacy.bestNight = 3; s.wave = generateWave(s); win(s);
-    const q = s.choices[0]; ok(q.kind === "TRAVELER" && q.person.elite); const traveler = clone(q.person), rng = clone(s.rng);
+    const q = s.choices[0]; ok(q.kind === "TRAVELER" && q.person.quality === "ELITE"); const traveler = clone(q.person), rng = clone(s.rng);
     const m = new Memory(), store = new SaveStore(m); store.inspect(); store.prepare(s); store.commit(); const loaded = new SaveStore(m).inspect(); ok(loaded.kind === "ready");
     const restored = loaded.state; applyCommand(restored, { type: "CHOOSE", value: "accept" });
-    const actual = restored.people.find(p => p.id === traveler.id)!; ok(actual.elite); eq(actual.nights, 18); eq(restored.rng, rng); validateState(restored);
+    const actual = restored.people.find(p => p.id === traveler.id)!; ok(actual.quality === "ELITE"); eq(actual.nights, 18); eq(restored.rng, rng); validateState(restored);
 });
 test("Farm/logging multiply after additive bonuses and before one floor; rations unchanged", () => {
     const s = createGame(1); s.people.forEach(p => p.job = "WAITING"); const p = s.people[0]; p.origin = "TRAVELER";
-    p.job = "FARM"; s.policy = "policy_harvest"; const rations = economy(s).rations; p.elite = true;
+    p.job = "FARM"; s.policy = "policy_harvest"; const rations = economy(s).rations; p.quality = "ELITE";
     eq(economy(s).food, Math.floor(8 * (1 + .2 + .2 + .1 + .25) * 1.5)); eq(economy(s).rations, rations);
     p.job = "LOGGING"; p.trait = "trait_woodwise"; p.skill = "skill_logging"; s.policy = "policy_logging"; s.day = 7;
     eq(economy(s).wood, Math.floor(6 * (1 + .2 + .2 + .15 + .25) * 1.5));
 });
 test("Elite carer adds one food only when caring and never accelerates two-night childhood", () => {
     const s = createGame(seedForRoll(4, false)), child = birth(s), carer = s.people[1]; const regular = economy(s);
-    carer.elite = true; carer.origin = "TRAVELER"; eq(economy(s).food, regular.food + 1); eq(economy(s).rations, regular.rations);
-    win(s); eq(child.growth, 1); ok(!child.adult); dawn(s); win(s); ok(child.adult && child.elite); eq(child.nights, 18); eq(carer.careChild, null);
+    carer.quality = "ELITE"; carer.origin = "TRAVELER"; eq(economy(s).food, regular.food + 1); eq(economy(s).rations, regular.rations);
+    win(s); eq(child.growth, 1); ok(!child.adult); dawn(s); win(s); ok(child.adult && child.quality === "ELITE"); eq(child.nights, 18); eq(carer.careChild, null);
 });
 test("All three tower types gain damage with unchanged speed/range/slow and armor applied before floor", () => {
     for (const kind of ["ARROW", "STONE", "SLOW"] as TowerKind[]) {
         const s = createGame(1); const p = s.people[0]; p.origin = "TRAVELER"; p.trait = "trait_frugal"; p.skill = "skill_farming";
         s.towers.forEach(t => { t.kind = null; t.level = 0; t.operator = null; }); s.towers[0].kind = kind; s.towers[0].level = 1; assignOperator(s, 0, p.id); applyCommand(s, { type: "NIGHT" });
-        const normal = new BattleSimulation(s); s.people[0].elite = true; const elite = new BattleSimulation(s);
+        const normal = new BattleSimulation(s); s.people[0].quality = "ELITE"; const elite = new BattleSimulation(s);
         // 用当前道路和序号计算最近靶位，避免旧固定200进度在错位行进后落到塔射程外。
         let progress = 0, distance = Infinity;
         for (let at = 0; at < PATH_LENGTH; at++) {
@@ -97,19 +120,19 @@ test("All three tower types gain damage with unchanged speed/range/slow and armo
     }
 });
 test("Elite has eighteen work nights and five full elder nights, then keeps badge in history", () => {
-    const s = createGame(1), p = s.people[4]; p.elite = true; p.origin = "TRAVELER"; p.nights = 18;
+    const s = createGame(1), p = s.people[4]; p.quality = "ELITE"; p.origin = "TRAVELER"; p.nights = 18;
     for (let i = 17; i >= 0; i--) { win(s); eq(p.nights, i); if (i) ok(!isElder(p)); else eq(p.elderNights, 5); dawn(s); }
-    for (let i = 4; i >= 0; i--) { win(s); eq(p.elderNights, i); if (i) ok(s.people.includes(p)); else { ok(!s.people.includes(p)); ok(s.history.find(h => h.id === p.id)!.elite); } dawn(s); }
+    for (let i = 4; i >= 0; i--) { win(s); eq(p.elderNights, i); if (i) ok(s.people.includes(p)); else { ok(!s.people.includes(p)); ok(s.history.find(h => h.id === p.id)!.quality === "ELITE"); } dawn(s); }
     validateState(s);
 });
 test("Failed night ages neither elite workers nor elders and does not raise best wave", () => {
-    const s = createGame(1); for (const p of s.people.slice(4)) { p.elite = true; p.origin = "TRAVELER"; }
+    const s = createGame(1); for (const p of s.people.slice(4)) { p.quality = "ELITE"; p.origin = "TRAVELER"; }
     s.people[4].nights = 18; s.people[5].nights = 0; s.people[5].elderNights = 5;
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 0, s.towers.map(t => t.operator));
     eq([s.people[4].nights, s.people[5].elderNights, s.completed, s.legacy.bestNight], [18, 5, 0, 0]); validateState(s);
 });
 test("Strict save validation rejects missing badges, elite founders and ordinary overlong lives", () => {
-    for (const mutate of [(s: GameState) => delete (s.people[0] as any).elite, (s: GameState) => s.people[0].elite = true, (s: GameState) => s.people[0].nights = 18, (s: GameState) => { s.people[4].nights = 0; s.people[4].elderNights = 5; s.people[4].job = "WAITING"; }]) { const s = createGame(1); mutate(s); rejects(() => validateState(s)); }
+    for (const mutate of [(s: GameState) => delete (s.people[0] as any).quality, (s: GameState) => s.people[0].quality = "ELITE", (s: GameState) => s.people[0].nights = 18, (s: GameState) => { s.people[4].nights = 0; s.people[4].elderNights = 5; s.people[4].job = "WAITING"; }]) { const s = createGame(1); mutate(s); rejects(() => validateState(s)); }
 });
 test("Successful waves and restarting use max of each run, never accumulate or include failed wave", () => {
     const s = createGame(1); win(s); eq(s.legacy.bestNight, 1); dawn(s); win(s); eq(s.legacy.bestNight, 2); dawn(s);

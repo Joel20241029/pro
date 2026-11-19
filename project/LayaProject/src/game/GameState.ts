@@ -1,10 +1,12 @@
 import { EnemyKind, Skill, TowerKind, Trait } from "./GameConfig";
+import type { VillagerQuality } from "../config/VillagerQuality";
+import type { DailyTaskDay } from "./DailyTaskState";
 export type Job = "WAITING" | "FARM" | "LOGGING" | "CARE";
 export interface Person {
     id: string; name: string; sex: "MALE" | "FEMALE"; origin: "FOUNDER" | "TRAVELER" | "BORN";
     appearance: string; trait: Trait; skill: Skill | null; generation: number;
-    /** 出生/旅人创建时确定的稀有身份；不随重进、成年或荣休重新抽取，家谱保留。 */
-    elite: boolean;
+    /** 出生或来访时抽定，成年、荣休和家谱沿用同一品质。 */
+    quality: VillagerQuality;
     parents: string[]; ancestors: string[]; adult: boolean; nights: number; growth: number;
     /** 荣休后剩余成功守夜夜数；儿童、劳动成人及已入家谱者为 0，不使用现实时间。 */
     elderNights: number;
@@ -15,8 +17,8 @@ export interface Tower { kind: TowerKind | null; level: number; operator: string
 export interface Wave {
     budget: number; tier: number; affix: "NONE" | "FAST" | "STURDY" | "GROUP";
     entries: { kind: EnemyKind; tick: number; appearanceSeed: number }[];
-    /** 第九夜之后新排的波次冻结普通怪生命倍率。旧波次缺省为原值，继续按已保存的阵容回放。 */
-    ordinaryHealthPercent?: number;
+    /** 固化普通怪生命倍率，守夜和任务预演使用同一份波次数据。 */
+    ordinaryHealthPercent: number;
 }
 export type Choice = { kind: "SKILL"; person: string; options: Skill[] } | { kind: "TRAVELER"; person: Person } | { kind: "POLICY"; options: string[] };
 export interface Legacy {
@@ -32,13 +34,25 @@ export interface GameState {
     /** 上次提供旅人时的成功守夜数；谢绝也记时，新村null，不迁移旧配置。 */
     lastTraveler: number | null;
     people: Person[]; families: Family[]; towers: Tower[];
+    /** 1.0.70 旧档与新开村省略未建建筑。夜战只读战前快照。 */
+    patrol?: { level: number; captain: string | null };
     /** 战技学习结果与当前携带；资格由本村成功波数推导，查看提醒使用独立的界面记录。 */
     // 旧档携带项仍是第一槽。额外数组的长度记录已购槽数，null 表示空槽。
-    tactics: { learned: string[]; equipped: string; extraSlots?: (string | null)[] };
+    tactics: {
+        learned: string[]; equipped: string; extraSlots?: (string | null)[];
+        /** 怜悯首次施放前无记录。累计次数和剩余波数随已学战技保存，与当前装配无关。 */
+        mercyCooldown?: { casts: number; wavesLeft: number };
+    };
     history: Person[]; favorites: string[]; choices: Choice[];
-    wave: Wave | null; night: { adults: string[]; elders: string[]; cared: string[]; hungry: boolean; tactic: string; extraSlots?: (string | null)[] } | null;
+    wave: Wave | null; night: {
+        adults: string[]; elders: string[]; cared: string[]; hungry: boolean; tactic: string; extraSlots?: (string | null)[];
+        /** 与献纳和门血同笔保存，夜间冷启动恢复已用次数并排除施放当夜。 */
+        mercySpent?: true;
+    } | null;
     rng: { family: number; world: number };
     stats: { births: number; retirees: number; generation: number }; legacy: Legacy;
+    /** Optional in existing saves. Stored with inventory so claiming is a single save transaction. */
+    dailyTasks?: DailyTaskDay;
     settings: { speed: 2 | 3; music: boolean }; summary: string;
 }
 export function clone<T>(v: T): T { return JSON.parse(JSON.stringify(v)); }

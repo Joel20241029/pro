@@ -9,5 +9,15 @@
   },
   "openDataContext": "openDataContext",
   "iOSHighPerformance": false,
-  "iOSHighPerformance+": false
+  "iOSHighPerformance+": false,
+  "subpackages": [
+    {
+      "name": "resources/gameplay/village",
+      "root": "resources/gameplay/village/"
+    },
+    {
+      "name": "resources/gameplay/night",
+      "root": "resources/gameplay/night/"
+    }
+  ]
 }

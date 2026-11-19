@@ -1,6 +1,7 @@
 const { test } = require('node:test'), assert = require('node:assert/strict'), path = require('node:path');
 const read = file => require(path.join(process.env.DAIDAI_TEST_BUILD, file));
 const { createGame, applyCommand } = read('game/VillageRules');
+const { generateWave } = read('game/WaveGenerator');
 const { clone } = read('game/GameState');
 const { BattleSimulation, PATH_LENGTH } = read('game/BattleSimulation');
 const { enemyPoint } = read('game/BattleRoad');
@@ -14,6 +15,7 @@ const { SaveStore } = read('storage/SaveStore');
 
 function learned() {
     const s = createGame(7); s.completed = 30; s.day = 31; s.legacy.bestNight = 30; s.wood = 80; s.food = 40;
+    s.wave = generateWave(s);
     applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC }); return s;
 }
 function enemy(seq, progress = 260 - seq, hp = 100000, kind = 'enemy_raider') {
@@ -23,22 +25,22 @@ function battle(kind = 'ARROW', active = true) {
     const s = learned(); s.food = 100; s.policy = null; applyCommand(s, { type: 'NIGHT' });
     const b = new BattleSimulation(s);
     b.base.towers.forEach((t, i) => { t.kind = i === 0 ? kind : null; t.level = 1; t.operator = i === 0 ? s.people[0].id : null; });
-    for (const p of b.base.people) { p.trait = 'trait_fertile'; p.skill = null; p.elite = false; }
+    for (const p of b.base.people) { p.trait = 'trait_fertile'; p.skill = null; p.quality = "COMMON"; }
     b.cursor = b.base.wave.entries.length; b.enemies = [enemy(0), enemy(1), enemy(2)];
     if (active) b.bell(); return b;
 }
 const shots = b => b.feedback.filter(e => e.type === 'shot');
 
-test('split uses the approved name, cost, thirty current-village wins and twelve combat seconds', () => {
+test('split uses the approved name, cost, fifteen current-village wins and twelve combat seconds', () => {
     const t = tacticDefinition(SPLIT_TACTIC);
     assert.deepEqual([t.name, t.effect, t.targets, t.ticks * RULE.step, t.unlockWaves, t.wood, t.food],
-        ['分裂术·超', 'MULTI_TARGET', 3, 12, 30, 80, 40]);
-    const s = createGame(7); s.completed = 29; s.day = 30; s.legacy.bestNight = 100;
+        ['分裂术·超', 'MULTI_TARGET', 3, 12, 15, 60, 30]);
+    const s = createGame(7); s.completed = 14; s.day = 15; s.legacy.bestNight = 100;
     assert.equal(tacticUnavailableReason(s, SPLIT_TACTIC, 'LEARN'), '还需守住 1 波');
     const before = clone(s); assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC })); assert.deepEqual(s, before);
-    s.completed = 30; s.day = 31; s.wood = 79; s.food = 39;
+    s.completed = 15; s.day = 16; s.wood = 59; s.food = 29;
     assert.equal(tacticUnavailableReason(s, SPLIT_TACTIC, 'LEARN'), '还缺 1 木、1 粮');
-    s.wood = 80; s.food = 40; applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC });
+    s.wood = 60; s.food = 30; applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC });
     assert.deepEqual([s.wood, s.food, s.tactics.equipped], [0, 0, SPLIT_TACTIC]);
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC }));
     applyCommand(s, { type: 'TACTIC_EQUIP', id: DEFAULT_TACTIC }); applyCommand(s, { type: 'TACTIC_EQUIP', id: SPLIT_TACTIC });
@@ -64,7 +66,7 @@ for (const kind of ['ARROW', 'STONE', 'SLOW']) test(`${kind}: zero to five candi
 test('split leaves single-shot damage, armor and elite bonuses unchanged for all three towers', () => {
     for (const [kind, normal, armored, elite] of [['ARROW', 12, 7, 15], ['STONE', 22, 17, 27], ['SLOW', 4, 2, 5]]) {
         for (const [enemyKind, isElite, damage] of [['enemy_raider', false, normal], ['enemy_armored', false, armored], ['enemy_raider', true, elite]]) {
-            const b = battle(kind); b.base.people[0].elite = isElite;
+            const b = battle(kind); b.base.people[0].quality = isElite ? "ELITE" : "COMMON";
             b.enemies = [0, 1, 2].map(i => enemy(i, 260 - i, 100000, enemyKind)); b.step();
             assert.equal(shots(b).length, 3);
             for (const e of b.enemies) assert.equal(100000 - e.hp, damage, `${kind} ${enemyKind}`);

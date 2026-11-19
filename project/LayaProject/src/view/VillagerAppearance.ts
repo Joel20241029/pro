@@ -19,7 +19,7 @@ export function walkDirection(dx: number, dy: number, previous: WalkDirection): 
 export function villagerModel(person: Person, historical = false) {
     if (historical || isElder(person)) return "elder";
     if (!person.adult) return person.growth === 0 ? "baby" : "child";
-    if (person.elite) return person.sex === "MALE" ? "elite_male" : "elite_female";
+    if (person.quality !== "COMMON") return person.sex === "MALE" ? "elite_male" : "elite_female";
     const sequence = Number(person.id.slice(person.id.lastIndexOf(":") + 1));
     const alternate = Math.floor((sequence - 1) / 2) % 2 === 1;
     return person.sex === "MALE" ? (alternate ? "straw" : "blue") : (alternate ? "jade" : "red");

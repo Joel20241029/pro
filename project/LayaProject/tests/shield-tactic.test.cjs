@@ -1,6 +1,7 @@
 const { test } = require('node:test'), assert = require('node:assert/strict'), path = require('node:path');
 const read = file => require(path.join(process.env.DAIDAI_TEST_BUILD, file));
 const { createGame, applyCommand } = read('game/VillageRules');
+const { generateWave } = read('game/WaveGenerator');
 const { clone } = read('game/GameState');
 const { BattleSimulation, PATH_LENGTH } = read('game/BattleSimulation');
 const { enemyPoint } = read('game/BattleRoad');
@@ -13,6 +14,7 @@ const { enemyPower } = read('game/Growth');
 const { CombatPresentation } = read('view/CombatPresentation');
 function learned() {
     const s = createGame(7); s.completed = 20; s.day = 21; s.legacy.bestNight = 20; s.wood = 60; s.food = 30;
+    s.wave = generateWave(s);
     applyCommand(s, { type: 'TACTIC_LEARN', id: SHIELD_TACTIC }); return s;
 }
 function enemy(seq, kind = 'enemy_raider', progress = PATH_LENGTH - 1, speed = 40) {
@@ -31,17 +33,17 @@ function fixture() {
     const reopen = () => { const g = new GameSession(new SaveStore(port)); g.load(); return g; };
     return { game: reopen(), reopen };
 }
-test('shield requires twenty current wins and one atomic 60 wood / 30 food purchase', () => {
+test('shield requires five current wins and one atomic 30 wood / 15 food purchase', () => {
     const t = tacticDefinition(SHIELD_TACTIC);
-    assert.deepEqual([t.name,t.unlockWaves,t.wood,t.food,t.ticks * RULE.step,t.effect], ['二楠之盾',20,60,30,8,'GATE_INVULNERABLE']);
+    assert.deepEqual([t.name,t.unlockWaves,t.wood,t.food,t.ticks * RULE.step,t.effect], ['二楠之盾',5,30,15,7,'GATE_INVULNERABLE']);
     assert(!('multiplier' in t));
     assert.throws(() => validateTactics(TACTICS.map(x => x.id === SHIELD_TACTIC ? {...x,multiplier:1} : x)));
-    const s = createGame(7); s.day = 20; s.completed = 19; s.legacy.bestNight = 99;
+    const s = createGame(7); s.day = 5; s.completed = 4; s.legacy.bestNight = 99;
     assert.equal(tacticUnavailableReason(s, SHIELD_TACTIC, 'LEARN'),'还需守住 1 波');
     const old = clone(s); assert.throws(() => applyCommand(s,{type:'TACTIC_LEARN',id:SHIELD_TACTIC})); assert.deepEqual(s,old);
-    s.day = 21; s.completed = 20; s.wood = 59; s.food = 29;
+    s.day = 6; s.completed = 5; s.wood = 29; s.food = 14;
     assert.equal(tacticUnavailableReason(s,SHIELD_TACTIC,'LEARN'),'还缺 1 木、1 粮');
-    s.wood = 60; s.food = 30; applyCommand(s,{type:'TACTIC_LEARN',id:SHIELD_TACTIC});
+    s.wood = 30; s.food = 15; applyCommand(s,{type:'TACTIC_LEARN',id:SHIELD_TACTIC});
     assert.deepEqual([s.wood,s.food,s.tactics.equipped],[0,0,SHIELD_TACTIC]);
     assert.throws(() => applyCommand(s,{type:'TACTIC_LEARN',id:SHIELD_TACTIC}));
     applyCommand(s,{type:'TACTIC_EQUIP',id:DEFAULT_TACTIC}); applyCommand(s,{type:'TACTIC_EQUIP',id:SHIELD_TACTIC});
@@ -71,11 +73,11 @@ test('unactivated shield and expired shield preserve lethal arrival and failure'
         b.step(); assert.equal(b.gate,0); assert.equal(b.outcome,'LOSE'); assert.equal(b.feedback[0].blocked,false);
     }
 });
-test('shield lasts exactly 160 combat steps and cannot be refreshed', () => {
+test('shield lasts exactly 140 combat steps and cannot be refreshed', () => {
     const b = battle(); b.bell();
-    for(let i=0;i<159;i++){assert(b.gateProtected);b.step();}
+    for(let i=0;i<139;i++){assert(b.gateProtected);b.step();}
     assert.equal(b.bellTicks,1); b.step(); assert.equal(b.bellTicks,0); assert(!b.gateProtected);
-    b.bell(); assert.equal(b.bellTicks,0); assert.equal(b.tick,160);
+    b.bell(); assert.equal(b.bellTicks,0); assert.equal(b.tick,140);
 });
 test('blocking a summoning chief preserves already spawned children, then stops future summons', () => {
     const b = battle(); b.tick=RULE.summonTicks[0]; b.enemies.push(enemy(0,'enemy_chief',PATH_LENGTH-2,100));
@@ -103,9 +105,9 @@ test('shield does not change tower damage, cadence or crowd-control', () => {
 });
 test('pause, reassignment and 3x keep the same shield; reopen restarts saved pre-night state', () => {
     const f=fixture(),g=f.game; g.state.food=100; g.command({type:'NIGHT'}); const b=g.battle; g.bell();
-    g.pause('CHOICE');g.update(.1);assert.equal(b.bellTicks,160);assert(g.reassign(0,g.state.people[2].id));
-    g.resume('CHOICE');g.command({type:'SPEED',value:3});g.update(.1);assert.equal(g.battle,b);assert.equal(b.bellTicks,154);
-    g.bell();assert.equal(b.bellTicks,154); const reopened=f.reopen();
+    g.pause('CHOICE');g.update(.1);assert.equal(b.bellTicks,140);assert(g.reassign(0,g.state.people[2].id));
+    g.resume('CHOICE');g.command({type:'SPEED',value:3});g.update(.1);assert.equal(g.battle,b);assert.equal(b.bellTicks,134);
+    g.bell();assert.equal(b.bellTicks,134); const reopened=f.reopen();
     assert.equal(reopened.battle.tactic.id,SHIELD_TACTIC);assert.equal(reopened.battle.bellTicks,0);assert.equal(reopened.battle.tick,0);
 });
 test('session settles final block without holding the night open for visual feedback', () => {

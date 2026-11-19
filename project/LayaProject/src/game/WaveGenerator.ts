@@ -1,5 +1,6 @@
 import { appearanceSeed, APPEARANCE_DOMAIN } from "./EnemySeed";
 import { BOSS_ROTATION } from "../config/EnemyConfig";
+import { PATROL } from "../config/PatrolConfig";
 import { WAVE } from "../config/DefenseConfig";
 import { ENEMIES, EnemyKind, RULE } from "./GameConfig";
 import { GameState, Wave } from "./GameState";
@@ -24,20 +25,32 @@ export function generateWave(s: GameState): Wave {
         const k = candidates[index];
         kinds.push(k);
     }
+    const pressure = WAVE.qualityPressure;
+    const extra = Math.min(pressure.max, Math.max(0, Math.floor((s.day - pressure.after) / pressure.step)));
+    for (let i = 0; i < extra; i++) {
+        const at = Math.floor((i + 1) * kinds.length / (extra + 1));
+        kinds.splice(at, 0, pressure.kinds[i % pressure.kinds.length]);
+    }
     if (day === RULE.yearDays) {
+        // 首领占位在原数组首位，补充怪均匀插在其后。
         kinds.shift();
         kinds.splice(Math.floor(kinds.length / 2), 0, boss);
     }
     if (kinds.length > RULE.planCap)
         throw new Error("波次超出配置上限");
     const groups = affix === "GROUP" ? Math.ceil(kinds.length / WAVE.groupSize) : kinds.length;
-    const plannedTicks = RULE.spawnTicks + Math.max(0, count - WAVE.spawnCountThreshold) * WAVE.extraSpawnTicks;
+    const plannedTicks = RULE.spawnTicks + Math.max(0, kinds.length - WAVE.spawnCountThreshold) * WAVE.extraSpawnTicks;
     const { minimum, maximum } = WAVE.spawnWindowTicks;
     const spawnTicks = Math.min(maximum, Math.max(minimum, plannedTicks));
     const entries = kinds.map((kind, i) => ({ kind, appearanceSeed: appearanceSeed(APPEARANCE_DOMAIN.wave, s.rng.world, s.day, i), tick: groups <= 1 ? 0 : Math.floor((affix === "GROUP" ? Math.floor(i / WAVE.groupSize) : i) * spawnTicks / (groups - 1)) }));
-    const budget = kinds.reduce((sum, kind) => sum + ENEMIES[kind].cost, 0);
+    const support = s.day >= PATROL.pressure.secondDay ? 2 : s.day >= PATROL.pressure.firstDay ? 1 : 0;
+    for (let i = 0; i < support; i++) {
+        entries.push({ kind: PATROL.pressure.kinds[i], tick: Math.floor(spawnTicks * (i + 1) / (support + 1)),
+            appearanceSeed: appearanceSeed(APPEARANCE_DOMAIN.wave, s.rng.world, s.day, kinds.length + i) });
+    }
+    entries.sort((a, b) => a.tick - b.tick);
+    const budget = entries.reduce((sum, { kind }) => sum + ENEMIES[kind].cost, 0);
     s.rng.world = rng.state;
-    const wave: Wave = { budget, affix, tier: s.tier, entries };
-    if (s.day >= WAVE.ordinaryPressureDay) wave.ordinaryHealthPercent = WAVE.ordinaryHealthPercent;
-    return wave;
+    const ordinaryHealthPercent = s.day >= WAVE.ordinaryPressureDay ? WAVE.ordinaryHealthPercent : WAVE.baseHealthPercent;
+    return { budget, affix, tier: s.tier, entries, ordinaryHealthPercent };
 }

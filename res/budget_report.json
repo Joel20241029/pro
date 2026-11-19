@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-18T06:02:44.149Z",
-  "runtimeAssetCount": 821,
+  "generatedAt": "2026-11-19T01:39:17.195Z",
+  "runtimeAssetCount": 790,
   "reserveAssetCount": 7,
-  "animationCount": 136,
-  "animationFrames": 664,
+  "animationCount": 133,
+  "animationFrames": 630,
   "categoryStats": {
     "enemies": {
       "count": 70,
@@ -18,15 +18,15 @@
       "reserve": 0
     },
     "characters": {
-      "count": 548,
-      "bytes": 9826693,
-      "runtime": 548,
+      "count": 511,
+      "bytes": 9283740,
+      "runtime": 511,
       "reserve": 0
     },
     "building-parts": {
-      "count": 117,
-      "bytes": 1661545,
-      "runtime": 116,
+      "count": 120,
+      "bytes": 1738646,
+      "runtime": 119,
       "reserve": 1
     },
     "ui/icons": {
@@ -36,9 +36,9 @@
       "reserve": 0
     },
     "effects": {
-      "count": 29,
-      "bytes": 319370,
-      "runtime": 29,
+      "count": 32,
+      "bytes": 328816,
+      "runtime": 32,
       "reserve": 0
     },
     "decorations": {
@@ -111,10 +111,10 @@
       "id": "buildings_0",
       "path": "atlases/buildings_0.png",
       "runtimeFile": "buildings/buildings_0.png",
-      "width": 896,
+      "width": 959,
       "height": 1024,
-      "bytes": 1633111,
-      "sha256": "c6ff3e16ab8052f0fcf291697592b52343ce2cda9fb7040c3913f100f449c7f1",
+      "bytes": 1715320,
+      "sha256": "ad4efb00dddfd19b9dbeece7e990456d586c1c10bf054cda740242036140c63f",
       "group": "buildings"
     },
     {
@@ -131,30 +131,30 @@
       "id": "characters_1",
       "path": "atlases/characters_1.png",
       "runtimeFile": "characters/characters_1.png",
-      "width": 1024,
-      "height": 1021,
-      "bytes": 1749303,
-      "sha256": "1af1cb6dceb378d26ee228ff78b0d981603e84cf27e18f6509e9e89c2f4e43d5",
+      "width": 1023,
+      "height": 1024,
+      "bytes": 1735453,
+      "sha256": "0d95cdde99312a4ac282d00f450a2b72f0655269d01b0e495e737af5b9f8eeb4",
       "group": "characters"
     },
     {
       "id": "characters_2",
       "path": "atlases/characters_2.png",
       "runtimeFile": "characters/characters_2.png",
-      "width": 1024,
+      "width": 1023,
       "height": 1024,
-      "bytes": 1811194,
-      "sha256": "fc5c9d98dfe1cb47edb96e4143a4e0849475526c99c1dfa945f6bf50f484ac73",
+      "bytes": 1811921,
+      "sha256": "525b47db7081b4d1c392225e51f0948057d5297d222f6b525ad80d7a6dd9bf10",
       "group": "characters"
     },
     {
       "id": "characters_3",
       "path": "atlases/characters_3.png",
       "runtimeFile": "characters/characters_3.png",
-      "width": 1023,
+      "width": 1024,
       "height": 1024,
-      "bytes": 1882131,
-      "sha256": "18665502af60505acca458dff55b92e78df99bd337d167f6b0f51d1a472ebecf",
+      "bytes": 1868159,
+      "sha256": "3503c2d0ff618fe8afd1b5cdc427b823868e23c89c3b3a5f0c880e263126e4ad",
       "group": "characters"
     },
     {
@@ -162,19 +162,19 @@
       "path": "atlases/characters_4.png",
       "runtimeFile": "characters/characters_4.png",
       "width": 1024,
-      "height": 1020,
-      "bytes": 1761375,
-      "sha256": "6a9cc438cc44ec73ef49f89e77c4121dbe84a28e6b078a58566a160c14e48f43",
+      "height": 1022,
+      "bytes": 1782053,
+      "sha256": "a50f17a3703f081a244b3ddb1b30d77e33cfd4b39f755d9e2d847664d778f438",
       "group": "characters"
     },
     {
       "id": "characters_5",
       "path": "atlases/characters_5.png",
       "runtimeFile": "characters/characters_5.png",
-      "width": 1008,
-      "height": 392,
-      "bytes": 573504,
-      "sha256": "660664231a52d66dbaa442cc5b70313a1b9b0a386d5c09eef416c7b5f52412cc",
+      "width": 156,
+      "height": 933,
+      "bytes": 181209,
+      "sha256": "e9f685cd8a3189b87e2ee54ef7eb58266d4fd4baea0c3df6b975acc580d33330",
       "group": "characters"
     },
     {
@@ -182,9 +182,9 @@
       "path": "atlases/village_effects_0.png",
       "runtimeFile": "effects/village_effects_0.png",
       "width": 251,
-      "height": 427,
-      "bytes": 94568,
-      "sha256": "313b2473b554908b7e642392f2f0202acdbd4dddfbc5915e5735794402fa885a",
+      "height": 367,
+      "bytes": 104692,
+      "sha256": "6359c575de07cf01af3d4172c6e86bfc1449900c5ccfc18a91169613c9e7f5ed",
       "group": "village_effects"
     },
     {
@@ -219,21 +219,21 @@
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 17943492,
-    "atlasContentPixels": 10068112,
-    "savedContentPixels": 7875380,
-    "savedContentPercent": 43.89,
-    "trimmedAssetCount": 714,
+    "sourceCanvasPixels": 17458564,
+    "atlasContentPixels": 9842403,
+    "savedContentPixels": 7616161,
+    "savedContentPercent": 43.62,
+    "trimmedAssetCount": 683,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "atlasImageBytes": 16205437,
-    "metadataBytes": 334904,
+    "atlasImageBytes": 15899058,
+    "metadataBytes": 327391,
     "audioBytes": 164243,
-    "totalBytes": 16704584,
+    "totalBytes": 16390692,
     "files": [
       "bundles/map/frames.vdata",
       "bundles/characters/animations.vdata",
@@ -278,7 +278,7 @@
   },
   "sourceBytes": 49652112,
   "budgetComparison": {
-    "villageAtlasImageBytes": 13489746,
+    "villageAtlasImageBytes": 13183367,
     "nightAtlasImageBytes": 2715691
   },
   "limitations": [

@@ -8,14 +8,17 @@ const {gateCapacity,storageCapacity,laborSlots,upgradeCost,residentialCost,enemy
 const {validateState}=require(root+'/storage/StateValidation');
 const {RULE,PADS,TOWERS}=require(root+'/game/GameConfig');
 const {TACTICS}=require(root+'/config/TacticConfig');
+const {VILLAGER_QUALITY}=require(root+'/config/VillagerQuality');
 const {tacticUnavailableReason}=require(root+'/game/Tactics');
 
 function play(seed, nights=300, verbose=false, options={}) {
- const s=createGame(seed), log=[],learnedAt={}; let maxPeople=0,maxEnemies=0,births=0,upgrades=0,leakNights=0,hungryNights=0,totalBattleSeconds=0;
+ const s=createGame(seed), log=[],learnedAt={},firstQuality={}; let maxPeople=0,maxEnemies=0,births=0,upgrades=0,leakNights=0,hungryNights=0,totalBattleSeconds=0;
  const affordable=c=>s.food>=c.food&&s.wood>=c.wood;
  const upgrade=(kind)=>{const level=kind==='FARM'?s.farm:kind==='LOGGING'?s.logging:kind==='HOUSING'?s.housing:s.gateLevel;
   if(affordable(upgradeCost(kind,level))){applyCommand(s,{type:'BUILD',kind});upgrades++;return true;}return false;};
  for(let d=0;d<nights;d++) {
+  for(const p of [...s.people,...s.choices.filter(q=>q.kind==='TRAVELER').map(q=>q.person)])
+   if(p.quality!=='COMMON') firstQuality[p.quality] ??= s.day;
   while(s.choices.length){const q=s.choices[0];let value;
    if(q.kind==='SKILL') value=q.options.includes('skill_logging')?'skill_logging':q.options.includes('skill_farming')?'skill_farming':q.options[0];
    else if(q.kind==='POLICY')value=['policy_logging','policy_harvest','policy_tillage','policy_watch','policy_arrows','policy_stones','policy_nurture','policy_patrol'].find(k=>q.options.includes(k))||q.options[0];
@@ -65,7 +68,7 @@ function play(seed, nights=300, verbose=false, options={}) {
   }
   const operators=workers.slice();
   for(let i=0;i<s.towers.length;i++){const t=s.towers[i];if(!t.kind)continue;
-   operators.sort((a,b)=>Number(b.skill===(t.kind==='STONE'?'skill_throwing':t.kind==='SLOW'?'skill_warding':'skill_archery'))-Number(a.skill===(t.kind==='STONE'?'skill_throwing':t.kind==='SLOW'?'skill_warding':'skill_archery'))||Number(b.elite)-Number(a.elite)||b.nights-a.nights);
+   operators.sort((a,b)=>Number(b.skill===(t.kind==='STONE'?'skill_throwing':t.kind==='SLOW'?'skill_warding':'skill_archery'))-Number(a.skill===(t.kind==='STONE'?'skill_throwing':t.kind==='SLOW'?'skill_warding':'skill_archery'))||VILLAGER_QUALITY[b.quality].damage-VILLAGER_QUALITY[a.quality].damage||b.nights-a.nights);
    if(operators.length)applyCommand(s,{type:'OPERATOR',index:i,id:operators.shift().id});
   }
   for(const i of [1,0,3,4,2]){const t=s.towers[i]; if(t.kind&&t.level<target&&affordable(upgradeCost('TOWER',t.level))){applyCommand(s,{type:'UPGRADE',index:i});upgrades++;}}
@@ -86,7 +89,7 @@ function play(seed, nights=300, verbose=false, options={}) {
   if(verbose||s.day%50===0||b.outcome==='LOSE')log.push(row);
   finishNight(s,b.gate,b.operators);validateState(s); if(b.outcome==='LOSE')break;
  }
- return {seed,completed:s.completed,births,retired:s.stats.retirees,upgrades,maxPeople,maxEnemies,leakNights,hungryNights,averageBattleSeconds:totalBattleSeconds/(s.completed+(s.phase==='GAME_OVER'?1:0)),learned:s.tactics.learned,learnedAt,log};
+ return {seed,completed:s.completed,births,retired:s.stats.retirees,upgrades,maxPeople,maxEnemies,leakNights,hungryNights,averageBattleSeconds:totalBattleSeconds/(s.completed+(s.phase==='GAME_OVER'?1:0)),learned:s.tactics.learned,learnedAt,firstQuality,log};
 }
 if(require.main===module){for(const seed of [1,2,3,11,123])console.log(JSON.stringify(play(seed,Number(process.argv[2]||300),!!process.env.VERBOSE)));}
 module.exports={play};

@@ -30,9 +30,10 @@ export class AssetDiagnostics {
     private logger?: ReturnType<NonNullable<Platform["getGameLogManager"]>>;
     private sequence = 0;
     private count = 0;
-    private readonly common = { version: RELEASE.version, build: RELEASE.build, resourceVersion: REMOTE_RESOURCE_MANIFEST.version,
+    private readonly common = { delivery: "remote", version: RELEASE.version, build: RELEASE.build, resourceVersion: REMOTE_RESOURCE_MANIFEST.version,
         revision: REMOTE_RESOURCE_MANIFEST.revision, env: "unknown" };
-    constructor(private platform: Platform) {
+    constructor(private platform: Platform, delivery: "remote" | "native" = "remote") {
+        this.common.delivery = delivery;
         try {
             const env = platform.getAccountInfoSync?.().miniProgram.envVersion;
             if (env && ["release", "trial", "develop"].includes(env)) this.common.env = env;

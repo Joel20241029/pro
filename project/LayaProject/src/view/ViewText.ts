@@ -1,7 +1,9 @@
 import { Person } from "../game/GameState";
 import { C } from "./UiTheme";
 /** 同一姓名格式用于名册、家庭、详情与驻塔；只给名字上色，说明文字保持自身层级。 */
-export function coloredName(p: Person, enabled = true) { return `${p.elite ? `<font color="${enabled ? C.timber : C.muted}">精英·</font>` : ""}<font color="${!enabled ? C.muted : p.sex === "MALE" ? C.maleName : C.femaleName}" stroke="1" strokecolor="${C.lightEdge}">${p.name.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}</font>`; }
+import { VILLAGER_QUALITY } from "../config/VillagerQuality";
+const QUALITY_COLORS = { ELITE: C.green, HERO: C.heroName, LEGENDARY: C.legendaryName };
+export function coloredName(p: Person, enabled = true) { return `${p.quality !== "COMMON" ? `<font color="${enabled ? QUALITY_COLORS[p.quality] : C.muted}">${VILLAGER_QUALITY[p.quality].label}·</font>` : ""}<font color="${!enabled ? C.muted : p.sex === "MALE" ? C.maleName : C.femaleName}" stroke="1" strokecolor="${C.lightEdge}">${p.name.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}</font>`; }
 /** 顶部窄栏用千进制缩写并向下截断，避免显示出尚未拥有的资源；其他说明沿用万/亿。只改变显示。 */
 export function amount(value: number, compact = false) {
     if (compact) {

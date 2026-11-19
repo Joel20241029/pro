@@ -1,3 +1,5 @@
+import { featureUnlocked } from "../config/DailyTaskConfig";
+import { dailyTasksClaimable } from "../game/DailyTaskState";
 import { HUD, LAYOUT } from "./config/HudConfig";
 import { GameSession } from "../game/GameSession";
 import { capacity, economy, person } from "../game/VillageRules";
@@ -79,14 +81,16 @@ export class GameHud {
         this.nightStatus.align = "center";
         this.nightStatus.wordWrap = false;
         this.nightStatus.overflow = Laya.Text.SHRINK;
-        // 首次成功守住一波才解锁；沿用已提交的传承最高纪录，重新开村仍保持入口。
+        // 入口按已提交的最高守夜记录逐项开放，重新开村保留。
         if (s.legacy.bestNight > 0) {
             const side = TACTIC_UI.side;
             SIDE_FEATURES.forEach((entry, i) => {
+                if (!featureUnlocked(s.legacy.bestNight, entry.panel)) return;
                 const b = this.ui.button(this.node, entry.title, side.x, layout.mapTop + side.top + i * (side.size + side.gap), side.size,
                     () => this.panels.open({ type: entry.panel }), C.muted, side.size);
                 b.name = entry.name;
                 b.visible = i < shownFeatures;
+                b.mouseEnabled = b.visible;
                 this.featureButtons.push(b);
                 if (entry.panel === "tactics") this.guideTargets.tactics = b;
                 const face = b.getChildByName("buttonFace") as Laya.Sprite;
@@ -95,6 +99,8 @@ export class GameHud {
                 text.pos(12, side.textY); text.size(side.size - 24, 32); text.fontSize = side.font;
                 if (entry.panel === "tactics" && !blocked && tacticUnread)
                     this.tacticBadge = this.ui.actionBadge(b, "TacticActionHint");
+                if (entry.panel === "dailyTasks" && !blocked && dailyTasksClaimable(s, this.game.taskDate))
+                    this.ui.actionBadge(b, "DailyTasksActionHint");
             });
         }
         const gate = battle?.gate ?? s.gate, gateAnchor = anchors.gateAnchor();
@@ -192,7 +198,7 @@ export class GameHud {
         if (s.phase !== "NIGHT") HUD.navigation.forEach(({ title, panel, icon }, i) => {
             const nav = footer.navigation, daytime = s.phase === "DAY";
             const button = this.ui.button(this.node, title, daytime ? nav.xs[i] : 28 + 168 * i, bottomY + (daytime ? nav.y : 150), daytime ? nav.width : 160, () => this.panels.open({ type: panel }), C.muted, daytime ? nav.height : 78);
-            if (panel === "people" || panel === "families") this.guideTargets[panel] = button;
+            if (panel === "people" || panel === "families" || panel === "build") this.guideTargets[panel] = button;
             const face = button.getChildByName("buttonFace") as Laya.Sprite;
             const text = face.getChildByName("buttonText") as Laya.Text;
             text.fontSize = nav.font; text.color = C.ink; text.stroke = 0;
@@ -216,10 +222,14 @@ export class GameHud {
                 const effect = tactic.effect === "GATE_INVULNERABLE" ? "城门无敌" :
                     tactic.effect === "MULTI_TARGET" ? `同时攻击 ${tactic.targets} 目标` :
                     tactic.effect === "SUMMON_CHARGE" ? (battle.summonCharge?.gathered === 1 ? "分身冲锋中" : "分身集结中") :
-                    tactic.effect === "MIND_LOCK" ? "全场定身" : "multiplier" in tactic ?
+                    tactic.effect === "MIND_LOCK" ? "全场定身" : tactic.effect === "TIMED_BLAST" ? "即将引爆" :
+                        tactic.effect === "DRAGON_POISON" ? "毒伤持续" : "multiplier" in tactic ?
                         `${tactic.effect === "ATTACK_DAMAGE" ? "伤害" : "攻速"} +${Math.round((tactic.multiplier - 1) * 100)}%` : "";
                 const duration = tactic.effect === "SUMMON_CHARGE" ? "" : ` · 还剩 ${seconds}秒`;
-                this.nightStatus.text = ringing ? `${tactic.name} · ${effect}${duration}` : `守夜中 · 已守 ${amount(s.completed)} 波 · 齐心护家园`;
+                const hand = battle.handSpeed;
+                this.nightStatus.text = hand ? "战场已冻结" :
+                    this.game.blastAiming ? "点友谊路埋弹 · 再点泻火取消" : ringing ?
+                    `${tactic.name} · ${effect}${duration}` : `守夜中 · 已守 ${amount(s.completed)} 波 · 齐心护家园`;
             }
             if (this.hp)
                 this.hp.text = `${amount(battle.gate, true)}/${amount(gateCapacity(s), true)}`.replace(/\.\d(?=[kmbtq])/g, "");

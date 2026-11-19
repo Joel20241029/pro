@@ -65,9 +65,6 @@ test('slot thresholds, each exact cost, duplicate validation and compatibility w
     assert.deepEqual(game.battle.tactics.map(t => t.id), [DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC]);
     assert.equal(game.battle.tacticUsesLeft, 3);
     game.newVillage();
-    assert.deepEqual(game.state.tactics.extraSlots, [null, null]);
-    assert(game.state.tactics.learned.includes(RAGE_TACTIC));
-    game.cleanStart();
     assert.deepEqual(game.state.tactics, { learned: [DEFAULT_TACTIC], equipped: DEFAULT_TACTIC });
 });
 
@@ -83,7 +80,7 @@ test('casts share a nightly pool, cannot overlap and wait a full four seconds af
     assert.equal(b.tacticUsesLeft, 2);
     while (b.bellTicks) b.step();
     assert.equal(b.cooldownFor(MIND_LOCK_TACTIC), TACTIC_USE.recoveryTicks);
-    assert.equal(b.cooldownFor(SHIELD_TACTIC) * RULE.step, 13);
+    assert.equal(b.cooldownFor(SHIELD_TACTIC) * RULE.step, 14);
     while (b.cooldownFor(MIND_LOCK_TACTIC) > 1) b.step();
     assert(!b.canCast(MIND_LOCK_TACTIC));
     b.step(); b.bell(MIND_LOCK_TACTIC);

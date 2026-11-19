@@ -5003,7 +5003,7 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/blue/walk/blue_up_3.png",
+        "source": "source/rendered2d/characters/v5/blue/walk/blue_up_4.png",
         "crop": [
           0,
           0,
@@ -5013,8 +5013,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "0ae7a09f1c5bd7fca0b0ef40cce42b599823a7d284bbf438132b98c44780b76b",
-        "outputHash": "cf087b21e8ae432e0657d052872e743984c37b74a741bcdff0f678863af7f233"
+        "sourceHash": "3239fd2dd9aeeda093a2a19033d574204c9cc45e17b2dca09cd656288ec189a7",
+        "outputHash": "bf56efced8abb9186e375c610e9277a85032476432550c221b0b55afa935225e"
       }
     },
     {
@@ -5052,55 +5052,6 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/blue/walk/blue_up_4.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "3239fd2dd9aeeda093a2a19033d574204c9cc45e17b2dca09cd656288ec189a7",
-        "outputHash": "bf56efced8abb9186e375c610e9277a85032476432550c221b0b55afa935225e"
-      }
-    },
-    {
-      "id": "hd_blue_up_4",
-      "label": "hd_blue_up_4",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_blue_up_4.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_blue_up_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
         "source": "source/rendered2d/characters/v5/blue/walk/blue_up_5.png",
         "crop": [
           0,
@@ -5113,55 +5064,6 @@
         "fullCanvas": true,
         "sourceHash": "01a8943a9c31e4425d07aefdb86c5318ea3a53c39cca0e411d19280385d6f002",
         "outputHash": "2c016519aa58610fb33b819880584f0a71fdf409bb063d63fcdb98843f2e7b66"
-      }
-    },
-    {
-      "id": "hd_blue_up_5",
-      "label": "hd_blue_up_5",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_blue_up_5.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_blue_up_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/blue/walk/blue_up_6.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "44fafc36463d2109da5ea9e43a611de7f56e08752db6eb63cbbcba9fe734d642",
-        "outputHash": "6f3690973db0d2400197afd07591c871155fd7cd32ac41c020ce2d6531e9d843"
       }
     },
     {
@@ -8923,7 +8825,7 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/straw/walk/straw_up_3.png",
+        "source": "source/rendered2d/characters/v5/straw/walk/straw_up_4.png",
         "crop": [
           0,
           0,
@@ -8933,8 +8835,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "158c7707ef813672c61cf47da613f9dba9237ac61a88bd6c2f44a8e1829ab0ee",
-        "outputHash": "33311ff2664b11087ee6e2e13126b6d7ed04c5afc0e5a41ebc113f86725672dc"
+        "sourceHash": "cbb9edbd46cea1e9fb678d89767a72b6a730861fd376015343f951d8bb069985",
+        "outputHash": "100f652f3d6f64e8b4e47e5cc2046bb94d7e0c9015216d2dafc6abb13e2b08ec"
       }
     },
     {
@@ -8972,55 +8874,6 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/straw/walk/straw_up_4.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "cbb9edbd46cea1e9fb678d89767a72b6a730861fd376015343f951d8bb069985",
-        "outputHash": "100f652f3d6f64e8b4e47e5cc2046bb94d7e0c9015216d2dafc6abb13e2b08ec"
-      }
-    },
-    {
-      "id": "hd_straw_up_4",
-      "label": "hd_straw_up_4",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_straw_up_4.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_straw_up_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
         "source": "source/rendered2d/characters/v5/straw/walk/straw_up_5.png",
         "crop": [
           0,
@@ -9033,55 +8886,6 @@
         "fullCanvas": true,
         "sourceHash": "ead940fa92fbd798b400fb6d4a519516e1ae8e00adb7e05b51785b1db64fde2a",
         "outputHash": "ed4bf9f5e0f15bf495d0425ef14959cc40904948e0a6fa4c8fe58cb75c788a48"
-      }
-    },
-    {
-      "id": "hd_straw_up_5",
-      "label": "hd_straw_up_5",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_straw_up_5.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_straw_up_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/straw/walk/straw_up_6.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "5bf3fa52824d7a6ecb3c4f401072c59804f183575418f8d4e5e168f90c32fdc2",
-        "outputHash": "4526152dd7a40f1744fbbd6e11b6937e2898dbd9e3a746218ee078258a207c90"
       }
     },
     {
@@ -12843,7 +12647,7 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/red/walk/red_up_3.png",
+        "source": "source/rendered2d/characters/v5/red/walk/red_up_4.png",
         "crop": [
           0,
           0,
@@ -12853,8 +12657,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "f065c6fc4a40ae644a162665b7845fb0b9e0d112b44d3e29e507a9cf178df253",
-        "outputHash": "681a74bb9cf9bb89c6f953132fbd4139825c861f63d9ba3680e8e75314da2089"
+        "sourceHash": "1170ccb30d74e0352c24b5bbdc0021ff1871501dfb1cd15887d6c6849b6f4113",
+        "outputHash": "0b4087295bad03e359b7a39d19ac6303da5e191231d2f0d2922291428cd256b2"
       }
     },
     {
@@ -12892,55 +12696,6 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/red/walk/red_up_4.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "1170ccb30d74e0352c24b5bbdc0021ff1871501dfb1cd15887d6c6849b6f4113",
-        "outputHash": "0b4087295bad03e359b7a39d19ac6303da5e191231d2f0d2922291428cd256b2"
-      }
-    },
-    {
-      "id": "hd_red_up_4",
-      "label": "hd_red_up_4",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_red_up_4.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_red_up_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
         "source": "source/rendered2d/characters/v5/red/walk/red_up_5.png",
         "crop": [
           0,
@@ -12953,55 +12708,6 @@
         "fullCanvas": true,
         "sourceHash": "4a4474ae2f9121710fea91989b168ccb5f683796f5c6861fdf3eb9904d420195",
         "outputHash": "8980171c9b235efa4a752f91515dbf023ea938c4dab111025b7b2ffc854ec0df"
-      }
-    },
-    {
-      "id": "hd_red_up_5",
-      "label": "hd_red_up_5",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_red_up_5.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_red_up_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/red/walk/red_up_6.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "a1d66e1f06e215faf371c2931f418297db78d2f41dcaac28515835f7d8d603c0",
-        "outputHash": "5fbf4e2a77d23bcf6713221e2d9271746c0c72e1e82fdea8ad23736b69acad32"
       }
     },
     {
@@ -16763,7 +16469,7 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/jade/walk/jade_up_3.png",
+        "source": "source/rendered2d/characters/v5/jade/walk/jade_up_4.png",
         "crop": [
           0,
           0,
@@ -16773,8 +16479,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "02b435225f5aeca45e139ee7dc9c3a839329dc4f75d7ed7f26bff632aaee1860",
-        "outputHash": "da8c46a36178930bb8890478c117bacfaf9bfffee8c46e039c52c4719cc09919"
+        "sourceHash": "403700b7fd559671934c4810229527a7950f82e703b78016a26074efe7070d19",
+        "outputHash": "636996e55bf3f803504fe9ced520255edcd77f5bcbef81b1dd9c148be214f363"
       }
     },
     {
@@ -16812,55 +16518,6 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/jade/walk/jade_up_4.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "403700b7fd559671934c4810229527a7950f82e703b78016a26074efe7070d19",
-        "outputHash": "636996e55bf3f803504fe9ced520255edcd77f5bcbef81b1dd9c148be214f363"
-      }
-    },
-    {
-      "id": "hd_jade_up_4",
-      "label": "hd_jade_up_4",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_jade_up_4.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_jade_up_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
         "source": "source/rendered2d/characters/v5/jade/walk/jade_up_5.png",
         "crop": [
           0,
@@ -16873,55 +16530,6 @@
         "fullCanvas": true,
         "sourceHash": "7e781c204d67d2ab3a8f6dc76197216f4aa377a2e288f3b109fa62e3e6ed22a1",
         "outputHash": "35212074da7195f1dd6fd007dc15946d66cc53fc796997bbf00868d6a63ad27a"
-      }
-    },
-    {
-      "id": "hd_jade_up_5",
-      "label": "hd_jade_up_5",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_jade_up_5.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_jade_up_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/jade/walk/jade_up_6.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "386044c8a285aeee6072f862451e6612234a30834831a4cd02a9c481fe22c853",
-        "outputHash": "23086f1553f1fd61b5515636bb9ee5c25b0d2e49f902d85b34f8c5ab798fb328"
       }
     },
     {
@@ -20683,7 +20291,7 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/elite_male/walk/elite_male_up_3.png",
+        "source": "source/rendered2d/characters/v5/elite_male/walk/elite_male_up_4.png",
         "crop": [
           0,
           0,
@@ -20693,8 +20301,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "5fa5d9d949c583818617f1b4fcc3f267311dc99c7c565b585abaa9153ef66507",
-        "outputHash": "2175abf89a40997fe097ae548d82b9c3e874e627831d52736445ef43a4c5f02b"
+        "sourceHash": "15f8d90a850481a33e0a5058f56f10557dff83abb7782e196759ec3594da8cf3",
+        "outputHash": "73239d715577bd24a253e847f476c1e4e430c0adad440b6c9e0486dfaa2d4336"
       }
     },
     {
@@ -20732,55 +20340,6 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/elite_male/walk/elite_male_up_4.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "15f8d90a850481a33e0a5058f56f10557dff83abb7782e196759ec3594da8cf3",
-        "outputHash": "73239d715577bd24a253e847f476c1e4e430c0adad440b6c9e0486dfaa2d4336"
-      }
-    },
-    {
-      "id": "hd_elite_male_up_4",
-      "label": "hd_elite_male_up_4",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elite_male_up_4.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elite_male_up_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
         "source": "source/rendered2d/characters/v5/elite_male/walk/elite_male_up_5.png",
         "crop": [
           0,
@@ -20793,55 +20352,6 @@
         "fullCanvas": true,
         "sourceHash": "1804cad86a0a0dc3750c442506395048cfadcb2e3bc51c030834d9fddb2dca87",
         "outputHash": "b27a549c999ba71e84171f1e15adb167310a2ff7d34adb22235950ba1e1d017a"
-      }
-    },
-    {
-      "id": "hd_elite_male_up_5",
-      "label": "hd_elite_male_up_5",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elite_male_up_5.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elite_male_up_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elite_male/walk/elite_male_up_6.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "4fd54f1f490824bb016ff32ed97bf56026e5466a54d5c5db4b82b20348b3f842",
-        "outputHash": "4d08b9f5037f26b40df4b0ae665884aa48fb3c404e8a2688be9fb1bdc90b339f"
       }
     },
     {
@@ -24603,7 +24113,7 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/elite_female/walk/elite_female_up_3.png",
+        "source": "source/rendered2d/characters/v5/elite_female/walk/elite_female_up_4.png",
         "crop": [
           0,
           0,
@@ -24613,8 +24123,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "aa62168ce7671dff1a356537495656ea8389ee71583e80fe76405dd01460ace0",
-        "outputHash": "9f2a6200e028b47db354c6dc903f60e77b76cace56fa3583eff456c91f490422"
+        "sourceHash": "1b9d4d27e1f0066196bb5c86bc390e28dbc4360e2dbbbc59f2154d6f155f8ba4",
+        "outputHash": "14a94ee621028cd93aa30dc50a75ba9e57879104ad661c5a5390ceb66e3df75a"
       }
     },
     {
@@ -24652,55 +24162,6 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/elite_female/walk/elite_female_up_4.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "1b9d4d27e1f0066196bb5c86bc390e28dbc4360e2dbbbc59f2154d6f155f8ba4",
-        "outputHash": "14a94ee621028cd93aa30dc50a75ba9e57879104ad661c5a5390ceb66e3df75a"
-      }
-    },
-    {
-      "id": "hd_elite_female_up_4",
-      "label": "hd_elite_female_up_4",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elite_female_up_4.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elite_female_up_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
         "source": "source/rendered2d/characters/v5/elite_female/walk/elite_female_up_5.png",
         "crop": [
           0,
@@ -24713,55 +24174,6 @@
         "fullCanvas": true,
         "sourceHash": "379222b3a16c66fddda6b40d4d021cd3e656d1f9e363ddeaa813543d8cc4e2cf",
         "outputHash": "32619cadcfa5ed07aeda13598d5fdaf56d72c7b7e086f4de725772a1ccabd9c7"
-      }
-    },
-    {
-      "id": "hd_elite_female_up_5",
-      "label": "hd_elite_female_up_5",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elite_female_up_5.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elite_female_up_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elite_female/walk/elite_female_up_6.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "f89222b0b1782066bab5e4c1333bdfe30f5a7f8983f752768edf2bcce00a824b",
-        "outputHash": "f90d9018fb76dbb2d5c39f22d78bf6e341c699c3e4aa8ff622c42d550165c6f6"
       }
     },
     {
@@ -28523,7 +27935,7 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/child/walk/child_up_3.png",
+        "source": "source/rendered2d/characters/v5/child/walk/child_up_4.png",
         "crop": [
           0,
           0,
@@ -28533,8 +27945,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "29294041a1e40227a5a32ec18e6b43c156f40490d967969406540f65234c1450",
-        "outputHash": "568690e0dc94b639bd3ae457b4adbbbe6d30063142f11cda1dce5873c4d3167a"
+        "sourceHash": "0593f4fcf1ea38e0c301a3c0eda43099843fbf1a305cb562f6760f6a1befae47",
+        "outputHash": "b08b9112cd71db8e4e707d74b6002d37572ac29a2d0d764195233625983d66a2"
       }
     },
     {
@@ -28572,55 +27984,6 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/child/walk/child_up_4.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "0593f4fcf1ea38e0c301a3c0eda43099843fbf1a305cb562f6760f6a1befae47",
-        "outputHash": "b08b9112cd71db8e4e707d74b6002d37572ac29a2d0d764195233625983d66a2"
-      }
-    },
-    {
-      "id": "hd_child_up_4",
-      "label": "hd_child_up_4",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_child_up_4.png",
-      "width": 104,
-      "height": 104,
-      "pivot": {
-        "x": 52,
-        "y": 88.18461538461538
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_child_up_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 104,
-        "h": 104
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 104,
-        "h": 104
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
         "source": "source/rendered2d/characters/v5/child/walk/child_up_5.png",
         "crop": [
           0,
@@ -28633,55 +27996,6 @@
         "fullCanvas": true,
         "sourceHash": "a810bc95445d46cdb05b9288dec9ac3cac6c4b6a6b16d519a1aeb4a9f64d0e46",
         "outputHash": "1b73f229ba9b6f8da31f49dc96ad3cf2a2afe7d9bfc28777b9c58161c4424e67"
-      }
-    },
-    {
-      "id": "hd_child_up_5",
-      "label": "hd_child_up_5",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_child_up_5.png",
-      "width": 104,
-      "height": 104,
-      "pivot": {
-        "x": 52,
-        "y": 88.18461538461538
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_child_up_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 104,
-        "h": 104
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 104,
-        "h": 104
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/child/walk/child_up_6.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "01da9b7f238cead683028e703db5c8bb5b80081d12736a8d70a126d59116b695",
-        "outputHash": "0edaa49ff9f7ccfe01abfa4737c7134fe5151675303d0e69e23ff8f810de94a5"
       }
     },
     {
@@ -29077,18 +28391,18 @@
       }
     },
     {
-      "id": "hd_elder_down_0",
-      "label": "hd_elder_down_0",
+      "id": "hd_elder_chair",
+      "label": "hd_elder_chair",
       "category": "characters",
       "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_down_0.png",
+      "path": "runtime/characters/hd_elder_chair.png",
       "width": 120,
       "height": 120,
       "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
+        "x": 60.00002145767212,
+        "y": 102.34826624393463
       },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_down_0.png",
+      "sourceSheet": "source/rendered2d/production/characters/hd_elder_chair.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
@@ -29111,1341 +28425,18 @@
       "usage": "HD production",
       "bundle": "characters",
       "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_down_1.png",
+        "source": "source/rendered2d/characters/v5/elder/rest/elder_chair.png",
         "crop": [
           0,
           0,
-          512,
-          512
+          256,
+          256
         ],
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "05a4f504898c71ffaaf0cc1075bcbf6935969e4d5a6048a509b8cd7b1166c933",
-        "outputHash": "30b5a7783915968c5a9fb5f87cdd29001e55ad9ccd6ae063eb683a71f815b179"
-      }
-    },
-    {
-      "id": "hd_elder_down_1",
-      "label": "hd_elder_down_1",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_down_1.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_down_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_down_2.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "7150a5e3048d18d4c1b72c9545048d00a00a26ad43a79246d75fddb555941aa1",
-        "outputHash": "776072b992226f3b1f679d7f5c281c6bfe6b73294bc27622aaff91489006ddc9"
-      }
-    },
-    {
-      "id": "hd_elder_down_2",
-      "label": "hd_elder_down_2",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_down_2.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_down_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_down_3.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "d710c103a570d2ced83ab4eb5bb67359560810ea8781fd63b9774804469baa5c",
-        "outputHash": "d832c401d1c6ddf282933de709615f9c2267ba8c3d642b3fe87d9e447bf2238a"
-      }
-    },
-    {
-      "id": "hd_elder_down_3",
-      "label": "hd_elder_down_3",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_down_3.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_down_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_down_4.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "a4a3167155b0ea8a9a91446325fdd0e2a8f6eefa0300790610ed553d6d05f228",
-        "outputHash": "feb0054b1417a96e873e0fbe236bc47b26e1a2ae0509ed33695e0421a3d2a541"
-      }
-    },
-    {
-      "id": "hd_elder_down_4",
-      "label": "hd_elder_down_4",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_down_4.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_down_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_down_5.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "1c0cffc12aa68a131a58e3fe54ea2fb076fa9ea5a12d4888a8326008edcbc4eb",
-        "outputHash": "84ac462ec993f4b20f2be887500db9bc43cd0be01914599fcb6ea5c54db139d9"
-      }
-    },
-    {
-      "id": "hd_elder_down_5",
-      "label": "hd_elder_down_5",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_down_5.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_down_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_down_6.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "a0d59a10dc20bdb9a03999344208f291cf76339d2361923bfbd71ea8de3f7ef9",
-        "outputHash": "f9e3b307faf740cc0d2ad748a2284d576206a5e5300203d83faec9a6f5a67d35"
-      }
-    },
-    {
-      "id": "hd_elder_down_idle",
-      "label": "hd_elder_down_idle",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_down_idle.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_down_idle.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_down_idle.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "6b86b86dc6f94a2a49ca54ab78e2ba507e1db3ba8917a421501c5edb82b4006d",
-        "outputHash": "1b97c2690304645046fdf679a1b10b2b02cf7a0181205931fe36e930e44a00e8"
-      }
-    },
-    {
-      "id": "hd_elder_right_0",
-      "label": "hd_elder_right_0",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_right_0.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_right_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_right_1.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "b867dc0c872b88c2e94cc468c96daf9a2cb4dd5caa6040a36f440e930c8157a8",
-        "outputHash": "9e8cb47c8d9b765998d5fb1379692715a70b6c2be10ae393560455f831d611e2"
-      }
-    },
-    {
-      "id": "hd_elder_right_1",
-      "label": "hd_elder_right_1",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_right_1.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_right_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_right_2.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "41a8f84dab6042b85289ecc3d83ef52ff3c00fdce01fa35150d7c43d83236215",
-        "outputHash": "38694eab5efc5779ec79f2eb2a8cffff029956109195d2062b9cdb777f076824"
-      }
-    },
-    {
-      "id": "hd_elder_right_2",
-      "label": "hd_elder_right_2",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_right_2.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_right_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_right_3.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "cfa80afb31c1bde60f44cb7f58abb03aa39e5d970c0df47da00a96229f5ccf64",
-        "outputHash": "10acdeb8865929023f831f96b37c3e7228270f37c5944f952452337441729bed"
-      }
-    },
-    {
-      "id": "hd_elder_right_3",
-      "label": "hd_elder_right_3",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_right_3.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_right_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_right_4.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "98640100089f4156b134bf028e091c7c79e927c328fed831e3c74c02fdc582f3",
-        "outputHash": "fa65a42ec5072f56d2051ac1f6cc2bf72dd5213055511d6bc0af6b62d1ae219b"
-      }
-    },
-    {
-      "id": "hd_elder_right_4",
-      "label": "hd_elder_right_4",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_right_4.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_right_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_right_5.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "5cd1be46c15602283e7e92369dc95a87cee33fb57cb1bec49a2e20f6613cb87f",
-        "outputHash": "a86a028e6e64a9fbf7f38841ad45008fb1672b1aa80e95bbf6ae6a744664d086"
-      }
-    },
-    {
-      "id": "hd_elder_right_5",
-      "label": "hd_elder_right_5",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_right_5.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_right_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_right_6.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "d3f3c567b57a69e7d1513de8d476a157f7bcd6b17f9173576d1c9d551455bc72",
-        "outputHash": "2c1ea8f1fb3dccf7fa803e675b31f6870df0ffac0c98577e1d3a1d2243606b34"
-      }
-    },
-    {
-      "id": "hd_elder_right_idle",
-      "label": "hd_elder_right_idle",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_right_idle.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_right_idle.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_right_idle.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "71a9e444439c131969afa7cfc163af0d650bcd76ecb80f6916a6f8c9c2a152c7",
-        "outputHash": "76df53b3380390762a80c4d63f99db31b27795399d016362deaf90d330a44eb9"
-      }
-    },
-    {
-      "id": "hd_elder_up_0",
-      "label": "hd_elder_up_0",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_up_0.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_up_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_up_1.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "20dcfa5fbe855f6709e3cb0421922b7aec857bf7bcec9b081eed8334943c32ca",
-        "outputHash": "26e40407b844fe5d6d3086cfa20f8292beb018ddb419210354947bcef1b75de8"
-      }
-    },
-    {
-      "id": "hd_elder_up_1",
-      "label": "hd_elder_up_1",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_up_1.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_up_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_up_2.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "a16fdd5cdc350f76d2a7d3aa0a00b612c51f8cd71b1a9a5fb369722a6f4ea16b",
-        "outputHash": "57bb967878811a75fc295ca692bc2bc7804ca2a9f1b19b3dded48d0c53d7716e"
-      }
-    },
-    {
-      "id": "hd_elder_up_2",
-      "label": "hd_elder_up_2",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_up_2.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_up_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_up_3.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "7bf70797f78253aeebcba2e7b98b90ba524a8929da2ce69da9c2e96c73971281",
-        "outputHash": "e5e1f6ad74fd23d35acf7aae333cb70687b06e98db6b8a725c0f5af4505ac510"
-      }
-    },
-    {
-      "id": "hd_elder_up_3",
-      "label": "hd_elder_up_3",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_up_3.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_up_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_up_4.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "73aacc3df1a87be7d5ff2febc4791cf293db5f421c04ec01ef46943ec70a34b7",
-        "outputHash": "4c9779cb5c8feb80eb0d4d98f2d2274d10d76eeb9966078503359cdd7c9a08b2"
-      }
-    },
-    {
-      "id": "hd_elder_up_4",
-      "label": "hd_elder_up_4",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_up_4.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_up_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_up_5.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "1ebff1351f36ce4592ef8b8b5436872fab2434c1aadc401c591f3ba5bbb07857",
-        "outputHash": "b204eed80a78082e940aad6bc47673e9bab6e761f002da2f95ddeca76638cecd"
-      }
-    },
-    {
-      "id": "hd_elder_up_5",
-      "label": "hd_elder_up_5",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_up_5.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_up_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_up_6.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "db9caad40274284f14dc27b46a664201458099bc99a2e452416f2d14a58e01e3",
-        "outputHash": "bc29831320abd31cfea1b3576b7c23cd23fa0bece41b2cedc8cd960f39d69b36"
-      }
-    },
-    {
-      "id": "hd_elder_up_idle",
-      "label": "hd_elder_up_idle",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_up_idle.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_up_idle.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_up_idle.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "ddd0b86f259dab319768bf1c4b0da48bec4f2f7b32f93ca96b5977ec1e8b6943",
-        "outputHash": "7268ec1b29de29f056ba31335a8eaabcc5579c10650c4365630dedaec63cb3bd"
-      }
-    },
-    {
-      "id": "hd_elder_left_0",
-      "label": "hd_elder_left_0",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_left_0.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_left_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_left_1.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "1d42a8f22d88a3db734e307f4b4fa05c02abbbdb56ebdab8aa5feee3c77d94d5",
-        "outputHash": "aa1cd60e23a02ef459f99d9bed8b73cc790714edb41c4676626c06397c08c60f"
-      }
-    },
-    {
-      "id": "hd_elder_left_1",
-      "label": "hd_elder_left_1",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_left_1.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_left_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_left_2.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "88acb3dca06cf1e98787d55285c588fe151c944c544640281f88f71783816941",
-        "outputHash": "ce6d21edaa065a5662a4add0eb49112521d5c7b65ebfd04db7a5cb4aee73c62c"
-      }
-    },
-    {
-      "id": "hd_elder_left_2",
-      "label": "hd_elder_left_2",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_left_2.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_left_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_left_3.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "0b882725ee588be833b948734a9d24ef36e59442b9a1cdd9e63252212357ff07",
-        "outputHash": "0bd3e2493a5a0b7fa881b02c6a8a3feb24ca329801b39dbec623c2d0c42f34c8"
-      }
-    },
-    {
-      "id": "hd_elder_left_3",
-      "label": "hd_elder_left_3",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_left_3.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_left_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_left_4.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "da44e3f12ef4f438e8e2f7d60444edb64e8e844a13d75cc25f403b6f0cfa27d9",
-        "outputHash": "9754605a9653708572ab79b59ee0ffd8ba843f8ed9a109c21a57cde92dcca0dd"
-      }
-    },
-    {
-      "id": "hd_elder_left_4",
-      "label": "hd_elder_left_4",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_left_4.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_left_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_left_5.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "eb26640bfe8bd65e90d89456190c891f7f0c6edf1a8a26ce344437807127e8b5",
-        "outputHash": "5635a7326ceb8142ce9f1ee96c2bc744d7b8aa346fc5bcdf36794e9b9a106bd4"
-      }
-    },
-    {
-      "id": "hd_elder_left_5",
-      "label": "hd_elder_left_5",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_left_5.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_left_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_left_6.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "8741a975d4ae5bf8255a6947bc4bc8572851e1bd743d0144bbf28f918e418547",
-        "outputHash": "48a51248e2f95d1dadb6d40f020cfd6a7264cdbd82985fb59c8b672e3bb9d9d0"
-      }
-    },
-    {
-      "id": "hd_elder_left_idle",
-      "label": "hd_elder_left_idle",
-      "category": "characters",
-      "categoryLabel": "characters",
-      "path": "runtime/characters/hd_elder_left_idle.png",
-      "width": 120,
-      "height": 120,
-      "pivot": {
-        "x": 60,
-        "y": 101.75147928994083
-      },
-      "sourceSheet": "source/rendered2d/production/characters/hd_elder_left_idle.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 120,
-        "h": 120
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "HD production",
-      "bundle": "characters",
-      "provenance": {
-        "source": "source/rendered2d/characters/v5/elder/walk/elder_left_idle.png",
-        "crop": [
-          0,
-          0,
-          512,
-          512
-        ],
-        "objectBox": null,
-        "alphaCutoff": 0,
-        "fullCanvas": true,
-        "sourceHash": "3f08981bcc4119205cf326924a6f4d6d8ccbf9f46bec85f722f5d8b3584381bd",
-        "outputHash": "cdbceba1fd9843e2407eb47cb788d04a56700b7aeac65982975745fbe81df297"
+        "sourceHash": "17d32e4c9763eba1dbbcc96f35d3692d655bf92bff3b38c695af578cf54353e6",
+        "outputHash": "0d0619a01d3fda0fb169bf6fa7d8593f1a8fd2b768822c773688ca448274f110"
       }
     },
     {
@@ -35626,6 +33617,156 @@
         "sourceHash": "97721e5826b2f43d1f22a8fa38ef84d062f53e976e12a7758d553daf93671e2d",
         "outputHash": "20f1695b8fccb15ac583a44f69fd3b89ff7036b0f014086bd6c99b05336a0962"
       }
+    },
+    {
+      "id": "fx_quality_elite",
+      "label": "fx_quality_elite",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_quality_elite.png",
+      "width": 64,
+      "height": 64,
+      "pivot": {
+        "x": 32,
+        "y": 32
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_quality_elite.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 10,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "村民足底品质光环",
+      "bundle": "characters",
+      "provenance": {
+        "source": "source/effects/villager-quality/aura-sheet.png",
+        "crop": [
+          0,
+          0,
+          724,
+          724
+        ],
+        "objectBox": null,
+        "alphaCutoff": 28,
+        "fullCanvas": true,
+        "sourceHash": "77f874842a94cfc37a186d83027258710deef3486a414425f1991975af1e1c3d",
+        "outputHash": "b89d2bdbb713c1aeb05225442731507ad1df753ad5e02885f68aae0946eac685"
+      },
+      "alphaCutoff": 48
+    },
+    {
+      "id": "fx_quality_hero",
+      "label": "fx_quality_hero",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_quality_hero.png",
+      "width": 64,
+      "height": 64,
+      "pivot": {
+        "x": 32,
+        "y": 32
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_quality_hero.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 10,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "村民足底品质光环",
+      "bundle": "characters",
+      "provenance": {
+        "source": "source/effects/villager-quality/aura-sheet.png",
+        "crop": [
+          724,
+          0,
+          724,
+          724
+        ],
+        "objectBox": null,
+        "alphaCutoff": 28,
+        "fullCanvas": true,
+        "sourceHash": "77f874842a94cfc37a186d83027258710deef3486a414425f1991975af1e1c3d",
+        "outputHash": "46cf8baebe8e7034aa2f5c13a50991f76343d23c4ce2abd06fb96a09cb485052"
+      },
+      "alphaCutoff": 48
+    },
+    {
+      "id": "fx_quality_legendary",
+      "label": "fx_quality_legendary",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_quality_legendary.png",
+      "width": 64,
+      "height": 64,
+      "pivot": {
+        "x": 32,
+        "y": 32
+      },
+      "sourceSheet": "source/rendered2d/production/effects/fx_quality_legendary.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 10,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "村民足底品质光环",
+      "bundle": "characters",
+      "provenance": {
+        "source": "source/effects/villager-quality/aura-sheet.png",
+        "crop": [
+          1448,
+          0,
+          724,
+          724
+        ],
+        "objectBox": null,
+        "alphaCutoff": 28,
+        "fullCanvas": true,
+        "sourceHash": "77f874842a94cfc37a186d83027258710deef3486a414425f1991975af1e1c3d",
+        "outputHash": "447038f3550995de32b9fb006b7bf13105c454ef14676fb4686306c5c8f3727d"
+      },
+      "alphaCutoff": 48
     },
     {
       "id": "icon_tactic_shield",
@@ -42355,6 +40496,293 @@
         "outputHash": "2f36a4dca9b003fddea8741db5251f455822ce2948acf891cb4a69d6a6aee238",
         "derivedFrom": "hd_house_body_0"
       }
+    },
+    {
+      "id": "patrol_walk_0",
+      "label": "patrol_walk_0",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/patrol_walk_0.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 93
+      },
+      "sourceSheet": "source/rendered2d/production/patrol/daizi-walk.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 627,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 17,
+        "y": 0,
+        "w": 610,
+        "h": 627
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "patrol_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "淡紫儿夜间出击",
+      "bundle": "characters",
+      "provenance": {
+        "source": "source/rendered2d/production/patrol/daizi-walk.png",
+        "sourceHash": "b43eb6b6f22420f38d055d9bcc298fb29939f56e1c4c24b8842da168a973cb51",
+        "outputHash": "882fbeeef615f0117dd24feb4d26982b90fae482b8ff1d3f4e18465659e5972e",
+        "fullCanvas": false
+      }
+    },
+    {
+      "id": "patrol_walk_1",
+      "label": "patrol_walk_1",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/patrol_walk_1.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 93
+      },
+      "sourceSheet": "source/rendered2d/production/patrol/daizi-walk.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 0,
+        "w": 627,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 610,
+        "h": 627
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "patrol_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "淡紫儿夜间出击",
+      "bundle": "characters",
+      "provenance": {
+        "source": "source/rendered2d/production/patrol/daizi-walk.png",
+        "sourceHash": "b43eb6b6f22420f38d055d9bcc298fb29939f56e1c4c24b8842da168a973cb51",
+        "outputHash": "f2f70d0759c03f96e6d63049f82e5b6dfe0533189cefbf2e3c76b9565ad818c5",
+        "fullCanvas": false
+      }
+    },
+    {
+      "id": "patrol_walk_2",
+      "label": "patrol_walk_2",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/patrol_walk_2.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 93
+      },
+      "sourceSheet": "source/rendered2d/production/patrol/daizi-walk.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 627,
+        "w": 627,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 17,
+        "y": 0,
+        "w": 610,
+        "h": 627
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "patrol_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "淡紫儿夜间出击",
+      "bundle": "characters",
+      "provenance": {
+        "source": "source/rendered2d/production/patrol/daizi-walk.png",
+        "sourceHash": "b43eb6b6f22420f38d055d9bcc298fb29939f56e1c4c24b8842da168a973cb51",
+        "outputHash": "5dc78e19e8f883bbf33771106eecf88717db7da07868771d7c1b76fceb4edb28",
+        "fullCanvas": false
+      }
+    },
+    {
+      "id": "patrol_walk_3",
+      "label": "patrol_walk_3",
+      "category": "characters",
+      "categoryLabel": "characters",
+      "path": "runtime/characters/patrol_walk_3.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 93
+      },
+      "sourceSheet": "source/rendered2d/production/patrol/daizi-walk.png",
+      "sourceRect": {
+        "x": 627,
+        "y": 627,
+        "w": 627,
+        "h": 627
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 610,
+        "h": 627
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "patrol_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "淡紫儿夜间出击",
+      "bundle": "characters",
+      "provenance": {
+        "source": "source/rendered2d/production/patrol/daizi-walk.png",
+        "sourceHash": "b43eb6b6f22420f38d055d9bcc298fb29939f56e1c4c24b8842da168a973cb51",
+        "outputHash": "019d63ce992be8dcf5b8d7edfc772038581da76dce3db42ac69bafaefa5b8196",
+        "fullCanvas": false
+      }
+    },
+    {
+      "id": "patrol_booth_0",
+      "label": "patrol_booth_0",
+      "category": "building-parts",
+      "categoryLabel": "building-parts",
+      "path": "runtime/building-parts/patrol_booth_0.png",
+      "width": 128,
+      "height": 128,
+      "pivot": {
+        "x": 64,
+        "y": 123
+      },
+      "sourceSheet": "source/rendered2d/production/patrol/pink-memories.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 724,
+        "h": 724
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 724,
+        "h": 724
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "粉红色的回忆",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/rendered2d/production/patrol/pink-memories.png",
+        "sourceHash": "385230ea1a542c1c54fd6f86913455dc16135b6b05c2c4fab6622e52306ab8a7",
+        "outputHash": "2296f001e5c6a9833111239be9b0b4ba128dc4b87fb6d9c081913630ac8709c3",
+        "fullCanvas": false
+      }
+    },
+    {
+      "id": "patrol_booth_1",
+      "label": "patrol_booth_1",
+      "category": "building-parts",
+      "categoryLabel": "building-parts",
+      "path": "runtime/building-parts/patrol_booth_1.png",
+      "width": 128,
+      "height": 128,
+      "pivot": {
+        "x": 64,
+        "y": 123
+      },
+      "sourceSheet": "source/rendered2d/production/patrol/pink-memories.png",
+      "sourceRect": {
+        "x": 724,
+        "y": 0,
+        "w": 724,
+        "h": 724
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 724,
+        "h": 724
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "粉红色的回忆",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/rendered2d/production/patrol/pink-memories.png",
+        "sourceHash": "385230ea1a542c1c54fd6f86913455dc16135b6b05c2c4fab6622e52306ab8a7",
+        "outputHash": "919489cd2b30135db444909fdee153b2c58d3f60cd74ee247dd393bb987ad70b",
+        "fullCanvas": false
+      }
+    },
+    {
+      "id": "patrol_booth_2",
+      "label": "patrol_booth_2",
+      "category": "building-parts",
+      "categoryLabel": "building-parts",
+      "path": "runtime/building-parts/patrol_booth_2.png",
+      "width": 128,
+      "height": 128,
+      "pivot": {
+        "x": 64,
+        "y": 123
+      },
+      "sourceSheet": "source/rendered2d/production/patrol/pink-memories.png",
+      "sourceRect": {
+        "x": 1448,
+        "y": 0,
+        "w": 724,
+        "h": 724
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 724,
+        "h": 724
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "粉红色的回忆",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/rendered2d/production/patrol/pink-memories.png",
+        "sourceHash": "385230ea1a542c1c54fd6f86913455dc16135b6b05c2c4fab6622e52306ab8a7",
+        "outputHash": "39af2c901745fe4db888e87f83392ed776274b547b7515149602ee7748accc0c",
+        "fullCanvas": false
+      }
     }
   ],
   "animations": {
@@ -42712,12 +41140,10 @@
           "hd_blue_up_0",
           "hd_blue_up_1",
           "hd_blue_up_2",
-          "hd_blue_up_3",
-          "hd_blue_up_4",
-          "hd_blue_up_5"
+          "hd_blue_up_3"
         ],
-        "frameCount": 6,
-        "fps": 12,
+        "frameCount": 4,
+        "fps": 8,
         "loop": true,
         "restFrame": "hd_blue_up_idle",
         "category": "characters",
@@ -43144,12 +41570,10 @@
           "hd_straw_up_0",
           "hd_straw_up_1",
           "hd_straw_up_2",
-          "hd_straw_up_3",
-          "hd_straw_up_4",
-          "hd_straw_up_5"
+          "hd_straw_up_3"
         ],
-        "frameCount": 6,
-        "fps": 12,
+        "frameCount": 4,
+        "fps": 8,
         "loop": true,
         "restFrame": "hd_straw_up_idle",
         "category": "characters",
@@ -43576,12 +42000,10 @@
           "hd_red_up_0",
           "hd_red_up_1",
           "hd_red_up_2",
-          "hd_red_up_3",
-          "hd_red_up_4",
-          "hd_red_up_5"
+          "hd_red_up_3"
         ],
-        "frameCount": 6,
-        "fps": 12,
+        "frameCount": 4,
+        "fps": 8,
         "loop": true,
         "restFrame": "hd_red_up_idle",
         "category": "characters",
@@ -44008,12 +42430,10 @@
           "hd_jade_up_0",
           "hd_jade_up_1",
           "hd_jade_up_2",
-          "hd_jade_up_3",
-          "hd_jade_up_4",
-          "hd_jade_up_5"
+          "hd_jade_up_3"
         ],
-        "frameCount": 6,
-        "fps": 12,
+        "frameCount": 4,
+        "fps": 8,
         "loop": true,
         "restFrame": "hd_jade_up_idle",
         "category": "characters",
@@ -44440,12 +42860,10 @@
           "hd_elite_male_up_0",
           "hd_elite_male_up_1",
           "hd_elite_male_up_2",
-          "hd_elite_male_up_3",
-          "hd_elite_male_up_4",
-          "hd_elite_male_up_5"
+          "hd_elite_male_up_3"
         ],
-        "frameCount": 6,
-        "fps": 12,
+        "frameCount": 4,
+        "fps": 8,
         "loop": true,
         "restFrame": "hd_elite_male_up_idle",
         "category": "characters",
@@ -44872,12 +43290,10 @@
           "hd_elite_female_up_0",
           "hd_elite_female_up_1",
           "hd_elite_female_up_2",
-          "hd_elite_female_up_3",
-          "hd_elite_female_up_4",
-          "hd_elite_female_up_5"
+          "hd_elite_female_up_3"
         ],
-        "frameCount": 6,
-        "fps": 12,
+        "frameCount": 4,
+        "fps": 8,
         "loop": true,
         "restFrame": "hd_elite_female_up_idle",
         "category": "characters",
@@ -45304,12 +43720,10 @@
           "hd_child_up_0",
           "hd_child_up_1",
           "hd_child_up_2",
-          "hd_child_up_3",
-          "hd_child_up_4",
-          "hd_child_up_5"
+          "hd_child_up_3"
         ],
-        "frameCount": 6,
-        "fps": 12,
+        "frameCount": 4,
+        "fps": 8,
         "loop": true,
         "restFrame": "hd_child_up_idle",
         "category": "characters",
@@ -45353,118 +43767,6 @@
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
         "stridePixels": 12.16
-      },
-      {
-        "id": "villager_elder_walk_down",
-        "frameIds": [
-          "hd_elder_down_0",
-          "hd_elder_down_1",
-          "hd_elder_down_2",
-          "hd_elder_down_3",
-          "hd_elder_down_4",
-          "hd_elder_down_5"
-        ],
-        "frameCount": 6,
-        "fps": 12,
-        "loop": true,
-        "restFrame": "hd_elder_down_idle",
-        "category": "characters",
-        "mapping": "villager_elder_walk_down",
-        "canvas": {
-          "w": 120,
-          "h": 120
-        },
-        "pivot": {
-          "x": 60,
-          "y": 101.75147928994083
-        },
-        "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 11.815384615384616
-      },
-      {
-        "id": "villager_elder_walk_right",
-        "frameIds": [
-          "hd_elder_right_0",
-          "hd_elder_right_1",
-          "hd_elder_right_2",
-          "hd_elder_right_3",
-          "hd_elder_right_4",
-          "hd_elder_right_5"
-        ],
-        "frameCount": 6,
-        "fps": 12,
-        "loop": true,
-        "restFrame": "hd_elder_right_idle",
-        "category": "characters",
-        "mapping": "villager_elder_walk_right",
-        "canvas": {
-          "w": 120,
-          "h": 120
-        },
-        "pivot": {
-          "x": 60,
-          "y": 101.75147928994083
-        },
-        "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 11.815384615384616
-      },
-      {
-        "id": "villager_elder_walk_up",
-        "frameIds": [
-          "hd_elder_up_0",
-          "hd_elder_up_1",
-          "hd_elder_up_2",
-          "hd_elder_up_3",
-          "hd_elder_up_4",
-          "hd_elder_up_5"
-        ],
-        "frameCount": 6,
-        "fps": 12,
-        "loop": true,
-        "restFrame": "hd_elder_up_idle",
-        "category": "characters",
-        "mapping": "villager_elder_walk_up",
-        "canvas": {
-          "w": 120,
-          "h": 120
-        },
-        "pivot": {
-          "x": 60,
-          "y": 101.75147928994083
-        },
-        "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 11.815384615384616
-      },
-      {
-        "id": "villager_elder_walk_left",
-        "frameIds": [
-          "hd_elder_left_0",
-          "hd_elder_left_1",
-          "hd_elder_left_2",
-          "hd_elder_left_3",
-          "hd_elder_left_4",
-          "hd_elder_left_5"
-        ],
-        "frameCount": 6,
-        "fps": 12,
-        "loop": true,
-        "restFrame": "hd_elder_left_idle",
-        "category": "characters",
-        "mapping": "villager_elder_walk_left",
-        "canvas": {
-          "w": 120,
-          "h": 120
-        },
-        "pivot": {
-          "x": 60,
-          "y": 101.75147928994083
-        },
-        "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 11.815384615384616
       },
       {
         "id": "villager_baby_idle",
@@ -46017,6 +44319,32 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "patrol_walk",
+        "frameIds": [
+          "patrol_walk_0",
+          "patrol_walk_1",
+          "patrol_walk_2",
+          "patrol_walk_3"
+        ],
+        "frameCount": 4,
+        "fps": 8,
+        "loop": true,
+        "restFrame": "patrol_walk_0",
+        "category": "characters",
+        "mapping": "patrol",
+        "canvas": {
+          "w": 96,
+          "h": 96
+        },
+        "pivot": {
+          "x": 48,
+          "y": 93
+        },
+        "clock": "battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 56
       }
     ],
     "walkDirections": {
@@ -46143,24 +44471,6 @@
         },
         "LEFT": {
           "clip": "villager_child_walk_left",
-          "mirror": false
-        }
-      },
-      "elder": {
-        "DOWN": {
-          "clip": "villager_elder_walk_down",
-          "mirror": false
-        },
-        "RIGHT": {
-          "clip": "villager_elder_walk_right",
-          "mirror": false
-        },
-        "UP": {
-          "clip": "villager_elder_walk_up",
-          "mirror": false
-        },
-        "LEFT": {
-          "clip": "villager_elder_walk_left",
           "mirror": false
         }
       }

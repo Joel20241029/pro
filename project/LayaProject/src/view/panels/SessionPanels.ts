@@ -1,6 +1,7 @@
 import { capacity, person } from "../../game/VillageRules";
 import { GameState } from "../../game/GameState";
-import { ELITE, POLICIES, RULE, SEASONS, SKILLS, TRAITS } from "../../game/GameConfig";
+import { VILLAGER_QUALITY } from "../../config/VillagerQuality";
+import { POLICIES, RULE, SEASONS, SKILLS, TRAITS } from "../../game/GameConfig";
 import { season } from "../../game/WaveGenerator";
 import { C } from "../UiTheme";
 import { dailyRationAmount } from "../../game/DailyRation";
@@ -20,14 +21,14 @@ export function drawBoot(ctx: PanelContext) {
     if (b?.kind === "incompatible") {
         const box = ctx.modal("存档版本已变化", b.reason, false);
         ctx.ui.label(box, "旧进度不能用于当前版本\n重新开村将从第一天开始", 34, 320, 600, 32, C.timber, true, 110).align = "center";
-        ctx.ui.button(box, "确认放弃旧进度，重新开村", 34, 540, 600, () => ctx.game.newVillage(undefined, true), C.gold, 80);
+        ctx.ui.button(box, "确认放弃旧进度，重新开村", 34, 540, 600, () => ctx.game.newVillage(true), C.gold, 80);
         return;
     }
     if (b?.kind === "blocked") {
         const box = ctx.modal("进度需要核对", b.reason, false);
         ctx.ui.button(box, "重新读取", 34, 490, 600, () => ctx.game.retry(), C.gold, 80);
         if (b.canReset)
-            ctx.ui.button(box, "确认放弃损坏进度，重新开村", 34, 622, 600, () => ctx.game.newVillage(undefined, true), C.red, 80);
+            ctx.ui.button(box, "确认放弃损坏进度，重新开村", 34, 622, 600, () => ctx.game.newVillage(true), C.red, 80);
         return;
     }
     const box = ctx.modal("一处村落，代代相守", "白天经营村庄，夜晚守住城门。", false, undefined,
@@ -54,11 +55,12 @@ export function drawDawn(ctx: PanelContext, s: GameState) {
         q.options.forEach((k, i) => ctx.ui.button(box, SKILLS[k].join("\n"), 34, 378 + i * 132, 600, () => ctx.send({ type: "CHOOSE", value: k }), i === 0 ? C.gold : C.green, 102));
     }
     else if (q.kind === "TRAVELER") {
-        ctx.ui.image(box, ctx.art.portraitId(q.person), q.person.elite ? 229 : 250, 200, q.person.elite ? 210 : 168);
+        const quality = VILLAGER_QUALITY[q.person.quality], special = q.person.quality !== "COMMON";
+        ctx.ui.image(box, ctx.art.portraitId(q.person), special ? 229 : 250, 200, special ? 210 : 168);
         ctx.ui.label(box, `${coloredName(q.person)} 希望加入村落\n天赋：${TRAITS[q.person.trait][0]}  ·  专长：${SKILLS[q.person.skill!][0]}\n民居 ${s.people.length}/${capacity(s)}`, 34, 408, 600, 30, C.green, true, 155).align = "center";
-        if (q.person.elite) {
-            ctx.ui.label(box, `耕伐 +50% · 塔伤 +25% · 劳作 ${ELITE.adultNights} 夜 · 养老 ${ELITE.elderNights} 夜`, 34, 548, 600, 24, C.timber, true, 38).align = "center";
-            ctx.ui.iconValue(box, "icon_food", `照料 +${ELITE.careFoodBonus}`, 34, 585, 600, 34, C.cream, 24);
+        if (special) {
+            ctx.ui.label(box, `耕伐 +${Math.round((quality.production - 1) * 100)}% · 塔伤 +${Math.round((quality.damage - 1) * 100)}% · 劳作 ${quality.adultNights} 夜 · 养老 ${quality.elderNights} 夜`, 34, 548, 600, 24, C.timber, true, 38).align = "center";
+            ctx.ui.iconValue(box, "icon_food", `照料 +${quality.careFood}`, 34, 585, 600, 34, C.cream, 24);
         }
         const full = s.people.length >= capacity(s);
         ctx.ui.button(box, full ? "住房已满，无法接纳" : "欢迎加入", 34, 626, 600, () => ctx.send({ type: "CHOOSE", value: "accept" }), C.gold, 78, !full);
@@ -91,16 +93,15 @@ function drawPolicyOption(ctx: PanelContext, box: Laya.Sprite, id: string, y: nu
     });
 }
 export function drawGameOver(ctx: PanelContext, s: GameState) {
-    if (ctx.current && ["restart", "inherit", "cleanStart"].includes(ctx.current.type)) {
+    if (ctx.current?.type === "restart") {
         ctx.draw(s, ctx.current);
         return;
     }
-    const box = ctx.modal("灯火未尽，传承不息", "城门被突破。此夜没有推进年龄与日期，村落的故事已记入传承。", false);
+    const box = ctx.modal("守夜失败", "城门被突破，本局结束。", false);
     ctx.ui.image(box, "icon_heart", 253, 226, 162);
     ctx.ui.label(box, s.summary, 34, 430, 600, 32, C.green, true, 140).align = "center";
     ctx.ui.label(box, `最长坚守 ${s.legacy.bestNight} 夜 · 累计出生 ${s.legacy.births} 人`, 34, 620, 600, 28, C.muted, false, 80).align = "center";
-    ctx.ui.button(box, "传承开村", 34, 748, 286, () => ctx.open({ type: "inherit" }), C.green, 82);
-    ctx.ui.button(box, "纯净开始", 338, 748, 296, () => ctx.open({ type: "cleanStart" }), C.gold, 82);
+    ctx.ui.button(box, "重新开村", 170, 748, 328, () => ctx.open({ type: "restart" }), C.gold, 82);
 }
 /** 保存、口粮和回前台先处理，随后是结算，再接失败、清晨或普通界面。 */
 export function drawSessionPanel(ctx: PanelContext, s: GameState, drawResult?: () => boolean) {

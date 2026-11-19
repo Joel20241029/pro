@@ -140,7 +140,7 @@ export class VillagerMotion {
         for (const p of people) if (!claimed.has(p.id)) {
             const slot = this.campSlots.get(p.id)!;
             reserved.push(this.careStops.get(p.id) ?? this.stops.rest[slot]);
-            if (p.adult || p.growth > 0) reserved.push(this.stops.homes[slot]);
+            if ((p.adult || p.growth > 0) && !isElder(p)) reserved.push(this.stops.homes[slot]);
         }
         const open = this.stops.waiting.map((at, i) => ({ at, i })).filter(({ at }) =>
             this.navigation.walkable(at) && reserved.every(point => distance(point, at) >= 17)).map(({ i }) => i);

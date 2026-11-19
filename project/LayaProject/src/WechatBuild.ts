@@ -1,3 +1,4 @@
+import { NATIVE_RESOURCE_ROOTS } from "./config/ResourceConfig";
 import { RANKING_CANVAS, supportsNativeRankingSdk } from "./config/RankingConfig";
 /** 构建插件在 Node 进程运行，fs 仅用于修改已生成的启动入口，不进入游戏包。 */
 declare function require(name: "fs"): { readFileSync(path: string, encoding: "utf8"): string; writeFileSync(path: string, value: string): void };
@@ -18,6 +19,12 @@ export class WechatBuild implements IEditorEnv.IBuildPlugin {
         // 发布包使用微信合法域名下载资源，开发者工具保留域名校验以便验收。
         project.setting.urlCheck = true;
         fs.writeFileSync(projectPath, JSON.stringify(project, null, 2) + "\n");
+        const game = JSON.parse(fs.readFileSync(`${task.destPath}/game.json`, "utf8"));
+        const roots: string[] = (game.subpackages ?? game.subPackages ?? []).map((pack: { root: string }) => pack.root.replace(/\/$/, ""));
+        const nativeRoots: readonly string[] = Object.values(NATIVE_RESOURCE_ROOTS);
+        const native = nativeRoots.every(root => roots.includes(root));
+        if (!native && roots.some(root => nativeRoots.includes(root)))
+            throw new Error("村庄与守夜资源包必须一同声明");
         const entry = fs.readFileSync(path, "utf8");
         // 原生模式必须先于 weapp-adapter，不能等主场景创建后再选。仅添加启动段，保留引擎自动生成的库与分包入口。
         const marker = "// daidai-native-ranking-startup\n";
@@ -38,6 +45,6 @@ export class WechatBuild implements IEditorEnv.IBuildPlugin {
         console.warn("[ranking-startup] 原生画布尚未就绪");
     }
 })();\n`;
-        fs.writeFileSync(path, marker + startup + entry);
+        fs.writeFileSync(path, marker + `GameGlobal.daidaiNativeResources = ${native};\n` + startup + entry);
     }
 }

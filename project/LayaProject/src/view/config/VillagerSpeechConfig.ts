@@ -7,7 +7,7 @@ export const SPEECH = { seconds: UI.tipSeconds, initialWait: 12, idleMin: 22, id
 export const VILLAGER_LINES = {
     retire: ["该让后生接班了", "明天想多坐会儿"],
     farewell: ["村里的灯真暖", "听一会儿风声"],
-    elite: ["今晚我也守着", "这点活难不倒我"],
+    special: ["今晚我也守着", "这点活难不倒我"],
     FARM: ["麦穗快要熟了", "今天土还湿润"],
     LOGGING: ["柴够烧一晚上", "歇会儿再劈柴"],
     CARE: ["睡得可真香", "轻点，刚睡着"],

@@ -32,7 +32,8 @@ export class ResourceProgress extends Laya.Sprite {
 
     render(title: string, state: PreparationState) {
         const percent = Math.floor(state.progress * 100);
-        const text = state.phase === "FAILED" ? title + "未完成 · 点击重试"
+        const text = state.phase === "UNSUPPORTED" ? state.error
+            : state.phase === "FAILED" ? title + "未完成 · 点击重试"
             : state.phase === "DECODE" ? "下载完成 · 正在载入素材"
             : state.phase === "READY" ? "准备完成"
             : (state.slow ? "网络较慢 · " : title + " · ") + percent + "%";

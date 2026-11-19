@@ -19,6 +19,13 @@ export function pointAt(progress: number) {
 }
 
 type RoadFootprint = { halfWidth: number; back: number; front: number };
+export interface RoadPoint { x: number; y: number; }
+/** 施放目标只允许当前来敌经过的土路，排除草地和城门后的横路。 */
+export function onBattleRoad(at: RoadPoint): boolean {
+    if (!Number.isFinite(at.x) || !Number.isFinite(at.y) || at.y < PATH[0].y || at.y > PATH[PATH.length - 1].y) return false;
+    const { left, right } = roadFootprintBounds(at.y, { halfWidth: 0, back: 0, front: 0 });
+    return at.x >= left && at.x <= right;
+}
 /** 取整个足部纵深内左右边界的交集；怪物与临时冲锋角色复用同一道路剖面。 */
 export function roadFootprintBounds(y: number, footprint: EnemyKind | RoadFootprint) {
     const size = typeof footprint === "string" ? (ENEMIES[footprint].boss ? ROAD_MOVEMENT.boss : ROAD_MOVEMENT.ordinary) : footprint;

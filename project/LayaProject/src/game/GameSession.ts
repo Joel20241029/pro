@@ -1,15 +1,27 @@
 import { BattleSimulation, CombatFeedback } from "./BattleSimulation";
 import { clone, GameState } from "./GameState";
-import { RULE, Trait } from "./GameConfig";
+import { RULE } from "./GameConfig";
 import { applyCommand, Command, createGame, finishNight } from "./VillageRules";
 import { LoadResult, SaveMode, SaveStore } from "../storage/SaveStore";
 import { DeviceSettings } from "../storage/DeviceSettings";
 import { dailyRationAmount, localRationDate } from "./DailyRation";
+import { BLAST_TACTIC, KING_MERCY, KING_MERCY_TACTIC } from "../config/TacticConfig";
+import { gateCapacity } from "./Growth";
+import { mercyOffering } from "./Tactics";
+
+import { DAILY_TASKS, TaskKind } from "../config/DailyTaskConfig";
+import { DailyTaskCombat } from "./DailyTaskCombat";
+import { claimDailyTask } from "./DailyTaskState";
+import { creditTaskCommand, creditTaskVictory, dailyTasksNeedRefresh, prepareDailyTasks } from "./DailyTasks";
+import type { RoadPoint } from "./BattleRoad";
 export type Pause = "USER" | "BACKGROUND" | "WAIT_RESUME" | "CHOICE" | "SAVE_PENDING" | "DISABLED" | "DAILY_RATION" | "ASSETS";
 export class GameSession {
     state: GameState | null = null; battle: BattleSimulation | null = null;
     /** 仅供最终弹道/死亡演出；结算与保存不等待它，新夜/新村/成功读档即清理，不写入存档。 */
     private finishedBattle: BattleSimulation | null = null;
+    private taskCombat: DailyTaskCombat | null = null;
+    private nextTaskClockCheck = 0;
+    private aimingBlastIn: BattleSimulation | null = null;
     get presentationBattle() { return this.battle ?? this.finishedBattle; }
     /** 跨一帧多个逻辑步的表现信箱；换战斗时清空，结算不等待动画。 */
     private combatFeedback: CombatFeedback[] = [];
@@ -31,7 +43,28 @@ export class GameSession {
     dailyRationDate: string | null = null;
     private deviceSettings = new DeviceSettings(this.saves.port);
     constructor(readonly saves: SaveStore, private today = () => localRationDate(new Date())) {}
-    enter() { this.visitDate = this.today(); this.checkDailyRation(); this.changed(); }
+    get taskDate() { return this.today(); }
+    enter() { this.visitDate = this.today(); this.checkDailyRation(); if (!this.refreshDailyTasks()) this.changed(); }
+
+    private refreshDailyTasks() {
+        const state = this.state;
+        if (!state || this.saves.pending || this.pauses.has("BACKGROUND") || this.pauses.has("DISABLED")) return false;
+        const date = this.taskDate;
+        if (!dailyTasksNeedRefresh(state, date)) return false;
+        const next = clone(state);
+        prepareDailyTasks(next, date);
+        this.submit(next);
+        return true;
+    }
+    claimTask(kind: TaskKind, issuedDate: string) {
+        if (!this.state || this.saves.pending || this.pauses.has("BACKGROUND") || this.pauses.has("DISABLED") || this.pauses.has("ASSETS")) return;
+        if (this.refreshDailyTasks()) return;
+        const next = clone(this.state);
+        try {
+            claimDailyTask(next, kind, issuedDate, this.taskDate);
+            this.submit(next);
+        } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
+    }
     /** 与状态接受共用调度：清晨/失败/启动/保存先完成，安全时才暂停领取。 */
     private checkDailyRation() {
         const s = this.state;
@@ -56,51 +89,48 @@ export class GameSession {
         if (this.saves.pending) { this.retry(); return; }
         try {
             this.boot = this.saves.inspect(); this.error = "";
-            if (this.boot.kind === "ready") { this.finishedBattle = null; this.combatFeedback = []; this.accept(this.boot.state); }
+            if (this.boot.kind === "ready") { this.finishedBattle = null; this.combatFeedback = []; this.accept(this.boot.state); this.refreshDailyTasks(); }
             else if (this.boot.kind === "complete-clean-start") {
                 this.pendingNewVillage = true; this.pauses.add("SAVE_PENDING"); this.retry();
             } else this.changed();
         }
         catch (e) { this.error = String(e); this.boot = { kind: "blocked", reason: "微信存档暂时读取失败。请重试，未新建或覆盖进度。", canReset: false }; this.changed(); }
     }
-    recover() { if (this.boot?.kind === "recover") { this.finishedBattle = null; this.combatFeedback = []; this.accept(this.boot.state); } }
-    newVillage(trait?: Trait, reset = false) {
+    recover() { if (this.boot?.kind === "recover") { this.finishedBattle = null; this.combatFeedback = []; this.accept(this.boot.state); this.refreshDailyTasks(); } }
+    newVillage(reset = false) {
         if (this.saves.pending) return;
-        if (this.visitDate !== null) this.visitDate = this.today();
         if (reset) {
             if (!(this.boot?.kind === "incompatible" || (this.boot?.kind === "blocked" && this.boot.canReset))) return;
-            this.submit(createGame(Date.now() >>> 0), false, "RESET"); return;
-        }
-        const next = createGame(Date.now() >>> 0, this.state?.legacy, trait, this.state ? this.state.history : [], this.state ? this.state.favorites : []);
-        // 已确认传承保留学会结果；新村仍默认携带大王之心。纯净开始走独立路径。
-        if (this.state) {
-            next.tactics.learned = this.state.tactics.learned.slice();
-            if (this.state.tactics.extraSlots) next.tactics.extraSlots = this.state.tactics.extraSlots.map((): null => null);
-        }
-        this.submit(next, false, "NORMAL");
-    }
-    cleanStart() {
-        if (!this.state || this.boot !== null || this.saves.pending) return;
+        } else if (this.state ? this.boot !== null : this.boot?.kind !== "new") return;
         if (this.visitDate !== null) this.visitDate = this.today();
-        const next = createGame(Date.now() >>> 0);
-        next.legacy.bestNight = this.state.legacy.bestNight;
-        this.submit(next, false, "CLEAN_START");
+        // 首次开村写普通档，已有村庄的重开同时覆盖两个存档槽。
+        const mode: SaveMode = reset ? "RESET" : this.state ? "CLEAN_START" : "NORMAL";
+        this.submit(createGame(Date.now() >>> 0), false, mode);
     }
     private accept(s: GameState, newVillage = false) {
         const settings = this.deviceSettings.resolve(s.settings);
         if (s.settings.music !== settings.music || s.settings.speed !== settings.speed) s = { ...s, settings };
         const sameNight = !newVillage && this.continuingBattle && this.battle !== null && s.phase === "NIGHT";
+        const mercyAccepted = sameNight && !this.state?.night?.mercySpent && s.night?.mercySpent === true;
         if (newVillage) {
             this.currentVillageRevision++;
             // 前后台、等待恢复和禁用来自应用生命周期；清除旧村自身的暂停。
             this.pauses.delete("USER"); this.pauses.delete("CHOICE"); this.pauses.delete("DAILY_RATION");
             this.dailyRationDate = null;
+            this.aimingBlastIn = null;
+            this.nextTaskClockCheck = 0;
         }
         this.state = s; this.boot = null; this.error = ""; this.pauses.delete("SAVE_PENDING");
         if (!sameNight) {
             // 清晨递归FINALIZE及结算保存重试保留尚未消费的最终事件；不能把最后一击清掉。
             if (newVillage || s.phase === "NIGHT") { this.finishedBattle = null; this.combatFeedback = []; }
-            this.battle = s.phase === "NIGHT" ? new BattleSimulation(s) : null; this.accumulator = 0;
+            this.taskCombat = s.phase === "NIGHT" && s.dailyTasks?.tasks.length ? new DailyTaskCombat() : null;
+            this.battle = s.phase === "NIGHT" ? new BattleSimulation(s, this.taskCombat ?? undefined) : null; this.accumulator = 0;
+        } else if (mercyAccepted && this.battle) {
+            const before = this.battle.feedback.length;
+            this.battle.applyPaidMercy();
+            this.combatFeedback.push(...this.battle.feedback.slice(before));
+            this.resume("CHOICE");
         }
         this.continuingBattle = false;
         if (s.phase === "DAWN" && s.choices.length === 0) { this.command({ type: "FINALIZE" }); return; }
@@ -124,8 +154,11 @@ export class GameSession {
     command(c: Command) {
         if (!this.state || this.saves.pending || (c.type === "NIGHT" && this.pauses.has("ASSETS"))) return;
         try {
-            const next = clone(this.state);
+            const before = this.state, next = clone(before), date = this.taskDate;
+            if (c.type !== "MUSIC" && c.type !== "SPEED") prepareDailyTasks(next, date);
             applyCommand(next, c);
+            if (before.phase !== "DAY" && next.phase === "DAY") prepareDailyTasks(next, date);
+            creditTaskCommand(before, next, c, date);
             if (c.type === "MUSIC" || c.type === "SPEED") {
                 this.deviceSettings.write(next.settings);
                 this.state = next; this.error = ""; this.changed();
@@ -135,13 +168,51 @@ export class GameSession {
         }
         catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
-    pause(reason: Pause) { this.pauses.add(reason); this.accumulator = 0; }
+    pause(reason: Pause) { this.pauses.add(reason); this.accumulator = 0; this.aimingBlastIn = null; }
     resume(reason: Pause) { this.pauses.delete(reason); this.accumulator = 0; }
     hide = () => { this.pause("BACKGROUND"); this.changed(); };
     show = () => { this.resume("BACKGROUND"); this.pause("WAIT_RESUME"); this.enter(); };
     get canRingBell() { return this.canCast(this.battle?.tactics[0].id); }
     canCast(id?: string) { return this.state?.phase === "NIGHT" && id !== undefined && this.battle?.canCast(id) === true && !this.pauses.size && !this.saves.pending; }
-    bell(id = this.battle?.tactics[0].id) { if (this.canCast(id)) { this.battle.bell(id); this.changed(); } }
+    get blastAiming() { return this.aimingBlastIn !== null && this.aimingBlastIn === this.battle && this.canCast(BLAST_TACTIC); }
+    bell(id = this.battle?.tactics[0].id) {
+        if (id === KING_MERCY_TACTIC || !this.canCast(id)) return;
+        const aim = id === BLAST_TACTIC && !this.blastAiming;
+        this.aimingBlastIn = aim ? this.battle : null;
+        if (id !== BLAST_TACTIC) {
+            const beforeCast = this.battle.feedback.length;
+            this.battle.bell(id);
+            // 瞬发战技在点击当下产生反馈，不能等下一步清空信箱再收集。
+            this.combatFeedback.push(...this.battle.feedback.slice(beforeCast));
+        }
+        this.changed();
+    }
+    confirmMercy() {
+        const { state, battle } = this;
+        if (state?.phase !== "NIGHT" || !state.night || state.night.mercySpent || this.saves.pending ||
+            !this.pauses.has("CHOICE") || this.pauses.size !== 1 || !battle?.canCast(KING_MERCY_TACTIC)) return;
+        const cost = mercyOffering(state);
+        if (cost.reason) { this.error = cost.reason; this.changed(); return; }
+        const next = clone(state), casts = (state.tactics.mercyCooldown?.casts ?? 0) + 1;
+        next.wood -= cost.wood;
+        next.food -= cost.food;
+        next.gate = gateCapacity(state);
+        next.night!.mercySpent = true;
+        next.tactics.mercyCooldown = { casts, wavesLeft: KING_MERCY.baseCooldownWaves + casts };
+        this.submit(next, true);
+    }
+    placeBlast(at: RoadPoint) {
+        if (!this.blastAiming || !this.battle?.bell(BLAST_TACTIC, at)) return false;
+        this.aimingBlastIn = null;
+        this.changed();
+        return true;
+    }
+    tapHandSpeed() {
+        const { battle, state } = this;
+        if (this.pauses.size || this.saves.pending || !state || !battle?.tapHandSpeed()) return false;
+        if (!battle.handSpeed && !this.collectBattleStep(battle, state)) this.changed();
+        return true;
+    }
     reassign(index: number, id: string) {
         // 夜间调任允许手动暂停或面板临时暂停；关闭面板只解除 CHOICE，其余暂停仍由各自流程管理。
         if (this.pauses.has("ASSETS") || !this.battle || (!this.pauses.has("USER") && !this.pauses.has("CHOICE")) || this.saves.pending) return false;
@@ -149,16 +220,37 @@ export class GameSession {
         catch (e) { this.error = String(e); this.changed(); return false; }
     }
     update(delta: number) {
+        const now = Date.now();
+        if (this.state?.phase === "DAY" && now >= this.nextTaskClockCheck) {
+            this.nextTaskClockCheck = now + DAILY_TASKS.clockCheckMs;
+            this.refreshDailyTasks();
+        }
         if (this.pauses.size || !this.battle || !this.state || this.battle.outcome) return;
-        this.accumulator += Math.min(RULE.frameCap, Math.max(0, delta)) * this.state.settings.speed;
+        const realDelta = Math.min(RULE.frameCap, Math.max(0, delta)), speed = this.state.settings.speed;
+        if (this.battle.handSpeed) {
+            const battle = this.battle;
+            battle.step(realDelta);
+            this.collectBattleStep(battle, this.state);
+            return;
+        }
+        this.accumulator += realDelta * speed;
         let steps = 0;
         while (this.accumulator + 1e-9 >= RULE.step && steps++ < RULE.maxSteps) {
-            this.accumulator -= RULE.step; this.battle.step();
-            this.combatFeedback.push(...this.battle.feedback);
-            if (this.battle.outcome) {
-                this.finishedBattle = this.battle;
-                const next = clone(this.state); finishNight(next, this.battle.gate, this.battle.operators); this.submit(next); break;
-            }
+            this.accumulator -= RULE.step;
+            const battle = this.battle;
+            battle.step();
+            if (this.collectBattleStep(battle, this.state)) break;
         }
+    }
+    /** 普通战斗步、连点倒计时与达标引爆共用反馈、胜负与保存结果。 */
+    private collectBattleStep(battle: BattleSimulation, state: GameState) {
+        this.combatFeedback.push(...battle.feedback);
+        if (!battle.outcome) return false;
+        this.finishedBattle = battle;
+        const next = clone(state);
+        if (this.taskCombat) creditTaskVictory(next, this.taskDate, battle, this.taskCombat);
+        finishNight(next, battle.gate, battle.operators);
+        this.submit(next);
+        return true;
     }
 }

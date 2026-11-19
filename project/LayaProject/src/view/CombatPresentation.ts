@@ -3,6 +3,7 @@ import { enemyPoint } from '../game/BattleRoad';
 import { FEEDBACK } from './config/FeedbackConfig';
 import { RULE } from '../game/GameConfig';
 interface Defeat { enemy: Enemy; fatal: Shot | null; started: number | null; }
+export interface ZhouLoveCue { cleared: boolean; age: number; }
 /** 独立视觉时间线。死亡快照不进入 simulation.enemies；保留统一死亡位置供迟到弹道使用。 */
 export class CombatPresentation {
     private battle: BattleSimulation | null = null;
@@ -17,9 +18,12 @@ export class CombatPresentation {
     private deathPositions = new Map<number, { x: number; y: number }>();
     private flashes = new Map<number, number>();
     private retired = new Set<number>();
+    private loveTargets = new Map<number, { cleared: boolean; started: number }>();
+    private burstTargets = new Map<number, number>();
     sync(battle: BattleSimulation | null, events: CombatFeedback[]) {
         if (battle !== this.battle || !battle) {
             this.battle = battle; this.shots.clear(); this.deaths.clear(); this.deathPositions.clear(); this.flashes.clear(); this.retired.clear();
+            this.loveTargets.clear(); this.burstTargets.clear();
             this.tailSeconds = 0; this.defeatCue = false;
         }
         if (!battle) return;
@@ -28,16 +32,20 @@ export class CombatPresentation {
                 this.deathPositions.set(event.enemy.seq, enemyPoint(event.enemy));
                 this.flashes.delete(event.enemy.seq);
                 if (!this.retired.has(event.enemy.seq)) this.deaths.set(event.enemy.seq, { enemy: event.enemy, fatal: null, started: this.clock });
-            } else if (event.type === 'summon') {
-                if (event.enemy.hp > 0) {
-                    this.flashes.set(event.enemy.seq, this.clock + FEEDBACK.flashSeconds);
-                    continue;
+            } else if (event.type === 'summon' || event.type === 'patrol') {
+                this.immediateHit(event.enemy);
+            } else if (event.type === 'handSpeed' || event.type === 'mercy') {
+                for (const enemy of event.hurt) {
+                    this.burstTargets.set(enemy.seq, this.clock);
+                    this.immediateHit(enemy);
                 }
-                const death: Defeat = { enemy: event.enemy, fatal: null, started: null };
-                this.deathPositions.set(event.enemy.seq, enemyPoint(event.enemy));
-                this.deaths.set(event.enemy.seq, death);
-                this.flashes.delete(event.enemy.seq);
-                this.startDefeat(death);
+            } else if (event.type === 'blast' || event.type === 'poison') {
+                event.hurt.forEach(enemy => this.immediateHit(enemy));
+            } else if (event.type === 'zhouLove') {
+                for (const enemy of event.targets) {
+                    this.loveTargets.set(enemy.seq, { cleared: event.cleared, started: this.clock });
+                    if (event.cleared) this.immediateHit(enemy);
+                }
             } else {
                 this.shots.set(event.shot, event);
                 for (const enemy of event.hurt) if (enemy.hp <= 0 && !this.retired.has(enemy.seq)) {
@@ -47,12 +55,37 @@ export class CombatPresentation {
             }
         }
     }
+    private immediateHit(enemy: Enemy) {
+        if (enemy.hp > 0) {
+            this.flashes.set(enemy.seq, this.clock + FEEDBACK.flashSeconds);
+            return;
+        }
+        const death: Defeat = { enemy, fatal: null, started: null };
+        this.deathPositions.set(enemy.seq, enemyPoint(enemy));
+        this.deaths.set(enemy.seq, death);
+        this.flashes.delete(enemy.seq);
+        this.startDefeat(death);
+    }
     advance(delta: number) {
         this.clock += delta;
         if (this.battle?.outcome) this.tailSeconds += delta;
         for (const [seq, end] of this.flashes) if (end <= this.clock) this.flashes.delete(seq);
+        for (const [seq, started] of this.burstTargets)
+            if (this.clock - started >= FEEDBACK.impact.frameCount / FEEDBACK.impact.fps) this.burstTargets.delete(seq);
+        for (const [seq, cue] of this.loveTargets) {
+            const seconds = cue.cleared ? FEEDBACK.impact.frameCount / FEEDBACK.impact.fps : FEEDBACK.loveHeal.seconds;
+            if (this.clock - cue.started >= seconds) this.loveTargets.delete(seq);
+        }
         const duration = FEEDBACK.death.squashSeconds + FEEDBACK.death.holdSeconds + FEEDBACK.death.fadeSeconds;
         for (const [seq, death] of this.deaths) if (death.started !== null && this.clock - death.started >= duration) { this.deaths.delete(seq); this.flashes.delete(seq); this.retired.add(seq); }
+    }
+    zhouLoveCue(seq: number): ZhouLoveCue | undefined {
+        const cue = this.loveTargets.get(seq);
+        if (cue) return { cleared: cue.cleared, age: this.clock - cue.started };
+    }
+    burstAge(seq: number) {
+        const started = this.burstTargets.get(seq);
+        return started === undefined ? undefined : this.clock - started;
     }
     /** 死亡帧固定于快照；只压缩脚底以上的高度并淡出，等待致死弹体时仍保持完整身形。 */
     deathPose(seq: number): { scaleY: number; alpha: number } | undefined {

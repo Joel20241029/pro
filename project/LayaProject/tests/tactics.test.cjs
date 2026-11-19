@@ -2,7 +2,7 @@ const { test, after } = require('node:test'), assert = require('node:assert/stri
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 const read = name => require(path.join(compiled, name + '.js'));
-const { TACTIC_USE, TACTICS, DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC, MIND_LOCK_TACTIC, validateTactics, tacticDefinition } = read('config/TacticConfig');
+const { TACTIC_USE, TACTICS, DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC, MIND_LOCK_TACTIC, BLAST_TACTIC, ZHOU_LOVE_TACTIC, DRAGON_POISON_TACTIC, KING_MERCY_TACTIC, validateTactics, tacticDefinition } = read('config/TacticConfig');
 const { RULE } = read('game/GameConfig');
 const { createGame, applyCommand } = read('game/VillageRules');
 const { clone } = read('game/GameState');
@@ -43,7 +43,7 @@ function fixture(s = state()) {
 }
 
 test('production includes the summon while preserving the free heart combat parameters', () => {
-    assert.deepEqual(production.map(t => t.id), [DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC, MIND_LOCK_TACTIC]);
+    assert.deepEqual(production.map(t => t.id), [DEFAULT_TACTIC, SHIELD_TACTIC, RAGE_TACTIC, SPLIT_TACTIC, BLAST_TACTIC, MIND_LOCK_TACTIC, "MINGBO_HAND_SPEED", SUMMON_TACTIC, ZHOU_LOVE_TACTIC, DRAGON_POISON_TACTIC, KING_MERCY_TACTIC]);
     const t = production[0];
     assert.equal(t.wood + t.food + t.unlockWaves, 0);
     assert.equal(t.ticks, RULE.bellTicks); assert.equal(t.multiplier, RULE.bellSpeedMultiplier);
@@ -168,15 +168,12 @@ test('ongoing battle owns a copy of its tactic config', () => {
     finally { production[0].ticks = original; }
 });
 
-test('inherit retains learned tactics but equips heart; pure start clears them and keeps record', () => {
+test('a new village starts with the heart and clears the local record and learned tactics', () => {
     const f = fixture(); f.game.command({ type: 'TACTIC_LEARN', id: learnedId }); f.game.state.legacy.bestNight = 8;
     f.game.newVillage();
-    assert.deepEqual(f.game.state.tactics, { learned: [DEFAULT_TACTIC, learnedId], equipped: DEFAULT_TACTIC });
-    assert.equal(f.game.state.completed, 0);
-    f.game.command({ type: 'TACTIC_EQUIP', id: learnedId }); assert.equal(f.game.state.tactics.equipped, learnedId);
-    f.game.cleanStart();
     assert.deepEqual(f.game.state.tactics, { learned: [DEFAULT_TACTIC], equipped: DEFAULT_TACTIC });
-    assert.equal(f.game.state.legacy.bestNight, 8);
+    assert.equal(f.game.state.completed, 0);
+    assert.equal(f.game.state.legacy.bestNight, 0);
     assert.deepEqual(f.reopen().state, f.game.state);
 });
 

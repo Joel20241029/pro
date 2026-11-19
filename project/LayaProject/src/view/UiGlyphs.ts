@@ -1,4 +1,6 @@
-/** 暂停/播放/倍速等通用符号保留矢量；游戏题材图标统一使用高清原画。 */
+import { DRAGON_POISON, HAND_SPEED, TIMED_BLAST } from "../config/TacticConfig";
+
+/** 通用符号和复用到战场的泻火弹保留矢量。 */
 // 奶油按钮上的暂停/播放沿用既有倍速图标的木棕色，原绿色按钮的浅色版本继续保留。
 const G = { outline: "#805025", dark: "#513322", woodLight: "#efbb74", cream: "#fff4d9", control: "#986128" };
 type Painter = (s: Laya.Sprite) => void;
@@ -14,6 +16,48 @@ function journal(s: Laya.Sprite) {
 }
 const PAINTERS: Record<string, Painter> = {
     icon_settings: journal, icon_journal: journal,
+    icon_daily_tasks: s => {
+        const g = s.graphics;
+        g.drawRoundRect(10, 10, 44, 49, 5, 5, 5, 5, G.cream, G.outline, 3);
+        g.drawRoundRect(21, 6, 22, 12, 4, 4, 4, 4, G.woodLight, G.outline, 2.5);
+        for (const y of [29, 41, 52]) {
+            line(g, [18, y - 2, 21, y + 1, 27, y - 5], "#528035", 3);
+            line(g, [33, y - 1, 46, y - 1], G.outline, 2.5);
+        }
+    },
+    [DRAGON_POISON.icon]: s => {
+        const g = s.graphics;
+        poly(g, [24, 19, 40, 19, 40, 28, 51, 39, 50, 50, 42, 57, 22, 57, 14, 50, 13, 39, 24, 28], "#5b347e", "#251735", 3);
+        g.drawRoundRect(22, 10, 20, 12, 3, 3, 3, 3, "#d5b778", "#78532d", 2.2);
+        poly(g, [16, 42, 26, 38, 37, 42, 49, 38, 47, 49, 40, 54, 24, 54, 18, 49], "#ae69df", "#6b3697", 1.8);
+        g.drawCircle(27, 47, 2.8, "#f3d4ff");
+        g.drawCircle(37, 43, 2.2, "#f3d4ff");
+        line(g, [20, 36, 27, 30, 27, 25], "#f7e3ff", 2.6);
+    },
+    icon_slot_lock: s => {
+        const g = s.graphics;
+        line(g, [19, 31, 19, 20, 23, 12, 29, 8, 35, 8, 41, 12, 45, 20, 45, 31], "#c7ae75", 6);
+        g.drawRoundRect(13, 26, 38, 29, 5, 5, 5, 5, "#d8bd80", "#785b32", 2);
+        g.drawCircle(32, 37, 4, "#785b32");
+        line(g, [32, 38, 32, 46], "#785b32", 4);
+    },
+    [HAND_SPEED.icon]: s => {
+        const g = s.graphics;
+        line(g, [10, 22, 24, 22], "#fbb94e", 4);
+        line(g, [6, 33, 20, 33], "#fbb94e", 4);
+        line(g, [13, 43, 23, 43], "#fbb94e", 4);
+        poly(g, [37, 5, 25, 32, 36, 31, 27, 58, 55, 26, 43, 26, 54, 7], "#ffbd3e");
+        line(g, [40, 10, 33, 25, 39, 24], "#fff3a7", 3);
+    },
+    [TIMED_BLAST.icon]: s => {
+        const g = s.graphics;
+        line(g, [36, 23, 43, 15, 48, 15, 51, 10], "#6b3c25", 5);
+        g.drawCircle(29, 36, 20, "#47352d", "#211b1b", 2.5);
+        g.drawCircle(25, 32, 12, "#59443a");
+        line(g, [15, 31, 20, 24, 29, 21], "#bf8658", 3);
+        poly(g, [49, 9, 48, 2, 54, 6, 61, 4, 57, 10, 61, 16, 54, 13, 49, 18, 50, 12], "#ffbb40", "#a95023", 1.6);
+        g.drawCircle(53, 10, 3, "#fff1a1");
+    },
     icon_action_dot: s => {
         s.graphics.drawCircle(32, 33, 28, "#a52520");
         s.graphics.drawCircle(32, 30, 25, "#f0312f", "#fff2bf", 4);

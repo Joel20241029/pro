@@ -1,13 +1,16 @@
 import { appearanceSeed, APPEARANCE_DOMAIN } from "./EnemySeed";
 import { COMBAT } from "../config/DefenseConfig";
-import { ELITE, ENEMIES, EnemyKind, PADS, RULE, TOWERS, TowerKind } from "./GameConfig";
-import { enemyPoint, PATH_LENGTH } from "./BattleRoad";
+import { VILLAGER_QUALITY } from "../config/VillagerQuality";
+import { ENEMIES, EnemyKind, PADS, RULE, TOWERS, TowerKind } from "./GameConfig";
+import { enemyPoint, onBattleRoad, PATH_LENGTH, RoadPoint } from "./BattleRoad";
 export { pointAt, PATH_LENGTH } from "./BattleRoad";
 import { clone, GameState } from "./GameState";
 import { assignOperator, person, policy } from "./VillageRules";
-import { enemyPower, levelPower } from "./Growth";
-import { TACTIC_NIGHT_USES, TACTIC_USE, TacticDefinition, tacticDefinition } from "../config/TacticConfig";
+import { enemyPower, gateCapacity, levelPower } from "./Growth";
+import { DRAGON_POISON, HAND_SPEED, KING_MERCY_TACTIC, TACTIC_NIGHT_USES, TACTIC_USE, TIMED_BLAST, TacticDefinition, tacticDefinition, ZHOU_LOVE_HEAL } from "../config/TacticConfig";
 import { EnemyRoadStep, SummonCharge, SummonCollision } from "./SummonCharge";
+import { Patrol } from "./Patrol";
+import type { DailyTaskCombat } from "./DailyTaskCombat";
 export interface Enemy {
     seq: number;
     kind: EnemyKind;
@@ -35,7 +38,13 @@ export interface Shot {
 /** 只读表现事件：快照不参与伤害、索敌或存档；每步由 GameSession 收集。 */
 export type CombatFeedback = { type: "shot"; shot: Shot; target: number; hurt: Enemy[] } |
     { type: "gate"; enemy: Enemy; blocked: boolean; tick: number; x: number; y: number } |
-    ({ type: "summon"; tick: number } & SummonCollision);
+    { type: "blast"; at: RoadPoint; hurt: Enemy[]; tick: number } |
+    { type: "handSpeed"; hurt: Enemy[]; tick: number } |
+    { type: "mercy"; hurt: Enemy[] } |
+    { type: "poison"; hurt: Enemy[] } |
+    { type: "zhouLove"; cleared: boolean; targets: Enemy[] } |
+    ({ type: "summon"; tick: number } & SummonCollision) |
+    ({ type: "patrol"; tick: number } & SummonCollision);
 export class BattleSimulation {
     readonly base: GameState;
     readonly tactics: readonly TacticDefinition[];
@@ -53,7 +62,12 @@ export class BattleSimulation {
     private readonly personal = new Map<string, { uses: number; readyAt: number }>();
     private sharedReadyAt = 0;
     bellTicks = 0;
+    readonly patrol: Patrol | null;
     summonCharge: SummonCharge | null = null;
+    blastAt: Readonly<RoadPoint> | null = null;
+    private tapWindow: { remaining: number; taps: number } | null = null;
+    private poison: { targets: Set<number>; nextTick: number; extraSeconds: number } | null = null;
+    get handSpeed(): Readonly<{ remaining: number; taps: number }> | null { return this.outcome ? null : this.tapWindow; }
     outcome: "WIN" | "LOSE" | null = null;
     private cursor = 0;
     private seq = 0;
@@ -63,15 +77,20 @@ export class BattleSimulation {
         appearanceSeed: number;
         progress: number;
     }[] = [];
-    constructor(state: GameState) {
+    constructor(state: GameState, private readonly tasks?: DailyTaskCombat) {
         if (state.phase !== "NIGHT" || !state.wave || !state.night)
             throw new Error("缺少已保存的战前状态");
         this.base = clone(state);
+        this.patrol = this.base.patrol?.captain ? new Patrol(this.base) : null;
         const loadout = [state.night.tactic, ...(state.night.extraSlots ?? [])];
         this.tactics = loadout.filter(id => id !== null).map(id => ({ ...tacticDefinition(id) }));
         this.tactic = this.tactics[0];
         this.tacticBudget = TACTIC_NIGHT_USES[loadout.length - 1];
         this.gate = state.gate;
+        if (state.night.mercySpent) {
+            this.tacticUses++;
+            this.personal.set(KING_MERCY_TACTIC, { uses: 1, readyAt: 0 });
+        }
     }
     get operators() { return this.base.towers.map(t => t.operator); }
     get pendingCount() { return this.base.wave!.entries.length - this.cursor + this.queued.length; }
@@ -79,33 +98,146 @@ export class BattleSimulation {
     get tacticCooldownTicks() { return this.cooldownFor(this.tactics[0].id); }
     get canCastTactic() { return this.canCast(this.tactics[0].id); }
     get mindLocked() { return !this.outcome && this.bellTicks > 0 && this.tactic.effect === "MIND_LOCK"; }
+    isPoisoned(seq: number) { return !this.outcome && !!this.poison?.targets.has(seq); }
     usesLeftFor(tactic: TacticDefinition) { return tactic.usesPerNight - (this.personal.get(tactic.id)?.uses ?? 0); }
     cooldownFor(id: string) { return Math.max(0, this.sharedReadyAt - this.tick, (this.personal.get(id)?.readyAt ?? 0) - this.tick); }
     canCast(id: string) {
         const tactic = this.tactics.find(t => t.id === id);
-        return !!tactic && !this.outcome && this.bellTicks === 0 && this.tacticUsesLeft > 0 && this.usesLeftFor(tactic) > 0 && this.cooldownFor(id) === 0;
+        return !!tactic && !this.outcome && this.bellTicks === 0 && !this.tapWindow && this.tacticUsesLeft > 0 && this.usesLeftFor(tactic) > 0 && this.cooldownFor(id) === 0 &&
+            (id !== KING_MERCY_TACTIC || !this.base.tactics.mercyCooldown?.wavesLeft);
     }
     /** 与扣血判定共用：最后一个有效步保护该步全部触门者，步末才减时。 */
     get gateProtected() { return !this.outcome && this.bellTicks > 0 && this.tactic.effect === "GATE_INVULNERABLE"; }
-    bell(id = this.tactics[0].id) {
-        if (!this.canCast(id)) return;
-        this.tactic = this.tactics.find(t => t.id === id)!;
+    bell(id = this.tactics[0].id, at?: RoadPoint) {
+        if (id === KING_MERCY_TACTIC || !this.canCast(id)) return false;
+        const tactic = this.tactics.find(t => t.id === id)!;
+        if (tactic.effect === "TIMED_BLAST" && (!at || !onBattleRoad(at))) return false;
+        const firstEvent = this.feedback.length;
+        this.tactic = tactic;
         this.tacticUses++;
         this.personal.set(id, { uses: (this.personal.get(id)?.uses ?? 0) + 1, readyAt: this.tick + TACTIC_USE.cooldownTicks });
-        this.bellTicks = this.tactic.ticks;
+        if (tactic.effect === "HAND_SPEED") this.tapWindow = { remaining: HAND_SPEED.seconds, taps: 0 };
+        else if (tactic.effect === "ZHOU_LOVE") this.resolveZhouLove();
+        else this.bellTicks = tactic.ticks;
         if (this.tactic.effect === "SUMMON_CHARGE") this.summonCharge = new SummonCharge();
+        if (this.tactic.effect === "TIMED_BLAST") this.blastAt = { ...at! };
+        if (tactic.effect === "DRAGON_POISON") this.poison = {
+            targets: new Set(this.enemies.filter(e => e.hp > 0).map(e => e.seq)),
+            nextTick: this.tick + DRAGON_POISON.intervalTicks - 1,
+            extraSeconds: 0
+        };
+        this.tasks?.cast(id);
+        if (this.tasks && this.feedback.length > firstEvent) this.tasks.observe(this.feedback.slice(firstEvent));
+        return true;
+    }
+    /** 仅在同一夜的献纳提交成功后应用。待出怪仍走原队列，胜负由下一战斗步判定。 */
+    applyPaidMercy() {
+        const tactic = this.tactics.find(t => t.id === KING_MERCY_TACTIC);
+        if (!tactic || !this.canCast(KING_MERCY_TACTIC)) return;
+        this.tactic = tactic;
+        this.tacticUses++;
+        this.personal.set(KING_MERCY_TACTIC, { uses: 1, readyAt: 0 });
+        this.sharedReadyAt = this.tick + TACTIC_USE.recoveryTicks;
+        this.gate = gateCapacity(this.base);
+        const hurt = this.enemies.filter(e => e.hp > 0).map(e => ({ ...e, hp: 0 }));
+        this.enemies = [];
+        const event = { type: "mercy", hurt } as const;
+        this.feedback.push(event);
+        this.tasks?.cast(KING_MERCY_TACTIC);
+        this.tasks?.observe([event]);
+    }
+    private tickPoison() {
+        const poison = this.poison!, spec = DRAGON_POISON, hurt: Enemy[] = [];
+        poison.nextTick += spec.intervalTicks;
+        let kills = 0;
+        for (const enemy of this.enemies) {
+            if (enemy.hp <= 0 || !poison.targets.has(enemy.seq)) continue;
+            const permille = ENEMIES[enemy.kind].boss ? spec.bossPermille : spec.smallPermille;
+            const damage = Math.floor(enemy.maxHp * permille / 1000);
+            enemy.hp -= damage;
+            if (damage > 0) hurt.push({ ...enemy });
+            if (enemy.hp <= 0) { kills++; poison.targets.delete(enemy.seq); }
+        }
+        if (hurt.length) this.feedback.push({ type: "poison", hurt });
+        return kills;
+    }
+    private resolveZhouLove() {
+        // 战前快照中的成年居民包含老人和精英，儿童及家谱不参与。
+        const majority = this.base.people.reduce((sum, p) => sum + (p.adult ? (p.sex === "FEMALE" ? 1 : -1) : 0), 0);
+        const cleared = majority > 0, targets: Enemy[] = [];
+        for (const enemy of this.enemies) {
+            if (enemy.hp <= 0) continue;
+            enemy.hp = cleared ? 0 : Math.min(enemy.maxHp, enemy.hp + Math.floor(enemy.maxHp * ZHOU_LOVE_HEAL));
+            targets.push({ ...enemy });
+        }
+        // 只影响已经入场的目标，胜负继续由下一战斗步统一判定和保存。
+        if (cleared) this.enemies = [];
+        this.sharedReadyAt = this.tick + TACTIC_USE.recoveryTicks;
+        this.feedback.push({ type: "zhouLove", cleared, targets });
+    }
+    tapHandSpeed() {
+        const window = this.tapWindow;
+        if (this.outcome || !window || window.remaining <= 0) return false;
+        window.taps++;
+        if (window.taps === HAND_SPEED.burstTaps) {
+            // 即时施放独立收集反馈，上一战斗步的事件已由会话消费。
+            this.feedback = [];
+            this.resolveHandSpeed(window.taps);
+        }
+        return true;
+    }
+    private resolveHandSpeed(taps: number) {
+        this.tapWindow = null;
+        this.sharedReadyAt = this.tick + TACTIC_USE.recoveryTicks;
+        if (!taps) return;
+        const burst = taps === HAND_SPEED.burstTaps;
+        const hurt: Enemy[] = [];
+        for (const e of this.enemies) {
+            if (e.hp <= 0) continue;
+            if (burst) {
+                e.hp = Math.min(e.hp, Math.max(1, Math.floor(e.maxHp * HAND_SPEED.burstRemainingPercent / 100)));
+            } else {
+                const permille = ENEMIES[e.kind].boss ? HAND_SPEED.bossPermille : HAND_SPEED.ordinaryPermille;
+                const damage = Math.floor(e.maxHp * taps * permille / 1000);
+                if (!damage) continue;
+                e.hp -= damage;
+            }
+            hurt.push({ ...e });
+        }
+        this.feedback.push({ type: "handSpeed", hurt, tick: this.tick });
+        this.enemies = this.enemies.filter(e => e.hp > 0);
+        if (!this.enemies.length && this.pendingCount === 0) this.outcome = "WIN";
+        this.tasks?.observe(this.feedback);
+    }
+    private detonate(at: RoadPoint) {
+        const hurt: Enemy[] = [];
+        for (const e of this.enemies) {
+            if (e.hp <= 0) continue;
+            const foot = enemyPoint(e), distance = Math.hypot(foot.x - at.x, foot.y - at.y);
+            if (distance > TIMED_BLAST.radius) continue;
+            e.hp = 0;
+            hurt.push({ ...e });
+        }
+        this.feedback.push({ type: "blast", at, hurt, tick: this.tick });
+        this.blastAt = null;
     }
     reassign(index: number, id: string) { assignOperator(this.base, index, id); }
     private spawn(kind: EnemyKind, progress: number, seed: number) {
         const data = ENEMIES[kind], { affix, ordinaryHealthPercent } = this.base.wave!;
-        const healthScale = data.boss ? 1 : (ordinaryHealthPercent ?? 100) / 100;
+        const healthScale = data.boss ? 1 : ordinaryHealthPercent / 100;
         const hp = Math.ceil(data.hp * enemyPower(this.base.day) * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1) * healthScale);
         this.enemies.push({ seq: this.seq++, kind, appearanceSeed: seed, progress, walkDistance: 0, hp, maxHp: hp, speed: data.speed * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
     }
-    step() {
+    step(realSeconds = RULE.step / this.base.settings.speed) {
         if (this.outcome)
             return;
         this.feedback = [];
+        if (this.tapWindow) {
+            // 连点用实际时间，整个战场（含塔、出怪和冷却）保留当前战斗步。
+            this.tapWindow.remaining -= realSeconds;
+            if (this.tapWindow.remaining <= 1e-9) this.resolveHandSpeed(this.tapWindow.taps);
+            return;
+        }
         const entries = this.base.wave!.entries;
         while (this.cursor < entries.length && entries[this.cursor].tick <= this.tick)
             this.queued.push({ ...entries[this.cursor++], progress: 0 });
@@ -129,7 +261,7 @@ export class BattleSimulation {
             if (!frozen) e.progress += e.speed * RULE.step * (e.slowTicks > 0 ? 1 - e.slow : 1);
             const after = enemyPoint(e);
             e.walkDistance += Math.hypot(after.x - before.x, after.y - before.y);
-            if (rush && e.hp > 0) {
+            if ((rush || this.patrol) && e.hp > 0) {
                 const end = e.progress >= PATH_LENGTH
                     ? Math.max(0, (PATH_LENGTH - startProgress) / (e.progress - startProgress || 1)) : 1;
                 traces.push({ enemy: e, startProgress, from: before, to: after, end });
@@ -139,11 +271,20 @@ export class BattleSimulation {
             for (const hit of rush.advance(traces)) this.feedback.push({ type: "summon", tick: this.tick, ...hit });
             if (!rush.active) this.bellTicks = 0;
         }
+        let patrolPoisonKills = 0;
+        if (this.patrol) for (const hit of this.patrol.advance(this.tick, traces)) {
+            this.feedback.push({ type: "patrol", tick: this.tick, ...hit });
+            if (hit.enemy.hp <= 0 && this.poison?.targets.delete(hit.enemy.seq)) patrolPoisonKills++;
+        }
+        // 读引爆这一战斗步的真实足点；同一步内先结算爆炸，再处理仍活着的触门敌人。
+        if (this.blastAt && this.bellTicks === 1) this.detonate(this.blastAt);
+        let poisonedKills = patrolPoisonKills + (this.poison?.nextTick === this.tick ? this.tickPoison() : 0);
         for (const e of this.enemies) {
             if (e.hp > 0 && e.progress >= PATH_LENGTH) {
                 const blocked = this.gateProtected, at = enemyPoint(e);
                 if (!blocked) this.gate -= Math.ceil(ENEMIES[e.kind].gate * enemyPower(this.base.day) * (1 + (po.gate || 0)));
                 e.hp = 0;
+                this.poison?.targets.delete(e.seq);
                 // 快照记录逻辑坐标及当步保护状态；追帧、到期和窗口重排不能改写旧反馈。
                 this.feedback.push({ type: "gate", enemy: { ...e }, blocked, tick: this.tick, x: at.x, y: at.y });
             }
@@ -200,7 +341,7 @@ export class BattleSimulation {
                 }) : [target];
                 for (const e of hurt) {
                     const armor = ENEMIES[e.kind].armor;
-                    e.hp -= Math.max(1, Math.floor(t.damage * levelPower(tower.level) * (1 + bonus) * (p.elite ? ELITE.damageMultiplier : 1) * tacticDamage * (1 - armor / (tower.kind === "STONE" ? COMBAT.stoneArmorDivisor : 1))));
+                    e.hp -= Math.max(1, Math.floor(t.damage * levelPower(tower.level) * (1 + bonus) * VILLAGER_QUALITY[p.quality].damage * tacticDamage * (1 - armor / (tower.kind === "STONE" ? COMBAT.stoneArmorDivisor : 1))));
                 }
                 if (tower.kind === "SLOW") {
                     const strength = Math.min(COMBAT.slowMax, COMBAT.slowBase + (p.trait === "trait_patient" ? COMBAT.patientSlow : 0) + (p.skill === "skill_warding" ? COMBAT.wardingSlow : 0) + (po.slow || 0));
@@ -209,11 +350,23 @@ export class BattleSimulation {
                             e.slow = strength;
                             e.slowTicks = RULE.slowTicks;
                             refreshed.add(e.seq);
+                            if (e.hp > 0) this.tasks?.frost.add(e.seq);
                         }
                 }
                 const shot: Shot = { tower: i, x: center.x, y: center.y, kind: tower.kind, tick: this.tick, empowered };
                 this.shots.push(shot);
                 this.feedback.push({ type: "shot", shot, target: target.seq, hurt: hurt.map(e => ({ ...e })) });
+            }
+        }
+        const poison = this.poison;
+        if (poison) {
+            // 毒伤的击杀已记在前面；防塔收掉的中毒目标同样续时。
+            for (const e of this.enemies) if (e.hp <= 0 && poison.targets.delete(e.seq)) poisonedKills++;
+            if (poison.targets.size) {
+                const { intervalTicks, maxExtraSeconds } = DRAGON_POISON;
+                const extra = Math.min(poisonedKills, maxExtraSeconds - poison.extraSeconds);
+                poison.extraSeconds += extra;
+                this.bellTicks += extra * intervalTicks;
             }
         }
         this.enemies = this.enemies.filter(e => e.hp > 0);
@@ -225,7 +378,11 @@ export class BattleSimulation {
                 e.slowTicks--;
         if (this.bellTicks > 0)
             this.bellTicks--;
-        if (hadEffect && this.bellTicks === 0) this.sharedReadyAt = this.tick + 1 + TACTIC_USE.recoveryTicks;
+        if (hadEffect && this.bellTicks === 0) {
+            this.poison = null;
+            this.sharedReadyAt = this.tick + 1 + TACTIC_USE.recoveryTicks;
+        }
+        this.tasks?.observe(this.feedback);
         this.tick++;
     }
 }

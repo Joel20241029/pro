@@ -13,6 +13,16 @@ const CARD = { width: 600, inset: 20, portrait: 70, gap: 16, seconds: 8, actionH
 /** 42% 纯黑仍保留地图细节。逻辑像素留白与金边只影响显示，点击沿用原入口。 */
 const SPOT = { shade: "rgba(0,0,0,0.42)", edge: "#ffe29d", inset: 8, line: 3 };
 
+/** 地图入口和面板内入口共用挖空遮罩；绘制层由调用方保持点击穿透。 */
+export function drawGuideSpotlight(g: Laya.Graphics, width: number, height: number, left: number, top: number, right: number, bottom: number) {
+    g.clear();
+    g.drawRect(0, 0, width, top, SPOT.shade);
+    g.drawRect(0, bottom, width, height - bottom, SPOT.shade);
+    g.drawRect(0, top, left, bottom - top, SPOT.shade);
+    g.drawRect(right, top, width - right, bottom - top, SPOT.shade);
+    g.drawRect(left, top, right - left, bottom - top, null, SPOT.edge, SPOT.line);
+}
+
 export class StarterGuide {
     readonly node = new Laya.Sprite();
     readonly spotlight = new Laya.Sprite();
@@ -23,7 +33,8 @@ export class StarterGuide {
     private activeWave = 0;
     private remaining = 0;
 
-    constructor(private storage: StoragePort, private art: SpriteFrames, private ui: UiWidgets) {
+    constructor(private storage: StoragePort, private art: SpriteFrames, private ui: UiWidgets,
+        private lessons: readonly { text: string }[] = STARTER_LESSONS, private key = KEY) {
         this.node.name = "ZhizhuoStarterGuide";
         this.node.mouseEnabled = true;
         this.node.mouseThrough = true;
@@ -42,13 +53,13 @@ export class StarterGuide {
     }
 
     tick(wave: number | null, layout: GameLayout, seconds: number, target?: Laya.Sprite) {
-        if (wave === null || wave < 1 || wave > STARTER_LESSONS.length) { this.hide(); return; }
+        if (wave === null || wave < 1 || wave > this.lessons.length) { this.hide(); return; }
         if (this.activeWave !== wave) this.hide();
         if (this.seen === null) {
             this.seen = 0;
             try {
-                const seen = Number(this.storage.read(KEY));
-                if (Number.isInteger(seen) && seen >= 0 && seen <= STARTER_LESSONS.length) this.seen = seen;
+                const seen = Number(this.storage.read(this.key));
+                if (Number.isInteger(seen) && seen >= 0 && seen <= this.lessons.length) this.seen = seen;
             } catch (error) { console.warn("[智卓引导] 无法读取查看记录", error); }
         }
         if (wave > this.seen) this.show(wave);
@@ -77,23 +88,17 @@ export class StarterGuide {
         const bounds = [root.width, root.height, left, top, right, bottom].join(",");
         if (bounds === this.cutout) return;
         this.cutout = bounds;
-        const g = this.spotlight.graphics;
-        g.clear();
-        g.drawRect(0, 0, root.width, top, SPOT.shade);
-        g.drawRect(0, bottom, root.width, root.height - bottom, SPOT.shade);
-        g.drawRect(0, top, left, bottom - top, SPOT.shade);
-        g.drawRect(right, top, root.width - right, bottom - top, SPOT.shade);
-        g.drawRect(left, top, right - left, bottom - top, null, SPOT.edge, SPOT.line);
+        drawGuideSpotlight(this.spotlight.graphics, root.width, root.height, left, top, right, bottom);
     }
 
     private saveSeen(wave: number) {
         this.seen = wave;
-        try { this.storage.write(KEY, String(wave)); }
+        try { this.storage.write(this.key, String(wave)); }
         catch (error) { console.warn("[智卓引导] 无法保存查看记录", error); }
     }
 
     private show(wave: number) {
-        const lesson = STARTER_LESSONS[wave - 1], { width, inset, portrait, gap, actionHeight } = CARD;
+        const lesson = this.lessons[wave - 1], { width, inset, portrait, gap, actionHeight } = CARD;
         const paper = new Laya.Sprite();
         paper.mouseEnabled = false;
         this.node.addChild(paper);
@@ -106,7 +111,7 @@ export class StarterGuide {
         const height = actionTop + actionHeight + inset;
         this.art.panel(paper, "panel_card", width, height);
         this.ui.button(this.node, "跳过引导", inset, actionTop, 166, () => {
-            this.saveSeen(STARTER_LESSONS.length);
+            this.saveSeen(this.lessons.length);
             this.hide();
         }, C.muted, actionHeight);
         this.ui.button(this.node, "知道了", width - inset - 146, actionTop, 146, () => this.hide(), C.green, actionHeight);

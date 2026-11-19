@@ -2,7 +2,8 @@ import { ResourceStage, RESOURCE_SLOW_SECONDS } from "../config/ResourceConfig";
 import { RELEASE } from "../config/ReleaseInfo";
 import { AssetAttempt, AssetDiagnostics, assetError } from "./AssetDiagnostics";
 
-export type PreparationPhase = "IDLE" | "DOWNLOAD" | "DECODE" | "READY" | "FAILED";
+export type PreparationPhase = "IDLE" | "DOWNLOAD" | "DECODE" | "READY" | "FAILED" | "UNSUPPORTED";
+export class UnsupportedResourceDevice extends Error {}
 export interface PreparationState { phase: PreparationPhase; progress: number; slow: boolean; error: string; }
 export interface ResourcePort {
     download?(stage: ResourceStage, progress: (value: number) => void, attempt?: AssetAttempt): Promise<void>;
@@ -27,6 +28,7 @@ export class ResourcePreparation {
     ensure(stage: ResourceStage): Promise<boolean> {
         if (this.disposed) return Promise.resolve(false);
         if (this.ready(stage)) return Promise.resolve(true);
+        if (this.states[stage].phase === "UNSUPPORTED") return Promise.resolve(false);
         const running = this.tasks.get(stage);
         if (running) return running;
         // 先登记再刷新，防止界面刷新触发同阶段重入。
@@ -74,7 +76,7 @@ export class ResourcePreparation {
             if (notificationFailed) throw error;
             if (!this.disposed) {
                 const operation = state.phase;
-                state.phase = "FAILED";
+                state.phase = error instanceof UnsupportedResourceDevice ? "UNSUPPORTED" : "FAILED";
                 state.error = error instanceof Error ? error.message : String(error);
                 console.error("[资源准备失败]", {
                     version: RELEASE.version, build: RELEASE.build, stage, operation, progress: state.progress,

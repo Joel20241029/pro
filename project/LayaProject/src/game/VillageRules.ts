@@ -1,4 +1,5 @@
-import { ADULT_APPEARANCE, ELITE, GROWTH, RULE, Skill, TOWERS, TowerKind, VILLAGER_NAMES } from "./GameConfig";
+import { QUALITY_CHANCE_SCALE, rollVillagerQuality } from "../config/VillagerQuality";
+import { ADULT_APPEARANCE, GROWTH, RULE, Skill, TOWERS, TowerKind, VILLAGER_NAMES } from "./GameConfig";
 import { GameState, isElder, isWorkingAdult, Job, Person } from "./GameState";
 import { SeededRandom } from "./SeededRandom";
 import { generateWave } from "./WaveGenerator";
@@ -8,6 +9,7 @@ import { dailyRationAmount } from "./DailyRation";
 import { person, capacity, canMarry, birthUnavailableReason, economy, policy } from "./VillageQueries";
 import { autoAssignJobs, autoAssignOperators, assignOperator } from "./VillageJobs";
 import { requireRule, spend, newId, remember, pruneHistory } from "./VillageStateOps";
+import { patrolBuildReason, patrolCost } from "./PatrolRules";
 import { applyTactic, unlockTacticSlot } from "./Tactics";
 /** 原村务 API 保持不变；内部模块只依赖具体实现，禁止反向引用此入口。 */
 export { createGame } from "./VillageCreation";
@@ -41,6 +43,11 @@ export type Command = {
 } | {
     type: "BUILD";
     kind: "HOUSE" | "FARM" | "LOGGING" | "HOUSING" | "GATE";
+} | {
+    type: "PATROL_BUILD";
+} | {
+    type: "PATROL_CAPTAIN";
+    id: string;
 } | {
     type: "REPAIR";
 } | {
@@ -171,12 +178,12 @@ export function applyCommand(s: GameState, c: Command) {
             const rng = new SeededRandom(s.rng.family), sex = nextSex(s.people, rng);
             const trait = parents[0].trait === parents[1].trait ? parents[0].trait : parents[rng.range(2)].trait;
             const id = newId(s);
-            // 主随机流保留原姓名→精英的抽样顺序；精英用命名前快照取名，不影响后续玩法抽样。
+            // 姓名分支使用原快照，主随机流仍按原顺序消费姓名和品质。
             const nameState = rng.state, nameIndex = rng.range(VILLAGER_NAMES.child.length);
-            const elite = rng.range(ELITE.chanceScale) < ELITE.birthChancePercent;
-            const name = elite ? VILLAGER_NAMES.elite[new SeededRandom(nameState).range(VILLAGER_NAMES.elite.length)]
+            const quality = rollVillagerQuality(rng.range(QUALITY_CHANCE_SCALE), s.completed, "birth");
+            const name = quality !== "COMMON" ? VILLAGER_NAMES.special[new SeededRandom(nameState).range(VILLAGER_NAMES.special.length)]
                 : `小${VILLAGER_NAMES.child[nameIndex]}${s.nextPerson - 1}`;
-            const child: Person = { id, name, sex, origin: "BORN", elite, appearance: ADULT_APPEARANCE[sex], trait, skill: null, generation: Math.max(...parents.map(p => p.generation)) + 1, parents: f.partners.slice(), ancestors: Array.from(new Set([...f.partners, ...parents[0].ancestors, ...parents[1].ancestors])), adult: false, nights: 0, elderNights: 0, growth: 0, job: "WAITING", careChild: null };
+            const child: Person = { id, name, sex, origin: "BORN", quality, appearance: ADULT_APPEARANCE[sex], trait, skill: null, generation: Math.max(...parents.map(p => p.generation)) + 1, parents: f.partners.slice(), ancestors: Array.from(new Set([...f.partners, ...parents[0].ancestors, ...parents[1].ancestors])), adult: false, nights: 0, elderNights: 0, growth: 0, job: "WAITING", careChild: null };
             s.people.push(child);
             carer.job = "CARE";
             carer.careChild = id;
@@ -208,6 +215,24 @@ export function applyCommand(s: GameState, c: Command) {
                 if (c.kind === "GATE")
                     s.gate += gateCapacity(s) - oldMax;
             }
+            break;
+        }
+        case "PATROL_BUILD": {
+            const reason = patrolBuildReason(s);
+            requireRule(reason === null, reason!);
+            const { wood, food } = patrolCost(s);
+            spend(s, "wood", wood);
+            spend(s, "food", food);
+            if (s.patrol) s.patrol.level++;
+            else s.patrol = { level: 1, captain: null };
+            break;
+        }
+        case "PATROL_CAPTAIN": {
+            requireRule(s.patrol && isWorkingAdult(person(s, c.id)), "请选择成年且未荣休的村民");
+            const tower = s.towers.find(t => t.operator === c.id);
+            if (tower) tower.operator = null;
+            s.patrol.captain = c.id;
+            autoAssignOperators(s);
             break;
         }
         case "REPAIR":

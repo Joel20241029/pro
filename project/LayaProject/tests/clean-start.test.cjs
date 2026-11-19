@@ -2,6 +2,7 @@ const { test } = require('node:test'), assert = require('node:assert/strict'), p
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 const { RULE, TRAITS } = require(path.join(compiled, 'game/GameConfig.js'));
+const { KING_MERCY_TACTIC } = require(path.join(compiled, 'config/TacticConfig.js'));
 const { createGame, applyCommand } = require(path.join(compiled, 'game/VillageRules.js'));
 const { GameSession } = require(path.join(compiled, 'game/GameSession.js'));
 const { SaveStore, canonical, crc32 } = require(path.join(compiled, 'storage/SaveStore.js'));
@@ -37,7 +38,7 @@ function fixture(state = createGame(1)) {
 function start(game) {
     const now = Date.now;
     Date.now = () => seed;
-    try { game.cleanStart(); } finally { Date.now = now; }
+    try { game.newVillage(); } finally { Date.now = now; }
 }
 function reencode(raw, changes) {
     const { checksum, ...body } = JSON.parse(raw);
@@ -49,13 +50,17 @@ function assertMirrored(f, raw) {
     assert.equal(JSON.parse(raw).commitType, 'CLEAN_START');
 }
 
-test('clean start equals a fresh village apart from its best night and device settings, and schedules a fresh same-day ration', () => {
+test('restart replaces all village progress with fresh defaults and preserves independent device settings', () => {
     const original = createGame(2), retired = { ...original.people[0], nights: 0, elderNights: 0, job: 'WAITING' };
     const extraTrait = Object.keys(TRAITS).find(trait => !original.legacy.traits.includes(trait));
     original.legacy.traits.push(extraTrait);
     Object.assign(original.legacy, { bestNight: 17, births: 8, retirees: 3, lastRationDate: date });
     const old = createGame(3, original.legacy, extraTrait, [retired], [retired.id]);
     Object.assign(old.legacy, { lastRationDate: date }); old.food = 125; old.settings.speed = 3;
+    old.tactics.learned.push(KING_MERCY_TACTIC);
+    old.tactics.extraSlots = [KING_MERCY_TACTIC];
+    old.tactics.mercyCooldown = { casts: 2, wavesLeft: 5 };
+    old.dailyTasks = { date, tasks: [{ kind: 'win', goal: 1, progress: 1, material: 'wood', reward: 5, claimed: true }] };
     applyCommand(old, { type: 'NIGHT' });
     const f = fixture(old), { game } = f, expected = createGame(seed);
     f.values.set('external-rank-cache', 'untouched');
@@ -63,7 +68,7 @@ test('clean start equals a fresh village apart from its best night and device se
     game.enter(); game.update(.01);
     for (const pause of ['USER', 'CHOICE', 'BACKGROUND', 'WAIT_RESUME', 'DISABLED']) game.pause(pause);
     start(game);
-    expected.legacy.bestNight = 17; expected.settings.speed = 3;
+    expected.settings.speed = 3;
     assert.deepEqual(game.state, expected);
     assert.equal(game.battle, null); assert.equal(game.accumulator, 0); assert.equal(game.villageRevision, 1);
     assert.deepEqual([...game.pauses].sort(), ['BACKGROUND', 'DAILY_RATION', 'DISABLED', 'WAIT_RESUME']);
@@ -143,7 +148,7 @@ test('restart after a durable first slot keeps completing the same candidate acr
     f.port.fail = attempt => attempt === 1 ? 'after' : 'before';
     start(f.game);
     const raw = f.writes[0][1], stored = JSON.parse(raw);
-    assert.equal(stored.revision, 3); assert.equal(stored.payload.legacy.bestNight, 5);
+    assert.equal(stored.revision, 3); assert.equal(stored.payload.legacy.bestNight, 0);
     const probe = new SaveStore(f.port);
     assert.equal(probe.inspect().kind, 'complete-clean-start');
     assert.equal(probe.pending.raw, raw); assert.equal(probe.pending.revision, stored.revision);
@@ -166,6 +171,7 @@ test('restart after a durable first slot keeps completing the same candidate acr
 test('a completed clean start restores its new village after either slot becomes corrupt or missing', () => {
     for (const key of keys) for (const broken of ['corrupt', null]) {
         const old = createGame(1); old.legacy.bestNight = 9; old.food = 5;
+        old.dailyTasks = { date, tasks: [{ kind: "win", goal: 1, progress: 1, material: "wood", reward: 5, claimed: true }] };
         const f = fixture(old); start(f.game);
         const raw = f.values.get(key);
         if (broken === null) f.values.delete(key); else f.values.set(key, broken);
@@ -185,7 +191,7 @@ test('a competing same-revision candidate or incompatible slot blocks clean-star
         const concurrent = reencode(raw, patch); f.values.set(other, concurrent);
         f.game.retry();
         const game = f.reopen(); assert.equal(game.boot.kind, kind); assert.equal(game.state, null);
-        game.cleanStart(); assert.equal(f.writes.length, 1); assert.equal(f.values.get(other), concurrent);
+        game.newVillage(); assert.equal(f.writes.length, 1); assert.equal(f.values.get(other), concurrent);
         if (kind === 'blocked') assert.equal(game.boot.canReset, false);
     }
 });
@@ -204,7 +210,7 @@ test('an invalid or tampered commit type is never treated as a normal or a clean
 });
 
 test('ordinary run-one day-one startup and a higher normal save do not trigger clean-start completion', () => {
-    const f = fixture(null); start(f.game);
+    const f = fixture(null);
     assert.equal(f.writes.length, 0);
     f.game.newVillage(); assert.equal(f.game.villageRevision, 1); assert.equal(f.writes.length, 1);
     const ordinary = f.reopen(); assert.equal(ordinary.state.run, 1); assert.equal(ordinary.state.day, 1);

@@ -1,5 +1,4 @@
 import { GameState } from "../../game/GameState";
-import { TRAITS } from "../../game/GameConfig";
 import { C, UI } from "../UiTheme";
 import { ScrollList } from "../ScrollList";
 import { RankingView } from "../RankingView";
@@ -35,26 +34,11 @@ export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel, defe
         return;
     }
     if (p.type === "restart") {
-        const box = ctx.modal("重新开村", "两种方式都会结束当前村落", true, { width: 620, height: 490 });
-        ctx.ui.button(box, "传承开村", 38, 160, 544, () => ctx.open({ type: "inherit" }), C.green, 76);
-        ctx.ui.label(box, "保留家谱、累计与战技，选择一项天赋", 38, 242, 544, 26, C.green, false, 40).align = "center";
-        ctx.ui.button(box, "纯净开始", 38, 304, 544, () => ctx.open({ type: "cleanStart" }), C.gold, 76);
-        ctx.ui.label(box, "回到首次开村状态，只保留最高纪录", 38, 386, 544, 26, C.timber, false, 40).align = "center";
-        return;
-    }
-    if (p.type === "cleanStart") {
-        const box = ctx.modal("确认纯净开始", "当前村庄、天赋、家谱和累计进度将清空", true, { width: 620, height: 420 });
-        ctx.ui.label(box, "只保留最高守夜纪录，战技回到初始。\n新村可重新领取一次口粮。", 38, 160, 544, 28, C.timber, false, 100).align = "center";
-        ctx.ui.button(box, "取消", 38, 300, 254, () => ctx.open({ type: "restart" }), C.muted, 76);
-        ctx.ui.button(box, "确认纯净开始", 310, 300, 272, () => ctx.game.cleanStart(), C.gold, 76);
-        return;
-    }
-    if (p.type === "inherit") {
-        const box = ctx.modal("传承开村", "放弃当前村落，保留累计传承。\n选择一项天赋，交给新村的首位开村人。");
-        const rows = new ScrollList(UI.contentWidth, 590, Math.max(0, s.legacy.traits.length * UI.listStep - 8), p.scroll, offset => p.scroll = offset);
-        rows.pos(UI.inset, UI.listTop);
-        box.addChild(rows);
-        s.legacy.traits.forEach((t, i) => ctx.ui.button(rows.content, `确认重开 · 传承${TRAITS[t][0]}`, 0, i * UI.listStep, UI.contentWidth - UI.scrollGutter, () => { ctx.current = null; ctx.game.resume("CHOICE"); ctx.game.resume("USER"); ctx.game.newVillage(t); }, C.green, UI.listHeight));
+        const box = ctx.modal("确认重新开村", "", false, { width: 620, height: 398 });
+        ctx.ui.label(box, "当前村庄的全部进度将清空。", 38, 123, 544, 31, C.cream, true, 48).align = "center";
+        ctx.ui.label(box, "确认后从第一天开始。\n已同步的微信好友榜成绩会保留。", 38, 188, 544, 27, C.cream, false, 82).align = "center";
+        ctx.ui.button(box, "取消", 38, 297, 254, () => p.back ? ctx.open(p.back) : ctx.close(), C.muted, 72);
+        ctx.ui.button(box, "确认重新开村", 320, 297, 262, () => ctx.game.newVillage(), C.gold, 72);
         return;
     }
     if (p.type === "guide") {
@@ -88,5 +72,5 @@ export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel, defe
     const box = ctx.modal("设置", "", true, { width: 620, height: 450 }, "村落进度保存在本机。离开期间没有收益或损耗。好友榜同步最高守村纪录。");
     ctx.ui.button(box, s.settings.music ? "游戏声音 · 开" : "游戏声音 · 关", 40, 132, 540, () => ctx.send({ type: "MUSIC", enabled: !s.settings.music }), s.settings.music ? C.green : C.muted, 76);
     ctx.ui.button(box, "玩法说明", 40, 230, 540, () => ctx.open({ type: "guide", tab: 0 }), C.gold, 76);
-    ctx.ui.button(box, "重新开村…", 40, 334, 540, () => ctx.open({ type: "restart" }), C.red, 76);
+    ctx.ui.button(box, "重新开村…", 40, 334, 540, () => ctx.open({ type: "restart", back: p }), C.red, 76);
 }
