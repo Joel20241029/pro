@@ -39,7 +39,7 @@ export function validateSpriteStage(content: {
         if (!actual || actual.clip !== pose.clip || actual.mirror !== pose.mirror || !clips.some(c => c.id === pose.clip)) throw new Error("劳动方向映射缺失：" + action + "/" + direction);
     }
     for (const clip of clips) {
-        const directContact = clip.id.includes("_chop_");
+        const directContact = clip.id.includes("_work_");
         if (loaded.clips.has(clip.id) || !Number.isFinite(clip.fps) || clip.fps <= 0 || clip.frameIds.length < 2 ||
             !clip.frameIds.every(id => created.has(id)) || !created.has(clip.restFrame) || !clip.canvas ||
             (clip.displayScale !== undefined && (!Number.isFinite(clip.displayScale) || clip.displayScale <= 0)) ||

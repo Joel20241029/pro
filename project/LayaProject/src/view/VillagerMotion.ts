@@ -230,17 +230,16 @@ export class VillagerMotion {
                 if (!target) throw new Error("伐木动作缺少目标树");
                 // 五个工位位于树干的前侧方，侧身挥刀才能把刃送到树干上。
                 m.direction = target.treeX < m.x ? "LEFT" : "RIGHT";
-                clip = `villager_${model}_chop`;
+                clip = `villager_${model}_work`;
             } else if (p.job === "CARE" && p.careChild) {
                 const child = this.people.get(p.careChild) || this.stops.rest[this.campSlots.get(p.careChild)!];
                 m.direction = walkDirection(child.x - m.x, child.y - m.y, m.direction);
-                clip = `villager_${model}_care`;
             } else if (p.job === "FARM") {
-                // 两排工位都位于各自作物的下方。面向种植行，转身不会移动人物足点。
-                m.direction = "UP";
-                clip = `villager_${model}_farm`;
+                // 工位记下田垄的方向，翻地与伐木复用同一套侧面动作。
+                m.direction = this.stops.farm.find(stop => stop === m.plan[m.visit].at)!.direction;
+                clip = `villager_${model}_work`;
             }
-            animated = true;
+            animated = p.job === "LOGGING" || p.job === "FARM";
         }
         if (m.clip !== clip || m.animated !== animated) m.elapsed = 0;
         m.clip = clip; m.animated = animated; m.walking = walking;

@@ -37,7 +37,7 @@ test('birth hint shares cooldown, child, parent, carer, food, space and safe ID 
     const s = marriedOnly(); applyCommand(s, {type:'BIRTH', family:s.families[0].id, carer:s.people[0].id}); assert.equal(hint(s).families, false);
 });
 test('build hints switch at exact costs, full houses/gate do not keep them lit', () => {
-    const s = noFunds(); s.houses = RULE.houseMax; s.gate = gateCapacity(s); assert.equal(hint(s).build, false);
+    const s = noFunds(); applyCommand(s, {type:'PATROL_CAPTAIN', id:s.people[4].id}); s.houses = RULE.houseMax; s.gate = gateCapacity(s); assert.equal(hint(s).build, false);
     s.housing=18; s.houses--; const expansion = residentialCost(s.houses); s.wood = expansion.wood; s.food = expansion.food - 1;
     // Other cheap upgrades can also light the shared dot; expansion's own boundary is tested through its command.
     assert.throws(() => applyCommand(s, {type:'BUILD',kind:'HOUSE'}));

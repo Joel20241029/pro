@@ -402,326 +402,6 @@
       "stridePixels": 17.353846153846153
     },
     {
-      "id": "villager_blue_chop_down",
-      "frameIds": [
-        "hd_blue_chop_down_1",
-        "hd_blue_chop_down_2",
-        "hd_blue_chop_down_3",
-        "hd_blue_chop_down_4",
-        "hd_blue_chop_down_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_blue_chop_down_1",
-      "category": "characters",
-      "mapping": "villager_blue_chop_down",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_blue_chop_right",
-      "frameIds": [
-        "hd_blue_chop_right_1",
-        "hd_blue_chop_right_2",
-        "hd_blue_chop_right_3",
-        "hd_blue_chop_right_4",
-        "hd_blue_chop_right_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_blue_chop_right_1",
-      "category": "characters",
-      "mapping": "villager_blue_chop_right",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_blue_chop_up",
-      "frameIds": [
-        "hd_blue_chop_up_1",
-        "hd_blue_chop_up_2",
-        "hd_blue_chop_up_3",
-        "hd_blue_chop_up_4",
-        "hd_blue_chop_up_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_blue_chop_up_1",
-      "category": "characters",
-      "mapping": "villager_blue_chop_up",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_blue_chop_left",
-      "frameIds": [
-        "hd_blue_chop_left_1",
-        "hd_blue_chop_left_2",
-        "hd_blue_chop_left_3",
-        "hd_blue_chop_left_4",
-        "hd_blue_chop_left_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_blue_chop_left_1",
-      "category": "characters",
-      "mapping": "villager_blue_chop_left",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_blue_farm_down",
-      "frameIds": [
-        "hd_blue_farm_down_1",
-        "hd_blue_farm_down_2",
-        "hd_blue_farm_down_3",
-        "hd_blue_farm_down_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_blue_farm_down_1",
-      "category": "characters",
-      "mapping": "villager_blue_farm_down",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_blue_farm_right",
-      "frameIds": [
-        "hd_blue_farm_right_1",
-        "hd_blue_farm_right_2",
-        "hd_blue_farm_right_3",
-        "hd_blue_farm_right_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_blue_farm_right_1",
-      "category": "characters",
-      "mapping": "villager_blue_farm_right",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_blue_farm_up",
-      "frameIds": [
-        "hd_blue_farm_up_1",
-        "hd_blue_farm_up_2",
-        "hd_blue_farm_up_3",
-        "hd_blue_farm_up_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_blue_farm_up_1",
-      "category": "characters",
-      "mapping": "villager_blue_farm_up",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_blue_farm_left",
-      "frameIds": [
-        "hd_blue_farm_left_1",
-        "hd_blue_farm_left_2",
-        "hd_blue_farm_left_3",
-        "hd_blue_farm_left_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_blue_farm_left_1",
-      "category": "characters",
-      "mapping": "villager_blue_farm_left",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_blue_care_down",
-      "frameIds": [
-        "hd_blue_care_down_1",
-        "hd_blue_care_down_2",
-        "hd_blue_care_down_3",
-        "hd_blue_care_down_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_blue_care_down_1",
-      "category": "characters",
-      "mapping": "villager_blue_care_down",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_blue_care_right",
-      "frameIds": [
-        "hd_blue_care_right_1",
-        "hd_blue_care_right_2",
-        "hd_blue_care_right_3",
-        "hd_blue_care_right_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_blue_care_right_1",
-      "category": "characters",
-      "mapping": "villager_blue_care_right",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_blue_care_up",
-      "frameIds": [
-        "hd_blue_care_up_1",
-        "hd_blue_care_up_2",
-        "hd_blue_care_up_3",
-        "hd_blue_care_up_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_blue_care_up_1",
-      "category": "characters",
-      "mapping": "villager_blue_care_up",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_blue_care_left",
-      "frameIds": [
-        "hd_blue_care_left_1",
-        "hd_blue_care_left_2",
-        "hd_blue_care_left_3",
-        "hd_blue_care_left_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_blue_care_left_1",
-      "category": "characters",
-      "mapping": "villager_blue_care_left",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
       "id": "villager_straw_walk_down",
       "frameIds": [
         "hd_straw_down_0",
@@ -830,326 +510,6 @@
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
       "stridePixels": 16.246153846153845
-    },
-    {
-      "id": "villager_straw_chop_down",
-      "frameIds": [
-        "hd_straw_chop_down_1",
-        "hd_straw_chop_down_2",
-        "hd_straw_chop_down_3",
-        "hd_straw_chop_down_4",
-        "hd_straw_chop_down_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_straw_chop_down_1",
-      "category": "characters",
-      "mapping": "villager_straw_chop_down",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_straw_chop_right",
-      "frameIds": [
-        "hd_straw_chop_right_1",
-        "hd_straw_chop_right_2",
-        "hd_straw_chop_right_3",
-        "hd_straw_chop_right_4",
-        "hd_straw_chop_right_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_straw_chop_right_1",
-      "category": "characters",
-      "mapping": "villager_straw_chop_right",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_straw_chop_up",
-      "frameIds": [
-        "hd_straw_chop_up_1",
-        "hd_straw_chop_up_2",
-        "hd_straw_chop_up_3",
-        "hd_straw_chop_up_4",
-        "hd_straw_chop_up_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_straw_chop_up_1",
-      "category": "characters",
-      "mapping": "villager_straw_chop_up",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_straw_chop_left",
-      "frameIds": [
-        "hd_straw_chop_left_1",
-        "hd_straw_chop_left_2",
-        "hd_straw_chop_left_3",
-        "hd_straw_chop_left_4",
-        "hd_straw_chop_left_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_straw_chop_left_1",
-      "category": "characters",
-      "mapping": "villager_straw_chop_left",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_straw_farm_down",
-      "frameIds": [
-        "hd_straw_farm_down_1",
-        "hd_straw_farm_down_2",
-        "hd_straw_farm_down_3",
-        "hd_straw_farm_down_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_straw_farm_down_1",
-      "category": "characters",
-      "mapping": "villager_straw_farm_down",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_straw_farm_right",
-      "frameIds": [
-        "hd_straw_farm_right_1",
-        "hd_straw_farm_right_2",
-        "hd_straw_farm_right_3",
-        "hd_straw_farm_right_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_straw_farm_right_1",
-      "category": "characters",
-      "mapping": "villager_straw_farm_right",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_straw_farm_up",
-      "frameIds": [
-        "hd_straw_farm_up_1",
-        "hd_straw_farm_up_2",
-        "hd_straw_farm_up_3",
-        "hd_straw_farm_up_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_straw_farm_up_1",
-      "category": "characters",
-      "mapping": "villager_straw_farm_up",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_straw_farm_left",
-      "frameIds": [
-        "hd_straw_farm_left_1",
-        "hd_straw_farm_left_2",
-        "hd_straw_farm_left_3",
-        "hd_straw_farm_left_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_straw_farm_left_1",
-      "category": "characters",
-      "mapping": "villager_straw_farm_left",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_straw_care_down",
-      "frameIds": [
-        "hd_straw_care_down_1",
-        "hd_straw_care_down_2",
-        "hd_straw_care_down_3",
-        "hd_straw_care_down_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_straw_care_down_1",
-      "category": "characters",
-      "mapping": "villager_straw_care_down",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_straw_care_right",
-      "frameIds": [
-        "hd_straw_care_right_1",
-        "hd_straw_care_right_2",
-        "hd_straw_care_right_3",
-        "hd_straw_care_right_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_straw_care_right_1",
-      "category": "characters",
-      "mapping": "villager_straw_care_right",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_straw_care_up",
-      "frameIds": [
-        "hd_straw_care_up_1",
-        "hd_straw_care_up_2",
-        "hd_straw_care_up_3",
-        "hd_straw_care_up_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_straw_care_up_1",
-      "category": "characters",
-      "mapping": "villager_straw_care_up",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_straw_care_left",
-      "frameIds": [
-        "hd_straw_care_left_1",
-        "hd_straw_care_left_2",
-        "hd_straw_care_left_3",
-        "hd_straw_care_left_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_straw_care_left_1",
-      "category": "characters",
-      "mapping": "villager_straw_care_left",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
     },
     {
       "id": "villager_red_walk_down",
@@ -1262,326 +622,6 @@
       "stridePixels": 16.615384615384613
     },
     {
-      "id": "villager_red_chop_down",
-      "frameIds": [
-        "hd_red_chop_down_1",
-        "hd_red_chop_down_2",
-        "hd_red_chop_down_3",
-        "hd_red_chop_down_4",
-        "hd_red_chop_down_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_red_chop_down_1",
-      "category": "characters",
-      "mapping": "villager_red_chop_down",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_red_chop_right",
-      "frameIds": [
-        "hd_red_chop_right_1",
-        "hd_red_chop_right_2",
-        "hd_red_chop_right_3",
-        "hd_red_chop_right_4",
-        "hd_red_chop_right_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_red_chop_right_1",
-      "category": "characters",
-      "mapping": "villager_red_chop_right",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_red_chop_up",
-      "frameIds": [
-        "hd_red_chop_up_1",
-        "hd_red_chop_up_2",
-        "hd_red_chop_up_3",
-        "hd_red_chop_up_4",
-        "hd_red_chop_up_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_red_chop_up_1",
-      "category": "characters",
-      "mapping": "villager_red_chop_up",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_red_chop_left",
-      "frameIds": [
-        "hd_red_chop_left_1",
-        "hd_red_chop_left_2",
-        "hd_red_chop_left_3",
-        "hd_red_chop_left_4",
-        "hd_red_chop_left_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_red_chop_left_1",
-      "category": "characters",
-      "mapping": "villager_red_chop_left",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_red_farm_down",
-      "frameIds": [
-        "hd_red_farm_down_1",
-        "hd_red_farm_down_2",
-        "hd_red_farm_down_3",
-        "hd_red_farm_down_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_red_farm_down_1",
-      "category": "characters",
-      "mapping": "villager_red_farm_down",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_red_farm_right",
-      "frameIds": [
-        "hd_red_farm_right_1",
-        "hd_red_farm_right_2",
-        "hd_red_farm_right_3",
-        "hd_red_farm_right_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_red_farm_right_1",
-      "category": "characters",
-      "mapping": "villager_red_farm_right",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_red_farm_up",
-      "frameIds": [
-        "hd_red_farm_up_1",
-        "hd_red_farm_up_2",
-        "hd_red_farm_up_3",
-        "hd_red_farm_up_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_red_farm_up_1",
-      "category": "characters",
-      "mapping": "villager_red_farm_up",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_red_farm_left",
-      "frameIds": [
-        "hd_red_farm_left_1",
-        "hd_red_farm_left_2",
-        "hd_red_farm_left_3",
-        "hd_red_farm_left_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_red_farm_left_1",
-      "category": "characters",
-      "mapping": "villager_red_farm_left",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_red_care_down",
-      "frameIds": [
-        "hd_red_care_down_1",
-        "hd_red_care_down_2",
-        "hd_red_care_down_3",
-        "hd_red_care_down_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_red_care_down_1",
-      "category": "characters",
-      "mapping": "villager_red_care_down",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_red_care_right",
-      "frameIds": [
-        "hd_red_care_right_1",
-        "hd_red_care_right_2",
-        "hd_red_care_right_3",
-        "hd_red_care_right_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_red_care_right_1",
-      "category": "characters",
-      "mapping": "villager_red_care_right",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_red_care_up",
-      "frameIds": [
-        "hd_red_care_up_1",
-        "hd_red_care_up_2",
-        "hd_red_care_up_3",
-        "hd_red_care_up_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_red_care_up_1",
-      "category": "characters",
-      "mapping": "villager_red_care_up",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_red_care_left",
-      "frameIds": [
-        "hd_red_care_left_1",
-        "hd_red_care_left_2",
-        "hd_red_care_left_3",
-        "hd_red_care_left_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_red_care_left_1",
-      "category": "characters",
-      "mapping": "villager_red_care_left",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
       "id": "villager_jade_walk_down",
       "frameIds": [
         "hd_jade_down_0",
@@ -1690,326 +730,6 @@
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
       "stridePixels": 15.876923076923076
-    },
-    {
-      "id": "villager_jade_chop_down",
-      "frameIds": [
-        "hd_jade_chop_down_1",
-        "hd_jade_chop_down_2",
-        "hd_jade_chop_down_3",
-        "hd_jade_chop_down_4",
-        "hd_jade_chop_down_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_jade_chop_down_1",
-      "category": "characters",
-      "mapping": "villager_jade_chop_down",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_jade_chop_right",
-      "frameIds": [
-        "hd_jade_chop_right_1",
-        "hd_jade_chop_right_2",
-        "hd_jade_chop_right_3",
-        "hd_jade_chop_right_4",
-        "hd_jade_chop_right_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_jade_chop_right_1",
-      "category": "characters",
-      "mapping": "villager_jade_chop_right",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_jade_chop_up",
-      "frameIds": [
-        "hd_jade_chop_up_1",
-        "hd_jade_chop_up_2",
-        "hd_jade_chop_up_3",
-        "hd_jade_chop_up_4",
-        "hd_jade_chop_up_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_jade_chop_up_1",
-      "category": "characters",
-      "mapping": "villager_jade_chop_up",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_jade_chop_left",
-      "frameIds": [
-        "hd_jade_chop_left_1",
-        "hd_jade_chop_left_2",
-        "hd_jade_chop_left_3",
-        "hd_jade_chop_left_4",
-        "hd_jade_chop_left_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_jade_chop_left_1",
-      "category": "characters",
-      "mapping": "villager_jade_chop_left",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_jade_farm_down",
-      "frameIds": [
-        "hd_jade_farm_down_1",
-        "hd_jade_farm_down_2",
-        "hd_jade_farm_down_3",
-        "hd_jade_farm_down_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_jade_farm_down_1",
-      "category": "characters",
-      "mapping": "villager_jade_farm_down",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_jade_farm_right",
-      "frameIds": [
-        "hd_jade_farm_right_1",
-        "hd_jade_farm_right_2",
-        "hd_jade_farm_right_3",
-        "hd_jade_farm_right_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_jade_farm_right_1",
-      "category": "characters",
-      "mapping": "villager_jade_farm_right",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_jade_farm_up",
-      "frameIds": [
-        "hd_jade_farm_up_1",
-        "hd_jade_farm_up_2",
-        "hd_jade_farm_up_3",
-        "hd_jade_farm_up_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_jade_farm_up_1",
-      "category": "characters",
-      "mapping": "villager_jade_farm_up",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_jade_farm_left",
-      "frameIds": [
-        "hd_jade_farm_left_1",
-        "hd_jade_farm_left_2",
-        "hd_jade_farm_left_3",
-        "hd_jade_farm_left_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_jade_farm_left_1",
-      "category": "characters",
-      "mapping": "villager_jade_farm_left",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_jade_care_down",
-      "frameIds": [
-        "hd_jade_care_down_1",
-        "hd_jade_care_down_2",
-        "hd_jade_care_down_3",
-        "hd_jade_care_down_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_jade_care_down_1",
-      "category": "characters",
-      "mapping": "villager_jade_care_down",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_jade_care_right",
-      "frameIds": [
-        "hd_jade_care_right_1",
-        "hd_jade_care_right_2",
-        "hd_jade_care_right_3",
-        "hd_jade_care_right_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_jade_care_right_1",
-      "category": "characters",
-      "mapping": "villager_jade_care_right",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_jade_care_up",
-      "frameIds": [
-        "hd_jade_care_up_1",
-        "hd_jade_care_up_2",
-        "hd_jade_care_up_3",
-        "hd_jade_care_up_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_jade_care_up_1",
-      "category": "characters",
-      "mapping": "villager_jade_care_up",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_jade_care_left",
-      "frameIds": [
-        "hd_jade_care_left_1",
-        "hd_jade_care_left_2",
-        "hd_jade_care_left_3",
-        "hd_jade_care_left_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_jade_care_left_1",
-      "category": "characters",
-      "mapping": "villager_jade_care_left",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
     },
     {
       "id": "villager_elite_male_walk_down",
@@ -2122,326 +842,6 @@
       "stridePixels": 16.246153846153845
     },
     {
-      "id": "villager_elite_male_chop_down",
-      "frameIds": [
-        "hd_elite_male_chop_down_1",
-        "hd_elite_male_chop_down_2",
-        "hd_elite_male_chop_down_3",
-        "hd_elite_male_chop_down_4",
-        "hd_elite_male_chop_down_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_male_chop_down_1",
-      "category": "characters",
-      "mapping": "villager_elite_male_chop_down",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_elite_male_chop_right",
-      "frameIds": [
-        "hd_elite_male_chop_right_1",
-        "hd_elite_male_chop_right_2",
-        "hd_elite_male_chop_right_3",
-        "hd_elite_male_chop_right_4",
-        "hd_elite_male_chop_right_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_male_chop_right_1",
-      "category": "characters",
-      "mapping": "villager_elite_male_chop_right",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_elite_male_chop_up",
-      "frameIds": [
-        "hd_elite_male_chop_up_1",
-        "hd_elite_male_chop_up_2",
-        "hd_elite_male_chop_up_3",
-        "hd_elite_male_chop_up_4",
-        "hd_elite_male_chop_up_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_male_chop_up_1",
-      "category": "characters",
-      "mapping": "villager_elite_male_chop_up",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_elite_male_chop_left",
-      "frameIds": [
-        "hd_elite_male_chop_left_1",
-        "hd_elite_male_chop_left_2",
-        "hd_elite_male_chop_left_3",
-        "hd_elite_male_chop_left_4",
-        "hd_elite_male_chop_left_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_male_chop_left_1",
-      "category": "characters",
-      "mapping": "villager_elite_male_chop_left",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_elite_male_farm_down",
-      "frameIds": [
-        "hd_elite_male_farm_down_1",
-        "hd_elite_male_farm_down_2",
-        "hd_elite_male_farm_down_3",
-        "hd_elite_male_farm_down_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_male_farm_down_1",
-      "category": "characters",
-      "mapping": "villager_elite_male_farm_down",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_elite_male_farm_right",
-      "frameIds": [
-        "hd_elite_male_farm_right_1",
-        "hd_elite_male_farm_right_2",
-        "hd_elite_male_farm_right_3",
-        "hd_elite_male_farm_right_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_male_farm_right_1",
-      "category": "characters",
-      "mapping": "villager_elite_male_farm_right",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_elite_male_farm_up",
-      "frameIds": [
-        "hd_elite_male_farm_up_1",
-        "hd_elite_male_farm_up_2",
-        "hd_elite_male_farm_up_3",
-        "hd_elite_male_farm_up_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_male_farm_up_1",
-      "category": "characters",
-      "mapping": "villager_elite_male_farm_up",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_elite_male_farm_left",
-      "frameIds": [
-        "hd_elite_male_farm_left_1",
-        "hd_elite_male_farm_left_2",
-        "hd_elite_male_farm_left_3",
-        "hd_elite_male_farm_left_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_male_farm_left_1",
-      "category": "characters",
-      "mapping": "villager_elite_male_farm_left",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_elite_male_care_down",
-      "frameIds": [
-        "hd_elite_male_care_down_1",
-        "hd_elite_male_care_down_2",
-        "hd_elite_male_care_down_3",
-        "hd_elite_male_care_down_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_male_care_down_1",
-      "category": "characters",
-      "mapping": "villager_elite_male_care_down",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_elite_male_care_right",
-      "frameIds": [
-        "hd_elite_male_care_right_1",
-        "hd_elite_male_care_right_2",
-        "hd_elite_male_care_right_3",
-        "hd_elite_male_care_right_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_male_care_right_1",
-      "category": "characters",
-      "mapping": "villager_elite_male_care_right",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_elite_male_care_up",
-      "frameIds": [
-        "hd_elite_male_care_up_1",
-        "hd_elite_male_care_up_2",
-        "hd_elite_male_care_up_3",
-        "hd_elite_male_care_up_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_male_care_up_1",
-      "category": "characters",
-      "mapping": "villager_elite_male_care_up",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
-      "id": "villager_elite_male_care_left",
-      "frameIds": [
-        "hd_elite_male_care_left_1",
-        "hd_elite_male_care_left_2",
-        "hd_elite_male_care_left_3",
-        "hd_elite_male_care_left_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_male_care_left_1",
-      "category": "characters",
-      "mapping": "villager_elite_male_care_left",
-      "canvas": {
-        "w": 168,
-        "h": 168
-      },
-      "pivot": {
-        "x": 84,
-        "y": 127.67105376720428
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.3384615457974947
-    },
-    {
       "id": "villager_elite_female_walk_down",
       "frameIds": [
         "hd_elite_female_down_0",
@@ -2550,326 +950,6 @@
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
       "stridePixels": 15.876923076923076
-    },
-    {
-      "id": "villager_elite_female_chop_down",
-      "frameIds": [
-        "hd_elite_female_chop_down_1",
-        "hd_elite_female_chop_down_2",
-        "hd_elite_female_chop_down_3",
-        "hd_elite_female_chop_down_4",
-        "hd_elite_female_chop_down_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_female_chop_down_1",
-      "category": "characters",
-      "mapping": "villager_elite_female_chop_down",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_elite_female_chop_right",
-      "frameIds": [
-        "hd_elite_female_chop_right_1",
-        "hd_elite_female_chop_right_2",
-        "hd_elite_female_chop_right_3",
-        "hd_elite_female_chop_right_4",
-        "hd_elite_female_chop_right_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_female_chop_right_1",
-      "category": "characters",
-      "mapping": "villager_elite_female_chop_right",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_elite_female_chop_up",
-      "frameIds": [
-        "hd_elite_female_chop_up_1",
-        "hd_elite_female_chop_up_2",
-        "hd_elite_female_chop_up_3",
-        "hd_elite_female_chop_up_4",
-        "hd_elite_female_chop_up_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_female_chop_up_1",
-      "category": "characters",
-      "mapping": "villager_elite_female_chop_up",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_elite_female_chop_left",
-      "frameIds": [
-        "hd_elite_female_chop_left_1",
-        "hd_elite_female_chop_left_2",
-        "hd_elite_female_chop_left_3",
-        "hd_elite_female_chop_left_4",
-        "hd_elite_female_chop_left_5"
-      ],
-      "frameCount": 5,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_female_chop_left_1",
-      "category": "characters",
-      "mapping": "villager_elite_female_chop_left",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537,
-      "contactFrame": 2
-    },
-    {
-      "id": "villager_elite_female_farm_down",
-      "frameIds": [
-        "hd_elite_female_farm_down_1",
-        "hd_elite_female_farm_down_2",
-        "hd_elite_female_farm_down_3",
-        "hd_elite_female_farm_down_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_female_farm_down_1",
-      "category": "characters",
-      "mapping": "villager_elite_female_farm_down",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_elite_female_farm_right",
-      "frameIds": [
-        "hd_elite_female_farm_right_1",
-        "hd_elite_female_farm_right_2",
-        "hd_elite_female_farm_right_3",
-        "hd_elite_female_farm_right_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_female_farm_right_1",
-      "category": "characters",
-      "mapping": "villager_elite_female_farm_right",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_elite_female_farm_up",
-      "frameIds": [
-        "hd_elite_female_farm_up_1",
-        "hd_elite_female_farm_up_2",
-        "hd_elite_female_farm_up_3",
-        "hd_elite_female_farm_up_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_female_farm_up_1",
-      "category": "characters",
-      "mapping": "villager_elite_female_farm_up",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_elite_female_farm_left",
-      "frameIds": [
-        "hd_elite_female_farm_left_1",
-        "hd_elite_female_farm_left_2",
-        "hd_elite_female_farm_left_3",
-        "hd_elite_female_farm_left_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_female_farm_left_1",
-      "category": "characters",
-      "mapping": "villager_elite_female_farm_left",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_elite_female_care_down",
-      "frameIds": [
-        "hd_elite_female_care_down_1",
-        "hd_elite_female_care_down_2",
-        "hd_elite_female_care_down_3",
-        "hd_elite_female_care_down_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_female_care_down_1",
-      "category": "characters",
-      "mapping": "villager_elite_female_care_down",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_elite_female_care_right",
-      "frameIds": [
-        "hd_elite_female_care_right_1",
-        "hd_elite_female_care_right_2",
-        "hd_elite_female_care_right_3",
-        "hd_elite_female_care_right_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_female_care_right_1",
-      "category": "characters",
-      "mapping": "villager_elite_female_care_right",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_elite_female_care_up",
-      "frameIds": [
-        "hd_elite_female_care_up_1",
-        "hd_elite_female_care_up_2",
-        "hd_elite_female_care_up_3",
-        "hd_elite_female_care_up_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_female_care_up_1",
-      "category": "characters",
-      "mapping": "villager_elite_female_care_up",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
-    },
-    {
-      "id": "villager_elite_female_care_left",
-      "frameIds": [
-        "hd_elite_female_care_left_1",
-        "hd_elite_female_care_left_2",
-        "hd_elite_female_care_left_3",
-        "hd_elite_female_care_left_4"
-      ],
-      "frameCount": 4,
-      "fps": 8,
-      "loop": true,
-      "restFrame": "hd_elite_female_care_left_1",
-      "category": "characters",
-      "mapping": "villager_elite_female_care_left",
-      "canvas": {
-        "w": 144,
-        "h": 144
-      },
-      "pivot": {
-        "x": 72,
-        "y": 115.42150497436523
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas",
-      "displayScale": 1.1538461538461537
     },
     {
       "id": "villager_child_walk_down",
@@ -3558,6 +1638,330 @@
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
       "stridePixels": 56
+    },
+    {
+      "id": "villager_blue_work_right",
+      "frameIds": [
+        "hd_blue_work_right_1",
+        "hd_blue_work_right_2",
+        "hd_blue_work_right_3",
+        "hd_blue_work_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "hd_blue_work_right_1",
+      "category": "characters",
+      "mapping": "villager_blue_work_right",
+      "canvas": {
+        "w": 144,
+        "h": 144
+      },
+      "pivot": {
+        "x": 72,
+        "y": 115.42150497436523
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "displayScale": 1.1538461538461537,
+      "contactFrame": 2
+    },
+    {
+      "id": "villager_blue_work_left",
+      "frameIds": [
+        "hd_blue_work_left_1",
+        "hd_blue_work_left_2",
+        "hd_blue_work_left_3",
+        "hd_blue_work_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "hd_blue_work_left_1",
+      "category": "characters",
+      "mapping": "villager_blue_work_left",
+      "canvas": {
+        "w": 144,
+        "h": 144
+      },
+      "pivot": {
+        "x": 72,
+        "y": 115.42150497436523
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "displayScale": 1.1538461538461537,
+      "contactFrame": 2
+    },
+    {
+      "id": "villager_straw_work_right",
+      "frameIds": [
+        "hd_straw_work_right_1",
+        "hd_straw_work_right_2",
+        "hd_straw_work_right_3",
+        "hd_straw_work_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "hd_straw_work_right_1",
+      "category": "characters",
+      "mapping": "villager_straw_work_right",
+      "canvas": {
+        "w": 168,
+        "h": 168
+      },
+      "pivot": {
+        "x": 84,
+        "y": 127.67105376720428
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "displayScale": 1.3384615457974947,
+      "contactFrame": 2
+    },
+    {
+      "id": "villager_straw_work_left",
+      "frameIds": [
+        "hd_straw_work_left_1",
+        "hd_straw_work_left_2",
+        "hd_straw_work_left_3",
+        "hd_straw_work_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "hd_straw_work_left_1",
+      "category": "characters",
+      "mapping": "villager_straw_work_left",
+      "canvas": {
+        "w": 168,
+        "h": 168
+      },
+      "pivot": {
+        "x": 84,
+        "y": 127.67105376720428
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "displayScale": 1.3384615457974947,
+      "contactFrame": 2
+    },
+    {
+      "id": "villager_red_work_right",
+      "frameIds": [
+        "hd_red_work_right_1",
+        "hd_red_work_right_2",
+        "hd_red_work_right_3",
+        "hd_red_work_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "hd_red_work_right_1",
+      "category": "characters",
+      "mapping": "villager_red_work_right",
+      "canvas": {
+        "w": 144,
+        "h": 144
+      },
+      "pivot": {
+        "x": 72,
+        "y": 115.42150497436523
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "displayScale": 1.1538461538461537,
+      "contactFrame": 2
+    },
+    {
+      "id": "villager_red_work_left",
+      "frameIds": [
+        "hd_red_work_left_1",
+        "hd_red_work_left_2",
+        "hd_red_work_left_3",
+        "hd_red_work_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "hd_red_work_left_1",
+      "category": "characters",
+      "mapping": "villager_red_work_left",
+      "canvas": {
+        "w": 144,
+        "h": 144
+      },
+      "pivot": {
+        "x": 72,
+        "y": 115.42150497436523
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "displayScale": 1.1538461538461537,
+      "contactFrame": 2
+    },
+    {
+      "id": "villager_jade_work_right",
+      "frameIds": [
+        "hd_jade_work_right_1",
+        "hd_jade_work_right_2",
+        "hd_jade_work_right_3",
+        "hd_jade_work_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "hd_jade_work_right_1",
+      "category": "characters",
+      "mapping": "villager_jade_work_right",
+      "canvas": {
+        "w": 168,
+        "h": 168
+      },
+      "pivot": {
+        "x": 84,
+        "y": 127.67105376720428
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "displayScale": 1.3384615457974947,
+      "contactFrame": 2
+    },
+    {
+      "id": "villager_jade_work_left",
+      "frameIds": [
+        "hd_jade_work_left_1",
+        "hd_jade_work_left_2",
+        "hd_jade_work_left_3",
+        "hd_jade_work_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "hd_jade_work_left_1",
+      "category": "characters",
+      "mapping": "villager_jade_work_left",
+      "canvas": {
+        "w": 168,
+        "h": 168
+      },
+      "pivot": {
+        "x": 84,
+        "y": 127.67105376720428
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "displayScale": 1.3384615457974947,
+      "contactFrame": 2
+    },
+    {
+      "id": "villager_elite_male_work_right",
+      "frameIds": [
+        "hd_elite_male_work_right_1",
+        "hd_elite_male_work_right_2",
+        "hd_elite_male_work_right_3",
+        "hd_elite_male_work_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "hd_elite_male_work_right_1",
+      "category": "characters",
+      "mapping": "villager_elite_male_work_right",
+      "canvas": {
+        "w": 168,
+        "h": 168
+      },
+      "pivot": {
+        "x": 84,
+        "y": 127.67105376720428
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "displayScale": 1.3384615457974947,
+      "contactFrame": 2
+    },
+    {
+      "id": "villager_elite_male_work_left",
+      "frameIds": [
+        "hd_elite_male_work_left_1",
+        "hd_elite_male_work_left_2",
+        "hd_elite_male_work_left_3",
+        "hd_elite_male_work_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "hd_elite_male_work_left_1",
+      "category": "characters",
+      "mapping": "villager_elite_male_work_left",
+      "canvas": {
+        "w": 168,
+        "h": 168
+      },
+      "pivot": {
+        "x": 84,
+        "y": 127.67105376720428
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "displayScale": 1.3384615457974947,
+      "contactFrame": 2
+    },
+    {
+      "id": "villager_elite_female_work_right",
+      "frameIds": [
+        "hd_elite_female_work_right_1",
+        "hd_elite_female_work_right_2",
+        "hd_elite_female_work_right_3",
+        "hd_elite_female_work_right_4"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "hd_elite_female_work_right_1",
+      "category": "characters",
+      "mapping": "villager_elite_female_work_right",
+      "canvas": {
+        "w": 144,
+        "h": 144
+      },
+      "pivot": {
+        "x": 72,
+        "y": 115.42150497436523
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "displayScale": 1.1538461538461537,
+      "contactFrame": 2
+    },
+    {
+      "id": "villager_elite_female_work_left",
+      "frameIds": [
+        "hd_elite_female_work_left_1",
+        "hd_elite_female_work_left_2",
+        "hd_elite_female_work_left_3",
+        "hd_elite_female_work_left_4"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "hd_elite_female_work_left_1",
+      "category": "characters",
+      "mapping": "villager_elite_female_work_left",
+      "canvas": {
+        "w": 144,
+        "h": 144
+      },
+      "pivot": {
+        "x": 72,
+        "y": 115.42150497436523
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "displayScale": 1.1538461538461537,
+      "contactFrame": 2
     }
   ],
   "walkDirections": {
@@ -3689,327 +2093,63 @@
     }
   },
   "laborDirections": {
-    "villager_blue_chop": {
-      "DOWN": {
-        "clip": "villager_blue_chop_down",
-        "mirror": false
-      },
+    "villager_blue_work": {
       "RIGHT": {
-        "clip": "villager_blue_chop_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_blue_chop_up",
+        "clip": "villager_blue_work_right",
         "mirror": false
       },
       "LEFT": {
-        "clip": "villager_blue_chop_left",
+        "clip": "villager_blue_work_left",
         "mirror": false
       }
     },
-    "villager_blue_farm": {
-      "DOWN": {
-        "clip": "villager_blue_farm_down",
-        "mirror": false
-      },
+    "villager_straw_work": {
       "RIGHT": {
-        "clip": "villager_blue_farm_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_blue_farm_up",
+        "clip": "villager_straw_work_right",
         "mirror": false
       },
       "LEFT": {
-        "clip": "villager_blue_farm_left",
+        "clip": "villager_straw_work_left",
         "mirror": false
       }
     },
-    "villager_blue_care": {
-      "DOWN": {
-        "clip": "villager_blue_care_down",
-        "mirror": false
-      },
+    "villager_red_work": {
       "RIGHT": {
-        "clip": "villager_blue_care_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_blue_care_up",
+        "clip": "villager_red_work_right",
         "mirror": false
       },
       "LEFT": {
-        "clip": "villager_blue_care_left",
+        "clip": "villager_red_work_left",
         "mirror": false
       }
     },
-    "villager_straw_chop": {
-      "DOWN": {
-        "clip": "villager_straw_chop_down",
-        "mirror": false
-      },
+    "villager_jade_work": {
       "RIGHT": {
-        "clip": "villager_straw_chop_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_straw_chop_up",
+        "clip": "villager_jade_work_right",
         "mirror": false
       },
       "LEFT": {
-        "clip": "villager_straw_chop_left",
+        "clip": "villager_jade_work_left",
         "mirror": false
       }
     },
-    "villager_straw_farm": {
-      "DOWN": {
-        "clip": "villager_straw_farm_down",
-        "mirror": false
-      },
+    "villager_elite_male_work": {
       "RIGHT": {
-        "clip": "villager_straw_farm_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_straw_farm_up",
+        "clip": "villager_elite_male_work_right",
         "mirror": false
       },
       "LEFT": {
-        "clip": "villager_straw_farm_left",
+        "clip": "villager_elite_male_work_left",
         "mirror": false
       }
     },
-    "villager_straw_care": {
-      "DOWN": {
-        "clip": "villager_straw_care_down",
-        "mirror": false
-      },
+    "villager_elite_female_work": {
       "RIGHT": {
-        "clip": "villager_straw_care_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_straw_care_up",
+        "clip": "villager_elite_female_work_right",
         "mirror": false
       },
       "LEFT": {
-        "clip": "villager_straw_care_left",
-        "mirror": false
-      }
-    },
-    "villager_red_chop": {
-      "DOWN": {
-        "clip": "villager_red_chop_down",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_red_chop_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_red_chop_up",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_red_chop_left",
-        "mirror": false
-      }
-    },
-    "villager_red_farm": {
-      "DOWN": {
-        "clip": "villager_red_farm_down",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_red_farm_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_red_farm_up",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_red_farm_left",
-        "mirror": false
-      }
-    },
-    "villager_red_care": {
-      "DOWN": {
-        "clip": "villager_red_care_down",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_red_care_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_red_care_up",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_red_care_left",
-        "mirror": false
-      }
-    },
-    "villager_jade_chop": {
-      "DOWN": {
-        "clip": "villager_jade_chop_down",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_jade_chop_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_jade_chop_up",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_jade_chop_left",
-        "mirror": false
-      }
-    },
-    "villager_jade_farm": {
-      "DOWN": {
-        "clip": "villager_jade_farm_down",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_jade_farm_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_jade_farm_up",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_jade_farm_left",
-        "mirror": false
-      }
-    },
-    "villager_jade_care": {
-      "DOWN": {
-        "clip": "villager_jade_care_down",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_jade_care_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_jade_care_up",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_jade_care_left",
-        "mirror": false
-      }
-    },
-    "villager_elite_male_chop": {
-      "DOWN": {
-        "clip": "villager_elite_male_chop_down",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_elite_male_chop_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_elite_male_chop_up",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_elite_male_chop_left",
-        "mirror": false
-      }
-    },
-    "villager_elite_male_farm": {
-      "DOWN": {
-        "clip": "villager_elite_male_farm_down",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_elite_male_farm_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_elite_male_farm_up",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_elite_male_farm_left",
-        "mirror": false
-      }
-    },
-    "villager_elite_male_care": {
-      "DOWN": {
-        "clip": "villager_elite_male_care_down",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_elite_male_care_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_elite_male_care_up",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_elite_male_care_left",
-        "mirror": false
-      }
-    },
-    "villager_elite_female_chop": {
-      "DOWN": {
-        "clip": "villager_elite_female_chop_down",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_elite_female_chop_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_elite_female_chop_up",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_elite_female_chop_left",
-        "mirror": false
-      }
-    },
-    "villager_elite_female_farm": {
-      "DOWN": {
-        "clip": "villager_elite_female_farm_down",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_elite_female_farm_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_elite_female_farm_up",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_elite_female_farm_left",
-        "mirror": false
-      }
-    },
-    "villager_elite_female_care": {
-      "DOWN": {
-        "clip": "villager_elite_female_care_down",
-        "mirror": false
-      },
-      "RIGHT": {
-        "clip": "villager_elite_female_care_right",
-        "mirror": false
-      },
-      "UP": {
-        "clip": "villager_elite_female_care_up",
-        "mirror": false
-      },
-      "LEFT": {
-        "clip": "villager_elite_female_care_left",
+        "clip": "villager_elite_female_work_left",
         "mirror": false
       }
     }

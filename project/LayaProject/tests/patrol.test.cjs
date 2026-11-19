@@ -16,53 +16,60 @@ const { lanePoint } = load('game/SummonCharge');
 const { Patrol } = load('game/Patrol');
 const { generateWave } = load('game/WaveGenerator');
 const { validateState } = load('storage/StateValidation');
-const { SaveStore } = load('storage/SaveStore');
+const { SaveStore, canonical, crc32 } = load('storage/SaveStore');
 
 function unlocked() {
     const s = createGame(245);
-    s.completed = s.legacy.bestNight = PATROL.unlock;
+    s.completed = s.legacy.bestNight = 5;
     s.day = s.completed + 1;
     s.wave = generateWave(s);
     return s;
 }
 
-test('patrol costs inventory, preserves day jobs, and releases a retiring captain', () => {
-    const initial = createGame(245);
-    assert.throws(() => applyCommand(initial, { type: 'PATROL_BUILD' }), /守住 5 波/);
-    const s = unlocked(), wood = s.wood, food = s.food;
+test('patrol is present on the first day, upgrade costs inventory and a retiring captain releases the post', () => {
+    const s = createGame(245), wood = s.wood, food = s.food;
+    assert.deepEqual(s.patrol, { level: 1, captain: null });
     const tower = s.towers[0], p = s.people.find(p => p.id === tower.operator);
     p.nights = 1;
-    applyCommand(s, { type: 'PATROL_BUILD' });
+    applyCommand(s, { type: 'PATROL_UPGRADE' });
     applyCommand(s, { type: 'PATROL_CAPTAIN', id: p.id });
-    assert.equal(s.wood, wood - PATROL.build.wood);
-    assert.equal(s.food, food - PATROL.build.food);
+    assert.equal(s.wood, wood - PATROL.upgrade.wood);
+    assert.equal(s.food, food - PATROL.upgrade.food);
     assert.equal(p.job, 'WAITING');
     assert(tower.operator && tower.operator !== p.id);
     assert.throws(() => applyCommand(s, { type: 'OPERATOR', index: 0, id: p.id }), /不能同时驻塔/);
     validateState(s);
     applyCommand(s, { type: 'NIGHT' });
+    assert.equal(s.night.patrolSquad, true);
     finishNight(s, s.gate, s.towers.map(t => t.operator));
-    assert.equal(s.patrol.captain, null);
-    assert.equal(s.patrol.level, 1);
+    assert.deepEqual(s.patrol, { level: 2, captain: null });
     validateState(s);
 });
 
-test('old day wave is read back byte-for-byte and new village omits patrol', () => {
-    const old = unlocked(), values = new Map();
+test('an older slot without a patrol house loads level one without writing back, and existing patrol records are preserved', () => {
+    const s = unlocked(), values = new Map();
     const port = { read: key => values.get(key) ?? null, write: (key, data) => values.set(key, data) };
     const saves = new SaveStore(port);
-    saves.inspect(); saves.prepare(old); saves.commit();
-    assert.deepEqual(new SaveStore(port).inspect().state, old);
-    assert.equal(old.patrol, undefined);
-    applyCommand(old, { type: 'PATROL_BUILD' });
-    saves.prepare(old); saves.commit();
-    assert.deepEqual(new SaveStore(port).inspect().state.patrol, { level: 1, captain: null });
-    assert.equal(createGame(11).patrol, undefined);
+    saves.inspect(); saves.prepare(s); saves.commit();
+    const [key] = values.keys(), old = JSON.parse(values.get(key));
+    delete old.payload.patrol;
+    delete old.checksum;
+    old.checksum = crc32(canonical(old));
+    const oldBytes = canonical(old); values.set(key, oldBytes);
+    const inspection = new SaveStore(port).inspect();
+    assert.equal(inspection.kind, 'ready');
+    assert.deepEqual(inspection.state, s);
+    assert.equal(values.get(key), oldBytes);
+    const current = new SaveStore(port);
+    current.inspect();
+    applyCommand(s, { type: 'PATROL_UPGRADE' });
+    applyCommand(s, { type: 'PATROL_CAPTAIN', id: s.people[0].id });
+    current.prepare(s); current.commit();
+    assert.deepEqual(new SaveStore(port).inspect().state.patrol, s.patrol);
 });
 
 test('guard resolves before gate damage even if the monster reaches the gate on the same step', () => {
     const s = unlocked();
-    applyCommand(s, { type: 'PATROL_BUILD' });
     applyCommand(s, { type: 'PATROL_CAPTAIN', id: s.people[0].id });
     applyCommand(s, { type: 'NIGHT' });
     const stats = new DailyTaskCombat(), battle = new BattleSimulation(s, stats);

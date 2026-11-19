@@ -4,8 +4,8 @@ import type { GameLayout } from "./GameLayout";
 import type { SpriteFrames } from "./SpriteFrames";
 import type { WorldItem } from "./WorldInteraction";
 
-/** 显示比例与村民接近。按累计路程换帧，因此暂停和倍速不会造成滑步。 */
-const LOOK = { spriteSize: 49, hitSeconds: .22 };
+/** 1.0.73 的出征尺寸偏大，人物与脚下阴影一起缩小 25%。步态按累计路程换帧。 */
+const LOOK = { spriteSize: 49, actorScale: .75, hitSeconds: .22 };
 export class PatrolVisuals {
     private nodes: { root: Laya.Sprite; body: Laya.Sprite }[] = [];
     private impacts: { node: Laya.Sprite; x: number; y: number; until: number }[] = [];
@@ -25,7 +25,7 @@ export class PatrolVisuals {
             const root = new Laya.Sprite(), body = new Laya.Sprite();
             root.name = `PatrolActor:${i}`;
             root.mouseEnabled = body.mouseEnabled = false;
-            root.graphics.drawEllipse(0, 1, 13, 5, "rgba(56,34,33,0.30)", null, 0);
+            root.graphics.drawEllipse(0, 1, 13 * LOOK.actorScale, 5 * LOOK.actorScale, "rgba(56,34,33,0.30)", null, 0);
             root.addChild(body);
             this.world.addChild(root);
             this.nodes.push({ root, body });
@@ -36,7 +36,7 @@ export class PatrolVisuals {
             root.pos(unit.at.x, layout.worldY(unit.at.y));
             const clip = this.art.animation("patrol_walk");
             const time = unit.distance / clip.stridePixels! * clip.frameIds.length / clip.fps;
-            this.art.applyFrame(body, this.art.frameId("patrol_walk", time), LOOK.spriteSize * layout.personScale);
+            this.art.applyFrame(body, this.art.frameId("patrol_walk", time), LOOK.spriteSize * LOOK.actorScale * layout.personScale);
             depth.push({ id: root.name, y: root.y, node: root });
         });
         for (const hit of events) if (hit.type === "patrol") {

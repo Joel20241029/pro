@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-19T05:30:50.953Z",
-  "runtimeAssetCount": 790,
+  "generatedAt": "2026-11-19T07:51:39.182Z",
+  "runtimeAssetCount": 526,
   "reserveAssetCount": 7,
-  "animationCount": 133,
-  "animationFrames": 630,
+  "animationCount": 73,
+  "animationFrames": 366,
   "categoryStats": {
     "enemies": {
       "count": 70,
@@ -18,9 +18,9 @@
       "reserve": 0
     },
     "characters": {
-      "count": 511,
-      "bytes": 9283740,
-      "runtime": 511,
+      "count": 247,
+      "bytes": 4722676,
+      "runtime": 247,
       "reserve": 0
     },
     "building-parts": {
@@ -121,60 +121,30 @@
       "id": "characters_0",
       "path": "atlases/characters_0.png",
       "runtimeFile": "characters/characters_0.png",
-      "width": 1021,
-      "height": 1018,
-      "bytes": 1580143,
-      "sha256": "03a5876f284263b110815d1b06eb0c073d42e90afe16fbb680b60190312cd6a0",
+      "width": 959,
+      "height": 1024,
+      "bytes": 1388413,
+      "sha256": "7b244273ca83288fe5e8d7a5153dbc90461e6bca451430ca73303c1c12c24b4d",
       "group": "characters"
     },
     {
       "id": "characters_1",
       "path": "atlases/characters_1.png",
       "runtimeFile": "characters/characters_1.png",
-      "width": 1023,
-      "height": 1024,
-      "bytes": 1735453,
-      "sha256": "0d95cdde99312a4ac282d00f450a2b72f0655269d01b0e495e737af5b9f8eeb4",
+      "width": 960,
+      "height": 977,
+      "bytes": 1467246,
+      "sha256": "f2ae7a3687a714c34a9078edb9c7f28b9485c9ba7d74c0031fdc3afdd3564164",
       "group": "characters"
     },
     {
       "id": "characters_2",
       "path": "atlases/characters_2.png",
       "runtimeFile": "characters/characters_2.png",
-      "width": 1023,
-      "height": 1024,
-      "bytes": 1811921,
-      "sha256": "525b47db7081b4d1c392225e51f0948057d5297d222f6b525ad80d7a6dd9bf10",
-      "group": "characters"
-    },
-    {
-      "id": "characters_3",
-      "path": "atlases/characters_3.png",
-      "runtimeFile": "characters/characters_3.png",
-      "width": 1024,
-      "height": 1024,
-      "bytes": 1868159,
-      "sha256": "3503c2d0ff618fe8afd1b5cdc427b823868e23c89c3b3a5f0c880e263126e4ad",
-      "group": "characters"
-    },
-    {
-      "id": "characters_4",
-      "path": "atlases/characters_4.png",
-      "runtimeFile": "characters/characters_4.png",
-      "width": 1024,
-      "height": 1022,
-      "bytes": 1782053,
-      "sha256": "a50f17a3703f081a244b3ddb1b30d77e33cfd4b39f755d9e2d847664d778f438",
-      "group": "characters"
-    },
-    {
-      "id": "characters_5",
-      "path": "atlases/characters_5.png",
-      "runtimeFile": "characters/characters_5.png",
-      "width": 156,
-      "height": 933,
-      "bytes": 181209,
-      "sha256": "e9f685cd8a3189b87e2ee54ef7eb58266d4fd4baea0c3df6b975acc580d33330",
+      "width": 952,
+      "height": 1020,
+      "bytes": 1681963,
+      "sha256": "78a2c2904908bca02291417238a6da3d2ae0aa6d7c69a5a8873af57fab812f4b",
       "group": "characters"
     },
     {
@@ -219,21 +189,21 @@
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 17458564,
-    "atlasContentPixels": 9842403,
-    "savedContentPixels": 7616161,
-    "savedContentPercent": 43.62,
-    "trimmedAssetCount": 683,
+    "sourceCanvasPixels": 10995844,
+    "atlasContentPixels": 7682104,
+    "savedContentPixels": 3313740,
+    "savedContentPercent": 30.14,
+    "trimmedAssetCount": 419,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "atlasImageBytes": 15899058,
-    "metadataBytes": 327391,
+    "atlasImageBytes": 11477742,
+    "metadataBytes": 239931,
     "audioBytes": 164243,
-    "totalBytes": 16390692,
+    "totalBytes": 11881916,
     "files": [
       "bundles/map/frames.bin",
       "bundles/characters/animations.bin",
@@ -245,9 +215,6 @@
       "bundles/characters/characters_0.png",
       "bundles/characters/characters_1.png",
       "bundles/characters/characters_2.png",
-      "bundles/characters/characters_3.png",
-      "bundles/characters/characters_4.png",
-      "bundles/characters/characters_5.png",
       "bundles/effects/village_effects_0.png",
       "bundles/buildings/buildings.bin",
       "bundles/buildings/building_upgrade.mc",
@@ -278,7 +245,7 @@
   },
   "sourceBytes": 49652112,
   "budgetComparison": {
-    "villageAtlasImageBytes": 13183367,
+    "villageAtlasImageBytes": 8762051,
     "nightAtlasImageBytes": 2715691
   },
   "limitations": [

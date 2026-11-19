@@ -56,7 +56,7 @@ function createScoreStore(api) {
                     attempt = desired;
                     const target = Math.max(value === null ? 0 : value, attempt);
                     if (target === 0 || target === value) { finish(null); return; }
-                    finish(null); // 全模块本地试玩只读好友榜。
+                    finish(null); // 本地验证只读好友榜。
                 }, fail: finish
             });
         } catch (error) { finish(error); }

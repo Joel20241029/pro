@@ -255,7 +255,7 @@ export class VillageWorld {
         if (advancing) {
             const visualTime = Math.min(RULE.frameCap, Math.max(0, delta));
             if (s?.phase === "DAY" || s?.phase === "NIGHT") this.villageMotionSeconds += visualTime;
-            const chopping = s?.phase === "DAY" && this.motion.visiblePeople.some(person => this.motion.get(person.id).clip.endsWith("_chop"));
+            const chopping = s?.phase === "DAY" && this.motion.visiblePeople.some(person => person.job === "LOGGING" && this.motion.get(person.id).clip.endsWith("_work"));
             this.props.forEach(p => p.visual?.advance(visualTime, s?.phase === "NIGHT", p.id === "building:logging" && chopping));
         }
         const battle = this.game.battle;
@@ -271,7 +271,7 @@ export class VillageWorld {
             this.sceneSeconds += visualDelta;
             if (this.motion.update(visualDelta)) this.motion.sync(s, battle ? battle.base.towers : s.towers);
             if (this.art.ready("village")) for (const p of this.motion.visiblePeople) {
-                const pose = this.motion.get(p.id), chopping = s.phase === "DAY" && pose.clip.endsWith("_chop");
+                const pose = this.motion.get(p.id), chopping = s.phase === "DAY" && p.job === "LOGGING" && pose.clip.endsWith("_work");
                 const clip = chopping ? this.art.animation(this.art.labor(pose.clip, pose.direction).clip) : null;
                 this.logging.sample(p.id, clip, pose.elapsed, pose.loggingTree);
             }

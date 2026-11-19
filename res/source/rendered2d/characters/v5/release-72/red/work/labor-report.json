@@ -1,0 +1,227 @@
+{
+  "role": "red",
+  "directions": [
+    "right",
+    "left"
+  ],
+  "method": "offline high-resolution skinned rendering",
+  "status": "tool_edges_and_grip_recorded_for_review",
+  "runtime3d": false,
+  "mirror": false,
+  "displayScale": 1.1538461538461537,
+  "anchor": {
+    "x": 0.5,
+    "y": 0.8015382289886475
+  },
+  "framesPerAction": {
+    "farm": 4
+  },
+  "records": [
+    {
+      "action": "farm",
+      "frame": 1,
+      "hoeEdgeZ": 0.3181503891944885,
+      "targetBladeZ": 0.43
+    },
+    {
+      "action": "farm",
+      "frame": 1,
+      "gripErrors": [
+        4.9421560620597e-08
+      ],
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.3181503713130951
+    },
+    {
+      "action": "farm",
+      "frame": 2,
+      "hoeEdgeZ": 0.2300023391842842,
+      "targetBladeZ": 0.23
+    },
+    {
+      "action": "farm",
+      "frame": 2,
+      "gripErrors": [
+        0.0007459719417515071
+      ],
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.23000232875347137
+    },
+    {
+      "action": "farm",
+      "frame": 3,
+      "hoeEdgeZ": 0.03999910056591033,
+      "targetBladeZ": 0.04
+    },
+    {
+      "action": "farm",
+      "frame": 3,
+      "gripErrors": [
+        1.4901161193847656e-08
+      ],
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.039998989552259445
+    },
+    {
+      "action": "farm",
+      "frame": 4,
+      "hoeEdgeZ": 0.12999602556228637,
+      "targetBladeZ": 0.13
+    },
+    {
+      "action": "farm",
+      "frame": 4,
+      "gripErrors": [
+        6.495265578539184e-08
+      ],
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.12999603152275085
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.7224789261817932,
+        0.6679782271385193
+      ],
+      "toolTipWorld": [
+        0.3337184190750122,
+        -0.2426767498254776,
+        0.3181503713130951
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.7603943347930908,
+        0.7266335487365723
+      ],
+      "toolTipWorld": [
+        0.39059147238731384,
+        -0.2598772346973419,
+        0.23000232875347137
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.9981006383895874,
+        0.8553241044282913
+      ],
+      "toolTipWorld": [
+        0.7471509575843811,
+        -0.305762380361557,
+        0.039998989552259445
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.9620559811592102,
+        0.7969951033592224
+      ],
+      "toolTipWorld": [
+        0.6930839419364929,
+        -0.294272243976593,
+        0.12999603152275085
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.2775210738182068,
+        0.5435285866260529
+      ],
+      "toolTipWorld": [
+        -0.3337183892726898,
+        0.2426767796278,
+        0.3181503713130951
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.23960570991039276,
+        0.5933631360530853
+      ],
+      "toolTipWorld": [
+        -0.39059144258499146,
+        0.2598772346973419,
+        0.23000232875347137
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.0018994013080373406,
+        0.6985228359699249
+      ],
+      "toolTipWorld": [
+        -0.7471508979797363,
+        0.3057624101638794,
+        0.039998989552259445
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.03794403746724129,
+        0.6460862457752228
+      ],
+      "toolTipWorld": [
+        -0.6930839419364929,
+        0.2942722737789154,
+        0.12999603152275085
+      ],
+      "contact": false
+    }
+  ],
+  "inputs": [
+    {
+      "file": "/Users/happyelements/Documents/pro/res/source/rendered2d/characters/v5/red/red_walk.blend",
+      "sha256": "e220301021920bc556c7983fe42677f7a309c748bfc0ec7dbca0fdf043570b40"
+    },
+    {
+      "file": "/Users/happyelements/Documents/pro/res/source/rendered2d/characters/v5/red/rig-profile.json",
+      "sha256": "fc580411e6b556d52ba7e4fced8a19228c5e56320366216d0b197c45de3a29c6"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/\u4ee3\u4ee3\u5b88\u6751-\u7cbe\u82f1\u52a8\u4f5c\u9884\u89c8/authoring/work-poses.json",
+      "sha256": "7252ab76b7524c685b79bab89d795d5a9a6f058cc5bec533222d3e5b6372c08b"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/\u4ee3\u4ee3\u5b88\u6751-\u7cbe\u82f1\u52a8\u4f5c\u9884\u89c8/authoring/render-villager-actions.py",
+      "sha256": "3dfbe6d3a32b6cf2b61eb7f09392a52e48c6e4371587ec5a474bb10797cef958"
+    }
+  ]
+}

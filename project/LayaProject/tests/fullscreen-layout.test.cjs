@@ -29,14 +29,13 @@ for(const profile of profiles) test(`${profile[0]}: safe controls, expanded vill
     assert(l.safeBottom-l.safeTop>=860, 'full panel must fit safe region');
     assert.deepEqual(scene.props.filter(p=>p.id.startsWith('building:house-')).map(p=>p.id), ['building:house-a']);
     const patrol=scene.props.find(p=>p.id==='building:patrol');
-    const built=new VillageNavigation(scene.props,scene.landscape,scene.bounds,true);
     near(patrol.size,148); near(patrol.x,226);
     const patrolBase={x:patrol.x,y:patrol.y};
-    assert(nav.walkable(patrolBase)); assert(!built.walkable(patrolBase));
-    for(const navigation of [nav,built]) for(const [key,stops] of Object.entries(scene.stops)) for(const p of stops) {
-        assert(navigation.walkable(p),`${name}:${key} ${JSON.stringify(p)}`);
+    assert(!nav.walkable(patrolBase));
+    for(const [key,stops] of Object.entries(scene.stops)) for(const p of stops) {
+        assert(nav.walkable(p),`${name}:${key} ${JSON.stringify(p)}`);
         let at=scene.stops.homes[0];
-        for(const end of navigation.route(at,p)) { assert(navigation.clear(at,end)); at=end; }
+        for(const end of nav.route(at,p)) { assert(nav.clear(at,end)); at=end; }
         near(distance(at,p),0);
     }
     const farm=scene.props.find(p=>p.id==='building:farm');
@@ -141,7 +140,9 @@ test('crowded childcare keeps babies stationary and carers beside them across la
         const babies=s.people.filter(p=>!p.adult).map(p=>({...m.get(p.id)}));
         const caring=new Set();
         for(let i=0;i<1500;i++){m.update(.05);for(const p of s.people){const pose=m.get(p.id);assert(fresh.nav.walkable(pose));
-            if(pose.clip.endsWith('_care')){
+            const carerStop=p.job==='CARE' ? m.careStops.get(p.id) ?? fresh.scene.stops.rest[m.campSlots.get(p.id)] : null;
+            if(carerStop && distance(pose,carerStop)<1e-6 && !pose.walking){
+                assert(!pose.animated && pose.clip.endsWith('_walk'));
                 const child=m.get(p.careChild),dx=child.x-pose.x,dy=child.y-pose.y;
                 const [x,y]={UP:[0,-1],DOWN:[0,1],LEFT:[-1,0],RIGHT:[1,0]}[pose.direction];
                 // Cardinal poses can hold across the 45-degree boundary by up to 5 degrees.

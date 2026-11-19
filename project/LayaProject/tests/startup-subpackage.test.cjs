@@ -259,7 +259,7 @@ test('daytime scene includes real directions, full portraits and the shared effe
         const person = { id: "1:1", sex, appearance: sex === 'MALE' ? 'male_a' : 'female_a', adult: true, elderNights: 0, nights: 12, growth: 0 };
         assert(art.get(art.portraitId(person)));
         assert(art.get(art.portraitId(person, true)));
-        const labor = sex === 'MALE' ? 'villager_blue_chop' : 'villager_red_chop';
+        const labor = sex === 'MALE' ? 'villager_blue_work' : 'villager_red_work';
         assert.notEqual(art.labor(labor, "RIGHT").clip, art.labor(labor, "LEFT").clip);
         person.adult = false; assert(art.get(art.portraitId(person)));
         person.growth = 1; assert.equal(art.portraitId(person), art.portraitId({ ...person, sex: sex === 'MALE' ? 'FEMALE' : 'MALE' })); assert(art.get(art.portraitId(person)));

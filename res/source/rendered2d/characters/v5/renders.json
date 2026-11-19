@@ -12,65 +12,24 @@
       "x": 0.5,
       "y": 0.8479289940828403
     },
-    "actions": {
-      "chop": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
-        "displayScale": 1.1538461538461537,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.8015382289886475
-        },
-        "contactFrame": 3
+    "work": {
+      "fps": 8,
+      "frames": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "displayScale": 1.1538461538461537,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8015382289886475
       },
-      "farm": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.1538461538461537,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.8015382289886475
-        }
+      "contactFrame": {
+        "right": 3,
+        "left": 3
       },
-      "care": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.1538461538461537,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.8015382289886475
-        }
-      },
-      "strike": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.1538461538461537,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.8015382289886475
-        }
-      }
+      "source": "release-72/blue/work"
     }
   },
   "straw": {
@@ -86,65 +45,24 @@
       "x": 0.5,
       "y": 0.8479289940828403
     },
-    "actions": {
-      "chop": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
-        "displayScale": 1.3384615457974947,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.7599467486143112
-        },
-        "contactFrame": 3
+    "work": {
+      "fps": 8,
+      "frames": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "displayScale": 1.3384615457974947,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.7599467486143112
       },
-      "farm": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.3384615457974947,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.7599467486143112
-        }
+      "contactFrame": {
+        "right": 3,
+        "left": 3
       },
-      "care": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.3384615457974947,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.7599467486143112
-        }
-      },
-      "strike": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.3384615457974947,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.7599467486143112
-        }
-      }
+      "source": "release-72/straw/work"
     }
   },
   "red": {
@@ -160,65 +78,24 @@
       "x": 0.5,
       "y": 0.8479289940828403
     },
-    "actions": {
-      "chop": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
-        "displayScale": 1.1538461538461537,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.8015382289886475
-        },
-        "contactFrame": 3
+    "work": {
+      "fps": 8,
+      "frames": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "displayScale": 1.1538461538461537,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8015382289886475
       },
-      "farm": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.1538461538461537,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.8015382289886475
-        }
+      "contactFrame": {
+        "right": 3,
+        "left": 3
       },
-      "care": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.1538461538461537,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.8015382289886475
-        }
-      },
-      "strike": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.1538461538461537,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.8015382289886475
-        }
-      }
+      "source": "release-72/red/work"
     }
   },
   "jade": {
@@ -234,65 +111,24 @@
       "x": 0.5,
       "y": 0.8479289940828403
     },
-    "actions": {
-      "chop": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
-        "displayScale": 1.3384615457974947,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.7599467486143112
-        },
-        "contactFrame": 3
+    "work": {
+      "fps": 8,
+      "frames": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "displayScale": 1.3384615457974947,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.7599467486143112
       },
-      "farm": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.3384615457974947,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.7599467486143112
-        }
+      "contactFrame": {
+        "right": 3,
+        "left": 3
       },
-      "care": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.3384615457974947,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.7599467486143112
-        }
-      },
-      "strike": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.3384615457974947,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.7599467486143112
-        }
-      }
+      "source": "release-72/jade/work"
     }
   },
   "elite_male": {
@@ -308,65 +144,25 @@
       "x": 0.5,
       "y": 0.8479289940828403
     },
-    "actions": {
-      "chop": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
-        "displayScale": 1.3384615457974947,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.7599467486143112
-        },
-        "contactFrame": 3
+    "walkSource": "release-72/elite_male",
+    "work": {
+      "fps": 8,
+      "frames": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "displayScale": 1.3384615457974947,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.7599467486143112
       },
-      "farm": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.3384615457974947,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.7599467486143112
-        }
+      "contactFrame": {
+        "right": 3,
+        "left": 3
       },
-      "care": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.3384615457974947,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.7599467486143112
-        }
-      },
-      "strike": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.3384615457974947,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.7599467486143112
-        }
-      }
+      "source": "release-72/elite_male/work"
     }
   },
   "elite_female": {
@@ -382,65 +178,25 @@
       "x": 0.5,
       "y": 0.8479289940828403
     },
-    "actions": {
-      "chop": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
-        "displayScale": 1.1538461538461537,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.8015382289886475
-        },
-        "contactFrame": 3
+    "walkSource": "release-72/elite_female",
+    "work": {
+      "fps": 8,
+      "frames": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "displayScale": 1.1538461538461537,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.8015382289886475
       },
-      "farm": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.1538461538461537,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.8015382289886475
-        }
+      "contactFrame": {
+        "right": 3,
+        "left": 3
       },
-      "care": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.1538461538461537,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.8015382289886475
-        }
-      },
-      "strike": {
-        "fps": 8,
-        "frames": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "displayScale": 1.1538461538461537,
-        "anchor": {
-          "x": 0.5,
-          "y": 0.8015382289886475
-        }
-      }
+      "source": "release-72/elite_female/work"
     }
   },
   "child": {

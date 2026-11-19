@@ -1,0 +1,95 @@
+{
+  "fps": 8,
+  "actions": {
+    "farm": {
+      "tool": "hoe",
+      "poses": [
+        {
+          "spine": -5,
+          "rightArm": -62,
+          "rightElbow": -36,
+          "leftArm": -21,
+          "leftElbow": -26,
+          "toolPitch": 104,
+          "toolYaw": -2,
+          "twist": 0,
+          "rightYaw": 0,
+          "leftYaw": 0,
+          "gripMidpoint": [
+            0.014,
+            -0.095,
+            -0.1
+          ]
+        },
+        {
+          "spine": -14,
+          "rightArm": -48,
+          "rightElbow": -27,
+          "leftArm": -30,
+          "leftElbow": -19,
+          "toolPitch": 130,
+          "toolYaw": -7,
+          "twist": 0,
+          "rightYaw": 0,
+          "leftYaw": 0,
+          "gripMidpoint": [
+            0.014,
+            -0.1,
+            -0.101
+          ]
+        },
+        {
+          "spine": -27,
+          "rightArm": -21,
+          "rightElbow": -12,
+          "leftArm": -27,
+          "leftElbow": -21,
+          "toolPitch": 161,
+          "toolYaw": -11,
+          "twist": 0,
+          "rightYaw": 0,
+          "leftYaw": 0,
+          "gripMidpoint": [
+            0.014,
+            -0.103,
+            -0.103
+          ]
+        },
+        {
+          "spine": -16,
+          "rightArm": -30,
+          "rightElbow": -16,
+          "leftArm": -23,
+          "leftElbow": -16,
+          "toolPitch": 140,
+          "toolYaw": -5,
+          "twist": 0,
+          "rightYaw": 0,
+          "leftYaw": 0,
+          "gripMidpoint": [
+            0.014,
+            -0.095,
+            -0.105
+          ]
+        }
+      ],
+      "contactFrame": 3,
+      "bladeHeights": [
+        0.43,
+        0.23,
+        0.04,
+        0.13
+      ],
+      "gripSeparation": 0.26
+    }
+  },
+  "cameraWidths": {
+    "blue": 1.5,
+    "straw": 1.74,
+    "red": 1.5,
+    "jade": 1.74,
+    "elite_male": 1.74,
+    "elite_female": 1.5
+  },
+  "actorPoseOverrides": {}
+}

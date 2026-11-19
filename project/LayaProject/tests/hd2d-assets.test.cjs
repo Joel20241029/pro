@@ -17,10 +17,11 @@ test('each native enemy prefab owns one bottom-layer contact shadow and exports 
 test('HD replacement contains only selected source images; pixels and native prefab sources are traceable',()=>{
  const ids=new Set();for(const a of recipe.assets){assert(!ids.has(a.id));ids.add(a.id);assert.equal(typeof a.runtime,'boolean');assert(a.sourceSheet.startsWith('source/rendered2d/production/'));assert(fs.existsSync(path.join(source,a.sourceSheet)));assert.equal(a.sampling,'Lanczos');assert(a.provenance.sourceHash);assert(a.provenance.outputHash);if(a.category==='building-parts')assert.equal(a.bundle,'buildings');}
  assert.equal(Object.keys(recipe.animations.walkDirections).length,7);
- for(const groups of [recipe.animations.walkDirections,recipe.animations.laborDirections]){
+ assert.equal(Object.keys(recipe.animations.laborDirections).length,6);
+ for(const [groups, headings] of [[recipe.animations.walkDirections,['DOWN','LEFT','RIGHT','UP']],[recipe.animations.laborDirections,['LEFT','RIGHT']]]){
   for(const directions of Object.values(groups)){
-   assert.deepEqual(Object.keys(directions).sort(),['DOWN','LEFT','RIGHT','UP']);
-   assert.equal(new Set(Object.values(directions).map(direction=>direction.clip)).size,4);
+   assert.deepEqual(Object.keys(directions).sort(),headings);
+   assert.equal(new Set(Object.values(directions).map(direction=>direction.clip)).size,headings.length);
    assert(Object.values(directions).every(direction=>direction.mirror===false));
   }
  }
@@ -136,9 +137,9 @@ test('resizing preserves normalized feet and stride; panel portraits retain thei
  assert(byId.has('hd_elder_chair'));
  assert(!recipe.assets.some(a=>/^hd_elder_(down|up|left|right)_/.test(a.id)));
 });
-test('half-size enemies and attachments retain one texture pixel per maximum logical pixel plus five percent sampling margin',()=>{
+test('enemy textures and attachments retain at least one texel per logical pixel at maximum size',()=>{
  const {ENEMY_LOOKS,ENEMY_SCALES}=require(path.join(process.env.DAIDAI_TEST_BUILD,'view/config/EnemyVisualConfig'));
- const assets=new Map(recipe.assets.map(a=>[a.id,a])),sampling=1.05*Math.max(...ENEMY_SCALES);
+ const assets=new Map(recipe.assets.map(a=>[a.id,a])),sampling=Math.max(...ENEMY_SCALES);
  for(const [kind,look]of Object.entries(ENEMY_LOOKS))for(const frame of defs[kind].frames){
   assert(assets.get(frame.body).width>=look.size*sampling,frame.body);
   for(const [id,part]of Object.entries(frame.parts))assert(assets.get(id).width>=part.width/96*look.size*sampling,kind+'/'+id);

@@ -183,22 +183,21 @@ test('the patrol card opens from the construction list without materials and ret
     const card = () => list().content.getChildByName('PatrolConstructionCard');
     const badge = () => card().getChildByName('buttonFace').getChildByName('PatrolActionDot');
     view.open({ type: 'build' });
-    assert.equal(card(), undefined);
+    assert(card());
 
     const s = game.state;
-    s.completed = s.legacy.bestNight = 5;
-    s.day = 6; s.wave = generateWave(s); s.food = s.wood = 0;
+    s.food = s.wood = 0;
     const build = { type: 'build', scroll: 14 };
     view.open(build);
     assert(!view.box.getChildByName('button:淡紫儿之家'));
     const row = card(), before = canonical(s);
     assert(row.mouseEnabled);
-    assert(!badge());
+    assert(badge(), 'appointment stays available without upgrade materials');
     assert.equal(row.getChildByName('buttonFace').getChildByName('BuildAction').getChildAt(0).text, '去查看');
     row.event('click');
     assert.equal(view.current.type, 'patrol');
     assert.equal(canonical(game.state), before);
-    assert(!view.box.children.at(-1).getChildByName('PatrolBuildAction').mouseEnabled);
+    assert(!view.box.children.map(n=>n.getChildByName('PatrolUpgradeAction')).find(Boolean).mouseEnabled);
     view.box.getChildByName('button:返回').event('click');
     assert.equal(view.current, build);
     assert.equal(list().offset, 14);
@@ -208,9 +207,9 @@ test('the patrol card opens from the construction list without materials and ret
     assert(badge() && badge().y >= 0 && badge().x + badge().width <= card().width);
     card().event('click');
     const detail = view.current;
-    view.box.children.at(-1).getChildByName('PatrolBuildAction').event('click');
-    assert.equal(game.state.patrol.level, 1);
-    assert.deepEqual([game.state.wood, game.state.food], [55, 80]);
+    view.box.children.map(n=>n.getChildByName('PatrolUpgradeAction')).find(Boolean).event('click');
+    assert.equal(game.state.patrol.level, 2);
+    assert.deepEqual([game.state.wood, game.state.food], [65, 85]);
     view.box.getChildByName('button:任命淡紫队长').event('click');
     const free = game.state.people.find(p => p.adult && p.nights > 0 && !game.state.towers.some(t => t.operator === p.id));
     view.send({ type: 'PATROL_CAPTAIN', id: free.id });
@@ -318,6 +317,7 @@ test('action badges follow the pressed button face, sit on its upper-right corne
     }
     assert(!hud.node.children.some(n=>n.name.startsWith('TowerActionHint:')));
     assert.equal(hud.node.getChildByName('button:家谱').getChildByName('buttonFace').getChildByName('ActionHint:history'),undefined);
+    applyCommand(game.state,{type:'PATROL_CAPTAIN',id:game.state.people[4].id});
     game.state.food=0;game.state.wood=0;hud.clear();hud.draw(game.state,layout,{pads:PADS},anchors);
     assert.equal(hud.node.getChildByName('button:建设').getChildByName('buttonFace').getChildByName('ActionHint:build'),undefined);
 });
@@ -458,11 +458,12 @@ test('resizing an open guide preserves its panel, scroll list, offset and pause 
 
 test('construction orders available rows on entry but refreshes conditions in place after purchase',()=>{
     const {game}=session(),view=panelView(game);game.state.wood=30;game.state.food=10;
-    let drawn=[];view.ui.buildRow=(parent,y,icon,title,effect,owned,cost,reason,action)=>drawn.push({title,reason,action});
-    view.open({type:'build'});assert.deepEqual(view.current.rowOrder,['HOUSING','GATE','HOUSE','FARM','LOGGING','REPAIR']);
-    assert(drawn[0].title.startsWith('民居修缮'));assert.equal(drawn[0].reason,null);view.current.scroll=90;
-    drawn[0].action();drawn=[];view.refresh();assert(drawn[0].title.startsWith('民居修缮'));assert(drawn[0].reason);assert.equal(view.current.scroll,90);
-    view.close();view.open({type:'build'});assert.deepEqual(view.current.rowOrder,['FARM','LOGGING','HOUSING','GATE','HOUSE','REPAIR']);
+    let drawn=[];const buildRow=view.ui.buildRow.bind(view.ui);
+    view.ui.buildRow=(...args)=>{const [,,,title,,,,reason,action]=args;drawn.push({title,reason,action});return buildRow(...args);};
+    view.open({type:'build'});assert.deepEqual(view.current.rowOrder,['PATROL','HOUSING','GATE','HOUSE','FARM','LOGGING','REPAIR']);
+    assert(drawn[1].title.startsWith('民居修缮'));assert.equal(drawn[1].reason,null);view.current.scroll=90;
+    drawn[1].action();drawn=[];view.refresh();assert(drawn[1].title.startsWith('民居修缮'));assert(drawn[1].reason);assert.equal(view.current.scroll,90);
+    view.close();view.open({type:'build'});assert.deepEqual(view.current.rowOrder,['PATROL','FARM','LOGGING','HOUSING','GATE','HOUSE','REPAIR']);
 });
 test('family readiness reorders on entry only; current card data and button state still refresh',()=>{
     const {game}=session(),view=panelView(game);view.ui.image=imageNode;view.art.portraitId=q=>q.id;

@@ -66,7 +66,7 @@ test("Working founders keep their routines while idle founders face forward at s
             ok(navigation.walkable(m)); ok(navigation.clear(previous[i], m));
             ok(distance(previous[i], m) <= MOTION.adultSpeed * .05 + 1e-7, "movement exceeds speed");
             if (distance(initial[i], m) > 40) traveled.add(p.id);
-            if (!m.walking && (m.clip.endsWith("_farm") || m.clip.endsWith("_harvest") || m.clip.endsWith("_chop"))) working.add(p.id);
+            if (!m.walking && m.clip.endsWith("_work")) working.add(p.id);
             if (!m.walking && VILLAGE_STOPS.rest.some(p => distance(p, m) < .01)) rested.add(p.id);
         });
     }
@@ -209,7 +209,7 @@ test("Changing a spouse's job during the ceremony restores the latest daily rout
     applyCommand(s, { type: "JOB", id: p.id, job: "FARM", replace: s.people[0].id }); motion.sync(s, s.towers);
     equal([motion.get(p.id).x, motion.get(p.id).y], [at.x, at.y]); ok(motion.get(p.id).heartElapsed !== null);
     let farmed = false;
-    for (let i = 0; i < 1400; i++) { motion.update(.05); const m = motion.get(p.id); ok(!m.clip.endsWith("_chop")); if (!m.walking && m.clip.endsWith("_farm")) farmed = true; }
+    for (let i = 0; i < 1400; i++) { motion.update(.05); const m = motion.get(p.id); if (!m.walking && m.clip.endsWith("_work")) { ok(m.loggingTree === null); farmed = true; } }
     ok(farmed);
 });
 test("Night cancels both meeting and queued weddings, and dawn does not replay them", () => {
@@ -245,14 +245,19 @@ test("Multiple new families celebrate one pair at a time with no lingering poole
     equal([...seen].sort(), [s.people[2].id, s.people[3].id, s.people[4].id, s.people[5].id].sort());
     ok(s.people.every(p => motion.get(p.id).heartElapsed === null));
 });
-test("Adult villagers play farming, chopping and caring actions after arriving at their work stop", () => {
-    const actions = { FARM: "farm", LOGGING: "chop", CARE: "care" };
+test("Adults use side-facing work frames for both jobs and stand beside babies", () => {
     for (const index of [0, 1]) for (const job of ["FARM", "LOGGING", "CARE"] as const) {
         const s = createGame(3), p = s.people[index];
         if (job === "CARE") applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: p.id });
         else if (job === "LOGGING") applyCommand(s, { type: "JOB", id: p.id, job, replace: s.people[2].id });
         const motion = new VillagerMotion(navigation); motion.sync(s, s.towers); let played = false;
-        for (let i = 0; i < 1600; i++) { motion.update(.05); const m = motion.get(p.id); if (!m.walking && m.animated && m.elapsed > .5 && m.clip === `villager_${villagerModel(p)}_${actions[job]}`) played = true; }
+        for (let i = 0; i < 1600; i++) { motion.update(.05); const m = motion.get(p.id); if (m.walking) continue;
+            if (job === "CARE") {
+                if (!m.animated && m.clip === `villager_${villagerModel(p)}_walk` && distance(m, motion.get(p.careChild!)) < 55) played = true;
+            } else if (m.animated && m.elapsed > .5 && m.clip === `villager_${villagerModel(p)}_work`) {
+                ok(m.direction === "LEFT" || m.direction === "RIGHT");
+                played = true;
+            } }
         ok(played, `${p.appearance}/${job} never played`);
     }
 });
@@ -275,7 +280,7 @@ test("Male and female woodcutters face the tree at every work stop before and af
             for (let step = 0; step < 1600 && seen.size < workers.length; step++) {
                 workers.forEach(worker => {
                     const pose = motion.get(worker.id);
-                    if (pose.walking || !pose.clip.endsWith("_chop")) return;
+                    if (pose.walking || !pose.clip.endsWith("_work")) return;
                     const stop = scene.stops.logging.find(stop => stop.treeId === pose.loggingTree)!;
                     equal([pose.x, pose.y], [stop.x, stop.y]);
                     ok(pose.direction.includes(stop.x > stop.treeX ? "LEFT" : "RIGHT"));

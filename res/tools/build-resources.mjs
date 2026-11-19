@@ -5,7 +5,7 @@ import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { buildEnemyLayouts } from './build-enemy-layouts.mjs';
 import { atlasGroup, atlasGroups, syncGameplayAssets, writeBundles } from './resource-bundles.mjs';
-import { villagerDirections } from './hd2d/import-villagers.mjs';
+import { villagerDirections, villagerWorkDirections } from './hd2d/import-villagers.mjs';
 import { buildBuildingLayouts } from './build-building-layouts.mjs';
 
 // 原始图片与可编辑配方为唯一输入；临时裁片只能放 Downloads。无额外 npm 依赖。
@@ -232,24 +232,24 @@ for (const clip of recipe.animations.animations) {
     const oneShot = clip.category === 'effects' && clip.loop === false;
     const badFrames = enemy ? ![6, 8].includes(list.length) || !(clip.stridePixels > 0) :
         list.length < 2 || (walking && !(clip.stridePixels > 0)) || (oneShot && list.length > 8) ||
-        (clip.id.includes('_chop_') && (!Number.isInteger(clip.contactFrame) || clip.contactFrame < 0 || clip.contactFrame >= list.length));
+        (clip.id.includes('_work_') && (!Number.isInteger(clip.contactFrame) || clip.contactFrame < 0 || clip.contactFrame >= list.length));
     if (clip.frameCount !== list.length || badFrames || list.some(a => !a || !a.runtime || !frames[a.id] || a.width !== clip.canvas.w || a.height !== clip.canvas.h || a.pivot.x !== clip.pivot.x || a.pivot.y !== clip.pivot.y)) throw new Error('动画运行引用、帧数、画布或 pivot 不一致：' + clip.id);
     const rest = assets.find(a => a.id === clip.restFrame);
     if (!rest || !frames[rest.id] || rest.atlasGroup !== list[0].atlasGroup || rest.width !== clip.canvas.w || rest.height !== clip.canvas.h || rest.pivot.x !== clip.pivot.x || rest.pivot.y !== clip.pivot.y) throw new Error('静止帧画布/足点不一致：' + clip.id);
     if (new Set(list.map(a => a.sha256)).size < 2) throw new Error('动画帧完全相同：' + clip.id);
 }
-const directions = villagerDirections.map(name => name.toUpperCase());
-for (const groups of [recipe.animations.walkDirections, recipe.animations.laborDirections]) {
+for (const [groups, headings] of [[recipe.animations.walkDirections, villagerDirections], [recipe.animations.laborDirections, villagerWorkDirections]]) {
+    const directions = headings.map(name => name.toUpperCase());
     for (const [character, map] of Object.entries(groups)) {
         const directionClips = directions.map(direction => !map[direction]?.mirror &&
             recipe.animations.animations.find(clip => clip.id === map[direction]?.clip));
         if (Object.keys(map).length !== directions.length || directionClips.some(clip => !clip) ||
-            new Set(directionClips).size !== directions.length) throw new Error('四方向引用不完整：' + character);
+            new Set(directionClips).size !== directions.length) throw new Error('动作方向引用不完整：' + character);
         const first = directionClips[0];
         const walking = groups === recipe.animations.walkDirections;
         if (directionClips.some(c => c.canvas.w !== first.canvas.w || c.canvas.h !== first.canvas.h || c.pivot.x !== first.pivot.x || c.pivot.y !== first.pivot.y ||
             (walking ? c.frameCount / c.fps !== first.frameCount / first.fps || c.stridePixels !== first.stridePixels : c.frameCount !== first.frameCount || c.fps !== first.fps)))
-            throw new Error('四方向画布、足底或动画节拍不一致：' + character);
+            throw new Error('各方向画布、足底或动画节拍不一致：' + character);
     }
 }
 write('atlases/frames.json', { format: 'daidai-village-rects', version: 2, coordinateSystem: 'top-left pixels', padding, rotated: Object.values(frames).some(f => f.rotated), trimmed: true, trimAlphaThreshold: 0, pages, frames });

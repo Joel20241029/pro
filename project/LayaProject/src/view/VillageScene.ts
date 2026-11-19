@@ -21,9 +21,9 @@ export function layoutVillage(layout: GameLayout) {
     // 小村庄优先占用靠近火堆的位置；基准排序固定，换屏时不交换席位或照料者的左右关系。
     const hearth = VILLAGE_PROPS.find(p => p.id === "building:hearth")!;
     const camp = CAMP_STOPS.slice().sort((a, b) => distance(a, hearth) - distance(b, hearth)).map(point);
-    const relative = (points: GroundPoint[], anchor: string) => {
+    const relative = <T extends GroundPoint>(points: T[], anchor: string) => {
         const before = VILLAGE_PROPS.find(p => p.id === anchor)!, after = props.find(p => p.id === anchor)!;
-        return points.map(p => ({ x: p.x, y: after.y + p.y - before.y }));
+        return points.map(p => ({ ...p, y: after.y + p.y - before.y }));
     };
     const stops = {
         homes: VILLAGE_STOPS.homes.map(point), farm: relative(VILLAGE_STOPS.farm, "building:farm"),

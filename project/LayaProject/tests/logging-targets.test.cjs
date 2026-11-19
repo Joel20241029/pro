@@ -21,7 +21,7 @@ test('four woodcutters reserve distinct trees before arriving and change trees b
             const pose=motion.get(p.id),last=previous.get(p.id);
             if(last&&last.tree!==pose.loggingTree)assert.equal(last.walking,false,'tree changes only after resting, never during travel');
             if(!seen.has(p.id))seen.set(p.id,new Set());seen.get(p.id).add(pose.loggingTree);
-            if(!pose.walking&&pose.clip.endsWith('_chop')){
+            if(!pose.walking&&pose.clip.endsWith('_work')){
                 const target=VILLAGE_STOPS.logging.find(t=>t.treeId===pose.loggingTree);
                 assert.equal(pose.x,target.x);assert.equal(pose.y,target.y);assert(pose.direction.includes(target.treeX<pose.x ? "LEFT" : "RIGHT"));
             }

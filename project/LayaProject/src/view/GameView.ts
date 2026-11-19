@@ -16,11 +16,10 @@ import { NightResultPresentation } from "./NightResultPresentation";
 import { StartNightReminder } from "./StartNightReminder";
 import { StarterGuide } from "./StarterGuide";
 import { PATROL } from "../config/PatrolConfig";
-import { patrolBuildReason } from "../game/PatrolRules";
+import { PATROL_PROP } from "./config/VillageSceneConfig";
 import { PATROL_GUIDE_KEY, PATROL_LESSONS, STARTER_LESSONS } from "./config/StarterGuideConfig";
 import { TacticNotices } from "./TacticNotices";
 import { drawBoot, drawSessionPanel } from "./panels/SessionPanels";
-import { ScrollList } from "./ScrollList";
 /** 会话到表现的唯一刷新入口；各表现模块不自行订阅 changed，避免同步命令导致重复刷新。 */
 export class GameView {
     readonly root = new Laya.Sprite();
@@ -44,7 +43,7 @@ export class GameView {
         if (state && !this.overlay.numChildren && (state.phase === "DAY" || state.phase === "NIGHT") && state.people.some(p => p.id === id))
             this.panels.open({ type: "person", id });
     }, this.playDefeat, () => {
-        if (!this.overlay.numChildren && this.game.state?.patrol) this.panels.open({ type: "patrol" });
+        if (!this.overlay.numChildren && this.game.state) this.panels.open({ type: "patrol" });
     });
     private panels = new GamePanels(this.game, this.art, this.platform, this.ui, this.overlay, this.layout, () => this.refresh(), this.resources, () => {
         this.tacticNotices.markSeen();
@@ -188,33 +187,24 @@ export class GameView {
         if (active && !worldFrozen) this.anchoredTip.advance(visualDelta);
         const day = this.game.state;
         const canPrompt = active && !this.game.pauses.size && !this.overlay.numChildren && !this.anchoredTip.visible && day?.phase === "DAY";
-        const lesson = canPrompt ? STARTER_LESSONS[day!.completed] : undefined;
-        this.starterGuide.tick(lesson ? day!.completed + 1 : null, this.layout, visualDelta,
-            lesson ? this.hud.guideTargets[lesson.target] : undefined);
         let patrolStep: number | null = null, patrolTarget: Laya.Sprite | undefined;
-        if (active && day && day.completed >= PATROL.unlock && !this.results.active && !this.game.saves.pending) {
-            const panel = this.panels.current, box = this.overlay.numChildren ? this.overlay.getChildAt(this.overlay.numChildren - 1) as Laya.Sprite : undefined;
-            if (canPrompt && !day.patrol) {
-                patrolStep = 1; patrolTarget = this.hud.guideTargets.build;
-            } else if (day.phase === "DAY" && panel?.type === "build" && !day.patrol && box) {
-                const list = box.getChildByName("ScrollList") as ScrollList | null;
-                const card = list?.content.getChildByName("PatrolConstructionCard") as Laya.Sprite | undefined;
-                if (list && card) {
-                    const top = card.y + list.content.y;
-                    if (top >= 0 && top + card.height <= list.height) {
-                        patrolStep = 2; patrolTarget = card;
-                    }
-                }
-            } else if (day.phase === "DAY" && panel?.type === "patrol" && !day.patrol && box && !patrolBuildReason(day)) {
-                patrolStep = 3; patrolTarget = box.getChildAt(box.numChildren - 1)?.getChildByName("PatrolBuildAction") as Laya.Sprite;
-            } else if (day.phase === "DAY" && panel?.type === "patrol" && day.patrol && !day.patrol.captain && box) {
-                patrolStep = 4; patrolTarget = box.getChildByName(`button:${PATROL.appoint}`) as Laya.Sprite;
-            } else if (day.phase === "NIGHT" && !this.overlay.numChildren && !this.game.pauses.size && !worldFrozen && this.game.battle?.patrol?.deployments) {
+        if (active && day && !this.results.active && !this.game.saves.pending) {
+            const panel = this.panels.current;
+            if (canPrompt && !day.patrol.captain) {
+                const house = this.village.world.getChildByName(PATROL_PROP) as Laya.Sprite | undefined;
+                if (house?.visible) { patrolStep = 1; patrolTarget = house; }
+            } else if (day.phase === "DAY" && panel?.type === "patrol" && !day.patrol.captain && this.overlay.numChildren) {
+                const button = this.overlay.getChildAt(this.overlay.numChildren - 1).getChildByName(`button:${PATROL.appoint}`) as Laya.Sprite | undefined;
+                if (button?.visible && button.mouseEnabled) { patrolStep = 2; patrolTarget = button; }
+            } else if (day.phase === "NIGHT" && !this.overlay.numChildren && !this.game.pauses.size && !worldFrozen && day.night?.patrolSquad) {
                 const actor = this.village.world.getChildByName("PatrolActor:0") as Laya.Sprite | undefined;
-                if (actor?.visible) { patrolStep = 5; patrolTarget = actor.getChildAt(0) as Laya.Sprite; }
+                if (actor?.visible) { patrolStep = 3; patrolTarget = actor.getChildAt(0) as Laya.Sprite; }
             }
         }
         this.patrolGuide.tick(patrolStep, this.layout, visualDelta, patrolTarget);
+        const lesson = canPrompt && !this.patrolGuide.node.visible ? STARTER_LESSONS[day!.completed] : undefined;
+        this.starterGuide.tick(lesson ? day!.completed + 1 : null, this.layout, visualDelta,
+            lesson ? this.hud.guideTargets[lesson.target] : undefined);
         this.reminder.tick(day?.day ?? 0, canPrompt && !this.starterGuide.node.visible && !this.patrolGuide.node.visible ? this.hud.startButton : null, visualDelta);
     }
     private updateActors() {

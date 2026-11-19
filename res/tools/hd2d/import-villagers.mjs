@@ -4,9 +4,9 @@ import { runtimeTextureSizes } from '../../source/rendered2d/runtime-texture-siz
 
 // Rendered independently from the four cardinal cameras. Diagonal masters stay in authoring.
 export const villagerDirections = ['down', 'right', 'up', 'left'];
+export const villagerWorkDirections = ['right', 'left'];
 const adults = ['blue', 'straw', 'red', 'jade', 'elite_male', 'elite_female'];
 const roles = [...adults, 'child'];
-const adultActions = ['chop', 'farm', 'care'];
 // 保留六帧步态中每只脚的起点与过渡，左右半周期各两帧，整轮步幅沿用母片参数。
 const rearPoseIndices = [0, 1, 3, 4];
 
@@ -22,16 +22,17 @@ export function importVillagers(root, importImage, clip, animations, walkDirecti
     const portraits = [];
     for (const role of roles) {
         const spec = manifest[role];
-        const profile = read(role + '/rig-profile.json');
+        const walkSource = spec.walkSource || role;
+        const profile = read(walkSource + '/rig-profile.json');
         if (spec.walk.length !== profile.poses.length || !(profile.walkCycle.strideCanvasPixels > 0)) throw new Error('步态母片或步幅不足：' + role);
         const width = runtimeTextureSizes.characters[adults.includes(role) ? 'adult' : role];
         const walkMap = walkDirections[role] = {};
         for (const direction of villagerDirections) {
             const base = `hd_${role}_${direction}`;
             const poses = direction === 'up' ? rearPoseIndices.map(i => spec.walk[i]) : spec.walk;
-            const files = poses.map(index => `${role}/walk/${role}_${direction}_${index}.png`);
+            const files = poses.map(index => `${walkSource}/walk/${role}_${direction}_${index}.png`);
             const ids = files.map((file, i) => frame(base + '_' + i, file, spec.anchor, width));
-            const restFile = `${role}/walk/${role}_${direction}_idle.png`;
+            const restFile = `${walkSource}/walk/${role}_${direction}_idle.png`;
             const restFrame = frame(base + '_idle', restFile, spec.anchor, width);
             if (direction === 'down') portraits.push({ restFrame, restFile, anchor: spec.anchor });
             const id = `villager_${role}_walk_${direction}`;
@@ -40,21 +41,17 @@ export function importVillagers(root, importImage, clip, animations, walkDirecti
             walkMap[direction.toUpperCase()] = { clip: id, mirror: false };
         }
         if (!adults.includes(role)) continue;
-        for (const action of adultActions) {
-            const base = `villager_${role}_${action}`;
-            const actionSpec = spec.actions[action];
-            const group = laborDirections[base] = {};
-            for (const direction of villagerDirections) {
-                const id = base + '_' + direction;
-                // 扩大画布容纳武器外缘，放大绘制尺寸抵消取景变化，让人物身高和足点保持一致。
-                const actionWidth = Math.ceil(width * actionSpec.displayScale / 8) * 8;
-                const ids = actionSpec.frames.map(index => frame(`hd_${role}_${action}_${direction}_${index}`,
-                    `${role}/labor/${role}_${action}_${direction}_${index}.png`, actionSpec.anchor, actionWidth));
-                clip(id, ids, actionSpec.fps, 'characters', id);
-                animations.at(-1).displayScale = actionSpec.displayScale;
-                if (action === 'chop') animations.at(-1).contactFrame = actionSpec.frames.indexOf(actionSpec.contactFrame);
-                group[direction.toUpperCase()] = { clip: id, mirror: false };
-            }
+        const base = `villager_${role}_work`, action = spec.work;
+        const group = laborDirections[base] = {};
+        // 两种工作共用侧身挥刀，扩大画布容纳刀尖，保持与走路相同的身高。
+        const actionWidth = Math.ceil(width * action.displayScale / 8) * 8;
+        for (const direction of villagerWorkDirections) {
+            const id = base + '_' + direction;
+            const ids = action.frames.map(index => frame(`hd_${role}_work_${direction}_${index}`,
+                `${action.source}/${role}_farm_${direction}_${index}.png`, action.anchor, actionWidth));
+            clip(id, ids, action.fps, 'characters', id);
+            Object.assign(animations.at(-1), { displayScale: action.displayScale, contactFrame: action.frames.indexOf(action.contactFrame[direction]) });
+            group[direction.toUpperCase()] = { clip: id, mirror: false };
         }
     }
     const elder = manifest.elder;

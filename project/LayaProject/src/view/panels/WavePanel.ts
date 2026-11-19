@@ -20,7 +20,7 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel) {
     const enemies = Object.entries(ENEMIES).filter(([kind]) => wave.entries.some(entry => entry.kind === kind));
     const enemyTop = start ? 236 : 169;
     const enemyRow = 52, enemyHeight = Math.min(start ? 2 : 4, enemies.length) * enemyRow;
-    const summaryTop = enemyTop + 44 + enemyHeight + 14, summaryHeight = s.patrol ? 236 : 196;
+    const summaryTop = enemyTop + 44 + enemyHeight + 14, summaryHeight = 236;
     const risk = [e.hungry ? `口粮不足，塔攻速降至 ${Math.round(RULE.hungerSpeed * 100)}%。` : "",
         !s.towers.some(t => t.operator) ? "无人驻塔，城门风险较高。" : ""].filter(Boolean);
     const riskTop = summaryTop + summaryHeight + 8, riskHeight = 36;

@@ -119,15 +119,15 @@ export const VILLAGE_STOPS = {
         // 左侧两个家门点避开花树前的新工位，保留至少24像素的停留间距。
         ...[58, 98, 140, 182, 224].map(x => ({ x, y: x <= 98 ? 878 : 874 }))
     ],
-    farm: [{ x: 486, y: 879 }, { x: 546, y: 879 }, { x: 606, y: 879 }, { x: 486, y: 924 }, { x: 546, y: 924 }, { x: 606, y: 924 }],
-    // 足底比树脚靠下14~16，使真实足底排序将伐木者画在树前。
-    // 横向距离统一为39，按普通/精英落刃的实际屏幕坐标校验，让刃口落入树干宽度。
+    farm: [{ x: 486, y: 879, direction: "RIGHT" }, { x: 546, y: 879, direction: "RIGHT" }, { x: 606, y: 879, direction: "LEFT" },
+        { x: 486, y: 924, direction: "RIGHT" }, { x: 546, y: 924, direction: "RIGHT" }, { x: 606, y: 924, direction: "LEFT" }] as (GroundPoint & { direction: "LEFT" | "RIGHT" })[],
+    // 复用耕田的刀，落点在树根侧边。站在树脚前方，身体在树干上层绘制。
     logging: [
-        { treeId: "tree:logging", treeX: 164, x: 125, y: 1026 },
-        { treeId: "tree:corner-blossom", treeX: 38, x: 77, y: 852 },
-        { treeId: "tree:corner-fruit", treeX: 677, x: 638, y: 1014 },
-        { treeId: "tree:corner-pine-left", treeX: 43, x: 82, y: 992 },
-        { treeId: "tree:corner-pine-right", treeX: 677, x: 638, y: 896 }
+        { treeId: "tree:logging", treeX: 164, x: 136, y: 1014 },
+        { treeId: "tree:corner-blossom", treeX: 38, x: 66, y: 843 },
+        { treeId: "tree:corner-fruit", treeX: 677, x: 649, y: 1001 },
+        { treeId: "tree:corner-pine-left", treeX: 43, x: 71, y: 983 },
+        { treeId: "tree:corner-pine-right", treeX: 677, x: 649, y: 883 }
     ] as LoggingStop[],
     // 有意包含屋后与屋前的休息点，行人绕过墙基后会自然发生遮挡切换。
     rest: CAMP_STOPS,

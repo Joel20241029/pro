@@ -1,0 +1,227 @@
+{
+  "role": "straw",
+  "directions": [
+    "right",
+    "left"
+  ],
+  "method": "offline high-resolution skinned rendering",
+  "status": "tool_edges_and_grip_recorded_for_review",
+  "runtime3d": false,
+  "mirror": false,
+  "displayScale": 1.3384615457974947,
+  "anchor": {
+    "x": 0.5,
+    "y": 0.7599467486143112
+  },
+  "framesPerAction": {
+    "farm": 4
+  },
+  "records": [
+    {
+      "action": "farm",
+      "frame": 1,
+      "hoeEdgeZ": 0.3330337584018707,
+      "targetBladeZ": 0.43
+    },
+    {
+      "action": "farm",
+      "frame": 1,
+      "gripErrors": [
+        7.598131170262075e-08
+      ],
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.3330337405204773
+    },
+    {
+      "action": "farm",
+      "frame": 2,
+      "hoeEdgeZ": 0.23000095188617706,
+      "targetBladeZ": 0.23
+    },
+    {
+      "action": "farm",
+      "frame": 2,
+      "gripErrors": [
+        2.1073424255447017e-08
+      ],
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.23000092804431915
+    },
+    {
+      "action": "farm",
+      "frame": 3,
+      "hoeEdgeZ": 0.04000130295753479,
+      "targetBladeZ": 0.04
+    },
+    {
+      "action": "farm",
+      "frame": 3,
+      "gripErrors": [
+        1.4901161193847656e-08
+      ],
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.040001098066568375
+    },
+    {
+      "action": "farm",
+      "frame": 4,
+      "hoeEdgeZ": 0.13000003397464752,
+      "targetBladeZ": 0.13
+    },
+    {
+      "action": "farm",
+      "frame": 4,
+      "gripErrors": [
+        6.828569911354542e-08
+      ],
+      "bladeBodyIntersections": 0,
+      "bladeHeadIntersections": 0,
+      "shaftHeadIntersection": false,
+      "bladeMinimumZ": 0.12999996542930603
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 1,
+      "toolTipScreen": [
+        0.6848724484443665,
+        0.6439864933490753
+      ],
+      "toolTipWorld": [
+        0.3216780424118042,
+        -0.27467674016952515,
+        0.3330337405204773
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 2,
+      "toolTipScreen": [
+        0.6965523362159729,
+        0.7024293839931488
+      ],
+      "toolTipWorld": [
+        0.3420010209083557,
+        -0.2917936444282532,
+        0.23000092804431915
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 3,
+      "toolTipScreen": [
+        0.892301082611084,
+        0.8218630999326706
+      ],
+      "toolTipWorld": [
+        0.6826038360595703,
+        -0.37611207365989685,
+        0.040001098066568375
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "right",
+      "frame": 4,
+      "toolTipScreen": [
+        0.8929449915885925,
+        0.7630538940429688
+      ],
+      "toolTipWorld": [
+        0.6837242841720581,
+        -0.326056569814682,
+        0.12999996542930603
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 1,
+      "toolTipScreen": [
+        0.31512755155563354,
+        0.5225555598735809
+      ],
+      "toolTipWorld": [
+        -0.3216780424118042,
+        0.27467674016952515,
+        0.3330337405204773
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 2,
+      "toolTipScreen": [
+        0.3034476935863495,
+        0.5734312832355499
+      ],
+      "toolTipWorld": [
+        -0.3420009911060333,
+        0.2917936444282532,
+        0.23000092804431915
+      ],
+      "contact": false
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 3,
+      "toolTipScreen": [
+        0.1076989471912384,
+        0.6555889248847961
+      ],
+      "toolTipWorld": [
+        -0.6826038360595703,
+        0.37611210346221924,
+        0.040001098066568375
+      ],
+      "contact": true
+    },
+    {
+      "action": "farm",
+      "direction": "left",
+      "frame": 4,
+      "toolTipScreen": [
+        0.10705504566431046,
+        0.6189086139202118
+      ],
+      "toolTipWorld": [
+        -0.6837242245674133,
+        0.3260565996170044,
+        0.12999996542930603
+      ],
+      "contact": false
+    }
+  ],
+  "inputs": [
+    {
+      "file": "/Users/happyelements/Documents/pro/res/source/rendered2d/characters/v5/straw/straw_walk.blend",
+      "sha256": "c3e83d401a702ce6251d2f71102ba32b34138ddc4628085d895eb36799bd5fb3"
+    },
+    {
+      "file": "/Users/happyelements/Documents/pro/res/source/rendered2d/characters/v5/straw/rig-profile.json",
+      "sha256": "8fe580a0777ccd548e4513c4617657dc85b5841e7ebf7e9d82fcbc5c9e8ecdec"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/\u4ee3\u4ee3\u5b88\u6751-\u7cbe\u82f1\u52a8\u4f5c\u9884\u89c8/authoring/work-poses.json",
+      "sha256": "7252ab76b7524c685b79bab89d795d5a9a6f058cc5bec533222d3e5b6372c08b"
+    },
+    {
+      "file": "/Users/happyelements/Downloads/\u4ee3\u4ee3\u5b88\u6751-\u7cbe\u82f1\u52a8\u4f5c\u9884\u89c8/authoring/render-villager-actions.py",
+      "sha256": "3dfbe6d3a32b6cf2b61eb7f09392a52e48c6e4371587ec5a474bb10797cef958"
+    }
+  ]
+}
