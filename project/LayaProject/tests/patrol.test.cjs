@@ -6,6 +6,7 @@ if (!root) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project');
 const load = name => require(path.join(root, name));
 const { RULE } = load('config/RuleConfig');
 const { PATROL } = load('config/PatrolConfig');
+const { WAVE } = load('config/DefenseConfig');
 const { createGame, applyCommand, finishNight } = load('game/VillageRules');
 const { patrolStats } = load('game/PatrolRules');
 const { BattleSimulation } = load('game/BattleSimulation');
@@ -113,7 +114,7 @@ test('reinforcements add to an existing wave without changing its spawn duration
         PATROL.pressure.firstDay = PATROL.pressure.secondDay = Infinity;
         try {
             const baseline = generateWave(before);
-            assert.equal(actual.entries.length - baseline.entries.length, day < 13 ? 0 : day < 25 ? 1 : 2);
+            assert.equal(actual.entries.length - baseline.entries.length, WAVE.density * (day < 13 ? 0 : day < 25 ? 1 : 2));
             assert.equal(actual.entries.at(-1).tick, baseline.entries.at(-1).tick);
             assert.deepEqual(s.rng, before.rng);
         } finally {

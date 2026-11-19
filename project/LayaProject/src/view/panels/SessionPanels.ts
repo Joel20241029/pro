@@ -68,8 +68,12 @@ export function drawDawn(ctx: PanelContext, s: GameState) {
         ctx.ui.image(box, ctx.art.portraitId(q.person), special ? 229 : 250, 200, special ? 210 : 168);
         ctx.ui.label(box, `${coloredName(q.person)} 希望加入村落\n天赋：${TRAITS[q.person.trait][0]}  ·  专长：${SKILLS[q.person.skill!][0]}\n民居 ${s.people.length}/${capacity(s)}`, 34, 408, 600, 30, C.green, true, 155).align = "center";
         if (special) {
-            ctx.ui.label(box, `耕伐 +${Math.round((quality.production - 1) * 100)}% · 塔伤 +${Math.round((quality.damage - 1) * 100)}% · 劳作 ${quality.adultNights} 夜 · 养老 ${quality.elderNights} 夜`, 34, 548, 600, 24, C.timber, true, 38).align = "center";
-            ctx.ui.iconValue(box, "icon_food", `照料 +${quality.careFood}`, 34, 585, 600, 34, C.cream, 24);
+            ctx.ui.label(box, `耕伐 +${Math.round((quality.production - 1) * 100)}% · 塔伤 +${Math.round((quality.damage - 1) * 100)}%`,
+                UI.inset, 544, UI.contentWidth, UI.body, C.timber, true, 38).align = "center";
+            const detailY = 584, detailHeight = 36, detailWidth = UI.contentWidth / 3;
+            ctx.ui.label(box, `劳作 ${quality.adultNights} 夜`, UI.inset, detailY, detailWidth, UI.body, C.cream, true, detailHeight).align = "center";
+            ctx.ui.label(box, `养老 ${quality.elderNights} 夜`, UI.inset + detailWidth, detailY, detailWidth, UI.body, C.cream, true, detailHeight).align = "center";
+            ctx.ui.iconValue(box, "icon_food", `照料 +${quality.careFood}`, UI.inset + detailWidth * 2, detailY, detailWidth, detailHeight, C.cream, UI.body);
         }
         const full = s.people.length >= capacity(s);
         if (full) ctx.ui.label(box, s.people.length >= RULE.populationCap ? "村民已满，可等待空出名额" : "住房已满，白天可增建民居",

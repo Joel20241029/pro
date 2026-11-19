@@ -4,15 +4,16 @@ const {enemyPoint,pointAt,PATH_LENGTH,roadFootprintBounds}=require(path.join(bui
 const {BattleSimulation}=require(path.join(build,'game/BattleSimulation'));
 const {createGame,applyCommand}=require(path.join(build,'game/VillageRules'));
 const {ENEMIES,PATH,PADS,TOWERS,RULE}=require(path.join(build,'game/GameConfig'));
+const {WAVE}=require(path.join(build,'config/DefenseConfig'));
 const enemy=(kind,seq,progress)=>({kind,seq,progress,appearanceSeed:91,hp:1e6,speed:0,slow:0,slowTicks:0, walkDistance: 0,born:0,summoned:RULE.summonTicks.length});
 function battle(tower,index=0){
  const state=createGame(41);applyCommand(state,{type:'NIGHT'});const b=new BattleSimulation(state);
  b.cursor=b.base.wave.entries.length;b.base.towers.forEach((t,i)=>{t.kind=i===index?tower:null;t.operator=i===index?state.people[0].id:null;});
  b.gate=1e9;return b;
 }
-test('all ten kinds and forty sequence positions stay inside their foot corridor and preserve the original progress axis',()=>{
+test('all ten kinds and late-wave sequence positions stay inside their foot corridor and preserve the original progress axis',()=>{
  assert.equal(PATH_LENGTH,PATH.slice(1).reduce((n,p,i)=>n+Math.hypot(p.x-PATH[i].x,p.y-PATH[i].y),0));
- for(const kind of Object.keys(ENEMIES))for(let seq=0;seq<40;seq++)for(let progress=0;progress<=PATH_LENGTH;progress+=3){
+ for(const kind of Object.keys(ENEMIES))for(let seq=0;seq<RULE.planCap;seq++)for(let progress=0;progress<=PATH_LENGTH;progress+=3){
   const p=enemyPoint(enemy(kind,seq,progress)),bounds=roadFootprintBounds(p.y,kind);
   assert(Number.isFinite(p.x)&&Number.isFinite(p.y));assert.equal(p.y,pointAt(progress).y);
   assert(bounds.left<=p.x&&p.x<=bounds.right,`${kind}/${seq}/${progress}`);
@@ -52,7 +53,8 @@ test('lateral placement does not change the arrival tick, gate damage or pending
   let expectedProgress=0,steps=0;while(expectedProgress<PATH_LENGTH){expectedProgress+=e.speed*RULE.step;steps++;}
   for(let i=0;i<steps-1;i++){b.step();assert(!b.feedback.some(e=>e.type==='gate'));}
   b.step();assert(b.feedback.some(e=>e.type==='gate'));assert.equal(b.enemies.length,0);assert.equal(b.pendingCount,0);
-  assert.equal(b.gate,1e9-ENEMIES[kind].gate);assert.equal(b.outcome,'WIN');
+  const {gate,boss}=ENEMIES[kind];
+  assert.equal(b.gate,1e9-Math.ceil(gate*(boss?1:WAVE.ordinaryGateScale)));assert.equal(b.outcome,'WIN');
  }
 });
 test('splash uses actual lateral distance, not equal progress on the old single line',()=>{

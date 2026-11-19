@@ -58,7 +58,7 @@ test("Wave budget and object limits over 10,000 days", () => {
 test("Initial battle is winnable, replay is deterministic", () => {
     const s = createGame(7); applyCommand(s, { type: "NIGHT" }); const a = new BattleSimulation(s), b = new BattleSimulation(s);
     while (!a.outcome && a.tick < 6000) a.step(); while (!b.outcome && b.tick < 6000) b.step();
-    equal(a.outcome, "WIN"); equal([a.tick, a.gate], [b.tick, b.gate]); ok(a.enemies.length <= RULE.enemyCap);
+    equal(a.outcome, "WIN"); equal([a.tick, a.gate], [b.tick, b.gate]); equal(a.pendingCount, 0);
 });
 test("Gate arrival loss precedes a tower firing in same tick", () => {
     const s = createGame(1); applyCommand(s, { type: "NIGHT" }); const b = new BattleSimulation(s); b.gate = 1;

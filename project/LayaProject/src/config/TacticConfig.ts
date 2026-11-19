@@ -176,7 +176,7 @@ export function validateTactics(definitions: readonly TacticDefinition[] = TACTI
             !["ATTACK_SPEED", "ATTACK_DAMAGE", "GATE_INVULNERABLE", "MULTI_TARGET", "SUMMON_CHARGE", "MIND_LOCK", "TIMED_BLAST", "HAND_SPEED", "ZHOU_LOVE", "DRAGON_POISON", "KING_MERCY"].includes(t.effect) ||
             !Number.isSafeInteger(t.usesPerNight) || t.usesPerNight < 1 || t.usesPerNight > TACTIC_USE.perNight ||
             !Number.isSafeInteger(t.ticks) || (t.effect === "ZHOU_LOVE" || t.effect === "KING_MERCY" ? t.ticks !== 0 : t.ticks <= 0 || t.ticks > TACTIC_USE.cooldownTicks) ||
-            (t.effect === "MULTI_TARGET" ? !Number.isSafeInteger(t.targets) || t.targets < 2 || t.targets > RULE.enemyCap || "multiplier" in t :
+            (t.effect === "MULTI_TARGET" ? !Number.isSafeInteger(t.targets) || t.targets < 2 || t.targets > RULE.effectCap || "multiplier" in t :
                 t.effect === "ATTACK_SPEED" || t.effect === "ATTACK_DAMAGE" ?
                     !Number.isFinite(t.multiplier) || t.multiplier <= 0 : "multiplier" in t))
             throw new Error("战技配置无效");

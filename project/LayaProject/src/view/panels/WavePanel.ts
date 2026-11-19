@@ -1,10 +1,8 @@
-import { patrolCaptain, patrolStats } from "../../game/PatrolRules";
-import { WAVE } from "../../config/DefenseConfig";
+import { patrolCaptain } from "../../game/PatrolRules";
 import { featureUnlocked } from "../../config/DailyTaskConfig";
 import { tacticDefinition } from "../../config/TacticConfig";
 import { ENEMIES, PADS, RULE } from "../../game/GameConfig";
 import { GameState } from "../../game/GameState";
-import { enemyPower } from "../../game/Growth";
 import { economy } from "../../game/VillageRules";
 import { equippedTactics } from "../../game/Tactics";
 import { ScrollList } from "../ScrollList";
@@ -21,7 +19,7 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel) {
     const enemies = Object.entries(ENEMIES).filter(([kind]) => wave.entries.some(entry => entry.kind === kind));
     const enemyTop = start ? 236 : 169;
     const enemyRow = 52, enemyHeight = Math.min(start ? 2 : 4, enemies.length) * enemyRow;
-    const summaryTop = enemyTop + 44 + enemyHeight + 14, summaryHeight = s.patrol ? 276 : 236;
+    const summaryTop = enemyTop + 44 + enemyHeight + 14, summaryHeight = s.patrol ? 236 : 196;
     const risk = [e.hungry ? `口粮不足，塔攻速降至 ${Math.round(RULE.hungerSpeed * 100)}%。` : "",
         !s.towers.some(t => t.operator) ? "无人驻塔，城门风险较高。" : ""].filter(Boolean);
     const riskTop = summaryTop + summaryHeight + 8, riskHeight = 36;
@@ -29,7 +27,7 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel) {
     const state = ctx.resources.states.night, ready = ctx.resources.ready("night"), failed = state.phase === "FAILED";
     const preparing = start && !ready, buttonTop = prepareTop + (preparing ? 66 : 0) + 6;
     const box = ctx.modal(start ? "今夜，也要守住家" : "瞭望来报", "", true, { width: UI.panelWidth, height: buttonTop + UI.action.height + UI.action.bottom },
-        "来敌数量按种类统计。敌军倍率是本夜的生命与撞门基准，词缀会再改变来敌。开始守夜时先结算生产与口粮，再按仓储保留库存。夜战中退出后重进，从本夜开头守起。");
+        "来敌数量按种类统计，标题显示本夜来敌的特点。开始守夜时先结算生产与口粮，再按仓储保留库存。夜战中退出后重进，从本夜开头守起。");
     ctx.ui.label(box, `第 ${s.day} 夜 · 预计来敌 ${wave.entries.length} 名 · ${AFFIX_NAME[wave.affix]}`, 34, 108, 600, 29, C.cream, true, 48).align = "center";
     if (start) {
         const selected = equippedTactics(s).filter(id => id !== null).map(tacticDefinition);
@@ -74,12 +72,10 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel) {
         ctx.ui.iconValue(summary, "icon_food", food, 208, y, 144, 40, color, 26, "left");
         if (wood) ctx.ui.iconValue(summary, "icon_wood", wood, 392, y, 183, 40, color, 26, "left");
     });
-    const pressure = wave.ordinaryHealthPercent > WAVE.baseHealthPercent ? ` · 小怪生命另 +${wave.ordinaryHealthPercent - WAVE.baseHealthPercent}%` : "";
-    ctx.ui.label(summary, `生命／撞门基准 ×${enemyPower(s.day).toFixed(2)}${pressure}`, 22, 190, 556, 24, C.muted, false, 32);
     if (s.patrol) {
-        const captain = patrolCaptain(s), stats = patrolStats(s.patrol.level, captain);
-        ctx.ui.label(summary, captain ? `淡紫儿就绪 · ${amount(stats.damage)} 伤害／${stats.seconds} 秒` : "淡紫儿待命 · 尚未任命队长",
-            22, 224, 556, 30, captain ? C.green : C.muted, true, 40);
+        const captain = patrolCaptain(s);
+        ctx.ui.label(summary, captain ? "淡紫儿就绪" : "淡紫儿待命 · 尚未任命队长",
+            22, 190, 556, 30, captain ? C.green : C.muted, true, 40);
     }
     risk.forEach((message, i) => {
         ctx.ui.label(box, message, 34, riskTop + i * riskHeight, 600, 28, C.red, true, riskHeight).align = "center";

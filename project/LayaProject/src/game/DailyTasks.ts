@@ -1,4 +1,5 @@
-import { DAILY_BOTH_WOOD, DAILY_TASKS, TASK_GOALS, TaskKind, featureUnlocked } from "../config/DailyTaskConfig";
+import { DAILY_BOTH_WOOD, DAILY_TASKS, DENSE_TASK_GOALS, TASK_GOALS, TaskKind, featureUnlocked } from "../config/DailyTaskConfig";
+import { isDenseWave } from "../config/DefenseConfig";
 import { BattleSimulation } from "./BattleSimulation";
 import { PATH_LENGTH, pointAt } from "./BattleRoad";
 import { DailyTaskCombat } from "./DailyTaskCombat";
@@ -39,8 +40,10 @@ export function prepareDailyTasks(s: GameState, date: string) {
     // Neither the draw nor the isolated simulation advances the actual village or its saved random streams.
     const rng = new SeededRandom(Math.imul(s.run ^ s.rng.world, 16777619) ^ Number(date.replace(/-/g, "")));
     const buckets: Candidate[][] = [[], [], [], [], []];
+    const dense = isDenseWave(s.wave!.ordinaryHealthPercent);
     const count = (theme: number, kind: TaskKind, available: number, fields?: Partial<Candidate>) => {
-        const [min, max] = TASK_GOALS[kind], upper = Math.min(max, available);
+        const [min, max] = dense && (kind === "kills" || kind === "enemyKind") ? DENSE_TASK_GOALS[kind] : TASK_GOALS[kind];
+        const upper = Math.min(max, available);
         if (upper >= min) buckets[theme].push({ kind, goal: min + rng.range(upper - min + 1), ...fields });
     };
     const one = (theme: number, kind: TaskKind, available: boolean) => { if (available) count(theme, kind, 1); };
@@ -63,8 +66,9 @@ export function prepareDailyTasks(s: GameState, date: string) {
             const min = Math.max(hitMin, combat.gateHits);
             buckets[0].push({ kind: "gateHits", goal: min + rng.range(hitMax - min + 1) });
         }
+        const [kindMinimum] = dense ? DENSE_TASK_GOALS.enemyKind : TASK_GOALS.enemyKind;
         const viableKinds = [...new Set(s.wave!.entries.map(e => e.kind))].filter(kind =>
-            !ENEMIES[kind].boss && (combat.kills.get(kind) ?? 0) >= TASK_GOALS.enemyKind[0]);
+            !ENEMIES[kind].boss && (combat.kills.get(kind) ?? 0) >= kindMinimum);
         if (viableKinds.length) {
             const enemy = viableKinds[rng.range(viableKinds.length)];
             count(0, "enemyKind", combat.kills.get(enemy)!, { enemy });

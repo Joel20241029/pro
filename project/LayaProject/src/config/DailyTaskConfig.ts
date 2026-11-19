@@ -10,6 +10,8 @@ export const TASK_GOALS = {
     towerBuild: [1, 1], towerUpgrade: [1, 1], farmUpgrade: [1, 1], loggingUpgrade: [1, 1], gateUpgrade: [1, 1], repair: [1, 1],
     houseBuild: [1, 1], housingUpgrade: [1, 1], marriage: [1, 1], child: [1, 1], worker: [1, 1], operator: [1, 1]
 } as const;
+/** 三倍波次的随军数量类任务。沿用战前预演收紧上限，历史任务继续按原目标入档。 */
+export const DENSE_TASK_GOALS = { kills: [18, 36], enemyKind: [6, 12] } as const;
 export const DAILY_BOTH_WOOD = [6, 12] as const;
 export type TaskKind = keyof typeof TASK_GOALS;
 export type TaskMaterial = "food" | "wood";

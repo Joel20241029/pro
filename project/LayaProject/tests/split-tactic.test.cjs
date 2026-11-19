@@ -45,7 +45,7 @@ test('split uses the approved name, cost, fifteen current-village wins and twelv
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC }));
     applyCommand(s, { type: 'TACTIC_EQUIP', id: DEFAULT_TACTIC }); applyCommand(s, { type: 'TACTIC_EQUIP', id: SPLIT_TACTIC });
     assert.deepEqual([s.wood, s.food], [0, 0]);
-    for (const patch of [{ targets: 0 }, { targets: 1 }, { targets: 2.5 }, { targets: NaN }, { targets: RULE.enemyCap + 1 }, { multiplier: 1.5 }])
+    for (const patch of [{ targets: 0 }, { targets: 1 }, { targets: 2.5 }, { targets: NaN }, { targets: RULE.effectCap + 1 }, { multiplier: 1.5 }])
         assert.throws(() => validateTactics(TACTICS.map(value => value.id === SPLIT_TACTIC ? { ...value, ...patch } : value)));
 });
 

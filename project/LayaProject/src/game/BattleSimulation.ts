@@ -1,5 +1,5 @@
 import { appearanceSeed, APPEARANCE_DOMAIN } from "./EnemySeed";
-import { COMBAT } from "../config/DefenseConfig";
+import { COMBAT, isDenseWave, WAVE } from "../config/DefenseConfig";
 import { VILLAGER_QUALITY } from "../config/VillagerQuality";
 import { ENEMIES, EnemyKind, PADS, RULE, TOWERS, TowerKind } from "./GameConfig";
 import { enemyPoint, onBattleRoad, PATH_LENGTH, RoadPoint } from "./BattleRoad";
@@ -69,6 +69,7 @@ export class BattleSimulation {
     private poison: { targets: Set<number>; nextTick: number; extraSeconds: number } | null = null;
     get handSpeed(): Readonly<{ remaining: number; taps: number }> | null { return this.outcome ? null : this.tapWindow; }
     outcome: "WIN" | "LOSE" | null = null;
+    private readonly denseWave: boolean;
     private cursor = 0;
     private seq = 0;
     private charge = PADS.map(() => 1);
@@ -81,6 +82,7 @@ export class BattleSimulation {
         if (state.phase !== "NIGHT" || !state.wave || !state.night)
             throw new Error("缺少已保存的战前状态");
         this.base = clone(state);
+        this.denseWave = isDenseWave(state.wave.ordinaryHealthPercent);
         this.patrol = this.base.patrol?.captain ? new Patrol(this.base) : null;
         const loadout = [state.night.tactic, ...(state.night.extraSlots ?? [])];
         this.tactics = loadout.filter(id => id !== null).map(id => ({ ...tacticDefinition(id) }));
@@ -246,7 +248,7 @@ export class BattleSimulation {
                 e.summoned++;
                 for (let child = 0; child < 2; child++) this.queued.push({ kind: "enemy_raider", progress: e.progress, appearanceSeed: appearanceSeed(APPEARANCE_DOMAIN.summon, e.appearanceSeed, e.summoned, child) });
             }
-        while (this.queued.length && this.enemies.length < RULE.enemyCap) {
+        while (this.queued.length && (this.denseWave || this.enemies.length < RULE.legacyEnemyCap)) {
             const q = this.queued.shift()!;
             this.spawn(q.kind, q.progress, q.appearanceSeed);
         }
@@ -285,7 +287,8 @@ export class BattleSimulation {
         for (const e of this.enemies) {
             if (e.hp > 0 && e.progress >= PATH_LENGTH) {
                 const blocked = this.gateProtected, at = enemyPoint(e);
-                if (!blocked) this.gate -= Math.ceil(ENEMIES[e.kind].gate * enemyPower(this.base.day) * (1 + (po.gate || 0)));
+                const enemy = ENEMIES[e.kind], impact = this.denseWave && !enemy.boss ? WAVE.ordinaryGateScale : 1;
+                if (!blocked) this.gate -= Math.ceil(enemy.gate * impact * enemyPower(this.base.day) * (1 + (po.gate || 0)));
                 e.hp = 0;
                 this.poison?.targets.delete(e.seq);
                 // 快照记录逻辑坐标及当步保护状态；追帧、到期和窗口重排不能改写旧反馈。

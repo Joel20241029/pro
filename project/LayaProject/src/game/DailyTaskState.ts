@@ -1,4 +1,4 @@
-import { DAILY_BOTH_WOOD, DAILY_TASKS, TASK_GOALS, TaskKind, TaskMaterial, featureUnlocked } from "../config/DailyTaskConfig";
+import { DAILY_BOTH_WOOD, DAILY_TASKS, DENSE_TASK_GOALS, TASK_GOALS, TaskKind, TaskMaterial, featureUnlocked } from "../config/DailyTaskConfig";
 import { TACTICS } from "../config/TacticConfig";
 import { validRationDate } from "./DailyRation";
 import { ENEMIES, EnemyKind } from "./GameConfig";
@@ -51,7 +51,10 @@ export function validDailyTaskDay(day: DailyTaskDay): boolean {
     return day.tasks.every(task => {
         if (!task || !Object.prototype.hasOwnProperty.call(TASK_GOALS, task.kind)) return false;
         const [min, max] = TASK_GOALS[task.kind];
-        return inRange(task.goal, task.kind === "gateHealth" ? 1 : min, max) &&
+        const denseGoal = task.kind === "kills" || task.kind === "enemyKind" ? DENSE_TASK_GOALS[task.kind] : null;
+        const goalValid = inRange(task.goal, task.kind === "gateHealth" ? 1 : min, max) ||
+            (denseGoal !== null && inRange(task.goal, denseGoal[0], denseGoal[1]));
+        return goalValid &&
             inRange(task.progress, 0, task.goal) && typeof task.claimed === "boolean" && (!task.claimed || task.progress === task.goal) &&
             (task.material === "food" || task.material === "wood") && inRange(task.reward, DAILY_TASKS.rewardMin, DAILY_TASKS.rewardMax) &&
             (task.kind === "enemyKind" ? ENEMIES[task.enemy!]?.boss === false : task.enemy === undefined) &&

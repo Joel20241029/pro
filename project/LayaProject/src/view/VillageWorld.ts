@@ -157,7 +157,7 @@ export class VillageWorld {
             s.addChild(heart);
             this.hearts.push(heart);
         }
-        this.reserveEnemies(RULE.enemyCap * 2);
+        this.reserveEnemies(WORLD_ART.enemyPoolReserve);
         this.projectileVisuals = new ProjectileVisuals(this.shots, art);
         // 此池仅绘制村民地影；怪物接地影已纳入自己的原生动画，不能再用独立世界节点重复绘制。
         for (let i = 0; i < this.people.length; i++) {

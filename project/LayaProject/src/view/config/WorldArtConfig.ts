@@ -3,6 +3,8 @@ export const WORLD_ART = {
     // 进村阶段的整图，将图集 pivot.y 当作墙脚线，随 GameLayout 映射战场和居民区。
     terrain: "map_scene",
     dayTint: "#ffffff", nightTint: "#9ca9bd",
+    // 开战前预分配原有存活及退场表现的常用节点，三倍怪群按实际可见数追加。
+    enemyPoolReserve: 80,
     // 阴影贴图中心位于192画布约(96,142)，软边保留alpha。地面投影向右下偏移，照明来自左上。
     shadow: { centerX: .5, centerY: .74, actorWidth: .72, buildingWidth: .94, treeWidth: .88, alpha: .36, x: 4, y: 3 },
     // 复用百毅靓之怒的俯视红环，放在精英脚下压扁成地面椭圆。相位和尺寸仅为身份提示。

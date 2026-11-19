@@ -41,7 +41,7 @@ test("Stopped upgrading loses against a late wave; large progress stays finite a
         const s = createGame(9); s.day = day; s.completed = day - 1; s.legacy.bestNight = s.completed; s.wave = generateWave(s);
         ok(Number.isFinite(enemyPower(day)) && enemyPower(day) > enemyPower(day - 1)); validateState(s);
         applyCommand(s, { type: "NIGHT" }); const b = new BattleSimulation(s);
-        while (!b.outcome && b.tick < 6000) b.step(); equal(b.outcome, "LOSE"); ok(b.enemies.length <= RULE.enemyCap && s.wave!.entries.length <= RULE.planCap);
+        while (!b.outcome && b.tick < 6000) b.step(); equal(b.outcome, "LOSE"); ok(b.enemies.length <= s.wave!.entries.length && s.wave!.entries.length <= RULE.planCap);
         ok(b.enemies.every(e => Number.isSafeInteger(e.hp)));
     }
 });

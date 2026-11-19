@@ -70,25 +70,31 @@ test('five pads start with two towers and validate all five occupants',()=>{
  assert(s.towers.every(t=>t.kind&&t.operator));assert.equal(new Set(s.towers.map(t=>t.operator)).size,5);validateState(s);
  const b=structuredClone(s);b.towers.pop();assert.throws(()=>validateState(b));
 });
-test('quantity curve grows within fixed budgets and a full on-screen queue never drops pending enemies',()=>{
+test('triple quantity keeps the entry window and new waves do not wait at the legacy field limit',()=>{
  const {WAVE}=read('config/DefenseConfig');
  const counts=[];
  for(const day of [1,13,37,73,301,1000001]){
   const s=createGame(7);s.day=day;s.completed=day-1;s.legacy.bestNight=s.completed;s.tier=3;s.wave=generateWave(s);
-  const support = day >= 25 ? 2 : day >= 13 ? 1 : 0;
+  const support = WAVE.density * (day >= 25 ? 2 : day >= 13 ? 1 : 0);
   const expected=Math.min(WAVE.spawnWindowTicks.maximum,Math.max(WAVE.spawnWindowTicks.minimum,
-   RULE.spawnTicks+Math.max(0,s.wave.entries.length-support-WAVE.spawnCountThreshold)*WAVE.extraSpawnTicks));
+   RULE.spawnTicks+Math.max(0,(s.wave.entries.length-support)/WAVE.density-WAVE.spawnCountThreshold)*WAVE.extraSpawnTicks));
   assert(s.wave.entries.length<=RULE.planCap);assert.equal(s.wave.entries.at(-1).tick,expected);
   validateState(s);counts.push(s.wave.entries.length);
  }
  const historical=createGame(7);historical.wave.entries.at(-1).tick=WAVE.spawnWindowTicks.maximum+1;
  assert.throws(()=>validateState(historical));
- assert(counts[3]>counts[0]*2);assert(counts.at(-1)<=91);
+ assert.equal(counts[0],51);assert(counts[3]>counts[0]*2);assert(counts.at(-1)<=273);
  const s=createGame(7);applyCommand(s,{type:'NIGHT'});s.towers.forEach(t=>{t.kind=null;t.level=0;t.operator=null;});
- s.wave={budget:100*ENEMIES.enemy_raider.cost,tier:s.tier,affix:'NONE',ordinaryHealthPercent:100,entries:Array.from({length:100},(_,i)=>({kind:'enemy_raider',tick:0,appearanceSeed:i}))};
- const b=new BattleSimulation(s);let emitted=0;
- for(let i=0;i<3;i++){b.step();assert(b.enemies.length<=40);emitted+=b.enemies.length;b.enemies=[];}
- assert.equal(emitted,100);assert.equal(b.cursor,100);b.step();assert.equal(b.outcome,'WIN');
+ const allAtOnce=96;
+ s.wave.entries=Array.from({length:allAtOnce},(_,i)=>({kind:'enemy_raider',tick:0,appearanceSeed:i}));
+ s.wave.budget=allAtOnce*ENEMIES.enemy_raider.cost;
+ const b=new BattleSimulation(s);b.step();
+ assert.equal(b.enemies.length,allAtOnce);assert.equal(b.pendingCount,0);assert.equal(b.outcome,null);
+ assert.deepEqual(b.enemies.map(enemy=>enemy.appearanceSeed),s.wave.entries.map(entry=>entry.appearanceSeed));
+ s.wave.ordinaryHealthPercent=WAVE.legacyOrdinaryHealth[0];
+ const old=new BattleSimulation(s);let emitted=0;
+ while(old.pendingCount){old.step();assert(old.enemies.length<=RULE.legacyEnemyCap);emitted+=old.enemies.length;old.enemies=[];}
+ assert.equal(emitted,allAtOnce);old.step();assert.equal(old.outcome,'WIN');
 });
 test('skills are revealed every five wins, while inherited skills stay visible',()=>{
  const s=createGame(7), ids=TACTICS.map(t=>t.id);

@@ -96,7 +96,8 @@ export function validateState(s: GameState) {
     for (const p of workers) if (p.skill === null) check(s.phase === "DAWN" && s.choices.some(q => q.kind === "SKILL" && q.person === p.id));
     if (s.phase === "DAY" || s.phase === "NIGHT") {
         const w = s.wave; check(w && int(w.budget, 1, MAX_WAVE_BUDGET) && w.tier === s.tier && ["NONE", "FAST", "STURDY", "GROUP"].includes(w.affix) && Array.isArray(w.entries) && w.entries.length > 0 && w.entries.length <= RULE.planCap);
-        check(w.ordinaryHealthPercent === (s.day >= WAVE.ordinaryPressureDay ? WAVE.ordinaryHealthPercent : WAVE.baseHealthPercent), "波次生命倍率不合法");
+        const healthBand = s.day >= WAVE.ordinaryHealthStageDay ? 1 : 0;
+        check(w.ordinaryHealthPercent === WAVE.ordinaryHealth[healthBand] || w.ordinaryHealthPercent === WAVE.legacyOrdinaryHealth[healthBand], "波次生命倍率不合法");
         let last = 0, budget = 0;
         for (const e of w.entries) { check(own(e.kind, ENEMIES) && int(e.tick, last, WAVE.spawnWindowTicks.maximum) && int(e.appearanceSeed, 0, 0xffffffff) && ENEMIES[e.kind].unlock <= s.day); last = e.tick; budget += ENEMIES[e.kind].cost; }
         check(budget === w.budget);

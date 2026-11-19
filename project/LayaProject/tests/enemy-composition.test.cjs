@@ -23,12 +23,12 @@ test('changing every appearance seed cannot change combat or consume family/worl
  for(let i=0;i<10000&&!x.outcome;i++){x.step();y.step();assert.deepEqual(outcome(x),outcome(y));}
  assert(x.outcome);assert.deepEqual(x.base.rng,y.base.rng);
 });
-test('saved night and chief summons replay identical appearances, bounded enemy pool',()=>{
+test('saved night and chief summons replay identical appearances',()=>{
  const s=createGame(15);s.day=12;s.completed=11;s.legacy.bestNight=11;s.wave=generateWave(s);s.gate=200;applyCommand(s,{type:'NIGHT'});
  const values=new Map(),port={read:k=>values.get(k)||null,write:(k,v)=>values.set(k,v)};const store=new SaveStore(port);store.inspect();store.prepare(s);store.commit();
  const loaded=new SaveStore(port).inspect();assert.equal(loaded.kind,'ready');assert.deepEqual(loaded.state.wave,s.wave);
  const a=new BattleSimulation(s),b=new BattleSimulation(loaded.state);let sawSummon=false;
- for(let i=0;i<10000&&!a.outcome;i++){a.step();b.step();assert.deepEqual(a.enemies,b.enemies);assert(a.enemies.length<=40);if(a.enemies.some(e=>e.summoned))sawSummon=true;}
+ for(let i=0;i<10000&&!a.outcome;i++){a.step();b.step();assert.deepEqual(a.enemies,b.enemies);if(a.enemies.some(e=>e.summoned))sawSummon=true;}
  // A no-tower wave may breach before the chief's first summon; independently isolate the same saved chief for its full quota.
  for(const battle of [a,b]){battle.outcome=null;battle.gate=100000;battle.enemies=[];battle.cursor=battle.base.wave.entries.length;battle.queued=[];battle.base.towers.forEach(t=>{t.kind=null;t.operator=null;});battle.spawn('enemy_chief',0,123);}
  for(let i=0;i<260;i++){a.step();b.step();assert.deepEqual(a.enemies,b.enemies);if(a.enemies.some(e=>e.summoned))sawSummon=true;}

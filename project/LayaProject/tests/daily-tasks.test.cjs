@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
 const read = name => require(`${process.env.DAIDAI_TEST_BUILD}/${name}.js`);
-const { DAILY_TASKS, TASK_GOALS, featureUnlocked } = read('config/DailyTaskConfig');
+const { DAILY_TASKS, DENSE_TASK_GOALS, TASK_GOALS, featureUnlocked } = read('config/DailyTaskConfig');
 const { createGame, applyCommand } = read('game/VillageRules');
 const { clone } = read('game/GameState');
 const { generateWave } = read('game/WaveGenerator');
@@ -57,7 +57,13 @@ test('generated tasks remain unchanged on same date, carry one small reward each
         assert.equal(s.dailyTasks.tasks.length, DAILY_TASKS.limit);
         assert(validDailyTaskDay(s.dailyTasks));
         assert(s.dailyTasks.tasks.reduce((sum,task) => sum+task.reward,0) <= 24);
-        s.dailyTasks.tasks.forEach(t=>seen.add(t.kind));
+        s.dailyTasks.tasks.forEach(t=>{
+            seen.add(t.kind);
+            if (t.kind === 'kills' || t.kind === 'enemyKind') {
+                const [min,max] = DENSE_TASK_GOALS[t.kind];
+                assert(t.goal >= min && t.goal <= max);
+            }
+        });
         const { dailyTasks, ...v } = s;
         assert.deepEqual(v,baseline);
         s.wood=0; s.food=0; prepareDailyTasks(s,today);
@@ -66,6 +72,17 @@ test('generated tasks remain unchanged on same date, carry one small reward each
         assert.equal(s.dailyTasks,dailyTasks);
     }
     assert(seen.size >= 12, [...seen].join(','));
+});
+test('old combat task goals still load alongside the dense-wave ranges', () => {
+    const s = attach(village(), [{ kind: 'kills', goal: 12 }, { kind: 'enemyKind', goal: 4, enemy: 'enemy_raider' }]);
+    assert(validDailyTaskDay(s.dailyTasks));
+    const loaded = savedSession(s).open();
+    assert.deepEqual(loaded.state.dailyTasks, s.dailyTasks);
+    s.dailyTasks.tasks[0].goal = 18;
+    s.dailyTasks.tasks[1].goal = 6;
+    assert(validDailyTaskDay(s.dailyTasks));
+    s.dailyTasks.tasks[0].goal = 13;
+    assert(!validDailyTaskDay(s.dailyTasks));
 });
 test('generation rejects won-night and tower goals in a doomed next wave and rejects blocked construction and nursery', () => {
     for(let seed=1;seed<=10;seed++) {

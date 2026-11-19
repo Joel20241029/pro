@@ -10,6 +10,7 @@ const { SaveStore } = read('storage/SaveStore');
 const { SHIELD_TACTIC, DEFAULT_TACTIC, TACTICS, tacticDefinition, validateTactics } = read('config/TacticConfig');
 const { tacticUnavailableReason } = read('game/Tactics');
 const { RULE, ENEMIES } = read('game/GameConfig');
+const { WAVE } = read('config/DefenseConfig');
 const { enemyPower } = read('game/Growth');
 const { CombatPresentation } = read('view/CombatPresentation');
 function learned() {
@@ -63,7 +64,7 @@ test('last protected tick blocks all simultaneous arrivals, next tick resumes ex
     assert.equal(b.gate,1000); assert.equal(b.bellTicks,0); assert(!b.gateProtected);
     const blocked = b.feedback.slice(); assert.equal(blocked.length,2); assert(blocked.every(e=>e.blocked));
     b.enemies.push(enemy(2)); b.step();
-    assert.equal(b.gate,1000 - Math.ceil(8 * enemyPower(b.base.day)));
+    assert.equal(b.gate,1000 - Math.ceil(ENEMIES.enemy_raider.gate * WAVE.ordinaryGateScale * enemyPower(b.base.day)));
     assert.equal(b.feedback[0].blocked,false); assert(blocked.every(e=>e.blocked));
 });
 test('unactivated shield and expired shield preserve lethal arrival and failure', () => {
