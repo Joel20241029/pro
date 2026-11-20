@@ -11,10 +11,29 @@ boxes = [(82,18,388,419),(478,13,799,414),(948,12,1185,419),(14,447,421,787),
          (435,438,831,785),(844,460,1257,786),(15,840,420,1201),(448,820,806,1212),(922,895,1231,1183)]
 sizes = [(98,125),(99,115),(90,119),(133,107),(108,112),(105,86),(109,101),(104,105),(86,76)]
 kinds = ['arrow','stone','slow','gate','house','farm','logging','patrol','hearth']
-layers = {}
+# Existing layer rectangles are in Laya logical pixels; only raster density increases.
+layers = json.loads((ROOT / 'layers.json').read_text())
+clips = {clip['id']: clip for layer in layers.values() for clip in layer['clips']}
+RASTER_SCALE = 4
+TEXTURE_SCALE = 1.25
+
+def pixel(value):
+    return round(value * RASTER_SCALE)
+
+def polygon(draw, points, **kwargs):
+    draw.polygon([(pixel(x), pixel(y)) for x,y in points], **kwargs)
+
+def save_texture(image, id, rect):
+    left, top, right, bottom = rect
+    size = (math.floor((right-left)*TEXTURE_SCALE+.5), math.floor((bottom-top)*TEXTURE_SCALE+.5))
+    image.resize(size, Image.Resampling.LANCZOS, box=tuple(map(pixel, rect))).save(ROOT / (id + '.png'))
+
+def layer_rect(layer):
+    x, y = layer['x'] + 32, layer['y'] + 48
+    return x, y, x + layer['w'], y + layer['h']
 
 def blank():
-    return Image.new('RGBA', (192,192))
+    return Image.new('RGBA', (pixel(192),pixel(192)))
 
 def add(sprite, where, angle=0, stretch=(1,1)):
     if stretch != (1,1):
@@ -22,25 +41,17 @@ def add(sprite, where, angle=0, stretch=(1,1)):
     if angle:
         sprite = sprite.rotate(angle, Image.Resampling.BICUBIC, expand=True)
     dst = blank()
-    dst.alpha_composite(sprite,tuple(round(x-d/2) for x,d in zip(where,sprite.size)))
+    dst.alpha_composite(sprite,tuple(round(pixel(x)-d/2) for x,d in zip(where,sprite.size)))
     return dst
 
 def clip(id, frames, fps, attack=False, rest=None):
     if rest is not None:
         frames = [*frames, rest]
-    alpha = frames[0].getchannel('A')
-    for frm in frames[1:]:
-        alpha = ImageChops.lighter(alpha,frm.getchannel('A'))
-    box = alpha.getbbox()
-    assert box and (box[2]-box[0]) * (box[3]-box[1]) < 128*128, id
-    ids = []
-    for index, frm in enumerate(frames):
-        key = f'{id}_{index}'
-        frm.crop(box).save(ROOT / (key + '.png'))
-        ids.append(key)
-    visible = ids[:-1] if rest is not None else ids
-    return dict(id=id, x=box[0]-32,y=box[1]-48,w=box[2]-box[0],h=box[3]-box[1],
-                frames=visible, rest=ids[-1] if rest is not None else ids[0], fps=fps, attack=attack)
+    layout = clips[id]
+    ids = [*layout['frames'], layout['rest']] if rest is not None else layout['frames']
+    assert len(ids) == len(frames) and layout['fps'] == fps and layout['attack'] == attack, id
+    for key, frame in zip(ids, frames):
+        save_texture(frame, key, layer_rect(layout))
 
 def fx(pt, radius, rgb, power):
     img = blank()
@@ -48,8 +59,8 @@ def fx(pt, radius, rgb, power):
     x,y = pt
     for f in (1,.75,.5,.25):
         r = radius*f
-        d.ellipse((x-r,y-r*.68,x+r,y+r*.68),fill=(*rgb,round(150*power*(1-.7*f))))
-    return img.filter(ImageFilter.GaussianBlur(radius*.16))
+        d.ellipse(tuple(map(pixel, (x-r,y-r*.68,x+r,y+r*.68))),fill=(*rgb,round(150*power*(1-.7*f))))
+    return img.filter(ImageFilter.GaussianBlur(pixel(radius*.16)))
 
 def embers(img, pt, phase, color, count, spread, height):
     for i in range(count):
@@ -58,7 +69,7 @@ def embers(img, pt, phase, color, count, spread, height):
         y = pt[1]-height*q
         opacity = round(184*math.sin(math.pi*q))
         r = 1.6-q
-        ImageDraw.Draw(img).ellipse((x-r,y-r,x+r,y+r),fill=(*color,opacity))
+        ImageDraw.Draw(img).ellipse(tuple(map(pixel, (x-r,y-r,x+r,y+r))),fill=(*color,opacity))
 
 def flame(pt, phase, scale):
     x,y=pt
@@ -70,31 +81,33 @@ def flame(pt, phase, scale):
         w=(7-j*1.15)*scale
         points=[(x-w,y),(x-w*.9,y-h*.38),(x-w*.37,y-h*.58),(x+w*.44*wiggle,y-h),
                 (x+w*.31,y-h*.6),(x+w*.87,y-h*.36),(x+w,y),(x,y+2*scale)]
-        d.polygon(points,fill=col)
+        polygon(d,points,fill=col)
     embers(img,pt,phase,(255,184,64),6,12*scale,34*scale)
     return img
 
 for i,kind in enumerate(kinds):
     box=boxes[i]
-    art=sheet.crop(box)
-    art.thumbnail(sizes[i], Image.Resampling.LANCZOS)
-    # Stage canvas origin is offset so attack follow-through can extend above the resting shape.
-    left,top=96-art.width//2,168-art.height
+    master = sheet.crop(box)
+    guide = master.copy()
+    guide.thumbnail(sizes[i], Image.Resampling.LANCZOS)
+    width, height = guide.size
+    # Keep the approved placement and hinge geometry while sampling the original artwork at raster resolution.
+    left, top = 96-width//2, 168-height
     def loc(x,y):
-        return (round(left+(x-box[0])*art.width/(box[2]-box[0])),round(top+(y-box[1])*art.height/(box[3]-box[1])))
+        return (round(left+(x-box[0])*width/(box[2]-box[0])),round(top+(y-box[1])*height/(box[3]-box[1])))
     base=blank()
-    base.alpha_composite(art,(left,top))
+    art = master.resize((pixel(width), pixel(height)), Image.Resampling.LANCZOS)
+    base.alpha_composite(art,(pixel(left),pixel(top)))
     full=base.copy()
-    motions=[]
     def separate(polygon):
         mask=Image.new('L',base.size)
-        ImageDraw.Draw(mask).polygon([loc(*p) for p in polygon],fill=255)
+        ImageDraw.Draw(mask).polygon([tuple(map(pixel, loc(*p))) for p in polygon],fill=255)
         layer=base.copy()
         alpha=base.getchannel('A')
         layer.putalpha(ImageChops.multiply(alpha,mask))
         base.putalpha(ImageChops.multiply(alpha,ImageChops.invert(mask)))
         cut=layer.getbbox()
-        return layer.crop(cut),cut
+        return layer.crop(cut),tuple(point / RASTER_SCALE for point in cut)
 
     def angular(sprite, cut, hinge, degrees, dy=0, sx=1):
         ang=math.radians(degrees)
@@ -123,22 +136,22 @@ for i,kind in enumerate(kinds):
                     d=10+j*2
                     px=x+math.cos(a)*d
                     py=y+math.sin(a)*d*.62
-                    ImageDraw.Draw(light).polygon([(px,py-4),(px+2,py),(px,py+3),(px-2,py)],fill=(192,248,255,round(224*power[j])))
+                    polygon(ImageDraw.Draw(light),[(px,py-4),(px+2,py),(px,py+3),(px-2,py)],fill=(192,248,255,round(224*power[j])))
             elif i==1:
                 embers(light,hinge,j/9,color,7,17,13)
             frame.alpha_composite(light)
             frames.append(frame)
         idle=angular(sprite,cut,hinge,0)
         if i==2:
-            motions.append(clip('motion_slow_idle',[angular(sprite,cut,hinge,0,round(4*math.sin(k*math.tau/10))) for k in range(10)],6))
-        motions.append(clip('motion_'+kind+'_attack',frames,18,True,idle))
+            clip('motion_slow_idle',[angular(sprite,cut,hinge,0,round(4*math.sin(k*math.tau/10))) for k in range(10)],6)
+        clip('motion_'+kind+'_attack',frames,18,True,idle)
     if i==3:
         dl,dt=loc(149,615)
         dr,db=loc(288,753)
         draw=ImageDraw.Draw(base)
-        draw.rectangle((dl,dt,dr-1,db-1),fill=(58,32,19,255))
-        draw.polygon([(dl+5,db-1),(dr-4,db-1),(dr-12,db-8),(dl+12,db-8)],fill=(128,79,41,255))
-        src=full.crop((dl,dt,dr,db))
+        draw.rectangle((pixel(dl),pixel(dt),pixel(dr)-1,pixel(db)-1),fill=(58,32,19,255))
+        polygon(draw,[(dl+5,db-1),(dr-4,db-1),(dr-12,db-8),(dl+12,db-8)],fill=(128,79,41,255))
+        src=full.crop(tuple(map(pixel, (dl,dt,dr,db))))
         dw,dh=src.size
         mid=dw//2
         doors=[]
@@ -148,13 +161,13 @@ for i,kind in enumerate(kinds):
             for start,end in ((0,mid),(mid,dw)):
                 panel=src.crop((start,0,end,dh))
                 w=max(1,round(panel.width*(1-amount*.62)))
-                px=dl if start==0 else dr-w
-                canvas.alpha_composite(panel.resize((w,dh),Image.Resampling.BICUBIC),(px,dt))
+                px=pixel(dl) if start==0 else pixel(dr)-w
+                canvas.alpha_composite(panel.resize((w,dh),Image.Resampling.BICUBIC),(px,pixel(dt)))
             doors.append(canvas)
-        motions.append(clip('motion_gate_doors',doors,10))
+        clip('motion_gate_doors',doors,10)
         for side,x in [('left',84),('right',345)]:
             pt=loc(x,684)
-            motions.append(clip('motion_gate_fire_'+side,[flame(pt,k/8,.43) for k in range(8)],12))
+            clip('motion_gate_fire_'+side,[flame(pt,k/8,.43) for k in range(8)],12)
     if i==4:
         smoke=[]
         for k in range(10):
@@ -167,9 +180,8 @@ for i,kind in enumerate(kinds):
             img.alpha_composite(fx(loc(672,652),7,(255,174,57),.33+.26*math.sin(k*math.tau/10)))
             smoke.append(img)
         # Windows and chimney are stored as two clips so empty facade area never enters the frames.
-        y=loc(751,452)[1]+8
-        motions.append(clip('motion_house_smoke',[im.crop((0,0,192,y)) for im in smoke],8))
-        motions.append(clip('motion_house_window',[fx(loc(672,652),7,(255,174,57),.43+.27*math.sin(k*math.tau/8)) for k in range(8)],5))
+        clip('motion_house_smoke',smoke,8)
+        clip('motion_house_window',[fx(loc(672,652),7,(255,174,57),.43+.27*math.sin(k*math.tau/8)) for k in range(8)],5)
     if i in (5,6,7):
         components={
             5:[('wheat',[(920,522),(933,499),(953,483),(993,471),(1044,465),(1069,474),(1083,497),(1076,529),(1058,545),(1033,567),(1015,572),(981,558),(955,548),(935,539)],(1003,557),4)],
@@ -185,11 +197,13 @@ for i,kind in enumerate(kinds):
                     embers(frm,loc(269,1084),k/8,(226,173,81),7,13,10)
             if name=='lantern':
                 for k,frm in enumerate(frames): frm.alpha_composite(fx(loc(769,1011),10,(250,130,145),.12+.32*math.sin(k*math.pi/7)))
-            motions.append(clip('motion_'+kind+'_'+name,frames,12 if i==6 else 7))
+            clip('motion_'+kind+'_'+name,frames,12 if i==6 else 7)
         if i==5:
-            wheel, placement=separate([(1096,715),(1101,674),(1119,646),(1153,620),(1190,621),(1221,645),(1232,678),(1225,732),(1201,752),(1125,760),(1115,742)])
-            wheel.save(ROOT/'motion_farm_wheel_base.png')
-            wheel_placement=dict(id='motion_farm_wheel_base',x=placement[0]-32,y=placement[1]-48,w=wheel.width,h=wheel.height)
+            wheel_art, wheel_cut = separate([(1096,715),(1101,674),(1119,646),(1153,620),(1190,621),(1221,645),(1232,678),(1225,732),(1201,752),(1125,760),(1115,742)])
+            wheel = layers[kind]['wheel']
+            wheel_layer = blank()
+            wheel_layer.alpha_composite(wheel_art, tuple(map(pixel, wheel_cut[:2])))
+            save_texture(wheel_layer, wheel['id'], layer_rect(wheel))
             x,y=loc(1174,685)
             frames=[]
             for k in range(8):
@@ -197,13 +211,13 @@ for i,kind in enumerate(kinds):
                 d=ImageDraw.Draw(frame)
                 for n in range(6):
                     a=(k/8+n/6)*math.tau
-                    d.line((x+math.cos(a)*2,y+math.sin(a)*4,x+math.cos(a)*6,y+math.sin(a)*11),fill=(208,144,77,195))
+                    d.line(tuple(map(pixel, (x+math.cos(a)*2,y+math.sin(a)*4,x+math.cos(a)*6,y+math.sin(a)*11))),fill=(208,144,77,195),width=RASTER_SCALE)
                 wx,wy=loc(1125,727)
                 for n in range(4):
                     q=(k/8+n/4)%1
-                    d.line((wx-3*q,wy+q*7,wx-3*q,wy+q*7+2),fill=(161,222,228,round(230*math.sin(math.pi*q))))
+                    d.line(tuple(map(pixel, (wx-3*q,wy+q*7,wx-3*q,wy+q*7+2))),fill=(161,222,228,round(230*math.sin(math.pi*q))),width=RASTER_SCALE)
                 frames.append(frame)
-            motions.append(clip('motion_farm_wheel',frames,10))
+            clip('motion_farm_wheel',frames,10)
     if i==8:
         sprite,cut=separate([(1047,896),(1082,898),(1113,946),(1122,981),(1112,1025),(1088,1052),(1045,1052),(1020,1038),(1007,1013),(1015,970),(1032,951)])
         frames=[]
@@ -211,13 +225,9 @@ for i,kind in enumerate(kinds):
             f=angular(sprite,cut,loc(1067,1035),5*math.sin(k*math.tau/10),round(2*math.sin(k*math.tau/10)),1+.1*math.sin(k*math.tau/10))
             f.alpha_composite(flame(loc(1067,1041),k/10,.58))
             frames.append(f)
-        motions.append(clip('motion_hearth_flame',frames,13))
-    crop=base.getbbox()
-    key='motion_'+kind+'_body'
-    base.crop(crop).save(ROOT/(key+'.png'))
-    if i==7:
-        full.crop(full.getbbox()).save(ROOT/'motion_patrol_icon.png')
-    layers[kind]=dict(body=dict(id=key,x=crop[0]-32,y=crop[1]-48,w=crop[2]-crop[0],h=crop[3]-crop[1]),clips=motions)
-    if i==5: layers[kind]['wheel']=wheel_placement
-    if i<3: layers[kind]['muzzle']=[muzzle[0]-32,muzzle[1]-48]
-(ROOT/'layers.json').write_text(json.dumps(layers,indent=2)+'\n')
+        clip('motion_hearth_flame',frames,13)
+    body = layers[kind]['body']
+    save_texture(base, body['id'], layer_rect(body))
+    if i == 7:
+        a,b,c,d = guide.getbbox()
+        save_texture(full, 'motion_patrol_icon', (left+a,top+b,left+c,top+d))

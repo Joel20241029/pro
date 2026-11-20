@@ -141,7 +141,7 @@ function gameView(session, platform) {
         const box = new Sprite().size(size.width, size.height); box.name = 'panel:' + title; overlay.addChild(box); return box;
     };
     const village = Object.create(VillageWorld.prototype);
-    Object.assign(village, { game: session, layout, scene, feedback: { hasPatrolImpact: false }, motion: { sync() {} }, thoughts: { sync() {} }, crying: { sync() {} }, cryIcon: new Sprite(), speechTip: { hide() {} }, essenceArrow: new Sprite(), essenceTip: { hide() {} }, shield: { reset() {} }, summon: { reset() {} }, interaction: { cancelPresses() {}, clearDepth() {} }, drawScenery() {} });
+    Object.assign(village, { game: session, layout, scene, feedback: { hasPatrolImpact: false, deaths: new Map() }, motion: { sync() {} }, thoughts: { sync() {} }, crying: { sync() {} }, cryIcon: new Sprite(), speechTip: { hide() {} }, essenceArrow: new Sprite(), essenceTip: { hide() {} }, shield: { reset() {} }, summon: { reset() {} }, interaction: { cancelPresses() {}, clearDepth() {} }, drawScenery() {} });
     Object.assign(view, { resources: { ready: () => true }, game: session, observedVillageRevision: session.villageRevision, platform, layout, panels, village,
         shownErrorRevision: 0, observedRun: 0, observedDawn: 0, overlay, tip: { show() {} }, anchoredTip: { hide() {} },
         reminder: { reset() {}, tick() {}, hide() {} }, patrolGuide: { resetProgress() {}, hide() {}, tick() {}, node: { visible: false } }, starterGuide: { resetProgress() {}, hide() {}, tick() {}, node: { visible: false } },
@@ -165,7 +165,7 @@ test('the terminal patrol impact plays before both the victory and defeat panels
             assert(view.playingFinalImpact); assert(view.draw({}));
             view.advance(FEEDBACK.finalImpactSeconds, true);
             assert(view.playingFinalImpact); assert.equal(refreshes, 0);
-            view.advance(0, false);
+            view.advance(outcome === "WIN" ? FEEDBACK.victoryClearSeconds : 0, false);
             assert(!view.playingFinalImpact); assert.equal(refreshes, 1);
             assert.equal(view.active, outcome === 'WIN');
             view.observe(game, state, false); assert(!view.playingFinalImpact);
@@ -180,7 +180,13 @@ test('first committed win retains the summary through collection and reveals onl
     for (let step = 0; step < 1000 && session.state.phase === 'NIGHT'; step++) session.update(.25);
     const box = () => view.overlay.getChildAt(0), ranking = () => view.hud.node.getChildByName('RankingButton');
     const tactics = () => view.hud.node.getChildByName('TacticsButton');
-    assert.equal(session.state.completed, 1); assert.equal(box().name, 'panel:守夜成功');
+    assert.equal(session.state.completed, 1, 'the win is committed before the presentation');
+    assert.equal(view.overlay.numChildren, 0); assert(view.results.playingFinalImpact);
+    view.results.advance(1, false, true); assert.equal(view.overlay.numChildren, 0);
+    view.results.advance(FEEDBACK.victoryClearSeconds / 2, false, false);
+    assert.equal(view.overlay.numChildren, 0);
+    view.results.advance(FEEDBACK.victoryClearSeconds / 2, false, false);
+    assert.equal(box().name, 'panel:守夜成功');
     assert.equal(ranking().visible, false); assert.equal(tactics(), undefined);
     main.onUpdate(); assert.deepEqual(s.messages, [{ bestNight: 1 }]);
     const stock = [session.state.food,session.state.wood];

@@ -64,7 +64,7 @@ test('the approved animations only replace local components with small registere
    assert(anim.frameIds.length > 1);
    assert(node.width * node.height < 128 * 128);
    assert(anim.frameIds.every(frame => assets.get(frame)?.runtime && assets.get(frame)?.animation===id));
-   assert(anim.frameIds.every(frame => assets.get(frame).width===node.width && assets.get(frame).height===node.height));
+   assert(anim.frameIds.every(frame => assets.get(frame).width===Math.round(node.width*1.25) && assets.get(frame).height===Math.round(node.height*1.25)));
   }
   const target = nodes.find(n=>n.name.startsWith('Loop:'));
   if (target) {
@@ -209,6 +209,22 @@ test('right-hand arrow towers select actual left weapons without mirroring the b
  assert(descendants(right).some(n=>n.texture===clips.get('motion_arrow_attack').restFrame));assert(descendants(left).some(n=>n.texture===clips.get('motion_arrow_attack').restFrame));
 });
 
+
+test('stone cups sit behind the tower facing; stone and frost launch points mirror with the body',()=>{
+ for(const kind of ['STONE','SLOW']){
+  const left=create(),right=create();
+  left.visual.sync(kind,1,true,1,false,1);
+  right.visual.sync(kind,1,true,1,false,-1);
+  const leftScale=kind==='STONE'?-1:1;
+  assert.equal(left.visual.body.scaleX,leftScale);
+  assert.equal(right.visual.body.scaleX,-leftScale);
+  if(kind==='STONE') assert(left.visual.launchPoint().x<left.owner.x && right.visual.launchPoint().x>right.owner.x);
+  assert.equal(right.owner.scaleX,1);
+  assert.equal(left.visual.launchPoint().x+right.visual.launchPoint().x,400);
+  assert.equal(left.visual.launchPoint().y,right.visual.launchPoint().y);
+  assert.deepEqual(left.visual.weaponAnchor(),right.visual.weaponAnchor());
+ }
+});
 
 test('rage blades rotate on a fixed projected plane, freeze with battle time and remain outside building picking', () => {
  const {TowerRageEffects}=require(path.join(build,'view/TowerRageEffects.js'));

@@ -24,13 +24,13 @@ export interface VillageProp extends GroundPoint {
     canopyDetails?: readonly { frame: string; x: number; y: number; size: number; alpha: number }[];
 }
 /** 128px塔源画布的实际弓口/投石兜/水晶挂点；仅表现，不移动逻辑塔位或射程。
- * 左侧1/3塔向右、右侧2/4/5塔向左；石塔/寒塔保持正面，箭塔只切换实际左右武器，不镜像主体。
+ * 左侧1/3塔向右、右侧2/4/5塔向左。石塔抛兜在后方，备用起点的横向偏移与箭塔相反。
  */
 export const TOWER_VIEW = {
     // 三种塔按反馈统一从108放大到124（约15%），top同步上移15以保留原地面足点；空石圈仍约78宽。
     // 最大占地84×34与放大后的底座一致，三种塔预留相同可行走边界；不改变逻辑PADS或射程。
     size: 124, top: -95, canvas: 128, emptyScale: .63, footprintWidth: 84, footprintDepth: 34, facing: [1, -1, 1, -1, -1],
-    muzzle: { ARROW: { x: 92, y: 35 }, STONE: { x: 74, y: 50 }, SLOW: { x: 64, y: 32 } }
+    muzzle: { ARROW: { x: 92, y: 35 }, STONE: { x: 54, y: 50 }, SLOW: { x: 64, y: 32 } }
 } as const;
 /** 既有固定地图与高清母画布足底（中心、15/16 高度）。占地仅覆盖底座，屋顶/树冠可以遮住行人。 */
 function prop(id: string, frame: string, left: number, top: number, size: number, baseWidth: number, baseDepth: number): VillageProp {

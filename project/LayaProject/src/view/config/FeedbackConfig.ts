@@ -10,11 +10,13 @@ export const FEEDBACK = {
     contactSeconds: .045,
     // 怪物接触和受击特效共用，按玩家要求在原 2 倍的基础上将显示宽高各增加 25%。
     impactScale: 2.5,
-    // 每种弹体 5 帧，按实际表现时钟约 0.21 秒播完。尺寸为 720 画布逻辑像素，落点在目标身体。
+    // 共享命中帧 5 帧，保持箭塔、巡防和战技的原有时长。尺寸为 720 画布逻辑像素。
     impact: { fps: 24, frameCount: 5, size: { ARROW: 74, STONE: 85, SLOW: 80 } },
     // 连点与怜悯复用石弹帧。终场连点或巡防命中结束后留出渲染缓冲，再打开胜负面板。
     tacticBurst: { bodySizeScale: 1.12 },
     finalImpactSeconds: .28,
+    // 最后一只怪物淡出后，胜利结算前保留的空场时间（真实表现秒）。
+    victoryClearSeconds: .18,
     // 周博回血的红十字挂在受影响怪物头顶，按表现时间向上浮起并淡出。
     loveHeal: { seconds: .9, lift: 18, size: 28, stroke: 6, red: "#ff3943" },
     // 头顶状态并排占位，以逻辑画布像素计。间距按最宽的毒标留白，普通怪和首领共用同一显示尺寸。
@@ -22,4 +24,12 @@ export const FEEDBACK = {
     poisonMark: { size: 32 },
     frostMark: { size: 24, alpha: .84 },
     tree: { degrees: 1.6, seconds: .32, oscillations: 1.5 }
+} as const;
+
+
+/** 两类重击独立播放 8 帧，48px 局部母图的绘制尺寸再放大 25%。箭击沿用原表现。 */
+export const TOWER_IMPACT = {
+    ARROW: { clip: "fx_impact_arrow", fps: FEEDBACK.impact.fps, frameCount: FEEDBACK.impact.frameCount, displayScale: 1 },
+    STONE: { clip: "fx_tower_stone_impact", fps: 16, frameCount: 8, displayScale: 1.25 },
+    SLOW: { clip: "fx_tower_frost_impact", fps: 16, frameCount: 8, displayScale: 1.25 }
 } as const;

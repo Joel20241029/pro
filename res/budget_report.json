@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-20T02:32:40.784Z",
-  "runtimeAssetCount": 560,
-  "reserveAssetCount": 129,
-  "animationCount": 73,
-  "animationFrames": 437,
+  "generatedAt": "2026-11-20T04:23:28.530Z",
+  "runtimeAssetCount": 571,
+  "reserveAssetCount": 134,
+  "animationCount": 74,
+  "animationFrames": 448,
   "categoryStats": {
     "enemies": {
       "count": 70,
@@ -25,7 +25,7 @@
     },
     "building-parts": {
       "count": 265,
-      "bytes": 2305323,
+      "bytes": 2580500,
       "runtime": 146,
       "reserve": 119
     },
@@ -36,10 +36,10 @@
       "reserve": 0
     },
     "effects": {
-      "count": 32,
-      "bytes": 328816,
-      "runtime": 32,
-      "reserve": 0
+      "count": 48,
+      "bytes": 364773,
+      "runtime": 43,
+      "reserve": 5
     },
     "decorations": {
       "count": 21,
@@ -112,9 +112,9 @@
       "path": "atlases/buildings_0.png",
       "runtimeFile": "buildings/buildings_0.png",
       "width": 768,
-      "height": 497,
-      "bytes": 525277,
-      "sha256": "c3e0845646dd1153289976da66d0bc2de45a5b4fe06418329728c1712d0e0dbc",
+      "height": 732,
+      "bytes": 796139,
+      "sha256": "a5b06a5ee10c9a157fb09aea8d3c4379a405064cef23bfc6d540102dad280b25",
       "group": "buildings"
     },
     {
@@ -183,27 +183,27 @@
       "runtimeFile": "effects/night_effects_0.png",
       "width": 311,
       "height": 766,
-      "bytes": 223555,
-      "sha256": "2651c53769e568490109a8964d5296e72d41d87da06ed826bde33e6718d5b192",
+      "bytes": 245770,
+      "sha256": "bf8da79825169fb3b324f40b2cd85e536a0ecb79a2965cb5130b56553fb67451",
       "group": "night_effects"
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 10312450,
-    "atlasContentPixels": 7185572,
-    "savedContentPixels": 3126878,
-    "savedContentPercent": 30.32,
-    "trimmedAssetCount": 476,
+    "sourceCanvasPixels": 10505804,
+    "atlasContentPixels": 7355180,
+    "savedContentPixels": 3150624,
+    "savedContentPercent": 29.99,
+    "trimmedAssetCount": 492,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "atlasImageBytes": 10403812,
-    "metadataBytes": 159884,
+    "atlasImageBytes": 10696889,
+    "metadataBytes": 162889,
     "audioBytes": 164243,
-    "totalBytes": 10727939,
+    "totalBytes": 11024021,
     "files": [
       "bundles/map/frames.bin",
       "bundles/characters/animations.bin",
@@ -245,8 +245,8 @@
   },
   "sourceBytes": 49652112,
   "budgetComparison": {
-    "villageAtlasImageBytes": 7693912,
-    "nightAtlasImageBytes": 2709900
+    "villageAtlasImageBytes": 7964774,
+    "nightAtlasImageBytes": 2732115
   },
   "limitations": [
     "Atlas content-pixel savings are not identical to PNG byte savings",

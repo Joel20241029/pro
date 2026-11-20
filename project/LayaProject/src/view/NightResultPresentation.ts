@@ -88,7 +88,7 @@ export class NightResultPresentation {
         });
         this.newTactic = TACTICS.find(t => !tacticRevealed(battle.base, t.id) && tacticRevealed(s, t.id)) ?? null;
         this.shownFeatures = this.featureUnlock < 0 ? SIDE_FEATURES.length : this.featureUnlock;
-        this.phase = patrolImpact || battle.feedback.some(event => event.type === "handSpeed" && event.hurt.length) ? "impact" : "summary";
+        this.phase = "impact";
         this.elapsed = 0;
     }
 
@@ -120,7 +120,7 @@ export class NightResultPresentation {
         return true;
     }
 
-    advance(seconds: number, patrolImpactPlaying = false) {
+    advance(seconds: number, patrolImpactPlaying = false, enemyDeathsPlaying = false) {
         this.hideFlights();
         const flight = this.dailyFlight;
         if (flight && flight.elapsed !== null) {
@@ -131,8 +131,13 @@ export class NightResultPresentation {
             } else this.dailyFlight = null;
         }
         if (this.phase === "impact") {
-            this.elapsed += seconds;
-            if (!patrolImpactPlaying && this.elapsed >= FEEDBACK.finalImpactSeconds) this.next(this.result ? "summary" : null);
+            if (this.result) {
+                if (patrolImpactPlaying || enemyDeathsPlaying) this.elapsed = 0;
+                else if ((this.elapsed += seconds) >= FEEDBACK.victoryClearSeconds) this.next("summary");
+            } else {
+                this.elapsed += seconds;
+                if (!patrolImpactPlaying && this.elapsed >= FEEDBACK.finalImpactSeconds) this.next(null);
+            }
             return;
         }
         if (!this.phase || this.phase === "summary" || !this.box?.displayedInStage || !this.box.mouseEnabled) return;

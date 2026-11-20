@@ -26,9 +26,15 @@ test('HD replacement contains only selected source images; pixels and native pre
   }
  }
  assert(!recipe.assets.some(a=>a.category==='characters'&&/_(up|down)_(left|right)_/.test(a.id)));assert(!recipe.assets.some(a=>a.id.startsWith("emote_")));assert(recipe.assets.filter(a=>a.nineSlice).every(a=>a.height>=128 && a.nineSlice.scale>0));
- for (const kind of ['arrow','stone','slow']){
+ for (const kind of ['arrow','stone']){
   const clip=recipe.animations.animations.find(a=>a.id==='fx_impact_'+kind);assert.equal(clip.frameCount,5);assert.equal(clip.loop,false);
   for(const id of clip.frameIds){const a=recipe.assets.find(f=>f.id===id); assert.equal(a.bundle,'battle'); assert.deepEqual(a.pivot,{x:40,y:40});}
+ }
+ for (const kind of ['stone','frost']){
+  const id='fx_tower_'+kind+'_impact';
+  const clip=recipe.animations.animations.find(a=>a.id===id);assert.equal(clip.frameCount,8);assert.equal(clip.fps,16);assert.equal(clip.loop,false);
+  assert.deepEqual(clip.canvas,{w:48,h:48});assert.deepEqual(clip.pivot,{x:24,y:24});
+  for(const frame of clip.frameIds){const a=recipe.assets.find(asset=>asset.id===frame);assert(a.runtime);assert.equal(a.bundle,'battle');assert.equal(a.width,48);assert.equal(a.height,48);}
  }
  assert.equal(recipe.assets.find(a=>a.id==='icon_tactic_shield').bundle,'base');
  for(const id of ['fx_shield_dome','fx_shield_ring','fx_shield_hit'])assert.equal(recipe.assets.find(a=>a.id===id).bundle,'battle');

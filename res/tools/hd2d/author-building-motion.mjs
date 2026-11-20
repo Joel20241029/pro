@@ -19,13 +19,10 @@ const uuid = name => {
 recipe.assets = recipe.assets.filter(a => !a.id.startsWith('motion_'));
 for (const a of recipe.assets) if (obsolete.test(a.id)) a.runtime = false;
 recipe.animations.animations = recipe.animations.animations.filter(a => a.id !== 'hearth_burn' && !/^(motion_|farm_crop_)/.test(a.id));
-const asset = (id, w, h, animation = null) => {
+const asset = (id, animation = null) => {
     const sourceSheet = sourceDir + '/' + id + '.png';
     const header = fs.readFileSync(path.join(res, sourceSheet));
-    if (w === undefined) {
-        w = header.readUInt32BE(16);
-        h = header.readUInt32BE(20);
-    }
+    const w = header.readUInt32BE(16), h = header.readUInt32BE(20);
     const rect = { x: 0, y: 0, w, h };
     recipe.assets.push({ id, label: id, category: 'building-parts', categoryLabel: '建筑动效',
         path: 'runtime/building-parts/' + id + '.png', width: w, height: h, pivot: { x: 0, y: 0 },
@@ -39,6 +36,7 @@ const asset = (id, w, h, animation = null) => {
         } });
     fs.writeFileSync(path.join(workshop, 'textures', id + '.png.meta'),
         JSON.stringify({ uuid: uuid(id), importer: { textureType: 2 } }, null, 2) + '\n');
+    return { w, h };
 };
 const sprite = (name, props = {}, children) => ({
     _$id: uuid(name).slice(0, 8), _$type: 'Sprite', name, ...props,
@@ -62,12 +60,15 @@ for (const [id, art] of Object.entries(approved)) {
             sprite(name, name === 'SortOrigin' ? { visible: false, x: 64, y: 120 } : { visible: false }));
     const bodyKids = [piece('Structure', art.body)];
     const layoutKids = [];
-    asset(art.body.id, art.body.w, art.body.h);
+    asset(art.body.id);
     for (const clip of art.clips) {
-        for (const id of new Set([...clip.frames,clip.rest])) asset(id,clip.w,clip.h,clip.id);
+        const sizes = [...new Set([...clip.frames, clip.rest])].map(id => asset(id, clip.id));
+        const [canvas] = sizes;
+        if (sizes.some(({ w, h }) => w !== canvas.w || h !== canvas.h))
+            throw new Error('建筑局部动画帧尺寸不一致：' + clip.id);
         recipe.animations.animations.push({
             id: clip.id, frameIds: clip.frames, frameCount: clip.frames.length, fps: clip.fps, loop: !clip.attack,
-            restFrame: clip.rest, category: 'building-parts', canvas: { w: clip.w, h: clip.h },
+            restFrame: clip.rest, category: 'building-parts', canvas,
             pivot: { x: 0, y: 0 }, clock: clip.attack ? 'battle_shot' : 'scene_visual_or_battle'
         });
     }
@@ -86,7 +87,7 @@ for (const [id, art] of Object.entries(approved)) {
     }
     if (art.wheel) {
         const x=104, y=93, p=art.wheel, clip=art.clips.find(c => c.id === 'motion_farm_wheel');
-        asset(p.id,p.w,p.h);
+        asset(p.id);
         layoutKids.push(sprite('AboveGround',{x,y},[
             piece('WheelBase',{...p,x:p.x-x,y:p.y-y}),
             clipNode({...clip,x:clip.x-x,y:clip.y-y})

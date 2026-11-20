@@ -92,6 +92,7 @@ export class VillageWorld {
     private hitTop = new Laya.Point();
     private hitBottom = new Laya.Point();
     get hasPatrolImpact() { return this.feedback.hasPatrolImpact; }
+    get hasEnemyDeaths() { return this.feedback.deaths.size > 0; }
     constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private layout: GameLayout,
         houseClicked: (name: string, visual: BuildingVisuals) => void, personClicked: (id: string) => void, private playDefeat?: () => void, patrolClicked?: () => void) {
         this.world.name = "VillageWorld";

@@ -1139,32 +1139,6 @@
       "trimPolicy": "atlas_trim_restore_source_canvas"
     },
     {
-      "id": "fx_impact_slow",
-      "frameIds": [
-        "fx_impact_slow_1",
-        "fx_impact_slow_2",
-        "fx_impact_slow_3",
-        "fx_impact_slow_4",
-        "fx_impact_slow_5"
-      ],
-      "frameCount": 5,
-      "fps": 24,
-      "loop": false,
-      "restFrame": "fx_impact_slow_1",
-      "category": "effects",
-      "mapping": "slow",
-      "canvas": {
-        "w": 80,
-        "h": 80
-      },
-      "pivot": {
-        "x": 40,
-        "y": 40
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
       "id": "torch_burn",
       "frameIds": [
         "deco_torch",
@@ -1591,6 +1565,64 @@
       "stridePixels": 56
     },
     {
+      "id": "fx_tower_stone_impact",
+      "frameIds": [
+        "fx_tower_stone_impact_1",
+        "fx_tower_stone_impact_2",
+        "fx_tower_stone_impact_3",
+        "fx_tower_stone_impact_4",
+        "fx_tower_stone_impact_5",
+        "fx_tower_stone_impact_6",
+        "fx_tower_stone_impact_7",
+        "fx_tower_stone_impact_8"
+      ],
+      "frameCount": 8,
+      "fps": 16,
+      "loop": false,
+      "restFrame": "fx_tower_stone_impact_1",
+      "category": "effects",
+      "mapping": "stone",
+      "canvas": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
+      "id": "fx_tower_frost_impact",
+      "frameIds": [
+        "fx_tower_frost_impact_1",
+        "fx_tower_frost_impact_2",
+        "fx_tower_frost_impact_3",
+        "fx_tower_frost_impact_4",
+        "fx_tower_frost_impact_5",
+        "fx_tower_frost_impact_6",
+        "fx_tower_frost_impact_7",
+        "fx_tower_frost_impact_8"
+      ],
+      "frameCount": 8,
+      "fps": 16,
+      "loop": false,
+      "restFrame": "fx_tower_frost_impact_1",
+      "category": "effects",
+      "mapping": "frost",
+      "canvas": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "clock": "scene_visual_or_battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas"
+    },
+    {
       "id": "motion_arrow_attack",
       "frameIds": [
         "motion_arrow_attack_0",
@@ -1608,8 +1640,8 @@
       "restFrame": "motion_arrow_attack_8",
       "category": "building-parts",
       "canvas": {
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "pivot": {
         "x": 0,
@@ -1635,8 +1667,8 @@
       "restFrame": "motion_stone_attack_8",
       "category": "building-parts",
       "canvas": {
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "pivot": {
         "x": 0,
@@ -1664,8 +1696,8 @@
       "restFrame": "motion_slow_idle_0",
       "category": "building-parts",
       "canvas": {
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "pivot": {
         "x": 0,
@@ -1691,8 +1723,8 @@
       "restFrame": "motion_slow_attack_8",
       "category": "building-parts",
       "canvas": {
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "pivot": {
         "x": 0,
@@ -1723,8 +1755,8 @@
       "restFrame": "motion_gate_doors_0",
       "category": "building-parts",
       "canvas": {
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "pivot": {
         "x": 0,
@@ -1750,8 +1782,8 @@
       "restFrame": "motion_gate_fire_left_0",
       "category": "building-parts",
       "canvas": {
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "pivot": {
         "x": 0,
@@ -1777,8 +1809,8 @@
       "restFrame": "motion_gate_fire_right_0",
       "category": "building-parts",
       "canvas": {
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "pivot": {
         "x": 0,
@@ -1806,8 +1838,8 @@
       "restFrame": "motion_house_smoke_0",
       "category": "building-parts",
       "canvas": {
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "pivot": {
         "x": 0,
@@ -1833,8 +1865,8 @@
       "restFrame": "motion_house_window_0",
       "category": "building-parts",
       "canvas": {
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "pivot": {
         "x": 0,
@@ -1860,8 +1892,8 @@
       "restFrame": "motion_farm_wheat_0",
       "category": "building-parts",
       "canvas": {
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "pivot": {
         "x": 0,
@@ -1887,8 +1919,8 @@
       "restFrame": "motion_farm_wheel_0",
       "category": "building-parts",
       "canvas": {
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "pivot": {
         "x": 0,
@@ -1914,8 +1946,8 @@
       "restFrame": "motion_logging_saw_0",
       "category": "building-parts",
       "canvas": {
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "pivot": {
         "x": 0,
@@ -1941,8 +1973,8 @@
       "restFrame": "motion_patrol_lantern_0",
       "category": "building-parts",
       "canvas": {
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "pivot": {
         "x": 0,
@@ -1968,8 +2000,8 @@
       "restFrame": "motion_patrol_streamer_0",
       "category": "building-parts",
       "canvas": {
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "pivot": {
         "x": 0,
@@ -1997,8 +2029,8 @@
       "restFrame": "motion_hearth_flame_0",
       "category": "building-parts",
       "canvas": {
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "pivot": {
         "x": 0,

@@ -212,13 +212,14 @@ export class GameView {
         const wasCounting = this.handSpeed.counting;
         const worldFrozen = counting || wasCounting;
         const panelClosed = active && this.panels.advance(visualDelta);
-        if (active && !this.game.pauses.has("WAIT_RESUME") && !this.game.pauses.has("DAILY_RATION") && !this.game.pauses.has("ASSETS") && !this.game.pauses.has("SAVE_PENDING"))
-            this.results.advance(visualDelta, this.village.hasPatrolImpact);
-        else this.results.hideFlights();
+        const deathsAtFrameStart = this.village.hasEnemyDeaths;
         if (active && !worldFrozen) this.tip.advance(visualDelta);
         this.hud.advance(this.game.pauses.size || worldFrozen ? 0 : visualDelta);
         if (this.village.advance(delta, worldFrozen) || panelClosed || counting !== wasCounting)
             this.updateActors();
+        if (active && !this.game.pauses.has("WAIT_RESUME") && !this.game.pauses.has("DAILY_RATION") && !this.game.pauses.has("ASSETS") && !this.game.pauses.has("SAVE_PENDING"))
+            this.results.advance(visualDelta, this.village.hasPatrolImpact, deathsAtFrameStart || this.village.hasEnemyDeaths);
+        else this.results.hideFlights();
         this.handSpeed.update(this.layout, visualDelta, this.overlay.numChildren > 0, this.results.playingFinalImpact);
         if (active && !worldFrozen) this.anchoredTip.advance(visualDelta);
         const day = this.game.state;

@@ -20477,7 +20477,7 @@
       "fitPadding": 0,
       "resizeMode": "stretch",
       "sampling": "Lanczos",
-      "runtime": true,
+      "runtime": false,
       "usage": "HD production",
       "bundle": "battle",
       "provenance": {
@@ -20526,7 +20526,7 @@
       "fitPadding": 0,
       "resizeMode": "stretch",
       "sampling": "Lanczos",
-      "runtime": true,
+      "runtime": false,
       "usage": "HD production",
       "bundle": "battle",
       "provenance": {
@@ -20575,7 +20575,7 @@
       "fitPadding": 0,
       "resizeMode": "stretch",
       "sampling": "Lanczos",
-      "runtime": true,
+      "runtime": false,
       "usage": "HD production",
       "bundle": "battle",
       "provenance": {
@@ -20624,7 +20624,7 @@
       "fitPadding": 0,
       "resizeMode": "stretch",
       "sampling": "Lanczos",
-      "runtime": true,
+      "runtime": false,
       "usage": "HD production",
       "bundle": "battle",
       "provenance": {
@@ -20673,7 +20673,7 @@
       "fitPadding": 0,
       "resizeMode": "stretch",
       "sampling": "Lanczos",
-      "runtime": true,
+      "runtime": false,
       "usage": "HD production",
       "bundle": "battle",
       "provenance": {
@@ -28311,13 +28311,653 @@
       "alphaCutoff": 24
     },
     {
+      "id": "fx_tower_stone_impact_1",
+      "label": "fx_tower_stone_impact_1",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_stone_impact_1.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_stone_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_1.png",
+        "sourceHash": "4263009e54c89fbfb9aaef85c6bc942f29c6a2e2a543d91f7dfd3e1800d9fb57",
+        "outputHash": "4263009e54c89fbfb9aaef85c6bc942f29c6a2e2a543d91f7dfd3e1800d9fb57"
+      }
+    },
+    {
+      "id": "fx_tower_stone_impact_2",
+      "label": "fx_tower_stone_impact_2",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_stone_impact_2.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_stone_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_2.png",
+        "sourceHash": "ba7ac8033185b4d8f62c461e799b97f0b4ecfc4d8c54c80b6e8a4a3ffc96f7fd",
+        "outputHash": "ba7ac8033185b4d8f62c461e799b97f0b4ecfc4d8c54c80b6e8a4a3ffc96f7fd"
+      }
+    },
+    {
+      "id": "fx_tower_stone_impact_3",
+      "label": "fx_tower_stone_impact_3",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_stone_impact_3.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_stone_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_3.png",
+        "sourceHash": "03b326b72598ae316cefcec760dcf725fe63388a914d7199eb22198c7f6d71ea",
+        "outputHash": "03b326b72598ae316cefcec760dcf725fe63388a914d7199eb22198c7f6d71ea"
+      }
+    },
+    {
+      "id": "fx_tower_stone_impact_4",
+      "label": "fx_tower_stone_impact_4",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_stone_impact_4.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_4.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_stone_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_4.png",
+        "sourceHash": "1cc23e1553cd480a4d4d7c6205e6feb6d1a8927fcabbb98dba23b88b1d154c90",
+        "outputHash": "1cc23e1553cd480a4d4d7c6205e6feb6d1a8927fcabbb98dba23b88b1d154c90"
+      }
+    },
+    {
+      "id": "fx_tower_stone_impact_5",
+      "label": "fx_tower_stone_impact_5",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_stone_impact_5.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_stone_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_5.png",
+        "sourceHash": "2b248e078ca502e86f0af77abcf76567ba102bd66639804812d13a59d22f8ac0",
+        "outputHash": "2b248e078ca502e86f0af77abcf76567ba102bd66639804812d13a59d22f8ac0"
+      }
+    },
+    {
+      "id": "fx_tower_stone_impact_6",
+      "label": "fx_tower_stone_impact_6",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_stone_impact_6.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_stone_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_6.png",
+        "sourceHash": "1f9c4b4f42992ce64c26a06e89ef96cbbf75fcd41603b0e1c2378d3440f78c82",
+        "outputHash": "1f9c4b4f42992ce64c26a06e89ef96cbbf75fcd41603b0e1c2378d3440f78c82"
+      }
+    },
+    {
+      "id": "fx_tower_stone_impact_7",
+      "label": "fx_tower_stone_impact_7",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_stone_impact_7.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_stone_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_7.png",
+        "sourceHash": "52189e917ba209b48c9df859a9adf22347e10665f0e70789c9d13a7ccf6d7bfa",
+        "outputHash": "52189e917ba209b48c9df859a9adf22347e10665f0e70789c9d13a7ccf6d7bfa"
+      }
+    },
+    {
+      "id": "fx_tower_stone_impact_8",
+      "label": "fx_tower_stone_impact_8",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_stone_impact_8.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_stone_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_stone_impact_8.png",
+        "sourceHash": "8aaedfd9f8f1326c778ec181e282dd260b48246dc952a2d81c1dc6cd920b7ff6",
+        "outputHash": "8aaedfd9f8f1326c778ec181e282dd260b48246dc952a2d81c1dc6cd920b7ff6"
+      }
+    },
+    {
+      "id": "fx_tower_frost_impact_1",
+      "label": "fx_tower_frost_impact_1",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_frost_impact_1.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_frost_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_1.png",
+        "sourceHash": "c2de0bb333fed6c0824cf7aa644efd8fdbcd34a2c44f46d12f94315fec044174",
+        "outputHash": "c2de0bb333fed6c0824cf7aa644efd8fdbcd34a2c44f46d12f94315fec044174"
+      }
+    },
+    {
+      "id": "fx_tower_frost_impact_2",
+      "label": "fx_tower_frost_impact_2",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_frost_impact_2.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_frost_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_2.png",
+        "sourceHash": "9c192d9c4ba677f061442e010ed1597bc1c7fbd20f5bed7b958f9304d762a9cc",
+        "outputHash": "9c192d9c4ba677f061442e010ed1597bc1c7fbd20f5bed7b958f9304d762a9cc"
+      }
+    },
+    {
+      "id": "fx_tower_frost_impact_3",
+      "label": "fx_tower_frost_impact_3",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_frost_impact_3.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_frost_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_3.png",
+        "sourceHash": "5b9dd464bbad97c3b7836a6a3e7a901b10c4768fe80e524230d03385a8ed3168",
+        "outputHash": "5b9dd464bbad97c3b7836a6a3e7a901b10c4768fe80e524230d03385a8ed3168"
+      }
+    },
+    {
+      "id": "fx_tower_frost_impact_4",
+      "label": "fx_tower_frost_impact_4",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_frost_impact_4.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_4.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_frost_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_4.png",
+        "sourceHash": "32a75f9fa90320d9c97c44b6bd07ceda34b54e546ba1611902254f7785683b0a",
+        "outputHash": "32a75f9fa90320d9c97c44b6bd07ceda34b54e546ba1611902254f7785683b0a"
+      }
+    },
+    {
+      "id": "fx_tower_frost_impact_5",
+      "label": "fx_tower_frost_impact_5",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_frost_impact_5.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_frost_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_5.png",
+        "sourceHash": "376c686deb18b2031614567cc694ee070a69a1429bee2ff3823d270b58a6c60e",
+        "outputHash": "376c686deb18b2031614567cc694ee070a69a1429bee2ff3823d270b58a6c60e"
+      }
+    },
+    {
+      "id": "fx_tower_frost_impact_6",
+      "label": "fx_tower_frost_impact_6",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_frost_impact_6.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_frost_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_6.png",
+        "sourceHash": "f21e146cfe26feae64a82b2d55ded2c6167566fd693123a013301746eea8aaf6",
+        "outputHash": "f21e146cfe26feae64a82b2d55ded2c6167566fd693123a013301746eea8aaf6"
+      }
+    },
+    {
+      "id": "fx_tower_frost_impact_7",
+      "label": "fx_tower_frost_impact_7",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_frost_impact_7.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_frost_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_7.png",
+        "sourceHash": "570ac3b7e7bdbaa62fe27f6cda72935f18ec1d8a2f838241bf39691ba9dcd734",
+        "outputHash": "570ac3b7e7bdbaa62fe27f6cda72935f18ec1d8a2f838241bf39691ba9dcd734"
+      }
+    },
+    {
+      "id": "fx_tower_frost_impact_8",
+      "label": "fx_tower_frost_impact_8",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_tower_frost_impact_8.png",
+      "width": 48,
+      "height": 48,
+      "pivot": {
+        "x": 24,
+        "y": 24
+      },
+      "sourceSheet": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "fx_tower_frost_impact",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "塔命中专用局部帧",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/effects/tower-impact/fx_tower_frost_impact_8.png",
+        "sourceHash": "5c69c3621fd177aa6037c6fd8fd81ecbb1edca952d2e9eaa7286faaf18c991cb",
+        "outputHash": "5c69c3621fd177aa6037c6fd8fd81ecbb1edca952d2e9eaa7286faaf18c991cb"
+      }
+    },
+    {
       "id": "motion_patrol_icon",
       "label": "motion_patrol_icon",
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_icon.png",
-      "width": 96,
-      "height": 105,
+      "width": 120,
+      "height": 131,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28326,14 +28966,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 96,
-        "h": 105
+        "w": 120,
+        "h": 131
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 96,
-        "h": 105
+        "w": 120,
+        "h": 131
       },
       "nineSlice": null,
       "mapping": "",
@@ -28347,7 +28987,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "1075e741fcbef99780a78b9fde792fe6c6134f5fb316b7954067b9b207215f2f"
+        "outputHash": "b603fea449174c2ad6e1a885bba8947b98d6a140696f2a6a10250f606999b64e"
       }
     },
     {
@@ -28356,8 +28996,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_arrow_body.png",
-      "width": 95,
-      "height": 125,
+      "width": 119,
+      "height": 156,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28366,14 +29006,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 95,
-        "h": 125
+        "w": 119,
+        "h": 156
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 95,
-        "h": 125
+        "w": 119,
+        "h": 156
       },
       "nineSlice": null,
       "mapping": "",
@@ -28387,7 +29027,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "1930b7e2ce4904026a9407b81b69b694e530d9f2c726258b9e921be36f9b9c91"
+        "outputHash": "9f43d1764cf24bd2a9778210fa939cf07ae47d7373bedfdd3903f09812665694"
       }
     },
     {
@@ -28396,8 +29036,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_arrow_attack_0.png",
-      "width": 97,
-      "height": 76,
+      "width": 121,
+      "height": 95,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28406,14 +29046,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "nineSlice": null,
       "mapping": "",
@@ -28427,7 +29067,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "8a8ca96739aa350c8fca5ea8b6eee423206498c83f953d7bb0a5b367f6e41dc5"
+        "outputHash": "3c2cf027fd390162a21ff3208147a0447b66d7273f9e672f282216042ba3665a"
       }
     },
     {
@@ -28436,8 +29076,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_arrow_attack_1.png",
-      "width": 97,
-      "height": 76,
+      "width": 121,
+      "height": 95,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28446,14 +29086,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "nineSlice": null,
       "mapping": "",
@@ -28467,7 +29107,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "374204b5c8349488db68774e5858b42bd5908072dd78ad9b6187dc451a7061ad"
+        "outputHash": "d7208446cdf4379492839ab3f1f23c3bd81beb0565430e0528b69ba1862c1c29"
       }
     },
     {
@@ -28476,8 +29116,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_arrow_attack_2.png",
-      "width": 97,
-      "height": 76,
+      "width": 121,
+      "height": 95,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28486,14 +29126,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "nineSlice": null,
       "mapping": "",
@@ -28507,7 +29147,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "dbbd734597d5ab59ea779c57dc8869231978ddcc8aca3f5500b8832a128ad870"
+        "outputHash": "c0e0aa8a863784f43c5cb49d832ef40080980e23d3f07f41b2eb875d6c4c1a6f"
       }
     },
     {
@@ -28516,8 +29156,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_arrow_attack_3.png",
-      "width": 97,
-      "height": 76,
+      "width": 121,
+      "height": 95,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28526,14 +29166,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "nineSlice": null,
       "mapping": "",
@@ -28547,7 +29187,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "f8e10e8d789c0fe56d9fad55cd155520b5292707824c6a0b53f8fb9d5d108476"
+        "outputHash": "68e0e3c5d633af1ea72a2171300a6a3cec5b5c8dc2304c8126f75f9f0c09cd7a"
       }
     },
     {
@@ -28556,8 +29196,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_arrow_attack_4.png",
-      "width": 97,
-      "height": 76,
+      "width": 121,
+      "height": 95,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28566,14 +29206,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "nineSlice": null,
       "mapping": "",
@@ -28587,7 +29227,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "3058095749c5b4395e028b15017b48299cccf840e082f0253c9e1985e1da4a3e"
+        "outputHash": "a9764c80221a28bb557b1e0fb86e7651dcd974490a145688d3ec7b20694ba056"
       }
     },
     {
@@ -28596,8 +29236,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_arrow_attack_5.png",
-      "width": 97,
-      "height": 76,
+      "width": 121,
+      "height": 95,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28606,14 +29246,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "nineSlice": null,
       "mapping": "",
@@ -28627,7 +29267,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "ccddc7b72eeb590563949a5fd0863fb7b650e2315255d9eb896efd344c3faba0"
+        "outputHash": "8f043771d5a3f310738572d17764168be9f38f81e6a7dc340e3ab84966c5d0fc"
       }
     },
     {
@@ -28636,8 +29276,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_arrow_attack_6.png",
-      "width": 97,
-      "height": 76,
+      "width": 121,
+      "height": 95,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28646,14 +29286,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "nineSlice": null,
       "mapping": "",
@@ -28667,7 +29307,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "b87552b9269288020f9684a55cc6419844a94c6321189b4d2df2045375804d93"
+        "outputHash": "45c4e4a60929d3f315dbeb781a4d308977f0ec317a2a1183bfcc67cb89ca4218"
       }
     },
     {
@@ -28676,8 +29316,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_arrow_attack_7.png",
-      "width": 97,
-      "height": 76,
+      "width": 121,
+      "height": 95,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28686,14 +29326,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "nineSlice": null,
       "mapping": "",
@@ -28707,7 +29347,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "d3be675328b463422629c811b59ee8c2dd18d8287329e7e31d5eb3446511d3e6"
+        "outputHash": "f6998d1a982346d470f59c64552a4bd6c17f754136fcf2652b41431edb4483aa"
       }
     },
     {
@@ -28716,8 +29356,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_arrow_attack_8.png",
-      "width": 97,
-      "height": 76,
+      "width": 121,
+      "height": 95,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28726,14 +29366,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 97,
-        "h": 76
+        "w": 121,
+        "h": 95
       },
       "nineSlice": null,
       "mapping": "",
@@ -28747,7 +29387,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "2b77d4b81f529bee771055b6175d423cc0e99710d7cddc9dbd43996de25506eb"
+        "outputHash": "60923be978efa0bf8fc43ae17998fbca18ea42a3ae365bcc28d258d9900547d6"
       }
     },
     {
@@ -28756,8 +29396,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_stone_body.png",
-      "width": 92,
-      "height": 110,
+      "width": 115,
+      "height": 138,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28766,14 +29406,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 92,
-        "h": 110
+        "w": 115,
+        "h": 138
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 92,
-        "h": 110
+        "w": 115,
+        "h": 138
       },
       "nineSlice": null,
       "mapping": "",
@@ -28787,7 +29427,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "a1d95d019385be6a0778b5790131e9fdc37dcc633e7c9a0439e427b27c1ea137"
+        "outputHash": "62528f8fa812c3880eb73a7541e97a8808b06b3621b16f249305660c0f0ce4b7"
       }
     },
     {
@@ -28796,8 +29436,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_stone_attack_0.png",
-      "width": 55,
-      "height": 49,
+      "width": 69,
+      "height": 61,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28806,14 +29446,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "nineSlice": null,
       "mapping": "",
@@ -28827,7 +29467,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "09a959866e2d53be8e7e55a89df345fa7fbc02b0511c491574b5138b35664d6e"
+        "outputHash": "880dd78591508b376290491d737cf54f62d4dc3c07711ed52290a142c51a0c02"
       }
     },
     {
@@ -28836,8 +29476,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_stone_attack_1.png",
-      "width": 55,
-      "height": 49,
+      "width": 69,
+      "height": 61,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28846,14 +29486,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "nineSlice": null,
       "mapping": "",
@@ -28867,7 +29507,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "c0ef9efac1274823914e265138adfd5c4de88c8bdf930f28d160be371c54551c"
+        "outputHash": "497f5ae41de0657a3233ec6fdef2433d0b2e7b8bacffb0f3965aff7855b9864a"
       }
     },
     {
@@ -28876,8 +29516,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_stone_attack_2.png",
-      "width": 55,
-      "height": 49,
+      "width": 69,
+      "height": 61,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28886,14 +29526,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "nineSlice": null,
       "mapping": "",
@@ -28907,7 +29547,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "2a136c027748e8fb931168d672367a3ad7027a7d084710be6dc571bc8c49e08f"
+        "outputHash": "81c91370a448575f1bcc3e18b93df19fc0ea10aafd8cb967a53c4e0932f0d91c"
       }
     },
     {
@@ -28916,8 +29556,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_stone_attack_3.png",
-      "width": 55,
-      "height": 49,
+      "width": 69,
+      "height": 61,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28926,14 +29566,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "nineSlice": null,
       "mapping": "",
@@ -28947,7 +29587,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "007e2b06efc7e588e020b94211e86565a2f6b7e0dca600523ac4e4edf0aa45ab"
+        "outputHash": "49eff7b7c178f53a4caa4f3841eb09230c2e4f54c7b96ee3e62e820f89a71de2"
       }
     },
     {
@@ -28956,8 +29596,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_stone_attack_4.png",
-      "width": 55,
-      "height": 49,
+      "width": 69,
+      "height": 61,
       "pivot": {
         "x": 0,
         "y": 0
@@ -28966,14 +29606,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "nineSlice": null,
       "mapping": "",
@@ -28987,7 +29627,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "f2718afdcf9abd74414017d0c809d75fc7e14c2552868f526505ede45af63b8c"
+        "outputHash": "ea1cc5241432b2a658de34e92a8fc205418a1337e5b130bef4b4fd76f206b2a5"
       }
     },
     {
@@ -28996,8 +29636,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_stone_attack_5.png",
-      "width": 55,
-      "height": 49,
+      "width": 69,
+      "height": 61,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29006,14 +29646,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "nineSlice": null,
       "mapping": "",
@@ -29027,7 +29667,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "a528c6aef4c41f529132d12cdf7cad1b5c4b0922770c8e05de0e285e731e8dd5"
+        "outputHash": "14378b0713b58f816a61d242e8d534863d15df0cf166560f9c355248ddc6ac27"
       }
     },
     {
@@ -29036,8 +29676,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_stone_attack_6.png",
-      "width": 55,
-      "height": 49,
+      "width": 69,
+      "height": 61,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29046,14 +29686,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "nineSlice": null,
       "mapping": "",
@@ -29067,7 +29707,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "f01ad23aeeaf80f6b73e70bf976144ad70548b12df8b4608801f41e3f96fdd13"
+        "outputHash": "69ed72143460544baa1c156585dc505a4af1d97834ecf2d44040dbac565fddae"
       }
     },
     {
@@ -29076,8 +29716,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_stone_attack_7.png",
-      "width": 55,
-      "height": 49,
+      "width": 69,
+      "height": 61,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29086,14 +29726,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "nineSlice": null,
       "mapping": "",
@@ -29107,7 +29747,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "6ff70737f920c09063d7da2b7aaabe41f319d59301c98401e0cb2e8032e4eef2"
+        "outputHash": "885eb47cd908b8d160a26c0bcb94ffd661f179ae74fca97afd5cdae668155646"
       }
     },
     {
@@ -29116,8 +29756,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_stone_attack_8.png",
-      "width": 55,
-      "height": 49,
+      "width": 69,
+      "height": 61,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29126,14 +29766,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 49
+        "w": 69,
+        "h": 61
       },
       "nineSlice": null,
       "mapping": "",
@@ -29147,7 +29787,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "b52e51d0392dfb6b5084b37337fe2205d9c903173e1b842b6ec667684ff72445"
+        "outputHash": "ac51b7ff9275a2b6f69aeb77eea6ba3f82e15b6f0fb06aab417232b618eaabad"
       }
     },
     {
@@ -29156,8 +29796,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_body.png",
-      "width": 69,
-      "height": 119,
+      "width": 86,
+      "height": 149,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29166,14 +29806,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 119
+        "w": 86,
+        "h": 149
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 119
+        "w": 86,
+        "h": 149
       },
       "nineSlice": null,
       "mapping": "",
@@ -29187,7 +29827,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "dacba6c196f777eae4a13dcfc81ecfd3941092d53095cf7f060755380861edf9"
+        "outputHash": "0e82d7c160accc81c2c97f124ae452b671918a4fed2543eb8d2ebed2ff7d6ff9"
       }
     },
     {
@@ -29196,8 +29836,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_idle_0.png",
-      "width": 28,
-      "height": 45,
+      "width": 35,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29206,14 +29846,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -29227,7 +29867,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "1f9ca02d26204f023948b77f01dfd682054c25b483722d4e8c40b852607255e2"
+        "outputHash": "718d0f9535a3c39ca5b6fa32ae6cd7e4e88d11499943515b097efa89d043dccf"
       }
     },
     {
@@ -29236,8 +29876,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_idle_1.png",
-      "width": 28,
-      "height": 45,
+      "width": 35,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29246,14 +29886,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -29267,7 +29907,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "8c2d9bf461268df1b7b0430a9e4bc1ef2d00fbd3ee9833a7641784fb0145bafb"
+        "outputHash": "f50b3ddff22d1a4d975031ddb2010dd2c20ce0f77e44579186ee07a6f68711e9"
       }
     },
     {
@@ -29276,8 +29916,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_idle_2.png",
-      "width": 28,
-      "height": 45,
+      "width": 35,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29286,14 +29926,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -29307,7 +29947,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "1045cdbe972ed3e894785ed24144bf3e121e523a58cb414701f8a528b9bbaa44"
+        "outputHash": "65dab8d6973092a11c451bb5c16ed05bb108ecd1fdf7d1eaf5c49f847521030a"
       }
     },
     {
@@ -29316,8 +29956,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_idle_3.png",
-      "width": 28,
-      "height": 45,
+      "width": 35,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29326,14 +29966,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -29347,7 +29987,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "1045cdbe972ed3e894785ed24144bf3e121e523a58cb414701f8a528b9bbaa44"
+        "outputHash": "65dab8d6973092a11c451bb5c16ed05bb108ecd1fdf7d1eaf5c49f847521030a"
       }
     },
     {
@@ -29356,8 +29996,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_idle_4.png",
-      "width": 28,
-      "height": 45,
+      "width": 35,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29366,14 +30006,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -29387,7 +30027,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "8c2d9bf461268df1b7b0430a9e4bc1ef2d00fbd3ee9833a7641784fb0145bafb"
+        "outputHash": "f50b3ddff22d1a4d975031ddb2010dd2c20ce0f77e44579186ee07a6f68711e9"
       }
     },
     {
@@ -29396,8 +30036,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_idle_5.png",
-      "width": 28,
-      "height": 45,
+      "width": 35,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29406,14 +30046,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -29427,7 +30067,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "1f9ca02d26204f023948b77f01dfd682054c25b483722d4e8c40b852607255e2"
+        "outputHash": "718d0f9535a3c39ca5b6fa32ae6cd7e4e88d11499943515b097efa89d043dccf"
       }
     },
     {
@@ -29436,8 +30076,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_idle_6.png",
-      "width": 28,
-      "height": 45,
+      "width": 35,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29446,14 +30086,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -29467,7 +30107,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "3e4ed3562e932a293dc53e0686f35cba3e4658d3c624b0ce759c7d1359c6a02b"
+        "outputHash": "88f5e03481ec6178247b417a74038ba0053acf076d913b12c0b6fd53dc9042a2"
       }
     },
     {
@@ -29476,8 +30116,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_idle_7.png",
-      "width": 28,
-      "height": 45,
+      "width": 35,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29486,14 +30126,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -29507,7 +30147,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "414ec1c4a49628a69a763974b88999123c9f63b453c5fb8baf849f45a73a987f"
+        "outputHash": "d0df3db20165a10bb745e331875b29da6ffcd5d8b1d3467ed06c6a0caaff9fd7"
       }
     },
     {
@@ -29516,8 +30156,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_idle_8.png",
-      "width": 28,
-      "height": 45,
+      "width": 35,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29526,14 +30166,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -29547,7 +30187,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "414ec1c4a49628a69a763974b88999123c9f63b453c5fb8baf849f45a73a987f"
+        "outputHash": "d0df3db20165a10bb745e331875b29da6ffcd5d8b1d3467ed06c6a0caaff9fd7"
       }
     },
     {
@@ -29556,8 +30196,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_idle_9.png",
-      "width": 28,
-      "height": 45,
+      "width": 35,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29566,14 +30206,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 45
+        "w": 35,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -29587,7 +30227,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "3e4ed3562e932a293dc53e0686f35cba3e4658d3c624b0ce759c7d1359c6a02b"
+        "outputHash": "88f5e03481ec6178247b417a74038ba0053acf076d913b12c0b6fd53dc9042a2"
       }
     },
     {
@@ -29596,8 +30236,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_attack_0.png",
-      "width": 69,
-      "height": 69,
+      "width": 86,
+      "height": 86,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29606,14 +30246,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "nineSlice": null,
       "mapping": "",
@@ -29627,7 +30267,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "a0ecf5a4b0b335f9d67774377fbe96a928887752397dc19e45f3237f012446bd"
+        "outputHash": "c5787edd12f6173e1a1f4ea079a57d94bb7e69c6275829d2040800011cb44616"
       }
     },
     {
@@ -29636,8 +30276,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_attack_1.png",
-      "width": 69,
-      "height": 69,
+      "width": 86,
+      "height": 86,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29646,14 +30286,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "nineSlice": null,
       "mapping": "",
@@ -29667,7 +30307,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "32116def17ff43999d637a4d7badcd4609f09ef6b5af2cae8d91f85ab0989a57"
+        "outputHash": "17b72356e66d6e5239e716e5e97d11c9dd6efec45e1442876711d7f9091c630a"
       }
     },
     {
@@ -29676,8 +30316,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_attack_2.png",
-      "width": 69,
-      "height": 69,
+      "width": 86,
+      "height": 86,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29686,14 +30326,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "nineSlice": null,
       "mapping": "",
@@ -29707,7 +30347,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "a55e49a86938d189af416f0e52a279762efe01ef28f3bb270fa47c2b1e77dc35"
+        "outputHash": "0ef517aa9f0d5c4a0c493b4a10223ac902e489aa04d1fe39d9840abbdd3f9944"
       }
     },
     {
@@ -29716,8 +30356,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_attack_3.png",
-      "width": 69,
-      "height": 69,
+      "width": 86,
+      "height": 86,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29726,14 +30366,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "nineSlice": null,
       "mapping": "",
@@ -29747,7 +30387,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "ac100f4d8ad9dc9e120f8f9837205a3d178379d2ea434a9a4211859ad22cbfca"
+        "outputHash": "1fff4452fed64260dda71dd59887583a46749e844edfd96551c241251ea5519d"
       }
     },
     {
@@ -29756,8 +30396,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_attack_4.png",
-      "width": 69,
-      "height": 69,
+      "width": 86,
+      "height": 86,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29766,14 +30406,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "nineSlice": null,
       "mapping": "",
@@ -29787,7 +30427,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "92c76d31827814325e4bb83bc5bab87bb0b10124dc0412bf7242e91f8640b2a0"
+        "outputHash": "dbc4bddad8f8296138f801d516cb3b170355bacb9bbec350cbed49dd54d6b99a"
       }
     },
     {
@@ -29796,8 +30436,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_attack_5.png",
-      "width": 69,
-      "height": 69,
+      "width": 86,
+      "height": 86,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29806,14 +30446,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "nineSlice": null,
       "mapping": "",
@@ -29827,7 +30467,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "68f8d839fab4d208dc02a18f2b6326a1318518a57eb64393c9205faea4ba18c2"
+        "outputHash": "f02dd57dc6e3b938176197d2eac18fd96067f776e651702f31489e4b8b2738a6"
       }
     },
     {
@@ -29836,8 +30476,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_attack_6.png",
-      "width": 69,
-      "height": 69,
+      "width": 86,
+      "height": 86,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29846,14 +30486,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "nineSlice": null,
       "mapping": "",
@@ -29867,7 +30507,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "d9313bd9175bf7ab13fbc5c8f86e39b5a8a5d054c4d77af8f877154e19ed5e88"
+        "outputHash": "628e39550f4131d7d9168f6549f2ad9807b1dad4a1f1a9a3a84469b64fece3c9"
       }
     },
     {
@@ -29876,8 +30516,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_attack_7.png",
-      "width": 69,
-      "height": 69,
+      "width": 86,
+      "height": 86,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29886,14 +30526,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "nineSlice": null,
       "mapping": "",
@@ -29907,7 +30547,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "93b45e34c5068b6b688a1258fd138c99dbd6ffd230ed2a45c3f5321192e52116"
+        "outputHash": "a9eecf1d3d6377aa42fea37baa39b952edffb0302ce54d303d2f467659a10195"
       }
     },
     {
@@ -29916,8 +30556,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_slow_attack_8.png",
-      "width": 69,
-      "height": 69,
+      "width": 86,
+      "height": 86,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29926,14 +30566,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 69,
-        "h": 69
+        "w": 86,
+        "h": 86
       },
       "nineSlice": null,
       "mapping": "",
@@ -29947,7 +30587,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "2001b4c7b3806c05e06e189d63a2e6c89a6f3100236fe069f3f2c23526581bb1"
+        "outputHash": "8f410ed0cadf9dd6d8ec834ef7f91983de07a7eb0c1fd94213ede1f74ba42973"
       }
     },
     {
@@ -29956,8 +30596,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_body.png",
-      "width": 128,
-      "height": 107,
+      "width": 160,
+      "height": 134,
       "pivot": {
         "x": 0,
         "y": 0
@@ -29966,14 +30606,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 128,
-        "h": 107
+        "w": 160,
+        "h": 134
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 128,
-        "h": 107
+        "w": 160,
+        "h": 134
       },
       "nineSlice": null,
       "mapping": "",
@@ -29987,7 +30627,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "10a7d491a49fb06734757a04a77fc83dcfc1c0902929f463bf770dbd5e710fe5"
+        "outputHash": "21fc8846aed1ea6004d66e91f0849601b9ebe3f10977aca1cf4cbaf42d2d8697"
       }
     },
     {
@@ -29996,8 +30636,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_0.png",
-      "width": 44,
-      "height": 43,
+      "width": 55,
+      "height": 54,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30006,14 +30646,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "nineSlice": null,
       "mapping": "",
@@ -30027,7 +30667,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "7e3f0c758587e8c190b8d4fde6130a928c1de96df12b94743633d7a3c5836283"
+        "outputHash": "ce2f6ca61dee517323a30a650ac64bf9652967d1a8059bb5d9051468e9e33197"
       }
     },
     {
@@ -30036,8 +30676,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_1.png",
-      "width": 44,
-      "height": 43,
+      "width": 55,
+      "height": 54,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30046,14 +30686,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "nineSlice": null,
       "mapping": "",
@@ -30067,7 +30707,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "57afff7063488b77deb33cd551c3573406405db5e7bc5a7af112a111cf762708"
+        "outputHash": "6efd4d957da63001ba8dbc648dc9651df8887fae5df845a2bf6e1db36bc8c54f"
       }
     },
     {
@@ -30076,8 +30716,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_2.png",
-      "width": 44,
-      "height": 43,
+      "width": 55,
+      "height": 54,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30086,14 +30726,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "nineSlice": null,
       "mapping": "",
@@ -30107,7 +30747,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "eb3031a745ff3bcfd66c8911ad2cfd328aea8b1ce2d964c5effb9cd898dcb6cd"
+        "outputHash": "f412c56324824cdbf0bed4cdfbe6b1111a12cd3000ae8dcfcb70b718f568bed5"
       }
     },
     {
@@ -30116,8 +30756,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_3.png",
-      "width": 44,
-      "height": 43,
+      "width": 55,
+      "height": 54,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30126,14 +30766,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "nineSlice": null,
       "mapping": "",
@@ -30147,7 +30787,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "029407407a0ea1746648c8b58524a316cd9af70b571632c23a7078e418a8412c"
+        "outputHash": "b6ef58f97fa8fca49317af62f95f9d15d3bd2e47837f3fb4a409744eed6a801a"
       }
     },
     {
@@ -30156,8 +30796,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_4.png",
-      "width": 44,
-      "height": 43,
+      "width": 55,
+      "height": 54,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30166,14 +30806,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "nineSlice": null,
       "mapping": "",
@@ -30187,7 +30827,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "1dea8b2a72a82248232e2402028ab8ab7d6babb0586046ea02979ade370bb838"
+        "outputHash": "10a212054f59ba60a71f902938787c2c2de797dce76b2a2495a1c598b523a1fb"
       }
     },
     {
@@ -30196,8 +30836,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_5.png",
-      "width": 44,
-      "height": 43,
+      "width": 55,
+      "height": 54,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30206,14 +30846,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "nineSlice": null,
       "mapping": "",
@@ -30227,7 +30867,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "36ab17bba9dedec5e123d85d4ab860fb6747b2f0236f1f726f18fe3a5d6584d4"
+        "outputHash": "c6a1132dc20dd206263ada337f4cd6d7f0c92118aac06ec11fd9913429ebf93a"
       }
     },
     {
@@ -30236,8 +30876,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_6.png",
-      "width": 44,
-      "height": 43,
+      "width": 55,
+      "height": 54,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30246,14 +30886,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "nineSlice": null,
       "mapping": "",
@@ -30267,7 +30907,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "36ab17bba9dedec5e123d85d4ab860fb6747b2f0236f1f726f18fe3a5d6584d4"
+        "outputHash": "2fc8c77e1e2a49678363d360ec0738b6d2bd7efecefa7d3e79c32981afcf2374"
       }
     },
     {
@@ -30276,8 +30916,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_7.png",
-      "width": 44,
-      "height": 43,
+      "width": 55,
+      "height": 54,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30286,14 +30926,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "nineSlice": null,
       "mapping": "",
@@ -30307,7 +30947,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "36ab17bba9dedec5e123d85d4ab860fb6747b2f0236f1f726f18fe3a5d6584d4"
+        "outputHash": "2fc8c77e1e2a49678363d360ec0738b6d2bd7efecefa7d3e79c32981afcf2374"
       }
     },
     {
@@ -30316,8 +30956,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_8.png",
-      "width": 44,
-      "height": 43,
+      "width": 55,
+      "height": 54,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30326,14 +30966,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "nineSlice": null,
       "mapping": "",
@@ -30347,7 +30987,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "a7b11ee7224bc776266b033335bc580ebfd43a118cc94986e82b4bbe4b967226"
+        "outputHash": "310204e777e986b3c72dcbc72a25a96a641cbfd84f571f6de15adb24d0448c80"
       }
     },
     {
@@ -30356,8 +30996,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_9.png",
-      "width": 44,
-      "height": 43,
+      "width": 55,
+      "height": 54,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30366,14 +31006,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "nineSlice": null,
       "mapping": "",
@@ -30387,7 +31027,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "f4cf7d92565fbc4aa639d84b94f0c81db78001e313647a77ecf7dcd4cb94a2d4"
+        "outputHash": "421c197c415f8307ff990d9c5bfdb34a6a9dc8810b32d379a50516ef1b071e5b"
       }
     },
     {
@@ -30396,8 +31036,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_10.png",
-      "width": 44,
-      "height": 43,
+      "width": 55,
+      "height": 54,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30406,14 +31046,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "nineSlice": null,
       "mapping": "",
@@ -30427,7 +31067,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "eb3031a745ff3bcfd66c8911ad2cfd328aea8b1ce2d964c5effb9cd898dcb6cd"
+        "outputHash": "7cb09b4e3940f3b5d2683332289ef03cf19d044e37db40cd198630eefe17ee1e"
       }
     },
     {
@@ -30436,8 +31076,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_11.png",
-      "width": 44,
-      "height": 43,
+      "width": 55,
+      "height": 54,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30446,14 +31086,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "nineSlice": null,
       "mapping": "",
@@ -30467,7 +31107,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "57afff7063488b77deb33cd551c3573406405db5e7bc5a7af112a111cf762708"
+        "outputHash": "6efd4d957da63001ba8dbc648dc9651df8887fae5df845a2bf6e1db36bc8c54f"
       }
     },
     {
@@ -30476,8 +31116,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_12.png",
-      "width": 44,
-      "height": 43,
+      "width": 55,
+      "height": 54,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30486,14 +31126,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 43
+        "w": 55,
+        "h": 54
       },
       "nineSlice": null,
       "mapping": "",
@@ -30507,7 +31147,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "7e3f0c758587e8c190b8d4fde6130a928c1de96df12b94743633d7a3c5836283"
+        "outputHash": "ce2f6ca61dee517323a30a650ac64bf9652967d1a8059bb5d9051468e9e33197"
       }
     },
     {
@@ -30516,8 +31156,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_left_0.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30526,14 +31166,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -30547,7 +31187,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "248b5cbfd8518829b9a6a45a51ee51e4a80bbbd4515ac9733bc9b59714c6d442"
+        "outputHash": "adeebc8a4e3190d143de1263f1a7cfbd1f1bf53e3b32ff07f989ea7cffe9501f"
       }
     },
     {
@@ -30556,8 +31196,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_left_1.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30566,14 +31206,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -30587,7 +31227,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "302810d449652c57d930ab16c9d8edb3320eda23d5522e8b7f818015d7f7fa1b"
+        "outputHash": "b37499b2cbda4907cf99441866bc07ff12eb39ea3e57d15a35a22574231bfa4b"
       }
     },
     {
@@ -30596,8 +31236,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_left_2.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30606,14 +31246,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -30627,7 +31267,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "575756a04628cb82e3d3cda531418001c005484222ed3e825fb1af84d6aa97fa"
+        "outputHash": "169860606a0daeb298319bd2c621472fad216600b7c47041de027a520664df17"
       }
     },
     {
@@ -30636,8 +31276,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_left_3.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30646,14 +31286,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -30667,7 +31307,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "f47f20d23187a7a8a1b8fe5cdc7888b96990e594afd044a1a1c7819a94b95d95"
+        "outputHash": "f7de31115fa5aaa23a727737f84a7682f95a2987b842b7d57cfe3eb995c19a2e"
       }
     },
     {
@@ -30676,8 +31316,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_left_4.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30686,14 +31326,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -30707,7 +31347,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "261f359e6bf481f4ea6f15d77a71ec42242a97771d8d6bd485837fd1ae24a39a"
+        "outputHash": "2ea96ff207781828e930cb07d38276245da7688c99500ba6dd77cccf0e2af1f4"
       }
     },
     {
@@ -30716,8 +31356,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_left_5.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30726,14 +31366,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -30747,7 +31387,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "414554d849bbff5b847072dd9620f325b593c3d2568c0526e978c0e35ff638f6"
+        "outputHash": "edcdd898d85541beb57dddcea152dd24da30b437225282bdf2ee30121574661c"
       }
     },
     {
@@ -30756,8 +31396,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_left_6.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30766,14 +31406,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -30787,7 +31427,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "d5c11239510aea48a65e5610f577a1009598e1b85cbba58aa6be9b0454d9804d"
+        "outputHash": "c51f72a29d290a13bda64ca8ecf050219bc7f31c60a795c54875d0eed55ec721"
       }
     },
     {
@@ -30796,8 +31436,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_left_7.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30806,14 +31446,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -30827,7 +31467,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "a064ef79fa40b344f12d663bff8cccbf2ecebf6de510909aabe4f8b6de53412b"
+        "outputHash": "a80e49c9b7dc9b74979f737ba849bda4941d27b0e4c6f9562a01d7a1e3d31a58"
       }
     },
     {
@@ -30836,8 +31476,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_right_0.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30846,14 +31486,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -30867,7 +31507,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "248b5cbfd8518829b9a6a45a51ee51e4a80bbbd4515ac9733bc9b59714c6d442"
+        "outputHash": "adeebc8a4e3190d143de1263f1a7cfbd1f1bf53e3b32ff07f989ea7cffe9501f"
       }
     },
     {
@@ -30876,8 +31516,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_right_1.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30886,14 +31526,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -30907,7 +31547,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "302810d449652c57d930ab16c9d8edb3320eda23d5522e8b7f818015d7f7fa1b"
+        "outputHash": "b37499b2cbda4907cf99441866bc07ff12eb39ea3e57d15a35a22574231bfa4b"
       }
     },
     {
@@ -30916,8 +31556,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_right_2.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30926,14 +31566,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -30947,7 +31587,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "575756a04628cb82e3d3cda531418001c005484222ed3e825fb1af84d6aa97fa"
+        "outputHash": "169860606a0daeb298319bd2c621472fad216600b7c47041de027a520664df17"
       }
     },
     {
@@ -30956,8 +31596,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_right_3.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -30966,14 +31606,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -30987,7 +31627,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "f47f20d23187a7a8a1b8fe5cdc7888b96990e594afd044a1a1c7819a94b95d95"
+        "outputHash": "f7de31115fa5aaa23a727737f84a7682f95a2987b842b7d57cfe3eb995c19a2e"
       }
     },
     {
@@ -30996,8 +31636,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_right_4.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31006,14 +31646,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -31027,7 +31667,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "261f359e6bf481f4ea6f15d77a71ec42242a97771d8d6bd485837fd1ae24a39a"
+        "outputHash": "2ea96ff207781828e930cb07d38276245da7688c99500ba6dd77cccf0e2af1f4"
       }
     },
     {
@@ -31036,8 +31676,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_right_5.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31046,14 +31686,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -31067,7 +31707,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "414554d849bbff5b847072dd9620f325b593c3d2568c0526e978c0e35ff638f6"
+        "outputHash": "edcdd898d85541beb57dddcea152dd24da30b437225282bdf2ee30121574661c"
       }
     },
     {
@@ -31076,8 +31716,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_right_6.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31086,14 +31726,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -31107,7 +31747,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "d5c11239510aea48a65e5610f577a1009598e1b85cbba58aa6be9b0454d9804d"
+        "outputHash": "c51f72a29d290a13bda64ca8ecf050219bc7f31c60a795c54875d0eed55ec721"
       }
     },
     {
@@ -31116,8 +31756,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_fire_right_7.png",
-      "width": 12,
-      "height": 18,
+      "width": 15,
+      "height": 23,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31126,14 +31766,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 12,
-        "h": 18
+        "w": 15,
+        "h": 23
       },
       "nineSlice": null,
       "mapping": "",
@@ -31147,7 +31787,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "a064ef79fa40b344f12d663bff8cccbf2ecebf6de510909aabe4f8b6de53412b"
+        "outputHash": "a80e49c9b7dc9b74979f737ba849bda4941d27b0e4c6f9562a01d7a1e3d31a58"
       }
     },
     {
@@ -31156,8 +31796,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_body.png",
-      "width": 108,
-      "height": 95,
+      "width": 135,
+      "height": 119,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31166,14 +31806,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 108,
-        "h": 95
+        "w": 135,
+        "h": 119
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 108,
-        "h": 95
+        "w": 135,
+        "h": 119
       },
       "nineSlice": null,
       "mapping": "",
@@ -31187,7 +31827,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "0a3ec38d799aa895711caea9825129f2db890d2cd21ec65bfd4043192a7ab080"
+        "outputHash": "b2e89320377c2c3ec9d57968c3245683bcf9b7a92f304c788eb695f597dd40c8"
       }
     },
     {
@@ -31196,8 +31836,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_smoke_0.png",
-      "width": 21,
-      "height": 25,
+      "width": 26,
+      "height": 31,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31206,14 +31846,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "nineSlice": null,
       "mapping": "",
@@ -31227,7 +31867,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "32cc40dc55aedbbea80ad3b6d7823ac3f0479d8ea9aee4c927bfda81f4db9962"
+        "outputHash": "43ff9c06602e294a50c8faedd7378cfa6324ebeeee10cba1d56ce0916e7006fb"
       }
     },
     {
@@ -31236,8 +31876,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_smoke_1.png",
-      "width": 21,
-      "height": 25,
+      "width": 26,
+      "height": 31,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31246,14 +31886,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "nineSlice": null,
       "mapping": "",
@@ -31267,7 +31907,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "b0fab13d7a9355eccb107030b097f706b6d52c80112cd6cd5d03bca042a2e8bc"
+        "outputHash": "d61c395f7c5a7ed75edde9830e8602561053f271b63e2a2f2880ddeed3d3dcbf"
       }
     },
     {
@@ -31276,8 +31916,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_smoke_2.png",
-      "width": 21,
-      "height": 25,
+      "width": 26,
+      "height": 31,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31286,14 +31926,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "nineSlice": null,
       "mapping": "",
@@ -31307,7 +31947,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "32cc40dc55aedbbea80ad3b6d7823ac3f0479d8ea9aee4c927bfda81f4db9962"
+        "outputHash": "43ff9c06602e294a50c8faedd7378cfa6324ebeeee10cba1d56ce0916e7006fb"
       }
     },
     {
@@ -31316,8 +31956,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_smoke_3.png",
-      "width": 21,
-      "height": 25,
+      "width": 26,
+      "height": 31,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31326,14 +31966,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "nineSlice": null,
       "mapping": "",
@@ -31347,7 +31987,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "9f29e538835f3e294386037a313d9e8fad44c101e9adb08713bd1ad932852eda"
+        "outputHash": "d61c395f7c5a7ed75edde9830e8602561053f271b63e2a2f2880ddeed3d3dcbf"
       }
     },
     {
@@ -31356,8 +31996,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_smoke_4.png",
-      "width": 21,
-      "height": 25,
+      "width": 26,
+      "height": 31,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31366,14 +32006,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "nineSlice": null,
       "mapping": "",
@@ -31387,7 +32027,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "061fd201015f11115f943d43f56a31b626b19c086344cea2bb59d6f050e97256"
+        "outputHash": "8c6b3f3d83551aca44e0d3b35ec1ae85063fd733033878156d4ff7b9f2eaadf9"
       }
     },
     {
@@ -31396,8 +32036,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_smoke_5.png",
-      "width": 21,
-      "height": 25,
+      "width": 26,
+      "height": 31,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31406,14 +32046,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "nineSlice": null,
       "mapping": "",
@@ -31427,7 +32067,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "f283c3545d6387bd4931dbd533ff6c9b57f42bf01fa9d5e6cc77ce80c9e46fe3"
+        "outputHash": "fe1a704cfe6e7672f8bcf1eeb9552c46259b5a7ea543aa46fea1d8654e4e6cae"
       }
     },
     {
@@ -31436,8 +32076,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_smoke_6.png",
-      "width": 21,
-      "height": 25,
+      "width": 26,
+      "height": 31,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31446,14 +32086,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "nineSlice": null,
       "mapping": "",
@@ -31467,7 +32107,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "5d88ecaa97a66834cb8ba84e527e469a533510c63a2e005b831cfa371cfbd168"
+        "outputHash": "aa06d9a3943e8eacd9c3f33501e73c3b1522d161147accf20016b0aa527f7b60"
       }
     },
     {
@@ -31476,8 +32116,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_smoke_7.png",
-      "width": 21,
-      "height": 25,
+      "width": 26,
+      "height": 31,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31486,14 +32126,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "nineSlice": null,
       "mapping": "",
@@ -31507,7 +32147,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "b75e935c7b25c21af246040371ff4bacb0172a22efd4c629fa3d7a92708d495f"
+        "outputHash": "96026e9b43fe977fc9cf7a6e395771acec2cc421e1e65a8f5fa2486862ccdf87"
       }
     },
     {
@@ -31516,8 +32156,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_smoke_8.png",
-      "width": 21,
-      "height": 25,
+      "width": 26,
+      "height": 31,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31526,14 +32166,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "nineSlice": null,
       "mapping": "",
@@ -31547,7 +32187,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "2a645b448100c42b48c55790b328ba587430d0ced15d13910e37104a92944d6d"
+        "outputHash": "fc839f9e017c3b3adf725b8e2aadf5371f3c01765312042a563b248a68613e47"
       }
     },
     {
@@ -31556,8 +32196,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_smoke_9.png",
-      "width": 21,
-      "height": 25,
+      "width": 26,
+      "height": 31,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31566,14 +32206,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 21,
-        "h": 25
+        "w": 26,
+        "h": 31
       },
       "nineSlice": null,
       "mapping": "",
@@ -31587,7 +32227,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "c14f44dc238fb441dc5197cd10d1143523dfc3ec3eb892c6df94e27859779ed8"
+        "outputHash": "3f2fa4d757b6a54d44bfd2cc99db99b16dd7af1054a74b8efdc36a07e30f76d9"
       }
     },
     {
@@ -31596,8 +32236,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_window_0.png",
-      "width": 19,
-      "height": 14,
+      "width": 24,
+      "height": 18,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31606,14 +32246,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "nineSlice": null,
       "mapping": "",
@@ -31627,7 +32267,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "6f8943d46c886816147dc8d7730c167af36194b3e00dabfa2028723edf2355e0"
+        "outputHash": "217e9b26f6a4e948051d6ebd6815fab6cb5f0b8582228d7bfe43bb86d22c46f8"
       }
     },
     {
@@ -31636,8 +32276,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_window_1.png",
-      "width": 19,
-      "height": 14,
+      "width": 24,
+      "height": 18,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31646,14 +32286,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "nineSlice": null,
       "mapping": "",
@@ -31667,7 +32307,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "fb3a738ff3e0d4fa74b2ba79213b54d78dc5349c93162eecf892d1168f6c16bd"
+        "outputHash": "8a8ab6a4be2b2c07fee66c65020446775b2582766f343ccd0e15e3c36ecca776"
       }
     },
     {
@@ -31676,8 +32316,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_window_2.png",
-      "width": 19,
-      "height": 14,
+      "width": 24,
+      "height": 18,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31686,14 +32326,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "nineSlice": null,
       "mapping": "",
@@ -31707,7 +32347,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "b3589039efa2de85057fd38f32da76ff7566adb3609c42283075db3020957090"
+        "outputHash": "a9b00dc431f68909263abd9d6dde2f3109c19eb37724249f542df7d495aa2585"
       }
     },
     {
@@ -31716,8 +32356,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_window_3.png",
-      "width": 19,
-      "height": 14,
+      "width": 24,
+      "height": 18,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31726,14 +32366,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "nineSlice": null,
       "mapping": "",
@@ -31747,7 +32387,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "fb3a738ff3e0d4fa74b2ba79213b54d78dc5349c93162eecf892d1168f6c16bd"
+        "outputHash": "8a8ab6a4be2b2c07fee66c65020446775b2582766f343ccd0e15e3c36ecca776"
       }
     },
     {
@@ -31756,8 +32396,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_window_4.png",
-      "width": 19,
-      "height": 14,
+      "width": 24,
+      "height": 18,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31766,14 +32406,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "nineSlice": null,
       "mapping": "",
@@ -31787,7 +32427,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "6f8943d46c886816147dc8d7730c167af36194b3e00dabfa2028723edf2355e0"
+        "outputHash": "217e9b26f6a4e948051d6ebd6815fab6cb5f0b8582228d7bfe43bb86d22c46f8"
       }
     },
     {
@@ -31796,8 +32436,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_window_5.png",
-      "width": 19,
-      "height": 14,
+      "width": 24,
+      "height": 18,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31806,14 +32446,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "nineSlice": null,
       "mapping": "",
@@ -31827,7 +32467,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "f0abd65c6b17e4659caf8c865c19bd1d416111d34625cbe2184828c9c04f7f07"
+        "outputHash": "e65d5e63ca4cf1469ada78f2fe89b1a567dab58160fe312660caffb430491200"
       }
     },
     {
@@ -31836,8 +32476,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_window_6.png",
-      "width": 19,
-      "height": 14,
+      "width": 24,
+      "height": 18,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31846,14 +32486,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "nineSlice": null,
       "mapping": "",
@@ -31867,7 +32507,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "deafe568b69f15c64ba6530cd6116285edc5f41df9363d9ccbbca82e3261e785"
+        "outputHash": "26cfbceb0e187f3356d7a8f77d6f8e5d7416e6f22068a6e67ee3c20b5eaf2b7a"
       }
     },
     {
@@ -31876,8 +32516,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_house_window_7.png",
-      "width": 19,
-      "height": 14,
+      "width": 24,
+      "height": 18,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31886,14 +32526,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 19,
-        "h": 14
+        "w": 24,
+        "h": 18
       },
       "nineSlice": null,
       "mapping": "",
@@ -31907,7 +32547,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "f0abd65c6b17e4659caf8c865c19bd1d416111d34625cbe2184828c9c04f7f07"
+        "outputHash": "e65d5e63ca4cf1469ada78f2fe89b1a567dab58160fe312660caffb430491200"
       }
     },
     {
@@ -31916,8 +32556,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_body.png",
-      "width": 105,
-      "height": 83,
+      "width": 131,
+      "height": 104,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31926,14 +32566,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 105,
-        "h": 83
+        "w": 131,
+        "h": 104
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 105,
-        "h": 83
+        "w": 131,
+        "h": 104
       },
       "nineSlice": null,
       "mapping": "",
@@ -31947,7 +32587,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "ec0974589965e0efd03c698959089bec132b158364c820b039d64b2b3003a765"
+        "outputHash": "c979d2c75f4eb0da36a1da2cee090564967fd2d4150cc029f7bff8555d1bf73a"
       }
     },
     {
@@ -31956,8 +32596,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheat_0.png",
-      "width": 43,
-      "height": 29,
+      "width": 54,
+      "height": 36,
       "pivot": {
         "x": 0,
         "y": 0
@@ -31966,14 +32606,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "nineSlice": null,
       "mapping": "",
@@ -31987,7 +32627,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "f5886b442c84b88a2d082c3fb888bd02996bd06d70759d917b34877eaa57d91c"
+        "outputHash": "3e5d10226bd5ad20d9f9cca8de95c788bf4307fe15a42003a35e903d4635b07f"
       }
     },
     {
@@ -31996,8 +32636,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheat_1.png",
-      "width": 43,
-      "height": 29,
+      "width": 54,
+      "height": 36,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32006,14 +32646,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "nineSlice": null,
       "mapping": "",
@@ -32027,7 +32667,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "02c7d5842590cab9808d7d693ac3d22a3deb7152c5184529f2ffcf301ffbd97c"
+        "outputHash": "287fad8fd08693bab1f6ec41a60bf02267ef0941733332844d83ac98cf89919b"
       }
     },
     {
@@ -32036,8 +32676,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheat_2.png",
-      "width": 43,
-      "height": 29,
+      "width": 54,
+      "height": 36,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32046,14 +32686,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "nineSlice": null,
       "mapping": "",
@@ -32067,7 +32707,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "aff343163cbc274b858f33df3deefc739a51cf2d43841736a37978b42ea03655"
+        "outputHash": "0903f50227ebc10b709ef63e8c94870c56a1b69e6856718f6b3e196ff47869e8"
       }
     },
     {
@@ -32076,8 +32716,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheat_3.png",
-      "width": 43,
-      "height": 29,
+      "width": 54,
+      "height": 36,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32086,14 +32726,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "nineSlice": null,
       "mapping": "",
@@ -32107,7 +32747,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "02c7d5842590cab9808d7d693ac3d22a3deb7152c5184529f2ffcf301ffbd97c"
+        "outputHash": "287fad8fd08693bab1f6ec41a60bf02267ef0941733332844d83ac98cf89919b"
       }
     },
     {
@@ -32116,8 +32756,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheat_4.png",
-      "width": 43,
-      "height": 29,
+      "width": 54,
+      "height": 36,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32126,14 +32766,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "nineSlice": null,
       "mapping": "",
@@ -32147,7 +32787,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "346b932c6b2747234b85574690866c81e4acf165981ac82a51414f49c0755b64"
+        "outputHash": "87b321de35d61c85b87bd0c7c60135dca66e18291ea55b542713d484704c7fa4"
       }
     },
     {
@@ -32156,8 +32796,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheat_5.png",
-      "width": 43,
-      "height": 29,
+      "width": 54,
+      "height": 36,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32166,14 +32806,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "nineSlice": null,
       "mapping": "",
@@ -32187,7 +32827,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "d32ee58032db93f48ac8003c2df24b44ca9f8e1a4dd663f678e64867472b58bd"
+        "outputHash": "3a2cdab80a038d5bbfb7150813acef9af168409676fd1c7503518c46509852cc"
       }
     },
     {
@@ -32196,8 +32836,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheat_6.png",
-      "width": 43,
-      "height": 29,
+      "width": 54,
+      "height": 36,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32206,14 +32846,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "nineSlice": null,
       "mapping": "",
@@ -32227,7 +32867,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "42ca3ee5d8c813d7d8d8ee9beb875c8a73068dcda0e82190add200a09e483a20"
+        "outputHash": "42db1f2acc0a6978f9d661fe09ce3ef97355518da74e3f0384407a53bf22ded8"
       }
     },
     {
@@ -32236,8 +32876,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheat_7.png",
-      "width": 43,
-      "height": 29,
+      "width": 54,
+      "height": 36,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32246,14 +32886,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 43,
-        "h": 29
+        "w": 54,
+        "h": 36
       },
       "nineSlice": null,
       "mapping": "",
@@ -32267,7 +32907,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "d32ee58032db93f48ac8003c2df24b44ca9f8e1a4dd663f678e64867472b58bd"
+        "outputHash": "3a2cdab80a038d5bbfb7150813acef9af168409676fd1c7503518c46509852cc"
       }
     },
     {
@@ -32276,8 +32916,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheel_0.png",
-      "width": 23,
-      "height": 31,
+      "width": 29,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32286,14 +32926,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -32307,7 +32947,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "a146b9ad502fae006d5b61b425fe3553543b37bc8e92db1a64cb48c7d005b9be"
+        "outputHash": "90d8cc73b554791de5df85fb8d076c87df98edd04f3e72f8f5cf637b3efe8704"
       }
     },
     {
@@ -32316,8 +32956,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheel_1.png",
-      "width": 23,
-      "height": 31,
+      "width": 29,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32326,14 +32966,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -32347,7 +32987,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "08536028e63e59b04ea184623bbfa1fe02f5e367f217370dba45f0cabcf409e3"
+        "outputHash": "5eba6d3ea5e1275c6696932b0e83679f8cf09b380a95647f6d1c189fcf2e0fb7"
       }
     },
     {
@@ -32356,8 +32996,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheel_2.png",
-      "width": 23,
-      "height": 31,
+      "width": 29,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32366,14 +33006,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -32387,7 +33027,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "f9dedfdf38d1741c62778093407d51c62396a150a658dbb7a8b327dc3602def4"
+        "outputHash": "9a6678eeeae9cb99afe37eac4e5af78c75e7d87ebb3e2a09a29d66ac7a6b0f1f"
       }
     },
     {
@@ -32396,8 +33036,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheel_3.png",
-      "width": 23,
-      "height": 31,
+      "width": 29,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32406,14 +33046,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -32427,7 +33067,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "73a784f8329381afa9533789531e2da4e064960258454e344e56426510a90afd"
+        "outputHash": "90ae04098b925e29183a174de42e8661699f836dfa4152686557fa45e90f1568"
       }
     },
     {
@@ -32436,8 +33076,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheel_4.png",
-      "width": 23,
-      "height": 31,
+      "width": 29,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32446,14 +33086,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -32467,7 +33107,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "a146b9ad502fae006d5b61b425fe3553543b37bc8e92db1a64cb48c7d005b9be"
+        "outputHash": "ebdcca8885ca92237f413db31098875cb7aedb9d605c96705ada1d22dc008535"
       }
     },
     {
@@ -32476,8 +33116,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheel_5.png",
-      "width": 23,
-      "height": 31,
+      "width": 29,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32486,14 +33126,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -32507,7 +33147,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "08536028e63e59b04ea184623bbfa1fe02f5e367f217370dba45f0cabcf409e3"
+        "outputHash": "5eba6d3ea5e1275c6696932b0e83679f8cf09b380a95647f6d1c189fcf2e0fb7"
       }
     },
     {
@@ -32516,8 +33156,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheel_6.png",
-      "width": 23,
-      "height": 31,
+      "width": 29,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32526,14 +33166,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -32547,7 +33187,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "f9dedfdf38d1741c62778093407d51c62396a150a658dbb7a8b327dc3602def4"
+        "outputHash": "909eaefb3dbb72858ec9d0b52c22706d9096cc4f78d8bcbad5c2751c92443377"
       }
     },
     {
@@ -32556,8 +33196,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheel_7.png",
-      "width": 23,
-      "height": 31,
+      "width": 29,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32566,14 +33206,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 23,
-        "h": 31
+        "w": 29,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -32587,7 +33227,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "73a784f8329381afa9533789531e2da4e064960258454e344e56426510a90afd"
+        "outputHash": "2f88e11fc23688d48f946fae62b2ee3462032e188ceb8b10e6c3a83f160f7162"
       }
     },
     {
@@ -32596,8 +33236,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_farm_wheel_base.png",
-      "width": 35,
-      "height": 36,
+      "width": 44,
+      "height": 45,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32606,14 +33246,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 36
+        "w": 44,
+        "h": 45
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 36
+        "w": 44,
+        "h": 45
       },
       "nineSlice": null,
       "mapping": "",
@@ -32627,7 +33267,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "5aec63a504444086489d3a2f75af875a1b897f18f704882c0085fbc2df200814"
+        "outputHash": "dacd74a2c8603d5f333c7977528fa6bbd87d33cc09fc0060f5c206d78bb244e5"
       }
     },
     {
@@ -32636,8 +33276,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_logging_body.png",
-      "width": 109,
-      "height": 97,
+      "width": 136,
+      "height": 121,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32646,14 +33286,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 109,
-        "h": 97
+        "w": 136,
+        "h": 121
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 109,
-        "h": 97
+        "w": 136,
+        "h": 121
       },
       "nineSlice": null,
       "mapping": "",
@@ -32667,7 +33307,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "1e210fcf74411208571bdfe8081ebb581e593af44aff9cb8bdd44000e2a766d6"
+        "outputHash": "662623b5e93304423be311c73588a2b3905e5c25c0ae381364af3997da99473c"
       }
     },
     {
@@ -32676,8 +33316,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_logging_saw_0.png",
-      "width": 26,
-      "height": 20,
+      "width": 33,
+      "height": 25,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32686,14 +33326,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "nineSlice": null,
       "mapping": "",
@@ -32707,7 +33347,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "c679c6c7428d853faaa3af43c99956bac275008e97f2bc69e5ec14c379117cf0"
+        "outputHash": "b4e422f83f78489e53e48f497b04aad11ddbedbc49b844f4a6f4f222772ed1ad"
       }
     },
     {
@@ -32716,8 +33356,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_logging_saw_1.png",
-      "width": 26,
-      "height": 20,
+      "width": 33,
+      "height": 25,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32726,14 +33366,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "nineSlice": null,
       "mapping": "",
@@ -32747,7 +33387,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "0aa6e29c4b208f404f2cd7aebd8ddb16f23dbf4eb6bfa2632099d5317b92e4f9"
+        "outputHash": "3707739246f9f1069c6b167b82ff1007998374ccee36b529ccbe8649219864b8"
       }
     },
     {
@@ -32756,8 +33396,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_logging_saw_2.png",
-      "width": 26,
-      "height": 20,
+      "width": 33,
+      "height": 25,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32766,14 +33406,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "nineSlice": null,
       "mapping": "",
@@ -32787,7 +33427,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "634d996fbe173dc0d2bb542c72760c23945b191d1b06b724055d35281fe30582"
+        "outputHash": "c50eae0aeb625b03082b4a952defb22a18cf5efb71c0c53d86c1f19ca071097e"
       }
     },
     {
@@ -32796,8 +33436,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_logging_saw_3.png",
-      "width": 26,
-      "height": 20,
+      "width": 33,
+      "height": 25,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32806,14 +33446,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "nineSlice": null,
       "mapping": "",
@@ -32827,7 +33467,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "c98e103505274c689b1ae8d3fdf8ca5fcd38aa9447b2a917203667cd872fdf89"
+        "outputHash": "b835041ebbcb1c49d4186e5b9c855fca7374e276157bf8a6631bc522e09f2790"
       }
     },
     {
@@ -32836,8 +33476,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_logging_saw_4.png",
-      "width": 26,
-      "height": 20,
+      "width": 33,
+      "height": 25,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32846,14 +33486,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "nineSlice": null,
       "mapping": "",
@@ -32867,7 +33507,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "dfa35cdc5c849e0fe9fd75a30805898627b0967ba0683471b4f2ee4970c6fde5"
+        "outputHash": "e148397c8eb7d26a6e72476bce3b14fe4a257762088b35eac61baaeb9857b87c"
       }
     },
     {
@@ -32876,8 +33516,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_logging_saw_5.png",
-      "width": 26,
-      "height": 20,
+      "width": 33,
+      "height": 25,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32886,14 +33526,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "nineSlice": null,
       "mapping": "",
@@ -32907,7 +33547,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "aa3fc9d7dcdaa54287e22cd9673e60ff3a6f3c777f8fca9fbc5c314bb42405f9"
+        "outputHash": "5b9cdf1f0a8c8468c3426ef9be7a78cc3da3823097d6c00b06eea2093c72bce4"
       }
     },
     {
@@ -32916,8 +33556,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_logging_saw_6.png",
-      "width": 26,
-      "height": 20,
+      "width": 33,
+      "height": 25,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32926,14 +33566,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "nineSlice": null,
       "mapping": "",
@@ -32947,7 +33587,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "7c58f3848da8bd0c03594c39ccb0840b90d9668e8635fbc467be29654827c730"
+        "outputHash": "c5913e4ae2ff51ace0b39b0454849a93cc4431d27cc291512a881d617a6c8f99"
       }
     },
     {
@@ -32956,8 +33596,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_logging_saw_7.png",
-      "width": 26,
-      "height": 20,
+      "width": 33,
+      "height": 25,
       "pivot": {
         "x": 0,
         "y": 0
@@ -32966,14 +33606,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 26,
-        "h": 20
+        "w": 33,
+        "h": 25
       },
       "nineSlice": null,
       "mapping": "",
@@ -32987,7 +33627,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "59fc6564a9c01b598792dada141ea873285613a94986570f8ad89f1cf228526f"
+        "outputHash": "613ff41a24a76fa769f5e9699dfd2b4680a19ceaf9cb735cb07cfe53c6d37791"
       }
     },
     {
@@ -32996,8 +33636,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_body.png",
-      "width": 96,
-      "height": 105,
+      "width": 120,
+      "height": 131,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33006,14 +33646,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 96,
-        "h": 105
+        "w": 120,
+        "h": 131
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 96,
-        "h": 105
+        "w": 120,
+        "h": 131
       },
       "nineSlice": null,
       "mapping": "",
@@ -33027,7 +33667,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "0a3b3d64db1340ed8e8e2a8fdcc3f64eb771ee00cbcf5b280ea4306b04ab00c5"
+        "outputHash": "c5c57d54b0d17637f8c00ac40e05ee7a080ae8bf80cf4bb5774ed4a7d66b38cf"
       }
     },
     {
@@ -33036,8 +33676,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_lantern_0.png",
-      "width": 28,
-      "height": 37,
+      "width": 35,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33046,14 +33686,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -33067,7 +33707,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "b8601f749e75c3c740d8c781c6d59c4b9f89ad7e296425c452414eca103b9cb7"
+        "outputHash": "2e563176c68114b2072ee37206eb7021baa68f60db62ed3af420b504151e6caf"
       }
     },
     {
@@ -33076,8 +33716,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_lantern_1.png",
-      "width": 28,
-      "height": 37,
+      "width": 35,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33086,14 +33726,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -33107,7 +33747,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "00b5237375a3322c351035504df8f76f3d6f01ec4f8c3314e96916bcc70765cf"
+        "outputHash": "012df511f4ebb38012db40129fa8940f7e9e50159ee8cfd51d56f2c97c71974e"
       }
     },
     {
@@ -33116,8 +33756,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_lantern_2.png",
-      "width": 28,
-      "height": 37,
+      "width": 35,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33126,14 +33766,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -33147,7 +33787,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "32c92f18cd70f083dd13d1b8f148cde2092086507c04d230bc252fe5e5855066"
+        "outputHash": "09cc68cc7c625027d75722aa361068d36b7d55d0a3a9624c7bb7d725dd153a15"
       }
     },
     {
@@ -33156,8 +33796,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_lantern_3.png",
-      "width": 28,
-      "height": 37,
+      "width": 35,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33166,14 +33806,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -33187,7 +33827,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "0883effe3c13f13fae09f3c741d7296fd93bed35b3e114f8815ce2a247e4524f"
+        "outputHash": "37d682d939ea1226a57b741432deece91c84300d36cd8181ccd9e8e227948b3b"
       }
     },
     {
@@ -33196,8 +33836,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_lantern_4.png",
-      "width": 28,
-      "height": 37,
+      "width": 35,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33206,14 +33846,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -33227,7 +33867,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "c4712dcf391f11afceabf548c68ee141466c8dd1c95490bc8c9a3acfbf6eaaec"
+        "outputHash": "6c47be34dd608a4cd7d3b61e5590c46e114b3fa5d3035561b3b56b416a78bb06"
       }
     },
     {
@@ -33236,8 +33876,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_lantern_5.png",
-      "width": 28,
-      "height": 37,
+      "width": 35,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33246,14 +33886,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -33267,7 +33907,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "370c79756dfb5a8fea464550fc4aae8ea9e6308d5270109fb49a7c71b703c839"
+        "outputHash": "337f2cbd2c5d37c0524b8ce57da68d3890aed439105d0c3c88861255c4914351"
       }
     },
     {
@@ -33276,8 +33916,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_lantern_6.png",
-      "width": 28,
-      "height": 37,
+      "width": 35,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33286,14 +33926,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -33307,7 +33947,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "f27bef1e884847c9a2cd0742cbfa89baac748599da2003e1b8d528fcef1dfc42"
+        "outputHash": "21bc823f41b7dd9c77b41ac0056b0a1dd2887c63365b3f08ad4305b82db60862"
       }
     },
     {
@@ -33316,8 +33956,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_lantern_7.png",
-      "width": 28,
-      "height": 37,
+      "width": 35,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33326,14 +33966,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 28,
-        "h": 37
+        "w": 35,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -33347,7 +33987,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "ea778e9c1516e202c3fe6c03a6dc6e6fdfb99977a2274881703082afad6238da"
+        "outputHash": "e2a0632e06b7484b1835c059ce1d671ddf20c4e6b35f9f4d3a3c79132d0b91b7"
       }
     },
     {
@@ -33356,8 +33996,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_streamer_0.png",
-      "width": 35,
-      "height": 31,
+      "width": 44,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33366,14 +34006,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -33387,7 +34027,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "2b26b9013c800900f986a942d8f29ee7c8fa60927ddb4d121301e39b332e3a1e"
+        "outputHash": "08a7b6fa245158f394a1176773ccf1e405d73ecace19746e9cb7c72b60e3bebb"
       }
     },
     {
@@ -33396,8 +34036,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_streamer_1.png",
-      "width": 35,
-      "height": 31,
+      "width": 44,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33406,14 +34046,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -33427,7 +34067,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "e127fe0f9bda13d0d5a44a10cafcc1bc2fbdf694ced419a32fb1a62ffdc8f4b1"
+        "outputHash": "f20ef40ed6819882edde13bbbff6e90aa0c894f5af8c22454e6dd159ee50b08e"
       }
     },
     {
@@ -33436,8 +34076,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_streamer_2.png",
-      "width": 35,
-      "height": 31,
+      "width": 44,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33446,14 +34086,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -33467,7 +34107,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "4242d3eebf528e401bd8736864361f22e3b2437e746d10beddad907311bb27d4"
+        "outputHash": "508560e219f428ca2d728e8600c2ee4ef8507c40a4fd8b9be1f0ce2197f16193"
       }
     },
     {
@@ -33476,8 +34116,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_streamer_3.png",
-      "width": 35,
-      "height": 31,
+      "width": 44,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33486,14 +34126,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -33507,7 +34147,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "e127fe0f9bda13d0d5a44a10cafcc1bc2fbdf694ced419a32fb1a62ffdc8f4b1"
+        "outputHash": "f20ef40ed6819882edde13bbbff6e90aa0c894f5af8c22454e6dd159ee50b08e"
       }
     },
     {
@@ -33516,8 +34156,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_streamer_4.png",
-      "width": 35,
-      "height": 31,
+      "width": 44,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33526,14 +34166,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -33547,7 +34187,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "349a7b0d6ced724e6c50da2488161c1131eec21ef9ca8cd3d742f7ed44cf238d"
+        "outputHash": "a582975505ff429d1407b850dd9ee0b1db32ff2495c7affc0ba359badf1a25b9"
       }
     },
     {
@@ -33556,8 +34196,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_streamer_5.png",
-      "width": 35,
-      "height": 31,
+      "width": 44,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33566,14 +34206,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -33587,7 +34227,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "77b16e0e4a4164580a9dbaa32b500b38b3cbee787fe8da47bacacd29f06754d4"
+        "outputHash": "5123893ed717e620a53c18ab27c8b9c99f60667dfb7f0d1d9e09a39233fd8c68"
       }
     },
     {
@@ -33596,8 +34236,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_streamer_6.png",
-      "width": 35,
-      "height": 31,
+      "width": 44,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33606,14 +34246,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -33627,7 +34267,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "192df5e17cdec91980c22abc9c4eeb5fe482fd1f77dc8657102e7332385e24f6"
+        "outputHash": "a440e0b97c19f0a21d953532059b0e58110aef8a403991156d8f7fb9e7b35bfc"
       }
     },
     {
@@ -33636,8 +34276,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_patrol_streamer_7.png",
-      "width": 35,
-      "height": 31,
+      "width": 44,
+      "height": 39,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33646,14 +34286,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 31
+        "w": 44,
+        "h": 39
       },
       "nineSlice": null,
       "mapping": "",
@@ -33667,7 +34307,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "77b16e0e4a4164580a9dbaa32b500b38b3cbee787fe8da47bacacd29f06754d4"
+        "outputHash": "5123893ed717e620a53c18ab27c8b9c99f60667dfb7f0d1d9e09a39233fd8c68"
       }
     },
     {
@@ -33676,8 +34316,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_hearth_body.png",
-      "width": 82,
-      "height": 76,
+      "width": 103,
+      "height": 95,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33686,14 +34326,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 82,
-        "h": 76
+        "w": 103,
+        "h": 95
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 82,
-        "h": 76
+        "w": 103,
+        "h": 95
       },
       "nineSlice": null,
       "mapping": "",
@@ -33707,7 +34347,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "74d98fbcda76ac96eebd4b51526a3fa063fc6bc51bcddc9f64a931fb7508c12d"
+        "outputHash": "92661d4a09e02774a79463920f9db2ac55a725274aef40005dce46129d02480a"
       }
     },
     {
@@ -33716,8 +34356,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_hearth_flame_0.png",
-      "width": 35,
-      "height": 45,
+      "width": 44,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33726,14 +34366,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -33747,7 +34387,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "68fa65aeb96619c2a8d863a12f6d6a94278f90741fca1b1a14e7f2634fb20eff"
+        "outputHash": "7c56a5a12c3563b12e55c50d46afcb9b978a0b38e6c3ef43e60f8817f4468174"
       }
     },
     {
@@ -33756,8 +34396,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_hearth_flame_1.png",
-      "width": 35,
-      "height": 45,
+      "width": 44,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33766,14 +34406,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -33787,7 +34427,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "a0068a7b90b5a106ee4d8336149214919ace2baaf5fab9ccdbeee92376be593c"
+        "outputHash": "29fa98e7a87efb1157185ba9201990717049165c00b8bd59508a6a92e21285f2"
       }
     },
     {
@@ -33796,8 +34436,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_hearth_flame_2.png",
-      "width": 35,
-      "height": 45,
+      "width": 44,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33806,14 +34446,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -33827,7 +34467,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "22f66ec21f143f6e6614e1d697519350481cf9b37c547c1b786ee057c2c1ebe2"
+        "outputHash": "24413cd8ceabfbf7ec1cbf80d6179f1b9e3c2f0e2d5979431d1e3be872475293"
       }
     },
     {
@@ -33836,8 +34476,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_hearth_flame_3.png",
-      "width": 35,
-      "height": 45,
+      "width": 44,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33846,14 +34486,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -33867,7 +34507,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "ca5defa73e1669daec0a3b82c2a8e2e81a17e0aa008b649fe79dcf578dff2e3f"
+        "outputHash": "05266f509402fdf60ef04bef40fd35309c7ce23b240a92c4c6b60a5f4d5e50bc"
       }
     },
     {
@@ -33876,8 +34516,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_hearth_flame_4.png",
-      "width": 35,
-      "height": 45,
+      "width": 44,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33886,14 +34526,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -33907,7 +34547,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "4f4f61d62ddc4cd0c98f70fef949379e6e2e101e62912be6647f0c2881efa4e7"
+        "outputHash": "ef16a74ff201b648959c5ca4918b81ea6fda4cb10e6931ca6045840a9b713b74"
       }
     },
     {
@@ -33916,8 +34556,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_hearth_flame_5.png",
-      "width": 35,
-      "height": 45,
+      "width": 44,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33926,14 +34566,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -33947,7 +34587,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "6f96ed7d73c086fb126d7800f896d9915a3a2cc477947dcff489ae115ca91d9d"
+        "outputHash": "ae7d173020619bd3869758007accf8c4470793aac3b9095e87fd6994a691009a"
       }
     },
     {
@@ -33956,8 +34596,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_hearth_flame_6.png",
-      "width": 35,
-      "height": 45,
+      "width": 44,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -33966,14 +34606,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -33987,7 +34627,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "1902ed266c0821a9ae662f8c46a89708954f024299e21ff5b725f417b233bf26"
+        "outputHash": "b94e7d18baaaab92e9e8d8dbda453733feb0386d5db0a516742c28f7843c068b"
       }
     },
     {
@@ -33996,8 +34636,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_hearth_flame_7.png",
-      "width": 35,
-      "height": 45,
+      "width": 44,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -34006,14 +34646,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -34027,7 +34667,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "ef163d31d96097c6d682d9679f0415ab265d979b5f9a1b597a22915b1e24f3d2"
+        "outputHash": "09a16f827d4209a4c2eca4bb7063935c92ddd6cb9b6bc73e2c80972ff6c405ba"
       }
     },
     {
@@ -34036,8 +34676,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_hearth_flame_8.png",
-      "width": 35,
-      "height": 45,
+      "width": 44,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -34046,14 +34686,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -34067,7 +34707,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "ef5f1e48db573597283ac3c6ab9fbf16e932f65c3c3d86c2dd921d0f3297cc63"
+        "outputHash": "86900dfed88b0610ad1f508ebf419d03c2c722f2ab2b4986888109473b160e48"
       }
     },
     {
@@ -34076,8 +34716,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_hearth_flame_9.png",
-      "width": 35,
-      "height": 45,
+      "width": 44,
+      "height": 56,
       "pivot": {
         "x": 0,
         "y": 0
@@ -34086,14 +34726,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 35,
-        "h": 45
+        "w": 44,
+        "h": 56
       },
       "nineSlice": null,
       "mapping": "",
@@ -34107,7 +34747,7 @@
       "provenance": {
         "source": "source/rendered2d/production/building-motion/approved-sheet.png",
         "sourceHash": "7a8a778043a2f3cea709761b5610a1ca20b0d5716717875c953ee7356601813c",
-        "outputHash": "3986d6f367500c2bd60b2c93c2621d26cb55f9c133220402d4ae0b546b73e9ff"
+        "outputHash": "1f1eab918eca90fd43306cbd2e54784a06bef87ddcb13f15880b73258967351c"
       }
     }
   ],
@@ -35252,32 +35892,6 @@
         "trimPolicy": "atlas_trim_restore_source_canvas"
       },
       {
-        "id": "fx_impact_slow",
-        "frameIds": [
-          "fx_impact_slow_1",
-          "fx_impact_slow_2",
-          "fx_impact_slow_3",
-          "fx_impact_slow_4",
-          "fx_impact_slow_5"
-        ],
-        "frameCount": 5,
-        "fps": 24,
-        "loop": false,
-        "restFrame": "fx_impact_slow_1",
-        "category": "effects",
-        "mapping": "slow",
-        "canvas": {
-          "w": 80,
-          "h": 80
-        },
-        "pivot": {
-          "x": 40,
-          "y": 40
-        },
-        "clock": "scene_visual_or_battle",
-        "trimPolicy": "atlas_trim_restore_source_canvas"
-      },
-      {
         "id": "torch_burn",
         "frameIds": [
           "deco_torch",
@@ -35704,6 +36318,64 @@
         "stridePixels": 56
       },
       {
+        "id": "fx_tower_stone_impact",
+        "frameIds": [
+          "fx_tower_stone_impact_1",
+          "fx_tower_stone_impact_2",
+          "fx_tower_stone_impact_3",
+          "fx_tower_stone_impact_4",
+          "fx_tower_stone_impact_5",
+          "fx_tower_stone_impact_6",
+          "fx_tower_stone_impact_7",
+          "fx_tower_stone_impact_8"
+        ],
+        "frameCount": 8,
+        "fps": 16,
+        "loop": false,
+        "restFrame": "fx_tower_stone_impact_1",
+        "category": "effects",
+        "mapping": "stone",
+        "canvas": {
+          "w": 48,
+          "h": 48
+        },
+        "pivot": {
+          "x": 24,
+          "y": 24
+        },
+        "clock": "scene_visual_or_battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "fx_tower_frost_impact",
+        "frameIds": [
+          "fx_tower_frost_impact_1",
+          "fx_tower_frost_impact_2",
+          "fx_tower_frost_impact_3",
+          "fx_tower_frost_impact_4",
+          "fx_tower_frost_impact_5",
+          "fx_tower_frost_impact_6",
+          "fx_tower_frost_impact_7",
+          "fx_tower_frost_impact_8"
+        ],
+        "frameCount": 8,
+        "fps": 16,
+        "loop": false,
+        "restFrame": "fx_tower_frost_impact_1",
+        "category": "effects",
+        "mapping": "frost",
+        "canvas": {
+          "w": 48,
+          "h": 48
+        },
+        "pivot": {
+          "x": 24,
+          "y": 24
+        },
+        "clock": "scene_visual_or_battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
         "id": "motion_arrow_attack",
         "frameIds": [
           "motion_arrow_attack_0",
@@ -35721,8 +36393,8 @@
         "restFrame": "motion_arrow_attack_8",
         "category": "building-parts",
         "canvas": {
-          "w": 97,
-          "h": 76
+          "w": 121,
+          "h": 95
         },
         "pivot": {
           "x": 0,
@@ -35748,8 +36420,8 @@
         "restFrame": "motion_stone_attack_8",
         "category": "building-parts",
         "canvas": {
-          "w": 55,
-          "h": 49
+          "w": 69,
+          "h": 61
         },
         "pivot": {
           "x": 0,
@@ -35777,8 +36449,8 @@
         "restFrame": "motion_slow_idle_0",
         "category": "building-parts",
         "canvas": {
-          "w": 28,
-          "h": 45
+          "w": 35,
+          "h": 56
         },
         "pivot": {
           "x": 0,
@@ -35804,8 +36476,8 @@
         "restFrame": "motion_slow_attack_8",
         "category": "building-parts",
         "canvas": {
-          "w": 69,
-          "h": 69
+          "w": 86,
+          "h": 86
         },
         "pivot": {
           "x": 0,
@@ -35836,8 +36508,8 @@
         "restFrame": "motion_gate_doors_0",
         "category": "building-parts",
         "canvas": {
-          "w": 44,
-          "h": 43
+          "w": 55,
+          "h": 54
         },
         "pivot": {
           "x": 0,
@@ -35863,8 +36535,8 @@
         "restFrame": "motion_gate_fire_left_0",
         "category": "building-parts",
         "canvas": {
-          "w": 12,
-          "h": 18
+          "w": 15,
+          "h": 23
         },
         "pivot": {
           "x": 0,
@@ -35890,8 +36562,8 @@
         "restFrame": "motion_gate_fire_right_0",
         "category": "building-parts",
         "canvas": {
-          "w": 12,
-          "h": 18
+          "w": 15,
+          "h": 23
         },
         "pivot": {
           "x": 0,
@@ -35919,8 +36591,8 @@
         "restFrame": "motion_house_smoke_0",
         "category": "building-parts",
         "canvas": {
-          "w": 21,
-          "h": 25
+          "w": 26,
+          "h": 31
         },
         "pivot": {
           "x": 0,
@@ -35946,8 +36618,8 @@
         "restFrame": "motion_house_window_0",
         "category": "building-parts",
         "canvas": {
-          "w": 19,
-          "h": 14
+          "w": 24,
+          "h": 18
         },
         "pivot": {
           "x": 0,
@@ -35973,8 +36645,8 @@
         "restFrame": "motion_farm_wheat_0",
         "category": "building-parts",
         "canvas": {
-          "w": 43,
-          "h": 29
+          "w": 54,
+          "h": 36
         },
         "pivot": {
           "x": 0,
@@ -36000,8 +36672,8 @@
         "restFrame": "motion_farm_wheel_0",
         "category": "building-parts",
         "canvas": {
-          "w": 23,
-          "h": 31
+          "w": 29,
+          "h": 39
         },
         "pivot": {
           "x": 0,
@@ -36027,8 +36699,8 @@
         "restFrame": "motion_logging_saw_0",
         "category": "building-parts",
         "canvas": {
-          "w": 26,
-          "h": 20
+          "w": 33,
+          "h": 25
         },
         "pivot": {
           "x": 0,
@@ -36054,8 +36726,8 @@
         "restFrame": "motion_patrol_lantern_0",
         "category": "building-parts",
         "canvas": {
-          "w": 28,
-          "h": 37
+          "w": 35,
+          "h": 46
         },
         "pivot": {
           "x": 0,
@@ -36081,8 +36753,8 @@
         "restFrame": "motion_patrol_streamer_0",
         "category": "building-parts",
         "canvas": {
-          "w": 35,
-          "h": 31
+          "w": 44,
+          "h": 39
         },
         "pivot": {
           "x": 0,
@@ -36110,8 +36782,8 @@
         "restFrame": "motion_hearth_flame_0",
         "category": "building-parts",
         "canvas": {
-          "w": 35,
-          "h": 45
+          "w": 44,
+          "h": 56
         },
         "pivot": {
           "x": 0,

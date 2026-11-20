@@ -88,6 +88,9 @@ export class BuildingVisuals {
             const right = weapon.getChildByName("FacingRight") as Laya.Sprite, left = weapon.getChildByName("FacingLeft") as Laya.Sprite;
             right.visible = facing > 0; left.visible = facing < 0;
             this.muzzle = (facing > 0 ? right : left).getChildByName("Muzzle") as Laya.Sprite;
+        } else if (kind === "STONE" || kind === "SLOW") {
+            // 石塔原画的抛兜在后方，默认与箭塔的正向相反；整套结构和挂点一起换边。
+            this.body.scaleX = kind === "STONE" ? -facing : facing;
         }
         const upper = root.getChildByName("AboveGround") as Laya.Sprite;
         if (upper) {

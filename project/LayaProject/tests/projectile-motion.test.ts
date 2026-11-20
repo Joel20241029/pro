@@ -31,7 +31,12 @@ test("Stone follows a rotating arc and survives removal from the five-tick event
     near(p.x, (start.x + s.x) / 2); near(p.y, (start.y + s.y - 20) / 2 - PROJECTILE_STYLE.STONE.arc); ok(p.rotation > 0);
     b.shots = []; b.tick = 7; m.update(b); equal(m.poses.length, 1); equal(p.frame, "fx_stone");
     b.tick = 9; m.update(b); equal(p.frame, "fx_stone"); ok(p.contact); near(p.x, s.x); near(p.y, s.y - 20);
-    b.tick = 14; m.update(b); equal(m.poses.length, 0);
+    equal(p.impactFrame, "fx_tower_stone_impact_1");
+    equal(p.impactAt, { x: s.x, y: s.y });
+    s.x += 25; s.y += 40;
+    b.tick = 18; m.update(b); equal(p.impactFrame, "fx_tower_stone_impact_8");
+    equal(p.impactAt, { x: s.x - 25, y: s.y - 40 });
+    b.tick = 20; m.update(b); equal(m.poses.length, 0);
 });
 test("Repeated view refresh never duplicates or replays a Shot", () => {
     const b = battle(), m = new ProjectileMotion(); b.tick = 1; b.shots = [shot("ARROW")];
@@ -62,13 +67,17 @@ test("Effect pool is bounded and fully expires", () => {
     const b = battle(), m = new ProjectileMotion(); b.tick = 1;
     b.shots = Array.from({ length: RULE.effectCap + 10 }, (_, i) => ({ ...shot("STONE"), x: 200 + i }));
     m.update(b); equal(m.poses.length, RULE.effectCap); equal(m.poses[0].shot, b.shots[10]);
-    b.shots = []; b.tick = 20; m.update(b); equal(m.arrivals.length, RULE.effectCap); m.update(b); equal(m.poses.length, RULE.effectCap); b.tick += 5; m.update(b); equal(m.poses.length, 0);
+    b.shots = []; b.tick = 20; m.update(b); equal(m.arrivals.length, RULE.effectCap); m.update(b); equal(m.poses.length, RULE.effectCap); b.tick += 11; m.update(b); equal(m.poses.length, 0);
 });
-test("Frost projectile becomes the existing frost ring and fades", () => {
-    const b = battle(), m = new ProjectileMotion(); b.shots = [shot("SLOW")]; b.tick = 1; m.update(b); equal(m.poses[0].frame, "fx_ice");
+test("Frost projectile starts the dedicated hit clip on contact and follows the moving target", () => {
+    const b = battle(), m = new ProjectileMotion(), s = shot("SLOW"); b.shots = [s]; b.tick = 1; m.update(b);
+    equal(m.poses[0].frame, "fx_ice"); equal(m.poses[0].impactFrame, undefined);
     b.tick = 8; m.update(b); equal(m.poses[0].frame, "fx_ice"); ok(m.poses[0].contact);
-    b.tick = 9; m.update(b); equal(m.poses[0].frame, "fx_slow_ring"); ok(m.poses[0].alpha > 0 && m.poses[0].alpha < 1);
-    b.tick = 13; m.update(b); equal(m.poses.length, 0);
+    equal(m.poses[0].impactFrame, "fx_tower_frost_impact_1");
+    s.y += 30;
+    b.tick = 17; m.update(b); equal(m.poses[0].impactFrame, "fx_tower_frost_impact_8");
+    near(m.poses[0].y, s.y - 20); equal(m.poses[0].impactAt, undefined);
+    b.tick = 19; m.update(b); equal(m.poses.length, 0);
 });
 test("Playing effects does not change damage, targeting, outcome or business state", () => {
     const a = battle(), b = battle(), m = new ProjectileMotion(); let observed = 0;
@@ -83,7 +92,9 @@ test("All three tower types launch from their visible source anchor at all five 
         const b = battle(), m = new ProjectileMotion(), s = { ...shot(kind), tower };
         b.tick = 1; b.shots = [s]; m.update(b); const start = towerLaunch(tower, kind);
         near(m.poses[0].x, start.x); near(m.poses[0].y, start.y);
-        if (kind === "ARROW") ok([1, 3, 4].includes(tower) ? start.x < PADS[tower].x : start.x > PADS[tower].x);
+        const rightBank = [1, 3, 4].includes(tower);
+        if (kind === "ARROW") ok(rightBank ? start.x < PADS[tower].x : start.x > PADS[tower].x);
+        if (kind === "STONE") ok(rightBank ? start.x > PADS[tower].x : start.x < PADS[tower].x);
         if (kind === "SLOW") near(start.x, PADS[tower].x);
     }
 });

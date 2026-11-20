@@ -5,7 +5,7 @@ import { GroundPoint, Footprint, TOWER_VIEW, VILLAGE_PROPS, LANDSCAPE_FOOTPRINTS
 export { GroundPoint, Footprint, VillageProp, TOWER_VIEW, VILLAGE_PROPS, LANDSCAPE_FOOTPRINTS, MOTION, CAMP_STOPS, WEDDING, VILLAGE_STOPS } from "./config/VillageSceneConfig";
 export function towerLaunch(index: number, kind: TowerKind, pads: readonly GroundPoint[] = PADS): GroundPoint {
     const pad = pads[index], at = TOWER_VIEW.muzzle[kind], scale = TOWER_VIEW.size / TOWER_VIEW.canvas;
-    return { x: pad.x + (at.x - TOWER_VIEW.canvas / 2) * scale * (kind === "ARROW" ? TOWER_VIEW.facing[index] : 1), y: pad.y + TOWER_VIEW.top + at.y * scale };
+    return { x: pad.x + (at.x - TOWER_VIEW.canvas / 2) * scale * TOWER_VIEW.facing[index], y: pad.y + TOWER_VIEW.top + at.y * scale };
 }
 /** 建筑底座保持图片的真实尺寸；农田/伐木工作点跟随各自资源，不能把动作点单独拉到图外。 */
 export function layoutVillage(layout: GameLayout) {
