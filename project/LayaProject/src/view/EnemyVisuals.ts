@@ -133,13 +133,11 @@ export class EnemyVisuals {
                 this.patrolImpact.mouseEnabled = false;
                 this.node.addChild(this.patrolImpact);
             }
-            const impact = this.patrolImpact, spec = FEEDBACK.patrolImpact, t = patrolImpactAge / spec.seconds;
-            impact.graphics.clear();
-            impact.graphics.drawEllipse(0, 0, spec.radiusX + spec.spreadX * t, spec.radiusY + spec.spreadY * t, null, spec.color, spec.lineWidth);
-            // 落点随身体抖动和压扁，冲击圈本身维持屏幕比例。
+            const impact = this.patrolImpact;
+            this.art.applyFrame(impact, this.art.frameId("fx_impact_arrow", patrolImpactAge), FEEDBACK.impact.size.ARROW * FEEDBACK.impactScale);
+            // 落点随身体抖动和压扁，命中帧本身维持屏幕比例。
             impact.pos(definition.foot.x + this.body.x, frame.y + canvas * .46);
-            impact.scale(FEEDBACK.impactScale / scale, FEEDBACK.impactScale / (scale * (death?.scaleY ?? 1)));
-            impact.alpha = 1 - t;
+            impact.scale((mirror ? -1 : 1) / scale, 1 / (scale * (death?.scaleY ?? 1)));
             impact.visible = true;
         } else if (this.patrolImpact) this.patrolImpact.visible = false;
         if (key === this.key) return;

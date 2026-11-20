@@ -71,7 +71,10 @@ test('view clock ignores battle speed and stops advancing tips while backgrounde
     const { tip, target } = setup(), pauses = new Set();
     const view = Object.create(GameView.prototype);
     view.handSpeed = { counting: false, update() {} };
+    const guide = { tick() {}, node: { visible: false } };
+    view.itemGuides = { backpack: guide, shop: guide };
     Object.assign(view, { hud: { advance() {} }, panels: { advance() { return false; } }, results: { advance() {}, hideFlights() {} }, game: { pauses, speed: 3 }, overlay: { numChildren: 0 }, reminder: { tick() {} }, patrolGuide: { hide() {}, tick() {}, node: { visible: false } }, starterGuide: { tick() {}, node: { visible: false } }, anchoredTip: tip, tip: { advance() {} }, village: { advance() { return false; } } });
+    view.hud.featureButtons = [];
     tip.show('佟楼', () => target);
     for (let i = 0; i < 30; i++) view.update(.05);
     assert(tip.visible);

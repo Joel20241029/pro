@@ -58,7 +58,7 @@ export class VillagerMotion {
     }
     get count() { return this.people.size; }
     get(id: string): Readonly<VillagerPose> { const p = this.people.get(id); if (!p) throw new Error(`未同步村民表现：${id}`); return p; }
-    sync(state: GameState, towers: Tower[]) {
+    sync(state: GameState, towers: Tower[], focus?: string) {
         const newRun = this.run !== state.run;
         if (newRun) { this.people.clear(); this.campSlots.clear(); this.waitingSlots.clear(); this.run = state.run; this.weddings = []; this.wedding = null; }
         const families = new Set(state.families.map(f => f.id));
@@ -71,7 +71,7 @@ export class VillagerMotion {
         this.knownFamilies = families;
         this.visiblePeople = this.selection.select(state, towers, [
             ...(this.wedding ? this.wedding.partners : []), ...this.weddings.reduce<string[]>((ids, w) => ids.concat(w.partners), [])
-        ]);
+        ], focus);
         const present = new Set(this.visiblePeople.map(p => p.id));
         for (const id of this.people.keys()) if (!present.has(id)) this.people.delete(id);
         this.night = state.phase === "NIGHT";

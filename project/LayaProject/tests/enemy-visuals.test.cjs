@@ -6,7 +6,7 @@ const {ENEMY_LOOKS,ENEMY_PALETTES,ENEMY_SCALES}=require(path.join(built,'view/co
 const {FEEDBACK}=require(path.join(built,'view/config/FeedbackConfig.js'));
 const definitions=require('../../../res/native/enemies.json').definitions;
 class Sprite {
- constructor(){this.calls=[];this.children=[];this.graphics={clear:()=>this.calls.length=0,drawImage:(...args)=>this.calls.push(args),drawTexture:(...args)=>this.calls.push(args),drawEllipse:(...args)=>this.calls.push(args),drawCircle(){},drawCurves(){},drawPoly(){},drawRoundRect(){},drawLines(){}};}
+ constructor(){this.calls=[];this.children=[];this.graphics={clear:()=>this.calls.length=0,drawImage:(...args)=>this.calls.push(args),drawTexture:(...args)=>this.calls.push(args),drawCircle(){},drawCurves(){},drawPoly(){},drawRoundRect(){},drawLines(){}};}
  addChild(child){this.children.push(child);}
  scale(x,y){this.scaleX=x;this.scaleY=y;return this;}
  size(w,h){this.width=w;this.height=h;return this;}
@@ -15,7 +15,9 @@ class Sprite {
 }
 global.Laya={Sprite};
 function fixture(){
- const node=new Sprite(),visual=new EnemyVisuals(node,{enemyLayouts:definitions,get:id=>id,applyFrame:(sprite,id,size)=>{sprite.texture=id;sprite.size(size,size);}});
+ const node=new Sprite(),visual=new EnemyVisuals(node,{enemyLayouts:definitions,get:id=>id,
+  frameId:(id,age)=>`${id}_${1+Math.floor(age*FEEDBACK.impact.fps)}`,
+  applyFrame:(sprite,id,size)=>{sprite.texture=id;sprite.size(size,size);}});
  return {node,visual,get calls(){return [...node.calls,...node.children[0].calls];}};
 }
 test('every published accessory combination draws exactly once with valid native placement, stable feet and the original seed choices',()=>{
@@ -53,19 +55,20 @@ test('frost and the other head statuses share a centered row across mirror, expi
  visual.draw('enemy_raider',0,0,false);
  assert.deepEqual(marks(),[]);
 });
-test('patrol ring keeps its size as the target moves, mirrors and flattens, and hides on reuse',()=>{
+test('patrol uses arrow impact frames and keeps their size as the target moves, mirrors and flattens',()=>{
  const {node,visual}=fixture(),kind='enemy_raider';
  visual.draw(kind,0,0,false,true,undefined,4,undefined,undefined,false,undefined,true,0);
- const ring=node.children.find(child=>child.name==='PatrolImpact'), body=node.children[0];
- assert(ring.visible&&node.children.find(child=>child.name==='FrostMark').visible);
- const offset=()=>(ring.y-node.pivotY)*node.scaleY;
+ const impact=node.children.find(child=>child.name==='PatrolImpact'), body=node.children[0];
+ assert(impact.visible&&node.children.find(child=>child.name==='FrostMark').visible);
+ assert.equal(impact.texture,'fx_impact_arrow_1');
+ const offset=()=>(impact.y-node.pivotY)*node.scaleY;
  const height=offset();
- assert(height<0);assert.equal(ring.x,node.pivotX+body.x);
+ assert(height<0);assert.equal(impact.x,node.pivotX+body.x);
  visual.draw(kind,0,0,true,false,{scaleY:.22,alpha:1},0,undefined,undefined,false,undefined,false,.11);
- assert(Math.abs(offset()-height*.22)<1e-9);assert.equal(ring.alpha,.5);
- assert(Math.abs(node.scaleY*ring.scaleY-FEEDBACK.impactScale)<1e-9);
+ assert(Math.abs(offset()-height*.22)<1e-9);assert.equal(impact.texture,'fx_impact_arrow_3');
+ assert(Math.abs(node.scaleY*impact.scaleY*impact.width-FEEDBACK.impact.size.ARROW*FEEDBACK.impactScale)<1e-9);
  visual.draw(kind,0,0,true);
- assert(!ring.visible);assert.equal(node.children.filter(child=>child.name==='PatrolImpact').length,1);
+ assert(!impact.visible);assert.equal(node.children.filter(child=>child.name==='PatrolImpact').length,1);
 });
 test('boar body registration keeps ground position stable; mirror and hit feedback do not leave stale attachments in a reused node',()=>{
  const f=fixture(),kind='enemy_boar',def=definitions[kind],seed=8;

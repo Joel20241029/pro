@@ -5,6 +5,7 @@ import { GameState, isWorkingAdult } from "../../game/GameState";
 import { RESIDENTIAL, RULE, TOWERS, TowerKind } from "../../game/GameConfig";
 import { gateCapacity, laborSlots, laborYield, levelPower, repairCost, residentialCost, storageCapacity, UpgradeKind, upgradeCost, upgradeUnavailableReason } from "../../game/Growth";
 import { C, UI } from "../UiTheme";
+import { PATROL_BOOTH_FRAME } from "../BuildingLayout";
 import { ScrollList } from "../ScrollList";
 import { Panel, PanelContext } from "./PanelContext";
 import { amount, coloredName, growthPreview } from "../ViewText";
@@ -40,7 +41,7 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
         });
         const level = s.patrol.level, captain = patrolCaptain(s);
         entries.unshift({
-            id: "PATROL", icon: `patrol_booth_${level >= 9 ? 2 : level >= 5 ? 1 : 0}`,
+            id: "PATROL", icon: PATROL_BOOTH_FRAME,
             title: `${PATROL.building} · ${amount(level)} 级`,
             effect: captain ? `队长 · ${coloredName(captain)}` : `${PATROL.role}待任命`,
             cost: patrolCost(s), reason: null, verb: "去查看", action: () => ctx.open({ type: "patrol", back: p })

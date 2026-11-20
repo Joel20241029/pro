@@ -82,7 +82,7 @@ export class CombatPresentation {
         for (const [seq, started] of this.burstTargets)
             if (this.clock - started >= FEEDBACK.impact.frameCount / FEEDBACK.impact.fps) this.burstTargets.delete(seq);
         for (const [seq, started] of this.patrolHits)
-            if (this.clock - started >= FEEDBACK.patrolImpact.seconds) this.patrolHits.delete(seq);
+            if (this.clock - started >= FEEDBACK.impact.frameCount / FEEDBACK.impact.fps) this.patrolHits.delete(seq);
         for (const [seq, cue] of this.loveTargets) {
             const seconds = cue.cleared ? FEEDBACK.impact.frameCount / FEEDBACK.impact.fps : FEEDBACK.loveHeal.seconds;
             if (this.clock - cue.started >= seconds) this.loveTargets.delete(seq);

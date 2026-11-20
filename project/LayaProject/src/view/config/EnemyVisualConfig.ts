@@ -14,8 +14,12 @@ export const ENEMY_SCALES = [.96, 1, 1.04] as const;
 /** 1.0.18 小怪相对1.0.17放大15%、Boss放大25%；只改显示，足部通行范围见RoadMovementConfig。
  * 配套发布采样从原始高清稿重制，不能对旧小图直接插值放大。
  */
-// 小怪与首领在 1.0.72 基础上统一再放大 5%，身体、配饰和地影共用原足点。
-const ENEMY_SIZE_SCALE = { ordinary: 1.15 * 1.08 * 1.05, boss: 1.25 * 1.08 * 1.10 * 1.05 } as const;
+/** 本轮普通怪与首领等比放大，身体、配饰和地影共用原足点，沿用现有纹理。 */
+export const ENEMY_DISPLAY_GROWTH = 1.25;
+const ENEMY_SIZE_SCALE = {
+    ordinary: 1.15 * 1.08 * 1.05 * ENEMY_DISPLAY_GROWTH,
+    boss: 1.25 * 1.08 * 1.10 * 1.05 * ENEMY_DISPLAY_GROWTH
+} as const;
 /** 新版完整轮廓已有明确头饰和装备，只给适合的角色附加小背旗/羽毛。
  * 不给野兽叠人类头饰，不让配件盖脸。阴影布局读取原生预制体，不在这里维护第二份位置。
  */

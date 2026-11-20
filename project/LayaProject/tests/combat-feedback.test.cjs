@@ -9,9 +9,18 @@ const {CombatPresentation}=require(path.join(build,'view/CombatPresentation'));
 const {ProjectileMotion,PROJECTILE_STYLE}=require(path.join(build,'view/ProjectileMotion'));
 const {LoggingFeedback}=require(path.join(build,'view/LoggingFeedback'));
 const {FEEDBACK}=require(path.join(build,'view/config/FeedbackConfig'));
-const {RULE,PADS}=require(path.join(build,'game/GameConfig'));
+const {RULE,PADS,TOWERS}=require(path.join(build,'game/GameConfig'));
 function battle(kind='ARROW') {const s=createGame(7);applyCommand(s,{type:'NIGHT'});const b=new BattleSimulation(s);b.base.towers.forEach((t,i)=>{t.kind=i===0?kind:null;t.operator=i===0?s.people[0].id:null;});b.cursor=b.base.wave.entries.length;return b;}
 function enemy(seq,hp=1000,progress=200){return {seq,kind:'enemy_raider',appearanceSeed:87,progress,hp,speed:0,slow:0,slowTicks:0, walkDistance: 0,born:0,summoned:0};}
+// Pick an actual close pair so damage and frost tests do not depend on how a particular sequence is distributed.
+function nearbyEnemy(target,kind) {
+ const at=enemyPoint(target), tower=PADS[0], {range,splash}=TOWERS[kind];
+ const match=Array.from({length:32},(_,i)=>enemy(20+i,1000,target.progress+5)).find(candidate=>{
+  const p=enemyPoint(candidate);
+  return Math.hypot(p.x-at.x,p.y-at.y)<splash&&Math.hypot(p.x-tower.x,p.y-tower.y)<range;
+ });
+ assert(match,'expected a real splash neighbor');return match;
+}
 function shot(tick,kind='ARROW'){return {tower:0,x:300,y:400,kind,tick};}
 test('patrol hit clock belongs to the target through movement, a finishing blow and battle replacement',()=>{
  const b=battle(),f=new CombatPresentation(),a=enemy(1),c=enemy(2);
@@ -20,15 +29,15 @@ test('patrol hit clock belongs to the target through movement, a finishing blow 
  a.progress+=20;f.advance(.11);assert.equal(f.patrolImpactAge(a.seq),.11);assert.equal(f.patrolImpactAge(c.seq),undefined);
  b.enemies=[];a.hp=c.hp=0;b.outcome='WIN';f.sync(b,[hit(a,1),hit(c,1)]);
  assert(f.deathPose(a.seq)&&f.deathPose(c.seq));assert.equal(f.patrolImpactAge(a.seq),0);
- f.advance(FEEDBACK.patrolImpact.seconds-.01);assert(f.hasPatrolImpact);
+ f.advance(FEEDBACK.impact.frameCount/FEEDBACK.impact.fps-.01);assert(f.hasPatrolImpact);
  f.advance(.02);assert(!f.hasPatrolImpact);assert(f.deathPose(a.seq));
  f.sync(b,[hit(a,2)]);f.sync(battle(),[]);assert(!f.hasPatrolImpact);
 });
 test('real stone hurt set contains splash victims; slow-only neighbors have no damage event',()=>{
- for(const kind of ['STONE','SLOW']){const b=battle(kind);b.enemies=[enemy(10),enemy(11,1000,205)];b.step();const e=b.feedback.find(e=>e.type==='shot');assert(e);assert.equal(e.hurt.length,kind==='STONE'?2:1);if(kind==='SLOW')assert.equal(b.enemies[0].slowTicks,RULE.slowTicks);}
+ for(const kind of ['STONE','SLOW']){const b=battle(kind);const target=enemy(10);b.enemies=[target,nearbyEnemy(target,kind)];b.step();const e=b.feedback.find(e=>e.type==='shot');assert(e);assert.equal(e.hurt.length,kind==='STONE'?2:1);if(kind==='SLOW')assert.equal(b.enemies[0].slowTicks,RULE.slowTicks);}
 });
 test('frost reaches living splash targets at visual impact and clears with the underlying slow',()=>{
- const b=battle('SLOW'),f=new CombatPresentation(),p=new ProjectileMotion(),a=enemy(10),neighbor=enemy(11,1000,205),far=enemy(12,1000,PATH_LENGTH-1);
+ const b=battle('SLOW'),f=new CombatPresentation(),p=new ProjectileMotion(),a=enemy(10),neighbor=nearbyEnemy(a,'SLOW'),far=enemy(12,1000,PATH_LENGTH-1);
  b.enemies=[a,neighbor,far];b.step();
  const e=b.feedback.find(e=>e.type==='shot');
  assert.deepEqual(e.slowed,[a.seq,neighbor.seq]);assert.equal(e.hurt.length,1);

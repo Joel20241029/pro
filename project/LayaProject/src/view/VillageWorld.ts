@@ -1,7 +1,8 @@
 import { CombatPresentation } from "./CombatPresentation";
 import { LoggingFeedback } from "./LoggingFeedback";
 import { EnemyVisuals } from "./EnemyVisuals";
-import { GameSession } from "../game/GameSession";
+import { EssenceFeedback, GameSession } from "../game/GameSession";
+import { LIANG_ESSENCE } from "../config/ShopConfig";
 import { GameState } from "../game/GameState";
 import { VILLAGER_QUALITY } from "../config/VillagerQuality";
 import { RULE } from "../game/GameConfig";
@@ -22,7 +23,6 @@ import { VillagerThought, VillagerThoughts } from "./VillagerThoughts";
 import { CRY, NewbornCry } from "./NewbornCry";
 import { SPEECH } from "./config/VillagerSpeechConfig";
 import { BuildingLook, BuildingVisuals } from "./BuildingVisuals";
-import { houseRooms } from "./BuildingLayout";
 import { UiWidgets } from "./UiWidgets";
 import { HOUSE_TIP_NAMES } from "./config/AnchoredTipConfig";
 import { HUD, LAYOUT } from "./config/HudConfig";
@@ -35,6 +35,8 @@ import { SummonChargeVisuals } from "./SummonChargeVisuals";
 import { PatrolVisuals } from "./PatrolVisuals";
 import { PATROL_PROP } from "./config/VillageSceneConfig";
 import { TimedBlastVisuals } from "./TimedBlastVisuals";
+/** 动效先播放上箭头，再交给常规两秒气泡；单位为前台表现秒。 */
+const ESSENCE_CUE = { riseSeconds: .72, arrowSize: 64, riseDistance: 55 } as const;
 /** 地图、人物、建筑与战斗表现的唯一所有者。视觉时钟不推进 GameSession/业务随机数。 */
 export class VillageWorld {
     readonly scenery = new Laya.Sprite();
@@ -42,6 +44,10 @@ export class VillageWorld {
     readonly shots = new Laya.Sprite();
     readonly bellAura = new Laya.Sprite();
     readonly speechTip = new AnchoredTip(this.art, SPEECH.width, SPEECH.height, SPEECH.font, true);
+    readonly essenceArrow = new Laya.Sprite();
+    readonly essenceTip = new AnchoredTip(this.art, SPEECH.width, SPEECH.height, SPEECH.font, true, SPEECH.seconds);
+    private essence: (EssenceFeedback & { elapsed: number; spoken: boolean }) | null = null;
+    private essencePoint = new Laya.Point();
     readonly cryIcon = new Laya.Sprite();
     readonly blast = new TimedBlastVisuals(this.game, this.art, this.ui, this.layout);
     private people: Laya.Sprite[] = [];
@@ -83,7 +89,6 @@ export class VillageWorld {
     private renderDelta = 0;
     private sceneSeconds = 0;
     private villageMotionSeconds = 0;
-    private torchGlows = new Map<string,Laya.Sprite>();
     private hitTop = new Laya.Point();
     private hitBottom = new Laya.Point();
     get hasPatrolImpact() { return this.feedback.hasPatrolImpact; }
@@ -102,12 +107,7 @@ export class VillageWorld {
             this.art.applyFrame(node, p.frame, p.size);
             node.pos(p.x, p.y);
             this.world.addChild(node);
-            if (p.id.startsWith("torch:")) {
-                const size = p.size, glow = this.ui.image(node,"hd_village_window_glow",size*.27,size*.02,size*.46,size*.4,false);
-                glow.alpha = 0;
-                this.torchGlows.set(p.id,glow);
-            }
-            const upgradeable = p.id.startsWith("tower:") || (p.id.startsWith("building:") && p.id !== "building:hearth" && p.id !== PATROL_PROP);
+            const upgradeable = p.id.startsWith("tower:") || p.id.startsWith("building:");
             this.props.push({ id: p.id, y: p.ground ? -1 : p.y, node, ground: p.ground, visual: upgradeable ? new BuildingVisuals(node, art) : undefined });
             if (p.id === PATROL_PROP) {
                 node.visible = false;
@@ -191,6 +191,7 @@ export class VillageWorld {
         }
     }
     reset() {
+        this.essence = null; this.essenceArrow.visible = false; this.essenceTip.hide();
         this.shield.reset();
         this.summon.reset();
         this.interaction.cancelPresses();
@@ -218,9 +219,13 @@ export class VillageWorld {
     }
     sync(s: GameState, preserveOverlay: boolean) {
         if (!preserveOverlay)
-            this.motion.sync(s, this.game.battle ? this.game.battle.base.towers : s.towers);
+            this.motion.sync(s, this.game.battle ? this.game.battle.base.towers : s.towers, s.phase === "DAY" ? this.essence?.person : undefined);
         this.thoughts.sync(s);
         this.crying.sync(s.people);
+    }
+    showEssence(effect: EssenceFeedback) {
+        this.essence = { ...effect, elapsed: 0, spoken: false };
+        this.hideSpeech(); this.essenceTip.hide();
     }
     hideSpeech() { this.thoughts.current = this.shownThought = null; this.speechTip.hide(); }
     drawScenery(night: boolean) {
@@ -270,7 +275,7 @@ export class VillageWorld {
             this.feedback.advance(Math.min(RULE.frameCap, Math.max(0, delta)));
         if (s && advancing && (s.phase === "DAY" || s.phase === "NIGHT")) {
             this.sceneSeconds += visualDelta;
-            if (this.motion.update(visualDelta)) this.motion.sync(s, battle ? battle.base.towers : s.towers);
+            if (this.motion.update(visualDelta)) this.motion.sync(s, battle ? battle.base.towers : s.towers, s.phase === "DAY" ? this.essence?.person : undefined);
             if (this.art.ready("village")) for (const p of this.motion.visiblePeople) {
                 const pose = this.motion.get(p.id), chopping = s.phase === "DAY" && p.job === "LOGGING" && pose.clip.endsWith("_work");
                 const clip = chopping ? this.art.animation(this.art.labor(pose.clip, pose.direction).clip) : null;
@@ -285,9 +290,15 @@ export class VillageWorld {
                     const pose = this.motion.get(id);
                     return !pose.insideTower && pose.y > this.layout.worldY(840) && pose.heartElapsed === null;
                 };
-                this.crying.advance(visualDelta, !this.thoughts.current, visible);
-                if (!this.crying.current) this.thoughts.update(s, visualDelta, visible);
-                this.speechTip.advance(visualDelta);
+                if (this.essence) {
+                    this.essence.elapsed += visualDelta;
+                    this.essenceTip.advance(visualDelta);
+                    if (this.essence.spoken && !this.essenceTip.visible) this.essence = null;
+                } else {
+                    this.crying.advance(visualDelta, !this.thoughts.current, visible);
+                    if (!this.crying.current) this.thoughts.update(s, visualDelta, visible);
+                    this.speechTip.advance(visualDelta);
+                }
             }
         }
         this.renderDelta += delta;
@@ -313,8 +324,10 @@ export class VillageWorld {
         this.projectileVisuals.clear();
         this.hearts.forEach(n => { n.visible = false; n.alpha = 1; n.scale(1, 1); n.pos(0, 0); });
         this.cryIcon.visible = false;
+        this.essenceArrow.visible = false;
         this.residentCuesBlocked = panelOpen || houseTipOpen || this.game.pauses.size > 0 || s?.phase !== "DAY";
         if (this.residentCuesBlocked) { this.hideSpeech(); this.crying.dismiss(); }
+        if (s?.phase !== "DAY" && this.essence) { this.essence = null; this.essenceTip.hide(); }
         const depth = this.props.slice();
         const booth = this.props.find(item => item.id === PATROL_PROP)!;
         booth.node.visible = !!s;
@@ -330,9 +343,9 @@ export class VillageWorld {
         for (const p of this.props) {
             let kind: BuildingLook | null = null, level = 0, rooms = 1, damaged = false, facing = 1;
             if (p.id === PATROL_PROP) {
-                const tier = s.patrol.level >= 9 ? 2 : s.patrol.level >= 5 ? 1 : 0;
+                kind = "PATROL";
+                level = s.patrol.level;
                 const size = p.node.width;
-                this.art.applyFrame(p.node, `patrol_booth_${tier}`, size);
                 const timer = this.patrolTimer!, glow = this.patrolGlow!, patrol = battle?.patrol;
                 timer.visible = !!battle;
                 timer.text = patrol ? `${Math.ceil(patrol.secondsUntil(battle!.tick))} 秒` : "待任命";
@@ -358,7 +371,7 @@ export class VillageWorld {
             else if (p.id.startsWith("building:house-")) {
                 kind = "HOUSE";
                 level = s.housing;
-                rooms = houseRooms(s.houses);
+                rooms = s.houses;
             }
             else if (p.id === "building:farm") {
                 kind = "FARM";
@@ -368,14 +381,8 @@ export class VillageWorld {
                 kind = "LOGGING";
                 level = s.logging;
             }
+            if (p.id === "building:hearth") { kind = "HEARTH"; level = 1; }
             p.visual?.sync(kind, level, this.freshBuildingVillage, rooms, damaged, facing, kind === "HOUSE" ? s.houses : 0);
-            if (p.id === "building:hearth") p.node.texture = this.art.get(this.art.frameId("hearth_burn", this.villageMotionSeconds));
-            if (p.id.startsWith("torch:")) {
-                const gateFlare = this.props.find(item => item.id === "building:gate")!.visual!.upgradeFlare();
-                const phase = p.id === "torch:1" ? .19 : 0;
-                p.node.texture = this.art.get(this.art.frameId("torch_burn", this.villageMotionSeconds + phase + gateFlare * .24));
-                this.torchGlows.get(p.id)!.alpha = .08 + .07 * Math.sin((this.villageMotionSeconds + phase) * 11) + gateFlare * .45;
-            }
             if (!panelOpen && !this.game.pauses.size) p.visual?.beginVisibleUpgrade();
             if (HOUSE_TIP_NAMES[p.id]) {
                 const { node, bounds } = p.visual!.bodyRegion();
@@ -389,7 +396,7 @@ export class VillageWorld {
         }
         for (const p of this.props)
             if (p.id.startsWith("tower:"))
-                p.visual!.updateAttack(battle, Number(p.id.split(":")[1]));
+                p.visual!.updateAttack(presentation, Number(p.id.split(":")[1]), this.feedback.shots.keys(), this.feedback.presentationTick * RULE.step);
         this.projectiles.update(presentation, this.layout, this.scene.pads, index => this.props.find(p => p.id === `tower:${index}`)!.visual!.launchPoint(), this.feedback);
         if (this.feedback.takeDefeatCue() && !this.game.pauses.size) this.playDefeat?.();
         this.freshBuildingVillage = false;
@@ -437,6 +444,26 @@ export class VillageWorld {
             }
             depth.push({ id: n.name, y: pose.y, node: n, personId: p.id });
         });
+        const essence = this.essence;
+        this.essenceTip.alpha = this.residentCuesBlocked ? 0 : 1;
+        if (essence && !this.residentCuesBlocked) {
+            const actor = this.people.find(node => node.visible && node.name === `person:${essence.person}`);
+            if (actor) {
+                const bounds = actor.hitArea as Laya.Rectangle;
+                if (essence.elapsed < ESSENCE_CUE.riseSeconds) {
+                    const t = essence.elapsed / ESSENCE_CUE.riseSeconds, arrow = this.essenceArrow;
+                    actor.localToGlobal(this.essencePoint.setTo(bounds.x + bounds.width / 2, bounds.y + bounds.height * .68), false, arrow.parent as Laya.Sprite);
+                    if (!arrow.texture) this.art.applyFrame(arrow, "fx_rage_up", ESSENCE_CUE.arrowSize);
+                    arrow.pos(this.essencePoint.x, this.essencePoint.y - ESSENCE_CUE.riseDistance * t);
+                    arrow.alpha = Math.min(1, t * 7, (1 - t) * 4);
+                    arrow.scale(.75 + t * .45, .75 + t * .45);
+                    arrow.visible = true;
+                } else if (!essence.spoken) {
+                    essence.spoken = true;
+                    this.essenceTip.show(LIANG_ESSENCE.line, () => ({ node: actor, bounds: actor.hitArea as Laya.Rectangle }));
+                }
+            }
+        }
         const thought = this.thoughts.current;
         const speaker = thought && this.people.find(node => node.visible && node.name === `person:${thought.id}`);
         if (!speaker || !thought) this.hideSpeech();

@@ -1,5 +1,5 @@
 import { PATROL } from "../../config/PatrolConfig";
-import { patrolCaptain, patrolStats } from "../../game/PatrolRules";
+import { patrolCaptain } from "../../game/PatrolRules";
 import { featureUnlocked } from "../../config/DailyTaskConfig";
 import { tacticDefinition } from "../../config/TacticConfig";
 import { ENEMIES, PADS, RULE } from "../../game/GameConfig";
@@ -74,7 +74,7 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel) {
         if (wood) ctx.ui.iconValue(summary, "icon_wood", wood, 392, y, 183, 40, color, 26, "left");
     });
     const captain = patrolCaptain(s);
-    ctx.ui.label(summary, captain ? `淡紫儿就绪 · 每批 ${patrolStats(s.patrol.level, captain).count} 人` : `淡紫儿待命 · ${PATROL.role}待任命`,
+    ctx.ui.label(summary, captain ? "淡紫儿就绪 · 每次派出 1 名" : `淡紫儿待命 · ${PATROL.role}待任命`,
         22, 190, 556, 30, captain ? C.green : C.muted, true, 40);
     risk.forEach((message, i) => {
         ctx.ui.label(box, message, 34, riskTop + i * riskHeight, 600, 28, C.red, true, riskHeight).align = "center";

@@ -10,7 +10,7 @@ export class VisibleResidents {
     private run: number | null = null;
     private selected: string[] = [];
     private families = new Set<string>();
-    select(state: GameState, towers: Tower[], celebrating: readonly string[]): Person[] {
+    select(state: GameState, towers: Tower[], celebrating: readonly string[], focus?: string): Person[] {
         const fresh = this.run !== state.run;
         if (fresh) { this.selected = []; this.families.clear(); this.run = state.run; }
         const groups = new Map<string, Set<string>>();
@@ -25,7 +25,7 @@ export class VisibleResidents {
         for (const f of state.families) if (f.partners.some(id => celebrating.includes(id) || newcomers.includes(id))) join(f.partners);
         this.families = new Set(state.families.map(f => f.id));
         const byId = new Map(state.people.map(p => [p.id, p]));
-        const priority = [...celebrating, ...newcomers, ...towers.reduce<string[]>((ids, t) => t.operator ? ids.concat(t.operator) : ids, []), ...this.selected, ...state.people.map(p => p.id)];
+        const priority = [...(focus ? [focus] : []), ...celebrating, ...newcomers, ...towers.reduce<string[]>((ids, t) => t.operator ? ids.concat(t.operator) : ids, []), ...this.selected, ...state.people.map(p => p.id)];
         const chosen = new Set<string>(), visited = new Set<Set<string>>();
         let farmers = 0, loggers = 0;
         for (const id of priority) {

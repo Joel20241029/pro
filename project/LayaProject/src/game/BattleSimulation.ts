@@ -6,6 +6,7 @@ import { enemyPoint, onBattleRoad, PATH_LENGTH, RoadPoint } from "./BattleRoad";
 export { pointAt, PATH_LENGTH } from "./BattleRoad";
 import { clone, GameState } from "./GameState";
 import { assignOperator, person, policy } from "./VillageRules";
+import { waveDifficulty } from "./WaveDifficulty";
 import { enemyPower, gateCapacity, levelPower } from "./Growth";
 import { DRAGON_POISON, HAND_SPEED, KING_MERCY_TACTIC, TACTIC_NIGHT_USES, TACTIC_USE, TIMED_BLAST, TacticDefinition, tacticDefinition, ZHOU_LOVE_HEAL } from "../config/TacticConfig";
 import { EnemyRoadStep, SummonCharge, SummonCollision } from "./SummonCharge";
@@ -70,6 +71,8 @@ export class BattleSimulation {
     get handSpeed(): Readonly<{ remaining: number; taps: number }> | null { return this.outcome ? null : this.tapWindow; }
     outcome: "WIN" | "LOSE" | null = null;
     private readonly denseWave: boolean;
+    private readonly waveDifficulty: ReturnType<typeof waveDifficulty> | null;
+    private readonly olderEnemyPower: number;
     private cursor = 0;
     private seq = 0;
     private charge = PADS.map(() => 1);
@@ -82,7 +85,9 @@ export class BattleSimulation {
         if (state.phase !== "NIGHT" || !state.wave || !state.night)
             throw new Error("缺少已保存的战前状态");
         this.base = clone(state);
-        this.denseWave = isDenseWave(state.wave.ordinaryHealthPercent);
+        this.waveDifficulty = state.wave.rhythm === undefined ? null : waveDifficulty(state.day, state.wave.rhythm);
+        this.denseWave = this.waveDifficulty !== null || isDenseWave(state.wave.ordinaryHealthPercent);
+        this.olderEnemyPower = enemyPower(state.day);
         this.patrol = this.base.patrol.captain ? new Patrol(this.base) : null;
         const loadout = [state.night.tactic, ...(state.night.extraSlots ?? [])];
         this.tactics = loadout.filter(id => id !== null).map(id => ({ ...tacticDefinition(id) }));
@@ -227,8 +232,12 @@ export class BattleSimulation {
     private spawn(kind: EnemyKind, progress: number, seed: number) {
         const data = ENEMIES[kind], { affix, ordinaryHealthPercent } = this.base.wave!;
         const healthScale = data.boss ? 1 : ordinaryHealthPercent / 100;
-        const hp = Math.ceil(data.hp * enemyPower(this.base.day) * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1) * healthScale);
-        this.enemies.push({ seq: this.seq++, kind, appearanceSeed: seed, progress, walkDistance: 0, hp, maxHp: hp, speed: data.speed * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
+        const difficulty = this.waveDifficulty;
+        const power = difficulty ? (data.boss ? difficulty.bossHealth : difficulty.health) : this.olderEnemyPower;
+        const speedScale = difficulty?.speed ?? 1;
+        const heavyScale = difficulty && !data.boss && (data.armor > 0 || data.disrupt) ? difficulty.heavyHealth : 1;
+        const hp = Math.ceil(data.hp * power * heavyScale * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1) * healthScale);
+        this.enemies.push({ seq: this.seq++, kind, appearanceSeed: seed, progress, walkDistance: 0, hp, maxHp: hp, speed: data.speed * speedScale * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
     }
     step(realSeconds = RULE.step / this.base.settings.speed) {
         if (this.outcome)
@@ -288,7 +297,7 @@ export class BattleSimulation {
             if (e.hp > 0 && e.progress >= PATH_LENGTH) {
                 const blocked = this.gateProtected, at = enemyPoint(e);
                 const enemy = ENEMIES[e.kind], impact = this.denseWave && !enemy.boss ? WAVE.ordinaryGateScale : 1;
-                if (!blocked) this.gate -= Math.ceil(enemy.gate * impact * enemyPower(this.base.day) * (1 + (po.gate || 0)));
+                if (!blocked) this.gate -= Math.ceil(enemy.gate * impact * (this.waveDifficulty?.gate ?? this.olderEnemyPower) * (1 + (po.gate || 0)));
                 e.hp = 0;
                 this.poison?.targets.delete(e.seq);
                 // 快照记录逻辑坐标及当步保护状态；追帧、到期和窗口重排不能改写旧反馈。

@@ -1,0 +1,77 @@
+{
+  "_$id": "e00cfaa6",
+  "_$type": "Sprite",
+  "name": "HEARTH",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "cfba02b9",
+      "_$type": "Sprite",
+      "name": "HEARTH_1_1",
+      "width": 128,
+      "height": 128,
+      "_$child": [
+        {
+          "_$id": "c4d6788b",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$child": [
+            {
+              "_$id": "21bc2fd5",
+              "_$type": "Sprite",
+              "name": "Structure",
+              "x": 23,
+              "y": 44,
+              "width": 82,
+              "height": 76,
+              "texture": {
+                "_$uuid": "eaaf09eb-c7df-11be-1ab8-606852388a43",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "ea1d4709",
+              "_$type": "Sprite",
+              "name": "Loop:motion_hearth_flame",
+              "x": 43,
+              "y": 43,
+              "width": 35,
+              "height": 45,
+              "texture": {
+                "_$uuid": "65a1656e-4b72-c924-8e2c-d8d5bdf3fc90",
+                "_$type": "Texture"
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "eca9daa0",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "visible": false
+        },
+        {
+          "_$id": "4f9d7def",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "visible": false
+        },
+        {
+          "_$id": "aea22b7c",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "visible": false,
+          "x": 64,
+          "y": 120
+        }
+      ]
+    }
+  ]
+}

@@ -17,8 +17,10 @@ import { StartNightReminder } from "./StartNightReminder";
 import { StarterGuide } from "./StarterGuide";
 import { PATROL } from "../config/PatrolConfig";
 import { PATROL_PROP } from "./config/VillageSceneConfig";
-import { PATROL_GUIDE_KEY, PATROL_LESSONS, STARTER_LESSONS } from "./config/StarterGuideConfig";
+import { BACKPACK_LESSON, PATROL_LESSONS, SHOP_LESSON, STARTER_LESSONS } from "./config/StarterGuideConfig";
+import { SIDE_FEATURES } from "./config/TacticUiConfig";
 import { TacticNotices } from "./TacticNotices";
+import { nextTacticSlotReady } from "../game/Tactics";
 import { drawBoot, drawSessionPanel } from "./panels/SessionPanels";
 import { TRAVELER_TITLE } from "./panels/TravelerPanel";
 /** 会话到表现的唯一刷新入口；各表现模块不自行订阅 changed，避免同步命令导致重复刷新。 */
@@ -30,9 +32,13 @@ export class GameView {
     private handSpeed = new HandSpeedVisuals(this.game, this.ui);
     private anchoredTip = new AnchoredTip(this.art);
     private reminder = new StartNightReminder(this.art);
-    private starterGuide = new StarterGuide(this.platform, this.art, this.ui);
-    private patrolGuide = new StarterGuide(this.platform, this.art, this.ui, PATROL_LESSONS, PATROL_GUIDE_KEY);
-    private tacticNotices = new TacticNotices(this.platform);
+    private starterGuide = new StarterGuide(this.game.guides.track("starter"), this.art, this.ui);
+    private patrolGuide = new StarterGuide(this.game.guides.track("patrol"), this.art, this.ui, PATROL_LESSONS);
+    private itemGuides = {
+        backpack: new StarterGuide(this.game.guides.track("backpack"), this.art, this.ui, BACKPACK_LESSON),
+        shop: new StarterGuide(this.game.guides.track("shop"), this.art, this.ui, SHOP_LESSON)
+    };
+    private tacticNotices = new TacticNotices(this.platform, () => this.game.saves.villageId);
     private village = new VillageWorld(this.game, this.art, this.ui, this.layout, (name, visual) => {
         const phase = this.game.state?.phase;
         if (!this.overlay.numChildren && (phase === "DAY" || phase === "NIGHT")) {
@@ -46,10 +52,8 @@ export class GameView {
     }, this.playDefeat, () => {
         if (!this.overlay.numChildren && this.game.state) this.panels.open({ type: "patrol" });
     });
-    private panels = new GamePanels(this.game, this.art, this.platform, this.ui, this.overlay, this.layout, () => this.refresh(), this.resources, () => {
-        this.tacticNotices.markSeen();
-        if (this.hud.tacticBadge) this.hud.tacticBadge.visible = false;
-    }, (kind, date, icon) => this.results.claimDaily(this.game, kind, date, icon));
+    private panels = new GamePanels(this.game, this.art, this.platform, this.ui, this.overlay, this.layout, () => this.refresh(), this.resources,
+        this.tacticNotices, (kind, date, icon) => this.results.claimDaily(this.game, kind, date, icon));
     private hud = new GameHud(this.game, this.art, this.ui, this.panels, () => this.refresh());
     private results = new NightResultPresentation(this.ui, this.hud, () => this.refresh());
     private tip: Tip;
@@ -73,6 +77,12 @@ export class GameView {
         this.village.speechTip.name = "VillagerThought";
         this.village.speechTip.zIndex = 3;
         this.root.addChild(this.village.speechTip);
+        for (const node of [this.village.essenceArrow, this.village.essenceTip]) {
+            node.mouseEnabled = false; node.visible = false; node.zIndex = 3;
+            this.root.addChild(node);
+        }
+        this.village.essenceArrow.name = "EssenceArrow";
+        this.village.essenceTip.name = "EssenceSpeech";
         this.village.cryIcon.name = "NewbornCry";
         this.village.cryIcon.mouseEnabled = false;
         this.village.cryIcon.visible = false;
@@ -94,6 +104,15 @@ export class GameView {
             layer.stackingRoot = true;
             layer.zIndex = 6;
             this.root.addChild(layer);
+        }
+        for (const [feature, guide] of Object.entries(this.itemGuides)) {
+            guide.spotlight.name = `ItemGuideSpotlight:${feature}`;
+            guide.node.name = `ItemGuide:${feature}`;
+            for (const layer of [guide.spotlight, guide.node]) {
+                layer.stackingRoot = true;
+                layer.zIndex = 6;
+                this.root.addChild(layer);
+            }
         }
         this.tip = new Tip(art);
         this.tip.stackingRoot = true;
@@ -138,11 +157,25 @@ export class GameView {
             this.village.reset();
             this.results.reset();
             this.panels.current = null;
+            this.panels.resetGuideProgress();
             this.tip.visible = false;
             this.anchoredTip.hide();
             this.reminder.reset();
-            this.starterGuide.hide();
-            this.patrolGuide.hide();
+            this.starterGuide.resetProgress();
+            this.patrolGuide.resetProgress();
+            for (const guide of Object.values(this.itemGuides)) guide.resetProgress();
+        }
+        const essence = this.game.takeEssenceFeedback();
+        if (this.game.takePurchaseFeedback() && this.panels.current?.type === "itemOffer") {
+            this.panels.current = this.panels.current.back ?? null;
+            if (!this.panels.current) this.game.resume("CHOICE");
+            this.tip.show("购买成功");
+        }
+        if (essence) {
+            this.panels.current = null;
+            this.game.resume("CHOICE");
+            this.anchoredTip.hide();
+            this.village.showEssence(essence);
         }
         if (this.shownErrorRevision !== this.game.errorRevision) {
             this.shownErrorRevision = this.game.errorRevision;
@@ -161,13 +194,14 @@ export class GameView {
         if (s) {
             this.village.sync(s, preserveOverlay);
             this.hud.draw(s, this.layout, this.village.scene, this.village, this.results.shownFeatures, this.tacticNotices.unread);
-            if (this.hud.tacticBadge && this.results.revealingTactic) this.hud.tacticBadge.visible = false;
+            if (this.hud.tacticBadge && this.results.revealingTactic && !nextTacticSlotReady(s)) this.hud.tacticBadge.visible = false;
         }
         if (!preserveOverlay) this.panels.redraw(() => {
             if (restoringNight) drawNightResourcePanel(this.panels);
             else if (!s) drawBoot(this.panels);
             else drawSessionPanel(this.panels, s, this.layout.safeBottom - this.layout.safeTop, () => this.results.draw(this.panels));
         });
+        if (s && this.hud.tacticBadge && !this.tacticNotices.unread && !nextTacticSlotReady(s)) this.hud.tacticBadge.visible = false;
         this.updateActors();
         this.handSpeed.update(this.layout, 0, this.overlay.numChildren > 0, this.results.playingFinalImpact);
     }
@@ -179,7 +213,7 @@ export class GameView {
         const worldFrozen = counting || wasCounting;
         const panelClosed = active && this.panels.advance(visualDelta);
         if (active && !this.game.pauses.has("WAIT_RESUME") && !this.game.pauses.has("DAILY_RATION") && !this.game.pauses.has("ASSETS") && !this.game.pauses.has("SAVE_PENDING"))
-            this.results.advance(visualDelta);
+            this.results.advance(visualDelta, this.village.hasPatrolImpact);
         else this.results.hideFlights();
         if (active && !worldFrozen) this.tip.advance(visualDelta);
         this.hud.advance(this.game.pauses.size || worldFrozen ? 0 : visualDelta);
@@ -204,10 +238,22 @@ export class GameView {
             }
         }
         this.patrolGuide.tick(patrolStep, this.layout, visualDelta, patrolTarget);
-        const lesson = canPrompt && !this.patrolGuide.node.visible ? STARTER_LESSONS[day!.completed] : undefined;
-        this.starterGuide.tick(lesson ? day!.completed + 1 : null, this.layout, visualDelta,
-            lesson ? this.hud.guideTargets[lesson.target] : undefined);
-        this.reminder.tick(day?.day ?? 0, canPrompt && !this.starterGuide.node.visible && !this.patrolGuide.node.visible ? this.hud.startButton : null, visualDelta);
+        const wave = canPrompt && !this.results.active && !this.patrolGuide.node.visible ? this.starterGuide.nextEligible(day!.completed + 1) : null;
+        const lesson = wave === null ? undefined : STARTER_LESSONS[wave - 1];
+        const target = lesson && this.hud.guideTargets[lesson.target];
+        this.starterGuide.tick(target?.visible && target.mouseEnabled ? wave : null, this.layout, visualDelta, target);
+        let showGuide = canPrompt && !this.results.active && !this.starterGuide.node.visible && !this.patrolGuide.node.visible;
+        for (const feature of SIDE_FEATURES) {
+            if (feature.panel !== "backpack" && feature.panel !== "shop") continue;
+            const guide = this.itemGuides[feature.panel];
+            if (this.panels.current?.type === feature.panel) guide.finish();
+            else {
+                const target = this.hud.featureButtons.find(button => button.name === feature.name);
+                guide.tick(showGuide && target?.visible ? 1 : null, this.layout, visualDelta, target);
+            }
+            if (guide.node.visible) showGuide = false;
+        }
+        this.reminder.tick(day?.day ?? 0, showGuide ? this.hud.startButton : null, visualDelta);
     }
     private updateActors() {
         if (this.village.render(this.overlay.numChildren > 0, this.anchoredTip.visible)) this.tip.show("大王怜悯你");

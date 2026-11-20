@@ -4,6 +4,7 @@ import { patrolUpgradeReason, patrolCaptain, patrolCost, patrolStats } from "../
 import { applyCommand } from "../../game/VillageRules";
 import { ScrollList } from "../ScrollList";
 import { C, UI } from "../UiTheme";
+import { PATROL_BOOTH_FRAME } from "../BuildingLayout";
 import { amount, coloredName } from "../ViewText";
 import { Panel, PanelContext } from "./PanelContext";
 
@@ -30,7 +31,7 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
         const adults = s.people.filter(isWorkingAdult), towers = new Set(s.towers.map(t => t.operator));
         const rank = (q: typeof adults[number]) => {
             const stats = patrolStats(level, q);
-            return stats.count * stats.damage / stats.seconds;
+            return stats.damage / stats.seconds;
         };
         const baseline = patrolStats(level);
         adults.sort((a, b) => Number(towers.has(a.id)) - Number(towers.has(b.id)) || rank(b) - rank(a) || b.nights - a.nights);
@@ -63,17 +64,15 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
     }
     const appointY = 520, appointHeight = 82;
     const box = ctx.modal(PATROL.building, `${amount(level)} 级`, true,
-        { width: UI.panelWidth, height: appointY + appointHeight + UI.action.bottom }, `点「${PATROL.appoint}」后，淡紫儿会分批从城门出发。前期升级增加人数，满队后增强单人伤害。队长品质和天赋影响伤害与出征间隔。`);
+        { width: UI.panelWidth, height: appointY + appointHeight + UI.action.bottom }, `点「${PATROL.appoint}」后，淡紫儿每次从城门派出一名。升级提高命中伤害。队长品质和天赋影响伤害与出征间隔。`);
     if (panel.back) ctx.ui.button(box, "返回", 34, 108, 120, back, C.muted, 54);
-    const frame = `patrol_booth_${level >= 9 ? 2 : level >= 5 ? 1 : 0}`;
-    ctx.ui.image(box, frame, 50, 171, 140);
+    ctx.ui.image(box, PATROL_BOOTH_FRAME, 50, 171, 140);
     const stats = patrolStats(level, current);
     ctx.ui.label(box, current ? `队长 · ${coloredName(current)}` : `${PATROL.role}待任命`, 214, 174, 408, 30, C.cream, true, 46);
-    ctx.ui.label(box, `每批派出 ${stats.count} 人${current ? ` · 约 ${Math.round(stats.seconds)} 秒一批` : ""}`, 214, 226, 408, 26, C.cream, false, 46);
-    const next = patrolStats(level + 1, current);
+    ctx.ui.label(box, `每次派出 1 名${current ? ` · 约 ${Math.round(stats.seconds)} 秒一次` : ""}`, 214, 226, 408, 26, C.cream, false, 46);
     const row = new Laya.Sprite(); row.pos(34, 320); box.addChild(row);
-    const build = ctx.ui.buildRow(row, 0, frame, `升级至 ${amount(level + 1)} 级`,
-        next.count > stats.count ? `每批 ${stats.count} → ${next.count} 人` : "单人伤害提升",
+    const build = ctx.ui.buildRow(row, 0, PATROL_BOOTH_FRAME, `升级至 ${amount(level + 1)} 级`,
+        "命中伤害提升",
         s, patrolCost(s), patrolUpgradeReason(s), () => ctx.send({ type: "PATROL_UPGRADE" }), "升级");
     build.name = "PatrolUpgradeAction";
     ctx.ui.centerButton(box, current ? `更换${PATROL.role}` : PATROL.appoint, appointY,

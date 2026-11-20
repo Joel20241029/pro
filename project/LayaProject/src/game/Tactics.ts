@@ -64,3 +64,8 @@ export function unlockTacticSlot(s: GameState, slot: number) {
 export function canLearnTactic(s: GameState): boolean {
     return TACTICS.some(t => !s.tactics.learned.includes(t.id) && tacticUnavailableReason(s, t.id, "LEARN") === null);
 }
+
+/** 世界入口和槽位卡共用解锁资格，只有下一槽满足波数、仓储和费用才提醒。 */
+export function nextTacticSlotReady(s: GameState) {
+    return slotUnavailableReason(s, equippedTactics(s).length) === null;
+}

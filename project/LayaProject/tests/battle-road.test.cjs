@@ -5,19 +5,42 @@ const {BattleSimulation}=require(path.join(build,'game/BattleSimulation'));
 const {createGame,applyCommand}=require(path.join(build,'game/VillageRules'));
 const {ENEMIES,PATH,PADS,TOWERS,RULE}=require(path.join(build,'game/GameConfig'));
 const {WAVE}=require(path.join(build,'config/DefenseConfig'));
+const {ROAD_MOVEMENT}=require(path.join(build,'config/RoadMovementConfig'));
 const enemy=(kind,seq,progress)=>({kind,seq,progress,appearanceSeed:91,hp:1e6,speed:0,slow:0,slowTicks:0, walkDistance: 0,born:0,summoned:RULE.summonTicks.length});
 function battle(tower,index=0){
  const state=createGame(41);applyCommand(state,{type:'NIGHT'});const b=new BattleSimulation(state);
  b.cursor=b.base.wave.entries.length;b.base.towers.forEach((t,i)=>{t.kind=i===index?tower:null;t.operator=i===index?state.people[0].id:null;});
  b.gate=1e9;return b;
 }
-test('all ten kinds and late-wave sequence positions stay inside their foot corridor and preserve the original progress axis',()=>{
+test('all ten kinds stay within the allowed road shoulder and preserve the original progress axis',()=>{
  assert.equal(PATH_LENGTH,PATH.slice(1).reduce((n,p,i)=>n+Math.hypot(p.x-PATH[i].x,p.y-PATH[i].y),0));
  for(const kind of Object.keys(ENEMIES))for(let seq=0;seq<RULE.planCap;seq++)for(let progress=0;progress<=PATH_LENGTH;progress+=3){
   const p=enemyPoint(enemy(kind,seq,progress)),bounds=roadFootprintBounds(p.y,kind);
   assert(Number.isFinite(p.x)&&Number.isFinite(p.y));assert.equal(p.y,pointAt(progress).y);
-  assert(bounds.left<=p.x&&p.x<=bounds.right,`${kind}/${seq}/${progress}`);
+  assert(bounds.left-ROAD_MOVEMENT.shoulderAllowance<=p.x&&p.x<=bounds.right+ROAD_MOVEMENT.shoulderAllowance,`${kind}/${seq}/${progress}`);
  }
+});
+test('successive groups favour different lanes while outliers still use all three bands and the shoulder',()=>{
+ const kind='enemy_raider', progress=0;
+ const {size}=ROAD_MOVEMENT.formation;
+ const positions=Array.from({length:size*6},(_,seq)=>enemyPoint(enemy(kind,seq,progress)));
+ const {left,right}=roadFootprintBounds(positions[0].y,kind), middle=(left+right)/2, inner=(right-left)/4;
+ const lanes=positions.map(({x})=>x<middle-inner?0:x>middle+inner?1:2);
+ const leaders=[];
+ let threeLaneGroups=0;
+ for(let i=0;i<lanes.length;i+=size){
+  const group=lanes.slice(i,i+size);
+  const counts=[0,1,2].map(lane=>group.filter(value=>value===lane).length);
+  const most=Math.max(...counts);
+  if(counts.every(count=>count>0)) threeLaneGroups++;
+  leaders.push(counts.indexOf(most));
+ }
+ assert.equal(new Set(lanes).size,3);
+ assert.equal(new Set(leaders).size,3);
+ assert(threeLaneGroups>=4);
+ assert(lanes.some((lane,i)=>lane===lanes[i-1]&&positions[i].x!==positions[i-1].x));
+ assert.deepEqual(positions,positions.map((_,seq)=>enemyPoint({...enemy(kind,seq,progress),appearanceSeed:5})));
+ assert(positions.some(p=>p.x<left-6||p.x>right+6)); // 超过原路面剖面的 6px 内收量。
 });
 test('enemies spread across the road, remain continuous around bends and gather before the gate',()=>{
  for(const kind of Object.keys(ENEMIES)){

@@ -12,13 +12,9 @@ export const PATH = [{ x: 360, y: 230 }, { x: 360, y: 350 }, { x: 250, y: 435 },
  * 坐标同时驱动战斗、立绘、点击区、进塔与弹道；须验证5位置×3塔种。
  */
 export const PADS = [{ x: 175, y: 350 }, { x: 470, y: 450 }, { x: 300, y: 560 }, { x: 505, y: 660 }, { x: 470, y: 285 }];
-/** 保留 doc/tech/46 的数量曲线和入场窗口，三倍方案增加同一窗口内的来敌。
- * 仍由世界随机源抽取敌人及词缀，增加抽样会影响之后的世界序列。
- */
+/** 已发存档保留原先的生命倍率、出怪窗口与撞门规则。词缀仍由新旧波次共用。 */
 export const WAVE = {
-    // doc/tech/46：常规数量从8向72平滑增长；年度轻重波与挑战档增加少量数量，不无限堆同屏对象。
-    initialCount: 8, additionalCount: 64, countGrowthNights: 72, tierCount: 3,
-    // 已确认的三倍波次总量，含季节、年度挑战和增援；年度仍只有一个首领。
+    // 固定增援沿用三人一组，纳入新波次的总人数。
     density: 3,
     // 多怪围攻用模拟得出的单体生命与撞门倍率。第九夜后混合怪群更密，因此再降低小怪生命。
     ordinaryHealthStageDay: 9,
@@ -28,14 +24,35 @@ export const WAVE = {
     legacyOrdinaryHealth: [100, 106],
     // 保护前24波，每12波再加1名，最多4名。补充快怪、厚甲和野猪，和原队列共用上场节奏。
     qualityPressure: { after: 24, step: 12, max: 4, kinds: ["enemy_runner", "enemy_armored", "enemy_boar"] },
-    seasonPulse: [0, 2, -1, 4],
-    // 依照三倍前的数量估算入场时长，使用原来的 28～42 个战斗秒窗口。
-    spawnCountThreshold: 24, extraSpawnTicks: 10,
     // 1.0.35：新波次限制在 28～42 个战斗秒。首夜留出二次施放时间，密集后期收紧。
     spawnWindowTicks: { minimum: 560, maximum: 840 },
-    affixStartDay: 7, affixes: ["NONE", "FAST", "STURDY", "GROUP"], seasonalWeight: 2, groupSize: 3
+    affixStartDay: 7, affixes: ["NONE", "FAST", "STURDY", "GROUP"], groupSize: 3,
+    // 结队保留组间停顿，组内间隔向均匀出怪靠近，减少连续三只叠在同一点。
+    groupStagger: .90
 } as const;
-/** 新波次沿用存档里的生命快照标识。旧档的两个已发行倍率与新档互斥。 */
+/** 波次规则随已排计划保存，旧双波难度保留原曲线和时间。 */
+export const WAVE_RHYTHM = { paired: "PAIR_V1", nightly: "NIGHT_V1" } as const;
+export type WaveRhythm = typeof WAVE_RHYTHM[keyof typeof WAVE_RHYTHM];
+
+/** 每个原双波档拆成两次增量，保证前中期同一夜数的总强度接近此前。后期仍每夜加一名。
+ * 初期保留已验证的首夜规模。血量、城门压力分别使用独立线性曲线，避免叠乘产生陡增。
+ */
+export const WAVE_PROGRESSION = {
+    nightsPerBand: 2, initialCount: 51,
+    earlyBands: 11, middleBands: 18, countPerBand: [6, 4, 1],
+    ordinaryHealthPercent: 70, earlyHealth: .04, laterHealth: .06,
+    // 前期混入的厚甲、野猪和干扰单位仍在成长，早夜使用较轻的体质，随升档自然达到完整强度。
+    earlyHeavyHealth: .78, heavyHealthPerBand: .025,
+    earlyGate: .025, laterGate: .04,
+    speedPerBand: .01, speedBonusMax: .10, bossGrowthShare: .65,
+    // 通用入场留白；大波次另按来敌数逐步拉开，批间停顿单独计算。
+    windowTicksPerBand: 30, arrivalWindowScale: 1.15, batchSize: 252, joinTicks: 10,
+    // 90 人以下保留原窗口，180 人起窗口额外加 25%，让重叠最明显的大波次先降密。
+    denseArrival: { fromCount: 90, fullCount: 180, extraWindowScale: .25 },
+    eliteFirstWeightPercent: 32, eliteWeightPerBand: 5, eliteWeightBonusMax: 12, seasonalWeightPercent: 125
+} as const;
+
+/** 保留老波次的密集出怪标记。新波次从显式 rhythm 字段识别。 */
 export function isDenseWave(ordinaryHealthPercent: number) {
     return WAVE.ordinaryHealth.some(percent => percent === ordinaryHealthPercent);
 }

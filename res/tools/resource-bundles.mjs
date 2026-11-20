@@ -14,7 +14,7 @@ export const atlasGroups = {
     night_effects: { category: 'effects', stage: 'night' }
 };
 /** 村内常驻特效及已加载的战技红环，三种品质小图共用此图页。 */
-const villageEffects = new Set(['fx_hearts', 'icon_baby_cry', 'fx_rage_orbit', 'fx_quality_elite', 'fx_quality_hero', 'fx_quality_legendary']);
+const villageEffects = new Set(['fx_hearts', 'icon_baby_cry', 'fx_rage_orbit', 'fx_rage_up', 'fx_quality_elite', 'fx_quality_hero', 'fx_quality_legendary']);
 
 export function atlasGroup(asset) {
     const category = asset.category.split('/')[0];

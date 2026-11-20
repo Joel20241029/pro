@@ -8,9 +8,25 @@ const {SaveStore}=read('storage/SaveStore');
 const {VisibleResidents}=read('view/VisibleResidents');
 const {VillagerMotion}=read('view/VillagerMotion');
 const {generateWave}=read('game/WaveGenerator');
+const {waveDifficulty}=read('game/WaveDifficulty');
 const {BattleSimulation}=read('game/BattleSimulation');
 const {tacticRevealed}=read('game/Tactics');
 const {TACTICS}=read('config/TacticConfig');
+
+test('grouped waves stagger their three arrivals within the existing wave window',()=>{
+ const {WAVE}=read('config/DefenseConfig');
+ const candidates=Array.from({length:40},(_,i)=>{
+  const s=createGame(i+1);s.day=12;s.completed=11;s.tier=3;return generateWave(s);
+ });
+ const wave=candidates.find(w=>w.affix==='GROUP');
+ assert(wave);
+ const ticks=wave.entries.map(entry=>entry.tick);
+ const expected=waveDifficulty(12).spawnTicks;
+ assert.equal(ticks[0],0);assert.equal(ticks.at(-1),expected);
+ assert(ticks.every((t,i)=>!i||t>ticks[i-1]));
+ assert(ticks[WAVE.groupSize]-ticks[WAVE.groupSize-1]>ticks[1]-ticks[0]);
+ assert.equal(wave.entries.filter(e=>ENEMIES[e.kind].boss).length,1);
+});
 
 function population(count=107) {
  const s=createGame(7), templates=s.people;
@@ -70,20 +86,18 @@ test('five pads start with two towers and validate all five occupants',()=>{
  assert(s.towers.every(t=>t.kind&&t.operator));assert.equal(new Set(s.towers.map(t=>t.operator)).size,5);validateState(s);
  const b=structuredClone(s);b.towers.pop();assert.throws(()=>validateState(b));
 });
-test('triple quantity keeps the entry window and new waves do not wait at the legacy field limit',()=>{
+test('extended batches keep growing and new waves do not wait at the legacy field limit',()=>{
  const {WAVE}=read('config/DefenseConfig');
  const counts=[];
- for(const day of [1,13,37,73,301,1000001]){
+ for(const day of [1,13,37,73,301,10001]){
   const s=createGame(7);s.day=day;s.completed=day-1;s.legacy.bestNight=s.completed;s.tier=3;s.wave=generateWave(s);
-  const support = WAVE.density * (day >= 25 ? 2 : day >= 13 ? 1 : 0);
-  const expected=Math.min(WAVE.spawnWindowTicks.maximum,Math.max(WAVE.spawnWindowTicks.minimum,
-   RULE.spawnTicks+Math.max(0,(s.wave.entries.length-support)/WAVE.density-WAVE.spawnCountThreshold)*WAVE.extraSpawnTicks));
-  assert(s.wave.entries.length<=RULE.planCap);assert.equal(s.wave.entries.at(-1).tick,expected);
+  const expected=waveDifficulty(day);
+  assert.equal(s.wave.entries.length,expected.count);assert.equal(s.wave.entries.at(-1).tick,expected.spawnTicks);
   validateState(s);counts.push(s.wave.entries.length);
  }
- const historical=createGame(7);historical.wave.entries.at(-1).tick=WAVE.spawnWindowTicks.maximum+1;
+ const historical=createGame(7);delete historical.wave.rhythm;historical.wave.entries.at(-1).tick=WAVE.spawnWindowTicks.maximum+1;
  assert.throws(()=>validateState(historical));
- assert.equal(counts[0],51);assert(counts[3]>counts[0]*2);assert(counts.at(-1)<=273);
+ assert.equal(counts[0],51);assert(counts[3]>counts[0]*2);assert(counts.at(-1)>5000);
  const s=createGame(7);applyCommand(s,{type:'NIGHT'});s.towers.forEach(t=>{t.kind=null;t.level=0;t.operator=null;});
  const allAtOnce=96;
  s.wave.entries=Array.from({length:allAtOnce},(_,i)=>({kind:'enemy_raider',tick:0,appearanceSeed:i}));
@@ -91,6 +105,7 @@ test('triple quantity keeps the entry window and new waves do not wait at the le
  const b=new BattleSimulation(s);b.step();
  assert.equal(b.enemies.length,allAtOnce);assert.equal(b.pendingCount,0);assert.equal(b.outcome,null);
  assert.deepEqual(b.enemies.map(enemy=>enemy.appearanceSeed),s.wave.entries.map(entry=>entry.appearanceSeed));
+ delete s.wave.rhythm;
  s.wave.ordinaryHealthPercent=WAVE.legacyOrdinaryHealth[0];
  const old=new BattleSimulation(s);let emitted=0;
  while(old.pendingCount){old.step();assert(old.enemies.length<=RULE.legacyEnemyCap);emitted+=old.enemies.length;old.enemies=[];}

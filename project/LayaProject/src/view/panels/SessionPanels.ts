@@ -7,6 +7,7 @@ import { dailyRationAmount } from "../../game/DailyRation";
 import { PanelContext } from "./PanelContext";
 import { coloredName } from "../ViewText";
 import { drawTravelerPanel } from "./TravelerPanel";
+import { drawGameOver } from "./DefeatPanel";
 export function drawBoot(ctx: PanelContext) {
     const b = ctx.game.boot;
     if (ctx.game.saves.pending) {
@@ -91,18 +92,6 @@ function drawPolicyOption(ctx: PanelContext, box: Laya.Sprite, id: string, y: nu
         if (icon) ctx.ui.iconValue(face, icon, text, x, 55, w, 36, color, 24);
         else ctx.ui.label(face, text, x, 55, w, 24, color, true, 36).align = "center";
     });
-}
-export function drawGameOver(ctx: PanelContext, s: GameState) {
-    if (ctx.current?.type === "restart") {
-        ctx.draw(s, ctx.current);
-        return;
-    }
-    const box = ctx.modal("守夜失败", "城门被突破，本局结束。", false);
-    ctx.ui.image(box, "icon_heart", 253, 226, 162);
-    ctx.ui.label(box, s.summary, 34, 430, 600, 32, C.green, true, 140).align = "center";
-    ctx.ui.label(box, `最长坚守 ${s.legacy.bestNight} 夜 · 累计出生 ${s.legacy.births} 人`, 34, 620, 600, 28, C.muted, false, 80).align = "center";
-    const buttonHeight = 82;
-    ctx.ui.centerButton(box, "重新开村", UI.panelHeight - buttonHeight - UI.action.bottom, () => ctx.open({ type: "restart" }), C.gold, true, 328, buttonHeight);
 }
 /** 保存、口粮和回前台先处理，随后是结算，再接失败、清晨或普通界面。 */
 export function drawSessionPanel(ctx: PanelContext, s: GameState, safeHeight: number, drawResult?: () => boolean) {

@@ -1,4 +1,5 @@
 import { PATROL } from "../config/PatrolConfig";
+import { LIANG_ESSENCE } from "../config/ShopConfig";
 import { patrolStats } from "../game/PatrolRules";
 import { validDailyTaskDay } from "../game/DailyTaskState";
 import { VILLAGER_QUALITY } from "../config/VillagerQuality";
@@ -7,10 +8,11 @@ import { GameState, isElder, isWorkingAdult, Person } from "../game/GameState";
 import { gateCapacity, laborSlots, levelPower, storageCapacity } from "../game/Growth";
 import { validRationDate } from "../game/DailyRation";
 import { capacity } from "../game/VillageQueries";
-import { WAVE } from "../config/DefenseConfig";
+import { WAVE_PROGRESSION, WAVE, WAVE_RHYTHM } from "../config/DefenseConfig";
+import { waveDifficulty } from "../game/WaveDifficulty";
 import { DEFAULT_TACTIC, KING_MERCY, KING_MERCY_TACTIC, TACTICS, TACTIC_SLOTS } from "../config/TacticConfig";
 /** 与生成器共用预算配置；覆盖一年末、累计跨年加成及最高挑战档，调难度后不会误拒合法存档。 */
-const MAX_WAVE_BUDGET = RULE.planCap * Math.max(...Object.values(ENEMIES).map(e => e.cost));
+const MAX_ENEMY_COST = Math.max(...Object.values(ENEMIES).map(e => e.cost));
 function check(v: unknown, message = "存档数据不完整"): asserts v { if (!v) throw new Error(message); }
 const int = (v: unknown, low = 0, high = Number.MAX_SAFE_INTEGER) => Number.isSafeInteger(v) && (v as number) >= low && (v as number) <= high;
 const text = (v: unknown) => typeof v === "string" && v.length > 0 && v.length <= 80;
@@ -24,7 +26,10 @@ function validatePerson(p: Person) {
     check(p.appearance === ADULT_APPEARANCE[p.sex], "人物外观与当前资源版本不匹配");
     check(own(p.trait, TRAITS) && (p.skill === null || own(p.skill, SKILLS)) && int(p.generation, 1));
     check(ids(p.parents, 2) && p.parents.length === (p.origin === "BORN" ? 2 : 0) && ids(p.ancestors, RULE.populationCap));
-    check(!p.parents.includes(p.id) && !p.ancestors.includes(p.id) && typeof p.adult === "boolean" && int(p.nights, 0, quality.adultNights) && int(p.growth, 0, RULE.growNights));
+    const uses = p.retirementDelayUses;
+    if (uses !== undefined) check(p.adult && int(uses, 1, LIANG_ESSENCE.maxUses), "村民延寿次数无效");
+    check(!p.parents.includes(p.id) && !p.ancestors.includes(p.id) && typeof p.adult === "boolean" &&
+        int(p.nights, 0, quality.adultNights + (uses ?? 0) * LIANG_ESSENCE.maxNights) && int(p.growth, 0, RULE.growNights));
     check(int(p.elderNights, 0, quality.elderNights));
     check(["WAITING", "FARM", "LOGGING", "CARE"].includes(p.job) && (p.job === "CARE" ? text(p.careChild) : p.careChild === null));
     if (!p.adult) check(p.nights === 0 && p.elderNights === 0 && p.skill === null && p.job === "WAITING" && p.growth < RULE.growNights);
@@ -93,11 +98,17 @@ export function validateState(s: GameState) {
     if (s.phase !== "DAWN") check(!s.choices.length);
     for (const p of workers) if (p.skill === null) check(s.phase === "DAWN" && s.choices.some(q => q.kind === "SKILL" && q.person === p.id));
     if (s.phase === "DAY" || s.phase === "NIGHT") {
-        const w = s.wave; check(w && int(w.budget, 1, MAX_WAVE_BUDGET) && w.tier === s.tier && ["NONE", "FAST", "STURDY", "GROUP"].includes(w.affix) && Array.isArray(w.entries) && w.entries.length > 0 && w.entries.length <= RULE.planCap);
+        const w = s.wave;
+        check(w && w.tier === s.tier && ["NONE", "FAST", "STURDY", "GROUP"].includes(w.affix) && Array.isArray(w.entries) && w.entries.length > 0);
+        check(w.rhythm === undefined || w.rhythm === WAVE_RHYTHM.paired || w.rhythm === WAVE_RHYTHM.nightly, "波次难度规则无效");
+        const plan = w.rhythm === undefined ? null : waveDifficulty(s.day, w.rhythm);
+        const count = plan?.count ?? RULE.planCap;
+        check(w.entries.length <= count && int(w.budget, 1, count * MAX_ENEMY_COST));
         const healthBand = s.day >= WAVE.ordinaryHealthStageDay ? 1 : 0;
-        check(w.ordinaryHealthPercent === WAVE.ordinaryHealth[healthBand] || w.ordinaryHealthPercent === WAVE.legacyOrdinaryHealth[healthBand], "波次生命倍率不合法");
+        check(plan ? w.ordinaryHealthPercent === WAVE_PROGRESSION.ordinaryHealthPercent :
+            w.ordinaryHealthPercent === WAVE.ordinaryHealth[healthBand] || w.ordinaryHealthPercent === WAVE.legacyOrdinaryHealth[healthBand], "波次生命倍率不合法");
         let last = 0, budget = 0;
-        for (const e of w.entries) { check(own(e.kind, ENEMIES) && int(e.tick, last, WAVE.spawnWindowTicks.maximum) && int(e.appearanceSeed, 0, 0xffffffff) && ENEMIES[e.kind].unlock <= s.day); last = e.tick; budget += ENEMIES[e.kind].cost; }
+        for (const e of w.entries) { check(own(e.kind, ENEMIES) && int(e.tick, last, plan?.spawnTicks ?? WAVE.spawnWindowTicks.maximum) && int(e.appearanceSeed, 0, 0xffffffff) && ENEMIES[e.kind].unlock <= s.day); last = e.tick; budget += ENEMIES[e.kind].cost; }
         check(budget === w.budget);
     } else check(s.wave === null);
     if (s.phase === "NIGHT") {

@@ -22,43 +22,50 @@ import { equippedTactics } from "../game/Tactics";
 import { PanelMotion } from "./PanelMotion";
 import { drawPatrolPanel } from "./panels/PatrolPanels";
 import { attachPanelHelp } from "./PanelHelp";
-/** 独立的设备提示记录，与五波指引及村庄进度无关。仅玩家主动跳过时写入。 */
-const SLOT_GUIDE_KEY = "daidai_village.tactic_slot_guide_dismissed";
+import { drawItemPanel } from "./panels/ItemPanels";
+import type { GuideTrack } from "../storage/VillageGuides";
+import type { TacticNotices } from "./TacticNotices";
 /** 面板状态与 CHOICE 暂停的唯一所有者。绘制模块不会各自缓存面板或注册刷新回调。 */
 export class GamePanels implements PanelContext {
     current: Panel | null = null;
     private motion = new PanelMotion(this.overlay);
     private deferRankingCanvas = false;
-    private slotGuideDismissed?: boolean;
-    constructor(readonly game: GameSession, readonly art: SpriteFrames, readonly platform: WechatPlatform, readonly ui: UiWidgets, readonly overlay: Laya.Sprite, public layout: GameLayout, readonly refresh: () => void, readonly resources: ResourcePreparation, private onTacticListOpened?: () => void,
+    private seenGuides = new Set<GuideTrack>();
+    constructor(readonly game: GameSession, readonly art: SpriteFrames, readonly platform: WechatPlatform, readonly ui: UiWidgets, readonly overlay: Laya.Sprite, public layout: GameLayout, readonly refresh: () => void, readonly resources: ResourcePreparation, private tacticsNotices?: TacticNotices,
         private onDailyClaim?: (kind: TaskKind, date: string, icon: Laya.Sprite) => void) { }
     open(panel: Panel, preserve = false) {
         if (!this.resources.ready("village") || this.game.pauses.has("ASSETS")) return;
         if (panel.type === "mercyConfirm" && !this.game.canCast(KING_MERCY_TACTIC)) return;
         const bestNight = this.game.state?.legacy.bestNight ?? 0;
         if (panel.type === "dailyTasks" && (!featureUnlocked(bestNight, "dailyTasks") || this.game.state?.phase !== "DAY")) return;
+        const itemFeature = panel.type === "shop" || panel.type === "itemOffer" ? "shop" :
+            ["backpack", "essenceTargets", "essenceConfirm"].includes(panel.type) ? "backpack" : null;
+        if (itemFeature && (this.game.state?.phase !== "DAY" || !featureUnlocked(bestNight, itemFeature))) return;
         if (panel.type === "ranking" && !featureUnlocked(bestNight, "ranking")) return;
-        if (["tactics", "tactic", "tacticSlotUnlock"].includes(panel.type) && !featureUnlocked(bestNight, "tactics")) return;
+        if (["tactics", "tactic", "tacticSwap", "tacticCatalog", "tacticSlotUnlock"].includes(panel.type) && !featureUnlocked(bestNight, "tactics")) return;
+        if (panel.type === "tacticSwap" && this.game.state?.phase !== "DAY") return;
+        if (panel.type === "tacticCatalog") this.tacticsNotices?.markSeen();
+        if (panel.type === "tactic" && panel.id) this.tacticsNotices?.markSeen(panel.id);
         if (!preserve) panel.rowOrder = undefined;
         this.current = panel; this.game.pause("CHOICE"); this.refresh();
         if (panel.type === "start") void this.resources.ensure("night");
     }
     close() { this.current = null; this.game.resume("CHOICE"); this.refresh(); }
-    get tacticSlotGuideDismissed() {
-        if (this.slotGuideDismissed === undefined) {
-            try { this.slotGuideDismissed = this.game.saves.port.read(SLOT_GUIDE_KEY) === "1"; }
-            catch (error) {
-                console.warn("[战技槽位引导] 无法读取跳过记录", error);
-                this.slotGuideDismissed = false;
-            }
-        }
-        return this.slotGuideDismissed;
+    get tacticUnread() { return this.tacticsNotices?.unread === true; }
+    unreadTactic(id: string) { return this.tacticsNotices?.hasUnread(id) === true; }
+    resetGuideProgress() { this.seenGuides.clear(); }
+    guideSeen(track: GuideTrack) {
+        if (this.seenGuides.has(track)) return true;
+        try {
+            if (this.game.guides.get(track) > 0) { this.seenGuides.add(track); return true; }
+        } catch (error) { console.warn("[战技引导] 无法读取进度", error); }
+        return false;
     }
-    dismissTacticSlotGuide() {
-        this.slotGuideDismissed = true;
-        try { this.game.saves.port.write(SLOT_GUIDE_KEY, "1"); }
-        catch (error) { console.warn("[战技槽位引导] 无法保存跳过记录", error); }
-        this.refresh();
+    finishGuide(track: GuideTrack) {
+        if (this.guideSeen(track)) return;
+        this.seenGuides.add(track);
+        try { this.game.guides.mark(track); }
+        catch (error) { console.warn("[战技引导] 无法保存进度", error); }
     }
     redraw(draw: () => void) {
         if (this.current?.type === "mercyConfirm" && this.game.state?.night?.mercySpent) this.current = null;
@@ -117,17 +124,18 @@ export class GamePanels implements PanelContext {
             const slot = p.pendingSlotUnlock, list = p.back;
             delete p.pendingSlotUnlock;
             if (!this.game.error && list && equippedTactics(s).length > slot) {
-                list.tacticSlot = slot;
-                list.scroll = 0;
-                this.current = p = list;
+                this.finishGuide("slot");
+                this.current = p = { type: "tacticSwap", index: slot, back: list };
             }
         }
         if (p.pendingTactic && !this.game.saves.pending) {
-            const accepted = !this.game.error && equippedTactics(s)[p.pendingTactic.slot] === p.pendingTactic.id;
+            const { id, slot } = p.pendingTactic;
+            const accepted = !this.game.error && equippedTactics(s)[slot] === id;
             delete p.pendingTactic;
             if (accepted) {
-                const list = p.type === "tactic" ? p.back! : p;
-                p = list?.back?.type === "start" && equippedTactics(s).length === 1 ? list.back : list ?? p;
+                if (id) { this.finishGuide("tacticAction"); this.tacticsNotices?.markSeen(id); }
+                const overview = p.back;
+                if (id && overview) p = overview.back?.type === "start" && equippedTactics(s).length === 1 ? overview.back : overview;
                 this.current = p;
             }
         }
@@ -137,13 +145,16 @@ export class GamePanels implements PanelContext {
         }
         if (p.type.startsWith("patrol")) drawPatrolPanel(this, s, p);
         else if (p.type === "mercyConfirm") drawMercyConfirm(this, s);
-        else if (p.type === "tactics" || p.type === "tactic" || p.type === "tacticSlotUnlock") drawTacticPanel(this, s, p);
+        else if (["tactics", "tactic", "tacticSwap", "tacticCatalog", "tacticSlotUnlock"].includes(p.type))
+            drawTacticPanel(this, s, p, this.layout.safeBottom - this.layout.safeTop);
         else if (p.type === "person" || p.type === "ancestor")
             drawPersonDetailPanel(this, s, p, this.layout.safeBottom - this.layout.safeTop);
         else if (["people", "history", "partners", "carers", "operators", "care", "workers"].includes(p.type))
             drawPeoplePanel(this, s, p);
         else if (p.type === "dailyTasks")
             drawDailyTaskPanel(this, s, (task, date, icon) => this.onDailyClaim?.(task.kind, date, icon));
+        else if (["backpack", "shop", "itemOffer", "essenceTargets", "essenceConfirm"].includes(p.type))
+            drawItemPanel(this, s, p, this.layout.safeBottom - this.layout.safeTop);
         else if (p.type === "families")
             drawFamilyPanel(this, s, p);
         else if (p.type === "wave" || p.type === "start")
@@ -152,6 +163,5 @@ export class GamePanels implements PanelContext {
             drawBuildingPanel(this, s, p);
         else
             drawJournalPanel(this, s, p, this.deferRankingCanvas);
-        if (p.type === "tactics") this.onTacticListOpened?.();
     }
 }

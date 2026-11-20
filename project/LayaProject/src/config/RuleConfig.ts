@@ -44,7 +44,7 @@ export const RULE = {
     farmBase: 8, logBase: 6, adultRation: 2, childRation: 1,
     farmSlots: [2, 4, 6], logSlots: [2, 3, 4], towerConvert: 20,
     yearDays: 12, seasonDays: 3,
-    // 用户确认从第一年起固定原最高3档，跨年不再选择；沿用WAVE.tierCount加数量，调整须验证首夜及长期经营。
+    // 用户确认从第一年起固定原最高3档，跨年不再选择；新波次按双波难度曲线生成，调整须验证首夜及长期经营。
     maxTier: 3, historyCap: 60, favoriteCap: 20,
     // 2026-11-16用户指定：原2倍为新1档、原3倍为新2档。此处存实际倍率，默认最低档；不改变单步战斗规则。
     minSpeed: 2,
@@ -52,7 +52,7 @@ export const RULE = {
     step: .05, frameCap: .25, maxSpeed: 3, maxSteps: 15,
     // 只给已生成的历史波次回放使用，原版最多同时存活40只。
     legacyEnemyCap: 40,
-    // 计划的安全上限。从原曲线上界91×3=273留余量，不参与新波次的同屏入场。
+    // 旧版已排定的波次校验上限，新规则按当夜预算校验。
     planCap: 288,
     // 进攻战技持续 15 个战斗秒（300 步×0.05 秒）。每夜施放与冷却规则见 TacticConfig。
     bellTicks: 300,

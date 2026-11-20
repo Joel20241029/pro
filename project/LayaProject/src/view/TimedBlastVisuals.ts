@@ -5,12 +5,11 @@ import type { BattleSimulation, CombatFeedback } from "../game/BattleSimulation"
 import { GameSession } from "../game/GameSession";
 import { GameLayout } from "./GameLayout";
 import { LAYOUT } from "./config/HudConfig";
-import { FEEDBACK } from "./config/FeedbackConfig";
 import { SpriteFrames } from "./SpriteFrames";
 import { UiWidgets } from "./UiWidgets";
 
-/** 波纹用实时时钟，倒数用可暂停的战斗时钟。路面弹体放大至 50 逻辑像素方便辨认。 */
-const V = { segments: 48, shell: 50, impactSize: 152, burstSeconds: .48, blinkSeconds: .6, blinkCount: 2 } as const;
+/** 波纹用实时时钟，倒数用可暂停的战斗时钟。304 是原版泻火在路面爆点的逻辑宽度基准。 */
+const V = { segments: 48, shell: 50, impactSize: 304, burstSeconds: .48, blinkSeconds: .6, blinkCount: 2 } as const;
 
 export class TimedBlastVisuals {
     readonly node = new Laya.Sprite();
@@ -97,7 +96,7 @@ export class TimedBlastVisuals {
         if (!this.art.ready("night")) return;
         this.impact ??= new Laya.Sprite();
         if (!this.impact.parent) { this.impact.name = "TimedBlastImpact"; this.impact.mouseEnabled = false; this.node.addChild(this.impact); }
-        this.art.applyFrame(this.impact, this.art.frameId("fx_impact_stone", age), V.impactSize * (.65 + progress * .4) * FEEDBACK.impactScale);
+        this.art.applyFrame(this.impact, this.art.frameId("fx_impact_stone", age), V.impactSize * (.65 + progress * .4));
         this.impact.pos(hit.x, layout.worldY(hit.y));
         this.impact.alpha = 1 - progress ** 2;
         this.impact.visible = true;

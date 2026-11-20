@@ -2,6 +2,7 @@ import { PATH } from '../config/DefenseConfig';
 import { ENEMIES, EnemyKind } from '../config/EnemyConfig';
 import { ROAD_PROFILE } from '../config/RoadGeometry';
 import { ROAD_MOVEMENT } from '../config/RoadMovementConfig';
+import { appearanceSeed } from './EnemySeed';
 
 // 保留首版进度轴及长度。道路变宽只改变横向坐标，不重算到门时间或索敌优先级。
 const LENGTHS = PATH.slice(1).map((p, i) => Math.hypot(p.x - PATH[i].x, p.y - PATH[i].y));
@@ -45,11 +46,19 @@ export function roadFootprintBounds(y: number, footprint: EnemyKind | RoadFootpr
     return { left, right };
 }
 
-/** 渲染、索敌、溅射、扰阵、弹道和死亡快照的唯一敌人坐标。只读序号/种类/进度。 */
+/** 渲染与战斗共用足点。分路只由入场序号确定，外观随机不影响战斗。 */
 export function enemyPoint(enemy: { seq: number; kind: EnemyKind; progress: number }) {
     const { y } = pointAt(enemy.progress), bounds = roadFootprintBounds(y, enemy.kind);
-    const lane = ((enemy.seq * ROAD_MOVEMENT.laneStep + .5) % 1 - .5) * ROAD_MOVEMENT.laneSpread;
+    const { laneBands, laneStep, laneJitter, shoulderAllowance, formation } = ROAD_MOVEMENT;
+    const group = Math.floor(enemy.seq / formation.size);
+    const leadLane = appearanceSeed(formation.seedDomain, group) % laneBands.length;
+    const roll = appearanceSeed(formation.seedDomain, enemy.seq, group) % formation.sampleSize;
+    const laneOffset = roll < formation.mainWeight ? 0 : roll < formation.mainWeight + formation.secondWeight ? 1 : 2;
+    const laneIndex = (leadLane + laneOffset) % laneBands.length;
+    const phase = (enemy.seq * laneStep + .5) % 1 - .5;
+    const lane = laneBands[laneIndex] + phase * laneJitter;
     const t = Math.max(0, (y - ROAD_MOVEMENT.gatherY) / (PATH[PATH.length - 1].y - ROAD_MOVEMENT.gatherY));
     const gather = t * t * (3 - 2 * t);
-    return { x: (bounds.left + bounds.right) / 2 + (bounds.right - bounds.left) * lane * (1 - gather), y };
+    const width = bounds.right - bounds.left + 2 * shoulderAllowance;
+    return { x: (bounds.left + bounds.right) / 2 + width * lane * (1 - gather), y };
 }

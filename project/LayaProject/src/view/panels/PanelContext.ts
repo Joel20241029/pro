@@ -2,6 +2,7 @@ import { ResourcePreparation } from "../../platform/ResourcePreparation";
 import { GameState } from "../../game/GameState";
 import { GameSession } from "../../game/GameSession";
 import { Command } from "../../game/VillageRules";
+import type { GuideTrack } from "../../storage/VillageGuides";
 import { WechatPlatform } from "../../platform/WechatPlatform";
 import { SpriteFrames } from "../SpriteFrames";
 import { UiWidgets } from "../UiWidgets";
@@ -14,10 +15,9 @@ export type Panel = {
     rowOrder?: string[];
     /** 战技详情/战前返回链仅用于当前面板，保存失败时保留，成功后按来源导航。 */
     back?: Panel;
-    pendingTactic?: { id: string; slot: number };
+    pendingTactic?: { id: string | null; slot: number };
     /** 只在这次购买的存档提交成功后选中新槽。 */
     pendingSlotUnlock?: number;
-    tacticSlot?: number;
     tab?: number;
     /** 标签换页后为新的选中按钮延续松手动效，在本次渲染消费。 */
     tabFeedback?: boolean;
@@ -37,8 +37,10 @@ export interface PanelContext {
     readonly ui: UiWidgets;
     current: Panel | null;
     readonly refresh: () => void;
-    readonly tacticSlotGuideDismissed: boolean;
-    dismissTacticSlotGuide(): void;
+    readonly tacticUnread: boolean;
+    unreadTactic(id: string): boolean;
+    guideSeen(track: GuideTrack): boolean;
+    finishGuide(track: GuideTrack): void;
     open(panel: Panel, preserve?: boolean): void;
     close(): void;
     send(command: Command, keep?: boolean): void;

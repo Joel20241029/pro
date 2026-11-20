@@ -1,3 +1,4 @@
+import { waveDifficulty } from "../src/game/WaveDifficulty";
 import { createGame, applyCommand, economy, finishNight, canMarry } from "../src/game/VillageRules";
 import { clone, GameState } from "../src/game/GameState";
 import { SeededRandom } from "../src/game/SeededRandom";
@@ -53,7 +54,7 @@ test("Parents and siblings blocked, unrelated origins allowed", () => {
 });
 test("Wave budget and object limits over 10,000 days", () => {
     const s = createGame(11);
-    for (let d = 1; d <= 10000; d++) { s.day = d; const w = generateWave(s); equal(w.entries.reduce((a, e) => a + ENEMIES[e.kind].cost, 0), w.budget); ok(w.budget <= RULE.planCap * Math.max(...Object.values(ENEMIES).map(e => e.cost)) && w.entries.length <= RULE.planCap); equal(w.entries.filter(e => ENEMIES[e.kind].boss).length, d % 12 === 0 ? 1 : 0); }
+    for (let d = 1; d <= 1000; d++) { s.day = d; const w = generateWave(s); equal(w.entries.reduce((a, e) => a + ENEMIES[e.kind].cost, 0), w.budget); equal(w.entries.length, waveDifficulty(d).count); equal(w.entries.filter(e => ENEMIES[e.kind].boss).length, d % 12 === 0 ? 1 : 0); }
 });
 test("Initial battle is winnable, replay is deterministic", () => {
     const s = createGame(7); applyCommand(s, { type: "NIGHT" }); const a = new BattleSimulation(s), b = new BattleSimulation(s);

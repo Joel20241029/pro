@@ -1,0 +1,431 @@
+{
+  "arrow": {
+    "body": {
+      "id": "motion_arrow_body",
+      "x": 17,
+      "y": -5,
+      "w": 95,
+      "h": 125
+    },
+    "clips": [
+      {
+        "id": "motion_arrow_attack",
+        "x": 27,
+        "y": -15,
+        "w": 97,
+        "h": 76,
+        "frames": [
+          "motion_arrow_attack_0",
+          "motion_arrow_attack_1",
+          "motion_arrow_attack_2",
+          "motion_arrow_attack_3",
+          "motion_arrow_attack_4",
+          "motion_arrow_attack_5",
+          "motion_arrow_attack_6",
+          "motion_arrow_attack_7"
+        ],
+        "rest": "motion_arrow_attack_8",
+        "fps": 18,
+        "attack": true
+      }
+    ],
+    "muzzle": [
+      101,
+      2
+    ]
+  },
+  "stone": {
+    "body": {
+      "id": "motion_stone_body",
+      "x": 18,
+      "y": 10,
+      "w": 92,
+      "h": 110
+    },
+    "clips": [
+      {
+        "id": "motion_stone_attack",
+        "x": 61,
+        "y": -8,
+        "w": 55,
+        "h": 49,
+        "frames": [
+          "motion_stone_attack_0",
+          "motion_stone_attack_1",
+          "motion_stone_attack_2",
+          "motion_stone_attack_3",
+          "motion_stone_attack_4",
+          "motion_stone_attack_5",
+          "motion_stone_attack_6",
+          "motion_stone_attack_7"
+        ],
+        "rest": "motion_stone_attack_8",
+        "fps": 18,
+        "attack": true
+      }
+    ],
+    "muzzle": [
+      93,
+      11
+    ]
+  },
+  "slow": {
+    "body": {
+      "id": "motion_slow_body",
+      "x": 30,
+      "y": 1,
+      "w": 69,
+      "h": 119
+    },
+    "clips": [
+      {
+        "id": "motion_slow_idle",
+        "x": 48,
+        "y": -3,
+        "w": 28,
+        "h": 45,
+        "frames": [
+          "motion_slow_idle_0",
+          "motion_slow_idle_1",
+          "motion_slow_idle_2",
+          "motion_slow_idle_3",
+          "motion_slow_idle_4",
+          "motion_slow_idle_5",
+          "motion_slow_idle_6",
+          "motion_slow_idle_7",
+          "motion_slow_idle_8",
+          "motion_slow_idle_9"
+        ],
+        "rest": "motion_slow_idle_0",
+        "fps": 6,
+        "attack": false
+      },
+      {
+        "id": "motion_slow_attack",
+        "x": 28,
+        "y": -20,
+        "w": 69,
+        "h": 69,
+        "frames": [
+          "motion_slow_attack_0",
+          "motion_slow_attack_1",
+          "motion_slow_attack_2",
+          "motion_slow_attack_3",
+          "motion_slow_attack_4",
+          "motion_slow_attack_5",
+          "motion_slow_attack_6",
+          "motion_slow_attack_7"
+        ],
+        "rest": "motion_slow_attack_8",
+        "fps": 18,
+        "attack": true
+      }
+    ],
+    "muzzle": [
+      62,
+      19
+    ]
+  },
+  "gate": {
+    "body": {
+      "id": "motion_gate_body",
+      "x": 0,
+      "y": 13,
+      "w": 128,
+      "h": 107
+    },
+    "clips": [
+      {
+        "id": "motion_gate_doors",
+        "x": 42,
+        "y": 66,
+        "w": 44,
+        "h": 43,
+        "frames": [
+          "motion_gate_doors_0",
+          "motion_gate_doors_1",
+          "motion_gate_doors_2",
+          "motion_gate_doors_3",
+          "motion_gate_doors_4",
+          "motion_gate_doors_5",
+          "motion_gate_doors_6",
+          "motion_gate_doors_7",
+          "motion_gate_doors_8",
+          "motion_gate_doors_9",
+          "motion_gate_doors_10",
+          "motion_gate_doors_11",
+          "motion_gate_doors_12"
+        ],
+        "rest": "motion_gate_doors_0",
+        "fps": 10,
+        "attack": false
+      },
+      {
+        "id": "motion_gate_fire_left",
+        "x": 16,
+        "y": 73,
+        "w": 12,
+        "h": 18,
+        "frames": [
+          "motion_gate_fire_left_0",
+          "motion_gate_fire_left_1",
+          "motion_gate_fire_left_2",
+          "motion_gate_fire_left_3",
+          "motion_gate_fire_left_4",
+          "motion_gate_fire_left_5",
+          "motion_gate_fire_left_6",
+          "motion_gate_fire_left_7"
+        ],
+        "rest": "motion_gate_fire_left_0",
+        "fps": 12,
+        "attack": false
+      },
+      {
+        "id": "motion_gate_fire_right",
+        "x": 98,
+        "y": 73,
+        "w": 12,
+        "h": 18,
+        "frames": [
+          "motion_gate_fire_right_0",
+          "motion_gate_fire_right_1",
+          "motion_gate_fire_right_2",
+          "motion_gate_fire_right_3",
+          "motion_gate_fire_right_4",
+          "motion_gate_fire_right_5",
+          "motion_gate_fire_right_6",
+          "motion_gate_fire_right_7"
+        ],
+        "rest": "motion_gate_fire_right_0",
+        "fps": 12,
+        "attack": false
+      }
+    ]
+  },
+  "house": {
+    "body": {
+      "id": "motion_house_body",
+      "x": 10,
+      "y": 25,
+      "w": 108,
+      "h": 95
+    },
+    "clips": [
+      {
+        "id": "motion_house_smoke",
+        "x": 94,
+        "y": 4,
+        "w": 21,
+        "h": 25,
+        "frames": [
+          "motion_house_smoke_0",
+          "motion_house_smoke_1",
+          "motion_house_smoke_2",
+          "motion_house_smoke_3",
+          "motion_house_smoke_4",
+          "motion_house_smoke_5",
+          "motion_house_smoke_6",
+          "motion_house_smoke_7",
+          "motion_house_smoke_8",
+          "motion_house_smoke_9"
+        ],
+        "rest": "motion_house_smoke_0",
+        "fps": 8,
+        "attack": false
+      },
+      {
+        "id": "motion_house_window",
+        "x": 66,
+        "y": 77,
+        "w": 19,
+        "h": 14,
+        "frames": [
+          "motion_house_window_0",
+          "motion_house_window_1",
+          "motion_house_window_2",
+          "motion_house_window_3",
+          "motion_house_window_4",
+          "motion_house_window_5",
+          "motion_house_window_6",
+          "motion_house_window_7"
+        ],
+        "rest": "motion_house_window_0",
+        "fps": 5,
+        "attack": false
+      }
+    ]
+  },
+  "farm": {
+    "body": {
+      "id": "motion_farm_body",
+      "x": 12,
+      "y": 37,
+      "w": 105,
+      "h": 83
+    },
+    "clips": [
+      {
+        "id": "motion_farm_wheat",
+        "x": 32,
+        "y": 38,
+        "w": 43,
+        "h": 29,
+        "frames": [
+          "motion_farm_wheat_0",
+          "motion_farm_wheat_1",
+          "motion_farm_wheat_2",
+          "motion_farm_wheat_3",
+          "motion_farm_wheat_4",
+          "motion_farm_wheat_5",
+          "motion_farm_wheat_6",
+          "motion_farm_wheat_7"
+        ],
+        "rest": "motion_farm_wheat_0",
+        "fps": 7,
+        "attack": false
+      },
+      {
+        "id": "motion_farm_wheel",
+        "x": 80,
+        "y": 83,
+        "w": 23,
+        "h": 31,
+        "frames": [
+          "motion_farm_wheel_0",
+          "motion_farm_wheel_1",
+          "motion_farm_wheel_2",
+          "motion_farm_wheel_3",
+          "motion_farm_wheel_4",
+          "motion_farm_wheel_5",
+          "motion_farm_wheel_6",
+          "motion_farm_wheel_7"
+        ],
+        "rest": "motion_farm_wheel_0",
+        "fps": 10,
+        "attack": false
+      }
+    ],
+    "wheel": {
+      "id": "motion_farm_wheel_base",
+      "x": 76,
+      "y": 78,
+      "w": 35,
+      "h": 36
+    }
+  },
+  "logging": {
+    "body": {
+      "id": "motion_logging_body",
+      "x": 10,
+      "y": 23,
+      "w": 109,
+      "h": 97
+    },
+    "clips": [
+      {
+        "id": "motion_logging_saw",
+        "x": 65,
+        "y": 78,
+        "w": 26,
+        "h": 20,
+        "frames": [
+          "motion_logging_saw_0",
+          "motion_logging_saw_1",
+          "motion_logging_saw_2",
+          "motion_logging_saw_3",
+          "motion_logging_saw_4",
+          "motion_logging_saw_5",
+          "motion_logging_saw_6",
+          "motion_logging_saw_7"
+        ],
+        "rest": "motion_logging_saw_0",
+        "fps": 12,
+        "attack": false
+      }
+    ]
+  },
+  "patrol": {
+    "body": {
+      "id": "motion_patrol_body",
+      "x": 16,
+      "y": 15,
+      "w": 96,
+      "h": 105
+    },
+    "clips": [
+      {
+        "id": "motion_patrol_lantern",
+        "x": 88,
+        "y": 53,
+        "w": 28,
+        "h": 37,
+        "frames": [
+          "motion_patrol_lantern_0",
+          "motion_patrol_lantern_1",
+          "motion_patrol_lantern_2",
+          "motion_patrol_lantern_3",
+          "motion_patrol_lantern_4",
+          "motion_patrol_lantern_5",
+          "motion_patrol_lantern_6",
+          "motion_patrol_lantern_7"
+        ],
+        "rest": "motion_patrol_lantern_0",
+        "fps": 7,
+        "attack": false
+      },
+      {
+        "id": "motion_patrol_streamer",
+        "x": 15,
+        "y": 54,
+        "w": 35,
+        "h": 31,
+        "frames": [
+          "motion_patrol_streamer_0",
+          "motion_patrol_streamer_1",
+          "motion_patrol_streamer_2",
+          "motion_patrol_streamer_3",
+          "motion_patrol_streamer_4",
+          "motion_patrol_streamer_5",
+          "motion_patrol_streamer_6",
+          "motion_patrol_streamer_7"
+        ],
+        "rest": "motion_patrol_streamer_0",
+        "fps": 7,
+        "attack": false
+      }
+    ]
+  },
+  "hearth": {
+    "body": {
+      "id": "motion_hearth_body",
+      "x": 23,
+      "y": 44,
+      "w": 82,
+      "h": 76
+    },
+    "clips": [
+      {
+        "id": "motion_hearth_flame",
+        "x": 43,
+        "y": 43,
+        "w": 35,
+        "h": 45,
+        "frames": [
+          "motion_hearth_flame_0",
+          "motion_hearth_flame_1",
+          "motion_hearth_flame_2",
+          "motion_hearth_flame_3",
+          "motion_hearth_flame_4",
+          "motion_hearth_flame_5",
+          "motion_hearth_flame_6",
+          "motion_hearth_flame_7",
+          "motion_hearth_flame_8",
+          "motion_hearth_flame_9"
+        ],
+        "rest": "motion_hearth_flame_0",
+        "fps": 13,
+        "attack": false
+      }
+    ]
+  }
+}

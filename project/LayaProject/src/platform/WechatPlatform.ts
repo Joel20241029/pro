@@ -8,6 +8,7 @@ declare const wx: RankingLogPlatform & RankingCanvasApi & {
     getStorageInfoSync(): { keys: string[] };
     getStorageSync(key: string): unknown;
     setStorageSync(key: string, value: string): void;
+    removeStorageSync(key: string): void;
     getWindowInfo(): WindowMetrics;
     getMenuButtonBoundingClientRect(): MenuBounds;
     onHide(listener: () => void): void; offHide(listener: () => void): void;
@@ -40,6 +41,9 @@ export class WechatPlatform implements StoragePort {
         return value;
     }
     write(key: string, value: string) { wx.setStorageSync(key, value); }
+    remove(key: string) {
+        if (wx.getStorageInfoSync().keys.includes(key)) wx.removeStorageSync(key);
+    }
     bind(hide: () => void, show: () => void) {
         wx.onHide(hide); wx.onShow(show);
         if (this.shareRegistered) return;

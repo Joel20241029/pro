@@ -40,7 +40,7 @@ export function prepareDailyTasks(s: GameState, date: string) {
     // Neither the draw nor the isolated simulation advances the actual village or its saved random streams.
     const rng = new SeededRandom(Math.imul(s.run ^ s.rng.world, 16777619) ^ Number(date.replace(/-/g, "")));
     const buckets: Candidate[][] = [[], [], [], [], []];
-    const dense = isDenseWave(s.wave!.ordinaryHealthPercent);
+    const dense = s.wave!.rhythm !== undefined || isDenseWave(s.wave!.ordinaryHealthPercent);
     const count = (theme: number, kind: TaskKind, available: number, fields?: Partial<Candidate>) => {
         const [min, max] = dense && (kind === "kills" || kind === "enemyKind") ? DENSE_TASK_GOALS[kind] : TASK_GOALS[kind];
         const upper = Math.min(max, available);

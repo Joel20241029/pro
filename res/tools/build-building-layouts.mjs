@@ -51,9 +51,9 @@ export function buildBuildingLayouts(resRoot) {
         }
         return out;
     };
-    const kinds = ['HOUSE', 'FARM', 'LOGGING', 'GATE', 'ARROW', 'STONE', 'SLOW'];
+    const kinds = ['HOUSE', 'FARM', 'LOGGING', 'GATE', 'ARROW', 'STONE', 'SLOW', 'PATROL', 'HEARTH'];
     const files = fs.readdirSync(path.join(source, 'prefabs')).filter(f => f.endsWith('.lh')).sort();
-    if (files.length !== kinds.length || files.some(f => !kinds.includes(f.slice(0, -3)))) throw new Error('必须每种建筑一个预制体，共七个');
+    if (files.length !== kinds.length || files.some(f => !kinds.includes(f.slice(0, -3)))) throw new Error('必须每种建筑一个固定外观预制体');
     const find = (node, name) => node.name === name ? node : (node.children || []).map(n => find(n, name)).find(Boolean);
     for (const file of files) {
         const raw = fs.readFileSync(path.join(source, 'prefabs', file)), node = JSON.parse(raw);
@@ -66,8 +66,8 @@ export function buildBuildingLayouts(resRoot) {
             unitContainer(layout, layout.name);
             if (!layout.name.startsWith(id + '_') || layouts[layout.name]) throw new Error('无效/重复建筑变体:' + layout.name);
             const body = layout.children?.find(n => n.name === 'Body');
-            if (!body || body.clip !== 'upgrade') throw new Error('缺少 Body 升级片段:' + layout.name);
-            if (['ARROW', 'STONE', 'SLOW'].includes(id) && (!find(body, 'Muzzle') || find(body, 'Weapon')?.clip !== 'attack')) throw new Error('缺少射口或武器:' + layout.name);
+            if (!body || !find(body, 'Structure') || body.clip) throw new Error('建筑主体必须使用固定单张贴图:' + layout.name);
+            if (['ARROW', 'STONE', 'SLOW'].includes(id) && (!find(body, 'Muzzle') || !find(body, 'Weapon') || !find(body, 'Attack:motion_' + id.toLowerCase() + '_attack'))) throw new Error('缺少射口或武器:' + layout.name);
             const marker = name => {
                 const value = layout.children.find(n => n.name === name);
                 if (!value || value.visible !== false || Object.keys(value).some(k => !['name', 'visible', 'x', 'y', 'width', 'height'].includes(k))) throw new Error('无效范围标记:' + layout.name + '/' + name);
@@ -84,10 +84,9 @@ export function buildBuildingLayouts(resRoot) {
         }
         sources[id] = crypto.createHash('sha256').update(raw).digest('hex');
     }
-    for (const kind of ['HOUSE', 'FARM', 'LOGGING', 'GATE', 'ARROW', 'STONE', 'SLOW']) for (let stage = 1; stage <= 12; stage++) for (const rooms of kind === 'HOUSE' ? [1, 2, 3] : [1]) {
-        if (!layouts[`${kind}_${stage}_${rooms}`]) throw new Error('布局不完整:' + [kind, stage, rooms]);
-    }
-    if (Object.keys(layouts).length !== 108) throw new Error('建筑变体应为108个');
+    for (const kind of kinds)
+        if (!layouts[`${kind}_1_1`]) throw new Error('缺少固定建筑布局:' + kind);
+    if (Object.keys(layouts).length !== kinds.length) throw new Error('每种建筑必须只有一套固定外观');
     fs.writeFileSync(path.join(resRoot, 'native/buildings.json'), JSON.stringify({ layouts }) + '\n');
     fs.writeFileSync(path.join(resRoot, 'source/buildings/editor-manifest.json'), JSON.stringify({ format: 'Laya Sprite prefab source', sourceDirectory: 'res/editor/BuildingWorkshop/assets/buildingAuthoring', sources, nativeFiles }, null, 2) + '\n');
     return ['native/buildings.json', ...nativeFiles];

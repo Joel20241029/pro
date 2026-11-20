@@ -11,11 +11,11 @@ export const STARTER_LESSONS = [
 export type StarterTarget = typeof STARTER_LESSONS[number]["target"] | "build";
 /** 淡紫儿引导独立查看记录；旧档也可看到新系统，跳过不会改变五波引导进度。 */
 export const PATROL_LESSONS = [
-    { text: `开村就有${PATROL.building}。点地图上的粉色房子，给夜间小队选一位队长。` },
-    { text: `点「${PATROL.appoint}」。队长白天照常工作，夜里负责带队。` },
-    { text: "淡紫儿从城门出发了！小队沿友谊路分散迎敌。" },
+    { text: `开村就有${PATROL.building}。点地图上的粉色房子，选一位队长负责夜间出征。` },
+    { text: `点「${PATROL.appoint}」。队长白天照常工作，夜里安排出征。` },
+    { text: "淡紫儿从城门出发了！每次派出一名，沿友谊路迎敌。" },
 ] as const;
-// 首日流程已重排，旧的五步建设进度不能当作这三步的查看记录。
-export const PATROL_GUIDE_KEY = "daidai_village.patrol_intro_guide";
-/** 战技页独立提示，达到槽位波数后显示。第3槽才增加每夜施放次数。 */
-export const SLOT_GUIDE_TEXT = "多开一槽，多带一项战技。";
+
+/** 分波开放后的单步引导。空背包、空商城也可打开并完成。 */
+export const BACKPACK_LESSON = [{ text: "拿到的道具都在背包里。点一件，就能看看它有什么用。" }] as const;
+export const SHOP_LESSON = [{ text: "村口的集市开了。买下的道具会放进背包。" }] as const;

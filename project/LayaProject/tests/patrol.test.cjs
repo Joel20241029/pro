@@ -112,7 +112,7 @@ test('each patrol unit hits one nearest overlapping live enemy regardless of lat
     assert.equal(patrol.units.length, 0);
 });
 
-test('reinforcements add to an existing wave without changing its spawn duration or randomness', () => {
+test('fixed reinforcements use slots in the band budget without changing the arrival window', () => {
     for (const day of [12, 13, 25, 48]) {
         const s = createGame(44);
         s.day = day;
@@ -122,24 +122,24 @@ test('reinforcements add to an existing wave without changing its spawn duration
         PATROL.pressure.firstDay = PATROL.pressure.secondDay = Infinity;
         try {
             const baseline = generateWave(before);
-            assert.equal(actual.entries.length - baseline.entries.length, WAVE.density * (day < 13 ? 0 : day < 25 ? 1 : 2));
+            assert.equal(actual.entries.length, baseline.entries.length);
+            if (day === 12) assert.deepEqual(actual, baseline);
+            else assert.notDeepEqual(actual.entries, baseline.entries);
             assert.equal(actual.entries.at(-1).tick, baseline.entries.at(-1).tick);
-            assert.deepEqual(s.rng, before.rng);
         } finally {
             Object.assign(PATROL.pressure, { firstDay, secondDay });
         }
     }
 });
 
-test('squads grow for three levels and later upgrade only damage, with distinct speeds, lanes and departure times', () => {
+test('each departure sends one, upgrade only increases damage, and consecutive arrivals vary pace and lane', () => {
     const stats = [1, 2, 3, 4, 5].map(level => patrolStats(level));
     assert.deepEqual(PATROL.squad.speeds, [19, 21.5, 24.5, 27]);
     assert.equal(PATROL.legacy.speed, 46);
-    assert.deepEqual(stats.map(s => s.count), [2, 3, 4, 4, 4]);
-    assert.deepEqual(stats.map(s => s.damage), [16, 16, 16, 20, 24]);
+    assert.deepEqual(stats.map(s => s.damage), [16, 20, 24, 29, 35]);
     assert(stats.every(s => s.seconds === 7.5));
     const firstTick = Math.round(PATROL.first / RULE.step);
-    for (const level of [1, 2, 3, 5]) {
+    for (const level of [1, 2, 3, 5, 40]) {
         const state = unlocked();
         state.patrol = { level, captain: state.people[2].id };
         state.night = { patrolSquad: true };
@@ -147,21 +147,19 @@ test('squads grow for three levels and later upgrade only damage, with distinct 
         for (let tick = firstTick; tick < firstTick + patrol.stats.ticks * 4; tick++) {
             const deployed = patrol.deployments;
             patrol.advance(tick, []);
-            if (patrol.deployments > deployed) launches.push({ tick, ...patrol.units.at(-1) });
+            const added = patrol.deployments - deployed;
+            assert.equal(added, Number((tick - firstTick) % patrol.stats.ticks === 0));
+            if (added) launches.push({ tick, active: patrol.units.length, ...patrol.units.at(-1) });
             assert(patrol.units.length <= PATROL.squad.maxActive);
             assert(patrol.units.every(unit => onBattleRoad(unit.at)));
         }
-        const { count } = patrol.stats, first = launches.slice(0, count), next = launches.slice(count, count * 2);
-        assert.equal(first.length, count);
-        assert.equal(new Set(first.map(unit => unit.speed)).size, count);
-        assert.equal(new Set(first.map(unit => unit.lane)).size, count);
-        assert.deepEqual(first.map(unit => unit.tick - firstTick), PATROL.squad.delayTicks.slice(0, count));
-        assert.notEqual(first[0].speed, next[0].speed);
-        assert.notEqual(first[0].lane, next[0].lane);
+        assert.deepEqual(launches.map(unit => unit.speed), PATROL.squad.speeds);
+        assert.deepEqual(launches.map(unit => unit.lane), PATROL.squad.lanes);
+        assert.equal(launches[1].active, 2, "the previous patrol can still be on the road");
     }
 });
 
-test('squad damage follows the first Y crossing including an endpoint, and ignores X only in the new rules', () => {
+test('modern patrol damage follows the first Y crossing including an endpoint, and ignores X only in modern nights', () => {
     const state = unlocked();
     state.patrol = { level: 1, captain: state.people[0].id };
     const firstTick = Math.round(PATROL.first / RULE.step);

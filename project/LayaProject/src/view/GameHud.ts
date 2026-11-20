@@ -1,5 +1,6 @@
 import { featureUnlocked } from "../config/DailyTaskConfig";
 import { dailyTasksClaimable } from "../game/DailyTaskState";
+import { nextTacticSlotReady } from "../game/Tactics";
 import { HUD, LAYOUT } from "./config/HudConfig";
 import { GameSession } from "../game/GameSession";
 import { capacity, economy, person } from "../game/VillageRules";
@@ -82,22 +83,28 @@ export class GameHud {
         this.nightStatus.wordWrap = false;
         this.nightStatus.overflow = Laya.Text.SHRINK;
         // 入口按已提交的最高守夜记录逐项开放，重新开村保留。
-        if (s.legacy.bestNight > 0) {
+        if (s.phase !== "NIGHT" && s.legacy.bestNight > 0) {
             const side = TACTIC_UI.side;
+            const unlocked = SIDE_FEATURES.filter(entry => featureUnlocked(s.legacy.bestNight, entry.panel));
+            const available = layout.gateY - layout.mapTop - side.top * 2;
+            const compact = unlocked.length > 3 && available < unlocked.length * (side.size + side.gap) - side.gap;
+            const gap = compact ? side.compactGap : side.gap;
+            const size = compact ? Math.max(side.minSize, Math.min(side.size, Math.floor((available + gap) / unlocked.length - gap))) : side.size;
+            const ratio = size / side.size;
             SIDE_FEATURES.forEach((entry, i) => {
-                if (!featureUnlocked(s.legacy.bestNight, entry.panel)) return;
-                const b = this.ui.button(this.node, entry.title, side.x, layout.mapTop + side.top + i * (side.size + side.gap), side.size,
-                    () => this.panels.open({ type: entry.panel }), C.muted, side.size);
+                if (!unlocked.includes(entry)) return;
+                const b = this.ui.button(this.node, entry.title, side.x, layout.mapTop + side.top + i * (size + gap), size,
+                    () => this.panels.open({ type: entry.panel }), C.muted, size);
                 b.name = entry.name;
                 b.visible = i < shownFeatures;
                 b.mouseEnabled = b.visible;
                 this.featureButtons.push(b);
                 if (entry.panel === "tactics") this.guideTargets.tactics = b;
                 const face = b.getChildByName("buttonFace") as Laya.Sprite;
-                this.ui.image(face, entry.icon, (side.size - side.icon) / 2, side.iconY, side.icon).name = "buttonIcon";
+                this.ui.image(face, entry.icon, (size - side.icon * ratio) / 2, side.iconY * ratio, side.icon * ratio).name = "buttonIcon";
                 const text = face.getChildByName("buttonText") as Laya.Text;
-                text.pos(12, side.textY); text.size(side.size - 24, 32); text.fontSize = side.font;
-                if (entry.panel === "tactics" && !blocked && tacticUnread)
+                text.pos(12, side.textY * ratio); text.size(size - 24, 32 * ratio); text.fontSize = Math.round(side.font * ratio);
+                if (entry.panel === "tactics" && !blocked && (tacticUnread || nextTacticSlotReady(s)))
                     this.tacticBadge = this.ui.actionBadge(b, "TacticActionHint");
                 if (entry.panel === "dailyTasks" && !blocked && dailyTasksClaimable(s, this.game.taskDate))
                     this.ui.actionBadge(b, "DailyTasksActionHint");

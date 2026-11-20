@@ -18,14 +18,11 @@ export function patrolStats(level: number, captain?: Person, squad = true) {
     const quality = captain?.quality ?? "COMMON";
     const strength = captain?.trait === "trait_strong" ? PATROL.strongBonus : 0;
     const haste = PATROL.qualityHaste[quality] + (captain?.trait === "trait_nimble" ? PATROL.nimbleBonus : 0);
-    const growthLevels = PATROL.squad.maxSize - PATROL.squad.initialSize;
-    const powerLevel = squad ? Math.max(1, level - growthLevels) : level;
     const perPerson = squad ? PATROL.squad.damage : PATROL.legacy.damage;
     const interval = squad ? PATROL.interval : PATROL.interval - PATROL.legacy.perLevel * (level - 1);
     const ticks = Math.round(Math.max(PATROL.minimum, interval * (1 - haste)) / RULE.step);
     return {
-        count: squad ? Math.min(PATROL.squad.maxSize, PATROL.squad.initialSize + level - 1) : 1,
-        damage: Math.round(perPerson * (1 + PATROL.powerShare * (levelPower(powerLevel) - 1)) * (1 + strength) * VILLAGER_QUALITY[quality].damage),
+        damage: Math.round(perPerson * (1 + PATROL.powerShare * (levelPower(level) - 1)) * (1 + strength) * VILLAGER_QUALITY[quality].damage),
         ticks, seconds: Number((ticks * RULE.step).toFixed(2))
     };
 }

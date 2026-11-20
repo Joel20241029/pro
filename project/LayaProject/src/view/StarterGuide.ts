@@ -6,7 +6,7 @@ import { UiWidgets } from "./UiWidgets";
 import { C, UI } from "./UiTheme";
 import { STARTER_LESSONS } from "./config/StarterGuideConfig";
 
-/** 设备已显示到的引导波次。跳过时记到最后一波，与村落存档独立。 */
+/** 轨迹接口保留原来的读写方式，正式入口由独立引导档适配此键。 */
 const KEY = "daidai_village.starter_guide";
 /** 720 逻辑宽度下的提示卡，底部与守夜按钮错开。显示时间按前台帧推进。 */
 const CARD = { width: 600, inset: 20, portrait: 70, gap: 16, seconds: 8, actionHeight: 54 };
@@ -52,9 +52,35 @@ export class StarterGuide {
         this.activeWave = 0;
     }
 
+    /** 新村的分功能存档已清除，下一次提示需要重新读取查看状态。 */
+    resetProgress() {
+        this.hide();
+        this.seen = null;
+    }
+
+    /** 已主动打开功能，也视为读完该单步提示。 */
+    finish() {
+        if (this.seen !== this.lessons.length) this.saveSeen(this.lessons.length);
+        this.hide();
+    }
+
+    /** 一次补一条，活跃步骤仍由展示时钟推进，避免同一帧推进多条。 */
+    nextEligible(through: number) {
+        const next = this.activeWave || this.readSeen() + 1;
+        return next <= Math.min(through, this.lessons.length) ? next : null;
+    }
+
     tick(wave: number | null, layout: GameLayout, seconds: number, target?: Laya.Sprite) {
         if (wave === null || wave < 1 || wave > this.lessons.length) { this.hide(); return; }
         if (this.activeWave !== wave) this.hide();
+        if (wave > this.readSeen()) this.show(wave);
+        if (!this.node.visible) return;
+        this.layoutCard(layout, target);
+        this.remaining -= seconds;
+        if (this.remaining <= 0) this.hide();
+    }
+
+    private readSeen() {
         if (this.seen === null) {
             this.seen = 0;
             try {
@@ -62,11 +88,7 @@ export class StarterGuide {
                 if (Number.isInteger(seen) && seen >= 0 && seen <= this.lessons.length) this.seen = seen;
             } catch (error) { console.warn("[智卓引导] 无法读取查看记录", error); }
         }
-        if (wave > this.seen) this.show(wave);
-        if (!this.node.visible) return;
-        this.layoutCard(layout, target);
-        this.remaining -= seconds;
-        if (this.remaining <= 0) this.hide();
+        return this.seen;
     }
 
     private layoutCard(layout: GameLayout, target?: Laya.Sprite) {

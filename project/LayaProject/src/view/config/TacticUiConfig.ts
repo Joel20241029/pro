@@ -3,11 +3,9 @@
  */
 export const TACTIC_UI = {
     // 一号塔点击区左边界为107；徽章右沿102，四种屏幕和三类塔均保留5px逻辑间隔。
-    side: { x: 6, top: 12, size: 96, gap: 12, icon: 44, iconY: 8, textY: 55, font: 26 },
-    // 紧凑条目留一行给费用、限制及操作。战斗时在列表下单独说明暂不可换。
-    rowHeight: 186, rowStep: 198, footer: 54,
-    // 圆槽图标与短标签共用一列，状态行留给当前装配和卸下操作。
-    slots: { top: 109, x: 34, width: 190, gap: 15, size: 82, icon: 48, captionH: 32, actionY: 118, actionH: 38 },
+    side: { x: 6, top: 12, size: 96, gap: 12, icon: 44, iconY: 8, textY: 55, font: 26,
+        // 四、五入口在短屏缩小间距及面高，保持左边界和塔点击区的横向间隔。
+        compactGap: 8, minSize: 74 },
     // 确认面板集中展示解锁条件、费用及操作，单位为720宽布局中的逻辑像素。
     unlock: { width: 544, conditionY: 106, costY: 185, reasonY: 235, footerY: 274, cancelX: 55, cancelW: 170, confirmX: 249, confirmW: 258 },
     // 怜悯确认框使用独立边距与扣费行。缺料提示保留专行，按钮果冻回弹也留有余量。
@@ -16,10 +14,6 @@ export const TACTIC_UI = {
         costY: 276, costH: 60, readoutH: 46, reasonY: 351,
         footerY: 395, cancelX: 56, cancelW: 170, confirmX: 246, confirmW: 268
     },
-    // 提示卡比下面的列表窄，增加高度、间距和浮层阴影；引导期间的面板加高以保留短屏列表空间。
-    slotGuide: { width: 568, height: 112, gap: 18, portrait: 68, skipW: 96, spotlightInset: 4 },
-    icon: 96, rowTextX: 136, rowTextWidth: 420,
-    actionX: 376, actionY: 112, actionWidth: 188, actionHeight: 56,
     // 展开传闻高度按真实文字测量，这里只定义边距、标题区和动作行。
     detail: { top: 112, width: 600, inset: 28, icon: 96, loreTop: 164, gap: 20 }
 } as const;
@@ -28,5 +22,7 @@ export const TACTIC_UI = {
 export const SIDE_FEATURES = [
     { title: "排行", name: "RankingButton", panel: "ranking", icon: "icon_trophy", unlock: "好友守村榜" },
     { title: "战技", name: "TacticsButton", panel: "tactics", icon: "icon_tactic_scroll", unlock: "守村战技" },
-    { title: "任务", name: "DailyTasksButton", panel: "dailyTasks", icon: "icon_daily_tasks", unlock: "每日任务" }
+    { title: "任务", name: "DailyTasksButton", panel: "dailyTasks", icon: "icon_daily_tasks", unlock: "每日任务" },
+    { title: "背包", name: "BackpackButton", panel: "backpack", icon: "icon_backpack", unlock: "背包" },
+    { title: "商城", name: "ShopButton", panel: "shop", icon: "icon_shop", unlock: "商城" }
 ] as const;

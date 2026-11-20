@@ -4,6 +4,10 @@ import { RULE } from "./GameConfig";
 import { applyCommand, Command, createGame, finishNight } from "./VillageRules";
 import { LoadResult, SaveMode, SaveStore } from "../storage/SaveStore";
 import { DeviceSettings } from "../storage/DeviceSettings";
+import { BackpackChange, VillageItemStorage } from "../storage/VillageItemStorage";
+import { VillageGuides } from "../storage/VillageGuides";
+import { ItemId, LIANG_ESSENCE } from "../config/ShopConfig";
+import { essenceTargets, shopOffer } from "./ShopRules";
 import { dailyRationAmount, localRationDate } from "./DailyRation";
 import { BLAST_TACTIC, KING_MERCY, KING_MERCY_TACTIC } from "../config/TacticConfig";
 import { gateCapacity } from "./Growth";
@@ -15,6 +19,7 @@ import { claimDailyTask } from "./DailyTaskState";
 import { creditTaskCommand, creditTaskVictory, dailyTasksNeedRefresh, prepareDailyTasks } from "./DailyTasks";
 import type { RoadPoint } from "./BattleRoad";
 export type Pause = "USER" | "BACKGROUND" | "WAIT_RESUME" | "CHOICE" | "SAVE_PENDING" | "DISABLED" | "DAILY_RATION" | "ASSETS";
+export interface EssenceFeedback { person: string; nights: number; }
 export class GameSession {
     state: GameState | null = null; battle: BattleSimulation | null = null;
     /** 仅供最终弹道/死亡演出；结算与保存不等待它，新夜/新村/成功读档即清理，不写入存档。 */
@@ -42,6 +47,13 @@ export class GameSession {
     private visitDate: string | null = null;
     dailyRationDate: string | null = null;
     private deviceSettings = new DeviceSettings(this.saves.port);
+    readonly villageItems = new VillageItemStorage(this.saves.port, () => this.saves.villageId);
+    readonly guides = new VillageGuides(this.saves.port, () => this.saves.villageId);
+    private pendingEssence: EssenceFeedback | undefined;
+    private essenceFeedback: EssenceFeedback | undefined;
+    private purchaseFeedback = false;
+    takeEssenceFeedback() { const result = this.essenceFeedback; this.essenceFeedback = undefined; return result; }
+    takePurchaseFeedback() { const result = this.purchaseFeedback; this.purchaseFeedback = false; return result; }
     constructor(readonly saves: SaveStore, private today = () => localRationDate(new Date())) {}
     get taskDate() { return this.today(); }
     enter() { this.visitDate = this.today(); this.checkDailyRation(); if (!this.refreshDailyTasks()) this.changed(); }
@@ -90,8 +102,8 @@ export class GameSession {
         try {
             this.boot = this.saves.inspect(); this.error = "";
             if (this.boot.kind === "ready") { this.finishedBattle = null; this.combatFeedback = []; this.accept(this.boot.state); this.refreshDailyTasks(); }
-            else if (this.boot.kind === "complete-clean-start") {
-                this.pendingNewVillage = true; this.pauses.add("SAVE_PENDING"); this.retry();
+            else if (this.boot.kind === "complete-clean-start" || this.boot.kind === "complete-backpack-change") {
+                this.pendingNewVillage = this.boot.kind === "complete-clean-start"; this.pauses.add("SAVE_PENDING"); this.retry();
             } else this.changed();
         }
         catch (e) { this.error = String(e); this.boot = { kind: "blocked", reason: "微信存档暂时读取失败。请重试，未新建或覆盖进度。", canReset: false }; this.changed(); }
@@ -137,18 +149,48 @@ export class GameSession {
         this.checkDailyRation();
         this.changed();
     }
-    private submit(next: GameState, keepBattle = false, start?: SaveMode) {
+    private submit(next: GameState, keepBattle = false, start?: SaveMode, backpack?: BackpackChange, essence?: EssenceFeedback) {
         try {
             if (start !== undefined) next.settings = this.deviceSettings.resolve(next.settings);
-            this.saves.prepare(next, start); this.continuingBattle = keepBattle; this.pendingNewVillage = start !== undefined;
+            this.saves.prepare(next, start, start !== undefined, backpack); this.continuingBattle = keepBattle; this.pendingNewVillage = start !== undefined;
+            this.pendingEssence = essence;
             this.pauses.add("SAVE_PENDING"); this.retry();
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
     retry() {
         if (!this.saves.pending) { this.load(); return; }
         try {
+            const purchase = this.saves.pending.backpack?.change.delta === 1 && this.boot?.kind !== "complete-backpack-change";
             const state = this.saves.commit(), newVillage = this.pendingNewVillage;
+            this.essenceFeedback = this.pendingEssence; this.pendingEssence = undefined;
+            this.purchaseFeedback = purchase;
             this.pendingNewVillage = false; this.accept(state, newVillage);
+        } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
+    }
+    buyItem(id: ItemId) {
+        const state = this.state;
+        if (!state || this.saves.pending || this.pauses.has("BACKGROUND") || this.pauses.has("DISABLED")) return;
+        try {
+            const { product, affordable } = shopOffer(state, id);
+            if (!affordable) throw new Error("粮木不足");
+            this.villageItems.shop();
+            const count = this.villageItems.backpack().items[id] ?? 0;
+            this.submit({ ...state, food: state.food - product.food, wood: state.wood - product.wood }, false, undefined, { id, delta: 1, before: count });
+        } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
+    }
+    useEssence(person: string) {
+        const state = this.state;
+        if (!state || this.saves.pending || this.pauses.has("BACKGROUND") || this.pauses.has("DISABLED")) return;
+        try {
+            if (!essenceTargets(state).some(p => p.id === person)) throw new Error("这位村民当前无法使用道具");
+            const count = this.villageItems.backpack().items[LIANG_ESSENCE.id] ?? 0;
+            if (!count) throw new Error("背包里没有靓哥的精华");
+            // 只在确认后抽一次，重试使用存档候选，不推进既有的家庭与世界随机序列。
+            const nights = LIANG_ESSENCE.minNights + Math.floor(Math.random() * (LIANG_ESSENCE.maxNights - LIANG_ESSENCE.minNights + 1));
+            const next = clone(state), target = next.people.find(p => p.id === person)!;
+            target.nights += nights;
+            target.retirementDelayUses = (target.retirementDelayUses ?? 0) + 1;
+            this.submit(next, false, undefined, { id: LIANG_ESSENCE.id, delta: -1, before: count }, { person, nights });
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
     command(c: Command) {

@@ -19,8 +19,6 @@ export class Patrol {
     units: PatrolUnit[] = [];
     readonly stats: ReturnType<typeof patrolStats>;
     private readonly squad: boolean;
-    private pending: { tick: number; lane: number; speed: number }[] = [];
-    private batch = 0;
     private due = Math.round(PATROL.first / RULE.step);
     deployments = 0;
     kills = 0;
@@ -34,25 +32,13 @@ export class Patrol {
 
     advance(tick: number, targets: readonly PatrolTarget[]): SummonCollision[] {
         const activeLimit = this.squad ? PATROL.squad.maxActive : PATROL.legacy.maxActive;
-        if (tick >= this.due && this.units.length + this.pending.length + this.stats.count <= activeLimit) {
-            if (this.squad) {
-                const { lanes, speeds, delayTicks } = PATROL.squad;
-                const batch = this.batch++;
-                // 速度与路线分别轮换。每批内分到不同位置，夜战重放不消耗村庄随机源。
-                const laneStep = batch % 2 === 0 ? 1 : lanes.length - 1;
-                for (let i = 0; i < this.stats.count; i++) this.pending.push({
-                    tick: tick + delayTicks[i], lane: lanes[(batch + i * laneStep) % lanes.length],
-                    speed: speeds[(batch + i * (speeds.length - 1)) % speeds.length]
-                });
-            } else {
-                const { lanes, speed } = PATROL.legacy;
-                this.pending.push({ tick, lane: lanes[this.deployments % lanes.length], speed });
-            }
+        if (tick >= this.due && this.units.length < activeLimit) {
+            // 相邻出征轮换速度和路径，夜战重放不消耗村庄随机源。
+            const index = this.deployments++;
+            const lanes = this.squad ? PATROL.squad.lanes : PATROL.legacy.lanes;
+            const lane = lanes[index % lanes.length], speed = this.squad ? PATROL.squad.speeds[index % PATROL.squad.speeds.length] : PATROL.legacy.speed;
+            this.units.push({ index, progress: PATH_LENGTH, lane, speed, at: lanePoint(PATH_LENGTH, 0), distance: 0 });
             this.due = tick + this.stats.ticks;
-        }
-        while (this.pending.length && this.pending[0].tick <= tick) {
-            const { lane, speed } = this.pending.shift()!;
-            this.units.push({ index: this.deployments++, progress: PATH_LENGTH, lane, speed, at: lanePoint(PATH_LENGTH, 0), distance: 0 });
         }
         const hits: SummonCollision[] = [];
         const active: PatrolUnit[] = [];

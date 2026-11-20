@@ -1,5 +1,5 @@
 import { PADS } from "../../game/GameConfig";
-import { FARM_WHEEL_FOOTPRINT } from "../BuildingLayout";
+import { FARM_WHEEL_FOOTPRINT, PATROL_BOOTH_FRAME } from "../BuildingLayout";
 export interface GroundPoint {
     x: number;
     y: number;
@@ -43,8 +43,8 @@ export const VILLAGE_PROPS: VillageProp[] = [
     ...[28, 92, 156, 220, 500, 564, 628, 692].map((x, i): VillageProp => ({ id: `wall:${i}`, frame: "building_palisade", x, y: 830, size: 78, footprint: null })),
     // 村名牌靠左城墙，底座落在已有墙体安全边内；牌面与火把分开，不增加通行障碍。
     { id: "deco:village-sign", frame: "deco_village_sign", x: 178, y: 832, size: 140, footprint: null, signText: "文明里村" },
-    // 1.0.25移到道路上段左侧，给右侧新增第五塔让位；复用木牌，保持字号与草地留白。
-    { id: "deco:friendship-road-sign", frame: "deco_village_sign", x: 270, y: 265, size: 120, footprint: null, signText: "友谊路" },
+    // 友谊路牌往上挪并靠近路边，给短屏首座箭楼预留整段攻击动作空间。
+    { id: "deco:friendship-road-sign", frame: "deco_village_sign", x: 315, y: 225, size: 120, footprint: null, signText: "友谊路" },
     // 下方圆树与左侧松树横向错开66，避免圆树树冠挡住松树前的落斧动作；仍保留原高度/尺寸。
     { id: "tree:logging", frame: "deco_tree_oak", x: 164, y: 1012, size: 90, footprint: { left: 153, top: 997, right: 175, bottom: 1012 }, canopyDetails: [
         { frame: "deco_apple_pair", x: .22, y: .37, size: .14, alpha: .85 },
@@ -63,15 +63,14 @@ export const VILLAGE_PROPS: VillageProp[] = [
     { id: "tree:corner-pine-left", frame: "deco_tree_pine", x: 43, y: 976, size: 88, footprint: { left: 32, top: 961, right: 54, bottom: 976 } },
     { id: "tree:corner-pine-right", frame: "deco_tree_pine", x: 677, y: 880, size: 88, footprint: { left: 666, top: 865, right: 688, bottom: 880 } },
     { id: "deco:logs", frame: "deco_log_pile", x: 588, y: 1024, size: 60, footprint: null },
-    ...[[279, 822], [441, 822]].map(([x, y], i): VillageProp => ({ id: `torch:${i}`, frame: "deco_torch", x, y, size: 62, footprint: null })),
     // 保留佟楼的 140px 外观，底座按满级厢房宽度预留，扩建时村民仍能绕开墙脚。
-    prop("building:house-a", "hd_house_body_0", 38, 794.75, 140, 123, 33),
+    prop("building:house-a", "motion_house_body", 38, 794.75, 140, 123, 33),
     // 田地是可站立地面，用农田自身源pivot；不加入建筑排序/导航障碍，人物真正走入垄沟。
-    { id: "building:farm", frame: "hd_farm_body_0", x: 546, y: 954, size: 202, footprint: null, ground: true },
-    prop("building:logging", "hd_logging_body_0", 482, 922.625, 106, 87, 28),
-    prop("building:hearth", "building_hearth_lit", 321, 891, 78, 44, 15),
-    prop(PATROL_PROP, "patrol_booth_0", 152, 801.25, 148, 102, 43),
-    prop("building:gate", "hd_gate_body_0", 282, 684, 156, 132, 30),
+    { id: "building:farm", frame: "motion_farm_body", x: 546, y: 954, size: 202, footprint: null, ground: true },
+    prop("building:logging", "motion_logging_body", 482, 922.625, 106, 87, 28),
+    prop("building:hearth", "motion_hearth_body", 321, 891, 78, 44, 15),
+    prop(PATROL_PROP, PATROL_BOOTH_FRAME, 152, 801.25, 148, 102, 43),
+    prop("building:gate", "motion_gate_body", 282, 684, 156, 132, 30),
     ...PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, TOWER_VIEW.footprintWidth, TOWER_VIEW.footprintDepth))
 ];
 export const farm = VILLAGE_PROPS.find(p => p.id === "building:farm")!;

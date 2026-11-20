@@ -2,7 +2,7 @@ const { test } = require('node:test'), assert = require('node:assert/strict'), p
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 class Sprite {
-    constructor() { this.children = []; this.graphics = { clear() {}, drawRect() {}, drawLine() {}, drawRoundRect() {}, drawCircle() {}, drawLines() {} }; }
+    constructor() { this.children = []; this.graphics = { clear() {}, drawRect() {}, drawLine() {}, drawRoundRect() {}, drawCircle() {}, drawLines() {}, drawEllipse() {} }; }
     pos(x, y) { this.x = x; this.y = y; return this; } size(width, height) { this.width = width; this.height = height; return this; }
     addChild(child) { this.children.push(child); child.parent = this; return child; }
     get displayedInStage() { return !!this.parent; }
@@ -50,7 +50,7 @@ const { createGame, applyCommand, finishNight } = require(path.join(compiled, 'g
 function setup() {
     const messages = [], privacy = [], authorization = [], settings = [], storage = new Map();
     const canvas = { width: 390, height: 844, style: {} }, context = { canvas, postMessage: m => messages.push(m) }, contexts = [];
-    const wx = { getAppBaseInfo: () => ({ SDKVersion: '3.17.6' }), getWindowInfo: () => ({}), getOpenDataContext: options => { contexts.push(options); return context; }, requirePrivacyAuthorize: o => privacy.push(o), authorize: o => authorization.push(o), openSetting: o => settings.push(o), getStorageInfoSync: () => ({ keys: [...storage.keys()] }), getStorageSync: k => storage.get(k), setStorageSync: (k,v) => storage.set(k,v) };
+    const wx = { getAppBaseInfo: () => ({ SDKVersion: '3.17.6' }), getWindowInfo: () => ({}), getOpenDataContext: options => { contexts.push(options); return context; }, requirePrivacyAuthorize: o => privacy.push(o), authorize: o => authorization.push(o), openSetting: o => settings.push(o), getStorageInfoSync: () => ({ keys: [...storage.keys()] }), getStorageSync: k => storage.get(k), setStorageSync: (k,v) => storage.set(k,v), removeStorageSync: k => storage.delete(k) };
     global.wx = wx; return { wx, canvas, context, contexts, messages, privacy, authorization, settings, storage, platform: new WechatPlatform() };
 }
 test('score sync is deduplicated and does not invoke friend/privacy APIs', () => {
@@ -127,6 +127,8 @@ test('native SDK gate compares numeric versions and never creates default-mode c
 function gameView(session, platform) {
     const view = Object.create(GameView.prototype), overlay = new Sprite(), art = { panel() {} };
     view.handSpeed = { counting: false, update() {} };
+    const itemGuide = { resetProgress() {}, tick() {}, node: { visible: false } };
+    view.itemGuides = { backpack: itemGuide, shop: itemGuide };
     // This platform lifecycle fixture does not render glyphs; button/icon press coupling
     // is exercised with the real UiWidgets in gameplay-clarity.test.cjs.
     const ui = { image(parent,id,x,y,w,h=w) { return parent.addChild(new Sprite().pos(x,y).size(w,h)); },
@@ -139,17 +141,17 @@ function gameView(session, platform) {
         const box = new Sprite().size(size.width, size.height); box.name = 'panel:' + title; overlay.addChild(box); return box;
     };
     const village = Object.create(VillageWorld.prototype);
-    Object.assign(village, { game: session, layout, scene, feedback: { hasPatrolImpact: false }, motion: { sync() {} }, thoughts: { sync() {} }, crying: { sync() {} }, cryIcon: new Sprite(), speechTip: { hide() {} }, shield: { reset() {} }, summon: { reset() {} }, interaction: { cancelPresses() {}, clearDepth() {} }, drawScenery() {} });
+    Object.assign(village, { game: session, layout, scene, feedback: { hasPatrolImpact: false }, motion: { sync() {} }, thoughts: { sync() {} }, crying: { sync() {} }, cryIcon: new Sprite(), speechTip: { hide() {} }, essenceArrow: new Sprite(), essenceTip: { hide() {} }, shield: { reset() {} }, summon: { reset() {} }, interaction: { cancelPresses() {}, clearDepth() {} }, drawScenery() {} });
     Object.assign(view, { resources: { ready: () => true }, game: session, observedVillageRevision: session.villageRevision, platform, layout, panels, village,
         shownErrorRevision: 0, observedRun: 0, observedDawn: 0, overlay, tip: { show() {} }, anchoredTip: { hide() {} },
-        reminder: { reset() {}, tick() {}, hide() {} }, patrolGuide: { hide() {}, tick() {}, node: { visible: false } }, starterGuide: { hide() {}, tick() {}, node: { visible: false } },
+        reminder: { reset() {}, tick() {}, hide() {} }, patrolGuide: { resetProgress() {}, hide() {}, tick() {}, node: { visible: false } }, starterGuide: { resetProgress() {}, hide() {}, tick() {}, node: { visible: false } },
         tacticNotices: new TacticNotices(platform), updateActors() {} });
     view.hud = new GameHud(session, art, ui, panels, () => view.refresh());
     view.results = new NightResultPresentation(ui, view.hud, () => view.refresh());
     const parent = new Sprite(); [view.hud.node,overlay,view.results.layer].forEach(node=>parent.addChild(node));
     return view;
 }
-test('the terminal patrol ring plays before both the victory and defeat panels', () => {
+test('the terminal patrol impact plays before both the victory and defeat panels', () => {
     for (const outcome of ['WIN', 'LOSE']) {
         for (const hitInFinalStep of [true, false]) {
             const base = createGame(7); applyCommand(base, { type: 'NIGHT' });
@@ -161,9 +163,9 @@ test('the terminal patrol ring plays before both the victory and defeat panels',
             const view = new NightResultPresentation({}, {}, () => refreshes++);
             view.observe(game, state, !hitInFinalStep);
             assert(view.playingFinalImpact); assert(view.draw({}));
-            view.advance(FEEDBACK.patrolImpact.seconds);
+            view.advance(FEEDBACK.finalImpactSeconds, true);
             assert(view.playingFinalImpact); assert.equal(refreshes, 0);
-            view.advance(FEEDBACK.finalImpactSeconds - FEEDBACK.patrolImpact.seconds);
+            view.advance(0, false);
             assert(!view.playingFinalImpact); assert.equal(refreshes, 1);
             assert.equal(view.active, outcome === 'WIN');
             view.observe(game, state, false); assert(!view.playingFinalImpact);
@@ -221,6 +223,11 @@ test('failed first wave and an uncommitted victory do not unlock ranking', () =>
 test('a committed defeat opens restart directly without collection or an unlock', () => {
     const env = setup(), session = new GameSession(new SaveStore(env.platform)); session.load(); session.newVillage();
     const view = gameView(session, env.platform);
+    view.panels.ui.label = (parent, text, x, y, width, _size, _color, _bold, height) => {
+        const label = new Sprite().pos(x, y).size(width, height);
+        label.text = text;
+        return parent.addChild(label);
+    };
     session.changed = () => view.refresh();
     session.state.gate = 1;
     session.state.towers = session.state.towers.map(() => ({kind:null,level:0,operator:null}));
@@ -230,11 +237,19 @@ test('a committed defeat opens restart directly without collection or an unlock'
     assert.equal(session.state.phase,'GAME_OVER');
     const stored=JSON.stringify([...env.storage]);
     assert.equal(box().name,'panel:守夜失败');
+    const labels = name => box().getChildByName(name).children.flatMap(n => typeof n.text === 'string' ? [n.text] : []);
+    assert.deepEqual(labels('DefeatScore'), ['城门失守', '本局守住', '0', '夜']);
+    assert.deepEqual(labels('DefeatVillage'), ['本局村庄', '传承', '1 代', '迎来孩子', '0 人', '荣休村民', '0 位']);
+    assert.deepEqual(labels('DefeatRecords'), ['历史纪录', '最长坚守', '0 夜', '累计出生', '0 人']);
+    const cardBottom = box().getChildByName('DefeatRecords');
+    const restart = box().getChildByName('button:重新开村');
+    assert(cardBottom.y + cardBottom.height < restart.y);
+    assert.equal(box().height - restart.y - restart.height, 48);
     assert.equal(box().getChildByName('button:收下'),undefined);
     view.results.advance(2); assert.equal(view.results.layer.visible,false);
     assert.equal(view.hud.node.getChildByName('RankingButton'),undefined);
     assert.equal(JSON.stringify([...env.storage]),stored);
-    box().getChildByName('button:重新开村').action();
+    restart.action();
     assert.equal(box().name, 'panel:确认重新开村');
     assert.equal(JSON.stringify([...env.storage]),stored);
     box().getChildByName('button:确认重新开村').action();

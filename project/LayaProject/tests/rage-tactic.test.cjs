@@ -16,7 +16,8 @@ function learned() {
     applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC }); return s;
 }
 function enemy(seq, kind = 'enemy_raider') {
-    return { seq, kind, appearanceSeed: 87, progress: 200 + seq, hp: 100000, speed: 0, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
+    // 这段路上的近邻都在首塔位寒塔的射程内。
+    return { seq, kind, appearanceSeed: 87, progress: 256 + seq, hp: 100000, speed: 0, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
 }
 function battle(kind = 'ARROW', tactic = RAGE_TACTIC) {
     const s = learned(); s.food = 100; s.policy = null; s.tactics.equipped = tactic;
@@ -44,7 +45,8 @@ test('three tower damage paths use rage before armor and final rounding, with no
     for (const [kind, normal, boosted, armorNormal, armorBoosted] of [['ARROW',12,18,7,10], ['STONE',22,33,17,26], ['SLOW',4,6,2,3]]) {
         for (const [armored, expected] of [[false,[normal,boosted]], [true,[armorNormal,armorBoosted]]]) {
             for (const active of [false,true]) {
-                const b = battle(kind); b.enemies = [enemy(0, armored ? 'enemy_armored' : 'enemy_raider'), enemy(1, armored ? 'enemy_armored' : 'enemy_raider')];
+                // 两个靶子放在同一条路带，保持这个用例专门覆盖近邻溅射。
+                const b = battle(kind); b.enemies = [enemy(0, armored ? 'enemy_armored' : 'enemy_raider'), enemy(3, armored ? 'enemy_armored' : 'enemy_raider')];
                 if (active) b.bell(); b.step();
                 const event = b.feedback.find(e => e.type === 'shot'); assert(event);
                 assert.equal(event.shot.empowered, active); assert.equal(event.hurt.length, kind === 'STONE' ? 2 : 1);

@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-19T07:51:39.182Z",
-  "runtimeAssetCount": 526,
-  "reserveAssetCount": 7,
+  "generatedAt": "2026-11-20T02:32:40.784Z",
+  "runtimeAssetCount": 560,
+  "reserveAssetCount": 129,
   "animationCount": 73,
-  "animationFrames": 366,
+  "animationFrames": 437,
   "categoryStats": {
     "enemies": {
       "count": 70,
@@ -18,21 +18,21 @@
       "reserve": 0
     },
     "characters": {
-      "count": 247,
-      "bytes": 4722676,
-      "runtime": 247,
+      "count": 255,
+      "bytes": 4830150,
+      "runtime": 255,
       "reserve": 0
     },
     "building-parts": {
-      "count": 120,
-      "bytes": 1738646,
-      "runtime": 119,
-      "reserve": 1
+      "count": 265,
+      "bytes": 2305323,
+      "runtime": 146,
+      "reserve": 119
     },
     "ui/icons": {
-      "count": 23,
-      "bytes": 358323,
-      "runtime": 23,
+      "count": 26,
+      "bytes": 401364,
+      "runtime": 26,
       "reserve": 0
     },
     "effects": {
@@ -44,8 +44,8 @@
     "decorations": {
       "count": 21,
       "bytes": 669392,
-      "runtime": 18,
-      "reserve": 3
+      "runtime": 14,
+      "reserve": 7
     },
     "ui/panels": {
       "count": 12,
@@ -71,20 +71,20 @@
       "id": "ui_0",
       "path": "atlases/ui_0.png",
       "runtimeFile": "ui/ui_0.png",
-      "width": 1005,
-      "height": 960,
-      "bytes": 1158921,
-      "sha256": "66c985c1a5622c64584c2015917838ef316391a06113e4f34feb55ed7709a5ce",
+      "width": 1017,
+      "height": 994,
+      "bytes": 1226620,
+      "sha256": "436ccc3a23bcb645e58fec63fd37e33090154872a995de418d130f0f83df32e2",
       "group": "ui"
     },
     {
       "id": "ui_1",
       "path": "atlases/ui_1.png",
       "runtimeFile": "ui/ui_1.png",
-      "width": 453,
+      "width": 352,
       "height": 132,
-      "bytes": 71410,
-      "sha256": "472b7ef7f78d12143ec4c560557c79b2df2aba7d19169dd9db028e8b36ed4fc5",
+      "bytes": 53172,
+      "sha256": "630aacebedd6433e00b6408de554a22827046ea5c5baff2bcfa553a880df758a",
       "group": "ui"
     },
     {
@@ -101,50 +101,50 @@
       "id": "map_0",
       "path": "atlases/map_0.png",
       "runtimeFile": "map/map_0.png",
-      "width": 768,
-      "height": 555,
-      "bytes": 517694,
-      "sha256": "f77de81a0d103df60fae4b6d7376e1311fd7c8dba5446a23004c9925e81de18b",
+      "width": 581,
+      "height": 698,
+      "bytes": 486575,
+      "sha256": "739c256ba79b3552b43efa0acbba46b2c00dfb0d4e8eb4a5c3774c602f74ed11",
       "group": "map"
     },
     {
       "id": "buildings_0",
       "path": "atlases/buildings_0.png",
       "runtimeFile": "buildings/buildings_0.png",
-      "width": 959,
-      "height": 1024,
-      "bytes": 1715320,
-      "sha256": "ad4efb00dddfd19b9dbeece7e990456d586c1c10bf054cda740242036140c63f",
+      "width": 768,
+      "height": 497,
+      "bytes": 525277,
+      "sha256": "c3e0845646dd1153289976da66d0bc2de45a5b4fe06418329728c1712d0e0dbc",
       "group": "buildings"
     },
     {
       "id": "characters_0",
       "path": "atlases/characters_0.png",
       "runtimeFile": "characters/characters_0.png",
-      "width": 959,
-      "height": 1024,
-      "bytes": 1388413,
-      "sha256": "7b244273ca83288fe5e8d7a5153dbc90461e6bca451430ca73303c1c12c24b4d",
+      "width": 1015,
+      "height": 956,
+      "bytes": 1411674,
+      "sha256": "91e0c86ac9a6809de840a64d0f9597e0f63c82e293fe564ca23a0c834d615a13",
       "group": "characters"
     },
     {
       "id": "characters_1",
       "path": "atlases/characters_1.png",
       "runtimeFile": "characters/characters_1.png",
-      "width": 960,
-      "height": 977,
-      "bytes": 1467246,
-      "sha256": "f2ae7a3687a714c34a9078edb9c7f28b9485c9ba7d74c0031fdc3afdd3564164",
+      "width": 1023,
+      "height": 960,
+      "bytes": 1633538,
+      "sha256": "069008298fb5856f0f999eb85b9db9d2d484cdd8ec9178977072ae9198620211",
       "group": "characters"
     },
     {
       "id": "characters_2",
       "path": "atlases/characters_2.png",
       "runtimeFile": "characters/characters_2.png",
-      "width": 952,
-      "height": 1020,
-      "bytes": 1681963,
-      "sha256": "78a2c2904908bca02291417238a6da3d2ae0aa6d7c69a5a8873af57fab812f4b",
+      "width": 1008,
+      "height": 956,
+      "bytes": 1590392,
+      "sha256": "083738717d21633212a539f8b6d42587a989d4ce78d987978ee0d294d47b9591",
       "group": "characters"
     },
     {
@@ -152,9 +152,9 @@
       "path": "atlases/village_effects_0.png",
       "runtimeFile": "effects/village_effects_0.png",
       "width": 251,
-      "height": 367,
-      "bytes": 104692,
-      "sha256": "6359c575de07cf01af3d4172c6e86bfc1449900c5ccfc18a91169613c9e7f5ed",
+      "height": 414,
+      "bytes": 110272,
+      "sha256": "a4e4a5e690a310bf29ca400d36c00a1dbdb72903f64171f97618cfe4cf44980d",
       "group": "village_effects"
     },
     {
@@ -183,27 +183,27 @@
       "runtimeFile": "effects/night_effects_0.png",
       "width": 311,
       "height": 766,
-      "bytes": 229346,
-      "sha256": "7ed32996133abf9316ce8a8ac15f1e574054710393b49aa89903376a079723ad",
+      "bytes": 223555,
+      "sha256": "2651c53769e568490109a8964d5296e72d41d87da06ed826bde33e6718d5b192",
       "group": "night_effects"
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 10995844,
-    "atlasContentPixels": 7682104,
-    "savedContentPixels": 3313740,
-    "savedContentPercent": 30.14,
-    "trimmedAssetCount": 419,
+    "sourceCanvasPixels": 10312450,
+    "atlasContentPixels": 7185572,
+    "savedContentPixels": 3126878,
+    "savedContentPercent": 30.32,
+    "trimmedAssetCount": 476,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "atlasImageBytes": 11477742,
-    "metadataBytes": 239931,
+    "atlasImageBytes": 10403812,
+    "metadataBytes": 159884,
     "audioBytes": 164243,
-    "totalBytes": 11881916,
+    "totalBytes": 10727939,
     "files": [
       "bundles/map/frames.bin",
       "bundles/characters/animations.bin",
@@ -245,8 +245,8 @@
   },
   "sourceBytes": 49652112,
   "budgetComparison": {
-    "villageAtlasImageBytes": 8762051,
-    "nightAtlasImageBytes": 2715691
+    "villageAtlasImageBytes": 7693912,
+    "nightAtlasImageBytes": 2709900
   },
   "limitations": [
     "Atlas content-pixel savings are not identical to PNG byte savings",

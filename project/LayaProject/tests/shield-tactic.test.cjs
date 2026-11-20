@@ -81,7 +81,7 @@ test('shield lasts exactly 140 combat steps and cannot be refreshed', () => {
     b.bell(); assert.equal(b.bellTicks,0); assert.equal(b.tick,140);
 });
 test('blocking a summoning chief preserves already spawned children, then stops future summons', () => {
-    const b = battle(); b.tick=RULE.summonTicks[0]; b.enemies.push(enemy(0,'enemy_chief',PATH_LENGTH-2,100));
+    const b = battle(); b.tick=RULE.summonTicks[0]; b.enemies.push(enemy(0,'enemy_chief',PATH_LENGTH-2.5,100));
     b.bell(); b.step(); assert.equal(b.enemies.length,3); assert(!b.enemies.some(e=>e.kind==='enemy_chief'));
     const children=b.enemies.filter(e=>e.seq!==99); assert.equal(children.length,2); assert(children.every(e=>e.kind==='enemy_raider'));
     b.step(); assert.equal(b.enemies.length,1); assert.equal(b.feedback.filter(e=>e.type==='gate'&&e.blocked).length,2);

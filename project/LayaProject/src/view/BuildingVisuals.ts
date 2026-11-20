@@ -7,12 +7,16 @@ import { BuildingAmbient } from "./BuildingAmbient";
 import { TipTarget } from "./AnchoredTip";
 export { BuildingLook } from "./BuildingLayout";
 
-/** 原生编辑器部件+共享 .mc；地图根的足底/排序不动，动画只作用于内部 Body/Weapon。 */
+/** 图稿按原地图足点等比放大25%。这个比例只用于贴图、局部动效和挂点。 */
+const BUILDING_ART_SCALE = 1.25;
+
+/** 原生编辑器部件与局部帧共用同一地图足点。 */
 export class BuildingVisuals {
     private key = ""; private level = 0; private rooms = 1;
     private parts = new Laya.Sprite(); private badge = new Laya.Text();
     private body: Laya.Sprite | null = null; private muzzle: Laya.Sprite | null = null;
-    private upgrades: Laya.AnimatorClip2D[] = []; private attack: Laya.AnimatorClip2D | null = null;
+    private upgrades: Laya.AnimatorClip2D[] = [];
+    private attack: { node: Laya.Sprite; clip: string }[] = [];
     private above: Laya.Sprite | null = null; private aboveSort: GroundPoint | null = null;
     private upgradePending = 0;
     private expansion = 0;
@@ -36,41 +40,47 @@ export class BuildingVisuals {
         for (const property of ["x", "y", "width", "height", "anchorX", "anchorY", "scaleX", "scaleY", "rotation", "alpha", "visible"] as const)
             if (data[property] !== undefined) (node as any)[property] = data[property];
         parent.addChild(node);
-        this.ambient.bind(node, data.frame);
+        this.ambient.bind(node);
+        if (data.name.startsWith("Attack:")) this.attack.push({ node, clip: data.name.slice("Attack:".length) });
         if (data.name === "Muzzle") this.muzzle = node;
         for (const child of data.children || []) this.create(child, node);
         if (data.clip) {
             const animator = node.addComponent(Laya.AnimatorClip2D); animator.autoPlay = false;
-            animator.clip = data.clip === "upgrade" ? this.art.buildingUpgrade : this.art.buildingAttack;
-            if (data.clip === "upgrade") this.upgrades.push(animator); else this.attack = animator;
+            animator.clip = this.art.buildingUpgrade;
+            this.upgrades.push(animator);
             animator.gotoAndStop(1);
         }
         return node;
     }
     sync(kind: BuildingLook | null, level: number, freshVillage: boolean, rooms = 1, damaged = false, facing = 1, expansion = 0) {
-        const key = `${kind}:${level}:${rooms}:${damaged}:${facing}`;
+        const key = `${kind}:${damaged}:${facing}`;
         if (freshVillage) {
             this.upgradePending = 0; this.upgrading = false; this.gateFlare = 0; this.ambient.reset();
-            this.upgrades.forEach(a => a.gotoAndStop(1)); this.latestShot = null; this.attack?.gotoAndStop(1);
+            this.upgrades.forEach(a => a.gotoAndStop(1)); this.latestShot = null;
         } else if (kind && this.level > 0) {
             const gains = Math.max(level - this.level, expansion - this.expansion, rooms - this.rooms, 0);
             if (kind === "HOUSE" || kind === "FARM" || kind === "LOGGING" || kind === "GATE") this.upgradePending += gains;
             else if (gains) this.upgradePending = 1;
         }
         this.expansion = expansion;
-        if (key === this.key) return;
-        this.key = key; this.level = level; this.rooms = rooms;
+        this.level = level; this.rooms = rooms;
+        if (key === this.key) {
+            this.updateBadge(level, this.owner.width / 128);
+            return;
+        }
+        this.key = key;
         this.parts.destroyChildren(); this.above?.destroy(true); this.above = null; this.aboveSort = null;
-        this.body = this.muzzle = null; this.upgrades = []; this.attack = null; this.ambient.clear();
+        this.body = this.muzzle = null; this.upgrades = []; this.attack = []; this.ambient.clear();
         this.cachedBodyRegion = null;
         this.latestShot = null; this.badge.visible = false;
         if (!kind) { this.upgradePending = 0; this.upgrading = false; return; }
         this.owner.texture = null;
-        const layout = this.art.buildingLayouts[buildingLayoutId(kind, level, rooms)];
+        const layout = this.art.buildingLayouts[buildingLayoutId(kind)];
         if (!layout) throw new Error("缺少编辑器建筑布局:" + key);
         const root = this.create(layout, this.parts), scale = this.owner.width / 128;
         this.owner.size(this.owner.width, this.owner.width).pivot(layout.sort.x * scale, layout.sort.y * scale);
-        this.parts.scale(scale, scale);
+        this.parts.size(128, 128).pivot(layout.sort.x, layout.sort.y).pos(layout.sort.x * scale, layout.sort.y * scale);
+        this.parts.scale(scale * BUILDING_ART_SCALE, scale * BUILDING_ART_SCALE);
         this.body = root.getChildByName("Body") as Laya.Sprite;
         if (kind === "ARROW") {
             // 左右武器各自预渲染；只切换武器组，主体与固定光照不随塔位镜像。
@@ -92,7 +102,11 @@ export class BuildingVisuals {
             door.alpha = .68; door.rotation = 6;
             door.graphics.drawLines(door.width * .45, 2, [0, 0, -5, 8, 2, 13, -3, 22], "#41251e", 2);
         }
-        if (level >= 13) {
+        this.updateBadge(level, scale);
+    }
+    private updateBadge(level: number, scale: number) {
+        this.badge.visible = level >= 13;
+        if (this.badge.visible) {
             this.badge.visible = true; this.badge.text = String(level); this.badge.fontSize = 19 * scale; this.badge.stroke = 2 * scale;
             this.badge.size(64 * scale, 24 * scale).pivot(32 * scale, 0).pos(64 * scale, 93 * scale);
             this.badge.scaleX = this.owner.scaleX;
@@ -100,7 +114,7 @@ export class BuildingVisuals {
     }
     /** 面板完全关闭后按每次升级依次播放，动画仍附在各自的部件上。 */
     beginVisibleUpgrade(): boolean {
-        if (!this.upgradePending || this.upgrading) return false;
+        if (!this.upgradePending || this.upgrading || !this.upgrades.length) return false;
         this.upgradePending--; this.elapsed = 0; this.upgrading = true;
         this.upgrades.forEach(a => a.gotoAndStop(0)); return true;
     }
@@ -112,7 +126,7 @@ export class BuildingVisuals {
             this.upgrades.forEach(a => a.gotoAndStop(progress)); this.upgrading = progress < 1;
         }
         this.gateFlare = this.upgrading ? Math.sin(Math.PI * progress) : 0;
-        this.ambient.advance(delta, progress, night, working);
+        this.ambient.advance(delta, night, working);
     }
     upgradeFlare() { return this.gateFlare; }
     /** 实际贴图范围用于民房点击和屋顶提示；编辑器bounds含安全留白，不能作为屋顶。
@@ -120,29 +134,38 @@ export class BuildingVisuals {
      */
     bodyRegion(): TipTarget {
         if (!this.body) throw new Error("当前建筑没有可交互主体");
-        if (!this.cachedBodyRegion)
-            this.cachedBodyRegion = { node: this.body, bounds: this.body.getSelfBounds(new Laya.Rectangle(), true) };
+        if (!this.cachedBodyRegion) {
+            const node = this.body.getChildByName("Structure") as Laya.Sprite;
+            this.cachedBodyRegion = { node, bounds: node.getSelfBounds(new Laya.Rectangle(), true) };
+        }
         return this.cachedBodyRegion;
     }
     /** 水车从地面农田分离，只按自己的足底与人物排序；重排时从owner当前坐标重算。 */
     occluder(): { id: string; y: number; node: Laya.Sprite } | null {
         if (!this.above || !this.aboveSort) return null;
-        const scale = this.owner.width / 128, parent = this.owner.parent as Laya.Sprite;
-        const origin = this.owner.localToGlobal(new Laya.Point(0, 0), false, parent);
-        const foot = this.owner.localToGlobal(new Laya.Point(this.aboveSort.x * scale, this.aboveSort.y * scale), false, parent);
-        this.above.pos(origin.x, origin.y).scale(scale * this.owner.scaleX, scale * this.owner.scaleY);
+        const parent = this.owner.parent as Laya.Sprite;
+        const origin = this.parts.localToGlobal(new Laya.Point(0, 0), false, parent);
+        const foot = this.parts.localToGlobal(new Laya.Point(this.aboveSort.x, this.aboveSort.y), false, parent);
+        this.above.pos(origin.x, origin.y).scale(this.parts.scaleX * this.owner.scaleX, this.parts.scaleY * this.owner.scaleY);
         this.above.rotation = this.owner.rotation;
         return { id: this.above.name, y: foot.y, node: this.above };
     }
-    /** 保存最后一发Shot，避免逻辑短队列移除时动作提前结束；暂停和倍速跟随战斗tick。 */
-    updateAttack(battle: BattleSimulation | null, tower: number) {
-        if (battle !== this.battle) { this.battle = battle; this.latestShot = null; this.attack?.gotoAndStop(1); }
-        if (!this.attack) return;
-        if (!battle || battle.outcome) { this.latestShot = null; this.attack.gotoAndStop(1); return; }
-        for (const shot of battle.shots) if (shot.tower === tower && (!this.latestShot || shot.tick > this.latestShot.tick)) this.latestShot = shot;
-        if (this.latestShot) {
-            const age = (battle.tick - this.latestShot.tick - 1) * RULE.step;
-            this.attack.gotoAndStop(Math.min(1, Math.max(0, age) / this.attack.clip.duration()));
+    /** 齐射共用一次局部动画。表现时钟和弹道共用，结算时最后一发也能播完。 */
+    updateAttack(battle: BattleSimulation | null, tower: number, shots: Iterable<Shot>, time: number) {
+        if (battle !== this.battle) { this.battle = battle; this.latestShot = null; }
+        if (!this.attack.length) return;
+        if (battle) for (const shot of shots)
+            if (shot.tower === tower && (!this.latestShot || shot.tick > this.latestShot.tick)) this.latestShot = shot;
+        const age = this.latestShot ? Math.max(0, time - (this.latestShot.tick + 1) * RULE.step) : Infinity;
+        for (const { node, clip } of this.attack) {
+            const animation = this.art.animation(clip);
+            const index = Math.floor(age * animation.fps);
+            const active = index < animation.frameIds.length;
+            node.texture = this.art.get(active ? animation.frameIds[index] : animation.restFrame);
+            if (clip === "motion_slow_attack") {
+                node.visible = active;
+                this.ambient.showFrostIdle(!active);
+            }
         }
     }
     /** 编辑器 Muzzle 挂点应用结构缩放和左右镜像；弹道在发射时保存此坐标。 */
@@ -156,6 +179,6 @@ export class BuildingVisuals {
         const weapon = this.body!.getChildByName("Weapon") as Laya.Sprite;
         const parent = this.owner.parent as Laya.Sprite;
         const point = weapon.localToGlobal(new Laya.Point(weapon.width / 2, weapon.height), false, parent);
-        return { x: point.x, y: point.y, scale: this.owner.width / 128 * Math.abs(this.owner.scaleX) };
+        return { x: point.x, y: point.y, scale: this.parts.scaleX * Math.abs(this.owner.scaleX) };
     }
 }

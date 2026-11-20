@@ -1165,431 +1165,6 @@
       "trimPolicy": "atlas_trim_restore_source_canvas"
     },
     {
-      "id": "hearth_burn",
-      "frameIds": [
-        "building_hearth_lit",
-        "hearth_burn_2",
-        "hearth_burn_3",
-        "hearth_burn_4"
-      ],
-      "frameCount": 4,
-      "fps": 6,
-      "loop": true,
-      "restFrame": "building_hearth_lit",
-      "category": "decorations",
-      "mapping": "fixed back stones / flame / fixed front stones",
-      "canvas": {
-        "w": 96,
-        "h": 96
-      },
-      "pivot": {
-        "x": 48,
-        "y": 90
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_0_0",
-      "frameIds": [
-        "farm_crop_0_0_0",
-        "farm_crop_0_0_1",
-        "farm_crop_0_0_2",
-        "farm_crop_0_0_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_0_0_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 40,
-        "h": 31
-      },
-      "pivot": {
-        "x": 20,
-        "y": 31
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_0_1",
-      "frameIds": [
-        "farm_crop_0_1_0",
-        "farm_crop_0_1_1",
-        "farm_crop_0_1_2",
-        "farm_crop_0_1_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_0_1_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 34,
-        "h": 26
-      },
-      "pivot": {
-        "x": 17,
-        "y": 26
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_0_2",
-      "frameIds": [
-        "farm_crop_0_2_0",
-        "farm_crop_0_2_1",
-        "farm_crop_0_2_2",
-        "farm_crop_0_2_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_0_2_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 43,
-        "h": 31
-      },
-      "pivot": {
-        "x": 21.5,
-        "y": 31
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_0_3",
-      "frameIds": [
-        "farm_crop_0_3_0",
-        "farm_crop_0_3_1",
-        "farm_crop_0_3_2",
-        "farm_crop_0_3_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_0_3_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 39,
-        "h": 29
-      },
-      "pivot": {
-        "x": 19.5,
-        "y": 29
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_1_0",
-      "frameIds": [
-        "farm_crop_1_0_0",
-        "farm_crop_1_0_1",
-        "farm_crop_1_0_2",
-        "farm_crop_1_0_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_1_0_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 41,
-        "h": 32
-      },
-      "pivot": {
-        "x": 20.5,
-        "y": 32
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_1_1",
-      "frameIds": [
-        "farm_crop_1_1_0",
-        "farm_crop_1_1_1",
-        "farm_crop_1_1_2",
-        "farm_crop_1_1_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_1_1_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 35,
-        "h": 27
-      },
-      "pivot": {
-        "x": 17.5,
-        "y": 27
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_1_2",
-      "frameIds": [
-        "farm_crop_1_2_0",
-        "farm_crop_1_2_1",
-        "farm_crop_1_2_2",
-        "farm_crop_1_2_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_1_2_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 43,
-        "h": 29
-      },
-      "pivot": {
-        "x": 21.5,
-        "y": 29
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_1_3",
-      "frameIds": [
-        "farm_crop_1_3_0",
-        "farm_crop_1_3_1",
-        "farm_crop_1_3_2",
-        "farm_crop_1_3_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_1_3_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 39,
-        "h": 28
-      },
-      "pivot": {
-        "x": 19.5,
-        "y": 28
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_2_0",
-      "frameIds": [
-        "farm_crop_2_0_0",
-        "farm_crop_2_0_1",
-        "farm_crop_2_0_2",
-        "farm_crop_2_0_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_2_0_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 38,
-        "h": 25
-      },
-      "pivot": {
-        "x": 19,
-        "y": 25
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_2_1",
-      "frameIds": [
-        "farm_crop_2_1_0",
-        "farm_crop_2_1_1",
-        "farm_crop_2_1_2",
-        "farm_crop_2_1_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_2_1_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 32,
-        "h": 21
-      },
-      "pivot": {
-        "x": 16,
-        "y": 21
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_2_2",
-      "frameIds": [
-        "farm_crop_2_2_0",
-        "farm_crop_2_2_1",
-        "farm_crop_2_2_2",
-        "farm_crop_2_2_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_2_2_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 36,
-        "h": 24
-      },
-      "pivot": {
-        "x": 18,
-        "y": 24
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_2_3",
-      "frameIds": [
-        "farm_crop_2_3_0",
-        "farm_crop_2_3_1",
-        "farm_crop_2_3_2",
-        "farm_crop_2_3_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_2_3_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 34,
-        "h": 24
-      },
-      "pivot": {
-        "x": 17,
-        "y": 24
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_3_0",
-      "frameIds": [
-        "farm_crop_3_0_0",
-        "farm_crop_3_0_1",
-        "farm_crop_3_0_2",
-        "farm_crop_3_0_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_3_0_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 37,
-        "h": 26
-      },
-      "pivot": {
-        "x": 18.5,
-        "y": 26
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_3_1",
-      "frameIds": [
-        "farm_crop_3_1_0",
-        "farm_crop_3_1_1",
-        "farm_crop_3_1_2",
-        "farm_crop_3_1_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_3_1_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 32,
-        "h": 23
-      },
-      "pivot": {
-        "x": 16,
-        "y": 23
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_3_2",
-      "frameIds": [
-        "farm_crop_3_2_0",
-        "farm_crop_3_2_1",
-        "farm_crop_3_2_2",
-        "farm_crop_3_2_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_3_2_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 36,
-        "h": 24
-      },
-      "pivot": {
-        "x": 18,
-        "y": 24
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
-      "id": "farm_crop_3_3",
-      "frameIds": [
-        "farm_crop_3_3_0",
-        "farm_crop_3_3_1",
-        "farm_crop_3_3_2",
-        "farm_crop_3_3_3"
-      ],
-      "frameCount": 4,
-      "fps": 3,
-      "loop": true,
-      "restFrame": "farm_crop_3_3_0",
-      "category": "building-parts",
-      "mapping": "detached crop detail",
-      "canvas": {
-        "w": 34,
-        "h": 25
-      },
-      "pivot": {
-        "x": 17,
-        "y": 25
-      },
-      "clock": "scene_visual_or_battle",
-      "trimPolicy": "atlas_trim_restore_source_canvas"
-    },
-    {
       "id": "torch_burn",
       "frameIds": [
         "deco_torch",
@@ -1962,6 +1537,474 @@
       "trimPolicy": "atlas_trim_restore_source_canvas",
       "displayScale": 1.1538461538461537,
       "contactFrame": 2
+    },
+    {
+      "id": "patrol_walk_shuffle",
+      "frameIds": [
+        "patrol_walk_shuffle_0",
+        "patrol_walk_shuffle_1",
+        "patrol_walk_shuffle_2",
+        "patrol_walk_shuffle_3"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "patrol_walk_shuffle_0",
+      "category": "characters",
+      "mapping": "patrol",
+      "canvas": {
+        "w": 96,
+        "h": 96
+      },
+      "pivot": {
+        "x": 48,
+        "y": 93
+      },
+      "clock": "battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 44
+    },
+    {
+      "id": "patrol_walk_waddle",
+      "frameIds": [
+        "patrol_walk_waddle_0",
+        "patrol_walk_waddle_1",
+        "patrol_walk_waddle_2",
+        "patrol_walk_waddle_3"
+      ],
+      "frameCount": 4,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "patrol_walk_waddle_0",
+      "category": "characters",
+      "mapping": "patrol",
+      "canvas": {
+        "w": 96,
+        "h": 96
+      },
+      "pivot": {
+        "x": 48,
+        "y": 93
+      },
+      "clock": "battle",
+      "trimPolicy": "atlas_trim_restore_source_canvas",
+      "stridePixels": 56
+    },
+    {
+      "id": "motion_arrow_attack",
+      "frameIds": [
+        "motion_arrow_attack_0",
+        "motion_arrow_attack_1",
+        "motion_arrow_attack_2",
+        "motion_arrow_attack_3",
+        "motion_arrow_attack_4",
+        "motion_arrow_attack_5",
+        "motion_arrow_attack_6",
+        "motion_arrow_attack_7"
+      ],
+      "frameCount": 8,
+      "fps": 18,
+      "loop": false,
+      "restFrame": "motion_arrow_attack_8",
+      "category": "building-parts",
+      "canvas": {
+        "w": 97,
+        "h": 76
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "battle_shot"
+    },
+    {
+      "id": "motion_stone_attack",
+      "frameIds": [
+        "motion_stone_attack_0",
+        "motion_stone_attack_1",
+        "motion_stone_attack_2",
+        "motion_stone_attack_3",
+        "motion_stone_attack_4",
+        "motion_stone_attack_5",
+        "motion_stone_attack_6",
+        "motion_stone_attack_7"
+      ],
+      "frameCount": 8,
+      "fps": 18,
+      "loop": false,
+      "restFrame": "motion_stone_attack_8",
+      "category": "building-parts",
+      "canvas": {
+        "w": 55,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "battle_shot"
+    },
+    {
+      "id": "motion_slow_idle",
+      "frameIds": [
+        "motion_slow_idle_0",
+        "motion_slow_idle_1",
+        "motion_slow_idle_2",
+        "motion_slow_idle_3",
+        "motion_slow_idle_4",
+        "motion_slow_idle_5",
+        "motion_slow_idle_6",
+        "motion_slow_idle_7",
+        "motion_slow_idle_8",
+        "motion_slow_idle_9"
+      ],
+      "frameCount": 10,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "motion_slow_idle_0",
+      "category": "building-parts",
+      "canvas": {
+        "w": 28,
+        "h": 45
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "scene_visual_or_battle"
+    },
+    {
+      "id": "motion_slow_attack",
+      "frameIds": [
+        "motion_slow_attack_0",
+        "motion_slow_attack_1",
+        "motion_slow_attack_2",
+        "motion_slow_attack_3",
+        "motion_slow_attack_4",
+        "motion_slow_attack_5",
+        "motion_slow_attack_6",
+        "motion_slow_attack_7"
+      ],
+      "frameCount": 8,
+      "fps": 18,
+      "loop": false,
+      "restFrame": "motion_slow_attack_8",
+      "category": "building-parts",
+      "canvas": {
+        "w": 69,
+        "h": 69
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "battle_shot"
+    },
+    {
+      "id": "motion_gate_doors",
+      "frameIds": [
+        "motion_gate_doors_0",
+        "motion_gate_doors_1",
+        "motion_gate_doors_2",
+        "motion_gate_doors_3",
+        "motion_gate_doors_4",
+        "motion_gate_doors_5",
+        "motion_gate_doors_6",
+        "motion_gate_doors_7",
+        "motion_gate_doors_8",
+        "motion_gate_doors_9",
+        "motion_gate_doors_10",
+        "motion_gate_doors_11",
+        "motion_gate_doors_12"
+      ],
+      "frameCount": 13,
+      "fps": 10,
+      "loop": true,
+      "restFrame": "motion_gate_doors_0",
+      "category": "building-parts",
+      "canvas": {
+        "w": 44,
+        "h": 43
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "scene_visual_or_battle"
+    },
+    {
+      "id": "motion_gate_fire_left",
+      "frameIds": [
+        "motion_gate_fire_left_0",
+        "motion_gate_fire_left_1",
+        "motion_gate_fire_left_2",
+        "motion_gate_fire_left_3",
+        "motion_gate_fire_left_4",
+        "motion_gate_fire_left_5",
+        "motion_gate_fire_left_6",
+        "motion_gate_fire_left_7"
+      ],
+      "frameCount": 8,
+      "fps": 12,
+      "loop": true,
+      "restFrame": "motion_gate_fire_left_0",
+      "category": "building-parts",
+      "canvas": {
+        "w": 12,
+        "h": 18
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "scene_visual_or_battle"
+    },
+    {
+      "id": "motion_gate_fire_right",
+      "frameIds": [
+        "motion_gate_fire_right_0",
+        "motion_gate_fire_right_1",
+        "motion_gate_fire_right_2",
+        "motion_gate_fire_right_3",
+        "motion_gate_fire_right_4",
+        "motion_gate_fire_right_5",
+        "motion_gate_fire_right_6",
+        "motion_gate_fire_right_7"
+      ],
+      "frameCount": 8,
+      "fps": 12,
+      "loop": true,
+      "restFrame": "motion_gate_fire_right_0",
+      "category": "building-parts",
+      "canvas": {
+        "w": 12,
+        "h": 18
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "scene_visual_or_battle"
+    },
+    {
+      "id": "motion_house_smoke",
+      "frameIds": [
+        "motion_house_smoke_0",
+        "motion_house_smoke_1",
+        "motion_house_smoke_2",
+        "motion_house_smoke_3",
+        "motion_house_smoke_4",
+        "motion_house_smoke_5",
+        "motion_house_smoke_6",
+        "motion_house_smoke_7",
+        "motion_house_smoke_8",
+        "motion_house_smoke_9"
+      ],
+      "frameCount": 10,
+      "fps": 8,
+      "loop": true,
+      "restFrame": "motion_house_smoke_0",
+      "category": "building-parts",
+      "canvas": {
+        "w": 21,
+        "h": 25
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "scene_visual_or_battle"
+    },
+    {
+      "id": "motion_house_window",
+      "frameIds": [
+        "motion_house_window_0",
+        "motion_house_window_1",
+        "motion_house_window_2",
+        "motion_house_window_3",
+        "motion_house_window_4",
+        "motion_house_window_5",
+        "motion_house_window_6",
+        "motion_house_window_7"
+      ],
+      "frameCount": 8,
+      "fps": 5,
+      "loop": true,
+      "restFrame": "motion_house_window_0",
+      "category": "building-parts",
+      "canvas": {
+        "w": 19,
+        "h": 14
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "scene_visual_or_battle"
+    },
+    {
+      "id": "motion_farm_wheat",
+      "frameIds": [
+        "motion_farm_wheat_0",
+        "motion_farm_wheat_1",
+        "motion_farm_wheat_2",
+        "motion_farm_wheat_3",
+        "motion_farm_wheat_4",
+        "motion_farm_wheat_5",
+        "motion_farm_wheat_6",
+        "motion_farm_wheat_7"
+      ],
+      "frameCount": 8,
+      "fps": 7,
+      "loop": true,
+      "restFrame": "motion_farm_wheat_0",
+      "category": "building-parts",
+      "canvas": {
+        "w": 43,
+        "h": 29
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "scene_visual_or_battle"
+    },
+    {
+      "id": "motion_farm_wheel",
+      "frameIds": [
+        "motion_farm_wheel_0",
+        "motion_farm_wheel_1",
+        "motion_farm_wheel_2",
+        "motion_farm_wheel_3",
+        "motion_farm_wheel_4",
+        "motion_farm_wheel_5",
+        "motion_farm_wheel_6",
+        "motion_farm_wheel_7"
+      ],
+      "frameCount": 8,
+      "fps": 10,
+      "loop": true,
+      "restFrame": "motion_farm_wheel_0",
+      "category": "building-parts",
+      "canvas": {
+        "w": 23,
+        "h": 31
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "scene_visual_or_battle"
+    },
+    {
+      "id": "motion_logging_saw",
+      "frameIds": [
+        "motion_logging_saw_0",
+        "motion_logging_saw_1",
+        "motion_logging_saw_2",
+        "motion_logging_saw_3",
+        "motion_logging_saw_4",
+        "motion_logging_saw_5",
+        "motion_logging_saw_6",
+        "motion_logging_saw_7"
+      ],
+      "frameCount": 8,
+      "fps": 12,
+      "loop": true,
+      "restFrame": "motion_logging_saw_0",
+      "category": "building-parts",
+      "canvas": {
+        "w": 26,
+        "h": 20
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "scene_visual_or_battle"
+    },
+    {
+      "id": "motion_patrol_lantern",
+      "frameIds": [
+        "motion_patrol_lantern_0",
+        "motion_patrol_lantern_1",
+        "motion_patrol_lantern_2",
+        "motion_patrol_lantern_3",
+        "motion_patrol_lantern_4",
+        "motion_patrol_lantern_5",
+        "motion_patrol_lantern_6",
+        "motion_patrol_lantern_7"
+      ],
+      "frameCount": 8,
+      "fps": 7,
+      "loop": true,
+      "restFrame": "motion_patrol_lantern_0",
+      "category": "building-parts",
+      "canvas": {
+        "w": 28,
+        "h": 37
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "scene_visual_or_battle"
+    },
+    {
+      "id": "motion_patrol_streamer",
+      "frameIds": [
+        "motion_patrol_streamer_0",
+        "motion_patrol_streamer_1",
+        "motion_patrol_streamer_2",
+        "motion_patrol_streamer_3",
+        "motion_patrol_streamer_4",
+        "motion_patrol_streamer_5",
+        "motion_patrol_streamer_6",
+        "motion_patrol_streamer_7"
+      ],
+      "frameCount": 8,
+      "fps": 7,
+      "loop": true,
+      "restFrame": "motion_patrol_streamer_0",
+      "category": "building-parts",
+      "canvas": {
+        "w": 35,
+        "h": 31
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "scene_visual_or_battle"
+    },
+    {
+      "id": "motion_hearth_flame",
+      "frameIds": [
+        "motion_hearth_flame_0",
+        "motion_hearth_flame_1",
+        "motion_hearth_flame_2",
+        "motion_hearth_flame_3",
+        "motion_hearth_flame_4",
+        "motion_hearth_flame_5",
+        "motion_hearth_flame_6",
+        "motion_hearth_flame_7",
+        "motion_hearth_flame_8",
+        "motion_hearth_flame_9"
+      ],
+      "frameCount": 10,
+      "fps": 13,
+      "loop": true,
+      "restFrame": "motion_hearth_flame_0",
+      "category": "building-parts",
+      "canvas": {
+        "w": 35,
+        "h": 45
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "scene_visual_or_battle"
     }
   ],
   "walkDirections": {

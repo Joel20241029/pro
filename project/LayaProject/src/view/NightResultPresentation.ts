@@ -120,7 +120,7 @@ export class NightResultPresentation {
         return true;
     }
 
-    advance(seconds: number) {
+    advance(seconds: number, patrolImpactPlaying = false) {
         this.hideFlights();
         const flight = this.dailyFlight;
         if (flight && flight.elapsed !== null) {
@@ -132,7 +132,7 @@ export class NightResultPresentation {
         }
         if (this.phase === "impact") {
             this.elapsed += seconds;
-            if (this.elapsed >= FEEDBACK.finalImpactSeconds) this.next(this.result ? "summary" : null);
+            if (!patrolImpactPlaying && this.elapsed >= FEEDBACK.finalImpactSeconds) this.next(this.result ? "summary" : null);
             return;
         }
         if (!this.phase || this.phase === "summary" || !this.box?.displayedInStage || !this.box.mouseEnabled) return;

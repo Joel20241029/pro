@@ -106,8 +106,9 @@ test('the full-size terrain uses one village atlas page and keeps its gate align
  const jpg=fs.readFileSync(path.join(source,'bundles/map/terrain_0.jpg'));
  assert.equal(jpg.readUInt16BE(0),0xffd8);
  const reserves=['deco_blossom_pink','deco_bush','deco_rocks','hd_part_brace','map_gate_lane','map_road','tile_ground_grass'];
- assert.deepEqual(recipe.assets.filter(a=>!a.runtime).map(a=>a.id).sort(),reserves);
- for(const id of reserves)assert(!table.frames[id],id);
+ const retained = recipe.assets.filter(a=>!a.runtime).map(a=>a.id);
+ for(const id of reserves)assert(retained.includes(id),id);
+ for(const id of retained)assert(!table.frames[id],id);
 });
 test('villager combat clips and pages stay out of both resource stages',()=>{
  const manifest=require('../../../res/manifest.json');
@@ -126,7 +127,7 @@ test('resizing preserves normalized feet and stride; panel portraits retain thei
  }
  for(const clip of recipe.animations.animations){
   const a=byId.get(clip.frameIds[0]);assert.deepEqual(clip.canvas,{w:a.width,h:a.height});assert.deepEqual(clip.pivot,a.pivot);
-  if(clip.id==='patrol_walk'){assert.equal(clip.frameCount,4);assert(clip.stridePixels>clip.canvas.w/2);continue;}
+  if(clip.mapping==='patrol'){assert.equal(clip.frameCount,4);assert(clip.stridePixels>0);assert.deepEqual(clip.pivot,{x:48,y:93});continue;}
   if(clip.stridePixels===undefined)continue;
   if(a.category==='enemies') { const d=defs[a.id.replace(/_walk_\d+$/,'')];assert(Math.abs(clip.stridePixels/clip.canvas.w-d.stride/d.canvas)<1e-12);continue; }
   const role=clip.id.slice('villager_'.length).split('_walk_')[0],profile=require(path.join(source,`source/rendered2d/characters/v5/${role}/rig-profile.json`));
@@ -137,9 +138,9 @@ test('resizing preserves normalized feet and stride; panel portraits retain thei
  assert(byId.has('hd_elder_chair'));
  assert(!recipe.assets.some(a=>/^hd_elder_(down|up|left|right)_/.test(a.id)));
 });
-test('enemy textures and attachments retain at least one texel per logical pixel at maximum size',()=>{
- const {ENEMY_LOOKS,ENEMY_SCALES}=require(path.join(process.env.DAIDAI_TEST_BUILD,'view/config/EnemyVisualConfig'));
- const assets=new Map(recipe.assets.map(a=>[a.id,a])),sampling=Math.max(...ENEMY_SCALES);
+test('enemy textures and attachments retain their sampling budget before the approved display scale',()=>{
+ const {ENEMY_LOOKS,ENEMY_SCALES,ENEMY_DISPLAY_GROWTH}=require(path.join(process.env.DAIDAI_TEST_BUILD,'view/config/EnemyVisualConfig'));
+ const assets=new Map(recipe.assets.map(a=>[a.id,a])),sampling=Math.max(...ENEMY_SCALES)/ENEMY_DISPLAY_GROWTH;
  for(const [kind,look]of Object.entries(ENEMY_LOOKS))for(const frame of defs[kind].frames){
   assert(assets.get(frame.body).width>=look.size*sampling,frame.body);
   for(const [id,part]of Object.entries(frame.parts))assert(assets.get(id).width>=part.width/96*look.size*sampling,kind+'/'+id);

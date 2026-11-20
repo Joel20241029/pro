@@ -1,4 +1,5 @@
 import { EnemyKind, Skill, TowerKind, Trait } from "./GameConfig";
+import type { WaveRhythm } from "../config/DefenseConfig";
 import type { VillagerQuality } from "../config/VillagerQuality";
 import type { DailyTaskDay } from "./DailyTaskState";
 export type Job = "WAITING" | "FARM" | "LOGGING" | "CARE";
@@ -10,6 +11,8 @@ export interface Person {
     parents: string[]; ancestors: string[]; adult: boolean; nights: number; growth: number;
     /** 荣休后剩余成功守夜夜数；儿童、劳动成人及已入家谱者为 0，不使用现实时间。 */
     elderNights: number;
+    /** 曾为该村民使用的续寿道具数，随本人和家谱保存。旧档缺席表示从未使用。 */
+    retirementDelayUses?: number;
     job: Job; careChild: string | null;
 }
 export interface Family { id: string; partners: string[]; lastBirth: number | null; }
@@ -19,6 +22,8 @@ export interface Wave {
     entries: { kind: EnemyKind; tick: number; appearanceSeed: number }[];
     /** 固化普通怪生命倍率，守夜和任务预演使用同一份波次数据。 */
     ordinaryHealthPercent: number;
+    /** 可选规则标记。已经保存的旧波次继续使用原规则。 */
+    rhythm?: WaveRhythm;
 }
 export type Choice = { kind: "SKILL"; person: string; options: Skill[] } | { kind: "TRAVELER"; person: Person } | { kind: "POLICY"; options: string[] };
 export interface Legacy {
@@ -48,7 +53,7 @@ export interface GameState {
         adults: string[]; elders: string[]; cared: string[]; hungry: boolean; tactic: string; extraSlots?: (string | null)[];
         /** 与献纳和门血同笔保存，夜间冷启动恢复已用次数并排除施放当夜。 */
         mercySpent?: true;
-        /** 新开夜战固定小队规则。1.0.71 夜战缺少标记，继续按单人巡防重放。 */
+        /** 历史字段名。标记现代交会判定与出征间隔；无标记的旧夜战沿用原接触规则。 */
         patrolSquad?: true;
     } | null;
     rng: { family: number; world: number };

@@ -200,7 +200,7 @@ test('detail navigation returns only after committed purchase, preserves list or
         for (const fromStart of [false, true]) {
             const f = fixture(), start = { type: 'start' }, order = [DEFAULT_TACTIC, learnedId];
             const list = { type: 'tactics', rowOrder: order, scroll: 84, ...(fromStart ? { back: start } : {}) };
-            const detail = { type: 'tactic', id: learnedId, back: list };
+            const detail = { type: 'tacticSwap', index: 0, back: list };
             const render = () => { if (panels.current) panels.draw(f.game.state, panels.current); };
             const panels = new GamePanels(f.game, {}, {}, {}, {}, {}, render, { ready: () => true });
             f.game.changed = render; panels.open(detail);
@@ -210,7 +210,7 @@ test('detail navigation returns only after committed purchase, preserves list or
             f.port.failure = null; f.game.retry();
             assert.equal(panels.current, fromStart ? start : list);
             assert.equal(list.rowOrder, order); assert.equal(list.scroll, 84);
-            assert(f.game.pauses.has('CHOICE')); assert.equal(f.writes.length, 1);
+            assert(f.game.pauses.has('CHOICE')); assert.equal(f.writes.filter(raw => JSON.parse(raw).payload).length, 1);
             panels.open(detail); panels.open(list, true);
             assert.equal(list.rowOrder, order); assert.equal(list.scroll, 84);
             f.game.pause('USER'); panels.close();

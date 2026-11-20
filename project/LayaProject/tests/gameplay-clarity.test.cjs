@@ -153,7 +153,7 @@ test('night status names the equipped effect rather than calling every tactic at
 const { UiWidgets } = require(path.join(compiled, 'view/UiWidgets.js'));
 const { GUIDE_CHAPTERS } = require(path.join(compiled, 'view/GameGuide.js'));
 function panelView(game, overlay = new Sprite()) {
-    const art = { panel() {}, get: id => id, contentBounds: () => ({rect:{w:64,h:64},sourceSize:{w:64,h:64},trimOffset:{x:0,y:0}}) }, view = new GamePanels(game, art, {}, null, overlay, {}, () => {
+    const art = { panel() {}, get: id => id, contentBounds: () => ({rect:{w:64,h:64},sourceSize:{w:64,h:64},trimOffset:{x:0,y:0}}) }, view = new GamePanels(game, art, {}, null, overlay, { safeTop:40, safeBottom:1230 }, () => {
         if (view.current) view.draw(game.state, view.current);
     }, { ready: () => true });
     const ui = new UiWidgets(art, () => view.clickSounds++);
@@ -566,7 +566,7 @@ test('all locked tactics have anonymous cards and their details are read-only un
     view.open({type:'tactics'});
     const list=view.current, rows=view.box.getChildByName('ScrollList');
     rows.setOffset(rows.maximum);
-    rows.content.children.at(-1).getChildByName('button:查看传闻').event('click');
+    rows.content.children.at(-1).getChildByName('button:传闻').event('click');
     assert.equal(view.current.id,TACTICS.at(-1).id);
     assert.equal(view.current.back,list);
     const before=JSON.stringify(game.state.tactics);
@@ -594,7 +594,10 @@ test('all locked tactics have anonymous cards and their details are read-only un
     assert(!labels(view.box).includes('当前库存'));
     game.state.wood=tactic.wood;game.state.food=tactic.food;
     const commands=[];view.send=command=>commands.push(command);
-    view.open({type:'tactic',id:tactic.id});view.box.getChildByName('button:学习并携带').event('click');
+    view.open({type:'tactics'});
+    view.box.getChildByName('TacticSlot:1').event('click');
+    const choice=view.box.getChildByName('ScrollList').content.getChildByName(`TacticChoice:${tactic.id}`);
+    choice.getChildByName('button:学习并换上').event('click');
     assert.deepEqual(commands,[{type:'TACTIC_LEARN',id:tactic.id,slot:0}]);
     game.state.completed=0;
     view.open({type:'guide',tab:4});for(const t of TACTICS.slice(1))assert(!labels(view.box).includes(t.name));
@@ -607,6 +610,7 @@ test('round slots open a separate confirmation, and the spotlight guide can be s
     const choose = i => view.box.getChildByName(`TacticSlot:${i}`).event('click');
     const confirm = () => view.box.getChildByName('button:确认解锁');
     const panel = { type: 'tactics', scroll: 186 };
+    game.guides.mark('tacticChange');
     game.state.completed = game.state.legacy.bestNight = 14;
     view.open(panel);
     const icon = view.box.getChildByName('TacticSlot:1').getChildByName('buttonFace').getChildByName('TacticSlotIcon');
@@ -622,9 +626,10 @@ test('round slots open a separate confirmation, and the spotlight guide can be s
     assert.equal(panel.scroll, 186);
     game.state.completed = 15; game.state.wood = 75; game.state.food = 100; view.refresh();
     assert(guide());
+    assert(!view.box.getChildByName('TacticSlot:2').getChildByName('buttonFace').getChildByName('TacticSlotUnlockHint'));
     assert.equal(view.box.getChildByName('TacticSlotSpotlight').mouseEnabled, false);
     const rows = view.box.getChildByName('ScrollList');
-    assert(rows.y >= guide().y + guide().height && rows.height >= 380 && rows.maximum > 0);
+    assert(rows.height >= 380 && rows.maximum > 0 && guide().y + guide().height < view.box.height);
     choose(2);
     assert(view.box.children.some(node => node.text === '还缺 5 木'));
     assert(!confirm().handlers.click);
@@ -635,13 +640,15 @@ test('round slots open a separate confirmation, and the spotlight guide can be s
     view.box.getChildByName('button:取消').event('click');
     view.box.getChildByName('button:跳过').event('click');
     assert(!guide());
-    assert.equal(values.get('daidai_village.tactic_slot_guide_dismissed'), '1');
+    assert.equal(JSON.parse(values.get('daidai_village.guides')).progress.slot, 1);
     const reopened = panelView(game); reopened.ui.image = imageNode;
     reopened.open({ type: 'tactics' });
     assert(!reopened.box.getChildByName('TacticSlotGuide'));
-    game.state.wood = 100; game.state.phase = 'NIGHT'; view.refresh(); choose(2);
-    assert(view.box.children.some(node => node.text === '天亮后可解锁战技槽'));
-    assert(!confirm().handlers.click && !guide());
+    game.state.wood = 100; view.refresh();
+    assert(view.box.getChildByName('TacticSlot:2').getChildByName('buttonFace').getChildByName('TacticSlotUnlockHint'));
+    assert(!view.box.getChildByName('TacticSlot:3').getChildByName('buttonFace').getChildByName('TacticSlotUnlockHint'));
+    game.state.phase = 'NIGHT'; view.refresh();
+    assert(!view.box.getChildByName('TacticSlot:2').handlers.click && !guide());
 });
 
 test('slot purchase selects the new empty slot only after a successful save or retry', () => {
@@ -663,22 +670,36 @@ test('slot purchase selects the new empty slot only after a successful save or r
     const confirmation = view.current;
     view.box.getChildByName('button:确认解锁').event('click');
     assert(game.saves.pending);
-    assert.equal(panel.tacticSlot, undefined);
+    assert.equal(view.current, confirmation);
     assert.equal(confirmation.pendingSlotUnlock, 1);
     assert.equal(game.state.wood, 200);
     game.saves.port.write = original;
     game.retry();
-    assert.equal(panel.tacticSlot, 1);
-    assert.equal(panel.scroll, 0);
+    assert.equal(view.current.type, 'tacticSwap');
+    assert.equal(view.current.index, 1);
+    assert.equal(panel.scroll, 186);
     assert.equal(confirmation.pendingSlotUnlock, undefined);
-    assert.equal(view.current, panel);
+    assert.equal(view.current.back, panel);
     assert.deepEqual([game.state.wood, game.state.food, game.state.tactics.extraSlots], [120, 160, [null]]);
-    progress(35); view.refresh();
+    progress(35); view.open(panel, true);
     view.box.getChildByName('TacticSlot:3').event('click');
     view.box.getChildByName('button:确认解锁').event('click');
-    assert.equal(panel.tacticSlot, 2);
+    assert.equal(view.current.index, 2);
     assert.deepEqual([game.state.wood, game.state.food, game.state.tactics.extraSlots], [40, 120, [null, null]]);
     assert(!view.box.getChildByName('TacticSlotUnlock'));
+});
+
+test('catch-up picks earlier eligible lessons and keeps the active step until it closes', () => {
+    const { StarterGuide }=require(path.join(compiled,'view/StarterGuide.js'));
+    const { game }=session(), view=panelView(game), layout={footerTop:920};
+    const root=new Sprite().size(720,1200); view.ui.image=imageNode;
+    const guide=new StarterGuide(game.guides.track('starter'),view.art,view.ui);root.addChild(guide.node);
+    assert.equal(guide.nextEligible(10),1);
+    guide.tick(1,layout,0);
+    assert.equal(guide.nextEligible(10),1);
+    guide.node.getChildByName('button:知道了').event('click');
+    assert.equal(guide.nextEligible(10),2);
+    assert.equal(game.guides.get('starter'),1);
 });
 
 test('Zhizhuo tips cover the first five waves, remember progress and allow skipping the rest',()=>{

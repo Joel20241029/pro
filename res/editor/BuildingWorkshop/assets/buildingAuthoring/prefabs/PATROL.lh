@@ -1,0 +1,99 @@
+{
+  "_$id": "7ec31d51",
+  "_$type": "Sprite",
+  "name": "PATROL",
+  "width": 128,
+  "height": 128,
+  "_$child": [
+    {
+      "_$id": "a58269d0",
+      "_$type": "Sprite",
+      "name": "PATROL_1_1",
+      "width": 128,
+      "height": 128,
+      "_$child": [
+        {
+          "_$id": "610e846e",
+          "_$type": "Sprite",
+          "name": "Body",
+          "x": 64,
+          "y": 120,
+          "width": 128,
+          "height": 128,
+          "anchorX": 0.5,
+          "anchorY": 0.9375,
+          "_$child": [
+            {
+              "_$id": "cd08d18b",
+              "_$type": "Sprite",
+              "name": "Structure",
+              "x": 16,
+              "y": 15,
+              "width": 96,
+              "height": 105,
+              "texture": {
+                "_$uuid": "585088b7-8505-c861-d69a-a766f656c3b0",
+                "_$type": "Texture"
+              }
+            },
+            {
+              "_$id": "738f75ca",
+              "_$type": "Sprite",
+              "name": "Loop:motion_patrol_lantern",
+              "x": 88,
+              "y": 53,
+              "width": 28,
+              "height": 37,
+              "texture": {
+                "_$uuid": "d737e2b9-e467-e197-28b5-22cc85ce2b9c",
+                "_$type": "Texture"
+              },
+              "_$comp": [
+                {
+                  "_$type": "AnimatorClip2D",
+                  "clip": {
+                    "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4"
+                  },
+                  "autoPlay": false
+                }
+              ]
+            },
+            {
+              "_$id": "b8da827b",
+              "_$type": "Sprite",
+              "name": "Loop:motion_patrol_streamer",
+              "x": 15,
+              "y": 54,
+              "width": 35,
+              "height": 31,
+              "texture": {
+                "_$uuid": "d16e2dcf-f089-3e26-aeda-66f50447f4f2",
+                "_$type": "Texture"
+              }
+            }
+          ]
+        },
+        {
+          "_$id": "6378e3d2",
+          "_$type": "Sprite",
+          "name": "VisualBounds",
+          "visible": false
+        },
+        {
+          "_$id": "38eee32c",
+          "_$type": "Sprite",
+          "name": "Footprint",
+          "visible": false
+        },
+        {
+          "_$id": "7c8f2ddc",
+          "_$type": "Sprite",
+          "name": "SortOrigin",
+          "visible": false,
+          "x": 64,
+          "y": 120
+        }
+      ]
+    }
+  ]
+}

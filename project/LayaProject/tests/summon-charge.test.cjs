@@ -84,7 +84,12 @@ test('20 units gather without stepping and follow the curved road to its end; a 
 
 test('swept collisions consume exactly one summon per living enemy, with a cap of twenty', () => {
     const b = battle();
-    b.enemies = Array.from({ length: 21 }, (_, i) => enemy(i, 90));
+    // 让 21 个靶子都在冲锋能走过的中间带，独立验证 20 个召唤的消耗上限。
+    const candidates = Array.from({ length: 180 }, (_, i) => enemy(i, 25));
+    const bounds = roadFootprintBounds(enemyPoint(candidates[0]).y, candidates[0].kind);
+    const middle = (bounds.left + bounds.right) / 2;
+    b.enemies = candidates.filter(target => Math.abs(enemyPoint(target).x - middle) < 8).slice(0, 21);
+    assert.equal(b.enemies.length, 21);
     gathered(b);
     const hits = [];
     for (let i = 0; i < SUMMON_CHARGE.maxTicks && !b.outcome; i++) {

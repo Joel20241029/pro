@@ -97,10 +97,15 @@ test('stone splash reaches other clusters, including victims just outside target
     const b = battle('STONE'), pad = PADS[0], range = TOWERS.STONE.range;
     const distance = p => Math.hypot(p.x - pad.x, p.y - pad.y);
     let center, neighbor;
-    for (let progress = 0; progress < PATH_LENGTH; progress++) {
-        const a = enemy(0, progress), v = enemy(4, progress + 16);
-        if (distance(enemyPoint(a)) <= range && distance(enemyPoint(v)) > range &&
-            Math.hypot(enemyPoint(a).x - enemyPoint(v).x, enemyPoint(a).y - enemyPoint(v).y) < TOWERS.STONE.splash) { center = a; neighbor = v; break; }
+    for (let progress = 0; progress < PATH_LENGTH && !center; progress++) {
+        const a = enemy(0, progress), at = enemyPoint(a);
+        if (distance(at) > range) continue;
+        for (let seq = 1; seq <= 21; seq++) {
+            const v = enemy(seq, progress + 16), next = enemyPoint(v);
+            if (distance(next) > range && Math.hypot(at.x - next.x, at.y - next.y) < TOWERS.STONE.splash) {
+                center = a; neighbor = v; break;
+            }
+        }
     }
     assert(center && neighbor, 'a real road boundary pair exists'); b.enemies = [center, neighbor]; b.step();
     assert.equal(shots(b).length, 1); assert.equal(shots(b)[0].target, center.seq);
