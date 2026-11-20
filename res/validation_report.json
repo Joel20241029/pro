@@ -1,12 +1,12 @@
 {
-  "date": "2026-11-20T04:23:28.537Z",
+  "date": "2026-11-20T10:21:30.739Z",
   "status": "passed",
   "checks": {
     "pngCount": 705,
     "runtimeCount": 571,
     "reserveCount": 134,
     "animationGroups": 74,
-    "atlasPages": 12,
+    "atlasPages": 11,
     "runtimeReferencesComplete": true,
     "reserveAssetsExcluded": true,
     "atlasRectsAndPaddingNonOverlapping": true,
@@ -19,11 +19,11 @@
     "nineSliceCornersPreserved": true
   },
   "packing": {
-    "sourceCanvasPixels": 10505804,
-    "atlasContentPixels": 7355180,
-    "savedContentPixels": 3150624,
-    "savedContentPercent": 29.99,
-    "trimmedAssetCount": 492,
+    "sourceCanvasPixels": 10941772,
+    "atlasContentPixels": 6772141,
+    "savedContentPixels": 4169631,
+    "savedContentPercent": 38.11,
+    "trimmedAssetCount": 546,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2

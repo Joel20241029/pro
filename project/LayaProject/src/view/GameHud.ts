@@ -15,7 +15,7 @@ import { C } from "./UiTheme";
 import { UiWidgets } from "./UiWidgets";
 import { GamePanels } from "./GamePanels";
 import { amount, coloredName } from "./ViewText";
-import { drawHudSurface } from "./UiSurface";
+import { drawHudFlowers, drawHudSurface } from "./UiSurface";
 import { actionHints, actionHintsBlocked } from "./ActionHints";
 import { NightControls } from "./NightControls";
 import { SIDE_FEATURES, TACTIC_UI } from "./config/TacticUiConfig";
@@ -59,7 +59,15 @@ export class GameHud {
         const header = new Laya.Sprite();
         header.pos(0, layout.safeTop);
         drawHudSurface(header, LAYOUT.width, statusY - layout.safeTop, false);
+        drawHudFlowers(header.graphics, LAYOUT.width, layout.dateY - layout.safeTop - 53, false);
         this.node.addChild(header);
+        // 小花印记限定在标题左右留白，避开设置和微信胶囊。
+        const titleMidY = layout.dateY - layout.safeTop + HUD.title.top + HUD.title.height / 2;
+        for (const x of [HUD.title.x + 8, HUD.title.x + HUD.title.width - 8]) {
+            for (const [dx, dy] of [[0, -4], [4, 0], [0, 4], [-4, 0]])
+                header.graphics.drawCircle(x + dx, titleMidY + dy, 4.1, C.petalCenter);
+            header.graphics.drawCircle(x, titleMidY, 2.1, C.petal);
+        }
         this.ui.label(this.node, "代代守村", HUD.title.x, layout.dateY + HUD.title.top, HUD.title.width, HUD.title.font, C.ink, true, HUD.title.height).align = "center";
         const settings = this.ui.button(this.node, "设置", HUD.settings.x, layout.dateY + HUD.settings.top, HUD.settings.width, () => this.panels.open({ type: "settings" }), C.muted, HUD.settings.height);
         this.ui.buttonIcon(settings, "icon_settings", 30);
@@ -67,7 +75,7 @@ export class GameHud {
     draw(s: GameState, layout: GameLayout, scene: ReturnType<typeof layoutVillage>, anchors: WorldHudAnchors, shownFeatures: number = SIDE_FEATURES.length, tacticUnread = false) {
         const battle = this.game.battle, statusY = layout.mapTop - HUD.statusHeight, bottomY = layout.footerTop;
         const blocked = actionHintsBlocked(this.game), hints = actionHints(s, blocked);
-        this.ui.label(this.node, `第 ${Math.floor((s.day - 1) / 12) + 1} 年 · ${SEASONS[season(s.day)]}${((s.day - 1) % 3) + 1}日`, HUD.date.x, layout.dateY + HUD.date.top, HUD.date.width, HUD.date.font, C.green, true, HUD.date.height).align = "center";
+        this.ui.label(this.node, `第 ${Math.floor((s.day - 1) / 12) + 1} 年 · ${SEASONS[season(s.day)]}${((s.day - 1) % 3) + 1}日`, HUD.date.x, layout.dateY + HUD.date.top, HUD.date.width, HUD.date.font, C.status, true, HUD.date.height).align = "center";
         // 与人口统一为“现有/容量”；窄栏的千进制数值省略小数，始终单行显示。
         const [food, wood, storage] = [s.food, s.wood, storageCapacity(s)].map(value => amount(value, true).replace(/\.\d(?=[kmbtq]$)/, ""));
         [["icon_food", `${food}/${storage}`], ["icon_wood", `${wood}/${storage}`], ["icon_population", `人 ${s.people.length}/${capacity(s)}`]].forEach(([id, value], i) => {
@@ -76,9 +84,9 @@ export class GameHud {
                 spec.width, spec.height, full ? C.timber : C.ink, spec.font);
             if (i < 2) this.materialIcons[i === 0 ? "food" : "wood"] = icon;
         });
-        this.node.graphics.drawRect(0, statusY, LAYOUT.width, HUD.statusHeight, C.green);
+        this.node.graphics.drawRect(0, statusY, LAYOUT.width, HUD.statusHeight, C.status);
         const count = s.wave?.entries.length || 0;
-        this.nightStatus = this.ui.label(this.node, s.phase === "NIGHT" ? `守夜中 · 已守 ${amount(s.completed)} 波 · 齐心护家园` : `第 ${s.day} 天 · 今夜 ${count} 名来敌 · 已守 ${amount(s.completed)} 波`, 28, statusY, 664, 24, "#f4edce", true, 37);
+        this.nightStatus = this.ui.label(this.node, s.phase === "NIGHT" ? `守夜中 · 已守 ${amount(s.completed)} 波 · 齐心护家园` : `第 ${s.day} 天 · 今夜 ${count} 名来敌 · 已守 ${amount(s.completed)} 波`, 28, statusY, 664, 24, C.cream, true, 37);
         this.nightStatus.align = "center";
         this.nightStatus.wordWrap = false;
         this.nightStatus.overflow = Laya.Text.SHRINK;
@@ -165,6 +173,7 @@ export class GameHud {
         const bottom = new Laya.Sprite();
         bottom.pos(0, bottomY);
         drawHudSurface(bottom, LAYOUT.width, LAYOUT.footerHeight, true);
+        drawHudFlowers(bottom.graphics, LAYOUT.width, LAYOUT.footerHeight - 32, true);
         this.node.addChild(bottom);
         const footer = HUD.footer;
         if (s.phase === "DAY") {
@@ -193,7 +202,7 @@ export class GameHud {
             this.ui.image(face, "icon_night_shield", (start.size - start.icon) / 2, start.iconY, start.icon).name = "buttonIcon";
             const caption = this.ui.label(face, "开始守夜", start.textX, start.textY, start.textWidth, start.font, C.lightEdge, true, start.textHeight);
             caption.name = "buttonText"; caption.align = "center"; caption.wordWrap = false; caption.overflow = Laya.Text.SHRINK;
-            caption.stroke = start.stroke; caption.strokeColor = C.green;
+            caption.stroke = start.stroke; caption.strokeColor = C.outline;
         }
         else if (s.phase === "NIGHT") {
             this.nightControls = new NightControls(this.game, s, this.ui, this.panels, this.refresh);

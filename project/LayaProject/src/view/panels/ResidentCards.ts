@@ -22,9 +22,11 @@ export function drawResidentTalent(ctx: PanelContext, card: Laya.Sprite, person:
     const traitY = compact ? 63 : 70, skillY = compact ? 109 : 114;
     const effect = (title: string, description: string, row: number, resource?: { icon: string; value: string }) => {
         text(title, 28, row, 100, 40, 28, C.green, true);
-        const line = text(description, 143, row, 425, 40, 27);
+        const copyX = 143, right = card.width - 28, resourceWidth = 116, gap = 12;
+        const copyWidth = right - copyX - (resource ? resourceWidth + gap : 0);
+        const line = text(description, copyX, row, copyWidth, 40, 27);
         if (resource) ctx.ui.iconValue(card, resource.icon, resource.value,
-            143 + Math.ceil(line.textWidth) + 14, row, 116, 40, C.timber, 27, "left");
+            copyX + Math.min(copyWidth, Math.ceil(line.textWidth)) + gap, row, resourceWidth, 40, C.timber, 27, "left");
     };
     if (person.trait === "trait_frugal") effect(trait[0], "成人每日口粮", traitY, { icon: "icon_food", value: String(ECONOMY.frugalRation) });
     else effect(trait[0], person.trait === "trait_diligent" ? `耕作产出 +${Math.round(ECONOMY.diligentFood * 100)}%` : trait[1], traitY);

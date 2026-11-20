@@ -197,13 +197,14 @@ test('destroy during download suppresses late view and texture creation', async 
 });
 test('null atlas pages are retried after siblings finish', async () => {
     const f = setup(), start = f.main.onStart(); await flush();
-    const files = read(villageFrames).pages.map(page => root + page.runtimeFile);
+    const files = read(villageFrames).pages.map(page => root + page.runtimeFile).filter(file => file.endsWith('.png'));
+    const sibling = fs.readFileSync(path.join(project, 'assets', files[1]));
     const a = deferred(), b = deferred();
     f.gates.set(files[0], a); f.gates.set(files[1], b);
     f.downloads.get('village').resolve(); await flush();
     a.resolve(null); await flush();
     assert.equal(f.main.resources.states.village.phase, 'DECODE');
-    b.resolve({ width: 1024, height: 1024, bitmap: {} }); await start;
+    b.resolve({ width: sibling.readUInt32BE(16), height: sibling.readUInt32BE(20), bitmap: {} }); await start;
     assert.equal(f.views, 0);
     assert.equal(f.main.resources.states.village.phase, 'FAILED');
     f.gates.clear(); await retryStartup(f);

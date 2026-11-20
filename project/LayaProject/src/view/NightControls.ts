@@ -38,7 +38,8 @@ export class NightControls {
             const face = button.getChildByName("buttonFace") as Laya.Sprite;
             ui.image(face, control.icon, (width - side.icon) / 2, side.iconY, side.icon).name = "buttonIcon";
             const text = face.getChildByName("buttonText") as Laya.Text;
-            text.pos(main.textX, side.textY); text.size(width - main.textX * 2, side.textHeight);
+            const sideTextInset = 10;
+            text.pos(sideTextInset, side.textY); text.size(width - sideTextInset * 2, side.textHeight);
             text.fontSize = side.font; text.color = C.ink; text.stroke = 0;
             text.wordWrap = false; text.overflow = Laya.Text.SHRINK;
         });

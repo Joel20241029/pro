@@ -102,7 +102,7 @@ export function drawSessionPanel(ctx: PanelContext, s: GameState, safeHeight: nu
         const buttonY = 292, buttonHeight = 82;
         const box = ctx.modal("每日口粮", "", false, { width: 540, height: buttonY + buttonHeight + UI.action.bottom }, `本村每天可领一次。每日补给 ${RULE.dailyFood} 粮，放不下时按剩余仓储发放。`);
         ctx.ui.label(box, "本次到账", 34, 114, 472, 28, C.cream, true, 40).align = "center";
-        ctx.ui.iconValue(box, "icon_food", `+${amount}`, 34, 160, 472, 61, amount ? C.cream : C.muted, 42);
+        ctx.ui.iconValue(box, "icon_food", `+${amount}`, 34, 160, 472, 61, amount ? C.ink : C.muted, 42);
         const detail = amount === 0 ? "仓储已满，确认后计为已领" : amount < RULE.dailyFood ? "按剩余仓储发放，今天只领一次" : "确认后入库，本村今日仅领一次";
         const note = ctx.ui.label(box, detail, 34, 234, 472, 28, C.muted, false, 48);
         note.align = "center";

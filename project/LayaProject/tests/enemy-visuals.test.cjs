@@ -3,10 +3,11 @@ const built=process.env.DAIDAI_TEST_BUILD;
 assert(built,'DAIDAI_TEST_BUILD must point to compiled src');
 const {EnemyVisuals}=require(path.join(built,'view/EnemyVisuals.js'));
 const {ENEMY_LOOKS,ENEMY_PALETTES,ENEMY_SCALES}=require(path.join(built,'view/config/EnemyVisualConfig.js'));
-const {FEEDBACK}=require(path.join(built,'view/config/FeedbackConfig.js'));
+const {FEEDBACK,TOWER_IMPACT}=require(path.join(built,'view/config/FeedbackConfig.js'));
 const definitions=require('../../../res/native/enemies.json').definitions;
+const frames=require('../../../res/atlases/frames.json').frames;
 class Sprite {
- constructor(){this.calls=[];this.children=[];this.graphics={clear:()=>this.calls.length=0,drawImage:(...args)=>this.calls.push(args),drawTexture:(...args)=>this.calls.push(args),drawCircle(){},drawCurves(){},drawPoly(){},drawRoundRect(){},drawLines(){}};}
+ constructor(){this.calls=[];this.children=[];this.graphics={clear:()=>this.calls.length=0,drawImage:(...args)=>this.calls.push(args),drawTexture:(...args)=>this.calls.push(args),drawTriangles:(...args)=>this.calls.push(args),drawCircle(){},drawCurves(){},drawPoly(){},drawRoundRect(){},drawLines(){}};}
  addChild(child){this.children.push(child);}
  scale(x,y){this.scaleX=x;this.scaleY=y;return this;}
  size(w,h){this.width=w;this.height=h;return this;}
@@ -14,8 +15,10 @@ class Sprite {
  pos(x,y){this.x=x;this.y=y;return this;}
 }
 global.Laya={Sprite};
-function fixture(){
- const node=new Sprite(),visual=new EnemyVisuals(node,{enemyLayouts:definitions,get:id=>id,
+function fixture(get=id=>id){
+ const node=new Sprite(),visual=new EnemyVisuals(node,{enemyLayouts:definitions,get,contentBounds:id=>{
+  const f=frames[id];return f.rotated?{...f,rect:{...f.rect,w:f.rect.h,h:f.rect.w}}:f;
+ },
   frameId:(id,age)=>`${id}_${1+Math.floor(age*FEEDBACK.impact.fps)}`,
   applyFrame:(sprite,id,size)=>{sprite.texture=id;sprite.size(size,size);}});
  return {node,visual,get calls(){return [...node.calls,...node.children[0].calls];}};
@@ -66,7 +69,7 @@ test('patrol uses arrow impact frames and keeps their size as the target moves, 
  assert(height<0);assert.equal(impact.x,node.pivotX+body.x);
  visual.draw(kind,0,0,true,false,{scaleY:.22,alpha:1},0,undefined,undefined,false,undefined,false,.11);
  assert(Math.abs(offset()-height*.22)<1e-9);assert.equal(impact.texture,'fx_impact_arrow_3');
- assert(Math.abs(node.scaleY*impact.scaleY*impact.width-FEEDBACK.impact.size.ARROW*FEEDBACK.impactScale)<1e-9);
+ assert(Math.abs(node.scaleY*impact.scaleY*impact.width-TOWER_IMPACT.ARROW.size)<1e-9);
  visual.draw(kind,0,0,true);
  assert(!impact.visible);assert.equal(node.children.filter(child=>child.name==='PatrolImpact').length,1);
 });
@@ -98,4 +101,31 @@ test('ground shadow and feet share the same transform across movement, scale, mi
   assert.equal(f.calls.filter(c=>c[0]==='shadow_actor').length,1);samples++;
  }
  assert.equal(samples,420);
+});
+
+test('rotated monster bodies and accessories use cached explicit UVs with their original placement and tint', () => {
+ const kind='enemy_raider', def=definitions[kind], frame=def.frames[4];
+ const rotated={rotate:true,sourceWidth:100,sourceHeight:100,width:70,height:84,offsetX:12,offsetY:9,
+  uv:new Float32Array([.8,.2,.8,.7,.4,.7,.4,.2])};
+ const banner={...rotated,sourceWidth:80,sourceHeight:80};
+ const f=fixture(id=>id===frame.body?rotated:id==='enemy_acc_banner'?banner:id);
+ const seed=24, scale=ENEMY_LOOKS[kind].size*ENEMY_SCALES[0]/def.canvas;
+ const distance=(4.1/def.frames.length)*def.stride*scale;
+ f.visual.draw(kind,seed,distance,false);
+ const calls=f.calls.filter(args=>args[0]===rotated||args[0]===banner);
+ assert.equal(calls.length,2);
+ const body=calls.find(args=>args[0]===rotated), back=calls.find(args=>args[0]===banner);
+ assert.deepEqual(body.slice(1,3),[frame.x,frame.y]);
+ assert.deepEqual(back.slice(1,3),[frame.parts.enemy_acc_banner.x,frame.parts.enemy_acc_banner.y]);
+ const unit=def.canvas/rotated.sourceWidth;
+ assert.deepEqual(body[3],new Float32Array([12*unit,9*unit,82*unit,9*unit,82*unit,93*unit,12*unit,93*unit]));
+ assert.deepEqual(body[4],rotated.uv);
+ assert.deepEqual(Array.from(body[5]),[0,1,2,0,2,3]);
+ assert.equal(body[8],ENEMY_PALETTES[0]);
+ f.visual.draw(kind,seed,distance,true,true);
+ const flashed=f.calls.find(args=>args[0]===rotated);
+ assert.equal(flashed[3],body[3]);
+ assert.equal(flashed[4],body[4]);
+ assert.equal(flashed[8],FEEDBACK.flashColor);
+ assert(f.node.scaleX<0);
 });

@@ -107,11 +107,25 @@ export class GamePanels implements PanelContext {
         this.art.panel(header, "panel_header", width - 36, 82); box.addChild(header);
         this.overlay.addChild(box);
         const headingInset = help ? 154 : 86;
-        const heading = this.ui.label(box, title, headingInset, 28, width - headingInset * 2, title.replace(/<[^>]*>/g, "").length > 12 ? 32 : UI.title, C.ink, true, 60);
+        const heading = this.ui.label(box, title, headingInset, 28, width - headingInset * 2, title.replace(/<[^>]*>/g, "").length > 12 ? 32 : UI.title, C.lightEdge, true, 60);
         heading.align = "center"; heading.wordWrap = false; heading.overflow = Laya.Text.SHRINK;
-        if (subtitle) this.ui.label(box, subtitle, UI.inset, 108, width - UI.inset * 2, 27, C.muted, false, 100).align = "center";
+        if (subtitle) {
+            // 流程说明可占两行，常驻状态栏只占一行，给紧接的筛选或操作区留白。
+            const multiline = subtitle.includes("\n") || !close && subtitle.length > 27;
+            const detail = this.ui.label(box, subtitle, UI.inset, 108, width - UI.inset * 2, 27, C.muted, false, multiline ? 82 : 46);
+            detail.align = "center"; detail.valign = "middle";
+            detail.wordWrap = multiline; detail.overflow = Laya.Text.SHRINK;
+        }
         if (help) attachPanelHelp(box, heading, help, this.art, this.ui);
-        // 用户移除左上麦穗，关闭按钮仍在右侧；底角装饰不参与九宫格拉伸。
+        // 花瓣只占两角的边框留白，不与标题、关闭按钮或列表共享可点区域。
+        const blossoms = new Laya.Sprite();
+        blossoms.mouseEnabled = false;
+        for (const [x, y] of [[24, 23], [width - 19, height - 20]]) {
+            for (const [dx, dy] of [[-6, -4], [3, -7], [7, 2], [0, 7], [-7, 4]])
+                blossoms.graphics.drawCircle(x + dx, y + dy, 5.2, C.petal, C.trim, 1);
+            blossoms.graphics.drawCircle(x, y, 3.2, C.petalCenter);
+        }
+        box.addChild(blossoms);
         if (close)
             this.ui.button(box, "×", width - 82, 31, 54, () => this.close(), C.red, 54);
         return box;

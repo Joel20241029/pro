@@ -1,6 +1,8 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const recipe=require('../../../res/source/asset_recipe.json'),defs=require('../../../res/native/enemies.json').definitions;
+const motionQuality=require('../../../res/source/rendered2d/production/cartoon-v1/motion-quality.json');
 const source=path.resolve(__dirname,'../../../res');
+const {TOWER_IMPACT}=require(path.join(process.env.DAIDAI_TEST_BUILD,'view/config/FeedbackConfig.js'));
 test('each native enemy prefab owns one bottom-layer contact shadow and exports its actual layout',()=>{
  const exported=require('../../../res/native/enemies.json');
  assert.equal(exported.version,4);
@@ -27,14 +29,16 @@ test('HD replacement contains only selected source images; pixels and native pre
  }
  assert(!recipe.assets.some(a=>a.category==='characters'&&/_(up|down)_(left|right)_/.test(a.id)));assert(!recipe.assets.some(a=>a.id.startsWith("emote_")));assert(recipe.assets.filter(a=>a.nineSlice).every(a=>a.height>=128 && a.nineSlice.scale>0));
  for (const kind of ['arrow','stone']){
-  const clip=recipe.animations.animations.find(a=>a.id==='fx_impact_'+kind);assert.equal(clip.frameCount,5);assert.equal(clip.loop,false);
-  for(const id of clip.frameIds){const a=recipe.assets.find(f=>f.id===id); assert.equal(a.bundle,'battle'); assert.deepEqual(a.pivot,{x:40,y:40});}
+  const id='fx_impact_'+kind, size=motionQuality.impactSources[id];
+  const clip=recipe.animations.animations.find(a=>a.id===id);assert.equal(clip.frameCount,5);assert.equal(clip.loop,false);
+  for(const id of clip.frameIds){const a=recipe.assets.find(f=>f.id===id); assert.equal(a.bundle,'battle'); assert.deepEqual(a.pivot,{x:size/2,y:size/2});}
  }
- for (const kind of ['stone','frost']){
-  const id='fx_tower_'+kind+'_impact';
-  const clip=recipe.animations.animations.find(a=>a.id===id);assert.equal(clip.frameCount,8);assert.equal(clip.fps,16);assert.equal(clip.loop,false);
-  assert.deepEqual(clip.canvas,{w:48,h:48});assert.deepEqual(clip.pivot,{x:24,y:24});
-  for(const frame of clip.frameIds){const a=recipe.assets.find(asset=>asset.id===frame);assert(a.runtime);assert.equal(a.bundle,'battle');assert.equal(a.width,48);assert.equal(a.height,48);}
+ for (const {clip:id,frameCount,fps,size:displaySize} of [TOWER_IMPACT.STONE,TOWER_IMPACT.SLOW]){
+  const size=motionQuality.impactSources[id];
+  const clip=recipe.animations.animations.find(a=>a.id===id);assert.equal(clip.frameCount,frameCount);assert.equal(clip.fps,fps);assert.equal(clip.loop,false);
+  assert.equal(displaySize,TOWER_IMPACT.ARROW.size);
+  assert.deepEqual(clip.canvas,{w:size,h:size});assert.deepEqual(clip.pivot,{x:size/2,y:size/2});
+  for(const frame of clip.frameIds){const a=recipe.assets.find(asset=>asset.id===frame);assert(a.runtime);assert.equal(a.bundle,'battle');assert.equal(a.width,size);assert.equal(a.height,size);}
  }
  assert.equal(recipe.assets.find(a=>a.id==='icon_tactic_shield').bundle,'base');
  for(const id of ['fx_shield_dome','fx_shield_ring','fx_shield_hit'])assert.equal(recipe.assets.find(a=>a.id===id).bundle,'battle');
@@ -47,7 +51,17 @@ test('HD replacement contains only selected source images; pixels and native pre
 test('five minions have six frames and five bosses have eight; native ground points and the full source canvas agree',()=>{
  const {ENEMIES}=require(path.join(process.env.DAIDAI_TEST_BUILD,'config/EnemyConfig'));
  assert.equal(Object.keys(defs).length,10);for(const [kind,d]of Object.entries(defs)){assert.equal(recipe.animations.enemyNativeFacing[kind],'DOWN');assert.equal(d.frames.length,ENEMIES[kind].boss?8:6);assert.equal(d.frames.length/d.fps,2/3);assert(d.stride>0);
- const images=d.frames.map(f=>recipe.assets.find(a=>a.id===f.body));assert(images.every(Boolean));assert.equal(new Set(images.map(a=>a.provenance.sourceHash)).size,1);assert.equal(new Set(images.map(a=>a.provenance.outputHash)).size,images.length);for(const a of images){assert(a.provenance.fullCanvas);assert.equal(a.pivot.x/a.width,.5);assert(Math.abs(a.pivot.y/a.height-d.foot.y/d.canvas)<1e-12);}}
+ const images=d.frames.map(f=>recipe.assets.find(a=>a.id===f.body));assert(images.every(Boolean));
+ assert.equal(new Set(images.map(a=>a.provenance.sourceHash)).size,1);
+ assert.equal(new Set(images.map(a=>a.provenance.outputHash)).size,images.length);
+ const packed=require('../../../res/atlases/frames.json').frames;
+ for(const a of images){
+  assert(a.provenance.fullCanvas);assert.equal(a.pivot.x/a.width,.5);assert(Math.abs(a.pivot.y/a.height-d.foot.y/d.canvas)<1e-12);
+  const f=packed[a.id], w=f.rotated?f.rect.h:f.rect.w, h=f.rotated?f.rect.w:f.rect.h;
+  // The atlas counts faint resampling pixels as content, including the soft fringe around the sole.
+  assert(Math.min(f.trimOffset.x,f.trimOffset.y,a.width-f.trimOffset.x-w,a.height-f.trimOffset.y-h)>=1);
+  assert(Math.abs(f.trimOffset.y+h-a.pivot.y)<5);
+ }}
 });
 test('remote stages cover six categories and game audio is available only in the main package',()=>{
  const manifest=require('../../../res/manifest.json'), ids=new Set(), all=new Set();
@@ -136,8 +150,8 @@ test('resizing preserves normalized feet and stride; panel portraits retain thei
   if(clip.mapping==='patrol'){assert.equal(clip.frameCount,4);assert(clip.stridePixels>0);assert.deepEqual(clip.pivot,{x:48,y:93});continue;}
   if(clip.stridePixels===undefined)continue;
   if(a.category==='enemies') { const d=defs[a.id.replace(/_walk_\d+$/,'')];assert(Math.abs(clip.stridePixels/clip.canvas.w-d.stride/d.canvas)<1e-12);continue; }
-  const role=clip.id.slice('villager_'.length).split('_walk_')[0],profile=require(path.join(source,`source/rendered2d/characters/v5/${role}/rig-profile.json`));
-  assert(Math.abs(clip.stridePixels/clip.canvas.w-profile.walkCycle.strideCanvasPixels/256)<1e-12);
+  const role=clip.id.slice('villager_'.length).split('_walk_')[0];
+  assert(Math.abs(clip.stridePixels/clip.canvas.w-(role==='child'?motionQuality.childStride:motionQuality.villagerStride))<1e-12);
  }
  const portraits=recipe.assets.filter(a=>a.id.startsWith('portrait_'));assert.equal(portraits.length,9);
  for(const a of portraits){assert.equal(a.width,384);assert(!a.provenance.runtimeScale);assert(a.id==='portrait_hd_elder_down_idle'||byId.has(a.id.slice('portrait_'.length)));}

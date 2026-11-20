@@ -1,4 +1,4 @@
-import { LAYOUT } from "./config/HudConfig";
+import { HUD, LAYOUT } from "./config/HudConfig";
 /** 微信窗口使用逻辑屏幕像素；safeArea/胶囊为屏幕坐标，screenTop为窗口起点。
  * 字段依据官方 minigame-api-typings；部分设备不返回 safeArea。
  */
@@ -44,8 +44,11 @@ export class GameLayout {
         // 无safeArea时按真实状态栏/窗口边界布局，不猜刘海型号或固定底部手势高度。
         this.safeTop = Math.max(0, (window.safeArea ? window.safeArea.top : window.statusBarHeight) - screenTop) * scale;
         this.safeBottom = Math.min(window.windowHeight, window.safeArea ? window.safeArea.bottom - screenTop : window.windowHeight) * scale;
-        const menuBottom = menu.width > 0 && menu.height > 0 ? (menu.bottom - screenTop) * scale : this.safeTop;
-        this.dateY = Math.max(this.safeTop + LAYOUT.dateTop, menuBottom + LAYOUT.menuGap);
+        const hasMenu = menu.width > 0 && menu.height > 0;
+        const menuBottom = hasMenu ? (menu.bottom - screenTop) * scale : this.safeTop;
+        // 微信「更多游戏」可在胶囊同一行向左展开。整行留给平台，仍以屏幕中心对齐标题。
+        const headerClearance = hasMenu ? -HUD.title.top : LAYOUT.menuGap;
+        this.dateY = Math.max(this.safeTop + LAYOUT.dateTop, menuBottom + headerClearance);
         this.resourcesY = this.dateY + LAYOUT.resourcesGap;
         this.mapTop = this.resourcesY + LAYOUT.mapGap;
         // 操作区沿用242高；地图按战场68%、居民区32%分配，进一步收紧居民区高度。

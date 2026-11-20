@@ -48,7 +48,8 @@ for (const page of atlas.pages) {
     const original = files[page.runtimeFile], relative = page.runtimeFile.replace(/\.(png|jpg)$/, '.ktx');
     if (!original || original.sha256 !== page.sha256 || relative === page.runtimeFile || files[relative])
         throw new Error('图页与 ASTC 输入清单不符：' + page.runtimeFile);
-    const block = page.group === 'ui' || portraitPages.has(page.id) ? 4 : 6;
+    // Thin antialiased attack silhouettes need the same precision as UI. Keep other world pages at 6×6.
+    const block = page.group === 'ui' || page.group === 'night_effects' || portraitPages.has(page.id) ? 4 : 6;
     const target = stagedAlready ? path.join(destination, relative) : path.join(work, relative);
     if (!stagedAlready) {
         if (revision !== '--stage') throw new Error('先生成远程资源版本：' + version);

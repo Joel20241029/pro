@@ -34,9 +34,9 @@ test("Stone follows a rotating arc and survives removal from the five-tick event
     equal(p.impactFrame, "fx_tower_stone_impact_1");
     equal(p.impactAt, { x: s.x, y: s.y });
     s.x += 25; s.y += 40;
-    b.tick = 18; m.update(b); equal(p.impactFrame, "fx_tower_stone_impact_8");
+    b.tick = 14; m.update(b); equal(p.impactFrame, "fx_tower_stone_impact_8");
     equal(p.impactAt, { x: s.x - 25, y: s.y - 40 });
-    b.tick = 20; m.update(b); equal(m.poses.length, 0);
+    b.tick = 15; m.update(b); equal(m.poses.length, 0);
 });
 test("Repeated view refresh never duplicates or replays a Shot", () => {
     const b = battle(), m = new ProjectileMotion(); b.tick = 1; b.shots = [shot("ARROW")];
@@ -75,9 +75,9 @@ test("Frost projectile starts the dedicated hit clip on contact and follows the 
     b.tick = 8; m.update(b); equal(m.poses[0].frame, "fx_ice"); ok(m.poses[0].contact);
     equal(m.poses[0].impactFrame, "fx_tower_frost_impact_1");
     s.y += 30;
-    b.tick = 17; m.update(b); equal(m.poses[0].impactFrame, "fx_tower_frost_impact_8");
+    b.tick = 13; m.update(b); equal(m.poses[0].impactFrame, "fx_tower_frost_impact_8");
     near(m.poses[0].y, s.y - 20); equal(m.poses[0].impactAt, undefined);
-    b.tick = 19; m.update(b); equal(m.poses.length, 0);
+    b.tick = 14; m.update(b); equal(m.poses.length, 0);
 });
 test("Playing effects does not change damage, targeting, outcome or business state", () => {
     const a = battle(), b = battle(), m = new ProjectileMotion(); let observed = 0;

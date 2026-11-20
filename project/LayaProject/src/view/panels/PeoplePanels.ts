@@ -84,7 +84,7 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel) {
         if (p.type === "carers") {
             ctx.ui.label(box, "迎接所需", 36, 111, 220, 27, C.cream, true, 54).align = "right";
             ctx.ui.iconValue(box, "icon_food", s.food >= RULE.birthCost ? String(RULE.birthCost) : `${amount(s.food, true)}/${RULE.birthCost}`,
-                277, 111, 328, 54, s.food >= RULE.birthCost ? C.cream : C.red, 31, "left");
+                277, 111, 328, 54, s.food >= RULE.birthCost ? C.ink : C.red, 31, "left");
         }
         if (!list.length) {
             const message = p.type === "history" ? "家谱暂无记录\n村民寿终后会记入这里" : p.type === "partners" ? "暂无符合条件的单身男女\n可等待孩子成年或旅人加入" : p.type === "care" ? "暂无需要安排照料的孩子\n已有照料者的孩子不会重复列出" : p.type === "operators" ? "暂无成年且未退休的村民\n孩子成年或旅人加入后可驻塔" : "暂时没有符合条件的村民";

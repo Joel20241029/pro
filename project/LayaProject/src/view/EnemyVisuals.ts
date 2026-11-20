@@ -1,4 +1,4 @@
-import { FEEDBACK } from "./config/FeedbackConfig";
+import { FEEDBACK, TOWER_IMPACT } from "./config/FeedbackConfig";
 import { EnemyKind } from "../config/EnemyConfig";
 import { SpriteFrames } from "./SpriteFrames";
 import { ENEMY_LOOKS, ENEMY_PALETTES, ENEMY_SCALES } from "./config/EnemyVisualConfig";
@@ -7,6 +7,9 @@ import { DRAGON_POISON } from "../config/TacticConfig";
 import { drawUiGlyph } from "./UiGlyphs";
 /** 留诊只摆动身体，脚底阴影、受击点与头顶的状态符号保留同一地图锚点。 */
 const MIND_VISUAL = { sway: 2.5, cycle: .55, markSize: 24, violet: "#6739a2", light: "#f3dcff" } as const;
+/** Laya 的批量图片路径会忽略旋转帧的顶点顺序。地图怪物使用同一组双三角形索引还原这类帧。 */
+const ROTATED_QUAD = new Uint16Array([0, 1, 2, 0, 2, 3]);
+const rotatedMeshes = new WeakMap<Laya.Texture, Map<string, { vertices: Float32Array; uv: Float32Array }>>();
 /** 一个敌人一个复用容器；阴影、帧序列和挂件共用源画布、脚底与父变换。
  * 每个池位只在换帧/换身份时重绘，绝不逐步创建纹理或滤镜。
  */
@@ -41,7 +44,12 @@ export class EnemyVisuals {
         const statusCount = Number(mindTime !== undefined) + Number(frosted) + Number(poisoned);
         const statusStep = FEEDBACK.enemyStatus.spacing / (mirror ? -scale : scale);
         const statusX = definition.foot.x - (statusCount - 1) * statusStep / 2;
-        const statusY = frame.y + canvas * .06 - FEEDBACK.enemyStatus.lift / scale;
+        const bounds = statusCount || love || burstAge !== undefined || patrolImpactAge !== undefined
+            ? this.art.contentBounds(frame.body) : null;
+        const spriteUnit = bounds ? canvas / bounds.sourceSize.h : 0;
+        const headY = frame.y + (bounds ? bounds.trimOffset.y * spriteUnit : 0);
+        const impactY = headY + (bounds ? bounds.rect.h * .56 * spriteUnit : 0);
+        const statusY = headY - FEEDBACK.enemyStatus.lift / scale;
         if (mindTime !== undefined) {
             if (!this.mark) {
                 this.mark = new Laya.Sprite();
@@ -98,8 +106,8 @@ export class EnemyVisuals {
             if (love.cleared) {
                 cue.name = "ZhouLoveArrowImpact";
                 g.clear();
-                this.art.applyFrame(cue, this.art.frameId("fx_impact_arrow", love.age), FEEDBACK.impact.size.ARROW * FEEDBACK.impactScale);
-                cue.pos(definition.foot.x, definition.foot.y + (frame.y + canvas * .46 - definition.foot.y) / (death?.scaleY ?? 1));
+                this.art.applyFrame(cue, this.art.frameId("fx_impact_arrow", love.age), TOWER_IMPACT.ARROW.size);
+                cue.pos(definition.foot.x + this.body.x, definition.foot.y + (impactY - definition.foot.y) / (death?.scaleY ?? 1));
                 cue.alpha = 1;
             } else {
                 cue.name = "ZhouLoveHealMark";
@@ -108,7 +116,7 @@ export class EnemyVisuals {
                 const arm = size * .36;
                 g.drawLine(-arm, 0, arm, 0, red, stroke);
                 g.drawLine(0, -arm, 0, arm, red, stroke);
-                cue.pos(definition.foot.x, frame.y + canvas * .06 - (size * .6 + t * lift) / scale);
+                cue.pos(definition.foot.x, headY - (size * .6 + t * lift) / scale);
                 cue.alpha = Math.min(1, (1 - t) * 4);
             }
         } else if (this.loveCue) this.loveCue.visible = false;
@@ -122,7 +130,7 @@ export class EnemyVisuals {
             const impact = this.burstImpact, squash = death?.scaleY ?? 1;
             this.art.applyFrame(impact, this.art.frameId("fx_impact_stone", burstAge), size * FEEDBACK.tacticBurst.bodySizeScale * FEEDBACK.impactScale);
             // 与周博受击共用身体中部位置；爆裂不随死亡的压扁动画收缩。
-            impact.pos(definition.foot.x + this.body.x, definition.foot.y + (frame.y + canvas * .46 - definition.foot.y) / squash);
+            impact.pos(definition.foot.x + this.body.x, definition.foot.y + (impactY - definition.foot.y) / squash);
             impact.scale((mirror ? -1 : 1) / scale, 1 / (scale * squash));
             impact.visible = true;
         } else if (this.burstImpact) this.burstImpact.visible = false;
@@ -134,9 +142,9 @@ export class EnemyVisuals {
                 this.node.addChild(this.patrolImpact);
             }
             const impact = this.patrolImpact;
-            this.art.applyFrame(impact, this.art.frameId("fx_impact_arrow", patrolImpactAge), FEEDBACK.impact.size.ARROW * FEEDBACK.impactScale);
+            this.art.applyFrame(impact, this.art.frameId("fx_impact_arrow", patrolImpactAge), TOWER_IMPACT.ARROW.size);
             // 落点随身体抖动和压扁，命中帧本身维持屏幕比例。
-            impact.pos(definition.foot.x + this.body.x, frame.y + canvas * .46);
+            impact.pos(definition.foot.x + this.body.x, impactY);
             impact.scale((mirror ? -1 : 1) / scale, 1 / (scale * (death?.scaleY ?? 1)));
             impact.visible = true;
         } else if (this.patrolImpact) this.patrolImpact.visible = false;
@@ -144,17 +152,45 @@ export class EnemyVisuals {
         this.key = key;
         this.node.size(canvas, canvas).pivot(definition.foot.x, definition.foot.y);
         this.node.graphics.clear();
+        this.body.size(canvas, canvas);
         this.body.graphics.clear();
         // 原生动画的固定底层阴影与身体同根；drawTexture自动恢复裁边，alpha不参与受击红闪或变体染色。
         const shadow = definition.shadow;
         this.node.graphics.drawTexture(this.art.get(shadow.frame), shadow.x, shadow.y, shadow.width, shadow.height, null, shadow.alpha);
         // 先背部再头部，保留组合选择顺序；实际遮挡由每帧原生prefab明确声明。
         for (const behind of [true, false]) {
-            if (!behind) this.body.graphics.drawImage(this.art.get(frame.body), frame.x, frame.y, canvas, canvas, flashing ? FEEDBACK.flashColor : color);
+            if (!behind) this.drawPart(frame.body, frame.x, frame.y, canvas, canvas, flashing ? FEEDBACK.flashColor : color);
             for (const id of [back, head]) if (id) {
                 const part = frame.parts[id];
-                if (part.behind === behind) this.body.graphics.drawImage(this.art.get(id), part.x, part.y, part.width, part.height, flashing ? FEEDBACK.flashColor : "#ffffff");
+                if (part.behind === behind) this.drawPart(id, part.x, part.y, part.width, part.height, flashing ? FEEDBACK.flashColor : "#ffffff");
             }
         }
     }
+    /** 只对旋转帧显式提交 UV，保持未旋转帧原有的批处理方式。 */
+    private drawPart(id: string, x: number, y: number, width: number, height: number, tint: string) {
+        const texture = this.art.get(id), graphics = this.body.graphics;
+        if (!texture.rotate) {
+            graphics.drawImage(texture, x, y, width, height, tint);
+            return;
+        }
+        let bySize = rotatedMeshes.get(texture);
+        if (!bySize) {
+            bySize = new Map();
+            rotatedMeshes.set(texture, bySize);
+        }
+        const size = `${width}:${height}`;
+        let mesh = bySize.get(size);
+        if (!mesh) {
+            const scaleX = width / texture.sourceWidth, scaleY = height / texture.sourceHeight;
+            const left = texture.offsetX * scaleX, top = texture.offsetY * scaleY;
+            const right = left + texture.width * scaleX, bottom = top + texture.height * scaleY;
+            mesh = {
+                vertices: new Float32Array([left, top, right, top, right, bottom, left, bottom]),
+                uv: new Float32Array(texture.uv)
+            };
+            bySize.set(size, mesh);
+        }
+        graphics.drawTriangles(texture, x, y, mesh.vertices, mesh.uv, ROTATED_QUAD, null, 1, tint);
+    }
+
 }

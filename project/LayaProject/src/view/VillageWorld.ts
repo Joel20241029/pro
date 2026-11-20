@@ -305,7 +305,8 @@ export class VillageWorld {
         this.renderDelta += delta;
         if (this.renderDelta < 1 / 30)
             return false;
-        this.renderDelta = 0;
+        // Keep the fractional frame so 16/17 ms host updates do not alternate between two and three updates per draw.
+        this.renderDelta %= 1 / 30;
         return true;
     }
     /** 同帧绘制战斗反馈，并将献纳成功信号交给上层提示。 */

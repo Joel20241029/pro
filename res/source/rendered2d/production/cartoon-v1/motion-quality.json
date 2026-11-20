@@ -1,0 +1,14 @@
+{
+  "description": "Visual stride as fraction of sprite canvas per full two-step cycle. Display artwork only. Impact sizes are source texels at fixed in-game scale.",
+  "villagerStride": 0.30,
+  "childStride": 0.28,
+  "enemyStrides": {
+    "raider": 0.37, "runner": 0.42, "armored": 0.33, "boar": 0.34, "disruptor": 0.35,
+    "chief": 0.34, "commander": 0.34, "wolfking": 0.39, "tuskking": 0.35, "shaman": 0.34
+  },
+  "impactSources": {
+    "fx_impact_arrow": 128, "fx_impact_stone": 144,
+    "fx_tower_stone_impact": 144, "fx_tower_frost_impact": 144,
+    "fx_shield_hit": 128, "fx_rage_hit": 128, "fx_hit": 128
+  }
+}

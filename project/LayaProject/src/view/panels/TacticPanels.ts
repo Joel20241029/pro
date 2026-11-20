@@ -62,11 +62,12 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel, avail
         ctx.ui.image(paper, t.icon, inset, inset, icon);
         ctx.ui.label(paper, t.name, textX, 16, effectWidth, 34, C.ink, true, 44);
         const summary = ctx.ui.label(paper, t.summary, textX, 57, effectWidth, 25, C.green, false, 62);
-        if (t.effect === "ZHOU_LOVE" || t.effect === "DRAGON_POISON") summary.leading = 0;
+        summary.leading = 0;
+        summary.overflow = Laya.Text.SHRINK;
         const cooldown = t.usesPerNight > 1 ? ` · 冷却 ${TACTIC_USE.cooldownTicks * RULE.step} 秒` : "";
         const waves = s.tactics.mercyCooldown?.wavesLeft ?? 0;
         const timing = t.effect === "KING_MERCY" ? (waves ? `冷却中 · 再守 ${waves} 波` : "按守住波数冷却") : `每夜 ${t.usesPerNight} 次${cooldown}`;
-        ctx.ui.label(paper, timing, textX, 117, effectWidth, 24, C.muted, false, 36);
+        ctx.ui.label(paper, timing, textX, 120, effectWidth, 24, C.muted, false, 36);
         ctx.ui.label(paper, loreTitle, inset, loreTop - 8, textWidth, 27, C.timber, true, 40);
     }
     const lore = ctx.ui.label(paper, t.lore, inset, revealed ? loreTop + 39 : inset, textWidth, 28, C.ink, false, UI.panelHeight);
@@ -86,7 +87,7 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel, avail
     if (p.back) ctx.ui.button(box, "‹", 30, 32, 54, () => ctx.open(p.back!, true), C.muted, 54);
     if (top + paperHeight + UI.action.bottom <= height) box.addChild(paper);
     else {
-        const list = new ScrollList(UI.contentWidth, height - top - UI.action.bottom, paperHeight, p.scroll, y => p.scroll = y);
+        const list = new ScrollList(width + UI.scrollGutter, height - top - UI.action.bottom, paperHeight, p.scroll, y => p.scroll = y);
         list.pos(UI.inset, top); box.addChild(list);
         list.content.addChild(paper.pos(0, 0));
     }

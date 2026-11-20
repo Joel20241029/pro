@@ -27,7 +27,7 @@
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 31.25
+      "stridePixels": 37
     },
     {
       "id": "enemy_runner_walk",
@@ -55,7 +55,7 @@
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 35.41666666666667
+      "stridePixels": 42
     },
     {
       "id": "enemy_armored_walk",
@@ -83,7 +83,7 @@
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 25
+      "stridePixels": 33
     },
     {
       "id": "enemy_boar_walk",
@@ -111,7 +111,7 @@
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 23
+      "stridePixels": 31.28
     },
     {
       "id": "enemy_disruptor_walk",
@@ -139,7 +139,7 @@
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 29.166666666666668
+      "stridePixels": 35
     },
     {
       "id": "enemy_chief_walk",
@@ -169,7 +169,7 @@
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 40
+      "stridePixels": 54.400000000000006
     },
     {
       "id": "enemy_commander_walk",
@@ -199,7 +199,7 @@
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 41
+      "stridePixels": 55.760000000000005
     },
     {
       "id": "enemy_wolfking_walk",
@@ -229,7 +229,7 @@
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 50
+      "stridePixels": 62.400000000000006
     },
     {
       "id": "enemy_tuskking_walk",
@@ -259,7 +259,7 @@
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 35
+      "stridePixels": 58.8
     },
     {
       "id": "enemy_shaman_walk",
@@ -289,7 +289,7 @@
       },
       "clock": "battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 41
+      "stridePixels": 55.760000000000005
     },
     {
       "id": "villager_blue_walk_down",
@@ -317,7 +317,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 17.353846153846153
+      "stridePixels": 36
     },
     {
       "id": "villager_blue_walk_right",
@@ -345,7 +345,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 17.353846153846153
+      "stridePixels": 36
     },
     {
       "id": "villager_blue_walk_up",
@@ -371,7 +371,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 17.353846153846153
+      "stridePixels": 36
     },
     {
       "id": "villager_blue_walk_left",
@@ -399,7 +399,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 17.353846153846153
+      "stridePixels": 36
     },
     {
       "id": "villager_straw_walk_down",
@@ -427,7 +427,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 16.246153846153845
+      "stridePixels": 36
     },
     {
       "id": "villager_straw_walk_right",
@@ -455,7 +455,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 16.246153846153845
+      "stridePixels": 36
     },
     {
       "id": "villager_straw_walk_up",
@@ -481,7 +481,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 16.246153846153845
+      "stridePixels": 36
     },
     {
       "id": "villager_straw_walk_left",
@@ -509,7 +509,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 16.246153846153845
+      "stridePixels": 36
     },
     {
       "id": "villager_red_walk_down",
@@ -537,7 +537,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 16.615384615384613
+      "stridePixels": 36
     },
     {
       "id": "villager_red_walk_right",
@@ -565,7 +565,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 16.615384615384613
+      "stridePixels": 36
     },
     {
       "id": "villager_red_walk_up",
@@ -591,7 +591,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 16.615384615384613
+      "stridePixels": 36
     },
     {
       "id": "villager_red_walk_left",
@@ -619,7 +619,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 16.615384615384613
+      "stridePixels": 36
     },
     {
       "id": "villager_jade_walk_down",
@@ -647,7 +647,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 15.876923076923076
+      "stridePixels": 36
     },
     {
       "id": "villager_jade_walk_right",
@@ -675,7 +675,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 15.876923076923076
+      "stridePixels": 36
     },
     {
       "id": "villager_jade_walk_up",
@@ -701,7 +701,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 15.876923076923076
+      "stridePixels": 36
     },
     {
       "id": "villager_jade_walk_left",
@@ -729,7 +729,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 15.876923076923076
+      "stridePixels": 36
     },
     {
       "id": "villager_elite_male_walk_down",
@@ -757,7 +757,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 16.246153846153845
+      "stridePixels": 36
     },
     {
       "id": "villager_elite_male_walk_right",
@@ -785,7 +785,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 16.246153846153845
+      "stridePixels": 36
     },
     {
       "id": "villager_elite_male_walk_up",
@@ -811,7 +811,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 16.246153846153845
+      "stridePixels": 36
     },
     {
       "id": "villager_elite_male_walk_left",
@@ -839,7 +839,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 16.246153846153845
+      "stridePixels": 36
     },
     {
       "id": "villager_elite_female_walk_down",
@@ -867,7 +867,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 15.876923076923076
+      "stridePixels": 36
     },
     {
       "id": "villager_elite_female_walk_right",
@@ -895,7 +895,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 15.876923076923076
+      "stridePixels": 36
     },
     {
       "id": "villager_elite_female_walk_up",
@@ -921,7 +921,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 15.876923076923076
+      "stridePixels": 36
     },
     {
       "id": "villager_elite_female_walk_left",
@@ -949,7 +949,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 15.876923076923076
+      "stridePixels": 36
     },
     {
       "id": "villager_child_walk_down",
@@ -977,7 +977,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 12.16
+      "stridePixels": 29.120000000000005
     },
     {
       "id": "villager_child_walk_right",
@@ -1005,7 +1005,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 12.16
+      "stridePixels": 29.120000000000005
     },
     {
       "id": "villager_child_walk_up",
@@ -1031,7 +1031,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 12.16
+      "stridePixels": 29.120000000000005
     },
     {
       "id": "villager_child_walk_left",
@@ -1059,7 +1059,7 @@
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas",
-      "stridePixels": 12.16
+      "stridePixels": 29.120000000000005
     },
     {
       "id": "villager_baby_idle",
@@ -1102,12 +1102,12 @@
       "category": "effects",
       "mapping": "arrow",
       "canvas": {
-        "w": 80,
-        "h": 80
+        "w": 128,
+        "h": 128
       },
       "pivot": {
-        "x": 40,
-        "y": 40
+        "x": 64,
+        "y": 64
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas"
@@ -1128,12 +1128,12 @@
       "category": "effects",
       "mapping": "stone",
       "canvas": {
-        "w": 80,
-        "h": 80
+        "w": 144,
+        "h": 144
       },
       "pivot": {
-        "x": 40,
-        "y": 40
+        "x": 72,
+        "y": 72
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas"
@@ -1577,18 +1577,18 @@
         "fx_tower_stone_impact_8"
       ],
       "frameCount": 8,
-      "fps": 16,
+      "fps": 28,
       "loop": false,
       "restFrame": "fx_tower_stone_impact_1",
       "category": "effects",
       "mapping": "stone",
       "canvas": {
-        "w": 48,
-        "h": 48
+        "w": 144,
+        "h": 144
       },
       "pivot": {
-        "x": 24,
-        "y": 24
+        "x": 72,
+        "y": 72
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas"
@@ -1606,18 +1606,18 @@
         "fx_tower_frost_impact_8"
       ],
       "frameCount": 8,
-      "fps": 16,
+      "fps": 30,
       "loop": false,
       "restFrame": "fx_tower_frost_impact_1",
       "category": "effects",
       "mapping": "frost",
       "canvas": {
-        "w": 48,
-        "h": 48
+        "w": 144,
+        "h": 144
       },
       "pivot": {
-        "x": 24,
-        "y": 24
+        "x": 72,
+        "y": 72
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas"

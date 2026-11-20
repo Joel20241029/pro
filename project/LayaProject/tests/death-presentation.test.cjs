@@ -92,6 +92,19 @@ global.Laya = { Sprite, Script: class {}, regClass: () => c => c, timer: { currF
 const { EnemyVisuals } = read('view/EnemyVisuals'), { ProjectileVisuals } = read('view/ProjectileVisuals'), { VillageWorld } = read('view/VillageWorld');
 const project = path.resolve(__dirname, '..');
 const layouts = JSON.parse(fs.readFileSync(path.join(project, 'assets/resources/gameplay/enemies/enemies.bin'))).definitions;
+test('the world keeps a steady 30 Hz render budget across alternating 16 and 17 ms updates', () => {
+    const world = Object.create(VillageWorld.prototype);
+    Object.assign(world, { game: { state: null, battle: null, pauses: new Set(['USER']) },
+        lastBattle: null, lastBattleTick: 0, renderDelta: 0 });
+    const deltas = [.016, .017, .016, .017, .017];
+    let updates = 0, elapsed = 0;
+    for (let i = 0; i < 600; i++) {
+        const delta = deltas[i % deltas.length];
+        elapsed += delta;
+        if (world.advance(delta)) updates++;
+    }
+    assert.equal(updates, Math.floor(elapsed * 30));
+});
 test('last-kill synchronous render cannot spend the old frame delta before contact reaches the screen', () => {
     for (const delta of [.05, .15, .25]) {
         const b = battle(), f = new CombatPresentation(), p = new ProjectileMotion(), event = fatal(b);

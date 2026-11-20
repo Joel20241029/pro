@@ -8,10 +8,10 @@ export const FEEDBACK = {
     death: { squashSeconds: .12, scaleY: .22, holdSeconds: .5, fadeSeconds: .24 },
     // 让落点上的弹体至少停留一个30FPS画面；同帧refresh不会提前删掉接触姿态，不改变伤害时点。
     contactSeconds: .045,
-    // 怪物接触和受击特效共用，按玩家要求在原 2 倍的基础上将显示宽高各增加 25%。
+    // 其他战技特效仍用既有倍率。三塔命中独立使用定稿尺寸。
     impactScale: 2.5,
     // 共享命中帧 5 帧，保持箭塔、巡防和战技的原有时长。尺寸为 720 画布逻辑像素。
-    impact: { fps: 24, frameCount: 5, size: { ARROW: 74, STONE: 85, SLOW: 80 } },
+    impact: { fps: 24, frameCount: 5 },
     // 连点与怜悯复用石弹帧。终场连点或巡防命中结束后留出渲染缓冲，再打开胜负面板。
     tacticBurst: { bodySizeScale: 1.12 },
     finalImpactSeconds: .28,
@@ -27,9 +27,11 @@ export const FEEDBACK = {
 } as const;
 
 
-/** 两类重击独立播放 8 帧，48px 局部母图的绘制尺寸再放大 25%。箭击沿用原表现。 */
+/** 定稿在 128 px 画布绘制，运行画布宽高放大 25%。使用完整源画布和同一锚点，
+ * 保持不同帧的有效轮廓比例。仅用于三塔命中及复用箭击的表现。 */
+const TOWER_IMPACT_SIZE = 128 * 1.25;
 export const TOWER_IMPACT = {
-    ARROW: { clip: "fx_impact_arrow", fps: FEEDBACK.impact.fps, frameCount: FEEDBACK.impact.frameCount, displayScale: 1 },
-    STONE: { clip: "fx_tower_stone_impact", fps: 16, frameCount: 8, displayScale: 1.25 },
-    SLOW: { clip: "fx_tower_frost_impact", fps: 16, frameCount: 8, displayScale: 1.25 }
+    ARROW: { clip: "fx_impact_arrow", fps: FEEDBACK.impact.fps, frameCount: FEEDBACK.impact.frameCount, size: TOWER_IMPACT_SIZE },
+    STONE: { clip: "fx_tower_stone_impact", fps: 28, frameCount: 8, size: TOWER_IMPACT_SIZE },
+    SLOW: { clip: "fx_tower_frost_impact", fps: 30, frameCount: 8, size: TOWER_IMPACT_SIZE }
 } as const;

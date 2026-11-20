@@ -2,6 +2,7 @@ const { test } = require('node:test'), assert = require('node:assert/strict'), p
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 const { GameLayout } = require(path.join(compiled, 'view/GameLayout.js'));
+const { HUD } = require(path.join(compiled, 'view/config/HudConfig.js'));
 const { layoutVillage, VillageNavigation, towerLaunch, TOWER_VIEW, distance } = require(path.join(compiled, 'view/VillageScene.js'));
 const { VillagerMotion } = require(path.join(compiled, 'view/VillagerMotion.js'));
 const { ProjectileMotion } = require(path.join(compiled, 'view/ProjectileMotion.js'));
@@ -22,7 +23,7 @@ function near(a,b) { assert(Math.abs(a-b)<1e-6,`${a} != ${b}`); }
 for(const profile of profiles) test(`${profile[0]}: safe controls, expanded village, reachable stops and intact source proportions`, () => {
     const l=layout(profile), {scene,nav}=sceneAt(l), [name,w,h,top,bottom,mt,mb]=profile;
     near(l.height,h*720/w); near(l.safeTop,top*720/w); near(l.safeBottom,bottom*720/w);
-    assert(l.dateY>=mb*720/w+10-1e-6); assert(l.footerTop+228<=l.safeBottom);
+    assert(l.dateY+HUD.title.top>=mb*720/w-1e-6); assert(l.footerTop+228<=l.safeBottom);
     assert(l.footerTop-l.gateY>=260);
     const adultCanvas = l.personScale * 56;
     assert(adultCanvas >= 90.3 - 1e-6 && adultCanvas <= 94.5 + 1e-6);
@@ -61,7 +62,7 @@ test('missing safeArea uses reported status bar; screenTop removes already exclu
     let l=new GameLayout({windowWidth:360,windowHeight:800,screenTop:0,statusBarHeight:24},menu);
     near(l.safeTop,48); near(l.safeBottom,1600); near(l.dateY,112);
     l=new GameLayout({windowWidth:360,windowHeight:776,screenTop:24,statusBarHeight:24,safeArea:{top:24,bottom:776,left:0,right:360}}, {top:28,bottom:60,left:262,right:350,width:88,height:32});
-    near(l.safeTop,0); near(l.safeBottom,1504); near(l.dateY,82);
+    near(l.safeTop,0); near(l.safeBottom,1504); near(l.dateY,112);
 });
 test('iPhone 12 window without screenTop keeps layout, village stops and controls inside the visible window', () => {
     const menu={top:51,bottom:83,left:292,right:380,width:88,height:32};
@@ -70,7 +71,7 @@ test('iPhone 12 window without screenTop keeps layout, village stops and control
         const l=new GameLayout(metrics,menu);
         for(const [key,value] of Object.entries(l)) assert(Number.isFinite(value),`invalid layout ${key}: ${value}`);
         assert.deepEqual(l,new GameLayout({...metrics,screenTop:0},menu));
-        assert(l.dateY>=menu.bottom*720/390+10); assert(l.footerTop+228<=l.safeBottom);
+        assert(l.dateY+HUD.title.top>=menu.bottom*720/390-1e-6); assert(l.footerTop+228<=l.safeBottom);
         const {scene,nav}=sceneAt(l);
         for(const [key,stops] of Object.entries(scene.stops)) for(const point of stops) {
             assert(Number.isFinite(point.x) && Number.isFinite(point.y),`invalid ${key} stop`);

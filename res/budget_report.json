@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T04:23:28.530Z",
+  "generatedAt": "2026-11-20T10:21:30.735Z",
   "runtimeAssetCount": 571,
   "reserveAssetCount": 134,
   "animationCount": 74,
@@ -7,61 +7,61 @@
   "categoryStats": {
     "enemies": {
       "count": 70,
-      "bytes": 2472093,
+      "bytes": 1913475,
       "runtime": 70,
       "reserve": 0
     },
     "enemy-parts": {
       "count": 2,
-      "bytes": 10377,
+      "bytes": 11808,
       "runtime": 2,
       "reserve": 0
     },
     "characters": {
       "count": 255,
-      "bytes": 4830150,
+      "bytes": 4360390,
       "runtime": 255,
       "reserve": 0
     },
     "building-parts": {
       "count": 265,
-      "bytes": 2580500,
+      "bytes": 2408386,
       "runtime": 146,
       "reserve": 119
     },
     "ui/icons": {
       "count": 26,
-      "bytes": 401364,
+      "bytes": 370167,
       "runtime": 26,
       "reserve": 0
     },
     "effects": {
       "count": 48,
-      "bytes": 364773,
+      "bytes": 181865,
       "runtime": 43,
       "reserve": 5
     },
     "decorations": {
       "count": 21,
-      "bytes": 669392,
+      "bytes": 563164,
       "runtime": 14,
       "reserve": 7
     },
     "ui/panels": {
       "count": 12,
-      "bytes": 510754,
+      "bytes": 7555,
       "runtime": 12,
       "reserve": 0
     },
     "ui/buttons": {
       "count": 2,
-      "bytes": 311114,
+      "bytes": 7307,
       "runtime": 2,
       "reserve": 0
     },
     "terrain": {
       "count": 4,
-      "bytes": 3090882,
+      "bytes": 751412,
       "runtime": 1,
       "reserve": 3
     }
@@ -71,20 +71,10 @@
       "id": "ui_0",
       "path": "atlases/ui_0.png",
       "runtimeFile": "ui/ui_0.png",
-      "width": 1017,
-      "height": 994,
-      "bytes": 1226620,
-      "sha256": "436ccc3a23bcb645e58fec63fd37e33090154872a995de418d130f0f83df32e2",
-      "group": "ui"
-    },
-    {
-      "id": "ui_1",
-      "path": "atlases/ui_1.png",
-      "runtimeFile": "ui/ui_1.png",
-      "width": 352,
-      "height": 132,
-      "bytes": 53172,
-      "sha256": "630aacebedd6433e00b6408de554a22827046ea5c5baff2bcfa553a880df758a",
+      "width": 1020,
+      "height": 1024,
+      "bytes": 403509,
+      "sha256": "6f036c45b75ceb6adb23a561e87370e306944e2ec7543e12e08ed6bcfd5bb085",
       "group": "ui"
     },
     {
@@ -93,18 +83,18 @@
       "runtimeFile": "map/terrain_0.jpg",
       "width": 1126,
       "height": 1406,
-      "bytes": 656392,
-      "sha256": "365b7af31583414cbba0829ef4815ce7846e464c451f169e713c705db640a9e0",
+      "bytes": 252626,
+      "sha256": "2e03aa1f5eb4fa45f51fb599cabdf9d2c7c53d08808560cdfbd7bb740aee89d3",
       "group": "terrain"
     },
     {
       "id": "map_0",
       "path": "atlases/map_0.png",
       "runtimeFile": "map/map_0.png",
-      "width": 581,
-      "height": 698,
-      "bytes": 486575,
-      "sha256": "739c256ba79b3552b43efa0acbba46b2c00dfb0d4e8eb4a5c3774c602f74ed11",
+      "width": 460,
+      "height": 741,
+      "bytes": 374014,
+      "sha256": "6ddc182463f52f286cff20ae431710b7aa72c477964b183520e252102da4a371",
       "group": "map"
     },
     {
@@ -112,103 +102,102 @@
       "path": "atlases/buildings_0.png",
       "runtimeFile": "buildings/buildings_0.png",
       "width": 768,
-      "height": 732,
-      "bytes": 796139,
-      "sha256": "a5b06a5ee10c9a157fb09aea8d3c4379a405064cef23bfc6d540102dad280b25",
+      "height": 602,
+      "bytes": 646981,
+      "sha256": "c0bdc3ca34da76031a8aaedbe0e43462de77d490d7f2af43492cb6ae78f67ad7",
       "group": "buildings"
     },
     {
       "id": "characters_0",
       "path": "atlases/characters_0.png",
       "runtimeFile": "characters/characters_0.png",
-      "width": 1015,
-      "height": 956,
-      "bytes": 1411674,
-      "sha256": "91e0c86ac9a6809de840a64d0f9597e0f63c82e293fe564ca23a0c834d615a13",
+      "width": 1022,
+      "height": 1024,
+      "bytes": 1405049,
+      "sha256": "6aa294a92bd5f23027f12c2156c13e415c16e8257cd6dddd7ab2bba356cf31fc",
       "group": "characters"
     },
     {
       "id": "characters_1",
       "path": "atlases/characters_1.png",
       "runtimeFile": "characters/characters_1.png",
-      "width": 1023,
-      "height": 960,
-      "bytes": 1633538,
-      "sha256": "069008298fb5856f0f999eb85b9db9d2d484cdd8ec9178977072ae9198620211",
+      "width": 1012,
+      "height": 1021,
+      "bytes": 1540203,
+      "sha256": "2ea100613d7f99eaa8d90d341cd14b061cbcd79a5370b5e838d1e5783f36ddeb",
       "group": "characters"
     },
     {
       "id": "characters_2",
       "path": "atlases/characters_2.png",
       "runtimeFile": "characters/characters_2.png",
-      "width": 1008,
-      "height": 956,
-      "bytes": 1590392,
-      "sha256": "083738717d21633212a539f8b6d42587a989d4ce78d987978ee0d294d47b9591",
+      "width": 703,
+      "height": 1024,
+      "bytes": 929948,
+      "sha256": "0c53986e0d6cf9a5c25a090d1b7f6aff3f766719c712a27cda0a8b820eb376fc",
       "group": "characters"
     },
     {
       "id": "village_effects_0",
       "path": "atlases/village_effects_0.png",
       "runtimeFile": "effects/village_effects_0.png",
-      "width": 251,
-      "height": 414,
-      "bytes": 110272,
-      "sha256": "a4e4a5e690a310bf29ca400d36c00a1dbdb72903f64171f97618cfe4cf44980d",
+      "width": 220,
+      "height": 314,
+      "bytes": 23991,
+      "sha256": "ff2e8e7f3ef16a9f500091034db7a5cff4ee3d5aa330a77b960d6f9164d92d4d",
       "group": "village_effects"
     },
     {
       "id": "enemies_0",
       "path": "atlases/enemies_0.png",
       "runtimeFile": "enemies/enemies_0.png",
-      "width": 1022,
-      "height": 992,
-      "bytes": 1740370,
-      "sha256": "96d6a46fbd49cab99b53a84a9396b3093d03170d8debb5f3d53cbbc32e50a9a0",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 1299002,
+      "sha256": "657a93b189e60a1102a74d505e9e121836034066d6e4645ad552efe1e991f095",
       "group": "enemies"
     },
     {
       "id": "enemies_1",
       "path": "atlases/enemies_1.png",
       "runtimeFile": "enemies/enemies_1.png",
-      "width": 486,
-      "height": 1005,
-      "bytes": 745975,
-      "sha256": "291075b72c282842ab2ce651cd44714bf6c472871af1632c7d338c63a5e40010",
+      "width": 78,
+      "height": 506,
+      "bytes": 27105,
+      "sha256": "b97a16c93e01be6b14b50e716e7d068dab4f6fa6cc4b155c8aec2ed6a632356f",
       "group": "enemies"
     },
     {
       "id": "night_effects_0",
       "path": "atlases/night_effects_0.png",
       "runtimeFile": "effects/night_effects_0.png",
-      "width": 311,
-      "height": 766,
-      "bytes": 245770,
-      "sha256": "bf8da79825169fb3b324f40b2cd85e536a0ecb79a2965cb5130b56553fb67451",
+      "width": 768,
+      "height": 333,
+      "bytes": 137536,
+      "sha256": "f4cf72e2572e76f665d05ed1e7e81de61fc6f4b5a4789f36eab24995844f698a",
       "group": "night_effects"
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 10505804,
-    "atlasContentPixels": 7355180,
-    "savedContentPixels": 3150624,
-    "savedContentPercent": 29.99,
-    "trimmedAssetCount": 492,
+    "sourceCanvasPixels": 10941772,
+    "atlasContentPixels": 6772141,
+    "savedContentPixels": 4169631,
+    "savedContentPercent": 38.11,
+    "trimmedAssetCount": 546,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "atlasImageBytes": 10696889,
-    "metadataBytes": 162889,
+    "atlasImageBytes": 7039964,
+    "metadataBytes": 161896,
     "audioBytes": 164243,
-    "totalBytes": 11024021,
+    "totalBytes": 7366103,
     "files": [
       "bundles/map/frames.bin",
       "bundles/characters/animations.bin",
       "bundles/ui/ui_0.png",
-      "bundles/ui/ui_1.png",
       "bundles/map/terrain_0.jpg",
       "bundles/map/map_0.png",
       "bundles/buildings/buildings_0.png",
@@ -245,8 +234,8 @@
   },
   "sourceBytes": 49652112,
   "budgetComparison": {
-    "villageAtlasImageBytes": 7964774,
-    "nightAtlasImageBytes": 2732115
+    "villageAtlasImageBytes": 5576321,
+    "nightAtlasImageBytes": 1463643
   },
   "limitations": [
     "Atlas content-pixel savings are not identical to PNG byte savings",

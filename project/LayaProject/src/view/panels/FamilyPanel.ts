@@ -94,9 +94,13 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
         const carer = child && s.people.find(q => q.careChild === child.id);
         const childPortrait = 70;
         ctx.ui.image(card, child ? ctx.art.portraitId(child) : "icon_baby", (cardWidth - childPortrait) / 2, 174, childPortrait);
-        ctx.ui.label(card, child ? `${coloredName(child)} · 成长 ${child.growth}/${RULE.growNights}` : "本户暂无未成年孩子",
-            24, 246, cardWidth - 48, 26, C.ink, true, 37).align = "center";
-        if (child) ctx.ui.label(card, carer ? `${carer.name}正在照料` : "无人照料，成长暂停", 24, 283, cardWidth - 48, 26, C.muted, false, 37).align = "center";
+        const childText = ctx.ui.label(card, child ? `${coloredName(child)} · 成长 ${child.growth}/${RULE.growNights}` : "本户暂无未成年孩子",
+            24, 246, cardWidth - 48, 26, C.ink, true, 37);
+        childText.align = "center"; childText.wordWrap = false; childText.overflow = Laya.Text.SHRINK;
+        if (child) {
+            const caregiver = ctx.ui.label(card, carer ? `${carer.name}正在照料` : "无人照料，成长暂停", 24, 283, cardWidth - 48, 26, C.muted, false, 37);
+            caregiver.align = "center"; caregiver.wordWrap = false; caregiver.overflow = Laya.Text.SHRINK;
+        }
         const reason = birthUnavailableReason(s, family.id) ?? (Number.isSafeInteger(s.nextPerson + 1) ? null : "人口编号已达安全范围");
         const available = reason === null && !blocked;
         const note = ctx.ui.label(card, reason ? reasonBesideCost(reason) ?? "费用不足，缺口见上方" : "选定照料者后迎接孩子", 24, 320, cardWidth - 48, 25, reason ? C.muted : C.green, false, 40);

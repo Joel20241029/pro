@@ -48,7 +48,7 @@ export function drawTravelerPanel(ctx: PanelContext, state: GameState, traveler:
     drawResidentTalent(ctx, card("talent", LAYOUT.talent), traveler, true);
     if (special) drawResidentQuality(ctx, card("bonus", LAYOUT.bonus), quality, true);
 
-    ctx.ui.iconValue(box, "icon_house", `住房 ${count}/${slots}`, 224, footerTop + 17, 220, 44, C.cream, 29);
+    ctx.ui.iconValue(box, "icon_house", `住房 ${count}/${slots}`, 224, footerTop + 17, 220, 44, C.ink, 29);
     if (full) residentCardText(ctx, box, count >= RULE.populationCap ? "村民已满，可等待空出名额" : "住房已满，白天可增建民居",
         UI.inset, footerTop + 61, UI.contentWidth, LAYOUT.fullNote, 27, C.red, true).align = "center";
     const buttonY = footerTop + LAYOUT.actionTop + (full ? LAYOUT.fullNote : 0);

@@ -9,20 +9,20 @@ function decode(value) {
     return value.replace(/&(amp|lt|gt|quot|apos);/g, entity => entities[entity]);
 }
 const style = {
-    root: { width: 600, height: 680, backgroundColor: '#63813b', flexDirection: 'column' },
-    header: { width: 600, height: 44, flexDirection: 'row', backgroundColor: '#345d1d', alignItems: 'center' },
+    root: { width: 600, height: 680, backgroundColor: '#f7cbc9', flexDirection: 'column' },
+    header: { width: 600, height: 44, flexDirection: 'row', backgroundColor: '#ac4f67', alignItems: 'center' },
     rank: { width: 66, height: 44, lineHeight: 44, fontSize: 26, color: '#9a591f', textAlign: 'center', fontWeight: 'bold' },
-    player: { width: 354, height: 44, lineHeight: 44, fontSize: 26, color: '#48311f' },
+    player: { width: 354, height: 44, lineHeight: 44, fontSize: 26, color: '#502f44' },
     score: { width: 180, height: 44, lineHeight: 44, fontSize: 28, color: '#326b1b', textAlign: 'center', fontWeight: 'bold' },
     list: { width: 600, height: 586 },
-    row: { width: 600, height: 84, flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff3d5', borderBottomWidth: 2, borderColor: '#dcae47' },
-    alternate: { backgroundColor: '#f7e8ba' },
+    row: { width: 600, height: 84, flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff4e4', borderBottomWidth: 2, borderColor: '#dba695' },
+    alternate: { backgroundColor: '#f9e9e2' },
     headLabel: { color: '#fff7df' },
     avatar: { width: 56, height: 56, borderRadius: 8 },
     avatarSpace: { width: 56, height: 56 },
-    name: { width: 278, height: 44, lineHeight: 44, marginLeft: 20, fontSize: 28, color: '#48311f', textOverflow: 'ellipsis' },
-    tip: { width: 600, height: 50, lineHeight: 50, textAlign: 'center', fontSize: 24, color: '#fff5dd' },
-    message: { width: 600, height: 80, lineHeight: 80, fontSize: 28, color: '#fff5dd', textAlign: 'center' },
+    name: { width: 278, height: 44, lineHeight: 44, marginLeft: 20, fontSize: 28, color: '#502f44', textOverflow: 'ellipsis' },
+    tip: { width: 600, height: 50, lineHeight: 50, textAlign: 'center', fontSize: 24, color: '#502f44' },
+    message: { width: 600, height: 80, lineHeight: 80, fontSize: 28, color: '#502f44', textAlign: 'center' },
     spacer: { width: 600, height: 230 }
 };
 function template(rows, invalid) {

@@ -3,7 +3,8 @@
  * 日期行避让微信胶囊，资源紧随其下；回收的顶部间距全部交给地图，调整须复查短屏站点。
  */
 export const LAYOUT = {
-    width: 720, dateTop: 64, menuGap: 10, resourcesGap: 34, mapGap: 92,
+    // Compact the rows below the native menu while retaining the northern tower's full attack silhouette on 16:9.
+    width: 720, dateTop: 64, menuGap: 10, resourcesGap: 32, mapGap: 86,
     footerHeight: 242, battleMax: 700, villageMin: 260, battleMin: 440, battleRatio: .68,
     // 高清共同画布含完整四向动作留白；按2026-11-13反馈再放大约7%，足点/速度不变，步幅随显示尺寸换算。
     personMin: 86, personMax: 90, personBase: 56, personGrowthHeight: 300, personGrowthStep: 40,
@@ -20,9 +21,9 @@ export const LAYOUT = {
  */
 export const HUD = {
     statusHeight: 37,
-    title: { x: 240, top: -48, width: 240, font: 32, height: 44 },
+    title: { x: 240, top: -40, width: 240, font: 30, height: 38 },
     settings: { x: 28, top: -36, width: 126, height: 60 },
-    date: { x: 232, top: 0, width: 256, font: 26, height: 34 },
+    date: { x: 232, top: 0, width: 256, font: 25, height: 32 },
     // 高清图标按可见裁框居中后与文字同高；44px图文区及8px间距避免透明留白造成错位。
     resource: { x: 28, step: 226, width: 212, textY: 0, textWidth: 154, font: 30, minFont: 20, height: 44, icon: 44, iconY: 4, gap: 8, textPadding: 4 },
     gate: { x: 304, top: -162, width: 112, font: 22, height: 28, stroke: 1.5, barX: 316, barTop: -130, barWidth: 88, barHeight: 7, barInset: 2, fillWidth: 84, fillHeight: 3, dangerRatio: .35 },
@@ -42,7 +43,8 @@ export const HUD = {
     footer: {
         info: { x: 28, y: 12, width: 474, height: 36, font: 24 },
         wave: { x: 536, y: 0, width: 156, height: 60, font: 24 },
-        start: { x: 274, y: 54, size: 172, icon: 62, iconY: 26, textX: 12, textY: 94, textWidth: 148, textHeight: 42, font: 32, stroke: 1.4 },
+        // 四字按钮的墨迹保持在圆皮内圈，圆弧收窄从第 86 个逻辑像素开始计。
+        start: { x: 274, y: 54, size: 172, icon: 60, iconY: 26, textX: 29, textY: 90, textWidth: 114, textHeight: 36, font: 28, stroke: 1.4 },
         navigation: { xs: [28, 148, 468, 588], y: 92, width: 104, height: 112, icon: 48, iconY: 12, textX: 8, textY: 68, textHeight: 34, font: 28 }
     },
     /** 2026-11-14已确认的守夜三按钮；沿用白天圆钮中心和242高底栏，地图不重排。
@@ -55,8 +57,8 @@ export const HUD = {
         // 三枚战技居中等距，左右为暂停和倍速；下面保留安全区留白。
         multi: { sideXs: [18, 602], sideWidth: 100, center: 360, pitch: 138, size: 124, y: 72 },
         // 两行分别按圆皮在该高度的宽度留边，缩小到多槽时沿用同一比例。
-        heart: { icon: 60, iconY: 20, textY: 84, textWidth: 128, textHeight: 36, textFont: 30,
-            noteY: 121, noteWidth: 100, noteHeight: 24, noteFont: 21, stroke: 1.4 },
+        heart: { icon: 52, iconY: 24, textY: 79, textWidth: 118, textHeight: 32, textFont: 28,
+            noteY: 108, noteWidth: 76, noteHeight: 28, noteFont: 19, stroke: 1.4 },
         ring: { radius: 90, width: 4, segments: 64, color: "#fff0a3", track: "#a76b26", cooldownColor: "#e6eddb", cooldownTrack: "#80916e" }
     },
     navigation: [

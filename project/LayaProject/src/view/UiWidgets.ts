@@ -17,7 +17,6 @@ export class UiWidgets {
         if (onPanel) {
             color = PANEL_TEXT[color] || color;
             for (const [ink, light] of Object.entries(PANEL_TEXT)) text = text.split(`color="${ink}"`).join(`color="${light}"`);
-            text = text.split(`strokecolor="${C.lightEdge}"`).join('strokecolor="#334f1c"');
         }
         t.html = text.includes("<font ");
         t.text = text;
@@ -27,12 +26,14 @@ export class UiWidgets {
         t.bold = bold;
         t.wordWrap = true;
         t.leading = 7;
+        // 面板正文使用调用方的固定区或滚动区，避免长值穿过下一行。
+        if (onPanel) t.overflow = Laya.Text.SHRINK;
         t.size(w, h);
         t.pos(x, y);
         const rgb = parseInt(color.slice(1), 16), light = ((rgb >> 16) * .299 + ((rgb >> 8) & 255) * .587 + (rgb & 255) * .114) > 165;
         // 高清纸面正文不描边；浅色按钮字仅留轻边，地图标签在各自调用处保留独立描边。
-        t.stroke = onPanel ? 1 : light ? .6 : 0;
-        t.strokeColor = onPanel ? "#334f1c" : light ? C.outline : C.lightEdge;
+        t.stroke = light ? .6 : 0;
+        t.strokeColor = light ? C.outline : C.lightEdge;
         t.valign = h <= 60 ? "middle" : "top";
         t.mouseEnabled = false;
         parent.addChild(t);
@@ -151,7 +152,7 @@ export class UiWidgets {
         const badge = new Laya.Sprite(); badge.pos(row.width - badgeWidth - 16, (row.height - badgeHeight) / 2); badge.mouseEnabled = false;
         badge.name = "BuildAction";
         this.art.panel(badge, reason ? "panel_button_disabled" : "panel_button_green", badgeWidth, badgeHeight); face.addChild(badge);
-        this.label(badge, reason ? "未满足" : caption, 8, 8, badgeWidth - 16, 28, C.cream, true, badgeHeight - 16).align = "center";
+        this.label(badge, reason ? "未满足" : caption, 8, 8, badgeWidth - 16, 28, reason ? C.muted : C.cream, true, badgeHeight - 16).align = "center";
         return row;
     }
     /** 村民与家庭共用图文条目：头像留独立区域，文字不挤进边框，滚动仍由ScrollList取消误触。 */
@@ -202,13 +203,16 @@ export class UiWidgets {
         b.addChild(face);
         if (title) {
             // 家庭说明/迎接按钮只有50～54高，不能继续扣掉普通按钮的28px纵向留白。
-            const insetY = h <= 60 ? 8 : 14;
-            const textColor = !enabled ? color === C.muted ? C.muted : C.cream : color === C.gold || color === C.muted ? C.ink : C.cream;
+            const insetY = h < 48 ? 4 : h <= 60 ? 8 : 14;
+            const textColor = !enabled ? C.muted : color === C.gold || color === C.muted ? C.ink : C.cream;
             const t = this.label(face, title, 16, insetY, w - 32, h <= 60 ? 26 : UI.button, textColor, true, h - insetY * 2);
             t.name = "buttonText";
             t.align = "center";
             t.valign = "middle";
             t.leading = 3;
+            // 显式换行仍用于名单的两行内容，普通按钮文案按内框适配。
+            t.wordWrap = false;
+            t.overflow = Laya.Text.SHRINK;
             // 小尺寸关闭按钮只有一个符号，按实际边框留白；其余按钮正文不进入固定14px边缘。
             if (w < 80) {
                 t.fontSize = 24;
