@@ -2,7 +2,7 @@ const {test}=require('node:test'),assert=require('node:assert/strict'),fs=requir
 const recipe=require('../../../res/source/asset_recipe.json'),defs=require('../../../res/native/enemies.json').definitions;
 const motionQuality=require('../../../res/source/rendered2d/production/cartoon-v1/motion-quality.json');
 const source=path.resolve(__dirname,'../../../res');
-const {TOWER_IMPACT}=require(path.join(process.env.DAIDAI_TEST_BUILD,'view/config/FeedbackConfig.js'));
+const {TOWER_IMPACT,TOWER_IMPACT_SCALE}=require(path.join(process.env.DAIDAI_TEST_BUILD,'view/config/FeedbackConfig.js'));
 test('each native enemy prefab owns one bottom-layer contact shadow and exports its actual layout',()=>{
  const exported=require('../../../res/native/enemies.json');
  assert.equal(exported.version,4);
@@ -33,12 +33,14 @@ test('HD replacement contains only selected source images; pixels and native pre
   const clip=recipe.animations.animations.find(a=>a.id===id);assert.equal(clip.frameCount,5);assert.equal(clip.loop,false);
   for(const id of clip.frameIds){const a=recipe.assets.find(f=>f.id===id); assert.equal(a.bundle,'battle'); assert.deepEqual(a.pivot,{x:size/2,y:size/2});}
  }
- for (const {clip:id,frameCount,fps,size:displaySize} of [TOWER_IMPACT.STONE,TOWER_IMPACT.SLOW]){
+ const packed=require('../../../res/atlases/frames.json').frames;
+ for (const {clip:id,frameCount,fps,size:displaySize} of Object.values(TOWER_IMPACT)){
   const size=motionQuality.impactSources[id];
   const clip=recipe.animations.animations.find(a=>a.id===id);assert.equal(clip.frameCount,frameCount);assert.equal(clip.fps,fps);assert.equal(clip.loop,false);
-  assert.equal(displaySize,TOWER_IMPACT.ARROW.size);
+  assert.equal(displaySize*TOWER_IMPACT_SCALE,200);
+  assert.equal(size,320);
   assert.deepEqual(clip.canvas,{w:size,h:size});assert.deepEqual(clip.pivot,{x:size/2,y:size/2});
-  for(const frame of clip.frameIds){const a=recipe.assets.find(asset=>asset.id===frame);assert(a.runtime);assert.equal(a.bundle,'battle');assert.equal(a.width,size);assert.equal(a.height,size);}
+  for(const frame of clip.frameIds){const a=recipe.assets.find(asset=>asset.id===frame);assert(a.runtime);assert.equal(a.bundle,'battle');assert.equal(a.width,size);assert.equal(a.height,size);assert.deepEqual(packed[frame].sourceSize,{w:size,h:size});}
  }
  assert.equal(recipe.assets.find(a=>a.id==='icon_tactic_shield').bundle,'base');
  for(const id of ['fx_shield_dome','fx_shield_ring','fx_shield_hit'])assert.equal(recipe.assets.find(a=>a.id===id).bundle,'battle');

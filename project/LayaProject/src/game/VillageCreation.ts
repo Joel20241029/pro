@@ -1,7 +1,7 @@
 import { FOUNDERS, PADS, RULE, Trait } from "./GameConfig";
 import { clone, GameState, Legacy, Person, Tower } from "./GameState";
 import { generateWave } from "./WaveGenerator";
-import { autoAssignJobs, autoAssignOperators } from "./VillageJobs";
+import { autoAssignJobs, autoAssignNightDuties } from "./VillageJobs";
 import { requireRule, newId, remember } from "./VillageStateOps";
 import { PATROL } from "../config/PatrolConfig";
 import { DEFAULT_TACTIC } from "../config/TacticConfig";
@@ -27,7 +27,7 @@ export function createGame(seed: number, old?: Legacy, inherited?: Trait, histor
     s.towers = PADS.map((_, i): Tower => i === 0 ? { kind: "ARROW", level: 1, operator: s.people[3].id } : i === 1 ? { kind: "STONE", level: 1, operator: s.people[2].id } : { kind: null, level: 0, operator: null });
     s.people.forEach(p => remember(s, p.trait));
     autoAssignJobs(s);
-    autoAssignOperators(s);
+    autoAssignNightDuties(s);
     s.wave = generateWave(s);
     return s;
 }

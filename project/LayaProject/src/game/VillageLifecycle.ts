@@ -4,7 +4,7 @@ import { GameState, Person } from "./GameState";
 import { SeededRandom } from "./SeededRandom";
 import { nextSex, travelerDue } from "./Population";
 import { person, capacity } from "./VillageQueries";
-import { autoAssignJobs, autoAssignOperators } from "./VillageJobs";
+import { autoAssignJobs, autoAssignNightDuties } from "./VillageJobs";
 import { requireRule, newId, pruneHistory } from "./VillageStateOps";
 export function finishNight(s: GameState, gate: number, operators: (string | null)[]) {
     requireRule(s.phase === "NIGHT" && s.night, "守夜已经结算");
@@ -63,7 +63,7 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
         p.ancestors = p.ancestors.filter(id => !departedIds.includes(id));
     s.families = s.families.filter(f => !f.partners.some(id => departedIds.includes(id)));
     autoAssignJobs(s);
-    autoAssignOperators(s);
+    autoAssignNightDuties(s);
     s.stats.retirees += retired.length;
     s.legacy.retirees += retired.length;
     pruneHistory(s);

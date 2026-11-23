@@ -3,7 +3,7 @@ import { ARROW_TIP, ProjectilePose } from "./ProjectileMotion";
 import { SpriteFrames } from "./SpriteFrames";
 import { WORLD_ART } from "./config/WorldArtConfig";
 import { RAGE_VISUAL } from "./config/RageVisualConfig";
-import { TOWER_IMPACT } from "./config/FeedbackConfig";
+import { TOWER_IMPACT, TOWER_IMPACT_SCALE } from "./config/FeedbackConfig";
 
 /** 投射物固定节点池：只呈现已有弹道，生命周期由 shots 父节点管理，不推进战斗或动画时钟。 */
 export class ProjectileVisuals {
@@ -40,7 +40,7 @@ export class ProjectileVisuals {
             n.alpha = p.alpha;
             const glow = this.projectileGlows[i];
             if (p.impactFrame) {
-                this.art.applyFrame(glow, p.impactFrame, TOWER_IMPACT[p.shot.kind].size);
+                this.art.applyFrame(glow, p.impactFrame, TOWER_IMPACT[p.shot.kind].size * TOWER_IMPACT_SCALE);
                 glow.name = `impact:${p.shot.kind}:${i}`;
                 glow.pos((p.impactAt?.x ?? p.x) + p.impactShift!, p.impactAt?.y ?? p.y);
                 glow.rotation = p.impactAngle!;

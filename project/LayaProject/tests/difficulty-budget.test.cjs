@@ -120,6 +120,9 @@ test('an already planned paired wave retains its older headcount, deadline and s
  s.wave.entries[0].kind='enemy_raider';
  s.wave.budget=s.wave.entries.reduce((sum,e)=>sum+ENEMIES[e.kind].cost,0);
  validateState(s);applyCommand(s,{type:'NIGHT'});
+ // The old wave was already started before automatic appointment.
+ s.patrol.captain=null;delete s.night.patrolSquad;delete s.night.patrolSpin;
+ validateState(s);
  const b=new BattleSimulation(s);b.step();
  assert.equal(b.enemies[0].maxHp,Math.ceil(ENEMIES[s.wave.entries[0].kind].hp*(ENEMIES[s.wave.entries[0].kind].boss?old.bossHealth:old.health*.7)));
  assert.equal(s.wave.entries.length,189);assert.equal(s.wave.entries.at(-1).tick,966);

@@ -40,6 +40,22 @@ export function autoAssignOperators(s: GameState) {
         if (tower.kind && !tower.operator && available.length)
             tower.operator = available.shift()!.id;
 }
+/** 优先保留队长和已有塔手，队长空岗时按在村顺序选空闲成年人；全员驻塔时由最后一个有塔手的塔位让位。 */
+export function autoAssignNightDuties(s: GameState) {
+    if (s.patrol.captain === null) {
+        const assigned = new Set(s.towers.map(t => t.operator));
+        const available = s.people.find(p => isWorkingAdult(p) && !assigned.has(p.id));
+        if (available) s.patrol.captain = available.id;
+        else {
+            const lastStaffed = s.towers.slice().reverse().find(t => t.operator !== null);
+            if (lastStaffed) {
+                s.patrol.captain = lastStaffed.operator;
+                lastStaffed.operator = null;
+            }
+        }
+    }
+    autoAssignOperators(s);
+}
 export function assignOperator(s: GameState, index: number, id: string) {
     const t = s.towers[index];
     requireRule(t && t.kind !== null, "此处尚未建塔");

@@ -35,9 +35,10 @@ export const FEEDBACK = {
 } as const;
 
 
-/** 定稿在 128 px 画布绘制，运行画布宽高放大 25%。使用完整源画布和同一锚点，
- * 保持不同帧的有效轮廓比例。仅用于三塔命中及复用箭击的表现。 */
+/** 128 px 定稿设计网格对应既有 160 逻辑像素，供复用箭击的表现保留原有大小。 */
 const TOWER_IMPACT_SIZE = 128 * 1.25;
+/** 三塔的弹体命中效果在 160 逻辑像素基础上扩大 25%，从 320 px 原画布采样。 */
+export const TOWER_IMPACT_SCALE = 1.25;
 export const TOWER_IMPACT = {
     ARROW: { clip: "fx_impact_arrow", fps: FEEDBACK.impact.fps, frameCount: FEEDBACK.impact.frameCount, size: TOWER_IMPACT_SIZE },
     STONE: { clip: "fx_tower_stone_impact", fps: 28, frameCount: 8, size: TOWER_IMPACT_SIZE },

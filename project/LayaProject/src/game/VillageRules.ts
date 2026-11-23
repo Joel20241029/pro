@@ -7,7 +7,7 @@ import { gateCapacity, laborSlots, repairCost, residentialCost, upgradeCost, upg
 import { nextSex } from "./Population";
 import { dailyRationAmount } from "./DailyRation";
 import { person, capacity, canMarry, birthUnavailableReason, economy, policy } from "./VillageQueries";
-import { autoAssignJobs, autoAssignOperators, assignOperator } from "./VillageJobs";
+import { autoAssignJobs, autoAssignNightDuties, autoAssignOperators, assignOperator } from "./VillageJobs";
 import { requireRule, spend, newId, remember, pruneHistory } from "./VillageStateOps";
 import { patrolUpgradeReason, patrolCost } from "./PatrolRules";
 import { applyTactic, unlockTacticSlot } from "./Tactics";
@@ -112,11 +112,12 @@ export function applyCommand(s: GameState, c: Command) {
         requireRule(s.phase === "DAWN" && s.choices.length > 0, "当前没有待办事项");
         choose(s, c.value);
         autoAssignJobs(s);
-        autoAssignOperators(s);
+        autoAssignNightDuties(s);
         return;
     }
     if (c.type === "FINALIZE") {
         requireRule(s.phase === "DAWN" && !s.choices.length, "请先完成清晨事项");
+        if (s.patrol.captain === null) autoAssignNightDuties(s);
         s.wave = generateWave(s);
         s.phase = "DAY";
         return;
@@ -264,7 +265,7 @@ export function applyCommand(s: GameState, c: Command) {
             break;
         case "NIGHT": {
             requireRule(s.wave !== null, "波次未准备好");
-            autoAssignOperators(s);
+            autoAssignNightDuties(s);
             const e = economy(s);
             s.night = { adults: s.people.filter(isWorkingAdult).map(p => p.id), elders: s.people.filter(isElder).map(p => p.id), cared: s.people.filter(p => isWorkingAdult(p) && p.job === "CARE").map(p => p.careChild!), hungry: e.hungry, tactic: s.tactics.equipped };
             if (s.tactics.extraSlots) s.night.extraSlots = s.tactics.extraSlots.slice();

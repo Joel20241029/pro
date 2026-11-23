@@ -120,7 +120,7 @@ test("Night watch uses live reassignment while towers already attack during trav
         if (battle.shots.some(shot => { const id = battle.base.towers[shot.tower].operator; return id && motion.get(id).walking; })) attackedWhileWalking = true;
     }
     ok(attackedWhileWalking, "visual arrival must not gate attacks");
-    const id = s.people[0].id, before = { ...motion.get(id) }; battle.reassign(0, id); motion.sync(s, battle.base.towers);
+    const id = s.people[1].id, before = { ...motion.get(id) }; battle.reassign(0, id); motion.sync(s, battle.base.towers);
     equal([motion.get(id).x, motion.get(id).y], [before.x, before.y]);
     for (let i = 0; i < 600; i++) motion.update(.05);
     equal([motion.get(id).x, motion.get(id).y], [VILLAGE_STOPS.towers[0].x, VILLAGE_STOPS.towers[0].y]);
@@ -137,7 +137,7 @@ test("Tower watch hides only after arrival and reappears on reassignment, replac
     const before = { ...motion.get(id) }; battle.reassign(1, id); motion.sync(s, battle.base.towers);
     ok(motion.get(id).walking && !motion.get(id).insideTower); equal([motion.get(id).x, motion.get(id).y], [before.x, before.y]);
     for (let i = 0; i < 1000; i++) motion.update(.05);
-    const replacement = s.people.find(p => !battle.base.towers.some(t => t.operator === p.id))!.id;
+    const replacement = s.people.find(p => p.id !== s.patrol.captain && !battle.base.towers.some(t => t.operator === p.id))!.id;
     ok(motion.get(id).insideTower); battle.reassign(1, replacement); motion.sync(s, battle.base.towers);
     ok(!motion.get(id).insideTower);
     battle.reassign(1, id); motion.sync(s, battle.base.towers); for (let i = 0; i < 1000; i++) motion.update(.05);

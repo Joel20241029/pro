@@ -103,6 +103,7 @@ test("Elite carer adds one food only when caring and never accelerates two-night
 test("All three tower types gain damage with unchanged speed/range/slow and armor applied before floor", () => {
     for (const kind of ["ARROW", "STONE", "SLOW"] as TowerKind[]) {
         const s = createGame(1); const p = s.people[0]; p.origin = "TRAVELER"; p.trait = "trait_frugal"; p.skill = "skill_farming";
+        applyCommand(s, { type: "PATROL_CAPTAIN", id: s.people[5].id });
         s.towers.forEach(t => { t.kind = null; t.level = 0; t.operator = null; }); s.towers[0].kind = kind; s.towers[0].level = 1; assignOperator(s, 0, p.id); applyCommand(s, { type: "NIGHT" });
         const normal = new BattleSimulation(s); s.people[0].quality = "ELITE"; const elite = new BattleSimulation(s);
         // 用当前道路和序号计算最近靶位，避免旧固定200进度在错位行进后落到塔射程外。

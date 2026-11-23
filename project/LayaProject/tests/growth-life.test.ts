@@ -10,7 +10,7 @@ import { waveDifficulty } from "../src/game/WaveDifficulty";
 import { BattleSimulation } from "../src/game/BattleSimulation";
 import { GameSession } from "../src/game/GameSession";
 import { SaveStore } from "../src/storage/SaveStore";
-import { CAMP_STOPS, distance, VillageNavigation } from "../src/view/VillageScene";
+import { CAMP_STOPS, distance, VillageNavigation, VILLAGE_STOPS } from "../src/view/VillageScene";
 import { VillagerMotion } from "../src/view/VillagerMotion";
 import { VillagerThoughts } from "../src/view/VillagerThoughts";
 import { SPEECH, VILLAGER_LINES } from "../src/view/config/VillagerSpeechConfig";
@@ -91,8 +91,10 @@ test("Camp has 20 unique navigable stops; baby stays still and carers face the b
         for (let i = 0; i < 500; i++) { motion.update(.1); const p = motion.get(s.people[carerIndex].id); if (!p.walking && !p.animated && p.clip.endsWith("_walk") && distance(p, original) < 55) { const child = motion.get(baby.id); ok(p.direction.includes(child.x < p.x ? "LEFT" : "RIGHT")); ok(Math.abs(child.x - p.x) > Math.abs(child.y - p.y), "carer must stand to baby's side"); observed = true; } }
         ok(observed); equal([motion.get(baby.id).x, motion.get(baby.id).y], [original.x, original.y]);
         applyCommand(s, { type: "NIGHT" }); motion.sync(s, s.towers); for (let i = 0; i < 2000; i++) motion.update(.1);
-        s.people.forEach(p => { const pose = motion.get(p.id); if (s.towers.some(t => t.operator === p.id)) ok(pose.insideTower); else ok(CAMP_STOPS.some(at => distance(at, pose) < .01)); });
-        equal([motion.get(baby.id).x, motion.get(baby.id).y], [original.x, original.y]);
+        s.people.forEach(p => { const pose = motion.get(p.id); if (s.towers.some(t => t.operator === p.id)) ok(pose.insideTower); else ok(VILLAGE_STOPS.nightRest.some(at => distance(at, pose) < .01)); });
+        const bed = { ...motion.get(baby.id) };
+        motion.sync(s, s.towers); motion.update(2);
+        equal([motion.get(baby.id).x, motion.get(baby.id).y], [bed.x, bed.y]);
     }
 });
 test("Thoughts use short configurable lines, skip hidden speakers and keep a village-wide cooldown", () => {

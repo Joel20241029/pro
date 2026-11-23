@@ -8,14 +8,14 @@ import { FEEDBACK, TOWER_IMPACT } from "./config/FeedbackConfig";
 
 /**
  * 720 逻辑画布的投射物表现参数：高清图片恢复完整母画布（包含透明边）。
- * 此轮按手机实绘收小箭、石、冰主体约 20%，保留发射口、旋转和视觉命中定位。
+ * 保留 128 px 原画布，按反馈把箭、石、冰弹体放大约 25%，发射口和视觉命中定位保持原锚点。
  * 石块用弧线与自转表现重量，冰球轻微抛弧。
  * flight/impact 为战斗秒，size/arc 为逻辑像素，spin 为每秒角度；只影响视觉，不参与命中、伤害或存档。
  */
 export const PROJECTILE_STYLE = {
-    ARROW: { frame: "fx_arrow", size: 37, flight: .24, arc: 0, spin: 0, hit: "fx_hit", hitSize: 42, impact: .15 },
-    STONE: { frame: "fx_stone", size: 34, flight: .4, arc: 48, spin: 360, hit: "fx_hit", hitSize: 66, impact: .2 },
-    SLOW: { frame: "fx_ice", size: 29, flight: .3, arc: 8, spin: 0, hit: "fx_slow_ring", hitSize: 72, impact: .2 }
+    ARROW: { frame: "fx_arrow", size: 46, flight: .24, arc: 0, spin: 0, hit: "fx_hit", hitSize: 42, impact: .15 },
+    STONE: { frame: "fx_stone", size: 43, flight: .4, arc: 48, spin: 360, hit: "fx_hit", hitSize: 66, impact: .2 },
+    SLOW: { frame: "fx_ice", size: 36, flight: .3, arc: 8, spin: 0, hit: "fx_slow_ring", hitSize: 72, impact: .2 }
 } as const;
 
 /** 单独播放的弹道预览没有敌人模型时，沿用原来的 20 px 身体偏移。 */

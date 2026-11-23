@@ -17,6 +17,7 @@ const { Patrol } = load('game/Patrol');
 const { generateWave } = load('game/WaveGenerator');
 const { validateState } = load('storage/StateValidation');
 const { SaveStore, canonical, crc32 } = load('storage/SaveStore');
+const { GameSession } = load('game/GameSession');
 
 function unlocked() {
     const s = createGame(245);
@@ -26,9 +27,9 @@ function unlocked() {
     return s;
 }
 
-test('patrol is present on the first day, upgrade costs inventory and a retiring captain releases the post', () => {
+test('patrol has a captain on the first day, upgrade costs inventory and a retired captain is replaced', () => {
     const s = createGame(245), wood = s.wood, food = s.food;
-    assert.deepEqual(s.patrol, { level: 1, captain: null });
+    assert.deepEqual(s.patrol, { level: 1, captain: s.people[0].id });
     const tower = s.towers[0], p = s.people.find(p => p.id === tower.operator);
     p.nights = 1;
     applyCommand(s, { type: 'PATROL_UPGRADE' });
@@ -42,7 +43,7 @@ test('patrol is present on the first day, upgrade costs inventory and a retiring
     applyCommand(s, { type: 'NIGHT' });
     assert.equal(s.night.patrolSquad, true);
     finishNight(s, s.gate, s.towers.map(t => t.operator));
-    assert.deepEqual(s.patrol, { level: 2, captain: null });
+    assert.deepEqual(s.patrol, { level: 2, captain: s.people[1].id });
     validateState(s);
 });
 
@@ -58,7 +59,10 @@ test('an older slot without a patrol house loads level one without writing back,
     const oldBytes = canonical(old); values.set(key, oldBytes);
     const inspection = new SaveStore(port).inspect();
     assert.equal(inspection.kind, 'ready');
-    assert.deepEqual(inspection.state, s);
+    assert.deepEqual(inspection.state, { ...s, patrol: { level: 1, captain: null } });
+    const game = new GameSession(new SaveStore(port));
+    game.load();
+    assert.deepEqual(game.state, s);
     assert.equal(values.get(key), oldBytes);
     const current = new SaveStore(port);
     current.inspect();
@@ -66,6 +70,22 @@ test('an older slot without a patrol house loads level one without writing back,
     applyCommand(s, { type: 'PATROL_CAPTAIN', id: s.people[0].id });
     current.prepare(s); current.commit();
     assert.deepEqual(new SaveStore(port).inspect().state.patrol, s.patrol);
+});
+
+test('a saved night without a captain replays unchanged until its next dawn', () => {
+    const s = unlocked(), values = new Map();
+    const port = { read: key => values.get(key) ?? null, write: (key, data) => values.set(key, data) };
+    applyCommand(s, { type: 'NIGHT' });
+    s.patrol.captain = null;
+    delete s.night.patrolSquad;
+    delete s.night.patrolSpin;
+    const saves = new SaveStore(port); saves.inspect(); saves.prepare(s); saves.commit();
+    const game = new GameSession(new SaveStore(port)); game.load();
+    assert.deepEqual(game.state, s);
+    assert.equal(game.battle.patrol, null);
+    finishNight(s, s.gate, game.battle.operators);
+    assert.equal(s.patrol.captain, s.people[0].id);
+    validateState(s);
 });
 
 test('guard resolves before gate damage even if the monster reaches the gate on the same step', () => {

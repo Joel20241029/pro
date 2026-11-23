@@ -173,10 +173,12 @@ test('patrol ration atomically consumes one bag and boosts only the next night, 
     assert.equal(game.state.food, food - 40);
     assert.equal(game.state.wood, wood - 20);
     assert.equal(game.villageItems.backpack().items[id], 1);
+    const captain = game.state.patrol.captain;
+    game.state.patrol.captain = null;
     game.usePatrolRation();
     assert.match(game.error, /先任命/);
     assert.equal(game.villageItems.backpack().items[id], 1);
-    game.command({ type: 'PATROL_CAPTAIN', id: game.state.people[0].id });
+    game.state.patrol.captain = captain;
     game.villageItems.saveItems({ [id]: 2 });
     f.fault.beforeWrite = keys.backpack;
     game.usePatrolRation();

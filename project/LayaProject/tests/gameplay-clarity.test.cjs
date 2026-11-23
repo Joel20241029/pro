@@ -192,7 +192,7 @@ test('the patrol card opens from the construction list without materials and ret
     assert(!view.box.getChildByName('button:淡紫儿之家'));
     const row = card(), before = canonical(s);
     assert(row.mouseEnabled);
-    assert(badge(), 'appointment stays available without upgrade materials');
+    assert(!badge(), 'automatic appointments do not light the construction badge');
     assert.equal(row.getChildByName('buttonFace').getChildByName('BuildAction').getChildAt(0).text, '去查看');
     row.event('click');
     assert.equal(view.current.type, 'patrol');
@@ -210,11 +210,22 @@ test('the patrol card opens from the construction list without materials and ret
     view.box.children.map(n=>n.getChildByName('PatrolUpgradeAction')).find(Boolean).event('click');
     assert.equal(game.state.patrol.level, 2);
     assert.deepEqual([game.state.wood, game.state.food], [65, 85]);
-    view.box.getChildByName('button:任命淡紫队长').event('click');
-    const free = game.state.people.find(p => p.adult && p.nights > 0 && !game.state.towers.some(t => t.operator === p.id));
+    const idle = game.state.people.find(p => p.id !== game.state.patrol.captain && p.adult && p.nights > 0 && !game.state.towers.some(t => t.operator === p.id));
+    const free = game.state.people.find(p => p.trait === 'trait_strong');
+    game.state.towers.find(t => t.operator === free.id).operator = idle.id;
+    view.draw(game.state, detail);
+    const manage = () => view.box.getChildByName('button:更换淡紫队长');
+    assert(manage().getChildByName('buttonFace').getChildByName('PatrolCaptainActionHint'));
+    manage().event('click');
+    assert.equal(view.box.getChildByName('button:返回'), undefined);
+    view.box.getChildByName('PatrolCandidatesBack').event('click');
+    assert.equal(view.current, detail);
+    manage().event('click');
     view.send({ type: 'PATROL_CAPTAIN', id: free.id });
+    assert.equal(game.error, '');
     assert.equal(view.current, detail);
     assert.equal(game.state.patrol.captain, free.id);
+    assert(!manage().getChildByName('buttonFace').getChildByName('PatrolCaptainActionHint'));
     view.box.getChildByName('button:返回').event('click');
     assert.equal(view.current, build);
     assert.equal(list().offset, 14);
@@ -529,7 +540,7 @@ test('night operator selection reads live reassignment and puts the current guar
     game.command({type:'NIGHT'});game.pause('CHOICE');const id=pendingGuard.id;assert(game.reassign(0,id));
     assert.notEqual(game.state.towers[0].operator,id);view.open({type:'operators',index:0});assert.equal(view.current.rowOrder.at(-1),id);
     assert.equal(view.current.rowOrder[0],released);
-    assert.deepEqual(tagged,[released,spare.id]); assert.equal(view.current.rowOrder.length,game.state.people.length);
+    assert.deepEqual(tagged,[released,spare.id]); assert.equal(view.current.rowOrder.length,game.state.people.length - 1);
 });
 test('role recommendations shortlist three pending adults by benefit and retain stable ties',()=>{
     const { recommendedPeople }=require(path.join(compiled,'view/RoleRecommendations'));

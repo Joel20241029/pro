@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T16:32:09.329Z",
+  "generatedAt": "2026-11-23T06:54:15.455Z",
   "runtimeAssetCount": 572,
   "reserveAssetCount": 134,
   "animationCount": 74,
@@ -37,7 +37,7 @@
     },
     "effects": {
       "count": 49,
-      "bytes": 207311,
+      "bytes": 335431,
       "runtime": 44,
       "reserve": 5
     },
@@ -181,18 +181,18 @@
       "id": "night_effects_0",
       "path": "atlases/night_effects_0.png",
       "runtimeFile": "effects/night_effects_0.png",
-      "width": 895,
-      "height": 332,
-      "bytes": 157443,
-      "sha256": "f41b908e981b044682b0c97bb9f0bc6ed35d810070d707224ec89e87f4104ed1",
+      "width": 773,
+      "height": 768,
+      "bytes": 283568,
+      "sha256": "7d98a8502af1856d2c39bb3223509b2822df1eab7e6b2847347234e991080091",
       "group": "night_effects"
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 10955852,
-    "atlasContentPixels": 6813807,
-    "savedContentPixels": 4142045,
-    "savedContentPercent": 37.81,
+    "sourceCanvasPixels": 12692556,
+    "atlasContentPixels": 7097335,
+    "savedContentPixels": 5595221,
+    "savedContentPercent": 44.08,
     "trimmedAssetCount": 546,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
@@ -200,10 +200,10 @@
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "atlasImageBytes": 7203224,
-    "metadataBytes": 162459,
+    "atlasImageBytes": 7329349,
+    "metadataBytes": 162972,
     "audioBytes": 164243,
-    "totalBytes": 7529926,
+    "totalBytes": 7656564,
     "files": [
       "bundles/map/frames.bin",
       "bundles/characters/animations.bin",
@@ -246,7 +246,7 @@
   "sourceBytes": 49652112,
   "budgetComparison": {
     "villageAtlasImageBytes": 5719674,
-    "nightAtlasImageBytes": 1483550
+    "nightAtlasImageBytes": 1609675
   },
   "limitations": [
     "Atlas content-pixel savings are not identical to PNG byte savings",

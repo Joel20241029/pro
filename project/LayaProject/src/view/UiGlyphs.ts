@@ -16,6 +16,7 @@ function journal(s: Laya.Sprite) {
 }
 const PAINTERS: Record<string, Painter> = {
     icon_settings: journal, icon_journal: journal,
+    icon_back: s => line(s.graphics, [41, 11, 20, 32, 41, 53], G.dark, 8),
     icon_daily_tasks: s => {
         const g = s.graphics;
         g.drawRoundRect(10, 10, 44, 49, 5, 5, 5, 5, G.cream, G.outline, 3);

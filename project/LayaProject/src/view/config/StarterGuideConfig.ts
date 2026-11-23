@@ -11,10 +11,7 @@ export const STARTER_LESSONS = [
 export type StarterTarget = typeof STARTER_LESSONS[number]["target"] | "build";
 /** 淡紫儿引导独立查看记录；旧档也可看到新系统，跳过不会改变五波引导进度。 */
 export const PATROL_LESSONS = [
-    { text: `开村就有${PATROL.building}。点地图上的粉色房子，选一位队长负责夜间出征。` },
-    { text: `点「${PATROL.appoint}」。队长白天照常工作，夜里安排出征。` },
-    // 旧巡防引导可能已存过第 3 步。保留索引，夜里用常驻气泡单独教学。
-    { text: "淡紫儿出门了！按住任一人往下拉，松手发射。" }
+    { text: `开村就有${PATROL.building}，村里会自动安排队长。点粉色房子可以查看或更换。` }
 ] as const;
 
 /** 分波开放后的单步引导。空背包、空商城也可打开并完成。 */

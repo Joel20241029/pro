@@ -121,10 +121,10 @@
       "id": "night_effects_0",
       "path": "atlases/night_effects_0.png",
       "runtimeFile": "effects/night_effects_0.png",
-      "width": 895,
-      "height": 332,
-      "bytes": 157443,
-      "sha256": "f41b908e981b044682b0c97bb9f0bc6ed35d810070d707224ec89e87f4104ed1",
+      "width": 773,
+      "height": 768,
+      "bytes": 283568,
+      "sha256": "7d98a8502af1856d2c39bb3223509b2822df1eab7e6b2847347234e991080091",
       "group": "night_effects"
     }
   ],
@@ -12044,14 +12044,266 @@
       },
       "nineSlice": null
     },
-    "fx_shield_dome": {
+    "fx_tower_stone_impact_8": {
       "page": "night_effects_0",
       "rect": {
         "x": 2,
         "y": 2,
-        "w": 162,
-        "h": 140
+        "w": 217,
+        "h": 86
       },
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 59,
+        "y": 64
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_tower_stone_impact_7": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 2,
+        "y": 92,
+        "w": 87,
+        "h": 210
+      },
+      "rotated": true,
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 63,
+        "y": 54
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_impact_arrow_5": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 2,
+        "y": 306,
+        "w": 100,
+        "h": 204
+      },
+      "rotated": true,
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 62,
+        "y": 84
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_tower_frost_impact_8": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 93,
+        "y": 92,
+        "w": 126,
+        "h": 203
+      },
+      "rotated": true,
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 65,
+        "y": 57
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_tower_frost_impact_7": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 2,
+        "y": 514,
+        "w": 127,
+        "h": 197
+      },
+      "rotated": true,
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 68,
+        "y": 58
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_tower_stone_impact_6": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 106,
+        "y": 299,
+        "w": 138,
+        "h": 195
+      },
+      "rotated": true,
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 70,
+        "y": 50
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_tower_stone_impact_5": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 133,
+        "y": 498,
+        "w": 140,
+        "h": 188
+      },
+      "rotated": true,
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 74,
+        "y": 51
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_impact_arrow_4": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 223,
+        "y": 2,
+        "w": 91,
+        "h": 184
+      },
+      "rotated": true,
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 72,
+        "y": 93
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_tower_frost_impact_6": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 248,
+        "y": 190,
+        "w": 123,
+        "h": 182
+      },
+      "rotated": true,
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 75,
+        "y": 63
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_tower_stone_impact_4": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 318,
+        "y": 2,
+        "w": 135,
+        "h": 178
+      },
+      "rotated": true,
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 79,
+        "y": 56
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_tower_frost_impact_5": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 248,
+        "y": 376,
+        "w": 163,
+        "h": 116
+      },
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 84,
+        "y": 71
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_shield_dome": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 375,
+        "y": 184,
+        "w": 140,
+        "h": 162
+      },
+      "rotated": true,
       "sourceSize": {
         "w": 256,
         "h": 192
@@ -12069,11 +12321,12 @@
     "fx_patrol_bang": {
       "page": "night_effects_0",
       "rect": {
-        "x": 168,
+        "x": 457,
         "y": 2,
-        "w": 160,
-        "h": 88
+        "w": 88,
+        "h": 160
       },
+      "rotated": true,
       "sourceSize": {
         "w": 160,
         "h": 88
@@ -12088,11 +12341,124 @@
       },
       "nineSlice": null
     },
+    "fx_tower_stone_impact_3": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 277,
+        "y": 496,
+        "w": 121,
+        "h": 158
+      },
+      "rotated": true,
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 88,
+        "y": 66
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_impact_arrow_2": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 402,
+        "y": 496,
+        "w": 145,
+        "h": 153
+      },
+      "rotated": true,
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 97,
+        "y": 86
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_impact_arrow_3": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 277,
+        "y": 658,
+        "w": 148,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 90,
+        "y": 104
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_tower_stone_impact_2": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 133,
+        "y": 690,
+        "w": 138,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 98,
+        "y": 140
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_tower_frost_impact_4": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 415,
+        "y": 350,
+        "w": 105,
+        "h": 137
+      },
+      "rotated": true,
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 96,
+        "y": 82
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
     "fx_impact_stone_5": {
       "page": "night_effects_0",
       "rect": {
-        "x": 332,
-        "y": 2,
+        "x": 429,
+        "y": 653,
         "w": 120,
         "h": 97
       },
@@ -12110,14 +12476,60 @@
       },
       "nineSlice": null
     },
+    "fx_tower_stone_impact_1": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 2,
+        "y": 715,
+        "w": 118,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 107,
+        "y": 142
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
+    "fx_tower_frost_impact_3": {
+      "page": "night_effects_0",
+      "rect": {
+        "x": 519,
+        "y": 166,
+        "w": 101,
+        "h": 116
+      },
+      "rotated": true,
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "trimOffset": {
+        "x": 102,
+        "y": 86
+      },
+      "pivot": {
+        "x": 160,
+        "y": 160
+      },
+      "nineSlice": null
+    },
     "fx_arrow": {
       "page": "night_effects_0",
       "rect": {
-        "x": 168,
-        "y": 94,
-        "w": 114,
-        "h": 101
+        "x": 549,
+        "y": 2,
+        "w": 101,
+        "h": 114
       },
+      "rotated": true,
       "sourceSize": {
         "w": 128,
         "h": 128
@@ -12135,11 +12547,12 @@
     "fx_slow_ring": {
       "page": "night_effects_0",
       "rect": {
-        "x": 2,
-        "y": 146,
-        "w": 108,
-        "h": 76
+        "x": 524,
+        "y": 286,
+        "w": 76,
+        "h": 108
       },
+      "rotated": true,
       "sourceSize": {
         "w": 128,
         "h": 128
@@ -12157,8 +12570,8 @@
     "fx_impact_stone_4": {
       "page": "night_effects_0",
       "rect": {
-        "x": 456,
-        "y": 2,
+        "x": 524,
+        "y": 398,
         "w": 106,
         "h": 91
       },
@@ -12176,36 +12589,38 @@
       },
       "nineSlice": null
     },
-    "fx_tower_stone_impact_8": {
+    "fx_tower_frost_impact_2": {
       "page": "night_effects_0",
       "rect": {
-        "x": 566,
-        "y": 2,
-        "w": 100,
-        "h": 42
+        "x": 604,
+        "y": 286,
+        "w": 85,
+        "h": 105
       },
+      "rotated": true,
       "sourceSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 25,
-        "y": 27
+        "x": 106,
+        "y": 97
       },
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "nineSlice": null
     },
     "fx_impact_stone_3": {
       "page": "night_effects_0",
       "rect": {
-        "x": 670,
-        "y": 2,
-        "w": 98,
-        "h": 83
+        "x": 551,
+        "y": 493,
+        "w": 83,
+        "h": 98
       },
+      "rotated": true,
       "sourceSize": {
         "w": 144,
         "h": 144
@@ -12220,58 +12635,37 @@
       },
       "nineSlice": null
     },
-    "fx_tower_stone_impact_7": {
+    "fx_tower_frost_impact_1": {
       "page": "night_effects_0",
       "rect": {
-        "x": 566,
-        "y": 48,
-        "w": 97,
-        "h": 42
+        "x": 634,
+        "y": 395,
+        "w": 98,
+        "h": 70
       },
       "sourceSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 27,
-        "y": 23
+        "x": 110,
+        "y": 108
       },
       "pivot": {
-        "x": 72,
-        "y": 72
-      },
-      "nineSlice": null
-    },
-    "fx_tower_frost_impact_8": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 772,
-        "y": 2,
-        "w": 94,
-        "h": 60
-      },
-      "sourceSize": {
-        "w": 144,
-        "h": 144
-      },
-      "trimOffset": {
-        "x": 28,
-        "y": 24
-      },
-      "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "nineSlice": null
     },
     "fx_ice": {
       "page": "night_effects_0",
       "rect": {
-        "x": 772,
-        "y": 66,
-        "w": 93,
-        "h": 88
+        "x": 624,
+        "y": 120,
+        "w": 88,
+        "h": 93
       },
+      "rotated": true,
       "sourceSize": {
         "w": 128,
         "h": 128
@@ -12289,11 +12683,12 @@
     "fx_stone": {
       "page": "night_effects_0",
       "rect": {
-        "x": 667,
-        "y": 89,
-        "w": 93,
-        "h": 88
+        "x": 654,
+        "y": 2,
+        "w": 88,
+        "h": 93
       },
+      "rotated": true,
       "sourceSize": {
         "w": 128,
         "h": 128
@@ -12308,58 +12703,15 @@
       },
       "nineSlice": null
     },
-    "fx_tower_frost_impact_7": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 566,
-        "y": 94,
-        "w": 92,
-        "h": 60
-      },
-      "sourceSize": {
-        "w": 144,
-        "h": 144
-      },
-      "trimOffset": {
-        "x": 29,
-        "y": 25
-      },
-      "pivot": {
-        "x": 72,
-        "y": 72
-      },
-      "nineSlice": null
-    },
-    "fx_tower_stone_impact_6": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 456,
-        "y": 97,
-        "w": 91,
-        "h": 65
-      },
-      "sourceSize": {
-        "w": 144,
-        "h": 144
-      },
-      "trimOffset": {
-        "x": 30,
-        "y": 21
-      },
-      "pivot": {
-        "x": 72,
-        "y": 72
-      },
-      "nineSlice": null
-    },
     "fx_rage_glow": {
       "page": "night_effects_0",
       "rect": {
-        "x": 551,
-        "y": 158,
-        "w": 90,
-        "h": 74
+        "x": 553,
+        "y": 595,
+        "w": 74,
+        "h": 90
       },
+      "rotated": true,
       "sourceSize": {
         "w": 96,
         "h": 96
@@ -12374,33 +12726,34 @@
       },
       "nineSlice": null
     },
-    "fx_tower_stone_impact_5": {
+    "fx_impact_arrow_1": {
       "page": "night_effects_0",
       "rect": {
-        "x": 764,
-        "y": 158,
-        "w": 88,
-        "h": 66
+        "x": 631,
+        "y": 595,
+        "w": 85,
+        "h": 87
       },
+      "rotated": true,
       "sourceSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 32,
-        "y": 22
+        "x": 124,
+        "y": 116
       },
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "nineSlice": null
     },
     "fx_impact_stone_2": {
       "page": "night_effects_0",
       "rect": {
-        "x": 645,
-        "y": 181,
+        "x": 553,
+        "y": 689,
         "w": 86,
         "h": 74
       },
@@ -12418,80 +12771,15 @@
       },
       "nineSlice": null
     },
-    "fx_tower_frost_impact_6": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 735,
-        "y": 228,
-        "w": 85,
-        "h": 58
-      },
-      "sourceSize": {
-        "w": 144,
-        "h": 144
-      },
-      "trimOffset": {
-        "x": 32,
-        "y": 27
-      },
-      "pivot": {
-        "x": 72,
-        "y": 72
-      },
-      "nineSlice": null
-    },
-    "fx_impact_arrow_5": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 286,
-        "y": 103,
-        "w": 85,
-        "h": 43
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "trimOffset": {
-        "x": 23,
-        "y": 32
-      },
-      "pivot": {
-        "x": 64,
-        "y": 64
-      },
-      "nineSlice": null
-    },
-    "fx_tower_stone_impact_4": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 286,
-        "y": 150,
-        "w": 83,
-        "h": 63
-      },
-      "sourceSize": {
-        "w": 144,
-        "h": 144
-      },
-      "trimOffset": {
-        "x": 34,
-        "y": 24
-      },
-      "pivot": {
-        "x": 72,
-        "y": 72
-      },
-      "nineSlice": null
-    },
     "fx_hit": {
       "page": "night_effects_0",
       "rect": {
-        "x": 114,
-        "y": 199,
-        "w": 80,
-        "h": 78
+        "x": 643,
+        "y": 686,
+        "w": 78,
+        "h": 80
       },
+      "rotated": true,
       "sourceSize": {
         "w": 128,
         "h": 128
@@ -12509,11 +12797,12 @@
     "fx_rage_hit": {
       "page": "night_effects_0",
       "rect": {
-        "x": 198,
-        "y": 199,
-        "w": 80,
-        "h": 78
+        "x": 638,
+        "y": 469,
+        "w": 78,
+        "h": 80
       },
+      "rotated": true,
       "sourceSize": {
         "w": 128,
         "h": 128
@@ -12531,11 +12820,12 @@
     "fx_shield_hit": {
       "page": "night_effects_0",
       "rect": {
-        "x": 2,
-        "y": 226,
-        "w": 80,
-        "h": 78
+        "x": 693,
+        "y": 217,
+        "w": 78,
+        "h": 80
       },
+      "rotated": true,
       "sourceSize": {
         "w": 128,
         "h": 128
@@ -12550,58 +12840,15 @@
       },
       "nineSlice": null
     },
-    "fx_tower_frost_impact_5": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 375,
-        "y": 103,
-        "w": 77,
-        "h": 55
-      },
-      "sourceSize": {
-        "w": 144,
-        "h": 144
-      },
-      "trimOffset": {
-        "x": 36,
-        "y": 31
-      },
-      "pivot": {
-        "x": 72,
-        "y": 72
-      },
-      "nineSlice": null
-    },
-    "fx_impact_arrow_4": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 373,
-        "y": 162,
-        "w": 77,
-        "h": 39
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "trimOffset": {
-        "x": 27,
-        "y": 36
-      },
-      "pivot": {
-        "x": 64,
-        "y": 64
-      },
-      "nineSlice": null
-    },
     "fx_impact_stone_1": {
       "page": "night_effects_0",
       "rect": {
-        "x": 454,
-        "y": 166,
-        "w": 74,
-        "h": 65
+        "x": 693,
+        "y": 301,
+        "w": 65,
+        "h": 74
       },
+      "rotated": true,
       "sourceSize": {
         "w": 144,
         "h": 144
@@ -12616,36 +12863,15 @@
       },
       "nineSlice": null
     },
-    "fx_tower_stone_impact_3": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 373,
-        "y": 205,
-        "w": 74,
-        "h": 58
-      },
-      "sourceSize": {
-        "w": 144,
-        "h": 144
-      },
-      "trimOffset": {
-        "x": 38,
-        "y": 28
-      },
-      "pivot": {
-        "x": 72,
-        "y": 72
-      },
-      "nineSlice": null
-    },
     "fx_shield_ring": {
       "page": "night_effects_0",
       "rect": {
-        "x": 824,
-        "y": 228,
-        "w": 68,
-        "h": 48
+        "x": 716,
+        "y": 99,
+        "w": 48,
+        "h": 68
       },
+      "rotated": true,
       "sourceSize": {
         "w": 256,
         "h": 80
@@ -12657,204 +12883,6 @@
       "pivot": {
         "x": 128,
         "y": 40
-      },
-      "nineSlice": null
-    },
-    "fx_tower_frost_impact_4": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 824,
-        "y": 280,
-        "w": 65,
-        "h": 50
-      },
-      "sourceSize": {
-        "w": 144,
-        "h": 144
-      },
-      "trimOffset": {
-        "x": 42,
-        "y": 36
-      },
-      "pivot": {
-        "x": 72,
-        "y": 72
-      },
-      "nineSlice": null
-    },
-    "fx_tower_stone_impact_2": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 282,
-        "y": 217,
-        "w": 65,
-        "h": 23
-      },
-      "sourceSize": {
-        "w": 144,
-        "h": 144
-      },
-      "trimOffset": {
-        "x": 43,
-        "y": 61
-      },
-      "pivot": {
-        "x": 72,
-        "y": 72
-      },
-      "nineSlice": null
-    },
-    "fx_impact_arrow_2": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 282,
-        "y": 244,
-        "w": 63,
-        "h": 62
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "trimOffset": {
-        "x": 38,
-        "y": 32
-      },
-      "pivot": {
-        "x": 64,
-        "y": 64
-      },
-      "nineSlice": null
-    },
-    "fx_impact_arrow_3": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 451,
-        "y": 235,
-        "w": 62,
-        "h": 46
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "trimOffset": {
-        "x": 35,
-        "y": 40
-      },
-      "pivot": {
-        "x": 64,
-        "y": 64
-      },
-      "nineSlice": null
-    },
-    "fx_tower_frost_impact_3": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 349,
-        "y": 267,
-        "w": 56,
-        "h": 49
-      },
-      "sourceSize": {
-        "w": 144,
-        "h": 144
-      },
-      "trimOffset": {
-        "x": 44,
-        "y": 37
-      },
-      "pivot": {
-        "x": 72,
-        "y": 72
-      },
-      "nineSlice": null
-    },
-    "fx_tower_stone_impact_1": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 517,
-        "y": 236,
-        "w": 56,
-        "h": 21
-      },
-      "sourceSize": {
-        "w": 144,
-        "h": 144
-      },
-      "trimOffset": {
-        "x": 47,
-        "y": 62
-      },
-      "pivot": {
-        "x": 72,
-        "y": 72
-      },
-      "nineSlice": null
-    },
-    "fx_tower_frost_impact_2": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 114,
-        "y": 146,
-        "w": 50,
-        "h": 41
-      },
-      "sourceSize": {
-        "w": 144,
-        "h": 144
-      },
-      "trimOffset": {
-        "x": 46,
-        "y": 42
-      },
-      "pivot": {
-        "x": 72,
-        "y": 72
-      },
-      "nineSlice": null
-    },
-    "fx_tower_frost_impact_1": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 577,
-        "y": 236,
-        "w": 47,
-        "h": 34
-      },
-      "sourceSize": {
-        "w": 144,
-        "h": 144
-      },
-      "trimOffset": {
-        "x": 48,
-        "y": 47
-      },
-      "pivot": {
-        "x": 72,
-        "y": 72
-      },
-      "nineSlice": null
-    },
-    "fx_impact_arrow_1": {
-      "page": "night_effects_0",
-      "rect": {
-        "x": 856,
-        "y": 158,
-        "w": 37,
-        "h": 37
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "trimOffset": {
-        "x": 48,
-        "y": 45
-      },
-      "pivot": {
-        "x": 64,
-        "y": 64
       },
       "nineSlice": null
     }

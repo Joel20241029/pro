@@ -1,5 +1,5 @@
 import { BattleSimulation, CombatFeedback } from "./BattleSimulation";
-import { clone, GameState } from "./GameState";
+import { clone, GameState, isWorkingAdult } from "./GameState";
 import { RULE } from "./GameConfig";
 import { applyCommand, Command, createGame, finishNight } from "./VillageRules";
 import { LoadResult, SaveMode, SaveStore } from "../storage/SaveStore";
@@ -19,6 +19,7 @@ import { claimDailyTask } from "./DailyTaskState";
 import { creditTaskCommand, creditTaskVictory, dailyTasksNeedRefresh, prepareDailyTasks } from "./DailyTasks";
 import type { RoadPoint } from "./BattleRoad";
 import { PATROL } from "../config/PatrolConfig";
+import { autoAssignNightDuties } from "./VillageJobs";
 export type Pause = "USER" | "BACKGROUND" | "WAIT_RESUME" | "CHOICE" | "SAVE_PENDING" | "DISABLED" | "DAILY_RATION" | "ASSETS";
 export interface EssenceFeedback { person: string; nights: number; }
 export class GameSession {
@@ -122,6 +123,11 @@ export class GameSession {
         this.submit(createGame(Date.now() >>> 0), false, mode);
     }
     private accept(s: GameState, newVillage = false) {
+        // 旧白天档在校验后才补岗，只改变运行态；下次正常保存时入档。已开打的夜战按存档重放。
+        if (s.phase === "DAY" && s.patrol.captain === null && s.people.some(isWorkingAdult)) {
+            s = clone(s);
+            autoAssignNightDuties(s);
+        }
         const settings = this.deviceSettings.resolve(s.settings);
         if (s.settings.music !== settings.music || s.settings.speed !== settings.speed) s = { ...s, settings };
         const sameNight = !newVillage && this.continuingBattle && this.battle !== null && s.phase === "NIGHT";

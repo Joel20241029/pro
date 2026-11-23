@@ -2,6 +2,7 @@ const { test } = require('node:test'), assert = require('node:assert/strict'), p
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 const { createGame, applyCommand, finishNight, autoAssignOperators, assignOperator } = require(path.join(compiled, 'game/VillageRules.js'));
+const { autoAssignNightDuties } = require(path.join(compiled, 'game/VillageJobs.js'));
 const { isWorkingAdult, clone } = require(path.join(compiled, 'game/GameState.js'));
 const { GameSession } = require(path.join(compiled, 'game/GameSession.js'));
 const { BattleSimulation } = require(path.join(compiled, 'game/BattleSimulation.js'));
@@ -16,11 +17,12 @@ function operators(s) { return s.towers.map(t => t.operator); }
 function retainWorkers(s, ids) {
     for (const p of s.people) if (p.adult && !ids.includes(p.id)) { p.nights = 0; p.elderNights = RULE.elderNights; p.job = 'WAITING'; p.careChild = null; }
     for (const tower of s.towers) if (tower.operator && !ids.includes(tower.operator)) tower.operator = null;
-    autoAssignOperators(s);
+    if (!ids.includes(s.patrol.captain)) s.patrol.captain = null;
+    autoAssignNightDuties(s);
 }
 function assertCoverage(s) {
     const assigned = operators(s).filter(Boolean), built = s.towers.filter(t => t.kind).length;
-    assert.equal(assigned.length, Math.min(built, s.people.filter(isWorkingAdult).length));
+    assert.equal(assigned.length, Math.min(built, s.people.filter(p => isWorkingAdult(p) && p.id !== s.patrol.captain).length));
     assert.equal(new Set(assigned).size, assigned.length); validateState(s);
 }
 
@@ -29,7 +31,7 @@ test('automatic staffing preserves founders, existing choices, daytime jobs and 
     assert.equal(s.towers[0].operator, s.people[3].id); assert.equal(s.towers[1].operator, s.people[2].id);
     autoAssignOperators(s); assert.equal(canonical(s), original);
     s.towers[0].operator = null; const jobs = s.people.map(p => [p.job, p.careChild]), rng = canonical(s.rng);
-    autoAssignOperators(s); assert.equal(s.towers[0].operator, s.people[0].id);
+    autoAssignOperators(s); assert.equal(s.towers[0].operator, s.people[1].id);
     assert.deepEqual(s.people.map(p => [p.job, p.careChild]), jobs); assert.equal(canonical(s.rng), rng);
     const filled = canonical(s); autoAssignOperators(s); assert.equal(canonical(s), filled); assertCoverage(s);
 });
@@ -37,20 +39,20 @@ test('automatic staffing preserves founders, existing choices, daytime jobs and 
 test('new towers fill immediately and changing tower type keeps its chosen operator', () => {
     const s = createGame(7), original = operators(s); s.wood = TOWERS.ARROW.cost * 2;
     applyCommand(s, { type: 'TOWER', index: 2, kind: 'ARROW' });
-    assert.equal(s.towers[2].operator, s.people[0].id); assert.deepEqual(operators(s).slice(0, 2), original.slice(0, 2));
+    assert.equal(s.towers[2].operator, s.people[1].id); assert.deepEqual(operators(s).slice(0, 2), original.slice(0, 2));
     applyCommand(s, { type: 'TOWER', index: 3, kind: 'ARROW' }); assertCoverage(s);
     const crew = operators(s); s.wood = RULE.towerConvert;
     applyCommand(s, { type: 'TOWER', index: 2, kind: 'STONE' }); assert.deepEqual(operators(s), crew); assertCoverage(s);
 });
 
 test('daytime occupations including childcare do not exclude eligible tower operators', () => {
-    const s = createGame(7); applyCommand(s, { type: 'BIRTH', family: s.families[0].id, carer: s.people[0].id });
+    const s = createGame(7); applyCommand(s, { type: 'BIRTH', family: s.families[0].id, carer: s.people[1].id });
     s.towers[0].operator = null; autoAssignOperators(s);
-    assert.equal(s.towers[0].operator, s.people[0].id); assert.equal(s.people[0].job, 'CARE'); assertCoverage(s);
+    assert.equal(s.towers[0].operator, s.people[1].id); assert.equal(s.people[1].job, 'CARE'); assertCoverage(s);
 });
 
 test('only an adult shortage leaves built towers unstaffed and empty building pads stay empty', () => {
-    const s = createGame(7); retainWorkers(s, [s.people[0].id]); assertCoverage(s);
+    const s = createGame(7); retainWorkers(s, [s.people[0].id, s.people[1].id]); assertCoverage(s);
     assert.equal(s.towers[1].operator, null); assert.equal(s.towers[2].kind, null); assert.equal(s.towers[2].operator, null);
     retainWorkers(s, []); assertCoverage(s); assert(operators(s).every(id => id === null));
 });
@@ -62,7 +64,7 @@ test('manual cross-tower choice swaps operators and selecting the current villag
 });
 
 test('during a shortage the player can move the only operator to a chosen later tower', () => {
-    const s = createGame(7), id = s.people[0].id; retainWorkers(s, [id]);
+    const s = createGame(7), id = s.people[1].id; retainWorkers(s, [s.patrol.captain, id]);
     assignOperator(s, 1, id); assert.deepEqual(operators(s), [null, id, null, null, null]);
     autoAssignOperators(s); assert.deepEqual(operators(s), [null, id, null, null, null]); assertCoverage(s);
 });
@@ -105,6 +107,22 @@ test('entering night fills remaining vacancies before the saved battle baseline 
     const s = createGame(7); s.towers[0].operator = null;
     applyCommand(s, { type: 'NIGHT' }); assertCoverage(s);
     assert.deepEqual(new BattleSimulation(s).operators, operators(s));
+});
+
+test('when all working adults are stationed the last staffed tower makes room for a captain', () => {
+    const s = createGame(7);
+    retainWorkers(s, [s.people[2].id, s.people[3].id]);
+    s.patrol.captain = null;
+    s.towers[1].operator = s.people[2].id;
+    const towerZero = s.towers[0].operator, towerOne = s.towers[1].operator;
+    autoAssignNightDuties(s);
+    assert.equal(s.patrol.captain, towerOne);
+    assert.equal(s.towers[0].operator, towerZero);
+    assert.equal(s.towers[1].operator, null);
+    assertCoverage(s);
+    const snapshot = canonical(s);
+    autoAssignNightDuties(s);
+    assert.equal(canonical(s), snapshot);
 });
 
 test('night swaps preserve battle progress and saved assignments, then resume without restarting the battle', () => {

@@ -10,7 +10,7 @@ const {ProjectileMotion,PROJECTILE_STYLE}=require(path.join(build,'view/Projecti
 const {LoggingFeedback}=require(path.join(build,'view/LoggingFeedback'));
 const {FEEDBACK}=require(path.join(build,'view/config/FeedbackConfig'));
 const {RULE,PADS,TOWERS}=require(path.join(build,'game/GameConfig'));
-function battle(kind='ARROW') {const s=createGame(7);applyCommand(s,{type:'NIGHT'});const b=new BattleSimulation(s);b.base.towers.forEach((t,i)=>{t.kind=i===0?kind:null;t.operator=i===0?s.people[0].id:null;});b.cursor=b.base.wave.entries.length;return b;}
+function battle(kind='ARROW') {const s=createGame(7);applyCommand(s,{type:'NIGHT'});const b=new BattleSimulation(s);b.patrol=null; b.base.towers.forEach((t,i)=>{t.kind=i===0?kind:null;t.operator=i===0?s.people[1].id:null;});b.cursor=b.base.wave.entries.length;return b;}
 function enemy(seq,hp=1000,progress=200){return {seq,kind:'enemy_raider',appearanceSeed:87,progress,hp,speed:0,slow:0,slowTicks:0, walkDistance: 0,born:0,summoned:0};}
 // Pick an actual close pair so damage and frost tests do not depend on how a particular sequence is distributed.
 function nearbyEnemy(target,kind) {

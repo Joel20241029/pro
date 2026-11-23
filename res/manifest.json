@@ -26400,11 +26400,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 168,
-        "y": 94,
-        "w": 114,
-        "h": 101
+        "x": 549,
+        "y": 2,
+        "w": 101,
+        "h": 114
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_arrow"
     },
@@ -26479,11 +26480,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 667,
-        "y": 89,
-        "w": 93,
-        "h": 88
+        "x": 654,
+        "y": 2,
+        "w": 88,
+        "h": 93
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_stone"
     },
@@ -26558,11 +26560,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 772,
-        "y": 66,
-        "w": 93,
-        "h": 88
+        "x": 624,
+        "y": 120,
+        "w": 88,
+        "h": 93
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_ice"
     },
@@ -28296,11 +28299,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 551,
-        "y": 158,
-        "w": 90,
-        "h": 74
+        "x": 553,
+        "y": 595,
+        "w": 74,
+        "h": 90
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_rage_glow"
     },
@@ -28375,11 +28379,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 198,
-        "y": 199,
-        "w": 80,
-        "h": 78
+        "x": 638,
+        "y": 469,
+        "w": 78,
+        "h": 80
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_rage_hit"
     },
@@ -28524,11 +28529,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 168,
+        "x": 457,
         "y": 2,
-        "w": 160,
-        "h": 88
+        "w": 88,
+        "h": 160
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_patrol_bang"
     },
@@ -29001,11 +29007,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 2,
-        "y": 2,
-        "w": 162,
-        "h": 140
+        "x": 375,
+        "y": 184,
+        "w": 140,
+        "h": 162
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_shield_dome"
     },
@@ -29081,11 +29088,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 824,
-        "y": 228,
-        "w": 68,
-        "h": 48
+        "x": 716,
+        "y": 99,
+        "w": 48,
+        "h": 68
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_shield_ring"
     },
@@ -29161,11 +29169,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 2,
-        "y": 226,
-        "w": 80,
-        "h": 78
+        "x": 693,
+        "y": 217,
+        "w": 78,
+        "h": 80
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_shield_hit"
     },
@@ -30969,11 +30978,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 114,
-        "y": 199,
-        "w": 80,
-        "h": 78
+        "x": 643,
+        "y": 686,
+        "w": 78,
+        "h": 80
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_hit"
     },
@@ -31048,11 +31058,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 2,
-        "y": 146,
-        "w": 108,
-        "h": 76
+        "x": 524,
+        "y": 286,
+        "w": 76,
+        "h": 108
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_slow_ring"
     },
@@ -31062,24 +31073,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_impact_arrow_1.png",
-      "width": 128,
-      "height": 128,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 64,
-        "y": 64
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_impact_arrow_1.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -31101,37 +31112,38 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "e89c4f0bed30f3a68c6a6c9243a346e2cf4a640991d4d9feb3ac95946c827ce3",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "b06cbd16dbde431189c765acf5a338be526bff89b765f019d7c3890607ee77ba",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 2523,
-      "sha256": "4f9125554653e920704c677e3bad65a515757fe20a699195220558618e679ae1",
+      "bytes": 7855,
+      "sha256": "87c9e95bbb04b6292010853ec15ee49e81a0f9841b798abb77847553be20fb5b",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 48,
-        "y": 45
+        "x": 124,
+        "y": 116
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 856,
-        "y": 158,
-        "w": 37,
-        "h": 37
+        "x": 631,
+        "y": 595,
+        "w": 85,
+        "h": 87
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_arrow_1"
     },
@@ -31141,24 +31153,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_impact_arrow_2.png",
-      "width": 128,
-      "height": 128,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 64,
-        "y": 64
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_impact_arrow_2.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -31180,37 +31192,38 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "a773ab2e9a1e2c4effb00d8892e8e61a04baeff25631d169de3b37eccc191f57",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "0cdb410afe5070e7b159dd1f2500402ae3e5f421ea4ff3fa91ba62bb4e13fe0a",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 5463,
-      "sha256": "b632e2eb1b9281cfb6d74b4f8e6991f5ea4f30f56c80ed06bdef39443300f842",
+      "bytes": 16012,
+      "sha256": "7b125a9b5ef47d99b2b9424305dbd83f911f460ab9c0144ed17998021a574d35",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 38,
-        "y": 32
+        "x": 97,
+        "y": 86
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 282,
-        "y": 244,
-        "w": 63,
-        "h": 62
+        "x": 402,
+        "y": 496,
+        "w": 145,
+        "h": 153
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_arrow_2"
     },
@@ -31220,24 +31233,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_impact_arrow_3.png",
-      "width": 128,
-      "height": 128,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 64,
-        "y": 64
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_impact_arrow_3.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -31259,36 +31272,36 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "14ae431c0517ab2e706417685f673166d41c9efbc0e4f0218d0cd28881e6c4b4",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "0c87a12f9b1b2e38d93df995743333a7295d61e1f1857fb2ba4cfec8154ead72",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 4363,
-      "sha256": "0701fbd5e79528b7c85f38e78cbf19c9390c27c9415eb0a3361c940db5f0aa5c",
+      "bytes": 12812,
+      "sha256": "b4c61ef94066f36edfc7a716ddd763e10ef9a532bb3bb44e9537ee0428e8c93b",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 35,
-        "y": 40
+        "x": 90,
+        "y": 104
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 451,
-        "y": 235,
-        "w": 62,
-        "h": 46
+        "x": 277,
+        "y": 658,
+        "w": 148,
+        "h": 108
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_arrow_3"
@@ -31299,24 +31312,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_impact_arrow_4.png",
-      "width": 128,
-      "height": 128,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 64,
-        "y": 64
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_impact_arrow_4.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -31338,37 +31351,38 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "92af6f9130f3c9d4dc6086cd82346f04f587dd364586ac042eb582b0a86a8281",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "454822f8b3e2f98e6f7007e3028aa960fc28c70909302d9aee2838799ced4afd",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 1158,
-      "sha256": "7d910e7154c36cb2f343ab02c3d7383cd8cfc6a17e2fb229f268a2eaf028f203",
+      "bytes": 3753,
+      "sha256": "4c6caf3df1ed6227a513f518c60ea0f530b816bca33989a4cc132e02311410c0",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 27,
-        "y": 36
+        "x": 72,
+        "y": 93
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 373,
-        "y": 162,
-        "w": 77,
-        "h": 39
+        "x": 223,
+        "y": 2,
+        "w": 91,
+        "h": 184
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_arrow_4"
     },
@@ -31378,24 +31392,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_impact_arrow_5.png",
-      "width": 128,
-      "height": 128,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 64,
-        "y": 64
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_impact_arrow_5.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -31417,37 +31431,38 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "1950bf791e6c7708e45cc73cba8966ade415fec6f917178a02f19b9501bd28a8",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "d7679c0cc5b13e8ae67d81db4d0cca9e5f51b0fe8b6e705cc994f77084aed0e1",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 771,
-      "sha256": "6722041208b9e813a509ced8446d41f714ad828083de19ab164d7ede0c88eeee",
+      "bytes": 1833,
+      "sha256": "6fbd77454a26fcd384e407745def6c98a57974919579b7beb63e073065a9d92d",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 23,
-        "y": 32
+        "x": 62,
+        "y": 84
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 286,
-        "y": 103,
-        "w": 85,
-        "h": 43
+        "x": 2,
+        "y": 306,
+        "w": 100,
+        "h": 204
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_arrow_5"
     },
@@ -31522,11 +31537,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 454,
-        "y": 166,
-        "w": 74,
-        "h": 65
+        "x": 693,
+        "y": 301,
+        "w": 65,
+        "h": 74
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_stone_1"
     },
@@ -31601,8 +31617,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 645,
-        "y": 181,
+        "x": 553,
+        "y": 689,
         "w": 86,
         "h": 74
       },
@@ -31680,11 +31696,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 670,
-        "y": 2,
-        "w": 98,
-        "h": 83
+        "x": 551,
+        "y": 493,
+        "w": 83,
+        "h": 98
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_stone_3"
     },
@@ -31759,8 +31776,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 456,
-        "y": 2,
+        "x": 524,
+        "y": 398,
         "w": 106,
         "h": 91
       },
@@ -31838,8 +31855,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 332,
-        "y": 2,
+        "x": 429,
+        "y": 653,
         "w": 120,
         "h": 97
       },
@@ -43478,24 +43495,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_stone_impact_1.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_stone_impact_1.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -43508,36 +43525,36 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "713096fb200949c7aa32f726c1f140788d06295e4a8a37896309dfedf483f244",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "983cb2cce154997465e4da018dc4b67cec1bef8cf0062e1c704e8ed2275129c9",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 2121,
-      "sha256": "419b9f41fecfe0c4922ac55253744f4200737237365fdf4e51d8bcfdce2411ef",
+      "bytes": 6250,
+      "sha256": "4052c4c373a75b690ceed51b1bbf37777bd33834ea73c27b8f95f197e181eb3e",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 47,
-        "y": 62
+        "x": 107,
+        "y": 142
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 517,
-        "y": 236,
-        "w": 56,
-        "h": 21
+        "x": 2,
+        "y": 715,
+        "w": 118,
+        "h": 39
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_1"
@@ -43548,24 +43565,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_stone_impact_2.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_stone_impact_2.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -43578,36 +43595,36 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "9739f190b46807923a1ed70a8d0cb02597762436b9aa05f07337d4a5b4cdcadb",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "8189beb77a86f0b72c1ef2b04f06ac71b87f52ff068b89d7d3db79d1b65e701b",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 2729,
-      "sha256": "0cb40d60b5659d2afce61231487ab797eb44547d6d761bb6ff2b2ae97e4f8fee",
+      "bytes": 8004,
+      "sha256": "2537910ac7207778a3dcde4c9a798b20b66c982acb2b20d29c1bf9764b26dae3",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 43,
-        "y": 61
+        "x": 98,
+        "y": 140
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 282,
-        "y": 217,
-        "w": 65,
-        "h": 23
+        "x": 133,
+        "y": 690,
+        "w": 138,
+        "h": 44
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_2"
@@ -43618,24 +43635,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_stone_impact_3.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_stone_impact_3.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -43648,37 +43665,38 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "fc60602e927d7b2cd032e38be5cda55ab497e6e1f3a58992747ec796c32d1811",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "b360e86283eb76739a220ac2fa80400cab81d404f8aad30e17036140b35621a9",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 6068,
-      "sha256": "be12ee112ff0767b6f3a3b950f1fd87278568c1f27d2d2e115c320c58164c16d",
+      "bytes": 15517,
+      "sha256": "2eaa60dcbb985d41b44d2eedf4bf60cd545e1f41bca33b21e51e8d3bba1fa749",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 38,
-        "y": 28
+        "x": 88,
+        "y": 66
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 373,
-        "y": 205,
-        "w": 74,
-        "h": 58
+        "x": 277,
+        "y": 496,
+        "w": 121,
+        "h": 158
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_3"
     },
@@ -43688,24 +43706,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_stone_impact_4.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_stone_impact_4.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -43718,37 +43736,38 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "a6ab5cedf210346f59562bd651b12068b4c22c15e4df83b49bdaa2df0d63fb84",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "a76536a0ad68d03e5fc18af0585e608423c68f028d9928070e1bd4abe078df7a",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 6496,
-      "sha256": "0529bd1cf7e9f4b1c32ab36f832c553e330a8067e15b345304db0e0bc3252500",
+      "bytes": 16521,
+      "sha256": "26d7274b1f9e51803890b37badd16f833e74a5ee8cdf184c9e1b046c4c9e3c48",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 34,
-        "y": 24
+        "x": 79,
+        "y": 56
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 286,
-        "y": 150,
-        "w": 83,
-        "h": 63
+        "x": 318,
+        "y": 2,
+        "w": 135,
+        "h": 178
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_4"
     },
@@ -43758,24 +43777,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_stone_impact_5.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_stone_impact_5.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -43788,37 +43807,38 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "69d20d25a917df036bef7b5a4a6cabf9c3804aacb673ac8954510b2adf110bbf",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "4dc3d6a36e4b69c3648df6c2f890676dfe0f4af7dfd9291bc1093f3e77c4f5ae",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 6409,
-      "sha256": "adea2087c00bea4b50e64f7506666d6a8258bca3a8b650fae3fc5f6cacb8c858",
+      "bytes": 16281,
+      "sha256": "6324d22745bae3ab9fa90991e7edb9eb33fd52484b026f4c2e113d52b4141439",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 32,
-        "y": 22
+        "x": 74,
+        "y": 51
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 764,
-        "y": 158,
-        "w": 88,
-        "h": 66
+        "x": 133,
+        "y": 498,
+        "w": 140,
+        "h": 188
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_5"
     },
@@ -43828,24 +43848,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_stone_impact_6.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_stone_impact_6.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -43858,37 +43878,38 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "bd0f6b0a9b34ceface7dbb426abb234461bc668eb6edfbf1882d063cb367c72f",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "028733bd48388939bd9578427ad44abea179ce4118db0f6e013bf8feeab1f46b",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 5371,
-      "sha256": "10f368c4b9e07bb3b56388d2401d31123209c3616a0c8b496c3e0638005942ff",
+      "bytes": 14373,
+      "sha256": "a863accbce3e2df0ca22c34f57bfc6b5c3ccdbd8d0b341e3132eadb003bd270c",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 30,
-        "y": 21
+        "x": 70,
+        "y": 50
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 456,
-        "y": 97,
-        "w": 91,
-        "h": 65
+        "x": 106,
+        "y": 299,
+        "w": 138,
+        "h": 195
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_6"
     },
@@ -43898,24 +43919,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_stone_impact_7.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_stone_impact_7.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -43928,37 +43949,38 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "e40ff602828d4a9a1e642d9f961287456e3d1baff73607ecd129139e340d5b4d",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "75dc2ac05e405491c61578d60ec246a077b0d287a5cd1e92cbe84fdc72e96adf",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 1451,
-      "sha256": "449e499c09bf8d0c6293c373bff638aa66b4105294b8911f33d2b6d0984c05c7",
+      "bytes": 3843,
+      "sha256": "9193a09f2e9ec069cf6c34d909a834ba170305098a27cd72649d6c0481f169dc",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 27,
-        "y": 23
+        "x": 63,
+        "y": 54
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 566,
-        "y": 48,
-        "w": 97,
-        "h": 42
+        "x": 2,
+        "y": 92,
+        "w": 87,
+        "h": 210
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_7"
     },
@@ -43968,24 +43990,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_stone_impact_8.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_stone_impact_8.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -43998,36 +44020,36 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "ff50916e6616b50ea909ba20c64ef432553c2c5224277f7365fb7ab37eefdb6e",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "1bfaa6cfe51f0e8ded884df79061f88581190ec183e0ef6f2b8709c87b850320",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 963,
-      "sha256": "3fe419d6e9572c64937b371142eb47c940d54322eda0b13ddfa735226035cd4b",
+      "bytes": 2808,
+      "sha256": "35fbf07b58182483e7089e2e19418aae8aafff360a071f8e6bcde64e9acbb370",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 25,
-        "y": 27
+        "x": 59,
+        "y": 64
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 566,
+        "x": 2,
         "y": 2,
-        "w": 100,
-        "h": 42
+        "w": 217,
+        "h": 86
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_8"
@@ -44038,24 +44060,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_frost_impact_1.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_frost_impact_1.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -44068,36 +44090,36 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "0c8f3a89304c5ea7090ef5f4b0abae0cc6a3c275b66d2d257554e9312771b3cd",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "c24e844fb85c3655a2cc6b5e1f36d5aab94aa62b1a943a536184fd491c81ef09",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 3012,
-      "sha256": "e7f62d5acc351b43f00c03134dff15001f06d772ce2e32abe585d60c28beb84f",
+      "bytes": 7866,
+      "sha256": "3e47122729023b4684818a1368cdc8f9919585cff183d255944f8deeedecd06b",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 48,
-        "y": 47
+        "x": 110,
+        "y": 108
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 577,
-        "y": 236,
-        "w": 47,
-        "h": 34
+        "x": 634,
+        "y": 395,
+        "w": 98,
+        "h": 70
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_1"
@@ -44108,24 +44130,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_frost_impact_2.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_frost_impact_2.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -44138,37 +44160,38 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "c04e7b28cdf4ce8053cc72b3d94e5d3c22dc17fe0baa39fbe31fd9137d3a08ba",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "c20165053862e0000f7a463c277bc503d8fec4199d5d80ccdf52351b91c1d580",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 3896,
-      "sha256": "8a973c4e3285378abda22164d7bce0220de75305ca2c238e60939aba6037cdf9",
+      "bytes": 9769,
+      "sha256": "b7274ef6f9e1511cb6a9cf77b881cac9f8d7c6d8c5c3895c05c2b370b485d050",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 46,
-        "y": 42
+        "x": 106,
+        "y": 97
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 114,
-        "y": 146,
-        "w": 50,
-        "h": 41
+        "x": 604,
+        "y": 286,
+        "w": 85,
+        "h": 105
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_2"
     },
@@ -44178,24 +44201,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_frost_impact_3.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_frost_impact_3.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -44208,37 +44231,38 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "bdfd6f34b7ed90d588a49ca3495022c484c408c8fd709fa8632f346b96a69c19",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "395b1b8151c919fdccc3a97aaa98db956d5256e5e33ce821de3119d9b8b7e347",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 5249,
-      "sha256": "250ca938b2977fd4d1a190fb457ed0d7b0be1dac15c0dac7765bd128e057af86",
+      "bytes": 14822,
+      "sha256": "67eef23fc1d29baf225ce3bee9ec6382c65f3f5116b324b1807d433b3465b910",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 44,
-        "y": 37
+        "x": 102,
+        "y": 86
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 349,
-        "y": 267,
-        "w": 56,
-        "h": 49
+        "x": 519,
+        "y": 166,
+        "w": 101,
+        "h": 116
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_3"
     },
@@ -44248,24 +44272,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_frost_impact_4.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_frost_impact_4.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -44278,37 +44302,38 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "74cd6a7a48669536f66379973cea9979376b8260d4e612e1cf9619dafb9a7228",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "9eb0f867fe250f418d86d11d05f157ed293c235adaa367e14fafc339f9d27386",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 6176,
-      "sha256": "53b4006144e2c35db8cdaedc7ae2a39c4a6cc195d8f6f283828bd16ab8fa629d",
+      "bytes": 16444,
+      "sha256": "3d615c8cb3767a1a4a0833f3836d6e348f75de54660b59faf3e7dfac6f4b1fb6",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 42,
-        "y": 36
+        "x": 96,
+        "y": 82
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 824,
-        "y": 280,
-        "w": 65,
-        "h": 50
+        "x": 415,
+        "y": 350,
+        "w": 105,
+        "h": 137
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_4"
     },
@@ -44318,24 +44343,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_frost_impact_5.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_frost_impact_5.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -44348,36 +44373,36 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "74cefe0f9426cbfacddf8f1df907a51a7e3ec9be47eda1893de2775c68b9b3b9",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "06675f6f9753986159269067c3e01fa784b43f5af5f833f1ec6d9f7e4defb663",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 5440,
-      "sha256": "973e3928928e293cae7fbb29d395e6a49e0899de48f35e10aef84518ecfac229",
+      "bytes": 14046,
+      "sha256": "3a7246d7cff560ab854bd0d291a35896feb6dcad6bdf15f56367204c091943b7",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 36,
-        "y": 31
+        "x": 84,
+        "y": 71
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 375,
-        "y": 103,
-        "w": 77,
-        "h": 55
+        "x": 248,
+        "y": 376,
+        "w": 163,
+        "h": 116
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_5"
@@ -44388,24 +44413,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_frost_impact_6.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_frost_impact_6.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -44418,37 +44443,38 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "e949102c2d61a933b319907f18bf7a8f3b0aa0f63b04c0c827e139d794366d54",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "e5d6c42ef0bb67829b623d66e2edf5e1bb934f046883ff385500a41af776991a",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 2192,
-      "sha256": "1cc611f72b83c3d92dcea58a675c5821cf51b8363ee62925e15b9d8fb542bdbe",
+      "bytes": 5868,
+      "sha256": "6d201ed59bbd6022603ccf2c24f64c524615c67b58f05522c69fd39f58ba762a",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 32,
-        "y": 27
+        "x": 75,
+        "y": 63
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 735,
-        "y": 228,
-        "w": 85,
-        "h": 58
+        "x": 248,
+        "y": 190,
+        "w": 123,
+        "h": 182
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_6"
     },
@@ -44458,24 +44484,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_frost_impact_7.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_frost_impact_7.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -44488,37 +44514,38 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "e4158c8da50d06824f6999c857684e183fc1ea6cb38f2ca784d0a15009eed954",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "6cff824271de8943fe07ff6d640c3d101ea6dd19b9eb4ef66660a7ddec357071",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 1564,
-      "sha256": "83fb26b1ac8ed70a5ba976eae7590eff3572dc72e38fbe71d62a338fa2e576c5",
+      "bytes": 4641,
+      "sha256": "cd3aa2ad92bce18bccb34f48e05d643fa6c28d77205bdbb8d7ab26c1f32e78f9",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 29,
-        "y": 25
+        "x": 68,
+        "y": 58
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 566,
-        "y": 94,
-        "w": 92,
-        "h": 60
+        "x": 2,
+        "y": 514,
+        "w": 127,
+        "h": 197
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_7"
     },
@@ -44528,24 +44555,24 @@
       "category": "effects",
       "categoryLabel": "effects",
       "path": "runtime/effects/fx_tower_frost_impact_8.png",
-      "width": 144,
-      "height": 144,
+      "width": 320,
+      "height": 320,
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_tower_frost_impact_8.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "nineSlice": null,
       "mapping": "",
@@ -44558,37 +44585,38 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "5679b0a2a4a37067eed2cef0a555ab700090f0fbe91e2631208be043004e5ed2",
-        "outputHash": "2d155322e8e5643926a870494579ff64671ea496651537da6f8f4efb1367e4b9",
+        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
+        "outputHash": "332be7db19f6607206a6c4a9ff96de6f6a519614dd9c660b9f5f12185a853fcc",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 974,
-      "sha256": "43bceeef858ac6fd7fff6e7395444ab36171e33748f07b33686c5932fa1abc6f",
+      "bytes": 3191,
+      "sha256": "8b6aeb0052808780ba28520dfe001edf1223cf26c6582cb5603a3d7a75fdf5ab",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "trimOffset": {
-        "x": 28,
-        "y": 24
+        "x": 65,
+        "y": 57
       },
       "atlasTrim": true,
       "displaySize": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 772,
-        "y": 2,
-        "w": 94,
-        "h": 60
+        "x": 93,
+        "y": 92,
+        "w": 126,
+        "h": 203
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_8"
     },

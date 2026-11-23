@@ -16,6 +16,11 @@ function dawn(s: GameState) {
     applyCommand(s, { type: "FINALIZE" });
 }
 function win(s: GameState) { applyCommand(s, { type: "NIGHT" }); validateState(s); finishNight(s, RULE.gateMax, s.towers.map(t => t.operator)); validateState(s); }
+function separateCaptainVillage(seed: number) {
+    const s = createGame(seed);
+    applyCommand(s, { type: "PATROL_CAPTAIN", id: s.people[5].id });
+    return s;
+}
 class MemoryStore implements StoragePort {
     values = new Map<string, string>(); writes = 0; fail: "NONE" | "BEFORE" | "AFTER" = "NONE";
     read(key: string) { return this.values.get(key) ?? null; }
@@ -23,7 +28,7 @@ class MemoryStore implements StoragePort {
 }
 
 test("Retirement preserves home and family, frees work/tower/care, and starts three full elder nights", () => {
-    const s = createGame(3), p = s.people[0], spouse = s.people[1];
+    const s = separateCaptainVillage(3), p = s.people[0], spouse = s.people[1];
     applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: p.id }); p.nights = 1; assignOperator(s, 0, p.id);
     const child = s.people[6], count = s.people.length; win(s);
     ok(isElder(p) && !isWorkingAdult(p)); equal(p.elderNights, 3); equal(p.job, "WAITING"); equal(p.careChild, null);
@@ -37,7 +42,7 @@ test("Retirement preserves home and family, frees work/tower/care, and starts th
     ok(s.summary.includes("安然辞世")); dawn(s); ok(canMarry(s, spouse, s.people.find(p => p.id === "1:5")!));
 });
 test("A new retiree is not aged with an existing elder, even when that elder departs tonight", () => {
-    const s = createGame(1), old = s.people[0], next = s.people[1]; old.nights = 0; old.elderNights = 1; old.job = "WAITING"; next.nights = 1;
+    const s = separateCaptainVillage(1), old = s.people[0], next = s.people[1]; old.nights = 0; old.elderNights = 1; old.job = "WAITING"; next.nights = 1;
     win(s); equal(s.history[0].id, old.id); ok(isElder(next)); equal(next.elderNights, 3); equal(s.people.length, 5); equal(s.stats.retirees, 1);
 });
 test("Elder ration is included exactly once, honors frugal/winter/policy, and produces no resources", () => {
@@ -49,7 +54,7 @@ test("Elder ration is included exactly once, honors frugal/winter/policy, and pr
     s.food = 200; equal(economy(s).endFood, 189); s.food = 0; ok(economy(s).hungry); equal(economy(s).endFood, 0);
 });
 test("Failed nights and a replay do not decrement elder life or charge food again", () => {
-    const s = createGame(2), p = s.people[0]; p.nights = 0; p.elderNights = 2; p.job = "WAITING";
+    const s = separateCaptainVillage(2), p = s.people[0]; p.nights = 0; p.elderNights = 2; p.job = "WAITING";
     applyCommand(s, { type: "NIGHT" }); const before = clone(s); const a = new BattleSimulation(s), b = new BattleSimulation(s);
     a.step(); b.step(); equal([a.tick, a.gate], [b.tick, b.gate]); equal(s, before);
     finishNight(s, 0, s.towers.map(t => t.operator)); equal(p.elderNights, 2); equal(s.day, before.day); equal(s.food, before.food); equal(s.stats.retirees, 0); validateState(s);
@@ -63,11 +68,11 @@ test("Elders are rejected by jobs, childcare, marriage and daytime/nighttime tow
     applyCommand(s, { type: "NIGHT" }); const b = new BattleSimulation(s), op = b.operators[0]; rejects(() => b.reassign(0, p.id)); equal(b.operators[0], op);
 });
 test("Retired spouses cannot give birth and their families are kept until departure", () => {
-    const s = createGame(1), p = s.people[0]; p.nights = 0; p.elderNights = 3; p.job = "WAITING";
+    const s = separateCaptainVillage(1), p = s.people[0]; p.nights = 0; p.elderNights = 3; p.job = "WAITING";
     const before = canonical(s); rejects(() => applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[4].id })); equal(canonical(s), before); validateState(s);
 });
 test("Elders still occupy housing and block extra birth/traveler at full capacity", () => {
-    const s = createGame(1); for (let i = 0; i < 2; i++) { const p = clone(s.people[4]); p.id = `1:${s.nextPerson++}`; p.job = "WAITING"; s.people.push(p); }
+    const s = separateCaptainVillage(1); for (let i = 0; i < 2; i++) { const p = clone(s.people[4]); p.id = `1:${s.nextPerson++}`; p.job = "WAITING"; s.people.push(p); }
     s.people[0].nights = 0; s.people[0].elderNights = 3; s.people[0].job = "WAITING"; equal(s.people.length, capacity(s));
     applyCommand(s, { type: "FAMILY", a: s.people[4].id, b: s.people[5].id }); rejects(() => applyCommand(s, { type: "BIRTH", family: s.families[1].id, carer: s.people[3].id }));
     const traveler = clone(s.people[4]); traveler.id = `1:${s.nextPerson++}`; traveler.origin = "TRAVELER";
@@ -75,7 +80,7 @@ test("Elders still occupy housing and block extra birth/traveler at full capacit
     const before = canonical(s); rejects(() => applyCommand(s, { type: "CHOOSE", value: "accept" })); equal(canonical(s), before);
 });
 test("Current-state validation rejects missing timers, working elders, stale tower and night references", () => {
-    const base = createGame(1); base.people[0].nights = 0; base.people[0].elderNights = 3; base.people[0].job = "WAITING"; validateState(base);
+    const base = separateCaptainVillage(1); base.people[0].nights = 0; base.people[0].elderNights = 3; base.people[0].job = "WAITING"; validateState(base);
     for (const mutate of [
         (s: GameState) => { delete (s.people[0] as Partial<typeof s.people[0]>).elderNights; },
         (s: GameState) => { s.people[0].elderNights = 0; },
@@ -87,7 +92,7 @@ test("Current-state validation rejects missing timers, working elders, stale tow
 });
 test("Same-version day/night elder saves restore exactly without startup writes", () => {
     for (const night of [false, true]) {
-        const s = createGame(3); s.people[0].nights = 0; s.people[0].elderNights = 2; s.people[0].job = "WAITING"; if (night) applyCommand(s, { type: "NIGHT" });
+        const s = separateCaptainVillage(3); s.people[0].nights = 0; s.people[0].elderNights = 2; s.people[0].job = "WAITING"; if (night) applyCommand(s, { type: "NIGHT" });
         const m = new MemoryStore(), store = new SaveStore(m); store.inspect(); store.prepare(s); store.commit();
         const g = new GameSession(new SaveStore(m)); g.load(); equal(g.state, s); equal(m.writes, 1); equal(g.battle?.tick ?? null, night ? 0 : null);
         const again = new GameSession(new SaveStore(m)); again.load(); equal(again.state, s); equal(m.writes, 1);

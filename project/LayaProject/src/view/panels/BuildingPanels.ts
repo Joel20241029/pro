@@ -84,8 +84,7 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
             const button = ctx.ui.buildRow(rows.content, i * step, row.icon, row.title, row.effect, s, row.cost, row.reason, row.action, row.verb);
             if (row.id === "PATROL") {
                 button.name = "PatrolConstructionCard";
-                const canAppoint = !s.patrol.captain && s.people.some(isWorkingAdult);
-                if (day && (canAppoint || patrolUpgradeReason(s) === null)) {
+                if (day && patrolUpgradeReason(s) === null) {
                     const badge = ctx.ui.actionBadge(button, "PatrolActionDot");
                     badge.pos(button.width - badge.width - 8, 8);
                 }

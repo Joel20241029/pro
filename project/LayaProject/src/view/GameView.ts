@@ -15,7 +15,6 @@ import { GamePanels } from "./GamePanels";
 import { NightResultPresentation } from "./NightResultPresentation";
 import { StartNightReminder } from "./StartNightReminder";
 import { StarterGuide } from "./StarterGuide";
-import { PATROL } from "../config/PatrolConfig";
 import { PATROL_PROP } from "./config/VillageSceneConfig";
 import { BACKPACK_LESSON, PATROL_LESSONS, SHOP_LESSON, STARTER_LESSONS } from "./config/StarterGuideConfig";
 import { SIDE_FEATURES } from "./config/TacticUiConfig";
@@ -225,15 +224,9 @@ export class GameView {
         const day = this.game.state;
         const canPrompt = active && !this.game.pauses.size && !this.overlay.numChildren && !this.anchoredTip.visible && day?.phase === "DAY";
         let patrolStep: number | null = null, patrolTarget: Laya.Sprite | undefined;
-        if (active && day && !this.results.active && !this.game.saves.pending) {
-            const panel = this.panels.current;
-            if (canPrompt && !day.patrol.captain) {
-                const house = this.village.world.getChildByName(PATROL_PROP) as Laya.Sprite | undefined;
-                if (house?.visible) { patrolStep = 1; patrolTarget = house; }
-            } else if (day.phase === "DAY" && panel?.type === "patrol" && !day.patrol.captain && this.overlay.numChildren) {
-                const button = this.overlay.getChildAt(this.overlay.numChildren - 1).getChildByName(`button:${PATROL.appoint}`) as Laya.Sprite | undefined;
-                if (button?.visible && button.mouseEnabled) { patrolStep = 2; patrolTarget = button; }
-            }
+        if (canPrompt && !this.results.active && !this.game.saves.pending) {
+            const house = this.village.world.getChildByName(PATROL_PROP) as Laya.Sprite | undefined;
+            if (house?.visible) { patrolStep = 1; patrolTarget = house; }
         }
         this.patrolGuide.tick(patrolStep, this.layout, visualDelta, patrolTarget);
         const wave = canPrompt && !this.results.active && !this.patrolGuide.node.visible ? this.starterGuide.nextEligible(day!.completed + 1) : null;

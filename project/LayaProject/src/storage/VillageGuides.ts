@@ -22,7 +22,9 @@ export class VillageGuides {
 
     /** StarterGuide 仍读写单条轨迹数字，不接触导入和副档归属。 */
     track(name: GuideTrack): StoragePort {
-        return { read: () => String(this.get(name)), write: (_key, value) => this.mark(name, Number(value)) };
+        // 白天的巡防介绍只剩一条。读到旧版第 2 / 3 步仍视为看过，保留原始进度。
+        return { read: () => String(name === "patrol" ? Math.min(this.get(name), 1) : this.get(name)),
+            write: (_key, value) => this.mark(name, Number(value)) };
     }
 
     get(name: GuideTrack) { return this.read().progress[name] ?? 0; }

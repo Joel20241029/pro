@@ -1102,12 +1102,12 @@
       "category": "effects",
       "mapping": "arrow",
       "canvas": {
-        "w": 128,
-        "h": 128
+        "w": 320,
+        "h": 320
       },
       "pivot": {
-        "x": 64,
-        "y": 64
+        "x": 160,
+        "y": 160
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas"
@@ -1583,12 +1583,12 @@
       "category": "effects",
       "mapping": "stone",
       "canvas": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas"
@@ -1612,12 +1612,12 @@
       "category": "effects",
       "mapping": "frost",
       "canvas": {
-        "w": 144,
-        "h": 144
+        "w": 320,
+        "h": 320
       },
       "pivot": {
-        "x": 72,
-        "y": 72
+        "x": 160,
+        "y": 160
       },
       "clock": "scene_visual_or_battle",
       "trimPolicy": "atlas_trim_restore_source_canvas"

@@ -51,9 +51,9 @@ test('tower state never creates a map hint or adds work to the archive button', 
     s.towers.forEach(t => { t.kind = null; t.level = 0; t.operator = null; });
     assert.equal('towers' in hint(s), false); assert.equal(hint(s).history, false);
 });
-test('people hints only cover unfilled work or an unassigned child, not full-slot swapping', () => {
+test('people hints cover unassigned children but skip automatically filled jobs', () => {
     const s=createGame(1);assert.equal(hint(s).people,false);
-    s.people.find(p=>p.job==='FARM').job='WAITING';assert(hint(s).people);
+    s.people.find(p=>p.job==='FARM').job='WAITING';assert.equal(hint(s).people,false);
     applyCommand(s,{type:'JOB',id:s.people.find(p=>p.job==='WAITING').id,job:'FARM'});assert.equal(hint(s).people,false);
     const child={...s.people[0],id:'child',adult:false,nights:0,job:'WAITING',careChild:null};s.people.push(child);assert(hint(s).people);
     applyCommand(s,{type:'JOB',id:s.people[0].id,job:'CARE',child:child.id});assert.equal(hint(s).people,false);
