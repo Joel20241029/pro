@@ -233,9 +233,6 @@ export class GameView {
             } else if (day.phase === "DAY" && panel?.type === "patrol" && !day.patrol.captain && this.overlay.numChildren) {
                 const button = this.overlay.getChildAt(this.overlay.numChildren - 1).getChildByName(`button:${PATROL.appoint}`) as Laya.Sprite | undefined;
                 if (button?.visible && button.mouseEnabled) { patrolStep = 2; patrolTarget = button; }
-            } else if (day.phase === "NIGHT" && !this.overlay.numChildren && !this.game.pauses.size && !worldFrozen && day.night?.patrolSquad) {
-                const actor = this.village.world.getChildByName("PatrolActor:0") as Laya.Sprite | undefined;
-                if (actor?.visible) { patrolStep = 3; patrolTarget = actor.getChildAt(0) as Laya.Sprite; }
             }
         }
         this.patrolGuide.tick(patrolStep, this.layout, visualDelta, patrolTarget);

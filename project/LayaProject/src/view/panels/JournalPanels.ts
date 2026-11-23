@@ -18,7 +18,7 @@ export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel, defe
         const showError = (error: unknown) => {
             trace.failure("view_error", request, error);
             if (ranking) ranking.destroy(); else trace.end(request);
-            const message = error instanceof RankingCanvasUnsupported ? RANKING_CANVAS.unsupportedText : RANKING_CANVAS.unavailableText;
+            const message = error instanceof RankingCanvasUnsupported ? error.message : RANKING_CANVAS.unavailableText;
             ctx.ui.label(box, message, 34, 360, 600, 30, C.ink, false, 140).align = "center";
         };
         try {

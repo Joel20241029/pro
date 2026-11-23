@@ -1,4 +1,4 @@
-import { BattleSimulation, Shot } from "../game/BattleSimulation";
+import { BattleSimulation, Enemy, Shot } from "../game/BattleSimulation";
 import { RULE, PADS } from "../game/GameConfig";
 import { GroundPoint, towerLaunch } from "./VillageScene";
 import { CombatPresentation } from "./CombatPresentation";
@@ -15,11 +15,13 @@ import { FEEDBACK, TOWER_IMPACT } from "./config/FeedbackConfig";
 export const PROJECTILE_STYLE = {
     ARROW: { frame: "fx_arrow", size: 37, flight: .24, arc: 0, spin: 0, hit: "fx_hit", hitSize: 42, impact: .15 },
     STONE: { frame: "fx_stone", size: 34, flight: .4, arc: 48, spin: 360, hit: "fx_hit", hitSize: 66, impact: .2 },
-    SLOW: { frame: "fx_ice", size: 29, flight: .3, arc: 12, spin: 0, hit: "fx_slow_ring", hitSize: 72, impact: .2 }
+    SLOW: { frame: "fx_ice", size: 29, flight: .3, arc: 8, spin: 0, hit: "fx_slow_ring", hitSize: 72, impact: .2 }
 } as const;
 
-/** 落点位于敌人足底上方20px身体处；发射口与塔图共享源画布挂点，均只改变表现。 */
-const TARGET_Y = -20;
+/** 单独播放的弹道预览没有敌人模型时，沿用原来的 20 px 身体偏移。 */
+const PREVIEW_TARGET_LIFT = 20;
+/** 短距离弹道限制相对拱高，避免塔下的近目标也触发全高抛物线。只作用于显示。 */
+const ARC_TO_DISTANCE = .35;
 /** 当前128px箭图尖端实测(124,8)；归一化后随显示尺寸旋转，避免错误使用角色足底锚点。 */
 export const ARROW_TIP = { x: 124 / 128, y: 8 / 128 } as const;
 export interface ProjectilePose {
@@ -44,7 +46,7 @@ export class ProjectileMotion {
     private battle: BattleSimulation | null = null;
     private seen = new WeakSet<Shot>();
 
-    update(battle: BattleSimulation | null, layout?: GameLayout, pads: readonly GroundPoint[] = PADS, launch?: (tower: number) => GroundPoint, feedback?: CombatPresentation) {
+    update(battle: BattleSimulation | null, layout?: GameLayout, pads: readonly GroundPoint[] = PADS, launch?: (tower: number) => GroundPoint, feedback?: CombatPresentation, bodyLift?: (enemy: Enemy) => number) {
         this.arrivals.length = 0;
         if (battle !== this.battle) { this.battle = battle; this.poses = []; this.seen = new WeakSet<Shot>(); }
         if (!battle || battle.outcome && !feedback) { this.poses = []; return; }
@@ -71,14 +73,21 @@ export class ProjectileMotion {
             // 固定发射瞬间相对塔位的偏移，后坐不拉动弹道，屏幕重排则跟随塔位整体移动。
             const from = p.from = { x: pad.x + p.launchOffset.x, y: pad.y + p.launchOffset.y };
             const at = feedback ? feedback.target(shot) : shot;
-            const target = { x: at.x, y: (layout ? layout.worldY(at.y) : at.y) + TARGET_Y };
+            const enemy = bodyLift && feedback?.targetEnemy(shot);
+            const lift = enemy ? bodyLift!(enemy) : PREVIEW_TARGET_LIFT;
+            const y = layout ? layout.worldY(at.y) : at.y;
+            const event = feedback?.shots.get(shot);
+            const recoil = event && feedback!.patrolRecoil(event.target, layout ? layout.worldY(at.y + 1) - y : 1);
+            const air = event && feedback!.patrolAir(event.target);
+            const target = { x: at.x + (recoil?.x ?? 0), y: y + (recoil?.y ?? 0) - lift - (air?.lift ?? 0) };
             // step 完成后 tick 已加一；最后一次 step 新发射的弹道年龄为零。只读实际 tick，暂停/倍速天然同步。
             const age = (tick - shot.tick - 1) * RULE.step;
             const dx = target.x - from.x, dy = target.y - from.y;
             if (age < style.flight) {
                 const t = age / style.flight;
                 p.frame = style.frame; p.size = style.size; p.alpha = 1;
-                p.x = from.x + dx * t; p.y = from.y + dy * t - 4 * style.arc * t * (1 - t);
+                const arc = Math.min(style.arc, Math.hypot(dx, dy) * ARC_TO_DISTANCE);
+                p.x = from.x + dx * t; p.y = from.y + dy * t - 4 * arc * t * (1 - t);
                 p.rotation = shot.kind === "ARROW" ? Math.atan2(dy, dx) * 180 / Math.PI : age * style.spin;
             } else {
                 if (!p.impacted) {
@@ -88,7 +97,6 @@ export class ProjectileMotion {
                 }
                 const impact = TOWER_IMPACT[shot.kind];
                 const impactAge = now - p.impactTime!, impactIndex = Math.floor(impactAge * impact.fps);
-                const event = feedback?.shots.get(shot);
                 p.contact = impactAge < FEEDBACK.contactSeconds;
                 p.impactFrame = impactIndex < impact.frameCount ? `${impact.clip}_${impactIndex + 1}` : undefined;
                 p.impactAngle = shot.kind === "ARROW" ? Math.atan2(dy, dx) * 180 / Math.PI : 0;

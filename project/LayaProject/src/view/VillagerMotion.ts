@@ -30,6 +30,7 @@ export class VillagerMotion {
     private careStops = new Map<string, GroundPoint>();
     private waitingSlots = new Map<string, number>();
     private night = false;
+    private patrolNight = false;
     private selection = new VisibleResidents();
     visiblePeople: readonly Person[] = [];
     /** 独立表现随机源，仅在真正分配下一棵树时抽取；可注入用于复现，不读写GameState.seed。 */
@@ -42,7 +43,8 @@ export class VillagerMotion {
         }
         for (const [id, at] of this.careStops) {
             const child = this.people.get(id)!.person.careChild!;
-            const before = this.stops.rest[this.campSlots.get(child)!], after = stops.rest[this.campSlots.get(child)!];
+            const key = this.patrolNight ? "nightRest" : "rest";
+            const before = this.stops[key][this.campSlots.get(child)!], after = stops[key][this.campSlots.get(child)!];
             const moved = navigation.relocate({ x: after.x + at.x - before.x, y: after.y + at.y - before.y });
             positions.set(at, moved); this.careStops.set(id, moved);
         }
@@ -75,6 +77,7 @@ export class VillagerMotion {
         const present = new Set(this.visiblePeople.map(p => p.id));
         for (const id of this.people.keys()) if (!present.has(id)) this.people.delete(id);
         this.night = state.phase === "NIGHT";
+        this.patrolNight = this.night && state.night?.patrolSpin === true;
         // 先整体释放无效预占，再分配，避免按人物遍历顺序留下已退休/调岗的树。
         for (const p of this.visiblePeople) {
             const m = this.people.get(p.id);
@@ -88,12 +91,13 @@ export class VillagerMotion {
             this.campSlots.set(p.id, slot);
         }
         // 先保护孩子的固定位置，再把照料者与最近的非孩子位置交换；满员也不会重叠或挪动婴儿。
+        const camp = this.patrolNight ? this.stops.nightRest : this.stops.rest;
         this.careStops.clear();
         const reserved = new Set(sorted.filter(p => !p.adult || isElder(p)).map(p => p.id));
         for (const p of sorted) if (p.job === "CARE" && p.careChild) {
-            const child = this.stops.rest[this.campSlots.get(p.careChild)!], old = this.campSlots.get(p.id)!;
-            const slots = this.stops.rest.map((at, i) => ({ i, d: distance(at, child), owner: sorted.find(q => this.campSlots.get(q.id) === i)?.id }))
-                .filter(q => (!q.owner || !reserved.has(q.owner)) && Math.abs(this.stops.rest[q.i].x - child.x) >= 24 && Math.abs(this.stops.rest[q.i].y - child.y) < Math.abs(this.stops.rest[q.i].x - child.x))
+            const child = camp[this.campSlots.get(p.careChild)!], old = this.campSlots.get(p.id)!;
+            const slots = camp.map((at, i) => ({ i, d: distance(at, child), owner: sorted.find(q => this.campSlots.get(q.id) === i)?.id }))
+                .filter(q => (!q.owner || !reserved.has(q.owner)) && Math.abs(camp[q.i].x - child.x) >= 24 && Math.abs(camp[q.i].y - child.y) < Math.abs(camp[q.i].x - child.x))
                 .sort((a, b) => a.d - b.d || a.i - b.i);
             const best = slots[0];
             if (best) {
@@ -101,7 +105,7 @@ export class VillagerMotion {
                 this.campSlots.set(p.id, best.i);
             } else {
                 // 极多未成年人的满员场景：保留所有婴儿位置，在侧方找空隙，不能退回正上/正下招手。
-                const occupied = sorted.filter(q => q.id !== p.id).map(q => this.careStops.get(q.id) || this.stops.rest[this.campSlots.get(q.id)!]);
+                const occupied = sorted.filter(q => q.id !== p.id).map(q => this.careStops.get(q.id) || camp[this.campSlots.get(q.id)!]);
                 let at: GroundPoint | null = null;
                 for (let dx = 24; dx <= 160 && !at; dx += 4) for (const dy of [0, 4, -4, 8, -8, 12, -12, 16, -16, 20, -20]) {
                     for (const side of [-1, 1]) { const candidate = { x: child.x + dx * side, y: child.y + dy }; if (this.navigation.walkable(candidate) && occupied.every(point => distance(point, candidate) >= 22)) { at = candidate; break; } }
@@ -120,7 +124,7 @@ export class VillagerMotion {
             const signature = `${state.phase === "NIGHT" ? "NIGHT" : "DAY"}:${p.adult}:${isElder(p)}:${p.growth}:${p.appearance}:${p.job}:${p.careChild}:${slot}:${tower}:${this.campSlots.get(p.id)}:${careStop?.x}:${careStop?.y}:${this.waitingSlots.get(p.id)}`;
             let m = this.people.get(p.id);
             if (!m) {
-                const home = !p.adult && p.growth === 0 ? this.stops.rest[this.campSlots.get(p.id)!] : this.stops.homes[(sequence - 1) % this.stops.homes.length];
+                const home = !p.adult && p.growth === 0 ? camp[this.campSlots.get(p.id)!] : this.stops.homes[(sequence - 1) % this.stops.homes.length];
                 m = { ...home, id: p.id, direction: "DOWN", walking: false, insideTower: false, clip: "", animated: false, elapsed: 0, heartElapsed: null, walkDistance: 0, loggingTree: null, lastLoggingTree: null, signature: "", plan: [], routine: [], wedding: false, visit: 0, route: [], remaining: 0, person: p };
                 this.people.set(p.id, m);
             }
@@ -198,7 +202,7 @@ export class VillagerMotion {
         const p = m.person;
         const home = this.stops.homes[(sequence - 1) % this.stops.homes.length];
         const visit = (at: GroundPoint, seconds: number, working = false): Visit => ({ at, seconds, working, insideTower: false });
-        const camp = this.careStops.get(p.id) || this.stops.rest[this.campSlots.get(p.id)!];
+        const camp = this.careStops.get(p.id) || (this.patrolNight ? this.stops.nightRest : this.stops.rest)[this.campSlots.get(p.id)!];
         if (isElder(p) || !p.adult && p.growth === 0) return [visit(camp, Infinity)];
         if (night) return [{ ...visit(tower >= 0 ? this.stops.towers[tower] : camp, Infinity, tower < 0 && p.job === "CARE"), insideTower: tower >= 0 }];
         const rest = this.stops.rest[(sequence - 1) % this.stops.rest.length];
@@ -232,7 +236,7 @@ export class VillagerMotion {
                 m.direction = target.treeX < m.x ? "LEFT" : "RIGHT";
                 clip = `villager_${model}_work`;
             } else if (p.job === "CARE" && p.careChild) {
-                const child = this.people.get(p.careChild) || this.stops.rest[this.campSlots.get(p.careChild)!];
+                const child = this.people.get(p.careChild) || (this.patrolNight ? this.stops.nightRest : this.stops.rest)[this.campSlots.get(p.careChild)!];
                 m.direction = walkDirection(child.x - m.x, child.y - m.y, m.direction);
             } else if (p.job === "FARM") {
                 // 工位记下田垄的方向，翻地与伐木复用同一套侧面动作。

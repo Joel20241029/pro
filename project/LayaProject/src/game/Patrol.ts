@@ -4,8 +4,9 @@ import { ENEMIES } from "../config/EnemyConfig";
 import { SUMMON_CHARGE } from "../config/TacticConfig";
 import { PATH_LENGTH, RoadPoint } from "./BattleRoad";
 import { GameState } from "./GameState";
-import { patrolCaptain, patrolStats } from "./PatrolRules";
+import { patrolCaptain, patrolSpinStats, patrolStats } from "./PatrolRules";
 import { lanePoint, SummonCollision } from "./SummonCharge";
+import { PatrolSpin } from "./PatrolSpin";
 import type { Enemy } from "./BattleSimulation";
 
 export interface PatrolTarget { enemy: Enemy; fromY: number; at: RoadPoint; }
@@ -19,18 +20,27 @@ export class Patrol {
     units: PatrolUnit[] = [];
     readonly stats: ReturnType<typeof patrolStats>;
     private readonly squad: boolean;
+    readonly spin: PatrolSpin | null;
     private due = Math.round(PATROL.first / RULE.step);
     deployments = 0;
     kills = 0;
 
     constructor(state: GameState) {
         this.squad = state.night?.patrolSquad === true;
-        this.stats = patrolStats(state.patrol.level, patrolCaptain(state), this.squad);
+        const captain = patrolCaptain(state);
+        this.stats = state.night?.patrolSpin ? patrolSpinStats(state.patrol.level, captain) : patrolStats(state.patrol.level, captain, this.squad);
+        this.spin = state.night?.patrolSpin ? new PatrolSpin(this.stats) : null;
     }
 
-    secondsUntil(tick: number) { return Math.max(0, this.due - tick) * RULE.step; }
+    secondsUntil(tick: number) { return this.spin?.secondsUntil(tick) ?? Math.max(0, this.due - tick) * RULE.step; }
 
     advance(tick: number, targets: readonly PatrolTarget[]): SummonCollision[] {
+        if (this.spin) {
+            const hits = this.spin.advance(tick, targets);
+            this.deployments = this.spin.deployments;
+            this.kills += hits.filter(hit => hit.enemy.hp <= 0).length;
+            return hits;
+        }
         const activeLimit = this.squad ? PATROL.squad.maxActive : PATROL.legacy.maxActive;
         if (tick >= this.due && this.units.length < activeLimit) {
             // 相邻出征轮换速度和路径，夜战重放不消耗村庄随机源。

@@ -1,6 +1,6 @@
 import { CombatPresentation } from "./CombatPresentation";
 import { LoggingFeedback } from "./LoggingFeedback";
-import { EnemyVisuals } from "./EnemyVisuals";
+import { EnemyVisuals, enemyImpactLift } from "./EnemyVisuals";
 import { EssenceFeedback, GameSession } from "../game/GameSession";
 import { LIANG_ESSENCE } from "../config/ShopConfig";
 import { GameState } from "../game/GameState";
@@ -37,6 +37,8 @@ import { PATROL_PROP } from "./config/VillageSceneConfig";
 import { TimedBlastVisuals } from "./TimedBlastVisuals";
 /** 动效先播放上箭头，再交给常规两秒气泡；单位为前台表现秒。 */
 const ESSENCE_CUE = { riseSeconds: .72, arrowSize: 64, riseDistance: 55 } as const;
+// 守夜及最后击飞期间收起日间生产设施，给淡紫儿留出操作空间；建筑状态和占地仍由原系统维护。
+const DAY_ONLY_PROPS = new Set(["building:house-a", "building:farm", "building:logging", "building:hearth", "deco:logs"]);
 /** 地图、人物、建筑与战斗表现的唯一所有者。视觉时钟不推进 GameSession/业务随机数。 */
 export class VillageWorld {
     readonly scenery = new Laya.Sprite();
@@ -60,7 +62,7 @@ export class VillageWorld {
     private interaction = new WorldInteraction(() => this.game.state, () => this.motion);
     private freshBuildingVillage = true;
     scene = layoutVillage(this.layout);
-    private patrolVisuals = new PatrolVisuals(this.world, this.art);
+    private patrolVisuals = new PatrolVisuals(this.world, this.art, this.game);
     private patrolTimer: Laya.Text | undefined;
     private patrolGlow: Laya.Sprite | undefined;
     private motion = new VillagerMotion(this.navigation(), this.scene.stops);
@@ -91,7 +93,7 @@ export class VillageWorld {
     private villageMotionSeconds = 0;
     private hitTop = new Laya.Point();
     private hitBottom = new Laya.Point();
-    get hasPatrolImpact() { return this.feedback.hasPatrolImpact; }
+    get hasPatrolImpact() { return this.feedback.hasPatrolImpact || !!this.patrolVisuals?.hasLanding; }
     get hasEnemyDeaths() { return this.feedback.deaths.size > 0; }
     constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private layout: GameLayout,
         houseClicked: (name: string, visual: BuildingVisuals) => void, personClicked: (id: string) => void, private playDefeat?: () => void, patrolClicked?: () => void) {
@@ -129,7 +131,7 @@ export class VillageWorld {
                 clickNodes.push(node);
             }
             if (p.signText) {
-                const sign = WORLD_ART.sign;
+                const sign = p.id === "deco:friendship-road-sign" ? WORLD_ART.friendshipSign : WORLD_ART.sign;
                 const title = this.ui.label(node, p.signText, p.size * sign.x, p.size * sign.y, p.size * sign.width, sign.font, "#59391e", true, p.size * sign.height);
                 title.fontSize = sign.font;
                 title.stroke = .7;
@@ -182,6 +184,7 @@ export class VillageWorld {
         return { x: HUD.gate.x + HUD.gate.width / 2, y: this.layout.gateY + HUD.gate.barTop + HUD.gate.barHeight };
     }
     destroy() {
+        this.patrolVisuals.destroy();
         this.interaction.cancelPresses();
     }
     /** 尸体停留时活怪仍会入场；池只增长到实际峰值，随后复用，禁止按原容量静默漏画死亡动画。 */
@@ -216,7 +219,11 @@ export class VillageWorld {
         this.layout = next;
         this.scene = scene;
         this.backgroundKey = "";
-        this.props.forEach((p, i) => { const at = scene.props[i]; p.y = at.ground ? -1 : at.y; p.node.pos(at.x, at.y); });
+        this.props.forEach((p, i) => {
+            const at = scene.props[i];
+            p.y = at.ground ? -1 : at.y;
+            p.node.pos(at.x, at.y);
+        });
     }
     sync(s: GameState, preserveOverlay: boolean) {
         if (!preserveOverlay)
@@ -249,6 +256,7 @@ export class VillageWorld {
             [uv[0], wallV, uv[2], wallV, uv[4], uv[5], uv[6], uv[7]]);
         const shadow = WORLD_ART.shadow;
         for (const prop of this.scene.props) {
+            if (night && DAY_ONLY_PROPS.has(prop.id)) continue;
             if (prop.ground || prop.id.startsWith("wall:") || prop.id.startsWith("deco:")) continue;
             const tree = prop.id.startsWith("tree:");
             const width = prop.size * (tree ? shadow.treeWidth : shadow.buildingWidth);
@@ -313,6 +321,7 @@ export class VillageWorld {
     render(panelOpen: boolean, houseTipOpen = false) {
         this.feedbackFrame = Laya.timer.currFrame;
         const s = this.game.state, battle = this.game.battle;
+        const night = this.backgroundKey === "night";
         const presentation = this.game.presentationBattle;
         const events = this.game.takeCombatFeedback();
         this.feedback.sync(presentation, events);
@@ -327,7 +336,7 @@ export class VillageWorld {
         this.hearts.forEach(n => { n.visible = false; n.alpha = 1; n.scale(1, 1); n.pos(0, 0); });
         this.cryIcon.visible = false;
         this.essenceArrow.visible = false;
-        this.residentCuesBlocked = panelOpen || houseTipOpen || this.game.pauses.size > 0 || s?.phase !== "DAY";
+        this.residentCuesBlocked = night || panelOpen || houseTipOpen || this.game.pauses.size > 0 || s?.phase !== "DAY";
         if (this.residentCuesBlocked) { this.hideSpeech(); this.crying.dismiss(); }
         if (s?.phase !== "DAY" && this.essence) { this.essence = null; this.essenceTip.hide(); }
         const depth = this.props.slice();
@@ -343,6 +352,7 @@ export class VillageWorld {
             return false;
         }
         for (const p of this.props) {
+            if (DAY_ONLY_PROPS.has(p.id)) p.node.visible = !night;
             let kind: BuildingLook | null = null, level = 0, rooms = 1, damaged = false, facing = 1;
             if (p.id === PATROL_PROP) {
                 kind = "PATROL";
@@ -350,7 +360,8 @@ export class VillageWorld {
                 const size = p.node.width;
                 const timer = this.patrolTimer!, glow = this.patrolGlow!, patrol = battle?.patrol;
                 timer.visible = !!battle;
-                timer.text = patrol ? `${Math.ceil(patrol.secondsUntil(battle!.tick))} 秒` : "待任命";
+                timer.text = patrol?.spin?.canGather ? "按住后拉" : patrol?.spin?.flying ? "出击中" :
+                    patrol ? `${Math.ceil(patrol.secondsUntil(battle!.tick))} 秒` : "待任命";
                 glow.visible = !!battle;
                 if (glow.visible) {
                     glow.graphics.clear();
@@ -366,7 +377,9 @@ export class VillageWorld {
             else if (p.id.startsWith("tower:")) {
                 const index = Number(p.id.split(":")[1]), t = (battle ? battle.base.towers : s.towers)[index];
                 p.node.texture = t.kind ? null : this.art.get("building_tower_pad");
-                p.node.scale(t.kind ? 1 : TOWER_VIEW.emptyScale, t.kind ? 1 : TOWER_VIEW.emptyScale); facing = TOWER_VIEW.facing[index];
+                const scale = this.scene.towerScale * (t.kind ? 1 : TOWER_VIEW.emptyScale);
+                p.node.scale(scale, scale);
+                facing = TOWER_VIEW.facing[index];
                 kind = t.kind;
                 level = t.level;
             }
@@ -393,18 +406,21 @@ export class VillageWorld {
                 (p.node.hitArea as Laya.Rectangle).setTo(this.hitTop.x, this.hitTop.y, this.hitBottom.x - this.hitTop.x, this.hitBottom.y - this.hitTop.y);
             }
             const extra = p.visual?.occluder();
-            if (extra)
-                depth.push(extra);
+            if (extra) {
+                // 农田水车独立参与世界排序，必须跟随建筑切换显隐。
+                extra.node.visible = p.node.visible;
+                if (extra.node.visible) depth.push(extra);
+            }
         }
         for (const p of this.props)
             if (p.id.startsWith("tower:"))
                 p.visual!.updateAttack(presentation, Number(p.id.split(":")[1]), this.feedback.shots.keys(), this.feedback.presentationTick * RULE.step);
-        this.projectiles.update(presentation, this.layout, this.scene.pads, index => this.props.find(p => p.id === `tower:${index}`)!.visual!.launchPoint(), this.feedback);
+        this.projectiles.update(presentation, this.layout, this.scene.pads, index => this.props.find(p => p.id === `tower:${index}`)!.visual!.launchPoint(), this.feedback, enemy => enemyImpactLift(this.art, enemy));
         if (this.feedback.takeDefeatCue() && !this.game.pauses.size) this.playDefeat?.();
         this.freshBuildingVillage = false;
         this.walkAnimation.retain(new Set(this.motion.visiblePeople.map(p => p.id)));
         const gate = this.props.find(p => p.id === "building:gate")!;
-        if (this.art.ready("village")) this.motion.visiblePeople.forEach((p, i) => {
+        if (!night && this.art.ready("village")) this.motion.visiblePeople.forEach((p, i) => {
             const n = this.people[i], pose = this.motion.get(p.id);
             n.visible = !pose.insideTower;
             n.name = `person:${p.id}`;
@@ -509,8 +525,10 @@ export class VillageWorld {
                     this.art.enemyMirror(e.kind, enemyPoint({ ...e, progress: e.progress + 1 }).x - at.x),
                     this.feedback.flashing(e.seq), this.feedback.deathPose(e.seq), this.feedback.hitShake(e.seq), mindTime,
                     this.feedback.zhouLoveCue(e.seq), e.hp > 0 && presentation.isPoisoned(e.seq), this.feedback.burstAge(e.seq),
-                    e.hp > 0 && e.slowTicks > 0 && this.feedback.frosted(e.seq), this.feedback.patrolImpactAge(e.seq));
-                n.pos(at.x, this.layout.worldY(at.y));
+                    e.hp > 0 && e.slowTicks > 0 && this.feedback.frosted(e.seq), this.feedback.patrolImpactAge(e.seq), this.feedback.patrolAir(e.seq));
+                const y = this.layout.worldY(at.y);
+                const recoil = this.feedback.patrolRecoil(e.seq, this.layout.worldY(at.y + 1) - y);
+                n.pos(at.x + (recoil?.x ?? 0), y + (recoil?.y ?? 0));
                 depth.push({ id: n.name, y: n.y, node: n });
             });
             this.projectileVisuals.draw(this.projectiles.poses);
@@ -529,7 +547,7 @@ export class VillageWorld {
         const rageDepth = this.rage.update(battle, this.props.filter(p => p.id.startsWith("tower:")).map(p => ({ node: p.node, visual: p.visual! })));
         const shieldDepth = this.shield.update(battle, { node: gate.node, visual: gate.visual! }, this.layout, events);
         const summonDepth = this.summon.update(presentation, this.layout, events, this.feedback.time);
-        const patrolDepth = this.patrolVisuals.update(presentation, this.layout);
+        const patrolDepth = this.patrolVisuals.update(presentation, this.layout, events, this.feedback.time, panelOpen);
         [...depth, ...rageDepth, ...shieldDepth, ...summonDepth, ...patrolDepth].sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
         depth.sort(compareDepth);
         this.interaction.update(depth);

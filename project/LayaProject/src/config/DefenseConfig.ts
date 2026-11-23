@@ -1,17 +1,15 @@
 export type TowerKind = "ARROW" | "STONE" | "SLOW";
 export const TOWERS = {
-    ARROW: { name: "箭楼", damage: 12, interval: .8, range: 170, cost: 30, splash: 0, image: "building_tower_arrow" },
-    STONE: { name: "石塔", damage: 22, interval: 1.6, range: 155, cost: 45, splash: 70, image: "building_tower_stone" },
-    SLOW: { name: "寒塔", damage: 4, interval: 1.5, range: 150, cost: 35, splash: 60, image: "building_tower_slow" }
+    ARROW: { name: "箭楼", damage: 12, interval: .8, range: 175, cost: 30, splash: 0, image: "building_tower_arrow" },
+    STONE: { name: "石塔", damage: 22, interval: 1.6, range: 165, cost: 45, splash: 70, image: "building_tower_stone" },
+    SLOW: { name: "寒塔", damage: 4, interval: 1.5, range: 160, cost: 35, splash: 60, image: "building_tower_slow" }
 } as const;
 /** 720×1280 的固定逻辑路径/塔位，首版地图配置；改变坐标会影响射程和到门时间。 */
 export const PATH = [{ x: 360, y: 230 }, { x: 360, y: 350 }, { x: 250, y: 435 }, { x: 470, y: 550 }, { x: 360, y: 655 }, { x: 360, y: 760 }];
-/** 2026-11-13按高清道路真实边缘与最大84×34塔占地调整，短长屏下保留草地间距。
- * 1号塔由(210,330)沿弯道外侧移到(175,350)，增加顶部留白；同步向左让开下方左弯的路面。
- * 1.0.25将第五塔移到原路牌上方；最高寒塔的顶部留白由地图排版预留，原有双塔位置保持。
- * 坐标同时驱动战斗、立绘、点击区、进塔与弹道；须验证5位置×3塔种。
- */
-export const PADS = [{ x: 175, y: 350 }, { x: 470, y: 450 }, { x: 300, y: 560 }, { x: 505, y: 660 }, { x: 470, y: 285 }];
+/** 正常战场高度的塔位基准。下标沿用存档编号，与屏幕投影、战斗索敌及弹道共用。 */
+export const PADS: readonly { x: number; y: number }[] = [
+    { x: 236, y: 356 }, { x: 543, y: 314 }, { x: 212, y: 624 }, { x: 401, y: 526 }, { x: 547, y: 716 }
+];
 /** 已发存档保留原先的生命倍率、出怪窗口与撞门规则。词缀仍由新旧波次共用。 */
 export const WAVE = {
     // 固定增援沿用三人一组，纳入新波次的总人数。
@@ -31,7 +29,7 @@ export const WAVE = {
     groupStagger: .90
 } as const;
 /** 波次规则随已排计划保存，旧双波难度保留原曲线和时间。 */
-export const WAVE_RHYTHM = { paired: "PAIR_V1", nightly: "NIGHT_V1" } as const;
+export const WAVE_RHYTHM = { paired: "PAIR_V1", nightly: "NIGHT_V1", extended: "NIGHT_V2" } as const;
 export type WaveRhythm = typeof WAVE_RHYTHM[keyof typeof WAVE_RHYTHM];
 
 /** 每个原双波档拆成两次增量，保证前中期同一夜数的总强度接近此前。后期仍每夜加一名。
@@ -47,6 +45,8 @@ export const WAVE_PROGRESSION = {
     speedPerBand: .01, speedBonusMax: .10, bossGrowthShare: .65,
     // 通用入场留白；大波次另按来敌数逐步拉开，批间停顿单独计算。
     windowTicksPerBand: 30, arrivalWindowScale: 1.15, batchSize: 252, joinTicks: 10,
+    // 每个既有入场时点翻倍，保持队列顺序和怪群的相对节奏。仅新生成的 NIGHT_V2 使用。
+    extendedArrivalScale: 2,
     // 90 人以下保留原窗口，180 人起窗口额外加 25%，让重叠最明显的大波次先降密。
     denseArrival: { fromCount: 90, fullCount: 180, extraWindowScale: .25 },
     eliteFirstWeightPercent: 32, eliteWeightPerBand: 5, eliteWeightBonusMax: 12, seasonalWeightPercent: 125

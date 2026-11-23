@@ -114,7 +114,7 @@ test('stone splash reaches other clusters, including victims just outside target
 
 test('stone deduplication does not cross towers or persist into the next volley', () => {
     const b = battle('STONE'); b.base.towers[2] = { ...b.base.towers[0], operator: b.base.people[2].id };
-    b.enemies = [0, 1, 2, 3].map(i => enemy(i, 284 - i));
+    b.enemies = [1, 14, 17, 22].map(i => enemy(i, 314)); // 中段西侧两塔的共用射界。
     for (const i of [0, 2]) for (const e of b.enemies) {
         const p = enemyPoint(e); assert(Math.hypot(p.x - PADS[i].x, p.y - PADS[i].y) <= TOWERS.STONE.range);
     }

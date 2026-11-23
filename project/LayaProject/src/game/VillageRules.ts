@@ -268,7 +268,7 @@ export function applyCommand(s: GameState, c: Command) {
             const e = economy(s);
             s.night = { adults: s.people.filter(isWorkingAdult).map(p => p.id), elders: s.people.filter(isElder).map(p => p.id), cared: s.people.filter(p => isWorkingAdult(p) && p.job === "CARE").map(p => p.careChild!), hungry: e.hungry, tactic: s.tactics.equipped };
             if (s.tactics.extraSlots) s.night.extraSlots = s.tactics.extraSlots.slice();
-            if (s.patrol.captain) s.night.patrolSquad = true;
+            if (s.patrol.captain) { s.night.patrolSquad = true; s.night.patrolSpin = true; }
             s.food = e.endFood;
             s.wood = e.endWood;
             s.phase = "NIGHT";

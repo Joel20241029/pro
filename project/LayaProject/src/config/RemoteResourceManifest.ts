@@ -1,15 +1,15 @@
 /** 由 prepare-remote-release.mjs 生成。版本目录和 Gitee 提交共同锁定已校验的资源。 */
 export const REMOTE_RESOURCE_MANIFEST = {
-    "version": "1.0.94",
-    "revision": "187eb54610de366feca7bb0d1d3abf878eef3bec",
+    "version": "1.0.99",
+    "revision": "25a8bfb79dbb5ac50c0658a38725a34c5ce1ed07",
     "sources": {
-        "raw": "https://gitee.com/sun-wen-sky/remote-res/raw/187eb54610de366feca7bb0d1d3abf878eef3bec/1.0.94/"
+        "raw": "https://gitee.com/sun-wen-sky/remote-res/raw/25a8bfb79dbb5ac50c0658a38725a34c5ce1ed07/1.0.99/"
     },
     "files": {
         "map/frames.bin": {
             "stage": "village",
-            "bytes": 89549,
-            "sha256": "5557ecc60c5e7ea8db856299b49e39577bc4dcd348ae1b45f5d1f0ba5f2a978b",
+            "bytes": 89778,
+            "sha256": "8cd2b647551125ef0ca4cbc701b585e274abe41801bf636a4bfb002e7566e035",
             "source": "raw"
         },
         "characters/animations.bin": {
@@ -20,14 +20,20 @@ export const REMOTE_RESOURCE_MANIFEST = {
         },
         "ui/ui_0.png": {
             "stage": "village",
-            "bytes": 403509,
-            "sha256": "6f036c45b75ceb6adb23a561e87370e306944e2ec7543e12e08ed6bcfd5bb085",
+            "bytes": 384295,
+            "sha256": "630527b9bee525e4d0e8a9b0c138ed7665dabc09714f871db17491655f34eac4",
+            "source": "raw"
+        },
+        "ui/ui_1.png": {
+            "stage": "village",
+            "bytes": 24167,
+            "sha256": "f7a2b5b5681fe7887bf63bf91c40483255f22528685cebe20218e1f57541b9d1",
             "source": "raw"
         },
         "map/terrain_0.jpg": {
             "stage": "village",
-            "bytes": 252626,
-            "sha256": "2e03aa1f5eb4fa45f51fb599cabdf9d2c7c53d08808560cdfbd7bb740aee89d3",
+            "bytes": 247490,
+            "sha256": "febe91cef23c5c3e49d609579ae0dafb79f3db6e4a29d558232acd3301991560",
             "source": "raw"
         },
         "map/map_0.png": {
@@ -44,20 +50,20 @@ export const REMOTE_RESOURCE_MANIFEST = {
         },
         "characters/characters_0.png": {
             "stage": "village",
-            "bytes": 1405049,
-            "sha256": "6aa294a92bd5f23027f12c2156c13e415c16e8257cd6dddd7ab2bba356cf31fc",
+            "bytes": 1440291,
+            "sha256": "df2cd4ebe2d2aca4e153c2e30b9d69cb241e63074b4f68b35b278bd3dcdf8acf",
             "source": "raw"
         },
         "characters/characters_1.png": {
             "stage": "village",
-            "bytes": 1540203,
-            "sha256": "2ea100613d7f99eaa8d90d341cd14b061cbcd79a5370b5e838d1e5783f36ddeb",
+            "bytes": 1506581,
+            "sha256": "5cbc0582609f22d90c452be2a39828098dc9eab76f35cfdac5501a7c0d517a3e",
             "source": "raw"
         },
         "characters/characters_2.png": {
             "stage": "village",
-            "bytes": 929948,
-            "sha256": "0c53986e0d6cf9a5c25a090d1b7f6aff3f766719c712a27cda0a8b820eb376fc",
+            "bytes": 1071864,
+            "sha256": "bf77ba2e5c944472d433b41be8b0a34b16db4b345895fbfd9055efe715d4d318",
             "source": "raw"
         },
         "effects/village_effects_0.png": {
@@ -68,8 +74,8 @@ export const REMOTE_RESOURCE_MANIFEST = {
         },
         "buildings/buildings.bin": {
             "stage": "village",
-            "bytes": 5968,
-            "sha256": "7d5d18f3ce3c97d00b1a6f06e9b8e59910e6e4ae5318da2264d0fdeb887bf439",
+            "bytes": 6227,
+            "sha256": "52e54075a9c8788364a3d502fae82887ae330887dad59763f9bf3b1f5b6817d0",
             "source": "raw"
         },
         "buildings/building_upgrade.mc": {
@@ -86,8 +92,8 @@ export const REMOTE_RESOURCE_MANIFEST = {
         },
         "enemies/frames.bin": {
             "stage": "night",
-            "bytes": 21545,
-            "sha256": "f0861eb19bf52334f8928e28e4e6fec085972bbb98302bea1df3132340254875",
+            "bytes": 21620,
+            "sha256": "0eee98303546392812040b4ffe56bce7dc59a1f7d12c380a45f82c45e5997e44",
             "source": "raw"
         },
         "enemies/animations.bin": {
@@ -110,8 +116,8 @@ export const REMOTE_RESOURCE_MANIFEST = {
         },
         "effects/night_effects_0.png": {
             "stage": "night",
-            "bytes": 137536,
-            "sha256": "f4cf72e2572e76f665d05ed1e7e81de61fc6f4b5a4789f36eab24995844f698a",
+            "bytes": 157443,
+            "sha256": "f41b908e981b044682b0c97bb9f0bc6ed35d810070d707224ec89e87f4104ed1",
             "source": "raw"
         },
         "enemies/enemies.bin": {
@@ -122,15 +128,22 @@ export const REMOTE_RESOURCE_MANIFEST = {
         },
         "ui/ui_0.ktx": {
             "stage": "village",
-            "bytes": 1044548,
-            "sha256": "81096de6c78e23317d808454a9e00dbc91915ed2fc41082b633a2a4c53735a79",
+            "bytes": 983108,
+            "sha256": "e90686bc4df349fe736de248178b607a02f3b706bb9ecdd3884ff9145a336ff5",
             "astcFor": "ui/ui_0.png",
+            "source": "raw"
+        },
+        "ui/ui_1.ktx": {
+            "stage": "village",
+            "bytes": 14500,
+            "sha256": "4b9870151024d3f281958b7b5857676e0c0e87d9f064b5c0a97eaac314f1f16b",
+            "astcFor": "ui/ui_1.png",
             "source": "raw"
         },
         "map/terrain_0.ktx": {
             "stage": "village",
             "bytes": 706948,
-            "sha256": "7f088244467b4c3e24ebf1f05957eda2881ad251929a26047c6274b0b77a0fd9",
+            "sha256": "0bfba5285271a19838ccadab839bd7833918c88de4fb2561000b679c56172ecf",
             "astcFor": "map/terrain_0.jpg",
             "source": "raw"
         },
@@ -151,21 +164,21 @@ export const REMOTE_RESOURCE_MANIFEST = {
         "characters/characters_0.ktx": {
             "stage": "village",
             "bytes": 1048644,
-            "sha256": "839550d579b66a52fb3355e4c795dcec107bd807b704591809e8c558ebba5669",
+            "sha256": "084c3d3cad2be7a7c8895878dca100c36d8c1fbb3d63d6a87aa195ad28772c88",
             "astcFor": "characters/characters_0.png",
             "source": "raw"
         },
         "characters/characters_1.ktx": {
             "stage": "village",
-            "bytes": 462452,
-            "sha256": "c8802cfd0c75eb2ed7a5957d692cdd69f6a7acace46d57d116d8c157c3a1497a",
+            "bytes": 467924,
+            "sha256": "3f5347f097acd2ca4680ab9bd9227f98fd177b3aeeab3d207e99059d654bf437",
             "astcFor": "characters/characters_1.png",
             "source": "raw"
         },
         "characters/characters_2.ktx": {
             "stage": "village",
-            "bytes": 322916,
-            "sha256": "79c326ad306489b046a288c101f67f33404c2327acf9946c0113683696c42711",
+            "bytes": 340068,
+            "sha256": "1f3d87dddc1e1e44e877e7718a8a7053ac6eaf602d64cf2b0112b692bd4531bb",
             "astcFor": "characters/characters_2.png",
             "source": "raw"
         },
@@ -192,8 +205,8 @@ export const REMOTE_RESOURCE_MANIFEST = {
         },
         "effects/night_effects_0.ktx": {
             "stage": "night",
-            "bytes": 258116,
-            "sha256": "d572f5f751ee87752c4b942464db85148fb38ecc13b5b7d8f7bdc07b5292f0cb",
+            "bytes": 297540,
+            "sha256": "d04b1eb5ccd603cd323e48ddf72ef9d901fba637837a5fab13b97a0d56ab8bb6",
             "astcFor": "effects/night_effects_0.png",
             "source": "raw"
         }

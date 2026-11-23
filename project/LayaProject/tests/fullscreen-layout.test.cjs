@@ -1,6 +1,7 @@
 const { test } = require('node:test'), assert = require('node:assert/strict'), path = require('node:path');
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
+const { ROAD_PROFILE } = require(path.join(compiled, 'config/RoadGeometry.js'));
 const { GameLayout } = require(path.join(compiled, 'view/GameLayout.js'));
 const { HUD } = require(path.join(compiled, 'view/config/HudConfig.js'));
 const { layoutVillage, VillageNavigation, towerLaunch, TOWER_VIEW, distance } = require(path.join(compiled, 'view/VillageScene.js'));
@@ -31,6 +32,13 @@ for(const profile of profiles) test(`${profile[0]}: safe controls, expanded vill
     assert.deepEqual(scene.props.filter(p=>p.id.startsWith('building:house-')).map(p=>p.id), ['building:house-a']);
     const patrol=scene.props.find(p=>p.id==='building:patrol');
     near(patrol.size,148); near(patrol.x,226);
+    const { PATROL } = require(path.join(compiled, 'config/PatrolConfig.js'));
+    near(patrol.x, PATROL.spin.house.x); near(patrol.y, l.worldY(PATROL.spin.house.y));
+    assert(scene.stops.nightRest.every(at => {
+        const y = l.referenceY(at.y);
+        return Math.abs(at.x - PATROL.spin.center.x) > PATROL.spin.shoulder + 34
+            || y < PATROL.spin.center.y - 42 || y > PATROL.spin.center.y + 38;
+    }), 'night residents stay clear of the pair and the pull area');
     const patrolBase={x:patrol.x,y:patrol.y};
     assert(!nav.walkable(patrolBase));
     for(const [key,stops] of Object.entries(scene.stops)) for(const p of stops) {
@@ -45,9 +53,25 @@ for(const profile of profiles) test(`${profile[0]}: safe controls, expanded vill
         const tree=scene.props.find(t=>t.id===p.treeId);
         assert(p.y>tree.y,'woodcutter must stand in front of the assigned tree after screen layout');
     }
-    for(let i=0;i<4;i++) for(const kind of ['ARROW','STONE','SLOW']) {
+    assert.deepEqual(TOWER_VIEW.facing, [1, -1, 1, -1, -1], `${name}: two towers west and three east`);
+    assert(scene.pads[0].y < scene.pads[3].y && scene.pads[3].y < scene.pads[2].y && scene.pads[2].y < scene.pads[4].y);
+    assert(scene.pads[1].y < scene.pads[3].y);
+    for (const [i, pad] of scene.pads.entries()) {
+        const { footprint } = scene.props.find(p => p.id === `tower:${i}`);
+        const road = ROAD_PROFILE.filter(([y]) => y >= l.referenceY(footprint.top) - 4 && y <= l.referenceY(footprint.bottom) + 4);
+        assert(road.length > 0);
+        const clearance = Math.min(...road.map(([, left, right]) => TOWER_VIEW.facing[i] > 0 ? left - footprint.right : footprint.left - right));
+        assert(clearance >= 10, `${name}: tower ${i + 1} leaves ${clearance} px of grass`);
+        const tapY = pad.y - HUD.towerBuildHint.centerAbovePad;
+        const hit = scene.pads.map((target, index) => ({ target, index })).filter(({ target }) =>
+            Math.abs(pad.x - target.x) < HUD.tower.hitWidth / 2 &&
+            tapY >= target.y + HUD.tower.hitY && tapY <= target.y + HUD.tower.hitY + HUD.towerBuildHint.hitHeight);
+        assert.deepEqual(hit.map(({ index }) => index), [i], `${name}: tower ${i + 1} has an ambiguous center tap`);
+    }
+    for(let i=0;i<scene.pads.length;i++) for(const kind of ['ARROW','STONE','SLOW']) {
         const start=towerLaunch(i,kind,scene.pads), tower=scene.props.find(p=>p.id===`tower:${i}`);
-        near(start.y,tower.y-TOWER_VIEW.size*15/16+TOWER_VIEW.muzzle[kind].y*TOWER_VIEW.size/128);
+        near(tower.y,scene.pads[i].y+(TOWER_VIEW.top+TOWER_VIEW.size*15/16)*scene.towerScale);
+        near(start.y,scene.pads[i].y+TOWER_VIEW.top+TOWER_VIEW.muzzle[kind].y*TOWER_VIEW.size/128);
     }
     const state=createGame(7); state.people.forEach(p=>p.job='WAITING');
     while(state.people.length<20) state.people.push({...state.people[state.people.length%6],id:`1:${state.people.length+1}`});

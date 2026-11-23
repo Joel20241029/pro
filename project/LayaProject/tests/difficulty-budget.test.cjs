@@ -43,7 +43,15 @@ test('new and pre-marker historical rules replay with their original multipliers
   const fresh=createGame(15);fresh.day=day;fresh.completed=fresh.legacy.bestNight=day-1;fresh.wave=generateWave(fresh);
   fresh.wave.affix="NONE";
   const dense=structuredClone(fresh), previous=structuredClone(fresh);
-  delete dense.wave.rhythm;delete previous.wave.rhythm;
+  const factor=WAVE_PROGRESSION.extendedArrivalScale;
+  for (const historical of [dense,previous]) {
+   delete historical.wave.rhythm;
+   historical.wave.entries.forEach(e=>e.tick/=factor);
+  }
+  const lastNightly=structuredClone(fresh);
+  lastNightly.wave.rhythm=WAVE_RHYTHM.nightly;
+  lastNightly.wave.entries.forEach(e=>e.tick/=factor);
+  assert.equal(roundTrip(lastNightly).wave.entries.at(-1).tick,waveDifficulty(day,WAVE_RHYTHM.nightly).spawnTicks);
   dense.wave.ordinaryHealthPercent=WAVE.ordinaryHealth[band];
   previous.wave.ordinaryHealthPercent=WAVE.legacyOrdinaryHealth[band];
   assert.equal(fresh.wave.ordinaryHealthPercent,WAVE_PROGRESSION.ordinaryHealthPercent);
@@ -100,7 +108,7 @@ test('a late night consumes the entire extended plan with no fixed arrival cutof
  s.towers.forEach(t=>{if(t.kind)t.level=100;});
  validateState(s);applyCommand(s,{type:'NIGHT'});
  const b=new BattleSimulation(s);
- while(!b.outcome&&b.tick<4000)b.step();
+ while(!b.outcome&&b.tick<s.wave.entries.at(-1).tick+1500)b.step();
  assert.equal(b.outcome,'WIN');assert.equal(b.pendingCount,0);
  assert(b.tick>s.wave.entries.at(-1).tick);
 });
@@ -115,5 +123,5 @@ test('an already planned paired wave retains its older headcount, deadline and s
  const b=new BattleSimulation(s);b.step();
  assert.equal(b.enemies[0].maxHp,Math.ceil(ENEMIES[s.wave.entries[0].kind].hp*(ENEMIES[s.wave.entries[0].kind].boss?old.bossHealth:old.health*.7)));
  assert.equal(s.wave.entries.length,189);assert.equal(s.wave.entries.at(-1).tick,966);
- assert.equal(current.entries.length,190);assert.equal(current.entries.at(-1).tick,1208);
+ assert.equal(current.entries.length,190);assert.equal(current.entries.at(-1).tick,2416);
 });

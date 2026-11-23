@@ -28,7 +28,7 @@ test("Stone follows a rotating arc and survives removal from the five-tick event
     const b = battle(), m = new ProjectileMotion(), s = shot("STONE"); b.shots = [s]; b.tick = 1; m.update(b);
     b.tick = 5; m.update(b); const p = m.poses[0];
     const start = towerLaunch(0, "STONE");
-    near(p.x, (start.x + s.x) / 2); near(p.y, (start.y + s.y - 20) / 2 - PROJECTILE_STYLE.STONE.arc); ok(p.rotation > 0);
+    near(p.x, (start.x + s.x) / 2); near(p.y, (start.y + s.y - 20) / 2 - Math.min(PROJECTILE_STYLE.STONE.arc, Math.hypot(s.x - start.x, s.y - 20 - start.y) * .35)); ok(p.rotation > 0);
     b.shots = []; b.tick = 7; m.update(b); equal(m.poses.length, 1); equal(p.frame, "fx_stone");
     b.tick = 9; m.update(b); equal(p.frame, "fx_stone"); ok(p.contact); near(p.x, s.x); near(p.y, s.y - 20);
     equal(p.impactFrame, "fx_tower_stone_impact_1");

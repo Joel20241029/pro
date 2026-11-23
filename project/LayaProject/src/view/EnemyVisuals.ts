@@ -1,4 +1,5 @@
 import { FEEDBACK, TOWER_IMPACT } from "./config/FeedbackConfig";
+import { Enemy } from "../game/BattleSimulation";
 import { EnemyKind } from "../config/EnemyConfig";
 import { SpriteFrames } from "./SpriteFrames";
 import { ENEMY_LOOKS, ENEMY_PALETTES, ENEMY_SCALES } from "./config/EnemyVisualConfig";
@@ -8,6 +9,17 @@ import { drawUiGlyph } from "./UiGlyphs";
 /** 留诊只摆动身体，脚底阴影、受击点与头顶的状态符号保留同一地图锚点。 */
 const MIND_VISUAL = { sway: 2.5, cycle: .55, markSize: 24, violet: "#6739a2", light: "#f3dcff" } as const;
 /** Laya 的批量图片路径会忽略旋转帧的顶点顺序。地图怪物使用同一组双三角形索引还原这类帧。 */
+/** 躯干落点取在有效高度中线略下的位置，与巡防命中共用。 */
+const BODY_CONTACT_RATIO = .56;
+export function enemyImpactLift(art: SpriteFrames, enemy: Enemy): number {
+    const definition = art.enemyLayouts[enemy.kind];
+    const sizeChoice = Math.floor((enemy.appearanceSeed >>> 0) / ENEMY_PALETTES.length) % ENEMY_SCALES.length;
+    const scale = ENEMY_LOOKS[enemy.kind].size * ENEMY_SCALES[sizeChoice] / definition.canvas;
+    const index = Math.floor(enemy.walkDistance / (definition.stride * scale) * definition.frames.length) % definition.frames.length;
+    const frame = definition.frames[index], bounds = art.contentBounds(frame.body);
+    const bodyY = frame.y + (bounds.trimOffset.y + bounds.rect.h * BODY_CONTACT_RATIO) * definition.canvas / bounds.sourceSize.h;
+    return (definition.foot.y - bodyY) * scale;
+}
 const ROTATED_QUAD = new Uint16Array([0, 1, 2, 0, 2, 3]);
 const rotatedMeshes = new WeakMap<Laya.Texture, Map<string, { vertices: Float32Array; uv: Float32Array }>>();
 /** 一个敌人一个复用容器；阴影、帧序列和挂件共用源画布、脚底与父变换。
@@ -26,7 +38,7 @@ export class EnemyVisuals {
         this.body.name = "EnemyBody"; this.body.mouseEnabled = false;
         node.addChild(this.body);
     }
-    draw(kind: EnemyKind, seed: number, walkDistance: number, mirror: boolean, flashing = false, death?: { scaleY: number; alpha: number }, shake = 0, mindTime?: number, love?: ZhouLoveCue, poisoned = false, burstAge?: number, frosted = false, patrolImpactAge?: number) {
+    draw(kind: EnemyKind, seed: number, walkDistance: number, mirror: boolean, flashing = false, death?: { scaleY: number; alpha: number }, shake = 0, mindTime?: number, love?: ZhouLoveCue, poisoned = false, burstAge?: number, frosted = false, patrolImpactAge?: number, patrolAir?: { lift: number; degrees: number }) {
         const definition = this.art.enemyLayouts[kind], look = ENEMY_LOOKS[kind];
         if (!definition) throw new Error("未声明的怪物布局：" + kind);
         let value = seed >>> 0;
@@ -39,17 +51,28 @@ export class EnemyVisuals {
         this.node.scale(mirror ? -scale : scale, scale * (death ? death.scaleY : 1));
         this.node.alpha = death ? death.alpha : 1;
         const phase = mindTime === undefined ? 0 : mindTime / MIND_VISUAL.cycle * Math.PI * 2 + seed % 7;
-        this.body.x = (shake + (mindTime === undefined ? 0 : MIND_VISUAL.sway * Math.sin(phase))) / (mirror ? -scale : scale);
+        const bodyShift = (shake + (mindTime === undefined ? 0 : MIND_VISUAL.sway * Math.sin(phase))) / (mirror ? -scale : scale);
+        const lift = (patrolAir?.lift ?? 0) / scale;
         const frame = definition.frames[index], canvas = definition.canvas;
         const statusCount = Number(mindTime !== undefined) + Number(frosted) + Number(poisoned);
         const statusStep = FEEDBACK.enemyStatus.spacing / (mirror ? -scale : scale);
         const statusX = definition.foot.x - (statusCount - 1) * statusStep / 2;
-        const bounds = statusCount || love || burstAge !== undefined || patrolImpactAge !== undefined
+        const bounds = statusCount || love || burstAge !== undefined || patrolImpactAge !== undefined || patrolAir
             ? this.art.contentBounds(frame.body) : null;
         const spriteUnit = bounds ? canvas / bounds.sourceSize.h : 0;
         const headY = frame.y + (bounds ? bounds.trimOffset.y * spriteUnit : 0);
-        const impactY = headY + (bounds ? bounds.rect.h * .56 * spriteUnit : 0);
+        const impactY = headY + (bounds ? bounds.rect.h * BODY_CONTACT_RATIO * spriteUnit : 0);
         const statusY = headY - FEEDBACK.enemyStatus.lift / scale;
+        // 只转身体与配饰，根节点的阴影和地面深度不离开脚点轨迹。
+        if (patrolAir) {
+            this.body.pivot(definition.foot.x, impactY);
+            this.body.pos(definition.foot.x + bodyShift, impactY - lift);
+            this.body.rotation = (mirror ? -1 : 1) * patrolAir.degrees;
+        } else {
+            this.body.pivot(0, 0);
+            this.body.pos(bodyShift, 0);
+            this.body.rotation = 0;
+        }
         if (mindTime !== undefined) {
             if (!this.mark) {
                 this.mark = new Laya.Sprite();
@@ -107,7 +130,7 @@ export class EnemyVisuals {
                 cue.name = "ZhouLoveArrowImpact";
                 g.clear();
                 this.art.applyFrame(cue, this.art.frameId("fx_impact_arrow", love.age), TOWER_IMPACT.ARROW.size);
-                cue.pos(definition.foot.x + this.body.x, definition.foot.y + (impactY - definition.foot.y) / (death?.scaleY ?? 1));
+                cue.pos(definition.foot.x + bodyShift, definition.foot.y + (impactY - definition.foot.y) / (death?.scaleY ?? 1));
                 cue.alpha = 1;
             } else {
                 cue.name = "ZhouLoveHealMark";
@@ -130,7 +153,7 @@ export class EnemyVisuals {
             const impact = this.burstImpact, squash = death?.scaleY ?? 1;
             this.art.applyFrame(impact, this.art.frameId("fx_impact_stone", burstAge), size * FEEDBACK.tacticBurst.bodySizeScale * FEEDBACK.impactScale);
             // 与周博受击共用身体中部位置；爆裂不随死亡的压扁动画收缩。
-            impact.pos(definition.foot.x + this.body.x, definition.foot.y + (impactY - definition.foot.y) / squash);
+            impact.pos(definition.foot.x + bodyShift, definition.foot.y + (impactY - definition.foot.y) / squash);
             impact.scale((mirror ? -1 : 1) / scale, 1 / (scale * squash));
             impact.visible = true;
         } else if (this.burstImpact) this.burstImpact.visible = false;
@@ -142,9 +165,11 @@ export class EnemyVisuals {
                 this.node.addChild(this.patrolImpact);
             }
             const impact = this.patrolImpact;
-            this.art.applyFrame(impact, this.art.frameId("fx_impact_arrow", patrolImpactAge), TOWER_IMPACT.ARROW.size);
+            const hit = FEEDBACK.patrolHit, progress = patrolImpactAge / hit.seconds;
+            this.art.applyFrame(impact, this.art.frameId("fx_impact_arrow", progress * FEEDBACK.impact.frameCount / FEEDBACK.impact.fps),
+                TOWER_IMPACT.ARROW.size * hit.frameSizeScale);
             // 落点随身体抖动和压扁，命中帧本身维持屏幕比例。
-            impact.pos(definition.foot.x + this.body.x, impactY);
+            impact.pos(definition.foot.x + bodyShift, impactY - lift);
             impact.scale((mirror ? -1 : 1) / scale, 1 / (scale * (death?.scaleY ?? 1)));
             impact.visible = true;
         } else if (this.patrolImpact) this.patrolImpact.visible = false;

@@ -26,25 +26,55 @@ export class WechatBuild implements IEditorEnv.IBuildPlugin {
         if (!native && roots.some(root => nativeRoots.includes(root)))
             throw new Error("村庄与守夜资源包必须一同声明");
         const entry = fs.readFileSync(path, "utf8");
-        // 原生模式必须先于 weapp-adapter，不能等主场景创建后再选。仅添加启动段，保留引擎自动生成的库与分包入口。
+        // 微信原生榜单在主画布创建后取用一次，早于适配器改写画布原型。
         const marker = "// daidai-native-ranking-startup\n";
         if (entry.startsWith(marker)) return;
-        if (!entry.startsWith('require("weapp-adapter.js");')) throw new Error("微信启动模板已变化，请重新核对原生排行榜初始化顺序");
+        const adapter = 'require("weapp-adapter.js");';
+        if (!entry.startsWith(adapter)) throw new Error("微信启动模板已变化，请重新核对原生排行榜初始化顺序");
         const policy = JSON.stringify(RANKING_CANVAS);
         const startup = `(function () {
     const policy = ${policy};
     const supported = ${supportsNativeRankingSdk.toString()};
+    const createCanvas = wx.createCanvas;
+    function capture(mainCanvas) {
+        const version = wx.getAppBaseInfo && wx.getAppBaseInfo().SDKVersion;
+        if (!version) return { reason: "sdk_version_missing" };
+        if (!supported(version, policy.minimumSdk))
+            return { reason: /^\\d+\\.\\d+\\.\\d+$/.test(version) ? "sdk_below_minimum" : "sdk_version_rejected" };
+        if (typeof wx.getOpenDataContext !== "function") return { reason: "open_data_api_missing" };
+        const context = wx.getOpenDataContext({ sharedCanvasMode: policy.mode });
+        const canvas = context && context.canvas;
+        if (!canvas) return { reason: "canvas_missing" };
+        if (canvas === mainCanvas) return { reason: "canvas_is_main" };
+        const style = canvas.style;
+        if (!style) return { reason: "canvas_style_missing" };
+        style.width = policy.hiddenSize; style.height = policy.hiddenSize;
+        style.left = policy.hiddenPosition; style.top = policy.hiddenPosition;
+        canvas.width = policy.width; canvas.height = policy.height;
+        return { context, canvas, style };
+    }
+    GameGlobal.daidaiNativeRanking = { reason: "startup_hook_unavailable" };
+    function firstCanvas() {
+        // 恢复工厂后再取榜单，避免榜单初始化调用工厂时进入包装。
+        wx.createCanvas = createCanvas;
+        const mainCanvas = createCanvas.apply(this, arguments);
+        try { GameGlobal.daidaiNativeRanking = capture(mainCanvas); }
+        catch (_) { GameGlobal.daidaiNativeRanking = { reason: "startup_capture_error" }; }
+        return mainCanvas;
+    }
     try {
-        if (!supported(wx.getAppBaseInfo && wx.getAppBaseInfo().SDKVersion, policy.minimumSdk) || typeof wx.getOpenDataContext !== "function") return;
-        const canvas = wx.getOpenDataContext({ sharedCanvasMode: policy.mode }).canvas;
-        if (!canvas.style) return;
-        canvas.style.width = policy.hiddenSize; canvas.style.height = policy.hiddenSize;
-        canvas.style.left = policy.hiddenPosition; canvas.style.top = policy.hiddenPosition;
-    } catch (error) {
-        // 初始化异常不阻止单机开村；打开榜单时由运行端记录错误并显示提示，不改成默认离屏模式。
-        console.warn("[ranking-startup] 原生画布尚未就绪");
+        if (typeof createCanvas === "function") wx.createCanvas = firstCanvas;
+    } catch (_) { /* 无法安装钩子时仍运行原适配器，并保留失败原因。 */ }
+    try { ${adapter} }
+    finally {
+        if (wx.createCanvas === firstCanvas) wx.createCanvas = createCanvas;
+    }
+    const captured = GameGlobal.daidaiNativeRanking;
+    if (captured.canvas) {
+        try { captured.styleRetainedAfterAdapter = captured.canvas.style === captured.style; }
+        catch (_) { captured.styleRetainedAfterAdapter = false; }
     }
 })();\n`;
-        fs.writeFileSync(path, marker + `GameGlobal.daidaiNativeResources = ${native};\n` + startup + entry);
+        fs.writeFileSync(path, marker + `GameGlobal.daidaiNativeResources = ${native};\n` + startup + entry.slice(adapter.length));
     }
 }

@@ -28,10 +28,26 @@ export interface VillageProp extends GroundPoint {
  */
 export const TOWER_VIEW = {
     // 三种塔按反馈统一从108放大到124（约15%），top同步上移15以保留原地面足点；空石圈仍约78宽。
-    // 最大占地84×34与放大后的底座一致，三种塔预留相同可行走边界；不改变逻辑PADS或射程。
+    // 最大占地84×34与放大后的底座一致，三种塔共用可行走边界，实际攻击范围由 DefenseConfig 定义。
     size: 124, top: -95, canvas: 128, emptyScale: .63, footprintWidth: 84, footprintDepth: 34, facing: [1, -1, 1, -1, -1],
-    muzzle: { ARROW: { x: 92, y: 35 }, STONE: { x: 54, y: 50 }, SLOW: { x: 64, y: 32 } }
+    // 放大后的武器最高轮廓与顶栏之间预留空间。
+    hudClearance: 176, hudEdgePadding: 8,
+    // 塔脚离逻辑路边的余量含美术加宽的土路外沿及底座可见宽度。
+    roadClearance: 38, upperLeftRoadClearance: 32, upperRightRoadClearance: 33, compactLowerLeftRoadClearance: 34,
+    muzzle: { ARROW: { x: 92, y: 35 }, STONE: { x: 55, y: 59 }, SLOW: { x: 64, y: 32 } }
 } as const;
+/** 显示塔位沿用存档塔位编号。战斗索敌使用常规高度基准，短屏绘制按下方各档避让。 */
+export const TOWER_DISPLAY_PADS: readonly GroundPoint[] = PADS;
+/** 塔位按原存档编号排列，数据由五塔武器和标注轮廓对各档战场高度试排得出。
+ * y 是基准地图坐标。短屏适当收小塔身，标签字号沿用现有 HUD 参数。
+ */
+export const TOWER_SCREEN_LAYOUTS = [
+    { height: 492, friendshipSign: [645, 510], scale: .80, points: [[214,351], [538,353], [268,667], [439,533], [569,712]] },
+    { height: 523, friendshipSign: [645, 484], scale: .88, points: [[226,348], [540,356], [210,653], [401,509], [554,693]] },
+    { height: 593, friendshipSign: [575, 520], scale: .88, points: [[228,362], [543,331], [219,643], [413,531], [554,704]] },
+    { height: 650, friendshipSign: [575, 523], scale: .88, points: PADS.map(p => [p.x,p.y]) },
+    { height: 700, friendshipSign: [575, 523], scale: .88, points: [[238,360], [543,302], [193,606], [396,522], [538,720]] }
+] as const;
 /** 既有固定地图与高清母画布足底（中心、15/16 高度）。占地仅覆盖底座，屋顶/树冠可以遮住行人。 */
 function prop(id: string, frame: string, left: number, top: number, size: number, baseWidth: number, baseDepth: number): VillageProp {
     const x = left + size / 2, y = top + size * 15 / 16;
@@ -42,9 +58,8 @@ export const PATROL_PROP = "building:patrol";
 export const VILLAGE_PROPS: VillageProp[] = [
     ...[28, 92, 156, 220, 500, 564, 628, 692].map((x, i): VillageProp => ({ id: `wall:${i}`, frame: "building_palisade", x, y: 830, size: 78, footprint: null })),
     // 村名牌靠左城墙，底座落在已有墙体安全边内；牌面与火把分开，不增加通行障碍。
-    { id: "deco:village-sign", frame: "deco_village_sign", x: 178, y: 832, size: 140, footprint: null, signText: "文明里村" },
-    // 友谊路牌往上挪并靠近路边，给短屏首座箭楼预留整段攻击动作空间。
-    { id: "deco:friendship-road-sign", frame: "deco_village_sign", x: 315, y: 225, size: 120, footprint: null, signText: "友谊路" },
+    { id: "deco:village-sign", frame: "deco_village_sign", x: 153, y: 836, size: 140, footprint: null, signText: "文明里村" },
+    { id: "deco:friendship-road-sign", frame: "deco_village_sign", x: 575, y: 523, size: 120, footprint: null, signText: "友谊路" },
     // 下方圆树与左侧松树横向错开66，避免圆树树冠挡住松树前的落斧动作；仍保留原高度/尺寸。
     { id: "tree:logging", frame: "deco_tree_oak", x: 164, y: 1012, size: 90, footprint: { left: 153, top: 997, right: 175, bottom: 1012 }, canopyDetails: [
         { frame: "deco_apple_pair", x: .22, y: .37, size: .14, alpha: .85 },
@@ -71,7 +86,7 @@ export const VILLAGE_PROPS: VillageProp[] = [
     prop("building:hearth", "motion_hearth_body", 321, 891, 78, 44, 15),
     prop(PATROL_PROP, PATROL_BOOTH_FRAME, 152, 801.25, 148, 102, 43),
     prop("building:gate", "motion_gate_body", 282, 684, 156, 132, 30),
-    ...PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, TOWER_VIEW.footprintWidth, TOWER_VIEW.footprintDepth))
+    ...TOWER_DISPLAY_PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, TOWER_VIEW.footprintWidth, TOWER_VIEW.footprintDepth))
 ];
 export const farm = VILLAGE_PROPS.find(p => p.id === "building:farm")!;
 const wheel = FARM_WHEEL_FOOTPRINT, farmScale = farm.size / 128;
@@ -100,6 +115,12 @@ export const CAMP_STOPS: GroundPoint[] = [
     { x: 286, y: 952 }, { x: 430, y: 952 }, { x: 286, y: 988 }, { x: 430, y: 988 },
     { x: 286, y: 1024 }, { x: 334, y: 1024 }, { x: 382, y: 1024 }, { x: 430, y: 1024 },
     { x: 334, y: 988 }, { x: 382, y: 988 }, { x: 244, y: 984 }, { x: 472, y: 972 }
+];
+/** 夜间把城门内的八个营火席位挪到两侧，给淡紫儿集合与后拉留出空间。 */
+export const NIGHT_CAMP_STOPS = [
+    ...[[72, 852], [116, 852], [178, 860], [222, 858],
+        [68, 950], [112, 950], [156, 960], [201, 978]].map(([x, y]) => ({ x, y })),
+    ...CAMP_STOPS.slice(8)
 ];
 /** 成家后的纯视觉庆祝：两人到齐才显示 2.4 秒红心；不延迟成家存档，也不阻塞守夜。 */
 export const WEDDING = {
@@ -130,6 +151,7 @@ export const VILLAGE_STOPS = {
     ] as LoggingStop[],
     // 有意包含屋后与屋前的休息点，行人绕过墙基后会自然发生遮挡切换。
     rest: CAMP_STOPS,
+    nightRest: NIGHT_CAMP_STOPS,
     children: CAMP_STOPS,
     // 火堆下方两排供待命村民驻足。中心优先，实时排除建筑与已用站位，满员仍保留安全间距。
     waiting: Array.from({ length: 32 }, (_, i) => ({ x: 68 + 38 * (i % 16), y: i < 16 ? 1022 : 988 }))
@@ -137,5 +159,5 @@ export const VILLAGE_STOPS = {
         .sort((a, b) => b.y - a.y || Math.abs(a.x - 360) - Math.abs(b.x - 360)),
     // 篝火前的双人会合点，与所有家门/工作点共用导航和足底遮挡；不新增建筑或家庭归属。
     wedding: [{ x: 330, y: 990 }, { x: 370, y: 990 }],
-    towers: PADS.map(p => ({ x: p.x, y: p.y + 54 }))
+    towers: TOWER_DISPLAY_PADS.map(p => ({ x: p.x, y: p.y + 54 }))
 };

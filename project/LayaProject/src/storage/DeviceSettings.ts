@@ -4,11 +4,33 @@ import type { StoragePort } from "./SaveStore";
 
 /** 本机声音和守夜倍速共用独立记录，新开村或清理村庄双槽时保留。 */
 const KEY = "daidai_village.device_settings";
+/** 完成过一次发射的操作记录属于设备，新开村不重新教。 */
+const PATROL_LAUNCHED_KEY = "daidai_village.patrol_launched";
 type Settings = GameState["settings"];
 
 export class DeviceSettings {
     private current: Settings | null = null;
+    private patrolLaunched: boolean | undefined;
     constructor(private storage: StoragePort) {}
+
+    get hasLaunchedPatrol() {
+        if (this.patrolLaunched === undefined) {
+            try { this.patrolLaunched = this.storage.read(PATROL_LAUNCHED_KEY) === "1"; }
+            catch (error) {
+                this.patrolLaunched = false;
+                console.warn("[淡紫儿] 读取首发记录失败", error);
+            }
+        }
+        return this.patrolLaunched === true;
+    }
+
+    markPatrolLaunched() {
+        if (this.hasLaunchedPatrol) return;
+        // 发射已经成功，设备标记写入失败时不反转战斗操作。
+        this.patrolLaunched = true;
+        try { this.storage.write(PATROL_LAUNCHED_KEY, "1"); }
+        catch (error) { console.warn("[淡紫儿] 保存首发记录失败", error); }
+    }
 
     resolve(previous: Settings): Settings {
         if (!this.current) {

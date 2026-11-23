@@ -4,6 +4,14 @@ export const FEEDBACK = {
     flashSeconds: .14, flashColor: '#ff6560',
     // 视觉接触后短促衰减，位移是 720 画布像素。身体和挂件使用同一偏移，足点及阴影固定。
     hitShake: { seconds: .10, pixels: 4.2, cycles: 1.5 },
+    // 淡紫落地对实际命中的怪单独加重反馈，720 画布像素，不参与塔弹或伤害计算。
+    patrolHit: { seconds: .26, shakeSeconds: .19, pixels: 13, cycles: 2, frameSizeScale: 1.48,
+        // 旋甩落地的径向回弹，约一帧起动后向外到顶，再回到站位。数值是屏幕逻辑像素。
+        recoilSeconds: .28, recoilPeak: .075, commonRecoil: 26, bossRecoil: 14 },
+    // 淡紫旋甩直接击杀才会翻转一周。按评审提高升空高度和弹开距离，并延长滞空给玩家看清落地。
+    // 距离和高度为屏幕逻辑像素，秒数仅影响死亡演出和等待演出结束的结算。
+    patrolDeath: { airSeconds: .78, bossAirSeconds: .85, distance: 88, bossDistance: 52, lift: 120,
+        bossLift: 83, turns: 1, squashSeconds: .09, holdSeconds: .18, fadeSeconds: .30, scaleY: .27 },
     // 用户指定压扁后完整停留0.5秒；两端各用短过渡。可暂停的实际表现秒，不随守夜倍速缩短，不参与结算。
     death: { squashSeconds: .12, scaleY: .22, holdSeconds: .5, fadeSeconds: .24 },
     // 让落点上的弹体至少停留一个30FPS画面；同帧refresh不会提前删掉接触姿态，不改变伤害时点。

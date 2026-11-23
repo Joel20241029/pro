@@ -12,6 +12,23 @@ export const PATROL = {
     squad: { maxActive: 12, damage: 16, speeds: [19, 21.5, 24.5, 27], lanes: [-.30, .30, -.10, .10] },
     // 走过城门前这段逻辑距离后展到目标车道，沿用单人的道路约束。
     spreadDistance: 55,
+    // 双人旋转按战斗步推进。冷却来自补员，后期每级仍加伤害，补员趋近保底时间。
+    spin: {
+        name: "淡紫儿飞速旋转",
+        damageGrowth: .16, earlyDamageGrowth: .24,
+        // 以两人到位为准，从开战或前一组落地开始计时。首级 4.5 秒，队长或升级可缩短。
+        interval: 4.5, intervalGrowth: .16, intervalFloor: 3.2, minimum: 2.8,
+        // 落地按足点判断圈内所有活怪。半径为地图参考像素，调整会改变命中范围。
+        radius: 90,
+        // 门内集合点与之家入口用地图参考像素。集合步速独立于旧版撞怪出征。
+        house: { x: 226, y: 940 }, houseExit: { x: 274, y: 945 }, center: { x: 360, y: 910 },
+        exitOffset: 9, shoulder: 43, orbitDepth: 19, walkSpeeds: [72, 78, 82, 87],
+        flight: 1.7, flightByDistance: .55,
+        // 地图参考坐标横跨战场与村内。拖拽用 GameLayout 投影，伤害始终在参考坐标计算。
+        map: { width: 720, top: 140, bottom: 1038 },
+        // 新玩法启用的夜战从第 13 波加 3% 普通来敌生命，到第 30 波过渡为 5%。
+        pressure: { from: 13, full: 30, start: .03, maximum: .05 }
+    },
     /** 前十二波维持原难度；新增单位在基线出场窗口内分散，首领数值不变。 */
     pressure: { firstDay: 13, secondDay: 25, kinds: ["enemy_runner", "enemy_armored"] }
 } as const;

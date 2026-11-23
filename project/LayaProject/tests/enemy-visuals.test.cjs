@@ -69,7 +69,7 @@ test('patrol uses arrow impact frames and keeps their size as the target moves, 
  assert(height<0);assert.equal(impact.x,node.pivotX+body.x);
  visual.draw(kind,0,0,true,false,{scaleY:.22,alpha:1},0,undefined,undefined,false,undefined,false,.11);
  assert(Math.abs(offset()-height*.22)<1e-9);assert.equal(impact.texture,'fx_impact_arrow_3');
- assert(Math.abs(node.scaleY*impact.scaleY*impact.width-TOWER_IMPACT.ARROW.size)<1e-9);
+ assert(Math.abs(node.scaleY*impact.scaleY*impact.width-TOWER_IMPACT.ARROW.size*1.48)<1e-9);
  visual.draw(kind,0,0,true);
  assert(!impact.visible);assert.equal(node.children.filter(child=>child.name==='PatrolImpact').length,1);
 });

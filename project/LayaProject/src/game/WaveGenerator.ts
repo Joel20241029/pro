@@ -43,12 +43,12 @@ export function generateWave(s: GameState): Wave {
     const entries = kinds.map((kind, i) => {
         const last = kinds.length - 1;
         const groupStart = grouped ? Math.floor(i / WAVE.groupSize) * WAVE.groupSize : i;
-        const groupTick = waveArrivalTick(groupStart, kinds.length, difficulty.spawnTicks);
-        const evenTick = waveArrivalTick(i, kinds.length, difficulty.spawnTicks);
-        const tick = i === last ? difficulty.spawnTicks : Math.floor(groupTick + (evenTick - groupTick) * WAVE.groupStagger);
+        const groupTick = waveArrivalTick(groupStart, kinds.length, difficulty.baseSpawnTicks);
+        const evenTick = waveArrivalTick(i, kinds.length, difficulty.baseSpawnTicks);
+        const tick = i === last ? difficulty.spawnTicks : Math.floor(groupTick + (evenTick - groupTick) * WAVE.groupStagger) * difficulty.arrivalScale;
         return { kind, appearanceSeed: appearanceSeed(APPEARANCE_DOMAIN.wave, s.rng.world, s.day, i), tick };
     });
     const budget = entries.reduce((sum, { kind }) => sum + ENEMIES[kind].cost, 0);
     s.rng.world = rng.state;
-    return { budget, affix, tier: s.tier, entries, ordinaryHealthPercent: WAVE_PROGRESSION.ordinaryHealthPercent, rhythm: WAVE_RHYTHM.nightly };
+    return { budget, affix, tier: s.tier, entries, ordinaryHealthPercent: WAVE_PROGRESSION.ordinaryHealthPercent, rhythm: WAVE_RHYTHM.extended };
 }

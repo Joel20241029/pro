@@ -5,6 +5,7 @@ const read = name => require(path.join(process.env.DAIDAI_TEST_BUILD, name));
 const { createGame, applyCommand } = read('game/VillageRules');
 const { BattleSimulation } = read('game/BattleSimulation');
 const { enemyPoint, roadFootprintBounds, PATH_LENGTH } = read('game/BattleRoad');
+const { lanePoint } = read('game/SummonCharge');
 const { generateWave } = read('game/WaveGenerator');
 const { GameSession } = read('game/GameSession');
 const { SaveStore } = read('storage/SaveStore');
@@ -84,13 +85,20 @@ test('20 units gather without stepping and follow the curved road to its end; a 
 
 test('swept collisions consume exactly one summon per living enemy, with a cap of twenty', () => {
     const b = battle();
-    // 让 21 个靶子都在冲锋能走过的中间带，独立验证 20 个召唤的消耗上限。
-    const candidates = Array.from({ length: 180 }, (_, i) => enemy(i, 25));
-    const bounds = roadFootprintBounds(enemyPoint(candidates[0]).y, candidates[0].kind);
-    const middle = (bounds.left + bounds.right) / 2;
-    b.enemies = candidates.filter(target => Math.abs(enemyPoint(target).x - middle) < 8).slice(0, 21);
-    assert.equal(b.enemies.length, 21);
     gathered(b);
+    // 沿各召唤者实际冲锋轨迹放置可命中的靶子，再加一只以验证消耗上限。
+    const used = new Set();
+    b.enemies = b.summonCharge.villagers.map(unit => {
+        const progress = unit.progress - 25;
+        const at = lanePoint(progress, unit.lane);
+        const target = Array.from({ length: 100 }, (_, seq) => enemy(seq, progress))
+            .filter(candidate => !used.has(candidate.seq))
+            .sort((a, b) => Math.abs(enemyPoint(a).x - at.x) - Math.abs(enemyPoint(b).x - at.x))[0];
+        used.add(target.seq);
+        return target;
+    });
+    b.enemies.push(enemy(999, 25));
+    assert.equal(b.enemies.length, 21);
     const hits = [];
     for (let i = 0; i < SUMMON_CHARGE.maxTicks && !b.outcome; i++) {
         b.step();

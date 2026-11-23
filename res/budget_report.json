@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-20T10:21:30.735Z",
-  "runtimeAssetCount": 571,
+  "generatedAt": "2026-11-21T16:32:09.329Z",
+  "runtimeAssetCount": 572,
   "reserveAssetCount": 134,
   "animationCount": 74,
   "animationFrames": 448,
@@ -19,7 +19,7 @@
     },
     "characters": {
       "count": 255,
-      "bytes": 4360390,
+      "bytes": 4416380,
       "runtime": 255,
       "reserve": 0
     },
@@ -36,9 +36,9 @@
       "reserve": 0
     },
     "effects": {
-      "count": 48,
-      "bytes": 181865,
-      "runtime": 43,
+      "count": 49,
+      "bytes": 207311,
+      "runtime": 44,
       "reserve": 5
     },
     "decorations": {
@@ -55,13 +55,13 @@
     },
     "ui/buttons": {
       "count": 2,
-      "bytes": 7307,
+      "bytes": 8348,
       "runtime": 2,
       "reserve": 0
     },
     "terrain": {
       "count": 4,
-      "bytes": 751412,
+      "bytes": 775756,
       "runtime": 1,
       "reserve": 3
     }
@@ -71,10 +71,20 @@
       "id": "ui_0",
       "path": "atlases/ui_0.png",
       "runtimeFile": "ui/ui_0.png",
-      "width": 1020,
-      "height": 1024,
-      "bytes": 403509,
-      "sha256": "6f036c45b75ceb6adb23a561e87370e306944e2ec7543e12e08ed6bcfd5bb085",
+      "width": 1024,
+      "height": 958,
+      "bytes": 384295,
+      "sha256": "630527b9bee525e4d0e8a9b0c138ed7665dabc09714f871db17491655f34eac4",
+      "group": "ui"
+    },
+    {
+      "id": "ui_1",
+      "path": "atlases/ui_1.png",
+      "runtimeFile": "ui/ui_1.png",
+      "width": 88,
+      "height": 163,
+      "bytes": 24167,
+      "sha256": "f7a2b5b5681fe7887bf63bf91c40483255f22528685cebe20218e1f57541b9d1",
       "group": "ui"
     },
     {
@@ -83,8 +93,8 @@
       "runtimeFile": "map/terrain_0.jpg",
       "width": 1126,
       "height": 1406,
-      "bytes": 252626,
-      "sha256": "2e03aa1f5eb4fa45f51fb599cabdf9d2c7c53d08808560cdfbd7bb740aee89d3",
+      "bytes": 247490,
+      "sha256": "febe91cef23c5c3e49d609579ae0dafb79f3db6e4a29d558232acd3301991560",
       "group": "terrain"
     },
     {
@@ -111,30 +121,30 @@
       "id": "characters_0",
       "path": "atlases/characters_0.png",
       "runtimeFile": "characters/characters_0.png",
-      "width": 1022,
+      "width": 1021,
       "height": 1024,
-      "bytes": 1405049,
-      "sha256": "6aa294a92bd5f23027f12c2156c13e415c16e8257cd6dddd7ab2bba356cf31fc",
+      "bytes": 1440291,
+      "sha256": "df2cd4ebe2d2aca4e153c2e30b9d69cb241e63074b4f68b35b278bd3dcdf8acf",
       "group": "characters"
     },
     {
       "id": "characters_1",
       "path": "atlases/characters_1.png",
       "runtimeFile": "characters/characters_1.png",
-      "width": 1012,
-      "height": 1021,
-      "bytes": 1540203,
-      "sha256": "2ea100613d7f99eaa8d90d341cd14b061cbcd79a5370b5e838d1e5783f36ddeb",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 1506581,
+      "sha256": "5cbc0582609f22d90c452be2a39828098dc9eab76f35cfdac5501a7c0d517a3e",
       "group": "characters"
     },
     {
       "id": "characters_2",
       "path": "atlases/characters_2.png",
       "runtimeFile": "characters/characters_2.png",
-      "width": 703,
-      "height": 1024,
-      "bytes": 929948,
-      "sha256": "0c53986e0d6cf9a5c25a090d1b7f6aff3f766719c712a27cda0a8b820eb376fc",
+      "width": 746,
+      "height": 1020,
+      "bytes": 1071864,
+      "sha256": "bf77ba2e5c944472d433b41be8b0a34b16db4b345895fbfd9055efe715d4d318",
       "group": "characters"
     },
     {
@@ -171,18 +181,18 @@
       "id": "night_effects_0",
       "path": "atlases/night_effects_0.png",
       "runtimeFile": "effects/night_effects_0.png",
-      "width": 768,
-      "height": 333,
-      "bytes": 137536,
-      "sha256": "f4cf72e2572e76f665d05ed1e7e81de61fc6f4b5a4789f36eab24995844f698a",
+      "width": 895,
+      "height": 332,
+      "bytes": 157443,
+      "sha256": "f41b908e981b044682b0c97bb9f0bc6ed35d810070d707224ec89e87f4104ed1",
       "group": "night_effects"
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 10941772,
-    "atlasContentPixels": 6772141,
-    "savedContentPixels": 4169631,
-    "savedContentPercent": 38.11,
+    "sourceCanvasPixels": 10955852,
+    "atlasContentPixels": 6813807,
+    "savedContentPixels": 4142045,
+    "savedContentPercent": 37.81,
     "trimmedAssetCount": 546,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
@@ -190,14 +200,15 @@
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "atlasImageBytes": 7039964,
-    "metadataBytes": 161896,
+    "atlasImageBytes": 7203224,
+    "metadataBytes": 162459,
     "audioBytes": 164243,
-    "totalBytes": 7366103,
+    "totalBytes": 7529926,
     "files": [
       "bundles/map/frames.bin",
       "bundles/characters/animations.bin",
       "bundles/ui/ui_0.png",
+      "bundles/ui/ui_1.png",
       "bundles/map/terrain_0.jpg",
       "bundles/map/map_0.png",
       "bundles/buildings/buildings_0.png",
@@ -234,8 +245,8 @@
   },
   "sourceBytes": 49652112,
   "budgetComparison": {
-    "villageAtlasImageBytes": 5576321,
-    "nightAtlasImageBytes": 1463643
+    "villageAtlasImageBytes": 5719674,
+    "nightAtlasImageBytes": 1483550
   },
   "limitations": [
     "Atlas content-pixel savings are not identical to PNG byte savings",

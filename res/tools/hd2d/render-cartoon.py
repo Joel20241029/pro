@@ -7,7 +7,7 @@ import math
 import random
 import re
 
-from PIL import Image, ImageDraw, ImageFont, ImageOps
+from PIL import Image, ImageColor, ImageDraw, ImageFont, ImageOps
 
 from simple_actors import SimpleActors
 
@@ -119,13 +119,23 @@ def rounded_panel(name, size):
     out = blank(size)
     d = ImageDraw.Draw(out)
     if name.startswith('button_'):
-        warm = name == 'button_heart_round'
-        face = '#bd5b42' if warm else '#c84a70'
-        deep = '#853e35' if warm else '#8b3b58'
-        bright = '#f8a581' if warm else '#f295a9'
-        for inset, color in [(4, deep), (12, '#deb17f'), (19, '#ffe6bc'), (30, deep), (39, face)]:
-            d.ellipse((inset, inset, w-1-inset, h-1-inset), fill=color)
-        d.arc((54, 53, w-54, h-42), 200, 340, fill=bright, width=8)
+        # Reuse the 384px round-button canvases; icons and labels are still runtime layers.
+        deep, rim, top, bottom = (
+            ('#533d79', '#75609f', '#cfc3f4', '#8a64c1') if name == 'button_heart_round'
+            else ('#773349', '#973f61', '#f8b7c4', '#c14c78')
+        )
+        d.ellipse((4, 23, w - 5, h - 4), fill=deep)
+        d.ellipse((4, 4, w - 5, h - 21), fill=rim)
+        face = blank(size)
+        start, end = ImageColor.getrgb(top), ImageColor.getrgb(bottom)
+        for y in range(h):
+            t = min(1, max(0, (y / h - .04) / .85))
+            ImageDraw.Draw(face).line((0, y, w, y), fill=tuple(round(x + (z - x) * t) for x, z in zip(start, end)) + (255,))
+        shape = Image.new('L', size)
+        ImageDraw.Draw(shape).ellipse((16, 16, w - 17, h - 33), fill=255)
+        out.paste(face, (0, 0), shape)
+        d.arc((37, 34, w - 40, h - 54), 207, 294, fill='#fff4df', width=9)
+        d.ellipse((w - 94, 92, w - 75, 111), fill='#fff4df')
         return out
     # Source radii fit inside the existing nine-slice corners at all button sizes.
     styles = {
@@ -551,7 +561,7 @@ def terrain(size):
     left,right=[],[]
     for y in range(wall+1):
         a,b=limits(top+(gate-top)*y/wall)
-        left.append((round(a),y));right.append((round(b),y))
+        left.append((a,y));right.append((b,y))
     for y in range(wall+1,wall+94):
         t=(y-wall)/94
         a,b=limits(gate)
@@ -561,9 +571,15 @@ def terrain(size):
     for x,y,rx,ry in [(w-108,486,92,38),(116,702,104,37),(w*.48,1162,132,42),(w*.81,1280,120,42)]:
         ellipse(d,x,y,rx,ry,fill='#bdad75')
         ellipse(d,x-5,y-3,rx*.88,ry*.8,fill='#c8ba83')
-    d.polygon(left+right[::-1],fill='#edb45a')
-    lim=860
-    d.polygon([(x+7,y) for x,y in left[:lim]]+[(x-7,y) for x,y in reversed(right[:lim])],fill='#ffd37b')
+    def paint_road(points, color):
+        # Supersample the soil edge so the curved shoulder stays smooth after atlas compression.
+        samples = 4
+        mask = Image.new('L', (w * samples, h * samples), 0)
+        ImageDraw.Draw(mask).polygon([(round(x * samples), round(y * samples)) for x, y in points], fill=255)
+        out.paste(color, (0, 0, w, h), mask.resize(size, SCALE))
+    paint_road(left + right[::-1], '#edb45a')
+    lim = 860
+    paint_road([(x+7,y) for x,y in left[:lim]]+[(x-7,y) for x,y in reversed(right[:lim])], '#ffd37b')
     d.rectangle((0,wall-12,w,wall+26),fill='#ffcc73')
     d.line((0,wall+26,w,wall+26),fill='#e4ab54',width=3)
     for _ in range(380):
@@ -716,7 +732,8 @@ def main():
     recipe=json.loads(RECIPE.read_text())
     apply_motion_quality(recipe)
     registration=json.loads((SOURCE/'registration.json').read_text())
-    active=[a for a in recipe['assets'] if a['runtime']]
+    # The approved hit lettering is a standalone authored image, outside the cartoon contact sheets.
+    active=[a for a in recipe['assets'] if a['runtime'] and a['id'] != 'fx_patrol_bang']
     if set(registration)!=set(a['id'] for a in active):
         raise ValueError('active recipe and geometry registration must match')
     RASTER.mkdir(exist_ok=True)
@@ -741,7 +758,8 @@ def main():
         a.update(sourceSheet=path,sourceRect=rect,sourceCropWithinCell=rect,resizeMode='stretch',fitPadding=0)
         if 'alphaCutoff' in a:
             del a['alphaCutoff']
-        renderer=Path(__file__).with_name('simple_actors.py') if a['category'] in ('characters','enemies','enemy-parts') else artwork_hash_input()
+        renderer = Path(__file__).with_name('cartoon_labor.py') if '_work_' in a['id'] else (
+            Path(__file__).with_name('simple_actors.py') if a['category'] in ('characters','enemies','enemy-parts') else artwork_hash_input())
         a['provenance'].update(source=master.relative_to(ROOT).as_posix(),sourceHash=digest(master),outputHash=digest(f),renderer=renderer.relative_to(ROOT).as_posix())
         proofs[a['id']]={'sha256':digest(f),'master':a['provenance']['source'],'size':image.size}
         count+=1

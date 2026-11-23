@@ -1,8 +1,9 @@
 import { BattleSimulation, CombatFeedback, Enemy, Shot } from '../game/BattleSimulation';
 import { enemyPoint } from '../game/BattleRoad';
 import { FEEDBACK } from './config/FeedbackConfig';
-import { RULE } from '../game/GameConfig';
-interface Defeat { enemy: Enemy; fatal: Shot | null; started: number | null; }
+import { ENEMIES, RULE } from '../game/GameConfig';
+interface PatrolHop { at: number; seconds: number; dx: number; dy: number; distance: number; lift: number; }
+interface Defeat { enemy: Enemy; fatal: Shot | null; started: number | null; hop?: PatrolHop; }
 export interface ZhouLoveCue { cleared: boolean; age: number; }
 /** 独立视觉时间线。死亡快照不进入 simulation.enemies；保留统一死亡位置供迟到弹道使用。 */
 export class CombatPresentation {
@@ -21,7 +22,7 @@ export class CombatPresentation {
     private retired = new Set<number>();
     private loveTargets = new Map<number, { cleared: boolean; started: number }>();
     private burstTargets = new Map<number, number>();
-    private patrolHits = new Map<number, number>();
+    private patrolHits = new Map<number, { started: number; recoil: { dx: number; dy: number; pixels: number } | null }>();
     sync(battle: BattleSimulation | null, events: CombatFeedback[]) {
         if (battle !== this.battle || !battle) {
             this.battle = battle; this.shots.clear(); this.deaths.clear(); this.deathPositions.clear(); this.flashes.clear(); this.retired.clear();
@@ -36,12 +37,31 @@ export class CombatPresentation {
             for (const seq of this.visibleFrost) if (!active.has(seq)) this.visibleFrost.delete(seq);
         }
         for (const event of events) {
+            if (event.type === 'patrolLanding') continue;
             if (event.type === 'gate') {
                 this.deathPositions.set(event.enemy.seq, enemyPoint(event.enemy));
                 this.flashes.delete(event.enemy.seq);
                 if (!this.retired.has(event.enemy.seq)) this.deaths.set(event.enemy.seq, { enemy: event.enemy, fatal: null, started: this.clock });
             } else if (event.type === 'summon' || event.type === 'patrol') {
-                if (event.type === 'patrol') this.patrolHits.set(event.enemy.seq, this.clock);
+                if (event.type === 'patrol') {
+                    const spec = FEEDBACK.patrolHit;
+                    const boss = ENEMIES[event.enemy.kind].boss;
+                    const pixels = boss ? spec.bossRecoil : spec.commonRecoil;
+                    const angle = (event.enemy.seq % 8) * Math.PI / 4;
+                    const vector = event.dx === 0 && event.dy === 0
+                        ? { dx: Math.cos(angle), dy: Math.sin(angle) } : { dx: event.dx, dy: event.dy };
+                    const recoil = battle.patrol?.spin ? { ...vector, pixels } : null;
+                    this.patrolHits.set(event.enemy.seq, { started: this.clock, recoil });
+                    if (recoil && event.enemy.hp <= 0) {
+                        const death = FEEDBACK.patrolDeath;
+                        this.deathPositions.set(event.enemy.seq, event.at);
+                        this.deaths.set(event.enemy.seq, { enemy: event.enemy, fatal: null, started: null,
+                            hop: { ...vector, at: this.clock, seconds: boss ? death.bossAirSeconds : death.airSeconds,
+                                distance: boss ? death.bossDistance : death.distance, lift: boss ? death.bossLift : death.lift } });
+                        this.flashes.delete(event.enemy.seq);
+                        continue;
+                    }
+                }
                 this.immediateHit(event.enemy);
             } else if (event.type === 'handSpeed' || event.type === 'mercy') {
                 for (const enemy of event.hurt) {
@@ -69,6 +89,7 @@ export class CombatPresentation {
             this.flashes.set(enemy.seq, this.clock + FEEDBACK.flashSeconds);
             return;
         }
+        if (this.deaths.get(enemy.seq)?.hop) return;
         const death: Defeat = { enemy, fatal: null, started: null };
         this.deathPositions.set(enemy.seq, enemyPoint(enemy));
         this.deaths.set(enemy.seq, death);
@@ -81,14 +102,23 @@ export class CombatPresentation {
         for (const [seq, end] of this.flashes) if (end <= this.clock) this.flashes.delete(seq);
         for (const [seq, started] of this.burstTargets)
             if (this.clock - started >= FEEDBACK.impact.frameCount / FEEDBACK.impact.fps) this.burstTargets.delete(seq);
-        for (const [seq, started] of this.patrolHits)
-            if (this.clock - started >= FEEDBACK.impact.frameCount / FEEDBACK.impact.fps) this.patrolHits.delete(seq);
+        for (const [seq, hit] of this.patrolHits) {
+            const spec = FEEDBACK.patrolHit;
+            if (this.clock - hit.started >= (hit.recoil ? Math.max(spec.seconds, spec.recoilSeconds) : spec.seconds)) this.patrolHits.delete(seq);
+        }
         for (const [seq, cue] of this.loveTargets) {
             const seconds = cue.cleared ? FEEDBACK.impact.frameCount / FEEDBACK.impact.fps : FEEDBACK.loveHeal.seconds;
             if (this.clock - cue.started >= seconds) this.loveTargets.delete(seq);
         }
-        const duration = FEEDBACK.death.squashSeconds + FEEDBACK.death.holdSeconds + FEEDBACK.death.fadeSeconds;
-        for (const [seq, death] of this.deaths) if (death.started !== null && this.clock - death.started >= duration) { this.deaths.delete(seq); this.flashes.delete(seq); this.retired.add(seq); }
+        for (const [seq, death] of this.deaths) {
+            if (death.hop && death.started === null && this.clock >= death.hop.at + death.hop.seconds)
+                this.startDefeat(death, death.hop.at + death.hop.seconds);
+            const spec = death.hop ? FEEDBACK.patrolDeath : FEEDBACK.death;
+            const duration = spec.squashSeconds + spec.holdSeconds + spec.fadeSeconds;
+            if (death.started !== null && this.clock - death.started >= duration) {
+                this.deaths.delete(seq); this.flashes.delete(seq); this.retired.add(seq);
+            }
+        }
     }
     zhouLoveCue(seq: number): ZhouLoveCue | undefined {
         const cue = this.loveTargets.get(seq);
@@ -98,16 +128,49 @@ export class CombatPresentation {
         const started = this.burstTargets.get(seq);
         return started === undefined ? undefined : this.clock - started;
     }
-    get hasPatrolImpact() { return this.patrolHits.size > 0; }
+    get hasPatrolImpact() {
+        if (this.patrolHits.size) return true;
+        for (const death of this.deaths.values()) if (death.hop) return true;
+        return false;
+    }
     patrolImpactAge(seq: number) {
-        const started = this.patrolHits.get(seq);
-        return started === undefined ? undefined : this.clock - started;
+        const hit = this.patrolHits.get(seq);
+        if (!hit) return undefined;
+        const age = this.clock - hit.started;
+        return age < FEEDBACK.patrolHit.seconds ? age : undefined;
+    }
+    patrolRecoil(seq: number, verticalScale: number) {
+        const hop = this.deaths.get(seq)?.hop;
+        if (hop) {
+            const t = Math.min(1, (this.clock - hop.at) / hop.seconds);
+            const y = hop.dy * verticalScale;
+            const distance = t * t * (3 - 2 * t) * hop.distance / Math.hypot(hop.dx, y);
+            return { x: hop.dx * distance, y: y * distance };
+        }
+        const hit = this.patrolHits.get(seq), spec = FEEDBACK.patrolHit;
+        if (!hit?.recoil) return undefined;
+        const age = this.clock - hit.started;
+        if (age >= spec.recoilSeconds) return undefined;
+        const { dx, dy, pixels } = hit.recoil;
+        const y = dy * verticalScale, length = Math.hypot(dx, y);
+        const strength = age < spec.recoilPeak ? Math.sin(age / spec.recoilPeak * Math.PI / 2)
+            : (1 - (age - spec.recoilPeak) / (spec.recoilSeconds - spec.recoilPeak)) ** 2;
+        const scale = strength * pixels / length;
+        return { x: dx * scale, y: y * scale };
+    }
+    patrolAir(seq: number) {
+        const hop = this.deaths.get(seq)?.hop;
+        if (!hop) return undefined;
+        const t = (this.clock - hop.at) / hop.seconds;
+        if (t >= 1) return undefined;
+        return { lift: hop.lift * Math.sin(t * Math.PI),
+            degrees: (hop.dx < 0 ? -1 : 1) * 360 * t * FEEDBACK.patrolDeath.turns };
     }
     /** 死亡帧固定于快照；只压缩脚底以上的高度并淡出，等待致死弹体时仍保持完整身形。 */
     deathPose(seq: number): { scaleY: number; alpha: number } | undefined {
         const death = this.deaths.get(seq);
         if (!death || death.started === null) return undefined;
-        const spec = FEEDBACK.death, age = this.clock - death.started;
+        const spec = death.hop ? FEEDBACK.patrolDeath : FEEDBACK.death, age = this.clock - death.started;
         const t = Math.min(1, age / spec.squashSeconds);
         return { scaleY: 1 - (1 - spec.scaleY) * (1 - (1 - t) * (1 - t)),
             alpha: 1 - Math.max(0, Math.min(1, (age - spec.squashSeconds - spec.holdSeconds) / spec.fadeSeconds)) };
@@ -117,6 +180,13 @@ export class CombatPresentation {
         if (!event) return { x: shot.x, y: shot.y }; // 现有Shot单独预览仍使用其原始落点。
         const alive = this.battle?.enemies.find(e => e.seq === event.target);
         return alive ? enemyPoint(alive) : this.deathPositions.get(event.target) || { x: shot.x, y: shot.y };
+    }
+    /** 视觉落点使用活体或致死前的姿态快照，旁支飞来的子弹不会瞄准被压扁的残影。 */
+    targetEnemy(shot: Shot): Enemy | undefined {
+        const event = this.shots.get(shot);
+        if (!event) return undefined;
+        return this.battle?.enemies.find(enemy => enemy.seq === event.target) ??
+            this.deaths.get(event.target)?.enemy ?? event.hurt.find(enemy => enemy.seq === event.target);
     }
     impact(shot: Shot) {
         const event = this.shots.get(shot);
@@ -130,9 +200,14 @@ export class CombatPresentation {
             if (death?.fatal === shot) this.startDefeat(death);
         }
     }
-    flashing(seq: number) { return this.flashes.has(seq); }
+    flashing(seq: number) { return this.flashes.has(seq) || this.patrolImpactAge(seq) !== undefined; }
     frosted(seq: number) { return this.visibleFrost.has(seq); }
     hitShake(seq: number) {
+        const patrolAge = this.patrolImpactAge(seq);
+        if (patrolAge !== undefined && patrolAge < FEEDBACK.patrolHit.shakeSeconds) {
+            const spec = FEEDBACK.patrolHit, t = patrolAge / spec.shakeSeconds;
+            return spec.pixels * (1 - t) * Math.cos(t * Math.PI * 2 * spec.cycles);
+        }
         const end = this.flashes.get(seq);
         if (end === undefined) return 0;
         const spec = FEEDBACK.hitShake, age = this.clock - (end - FEEDBACK.flashSeconds);
@@ -152,8 +227,8 @@ export class CombatPresentation {
         for (const enemy of this.battle.enemies)
             if (enemy.hp > 0 && enemy.slowTicks > 0 && targets.includes(enemy.seq)) this.visibleFrost.add(enemy.seq);
     }
-    private startDefeat(death: { started: number | null }) {
-        death.started = this.clock;
+    private startDefeat(death: { started: number | null }, at = this.clock) {
+        death.started = at;
         this.defeatCue = true;
     }
     /** 同一渲染帧内的多杀合成一次播放请求；暂停消耗请求，不堆积待播声音。 */

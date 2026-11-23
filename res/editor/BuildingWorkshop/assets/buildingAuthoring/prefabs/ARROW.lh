@@ -75,8 +75,8 @@
                       "_$id": "17424bb5",
                       "_$type": "Sprite",
                       "name": "Muzzle",
-                      "x": 101,
-                      "y": 2,
+                      "x": 108,
+                      "y": 14,
                       "width": 0,
                       "height": 0
                     }
@@ -116,14 +116,20 @@
                       "_$id": "d5e4a279",
                       "_$type": "Sprite",
                       "name": "Muzzle",
-                      "x": 101,
-                      "y": 2,
+                      "x": 108,
+                      "y": 14,
                       "width": 0,
                       "height": 0
                     }
                   ]
                 }
-              ]
+              ],
+              "x": 64,
+              "y": 42,
+              "scaleX": 1.5,
+              "scaleY": 1.5,
+              "anchorX": 0.5,
+              "anchorY": 0.7241379310344828
             }
           ]
         },

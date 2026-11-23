@@ -70,12 +70,18 @@
                   "_$id": "7da05e6b",
                   "_$type": "Sprite",
                   "name": "Muzzle",
-                  "x": 93,
-                  "y": 11,
+                  "x": 92,
+                  "y": 0,
                   "width": 0,
                   "height": 0
                 }
-              ]
+              ],
+              "x": 64,
+              "y": 45,
+              "scaleX": 1.5,
+              "scaleY": 1.5,
+              "anchorX": 0.671875,
+              "anchorY": 0.6206896551724138
             }
           ]
         },

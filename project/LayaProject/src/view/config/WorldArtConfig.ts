@@ -15,6 +15,8 @@ export const WORLD_ART = {
     },
     // 高清牌面为256×144母画布，下方木桩不参与文字居中。
     sign: { x: .08, y: .18, width: .84, height: .22, font: 22 },
+    // 小牌文字对齐原图木板的视觉中心，字体与窄牌面的可见高度匹配。
+    friendshipSign: { x: .13, y: .135, width: .74, height: .235, font: 22 },
     // 原箭矢素材朝右上45度；显示时补偿这一角度，不改变飞行轨迹或逻辑命中。
-    arrowAngleOffset: 45
+    arrowAngleOffset: Math.atan2(81 - 20, 85 - 10) * 180 / Math.PI
 } as const;

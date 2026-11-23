@@ -6,6 +6,7 @@ import re
 from PIL import Image, ImageDraw, ImageFilter
 
 import cartoon_gait
+import cartoon_labor
 
 
 INK = "#382315"
@@ -130,24 +131,11 @@ class SimpleActors:
         box.alpha_composite(image, (round(x - image.width / 2), round(foot - ground)))
         return box, source
 
-    def labor(self, asset, key, index, direction):
-        box, source = self.place(asset, key, working=True)
-        left, top, right, bottom = box.getbbox()
-        sign = -1 if direction == "left" else 1
-        hand_x = (left + right) / 2 - sign * (right - left) * .08
-        hand_y = top + (bottom - top) * .81
-        # Profile grip stays on the near arm. The blade has its own arc and is always drawn inside the source canvas.
-        angle = (-.95, -.51, .14, .37)[index - 1]
-        length = box.width * .28
-        tip_x = hand_x + sign * math.cos(angle) * length
-        tip_y = min(hand_y + math.sin(angle) * length, self.pivot(asset)[1] - 8)
-        draw = ImageDraw.Draw(box)
-        draw.line((hand_x, hand_y, tip_x, tip_y), fill=INK, width=7)
-        draw.line((hand_x, hand_y, tip_x, tip_y), fill="#b07137", width=3)
-        draw.polygon([(tip_x-sign*5, tip_y-6), (tip_x+sign*16, tip_y-11), (tip_x+sign*13, tip_y+5), (tip_x, tip_y+7)],
-                     fill="#b8d8db", outline=INK, width=2)
-        draw.ellipse((hand_x-4, hand_y-5, hand_x+4, hand_y+4), fill="#f5bc8a", outline=INK, width=2)
-        return box, source
+    def labor(self, asset, key, index):
+        # Lock the body and foot to the first frame registration across the whole swing.
+        first_frame = asset["id"].rsplit("_", 1)[0] + "_1"
+        box, source = self.place({**asset, "id": first_frame}, key, working=True)
+        return cartoon_labor.render(box, key.removesuffix("/idle"), index - 1), source
 
     def render(self, asset):
         name = asset["id"]
@@ -181,7 +169,7 @@ class SimpleActors:
             r"(portrait_)?hd_(blue|straw|red|jade|elite_male|elite_female|child)_(work_)?(down|right|up|left)_(idle|\d+)", name).groups()
         key = f"{person}-{direction}"
         if work:
-            return self.labor(asset, f"{key}/idle", int(index), direction)
+            return self.labor(asset, f"{key}/idle", int(index))
         if portrait:
             return self.place(asset, f"{key}/idle", grounded=not portrait)
         return self.cycle(asset, key, None if index == "idle" else int(index)-1, 4 if direction == "up" else 6, direction=direction)

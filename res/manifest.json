@@ -6,6 +6,7 @@
     "bundles/map/frames.bin",
     "bundles/characters/animations.bin",
     "bundles/ui/ui_0.png",
+    "bundles/ui/ui_1.png",
     "bundles/map/terrain_0.jpg",
     "bundles/map/map_0.png",
     "bundles/buildings/buildings_0.png",
@@ -33,6 +34,7 @@
       "bundles/map/frames.bin",
       "bundles/characters/animations.bin",
       "bundles/ui/ui_0.png",
+      "bundles/ui/ui_1.png",
       "bundles/map/terrain_0.jpg",
       "bundles/map/map_0.png",
       "bundles/buildings/buildings_0.png",
@@ -60,8 +62,8 @@
     "bundles/music/tower_fire.mp3",
     "bundles/music/enemy_defeat.mp3"
   ],
-  "assetCount": 705,
-  "runtimeAssetCount": 571,
+  "assetCount": 706,
+  "runtimeAssetCount": 572,
   "reserveAssetCount": 134,
   "assets": [
     {
@@ -6493,15 +6495,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 913,
-        "y": 933,
-        "w": 97,
-        "h": 69
+        "x": 77,
+        "y": 911,
+        "w": 69,
+        "h": 97
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_blue_down_0"
     },
     {
@@ -6573,14 +6574,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_0",
+      "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 775,
-        "y": 921,
+        "x": 2,
+        "y": 620,
         "w": 69,
         "h": 99
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_blue_down_1"
     },
     {
@@ -6654,8 +6655,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 481,
-        "y": 2,
+        "x": 565,
+        "y": 512,
         "w": 69,
         "h": 98
       },
@@ -6733,8 +6734,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 2,
-        "y": 2,
+        "x": 150,
+        "y": 911,
         "w": 69,
         "h": 97
       },
@@ -6810,14 +6811,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_0",
+      "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 848,
-        "y": 921,
+        "x": 2,
+        "y": 723,
         "w": 69,
         "h": 99
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_blue_down_4"
     },
     {
@@ -6891,7 +6892,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 414,
+        "x": 566,
         "y": 410,
         "w": 69,
         "h": 98
@@ -6970,8 +6971,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 2,
-        "y": 103,
+        "x": 151,
+        "y": 810,
         "w": 69,
         "h": 97
       },
@@ -7049,11 +7050,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 742,
-        "y": 406,
-        "w": 75,
-        "h": 97
+        "x": 581,
+        "y": 2,
+        "w": 97,
+        "h": 75
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_blue_right_0"
     },
@@ -7128,8 +7130,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 180,
-        "y": 512,
+        "x": 268,
+        "y": 104,
         "w": 75,
         "h": 98
       },
@@ -7207,8 +7209,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 257,
-        "y": 614,
+        "x": 332,
+        "y": 410,
         "w": 75,
         "h": 98
       },
@@ -7286,11 +7288,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 653,
-        "y": 104,
-        "w": 75,
-        "h": 97
+        "x": 581,
+        "y": 81,
+        "w": 97,
+        "h": 75
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_blue_right_3"
     },
@@ -7365,8 +7368,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 259,
-        "y": 512,
+        "x": 337,
+        "y": 308,
         "w": 75,
         "h": 98
       },
@@ -7444,8 +7447,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 262,
-        "y": 716,
+        "x": 339,
+        "y": 206,
         "w": 75,
         "h": 98
       },
@@ -7523,11 +7526,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 623,
-        "y": 205,
-        "w": 75,
-        "h": 97
+        "x": 578,
+        "y": 160,
+        "w": 97,
+        "h": 75
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_blue_right_idle"
     },
@@ -7600,14 +7604,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 839,
-        "y": 911,
+        "x": 79,
+        "y": 608,
         "w": 70,
         "h": 97
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_blue_up_0"
     },
     {
@@ -7681,8 +7685,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 406,
-        "y": 2,
+        "x": 495,
+        "y": 206,
         "w": 71,
         "h": 98
       },
@@ -7758,14 +7762,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 837,
+        "x": 2,
         "y": 709,
         "w": 71,
         "h": 97
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_blue_up_2"
     },
     {
@@ -7839,8 +7843,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 417,
-        "y": 104,
+        "x": 492,
+        "y": 614,
         "w": 70,
         "h": 98
       },
@@ -7916,15 +7920,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 913,
-        "y": 859,
-        "w": 97,
-        "h": 70
+        "x": 77,
+        "y": 810,
+        "w": 70,
+        "h": 97
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_blue_up_idle"
     },
     {
@@ -7996,15 +7999,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 825,
-        "y": 590,
-        "w": 97,
-        "h": 74
+        "x": 2,
+        "y": 305,
+        "w": 74,
+        "h": 97
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_blue_left_0"
     },
     {
@@ -8078,8 +8080,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 341,
-        "y": 716,
+        "x": 332,
+        "y": 512,
         "w": 74,
         "h": 98
       },
@@ -8157,8 +8159,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 267,
-        "y": 920,
+        "x": 337,
+        "y": 614,
         "w": 74,
         "h": 98
       },
@@ -8234,14 +8236,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 926,
-        "y": 608,
+        "x": 2,
+        "y": 406,
         "w": 74,
         "h": 97
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_blue_left_3"
     },
     {
@@ -8315,8 +8317,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 345,
-        "y": 920,
+        "x": 410,
+        "y": 512,
         "w": 74,
         "h": 98
       },
@@ -8394,8 +8396,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 346,
-        "y": 818,
+        "x": 411,
+        "y": 410,
         "w": 74,
         "h": 98
       },
@@ -8471,14 +8473,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 759,
-        "y": 709,
+        "x": 2,
+        "y": 507,
         "w": 74,
         "h": 97
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_blue_left_idle"
     },
     {
@@ -8552,8 +8554,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 588,
-        "y": 916,
+        "x": 935,
+        "y": 810,
         "w": 84,
         "h": 97
       },
@@ -8631,8 +8633,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 179,
-        "y": 819,
+        "x": 254,
+        "y": 718,
         "w": 84,
         "h": 98
       },
@@ -8710,8 +8712,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 179,
-        "y": 921,
+        "x": 309,
+        "y": 922,
         "w": 84,
         "h": 98
       },
@@ -8789,8 +8791,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 675,
-        "y": 814,
+        "x": 935,
+        "y": 911,
         "w": 84,
         "h": 97
       },
@@ -8868,8 +8870,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 93,
-        "y": 104,
+        "x": 313,
+        "y": 820,
         "w": 84,
         "h": 98
       },
@@ -8947,8 +8949,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 159,
-        "y": 2,
+        "x": 397,
+        "y": 922,
         "w": 84,
         "h": 98
       },
@@ -9026,11 +9028,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 676,
-        "y": 915,
-        "w": 84,
-        "h": 97
+        "x": 796,
+        "y": 2,
+        "w": 97,
+        "h": 84
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_straw_down_idle"
     },
@@ -9105,7 +9108,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 329,
+        "x": 429,
         "y": 2,
         "w": 73,
         "h": 98
@@ -9184,8 +9187,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 262,
-        "y": 308,
+        "x": 342,
+        "y": 716,
         "w": 73,
         "h": 98
       },
@@ -9263,8 +9266,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 262,
-        "y": 410,
+        "x": 415,
+        "y": 614,
         "w": 73,
         "h": 98
       },
@@ -9342,7 +9345,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 338,
+        "x": 488,
         "y": 512,
         "w": 73,
         "h": 98
@@ -9421,8 +9424,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 339,
-        "y": 206,
+        "x": 489,
+        "y": 410,
         "w": 73,
         "h": 98
       },
@@ -9500,8 +9503,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 340,
-        "y": 104,
+        "x": 493,
+        "y": 308,
         "w": 73,
         "h": 98
       },
@@ -9577,14 +9580,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 763,
-        "y": 810,
+        "x": 2,
+        "y": 608,
         "w": 73,
         "h": 97
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_straw_right_idle"
     },
     {
@@ -9658,8 +9661,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 645,
-        "y": 511,
+        "x": 844,
+        "y": 816,
         "w": 87,
         "h": 97
       },
@@ -9737,8 +9740,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 2,
-        "y": 513,
+        "x": 90,
+        "y": 2,
         "w": 87,
         "h": 98
       },
@@ -9816,8 +9819,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 651,
-        "y": 409,
+        "x": 935,
+        "y": 2,
         "w": 87,
         "h": 97
       },
@@ -9895,8 +9898,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 2,
-        "y": 615,
+        "x": 90,
+        "y": 104,
         "w": 87,
         "h": 98
       },
@@ -9974,8 +9977,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 496,
-        "y": 816,
+        "x": 935,
+        "y": 103,
         "w": 87,
         "h": 97
       },
@@ -10051,15 +10054,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 912,
-        "y": 709,
-        "w": 97,
-        "h": 71
+        "x": 2,
+        "y": 810,
+        "w": 71,
+        "h": 97
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_straw_left_0"
     },
     {
@@ -10133,8 +10135,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 339,
-        "y": 308,
+        "x": 503,
+        "y": 104,
         "w": 71,
         "h": 98
       },
@@ -10212,8 +10214,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 339,
-        "y": 410,
+        "x": 506,
+        "y": 2,
         "w": 71,
         "h": 98
       },
@@ -10289,15 +10291,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 912,
-        "y": 784,
-        "w": 97,
-        "h": 71
+        "x": 2,
+        "y": 911,
+        "w": 71,
+        "h": 97
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_straw_left_3"
     },
     {
@@ -10371,8 +10372,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 414,
-        "y": 308,
+        "x": 401,
+        "y": 818,
         "w": 71,
         "h": 98
       },
@@ -10450,8 +10451,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 416,
-        "y": 206,
+        "x": 419,
+        "y": 716,
         "w": 71,
         "h": 98
       },
@@ -10527,14 +10528,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 764,
-        "y": 911,
+        "x": 77,
+        "y": 709,
         "w": 71,
         "h": 97
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_straw_left_idle"
     },
     {
@@ -10608,8 +10609,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 500,
-        "y": 917,
+        "x": 935,
+        "y": 507,
         "w": 84,
         "h": 97
       },
@@ -10685,14 +10686,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_0",
+      "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 528,
-        "y": 767,
+        "x": 2,
+        "y": 2,
         "w": 84,
         "h": 99
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_red_down_1"
     },
     {
@@ -10766,8 +10767,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 91,
-        "y": 819,
+        "x": 166,
+        "y": 718,
         "w": 84,
         "h": 98
       },
@@ -10845,8 +10846,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 587,
-        "y": 815,
+        "x": 935,
+        "y": 608,
         "w": 84,
         "h": 97
       },
@@ -10922,14 +10923,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_0",
+      "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 590,
-        "y": 870,
+        "x": 2,
+        "y": 105,
         "w": 84,
         "h": 99
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_red_down_4"
     },
     {
@@ -11003,8 +11004,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 91,
-        "y": 921,
+        "x": 225,
+        "y": 820,
         "w": 84,
         "h": 98
       },
@@ -11082,8 +11083,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 671,
-        "y": 713,
+        "x": 935,
+        "y": 709,
         "w": 84,
         "h": 97
       },
@@ -11161,8 +11162,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 742,
-        "y": 2,
+        "x": 711,
+        "y": 103,
         "w": 78,
         "h": 97
       },
@@ -11240,8 +11241,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 181,
-        "y": 104,
+        "x": 255,
+        "y": 616,
         "w": 78,
         "h": 98
       },
@@ -11319,8 +11320,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 247,
-        "y": 2,
+        "x": 255,
+        "y": 308,
         "w": 78,
         "h": 98
       },
@@ -11398,8 +11399,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 742,
-        "y": 103,
+        "x": 711,
+        "y": 204,
         "w": 78,
         "h": 97
       },
@@ -11477,8 +11478,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 180,
-        "y": 308,
+        "x": 257,
+        "y": 206,
         "w": 78,
         "h": 98
       },
@@ -11556,8 +11557,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 180,
-        "y": 410,
+        "x": 268,
+        "y": 2,
         "w": 78,
         "h": 98
       },
@@ -11635,8 +11636,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 742,
-        "y": 204,
+        "x": 711,
+        "y": 305,
         "w": 78,
         "h": 97
       },
@@ -11714,8 +11715,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 562,
-        "y": 308,
+        "x": 753,
+        "y": 817,
         "w": 87,
         "h": 97
       },
@@ -11793,11 +11794,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 2,
-        "y": 309,
-        "w": 87,
-        "h": 98
+        "x": 207,
+        "y": 926,
+        "w": 98,
+        "h": 87
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_red_up_1"
     },
@@ -11872,7 +11874,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 491,
+        "x": 790,
         "y": 715,
         "w": 87,
         "h": 97
@@ -11951,8 +11953,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 2,
-        "y": 411,
+        "x": 79,
+        "y": 208,
         "w": 87,
         "h": 98
       },
@@ -12030,8 +12032,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 579,
-        "y": 613,
+        "x": 780,
+        "y": 918,
         "w": 87,
         "h": 97
       },
@@ -12109,8 +12111,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 93,
-        "y": 614,
+        "x": 168,
+        "y": 412,
         "w": 78,
         "h": 98
       },
@@ -12188,11 +12190,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 616,
-        "y": 767,
-        "w": 78,
-        "h": 99
+        "x": 2,
+        "y": 944,
+        "w": 99,
+        "h": 78
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_red_left_1"
     },
@@ -12267,8 +12270,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 175,
-        "y": 614,
+        "x": 168,
+        "y": 514,
         "w": 78,
         "h": 98
       },
@@ -12346,8 +12349,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 180,
-        "y": 716,
+        "x": 250,
+        "y": 412,
         "w": 78,
         "h": 98
       },
@@ -12425,8 +12428,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 636,
-        "y": 669,
+        "x": 105,
+        "y": 944,
         "w": 99,
         "h": 78
       },
@@ -12505,8 +12508,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 180,
-        "y": 206,
+        "x": 250,
+        "y": 514,
         "w": 78,
         "h": 98
       },
@@ -12584,12 +12587,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 825,
-        "y": 350,
-        "w": 97,
-        "h": 78
+        "x": 711,
+        "y": 2,
+        "w": 78,
+        "h": 97
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_red_left_idle"
     },
@@ -12664,8 +12666,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 825,
-        "y": 2,
+        "x": 796,
+        "y": 90,
         "w": 97,
         "h": 83
       },
@@ -12744,8 +12746,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 93,
-        "y": 206,
+        "x": 168,
+        "y": 310,
         "w": 83,
         "h": 98
       },
@@ -12823,8 +12825,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 93,
-        "y": 308,
+        "x": 170,
+        "y": 206,
         "w": 83,
         "h": 98
       },
@@ -12902,11 +12904,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 926,
-        "y": 2,
-        "w": 83,
-        "h": 97
+        "x": 796,
+        "y": 177,
+        "w": 97,
+        "h": 83
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_jade_down_3"
     },
@@ -12981,8 +12984,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 93,
-        "y": 410,
+        "x": 181,
+        "y": 2,
         "w": 83,
         "h": 98
       },
@@ -13060,8 +13063,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 825,
-        "y": 89,
+        "x": 796,
+        "y": 264,
         "w": 97,
         "h": 83
       },
@@ -13140,11 +13143,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 926,
-        "y": 103,
-        "w": 83,
-        "h": 97
+        "x": 796,
+        "y": 351,
+        "w": 97,
+        "h": 83
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_jade_down_idle"
     },
@@ -13219,11 +13223,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 653,
-        "y": 306,
-        "w": 75,
-        "h": 97
+        "x": 570,
+        "y": 239,
+        "w": 97,
+        "h": 75
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_jade_right_0"
     },
@@ -13298,11 +13303,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 926,
-        "y": 406,
-        "w": 75,
-        "h": 97
+        "x": 570,
+        "y": 318,
+        "w": 97,
+        "h": 75
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_jade_right_1"
     },
@@ -13377,8 +13383,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 336,
-        "y": 614,
+        "x": 347,
+        "y": 104,
         "w": 75,
         "h": 98
       },
@@ -13454,15 +13460,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 825,
-        "y": 432,
-        "w": 97,
-        "h": 75
+        "x": 2,
+        "y": 2,
+        "w": 75,
+        "h": 97
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_jade_right_3"
     },
     {
@@ -13534,14 +13539,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 926,
-        "y": 507,
+        "x": 2,
+        "y": 103,
         "w": 75,
         "h": 97
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_jade_right_4"
     },
     {
@@ -13615,8 +13620,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 267,
-        "y": 818,
+        "x": 350,
+        "y": 2,
         "w": 75,
         "h": 98
       },
@@ -13692,15 +13697,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 825,
-        "y": 511,
-        "w": 97,
-        "h": 75
+        "x": 2,
+        "y": 204,
+        "w": 75,
+        "h": 97
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_jade_right_idle"
     },
     {
@@ -13774,8 +13778,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 825,
-        "y": 176,
+        "x": 796,
+        "y": 438,
         "w": 97,
         "h": 83
       },
@@ -13854,11 +13858,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 926,
-        "y": 204,
-        "w": 83,
-        "h": 97
+        "x": 711,
+        "y": 525,
+        "w": 97,
+        "h": 83
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_jade_up_1"
     },
@@ -13933,12 +13938,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 825,
-        "y": 263,
-        "w": 97,
-        "h": 83
+        "x": 796,
+        "y": 612,
+        "w": 83,
+        "h": 97
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_jade_up_2"
     },
@@ -14013,8 +14017,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 93,
-        "y": 512,
+        "x": 181,
+        "y": 104,
         "w": 83,
         "h": 98
       },
@@ -14092,11 +14096,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 926,
-        "y": 305,
-        "w": 83,
-        "h": 97
+        "x": 812,
+        "y": 525,
+        "w": 97,
+        "h": 83
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_jade_up_idle"
     },
@@ -14171,8 +14176,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 423,
-        "y": 920,
+        "x": 416,
+        "y": 308,
         "w": 73,
         "h": 98
       },
@@ -14248,14 +14253,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_0",
+      "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 698,
-        "y": 751,
+        "x": 2,
+        "y": 208,
         "w": 73,
         "h": 99
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_jade_left_1"
     },
     {
@@ -14327,15 +14332,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_0",
+      "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 775,
-        "y": 767,
-        "w": 99,
-        "h": 73
+        "x": 2,
+        "y": 311,
+        "w": 73,
+        "h": 99
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_jade_left_2"
     },
     {
@@ -14409,7 +14413,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 262,
+        "x": 418,
         "y": 206,
         "w": 73,
         "h": 98
@@ -14486,15 +14490,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_0",
+      "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 775,
-        "y": 844,
-        "w": 99,
-        "h": 73
+        "x": 2,
+        "y": 414,
+        "w": 73,
+        "h": 99
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_jade_left_4"
     },
     {
@@ -14566,14 +14569,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_0",
+      "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 698,
-        "y": 854,
+        "x": 2,
+        "y": 517,
         "w": 73,
         "h": 99
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_jade_left_5"
     },
     {
@@ -14647,7 +14650,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 263,
+        "x": 426,
         "y": 104,
         "w": 73,
         "h": 98
@@ -14726,8 +14729,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 2,
-        "y": 204,
+        "x": 152,
+        "y": 709,
         "w": 69,
         "h": 97
       },
@@ -14805,8 +14808,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 415,
-        "y": 512,
+        "x": 476,
+        "y": 818,
         "w": 69,
         "h": 98
       },
@@ -14884,8 +14887,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 487,
-        "y": 410,
+        "x": 494,
+        "y": 716,
         "w": 69,
         "h": 98
       },
@@ -14963,8 +14966,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 2,
-        "y": 305,
+        "x": 223,
+        "y": 911,
         "w": 69,
         "h": 97
       },
@@ -15042,8 +15045,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 489,
-        "y": 308,
+        "x": 566,
+        "y": 614,
         "w": 69,
         "h": 98
       },
@@ -15121,8 +15124,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 415,
-        "y": 614,
+        "x": 638,
+        "y": 512,
         "w": 69,
         "h": 98
       },
@@ -15200,8 +15203,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 2,
-        "y": 406,
+        "x": 224,
+        "y": 810,
         "w": 69,
         "h": 97
       },
@@ -15279,8 +15282,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 620,
-        "y": 2,
+        "x": 639,
+        "y": 614,
         "w": 62,
         "h": 98
       },
@@ -15358,8 +15361,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 528,
-        "y": 701,
+        "x": 901,
+        "y": 957,
         "w": 99,
         "h": 62
       },
@@ -15436,15 +15439,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_0",
+      "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 921,
-        "y": 859,
-        "w": 99,
-        "h": 62
+        "x": 2,
+        "y": 826,
+        "w": 62,
+        "h": 99
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_elite_male_right_2"
     },
     {
@@ -15518,8 +15520,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 557,
-        "y": 206,
+        "x": 623,
+        "y": 920,
         "w": 62,
         "h": 98
       },
@@ -15595,15 +15597,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_0",
+      "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 921,
-        "y": 925,
+        "x": 2,
+        "y": 929,
         "w": 99,
         "h": 62
       },
       "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_elite_male_right_4"
     },
     {
@@ -15677,8 +15679,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 2,
-        "y": 2,
+        "x": 68,
+        "y": 826,
         "w": 62,
         "h": 99
       },
@@ -15756,8 +15758,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 488,
-        "y": 512,
+        "x": 687,
+        "y": 818,
         "w": 62,
         "h": 98
       },
@@ -15835,8 +15837,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 840,
-        "y": 810,
+        "x": 639,
+        "y": 397,
         "w": 68,
         "h": 97
       },
@@ -15914,8 +15916,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 419,
-        "y": 716,
+        "x": 485,
+        "y": 920,
         "w": 68,
         "h": 98
       },
@@ -15993,8 +15995,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 2,
-        "y": 507,
+        "x": 296,
+        "y": 911,
         "w": 68,
         "h": 97
       },
@@ -16072,7 +16074,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 424,
+        "x": 549,
         "y": 818,
         "w": 68,
         "h": 98
@@ -16151,8 +16153,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 2,
-        "y": 608,
+        "x": 80,
+        "y": 305,
         "w": 68,
         "h": 97
       },
@@ -16230,8 +16232,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 2,
-        "y": 709,
+        "x": 80,
+        "y": 406,
         "w": 62,
         "h": 97
       },
@@ -16309,8 +16311,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 491,
-        "y": 104,
+        "x": 567,
+        "y": 716,
         "w": 62,
         "h": 98
       },
@@ -16388,8 +16390,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 554,
-        "y": 2,
+        "x": 557,
+        "y": 920,
         "w": 62,
         "h": 98
       },
@@ -16467,8 +16469,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 2,
-        "y": 810,
+        "x": 80,
+        "y": 507,
         "w": 62,
         "h": 97
       },
@@ -16546,8 +16548,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 491,
-        "y": 206,
+        "x": 621,
+        "y": 818,
         "w": 62,
         "h": 98
       },
@@ -16625,8 +16627,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 557,
-        "y": 104,
+        "x": 633,
+        "y": 716,
         "w": 62,
         "h": 98
       },
@@ -16704,8 +16706,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 2,
-        "y": 911,
+        "x": 146,
+        "y": 406,
         "w": 62,
         "h": 97
       },
@@ -16783,8 +16785,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 528,
-        "y": 600,
+        "x": 800,
+        "y": 567,
         "w": 104,
         "h": 97
       },
@@ -16862,7 +16864,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 692,
+        "x": 801,
         "y": 465,
         "w": 104,
         "h": 98
@@ -16941,8 +16943,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 800,
-        "y": 465,
+        "x": 692,
+        "y": 564,
         "w": 104,
         "h": 98
       },
@@ -17020,7 +17022,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 800,
+        "x": 908,
         "y": 567,
         "w": 104,
         "h": 97
@@ -17099,7 +17101,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 908,
+        "x": 909,
         "y": 465,
         "w": 104,
         "h": 98
@@ -17178,8 +17180,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 692,
-        "y": 567,
+        "x": 528,
+        "y": 600,
         "w": 104,
         "h": 98
       },
@@ -17257,8 +17259,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 908,
-        "y": 567,
+        "x": 636,
+        "y": 666,
         "w": 104,
         "h": 97
       },
@@ -17336,8 +17338,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 488,
-        "y": 614,
+        "x": 699,
+        "y": 716,
         "w": 87,
         "h": 97
       },
@@ -17415,7 +17417,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 930,
+        "x": 931,
         "y": 262,
         "w": 87,
         "h": 98
@@ -17494,8 +17496,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 2,
-        "y": 105,
+        "x": 75,
+        "y": 620,
         "w": 87,
         "h": 98
       },
@@ -17573,8 +17575,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 554,
-        "y": 512,
+        "x": 705,
+        "y": 614,
         "w": 87,
         "h": 97
       },
@@ -17652,8 +17654,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 68,
-        "y": 2,
+        "x": 75,
+        "y": 722,
         "w": 87,
         "h": 98
       },
@@ -17731,8 +17733,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 2,
-        "y": 207,
+        "x": 134,
+        "y": 824,
         "w": 87,
         "h": 98
       },
@@ -17810,8 +17812,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 560,
-        "y": 410,
+        "x": 689,
+        "y": 920,
         "w": 87,
         "h": 97
       },
@@ -17889,7 +17891,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 692,
+        "x": 801,
         "y": 364,
         "w": 105,
         "h": 97
@@ -17968,7 +17970,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 712,
+        "x": 822,
         "y": 262,
         "w": 105,
         "h": 98
@@ -18047,8 +18049,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 801,
-        "y": 364,
+        "x": 692,
+        "y": 463,
         "w": 105,
         "h": 97
       },
@@ -18126,8 +18128,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 821,
-        "y": 262,
+        "x": 692,
+        "y": 361,
         "w": 105,
         "h": 98
       },
@@ -18284,8 +18286,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 582,
-        "y": 714,
+        "x": 935,
+        "y": 204,
         "w": 85,
         "h": 97
       },
@@ -18363,8 +18365,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 2,
-        "y": 717,
+        "x": 79,
+        "y": 310,
         "w": 85,
         "h": 98
       },
@@ -18442,8 +18444,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 2,
-        "y": 819,
+        "x": 79,
+        "y": 412,
         "w": 85,
         "h": 98
       },
@@ -18521,8 +18523,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 670,
-        "y": 612,
+        "x": 935,
+        "y": 305,
         "w": 85,
         "h": 97
       },
@@ -18600,8 +18602,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 2,
-        "y": 921,
+        "x": 79,
+        "y": 514,
         "w": 85,
         "h": 98
       },
@@ -18679,8 +18681,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 91,
-        "y": 717,
+        "x": 166,
+        "y": 616,
         "w": 85,
         "h": 98
       },
@@ -18758,8 +18760,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 736,
-        "y": 510,
+        "x": 935,
+        "y": 406,
         "w": 85,
         "h": 97
       },
@@ -18837,8 +18839,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 383,
-        "y": 865,
+        "x": 482,
+        "y": 2,
         "w": 64,
         "h": 86
       },
@@ -18916,8 +18918,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 442,
-        "y": 772,
+        "x": 475,
+        "y": 381,
         "w": 64,
         "h": 86
       },
@@ -18995,12 +18997,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 406,
-        "y": 955,
-        "w": 86,
-        "h": 64
+        "x": 478,
+        "y": 287,
+        "w": 64,
+        "h": 86
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_child_down_2"
     },
@@ -19075,8 +19076,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 451,
-        "y": 862,
+        "x": 481,
+        "y": 186,
         "w": 64,
         "h": 86
       },
@@ -19154,12 +19155,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 496,
-        "y": 952,
-        "w": 86,
-        "h": 64
+        "x": 543,
+        "y": 92,
+        "w": 64,
+        "h": 86
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_child_down_4"
     },
@@ -19234,8 +19234,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 465,
-        "y": 673,
+        "x": 550,
+        "y": 2,
         "w": 64,
         "h": 86
       },
@@ -19313,8 +19313,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 510,
-        "y": 763,
+        "x": 483,
+        "y": 471,
         "w": 64,
         "h": 86
       },
@@ -19392,8 +19392,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 575,
-        "y": 96,
+        "x": 509,
+        "y": 561,
         "w": 60,
         "h": 86
       },
@@ -19471,8 +19471,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 578,
-        "y": 2,
+        "x": 551,
+        "y": 467,
         "w": 60,
         "h": 86
       },
@@ -19550,8 +19550,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 481,
-        "y": 571,
+        "x": 609,
+        "y": 366,
         "w": 60,
         "h": 86
       },
@@ -19629,8 +19629,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 494,
-        "y": 473,
+        "x": 612,
+        "y": 272,
         "w": 60,
         "h": 86
       },
@@ -19708,8 +19708,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 548,
-        "y": 375,
+        "x": 615,
+        "y": 182,
         "w": 60,
         "h": 86
       },
@@ -19787,8 +19787,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 588,
-        "y": 281,
+        "x": 677,
+        "y": 92,
         "w": 60,
         "h": 86
       },
@@ -19866,8 +19866,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 637,
-        "y": 186,
+        "x": 684,
+        "y": 2,
         "w": 60,
         "h": 86
       },
@@ -19945,8 +19945,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 519,
-        "y": 853,
+        "x": 543,
+        "y": 377,
         "w": 62,
         "h": 86
       },
@@ -20024,8 +20024,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 428,
-        "y": 481,
+        "x": 546,
+        "y": 276,
         "w": 62,
         "h": 86
       },
@@ -20103,8 +20103,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 482,
-        "y": 383,
+        "x": 549,
+        "y": 182,
         "w": 62,
         "h": 86
       },
@@ -20182,8 +20182,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 522,
-        "y": 285,
+        "x": 611,
+        "y": 92,
         "w": 62,
         "h": 86
       },
@@ -20261,8 +20261,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 571,
-        "y": 191,
+        "x": 618,
+        "y": 2,
         "w": 62,
         "h": 86
       },
@@ -20340,8 +20340,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 639,
-        "y": 92,
+        "x": 570,
+        "y": 651,
         "w": 59,
         "h": 86
       },
@@ -20417,15 +20417,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_2",
+      "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 315,
-        "y": 963,
-        "w": 87,
-        "h": 59
+        "x": 850,
+        "y": 668,
+        "w": 59,
+        "h": 87
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_child_left_1"
     },
     {
@@ -20499,8 +20498,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 642,
-        "y": 2,
+        "x": 573,
+        "y": 557,
         "w": 59,
         "h": 86
       },
@@ -20578,8 +20577,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 533,
-        "y": 661,
+        "x": 615,
+        "y": 456,
         "w": 59,
         "h": 86
       },
@@ -20657,8 +20656,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 418,
-        "y": 582,
+        "x": 480,
+        "y": 95,
         "w": 59,
         "h": 87
       },
@@ -20736,8 +20735,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 545,
-        "y": 563,
+        "x": 673,
+        "y": 362,
         "w": 59,
         "h": 86
       },
@@ -20815,8 +20814,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 558,
-        "y": 465,
+        "x": 676,
+        "y": 272,
         "w": 59,
         "h": 86
       },
@@ -20894,8 +20893,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 742,
-        "y": 305,
+        "x": 711,
+        "y": 406,
         "w": 76,
         "h": 97
       },
@@ -21050,14 +21049,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_1",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 686,
-        "y": 2,
-        "w": 52,
-        "h": 62
+        "x": 615,
+        "y": 966,
+        "w": 62,
+        "h": 52
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_baby_idle_2"
     },
     {
@@ -21129,14 +21129,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_0",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 739,
-        "y": 669,
-        "w": 52,
-        "h": 62
+        "x": 681,
+        "y": 966,
+        "w": 62,
+        "h": 52
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_baby_idle_3"
     },
     {
@@ -25127,11 +25128,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 293,
-        "y": 910,
-        "w": 81,
-        "h": 96
+        "x": 902,
+        "y": 424,
+        "w": 96,
+        "h": 81
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_food"
     },
@@ -25207,8 +25209,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 557,
-        "y": 953,
+        "x": 899,
+        "y": 676,
         "w": 86,
         "h": 69
       },
@@ -25286,11 +25288,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 652,
-        "y": 859,
-        "w": 90,
-        "h": 84
+        "x": 804,
+        "y": 845,
+        "w": 84,
+        "h": 90
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_population"
     },
@@ -25365,11 +25368,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 611,
-        "y": 764,
-        "w": 86,
-        "h": 91
+        "x": 771,
+        "y": 755,
+        "w": 91,
+        "h": 86
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_build"
     },
@@ -25444,8 +25448,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 901,
-        "y": 582,
+        "x": 902,
+        "y": 509,
         "w": 96,
         "h": 81
       },
@@ -25523,11 +25527,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 378,
-        "y": 910,
-        "w": 78,
-        "h": 96
+        "x": 902,
+        "y": 594,
+        "w": 96,
+        "h": 78
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_logging"
     },
@@ -25600,14 +25605,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_0",
+      "atlasPage": "ui_1",
       "atlasRect": {
-        "x": 652,
-        "y": 947,
+        "x": 2,
+        "y": 2,
         "w": 84,
         "h": 73
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
       "importedFrameId": "icon_family"
     },
     {
@@ -25681,8 +25686,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 782,
-        "y": 677,
+        "x": 634,
+        "y": 662,
         "w": 93,
         "h": 83
       },
@@ -25760,8 +25765,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 557,
-        "y": 860,
+        "x": 804,
+        "y": 662,
         "w": 91,
         "h": 89
       },
@@ -25837,14 +25842,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_0",
+      "atlasPage": "ui_1",
       "atlasRect": {
-        "x": 746,
-        "y": 942,
-        "w": 82,
-        "h": 76
+        "x": 2,
+        "y": 79,
+        "w": 76,
+        "h": 82
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
       "importedFrameId": "icon_stone"
     },
     {
@@ -25918,8 +25924,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 780,
-        "y": 764,
+        "x": 892,
+        "y": 834,
         "w": 87,
         "h": 87
       },
@@ -25997,8 +26003,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 522,
-        "y": 764,
+        "x": 715,
+        "y": 845,
         "w": 85,
         "h": 92
       },
@@ -26076,11 +26082,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 701,
-        "y": 722,
-        "w": 75,
-        "h": 88
+        "x": 866,
+        "y": 755,
+        "w": 88,
+        "h": 75
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_baby"
     },
@@ -26155,11 +26162,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 154,
-        "y": 382,
-        "w": 96,
-        "h": 66
+        "x": 522,
+        "y": 758,
+        "w": 66,
+        "h": 96
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_view"
     },
@@ -26234,8 +26242,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 193,
-        "y": 918,
+        "x": 902,
+        "y": 337,
         "w": 96,
         "h": 83
       },
@@ -26313,8 +26321,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 460,
-        "y": 910,
+        "x": 522,
+        "y": 858,
         "w": 93,
         "h": 94
       },
@@ -26392,8 +26400,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 292,
-        "y": 2,
+        "x": 168,
+        "y": 94,
         "w": 114,
         "h": 101
       },
@@ -26471,8 +26479,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 280,
-        "y": 107,
+        "x": 667,
+        "y": 89,
         "w": 93,
         "h": 88
       },
@@ -26550,8 +26558,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 410,
-        "y": 48,
+        "x": 772,
+        "y": 66,
         "w": 93,
         "h": 88
       },
@@ -26873,8 +26881,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 522,
-        "y": 458,
+        "x": 642,
+        "y": 266,
         "w": 256,
         "h": 128
       },
@@ -26959,8 +26967,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 786,
+        "x": 382,
+        "y": 262,
         "w": 256,
         "h": 128
       },
@@ -27045,8 +27053,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 262,
-        "y": 514,
+        "x": 382,
+        "y": 394,
         "w": 256,
         "h": 128
       },
@@ -27131,8 +27139,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 654,
+        "x": 642,
+        "y": 134,
         "w": 256,
         "h": 128
       },
@@ -27217,8 +27225,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 762,
-        "y": 262,
+        "x": 2,
+        "y": 764,
         "w": 256,
         "h": 192
       },
@@ -27303,8 +27311,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 458,
+        "x": 262,
+        "y": 764,
         "w": 256,
         "h": 192
       },
@@ -27389,7 +27397,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 762,
+        "x": 382,
         "y": 2,
         "w": 256,
         "h": 256
@@ -27475,8 +27483,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 522,
-        "y": 590,
+        "x": 382,
+        "y": 526,
         "w": 256,
         "h": 128
       },
@@ -27561,8 +27569,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 262,
-        "y": 778,
+        "x": 642,
+        "y": 530,
         "w": 256,
         "h": 128
       },
@@ -27647,8 +27655,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 262,
-        "y": 382,
+        "x": 642,
+        "y": 2,
         "w": 256,
         "h": 128
       },
@@ -27733,8 +27741,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 262,
-        "y": 646,
+        "x": 642,
+        "y": 398,
         "w": 256,
         "h": 128
       },
@@ -27786,13 +27794,13 @@
         "objectBox": null,
         "alphaCutoff": 16,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
-        "outputHash": "2446b5d30d5172b80f70dbe39fe69bdd918bae7a9c430f15b6e621e1328b01f9",
+        "sourceHash": "87abc5f7d838db112be5fd0f50f458b01d551abf4fa4c1566a209ac47ffe80e3",
+        "outputHash": "a0d2f47c1160290864013b79f2a3703e3eaffc9e88d890cee818453c2eb3370a",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "ui",
-      "bytes": 3677,
-      "sha256": "ba45cea2b4318a6926d7174b6d3087a7c960917e8a384d9b60c0f5b9bf291452",
+      "bytes": 4185,
+      "sha256": "adf3e963e6bfb6af72a993ee7935ed2f271d071beedb0f0c99d42985dcca3556",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 384,
@@ -27812,10 +27820,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 382,
-        "y": 2,
+        "x": 2,
+        "y": 383,
         "w": 376,
-        "h": 376
+        "h": 377
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "button_night_round"
@@ -27891,8 +27899,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 782,
-        "y": 458,
+        "x": 902,
+        "y": 2,
         "w": 115,
         "h": 128
       },
@@ -27944,13 +27952,13 @@
         "objectBox": null,
         "alphaCutoff": 16,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
-        "outputHash": "cf2c8358d668f4b2cf5fa446733fb2c67abc3bd641e381e11723a685c0d49582",
+        "sourceHash": "87abc5f7d838db112be5fd0f50f458b01d551abf4fa4c1566a209ac47ffe80e3",
+        "outputHash": "e7c94ff47b7504b40bae0bb0ad203409f1358db60aea1ae18adab2e582bbf980",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "ui",
-      "bytes": 3630,
-      "sha256": "c8d2c9feee15a8beeb137e5ac2be6311b2935388776721524c71fe6933bc684f",
+      "bytes": 4163,
+      "sha256": "15c0b1bd02b63a63ccfb34603859e3f4af96e21c53058a8e3fd13156bbcd21af",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 384,
@@ -27973,7 +27981,7 @@
         "x": 2,
         "y": 2,
         "w": 376,
-        "h": 376
+        "h": 377
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "button_heart_round"
@@ -28049,11 +28057,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 901,
-        "y": 458,
-        "w": 108,
-        "h": 120
+        "x": 902,
+        "y": 134,
+        "w": 120,
+        "h": 108
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_crowned_heart"
     },
@@ -28128,8 +28137,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 918,
+        "x": 534,
+        "y": 658,
         "w": 96,
         "h": 93
       },
@@ -28207,11 +28216,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 880,
-        "y": 667,
-        "w": 93,
-        "h": 92
+        "x": 619,
+        "y": 853,
+        "w": 92,
+        "h": 93
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_tactic_rage"
     },
@@ -28286,8 +28296,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 507,
-        "y": 66,
+        "x": 551,
+        "y": 158,
         "w": 90,
         "h": 74
       },
@@ -28365,8 +28375,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 601,
-        "y": 138,
+        "x": 198,
+        "y": 199,
         "w": 80,
         "h": 78
       },
@@ -28451,6 +28461,76 @@
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/village_effects_0.png",
       "importedFrameId": "fx_rage_orbit"
+    },
+    {
+      "id": "fx_patrol_bang",
+      "label": "淡紫儿飞速旋转命中字",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_patrol_bang.png",
+      "width": 160,
+      "height": 88,
+      "pivot": {
+        "x": 80,
+        "y": 44
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_patrol_bang.png",
+      "sourceRect": {
+        "x": 126,
+        "y": 194,
+        "w": 1263,
+        "h": 693
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 1263,
+        "h": 693
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "淡紫儿飞速旋转落地单张透明字效",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/cartoon-v1/frames/fx_patrol_bang.png",
+        "sourceHash": "fe31f4d5e1fd5870de3b0d96766027128f8f7eab7e863f5381df080cbe2982ae",
+        "outputHash": "f3cc9ddf7df641bab51da7fb1a46beddc1143123f94a80cf5718922bd3962c3f",
+        "detail": "候选确认 GIF 使用的透明漫画字源图"
+      },
+      "atlasGroup": "night_effects",
+      "bytes": 25446,
+      "sha256": "f3cc9ddf7df641bab51da7fb1a46beddc1143123f94a80cf5718922bd3962c3f",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 160,
+        "h": 88
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 160,
+        "h": 88
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "night_effects_0",
+      "atlasRect": {
+        "x": 168,
+        "y": 2,
+        "w": 160,
+        "h": 88
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
+      "importedFrameId": "fx_patrol_bang"
     },
     {
       "id": "fx_rage_up",
@@ -28840,11 +28920,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 102,
-        "y": 918,
-        "w": 87,
-        "h": 96
+        "x": 902,
+        "y": 246,
+        "w": 96,
+        "h": 87
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_tactic_shield"
     },
@@ -29000,12 +29081,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 104,
-        "y": 250,
-        "w": 48,
-        "h": 68
+        "x": 824,
+        "y": 228,
+        "w": 68,
+        "h": 48
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_shield_ring"
     },
@@ -29081,8 +29161,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 685,
-        "y": 175,
+        "x": 2,
+        "y": 226,
         "w": 80,
         "h": 78
       },
@@ -30810,8 +30890,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 674,
-        "y": 382,
+        "x": 958,
+        "y": 749,
         "w": 50,
         "h": 48
       },
@@ -30889,12 +30969,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 688,
-        "y": 91,
-        "w": 78,
-        "h": 80
+        "x": 114,
+        "y": 199,
+        "w": 80,
+        "h": 78
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_hit"
     },
@@ -30969,8 +31048,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 168,
-        "y": 103,
+        "x": 2,
+        "y": 146,
         "w": 108,
         "h": 76
       },
@@ -31048,8 +31127,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 547,
-        "y": 225,
+        "x": 856,
+        "y": 158,
         "w": 37,
         "h": 37
       },
@@ -31127,8 +31206,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 344,
-        "y": 210,
+        "x": 282,
+        "y": 244,
         "w": 63,
         "h": 62
       },
@@ -31206,12 +31285,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 411,
-        "y": 210,
-        "w": 46,
-        "h": 62
+        "x": 451,
+        "y": 235,
+        "w": 62,
+        "h": 46
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_arrow_3"
     },
@@ -31286,12 +31364,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 550,
-        "y": 144,
-        "w": 39,
-        "h": 77
+        "x": 373,
+        "y": 162,
+        "w": 77,
+        "h": 39
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_arrow_4"
     },
@@ -31366,8 +31443,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 158,
-        "y": 247,
+        "x": 286,
+        "y": 103,
         "w": 85,
         "h": 43
       },
@@ -31445,8 +31522,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 469,
-        "y": 203,
+        "x": 454,
+        "y": 166,
         "w": 74,
         "h": 65
       },
@@ -31524,8 +31601,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 254,
-        "y": 199,
+        "x": 645,
+        "y": 181,
         "w": 86,
         "h": 74
       },
@@ -31603,8 +31680,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 2,
-        "y": 241,
+        "x": 670,
+        "y": 2,
         "w": 98,
         "h": 83
       },
@@ -31682,8 +31759,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 2,
-        "y": 146,
+        "x": 456,
+        "y": 2,
         "w": 106,
         "h": 91
       },
@@ -31761,7 +31838,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 168,
+        "x": 332,
         "y": 2,
         "w": 120,
         "h": 97
@@ -32185,8 +32262,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 382,
+        "x": 382,
+        "y": 710,
         "w": 148,
         "h": 44
       },
@@ -32264,8 +32341,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 522,
-        "y": 382,
+        "x": 382,
+        "y": 662,
         "w": 148,
         "h": 44
       },
@@ -32604,21 +32681,21 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "ffd81bbbfa80c536cd3341a67c55015aa70afb6609fc8abd0331005750139bb2",
-        "outputHash": "ffd81bbbfa80c536cd3341a67c55015aa70afb6609fc8abd0331005750139bb2",
+        "sourceHash": "32b9d59d6a44d4f0793e64a642901fc6cf5bafccc5892301b2e128ecf0f704a4",
+        "outputHash": "32b9d59d6a44d4f0793e64a642901fc6cf5bafccc5892301b2e128ecf0f704a4",
         "registration": {
           "roadRows": 593,
-          "minRoadMargin": 4.85,
+          "minRoadMargin": 5.46,
           "referenceWidth": 720,
           "referenceTop": 140,
           "referenceGate": 830,
-          "corridorSha256": "e987c66bdb085031198f516fa6a22cbeec929065f5b3e151673ba088c023212b"
+          "corridorSha256": "60d66ba8ed9f20c8300842985c9b7ce90281ee6f426f55069fdae66a4a198b91"
         },
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "terrain",
-      "bytes": 287075,
-      "sha256": "bb7db33973a1e775b692f5eaec0dc00bb783c8280c3fddae0065b100f40210dd",
+      "bytes": 311419,
+      "sha256": "5085401e53900dbb5e47f3ca947f3d89ee226362de1d8e1231a3e59a60c9ec75",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 1122,
@@ -38405,8 +38482,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 378,
-        "y": 772,
+        "x": 416,
+        "y": 96,
         "w": 60,
         "h": 89
       },
@@ -38476,8 +38553,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 759,
-        "y": 611,
+        "x": 871,
+        "y": 917,
         "w": 60,
         "h": 90
       },
@@ -38547,8 +38624,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 401,
-        "y": 679,
+        "x": 418,
+        "y": 2,
         "w": 60,
         "h": 89
       },
@@ -38618,8 +38695,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 314,
-        "y": 776,
+        "x": 349,
+        "y": 194,
         "w": 60,
         "h": 90
       },
@@ -38855,12 +38932,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "962461845debbeb9502e67a49019c6e307073e15244ff947e53a079a0a46b7b2",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "20fdb3f7c9b46c360525f9a92b34337acff1c45676b5a9a252a580012bc0bfa9",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 10604,
-      "sha256": "5bf553c115c66fea5bffb86eb7fe5491e791ee19ddd227f18bb2d8ce7e7ec6e1",
+      "bytes": 11387,
+      "sha256": "d183d1c8857f7ee1357664860560cde18964a53c9e44743a42b0c6b16c4e4ae3",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
@@ -38880,9 +38957,9 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 323,
-        "y": 391,
-        "w": 70,
+        "x": 485,
+        "y": 783,
+        "w": 76,
         "h": 92
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
@@ -38934,12 +39011,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "cf5d4d019a6047a2e2e2d1cc05639ed553d5cce4545b8d968ca036735907bb6c",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "84c21edf43129bfbf9098602a08a9c5dfbc3831e3c2baa234e798d90df8e91a4",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 11274,
-      "sha256": "9bef7a7b897298c50dfe7d2f9db6e21e1bcfd55974c3919faadb8f6029315428",
+      "bytes": 11963,
+      "sha256": "d8475702908f59f51e81c27ab371fe09c9c537d4541b6d801e02fe03e5e46811",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
@@ -38959,9 +39036,9 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 254,
-        "y": 488,
-        "w": 81,
+        "x": 421,
+        "y": 588,
+        "w": 84,
         "h": 92
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
@@ -39013,20 +39090,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "fc73eb34d81f88a4ee0dddf66cba7cf6d33e242f80e4891e6b4a19c26fe02204",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "bc401ddb02c5c910274b259844eb03f45504280a19888049914b82455e90619f",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 11157,
-      "sha256": "6b797a48d1c34a63155408982c9f6463d754a1a77412af18627c765df5e55c66",
+      "bytes": 12468,
+      "sha256": "95e97676e49e2619e34982eaa340f492741a8f66b42d680a49b7a03555e296a7",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 38,
-        "y": 24
+        "x": 37,
+        "y": 23
       },
       "atlasTrim": true,
       "displaySize": {
@@ -39038,10 +39115,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 339,
-        "y": 487,
-        "w": 85,
-        "h": 91
+        "x": 408,
+        "y": 687,
+        "w": 90,
+        "h": 92
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_blue_work_right_3"
@@ -39092,12 +39169,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "79b868a178efe1df2255ff0d87e549242ddd5383675d7457d0009b47364c5376",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "cc0caa2e7f205304b626c95334a2b516dd198c8fde2fa88416a3e1d017ee8555",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 11364,
-      "sha256": "53b2724df714c98c94123dd3ea9871e6a5fa040870353e329a330c8f55fdd6a4",
+      "bytes": 12682,
+      "sha256": "921075c1299dc4ef87f8a94beb4dd2b08042b304eb414c2ded3f33fcbe13e979",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
@@ -39117,10 +39194,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 242,
-        "y": 585,
-        "w": 83,
-        "h": 92
+        "x": 323,
+        "y": 706,
+        "w": 81,
+        "h": 95
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_blue_work_right_4"
@@ -39171,19 +39248,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "a102b3d3bc1142b2ed4b43a273208eb16a77fa3f10d0b9b42bbb9a83d017a346",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "093715177557eb7e64ddd737a3bc929e64560c800545726ca6294aa80c374f58",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 10988,
-      "sha256": "60a57f2d8b52f57e041f802e733f7aadadf0e5696921556b656fe27c59d4fde3",
+      "bytes": 11643,
+      "sha256": "0ee2b4234354d892cf00007d96772f88778836e1715421fa7d6f872b0b7f8220",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 38,
+        "x": 32,
         "y": 22
       },
       "atlasTrim": true,
@@ -39196,9 +39273,9 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 250,
-        "y": 391,
-        "w": 69,
+        "x": 404,
+        "y": 491,
+        "w": 75,
         "h": 93
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
@@ -39250,19 +39327,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "f4b8e17d8b526e4732fd4ebb3ae38be4a4bef388cb8035e16900e285101fac00",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "8ff18e36262cb0561165678c4fa017bcd4ef0fe1848bf5252bafdf65d27c57f9",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 11530,
-      "sha256": "0e234ebc77f5f10fe3cb710d0f30fd4789e70dc3b97138cebfd284b55392a987",
+      "bytes": 12178,
+      "sha256": "e45c035281a837b14409b0c0851536ccaf518b68cdf0d1b2e6da714a271c5cfc",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 26,
+        "x": 23,
         "y": 22
       },
       "atlasTrim": true,
@@ -39275,9 +39352,9 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 164,
-        "y": 294,
-        "w": 81,
+        "x": 333,
+        "y": 590,
+        "w": 84,
         "h": 93
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
@@ -39329,20 +39406,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "eeb77f44e886fdd9e4b7f8b08016e72a25df5cf7cc5bdb52c60ec78545194877",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "210a4a92ac8868332b2210784c046f6f94cf2ca8f19db16a565f8b550a69aeea",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 11272,
-      "sha256": "19de67b4080bf0a72d5ad84aab1c17c4e24bc32f0c5022ad562c76d457dfc004",
+      "bytes": 12641,
+      "sha256": "83c7a9358289e9780b7d56d01511bcc7bc858bb69aede5696597dcd2b51bd676",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 21,
-        "y": 24
+        "x": 17,
+        "y": 22
       },
       "atlasTrim": true,
       "displaySize": {
@@ -39354,10 +39431,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 329,
-        "y": 584,
-        "w": 85,
-        "h": 91
+        "x": 381,
+        "y": 394,
+        "w": 90,
+        "h": 93
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_blue_work_left_3"
@@ -39408,19 +39485,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "42fc2506253d00ecd8d6d3cfb2c7053f95a289c072286235602820ae423335fa",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "8ddff1e76683aa3ae0f4033c9e2dd39d75e07b3188a76460d1305d7e5265e748",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 11504,
-      "sha256": "ac0b92d5f4d37e21d509b9ce832bd59c390eec38ebb51da5c8d3169d49afe92d",
+      "bytes": 12785,
+      "sha256": "af0a5de843536350fa21fc8a7b9c4cd2c0c6daca72bbee1f0af0ab5254d39cd1",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 24,
+        "x": 26,
         "y": 22
       },
       "atlasTrim": true,
@@ -39433,10 +39510,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 163,
-        "y": 391,
-        "w": 83,
-        "h": 93
+        "x": 153,
+        "y": 607,
+        "w": 81,
+        "h": 96
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_blue_work_left_4"
@@ -39487,12 +39564,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "e49b6b4668f668885f56a093075cf58557eeb63279910447232737873fef6407",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "15a07ecf6ba05e6960874be793cd290afdf13ebc1cbd5f260d7cfdb138c3432a",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 13619,
-      "sha256": "b9671beb3a3803b527e9364f2a10f63fd9408b3febc70262d9f413e9fc313ff0",
+      "bytes": 14574,
+      "sha256": "8e7c8be30bdd592c52a21705df1e0fd5de73fff8542be215178099d5589fd433",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
@@ -39512,9 +39589,9 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 165,
-        "y": 606,
-        "w": 73,
+        "x": 299,
+        "y": 394,
+        "w": 78,
         "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
@@ -39566,12 +39643,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "c36a62b9c6f59ff615e38a8222c8cdd744eeb555abb7150198aa0e066580ef78",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "90ec9e3e45412b2cf3d122e79db3f40bb012f7a0670bb418b8fa3aa375a02e18",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 13942,
-      "sha256": "8034e1771d2a3420d612e1658ba0eff1e9060335916a618c53ff13635ea999c2",
+      "bytes": 14890,
+      "sha256": "062b8ec1b110abf0480f74229aae31f5c492af774927e44ad7d9975b7f3a9f5b",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
@@ -39579,7 +39656,7 @@
       },
       "trimOffset": {
         "x": 50,
-        "y": 35
+        "y": 34
       },
       "atlasTrim": true,
       "displaySize": {
@@ -39591,10 +39668,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 147,
-        "y": 2,
-        "w": 87,
-        "h": 93
+        "x": 175,
+        "y": 100,
+        "w": 86,
+        "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_straw_work_right_2"
@@ -39645,20 +39722,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "b1fae4cedbd089cf53387662e90190b3c2f1b766f394dd6e8a56f44b436cbe64",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "281de4c9e2ad6d2bd9654feaea80d7b8c5207badd07e0cd4550257be3ad83f5f",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 13322,
-      "sha256": "ca2ad379a60bc87dd94fc9b2ef2e488e5f09dc7d403ec1a364e16a818b623073",
+      "bytes": 15307,
+      "sha256": "37bedb3563d60af5ae8b17c261cc3fd8b371ea82ca9be8438bfb4f6dd306d2b7",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 51,
-        "y": 38
+        "x": 50,
+        "y": 34
       },
       "atlasTrim": true,
       "displaySize": {
@@ -39670,12 +39747,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 342,
-        "y": 194,
-        "w": 90,
-        "h": 91
+        "x": 451,
+        "y": 903,
+        "w": 92,
+        "h": 94
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_straw_work_right_3"
     },
@@ -39725,12 +39801,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "0f35409bc8467dc0cf34147e7a506c6c91fc07c1f276f5728316b58e2df9421e",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "5fd4428b756eff5b4f57ed65fe4821f848edb998e46db2cf7e92821361bbba6f",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 13815,
-      "sha256": "1d692da336638f5b26d51ddfa03d61ca395c843f448d83a2deab54331171015a",
+      "bytes": 15514,
+      "sha256": "a812d136647372d1585ce517fedca0d1aa7238bc2d092b694429744a8dfc788b",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
@@ -39738,7 +39814,7 @@
       },
       "trimOffset": {
         "x": 50,
-        "y": 36
+        "y": 34
       },
       "atlasTrim": true,
       "displaySize": {
@@ -39750,10 +39826,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 238,
-        "y": 2,
-        "w": 89,
-        "h": 92
+        "x": 244,
+        "y": 296,
+        "w": 83,
+        "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_straw_work_right_4"
@@ -39804,19 +39880,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "928551827b5c15b9b74a1735a8b2b5230d20e8e1509c1d6c52a526fc4c902086",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "041ffe11aff448a5108148f53f0d865b9979bfd70e28db0a19e57a13016ccc54",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 13543,
-      "sha256": "ce8581ecc28c2f9e03782744fbbbe2e24a7177464cf6bb4ad9abc05437d58718",
+      "bytes": 14329,
+      "sha256": "863cf05cb4b848d90cedd79cb0e76e3f31bb3ac0ea1a35843eee9e4841d81217",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 45,
+        "x": 42,
         "y": 34
       },
       "atlasTrim": true,
@@ -39829,9 +39905,9 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 238,
-        "y": 803,
-        "w": 72,
+        "x": 331,
+        "y": 296,
+        "w": 75,
         "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
@@ -39883,20 +39959,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "0282fa16014afe65dc5ea9bec64d4d32f2600b73408b31b583a6e8a7a58e9800",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "1b01caec3a8dd772699d7d86578c801122bc693d9d075800554bcc338a3df9bb",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 13533,
-      "sha256": "af93a5fc2e40b010e5558d7ed305cfbb037726448ae51b73ac0593e21c6f5d2d",
+      "bytes": 14651,
+      "sha256": "f7bc2bb4f9572c796e8247c4a13f0a7f5f364653fd43da72839561931aa6ca49",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 32,
-        "y": 36
+        "x": 33,
+        "y": 34
       },
       "atlasTrim": true,
       "displaySize": {
@@ -39908,10 +39984,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 331,
+        "x": 176,
         "y": 2,
-        "w": 85,
-        "h": 92
+        "w": 84,
+        "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_straw_work_left_2"
@@ -39962,20 +40038,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "90a41e49ca3b83017dc56b276c4d91f310a952c7af5838d73bd21407ba9e6ac6",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "683075b7550719107ee632e4336f1b971432ec73d8b9aa8701024b5daff0f9c5",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 13027,
-      "sha256": "d61ca63e7d4b19c5cfeafbc419c958e378bc18ceeb8e178c228e3c1382f01b86",
+      "bytes": 14827,
+      "sha256": "292096e140a854306ebd929aa5e7c44f51991d5a96a18a838cb371e8674bcf69",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 26,
-        "y": 38
+        "x": 27,
+        "y": 34
       },
       "atlasTrim": true,
       "displaySize": {
@@ -39987,10 +40063,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 428,
-        "y": 289,
+        "x": 81,
+        "y": 100,
         "w": 90,
-        "h": 90
+        "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_straw_work_left_3"
@@ -40041,20 +40117,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "4b11f8cb478de24b7f652e67b04669b3e4c8fbc11c85585576fa6e7268d7c4e0",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "6fb4ab146cefe4f6bf6ae17533c52f85d8ccbb9e894963fa3413b3784b0209d4",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 13484,
-      "sha256": "123c3bf66aa031f2016424fe39a99c8e0c22c49cdb2a8d6afe0511fa727a01fc",
+      "bytes": 15024,
+      "sha256": "01d76d20a1e82c6ba672e44d2482a917825ee73f42ff33dd0b8fd2859fb02ee7",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 29,
-        "y": 36
+        "x": 36,
+        "y": 34
       },
       "atlasTrim": true,
       "displaySize": {
@@ -40066,10 +40142,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 250,
-        "y": 195,
-        "w": 88,
-        "h": 92
+        "x": 264,
+        "y": 198,
+        "w": 81,
+        "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_straw_work_left_4"
@@ -40120,12 +40196,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "a2efdf434dc40352ba614ad3d13ae704fbedd75add17cdfbf9e580f0cae45096",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "086fd963313029430a151f82a4a2a99e67bb5d0daf71c8be890478aa6ef53fc3",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 12193,
-      "sha256": "e80538c22977bf672c6fb9416a2a6a74acd9a456ff9c4b059accd510cef774b6",
+      "bytes": 13077,
+      "sha256": "a5bc5c9f00b1838414b7b133c5cfc6c9c299f1ed60b719af9bf7f8ce75e045bd",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
@@ -40145,9 +40221,9 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 163,
-        "y": 705,
-        "w": 75,
+        "x": 152,
+        "y": 296,
+        "w": 88,
         "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
@@ -40199,20 +40275,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "39ca53eb803eaec586271a37e348b3b5c2417a35e19aa1927cc0f08eda8fb5ca",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "be7137db819f21eee8f4ff2bc71eaac06593e983c026b5a964991dea265cd944",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 12319,
-      "sha256": "3d32398e959a002ea458a20e73a8f5d8a8f4b10d38eb75db99ff8fbbcfba3229",
+      "bytes": 13628,
+      "sha256": "38b9a9e8656ec2ed444c103d806694527c51d335b1a1af346f9739ccd603749c",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 35,
-        "y": 22
+        "x": 34,
+        "y": 21
       },
       "atlasTrim": true,
       "displaySize": {
@@ -40224,11 +40300,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 167,
-        "y": 488,
-        "w": 83,
-        "h": 93
+        "x": 146,
+        "y": 507,
+        "w": 94,
+        "h": 96
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_red_work_right_2"
     },
@@ -40278,20 +40355,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "def99ce3f1f745c26c1deabf5987fef1ed3cf9eb5a97f5852c2ec4f62fb2573c",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "c7e272b233c9a9cda303ac14cd49cf87eef7c5e42e4cf05b7193289754a131e7",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 12287,
-      "sha256": "90e903cda04ae0ea9ef034fd71a7ce665413c60916e66a53070053051fdbab57",
+      "bytes": 14036,
+      "sha256": "7d019a04ea217d26093f98804001c4e46aecd39acdff192111fcb3693514813e",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 36,
-        "y": 24
+        "x": 34,
+        "y": 21
       },
       "atlasTrim": true,
       "displaySize": {
@@ -40301,14 +40378,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_2",
+      "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 242,
-        "y": 681,
-        "w": 87,
-        "h": 91
+        "x": 627,
+        "y": 807,
+        "w": 94,
+        "h": 102
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_red_work_right_3"
     },
     {
@@ -40357,20 +40435,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "b0d11e703775f96bc8c6ad7fe6cca0ace3abb5fd44bd04650abad3f74873ae8f",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "b47cf51e0603b25418b76dbd6dddbce0d99d61f2d22d45460ad4091c24fb7f19",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 12541,
-      "sha256": "c8ccb52789ff53ae9bad4ed3422a1b059f230f3b60c048dc32bb06774300ec6c",
+      "bytes": 14207,
+      "sha256": "a044b80f79419a09c08c0480902c9c7d9787fe5716f766d112c88ae786a64c43",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 35,
-        "y": 22
+        "x": 34,
+        "y": 21
       },
       "atlasTrim": true,
       "displaySize": {
@@ -40380,14 +40458,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_2",
+      "atlasPage": "characters_1",
       "atlasRect": {
-        "x": 75,
-        "y": 294,
-        "w": 85,
+        "x": 105,
+        "y": 929,
+        "w": 98,
         "h": 93
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_1.png",
       "importedFrameId": "hd_red_work_right_4"
     },
     {
@@ -40436,19 +40515,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "3f7ae84cdff04941cc40913d874ecc5980b9be64c4ff70e5ef7171786951effd",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "b58f2a03cef5bfe666753fc28a1f35bb860d2486821beecd2fbe7b97e92f15fd",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 12615,
-      "sha256": "d9f15e5e1aa8dbab2523daaa85193461be6643a3e232dfb8949ae2c1bff5010b",
+      "bytes": 13389,
+      "sha256": "415b49facdbea7428206c73331e4d8c3743942a6551185b3b961796162db5064",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 34,
+        "x": 31,
         "y": 20
       },
       "atlasTrim": true,
@@ -40461,9 +40540,9 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 158,
-        "y": 808,
-        "w": 76,
+        "x": 368,
+        "y": 905,
+        "w": 79,
         "h": 95
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
@@ -40515,19 +40594,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "894fcc37040a3054aff1162fcd4ee8192db60d0649222ed5ba793c541cc59b7f",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "ce95c52d204a63cb87e85f54d0fc43f751d406c8b96e43bf3ff8968e5a254d83",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 12925,
-      "sha256": "746fa4a41f37dd5ce03faf46666d436655da450e5430c6fd45fa402350f138e9",
+      "bytes": 13972,
+      "sha256": "4a81159c691cbb024e25be9116bf3a6223b1fc96cc070cf2a7540753efb196f0",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 26,
+        "x": 22,
         "y": 20
       },
       "atlasTrim": true,
@@ -40540,9 +40619,9 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 68,
-        "y": 907,
-        "w": 84,
+        "x": 297,
+        "y": 806,
+        "w": 88,
         "h": 95
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
@@ -40594,20 +40673,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "f099d76fa7455726b3c1f41bd363a88b49c8e97c316455b42b7ac5a945f2174c",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "7fdfc38f432a37eba861ead72aaf21d10b3caa5c1bd80ba7dbe93e3fd35382e3",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 12647,
-      "sha256": "be5562301f9d9b54e70dfe4ba1d4ff2958d32b3db94fac9ec64a79c8e5c26896",
+      "bytes": 14402,
+      "sha256": "e05bc8df5347586eb7eb66700be747dee2bb9a1b69f102dd9ad9bbadfd382d7e",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 21,
-        "y": 22
+        "x": 16,
+        "y": 20
       },
       "atlasTrim": true,
       "displaySize": {
@@ -40619,10 +40698,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 75,
-        "y": 100,
-        "w": 88,
-        "h": 93
+        "x": 225,
+        "y": 707,
+        "w": 94,
+        "h": 95
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_red_work_left_3"
@@ -40673,19 +40752,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "f96f49c1e7854f7bcb5e8406fd737816aba2070ad86f8c307478580528dd481b",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "0078885be47f284b84c746da59cf24e4168504976579c16c8878db186303cbef",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 13100,
-      "sha256": "ef7639e7ee669be9a2eb3e974d24c651e19088556045a4979208c4c25b57ded6",
+      "bytes": 14505,
+      "sha256": "5e6f638530fd9b8c88d1e0fad3ae2f03698a7b08fee2f999ff7d3883cd117b8f",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 24,
+        "x": 25,
         "y": 20
       },
       "atlasTrim": true,
@@ -40696,14 +40775,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_2",
+      "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 68,
-        "y": 808,
-        "w": 86,
-        "h": 95
+        "x": 919,
+        "y": 668,
+        "w": 100,
+        "h": 85
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_red_work_left_4"
     },
     {
@@ -40752,12 +40832,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "4e659e8c04d4ffc79565fc52a058d6cfffefa16b0de4b28d1eb773522c5fce2b",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "a3b17f433774b48e0c22ffdd91808219830bb1ec031b76defdec9c49c966f6f7",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 14469,
-      "sha256": "04ae5c915a7c706dc878a7d9be0071cf3f1327b1f90807ff33f4817970ac75c4",
+      "bytes": 15250,
+      "sha256": "4e81fdfa104ab44f2dfda3f67145a239a07dbf10ddc593a161dd20d1791e2826",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
@@ -40777,12 +40857,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 2,
-        "y": 944,
-        "w": 103,
-        "h": 78
+        "x": 528,
+        "y": 914,
+        "w": 87,
+        "h": 103
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_jade_work_right_1"
     },
@@ -40832,12 +40911,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "678808f378a5382199220024c583085a30f6766560ff75ee5e11d6c456fbb80a",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "36f566c50a35cbd88693e260f268197e3a1ee8fd2c715201b83e4328d6584210",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 14792,
-      "sha256": "f397fc8e756d6f6a12479397c49f08a017f48309ce3912504e761bde52bea4c4",
+      "bytes": 15811,
+      "sha256": "e071a1d3088c33c016e8ac0c3468c677076535bb9b421c532f25ce6606054ea6",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
@@ -40857,12 +40936,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 377,
-        "y": 929,
-        "w": 103,
-        "h": 90
+        "x": 528,
+        "y": 807,
+        "w": 95,
+        "h": 103
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_jade_work_right_2"
     },
@@ -40912,20 +40990,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "0797de79fac630f96d28a84935934c5142a8b7e95c288fd895f329fae5bc0d1b",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "dc068b759637aeccd1a271aae688728f68fa0625e488b2a5e0d5d45d43e8d088",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 14895,
-      "sha256": "e46e158f54fcc8d595711ee6b7e9f70b9514d3cb9e6d13675e99670710b8749e",
+      "bytes": 16231,
+      "sha256": "3d379659e7057d3131f99f9659dcde38422fd7b9079d00363dc766a38add7f08",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 46,
-        "y": 26
+        "x": 45,
+        "y": 25
       },
       "atlasTrim": true,
       "displaySize": {
@@ -40937,10 +41015,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 800,
-        "y": 668,
-        "w": 102,
-        "h": 95
+        "x": 528,
+        "y": 702,
+        "w": 103,
+        "h": 101
       },
       "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
@@ -40992,12 +41070,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "d4e5c0d352e04ec1ad5c00540e9511d531fcf78ea56f0d5b5af8772a534be8cb",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "3ae8ef03d3cfc6b04a1082db54a4b346938febda3a4966c2fc15005d775584c8",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 15117,
-      "sha256": "61043dfc96ea933c4c02a53c52a9f32732c97c43887d0122043542964cc8fe97",
+      "bytes": 16450,
+      "sha256": "627bce3aee90f12a86605a7bde3c285a687781bb84cc7a659c8359a8673a1b25",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
@@ -41017,10 +41095,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 270,
+        "x": 382,
         "y": 929,
         "w": 103,
-        "h": 93
+        "h": 92
       },
       "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
@@ -41072,19 +41150,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "c463c59e169e145db9b49cb9a095413f0c6f8e05ab0f9ffa2d2e1ca391a21376",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "97cfadfe667480b89d0023a33bae4667e202baba76abb860b8c8929b8da1b9c4",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 13712,
-      "sha256": "7f954852c95fabdb2cb0e93a2e20e737d83ef86c4352f182a7d2f515a7b35746",
+      "bytes": 14664,
+      "sha256": "8e2a9e3ab63cc91345a8e2ad0b41681cad7d8639728219ee843ad1aa2441bf6d",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 46,
+        "x": 39,
         "y": 26
       },
       "atlasTrim": true,
@@ -41097,12 +41175,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 109,
-        "y": 944,
-        "w": 102,
-        "h": 75
+        "x": 815,
+        "y": 873,
+        "w": 82,
+        "h": 102
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_jade_work_left_1"
     },
@@ -41152,19 +41229,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "12259202399e5f78d25f15a7d1cca25e1b414317c8a24302340926c279e1969d",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "934814ac36e85fe4d615611fd78f2c97939c4506547b6bf4cfef6cbb8f9a52e4",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 14170,
-      "sha256": "cc3fc3c05b209ce42eb0aee9242d71602c8398f7023908a6a680d40ecd9eb029",
+      "bytes": 15232,
+      "sha256": "7cd20ff1de73633f78ec5e73f89a3166a95e7e8caf01f6bd050cb62684f6df23",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 32,
+        "x": 30,
         "y": 26
       },
       "atlasTrim": true,
@@ -41177,12 +41254,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 906,
-        "y": 668,
-        "w": 102,
-        "h": 89
+        "x": 725,
+        "y": 767,
+        "w": 91,
+        "h": 102
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_jade_work_left_2"
     },
@@ -41232,20 +41308,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "aad086ac74265605234cbe5334e12e0069f8d8d25f7e318881710285e5ea127d",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "117471df7a11cda1ffb95210c30e4a2d5d6e9f1965e4a13000862675160a40c6",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 14218,
-      "sha256": "7ff2639a1732f64194e351db3d5fcc246234acb97f4bb104e0473725252d2c4c",
+      "bytes": 15556,
+      "sha256": "697754dcab4a987fea20f482bfe80c65bc7624118ab816d3feda50df7f57e57c",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 27,
-        "y": 27
+        "x": 24,
+        "y": 26
       },
       "atlasTrim": true,
       "displaySize": {
@@ -41257,12 +41333,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 906,
-        "y": 761,
-        "w": 101,
-        "h": 94
+        "x": 619,
+        "y": 914,
+        "w": 97,
+        "h": 102
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_jade_work_left_3"
     },
@@ -41312,19 +41387,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "d55abc819c3f6fa419774194a9d1d57e292c8c1a9e599041f3b3664ae9ccd0ae",
-        "outputHash": "f6b46a14e49e7dbef2163cb1bf80b6a44e76377974b7ef8c929422a541966b4b",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "279785ea3cd1d91de65587b111946972a32bf54a5d624b8be96dc66b72f1e489",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 14300,
-      "sha256": "10b27bb75dfd15114da93e06dd8d9befc69109da64d7a5479f671fffb8bc3f55",
+      "bytes": 15753,
+      "sha256": "bbc9d31b1ab0ef788ac4304ac1b66a8eb6bda69f03e44aa09ce0e0798171a0d5",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 29,
+        "x": 33,
         "y": 26
       },
       "atlasTrim": true,
@@ -41337,10 +41412,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 484,
-        "y": 929,
+        "x": 744,
+        "y": 668,
         "w": 102,
-        "h": 92
+        "h": 88
       },
       "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
@@ -41392,12 +41467,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "82f7d73363f3ac02bf515043acae6887a51d4eb5116b807dcc6152e1c21d450e",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "2bfa59e552f64f87f641caf9b8ada0e1c33593890cea9f37ff12e7f355b7ae0f",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 11823,
-      "sha256": "fb9119b2acd27c954413136275f5af8dc2a997476d00fd953ade50eb836787ae",
+      "bytes": 12813,
+      "sha256": "7833bfa5e82272146d728e71bcd7b0258d194ccc4c14906e49245741e09fa242",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
@@ -41417,9 +41492,9 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 75,
-        "y": 2,
-        "w": 68,
+        "x": 244,
+        "y": 492,
+        "w": 78,
         "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
@@ -41471,12 +41546,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "e1685511f7b01dcbcd287551d6f5cb660985f2f8f37e9f7f7494fbb6a6ca5582",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "2057bcef550934cffdee454d4f7e889912e0b6826e65b0fe1610e5f577c0db03",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 12295,
-      "sha256": "ea005a87d3f077770c1562205847a3e352b57de46e2eac5dd7bb99800fc69e38",
+      "bytes": 13114,
+      "sha256": "5ac4feddf37854dad07f1da6452a726017b7793aae30aa1dfa73dc5177604938",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
@@ -41484,7 +41559,7 @@
       },
       "trimOffset": {
         "x": 55,
-        "y": 35
+        "y": 34
       },
       "atlasTrim": true,
       "displaySize": {
@@ -41496,10 +41571,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 164,
-        "y": 197,
-        "w": 82,
-        "h": 93
+        "x": 174,
+        "y": 198,
+        "w": 86,
+        "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_elite_male_work_right_2"
@@ -41550,20 +41625,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "761e2973f0117407926afbb02de2727a4cde2e69aabbb6ff154a954a1a1700cc",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "31eb9cdd54fc425e1c40f411ac456538f71915abebb35cbe880668b970705ef8",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 11852,
-      "sha256": "773386a9bb4e70254ff85f3f0e496676866ba0ce70cf4db23baf5eb4705e0556",
+      "bytes": 13465,
+      "sha256": "7a1de9ab3df83dfb9c729c86891ea0c928af910381c545e852f23257a3b5af7b",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 56,
-        "y": 37
+        "x": 55,
+        "y": 34
       },
       "atlasTrim": true,
       "displaySize": {
@@ -41575,10 +41650,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 420,
-        "y": 2,
-        "w": 87,
-        "h": 91
+        "x": 389,
+        "y": 805,
+        "w": 92,
+        "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_elite_male_work_right_3"
@@ -41629,12 +41704,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "555bcd791e4e08614ea4819892c52c9586f195c19e5f3c22f79c2134ba855554",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "d65b605d2690a60422f944c4f5fa912899e5df29f09abd76179fcbb623caafde",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 12350,
-      "sha256": "c6f7ff417b919e674b521566adf816e1c6c9ce2b80820571e1f4d3c7cba3a9a0",
+      "bytes": 13762,
+      "sha256": "e062b975f2071ed267c2b33268ef3e7ecfcbb6a4b2daaa2800788f373869f0c3",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
@@ -41642,7 +41717,7 @@
       },
       "trimOffset": {
         "x": 55,
-        "y": 35
+        "y": 34
       },
       "atlasTrim": true,
       "displaySize": {
@@ -41654,10 +41729,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 75,
-        "y": 197,
-        "w": 85,
-        "h": 93
+        "x": 212,
+        "y": 394,
+        "w": 83,
+        "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_elite_male_work_right_4"
@@ -41708,19 +41783,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "001bdc9ecef59631ed59e0328827939910bb8d9b60a529ef5856bbc92f1fa58a",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "413fa057b66b3d706e7bde49f83430363d36931d202a440ab03d815053637829",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 12042,
-      "sha256": "94f0f21892deed4408f9115c86185db8207f954fa1f30c43ab3dbb52174d3588",
+      "bytes": 12794,
+      "sha256": "3b664196ff747803c42bf494e4acfa61b3efc1cfda55979e1a16a923d9414b78",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 45,
+        "x": 39,
         "y": 34
       },
       "atlasTrim": true,
@@ -41733,9 +41808,9 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 243,
-        "y": 901,
-        "w": 68,
+        "x": 326,
+        "y": 492,
+        "w": 74,
         "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
@@ -41787,20 +41862,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "f86dd7042a751d75ca28bef2d9b3dbcf21612817d7ce515a90c09e1ad43ea48c",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "320b0bcd50edea5cedf3868d2f8578420dbb34f61d150f2aff7a09544cd94854",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 12323,
-      "sha256": "ae54829b642b621a8e03cd19bd41a3dc533209c498eee23bcf2b2213423d7ff2",
+      "bytes": 13000,
+      "sha256": "241933f0675a47e38d8d583dc2d04daf4757138f5397ff078e646afd338bc803",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 32,
-        "y": 35
+        "x": 30,
+        "y": 34
       },
       "atlasTrim": true,
       "displaySize": {
@@ -41812,10 +41887,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 249,
-        "y": 294,
-        "w": 81,
-        "h": 93
+        "x": 264,
+        "y": 2,
+        "w": 83,
+        "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_elite_male_work_left_2"
@@ -41866,20 +41941,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "c0d24ebb0ea82b5818e30223f3cfb6573bddef458384c758e7229bc848bdb828",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "f710cfebcaee55e013e9dedf4bd24a60436c42303e57fba13f9b0bae71e03498",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 11954,
-      "sha256": "401d1e564b42dfeca70d82b528a7536933b3290f2a348ef1ff7874e514b752da",
+      "bytes": 13466,
+      "sha256": "ff2a86097f4670db847a1a74846b8d88cc44f7ceca16e9a14e30b8189f0bb1ac",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 25,
-        "y": 37
+        "x": 24,
+        "y": 34
       },
       "atlasTrim": true,
       "displaySize": {
@@ -41891,10 +41966,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 350,
-        "y": 98,
-        "w": 87,
-        "h": 91
+        "x": 81,
+        "y": 198,
+        "w": 89,
+        "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_elite_male_work_left_3"
@@ -41945,20 +42020,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "7ac59794b03dff547bfa3aafb5a9e753735abbb5bd87d5e8591df4759fe6e16b",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "9fdd299a25c9cda36fb6ae2b0aabb6a2e348c3ed039b3557ebee2ab89af90933",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 12259,
-      "sha256": "c9ed0d3df62efd8f0a811c1493ab138725ca3a235f1a057a31b4f834148527fc",
+      "bytes": 13714,
+      "sha256": "a639f8a090d4dafe8facfbaec2a9bd341ef73e6d456425672e9dafbb483b7142",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 168,
         "h": 168
       },
       "trimOffset": {
-        "x": 29,
-        "y": 35
+        "x": 33,
+        "y": 34
       },
       "atlasTrim": true,
       "displaySize": {
@@ -41970,10 +42045,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 75,
-        "y": 391,
-        "w": 84,
-        "h": 93
+        "x": 265,
+        "y": 100,
+        "w": 80,
+        "h": 94
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_elite_male_work_left_4"
@@ -42024,12 +42099,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "f63a9d0045b87d12d3a4d2a54eeb65f15338b2e4ff0e02129e2ad6deece016e6",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "007c6bc9742dc8b9e632b1546ead585d2b08594f5a793ed53d2338a0ff0e2061",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 14585,
-      "sha256": "02d8c049e837d7fa6b8a3b4d7840bb638eb6171f626dc7a41f0584c3f035d9bf",
+      "bytes": 15340,
+      "sha256": "1c711562369ec8c67f60b1988cc312bc431ecec0474c8a19468f53131f191c54",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
@@ -42049,11 +42124,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 397,
-        "y": 386,
-        "w": 81,
-        "h": 91
+        "x": 81,
+        "y": 2,
+        "w": 91,
+        "h": 94
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "hd_elite_female_work_right_1"
     },
@@ -42103,20 +42179,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "e89ae033aed44dbfede2857c314b7059119b6562a0a83d5852cabbaeb3daa438",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "9642858d0e3eaad180d282f75cdaaade019934bea04fa0bd3d271c95911b8006",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 15089,
-      "sha256": "ab3943117417b85758462e5a009c97a85375d359c2d49d6a0d332398e110d3e9",
+      "bytes": 16022,
+      "sha256": "f97274d434813bf6e924a5d541df531ed11c4295d8b1cafbd218701bf6e3e34f",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 31,
-        "y": 23
+        "x": 32,
+        "y": 24
       },
       "atlasTrim": true,
       "displaySize": {
@@ -42126,14 +42202,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_2",
+      "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 260,
-        "y": 98,
-        "w": 86,
-        "h": 92
+        "x": 720,
+        "y": 913,
+        "w": 91,
+        "h": 102
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_elite_female_work_right_2"
     },
     {
@@ -42182,12 +42259,12 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "d15ebaedaec87ea9ad373b03ca4071ad0a04a27a700c29aadf5d50aeceacc726",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "ad7f9d2ce3d43580bdb17d1fe9a328ef0bf753792d204d7f4f57b13cde0cb3d9",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 15291,
-      "sha256": "11c45c13de9779725f1a84f0109b312f1652bc28f45ed2f5e0131b09c0249d84",
+      "bytes": 16392,
+      "sha256": "be084160694e021ff9ec1250a42788bf074ac4d7124fe1f4da337f2bbece5e7e",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
@@ -42205,14 +42282,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_2",
+      "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 334,
-        "y": 291,
-        "w": 90,
+        "x": 270,
+        "y": 929,
+        "w": 108,
         "h": 91
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_elite_female_work_right_3"
     },
     {
@@ -42261,20 +42338,20 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "82adf53c1404db96d5be1b71a7cd848c6eb8618b0d919879fa94976c0d8f3010",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "f0753626c0a95b8e35a785aacdb85dd0782bedacce3b9e30699ac371b57a33b3",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 15454,
-      "sha256": "156a9b0b8c3d626cb05213d5df53cd0b48306a682d194c31529f8a109c96d252",
+      "bytes": 16594,
+      "sha256": "14f0ebd7a3e7c033cc1541aa3157608bed92ccd0eb354e50c090adcd10abd96d",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 31,
-        "y": 23
+        "x": 32,
+        "y": 24
       },
       "atlasTrim": true,
       "displaySize": {
@@ -42284,14 +42361,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_2",
+      "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 167,
-        "y": 99,
-        "w": 89,
-        "h": 92
+        "x": 919,
+        "y": 858,
+        "w": 99,
+        "h": 95
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_elite_female_work_right_4"
     },
     {
@@ -42340,19 +42417,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "83074f63bf4d0712fd309100fb040bfdd4348d1c9b4acd0a18fe489355ceaf58",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "ff92eefb34ffd8ffd5aac47288a9496175d2c8933fa3e583f7ee40e80e163250",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 15395,
-      "sha256": "8f39217949d15365829c571c22290e6b91dda6ddf3cd71d151546ed3ee44b286",
+      "bytes": 16006,
+      "sha256": "88fde74ec46c5ad94d1906b0bcbee143156c5841b2bc8880d9791df6e3bc829a",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 30,
+        "x": 22,
         "y": 20
       },
       "atlasTrim": true,
@@ -42365,9 +42442,9 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 156,
-        "y": 907,
-        "w": 83,
+        "x": 238,
+        "y": 607,
+        "w": 91,
         "h": 95
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
@@ -42419,19 +42496,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "284db0aa7dbedb88385b1ba83c14151a23ce16022da3d05f1db0ab55f311f4b2",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "a1938abae794687c0c6ab6413e90e44e010ed6e3961a1fc6fb3c6d06bbc3df58",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 15599,
-      "sha256": "dd549e103b69870282ffcae5b9424727f8347b877c667a5f47c2c6540c31ed70",
+      "bytes": 16684,
+      "sha256": "ae283dfd37003bd43a9f3a2b1a2165c850e5f870cea20e3e4059614b615bdc73",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 26,
+        "x": 13,
         "y": 20
       },
       "atlasTrim": true,
@@ -42442,14 +42519,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_2",
+      "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 74,
-        "y": 606,
-        "w": 87,
-        "h": 95
+        "x": 820,
+        "y": 760,
+        "w": 95,
+        "h": 100
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_elite_female_work_left_2"
     },
     {
@@ -42498,19 +42576,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "852b811e3b940cc88456a1eafe290e6c71311244051940eb4544c4382aa2a465",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "2667ac58e7d4d993fb171cb3faeec3983227ea4e146053d3aa1f0e3d6085ca75",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 15959,
-      "sha256": "3cc6bfa48ec4d5fbed5c6c5d10b428fdf0647e339ac768a906db41397a9a3191",
+      "bytes": 17061,
+      "sha256": "a4a7b474d8b442b9dd629730114cc5cdd4a4024bfa7cf944b07ee292b9655244",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 22,
+        "x": 7,
         "y": 20
       },
       "atlasTrim": true,
@@ -42521,14 +42599,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_2",
+      "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 68,
-        "y": 709,
-        "w": 91,
+        "x": 712,
+        "y": 262,
+        "w": 106,
         "h": 95
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_elite_female_work_left_3"
     },
     {
@@ -42577,19 +42655,19 @@
         "alphaCutoff": 0,
         "fullCanvas": true,
         "sourceHash": "49974ec558cb7faedf79ec23808b68190d73f8e759ac940d741da1b0dc77ebef",
-        "outputHash": "7bcbf21f53016875f80d7b4abd5a96d8f9b04e79db06417b4d3891618f6595bd",
-        "renderer": "tools/hd2d/simple_actors.py"
+        "outputHash": "a2c05e816c9dd7e199f8340680b8891f30243b2b2985973e2ee20d60e29d9c12",
+        "renderer": "tools/hd2d/cartoon_labor.py"
       },
       "atlasGroup": "characters",
-      "bytes": 15890,
-      "sha256": "b0e64333b51ba8aaa48e42c5f5a69f03b10e94d8a395ce6b1086b96ff1d437fc",
+      "bytes": 17175,
+      "sha256": "aa4fdd8b48247f9daa923e0e741caa1c541958dd92285ce8e47062b389668223",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 144,
         "h": 144
       },
       "trimOffset": {
-        "x": 24,
+        "x": 16,
         "y": 20
       },
       "atlasTrim": true,
@@ -42600,14 +42678,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_2",
+      "atlasPage": "characters_0",
       "atlasRect": {
-        "x": 74,
-        "y": 507,
-        "w": 89,
-        "h": 95
+        "x": 919,
+        "y": 757,
+        "w": 99,
+        "h": 97
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
       "importedFrameId": "hd_elite_female_work_left_4"
     },
     {
@@ -42673,8 +42752,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 333,
-        "y": 679,
+        "x": 410,
+        "y": 288,
         "w": 64,
         "h": 89
       },
@@ -42742,15 +42821,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "characters_0",
+      "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 678,
-        "y": 957,
-        "w": 90,
-        "h": 64
+        "x": 502,
+        "y": 684,
+        "w": 64,
+        "h": 90
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/characters/characters_2.png",
       "importedFrameId": "patrol_walk_shuffle_1"
     },
     {
@@ -42816,8 +42894,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 315,
-        "y": 870,
+        "x": 413,
+        "y": 194,
         "w": 64,
         "h": 89
       },
@@ -42887,8 +42965,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 436,
-        "y": 193,
+        "x": 547,
+        "y": 879,
         "w": 64,
         "h": 90
       },
@@ -42958,8 +43036,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 441,
-        "y": 97,
+        "x": 565,
+        "y": 778,
         "w": 63,
         "h": 90
       },
@@ -43029,8 +43107,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 504,
-        "y": 191,
+        "x": 615,
+        "y": 872,
         "w": 63,
         "h": 90
       },
@@ -43100,8 +43178,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 508,
-        "y": 97,
+        "x": 349,
+        "y": 100,
         "w": 63,
         "h": 90
       },
@@ -43171,7 +43249,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "characters_2",
       "atlasRect": {
-        "x": 511,
+        "x": 351,
         "y": 2,
         "w": 63,
         "h": 90
@@ -43242,11 +43320,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 879,
-        "y": 763,
-        "w": 92,
-        "h": 88
+        "x": 679,
+        "y": 749,
+        "w": 88,
+        "h": 92
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_backpack"
     },
@@ -43313,11 +43392,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 782,
-        "y": 590,
-        "w": 94,
-        "h": 83
+        "x": 592,
+        "y": 755,
+        "w": 83,
+        "h": 94
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_shop"
     },
@@ -43384,8 +43464,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 746,
-        "y": 855,
+        "x": 731,
+        "y": 662,
         "w": 68,
         "h": 83
       },
@@ -43454,8 +43534,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 521,
-        "y": 272,
+        "x": 517,
+        "y": 236,
         "w": 56,
         "h": 21
       },
@@ -43524,12 +43604,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 740,
-        "y": 257,
-        "w": 23,
-        "h": 65
+        "x": 282,
+        "y": 217,
+        "w": 65,
+        "h": 23
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_2"
     },
@@ -43595,8 +43674,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 593,
-        "y": 220,
+        "x": 373,
+        "y": 205,
         "w": 74,
         "h": 58
       },
@@ -43665,8 +43744,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 601,
-        "y": 71,
+        "x": 286,
+        "y": 150,
         "w": 83,
         "h": 63
       },
@@ -43735,8 +43814,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 377,
-        "y": 140,
+        "x": 764,
+        "y": 158,
         "w": 88,
         "h": 66
       },
@@ -43805,8 +43884,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 609,
-        "y": 2,
+        "x": 456,
+        "y": 97,
         "w": 91,
         "h": 65
       },
@@ -43875,8 +43954,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 410,
-        "y": 2,
+        "x": 566,
+        "y": 48,
         "w": 97,
         "h": 42
       },
@@ -43945,12 +44024,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 112,
-        "y": 146,
-        "w": 42,
-        "h": 100
+        "x": 566,
+        "y": 2,
+        "w": 100,
+        "h": 42
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_8"
     },
@@ -44016,8 +44094,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 521,
-        "y": 297,
+        "x": 577,
+        "y": 236,
         "w": 47,
         "h": 34
       },
@@ -44086,8 +44164,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 581,
-        "y": 282,
+        "x": 114,
+        "y": 146,
         "w": 50,
         "h": 41
       },
@@ -44156,8 +44234,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 461,
-        "y": 272,
+        "x": 349,
+        "y": 267,
         "w": 56,
         "h": 49
       },
@@ -44226,8 +44304,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 671,
-        "y": 257,
+        "x": 824,
+        "y": 280,
         "w": 65,
         "h": 50
       },
@@ -44296,8 +44374,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 469,
-        "y": 144,
+        "x": 375,
+        "y": 103,
         "w": 77,
         "h": 55
       },
@@ -44366,12 +44444,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 704,
-        "y": 2,
-        "w": 58,
-        "h": 85
+        "x": 735,
+        "y": 228,
+        "w": 85,
+        "h": 58
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_6"
     },
@@ -44437,8 +44514,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 158,
-        "y": 183,
+        "x": 566,
+        "y": 94,
         "w": 92,
         "h": 60
       },
@@ -44507,7 +44584,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 511,
+        "x": 772,
         "y": 2,
         "w": 94,
         "h": 60

@@ -1,5 +1,6 @@
 import { appearanceSeed, APPEARANCE_DOMAIN } from "./EnemySeed";
 import { COMBAT, isDenseWave, WAVE } from "../config/DefenseConfig";
+import { PATROL } from "../config/PatrolConfig";
 import { VILLAGER_QUALITY } from "../config/VillagerQuality";
 import { ENEMIES, EnemyKind, PADS, RULE, TOWERS, TowerKind } from "./GameConfig";
 import { enemyPoint, onBattleRoad, PATH_LENGTH, RoadPoint } from "./BattleRoad";
@@ -44,6 +45,7 @@ export type CombatFeedback = { type: "shot"; shot: Shot; target: number; hurt: E
     { type: "mercy"; hurt: Enemy[] } |
     { type: "poison"; hurt: Enemy[] } |
     { type: "zhouLove"; cleared: boolean; targets: Enemy[] } |
+    { type: "patrolLanding"; at: RoadPoint; actor: number; tick: number } |
     ({ type: "summon"; tick: number } & SummonCollision) |
     ({ type: "patrol"; tick: number } & SummonCollision);
 export class BattleSimulation {
@@ -213,7 +215,7 @@ export class BattleSimulation {
         }
         this.feedback.push({ type: "handSpeed", hurt, tick: this.tick });
         this.enemies = this.enemies.filter(e => e.hp > 0);
-        if (!this.enemies.length && this.pendingCount === 0) this.outcome = "WIN";
+        if (!this.enemies.length && this.pendingCount === 0 && !this.patrol?.spin?.flying) this.outcome = "WIN";
         this.tasks?.observe(this.feedback);
     }
     private detonate(at: RoadPoint) {
@@ -236,7 +238,11 @@ export class BattleSimulation {
         const power = difficulty ? (data.boss ? difficulty.bossHealth : difficulty.health) : this.olderEnemyPower;
         const speedScale = difficulty?.speed ?? 1;
         const heavyScale = difficulty && !data.boss && (data.armor > 0 || data.disrupt) ? difficulty.heavyHealth : 1;
-        const hp = Math.ceil(data.hp * power * heavyScale * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1) * healthScale);
+        const pressure = PATROL.spin.pressure, day = this.base.day;
+        const patrolHealth = this.patrol?.spin && !data.boss && day >= pressure.from
+            ? 1 + pressure.start + (pressure.maximum - pressure.start) * Math.min(1, (day - pressure.from) / (pressure.full - pressure.from))
+            : 1;
+        const hp = Math.ceil(data.hp * power * heavyScale * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1) * healthScale * patrolHealth);
         this.enemies.push({ seq: this.seq++, kind, appearanceSeed: seed, progress, walkDistance: 0, hp, maxHp: hp, speed: data.speed * speedScale * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
     }
     step(realSeconds = RULE.step / this.base.settings.speed) {
@@ -290,6 +296,8 @@ export class BattleSimulation {
             this.feedback.push({ type: "patrol", tick: this.tick, ...hit });
             if (hit.enemy.hp <= 0 && this.poison?.targets.delete(hit.enemy.seq)) patrolPoisonKills++;
         }
+        const landing = this.patrol?.spin?.landing;
+        if (landing) this.feedback.push({ type: "patrolLanding", tick: this.tick, ...landing });
         // 读引爆这一战斗步的真实足点；同一步内先结算爆炸，再处理仍活着的触门敌人。
         if (this.blastAt && this.bellTicks === 1) this.detonate(this.blastAt);
         let poisonedKills = patrolPoisonKills + (this.poison?.nextTick === this.tick ? this.tickPoison() : 0);
@@ -390,7 +398,7 @@ export class BattleSimulation {
         }
         this.enemies = this.enemies.filter(e => e.hp > 0);
         this.shots = this.shots.filter(s => this.tick - s.tick < COMBAT.shotLifetimeTicks).slice(-RULE.effectCap);
-        if (!this.enemies.length && this.pendingCount === 0)
+        if (!this.enemies.length && this.pendingCount === 0 && !this.patrol?.spin?.flying)
             this.outcome = "WIN";
         for (const e of this.enemies)
             if (existingSlow.has(e.seq) && !refreshed.has(e.seq) && e.slowTicks > 0)

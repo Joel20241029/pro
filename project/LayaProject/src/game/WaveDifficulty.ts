@@ -1,7 +1,8 @@
 import { WAVE_PROGRESSION, WAVE, WAVE_RHYTHM, WaveRhythm } from "../config/DefenseConfig";
 
-export function waveDifficulty(day: number, rhythm: WaveRhythm = WAVE_RHYTHM.nightly) {
-    const nightly = rhythm === WAVE_RHYTHM.nightly;
+export function waveDifficulty(day: number, rhythm: WaveRhythm = WAVE_RHYTHM.extended) {
+    const nightly = rhythm !== WAVE_RHYTHM.paired;
+    const arrivalScale = rhythm === WAVE_RHYTHM.extended ? WAVE_PROGRESSION.extendedArrivalScale : 1;
     const elapsedBands = (day - 1) / WAVE_PROGRESSION.nightsPerBand;
     const band = nightly ? elapsedBands : Math.floor(elapsedBands);
     const early = Math.min(band, WAVE_PROGRESSION.earlyBands);
@@ -17,8 +18,9 @@ export function waveDifficulty(day: number, rhythm: WaveRhythm = WAVE_RHYTHM.nig
     const { fromCount, fullCount, extraWindowScale } = WAVE_PROGRESSION.denseArrival;
     const densityBand = Math.min(1, Math.max(0, (count - fromCount) / (fullCount - fromCount)));
     const windowScale = WAVE_PROGRESSION.arrivalWindowScale * (1 + (nightly ? densityBand * extraWindowScale : 0));
+    const baseSpawnTicks = Math.round((baseTicks + extraTicks) * windowScale) + (batchCount - 1) * WAVE_PROGRESSION.joinTicks;
     return {
-        band, count, spawnTicks: Math.round((baseTicks + extraTicks) * windowScale) + (batchCount - 1) * WAVE_PROGRESSION.joinTicks,
+        band, count, spawnTicks: baseSpawnTicks * arrivalScale, baseSpawnTicks, arrivalScale,
         health: 1 + healthBonus, bossHealth: 1 + healthBonus * WAVE_PROGRESSION.bossGrowthShare,
         heavyHealth: Math.min(1, WAVE_PROGRESSION.earlyHeavyHealth + band * WAVE_PROGRESSION.heavyHealthPerBand),
         gate: 1 + early * WAVE_PROGRESSION.earlyGate + later * WAVE_PROGRESSION.laterGate,

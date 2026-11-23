@@ -55,6 +55,7 @@ export interface GameState {
         mercySpent?: true;
         /** 历史字段名。标记现代交会判定与出征间隔；无标记的旧夜战沿用原接触规则。 */
         patrolSquad?: true;
+        patrolSpin?: true;
     } | null;
     rng: { family: number; world: number };
     stats: { births: number; retirees: number; generation: number }; legacy: Legacy;

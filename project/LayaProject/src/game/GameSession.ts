@@ -243,6 +243,17 @@ export class GameSession {
         next.tactics.mercyCooldown = { casts, wavesLeft: KING_MERCY.baseCooldownWaves + casts };
         this.submit(next, true);
     }
+    get patrolDragReady() {
+        const battle = this.battle;
+        return !!battle?.patrol?.spin?.canGather && !battle.outcome && !battle.handSpeed && !this.blastAiming &&
+            !this.pauses.size && !this.saves.pending;
+    }
+    get hasLaunchedPatrol() { return this.deviceSettings.hasLaunchedPatrol; }
+    throwPatrol(at: RoadPoint, angle: number) {
+        if (!this.patrolDragReady || !this.battle!.patrol!.spin!.throwAt(this.battle!.tick, at, angle)) return false;
+        this.deviceSettings.markPatrolLaunched();
+        return true;
+    }
     placeBlast(at: RoadPoint) {
         if (!this.blastAiming || !this.battle?.bell(BLAST_TACTIC, at)) return false;
         this.aimingBlastIn = null;

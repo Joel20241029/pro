@@ -7,16 +7,19 @@ import { appearanceSeed } from './EnemySeed';
 // 保留首版进度轴及长度。道路变宽只改变横向坐标，不重算到门时间或索敌优先级。
 const LENGTHS = PATH.slice(1).map((p, i) => Math.hypot(p.x - PATH[i].x, p.y - PATH[i].y));
 export const PATH_LENGTH = LENGTHS.reduce((a, b) => a + b, 0);
-export function pointAt(progress: number) {
+function progressY(progress: number) {
     let left = progress;
     for (let i = 0; i < LENGTHS.length; i++) {
-        if (left <= LENGTHS[i]) {
-            const t = left / LENGTHS[i];
-            return { x: PATH[i].x + (PATH[i + 1].x - PATH[i].x) * t, y: PATH[i].y + (PATH[i + 1].y - PATH[i].y) * t };
-        }
+        if (left <= LENGTHS[i])
+            return PATH[i].y + (PATH[i + 1].y - PATH[i].y) * left / LENGTHS[i];
         left -= LENGTHS[i];
     }
-    return PATH[PATH.length - 1];
+    return PATH[PATH.length - 1].y;
+}
+export function pointAt(progress: number) {
+    const y = progressY(progress);
+    const { left, right } = roadFootprintBounds(y, { halfWidth: 0, back: 0, front: 0 });
+    return { x: (left + right) / 2, y };
 }
 
 type RoadFootprint = { halfWidth: number; back: number; front: number };
@@ -48,7 +51,7 @@ export function roadFootprintBounds(y: number, footprint: EnemyKind | RoadFootpr
 
 /** 渲染与战斗共用足点。分路只由入场序号确定，外观随机不影响战斗。 */
 export function enemyPoint(enemy: { seq: number; kind: EnemyKind; progress: number }) {
-    const { y } = pointAt(enemy.progress), bounds = roadFootprintBounds(y, enemy.kind);
+    const y = progressY(enemy.progress), bounds = roadFootprintBounds(y, enemy.kind);
     const { laneBands, laneStep, laneJitter, shoulderAllowance, formation } = ROAD_MOVEMENT;
     const group = Math.floor(enemy.seq / formation.size);
     const leadLane = appearanceSeed(formation.seedDomain, group) % laneBands.length;

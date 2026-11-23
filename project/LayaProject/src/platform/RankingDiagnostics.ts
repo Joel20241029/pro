@@ -1,5 +1,6 @@
 import { RELEASE } from "../config/ReleaseInfo";
 import { RANKING_CANVAS } from "../config/RankingConfig";
+import { RankingCanvasUnsupported, type RankingCanvasFailure } from "./WechatRankingCanvas";
 
 type LogLevel = "info" | "warn" | "error";
 interface GameLogger { log(options: { level: LogLevel; key: string; value: object; success(): void; fail(): void }): void; }
@@ -19,6 +20,8 @@ type RankingEvent = "open" | "construct_start" | "native_canvas_ready" | "native
     "view_error" | "runtime_error" | "close";
 interface Fields {
     x?: number; y?: number; width?: number; height?: number; category?: string; code?: number; frames?: string[]; errorName?: string;
+    nativeCanvasFailure?: RankingCanvasFailure;
+    styleRetainedAfterAdapter?: boolean;
     result?: "ok" | "failed" | "unsupported"; needAuthorization?: boolean; contractPresent?: boolean; friendState?: "granted" | "denied" | "unset";
     canvasPresent?: boolean; canvasWidth?: number; canvasHeight?: number;
     styleWidth?: string; styleHeight?: string; styleLeft?: string; styleTop?: string; visible?: boolean; onStage?: boolean;
@@ -98,7 +101,9 @@ export class RankingDiagnostics {
             const key = `${request}:${event}`;
             if (this.errors.has(key) || this.count >= EVENT_BUDGET) return;
             this.errors.add(key);
-            this.record(event, request, errorFields(error), "error");
+            const fields: Fields = errorFields(error);
+            if (error instanceof RankingCanvasUnsupported) fields.nativeCanvasFailure = error.reason;
+            this.record(event, request, fields, "error");
         } catch (_) { this.warnDelivery(); }
     }
     end(request: string) {

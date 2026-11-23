@@ -6,7 +6,7 @@ export const GUIDE_SAVE_KEY = "daidai_village.guides";
 export const TACTIC_NOTICES_KEY = "daidai_village.tactic_notices";
 const GUIDE_SAVE_VERSION = 1;
 const LEGACY = { starter: "daidai_village.starter_guide", patrol: "daidai_village.patrol_intro_guide", slot: "daidai_village.tactic_slot_guide_dismissed" } as const;
-export type GuideTrack = keyof typeof LEGACY | "backpack" | "shop" | "tacticChange" | "tacticAction";
+export type GuideTrack = keyof typeof LEGACY | "backpack" | "shop" | "tacticChange" | "tacticAction" | "patrolLaunch";
 interface GuideSave { version: number; villageId: string | null; progress: Partial<Record<GuideTrack, number>>; }
 
 export function clearVillageGuides(port: StoragePort) {

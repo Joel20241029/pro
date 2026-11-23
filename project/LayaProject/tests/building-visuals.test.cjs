@@ -98,8 +98,8 @@ test('body upgrades preserve ground pivot, stable reuse and precise readable lev
  const { owner, visual: v } = create(); owner.scaleX = -1;
  v.sync('ARROW', 13, true); assert.equal(v.badge.text, '13'); assert.equal(v.badge.scaleX, -1); assert.equal(v.upgrading, false);
  const root = v.parts.children[0]; v.sync('ARROW', 13, false); assert.equal(root, v.parts.children[0]);
- v.sync('ARROW', 14, false); assert.equal(v.upgrading, false); assert.equal(v.beginVisibleUpgrade(), true); assert.equal(v.beginVisibleUpgrade(), false); assert.equal(v.upgrading, true); v.advance(.3); assert.equal(v.body.scaleY, 1); assert.deepEqual([owner.x, owner.y, owner.pivotX, owner.pivotY], [200, 300, 64, 120]);
- v.advance(.3); assert.equal(v.upgrading, false); v.sync('ARROW', 15, false); v.sync('ARROW', 15, true); assert.equal(v.upgrading, false);
+ v.sync('ARROW', 14, false); assert.equal(v.upgrading, false); assert.equal(v.beginVisibleUpgrade(), true); assert.equal(v.beginVisibleUpgrade(), false); assert.equal(v.upgrading, true); v.advance(.3); assert.equal(v.body.scaleY, 1); assert.notEqual(v.parts.scaleY, v.bodyScale); assert.deepEqual([owner.x, owner.y, owner.pivotX, owner.pivotY], [200, 300, 64, 120]);
+ v.advance(.3); assert.equal(v.upgrading, false); assert.equal(v.parts.scaleY, v.bodyScale); v.sync('ARROW', 15, false); v.sync('ARROW', 15, true); assert.equal(v.upgrading, false);
  v.sync('GATE', 1000, true); assert.equal(v.badge.text, '1000'); assert.equal(v.badge.wordWrap, false); assert.equal(v.badge.overflow, 'shrink');
  v.sync(null, 0, false); assert.equal(v.parts.children.length, 0); assert.equal(v.badge.visible, false);
 });
@@ -128,13 +128,16 @@ test('cosmetic rebuilds preserve queued upgrades while a fresh village cancels a
  assert.equal(v.beginVisibleUpgrade(), false); assert.doesNotThrow(() => v.advance(.6));
 });
 
-test('the northern tower keeps every upgraded weapon below the HUD on the shortest screen', () => {
+test('every tower keeps its weapon below the HUD on the shortest screen', () => {
  const { GameLayout } = require(path.join(build, 'view/GameLayout.js'));
- const { PADS } = require(path.join(build, 'game/GameConfig.js'));
  const { frames: regions } = require('../../../res/atlases/frames.json');
  const layout = new GameLayout({windowWidth:320,windowHeight:568,statusBarHeight:20,safeArea:{top:20,bottom:568,left:0,right:320}}, {width:88,height:32,top:24,bottom:56,left:222,right:310});
- for(const kind of ['ARROW','STONE','SLOW']) for(const level of [1,12]) {
-  const {world,owner,visual}=create();owner.size(TOWER_VIEW.size,TOWER_VIEW.size).pos(PADS[0].x,layout.worldY(PADS[0].y)+TOWER_VIEW.top+TOWER_VIEW.size*15/16);visual.sync(kind,level,true);
+ const { layoutVillage } = require(path.join(build, 'view/VillageScene.js'));
+ const scene = layoutVillage(layout);
+ for(const [padIndex, pad] of scene.pads.entries()) for(const kind of ['ARROW','STONE','SLOW']) for(const level of [1,12]) {
+  const {world,owner,visual}=create();owner.size(TOWER_VIEW.size,TOWER_VIEW.size).pos(pad.x,pad.y+(TOWER_VIEW.top+TOWER_VIEW.size*15/16)*scene.towerScale);
+  owner.scale(scene.towerScale,scene.towerScale);
+  visual.sync(kind,level,true,1,false,TOWER_VIEW.facing[padIndex]);
   const shot = {tower: 0, tick:0};
   const { RULE } = require(path.join(build, 'game/GameConfig.js'));
   const battle = { outcome: null };
@@ -144,13 +147,22 @@ test('the northern tower keeps every upgraded weapon below the HUD on the shorte
    for(const node of descendants(owner).filter(n=>n.texture)) {
     let visible=true;for(let n=node;n;n=n.parent)if(!n.visible)visible=false;if(!visible)continue;
     const f=regions[node.texture],x=f.trimOffset.x/f.sourceSize.w*node.width,y=f.trimOffset.y/f.sourceSize.h*node.height;
-    const right=x+f.rect.w/f.sourceSize.w*node.width,bottom=y+f.rect.h/f.sourceSize.h*node.height;
+    const right=x+(f.rotated ? f.rect.h : f.rect.w)/f.sourceSize.w*node.width;
+    const bottom=y+(f.rotated ? f.rect.w : f.rect.h)/f.sourceSize.h*node.height;
     for(const [px,py] of [[x,y],[right,y],[x,bottom],[right,bottom]]) {
      const point=node.localToGlobal({x:px,y:py},false,world);
      assert(point.y>=layout.mapTop,`${kind}:${level} ${node.name} clips HUD by ${layout.mapTop-point.y}`);
     }
    }
   }
+ }
+});
+
+test('the stone weapon is mounted over the middle of the tower for either bank', () => {
+ for (const facing of [1, -1]) {
+  const { visual, owner } = create();
+  visual.sync('STONE', 1, true, 1, false, facing);
+  assert.equal(visual.weaponAnchor().x, owner.x);
  }
 });
 
@@ -201,6 +213,19 @@ test('three attack clips follow the presentation clock while launchPoint stays f
  }
 });
 
+test('all enlarged mechanisms stay attached at their editor mount and share that transform with the release point', () => {
+ for(const kind of ['ARROW','STONE','SLOW']) for(const facing of [-1,1]){
+  const {visual,world}=create();visual.sync(kind,1,true,1,false,facing);
+  const weapon=visual.body.getChildByName('Weapon');
+  assert.equal(weapon.scaleX,1.5);assert.equal(weapon.scaleY,1.5);
+  const mount=weapon.localToGlobal(new Laya.Point(weapon.pivotX,weapon.pivotY),false,world);
+  const {x,y}=visual.weaponAnchor();
+  assert.equal(mount.x,x);assert.equal(mount.y,y);
+  const raw=visual.muzzle, release=raw.localToGlobal(new Laya.Point(0,0),false,world);
+  assert.deepEqual(visual.launchPoint(),release);
+ }
+});
+
 test('right-hand arrow towers select actual left weapons without mirroring the body',()=>{
  const a=create(),b=create();a.visual.sync('ARROW',12,true,1,false,1);b.visual.sync('ARROW',12,true,1,false,-1);
  const right=descendants(a.owner).find(n=>n.name==='FacingRight'),left=descendants(b.owner).find(n=>n.name==='FacingLeft');
@@ -222,7 +247,10 @@ test('stone cups sit behind the tower facing; stone and frost launch points mirr
   assert.equal(right.owner.scaleX,1);
   assert.equal(left.visual.launchPoint().x+right.visual.launchPoint().x,400);
   assert.equal(left.visual.launchPoint().y,right.visual.launchPoint().y);
-  assert.deepEqual(left.visual.weaponAnchor(),right.visual.weaponAnchor());
+  const leftAnchor=left.visual.weaponAnchor(), rightAnchor=right.visual.weaponAnchor();
+  assert.equal(leftAnchor.x+rightAnchor.x,400);
+  assert.equal(leftAnchor.y,rightAnchor.y);
+  assert.equal(leftAnchor.scale,rightAnchor.scale);
  }
 });
 

@@ -1,7 +1,8 @@
+import { ROAD_PROFILE } from "../config/RoadGeometry";
 import { PADS, TowerKind } from "../game/GameConfig";
 import { GameLayout } from "./GameLayout";
 import { farm } from "./config/VillageSceneConfig";
-import { GroundPoint, Footprint, TOWER_VIEW, VILLAGE_PROPS, LANDSCAPE_FOOTPRINTS, MOTION, CAMP_STOPS, VILLAGE_STOPS } from "./config/VillageSceneConfig";
+import { GroundPoint, Footprint, TOWER_VIEW, TOWER_SCREEN_LAYOUTS, VILLAGE_PROPS, LANDSCAPE_FOOTPRINTS, MOTION, CAMP_STOPS, VILLAGE_STOPS } from "./config/VillageSceneConfig";
 export { GroundPoint, Footprint, VillageProp, TOWER_VIEW, VILLAGE_PROPS, LANDSCAPE_FOOTPRINTS, MOTION, CAMP_STOPS, WEDDING, VILLAGE_STOPS } from "./config/VillageSceneConfig";
 export function towerLaunch(index: number, kind: TowerKind, pads: readonly GroundPoint[] = PADS): GroundPoint {
     const pad = pads[index], at = TOWER_VIEW.muzzle[kind], scale = TOWER_VIEW.size / TOWER_VIEW.canvas;
@@ -10,17 +11,45 @@ export function towerLaunch(index: number, kind: TowerKind, pads: readonly Groun
 /** 建筑底座保持图片的真实尺寸；农田/伐木工作点跟随各自资源，不能把动作点单独拉到图外。 */
 export function layoutVillage(layout: GameLayout) {
     const point = (p: GroundPoint): GroundPoint => ({ x: p.x, y: layout.worldY(p.y) });
-    const pads = PADS.map(point);
+    const battleHeight = layout.gateY - layout.mapTop;
+    const authored = TOWER_SCREEN_LAYOUTS.reduce((best, candidate) =>
+        Math.abs(candidate.height - battleHeight) < Math.abs(best.height - battleHeight) ? candidate : best);
+    const towerScale = authored.scale;
+    const towerFootOffset = (TOWER_VIEW.top + TOWER_VIEW.size * 15 / 16) * towerScale;
+    const pads = authored.points.map(([baseX, refY], index) => {
+        const y = Math.max(layout.worldY(refY), layout.mapTop + TOWER_VIEW.hudClearance * towerScale + TOWER_VIEW.hudEdgePadding);
+        const foot = y + towerFootOffset;
+        const top = layout.referenceY(foot - TOWER_VIEW.footprintDepth);
+        const bottom = layout.referenceY(foot);
+        const onLeft = TOWER_VIEW.facing[index] > 0;
+        const clearance = index === 0 ? TOWER_VIEW.upperLeftRoadClearance
+            : index === 1 ? TOWER_VIEW.upperRightRoadClearance
+            : index === 2 && authored === TOWER_SCREEN_LAYOUTS[0] ? TOWER_VIEW.compactLowerLeftRoadClearance
+            : TOWER_VIEW.roadClearance;
+        const edgeGap = TOWER_VIEW.footprintWidth / 2 + clearance;
+        const samples = ROAD_PROFILE.filter(([row], i) =>
+            (i === 0 || ROAD_PROFILE[i - 1][0] <= bottom) &&
+            (i === ROAD_PROFILE.length - 1 || ROAD_PROFILE[i + 1][0] >= top));
+        const roadBound = onLeft ? Math.min(...samples.map(([, left]) => left)) - edgeGap
+            : Math.max(...samples.map(([, , right]) => right)) + edgeGap;
+        return { x: onLeft ? Math.min(baseX, roadBound) : Math.max(baseX, roadBound), y };
+    });
     const props = VILLAGE_PROPS.map(p => {
-        const at = point(p);
-        if (p.id.startsWith("tower:"))
-            at.y = pads[Number(p.id.split(":")[1])].y + TOWER_VIEW.top + p.size * 15 / 16;
-        const dy = at.y - p.y;
-        return { ...p, ...at, footprint: p.footprint ? { ...p.footprint, top: p.footprint.top + dy, bottom: p.footprint.bottom + dy } : null };
+        const [signX, signY] = authored.friendshipSign;
+        const at = p.id === "deco:friendship-road-sign" ? point({ x: signX, y: signY }) : point(p);
+        if (p.id.startsWith("tower:")) {
+            const pad = pads[Number(p.id.split(":")[1])];
+            at.x = pad.x;
+            at.y = pad.y + towerFootOffset;
+        }
+        const dx = at.x - p.x, dy = at.y - p.y;
+        return { ...p, ...at, footprint: p.footprint ? { left: p.footprint.left + dx, right: p.footprint.right + dx, top: p.footprint.top + dy, bottom: p.footprint.bottom + dy } : null };
     });
     // 小村庄优先占用靠近火堆的位置；基准排序固定，换屏时不交换席位或照料者的左右关系。
     const hearth = VILLAGE_PROPS.find(p => p.id === "building:hearth")!;
-    const camp = CAMP_STOPS.slice().sort((a, b) => distance(a, hearth) - distance(b, hearth)).map(point);
+    const campOrder = CAMP_STOPS.map((_, i) => i).sort((a, b) => distance(CAMP_STOPS[a], hearth) - distance(CAMP_STOPS[b], hearth));
+    const camp = campOrder.map(i => point(CAMP_STOPS[i]));
+    const nightCamp = campOrder.map(i => point(VILLAGE_STOPS.nightRest[i]));
     const relative = <T extends GroundPoint>(points: T[], anchor: string) => {
         const before = VILLAGE_PROPS.find(p => p.id === anchor)!, after = props.find(p => p.id === anchor)!;
         return points.map(p => ({ ...p, y: after.y + p.y - before.y }));
@@ -30,15 +59,19 @@ export function layoutVillage(layout: GameLayout) {
         logging: VILLAGE_STOPS.logging.map(stop => {
             const before = VILLAGE_PROPS.find(p => p.id === stop.treeId)!, after = props.find(p => p.id === stop.treeId)!;
             return { ...stop, treeX: after.x, y: after.y + stop.y - before.y };
-        }), rest: camp, children: camp, waiting: VILLAGE_STOPS.waiting.map(point),
-        wedding: VILLAGE_STOPS.wedding.map(point), towers: pads.map(p => ({ x: p.x, y: p.y + 54 }))
+        }), rest: camp, nightRest: nightCamp, children: camp, waiting: VILLAGE_STOPS.waiting.map(point),
+        wedding: VILLAGE_STOPS.wedding.map(point), // 首塔在短屏靠近林带边缘，驻塔村民从通行区的一侧接近。
+        towers: pads.map(p => ({
+            x: Math.max(LANDSCAPE_FOOTPRINTS[0].right + MOTION.clearance + MOTION.cornerGap, Math.min(p.x, LANDSCAPE_FOOTPRINTS[1].left - MOTION.clearance - MOTION.cornerGap)),
+            y: Math.min(p.y + 54, layout.gateY - 27)
+        }))
     };
     const farmShift = props.find(p => p.id === "building:farm")!.y - farm.y;
     const landscape = LANDSCAPE_FOOTPRINTS.map((r, i) => i === 4 ? { ...r, top: r.top + farmShift, bottom: r.bottom + farmShift } : ({ ...r,
         top: i < 2 ? layout.worldY(r.top) : layout.gateY - (830 - r.top), bottom: layout.worldY(r.bottom)
     }));
     const bounds = { ...MOTION.bounds, top: layout.worldY(MOTION.bounds.top), bottom: layout.footerTop - 14 };
-    return { props, pads, stops, landscape, bounds };
+    return { props, pads, stops, landscape, bounds, towerScale };
 }
 export interface DepthKey {
     id: string;

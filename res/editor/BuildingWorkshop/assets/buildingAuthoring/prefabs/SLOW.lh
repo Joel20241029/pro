@@ -62,7 +62,7 @@
                   "_$type": "Sprite",
                   "name": "Attack:motion_slow_attack",
                   "x": 28,
-                  "y": -20,
+                  "y": -15,
                   "width": 69,
                   "height": 69,
                   "texture": {
@@ -84,11 +84,17 @@
                   "_$type": "Sprite",
                   "name": "Muzzle",
                   "x": 62,
-                  "y": 19,
+                  "y": 11,
                   "width": 0,
                   "height": 0
                 }
-              ]
+              ],
+              "x": 62,
+              "y": 33,
+              "scaleX": 1.5,
+              "scaleY": 1.5,
+              "anchorX": 0.484375,
+              "anchorY": 0.717391304347826
             }
           ]
         },

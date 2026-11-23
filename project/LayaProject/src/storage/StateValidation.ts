@@ -1,6 +1,6 @@
 import { PATROL } from "../config/PatrolConfig";
 import { LIANG_ESSENCE } from "../config/ShopConfig";
-import { patrolStats } from "../game/PatrolRules";
+import { patrolSpinStats, patrolStats } from "../game/PatrolRules";
 import { validDailyTaskDay } from "../game/DailyTaskState";
 import { VILLAGER_QUALITY } from "../config/VillagerQuality";
 import { ADULT_APPEARANCE, ENEMIES, PADS, POLICIES, RULE, SKILLS, TOWERS, TRAITS } from "../game/GameConfig";
@@ -85,9 +85,11 @@ export function validateState(s: GameState) {
     }
     check(new Set(operators).size === operators.length && ids(s.favorites, RULE.favoriteCap) && s.favorites.every(id => s.history.some(p => p.id === id)));
     const { patrol } = s;
-    check(patrol && int(patrol.level, PATROL.startLevel) && int(patrolStats(patrol.level).damage, 1), "淡紫儿建筑数据无效");
+    const spin = s.phase !== "NIGHT" || s.night?.patrolSpin === true;
+    const patrolNumbers = spin ? patrolSpinStats : patrolStats;
+    check(patrol && int(patrol.level, PATROL.startLevel) && int(patrolNumbers(patrol.level).damage, 1), "淡紫儿建筑数据无效");
     check(patrol.captain === null || workers.some(p => p.id === patrol.captain &&
-        !operators.includes(p.id) && int(patrolStats(patrol.level, p, s.phase !== "NIGHT" || s.night?.patrolSquad === true).damage, 1)), "淡紫队长数据无效");
+        !operators.includes(p.id) && int(patrolNumbers(patrol.level, p, s.night?.patrolSquad === true).damage, 1)), "淡紫队长数据无效");
     check(Array.isArray(s.choices) && s.choices.length <= RULE.populationCap + 3);
     for (const q of s.choices) {
         check(q && ["SKILL", "TRAVELER", "POLICY"].includes(q.kind));
@@ -100,7 +102,7 @@ export function validateState(s: GameState) {
     if (s.phase === "DAY" || s.phase === "NIGHT") {
         const w = s.wave;
         check(w && w.tier === s.tier && ["NONE", "FAST", "STURDY", "GROUP"].includes(w.affix) && Array.isArray(w.entries) && w.entries.length > 0);
-        check(w.rhythm === undefined || w.rhythm === WAVE_RHYTHM.paired || w.rhythm === WAVE_RHYTHM.nightly, "波次难度规则无效");
+        check(w.rhythm === undefined || w.rhythm === WAVE_RHYTHM.paired || w.rhythm === WAVE_RHYTHM.nightly || w.rhythm === WAVE_RHYTHM.extended, "波次难度规则无效");
         const plan = w.rhythm === undefined ? null : waveDifficulty(s.day, w.rhythm);
         const count = plan?.count ?? RULE.planCap;
         check(w.entries.length <= count && int(w.budget, 1, count * MAX_ENEMY_COST));
@@ -114,6 +116,7 @@ export function validateState(s: GameState) {
     if (s.phase === "NIGHT") {
         check(s.night && s.night.tactic === s.tactics.equipped, "本夜战技快照不一致");
         if (s.night.patrolSquad !== undefined) check(s.night.patrolSquad === true && !!patrol.captain, "本夜淡紫儿出征规则无效");
+        if (s.night.patrolSpin !== undefined) check(s.night.patrolSpin === true && s.night.patrolSquad === true, "本夜淡紫儿旋转规则无效");
         const nightExtra = s.night.extraSlots;
         check(nightExtra === undefined ? extra === undefined : Array.isArray(nightExtra) && nightExtra.length === extra?.length &&
             nightExtra.every((id, i) => id === extra[i]), "本夜战技槽快照不一致");

@@ -24,6 +24,32 @@ test('errors are classified without personal payloads, deduplicated and bounded'
     assert(!JSON.stringify(l.logs).includes('secret'));assert(!JSON.stringify(l.logs).includes('avatar'));
     for(let i=0;i<1000;i++)d.record('viewport',id,{width:600,height:680});assert.equal(l.logs.length,240);
 });
+test('native ranking failures report the exact capability check under the same request', () => {
+    const { WechatRankingCanvas, RankingCanvasUnsupported } = require(path.join(compiled, 'platform/WechatRankingCanvas.js'));
+    const sdk = () => ({ SDKVersion: '3.17.6' });
+    const cases = [
+        [{}, 'sdk_version_missing'],
+        [{ getAppBaseInfo: () => ({ SDKVersion: '3.6.5' }) }, 'sdk_below_minimum'],
+        [{ getAppBaseInfo: () => ({ SDKVersion: 'unexpected' }) }, 'sdk_version_rejected'],
+        [{ getAppBaseInfo: sdk }, 'open_data_api_missing'],
+        [{ getAppBaseInfo: sdk, getOpenDataContext: () => ({}) }, 'canvas_missing'],
+        [{ getAppBaseInfo: sdk, getOpenDataContext: () => ({ canvas: {} }) }, 'canvas_style_missing'],
+    ];
+    for (const [api, reason] of cases) {
+        const l = logger(), diagnostics = new RankingDiagnostics(l.api), request = diagnostics.begin();
+        const native = new WechatRankingCanvas(api, diagnostics);
+        assert.throws(() => native.context, error => {
+            assert(error instanceof RankingCanvasUnsupported);
+            assert.match(error.message, reason === 'sdk_below_minimum' ? /升级微信/ : /暂时无法打开/);
+            diagnostics.failure('view_error', request, error);
+            return true;
+        });
+        const { key, value } = l.logs.at(-1);
+        assert.equal(key, 'ranking');
+        assert.equal(value.request, request);
+        assert.equal(value.nativeCanvasFailure, reason);
+    }
+});
 test('missing, throwing and failed log APIs never change the ranking authorization or message flow',()=>{
     for(const factory of [undefined,()=>{throw Error('init');},()=>({log:()=>{throw Error('report');}}),()=>({log:o=>o.fail()})]) {
         const messages=[];let done=false;

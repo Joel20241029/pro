@@ -6,6 +6,7 @@ import type { GuideTrack } from "../../storage/VillageGuides";
 import { WechatPlatform } from "../../platform/WechatPlatform";
 import { SpriteFrames } from "../SpriteFrames";
 import { UiWidgets } from "../UiWidgets";
+import type { TowerKind } from "../../config/DefenseConfig";
 export type Panel = {
     type: string;
     id?: string;
@@ -18,6 +19,8 @@ export type Panel = {
     pendingTactic?: { id: string | null; slot: number };
     /** 只在这次购买的存档提交成功后选中新槽。 */
     pendingSlotUnlock?: number;
+    /** 确认前的塔型与等级快照，用于防止重复提交和校验成功结果。 */
+    towerChange?: { from: TowerKind | null; level: number; to?: TowerKind; submitted?: boolean };
     tab?: number;
     /** 标签换页后为新的选中按钮延续松手动效，在本次渲染消费。 */
     tabFeedback?: boolean;

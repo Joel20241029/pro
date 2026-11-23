@@ -13,6 +13,29 @@ import { orderPanelRows } from "./PanelListOrder";
 import type { MaterialCost } from "../UiWidgets";
 export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
     const day = s.phase === "DAY";
+    if (p.type === "towerConfirm") {
+        const index = p.index!, change = p.towerChange!, tower = s.towers[index];
+        const { from, level, to } = change;
+        const verb = to ? from ? "转型" : "建造" : "升级";
+        const kind = to ?? from!;
+        const cost = to ? { wood: from ? RULE.towerConvert : TOWERS[to].cost, food: 0 } : upgradeCost("TOWER", level);
+        const reason = !tower || tower.kind !== from || tower.level !== level ? "塔位状态已变化，请返回重选"
+            : upgradeUnavailableReason(s, cost);
+        const footer = 300;
+        const box = ctx.modal(`确认${verb}`, "", false, { width: 586, height: footer + UI.action.pairHeight + UI.action.bottom });
+        const description = `第 ${index + 1} 塔位 · ${TOWERS[kind].name}\n${to ? from ? `保留 ${amount(level)} 阶` : "建成后为 1 阶" : `升至 ${amount(level + 1)} 阶`}`;
+        const details = ctx.ui.label(box, description, 34, 111, 518, 30, C.cream, true, 92);
+        details.align = "center";
+        ctx.ui.materialCosts(box, s, cost, 101, 214, 384, 50);
+        if (reason) ctx.ui.label(box, reason, 34, 264, 518, 23, C.red, false, 29).align = "center";
+        ctx.ui.button(box, "取消", 69, footer, 170, () => ctx.open(p.back!, true), C.muted, UI.action.pairHeight);
+        ctx.ui.button(box, `确认${verb}`, 263, footer, 254, () => {
+            if (change.submitted || ctx.game.saves.pending || reason) return;
+            change.submitted = true;
+            ctx.send(to ? { type: "TOWER", index, kind: to } : { type: "UPGRADE", index });
+        }, C.gold, UI.action.pairHeight, day && !reason && !change.submitted);
+        return;
+    }
     if (p.type === "build") {
         const box = ctx.modal("建设村落", "", true, undefined,
             "上方是现有库存／仓储。卡片上显示本次费用，红字为现有／所需。修缮增加仓储，扩建增加住房。上下滑动查看更多。");
@@ -79,7 +102,9 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
             { width: UI.panelWidth, height: towerHeight }, help);
         (Object.keys(TOWERS) as TowerKind[]).forEach((k, j) => {
             const cost = t.kind ? RULE.towerConvert : TOWERS[k].cost;
-            const button = ctx.ui.button(box, `${t.kind && t.kind !== k ? "转为" : ""}${TOWERS[k].name}`, 34 + j * 204, towerOptionsY, 192, () => ctx.send({ type: "TOWER", index: i, kind: k }), C.muted, towerOptionHeight, day && t.kind !== k && s.wood >= cost);
+            const button = ctx.ui.button(box, `${t.kind && t.kind !== k ? "转为" : ""}${TOWERS[k].name}`, 34 + j * 204, towerOptionsY, 192,
+                () => ctx.open({ type: "towerConfirm", index: i, towerChange: { from: t.kind, level: t.level, to: k }, back: p }),
+                C.muted, towerOptionHeight, day && t.kind !== k && s.wood >= cost);
             const face = button.getChildByName("buttonFace") as Laya.Sprite, text = face.getChildByName("buttonText") as Laya.Text;
             text.y = 9; text.height = 43;
             if (t.kind === k || !day) ctx.ui.label(face, t.kind === k ? "已建成" : "白天可建", 10, 55, 172, 25, C.muted, false, 40).align = "center";
@@ -89,7 +114,8 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
             const cost = upgradeCost("TOWER", t.level), rowParent = new Laya.Sprite();
             rowParent.pos(34, 305);
             box.addChild(rowParent);
-            ctx.ui.buildRow(rowParent, 0, t.kind === "ARROW" ? "icon_arrow" : t.kind === "STONE" ? "icon_stone" : "icon_slow", `升级至 ${amount(t.level + 1)} 阶`, `基础伤害 ${growthPreview(Math.floor(TOWERS[t.kind].damage * levelPower(t.level)), Math.floor(TOWERS[t.kind].damage * levelPower(t.level + 1)))}`, s, cost, upgradeUnavailableReason(s, cost), () => ctx.send({ type: "UPGRADE", index: i }));
+            ctx.ui.buildRow(rowParent, 0, t.kind === "ARROW" ? "icon_arrow" : t.kind === "STONE" ? "icon_stone" : "icon_slow", `升级至 ${amount(t.level + 1)} 阶`, `基础伤害 ${growthPreview(Math.floor(TOWERS[t.kind].damage * levelPower(t.level)), Math.floor(TOWERS[t.kind].damage * levelPower(t.level + 1)))}`, s, cost, upgradeUnavailableReason(s, cost),
+                () => ctx.open({ type: "towerConfirm", index: i, towerChange: { from: t.kind, level: t.level }, back: p }));
         }
         if (t.kind) {
             const canAssign = s.people.some(q => isWorkingAdult(q) && q.id !== s.patrol.captain);

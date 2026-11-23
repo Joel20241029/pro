@@ -69,6 +69,15 @@ export class GamePanels implements PanelContext {
     }
     redraw(draw: () => void) {
         if (this.current?.type === "mercyConfirm" && this.game.state?.night?.mercySpent) this.current = null;
+        const change = this.current?.towerChange;
+        if (change?.submitted && !this.game.saves.pending) {
+            const tower = this.game.state?.towers[this.current!.index!];
+            if (tower?.kind === (change.to ?? change.from) &&
+                tower?.level === (change.to ? Math.max(1, change.level) : change.level + 1)) {
+                this.current = null;
+                this.game.resume("CHOICE");
+            } else change.submitted = false;
+        }
         const animate = !this.game.pauses.has("BACKGROUND") && !this.game.pauses.has("DISABLED");
         this.motion.redraw(this.layout, animate, () => {
             this.deferRankingCanvas = animate;
@@ -173,7 +182,7 @@ export class GamePanels implements PanelContext {
             drawFamilyPanel(this, s, p);
         else if (p.type === "wave" || p.type === "start")
             drawWavePanel(this, s, p);
-        else if (p.type === "build" || p.type === "tower")
+        else if (p.type === "build" || p.type === "tower" || p.type === "towerConfirm")
             drawBuildingPanel(this, s, p);
         else
             drawJournalPanel(this, s, p, this.deferRankingCanvas);

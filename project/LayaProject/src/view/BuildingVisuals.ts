@@ -9,6 +9,8 @@ export { BuildingLook } from "./BuildingLayout";
 
 /** 图稿按原地图足点等比放大25%。这个比例只用于贴图、局部动效和挂点。 */
 const BUILDING_ART_SCALE = 1.25;
+/** 以占地足点为支点，整塔先长高，再统一回弹。单位为表现秒。 */
+const TOWER_GROWTH = { seconds: .6, stretchAt: .65, overshoot: .12 } as const;
 
 /** 原生编辑器部件与局部帧共用同一地图足点。 */
 export class BuildingVisuals {
@@ -23,6 +25,8 @@ export class BuildingVisuals {
     private gateFlare = 0;
     private ambient: BuildingAmbient;
     private elapsed = 0; private upgrading = false;
+    private tower = false;
+    private bodyScale = 1;
     private battle: BattleSimulation | null = null; private latestShot: Shot | null = null;
     private cachedBodyRegion: TipTarget | null = null;
     constructor(private owner: Laya.Sprite, private art: SpriteFrames) {
@@ -54,9 +58,11 @@ export class BuildingVisuals {
     }
     sync(kind: BuildingLook | null, level: number, freshVillage: boolean, rooms = 1, damaged = false, facing = 1, expansion = 0) {
         const key = `${kind}:${damaged}:${facing}`;
+        this.tower = kind === "ARROW" || kind === "STONE" || kind === "SLOW";
         if (freshVillage) {
             this.upgradePending = 0; this.upgrading = false; this.gateFlare = 0; this.ambient.reset();
             this.upgrades.forEach(a => a.gotoAndStop(1)); this.latestShot = null;
+            this.parts.scale(this.bodyScale, this.bodyScale);
         } else if (kind && this.level > 0) {
             const gains = Math.max(level - this.level, expansion - this.expansion, rooms - this.rooms, 0);
             if (kind === "HOUSE" || kind === "FARM" || kind === "LOGGING" || kind === "GATE") this.upgradePending += gains;
@@ -69,6 +75,7 @@ export class BuildingVisuals {
             return;
         }
         this.key = key;
+        this.upgrading = false;
         this.parts.destroyChildren(); this.above?.destroy(true); this.above = null; this.aboveSort = null;
         this.body = this.muzzle = null; this.upgrades = []; this.attack = []; this.ambient.clear();
         this.cachedBodyRegion = null;
@@ -80,7 +87,8 @@ export class BuildingVisuals {
         const root = this.create(layout, this.parts), scale = this.owner.width / 128;
         this.owner.size(this.owner.width, this.owner.width).pivot(layout.sort.x * scale, layout.sort.y * scale);
         this.parts.size(128, 128).pivot(layout.sort.x, layout.sort.y).pos(layout.sort.x * scale, layout.sort.y * scale);
-        this.parts.scale(scale * BUILDING_ART_SCALE, scale * BUILDING_ART_SCALE);
+        this.bodyScale = scale * BUILDING_ART_SCALE;
+        this.parts.scale(this.bodyScale, this.bodyScale);
         this.body = root.getChildByName("Body") as Laya.Sprite;
         if (kind === "ARROW") {
             // 左右武器各自预渲染；只切换武器组，主体与固定光照不随塔位镜像。
@@ -115,18 +123,28 @@ export class BuildingVisuals {
             this.badge.scaleX = this.owner.scaleX;
         }
     }
-    /** 面板完全关闭后按每次升级依次播放，动画仍附在各自的部件上。 */
+    /** 面板收起后再播。塔的整套表现共用足点，其他建筑沿用本地部件动画。 */
     beginVisibleUpgrade(): boolean {
-        if (!this.upgradePending || this.upgrading || !this.upgrades.length) return false;
+        if (!this.upgradePending || this.upgrading || (!this.tower && !this.upgrades.length)) return false;
         this.upgradePending--; this.elapsed = 0; this.upgrading = true;
-        this.upgrades.forEach(a => a.gotoAndStop(0)); return true;
+        if (this.tower) this.parts.scale(this.bodyScale * .76, this.bodyScale * .58);
+        else this.upgrades.forEach(a => a.gotoAndStop(0));
+        return true;
     }
     advance(delta: number, night = false, working = false) {
         let progress = 1;
         if (this.upgrading) {
             this.elapsed += delta;
-            progress = Math.min(1, this.elapsed / this.upgrades[0].clip.duration());
-            this.upgrades.forEach(a => a.gotoAndStop(progress)); this.upgrading = progress < 1;
+            progress = Math.min(1, this.elapsed / (this.tower ? TOWER_GROWTH.seconds : this.upgrades[0].clip.duration()));
+            if (this.tower && progress === 1) this.parts.scale(this.bodyScale, this.bodyScale);
+            else if (this.tower) {
+                const { stretchAt, overshoot } = TOWER_GROWTH;
+                const rise = 1 - (1 - Math.min(1, progress / stretchAt)) ** 3;
+                const settle = Math.max(0, (progress - stretchAt) / (1 - stretchAt));
+                this.parts.scale(this.bodyScale * (.76 + (.24 + overshoot / 2) * rise - overshoot / 2 * settle),
+                    this.bodyScale * (.58 + (.42 + overshoot) * rise - overshoot * settle));
+            } else this.upgrades.forEach(a => a.gotoAndStop(progress));
+            this.upgrading = progress < 1;
         }
         this.gateFlare = this.upgrading ? Math.sin(Math.PI * progress) : 0;
         this.ambient.advance(delta, night, working);
@@ -181,7 +199,8 @@ export class BuildingVisuals {
     weaponAnchor(): GroundPoint & { scale: number } {
         const weapon = this.body!.getChildByName("Weapon") as Laya.Sprite;
         const parent = this.owner.parent as Laya.Sprite;
-        const point = weapon.localToGlobal(new Laya.Point(weapon.width / 2, weapon.height), false, parent);
+        // Weapon 的 x/y 就是编辑器设置的安装支点，部件放大不改变狂怒光环大小。
+        const point = this.body!.localToGlobal(new Laya.Point(weapon.x, weapon.y), false, parent);
         return { x: point.x, y: point.y, scale: this.parts.scaleX * Math.abs(this.owner.scaleX) };
     }
 }

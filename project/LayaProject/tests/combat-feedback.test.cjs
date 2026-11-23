@@ -25,13 +25,48 @@ function shot(tick,kind='ARROW'){return {tower:0,x:300,y:400,kind,tick};}
 test('patrol hit clock belongs to the target through movement, a finishing blow and battle replacement',()=>{
  const b=battle(),f=new CombatPresentation(),a=enemy(1),c=enemy(2);
  const hit=(enemy,tick)=>({type:'patrol',tick,enemy:{...enemy},index:tick,at:enemyPoint(enemy),dx:0,dy:-1});
- b.enemies=[a,c];f.sync(b,[hit(a,0)]);assert(f.hasPatrolImpact);assert.equal(f.patrolImpactAge(a.seq),0);
+ b.enemies=[a,c];f.sync(b,[hit(a,0)]);assert(f.hasPatrolImpact);assert.equal(f.patrolImpactAge(a.seq),0);assert.equal(f.hitShake(a.seq),FEEDBACK.patrolHit.pixels);assert(f.flashing(a.seq));
  a.progress+=20;f.advance(.11);assert.equal(f.patrolImpactAge(a.seq),.11);assert.equal(f.patrolImpactAge(c.seq),undefined);
  b.enemies=[];a.hp=c.hp=0;b.outcome='WIN';f.sync(b,[hit(a,1),hit(c,1)]);
  assert(f.deathPose(a.seq)&&f.deathPose(c.seq));assert.equal(f.patrolImpactAge(a.seq),0);
- f.advance(FEEDBACK.impact.frameCount/FEEDBACK.impact.fps-.01);assert(f.hasPatrolImpact);
+ f.advance(FEEDBACK.patrolHit.seconds-.01);assert(f.hasPatrolImpact);
  f.advance(.02);assert(!f.hasPatrolImpact);assert(f.deathPose(a.seq));
  f.sync(b,[hit(a,2)]);f.sync(battle(),[]);assert(!f.hasPatrolImpact);
+});
+test('spin impact pushes each rendered target radially and leaves its combat position intact',()=>{
+ const f=new CombatPresentation(),b=battle(),left=enemy(1),right=enemy(2),boss={...enemy(3),kind:'enemy_chief'},legacy=enemy(4);
+ b.patrol={spin:{}};
+ const hit=(enemy,dx,dy)=>({type:'patrol',tick:0,enemy:{...enemy},index:0,at:enemyPoint(enemy),dx,dy});
+ const originals=[left,right,boss].map(enemyPoint);
+ f.sync(b,[hit(left,-12,0),hit(right,12,10),hit(boss,0,0)]);
+ assert(f.patrolRecoil(left.seq,1).x===0);
+ f.advance(FEEDBACK.patrolHit.recoilPeak);
+ const lp=f.patrolRecoil(left.seq,1),rp=f.patrolRecoil(right.seq,2),bp=f.patrolRecoil(boss.seq,1);
+ assert.equal(lp.x,-FEEDBACK.patrolHit.commonRecoil);
+ assert(rp.x>0&&rp.y>rp.x);
+ assert(Math.abs(Math.hypot(bp.x,bp.y)-FEEDBACK.patrolHit.bossRecoil)<1e-9);
+ assert.deepEqual([left,right,boss].map(enemyPoint),originals);
+ f.advance(FEEDBACK.patrolHit.recoilSeconds);
+ assert.equal(f.patrolRecoil(left.seq,1),undefined);
+ const old=battle();f.sync(old,[hit(legacy,1,1)]);assert.equal(f.patrolRecoil(legacy.seq,1),undefined);
+});
+test('spin kills somersault to a displaced landing, with one defeat cue and no simulation movement',()=>{
+ const f=new CombatPresentation(), b=battle(), victim=enemy(8,0);
+ b.patrol={spin:{}};
+ const at=enemyPoint(victim),spinDeath=FEEDBACK.patrolDeath;
+ f.sync(b,[{type:'patrol',tick:0,enemy:victim,index:0,at,dx:-12,dy:0}]);
+ assert.equal(f.deathPose(8),undefined);assert.equal(f.takeDefeatCue(),false);
+ f.advance(spinDeath.airSeconds/2);
+ assert.equal(f.patrolAir(8).degrees,-180);
+ assert.equal(f.patrolAir(8).lift,spinDeath.lift);
+ assert.equal(f.patrolRecoil(8,1).x,-spinDeath.distance/2);
+ f.advance(spinDeath.airSeconds/2+.03);
+ assert.equal(f.patrolAir(8),undefined);assert(f.deathPose(8).scaleY<1);
+ assert.equal(f.patrolRecoil(8,1).x,-spinDeath.distance);
+ assert.equal(f.takeDefeatCue(),true);assert.equal(f.takeDefeatCue(),false);
+ assert.deepEqual(enemyPoint(victim),at);
+ f.advance(spinDeath.squashSeconds+spinDeath.holdSeconds+spinDeath.fadeSeconds);
+ assert(!f.hasPatrolImpact);assert(!f.deaths.has(8));assert.equal(f.patrolRecoil(8,1),undefined);
 });
 test('real stone hurt set contains splash victims; slow-only neighbors have no damage event',()=>{
  for(const kind of ['STONE','SLOW']){const b=battle(kind);const target=enemy(10);b.enemies=[target,nearbyEnemy(target,kind)];b.step();const e=b.feedback.find(e=>e.type==='shot');assert(e);assert.equal(e.hurt.length,kind==='STONE'?2:1);if(kind==='SLOW')assert.equal(b.enemies[0].slowTicks,RULE.slowTicks);}
