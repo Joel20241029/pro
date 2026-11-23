@@ -19,7 +19,10 @@ const along = (from: RoadPoint, to: RoadPoint, t: number): RoadPoint =>
 /** Flight trail and the thrown actor share one ground path and one visual height. */
 export function patrolArc(from: RoadPoint, to: RoadPoint, progress: number) {
     const sway = Math.sin(Math.PI * progress);
-    return { x: mix(from.x, to.x, progress) + sway * 44, y: mix(from.y, to.y, progress), lift: sway * 104 };
+    const x = mix(from.x, to.x, progress);
+    // 朝地图内侧抛出一条弧，方向在一整次飞行中固定。
+    const side = (from.x + to.x) / 2 <= SPIN.map.width / 2 ? SPIN.arcSway : -SPIN.arcSway;
+    return { x: Math.max(0, Math.min(SPIN.map.width, x + sway * side)), y: mix(from.y, to.y, progress), lift: sway * SPIN.arcHeight };
 }
 
 export class PatrolSpin {

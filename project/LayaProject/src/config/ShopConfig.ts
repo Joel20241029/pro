@@ -3,7 +3,7 @@ export const ITEMS = {
     food_bag: { name: "粮袋", description: "补充粮食", icon: "icon_food" },
     wood_pack: { name: "木材包", description: "补充木材", icon: "icon_wood" },
     gate_kit: { name: "修门工具", description: "用于修补城门", icon: "icon_build" },
-    patrol_ration: { name: "巡防口粮", description: "巡防补给", icon: "icon_food" },
+    patrol_ration: { name: "巡防口粮", description: "下一场守夜淡紫儿旋甩伤害 +50%", icon: "icon_food" },
     seed_pack: { name: "种子包", description: "农田物资", icon: "icon_food" },
     planks: { name: "备用木板", description: "建筑物资", icon: "icon_wood" },
     liang_essence: { name: "靓哥的精华", description: "成年村民随机延后退休 5–20 夜", icon: "icon_liang_essence" }
@@ -21,4 +21,7 @@ export const LIANG_ESSENCE = {
 } as const;
 
 /** 按商品上架顺序陈列。道具下架后保留 ITEMS 定义，背包仍可识别及使用。 */
-export const SHOP_PRODUCTS: readonly { readonly id: ItemId; readonly food: number; readonly wood: number }[] = [LIANG_ESSENCE];
+/** 玩家确认的单夜补给。白天使用后下一夜伤害提高 50%，不叠加，补员间隔不变。 */
+export const PATROL_RATION = { id: "patrol_ration", food: 40, wood: 20, damageMultiplier: 1.5 } as const;
+
+export const SHOP_PRODUCTS: readonly { readonly id: ItemId; readonly food: number; readonly wood: number }[] = [LIANG_ESSENCE, PATROL_RATION];

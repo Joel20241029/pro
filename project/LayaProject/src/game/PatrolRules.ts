@@ -1,4 +1,5 @@
 import { PATROL } from "../config/PatrolConfig";
+import { PATROL_RATION } from "../config/ShopConfig";
 import { RULE } from "../config/RuleConfig";
 import { VILLAGER_QUALITY } from "../config/VillagerQuality";
 import { GameState, Person } from "./GameState";
@@ -9,7 +10,7 @@ export function patrolCost(s: GameState) {
 }
 
 export function patrolUpgradeReason(s: GameState) {
-    if (!Number.isSafeInteger(patrolSpinStats(s.patrol.level + 1, patrolCaptain(s)).damage)) return "建设数值已达安全范围";
+    if (!Number.isSafeInteger(patrolSpinStats(s.patrol.level + 1, patrolCaptain(s), s.patrol.rationReady).damage)) return "建设数值已达安全范围";
     return upgradeUnavailableReason(s, patrolCost(s));
 }
 
@@ -31,7 +32,7 @@ export function patrolCaptain(s: GameState) {
     return s.people.find(p => p.id === s.patrol.captain);
 }
 
-export function patrolSpinStats(level: number, captain?: Person): ReturnType<typeof patrolStats> {
+export function patrolSpinStats(level: number, captain?: Person, ration = false): ReturnType<typeof patrolStats> {
     const quality = captain?.quality ?? "COMMON", spec = PATROL.spin, n = level - 1;
     const strength = captain?.trait === "trait_strong" ? PATROL.strongBonus : 0;
     const haste = PATROL.qualityHaste[quality] + (captain?.trait === "trait_nimble" ? PATROL.nimbleBonus : 0);
@@ -40,5 +41,5 @@ export function patrolSpinStats(level: number, captain?: Person): ReturnType<typ
     const ticks = Math.round(Math.max(spec.minimum, interval) / RULE.step);
     const power = 1 + spec.damageGrowth * n + spec.earlyDamageGrowth * Math.sqrt(n);
     const damage = Math.round(PATROL.squad.damage * power * (1 + strength) * VILLAGER_QUALITY[quality].damage);
-    return { damage, ticks, seconds: Number((ticks * RULE.step).toFixed(2)) };
+    return { damage: ration ? Math.round(damage * PATROL_RATION.damageMultiplier) : damage, ticks, seconds: Number((ticks * RULE.step).toFixed(2)) };
 }

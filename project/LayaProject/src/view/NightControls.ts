@@ -13,6 +13,7 @@ import { amount } from "./ViewText";
 export class NightControls {
     readonly node = new Laya.Sprite();
     private readonly status: Laya.Text;
+    private speedText!: Laya.Text;
     private readonly buttons: { tactic: TacticDefinition; heart: Laya.Sprite; skin: Laya.Sprite; icon: Laya.Sprite; note: Laya.Text;
         ring: Laya.Sprite; muted: boolean; shownTicks: number; shownClock: string | null }[];
 
@@ -38,6 +39,7 @@ export class NightControls {
             const face = button.getChildByName("buttonFace") as Laya.Sprite;
             ui.image(face, control.icon, (width - side.icon) / 2, side.iconY, side.icon).name = "buttonIcon";
             const text = face.getChildByName("buttonText") as Laya.Text;
+            if (control.icon === "icon_speed") this.speedText = text;
             const sideTextInset = 10;
             text.pos(sideTextInset, side.textY); text.size(width - sideTextInset * 2, side.textHeight);
             text.fontSize = side.font; text.color = C.ink; text.stroke = 0;
@@ -73,6 +75,7 @@ export class NightControls {
     update() {
         const battle = this.game.battle;
         if (!battle) return;
+        this.speedText.text = `速度 ×${this.game.patrolAiming ? .5 : this.game.state!.settings.speed === RULE.minSpeed ? 1 : 2}`;
         const hand = battle.handSpeed;
         const active = !battle.outcome && (battle.bellTicks > 0 || hand !== null);
         this.status.text = `${this.game.pauses.size ? "已暂停" : "守夜中"} · 场上 ${amount(battle.enemies.length, true)} · 待来 ${amount(battle.pendingCount, true)}${battle.base.night!.hungry ? " · 缺粮" : ""}` +
@@ -87,7 +90,7 @@ export class NightControls {
             const tapping = ringing ? hand : null;
             const clock = ringing && !tapping ? "active" : cooling ? "cooldown" : null;
             const ticks = ringing ? battle.bellTicks : cooling ? battle.cooldownFor(tactic.id) : 0;
-            const seconds = Math.ceil(ticks * RULE.step / this.game.state!.settings.speed);
+            const seconds = Math.ceil(ticks * RULE.step / this.game.battleSpeed);
             const enabled = this.game.canCast(tactic.id);
             heart.mouseEnabled = enabled;
             const muted = !ringing && !enabled;

@@ -86,10 +86,12 @@ export function validateState(s: GameState) {
     check(new Set(operators).size === operators.length && ids(s.favorites, RULE.favoriteCap) && s.favorites.every(id => s.history.some(p => p.id === id)));
     const { patrol } = s;
     const spin = s.phase !== "NIGHT" || s.night?.patrolSpin === true;
-    const patrolNumbers = spin ? patrolSpinStats : patrolStats;
-    check(patrol && int(patrol.level, PATROL.startLevel) && int(patrolNumbers(patrol.level).damage, 1), "淡紫儿建筑数据无效");
+    const patrolNumbers = (captain?: Person) => spin ? patrolSpinStats(patrol.level, captain, patrol.rationReady || s.night?.patrolRation)
+        : patrolStats(patrol.level, captain, captain ? s.night?.patrolSquad === true : undefined);
+    check(patrol && int(patrol.level, PATROL.startLevel) && int(patrolNumbers().damage, 1), "淡紫儿建筑数据无效");
+    if (patrol.rationReady !== undefined) check(patrol.rationReady === true && s.phase === "DAY" && !!patrol.captain, "淡紫儿口粮数据无效");
     check(patrol.captain === null || workers.some(p => p.id === patrol.captain &&
-        !operators.includes(p.id) && int(patrolNumbers(patrol.level, p, s.night?.patrolSquad === true).damage, 1)), "淡紫队长数据无效");
+        !operators.includes(p.id) && int(patrolNumbers(p).damage, 1)), "淡紫队长数据无效");
     check(Array.isArray(s.choices) && s.choices.length <= RULE.populationCap + 3);
     for (const q of s.choices) {
         check(q && ["SKILL", "TRAVELER", "POLICY"].includes(q.kind));
@@ -117,6 +119,7 @@ export function validateState(s: GameState) {
         check(s.night && s.night.tactic === s.tactics.equipped, "本夜战技快照不一致");
         if (s.night.patrolSquad !== undefined) check(s.night.patrolSquad === true && !!patrol.captain, "本夜淡紫儿出征规则无效");
         if (s.night.patrolSpin !== undefined) check(s.night.patrolSpin === true && s.night.patrolSquad === true, "本夜淡紫儿旋转规则无效");
+        if (s.night.patrolRation !== undefined) check(s.night.patrolRation === true && s.night.patrolSpin === true, "本夜淡紫儿口粮无效");
         const nightExtra = s.night.extraSlots;
         check(nightExtra === undefined ? extra === undefined : Array.isArray(nightExtra) && nightExtra.length === extra?.length &&
             nightExtra.every((id, i) => id === extra[i]), "本夜战技槽快照不一致");

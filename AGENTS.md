@@ -6,10 +6,10 @@
 
 - 游戏工程：`project/LayaProject/`。
 - 原始资源与可编辑制作工程：`res/`。
-- 新版远程资源写入独立 Gitee 仓库 `/Users/happyelements/Documents/remote-res/<资源版本>/`。Gitee 主分支仅保留最新和上一版的版本号目录，根目录的历史兼容资源和已发布的 Git 提交继续保留。
+- 微信资源使用村庄、守夜两个原生分包。外部历史资源仓库由用户管理，发布流程不再依赖该仓库。
 - 设计和技术文档：`doc/`。
 - 微信小游戏标准候选包：`tryVersion/wxgame/`。
-- IDE 全模块本地试玩：直接使用 `tryVersion/` 根目录，试玩专用存档隔离。根目录的微信打包配置排除 `wxgame/` 和 `wxgame-remote/`，标准候选包按原路径单独上传。
+- IDE 全模块本地试玩：直接使用 `tryVersion/` 根目录，试玩专用存档隔离。根目录的微信打包配置排除 `wxgame/`，标准候选包按原路径单独上传。
 - 项目更新日志：`CHANGELOG.md`。
 
 ## 每个版本上传前单独确认
@@ -39,10 +39,9 @@
 - 上传描述覆盖自上一次成功上传以来的全部待发布变更，不能只写最后一个小修改，也不能包含尚未实现的功能。
 - 后台描述使用简洁中文，默认控制在 200 字以内（包含标点），同时遵守当前平台或用户给出的更严格限制。
 - 根据需求同步相关技术文档；资源修改同步原稿、制作配置和可编辑工程，不能只改使用中的图集。
-- 每次更新运行资源，使用 `build-resources.mjs --sync` 按 `res/manifest.json` 同步 Laya 工程，再运行 `node res/tools/prepare-remote-release.mjs <版本> --stage`，将新版本导出到独立资源仓库。
-- 在 `/Users/happyelements/Documents/remote-res/` 单独提交本轮版本目录，推送到 Gitee 的 `origin/master`，再用该仓库的完整提交 SHA 运行 `node res/tools/prepare-remote-release.mjs <版本> <已推送的完整提交 SHA> --write`。逐个核对线上文件字节后生成客户端远程资源清单，再导出验证。
-- 仅改代码的版本复用最近一次已校验的资源版本。Gitee 保留现有版本目录，旧版本由用户手动清理。
-- Gitee 新版资源使用微信 `downloadFile` 合法域名 `https://gitee.com` 与 `https://raw.giteeusercontent.com`。旧版本所用域名继续保留。
+- 更新运行资源时，使用 `build-resources.mjs --sync` 按 `res/manifest.json` 同步 Laya 工程。仅改布局时，可使用相应布局导出脚本重生成并同步单个布局文件。
+- 使用 `node project/LayaProject/tools/build-wechat-delivery.mjs <版本> <Downloads任务目录> <Laya CLI>` 构建。以本地清单和 Laya 工程的已同步文件生成 KTX1 ASTC 图页，并校验村庄、守夜分包内容、字节指纹和构建号。编码器使用 `DAIDAI_ASTCENC` 指定或从 PATH 查找。
+- 资源清理依据运行白名单、图集索引和当前制作配方。历史资源版本目录由用户手工清理。
 - 本地完成后标记为待确认上传。用户授权且收到最终成功回执后，再改为已上传。历史版本记录保持真实，不将历史验证冒充当前结果。
 
 ## 发布验证与交付

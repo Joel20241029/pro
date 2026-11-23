@@ -56,7 +56,7 @@ export class SpriteFrames {
             if (this.disposed) throw new Error("资源容器已经销毁");
             const pages: Record<string, Laya.Texture> = {}; descriptors.forEach((p, i) => {
                 pages[p.id] = loaded[i]; pages[p.id].bitmap.filterMode = Laya.FilterMode.Bilinear;
-                // 远程图集由缓存路径读取，沿用原分包 fileconfig 的各向异性等级。
+                // 编辑器和微信图集采用同一采样设置。
                 pages[p.id].bitmap.anisoLevel = 1;
             });
             const frames: Record<string, PackedFrame> = table.frames, clips: Clip[] = result[1].data.animations;

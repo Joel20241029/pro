@@ -16,15 +16,14 @@ export class WechatBuild implements IEditorEnv.IBuildPlugin {
         const fs = require("fs"), path = `${task.destPath}/game.js`;
         const projectPath = `${task.destPath}/project.config.json`;
         const project = JSON.parse(fs.readFileSync(projectPath, "utf8"));
-        // 发布包使用微信合法域名下载资源，开发者工具保留域名校验以便验收。
+        // 发布包保留微信开发者工具的域名校验。
         project.setting.urlCheck = true;
         fs.writeFileSync(projectPath, JSON.stringify(project, null, 2) + "\n");
         const game = JSON.parse(fs.readFileSync(`${task.destPath}/game.json`, "utf8"));
         const roots: string[] = (game.subpackages ?? game.subPackages ?? []).map((pack: { root: string }) => pack.root.replace(/\/$/, ""));
         const nativeRoots: readonly string[] = Object.values(NATIVE_RESOURCE_ROOTS);
-        const native = nativeRoots.every(root => roots.includes(root));
-        if (!native && roots.some(root => nativeRoots.includes(root)))
-            throw new Error("村庄与守夜资源包必须一同声明");
+        if (roots.length !== nativeRoots.length || !nativeRoots.every(root => roots.includes(root)))
+            throw new Error("村庄与守夜资源包必须一同声明，请使用 build-wechat-delivery.mjs 构建");
         const entry = fs.readFileSync(path, "utf8");
         // 微信原生榜单在主画布创建后取用一次，早于适配器改写画布原型。
         const marker = "// daidai-native-ranking-startup\n";
@@ -75,6 +74,6 @@ export class WechatBuild implements IEditorEnv.IBuildPlugin {
         catch (_) { captured.styleRetainedAfterAdapter = false; }
     }
 })();\n`;
-        fs.writeFileSync(path, marker + `GameGlobal.daidaiNativeResources = ${native};\n` + startup + entry.slice(adapter.length));
+        fs.writeFileSync(path, marker + startup + entry.slice(adapter.length));
     }
 }

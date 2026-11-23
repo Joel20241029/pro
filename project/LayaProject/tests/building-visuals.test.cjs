@@ -158,11 +158,17 @@ test('every tower keeps its weapon below the HUD on the shortest screen', () => 
  }
 });
 
-test('the stone weapon is mounted over the middle of the tower for either bank', () => {
- for (const facing of [1, -1]) {
-  const { visual, owner } = create();
-  visual.sync('STONE', 1, true, 1, false, facing);
+test('visible arrow and stone feet sit in the tower deck center for either bank', () => {
+ // Measured horizontal support centers in the rest textures, independent of the editor pivot.
+ const supports = [['ARROW', 50 / 121], ['STONE', 24 / 69]];
+ for (const [kind, supportCenter] of supports) for (const facing of [1, -1]) {
+  const { visual, owner, world } = create();
+  visual.sync(kind, 1, true, 1, false, facing);
+  const weapon = visual.body.getChildByName('Weapon');
+  const support = kind === 'ARROW' ? weapon.children.find(node => node.visible).children[0] : weapon.children[0];
+  const at = support.localToGlobal({ x: support.width * supportCenter, y: support.height }, false, world);
   assert.equal(visual.weaponAnchor().x, owner.x);
+  assert(Math.abs(at.x - owner.x) < 3, `${kind}/${facing} feet are off the deck center`);
  }
 });
 

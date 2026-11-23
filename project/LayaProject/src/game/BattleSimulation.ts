@@ -69,7 +69,8 @@ export class BattleSimulation {
     summonCharge: SummonCharge | null = null;
     blastAt: Readonly<RoadPoint> | null = null;
     private tapWindow: { remaining: number; taps: number } | null = null;
-    private poison: { targets: Set<number>; nextTick: number; extraSeconds: number } | null = null;
+    /** 施放后保留至本夜结束。每只来敌从染毒的战斗步开始单独计时。 */
+    private poison: { targets: Map<number, { nextTick: number; lastTick: number }>; extraSeconds: number } | null = null;
     get handSpeed(): Readonly<{ remaining: number; taps: number }> | null { return this.outcome ? null : this.tapWindow; }
     outcome: "WIN" | "LOSE" | null = null;
     private readonly denseWave: boolean;
@@ -130,11 +131,10 @@ export class BattleSimulation {
         else this.bellTicks = tactic.ticks;
         if (this.tactic.effect === "SUMMON_CHARGE") this.summonCharge = new SummonCharge();
         if (this.tactic.effect === "TIMED_BLAST") this.blastAt = { ...at! };
-        if (tactic.effect === "DRAGON_POISON") this.poison = {
-            targets: new Set(this.enemies.filter(e => e.hp > 0).map(e => e.seq)),
-            nextTick: this.tick + DRAGON_POISON.intervalTicks - 1,
-            extraSeconds: 0
-        };
+        if (tactic.effect === "DRAGON_POISON") {
+            this.poison = { targets: new Map(), extraSeconds: 0 };
+            for (const enemy of this.enemies) if (enemy.hp > 0) this.infect(enemy.seq);
+        }
         this.tasks?.cast(id);
         if (this.tasks && this.feedback.length > firstEvent) this.tasks.observe(this.feedback.slice(firstEvent));
         return true;
@@ -150,25 +150,48 @@ export class BattleSimulation {
         this.gate = gateCapacity(this.base);
         const hurt = this.enemies.filter(e => e.hp > 0).map(e => ({ ...e, hp: 0 }));
         this.enemies = [];
+        this.poison?.targets.clear();
         const event = { type: "mercy", hurt } as const;
         this.feedback.push(event);
         this.tasks?.cast(KING_MERCY_TACTIC);
         this.tasks?.observe([event]);
     }
+    private infect(seq: number) {
+        const spec = DRAGON_POISON, poisonedAt = this.tick - 1;
+        this.poison?.targets.set(seq, {
+            nextTick: poisonedAt + spec.intervalTicks,
+            lastTick: poisonedAt + spec.seconds * spec.intervalTicks
+        });
+    }
     private tickPoison() {
-        const poison = this.poison!, spec = DRAGON_POISON, hurt: Enemy[] = [];
-        poison.nextTick += spec.intervalTicks;
+        const poison = this.poison;
+        if (!poison?.targets.size) return 0;
+        const spec = DRAGON_POISON, hurt: Enemy[] = [];
         let kills = 0;
         for (const enemy of this.enemies) {
-            if (enemy.hp <= 0 || !poison.targets.has(enemy.seq)) continue;
-            const permille = ENEMIES[enemy.kind].boss ? spec.bossPermille : spec.smallPermille;
-            const damage = Math.floor(enemy.maxHp * permille / 1000);
-            enemy.hp -= damage;
-            if (damage > 0) hurt.push({ ...enemy });
+            const timer = poison.targets.get(enemy.seq);
+            if (!timer) continue;
+            if (enemy.hp > 0 && this.tick === timer.nextTick) {
+                const permille = ENEMIES[enemy.kind].boss ? spec.bossPermille : spec.smallPermille;
+                const damage = Math.floor(enemy.maxHp * permille / 1000);
+                enemy.hp -= damage;
+                timer.nextTick += spec.intervalTicks;
+                if (damage > 0) hurt.push({ ...enemy });
+            }
             if (enemy.hp <= 0) { kills++; poison.targets.delete(enemy.seq); }
         }
         if (hurt.length) this.feedback.push({ type: "poison", hurt });
         return kills;
+    }
+    private extendPoison(kills: number) {
+        const poison = this.poison;
+        if (!kills || !poison?.targets.size) return;
+        const { intervalTicks, maxExtraSeconds } = DRAGON_POISON;
+        const extra = Math.min(kills, maxExtraSeconds - poison.extraSeconds);
+        if (!extra) return;
+        poison.extraSeconds += extra;
+        for (const timer of poison.targets.values()) timer.lastTick += extra * intervalTicks;
+        if (this.tactic.effect === "DRAGON_POISON" && this.bellTicks > 0) this.bellTicks += extra * intervalTicks;
     }
     private resolveZhouLove() {
         // 战前快照中的成年居民包含老人和精英，儿童及家谱不参与。
@@ -180,7 +203,10 @@ export class BattleSimulation {
             targets.push({ ...enemy });
         }
         // 只影响已经入场的目标，胜负继续由下一战斗步统一判定和保存。
-        if (cleared) this.enemies = [];
+        if (cleared) {
+            this.enemies = [];
+            this.poison?.targets.clear();
+        }
         this.sharedReadyAt = this.tick + TACTIC_USE.recoveryTicks;
         this.feedback.push({ type: "zhouLove", cleared, targets });
     }
@@ -214,6 +240,7 @@ export class BattleSimulation {
             hurt.push({ ...e });
         }
         this.feedback.push({ type: "handSpeed", hurt, tick: this.tick });
+        this.extendPoison(hurt.filter(enemy => enemy.hp <= 0 && this.poison?.targets.delete(enemy.seq)).length);
         this.enemies = this.enemies.filter(e => e.hp > 0);
         if (!this.enemies.length && this.pendingCount === 0 && !this.patrol?.spin?.flying) this.outcome = "WIN";
         this.tasks?.observe(this.feedback);
@@ -243,7 +270,9 @@ export class BattleSimulation {
             ? 1 + pressure.start + (pressure.maximum - pressure.start) * Math.min(1, (day - pressure.from) / (pressure.full - pressure.from))
             : 1;
         const hp = Math.ceil(data.hp * power * heavyScale * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1) * healthScale * patrolHealth);
-        this.enemies.push({ seq: this.seq++, kind, appearanceSeed: seed, progress, walkDistance: 0, hp, maxHp: hp, speed: data.speed * speedScale * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
+        const seq = this.seq++;
+        this.enemies.push({ seq, kind, appearanceSeed: seed, progress, walkDistance: 0, hp, maxHp: hp, speed: data.speed * speedScale * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
+        if (this.poison) this.infect(seq);
     }
     step(realSeconds = RULE.step / this.base.settings.speed) {
         if (this.outcome)
@@ -290,17 +319,14 @@ export class BattleSimulation {
             for (const hit of rush.advance(traces)) this.feedback.push({ type: "summon", tick: this.tick, ...hit });
             if (!rush.active) this.bellTicks = 0;
         }
-        let patrolPoisonKills = 0;
         // 淡紫儿先于撞门扣血，同一战斗步只由仍存活的到门敌人伤害城门。
-        if (this.patrol) for (const hit of this.patrol.advance(this.tick, patrolTargets)) {
+        if (this.patrol) for (const hit of this.patrol.advance(this.tick, patrolTargets))
             this.feedback.push({ type: "patrol", tick: this.tick, ...hit });
-            if (hit.enemy.hp <= 0 && this.poison?.targets.delete(hit.enemy.seq)) patrolPoisonKills++;
-        }
         const landing = this.patrol?.spin?.landing;
         if (landing) this.feedback.push({ type: "patrolLanding", tick: this.tick, ...landing });
         // 读引爆这一战斗步的真实足点；同一步内先结算爆炸，再处理仍活着的触门敌人。
         if (this.blastAt && this.bellTicks === 1) this.detonate(this.blastAt);
-        let poisonedKills = patrolPoisonKills + (this.poison?.nextTick === this.tick ? this.tickPoison() : 0);
+        let poisonedKills = this.tickPoison();
         for (const e of this.enemies) {
             if (e.hp > 0 && e.progress >= PATH_LENGTH) {
                 const blocked = this.gateProtected, at = enemyPoint(e);
@@ -387,14 +413,10 @@ export class BattleSimulation {
         }
         const poison = this.poison;
         if (poison) {
-            // 毒伤的击杀已记在前面；防塔收掉的中毒目标同样续时。
+            // 防塔收掉的中毒目标同样续时，最后一跳当步也可延长其余毒效。
             for (const e of this.enemies) if (e.hp <= 0 && poison.targets.delete(e.seq)) poisonedKills++;
-            if (poison.targets.size) {
-                const { intervalTicks, maxExtraSeconds } = DRAGON_POISON;
-                const extra = Math.min(poisonedKills, maxExtraSeconds - poison.extraSeconds);
-                poison.extraSeconds += extra;
-                this.bellTicks += extra * intervalTicks;
-            }
+            this.extendPoison(poisonedKills);
+            for (const [seq, timer] of poison.targets) if (timer.lastTick <= this.tick) poison.targets.delete(seq);
         }
         this.enemies = this.enemies.filter(e => e.hp > 0);
         this.shots = this.shots.filter(s => this.tick - s.tick < COMBAT.shotLifetimeTicks).slice(-RULE.effectCap);
@@ -406,7 +428,6 @@ export class BattleSimulation {
         if (this.bellTicks > 0)
             this.bellTicks--;
         if (hadEffect && this.bellTicks === 0) {
-            this.poison = null;
             this.sharedReadyAt = this.tick + 1 + TACTIC_USE.recoveryTicks;
         }
         this.tasks?.observe(this.feedback);

@@ -261,7 +261,7 @@ const buildingFiles = buildBuildingLayouts(root);
 const enemyFile = buildEnemyLayouts(root);
 const { stages: bundleFiles, mainAudio } = writeBundles(root, pages, frames, recipe.animations, buildingFiles, audio, enemyFile);
 const runtimeFiles = [...Object.values(bundleFiles).flat(), ...mainAudio];
-write('manifest.json', { version: 4, status: 'versioned_remote', preferredRuntimeMode: 'atlas_plus_audio', runtimeWhitelist: runtimeFiles, stages: bundleFiles, mainAudio, assetCount: assets.length, runtimeAssetCount: runtimeAssets.length, reserveAssetCount: reserveAssets.length, assets: publicAssets, audio,
+write('manifest.json', { version: 4, status: 'native_subpackages', preferredRuntimeMode: 'atlas_plus_audio', runtimeWhitelist: runtimeFiles, stages: bundleFiles, mainAudio, assetCount: assets.length, runtimeAssetCount: runtimeAssets.length, reserveAssetCount: reserveAssets.length, assets: publicAssets, audio,
     externalAssets: recipe.externalAssets, engineImport: { directory: 'project/LayaProject/assets/resources/gameplay', mode: 'two_stage_atlases', runtime: 'WeChat Mini Game', verificationReport: 'doc/tech/06_视觉升级与资源管线.md' } });
 const categoryStats = {}; for (const a of assets) { const c = categoryStats[a.category] ??= { count: 0, bytes: 0, runtime: 0, reserve: 0 }; c.count++; c.bytes += a.bytes; c[a.runtime ? 'runtime' : 'reserve']++; }
 const atlasImageBytes = pages.reduce((sum, p) => sum + p.bytes, 0), metadataBytes = runtimeFiles.filter(p => p.endsWith('.bin') || p.endsWith('.mc')).reduce((sum, p) => sum + fs.statSync(path.join(root, p)).size, 0);

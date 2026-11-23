@@ -34,19 +34,21 @@ export const TOWER_VIEW = {
     hudClearance: 176, hudEdgePadding: 8,
     // 塔脚离逻辑路边的余量含美术加宽的土路外沿及底座可见宽度。
     roadClearance: 38, upperLeftRoadClearance: 32, upperRightRoadClearance: 33, compactLowerLeftRoadClearance: 34,
+    // 第五塔靠近内侧弯道，保留 25 像素草地余量，避免占地伸到土路。
+    lowerRightRoadClearance: 25,
     muzzle: { ARROW: { x: 92, y: 35 }, STONE: { x: 55, y: 59 }, SLOW: { x: 64, y: 32 } }
 } as const;
 /** 显示塔位沿用存档塔位编号。战斗索敌使用常规高度基准，短屏绘制按下方各档避让。 */
 export const TOWER_DISPLAY_PADS: readonly GroundPoint[] = PADS;
 /** 塔位按原存档编号排列，数据由五塔武器和标注轮廓对各档战场高度试排得出。
- * y 是基准地图坐标。短屏适当收小塔身，标签字号沿用现有 HUD 参数。
+ * y 是基准地图坐标。右下塔上移 22 像素；短屏路牌向右避开塔的轮廓和标注。
  */
 export const TOWER_SCREEN_LAYOUTS = [
-    { height: 492, friendshipSign: [645, 510], scale: .80, points: [[214,351], [538,353], [268,667], [439,533], [569,712]] },
-    { height: 523, friendshipSign: [645, 484], scale: .88, points: [[226,348], [540,356], [210,653], [401,509], [554,693]] },
-    { height: 593, friendshipSign: [575, 520], scale: .88, points: [[228,362], [543,331], [219,643], [413,531], [554,704]] },
-    { height: 650, friendshipSign: [575, 523], scale: .88, points: PADS.map(p => [p.x,p.y]) },
-    { height: 700, friendshipSign: [575, 523], scale: .88, points: [[238,360], [543,302], [193,606], [396,522], [538,720]] }
+    { height: 492, friendshipSign: [646, 486], scale: .80, points: [[214,351], [538,353], [268,667], [439,533], [545,690]] },
+    { height: 523, friendshipSign: [652, 455], scale: .88, points: [[226,348], [540,356], [210,653], [401,509], [530,671]] },
+    { height: 593, friendshipSign: [650, 485], scale: .88, points: [[228,362], [543,331], [219,643], [413,531], [530,682]] },
+    { height: 650, friendshipSign: [575, 499], scale: .88, points: [...PADS.slice(0, 4).map(p => [p.x, p.y]), [523,694]] },
+    { height: 700, friendshipSign: [575, 499], scale: .88, points: [[238,360], [543,302], [193,606], [396,522], [514,698]] }
 ] as const;
 /** 既有固定地图与高清母画布足底（中心、15/16 高度）。占地仅覆盖底座，屋顶/树冠可以遮住行人。 */
 function prop(id: string, frame: string, left: number, top: number, size: number, baseWidth: number, baseDepth: number): VillageProp {
@@ -59,7 +61,7 @@ export const VILLAGE_PROPS: VillageProp[] = [
     ...[28, 92, 156, 220, 500, 564, 628, 692].map((x, i): VillageProp => ({ id: `wall:${i}`, frame: "building_palisade", x, y: 830, size: 78, footprint: null })),
     // 村名牌靠左城墙，底座落在已有墙体安全边内；牌面与火把分开，不增加通行障碍。
     { id: "deco:village-sign", frame: "deco_village_sign", x: 153, y: 836, size: 140, footprint: null, signText: "文明里村" },
-    { id: "deco:friendship-road-sign", frame: "deco_village_sign", x: 575, y: 523, size: 120, footprint: null, signText: "友谊路" },
+    { id: "deco:friendship-road-sign", frame: "deco_village_sign", x: 575, y: 499, size: 120, footprint: null, signText: "友谊路" },
     // 下方圆树与左侧松树横向错开66，避免圆树树冠挡住松树前的落斧动作；仍保留原高度/尺寸。
     { id: "tree:logging", frame: "deco_tree_oak", x: 164, y: 1012, size: 90, footprint: { left: 153, top: 997, right: 175, bottom: 1012 }, canopyDetails: [
         { frame: "deco_apple_pair", x: .22, y: .37, size: .14, alpha: .85 },

@@ -7,7 +7,7 @@ declare const wx: RankingLogPlatform;
 
 /** 资源阶段与帧表沿用原合同，微信原生包只用 ASTC 图页。 */
 export class WechatSubpackageResources {
-    readonly diagnostics = new AssetDiagnostics(wx, "native");
+    readonly diagnostics = new AssetDiagnostics(wx);
     private readonly loaded = new Set<ResourceStage>();
 
     async prepare(stage: ResourceStage, progress: (ratio: number) => void, attempt?: AssetAttempt) {
@@ -43,7 +43,7 @@ export class WechatSubpackageResources {
             try { return await Laya.loader.load(url, options); }
             finally { delete Laya.Loader.preLoadedMap[key]; }
         }
-        // KTX 编码前已预乘 alpha，采样边界沿用远程图页合同。
+        // KTX 编码前已预乘 alpha，采样范围限制在图页边界。
         return Laya.loader.load(url, image ? { ...options, propertyParams: {
             premultiplyAlpha: false, wrapModeU: Laya.WrapMode.Clamp, wrapModeV: Laya.WrapMode.Clamp
         } } : options);

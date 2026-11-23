@@ -1,5 +1,4 @@
 import { RELEASE } from "../config/ReleaseInfo";
-import { REMOTE_RESOURCE_MANIFEST } from "../config/RemoteResourceManifest";
 import type { ResourceStage } from "../config/ResourceConfig";
 import type { RankingLogPlatform } from "./RankingDiagnostics";
 
@@ -30,10 +29,8 @@ export class AssetDiagnostics {
     private logger?: ReturnType<NonNullable<Platform["getGameLogManager"]>>;
     private sequence = 0;
     private count = 0;
-    private readonly common = { delivery: "remote", version: RELEASE.version, build: RELEASE.build, resourceVersion: REMOTE_RESOURCE_MANIFEST.version,
-        revision: REMOTE_RESOURCE_MANIFEST.revision, env: "unknown" };
-    constructor(private platform: Platform, delivery: "remote" | "native" = "remote") {
-        this.common.delivery = delivery;
+    private readonly common = { delivery: "native", version: RELEASE.version, build: RELEASE.build, env: "unknown" };
+    constructor(private platform: Platform) {
         try {
             const env = platform.getAccountInfoSync?.().miniProgram.envVersion;
             if (env && ["release", "trial", "develop"].includes(env)) this.common.env = env;

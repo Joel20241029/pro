@@ -67,10 +67,13 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
         { width: UI.panelWidth, height: appointY + appointHeight + UI.action.bottom }, `点「${PATROL.appoint}」后，守夜时两名淡紫儿一起从之家出发，一露面就能按住任一人，两人会在城门下方就位。往后拉，箭头显示方向和力度。松手发射。等级可继续提升伤害、缩短两人就位时间。队长品质和天赋也有加成。`);
     if (panel.back) ctx.ui.button(box, "返回", 34, 108, 120, back, C.muted, 54);
     ctx.ui.image(box, PATROL_BOOTH_FRAME, 50, 171, 140);
-    const stats = patrolSpinStats(level, current);
+    const ration = s.patrol.rationReady || s.night?.patrolRation;
+    const stats = patrolSpinStats(level, current, ration);
     ctx.ui.label(box, current ? `队长 · ${coloredName(current)}` : `${PATROL.role}待任命`, 214, 174, 408, 30, C.cream, true, 46);
     ctx.ui.label(box, current ? `伤害 ${amount(stats.damage)} · 约 ${Math.round(stats.seconds)} 秒补一批` : "任命队长后，守夜时出征",
         214, 226, 408, 26, C.cream, false, 46);
+    if (ration) ctx.ui.label(box, s.night?.patrolRation ? "口粮加成 · 本夜生效" : "口粮加成 · 下场守夜生效",
+        214, 270, 408, 25, C.cream, false, 42);
     const row = new Laya.Sprite(); row.pos(34, 320); box.addChild(row);
     const build = ctx.ui.buildRow(row, 0, PATROL_BOOTH_FRAME, `升级至 ${amount(level + 1)} 级`,
         "伤害提升 · 补员更快",

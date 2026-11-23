@@ -6,8 +6,8 @@ import { LoadResult, SaveMode, SaveStore } from "../storage/SaveStore";
 import { DeviceSettings } from "../storage/DeviceSettings";
 import { BackpackChange, VillageItemStorage } from "../storage/VillageItemStorage";
 import { VillageGuides } from "../storage/VillageGuides";
-import { ItemId, LIANG_ESSENCE } from "../config/ShopConfig";
-import { essenceTargets, shopOffer } from "./ShopRules";
+import { ItemId, LIANG_ESSENCE, PATROL_RATION } from "../config/ShopConfig";
+import { essenceTargets, patrolRationUnavailable, shopOffer } from "./ShopRules";
 import { dailyRationAmount, localRationDate } from "./DailyRation";
 import { BLAST_TACTIC, KING_MERCY, KING_MERCY_TACTIC } from "../config/TacticConfig";
 import { gateCapacity } from "./Growth";
@@ -18,6 +18,7 @@ import { DailyTaskCombat } from "./DailyTaskCombat";
 import { claimDailyTask } from "./DailyTaskState";
 import { creditTaskCommand, creditTaskVictory, dailyTasksNeedRefresh, prepareDailyTasks } from "./DailyTasks";
 import type { RoadPoint } from "./BattleRoad";
+import { PATROL } from "../config/PatrolConfig";
 export type Pause = "USER" | "BACKGROUND" | "WAIT_RESUME" | "CHOICE" | "SAVE_PENDING" | "DISABLED" | "DAILY_RATION" | "ASSETS";
 export interface EssenceFeedback { person: string; nights: number; }
 export class GameSession {
@@ -27,6 +28,7 @@ export class GameSession {
     private taskCombat: DailyTaskCombat | null = null;
     private nextTaskClockCheck = 0;
     private aimingBlastIn: BattleSimulation | null = null;
+    private aimingPatrolIn: BattleSimulation | null = null;
     get presentationBattle() { return this.battle ?? this.finishedBattle; }
     /** 跨一帧多个逻辑步的表现信箱；换战斗时清空，结算不等待动画。 */
     private combatFeedback: CombatFeedback[] = [];
@@ -193,6 +195,19 @@ export class GameSession {
             this.submit(next, false, undefined, { id: LIANG_ESSENCE.id, delta: -1, before: count }, { person, nights });
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
+    usePatrolRation() {
+        const state = this.state;
+        if (!state || this.saves.pending || this.pauses.has("BACKGROUND") || this.pauses.has("DISABLED")) return;
+        try {
+            const reason = patrolRationUnavailable(state);
+            if (reason) throw new Error(reason);
+            const count = this.villageItems.backpack().items[PATROL_RATION.id] ?? 0;
+            if (!count) throw new Error("背包里没有巡防口粮");
+            const next = clone(state);
+            next.patrol.rationReady = true;
+            this.submit(next, false, undefined, { id: PATROL_RATION.id, delta: -1, before: count });
+        } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
+    }
     command(c: Command) {
         if (!this.state || this.saves.pending || (c.type === "NIGHT" && this.pauses.has("ASSETS"))) return;
         try {
@@ -210,7 +225,7 @@ export class GameSession {
         }
         catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
-    pause(reason: Pause) { this.pauses.add(reason); this.accumulator = 0; this.aimingBlastIn = null; }
+    pause(reason: Pause) { this.pauses.add(reason); this.accumulator = 0; this.aimingBlastIn = this.aimingPatrolIn = null; }
     resume(reason: Pause) { this.pauses.delete(reason); this.accumulator = 0; }
     hide = () => { this.pause("BACKGROUND"); this.changed(); };
     show = () => { this.resume("BACKGROUND"); this.pause("WAIT_RESUME"); this.enter(); };
@@ -248,6 +263,15 @@ export class GameSession {
         return !!battle?.patrol?.spin?.canGather && !battle.outcome && !battle.handSpeed && !this.blastAiming &&
             !this.pauses.size && !this.saves.pending;
     }
+    setPatrolAiming(active: boolean) {
+        this.aimingPatrolIn = active && this.patrolDragReady ? this.battle : null;
+    }
+    get patrolAiming() {
+        return this.aimingPatrolIn === this.battle && this.patrolDragReady;
+    }
+    get battleSpeed() {
+        return this.patrolAiming ? RULE.minSpeed * PATROL.spin.aimSpeedRatio : this.state!.settings.speed;
+    }
     get hasLaunchedPatrol() { return this.deviceSettings.hasLaunchedPatrol; }
     throwPatrol(at: RoadPoint, angle: number) {
         if (!this.patrolDragReady || !this.battle!.patrol!.spin!.throwAt(this.battle!.tick, at, angle)) return false;
@@ -279,7 +303,7 @@ export class GameSession {
             this.refreshDailyTasks();
         }
         if (this.pauses.size || !this.battle || !this.state || this.battle.outcome) return;
-        const realDelta = Math.min(RULE.frameCap, Math.max(0, delta)), speed = this.state.settings.speed;
+        const realDelta = Math.min(RULE.frameCap, Math.max(0, delta)), speed = this.battleSpeed;
         if (this.battle.handSpeed) {
             const battle = this.battle;
             battle.step(realDelta);

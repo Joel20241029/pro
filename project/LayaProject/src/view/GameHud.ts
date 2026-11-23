@@ -232,7 +232,7 @@ export class GameHud {
             return;
         this.nightControls?.update();
         if (battle) {
-            const ringing = !battle.outcome && battle.bellTicks > 0, seconds = Math.ceil(battle.bellTicks * RULE.step / s.settings.speed);
+            const ringing = !battle.outcome && battle.bellTicks > 0, seconds = Math.ceil(battle.bellTicks * RULE.step / this.game.battleSpeed);
             if (this.nightStatus) {
                 const tactic = battle.tactic;
                 const effect = tactic.effect === "GATE_INVULNERABLE" ? "城门无敌" :

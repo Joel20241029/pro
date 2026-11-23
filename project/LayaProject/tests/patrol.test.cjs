@@ -334,3 +334,34 @@ test('patrol pull scales from the actual finger start to the screen edge and lan
         }
     }
 });
+
+test('held patrol aim runs at half the normal HUD rate, restores both saved speeds and resets on pause', () => {
+    const { GameSession } = load('game/GameSession');
+    for (const speed of [RULE.minSpeed, RULE.maxSpeed]) {
+        const port = { read: () => null, write() {}, remove() {} };
+        const game = new GameSession(new SaveStore(port));
+        const state = createGame(245);
+        applyCommand(state, { type: 'PATROL_CAPTAIN', id: state.people[0].id });
+        applyCommand(state, { type: 'NIGHT' });
+        state.settings.speed = speed;
+        game.state = state;
+        game.battle = new BattleSimulation(state);
+        const spin = game.battle.patrol.spin;
+        while (!spin.canGather) game.battle.step();
+        spin.gather();
+        game.setPatrolAiming(true);
+        const tick = game.battle.tick;
+        game.update(RULE.step);
+        assert.equal(game.battle.tick - tick, 1);
+        assert.equal(game.state.settings.speed, speed);
+        game.setPatrolAiming(false);
+        game.update(RULE.step);
+        assert.equal(game.battle.tick - tick, 1 + speed);
+        game.setPatrolAiming(true);
+        assert(game.patrolAiming);
+        game.pause('BACKGROUND');
+        game.resume('BACKGROUND');
+        assert(!game.patrolAiming);
+        assert.equal(game.battleSpeed, speed);
+    }
+});

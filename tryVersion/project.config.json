@@ -15,18 +15,13 @@
       {
         "type": "folder",
         "value": "wxgame"
-      },
-      {
-        "type": "folder",
-        "value": "wxgame-remote"
       }
     ],
     "include": []
   },
   "watchOptions": {
     "ignore": [
-      "wxgame/**",
-      "wxgame-remote/**"
+      "wxgame/**"
     ]
   }
 }

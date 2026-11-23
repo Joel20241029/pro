@@ -106,7 +106,7 @@ async function retryStartup(f) {
     f.downloads.get('village').resolve();
     await start;
 }
-test('bundled launcher is ready before remote files and village waits for complete art', async () => {
+test('bundled launcher is ready before the village download and startup waits for complete art', async () => {
     const f = setup(), local = deferred();
     f.setArtwork(local.promise);
     const start = f.main.onStart(); await flush();

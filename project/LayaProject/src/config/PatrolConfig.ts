@@ -15,6 +15,8 @@ export const PATROL = {
     // 双人旋转按战斗步推进。冷却来自补员，后期每级仍加伤害，补员趋近保底时间。
     spin: {
         name: "淡紫儿飞速旋转",
+        // 瞄准固定为 HUD 常速档的一半。弧顶与横摆以逻辑像素计，只影响飞行演出。
+        aimSpeedRatio: .5, arcHeight: 155, arcSway: 70,
         damageGrowth: .16, earlyDamageGrowth: .24,
         // 以两人到位为准，从开战或前一组落地开始计时。首级 4.5 秒，队长或升级可缩短。
         interval: 4.5, intervalGrowth: .16, intervalFloor: 3.2, minimum: 2.8,

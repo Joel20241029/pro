@@ -24,6 +24,7 @@ export function layoutVillage(layout: GameLayout) {
         const onLeft = TOWER_VIEW.facing[index] > 0;
         const clearance = index === 0 ? TOWER_VIEW.upperLeftRoadClearance
             : index === 1 ? TOWER_VIEW.upperRightRoadClearance
+            : index === 4 ? TOWER_VIEW.lowerRightRoadClearance
             : index === 2 && authored === TOWER_SCREEN_LAYOUTS[0] ? TOWER_VIEW.compactLowerLeftRoadClearance
             : TOWER_VIEW.roadClearance;
         const edgeGap = TOWER_VIEW.footprintWidth / 2 + clearance;

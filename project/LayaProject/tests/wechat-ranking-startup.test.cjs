@@ -5,7 +5,8 @@ if (!compiled || !path.resolve(compiled).startsWith('/Users/happyelements/Downlo
 global.IEditorEnv = { regBuildPlugin: () => type => type };
 const { WechatBuild } = require(path.join(compiled, 'WechatBuild.js'));
 const fixtureRoot = path.resolve(compiled, '../../startup-fixtures'); fs.mkdirSync(fixtureRoot, { recursive: true });
-function fixture(entry = 'require("weapp-adapter.js");\nrequire("js/bundle.js");\n', roots = []) {
+const nativeRoots = ['resources/gameplay/village/', 'resources/gameplay/night/'];
+function fixture(entry = 'require("weapp-adapter.js");\nrequire("js/bundle.js");\n', roots = nativeRoots) {
     const dir = fs.mkdtempSync(path.join(fixtureRoot, 'native-'));
     fs.writeFileSync(path.join(dir, 'game.js'), entry);
     fs.writeFileSync(path.join(dir, 'game.json'), JSON.stringify({ subpackages: roots.map(root => ({ root })) }));
@@ -75,9 +76,8 @@ test('an unexpected engine entry template fails the build visibly instead of ins
     assert.throws(() => fixture('require("unknown-adapter.js");'), /启动模板已变化/);
 });
 
-test('native resource mode is enabled only when both native stage roots are exported', () => {
-    const village = 'resources/gameplay/village/', night = 'resources/gameplay/night/';
-    assert.match(fixture(undefined, [village, night]).entry, /daidaiNativeResources = true/);
-    assert.match(fixture().entry, /daidaiNativeResources = false/);
-    assert.throws(() => fixture(undefined, [village]), /一同声明/);
+test('WeChat exports require both native stages and reject the retired remote-only configuration', () => {
+    assert.doesNotMatch(fixture().entry, /daidaiNativeResources/);
+    for (const roots of [[], [nativeRoots[0]], [...nativeRoots, 'resources/gameplay/']])
+        assert.throws(() => fixture(undefined, roots), /一同声明/);
 });

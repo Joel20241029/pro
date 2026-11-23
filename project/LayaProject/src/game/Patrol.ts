@@ -28,7 +28,8 @@ export class Patrol {
     constructor(state: GameState) {
         this.squad = state.night?.patrolSquad === true;
         const captain = patrolCaptain(state);
-        this.stats = state.night?.patrolSpin ? patrolSpinStats(state.patrol.level, captain) : patrolStats(state.patrol.level, captain, this.squad);
+        this.stats = state.night?.patrolSpin ? patrolSpinStats(state.patrol.level, captain, state.night.patrolRation)
+            : patrolStats(state.patrol.level, captain, this.squad);
         this.spin = state.night?.patrolSpin ? new PatrolSpin(this.stats) : null;
     }
 

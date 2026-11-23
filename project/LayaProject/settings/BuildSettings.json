@@ -9,10 +9,16 @@
   "enableSubpackages": true,
   "subpackages": [
     {
-      "path": "resources/gameplay",
+      "path": "resources/gameplay/village",
       "packAllAssets": true,
       "autoLoad": false,
-      "remote": true
+      "remote": false
+    },
+    {
+      "path": "resources/gameplay/night",
+      "packAllAssets": true,
+      "autoLoad": false,
+      "remote": false
     }
   ],
   "enableWasmSubpackage": false,

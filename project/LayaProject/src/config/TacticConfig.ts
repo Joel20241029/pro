@@ -68,8 +68,9 @@ export const HAND_SPEED = {
 /** 周博战技的持久身份及回春比例。作用于按下时已入场的敌人，首领同样适用。 */
 export const ZHOU_LOVE_TACTIC = "ZHOU_BO_LOVE";
 export const ZHOU_LOVE_HEAL = 0.25;
-/** 稳定存档标识。每秒按最大生命的千分比结算，中毒期间被击杀可追加整秒，最多延长三秒。 */
+/** 稳定存档标识。本夜来敌在施放时或入场时染毒，伤害按最大生命的千分比结算。 */
 export const DRAGON_POISON_TACTIC = "LONGLONG_POISON";
+/** 一次施放覆盖本波；每只怪的基础毒效单独计时，击杀最多给当时仍中毒的敌人延长三秒。 */
 export const DRAGON_POISON = {
     icon: "icon_tactic_dragon_poison", seconds: 6, intervalTicks: 1 / RULE.step,
     smallPermille: 40, bossPermille: 15, maxExtraSeconds: 3
@@ -151,7 +152,7 @@ export const TACTICS: readonly TacticDefinition[] = [{
     effect: "ZHOU_LOVE", ticks: 0, usesPerNight: 1
 }, {
     id: DRAGON_POISON_TACTIC, name: "龙龙主母", buttonName: "主母", icon: DRAGON_POISON.icon, order: 9,
-    summary: `在场中毒${DRAGON_POISON.seconds}秒，击杀中毒怪续时\n每秒扣小怪${DRAGON_POISON.smallPermille / 10}%、首领${DRAGON_POISON.bossPermille / 10}%最大生命`,
+    summary: `当夜来敌均中毒${DRAGON_POISON.seconds}秒，击杀中毒怪续时\n每秒扣小怪${DRAGON_POISON.smallPermille / 10}%、首领${DRAGON_POISON.bossPermille / 10}%最大生命`,
     lore: "龙龙冲阵浑似莽夫，下毒时连敌人的脚步都算得准。村人把「主」去一点，往「母」上一搁，凑成个「毒」字，便喊他「主母」。至于他好龙阳的传闻，村里至今没人说得准。",
     ...tacticLearning[9],
     effect: "DRAGON_POISON", ticks: DRAGON_POISON.seconds * DRAGON_POISON.intervalTicks, usesPerNight: 1

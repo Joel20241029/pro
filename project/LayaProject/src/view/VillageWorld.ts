@@ -34,6 +34,7 @@ import { ProjectileVisuals } from "./ProjectileVisuals";
 import { SummonChargeVisuals } from "./SummonChargeVisuals";
 import { PatrolVisuals } from "./PatrolVisuals";
 import { PATROL_PROP } from "./config/VillageSceneConfig";
+import { PATROL } from "../config/PatrolConfig";
 import { TimedBlastVisuals } from "./TimedBlastVisuals";
 /** 动效先播放上箭头，再交给常规两秒气泡；单位为前台表现秒。 */
 const ESSENCE_CUE = { riseSeconds: .72, arrowSize: 64, riseDistance: 55 } as const;
@@ -267,8 +268,8 @@ export class VillageWorld {
     advance(delta: number, frozen: boolean): boolean {
         const s = this.game.state;
         const advancing = !frozen && !this.game.pauses.size;
+        const visualTime = Math.min(RULE.frameCap, Math.max(0, delta)) * (this.game.patrolAiming ? PATROL.spin.aimSpeedRatio : 1);
         if (advancing) {
-            const visualTime = Math.min(RULE.frameCap, Math.max(0, delta));
             if (s?.phase === "DAY" || s?.phase === "NIGHT") this.villageMotionSeconds += visualTime;
             const chopping = s?.phase === "DAY" && this.motion.visiblePeople.some(person => person.job === "LOGGING" && this.motion.get(person.id).clip.endsWith("_work"));
             this.props.forEach(p => p.visual?.advance(visualTime, s?.phase === "NIGHT", p.id === "building:logging" && chopping));
@@ -281,7 +282,7 @@ export class VillageWorld {
         const visualDelta = battle ? Math.max(0, battle.tick - this.lastBattleTick) * RULE.step : Math.min(RULE.frameCap, Math.max(0, delta));
         this.lastBattleTick = battle ? battle.tick : 0;
         if (advancing && this.feedbackFrame !== Laya.timer.currFrame)
-            this.feedback.advance(Math.min(RULE.frameCap, Math.max(0, delta)));
+            this.feedback.advance(visualTime);
         if (s && advancing && (s.phase === "DAY" || s.phase === "NIGHT")) {
             this.sceneSeconds += visualDelta;
             if (this.motion.update(visualDelta)) this.motion.sync(s, battle ? battle.base.towers : s.towers, s.phase === "DAY" ? this.essence?.person : undefined);

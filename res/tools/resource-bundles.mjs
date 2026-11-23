@@ -112,10 +112,10 @@ export function syncGameplayAssets(root, files, previousFiles, mainAudio) {
     for (const file of previousFiles) {
         if (!/^bundles\/[a-z_]+\/[a-z0-9_.]+$/.test(file)) throw new Error('历史运行文件路径不合法：' + file);
         const relative = file.slice('bundles/'.length);
-        const remote = path.join(destination, 'gameplay', relative);
+        const stagedAsset = path.join(destination, 'gameplay', relative);
         if (!allowed.has(relative) || audio.has(relative)) {
-            fs.rmSync(remote, { force: true });
-            fs.rmSync(remote + '.meta', { force: true });
+            fs.rmSync(stagedAsset, { force: true });
+            fs.rmSync(stagedAsset + '.meta', { force: true });
         }
         if (relative.startsWith('music/') && !audio.has(relative)) {
             const local = path.join(destination, relative);

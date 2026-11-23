@@ -14,7 +14,7 @@
 | `build-building-layouts.mjs`、`build-enemy-layouts.mjs` | 从实际原生prefab生成运行布局与时间轴引用 |
 | `build-resources.mjs` | 原图与裁边一致性校验、图集外扩、阶段白名单和正式工程同步 |
 | `resource-bundles.mjs` | 七类资源与两个阶段的分配 |
-| `prepare-remote-release.mjs` | 建立不可变的版本目录，验证已推送文件的字节并生成客户端清单 |
+| `prepare-native-subpackages.mjs` | 校验制作素材与工程同步结果，从源图生成两个微信原生 ASTC 分包 |
 | `optimize-png-lossless.py`、`requirements-png.txt` | 历史版本主包 PNG 无损重编码工具 |
 
 怪物的身体及配饰位置从 [enemy-layouts.mjs](../source/rendered2d/enemy-layouts.mjs) 同步到种子，再由 Laya 菜单 `RefineHdEnemyAttachments` 保存原生 prefab；最后运行 `build-resources.mjs --work <Downloads任务目录> --sync`。`build-enemy-layouts.mjs` 读取实际 `.lh` 的身体偏移、配饰矩形和前后层级，生成版本 2 合同。不要只手改派生 JSON，也不要为怪物单项修改执行全量建筑重建。
@@ -25,20 +25,15 @@
 
 老人发布一张坐摇椅的画面和一张头像。摇椅原稿和可编辑场景位于 `source/rendered2d/characters/v5/elder/rest/`。以 `elder/elder_walk.blend` 为基础，由 `v5/authoring/render-elder-chair.py` 渲染。运行时围绕图集记录的椅脚接地点轻摆。四向行走母片留在制作目录。
 
-两段加载的图集帧表、动画、布局数据及 Gitee 发布清单使用单后缀 `.bin`，内容是 UTF-8 JSON。制作配方与可编辑源文件保留 JSON。
+两段加载的图集帧表、动画和布局数据使用单后缀 `.bin`，内容是 UTF-8 JSON。制作配方与可编辑源文件保留 JSON。
 
-构建工程素材后，按版本导出到 `/Users/happyelements/Documents/remote-res/`。远程导出使用 Arm `astcenc`（可通过 `DAIDAI_ASTCENC` 指向可执行文件）生成 KTX1 图页：UI 和含高清头像的图页用 4×4，其余用 6×6。保持 PNG/JPG 原图、裁边和旋转契约；支持 ASTC 的微信运行时每页只下载 KTX，不支持则取原图。有下载或读取错误时沿用原有重试。
-
-只提交该版本目录，推送到 Gitee 的 `origin/master`，用资源仓库的完整提交 SHA 核对线上字节并更新客户端清单。微信后台的 `downloadFile` 合法域名须包含 `https://gitee.com` 和 `https://raw.giteeusercontent.com`，供初始请求和跳转使用。
+微信构建使用 Arm `astcenc` 生成 KTX1 图页。UI、夜间特效和含头像的图页为 4×4，其余为 6×6。Laya 编辑器读取制作图集。微信由原生分包加载 ASTC 图页，失败可重试。
 
 ```bash
 node res/tools/build-resources.mjs \
   --work /Users/happyelements/Downloads/daidai-resource-build --sync
-node res/tools/prepare-remote-release.mjs <版本> --stage
-git -C /Users/happyelements/Documents/remote-res add -- <版本>
-git -C /Users/happyelements/Documents/remote-res commit --only -m "Publish <版本> resources" -- <版本>
-git -C /Users/happyelements/Documents/remote-res push origin HEAD:refs/heads/master
-node res/tools/prepare-remote-release.mjs <版本> <已推送的完整提交SHA> --write
+DAIDAI_ASTCENC=<astcenc可执行文件> node project/LayaProject/tools/build-wechat-delivery.mjs \
+  <版本> <Downloads任务目录> <Laya CLI>
 ```
 
 Blender自动化调用需加 `--python-exit-code 1`，并检查产物报告，不能只看默认退出码。旧3D、像素图和粒子工具仅保留历史，不是当前发布步骤。

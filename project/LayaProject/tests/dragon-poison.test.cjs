@@ -1,7 +1,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const read = name => require(`${process.env.DAIDAI_TEST_BUILD}/${name}.js`);
-const { DEFAULT_TACTIC, DRAGON_POISON_TACTIC, TACTIC_USE, tacticDefinition } = read('config/TacticConfig');
+const { DEFAULT_TACTIC, DRAGON_POISON, DRAGON_POISON_TACTIC, TACTIC_USE, tacticDefinition } = read('config/TacticConfig');
 const { PADS, RULE, TOWERS } = read('game/GameConfig');
 const { createGame, applyCommand } = read('game/VillageRules');
 const { generateWave } = read('game/WaveGenerator');
@@ -57,23 +57,57 @@ test('dragon poison learns at wave 45 with one fee and survives a saved loadout 
     assert.equal(game.battle.tacticUsesLeft, 1);
 });
 
-test('damage ticks only for targets alive on cast, with six exact one-second intervals and a separate boss rate', () => {
+test('all enemies infect on cast or spawn and take six one-second poison ticks from their own infection', () => {
     const b = battle(), small = enemy(10, 'enemy_armored', 1000), boss = enemy(11, 'enemy_commander', 1000);
     b.enemies = [small, boss, enemy(12, 'enemy_raider', 0)];
     assert(b.bell(DRAGON_POISON_TACTIC));
     assert(b.isPoisoned(small.seq) && b.isPoisoned(boss.seq) && !b.isPoisoned(12));
     stepUntil(b, 19);
     const newEnemy = b.enemies.find(e => e.seq === 0), initialHp = newEnemy.hp;
-    assert(!b.isPoisoned(newEnemy.seq));
+    const newEnemyDamage = Math.floor(newEnemy.maxHp * DRAGON_POISON.smallPermille / 1000);
+    assert(b.isPoisoned(newEnemy.seq));
     assert.deepEqual([small.hp, boss.hp], [1000, 1000]);
     b.step();
     assert.deepEqual([small.hp, boss.hp], [960, 985]);
     assert.deepEqual(b.feedback.find(e => e.type === 'poison').hurt.map(e => e.seq), [10, 11]);
+    stepUntil(b, 24);
+    assert.equal(newEnemy.hp, initialHp);
+    b.step();
+    assert.equal(newEnemy.hp, initialHp - newEnemyDamage);
     stepUntil(b, 120);
-    assert.deepEqual([small.hp, boss.hp, newEnemy.hp], [760, 910, initialHp]);
+    assert.deepEqual([small.hp, boss.hp, newEnemy.hp], [760, 910, initialHp - newEnemyDamage * 5]);
     assert(!b.isPoisoned(small.seq));
+    assert(b.isPoisoned(newEnemy.seq));
     assert.equal(b.cooldownFor(DEFAULT_TACTIC), TACTIC_USE.recoveryTicks);
+    stepUntil(b, 125);
+    assert.equal(newEnemy.hp, initialHp - newEnemyDamage * 6);
+    assert(!b.isPoisoned(newEnemy.seq));
     assert(!b.bell(DRAGON_POISON_TACTIC));
+});
+
+test('late spawns and summoned children are poisoned after all early poison expires and during another tactic', () => {
+    const b = battle(), opening = enemy(10, 'enemy_raider', 1000);
+    const ready = tacticDefinition(DRAGON_POISON_TACTIC).ticks + TACTIC_USE.recoveryTicks;
+    b.base.wave.entries = [{ tick: ready + 10, kind: 'enemy_chief', appearanceSeed: 7 }];
+    b.enemies = [opening];
+    assert(b.bell(DRAGON_POISON_TACTIC));
+    stepUntil(b, ready);
+    assert(!b.isPoisoned(opening.seq));
+    assert(b.bell(DEFAULT_TACTIC));
+    b.base.towers.forEach(tower => tower.operator = null);
+    stepUntil(b, ready + 11);
+    const boss = b.enemies.find(e => e.kind === 'enemy_chief');
+    assert(b.isPoisoned(boss.seq));
+    assert.equal(boss.hp, boss.maxHp);
+    boss.speed = 0;
+    stepUntil(b, boss.born + RULE.summonTicks[0] + 1);
+    assert(!b.isPoisoned(boss.seq));
+    const children = b.enemies.filter(e => e.born === boss.born + RULE.summonTicks[0]);
+    assert.equal(children.length, 2);
+    assert(children.every(e => b.isPoisoned(e.seq) && e.hp === e.maxHp));
+    stepUntil(b, children[0].born + DRAGON_POISON.intervalTicks);
+    assert(children.every(e => e.hp === e.maxHp - Math.floor(e.maxHp * DRAGON_POISON.smallPermille / 1000)));
+    assert.equal(b.bellTicks, tacticDefinition(DEFAULT_TACTIC).ticks - (b.tick - ready));
 });
 
 test('a tower kill of a poisoned enemy extends other poisoned targets and total time caps at nine seconds', () => {

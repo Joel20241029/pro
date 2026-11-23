@@ -40,7 +40,7 @@ export interface GameState {
     lastTraveler: number | null;
     people: Person[]; families: Family[]; towers: Tower[];
     /** 开局即有此建筑，夜战只读战前快照。 */
-    patrol: { level: number; captain: string | null };
+    patrol: { level: number; captain: string | null; rationReady?: true };
     /** 战技学习结果与当前携带；资格由本村成功波数推导，查看提醒使用独立的界面记录。 */
     // 旧档携带项仍是第一槽。额外数组的长度记录已购槽数，null 表示空槽。
     tactics: {
@@ -56,6 +56,7 @@ export interface GameState {
         /** 历史字段名。标记现代交会判定与出征间隔；无标记的旧夜战沿用原接触规则。 */
         patrolSquad?: true;
         patrolSpin?: true;
+        patrolRation?: true;
     } | null;
     rng: { family: number; world: number };
     stats: { births: number; retirees: number; generation: number }; legacy: Legacy;

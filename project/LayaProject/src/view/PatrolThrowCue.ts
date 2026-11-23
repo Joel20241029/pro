@@ -88,6 +88,7 @@ export class PatrolThrowCue {
         this.placeHitRegion(layout, spin.actors);
         if (!this.touchRegion.contains(point.x, point.y) || !spin.gather()) return;
         this.press = { id: event.touchId, x: point.x, y: point.y };
+        this.game.setPatrolAiming(true);
         const root = this.world.parent as Laya.Sprite;
         this.capture.size(root.width, root.height);
         root.addChild(this.capture);
@@ -111,13 +112,15 @@ export class PatrolThrowCue {
     private up(event: Laya.Event) {
         if (!this.press || event.touchId !== this.press.id) return;
         this.move(event);
-        const at = this.preview, angle = this.angle;
+        const at = this.landingTarget(), angle = this.angle;
         this.cancel();
-        if (at) {
-            const map = PATROL.spin.map;
-            this.game.throwPatrol({ x: Math.max(0, Math.min(map.width, at.x)),
-                y: Math.max(map.top, Math.min(map.bottom, this.layout!.referenceY(at.y))) }, angle);
-        }
+        if (at) this.game.throwPatrol(at, angle);
+    }
+    private landingTarget(): RoadPoint | null {
+        if (!this.preview) return null;
+        const map = PATROL.spin.map;
+        return { x: Math.max(0, Math.min(map.width, this.preview.x)),
+            y: Math.max(map.top, Math.min(map.bottom, this.layout!.referenceY(this.preview.y))) };
     }
     get aimHorizontal() { return this.preview?.ux; }
     get orbitAngle() { return this.preview ? this.angle : null; }
@@ -128,6 +131,7 @@ export class PatrolThrowCue {
         if (!this.press) return;
         Laya.InputManager.cancelClick(this.press.id);
         this.press = this.preview = null;
+        this.game.setPatrolAiming(false);
         this.capture.removeSelf();
         this.touchSurface?.removeEventListener("touchcancel", this.onTouchCancel);
         this.touchSurface = null;
@@ -164,6 +168,11 @@ export class PatrolThrowCue {
             this.placeHitRegion(layout, spin.actors);
             if (this.preview) {
                 const { power, ux, uy } = this.preview;
+                const target = this.landingTarget()!;
+                g.save();
+                g.clipRect(0, layout.mapTop, PATROL.spin.map.width, layout.footerTop - layout.mapTop);
+                this.circle(target, PATROL.spin.radius, "#ffedb0", "rgba(255,175,100,.21)", 4);
+                g.restore();
                 this.angle -= (battle!.tick - this.orbitStarted) * (.23 + power * .24);
                 this.orbitStarted = battle!.tick;
                 const gap = LOOK.arrowGap, tip = gap + LOOK.arrowMin + power * LOOK.arrowGrowth;

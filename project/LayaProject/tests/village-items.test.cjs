@@ -8,7 +8,7 @@ const { GUIDE_SAVE_KEY } = read('storage/VillageGuides');
 const { GameSession } = read('game/GameSession');
 const { createGame } = read('game/VillageRules');
 const { featureUnlocked } = read('config/DailyTaskConfig');
-const { SHOP_PRODUCTS, ITEMS, LIANG_ESSENCE } = read('config/ShopConfig');
+const { SHOP_PRODUCTS, ITEMS, LIANG_ESSENCE, PATROL_RATION } = read('config/ShopConfig');
 
 const mainA = 'daidai_village.save.a', mainB = 'daidai_village.save.b';
 const unrelated = 'daidai_village.device_settings';
@@ -155,13 +155,46 @@ test('unknown versions and foreign-village inventories remain preserved', () => 
     }
 });
 
-test('backpack and shop gates are distinct, and only the confirmed offer is purchasable', () => {
+test('backpack and shop gates are distinct, and only confirmed offers are purchasable', () => {
     assert.equal(featureUnlocked(7, 'backpack'), false);
     assert.equal(featureUnlocked(8, 'backpack'), true);
     assert.equal(featureUnlocked(12, 'shop'), false);
     assert.equal(featureUnlocked(13, 'shop'), true);
-    assert.deepEqual(SHOP_PRODUCTS, [LIANG_ESSENCE]);
+    assert.deepEqual(SHOP_PRODUCTS, [LIANG_ESSENCE, PATROL_RATION]);
     assert.deepEqual(ITEMS.gate_kit, { name: '修门工具', description: '用于修补城门', icon: 'icon_build' });
+});
+
+test('patrol ration atomically consumes one bag and boosts only the next night, including reload', () => {
+    const f = fixture(), game = f.reopen(), id = PATROL_RATION.id;
+    game.newVillage();
+    game.state.legacy.bestNight = 13;
+    const { food, wood } = game.state;
+    game.buyItem(id);
+    assert.equal(game.state.food, food - 40);
+    assert.equal(game.state.wood, wood - 20);
+    assert.equal(game.villageItems.backpack().items[id], 1);
+    game.usePatrolRation();
+    assert.match(game.error, /先任命/);
+    assert.equal(game.villageItems.backpack().items[id], 1);
+    game.command({ type: 'PATROL_CAPTAIN', id: game.state.people[0].id });
+    game.villageItems.saveItems({ [id]: 2 });
+    f.fault.beforeWrite = keys.backpack;
+    game.usePatrolRation();
+    assert(game.saves.pending);
+    delete f.fault.beforeWrite;
+    const resumed = f.reopen();
+    assert.equal(resumed.state.patrol.rationReady, true);
+    assert.equal(resumed.villageItems.backpack().items[id], 1);
+    resumed.usePatrolRation();
+    assert.match(resumed.error, /已有口粮加成/);
+    assert.equal(resumed.villageItems.backpack().items[id], 1);
+    resumed.command({ type: 'NIGHT' });
+    const combat = f.reopen(), { patrolSpinStats, patrolCaptain } = read('game/PatrolRules');
+    assert.equal(combat.state.patrol.rationReady, undefined);
+    assert.equal(combat.state.night.patrolRation, true);
+    const normal = patrolSpinStats(combat.state.patrol.level, patrolCaptain(combat.state));
+    assert.equal(combat.battle.patrol.stats.damage, Math.round(normal.damage * 1.5));
+    assert.equal(combat.battle.patrol.stats.ticks, normal.ticks);
 });
 
 function unlocked(f) {

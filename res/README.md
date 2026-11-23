@@ -8,7 +8,7 @@
 
 1.0.40 使用 1122 × 1402 的高清整图。原稿在 `source/rendered2d/generated/environment/village_map.png`。配准后的 `source/rendered2d/production/terrain/map_scene.png` 把 S 形道路、横路、草地、外围林带和岩石收在一张图里。Laya 以城门墙脚为界显示同一纹理的两段，沿用短屏和长屏的战场与居民区布局。村内可伐木的树、建筑、路牌和塔按原交互及深度顺序绘制。
 
-微信主包携带启动 JPG，并从 1.0.47 起在 `resources/music/` 内置全部背景音乐和音效。村民、怪物、地图、建筑、特效和 UI 分版本发布到独立 Gitee 仓库 `/Users/happyelements/Documents/remote-res/<版本>/`。客户端在启动图上准备进村资源，完整后显示村庄。打开守夜确认面板时再准备怪物、战斗动画和命中特效。两处进度按实际字节统计，校验通过的文件可在重试和下次进入时复用。Laya 编辑器直接读取正式工程素材。
+微信主包携带启动 JPG 及 `resources/music/` 内的背景音乐和音效。村民、地图、建筑和 UI 进入村庄分包，怪物和战斗特效进入守夜分包。启动图显示后由微信准备村庄分包，打开守夜确认面板时准备守夜分包。微信报告下载进度，Laya 编辑器直接读取工程内制作素材。
 
 1.0.38 的主包含首屏 `base`，建筑、村民和战斗共 28 个文件使用旧远程目录。`remoteRes/` 根目录原有的四个目录专供旧版继续使用。
 
@@ -50,7 +50,7 @@
 | `runtime/`、`atlases/` | 分类散图与制作总图集，便于检查裁边与内容 | 否，不重复发布 |
 | `native/` | 从已保存原生prefab转换的108建筑布局、怪物挂点、两段建筑时间轴 | 按白名单 |
 | `branding/` | 启动图原稿、平台图标与分享图片 | 启动 JPG 与分享图各自随主包导出 |
-| `bundles/` | 两阶段图集、动画数据、音频和建筑布局 | 音频同步到主包，其余复制到版本化远程目录 |
+| `bundles/` | 两阶段图集、动画数据、音频和建筑布局 | 音频同步到主包，图集转换为 KTX1 并随元数据进入微信分包 |
 | `preview/` | 由当前配方生成的预览，实际IDE验证另存Downloads | 否 |
 | `archive/`、`source/3d/` | 历史像素资源、四帧步态、实时3D试验；只供追溯 | 否 |
 
@@ -62,12 +62,8 @@
 2. 按 `source/rendered2d/runtime-texture-sizes.mjs` 核对发布尺寸，运行 `node res/tools/hd2d/prepare-production.mjs --work <Downloads内目录>`，审查派生图及 `production_recipe.json`，再同步为 `source/asset_recipe.json`。导入器先规范画布，再统一缩放；静态头像独立保留原分辨率，不能直接缩母版或逐帧重新裁主体。
 3. 建筑/怪物贴图或布局改变时用 `prepare-native-prefabs.mjs` 同步贴图和种子；它不写 prefab 或覆盖 UUID。怪物布局使用 `工具 / RefineHdEnemyAttachments`，仅保存十种怪物。`工具 / BuildHd2dProduction` 会重建全部建筑和怪物，仅在明确整套重制时使用；日常小改直接编辑对应原生 prefab。
 4. 运行 `node res/tools/build-resources.mjs --work <Downloads内目录> --sync`。透明裁边、外扩和像素校验完成后，脚本按发布白名单同步正式 Laya 工程。
-5. 运行 `node res/tools/prepare-remote-release.mjs <版本> --stage`，在独立资源仓库内只提交本轮版本目录并推送到 Gitee 的 `origin/master`。运行 `node res/tools/prepare-remote-release.mjs <版本> <已推送的完整提交 SHA> --write`，逐个核对实际下载文件与工程素材，再更新客户端资源清单。
-6. 构建微信目录 `tryVersion/wxgame` 并运行包体检查。将 Laya 同时产出的 `wxgame-remote` 留作核对，上传微信时选择 `wxgame`。在微信开发者工具开启域名校验，验证冷启动、守夜前下载、失败重试与缓存复用，随后验收真机。
-
-新版使用 Gitee 的提交固定地址。微信 `downloadFile` 合法域名包含初始域名 `https://gitee.com` 和跳转域名 `https://raw.giteeusercontent.com`。保留旧版所用的 `https://raw.githubusercontent.com` 和 `https://media.githubusercontent.com`。缓存按文件 SHA-256 复用，仅清理新版专用缓存内已超出保留范围的文件。存档另行存放。
-
-Gitee 主分支保留现有资源版本目录，旧版本由用户手动清理。只改代码时复用已校验的资源，历史包按固定提交下载。
+5. 运行微信原生分包构建脚本，生成村庄和守夜 ASTC 分包。命令和校验说明见 [微信原生 ASTC 分包](../doc/tech/62_微信原生ASTC分包.md)。
+6. 使用 `tryVersion/wxgame` 验证冷启动、守夜前加载、失败重试和恢复夜间存档。标准包验证后用于上传体验版。
 
 图片保持平滑采样与抗锯齿。八帧行走按实际路程保持相位；停止使用独立双脚落地帧。老人采用短步、固定握杖，孩子和老人不区分男女外观。UI按可见裁框居中，奶油金边卡片和绿色底板分层，按钮/图标/文字共同按压。
 

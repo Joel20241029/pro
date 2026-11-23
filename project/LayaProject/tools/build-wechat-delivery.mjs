@@ -3,18 +3,15 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { prepareNativeSubpackages } from '../../../res/tools/prepare-native-subpackages.mjs';
 
-const [version, workPath, laya, delivery = 'native'] = process.argv.slice(2);
-if (!/^1\.0\.\d+$/.test(version ?? '') || !workPath || !laya || !['native', 'remote'].includes(delivery))
-    throw new Error('用法：node tools/build-wechat-delivery.mjs <版本> <Downloads任务目录> <Laya CLI> [native|remote]');
+const [version, workPath, laya, extra] = process.argv.slice(2);
+if (!/^1\.0\.\d+$/.test(version ?? '') || !workPath || !laya || extra !== undefined)
+    throw new Error('用法：node tools/build-wechat-delivery.mjs <版本> <Downloads任务目录> <Laya CLI>');
 const work = path.resolve(workPath);
 if (!work.startsWith('/Users/happyelements/Downloads/')) throw new Error('构建中间文件放在 Downloads');
 const source = fileURLToPath(new URL('..', import.meta.url)), repository = path.resolve(source, '../..');
-const mirrorRoot = path.resolve(repository, '../remote-res');
-const manifestPath = path.join(source, 'src/config/RemoteResourceManifest.ts');
-const remote = JSON.parse(fs.readFileSync(manifestPath, 'utf8').match(/REMOTE_RESOURCE_MANIFEST = (.*) as const;/s)[1]);
-const mirror = path.join(mirrorRoot, remote.version);
-const stages = ['village', 'night'];
+const delivery = 'native';
 const release = 'src/config/ReleaseInfo.ts';
 const json = (file, value) => fs.writeFileSync(file, JSON.stringify(value, null, 2) + '\n');
 const digest = data => createHash('sha256').update(data).digest('hex');
@@ -28,23 +25,9 @@ fs.mkdirSync(path.join(staging, 'local'));
 const settingsPath = path.join(staging, 'settings/BuildSettings.json');
 const settings = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
 settings.outputPath = '{projectPath}/../output/{platform}';
-if (delivery === 'native') {
-    const gameplay = path.join(staging, 'assets/resources/gameplay');
-    fs.rmSync(gameplay, { recursive: true, force: true });
-    settings.subpackages = stages.map(stage => ({
-        path: 'resources/gameplay/' + stage, packAllAssets: true, autoLoad: false, remote: false
-    }));
-    const replacements = new Set(Object.values(remote.files).flatMap(file => file.astcFor ? [file.astcFor] : []));
-    for (const [name, entry] of Object.entries(remote.files)) {
-        if (replacements.has(name)) continue;
-        if (!stages.includes(entry.stage) || /\.(png|jpg)$/.test(name)) throw new Error('原生分包要求全部图集有 ASTC：' + name);
-        const data = fs.readFileSync(path.join(mirror, name));
-        if (data.length !== entry.bytes || digest(data) !== entry.sha256) throw new Error('本地资源与已校验版本不符：' + name);
-        const target = path.join(gameplay, entry.stage, name);
-        fs.mkdirSync(path.dirname(target), { recursive: true });
-        fs.writeFileSync(target, data);
-    }
-}
+const gameplay = path.join(staging, 'assets/resources/gameplay');
+fs.rmSync(gameplay, { recursive: true, force: true });
+prepareNativeSubpackages(path.join(repository, 'res'), path.join(source, 'assets/resources/gameplay'), gameplay);
 json(settingsPath, settings);
 const inputs = [];
 function collect(dir) {
@@ -68,7 +51,7 @@ const compiled = spawnSync(laya, ['build', 'wxgame', '-p', staging], {
 if (compiled.error || compiled.status !== 0) throw compiled.error ?? new Error('Laya 微信导出失败');
 const output = path.join(buildDir, 'output/wxgame');
 const verify = spawnSync(process.execPath, [path.join(source, 'tools/check-wechat-package.mjs'),
-    output, path.join(work, 'package-report.json'), output + '-remote', build], { stdio: 'inherit' });
+    output, path.join(work, 'package-report.json'), path.join(work, 'source-inputs.json')], { stdio: 'inherit' });
 if (verify.error || verify.status !== 0) throw verify.error ?? new Error('微信导出校验失败');
 const publish = (generated, destination) => {
     const backup = path.join(buildDir, path.basename(destination) + '-previous');
@@ -81,6 +64,5 @@ const publish = (generated, destination) => {
 };
 const official = path.join(repository, 'tryVersion/wxgame');
 publish(output, official);
-if (delivery === 'remote') publish(output + '-remote', official + '-remote');
 fs.writeFileSync(path.join(source, release), releaseSource);
 console.log(JSON.stringify({ delivery, build, output: official, buildDir }));
