@@ -6,6 +6,7 @@ import { appearanceSeed, APPEARANCE_DOMAIN } from "../game/EnemySeed";
 import type { GameLayout } from "./GameLayout";
 import type { SpriteFrames } from "./SpriteFrames";
 import type { GameSession } from "../game/GameSession";
+import { PatrolRapidView } from "./PatrolRapidView";
 import { PatrolThrowCue } from "./PatrolThrowCue";
 import type { WorldItem } from "./WorldInteraction";
 
@@ -19,6 +20,7 @@ const WALK_CLIPS = ["patrol_walk", "patrol_walk_shuffle", "patrol_walk_waddle"] 
 export class PatrolVisuals {
     private nodes: { root: Laya.Sprite; body: Laya.Sprite; shadow: Laya.Sprite; focus: Laya.Sprite }[] = [];
     private cue: PatrolThrowCue;
+    private rapidView?: PatrolRapidView;
     private hint?: AnchoredTip;
     private call?: AnchoredTip;
     private tipBattle: BattleSimulation | null = null;
@@ -32,6 +34,7 @@ export class PatrolVisuals {
     get hasLanding() { return this.cue.impact !== null; }
     destroy() {
         this.cue.dispose();
+        this.rapidView?.root.destroy(true);
         this.hint?.hide(); this.hint?.removeSelf();
         this.call?.hide(); this.call?.removeSelf();
     }
@@ -44,10 +47,25 @@ export class PatrolVisuals {
         if (this.tipBattle !== battle) {
             this.tipBattle = battle;
             this.callActor = undefined;
+            this.rapidView?.hide();
             this.hint?.hide(); this.call?.hide();
         }
         const dt = Math.max(0, time - this.tipTime);
         this.tipTime = time;
+        const rapid = patrol?.rapid;
+        if (rapid && !battle?.outcome) {
+            if (!this.art.ready("night")) return depth;
+            if (!this.rapidView) {
+                this.rapidView = new PatrolRapidView(this.art);
+                this.rapidView.root.zIndex = 2;
+                this.rapidView.root.stackingRoot = true;
+                (this.world.parent as Laya.Sprite).addChild(this.rapidView.root);
+            }
+            this.rapidView.update(layout, rapid, this.cue.rapidAim, time,
+                !blocked && this.game.patrolRapidReady && !this.game.hasFiredPatrolRapid && !this.cue.rapidAim);
+            return depth;
+        }
+        if (this.rapidView?.root.visible) this.rapidView.hide();
         if (!battle?.patrol) return depth;
         if (!this.nodes.length) for (let i = 0; i < PATROL.squad.maxActive; i++) {
             const root = new Laya.Sprite(), body = new Laya.Sprite(), shadow = new Laya.Sprite(), focus = new Laya.Sprite();

@@ -1,0 +1,18 @@
+{
+  "title": "巡防旋甩 · 飞行气哨",
+  "authorship": "Original procedural loop of a gliding air whistle accompanying the patrol throw.",
+  "sampleRate": 22050,
+  "durationSeconds": 0.96,
+  "mp3Bitrate": "32k",
+  "synthesis": {
+    "centerHz": 750,
+    "glideHz": 165,
+    "skewHz": 44,
+    "breathFloor": 0.08,
+    "overtoneGain": 0.10,
+    "airGain": 0.42,
+    "noiseSeed": 10801,
+    "peak": 0.48
+  },
+  "bundle": "battle"
+}

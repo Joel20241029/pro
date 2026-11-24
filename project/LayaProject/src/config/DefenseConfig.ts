@@ -29,8 +29,17 @@ export const WAVE = {
     groupStagger: .90
 } as const;
 /** 波次规则随已排计划保存，旧双波难度保留原曲线和时间。 */
-export const WAVE_RHYTHM = { paired: "PAIR_V1", nightly: "NIGHT_V1", extended: "NIGHT_V2" } as const;
+export const WAVE_RHYTHM = { paired: "PAIR_V1", nightly: "NIGHT_V1", extended: "NIGHT_V2", fixed: "NIGHT_V3" } as const;
 export type WaveRhythm = typeof WAVE_RHYTHM[keyof typeof WAVE_RHYTHM];
+
+/** 固定常速的守夜试算值，只用于新排的 NIGHT_V3；旧存档已排的一夜沿用原战斗属性。
+ * 首夜灰牙按原始生命先乘 1.35，再按波次取整为 35 血；其余小怪降血、降撞门伤害，补偿三塔射频降低。
+ * 移速包括首领，首领血量和撞门规则独立。首夜沿用原入场窗口，第六夜起拉长至原来的 1.4 倍。
+ */
+export const FIXED_NIGHT = {
+    towerFireRate: .60, enemySpeed: 1.15, raiderHealth: 1.35, otherOrdinaryHealth: .65,
+    ordinaryGateDamage: .75, fullWindowDay: 6, fullWindowScale: 1.4
+} as const;
 
 /** 每个原双波档拆成两次增量，保证前中期同一夜数的总强度接近此前。后期仍每夜加一名。
  * 初期保留已验证的首夜规模。血量、城门压力分别使用独立线性曲线，避免叠乘产生陡增。
@@ -45,7 +54,7 @@ export const WAVE_PROGRESSION = {
     speedPerBand: .01, speedBonusMax: .10, bossGrowthShare: .65,
     // 通用入场留白；大波次另按来敌数逐步拉开，批间停顿单独计算。
     windowTicksPerBand: 30, arrivalWindowScale: 1.15, batchSize: 252, joinTicks: 10,
-    // 每个既有入场时点翻倍，保持队列顺序和怪群的相对节奏。仅新生成的 NIGHT_V2 使用。
+    // NIGHT_V2 起将入场时点翻倍；NIGHT_V3 沿用这个基础窗口再逐夜拉开，已排旧波仍用各自节奏。
     extendedArrivalScale: 2,
     // 90 人以下保留原窗口，180 人起窗口额外加 25%，让重叠最明显的大波次先降密。
     denseArrival: { fromCount: 90, fullCount: 180, extraWindowScale: .25 },

@@ -90,7 +90,7 @@ test('uncertain write followed by process restart loads the claimed state withou
 
 test('natural date change is checked at entry; a running village is not interrupted at midnight', () => {
     const f = fixture(); f.game.enter(); f.game.claimDailyRation(); f.day('2026-11-12');
-    f.game.command({ type: 'SPEED', value: 3 }); f.game.update(5); assert.equal(f.game.dailyRationDate, null);
+    f.game.command({ type: 'MUSIC', enabled: false }); f.game.update(5); assert.equal(f.game.dailyRationDate, null);
     f.game.hide(); f.game.show(); assert.equal(f.game.dailyRationDate, '2026-11-12');
     f.game.claimDailyRation(); assert.equal(f.game.state.food, RULE.initialResource + RULE.dailyFood * 2); assert(!f.game.pauses.has('WAIT_RESUME'));
     f.game.hide(); f.game.show(); assert.equal(f.game.dailyRationDate, null); assert(f.game.pauses.has('WAIT_RESUME'));

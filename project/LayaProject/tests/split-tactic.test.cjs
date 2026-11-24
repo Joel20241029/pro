@@ -6,6 +6,7 @@ const { clone } = read('game/GameState');
 const { BattleSimulation, PATH_LENGTH } = read('game/BattleSimulation');
 const { enemyPoint } = read('game/BattleRoad');
 const { RULE, PADS, TOWERS } = read('game/GameConfig');
+const { FIXED_NIGHT } = read('config/DefenseConfig');
 const { SPLIT_TACTIC, DEFAULT_TACTIC, TACTICS, tacticDefinition, validateTactics } = read('config/TacticConfig');
 const { tacticUnavailableReason } = read('game/Tactics');
 const { CombatPresentation } = read('view/CombatPresentation');
@@ -57,7 +58,7 @@ for (const kind of ['ARROW', 'STONE', 'SLOW']) test(`${kind}: zero to five candi
         assert.equal(events.length, Math.min(count, 3));
         assert.deepEqual(events.map(e => e.target), Array.from({ length: Math.min(count, 3) }, (_, i) => i));
         assert(events.every(e => !e.shot.empowered && e.shot.tick === 0));
-        assert(Math.abs(b.charge[0] - (count ? RULE.step / TOWERS[kind].interval : 1)) < 1e-12);
+        assert(Math.abs(b.charge[0] - (count ? RULE.step * FIXED_NIGHT.towerFireRate / TOWERS[kind].interval : 1)) < 1e-12);
     }
     const b = battle(kind); b.enemies = [8, 5, 6, 4].map(i => enemy(i, 260)); b.step();
     assert.deepEqual(shots(b).map(e => e.target), [4, 5, 6]);
@@ -188,7 +189,7 @@ test('purchase persists once; pause, reassign, triple speed and cold reload keep
     const duration = tacticDefinition(SPLIT_TACTIC).ticks;
     g.bell(); assert.equal(b.bellTicks, duration); g.pause('CHOICE'); g.update(.25); assert.equal(b.bellTicks, duration);
     assert(g.reassign(0, g.state.people[2].id)); assert.equal(g.battle, b); assert.equal(b.bellTicks, duration);
-    g.resume('CHOICE'); g.command({ type: 'SPEED', value: 3 }); g.update(.1); assert.equal(b.bellTicks, duration - 6);
+    g.resume('CHOICE'); g.update(.1); assert.equal(b.bellTicks, duration - 6);
     g.bell(); assert.equal(b.bellTicks, duration - 6);
     const reopened = new GameSession(new SaveStore(port)); reopened.load();
     assert.equal(reopened.battle.tactic.id, SPLIT_TACTIC); assert.equal(reopened.battle.tacticUsesLeft, 2);

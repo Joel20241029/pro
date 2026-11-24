@@ -57,7 +57,7 @@ function ruleTrace(root) {
 function failureTrace(root) {
     const { createGame, applyCommand } = load(root, 'game/VillageRules.js');
     const commands = [
-        { type: 'SPEED', value: 0 }, { type: 'SPEED', value: 4 }, { type: 'MUSIC', enabled: 'yes' },
+        { type: 'MUSIC', enabled: 'yes' },
         { type: 'FAVORITE', id: 'missing' }, { type: 'CHOOSE', value: 'accept' }, { type: 'FINALIZE' },
         { type: 'JOB', id: 'missing', job: 'FARM' }, { type: 'JOB', id: '1:4', job: 'FARM' },
         { type: 'JOB', id: '1:1', job: 'CARE', child: '1:2' },
@@ -112,7 +112,7 @@ function sessionTrace(root) {
         action('swap', () => game.reassign(0, game.battle.operators[1]));
         action('pause user', () => game.pause('USER')); action('close choice', () => game.resume('CHOICE'));
         action('paused tick', () => game.update(10)); action('resume', () => game.resume('USER'));
-        action('triple speed', () => game.command({ type: 'SPEED', value: 3 }));
+        action('resumed tick', () => game.update(.25));
         action('hide', () => game.hide()); action('background tick', () => game.update(10));
         action('show', () => game.show()); action('continue', () => game.resume('WAIT_RESUME'));
         for (let i = 0; i < 300 && game.state.phase === 'NIGHT'; i++) game.update(.25);

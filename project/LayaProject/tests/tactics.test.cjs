@@ -126,13 +126,13 @@ test('night snapshots equipment and forbids changing or learning even while paus
     assert.equal(canLearnTactic(f.game.state), false);
 });
 
-test('heart still casts with no visible enemies, and pause, speed or reassign never reset its quota', () => {
+test('heart still casts with no visible enemies, and pause or reassign never reset its quota', () => {
     const f = fixture(); f.game.command({ type: 'NIGHT' });
     const battle = f.game.battle; assert.equal(battle.enemies.length, 0); assert(f.game.canRingBell);
     f.game.bell(); assert.equal(battle.bellTicks, RULE.bellTicks);
     f.game.pause('CHOICE'); f.game.update(.1); assert.equal(battle.bellTicks, RULE.bellTicks);
     assert(f.game.reassign(0, f.game.state.people[2].id));
-    f.game.resume('CHOICE'); f.game.command({ type: 'SPEED', value: 3 });
+    f.game.resume('CHOICE');
     assert.equal(f.game.battle, battle); f.game.update(.1);
     assert.equal(battle.bellTicks, RULE.bellTicks - 6); assert.equal(f.game.canRingBell, false);
     f.game.bell(); assert.equal(battle.bellTicks, RULE.bellTicks - 6);

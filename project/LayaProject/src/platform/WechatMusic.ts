@@ -13,9 +13,12 @@ declare const wx: {
     onAudioInterruptionEnd(fn: () => void): void; offAudioInterruptionEnd(fn: () => void): void;
 };
 
-interface CombatAudio {
-    spec: { file: string; volume: number; intervalMs: number };
+interface SoundCue {
+    spec: { file: string; volume: number };
     context: InnerAudio | null;
+}
+interface CombatAudio extends SoundCue {
+    spec: SoundCue["spec"] & { intervalMs: number };
     lastAt: number;
 }
 
@@ -27,6 +30,9 @@ export class WechatMusic {
     private clickAudio: InnerAudio | null = null;
     private tower: CombatAudio = { spec: MUSIC.tower, context: null, lastAt: -Infinity };
     private defeat: CombatAudio = { spec: MUSIC.defeat, context: null, lastAt: -Infinity };
+    private flight: SoundCue = { spec: MUSIC.patrolFlight, context: null };
+    private landing: CombatAudio = { spec: MUSIC.patrolLanding, context: null, lastAt: -Infinity };
+    private flightPlaying = false;
     private battle = false;
     private enabled = false;
     private active = false;
@@ -56,6 +62,7 @@ export class WechatMusic {
     setBattle(battle: boolean) {
         if (this.battle === battle || this.disposed) return;
         this.battle = battle;
+        if (!battle) this.setPatrolFlight(false);
         const audio = this.audio;
         if (!audio || this.failed) return;
         try {
@@ -102,32 +109,55 @@ export class WechatMusic {
         try { this.clickAudio?.stop(); } catch (error) { this.fail(error); }
         try { this.tower.context?.stop(); } catch (error) { this.fail(error); }
         try { this.defeat.context?.stop(); } catch (error) { this.fail(error); }
+        this.setPatrolFlight(false);
+        try { this.landing.context?.stop(); } catch (error) { this.fail(error); }
     }
     towerShot() { if (this.battle) this.playCombatSound(this.tower); }
     /** 最后一发可以在 BGM 切回白天后才命中，仍随实际死亡开始播放。 */
     enemyDefeat() { this.playCombatSound(this.defeat); }
+    setPatrolFlight(flying: boolean) {
+        const play = flying && this.battle && this.active && !this.failed && !this.interrupted && !this.disposed;
+        if (play === this.flightPlaying) return;
+        this.flightPlaying = play;
+        try {
+            if (play) {
+                const audio = this.soundContext(this.flight, true);
+                if (this.flightPlaying) audio.play();
+            } else this.flight.context?.stop();
+        } catch (error) { this.fail(error); }
+    }
+    patrolLanding() {
+        this.setPatrolFlight(false);
+        this.playCombatSound(this.landing);
+    }
+    private soundContext(cue: SoundCue, loop: boolean) {
+        if (cue.context) return cue.context;
+        const audio = cue.context = wx.createInnerAudioContext();
+        audio.loop = loop; audio.autoplay = false; audio.volume = cue.spec.volume;
+        audio.onError(error => { if (cue.context === audio) this.fail(error); });
+        audio.src = MUSIC_ROOT + "/" + cue.spec.file;
+        return audio;
+    }
     private playCombatSound(cue: CombatAudio) {
         const now = Date.now();
         if (!this.active || this.failed || this.interrupted || this.disposed || now - cue.lastAt < cue.spec.intervalMs) return;
         cue.lastAt = now;
         try {
             if (cue.context) cue.context.stop();
-            else {
-                const audio = cue.context = wx.createInnerAudioContext();
-                audio.loop = false; audio.autoplay = false; audio.volume = cue.spec.volume;
-                audio.onError(error => { if (cue.context === audio) this.fail(error); });
-                audio.src = MUSIC_ROOT + "/" + cue.spec.file;
-            }
-            if (this.active) cue.context.play();
+            const audio = this.soundContext(cue, false);
+            if (this.active) audio.play();
         } catch (error) { this.fail(error); }
     }
     private releaseAudio() {
-        const music = this.audio, click = this.clickAudio, tower = this.tower.context, defeat = this.defeat.context;
+        const contexts = [this.audio, this.clickAudio, this.tower.context, this.defeat.context, this.flight.context, this.landing.context];
         // 先解除引用，销毁过程中及之后的错误都不能影响当前状态。
-        this.audio = this.clickAudio = this.tower.context = this.defeat.context = null;
-        try { music?.destroy(); } finally {
-            try { click?.destroy(); } finally { try { tower?.destroy(); } finally { defeat?.destroy(); } }
+        this.audio = this.clickAudio = this.tower.context = this.defeat.context = this.flight.context = this.landing.context = null;
+        this.flightPlaying = false;
+        let failure: { error: unknown } | null = null;
+        for (const audio of contexts) {
+            try { audio?.destroy(); } catch (error) { failure = { error }; }
         }
+        if (failure) throw failure.error;
     }
     destroy() {
         if (this.disposed) return;

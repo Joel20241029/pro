@@ -122,7 +122,7 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
             ctx.ui.centerButton(box, t.operator ? "更换驻守村民" : "安排驻守村民", dutyY, () => ctx.open({ type: "operators", index: i }), C.green, canAssign);
         }
         if (!day && t.kind)
-            ctx.ui.label(box, ctx.game.pauses.has("USER") ? "已手动暂停。关闭后点“继续守夜”。" : "调任期间暂停，关闭后自动继续。", 34, 636, 600, 28, C.muted, false, 52).align = "center";
+            ctx.ui.label(box, ctx.game.pauses.has("USER") ? "已手动暂停。关闭后点“继续”。" : "调任期间暂停，关闭后自动继续。", 34, 636, 600, 28, C.muted, false, 52).align = "center";
         return;
     }
 }

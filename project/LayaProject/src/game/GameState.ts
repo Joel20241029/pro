@@ -1,4 +1,5 @@
 import { EnemyKind, Skill, TowerKind, Trait } from "./GameConfig";
+import type { PatrolMode } from "../config/PatrolConfig";
 import type { WaveRhythm } from "../config/DefenseConfig";
 import type { VillagerQuality } from "../config/VillagerQuality";
 import type { DailyTaskDay } from "./DailyTaskState";
@@ -40,7 +41,7 @@ export interface GameState {
     lastTraveler: number | null;
     people: Person[]; families: Family[]; towers: Tower[];
     /** 开局即有此建筑，夜战只读战前快照。 */
-    patrol: { level: number; captain: string | null; rationReady?: true };
+    patrol: { level: number; captain: string | null; mode?: PatrolMode; rationReady?: true; radiusReady?: true };
     /** 战技学习结果与当前携带；资格由本村成功波数推导，查看提醒使用独立的界面记录。 */
     // 旧档携带项仍是第一槽。额外数组的长度记录已购槽数，null 表示空槽。
     tactics: {
@@ -56,12 +57,16 @@ export interface GameState {
         /** 历史字段名。标记现代交会判定与出征间隔；无标记的旧夜战沿用原接触规则。 */
         patrolSquad?: true;
         patrolSpin?: true;
+        /** 本夜实际出战的打法。历史夜战无此字段，按原有出征标记重演。 */
+        patrolMode?: PatrolMode;
         patrolRation?: true;
+        patrolWideImpact?: true;
     } | null;
     rng: { family: number; world: number };
     stats: { births: number; retirees: number; generation: number }; legacy: Legacy;
     /** Optional in existing saves. Stored with inventory so claiming is a single save transaction. */
     dailyTasks?: DailyTaskDay;
+    /** speed 保留原存档字段以兼容旧档；读入会话和新开村均使用固定常速。 */
     settings: { speed: 2 | 3; music: boolean }; summary: string;
 }
 export function clone<T>(v: T): T { return JSON.parse(JSON.stringify(v)); }

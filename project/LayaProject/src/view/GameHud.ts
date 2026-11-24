@@ -205,7 +205,7 @@ export class GameHud {
             caption.stroke = start.stroke; caption.strokeColor = C.outline;
         }
         else if (s.phase === "NIGHT") {
-            this.nightControls = new NightControls(this.game, s, this.ui, this.panels, this.refresh);
+            this.nightControls = new NightControls(this.game, this.ui, this.panels, this.refresh);
             this.nightControls.node.y = bottomY;
             this.node.addChild(this.nightControls.node);
         }

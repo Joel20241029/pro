@@ -37,7 +37,7 @@ test('HD replacement contains only selected source images; pixels and native pre
  for (const {clip:id,frameCount,fps,size:displaySize} of Object.values(TOWER_IMPACT)){
   const size=motionQuality.impactSources[id];
   const clip=recipe.animations.animations.find(a=>a.id===id);assert.equal(clip.frameCount,frameCount);assert.equal(clip.fps,fps);assert.equal(clip.loop,false);
-  assert.equal(displaySize*TOWER_IMPACT_SCALE,200);
+  assert.equal(displaySize*TOWER_IMPACT_SCALE,300);
   assert.equal(size,320);
   assert.deepEqual(clip.canvas,{w:size,h:size});assert.deepEqual(clip.pivot,{x:size/2,y:size/2});
   for(const frame of clip.frameIds){const a=recipe.assets.find(asset=>asset.id===frame);assert(a.runtime);assert.equal(a.bundle,'battle');assert.equal(a.width,size);assert.equal(a.height,size);assert.deepEqual(packed[frame].sourceSize,{w:size,h:size});}

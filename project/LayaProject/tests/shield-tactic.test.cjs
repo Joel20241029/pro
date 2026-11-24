@@ -10,8 +10,8 @@ const { SaveStore } = read('storage/SaveStore');
 const { SHIELD_TACTIC, DEFAULT_TACTIC, TACTICS, tacticDefinition, validateTactics } = read('config/TacticConfig');
 const { tacticUnavailableReason } = read('game/Tactics');
 const { RULE, ENEMIES } = read('game/GameConfig');
-const { WAVE } = read('config/DefenseConfig');
-const { enemyPower } = read('game/Growth');
+const { FIXED_NIGHT, WAVE } = read('config/DefenseConfig');
+const { waveDifficulty } = read('game/WaveDifficulty');
 const { CombatPresentation } = read('view/CombatPresentation');
 function learned() {
     const s = createGame(7); s.completed = 20; s.day = 21; s.legacy.bestNight = 20; s.wood = 60; s.food = 30;
@@ -64,7 +64,7 @@ test('last protected tick blocks all simultaneous arrivals, next tick resumes ex
     assert.equal(b.gate,1000); assert.equal(b.bellTicks,0); assert(!b.gateProtected);
     const blocked = b.feedback.slice(); assert.equal(blocked.length,2); assert(blocked.every(e=>e.blocked));
     b.enemies.push(enemy(2)); b.step();
-    assert.equal(b.gate,1000 - Math.ceil(ENEMIES.enemy_raider.gate * WAVE.ordinaryGateScale * enemyPower(b.base.day)));
+    assert.equal(b.gate,1000 - Math.ceil(ENEMIES.enemy_raider.gate * (WAVE.ordinaryGateScale * FIXED_NIGHT.ordinaryGateDamage) * waveDifficulty(b.base.day).gate));
     assert.equal(b.feedback[0].blocked,false); assert(blocked.every(e=>e.blocked));
 });
 test('unactivated shield and expired shield preserve lethal arrival and failure', () => {
@@ -81,7 +81,7 @@ test('shield lasts exactly 140 combat steps and cannot be refreshed', () => {
     b.bell(); assert.equal(b.bellTicks,0); assert.equal(b.tick,140);
 });
 test('blocking a summoning chief preserves already spawned children, then stops future summons', () => {
-    const b = battle(); b.tick=RULE.summonTicks[0]; b.enemies.push(enemy(0,'enemy_chief',PATH_LENGTH-2.5,100));
+    const b = battle(); b.tick=RULE.summonTicks[0]; b.enemies.push(enemy(0,'enemy_chief',PATH_LENGTH-3.5,100));
     b.bell(); b.step(); assert.equal(b.enemies.length,3); assert(!b.enemies.some(e=>e.kind==='enemy_chief'));
     const children=b.enemies.filter(e=>e.seq!==99); assert.equal(children.length,2); assert(children.every(e=>e.kind==='enemy_raider'));
     b.step(); assert.equal(b.enemies.length,1); assert.equal(b.feedback.filter(e=>e.type==='gate'&&e.blocked).length,2);

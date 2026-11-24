@@ -1,5 +1,5 @@
 import { featureUnlocked } from "../config/DailyTaskConfig";
-import { ItemId, LIANG_ESSENCE, SHOP_PRODUCTS } from "../config/ShopConfig";
+import { ItemId, LIANG_ESSENCE, LIANG_INDULGENCE, PatrolItemId, SHOP_PRODUCTS } from "../config/ShopConfig";
 import { GameState, isWorkingAdult } from "./GameState";
 import { patrolCaptain, patrolSpinStats } from "./PatrolRules";
 
@@ -15,10 +15,11 @@ export function essenceTargets(state: GameState) {
     return state.people.filter(p => isWorkingAdult(p) && (p.retirementDelayUses ?? 0) < LIANG_ESSENCE.maxUses);
 }
 
-export function patrolRationUnavailable(state: GameState) {
+export function patrolItemUnavailable(state: GameState, id: PatrolItemId) {
     if (state.phase !== "DAY" || !featureUnlocked(state.legacy.bestNight, "backpack")) return "白天才可在背包使用";
     if (!state.patrol.captain) return "先任命淡紫队长";
-    if (state.patrol.rationReady) return "下场守夜已有口粮加成";
+    if (id === LIANG_INDULGENCE.id) return state.patrol.radiusReady ? "下次旋甩已扩大砸地范围" : null;
+    if (state.patrol.rationReady) return "下次旋甩已获鼓舞";
     if (!Number.isSafeInteger(patrolSpinStats(state.patrol.level, patrolCaptain(state), true).damage)) return "伤害已达安全范围";
     return null;
 }

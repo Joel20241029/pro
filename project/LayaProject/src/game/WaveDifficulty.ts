@@ -1,8 +1,9 @@
-import { WAVE_PROGRESSION, WAVE, WAVE_RHYTHM, WaveRhythm } from "../config/DefenseConfig";
+import { FIXED_NIGHT, WAVE_PROGRESSION, WAVE, WAVE_RHYTHM, WaveRhythm } from "../config/DefenseConfig";
 
-export function waveDifficulty(day: number, rhythm: WaveRhythm = WAVE_RHYTHM.extended) {
+export function waveDifficulty(day: number, rhythm: WaveRhythm = WAVE_RHYTHM.fixed) {
     const nightly = rhythm !== WAVE_RHYTHM.paired;
-    const arrivalScale = rhythm === WAVE_RHYTHM.extended ? WAVE_PROGRESSION.extendedArrivalScale : 1;
+    const fixed = rhythm === WAVE_RHYTHM.fixed;
+    const arrivalScale = fixed || rhythm === WAVE_RHYTHM.extended ? WAVE_PROGRESSION.extendedArrivalScale : 1;
     const elapsedBands = (day - 1) / WAVE_PROGRESSION.nightsPerBand;
     const band = nightly ? elapsedBands : Math.floor(elapsedBands);
     const early = Math.min(band, WAVE_PROGRESSION.earlyBands);
@@ -17,7 +18,8 @@ export function waveDifficulty(day: number, rhythm: WaveRhythm = WAVE_RHYTHM.ext
     const extraTicks = Math.ceil(Math.max(0, count - WAVE_PROGRESSION.batchSize) * window.maximum / WAVE_PROGRESSION.batchSize);
     const { fromCount, fullCount, extraWindowScale } = WAVE_PROGRESSION.denseArrival;
     const densityBand = Math.min(1, Math.max(0, (count - fromCount) / (fullCount - fromCount)));
-    const windowScale = WAVE_PROGRESSION.arrivalWindowScale * (1 + (nightly ? densityBand * extraWindowScale : 0));
+    const pacing = fixed ? 1 + Math.min(1, (day - 1) / (FIXED_NIGHT.fullWindowDay - 1)) * (FIXED_NIGHT.fullWindowScale - 1) : 1;
+    const windowScale = WAVE_PROGRESSION.arrivalWindowScale * pacing * (1 + (nightly ? densityBand * extraWindowScale : 0));
     const baseSpawnTicks = Math.round((baseTicks + extraTicks) * windowScale) + (batchCount - 1) * WAVE_PROGRESSION.joinTicks;
     return {
         band, count, spawnTicks: baseSpawnTicks * arrivalScale, baseSpawnTicks, arrivalScale,

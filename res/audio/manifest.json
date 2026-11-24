@@ -94,7 +94,45 @@
       "sourceBoundaryDifference": 0.0,
       "license": "Original score and synthesis; no third-party samples",
       "phoneListeningVerified": false
+    },
+    {
+      "title": "巡防旋甩 · 飞行气哨",
+      "source": "source/audio/patrol_flight.score.json",
+      "generator": "tools/build-audio.py",
+      "runtimeFile": "audio/patrol_flight.mp3",
+      "packageFile": "patrol_flight.mp3",
+      "bundle": "battle",
+      "durationSeconds": 0.96,
+      "sampleRate": 22050,
+      "channels": 1,
+      "bitrate": "32k",
+      "bytes": 4302,
+      "sha256": "cc85d367ad9f6d1bebda298258d1a2a93317d073b5bde955d2acf6e83e97a637",
+      "sourceSha256": "0a618af6efb78fac30c991a57c5d354a422417d2e9e1d07d96219d2ff54a5eb6",
+      "sourcePeak": 0.48,
+      "sourceBoundaryDifference": 0.00592041015625,
+      "license": "Original score and synthesis; no third-party samples",
+      "phoneListeningVerified": false
+    },
+    {
+      "title": "巡防旋甩 · 踏地",
+      "source": "source/audio/patrol_landing.score.json",
+      "generator": "tools/build-audio.py",
+      "runtimeFile": "audio/patrol_landing.mp3",
+      "packageFile": "patrol_landing.mp3",
+      "bundle": "battle",
+      "durationSeconds": 0.24,
+      "sampleRate": 22050,
+      "channels": 1,
+      "bitrate": "32k",
+      "bytes": 1481,
+      "sha256": "350549f820570e6dbd1a2063b8cbf7fc3bbff37123e61356c3708c5fa8f0db6e",
+      "sourceSha256": "e89506bf5b53e40fce5b2fb050c008b6fe85e1a602554ec194f2311645a3c0af",
+      "sourcePeak": 0.6,
+      "sourceBoundaryDifference": 0.0,
+      "license": "Original score and synthesis; no third-party samples",
+      "phoneListeningVerified": false
     }
   ],
-  "bytes": 164243
+  "bytes": 170026
 }

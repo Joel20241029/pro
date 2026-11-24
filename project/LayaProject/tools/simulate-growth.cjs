@@ -66,7 +66,7 @@ function play(seed, nights=300, verbose=false, options={}) {
    const kind=options.towerKind || (i===2?'SLOW':'ARROW');
    if(!s.towers[i].kind&&s.wood>=TOWERS[kind].cost)applyCommand(s,{type:'TOWER',index:i,kind});
   }
-  const operators=workers.slice();
+  const operators=workers.filter(p=>p.id!==s.patrol.captain);
   for(let i=0;i<s.towers.length;i++){const t=s.towers[i];if(!t.kind)continue;
    operators.sort((a,b)=>Number(b.skill===(t.kind==='STONE'?'skill_throwing':t.kind==='SLOW'?'skill_warding':'skill_archery'))-Number(a.skill===(t.kind==='STONE'?'skill_throwing':t.kind==='SLOW'?'skill_warding':'skill_archery'))||VILLAGER_QUALITY[b.quality].damage-VILLAGER_QUALITY[a.quality].damage||b.nights-a.nights);
    if(operators.length)applyCommand(s,{type:'OPERATOR',index:i,id:operators.shift().id});

@@ -106,6 +106,84 @@ async function retryStartup(f) {
     f.downloads.get('village').resolve();
     await start;
 }
+test('patrol flight follows the live night, and each landing reaches native audio once through settlement', async () => {
+    const f = setup(), audioEvents = [];
+    wx.createInnerAudioContext = () => ({
+        onError() {}, play() { audioEvents.push('play ' + this.src); }, stop() { audioEvents.push('stop ' + this.src); },
+        pause() {}, destroy() {}
+    });
+    const { createGame, applyCommand } = actualRequire('./game/VillageRules');
+    const { BattleSimulation } = actualRequire('./game/BattleSimulation');
+    const { enemyPoint, PATH_LENGTH } = actualRequire('./game/BattleRoad');
+    await boot(f);
+    f.main.platform.syncBestNight = () => {};
+    const session = f.main.session, state = createGame(245);
+    applyCommand(state, {type: 'NIGHT'});
+    state.settings.music = true;
+    const battle = session.battle = new BattleSimulation(state);
+    session.state = state;
+    const night = f.main.resources.ensure('night');
+    await flush(); f.downloads.get('night').resolve(); await night;
+    f.main.interact();
+    const count = (operation, clip) => audioEvents.filter(value => value === operation + ' resources/music/patrol_' + clip + '.mp3').length;
+    const spin = battle.patrol.spin;
+    function until(predicate) {
+        for (let i = 0; i < 150 && !predicate(); i++) f.main.onUpdate();
+        assert(predicate(), JSON.stringify({tick: battle.tick, outcome: battle.outcome, phase: session.state.phase, pauses: [...session.pauses], enemies: battle.enemies.length}));
+    }
+    function launch(at) {
+        until(() => spin.canGather);
+        spin.gather(); assert(session.throwPatrol(at, 0)); f.main.onUpdate();
+    }
+    battle.cursor = battle.base.wave.entries.length;
+    battle.base.towers.forEach(tower => tower.operator = null);
+    // 隔离防塔攻击，保留两只静止来敌，一次空砸后共同作为终局落点目标。
+    const enemy = seq => ({seq, kind: 'enemy_raider', appearanceSeed: 0, hp: 1, maxHp: 1, speed: 0, progress: 0,
+        walkDistance: 0, slow: 0, slowTicks: 0, born: 0, summoned: 0});
+    const first = enemy(0), second = enemy(1);
+    battle.enemies = [first, second];
+    const a = enemyPoint(first), b = enemyPoint(second), aim = {x: (a.x + b.x) / 2, y: a.y};
+    const miss = {x: 0, y: 1030};
+    until(() => spin.canGather);
+    assert(!session.throwPatrol({x: -1, y: 430}, 0)); f.main.onUpdate();
+    assert.equal(count('play', 'flight'), 0);
+    launch(miss); assert.equal(count('play', 'flight'), 1);
+    session.pause('USER'); const tick = battle.tick; f.main.onUpdate(); f.main.onUpdate();
+    assert.equal(battle.tick, tick); assert.equal(count('stop', 'flight'), 1);
+    session.resume('USER'); f.main.onUpdate(); assert.equal(count('play', 'flight'), 2);
+    battle.tapWindow = {remaining: 4, taps: 0};
+    f.main.onUpdate(); f.main.onUpdate(); assert.equal(count('stop', 'flight'), 2);
+    battle.tapWindow = null;
+    until(() => !spin.flying);
+    assert.equal(count('play', 'flight'), 3); assert.equal(count('play', 'landing'), 1);
+    assert.equal(session.takeCombatFeedback().filter(e => e.type === 'patrol').length, 0);
+    launch(aim);
+    until(() => !session.battle);
+    const final = session.takeCombatFeedback();
+    assert.equal(final.filter(e => e.type === 'patrol').length, 2);
+    assert.equal(final.filter(e => e.type === 'patrolLanding').length, 1);
+    assert.equal(count('play', 'landing'), 2); assert.equal(count('stop', 'flight'), 4);
+    f.main.onUpdate(); assert.equal(count('play', 'landing'), 2);
+    // 仍在空中时城门被撞破，真实战斗没有落地事件，循环也须立即停下。
+    session.pauses.clear(); session.state = state;
+    const next = session.battle = new BattleSimulation(state), inFlight = next.patrol.spin;
+    next.cursor = next.base.wave.entries.length; next.enemies = [enemy(0)];
+    next.base.towers.forEach(tower => tower.operator = null);
+    until(() => inFlight.canGather); inFlight.gather(); assert(session.throwPatrol(miss, 0));
+    f.main.onUpdate(); assert.equal(count('play', 'flight'), 5);
+    next.gate = 1; next.enemies[0].progress = PATH_LENGTH;
+    f.main.onUpdate();
+    assert.equal(next.outcome, 'LOSE'); assert.equal(count('stop', 'flight'), 5);
+    assert.equal(count('play', 'landing'), 2);
+    const patrol = audioEvents.filter(event => event.includes('/patrol_'));
+    for (const [index, event] of patrol.entries()) {
+        if (event !== 'play resources/music/patrol_landing.mp3') continue;
+        // 第二批会先重置复用的落地声上下文；在这之前必须先停止在飞声。
+        const previous = patrol.slice(0, index).filter(value => value.endsWith('patrol_flight.mp3'));
+        assert.equal(previous.at(-1), 'stop resources/music/patrol_flight.mp3');
+    }
+    f.main.onDestroy();
+});
 test('bundled launcher is ready before the village download and startup waits for complete art', async () => {
     const f = setup(), local = deferred();
     f.setArtwork(local.promise);

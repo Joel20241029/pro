@@ -2,6 +2,7 @@ const { test } = require('node:test'), assert = require('node:assert/strict'), p
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 const { RULE, TOWERS, PADS } = require(path.join(compiled, 'game/GameConfig.js'));
+const { FIXED_NIGHT } = require(path.join(compiled, 'config/DefenseConfig.js'));
 const { TACTIC_USE } = require(path.join(compiled, 'config/TacticConfig.js'));
 const { createGame, applyCommand, birthUnavailableReason } = require(path.join(compiled, 'game/VillageRules.js'));
 const { BattleSimulation, pointAt, PATH_LENGTH } = require(path.join(compiled, 'game/BattleSimulation.js'));
@@ -37,34 +38,32 @@ test('bell lasts 300 steps and only the cooldown boundary permits a second cast'
     assert.equal(next.tacticUsesLeft, TACTIC_USE.perNight); assert.equal(next.bellTicks + next.tacticCooldownTicks, 0);
 });
 
-test('two speed levels keep 15 combat seconds and take 7.5/5 real seconds', () => {
-    for (const speed of [2, 3]) {
-        const { game } = session(); game.command({ type: 'NIGHT' }); game.command({ type: 'SPEED', value: speed });
+test('15 combat seconds take exactly five real seconds for any saved speed', () => {
+    for (const savedSpeed of [RULE.legacySlowSpeed, RULE.battleSpeed]) {
+        const { game } = session(); game.command({ type: 'NIGHT' });
+        game.state.settings.speed = savedSpeed;
         const b = game.battle; b.base.wave.entries = [{ tick: RULE.bellTicks * 10, kind: 'enemy_raider' }]; game.bell();
-        const frames = RULE.bellTicks / speed;
+        const frames = RULE.bellTicks / RULE.battleSpeed;
         for (let i = 0; i < frames - 1; i++) game.update(RULE.step);
-        assert.equal(b.bellTicks, speed); game.update(RULE.step);
-        assert.equal(b.bellTicks, 0); assert.equal(b.tick, RULE.bellTicks); assert.equal(frames * RULE.step, 15 / speed);
+        assert.equal(b.bellTicks, RULE.battleSpeed); game.update(RULE.step);
+        assert.equal(b.bellTicks, 0); assert.equal(b.tick, RULE.bellTicks); assert.equal(frames * RULE.step, 5);
     }
 });
 
-test('new villages default to actual 2x; only actual 2x/3x can be saved and resumed', () => {
+test('villages use fixed fast timing; legacy speeds remain valid and pauses survive a settings change', () => {
     const { game, values } = session();
     const { validateState } = require(path.join(compiled, 'storage/StateValidation.js'));
-    assert.equal(game.state.settings.speed, 2);
-    assert.throws(() => applyCommand(game.state, { type: 'SPEED', value: 1 }), /无效倍速/);
-    const invalid = JSON.parse(JSON.stringify(game.state)); invalid.settings.speed = 1;
-    assert.throws(() => validateState(invalid));
+    assert.equal(game.state.settings.speed, RULE.battleSpeed);
+    const legacy = JSON.parse(JSON.stringify(game.state)); legacy.settings.speed = RULE.legacySlowSpeed;
+    validateState(legacy);
+    legacy.settings.speed = 1; assert.throws(() => validateState(legacy));
     game.command({ type: 'NIGHT' }); const battle = game.battle;
-    game.pause('USER');
-    for (const speed of [3, 2]) {
-        game.command({ type: 'SPEED', value: speed }); game.update(1);
-        assert.equal(game.battle, battle); assert.equal(battle.tick, 0);
-        const reloaded = new GameSession(new SaveStore({ read: k => values.get(k) ?? null, write: (k, v) => values.set(k, v) }));
-        reloaded.load(); assert.equal(reloaded.state.settings.speed, speed);
-    }
-    game.resume('USER'); game.update(.25); assert.equal(battle.tick, 10);
-    game.command({ type: 'SPEED', value: 3 }); game.update(.25); assert.equal(battle.tick, 25);
+    game.pause('USER'); game.command({ type: 'MUSIC', enabled: false }); game.update(1);
+    assert.equal(game.battle, battle); assert.equal(battle.tick, 0);
+    const reloaded = new GameSession(new SaveStore({ read: k => values.get(k) ?? null, write: (k, v) => values.set(k, v) }));
+    reloaded.load(); assert.deepEqual(reloaded.state.settings, { speed: RULE.battleSpeed, music: false });
+    game.resume('USER'); game.update(.25); assert.equal(battle.tick, 15);
+    game.update(.25); assert.equal(battle.tick, 30);
 });
 
 test('every pause freezes bell and attacks; tower swaps retain current charge and duration', () => {
@@ -75,7 +74,7 @@ test('every pause freezes bell and attacks; tower swaps retain current charge an
     }
     game.pause('CHOICE'); const charge = b.charge.slice();
     assert(game.reassign(0, b.operators[1])); assert.deepEqual(b.charge, charge); assert.equal(b.bellTicks, remaining);
-    game.resume('CHOICE'); game.update(RULE.step); assert.equal(b.bellTicks, remaining - RULE.minSpeed);
+    game.resume('CHOICE'); game.update(RULE.step); assert.equal(b.bellTicks, remaining - RULE.battleSpeed);
 });
 
 test('bell increases actual fire rate by 50%, hunger multiplies it, damage stays unchanged', () => {
@@ -94,7 +93,7 @@ test('bell increases actual fire rate by 50%, hunger multiplies it, damage stays
         b.enemies = [enemy]; b.charge[0] = 0; if (bell) b.bell(); let shots = 0;
         for (let i = 0; i < RULE.bellTicks; i++) { const tick = b.tick; b.step(); shots += b.shots.filter(s => s.tick === tick).length; }
         const speed = (bell ? 1.5 : 1) * (hungry ? .7 : 1);
-        assert.equal(shots, Math.floor(15 * speed / TOWERS.ARROW.interval));
+        assert.equal(shots, Math.floor(15 * speed * FIXED_NIGHT.towerFireRate / TOWERS.ARROW.interval));
         assert.equal(100000 - enemy.hp, shots * TOWERS.ARROW.damage); results.push(shots);
     }
     assert(results[1] > results[0]); assert(results[2] < results[1]);
@@ -147,7 +146,7 @@ test('night status names the equipped effect rather than calling every tactic at
     const hud = Object.create(GameHud.prototype); hud.game = game; hud.nightStatus = { text: '' };
     for (const [effect, name, label] of [['ATTACK_SPEED','大王之心','攻速'],['ATTACK_DAMAGE','百毅靓之怒','伤害']]) {
         game.battle = { outcome: null, bellTicks: 300, tactic: { effect, name, multiplier: 1.5 } };
-        hud.update(); assert.equal(hud.nightStatus.text, `${name} · ${label} +50% · 还剩 8秒`);
+        hud.update(); assert.equal(hud.nightStatus.text, `${name} · ${label} +50% · 还剩 5秒`);
     }
 });
 const { UiWidgets } = require(path.join(compiled, 'view/UiWidgets.js'));
@@ -198,7 +197,10 @@ test('the patrol card opens from the construction list without materials and ret
     assert.equal(view.current.type, 'patrol');
     assert.equal(canonical(game.state), before);
     assert(!view.box.children.map(n=>n.getChildByName('PatrolUpgradeAction')).find(Boolean).mouseEnabled);
-    view.box.getChildByName('button:返回').event('click');
+    assert.equal(view.box.getChildByName('button:返回'), undefined);
+    const detailBack = view.box.getChildByName('PatrolDetailBack');
+    assert.equal(detailBack.getChildByName('buttonFace').getChildByName('icon_back').width, 34);
+    detailBack.event('click');
     assert.equal(view.current, build);
     assert.equal(list().offset, 14);
 
@@ -226,16 +228,44 @@ test('the patrol card opens from the construction list without materials and ret
     assert.equal(view.current, detail);
     assert.equal(game.state.patrol.captain, free.id);
     assert(!manage().getChildByName('buttonFace').getChildByName('PatrolCaptainActionHint'));
-    view.box.getChildByName('button:返回').event('click');
+    view.box.getChildByName('PatrolDetailBack').event('click');
     assert.equal(view.current, build);
     assert.equal(list().offset, 14);
     assert(badge());
     game.state.food = game.state.wood = 0;
     view.draw(game.state, build);
     assert(card().mouseEnabled && !badge());
+    view.open({ type: 'patrol' });
+    assert.equal(view.box.getChildByName('PatrolDetailBack'), undefined);
 });
 
-test('night controls preserve pause/speed/bell rules and restore village navigation after night', () => {
+test('patrol house selection stays visible, fits a short screen and preserves prepared goods on rapid nights', () => {
+    const { game } = session(), view = panelView(game);
+    view.ui.image = imageNode;
+    const detail = { type: 'patrol' };
+    game.changed = () => { if (view.current) view.draw(game.state, view.current); };
+    game.state.patrol.rationReady = game.state.patrol.radiusReady = true;
+    view.open(detail);
+    const card = id => view.box.getChildByName('PatrolMode:' + id);
+    const copy = () => view.box.getChildByName('PatrolModeDetails').children.map(n => n.text).join(' ');
+    assert(!card('spin').mouseEnabled && card('rapid').mouseEnabled);
+    assert(card('spin').x + card('spin').width < card('rapid').x);
+    const { GameLayout } = require(path.join(compiled, 'view/GameLayout.js'));
+    const short = new GameLayout({windowWidth: 600, windowHeight: 760, statusBarHeight: 0, safeArea:{top:15,bottom:735}}, {width:0,height:0});
+    assert(view.box.height <= short.safeBottom - short.safeTop);
+    assert(card('rapid').y + card('rapid').height < view.box.getChildByName('PatrolModeDetails').y);
+    card('rapid').event('click');
+    assert.equal(game.state.patrol.mode, 'rapid');
+    assert(card('spin').mouseEnabled && !card('rapid').mouseEnabled);
+    assert.match(copy(), /8 发.仓.*每秒 4 发.*补弹 4 秒/);
+    assert.match(copy(), /伤害、范围提升 · 下次旋甩生效/);
+    game.command({type:'NIGHT'});
+    view.open(detail);
+    assert(!card('spin').mouseEnabled && !card('rapid').mouseEnabled);
+    assert.match(copy(), /下次旋甩生效/);
+});
+
+test('night controls retain independent pause reasons and combat actions on the single-speed footer', () => {
     const { game } = session(), view = panelView(game); view.ui.image = imageNode;
     const layout = {mapTop:280,footerTop:980,gateY:680,height:1280,safeTop:0,dateY:42,resourcesY:124};
     const anchors = {towerAnchor:i=>PADS[i],gateAnchor:()=>({x:360,y:680})};
@@ -248,31 +278,23 @@ test('night controls preserve pause/speed/bell rules and restore village navigat
     const controls = () => hud.node.getChildByName('NightControls');
     const button = name => controls().getChildByName('button:'+name);
     const heartFace = () => button('大王之心').getChildByName('buttonFace');
-    assert.equal(controls().children.filter(n=>n.name.startsWith('button:')).length,3);
+    assert.deepEqual(controls().children.filter(n => n.name.startsWith('button:')).map(n => n.name), ['button:暂停','button:大王之心']);
     for(const name of ['村民','家庭','建设','家谱']) assert.equal(hud.node.getChildByName('button:'+name),undefined);
     assert.equal(heartFace().getChildByName('HeartState').text, '可用 2 次');
     button('大王之心').event('click'); assert.equal(game.battle.tacticUsesLeft, 1);
-    assert.equal(heartFace().getChildByName('HeartState').text,'生效 8秒');
+    assert.equal(heartFace().getChildByName('HeartState').text,'生效 5秒');
     assert.equal(button('大王之心').mouseEnabled,false);
     button('暂停').event('click'); assert(game.pauses.has('USER'));
     const remaining = game.battle.bellTicks; game.update(1); hud.update();
     assert.equal(game.battle.bellTicks,remaining);
     assert.equal(heartFace().getChildByName('buttonSkin').filters,undefined);
-    assert.equal(game.state.settings.speed,2); assert(button('速度 ×1'));
-    for(const value of [3,2,3,2]) {
-        button('速度 ×'+(game.state.settings.speed === RULE.minSpeed ? 1 : 2)).event('click');
-        assert.equal(game.state.settings.speed,value); assert.equal(game.battle.bellTicks,remaining);
-        assert.equal(button('速度 ×3'),undefined);
-    }
-    game.pause('CHOICE'); button('继续守夜').event('click');
+    assert.match(controls().getChildByName('NightStatus').text, /^已暂停 · 场上/);
+    game.pause('CHOICE'); button('继续').event('click');
     assert(!game.pauses.has('USER')); assert(game.pauses.has('CHOICE'));
     game.resume('CHOICE'); draw();
-    for(let i=0;i<RULE.bellTicks / RULE.minSpeed;i++) game.update(RULE.step);
-    hud.update(); assert.equal(heartFace().getChildByName('HeartState').text,'冷却 3秒');
+    while (game.battle.bellTicks) game.update(RULE.step);
+    hud.update(); assert.equal(heartFace().getChildByName('HeartState').text, '冷却 2秒');
     assert.equal(button('大王之心').mouseEnabled,false); assert.equal(heartFace().getChildByName('buttonSkin').filters.length,1);
-    const cooling = game.battle.tacticCooldownTicks;
-    button('速度 ×1').event('click'); assert.equal(game.battle.tacticCooldownTicks, cooling);
-    assert.equal(heartFace().getChildByName('HeartState').text, '冷却 2秒');
     while (game.battle.tacticCooldownTicks) game.update(RULE.step);
     hud.update(); assert.equal(heartFace().getChildByName('HeartState').text, '可用 1 次');
     button('大王之心').event('click'); assert.equal(game.battle.tacticUsesLeft, 0);
@@ -282,11 +304,41 @@ test('night controls preserve pause/speed/bell rules and restore village navigat
     for(const name of ['村民','家庭','建设','家谱']) assert(hud.node.getChildByName('button:'+name));
 });
 
+test('night footer centers one to three equipped skills, keeping the pause touch target separate', () => {
+    const { NightControls } = require(path.join(compiled, 'view/NightControls.js'));
+    const { DEFAULT_TACTIC, SHIELD_TACTIC, RAGE_TACTIC } = require(path.join(compiled, 'config/TacticConfig.js'));
+    const ids = [DEFAULT_TACTIC, SHIELD_TACTIC, RAGE_TACTIC];
+    for (const count of [1, 2, 3]) {
+        const { game } = session(), view = panelView(game);
+        view.ui.image = imageNode;
+        game.state.tactics = { learned: ids.slice(0, count), equipped: DEFAULT_TACTIC, extraSlots: ids.slice(1, count) };
+        game.command({ type: 'NIGHT' });
+        const controls = new NightControls(game, view.ui, view, () => {}), root = controls.node;
+        const pause = root.getChildByName('button:暂停');
+        assert(pause.width * 320 / root.width >= 44 && pause.height * 320 / root.width >= 44);
+        const buttons = root.children.filter(n => n.name.startsWith('button:') && n !== pause);
+        assert.equal(buttons.length, count);
+        assert.equal(buttons[0].x, root.width - buttons.at(-1).x - buttons.at(-1).width);
+        for (const [index, button] of buttons.entries()) {
+            assert.equal(button.width, button.height);
+            assert(button.y + button.height < root.height && button.x + button.width < pause.x);
+            if (index) assert(buttons[index-1].x + buttons[index-1].width < button.x);
+        }
+        assert.equal(root.getChildByName('NightStatus').text.includes('战技剩余'), count > 1);
+        while (!game.patrolDragReady && game.battle.tick < 500) game.update(RULE.step);
+        assert(game.patrolDragReady);
+        game.setPatrolAiming(true); controls.update();
+        assert.match(root.getChildByName('NightStatus').text, /^瞄准中 · /);
+        game.setPatrolAiming(false); controls.update();
+        assert.match(root.getChildByName('NightStatus').text, /^场上 /);
+    }
+});
+
 test('paused unused heart can become actionable without binding its click twice', () => {
     const { NightControls } = require(path.join(compiled,'view/NightControls.js'));
     const { game }=session(), view=panelView(game); view.ui.image=imageNode;
     game.command({type:'NIGHT'}); game.pause('USER');
-    const controls=new NightControls(game,game.state,view.ui,view,()=>{});
+    const controls=new NightControls(game,view.ui,view,()=>{});
     const button=controls.node.getChildByName('button:大王之心'), face=button.getChildByName('buttonFace');
     assert.equal(button.mouseEnabled,false); assert.equal(face.getChildByName('HeartState').text,'暂停中');
     const firstFilter=face.getChildByName('buttonSkin').filters[0];
@@ -402,7 +454,7 @@ test('opening and closing help removes only CHOICE, leaving independent pauses i
     view.open({ type: 'guide', tab: 4 }); game.update(.25); assert.equal(game.battle.tick, tick);
     view.close(); assert.deepEqual([...game.pauses].sort(), ['USER', 'BACKGROUND', 'WAIT_RESUME', 'SAVE_PENDING', 'DISABLED'].sort());
     for (const reason of [...game.pauses]) game.resume(reason);
-    game.update(RULE.step); assert.equal(game.battle.tick, tick + RULE.minSpeed);
+    game.update(RULE.step); assert.equal(game.battle.tick, tick + RULE.battleSpeed);
 });
 
 test('tower building is disabled before payment when short of wood or during night', () => {

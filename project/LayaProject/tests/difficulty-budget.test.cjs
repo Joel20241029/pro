@@ -7,8 +7,8 @@ const {validateState}=require(path.join(root,'storage/StateValidation'));
 const {SaveStore}=require(path.join(root,'storage/SaveStore'));
 const {ENEMIES,RULE}=require(path.join(root,'game/GameConfig'));
 const {enemyPower}=require(path.join(root,'game/Growth'));
-const {waveDifficulty}=require(path.join(root,'game/WaveDifficulty'));
-const {WAVE,WAVE_PROGRESSION,WAVE_RHYTHM}=require(path.join(root,'config/DefenseConfig'));
+const {waveArrivalTick,waveDifficulty}=require(path.join(root,'game/WaveDifficulty'));
+const {FIXED_NIGHT,WAVE,WAVE_PROGRESSION,WAVE_RHYTHM}=require(path.join(root,'config/DefenseConfig'));
 test('fixed highest challenge at yearly boundaries can save, load, replay and end within enemy limits',()=>{
  for(const seed of [1,7,123])for(const day of [1,12,13,24,25,36,300,2999,3000]){
   const s=createGame(seed);Object.assign(s,{day,completed:day-1});s.legacy.bestNight=day-1;s.wave=generateWave(s);
@@ -28,7 +28,19 @@ test('fixed highest challenge at yearly boundaries can save, load, replay and en
 test('first night uses highest-tier quantity and stays winnable across founding seeds',()=>{
  for(let seed=1;seed<=20;seed++){
   const s=createGame(seed);assert.equal(s.wave.entries.length,51);assert(s.wave.entries.every(e=>e.kind==='enemy_raider'));
-  applyCommand(s,{type:'NIGHT'});const b=new BattleSimulation(s);while(!b.outcome&&b.tick<12000)b.step();assert.equal(b.outcome,'WIN');
+  applyCommand(s,{type:'NIGHT'});const b=new BattleSimulation(s);
+  b.step();assert.equal(b.enemies[0].maxHp,35);
+  while(!b.outcome&&b.tick<12000)b.step();assert.equal(b.outcome,'WIN');assert.equal(b.gate,s.gate);
+ }
+});
+test('only newly planned nights spread arrivals progressively during the first six nights',()=>{
+ const newTicks=[1288,1428,1574,1726,1882,2044,2094],previousTicks=[1288,1322,1358,1392,1426,1460,1494];
+ for(let day=1;day<=newTicks.length;day++){
+  const s=createGame(7);s.day=day;const wave=generateWave(s);
+  assert.equal(wave.rhythm,WAVE_RHYTHM.fixed);
+  assert.equal(wave.entries.at(-1).tick,newTicks[day-1]);
+  assert.equal(waveDifficulty(day,WAVE_RHYTHM.extended).spawnTicks,previousTicks[day-1]);
+  assert.equal(wave.entries.length,waveDifficulty(day,WAVE_RHYTHM.extended).count);
  }
 });
 test('new and pre-marker historical rules replay with their original multipliers',()=>{
@@ -42,15 +54,15 @@ test('new and pre-marker historical rules replay with their original multipliers
  for(const [day,band] of [[1,0],[8,0],[9,1],[12,1]]){
   const fresh=createGame(15);fresh.day=day;fresh.completed=fresh.legacy.bestNight=day-1;fresh.wave=generateWave(fresh);
   fresh.wave.affix="NONE";
-  const dense=structuredClone(fresh), previous=structuredClone(fresh);
-  const factor=WAVE_PROGRESSION.extendedArrivalScale;
-  for (const historical of [dense,previous]) {
-   delete historical.wave.rhythm;
-   historical.wave.entries.forEach(e=>e.tick/=factor);
-  }
-  const lastNightly=structuredClone(fresh);
-  lastNightly.wave.rhythm=WAVE_RHYTHM.nightly;
-  lastNightly.wave.entries.forEach(e=>e.tick/=factor);
+  const savedWave=rhythm=>{
+   const historical=structuredClone(fresh), plan=waveDifficulty(day,rhythm);
+   historical.wave.rhythm=rhythm;
+   historical.wave.entries.forEach((e,i,all)=>{e.tick=Math.floor(waveArrivalTick(i,all.length,plan.baseSpawnTicks))*plan.arrivalScale;});
+   return historical;
+  };
+  const lastNightly=savedWave(WAVE_RHYTHM.nightly), extended=savedWave(WAVE_RHYTHM.extended);
+  const dense=structuredClone(lastNightly), previous=structuredClone(lastNightly);
+  delete dense.wave.rhythm;delete previous.wave.rhythm;
   assert.equal(roundTrip(lastNightly).wave.entries.at(-1).tick,waveDifficulty(day,WAVE_RHYTHM.nightly).spawnTicks);
   dense.wave.ordinaryHealthPercent=WAVE.ordinaryHealth[band];
   previous.wave.ordinaryHealthPercent=WAVE.legacyOrdinaryHealth[band];
@@ -61,20 +73,23 @@ test('new and pre-marker historical rules replay with their original multipliers
   }
   const unknown=structuredClone(fresh);unknown.wave.rhythm='UNKNOWN';
   assert.throws(()=>validateState(unknown),/波次难度规则无效/);
-  for(const state of [fresh,dense,previous]){
+  for(const state of [fresh,dense,previous,extended]){
    roundTrip(state);applyCommand(state,{type:'NIGHT'});
   }
   for(const kind of ['enemy_raider','enemy_chief']){
    const hp=[],damage=[],speeds=[], data=ENEMIES[kind], difficulty=waveDifficulty(day);
-   for(const state of [fresh,dense,previous]){
+   for(const state of [fresh,dense,previous,extended]){
     const b=new BattleSimulation(roundTrip(state));b.cursor=state.wave.entries.length;
     b.spawn(kind,PATH_LENGTH-.1,1);hp.push(b.enemies[0].maxHp);speeds.push(b.enemies[0].speed);
     b.step();damage.push(state.gate-b.gate);
    }
    const scale = data.boss ? 1 : WAVE.ordinaryGateScale;
-   assert.equal(hp[0],Math.ceil(data.hp*(data.boss?difficulty.bossHealth:difficulty.health)*(data.boss?1:.7)));
-   assert.equal(speeds[0],data.speed*difficulty.speed);
-   assert.equal(damage[0],Math.ceil(data.gate*scale*difficulty.gate));
+   assert.equal(hp[0],Math.ceil(data.hp*(data.boss?1:FIXED_NIGHT.raiderHealth)*(data.boss?difficulty.bossHealth:difficulty.health)*(data.boss?1:.7)));
+   assert.equal(speeds[0],data.speed*FIXED_NIGHT.enemySpeed*difficulty.speed);
+   assert.equal(damage[0],Math.ceil(data.gate*(data.boss?1:scale*FIXED_NIGHT.ordinaryGateDamage)*difficulty.gate));
+   assert.equal(hp[3],Math.ceil(data.hp*(data.boss?difficulty.bossHealth:difficulty.health)*(data.boss?1:.7)));
+   assert.equal(speeds[3],data.speed*difficulty.speed);
+   assert.equal(damage[3],Math.ceil(data.gate*scale*difficulty.gate));
    assert.equal(hp[1],Math.ceil(data.hp*enemyPower(day)*(data.boss?1:WAVE.ordinaryHealth[band]/100)));
    assert.equal(hp[2],Math.ceil(data.hp*enemyPower(day)*(data.boss?1:WAVE.legacyOrdinaryHealth[band]/100)));
    assert.equal(damage[1],Math.ceil(data.gate*scale*enemyPower(day)));
@@ -121,10 +136,11 @@ test('an already planned paired wave retains its older headcount, deadline and s
  s.wave.budget=s.wave.entries.reduce((sum,e)=>sum+ENEMIES[e.kind].cost,0);
  validateState(s);applyCommand(s,{type:'NIGHT'});
  // The old wave was already started before automatic appointment.
- s.patrol.captain=null;delete s.night.patrolSquad;delete s.night.patrolSpin;
+ s.patrol.captain=null;delete s.night.patrolSquad;delete s.night.patrolSpin;delete s.night.patrolMode;
  validateState(s);
  const b=new BattleSimulation(s);b.step();
  assert.equal(b.enemies[0].maxHp,Math.ceil(ENEMIES[s.wave.entries[0].kind].hp*(ENEMIES[s.wave.entries[0].kind].boss?old.bossHealth:old.health*.7)));
  assert.equal(s.wave.entries.length,189);assert.equal(s.wave.entries.at(-1).tick,966);
- assert.equal(current.entries.length,190);assert.equal(current.entries.at(-1).tick,2416);
+ assert.equal(current.entries.length,190);assert.equal(current.entries.at(-1).tick,waveDifficulty(s.day).spawnTicks);
+ assert.equal(waveDifficulty(s.day,WAVE_RHYTHM.extended).spawnTicks,2416);
 });

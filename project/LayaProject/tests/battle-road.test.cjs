@@ -4,7 +4,7 @@ const {enemyPoint,pointAt,PATH_LENGTH,roadFootprintBounds}=require(path.join(bui
 const {BattleSimulation}=require(path.join(build,'game/BattleSimulation'));
 const {createGame,applyCommand}=require(path.join(build,'game/VillageRules'));
 const {ENEMIES,PATH,PADS,TOWERS,RULE}=require(path.join(build,'game/GameConfig'));
-const {WAVE}=require(path.join(build,'config/DefenseConfig'));
+const {FIXED_NIGHT,WAVE}=require(path.join(build,'config/DefenseConfig'));
 const {ROAD_MOVEMENT}=require(path.join(build,'config/RoadMovementConfig'));
 const enemy=(kind,seq,progress)=>({kind,seq,progress,appearanceSeed:91,hp:1e6,speed:0,slow:0,slowTicks:0, walkDistance: 0,born:0,summoned:RULE.summonTicks.length});
 function battle(tower,index=0){
@@ -77,7 +77,7 @@ test('lateral placement does not change the arrival tick, gate damage or pending
   for(let i=0;i<steps-1;i++){b.step();assert(!b.feedback.some(e=>e.type==='gate'));}
   b.step();assert(b.feedback.some(e=>e.type==='gate'));assert.equal(b.enemies.length,0);assert.equal(b.pendingCount,0);
   const {gate,boss}=ENEMIES[kind];
-  assert.equal(b.gate,1e9-Math.ceil(gate*(boss?1:WAVE.ordinaryGateScale)));assert.equal(b.outcome,'WIN');
+  assert.equal(b.gate,1e9-Math.ceil(gate*(boss?1:WAVE.ordinaryGateScale*FIXED_NIGHT.ordinaryGateDamage)));assert.equal(b.outcome,'WIN');
  }
 });
 test('splash uses actual lateral distance, not equal progress on the old single line',()=>{

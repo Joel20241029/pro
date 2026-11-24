@@ -78,6 +78,7 @@ test('a saved night without a captain replays unchanged until its next dawn', ()
     applyCommand(s, { type: 'NIGHT' });
     s.patrol.captain = null;
     delete s.night.patrolSquad;
+    delete s.night.patrolMode;
     delete s.night.patrolSpin;
     const saves = new SaveStore(port); saves.inspect(); saves.prepare(s); saves.commit();
     const game = new GameSession(new SaveStore(port)); game.load();
@@ -92,6 +93,7 @@ test('guard resolves before gate damage even if the monster reaches the gate on 
     const s = unlocked();
     applyCommand(s, { type: 'PATROL_CAPTAIN', id: s.people[0].id });
     applyCommand(s, { type: 'NIGHT' });
+    delete s.night.patrolMode;
     delete s.night.patrolSpin; // exercise the original in-progress night rule
     const stats = new DailyTaskCombat(), battle = new BattleSimulation(s, stats);
     battle.tick = Math.round(PATROL.first / RULE.step);
@@ -273,6 +275,7 @@ test('new patrol has a distinct save rule and continuous damage growth with boun
     assert(strongLegend.damage > common.damage && strongLegend.ticks < common.ticks);
     assert(patrolSpinStats(1000).damage > patrolSpinStats(999).damage);
     assert(patrolSpinStats(1000, { quality: 'LEGENDARY', trait: 'trait_nimble' }).seconds >= PATROL.spin.minimum);
+    delete s.night.patrolMode;
     delete s.night.patrolSpin;
     assert.equal(new Patrol(s).spin, null);
 });
@@ -355,9 +358,93 @@ test('patrol pull scales from the actual finger start to the screen edge and lan
     }
 });
 
-test('held patrol aim runs at half the normal HUD rate, restores both saved speeds and resets on pause', () => {
+test('the wide-item radius includes the new boundary on every throw, without changing per-target damage', () => {
+    const { PatrolSpin } = load('game/PatrolSpin');
+    const center = { x: 360, y: 400 };
+    for (const wide of [undefined, true]) {
+        const spin = new PatrolSpin({ damage: 16, ticks: 90 }, wide);
+        let tick = 0;
+        for (let volley = 0; volley < 2; volley++) {
+            while (!spin.ready && tick < 800) spin.advance(++tick, []);
+            assert(spin.throwAt(tick, center, 0));
+            const targets = [90, 91, 112.5, 112.51].map((dx, seq) =>
+                ({enemy: {seq, hp: 100}, at: {x: center.x + dx, y: center.y}}));
+            while (spin.flying) spin.advance(++tick, targets);
+            assert.equal(spin.landing.radius, wide ? 112.5 : 90);
+            assert.deepEqual(targets.map(t => t.enemy.hp), wide ? [84,84,84,100] : [84,100,100,100]);
+        }
+    }
+});
+
+test('one dust plume rises behind the actual hit group, disperses, and stays clipped at the map edge', () => {
+    const { PatrolThrowCue } = load('view/PatrolThrowCue');
+    const { GameLayout } = load('view/GameLayout');
+    const layout = new GameLayout({ windowWidth: 390, windowHeight: 844, statusBarHeight: 20 }, { width: 0, height: 0 });
+    const at = { x: 3, y: PATROL.spin.map.top }, landing = { type: 'patrolLanding', tick: 24, actor: 5, at, radius: PATROL.spin.radius };
+    const clip = ['clipRect', 0, layout.mapTop, PATROL.spin.map.width, layout.footerTop - layout.mapTop];
+    const draw = hits => {
+        const previous = global.Laya;
+        class Sprite {
+            constructor() {
+                this.calls = [];
+                this.graphics = { clear: () => { this.calls.length = 0; } };
+                for (const name of ['save', 'clipRect', 'alpha', 'drawPoly', 'drawLines', 'drawCurves', 'drawEllipse', 'restore'])
+                    this.graphics[name] = (...args) => this.calls.push([name, ...args]);
+            }
+            addChild(child) { child.parent = this; return child; }
+            on() {}
+        }
+        global.Laya = { Sprite, Point: class {}, Rectangle: class {}, Event: {} };
+        try {
+            const cue = new PatrolThrowCue(new Sprite(), { patrolDragReady: false }, { ready: () => true });
+            const word = cue.word = { width: 173, height: 95, scale(x) { this.scaleX = x; }, pos(x,y) { this.x = x; this.y = y; } };
+            const battle = {};
+            cue.update(layout, battle, [...hits, landing], 1, false);
+            const frames = [1, 1.28, 1.62].map(time => {
+                cue.update(layout, battle, [], time, false);
+                assert(cue.impact && word.visible);
+                assert(word.x - word.width * word.scaleX / 2 >= 0);
+                assert(word.y - word.height * word.scaleX / 2 >= layout.mapTop - 1e-6);
+                if (cue.impact.hit) {
+                    assert(cue.dust.zIndex < 0 && cue.dust.visible && !cue.dust.mouseEnabled);
+                    assert.deepEqual(cue.dust.calls.find(c => c[0] === 'clipRect'), clip);
+                } else {
+                    assert(!cue.dust.visible);
+                    assert.deepEqual(cue.aim.calls.find(c => c[0] === 'clipRect'), clip);
+                }
+                return { ground: cue.dust.calls.slice(), overlay: cue.aim.calls.slice(), alpha: cue.dust.alpha };
+            });
+            cue.update(layout, battle, [], 2, false);
+            assert.equal(cue.impact, null);
+            assert(!word.visible && !cue.dust.visible);
+            return frames;
+        } finally { global.Laya = previous; }
+    };
+    const hit = { type: 'patrol', tick: 24, index: 5 };
+    const frames = draw([hit]);
+    assert.deepEqual(draw([hit, hit, hit]), frames);
+    const bounds = frame => {
+        const puffs = frame.ground.filter(c => c[0] === 'drawEllipse');
+        return { top: Math.min(...puffs.map(c => c[2] - c[4])), right: Math.max(...puffs.map(c => c[1] + c[3])) };
+    };
+    const start = bounds(frames[0]), peak = bounds(frames[1]);
+    assert(peak.top < start.top - PATROL.spin.radius * .4);
+    assert(peak.right > start.right + PATROL.spin.radius * .3);
+    assert(frames[2].alpha < frames[1].alpha * .5);
+    assert(!frames[1].ground.some(c => c[0] === 'drawLines'));
+    const front = frames[1].overlay.filter(c => c[0] === 'drawEllipse');
+    assert.deepEqual(frames[1].overlay.find(c => c[0] === 'clipRect'), clip);
+    assert(Math.min(...front.map(c => c[1] - c[3])) < at.x - PATROL.spin.radius);
+    assert(Math.max(...front.map(c => c[1] + c[3])) > at.x + PATROL.spin.radius);
+    assert(Math.min(...front.map(c => c[2] - c[4])) > peak.top + PATROL.spin.radius * .25);
+    const [miss] = draw([{ ...hit, tick: 23 }, { ...hit, index: 6 }]);
+    assert.equal(miss.ground.length, 0);
+    assert(miss.overlay.some(c => c[0] === 'drawLines') && miss.overlay.some(c => c[0] === 'drawEllipse'));
+});
+
+test('held patrol aim runs at half the normal HUD rate, restores the fixed clock for either legacy save and resets on pause', () => {
     const { GameSession } = load('game/GameSession');
-    for (const speed of [RULE.minSpeed, RULE.maxSpeed]) {
+    for (const speed of [RULE.legacySlowSpeed, RULE.battleSpeed]) {
         const port = { read: () => null, write() {}, remove() {} };
         const game = new GameSession(new SaveStore(port));
         const state = createGame(245);
@@ -371,17 +458,18 @@ test('held patrol aim runs at half the normal HUD rate, restores both saved spee
         spin.gather();
         game.setPatrolAiming(true);
         const tick = game.battle.tick;
-        game.update(RULE.step);
-        assert.equal(game.battle.tick - tick, 1);
+        assert.equal(game.battleSpeed, 1.5);
+        game.update(2 * RULE.step);
+        assert.equal(game.battle.tick - tick, 3);
         assert.equal(game.state.settings.speed, speed);
         game.setPatrolAiming(false);
         game.update(RULE.step);
-        assert.equal(game.battle.tick - tick, 1 + speed);
+        assert.equal(game.battle.tick - tick, 3 + RULE.battleSpeed);
         game.setPatrolAiming(true);
         assert(game.patrolAiming);
         game.pause('BACKGROUND');
         game.resume('BACKGROUND');
         assert(!game.patrolAiming);
-        assert.equal(game.battleSpeed, speed);
+        assert.equal(game.battleSpeed, RULE.battleSpeed);
     }
 });

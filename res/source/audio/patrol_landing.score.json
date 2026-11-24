@@ -1,0 +1,24 @@
+{
+  "title": "巡防旋甩 · 踏地",
+  "authorship": "Original procedural impact of a weighted sole hitting packed earth.",
+  "sampleRate": 22050,
+  "durationSeconds": 0.24,
+  "mp3Bitrate": "32k",
+  "synthesis": {
+    "bodyHz": 154,
+    "dropHz": 158,
+    "pitchDecaySeconds": 0.024,
+    "bodyDecaySeconds": 0.046,
+    "soleRatio": 2.76,
+    "soleGain": 0.67,
+    "soleDecaySeconds": 0.033,
+    "grainGain": 0.84,
+    "grainSmoothing": 0.48,
+    "grainDecaySeconds": 0.027,
+    "noiseSeed": 10802,
+    "attackSeconds": 0.003,
+    "releaseSeconds": 0.012,
+    "peak": 0.60
+  },
+  "bundle": "battle"
+}

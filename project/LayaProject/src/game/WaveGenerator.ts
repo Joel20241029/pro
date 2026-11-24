@@ -50,5 +50,5 @@ export function generateWave(s: GameState): Wave {
     });
     const budget = entries.reduce((sum, { kind }) => sum + ENEMIES[kind].cost, 0);
     s.rng.world = rng.state;
-    return { budget, affix, tier: s.tier, entries, ordinaryHealthPercent: WAVE_PROGRESSION.ordinaryHealthPercent, rhythm: WAVE_RHYTHM.extended };
+    return { budget, affix, tier: s.tier, entries, ordinaryHealthPercent: WAVE_PROGRESSION.ordinaryHealthPercent, rhythm: WAVE_RHYTHM.fixed };
 }

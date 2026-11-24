@@ -2640,7 +2640,7 @@
     ]
   },
   "fx_impact_arrow_1": {
-    "sha256": "b06cbd16dbde431189c765acf5a338be526bff89b765f019d7c3890607ee77ba",
+    "sha256": "c1c3aab1ad02d444e2e07213199271e66058d899cf7f050af82096511215f9bf",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -2648,7 +2648,7 @@
     ]
   },
   "fx_impact_arrow_2": {
-    "sha256": "0cdb410afe5070e7b159dd1f2500402ae3e5f421ea4ff3fa91ba62bb4e13fe0a",
+    "sha256": "1722203125060c60ff1f1f6544ecd00818d6295d0849fcc8f82e4424bcb6f94b",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -2656,7 +2656,7 @@
     ]
   },
   "fx_impact_arrow_3": {
-    "sha256": "0c87a12f9b1b2e38d93df995743333a7295d61e1f1857fb2ba4cfec8154ead72",
+    "sha256": "e55fe982284c81bd7d079134caa26db7c44a70b567cc60d96e1ee16820c8fa0c",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -2664,7 +2664,7 @@
     ]
   },
   "fx_impact_arrow_4": {
-    "sha256": "454822f8b3e2f98e6f7007e3028aa960fc28c70909302d9aee2838799ced4afd",
+    "sha256": "679d80adcfe4eb7ee78c93e3785fc4c9d998d221c0b5a5f2fcede11cab109527",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -2672,7 +2672,7 @@
     ]
   },
   "fx_impact_arrow_5": {
-    "sha256": "d7679c0cc5b13e8ae67d81db4d0cca9e5f51b0fe8b6e705cc994f77084aed0e1",
+    "sha256": "4a9fff4be309c719e55fff3e68900a4fc442df4cf71e4055814cc0d33dbdb235",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3279,8 +3279,16 @@
       96
     ]
   },
+  "icon_liang_briefs": {
+    "sha256": "d46e66f6ad1e16ce03e7e4b764f1c4560e37e7f892e640d08b7984ef6c3017ae",
+    "master": "source/rendered2d/production/cartoon-v1/masters/liang-briefs.png",
+    "size": [
+      96,
+      96
+    ]
+  },
   "fx_tower_stone_impact_1": {
-    "sha256": "983cb2cce154997465e4da018dc4b67cec1bef8cf0062e1c704e8ed2275129c9",
+    "sha256": "80074c546a7c2e2bb6e589edb5de781fe00e46bbe37a2eac14ef9b7fe220c669",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3288,7 +3296,7 @@
     ]
   },
   "fx_tower_stone_impact_2": {
-    "sha256": "8189beb77a86f0b72c1ef2b04f06ac71b87f52ff068b89d7d3db79d1b65e701b",
+    "sha256": "7066853b448e6cdc3d3b0f1f8df82177cbe0f8d71d944465a86a75ae5b30d7e9",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3296,7 +3304,7 @@
     ]
   },
   "fx_tower_stone_impact_3": {
-    "sha256": "b360e86283eb76739a220ac2fa80400cab81d404f8aad30e17036140b35621a9",
+    "sha256": "54aa8cf5dde4eb282439e0ca04cdd05d29b5da0db39e130af521afc6b99ff2e7",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3304,7 +3312,7 @@
     ]
   },
   "fx_tower_stone_impact_4": {
-    "sha256": "a76536a0ad68d03e5fc18af0585e608423c68f028d9928070e1bd4abe078df7a",
+    "sha256": "7fe1856e6f78939c71e38f0bf5dccd676def290a1b0de17bfd239df5b16b81d1",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3312,7 +3320,7 @@
     ]
   },
   "fx_tower_stone_impact_5": {
-    "sha256": "4dc3d6a36e4b69c3648df6c2f890676dfe0f4af7dfd9291bc1093f3e77c4f5ae",
+    "sha256": "a0fff32a1b184f29297e6a30263d1080aca98b1a5b159e28166125a1cfd6e749",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3320,7 +3328,7 @@
     ]
   },
   "fx_tower_stone_impact_6": {
-    "sha256": "028733bd48388939bd9578427ad44abea179ce4118db0f6e013bf8feeab1f46b",
+    "sha256": "74e74852357d823c5066864e7c359ddc272aaadcf55f975165c1467f4427ac4d",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3328,7 +3336,7 @@
     ]
   },
   "fx_tower_stone_impact_7": {
-    "sha256": "75dc2ac05e405491c61578d60ec246a077b0d287a5cd1e92cbe84fdc72e96adf",
+    "sha256": "8abe9b1522c7e19455bfec7ae704a3ffaa861fdf9d06cfd212f94c2248364544",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3336,7 +3344,7 @@
     ]
   },
   "fx_tower_stone_impact_8": {
-    "sha256": "1bfaa6cfe51f0e8ded884df79061f88581190ec183e0ef6f2b8709c87b850320",
+    "sha256": "71e8da425670ef842d2b47b11492cc6b29945c9231fd102073c0842c01bdfa64",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3344,7 +3352,7 @@
     ]
   },
   "fx_tower_frost_impact_1": {
-    "sha256": "c24e844fb85c3655a2cc6b5e1f36d5aab94aa62b1a943a536184fd491c81ef09",
+    "sha256": "159ae7abe1f36c3c5b9c39c66fa013d1f5dc3633d83e8abc2c980393468d60a7",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3352,7 +3360,7 @@
     ]
   },
   "fx_tower_frost_impact_2": {
-    "sha256": "c20165053862e0000f7a463c277bc503d8fec4199d5d80ccdf52351b91c1d580",
+    "sha256": "e8d87533ecd05e4354c2d65ea14bc99c5e1fefef2f4bca7c311d05107ff609a9",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3360,7 +3368,7 @@
     ]
   },
   "fx_tower_frost_impact_3": {
-    "sha256": "395b1b8151c919fdccc3a97aaa98db956d5256e5e33ce821de3119d9b8b7e347",
+    "sha256": "1862349deb55ffd425f020b4131fbf98dd8e32290b3fbf46cd3ed73ed12a0a1f",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3368,7 +3376,7 @@
     ]
   },
   "fx_tower_frost_impact_4": {
-    "sha256": "9eb0f867fe250f418d86d11d05f157ed293c235adaa367e14fafc339f9d27386",
+    "sha256": "8c59875bf494bdbd1adb37f4b112f3518374af17384b905ca253a477be21e800",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3376,7 +3384,7 @@
     ]
   },
   "fx_tower_frost_impact_5": {
-    "sha256": "06675f6f9753986159269067c3e01fa784b43f5af5f833f1ec6d9f7e4defb663",
+    "sha256": "50e95e8fed28f8e17d4e09002a408f98b8a278e31783c8972c50404b27af70c8",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3384,7 +3392,7 @@
     ]
   },
   "fx_tower_frost_impact_6": {
-    "sha256": "e5d6c42ef0bb67829b623d66e2edf5e1bb934f046883ff385500a41af776991a",
+    "sha256": "d565b2bb34c70c2b416e665c4e6e3140f5d758537b3def8ef959bfc3655e7766",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3392,7 +3400,7 @@
     ]
   },
   "fx_tower_frost_impact_7": {
-    "sha256": "6cff824271de8943fe07ff6d640c3d101ea6dd19b9eb4ef66660a7ddec357071",
+    "sha256": "d8fab77a34415c00be249216ddf5ec08f94e33efa26a9b943a82ffff239496fe",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -3400,7 +3408,7 @@
     ]
   },
   "fx_tower_frost_impact_8": {
-    "sha256": "332be7db19f6607206a6c4a9ff96de6f6a519614dd9c660b9f5f12185a853fcc",
+    "sha256": "4534f8b59d6fea7ac3a552c203c0e572477321b8756e31196064fa3aaef1fb93",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       320,
@@ -4565,6 +4573,22 @@
     "size": [
       44,
       56
+    ]
+  },
+  "icon_liang_bra": {
+    "sha256": "89f5c92d4f333a69cf56b10911184eda8997952e95ebe4c67c78da99eea48b7b",
+    "master": "source/rendered2d/production/cartoon-v1/masters/liang-bra.png",
+    "size": [
+      96,
+      96
+    ]
+  },
+  "patrol_rapid_gun": {
+    "sha256": "4d304480d82307285edc65bb1a3a6f0863f1c7983a00c3bc0646bbdcd070cbc3",
+    "master": "source/rendered2d/production/cartoon-v1/masters/patrol-rapid-gun.png",
+    "size": [
+      128,
+      160
     ]
   }
 }

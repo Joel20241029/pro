@@ -131,6 +131,44 @@ def defeat_samples(score):
     return samples
 
 
+def patrol_flight_samples(score):
+    rate, length, voice = score['sampleRate'], score['durationSeconds'], score['synthesis']
+    count = round(rate * length)
+    rng = random.Random(voice['noiseSeed'])
+    noise = [rng.uniform(-1, 1) for _ in range(count)]
+    samples = []
+    # 整圈走完整数个载波周期。滑音、气息和噪声滤波也首尾相接，可以在实际落地时结束循环。
+    cycles = round(voice['centerHz'] * length)
+    for i in range(count):
+        angle = math.tau * i / count
+        phase = (cycles * angle - voice['glideHz'] * length * math.sin(angle)
+                 + voice['skewHz'] * length * (1 - math.cos(2 * angle)) / 2)
+        breath = (1 - math.cos(angle)) / 2
+        air = sum(noise[(i - k) % count] for k in range(4)) / 4
+        whistle = math.sin(phase) + voice['overtoneGain'] * breath * math.sin(2 * phase)
+        samples.append((voice['breathFloor'] + breath) * (whistle + voice['airGain'] * air))
+    return samples
+
+
+def patrol_landing_samples(score):
+    rate, length, voice = score['sampleRate'], score['durationSeconds'], score['synthesis']
+    rng = random.Random(voice['noiseSeed'])
+    samples, smooth = [], 0.0
+    for i in range(round(rate * length)):
+        t = i / rate
+        attack = min(1, t / voice['attackSeconds'])
+        release = min(1, (length - t) / voice['releaseSeconds'])
+        # 脚底触地时音高快速下沉，中频鞋底共鸣和短砂土声使小扬声器也保有接触感。
+        fall = voice['pitchDecaySeconds']
+        phase = math.tau * (voice['bodyHz'] * t + voice['dropHz'] * fall * (1 - math.exp(-t / fall)))
+        body = math.sin(phase) * math.exp(-t / voice['bodyDecaySeconds'])
+        sole = math.sin(phase * voice['soleRatio']) * math.exp(-t / voice['soleDecaySeconds'])
+        smooth += voice['grainSmoothing'] * (rng.uniform(-1, 1) - smooth)
+        grit = smooth * math.exp(-t / voice['grainDecaySeconds'])
+        samples.append(attack * release * (body + voice['soleGain'] * sole + voice['grainGain'] * grit))
+    return samples
+
+
 def build(name, render):
     score_path = root / f'source/audio/{name}.score.json'
     score = json.loads(score_path.read_text())
@@ -162,12 +200,13 @@ def build(name, render):
 
 tracks = [build('village_loop', village_samples), build('battle_loop', battle_samples), build('ui_click', click_samples),
           build('tower_fire', tower_samples), build('enemy_defeat', defeat_samples)]
+if tracks[-1]['bytes'] > 3_000:
+    raise ValueError('Enemy defeat sound exceeded the approved 3 KB target')
+tracks.extend([build('patrol_flight', patrol_flight_samples), build('patrol_landing', patrol_landing_samples)])
 if tracks[0]['bytes'] > 120_000:
     raise ValueError('Village music exceeded the approved 120 KB target')
 if sum(track['bytes'] for track in tracks[1:]) > 80_000:
     raise ValueError('Battle and interface audio exceeded the approved 80 KB target')
-if tracks[-1]['bytes'] > 3_000:
-    raise ValueError('Enemy defeat sound exceeded the approved 3 KB target')
 report = {'tracks': tracks, 'bytes': sum(track['bytes'] for track in tracks)}
 (root / 'audio/manifest.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
 if args.sync:

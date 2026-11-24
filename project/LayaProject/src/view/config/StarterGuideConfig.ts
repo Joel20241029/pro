@@ -11,7 +11,7 @@ export const STARTER_LESSONS = [
 export type StarterTarget = typeof STARTER_LESSONS[number]["target"] | "build";
 /** 淡紫儿引导独立查看记录；旧档也可看到新系统，跳过不会改变五波引导进度。 */
 export const PATROL_LESSONS = [
-    { text: `开村就有${PATROL.building}，村里会自动安排队长。点粉色房子可以查看或更换。` }
+    { text: `点${PATROL.building}，选今晚用旋甩还是连发。村里会自动安排队长。` }
 ] as const;
 
 /** 分波开放后的单步引导。空背包、空商城也可打开并完成。 */

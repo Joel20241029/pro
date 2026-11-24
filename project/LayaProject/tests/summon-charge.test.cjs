@@ -186,7 +186,7 @@ test('boss contact before the gate applies percentage damage and a surviving bos
     assert(b.gate < b.base.gate);
 });
 
-test('a new charge respects saved speed and pauses, and the last hit settles immediately with its own death cue', () => {
+test('a new charge respects the fixed clock and pauses, and the last hit settles immediately with its own death cue', () => {
     const data = new Map(), port = { read: k => data.get(k) ?? null, write: (k,v) => data.set(k,v) };
     const save = new SaveStore(port); save.inspect(); save.prepare(state()); save.commit();
     const g = new GameSession(new SaveStore(port)); g.load();
@@ -194,7 +194,7 @@ test('a new charge respects saved speed and pauses, and the last hit settles imm
     const b = setup(g.battle);
     g.bell(); g.pause('CHOICE'); g.update(.25);
     assert.equal(b.summonCharge.gathered, 0);
-    g.command({ type: 'SPEED', value: 3 }); g.resume('CHOICE');
+    g.resume('CHOICE');
     g.update(.2);
     assert.equal(b.tick, SUMMON_CHARGE.gatherTicks);
     assert(b.summonCharge.villagers.every(v => v.distance === 0));

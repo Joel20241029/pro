@@ -12,7 +12,7 @@ test('night-ending volley is heard before switching BGM, even when settlement op
   pause(reason){this.pauses.add(reason);},resume(reason){this.pauses.delete(reason);},
   update(){if(this.battle){battle.volleys++;battle.outcome='WIN';this.battle=null;this.state.phase='DAY';this.pauses.add('MODAL');}}
  };
- main.session=session;main.music={setEnabled(){},setBattle:night=>calls.push(night?'night':'day'),towerShot:()=>calls.push('shot')};
+ main.session=session;main.music={setEnabled(){},setPatrolFlight(){},setBattle:night=>calls.push(night?'night':'day'),towerShot:()=>calls.push('shot')};
  main.onUpdate();assert.deepEqual(calls,['shot','day']);
  main.onUpdate();assert.deepEqual(calls,['shot','day','day']);
 });

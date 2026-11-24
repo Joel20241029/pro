@@ -80,6 +80,12 @@ def register_boards():
     face.polygon([(sw*.45,sh*.22),(sw*.53,sh*.22),(sw*.54,sh*.34),(sw*.44,sh*.34)],fill='#49372a')
     partition('scenery',4,3,'oak pine sign palisade empty-pad pears apples blossom logs torch rock wheat'.split())
     partition('icons',5,5,'food wood population build house logging family heart arrow stone slow shield baby_icon view trophy close night_shield crowned_heart tactic_scroll tactic_rage tactic_shield backpack shop liang_essence genealogy'.split(), column_edges=(0,256,513,769,997,1283))
+    # Fit standalone transparent illustrations to their registered cells.
+    for key, filename in [('liang_briefs', 'liang-briefs.png'), ('liang_bra', 'liang-bra.png'),
+                          ('patrol_rapid_gun', 'patrol-rapid-gun.png')]:
+        illustration = Image.open(MASTERS / filename).convert('RGBA')
+        bounds = illustration.getchannel('A').point(lambda alpha: 255 if alpha >= 10 else 0).getbbox()
+        ARTS[key] = (illustration.crop(bounds), filename)
 
 
 def blank(size):
@@ -269,47 +275,113 @@ def impact(size,index,count,brown=False,frost=False):
     return out.resize(size,SCALE)
 
 
-def impact_shape(draw,cx,cy,points,fill,stroke,scale,unit):
-    pts=[(round((cx+x*scale)*unit),round((cy+y*scale)*unit)) for x,y in points]
-    draw.polygon(pts,fill=fill,outline=stroke,width=max(1,round(unit*scale*.045)))
-
 def tower_impact(size, kind, frame, count):
-    # The 128 px design grid is the same scale as the approved GIF. Render at
-    # 4x for crisp alpha edges, then let Laya enlarge the drawing only once.
+    # Use the shared 128-unit drawing grid. Four samples per output pixel keep the
+    # ink edges and small bright facets readable when the atlas is downscaled.
     unit = 4 * size[0] / 128
     layer = blank((size[0] * 4, size[1] * 4))
-    x, y = 64, 48 if kind == 1 else 64
-    a = (frame - 1) / count
-    ink = ['#76421b', '#634229', '#285979']
-    hues = ['#ffc950', '#cb9c67', '#77d8f4']
-    lights = ['#fff6c9', '#f8deb5', '#e8faff']
-    k = kind
-    d=ImageDraw.Draw(layer)
-    if k==0 and a<.48:
-        impact_shape(d,x,y,[(0,-.85),(.15,-.22),(.84,-.67),(.43,-.09),(1,.10),(.24,.22),(.36,.78),(-.10,.33),(-.59,.57),(-.32,.12),(-.69,-.19),(-.16,-.20)],lights[k],ink[k],26*(.75+.65*min(a/.22,1)-.65*max((a-.24)/.24,0)),unit)
-    if k==1 and a<.72:
-        p=min(a/.46,1)
-        for ox,oy,r in [(-20,15,12),(-5,19,16),(13,18,13),(29,12,9)]:
-            q=r*(.5+.58*p)*(1-.35*max((a-.45)/.27,0))
-            xx,yy=x+ox*(.7+.36*p),y+oy
-            d.ellipse(tuple(round(value*unit) for value in (xx-q,yy-q*.52,xx+q,yy+q*.52)),fill=lights[k],outline=ink[k],width=round(2*unit))
-    if k==2 and a<.58:
-        p=min(a/.26,1)
-        for dx,dy,s in [(-14,-3,16),(2,-7,20),(15,1,12)]:
-            shard_size=s*(.65+.45*p)*(1-.55*max((a-.30)/.28,0))
-            impact_shape(d,x+dx,y+dy,[(0,-1),(.40,-.38),(.34,.36),(-.08,.64),(-.47,.21),(-.43,-.48)],hues[k],ink[k],shard_size,unit)
-            impact_shape(d,x+dx,y+dy,[(0,-.80),(.15,-.26),(-.08,.22),(-.20,-.31)],lights[k],None,shard_size,unit)
-    vectors=[ [(-.9,-.45),(.6,-.7),(.95,.16)], [(-.80,-.31),(-.39,-.81),(.46,-.67),(.9,-.22)], [(-.75,-.53),(-.15,-.79),(.57,-.72),(.85,.12)] ][k]
-    for i,(vx,vy) in enumerate(vectors):
-        grow=math.sin(a*math.pi/2)
-        if a < .17: continue
-        rr=(42 if k==0 else 48)*grow
-        px,py=x+vx*rr,y+vy*rr+(a*a*25 if k==1 else 0)
-        scale=(10+i%2*3)*(1-.82*a)
-        pts=[(-.7,-.31),(1,-.17),(.27,.47),(-.25,.60)] if k==0 else ([(-.58,-.36),(.20,-.72),(.82,-.10),(.42,.62),(-.47,.57)] if k==1 else [(0,-1),(.63,-.26),(.43,.43),(-.26,.73),(-.68,.2)])
-        impact_shape(d,px,py,pts,hues[k],ink[k],scale,unit)
-    alpha=1 if a<.66 else max(0,(1-a)/.34)
-    if alpha<1: layer.putalpha(layer.getchannel('A').point(lambda n:round(n*alpha)))
+    draw = ImageDraw.Draw(layer)
+    age = (frame - 1) / (count - 1)
+    expansion = 1 - (1 - age) ** 2
+    center = 64
+
+    def polygon(points, fill, ink=None, weight=1):
+        points = [(round(x * unit), round(y * unit)) for x, y in points]
+        draw.polygon(points, fill=fill, outline=ink, width=max(1, round(weight * unit)))
+
+    def arc(x, y, rx, ry, start, end, color, width):
+        box = tuple(round(v * unit) for v in (x - rx, y - ry, x + rx, y + ry))
+        draw.arc(box, start, end, fill=color, width=max(1, round(width * unit)))
+
+    def facet(x, y, degrees, length, width, ink, face, highlight):
+        # The long axis points away from the contact. The light face stays slim
+        # enough for the monster to show through the gaps between fragments.
+        angle = math.radians(degrees)
+        dx, dy = math.cos(angle), math.sin(angle)
+        tip = (x + dx * length, y + dy * length)
+        tail = (x - dx * length * .55, y - dy * length * .55)
+        left = (x - dy * width, y + dx * width)
+        right = (x + dy * width, y - dx * width)
+        polygon([tail, left, tip, right], face, ink, .85)
+        polygon([(x, y), tip, (x + dy * width * .66, y - dx * width * .66)], highlight)
+
+    if kind == 0:
+        # Arrow effects rotate with the projectile. The white-hot leading streak
+        # points along local +X, with gold splinters peeling away on either side.
+        ink, gold, white = '#8a411a', '#ffba3d', '#fff8ce'
+        if frame <= 3:
+            core = (1, 1.20, .64)[frame - 1]
+            polygon([(center + x * core, center + y * core) for x, y in
+                     [(-22, 1), (-9, -2), (-13, -8), (-2, -4), (3, -14),
+                      (5, -4), (24, -2), (9, 2), (13, 7), (3, 4), (-2, 10), (-3, 4)]],
+                    gold, ink, 1)
+            facet(center + 2, center, -5, 15 * core, 2.2 * core, white, white, '#ffffff')
+        for i, (angle, reach, length) in enumerate([
+                (-52, 36, 10), (19, 38, 11), (62, 27, 6), (153, 28, 7), (-150, 34, 8)]):
+            radius = 8 + reach * expansion
+            direction = math.radians(angle)
+            px = center + math.cos(direction) * radius
+            py = center + math.sin(direction) * radius * .80
+            facet(px, py, angle, length * (1 - .48 * age), 2.7 - age,
+                  ink, gold if i % 2 == 0 else '#ffdf69', white)
+    elif kind == 1:
+        # This frame is anchored at the monster's feet. Break the amber shock
+        # into low, disconnected arcs, leaving the middle of the body exposed.
+        ink, amber, cream = '#754323', '#eda247', '#fff0aa'
+        ground = 65
+        rx, ry = 14 + 32 * expansion, 5 + 10 * expansion
+        for start, end in [(7, 74), (95, 165), (183, 224), (289, 346)]:
+            arc(center, ground, rx, ry, start, end, ink, 3.4)
+            arc(center, ground, rx - .5, ry - .4, start + 3, end - 3, amber, 2.1)
+            arc(center, ground, rx - 1, ry - .8, start + 5, end - 13, cream, .9)
+        if frame <= 6:
+            # Staggered pointed tufts expand outwards, then settle into the ring.
+            for side in (-1, 1):
+                x = center + side * (7 + 21 * expansion)
+                width = 7 + 2 * math.sin(age * math.pi)
+                height = (6 + 8 * math.sin(age * math.pi)) * (1 - age * .65)
+                dust = [(-.95, .12), (-.88, -.25), (-.50, -.32), (-.86, -.93),
+                        (-.18, -.55), (.25, -1.10), (.32, -.51), (1, -.36), (.70, .05)]
+                polygon([(x + side * u * width, ground + v * height) for u, v in dust],
+                        '#e0a25e', ink, 1)
+                polygon([(x + side * u * width, ground + v * height) for u, v in
+                         [(-.71, -.22), (-.24, -.43), (-.67, -.79), (.13, -.42), (.62, -.30)]], cream)
+        for i, (dx, launch, r) in enumerate([(-34, 19, 4), (-19, 29, 5), (-8, 16, 3),
+                                              (13, 24, 4), (29, 27, 5), (39, 11, 3)]):
+            px = center + dx * (.25 + .75 * expansion)
+            py = ground - 3 - launch * math.sin(age * math.pi) + (i % 2) * 2
+            radius = r * (1 - age * .45)
+            rock = [(-1, -.25), (-.45, -.85), (.46, -.75), (1, .02), (.47, .70), (-.64, .58)]
+            polygon([(px + u * radius, py + v * radius) for u, v in rock], '#bb7944', ink, 1)
+            polygon([(px + u * radius, py + v * radius) for u, v in
+                     [(-.72, -.26), (-.37, -.63), (.36, -.59), (.59, -.16), (-.19, .05)]], '#ffe0a0')
+    else:
+        # Fracture around an open center: the first contact glints, broad
+        # two-faced crystals travel outwards, and a broken frost rim dissolves.
+        ink, blue, white = '#236586', '#57d5f3', '#e8ffff'
+        if frame <= 3:
+            flash = (1, .78, .36)[frame - 1]
+            facet(center, center, -64, 10 * flash, 2.3 * flash, ink, white, white)
+            facet(center, center, 24, 8 * flash, 2.1 * flash, ink, white, white)
+        rx, ry = 11 + 27 * expansion, 9 + 21 * expansion
+        for start in [12, 140, 261]:
+            arc(center, center, rx, ry, start, start + 42, '#478eaf', 2.2)
+            arc(center, center, rx - .5, ry - .4, start + 2, start + 34, '#a6f5ff', 1.3)
+        for i, (angle, reach, length, width) in enumerate([
+                (-72, 29, 12, 4.4), (-24, 34, 10, 3.9), (28, 34, 12, 4.2),
+                (80, 25, 7, 3.2), (151, 30, 10, 4.0), (-151, 31, 11, 4.3)]):
+            direction = math.radians(angle)
+            r = 7 + reach * expansion
+            px, py = center + math.cos(direction) * r, center + math.sin(direction) * r * .85
+            scale = (.8 + .28 * math.sin(math.pi * age)) * (1 - .40 * age)
+            facet(px, py, angle, length * scale, width * scale, ink, blue, white)
+            if i % 2 == 0 and 2 <= frame <= 7:
+                facet(px - math.sin(direction) * 7, py + math.cos(direction) * 7,
+                      angle + 12, 3.0 * scale, 1.5 * scale, '#3e9ebf', '#a5edff', white)
+    # Keep a visible tail on the last authored frame, then let the clip expire.
+    if age > .56:
+        opacity = 1 - .83 * ((age - .56) / .44) ** 1.4
+        layer.putalpha(layer.getchannel('A').point(lambda value: round(value * opacity)))
     return layer.resize(size, SCALE)
 
 

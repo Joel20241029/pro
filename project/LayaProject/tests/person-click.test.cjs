@@ -18,6 +18,7 @@ class Sprite {
     scale(x, y) { this.scaleX = x; this.scaleY = y; return this; }
     addChild(node) { this.children.push(node); node.parent = this; return node; }
     removeSelf() { if (this.parent) this.parent.children = this.parent.children.filter(node => node !== this); this.parent = null; return this; }
+    destroy() { this.removeSelf(); this.events = {}; }
     on(type, caller, fn) { (this.events[type] ||= []).push(fn.bind(caller)); }
     event(type, value) { for (const fn of this.events[type] || []) fn(value); }
     getGraphicBounds(_real, out = new Rectangle()) { return out.setTo(8, 4, this.width - 16, this.height - 8); }

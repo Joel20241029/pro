@@ -1,4 +1,4 @@
-import { PATROL } from "../config/PatrolConfig";
+import { PATROL, PATROL_MODE } from "../config/PatrolConfig";
 import { LIANG_ESSENCE } from "../config/ShopConfig";
 import { patrolSpinStats, patrolStats } from "../game/PatrolRules";
 import { validDailyTaskDay } from "../game/DailyTaskState";
@@ -85,11 +85,14 @@ export function validateState(s: GameState) {
     }
     check(new Set(operators).size === operators.length && ids(s.favorites, RULE.favoriteCap) && s.favorites.every(id => s.history.some(p => p.id === id)));
     const { patrol } = s;
-    const spin = s.phase !== "NIGHT" || s.night?.patrolSpin === true;
+    const spin = s.phase !== "NIGHT" || s.night?.patrolSpin === true || s.night?.patrolMode === PATROL_MODE.rapid;
     const patrolNumbers = (captain?: Person) => spin ? patrolSpinStats(patrol.level, captain, patrol.rationReady || s.night?.patrolRation)
         : patrolStats(patrol.level, captain, captain ? s.night?.patrolSquad === true : undefined);
     check(patrol && int(patrol.level, PATROL.startLevel) && int(patrolNumbers().damage, 1), "淡紫儿建筑数据无效");
-    if (patrol.rationReady !== undefined) check(patrol.rationReady === true && s.phase === "DAY" && !!patrol.captain, "淡紫儿口粮数据无效");
+    check(patrol.mode === undefined || patrol.mode === PATROL_MODE.rapid || patrol.mode === PATROL_MODE.spin, "淡紫儿打法无效");
+    // 跨过连发夜或队长荣休时，已备的商品仍属于村庄。旋甩实际出战时，两件商品原子转入当夜快照。
+    if (patrol.rationReady !== undefined) check(patrol.rationReady === true && !s.night?.patrolSpin, "淡紫儿鼓舞数据无效");
+    if (patrol.radiusReady !== undefined) check(patrol.radiusReady === true && !s.night?.patrolSpin, "淡紫儿砸地范围准备状态无效");
     check(patrol.captain === null || workers.some(p => p.id === patrol.captain &&
         !operators.includes(p.id) && int(patrolNumbers(p).damage, 1)), "淡紫队长数据无效");
     check(Array.isArray(s.choices) && s.choices.length <= RULE.populationCap + 3);
@@ -104,7 +107,7 @@ export function validateState(s: GameState) {
     if (s.phase === "DAY" || s.phase === "NIGHT") {
         const w = s.wave;
         check(w && w.tier === s.tier && ["NONE", "FAST", "STURDY", "GROUP"].includes(w.affix) && Array.isArray(w.entries) && w.entries.length > 0);
-        check(w.rhythm === undefined || w.rhythm === WAVE_RHYTHM.paired || w.rhythm === WAVE_RHYTHM.nightly || w.rhythm === WAVE_RHYTHM.extended, "波次难度规则无效");
+        check(w.rhythm === undefined || Object.values(WAVE_RHYTHM).includes(w.rhythm), "波次难度规则无效");
         const plan = w.rhythm === undefined ? null : waveDifficulty(s.day, w.rhythm);
         const count = plan?.count ?? RULE.planCap;
         check(w.entries.length <= count && int(w.budget, 1, count * MAX_ENEMY_COST));
@@ -119,7 +122,14 @@ export function validateState(s: GameState) {
         check(s.night && s.night.tactic === s.tactics.equipped, "本夜战技快照不一致");
         if (s.night.patrolSquad !== undefined) check(s.night.patrolSquad === true && !!patrol.captain, "本夜淡紫儿出征规则无效");
         if (s.night.patrolSpin !== undefined) check(s.night.patrolSpin === true && s.night.patrolSquad === true, "本夜淡紫儿旋转规则无效");
-        if (s.night.patrolRation !== undefined) check(s.night.patrolRation === true && s.night.patrolSpin === true, "本夜淡紫儿口粮无效");
+        if (s.night.patrolMode !== undefined) {
+            check(s.night.patrolSquad === true && s.night.patrolMode === (patrol.mode ?? PATROL_MODE.spin) &&
+                (s.night.patrolMode === PATROL_MODE.spin) === (s.night.patrolSpin === true), "本夜淡紫儿打法不一致");
+        } else {
+            check(patrol.mode === undefined || !patrol.captain, "缺少本夜淡紫儿打法");
+        }
+        if (s.night.patrolRation !== undefined) check(s.night.patrolRation === true && s.night.patrolSpin === true, "本夜淡紫儿鼓舞无效");
+        if (s.night.patrolWideImpact !== undefined) check(s.night.patrolWideImpact === true && s.night.patrolSpin === true, "本夜淡紫儿砸地范围无效");
         const nightExtra = s.night.extraSlots;
         check(nightExtra === undefined ? extra === undefined : Array.isArray(nightExtra) && nightExtra.length === extra?.length &&
             nightExtra.every((id, i) => id === extra[i]), "本夜战技槽快照不一致");
@@ -138,5 +148,5 @@ export function validateState(s: GameState) {
     if (s.dailyTasks !== undefined) check(validDailyTaskDay(s.dailyTasks), "每日任务存档无效");
     check(s.legacy.lastRationDate === null || validRationDate(s.legacy.lastRationDate));
     check(ids(s.legacy.traits, Object.keys(TRAITS).length) && s.legacy.traits.every(k => own(k, TRAITS)) && s.people.every(p => s.legacy.traits.includes(p.trait)));
-    check(s.settings && (s.settings.speed === RULE.minSpeed || s.settings.speed === RULE.maxSpeed) && typeof s.settings.music === "boolean" && typeof s.summary === "string" && s.summary.length < 300);
+    check(s.settings && (s.settings.speed === RULE.legacySlowSpeed || s.settings.speed === RULE.battleSpeed) && typeof s.settings.music === "boolean" && typeof s.summary === "string" && s.summary.length < 300);
 }

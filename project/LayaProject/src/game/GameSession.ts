@@ -6,8 +6,8 @@ import { LoadResult, SaveMode, SaveStore } from "../storage/SaveStore";
 import { DeviceSettings } from "../storage/DeviceSettings";
 import { BackpackChange, VillageItemStorage } from "../storage/VillageItemStorage";
 import { VillageGuides } from "../storage/VillageGuides";
-import { ItemId, LIANG_ESSENCE, PATROL_RATION } from "../config/ShopConfig";
-import { essenceTargets, patrolRationUnavailable, shopOffer } from "./ShopRules";
+import { ItemId, ITEMS, LIANG_ESSENCE, LIANG_INDULGENCE, PatrolItemId } from "../config/ShopConfig";
+import { essenceTargets, patrolItemUnavailable, shopOffer } from "./ShopRules";
 import { dailyRationAmount, localRationDate } from "./DailyRation";
 import { BLAST_TACTIC, KING_MERCY, KING_MERCY_TACTIC } from "../config/TacticConfig";
 import { gateCapacity } from "./Growth";
@@ -33,6 +33,7 @@ export class GameSession {
     get presentationBattle() { return this.battle ?? this.finishedBattle; }
     /** 跨一帧多个逻辑步的表现信箱；换战斗时清空，结算不等待动画。 */
     private combatFeedback: CombatFeedback[] = [];
+    onPatrolLanding?: () => void;
     takeCombatFeedback(): CombatFeedback[] { const events = this.combatFeedback; this.combatFeedback = []; return events; }
     readonly pauses = new Set<Pause>(); boot: LoadResult | null = null;
     private currentError = "";
@@ -162,6 +163,7 @@ export class GameSession {
             if (start !== undefined) next.settings = this.deviceSettings.resolve(next.settings);
             this.saves.prepare(next, start, start !== undefined, backpack); this.continuingBattle = keepBattle; this.pendingNewVillage = start !== undefined;
             this.pendingEssence = essence;
+            this.stopPatrolRapid();
             this.pauses.add("SAVE_PENDING"); this.retry();
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
@@ -201,28 +203,29 @@ export class GameSession {
             this.submit(next, false, undefined, { id: LIANG_ESSENCE.id, delta: -1, before: count }, { person, nights });
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
-    usePatrolRation() {
+    usePatrolItem(id: PatrolItemId) {
         const state = this.state;
         if (!state || this.saves.pending || this.pauses.has("BACKGROUND") || this.pauses.has("DISABLED")) return;
         try {
-            const reason = patrolRationUnavailable(state);
+            const reason = patrolItemUnavailable(state, id);
             if (reason) throw new Error(reason);
-            const count = this.villageItems.backpack().items[PATROL_RATION.id] ?? 0;
-            if (!count) throw new Error("背包里没有巡防口粮");
+            const count = this.villageItems.backpack().items[id] ?? 0;
+            if (!count) throw new Error(`背包里没有「${ITEMS[id].name}」`);
             const next = clone(state);
-            next.patrol.rationReady = true;
-            this.submit(next, false, undefined, { id: PATROL_RATION.id, delta: -1, before: count });
+            if (id === LIANG_INDULGENCE.id) next.patrol.radiusReady = true;
+            else next.patrol.rationReady = true;
+            this.submit(next, false, undefined, { id, delta: -1, before: count });
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
     command(c: Command) {
         if (!this.state || this.saves.pending || (c.type === "NIGHT" && this.pauses.has("ASSETS"))) return;
         try {
             const before = this.state, next = clone(before), date = this.taskDate;
-            if (c.type !== "MUSIC" && c.type !== "SPEED") prepareDailyTasks(next, date);
+            if (c.type !== "MUSIC") prepareDailyTasks(next, date);
             applyCommand(next, c);
             if (before.phase !== "DAY" && next.phase === "DAY") prepareDailyTasks(next, date);
             creditTaskCommand(before, next, c, date);
-            if (c.type === "MUSIC" || c.type === "SPEED") {
+            if (c.type === "MUSIC") {
                 this.deviceSettings.write(next.settings);
                 this.state = next; this.error = ""; this.changed();
                 return;
@@ -231,7 +234,7 @@ export class GameSession {
         }
         catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
-    pause(reason: Pause) { this.pauses.add(reason); this.accumulator = 0; this.aimingBlastIn = this.aimingPatrolIn = null; }
+    pause(reason: Pause) { this.stopPatrolRapid(); this.pauses.add(reason); this.accumulator = 0; this.aimingBlastIn = this.aimingPatrolIn = null; }
     resume(reason: Pause) { this.pauses.delete(reason); this.accumulator = 0; }
     hide = () => { this.pause("BACKGROUND"); this.changed(); };
     show = () => { this.resume("BACKGROUND"); this.pause("WAIT_RESUME"); this.enter(); };
@@ -241,6 +244,7 @@ export class GameSession {
     bell(id = this.battle?.tactics[0].id) {
         if (id === KING_MERCY_TACTIC || !this.canCast(id)) return;
         const aim = id === BLAST_TACTIC && !this.blastAiming;
+        if (aim) this.stopPatrolRapid();
         this.aimingBlastIn = aim ? this.battle : null;
         if (id !== BLAST_TACTIC) {
             const beforeCast = this.battle.feedback.length;
@@ -264,6 +268,15 @@ export class GameSession {
         next.tactics.mercyCooldown = { casts, wavesLeft: KING_MERCY.baseCooldownWaves + casts };
         this.submit(next, true);
     }
+    get patrolRapidReady() {
+        const battle = this.battle;
+        return !!battle?.patrol?.rapid?.ammo && !battle.outcome && !battle.handSpeed && !this.blastAiming &&
+            !this.pauses.size && !this.saves.pending;
+    }
+    aimPatrolRapid(direction: RoadPoint, origin: RoadPoint = PATROL.rapid.origin, muzzleDistance: number = PATROL.rapid.muzzleDistance) {
+        return this.patrolRapidReady && this.battle!.patrol!.rapid!.aim(direction, origin, muzzleDistance);
+    }
+    stopPatrolRapid() { this.battle?.patrol?.rapid?.stop(); }
     get patrolDragReady() {
         const battle = this.battle;
         return !!battle?.patrol?.spin?.canGather && !battle.outcome && !battle.handSpeed && !this.blastAiming &&
@@ -276,8 +289,9 @@ export class GameSession {
         return this.aimingPatrolIn === this.battle && this.patrolDragReady;
     }
     get battleSpeed() {
-        return this.patrolAiming ? RULE.minSpeed * PATROL.spin.aimSpeedRatio : this.state!.settings.speed;
+        return this.patrolAiming ? RULE.battleSpeed * PATROL.spin.aimSpeedRatio : RULE.battleSpeed;
     }
+    get hasFiredPatrolRapid() { return this.deviceSettings.hasFiredPatrolRapid; }
     get hasLaunchedPatrol() { return this.deviceSettings.hasLaunchedPatrol; }
     throwPatrol(at: RoadPoint, angle: number) {
         if (!this.patrolDragReady || !this.battle!.patrol!.spin!.throwAt(this.battle!.tick, at, angle)) return false;
@@ -321,13 +335,18 @@ export class GameSession {
         while (this.accumulator + 1e-9 >= RULE.step && steps++ < RULE.maxSteps) {
             this.accumulator -= RULE.step;
             const battle = this.battle;
+            const rapid = battle.patrol?.rapid;
+            const firstRapidShot = rapid?.shotsFired === 0;
             battle.step();
+            if (firstRapidShot && rapid.shotsFired > 0) this.deviceSettings.markPatrolRapidFired();
             if (this.collectBattleStep(battle, this.state)) break;
         }
     }
     /** 普通战斗步、连点倒计时与达标引爆共用反馈、胜负与保存结果。 */
     private collectBattleStep(battle: BattleSimulation, state: GameState) {
         this.combatFeedback.push(...battle.feedback);
+        // 每批人只产生一个落地事件，包括空砸；在本步结算换场前交付音效，表现信箱仍保留完整事件。
+        if (this.onPatrolLanding && battle.feedback.some(event => event.type === "patrolLanding")) this.onPatrolLanding();
         if (!battle.outcome) return false;
         this.finishedBattle = battle;
         const next = clone(state);

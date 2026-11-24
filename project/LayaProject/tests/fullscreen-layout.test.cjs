@@ -197,3 +197,23 @@ test('layout resize without screenTop preserves the visible popup and updates th
     assert(Number.isFinite(box.y));assert(box.y>=view.layout.safeTop);assert(box.y+box.height<=view.layout.safeBottom);
     near(box.y,view.layout.safeTop+(view.layout.safeBottom-view.layout.safeTop-box.height)/2);view.resize();assert.equal(refreshes,1);assert.equal(clears,1);assert.equal(JSON.stringify(game),before);
 });
+test('approved right-bank tower positions and friendship sign follow the current tower and scene', () => {
+    global.Laya = { Sprite: class {}, OpenDataContextView: class {}, Texture2D: class {} };
+    const l = layout(profiles[4]), scene = layoutVillage(l);
+    near(scene.pads[3].x, 395.661); near(scene.pads[3].y, 631.5049632107023);
+    near(scene.pads[4].x, 547.898); near(scene.pads[4].y, 763.2778952062428);
+    const { VillageWorld } = require(path.join(compiled, 'view/VillageWorld.js'));
+    const state = createGame(7), sign = scene.friendshipSign.prop;
+    const item = { id: sign.id, y: sign.y, node: { pos(x, y) { this.x = x; this.y = y; } } };
+    const world = Object.assign(Object.create(VillageWorld.prototype), { game: { state }, scene, props: [item] });
+    for (const [kind, night, x, y] of [
+        ['STONE', false, 575, 499], ['STONE', true, 598, 470],
+        ['ARROW', false, 598, 470], ['SLOW', false, 598, 470], [null, false, 575, 499]
+    ]) {
+        state.towers[4].kind = kind;
+        world.backgroundKey = night ? 'night' : 'day';
+        world.drawScenery(night);
+        near(sign.x, x); near(sign.y, l.worldY(y));
+        near(item.node.x, sign.x); near(item.node.y, sign.y); near(item.y, sign.y);
+    }
+});

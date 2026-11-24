@@ -2,7 +2,7 @@ import { CombatPresentation } from "./CombatPresentation";
 import { LoggingFeedback } from "./LoggingFeedback";
 import { EnemyVisuals, enemyImpactLift } from "./EnemyVisuals";
 import { EssenceFeedback, GameSession } from "../game/GameSession";
-import { LIANG_ESSENCE } from "../config/ShopConfig";
+import { ITEMS, LIANG_ESSENCE } from "../config/ShopConfig";
 import { GameState } from "../game/GameState";
 import { VILLAGER_QUALITY } from "../config/VillagerQuality";
 import { RULE } from "../game/GameConfig";
@@ -66,6 +66,9 @@ export class VillageWorld {
     private patrolVisuals = new PatrolVisuals(this.world, this.art, this.game);
     private patrolTimer: Laya.Text | undefined;
     private patrolGlow: Laya.Sprite | undefined;
+    readonly patrolBuffSign = new Laya.Sprite();
+    private patrolBuffIcons: Laya.Sprite[] = [];
+    private patrolBuffStatus: Laya.Text;
     private motion = new VillagerMotion(this.navigation(), this.scene.stops);
     private navigation(scene = this.scene) {
         return new VillageNavigation(scene.props, scene.landscape, scene.bounds);
@@ -125,6 +128,18 @@ export class VillageWorld {
                 this.patrolGlow = node.addChild(new Laya.Sprite());
                 this.patrolGlow.mouseEnabled = false;
 
+                // 挂在屋檐右侧，倒计时仍在屋顶中央；图标不接管点击或拖拽。
+                const sign = this.patrolBuffSign;
+                sign.name = "PatrolHouseBuffs";
+                sign.mouseEnabled = sign.visible = false;
+                this.art.panel(sign, "panel_card", 96, 57);
+                this.patrolBuffIcons = [ITEMS.patrol_ration.icon, ITEMS.liang_indulgence.icon].map(icon =>
+                    this.ui.image(sign, icon, 0, 3, 34, 30));
+                this.patrolBuffStatus = this.ui.label(sign, "", 2, 32, 92, 20, C.ink, true, 22);
+                this.patrolBuffStatus.fontSize = 20;
+                this.patrolBuffStatus.align = "center";
+                this.patrolBuffStatus.wordWrap = false;
+
                 clickNodes.push(node);
             }
             if (HOUSE_TIP_NAMES[p.id]) {
@@ -182,7 +197,7 @@ export class VillageWorld {
     }
     /** 返回血条下边沿，复用原2D城门上方布局，不依赖上一帧建筑是否已绘制。 */
     gateAnchor() {
-        return { x: HUD.gate.x + HUD.gate.width / 2, y: this.layout.gateY + HUD.gate.barTop + HUD.gate.barHeight };
+        return { x: HUD.gate.x + HUD.gate.width / 2, y: this.layout.gateY + (this.game.battle?.patrol?.rapid ? 20 : HUD.gate.barTop + HUD.gate.barHeight) };
     }
     destroy() {
         this.patrolVisuals.destroy();
@@ -238,6 +253,14 @@ export class VillageWorld {
     }
     hideSpeech() { this.thoughts.current = this.shownThought = null; this.speechTip.hide(); }
     drawScenery(night: boolean) {
+        const sign = this.scene.friendshipSign;
+        if (sign) {
+            const fifth = this.game.state?.towers[4].kind;
+            const at = !night && (!fifth || fifth === "STONE") ? sign.resting : sign.active;
+            const item = this.props.find(p => p.id === sign.prop.id)!;
+            sign.prop.x = at.x; sign.prop.y = item.y = at.y;
+            item.node.pos(at.x, at.y);
+        }
         const key = night ? "night" : "day";
         if (this.backgroundKey === key)
             return;
@@ -345,6 +368,7 @@ export class VillageWorld {
         booth.node.visible = !!s;
         booth.node.mouseEnabled = !!s && !panelOpen;
         if (!s) {
+            this.patrolBuffSign.visible = false;
             this.patrolVisuals.update(null, this.layout);
             this.rage.update(null, []);
             this.shield.reset();
@@ -360,7 +384,7 @@ export class VillageWorld {
                 level = s.patrol.level;
                 const size = p.node.width;
                 const timer = this.patrolTimer!, glow = this.patrolGlow!, patrol = battle?.patrol;
-                timer.visible = !!battle;
+                timer.visible = !!battle && !battle.patrol?.rapid;
                 timer.text = patrol?.spin?.canGather ? "按住后拉" : patrol?.spin?.flying ? "出击中" :
                     patrol ? `${Math.ceil(patrol.secondsUntil(battle!.tick))} 秒` : "待任命";
                 glow.visible = !!battle;
@@ -369,6 +393,18 @@ export class VillageWorld {
                     glow.graphics.drawEllipse(size * .37, size * .51, size * .22, size * .19, "rgba(255,151,175,0.20)", null, 0);
                 }
                 glow.alpha = .55 + .45 * Math.sin(this.sceneSeconds * 4);
+                const damage = !!(s.patrol.rationReady || s.night?.patrolRation);
+                const radius = !!(s.patrol.radiusReady || s.night?.patrolWideImpact);
+                this.patrolBuffSign.visible = (damage || radius) && s.phase !== "GAME_OVER";
+                if (this.patrolBuffSign.visible) {
+                    this.patrolBuffSign.pos(p.node.x - p.node.pivotX + size * .81, p.node.y - p.node.pivotY + size * .30);
+                    const [damageIcon, radiusIcon] = this.patrolBuffIcons;
+                    damageIcon.visible = damage;
+                    radiusIcon.visible = radius;
+                    damageIcon.x = radius ? 10 : 31;
+                    radiusIcon.x = damage ? 51 : 31;
+                    this.patrolBuffStatus.text = s.night?.patrolRation || s.night?.patrolWideImpact ? "生效中" : "待旋甩";
+                }
             }
             if (p.id === "building:gate") {
                 damaged = (battle ? battle.gate : s.gate) / gateCapacity(s) < .35;

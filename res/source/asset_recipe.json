@@ -20369,8 +20369,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "b06cbd16dbde431189c765acf5a338be526bff89b765f019d7c3890607ee77ba",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "c1c3aab1ad02d444e2e07213199271e66058d899cf7f050af82096511215f9bf",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -20419,8 +20419,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "0cdb410afe5070e7b159dd1f2500402ae3e5f421ea4ff3fa91ba62bb4e13fe0a",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "1722203125060c60ff1f1f6544ecd00818d6295d0849fcc8f82e4424bcb6f94b",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -20469,8 +20469,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "0c87a12f9b1b2e38d93df995743333a7295d61e1f1857fb2ba4cfec8154ead72",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "e55fe982284c81bd7d079134caa26db7c44a70b567cc60d96e1ee16820c8fa0c",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -20519,8 +20519,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "454822f8b3e2f98e6f7007e3028aa960fc28c70909302d9aee2838799ced4afd",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "679d80adcfe4eb7ee78c93e3785fc4c9d998d221c0b5a5f2fcede11cab109527",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -20569,8 +20569,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "d7679c0cc5b13e8ae67d81db4d0cca9e5f51b0fe8b6e705cc994f77084aed0e1",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "4a9fff4be309c719e55fff3e68900a4fc442df4cf71e4055814cc0d33dbdb235",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -28748,6 +28748,132 @@
       }
     },
     {
+      "id": "icon_liang_briefs",
+      "label": "icon_liang_briefs",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/icon_liang_briefs.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 96
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/icon_liang_briefs.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "商城与背包共用的靓哥的底线图标",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/cartoon-v1/masters/liang-briefs.png",
+        "sourceHash": "dd4d0bf5fdaa76d564559162b48f2b5bd81294d254ad8681210dc19149453b3c",
+        "fullCanvas": false,
+        "outputHash": "d46e66f6ad1e16ce03e7e4b764f1c4560e37e7f892e640d08b7984ef6c3017ae",
+        "renderer": "tools/hd2d/render-cartoon.py"
+      }
+    },
+    {
+      "id": "icon_liang_bra",
+      "label": "icon_liang_bra",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/icon_liang_bra.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 96
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/icon_liang_bra.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "商城与背包共用的靓哥的放纵图标",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/cartoon-v1/masters/liang-bra.png",
+        "sourceHash": "bdbe5225b7752c18b9775c0d346fde6b5a79de6777cc1094b11e21086f9c5dd6",
+        "fullCanvas": false,
+        "outputHash": "89f5c92d4f333a69cf56b10911184eda8997952e95ebe4c67c78da99eea48b7b",
+        "renderer": "tools/hd2d/render-cartoon.py"
+      }
+    },
+    {
+      "id": "patrol_rapid_gun",
+      "label": "patrol_rapid_gun",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/patrol_rapid_gun.png",
+      "width": 128,
+      "height": 160,
+      "pivot": {
+        "x": 54,
+        "y": 130
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/patrol_rapid_gun.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 160
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 160
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "淡紫儿之家打法卡与守夜城门共用的连发枪架",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/cartoon-v1/masters/patrol-rapid-gun.png",
+        "sourceHash": "9d0154f7dbc6995e18a58fc2cb829847c803d8f6d8d368a1ce610f3addad4d9b",
+        "fullCanvas": false,
+        "outputHash": "4d304480d82307285edc65bb1a3a6f0863f1c7983a00c3bc0646bbdcd070cbc3",
+        "renderer": "tools/hd2d/render-cartoon.py"
+      }
+    },
+    {
       "id": "fx_tower_stone_impact_1",
       "label": "fx_tower_stone_impact_1",
       "category": "effects",
@@ -28783,8 +28909,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "983cb2cce154997465e4da018dc4b67cec1bef8cf0062e1c704e8ed2275129c9",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "80074c546a7c2e2bb6e589edb5de781fe00e46bbe37a2eac14ef9b7fe220c669",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -28824,8 +28950,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "8189beb77a86f0b72c1ef2b04f06ac71b87f52ff068b89d7d3db79d1b65e701b",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "7066853b448e6cdc3d3b0f1f8df82177cbe0f8d71d944465a86a75ae5b30d7e9",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -28865,8 +28991,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "b360e86283eb76739a220ac2fa80400cab81d404f8aad30e17036140b35621a9",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "54aa8cf5dde4eb282439e0ca04cdd05d29b5da0db39e130af521afc6b99ff2e7",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -28906,8 +29032,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "a76536a0ad68d03e5fc18af0585e608423c68f028d9928070e1bd4abe078df7a",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "7fe1856e6f78939c71e38f0bf5dccd676def290a1b0de17bfd239df5b16b81d1",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -28947,8 +29073,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "4dc3d6a36e4b69c3648df6c2f890676dfe0f4af7dfd9291bc1093f3e77c4f5ae",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "a0fff32a1b184f29297e6a30263d1080aca98b1a5b159e28166125a1cfd6e749",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -28988,8 +29114,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "028733bd48388939bd9578427ad44abea179ce4118db0f6e013bf8feeab1f46b",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "74e74852357d823c5066864e7c359ddc272aaadcf55f975165c1467f4427ac4d",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -29029,8 +29155,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "75dc2ac05e405491c61578d60ec246a077b0d287a5cd1e92cbe84fdc72e96adf",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "8abe9b1522c7e19455bfec7ae704a3ffaa861fdf9d06cfd212f94c2248364544",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -29070,8 +29196,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "1bfaa6cfe51f0e8ded884df79061f88581190ec183e0ef6f2b8709c87b850320",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "71e8da425670ef842d2b47b11492cc6b29945c9231fd102073c0842c01bdfa64",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -29111,8 +29237,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "c24e844fb85c3655a2cc6b5e1f36d5aab94aa62b1a943a536184fd491c81ef09",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "159ae7abe1f36c3c5b9c39c66fa013d1f5dc3633d83e8abc2c980393468d60a7",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -29152,8 +29278,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "c20165053862e0000f7a463c277bc503d8fec4199d5d80ccdf52351b91c1d580",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "e8d87533ecd05e4354c2d65ea14bc99c5e1fefef2f4bca7c311d05107ff609a9",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -29193,8 +29319,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "395b1b8151c919fdccc3a97aaa98db956d5256e5e33ce821de3119d9b8b7e347",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "1862349deb55ffd425f020b4131fbf98dd8e32290b3fbf46cd3ed73ed12a0a1f",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -29234,8 +29360,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "9eb0f867fe250f418d86d11d05f157ed293c235adaa367e14fafc339f9d27386",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "8c59875bf494bdbd1adb37f4b112f3518374af17384b905ca253a477be21e800",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -29275,8 +29401,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "06675f6f9753986159269067c3e01fa784b43f5af5f833f1ec6d9f7e4defb663",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "50e95e8fed28f8e17d4e09002a408f98b8a278e31783c8972c50404b27af70c8",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -29316,8 +29442,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "e5d6c42ef0bb67829b623d66e2edf5e1bb934f046883ff385500a41af776991a",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "d565b2bb34c70c2b416e665c4e6e3140f5d758537b3def8ef959bfc3655e7766",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -29357,8 +29483,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "6cff824271de8943fe07ff6d640c3d101ea6dd19b9eb4ef66660a7ddec357071",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "d8fab77a34415c00be249216ddf5ec08f94e33efa26a9b943a82ffff239496fe",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -29398,8 +29524,8 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "332be7db19f6607206a6c4a9ff96de6f6a519614dd9c660b9f5f12185a853fcc",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "4534f8b59d6fea7ac3a552c203c0e572477321b8756e31196064fa3aaef1fb93",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },

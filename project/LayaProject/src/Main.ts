@@ -49,6 +49,9 @@ export class Main extends Laya.Script {
         Laya.stage.addChild(this.loading);
         Laya.stage.on(Laya.Event.RESIZE, this, this.resize);
         this.session = new GameSession(new SaveStore(platform));
+        this.session.onPatrolLanding = () => {
+            if (this.session?.state?.settings.music && this.resources.ready("night")) this.music?.patrolLanding();
+        };
         this.session.pause("ASSETS"); platform.bind(this.hide, this.show);
         this.resources.changed = () => { this.syncResourcePause(); this.updateLoadingStatus(); this.view?.refresh(); };
         await this.startVillage();
@@ -115,7 +118,10 @@ export class Main extends Laya.Script {
                 // 完成结算可能打开日出面板；当帧已发生的发射仍应播放，原音频生命周期负责静音/后台。
                 if (!this.session.pauses.size || battle === finishingBattle && battle.outcome !== null) this.music?.towerShot();
             }
-            this.music?.setBattle(this.session.state.phase === "NIGHT" && this.resources.ready("night"));
+            const night = this.session.state.phase === "NIGHT" && this.resources.ready("night");
+            this.music?.setBattle(night);
+            const live = this.session.battle;
+            this.music?.setPatrolFlight(night && !this.session.pauses.size && !live?.handSpeed && !live?.outcome && !!live?.patrol?.spin?.flying);
         }
         if (this.session?.state && !this.session.saves.pending) this.platform?.syncBestNight(this.session.state.legacy.bestNight);
     }

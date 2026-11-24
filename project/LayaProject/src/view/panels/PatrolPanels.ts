@@ -1,17 +1,20 @@
-import { PATROL } from "../../config/PatrolConfig";
+import { PATROL, PATROL_MODE } from "../../config/PatrolConfig";
 import { clone, GameState, isWorkingAdult } from "../../game/GameState";
 import { patrolUpgradeReason, patrolCaptain, patrolCost, patrolSpinStats } from "../../game/PatrolRules";
 import { applyCommand } from "../../game/VillageRules";
+import { patrolRapidCapacity, patrolRapidDamage } from "../../game/PatrolRapid";
 import { ScrollList } from "../ScrollList";
 import { C, UI } from "../UiTheme";
 import { PATROL_BOOTH_FRAME } from "../BuildingLayout";
-import { amount, coloredName } from "../ViewText";
+import { amount, coloredName, growthPreview } from "../ViewText";
 import { Panel, PanelContext } from "./PanelContext";
 import { actionHintsBlocked } from "../ActionHints";
 
 export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
     const current = patrolCaptain(s), level = s.patrol.level;
     const day = s.phase === "DAY";
+    const mode = (s.night ? s.night.patrolMode : s.patrol.mode) ?? PATROL_MODE.spin;
+    const rapid = mode === PATROL_MODE.rapid;
     const canManage = day && !actionHintsBlocked(ctx.game);
     const back = () => ctx.open(panel.back ?? { type: "patrol" }, true);
     if (panel.type === "patrolConfirm") {
@@ -33,7 +36,7 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
         const adults = s.people.filter(isWorkingAdult), towers = new Set(s.towers.map(t => t.operator));
         const rank = (q: typeof adults[number]) => {
             const stats = patrolSpinStats(level, q);
-            return stats.damage / stats.seconds;
+            return rapid ? patrolRapidDamage(stats.damage) : stats.damage / stats.seconds;
         };
         const baseline = patrolSpinStats(level);
         adults.sort((a, b) => Number(towers.has(a.id)) - Number(towers.has(b.id)) || rank(b) - rank(a) || b.nights - a.nights);
@@ -52,14 +55,15 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
         rows.setVirtualRows(adults.length, UI.listStep, (i, row) => {
             const q = adults[i], stats = patrolSpinStats(level, q), stationed = towers.has(q.id);
             const status = q === current ? "现任队长" : stationed ? `驻守第 ${s.towers.findIndex(t => t.operator === q.id) + 1} 塔位` : "夜间空闲";
-            const damage = stats.damage > baseline.damage ? "伤害较高" : "伤害一般";
-            const interval = stats.ticks < baseline.ticks ? "出征较快" : "常规出征";
-            const button = ctx.ui.listItem(row, `${coloredName(q)} · ${status}\n${damage} · ${interval} · 剩 ${q.nights} 夜`,
+            const stronger = rapid ? patrolRapidDamage(stats.damage) > patrolRapidDamage(baseline.damage) : stats.damage > baseline.damage;
+            const damage = stronger ? "伤害较高" : "伤害一般";
+            const interval = rapid ? "" : stats.ticks < baseline.ticks ? " · 出征较快" : " · 常规出征";
+            const button = ctx.ui.listItem(row, `${coloredName(q)} · ${status}\n${damage}${interval} · 剩 ${q.nights} 夜`,
                 ctx.art.portraitId(q), 0, () => {
                     if (stationed) ctx.open({ type: "patrolConfirm", id: q.id, back: panel });
                     else ctx.send({ type: "PATROL_CAPTAIN", id: q.id });
                 }, canManage && q !== current);
-            if (!stationed && q !== current && (stats.damage > baseline.damage || stats.ticks < baseline.ticks)) {
+            if (!stationed && q !== current && (stronger || (!rapid && stats.ticks < baseline.ticks))) {
                 ctx.ui.personRibbon(button, "tag_recommended", true);
                 const label = button.getChildByName("buttonFace").getChildByName("buttonText") as Laya.Text;
                 label.wordWrap = true;
@@ -67,38 +71,71 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
         });
         return;
     }
-    const appointY = 772, appointHeight = 82;
-    const box = ctx.modal(PATROL.building, `${amount(level)} 级`, true,
-        { width: UI.panelWidth, height: appointY + appointHeight + UI.action.bottom }, "村里有成年村民时会自动补任队长，也可以手动更换。守夜时两名淡紫儿从之家出发，按住任一人后拉，参考落点圈，松手发射。升级提高伤害并加快补员。队长品质和天赋也有加成。");
-    if (panel.back) ctx.ui.button(box, "返回", 34, 108, 120, back, C.muted, 54);
-    ctx.ui.image(box, PATROL_BOOTH_FRAME, 50, 171, 140);
-    const ration = s.patrol.rationReady || s.night?.patrolRation;
-    const stats = patrolSpinStats(level, current, ration);
-    ctx.ui.label(box, current ? `队长 · ${coloredName(current)}` : `${PATROL.role}待任命`, 214, 174, 408, 30, C.cream, true, 46);
-    ctx.ui.label(box, current ? `伤害 ${amount(stats.damage)} · 约 ${Math.round(stats.seconds)} 秒补一批` : "任命队长后，守夜时出征",
-        214, 226, 408, 26, C.cream, false, 46);
-    if (ration) ctx.ui.label(box, s.night?.patrolRation ? "口粮加成 · 本夜生效" : "口粮加成 · 下场守夜生效",
-        214, 270, 408, 25, C.cream, false, 42);
-    const row = new Laya.Sprite(); row.pos(34, 320); box.addChild(row);
+    const appointY = 736, appointHeight = 72;
+    const box = ctx.modal(PATROL.building, "", true,
+        { width: UI.panelWidth, height: appointY + appointHeight + UI.action.bottom },
+        "白天轻点打法卡，守夜按已选打法出征。村中成年人可自动补任队长，也可手动更换。升级或更换队长可提高伤害；旋甩还会缩短补员时间。\n\n村中传闻\n起初两人比谁甩衣服甩得远。比到最后，衣服还在，人先飞了。");
+    if (panel.back) {
+        const backButton = ctx.ui.button(box, "", 30, 32, 54, back, C.muted, 54);
+        backButton.name = "PatrolDetailBack";
+        ctx.ui.image(backButton.getChildByName("buttonFace") as Laya.Sprite, "icon_back", 10, 10, 34);
+    }
+    ctx.ui.image(box, PATROL_BOOTH_FRAME, 43, 112, 102);
+    ctx.ui.label(box, `之家 ${amount(level)} 级`, 166, 115, 460, 28, C.ink, true, 40);
+    ctx.ui.label(box, current ? `队长 · ${coloredName(current)}` : `${PATROL.role}待任命`, 166, 159, 460, 28, C.ink, true, 44);
+
+    const ration = !!(s.patrol.rationReady || s.night?.patrolRation);
+    const wide = !!(s.patrol.radiusReady || s.night?.patrolWideImpact);
+    const stats = patrolSpinStats(level, current, !rapid && ration);
+    ctx.ui.label(box, "守夜打法", UI.inset, 217, 240, 30, C.ink, true, 42);
+    ctx.ui.label(box, day ? "点选后，下场守夜使用" : "本夜打法已锁定", 295, 217, 340, 25, C.muted, false, 42).align = "right";
+    const modes = [
+        { id: PATROL_MODE.spin, name: "飞速旋转", icon: "patrol_walk_0" },
+        { id: PATROL_MODE.rapid, name: "城门连发", icon: "patrol_rapid_gun" }
+    ] as const;
+    modes.forEach((choice, i) => {
+        const selected = mode === choice.id;
+        const card = ctx.ui.button(box, "", UI.inset + i * 307, 267, 293, () => {
+            if (ctx.current === panel && !selected) ctx.send({ type: "PATROL_MODE", mode: choice.id });
+        }, selected ? C.gold : C.muted, 114, selected || canManage);
+        card.name = `PatrolMode:${choice.id}`;
+        card.mouseEnabled = !selected && canManage;
+        const face = card.getChildByName("buttonFace") as Laya.Sprite;
+        ctx.ui.image(face, choice.icon, 19, 19, 75);
+        ctx.ui.label(face, choice.name, 105, 15, 177, 30, C.ink, true, 43);
+        ctx.ui.label(face, selected ? "✓ 已选用" : (day ? "点此选用" : "未选用"),
+            105, 60, 177, 24, selected ? C.timber : C.muted, false, 35);
+    });
+
+    const guide = new Laya.Sprite();
+    guide.name = "PatrolModeDetails"; guide.pos(UI.inset, 392); box.addChild(guide);
+    ctx.art.panel(guide, "panel_card", UI.contentWidth, 135);
+    const controls = rapid ? "后拉城门枪架，拉住连发，松手停火。" : "后拉淡紫儿，松手砸向落点圈内的敌人。";
+    const spec = PATROL.rapid;
+    const profile = rapid ? `每发 ${amount(patrolRapidDamage(stats.damage))} 伤害 · ${amount(patrolRapidCapacity(level))} 发/仓 · 每秒 ${spec.shotsPerSecond} 发 · 补弹 ${spec.reloadSeconds} 秒`
+        : `每次 ${amount(stats.damage)} 伤害 · 约 ${Math.round(stats.seconds)} 秒补一批`;
+    ctx.ui.label(guide, controls, 18, 10, 564, 27, C.ink, true, 42);
+    ctx.ui.label(guide, current ? profile : "任命队长后即可出征", 18, 54, 564, 25, C.green, false, 34).overflow = Laya.Text.SHRINK;
+    if (ration || wide) {
+        const effect = ration && wide ? "伤害、范围提升" : ration ? "伤害提升" : "范围提升";
+        const applied = s.night?.patrolRation || s.night?.patrolWideImpact;
+        ctx.ui.label(guide, `${effect} · ${applied ? "本夜旋甩生效" : "下次旋甩生效"}`, 18, 91, 564, 24, C.timber, true, 34);
+    } else {
+        ctx.ui.label(guide, rapid ? "松手保留余弹，打空才补弹。" : "落点圈内的敌人受到同样伤害。", 18, 91, 564, 24, C.muted, false, 34);
+    }
+    const row = new Laya.Sprite(); row.pos(42, 539); box.addChild(row);
     const build = ctx.ui.buildRow(row, 0, PATROL_BOOTH_FRAME, `升级至 ${amount(level + 1)} 级`,
-        "伤害提升 · 补员更快",
+        rapid ? `弹仓 ${growthPreview(patrolRapidCapacity(level), patrolRapidCapacity(level + 1))} 发` : "伤害提升 · 补员更快",
         s, patrolCost(s), patrolUpgradeReason(s), () => ctx.send({ type: "PATROL_UPGRADE" }), "升级");
     build.name = "PatrolUpgradeAction";
-    const guide = new Laya.Sprite();
-    guide.pos(34, 520);
-    box.addChild(guide);
-    ctx.art.panel(guide, "panel_card", 600, 230);
-    ctx.ui.label(guide, PATROL.spin.name, 20, 10, 560, 30, C.ink, true, 40);
-    ctx.ui.label(guide, "守夜时按住任一淡紫儿，后拉松手发射。\n落点范围内的敌人受到同样伤害。", 20, 52, 560, 25, C.green, false, 70);
-    ctx.ui.label(guide, "村中传闻", 20, 124, 560, 25, C.timber, true, 32);
-    ctx.ui.label(guide, "起初两人比谁甩衣服甩得远。\n比到最后，衣服还在，人先飞了。", 20, 157, 560, 24, C.ink, false, 68);
     const alternatives = s.people.filter(p => p !== current && isWorkingAdult(p));
     const appoint = ctx.ui.centerButton(box, current ? `更换${PATROL.role}` : PATROL.appoint, appointY,
         () => ctx.open({ type: "patrolCandidates", back: panel }), C.gold, canManage && alternatives.length > 0, 312, appointHeight);
     const operators = new Set(s.towers.map(t => t.operator));
     if (canManage && alternatives.some(p => {
         if (operators.has(p.id)) return false;
-        const candidate = patrolSpinStats(level, p, ration);
-        return !current || candidate.damage * stats.ticks > stats.damage * candidate.ticks;
+        const candidate = patrolSpinStats(level, p, !rapid && ration);
+        return !current || (rapid ? patrolRapidDamage(candidate.damage) > patrolRapidDamage(stats.damage)
+            : candidate.damage * stats.ticks > stats.damage * candidate.ticks);
     })) ctx.ui.actionBadge(appoint, "PatrolCaptainActionHint");
 }

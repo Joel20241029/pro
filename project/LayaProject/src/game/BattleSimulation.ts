@@ -1,5 +1,5 @@
 import { appearanceSeed, APPEARANCE_DOMAIN } from "./EnemySeed";
-import { COMBAT, isDenseWave, WAVE } from "../config/DefenseConfig";
+import { COMBAT, FIXED_NIGHT, isDenseWave, WAVE, WAVE_RHYTHM } from "../config/DefenseConfig";
 import { PATROL } from "../config/PatrolConfig";
 import { VILLAGER_QUALITY } from "../config/VillagerQuality";
 import { ENEMIES, EnemyKind, PADS, RULE, TOWERS, TowerKind } from "./GameConfig";
@@ -45,7 +45,7 @@ export type CombatFeedback = { type: "shot"; shot: Shot; target: number; hurt: E
     { type: "mercy"; hurt: Enemy[] } |
     { type: "poison"; hurt: Enemy[] } |
     { type: "zhouLove"; cleared: boolean; targets: Enemy[] } |
-    { type: "patrolLanding"; at: RoadPoint; actor: number; tick: number } |
+    { type: "patrolLanding"; at: RoadPoint; actor: number; tick: number; radius: number } |
     ({ type: "summon"; tick: number } & SummonCollision) |
     ({ type: "patrol"; tick: number } & SummonCollision);
 export class BattleSimulation {
@@ -74,6 +74,7 @@ export class BattleSimulation {
     get handSpeed(): Readonly<{ remaining: number; taps: number }> | null { return this.outcome ? null : this.tapWindow; }
     outcome: "WIN" | "LOSE" | null = null;
     private readonly denseWave: boolean;
+    private readonly fixedPace: boolean;
     private readonly waveDifficulty: ReturnType<typeof waveDifficulty> | null;
     private readonly olderEnemyPower: number;
     private cursor = 0;
@@ -88,6 +89,7 @@ export class BattleSimulation {
         if (state.phase !== "NIGHT" || !state.wave || !state.night)
             throw new Error("缺少已保存的战前状态");
         this.base = clone(state);
+        this.fixedPace = state.wave.rhythm === WAVE_RHYTHM.fixed;
         this.waveDifficulty = state.wave.rhythm === undefined ? null : waveDifficulty(state.day, state.wave.rhythm);
         this.denseWave = this.waveDifficulty !== null || isDenseWave(state.wave.ordinaryHealthPercent);
         this.olderEnemyPower = enemyPower(state.day);
@@ -126,7 +128,10 @@ export class BattleSimulation {
         this.tactic = tactic;
         this.tacticUses++;
         this.personal.set(id, { uses: (this.personal.get(id)?.uses ?? 0) + 1, readyAt: this.tick + TACTIC_USE.cooldownTicks });
-        if (tactic.effect === "HAND_SPEED") this.tapWindow = { remaining: HAND_SPEED.seconds, taps: 0 };
+        if (tactic.effect === "HAND_SPEED") {
+            this.patrol?.rapid?.stop();
+            this.tapWindow = { remaining: HAND_SPEED.seconds, taps: 0 };
+        }
         else if (tactic.effect === "ZHOU_LOVE") this.resolveZhouLove();
         else this.bellTicks = tactic.ticks;
         if (this.tactic.effect === "SUMMON_CHARGE") this.summonCharge = new SummonCharge();
@@ -266,15 +271,17 @@ export class BattleSimulation {
         const speedScale = difficulty?.speed ?? 1;
         const heavyScale = difficulty && !data.boss && (data.armor > 0 || data.disrupt) ? difficulty.heavyHealth : 1;
         const pressure = PATROL.spin.pressure, day = this.base.day;
-        const patrolHealth = this.patrol?.spin && !data.boss && day >= pressure.from
+        const patrolHealth = (this.patrol?.spin || this.patrol?.rapid) && !data.boss && day >= pressure.from
             ? 1 + pressure.start + (pressure.maximum - pressure.start) * Math.min(1, (day - pressure.from) / (pressure.full - pressure.from))
             : 1;
-        const hp = Math.ceil(data.hp * power * heavyScale * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1) * healthScale * patrolHealth);
+        const baseHp = this.fixedPace && !data.boss ? data.hp * (kind === "enemy_raider" ? FIXED_NIGHT.raiderHealth : FIXED_NIGHT.otherOrdinaryHealth) : data.hp;
+        const baseSpeed = this.fixedPace ? data.speed * FIXED_NIGHT.enemySpeed : data.speed;
+        const hp = Math.ceil(baseHp * power * heavyScale * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1) * healthScale * patrolHealth);
         const seq = this.seq++;
-        this.enemies.push({ seq, kind, appearanceSeed: seed, progress, walkDistance: 0, hp, maxHp: hp, speed: data.speed * speedScale * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
+        this.enemies.push({ seq, kind, appearanceSeed: seed, progress, walkDistance: 0, hp, maxHp: hp, speed: baseSpeed * speedScale * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
         if (this.poison) this.infect(seq);
     }
-    step(realSeconds = RULE.step / this.base.settings.speed) {
+    step(realSeconds = RULE.step / RULE.battleSpeed) {
         if (this.outcome)
             return;
         this.feedback = [];
@@ -300,6 +307,7 @@ export class BattleSimulation {
         const refreshed = new Set<number>(), po = policy(this.base);
         const rush = this.summonCharge?.active ? this.summonCharge : null;
         const hadEffect = this.bellTicks > 0, frozen = this.mindLocked;
+        const traceEnemies = !!rush || this.patrol?.rapid?.needsTargets;
         const traces: EnemyRoadStep[] = [];
         const patrolTargets: PatrolTarget[] = [];
         for (const e of this.enemies) {
@@ -308,8 +316,8 @@ export class BattleSimulation {
             if (!frozen) e.progress += e.speed * RULE.step * (e.slowTicks > 0 ? 1 - e.slow : 1);
             const after = enemyPoint(e);
             e.walkDistance += Math.hypot(after.x - before.x, after.y - before.y);
-            if (this.patrol && e.hp > 0) patrolTargets.push({ enemy: e, fromY: before.y, at: after });
-            if (rush && e.hp > 0) {
+            if (this.patrol && !this.patrol.rapid && e.hp > 0) patrolTargets.push({ enemy: e, fromY: before.y, at: after });
+            if (traceEnemies && e.hp > 0) {
                 const end = e.progress >= PATH_LENGTH
                     ? Math.max(0, (PATH_LENGTH - startProgress) / (e.progress - startProgress || 1)) : 1;
                 traces.push({ enemy: e, startProgress, from: before, to: after, end });
@@ -320,7 +328,7 @@ export class BattleSimulation {
             if (!rush.active) this.bellTicks = 0;
         }
         // 淡紫儿先于撞门扣血，同一战斗步只由仍存活的到门敌人伤害城门。
-        if (this.patrol) for (const hit of this.patrol.advance(this.tick, patrolTargets))
+        if (this.patrol) for (const hit of this.patrol.advance(this.tick, patrolTargets, traces, realSeconds))
             this.feedback.push({ type: "patrol", tick: this.tick, ...hit });
         const landing = this.patrol?.spin?.landing;
         if (landing) this.feedback.push({ type: "patrolLanding", tick: this.tick, ...landing });
@@ -330,7 +338,7 @@ export class BattleSimulation {
         for (const e of this.enemies) {
             if (e.hp > 0 && e.progress >= PATH_LENGTH) {
                 const blocked = this.gateProtected, at = enemyPoint(e);
-                const enemy = ENEMIES[e.kind], impact = this.denseWave && !enemy.boss ? WAVE.ordinaryGateScale : 1;
+                const enemy = ENEMIES[e.kind], impact = this.denseWave && !enemy.boss ? WAVE.ordinaryGateScale * (this.fixedPace ? FIXED_NIGHT.ordinaryGateDamage : 1) : 1;
                 if (!blocked) this.gate -= Math.ceil(enemy.gate * impact * (this.waveDifficulty?.gate ?? this.olderEnemyPower) * (1 + (po.gate || 0)));
                 e.hp = 0;
                 this.poison?.targets.delete(e.seq);
@@ -357,7 +365,8 @@ export class BattleSimulation {
                 speed *= RULE.hungerSpeed;
             if (this.enemies.some(e => e.hp > 0 && ENEMIES[e.kind].disrupt && distance(e) <= COMBAT.disruptRange))
                 speed *= RULE.disruptSpeed;
-            this.charge[i] += RULE.step * speed / t.interval;
+            const interval = this.fixedPace ? t.interval / FIXED_NIGHT.towerFireRate : t.interval;
+            this.charge[i] += RULE.step * speed / interval;
             const range = t.range * (1 + (p.trait === "trait_farsight" ? COMBAT.farsightRange : 0) + (po.range || 0));
             const candidates = this.enemies.filter(e => e.hp > 0 && distance(e) <= range).sort((a, b) => b.progress - a.progress || a.seq - b.seq);
             if (!candidates.length) {

@@ -76,7 +76,7 @@ export class GameView {
         this.village.speechTip.name = "VillagerThought";
         this.village.speechTip.zIndex = 3;
         this.root.addChild(this.village.speechTip);
-        for (const node of [this.village.essenceArrow, this.village.essenceTip]) {
+        for (const node of [this.village.essenceArrow, this.village.essenceTip, this.village.patrolBuffSign]) {
             node.mouseEnabled = false; node.visible = false; node.zIndex = 3;
             this.root.addChild(node);
         }

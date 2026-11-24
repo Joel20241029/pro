@@ -47,15 +47,17 @@ export const HUD = {
         start: { x: 274, y: 54, size: 172, icon: 60, iconY: 26, textX: 29, textY: 90, textWidth: 114, textHeight: 36, font: 28, stroke: 1.4 },
         navigation: { xs: [28, 148, 468, 588], y: 92, width: 104, height: 112, icon: 48, iconY: 12, textX: 8, textY: 68, textHeight: 34, font: 28 }
     },
-    /** 2026-11-14已确认的守夜三按钮；沿用白天圆钮中心和242高底栏，地图不重排。
-     * 环外径184，含3px按压后下沿235，保留7px安全留白；状态行截至40，避开环顶48。
-     * 数值均为720宽的逻辑像素，只影响表现。冷却环用灰绿色与金色生效环区分。
-     */
+    /** 守夜底栏沿用 242 高的安全区。右上固定暂停，下一行按已装配数量居中；所有尺寸为 720 宽逻辑像素。 */
     night: {
-        status: { x: 28, y: 8, width: 664, height: 32, font: 24 },
-        side: { xs: [72, 504], y: 92, width: 144, height: 112, icon: 44, iconY: 12, textY: 68, textHeight: 34, font: 28 },
-        // 三枚战技居中等距，左右为暂停和倍速；下面保留安全区留白。
-        multi: { sideXs: [18, 602], sideWidth: 100, center: 360, pitch: 138, size: 124, y: 72 },
+        status: { x: 28, y: 17, width: 565, height: 54, font: 24 },
+        // 100 方形热区进入 320 宽屏仍有 44 点；奶油按钮的可见高度较小，给战技让出视觉空间。
+        pause: { x: 609, y: 14, width: 100, height: 61, hitHeight: 100, icon: 33, iconX: 6, textX: 34, textWidth: 57, font: 23 },
+        // 按一至三项战技排列。圆环、按钮弹性及地图高度沿用原值，第三枚的热区与暂停相隔 12 逻辑像素。
+        rows: [
+            { y: 56, size: 172, centers: [360] },
+            { y: 67, size: 162, centers: [264, 456] },
+            { y: 76, size: 148, centers: [197, 360, 523] }
+        ],
         // 两行分别按圆皮在该高度的宽度留边，缩小到多槽时沿用同一比例。
         heart: { icon: 52, iconY: 24, textY: 79, textWidth: 118, textHeight: 32, textFont: 28,
             noteY: 108, noteWidth: 76, noteHeight: 28, noteFont: 19, stroke: 1.4 },

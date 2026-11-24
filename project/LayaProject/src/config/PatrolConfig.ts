@@ -1,3 +1,7 @@
+/** 玩家在之家选择的守夜打法，也是存档标识。缺少选择的村庄沿用旋甩；变更标识会影响旧档。 */
+export const PATROL_MODE = { spin: "spin", rapid: "rapid" } as const;
+export type PatrolMode = typeof PATROL_MODE[keyof typeof PATROL_MODE];
+
 /** 淡紫儿之家出征配置。时间以战斗秒计，调参后用同种子对照漏门和出征人数。 */
 export const PATROL = {
     building: "淡紫儿之家", actor: "淡紫儿", role: "淡紫队长", appoint: "任命淡紫队长",
@@ -12,10 +16,20 @@ export const PATROL = {
     squad: { maxActive: 12, damage: 16, speeds: [19, 21.5, 24.5, 27], lanes: [-.30, .30, -.10, .10] },
     // 走过城门前这段逻辑距离后展到目标车道，沿用单人的道路约束。
     spreadDistance: 55,
+    // 城门连发按实际操作秒计时。一级八发，此后每升一级加三发，延长一仓可连射的时间。
+    rapid: {
+        name: "淡紫儿突突队", capacity: 8, roundsPerLevel: 3, shotsPerSecond: 4, reloadSeconds: 4,
+        // 连发单体命中取同级无道具旋甩伤害的六分之一，初始普通队长每发三点。
+        damageShare: 1 / 6,
+        // 标准地图的城门转台和枪口；触摸时表现层提供当前屏幕对应的屋顶投影。弹速以参考像素/现实秒计。
+        origin: { x: 360, y: 712 }, muzzleDistance: 104, speed: 700,
+        // 小人撞到角色躯干即退场；碰撞中心从脚底上移，首领按较大的形体对齐。
+        ordinaryCenterHeight: 22, bossCenterHeight: 35
+    },
     // 双人旋转按战斗步推进。冷却来自补员，后期每级仍加伤害，补员趋近保底时间。
     spin: {
         name: "淡紫儿飞速旋转",
-        // 瞄准固定为 HUD 常速档的一半。弧顶与横摆以逻辑像素计，只影响飞行演出。
+        // 瞄准采用固定守夜常速的一半。弧顶与横摆以逻辑像素计，只影响飞行演出。
         aimSpeedRatio: .5, arcHeight: 155, arcSway: 70,
         damageGrowth: .16, earlyDamageGrowth: .24,
         // 以两人到位为准，从开战或前一组落地开始计时。首级 4.5 秒，队长或升级可缩短。

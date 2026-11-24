@@ -27,7 +27,9 @@
     "bundles/music/battle_loop.mp3",
     "bundles/music/ui_click.mp3",
     "bundles/music/tower_fire.mp3",
-    "bundles/music/enemy_defeat.mp3"
+    "bundles/music/enemy_defeat.mp3",
+    "bundles/music/patrol_flight.mp3",
+    "bundles/music/patrol_landing.mp3"
   ],
   "stages": {
     "village": [
@@ -60,10 +62,12 @@
     "bundles/music/battle_loop.mp3",
     "bundles/music/ui_click.mp3",
     "bundles/music/tower_fire.mp3",
-    "bundles/music/enemy_defeat.mp3"
+    "bundles/music/enemy_defeat.mp3",
+    "bundles/music/patrol_flight.mp3",
+    "bundles/music/patrol_landing.mp3"
   ],
-  "assetCount": 706,
-  "runtimeAssetCount": 572,
+  "assetCount": 709,
+  "runtimeAssetCount": 575,
   "reserveAssetCount": 134,
   "assets": [
     {
@@ -25129,7 +25133,7 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 902,
-        "y": 424,
+        "y": 576,
         "w": 96,
         "h": 81
       },
@@ -25207,14 +25211,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_0",
+      "atlasPage": "ui_1",
       "atlasRect": {
-        "x": 899,
-        "y": 676,
-        "w": 86,
-        "h": 69
+        "x": 60,
+        "y": 90,
+        "w": 69,
+        "h": 86
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
       "importedFrameId": "icon_wood"
     },
     {
@@ -25286,15 +25291,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_0",
+      "atlasPage": "ui_1",
       "atlasRect": {
-        "x": 804,
-        "y": 845,
-        "w": 84,
-        "h": 90
+        "x": 2,
+        "y": 2,
+        "w": 90,
+        "h": 84
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
       "importedFrameId": "icon_population"
     },
     {
@@ -25368,12 +25372,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 771,
-        "y": 755,
-        "w": 91,
-        "h": 86
+        "x": 856,
+        "y": 842,
+        "w": 86,
+        "h": 91
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_build"
     },
@@ -25449,7 +25452,7 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 902,
-        "y": 509,
+        "y": 661,
         "w": 96,
         "h": 81
       },
@@ -25527,12 +25530,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 902,
-        "y": 594,
-        "w": 96,
-        "h": 78
+        "x": 522,
+        "y": 814,
+        "w": 78,
+        "h": 96
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_logging"
     },
@@ -25607,11 +25609,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_1",
       "atlasRect": {
-        "x": 2,
+        "x": 96,
         "y": 2,
-        "w": 84,
-        "h": 73
+        "w": 73,
+        "h": 84
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
       "importedFrameId": "icon_family"
     },
@@ -25686,8 +25689,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 634,
-        "y": 662,
+        "x": 738,
+        "y": 749,
         "w": 93,
         "h": 83
       },
@@ -25765,11 +25768,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 804,
-        "y": 662,
-        "w": 91,
-        "h": 89
+        "x": 763,
+        "y": 842,
+        "w": 89,
+        "h": 91
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_arrow"
     },
@@ -25845,7 +25849,7 @@
       "atlasPage": "ui_1",
       "atlasRect": {
         "x": 2,
-        "y": 79,
+        "y": 365,
         "w": 76,
         "h": 82
       },
@@ -25922,14 +25926,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_0",
+      "atlasPage": "ui_1",
       "atlasRect": {
-        "x": 892,
-        "y": 834,
+        "x": 2,
+        "y": 274,
         "w": 87,
         "h": 87
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
       "importedFrameId": "icon_slow"
     },
     {
@@ -26003,8 +26007,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 715,
-        "y": 845,
+        "x": 674,
+        "y": 842,
         "w": 85,
         "h": 92
       },
@@ -26082,12 +26086,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 866,
-        "y": 755,
-        "w": 88,
-        "h": 75
+        "x": 946,
+        "y": 842,
+        "w": 75,
+        "h": 88
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_baby"
     },
@@ -26162,8 +26165,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 522,
-        "y": 758,
+        "x": 604,
+        "y": 814,
         "w": 66,
         "h": 96
       },
@@ -26243,7 +26246,7 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 902,
-        "y": 337,
+        "y": 489,
         "w": 96,
         "h": 83
       },
@@ -26321,8 +26324,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 522,
-        "y": 858,
+        "x": 641,
+        "y": 662,
         "w": 93,
         "h": 94
       },
@@ -26400,12 +26403,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 549,
-        "y": 2,
-        "w": 101,
-        "h": 114
+        "x": 157,
+        "y": 629,
+        "w": 114,
+        "h": 101
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_arrow"
     },
@@ -26480,12 +26482,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 654,
-        "y": 2,
-        "w": 88,
-        "h": 93
+        "x": 633,
+        "y": 663,
+        "w": 93,
+        "h": 88
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_stone"
     },
@@ -26560,12 +26561,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 624,
-        "y": 120,
-        "w": 88,
-        "h": 93
+        "x": 536,
+        "y": 598,
+        "w": 93,
+        "h": 88
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_ice"
     },
@@ -27903,7 +27903,7 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 902,
-        "y": 2,
+        "y": 154,
         "w": 115,
         "h": 128
       },
@@ -28061,7 +28061,7 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 902,
-        "y": 134,
+        "y": 286,
         "w": 120,
         "h": 108
       },
@@ -28140,11 +28140,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 534,
+        "x": 382,
         "y": 658,
-        "w": 96,
-        "h": 93
+        "w": 93,
+        "h": 96
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_tactic_scroll"
     },
@@ -28219,12 +28220,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 619,
-        "y": 853,
-        "w": 92,
-        "h": 93
+        "x": 836,
+        "y": 746,
+        "w": 93,
+        "h": 92
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_tactic_rage"
     },
@@ -28299,12 +28299,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 553,
-        "y": 595,
-        "w": 74,
-        "h": 90
+        "x": 2,
+        "y": 667,
+        "w": 90,
+        "h": 74
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_rage_glow"
     },
@@ -28379,12 +28378,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 638,
-        "y": 469,
-        "w": 78,
-        "h": 80
+        "x": 359,
+        "y": 656,
+        "w": 80,
+        "h": 78
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_rage_hit"
     },
@@ -28529,8 +28527,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 457,
-        "y": 2,
+        "x": 803,
+        "y": 353,
         "w": 88,
         "h": 160
       },
@@ -28927,7 +28925,7 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 902,
-        "y": 246,
+        "y": 398,
         "w": 96,
         "h": 87
       },
@@ -29007,12 +29005,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 375,
-        "y": 184,
-        "w": 140,
-        "h": 162
+        "x": 637,
+        "y": 353,
+        "w": 162,
+        "h": 140
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_shield_dome"
     },
@@ -29088,8 +29085,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 716,
-        "y": 99,
+        "x": 96,
+        "y": 667,
         "w": 48,
         "h": 68
       },
@@ -29169,12 +29166,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 693,
-        "y": 217,
-        "w": 78,
-        "h": 80
+        "x": 443,
+        "y": 670,
+        "w": 80,
+        "h": 78
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_shield_hit"
     },
@@ -30899,11 +30895,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 958,
-        "y": 749,
-        "w": 50,
-        "h": 48
+        "x": 641,
+        "y": 760,
+        "w": 48,
+        "h": 50
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "panel_anchored_tip_tail"
     },
@@ -30978,12 +30975,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 643,
-        "y": 686,
-        "w": 78,
-        "h": 80
+        "x": 275,
+        "y": 656,
+        "w": 80,
+        "h": 78
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_hit"
     },
@@ -31058,8 +31054,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 524,
-        "y": 286,
+        "x": 798,
+        "y": 517,
         "w": 76,
         "h": 108
       },
@@ -31112,21 +31108,21 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "b06cbd16dbde431189c765acf5a338be526bff89b765f019d7c3890607ee77ba",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "c1c3aab1ad02d444e2e07213199271e66058d899cf7f050af82096511215f9bf",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 7855,
-      "sha256": "87c9e95bbb04b6292010853ec15ee49e81a0f9841b798abb77847553be20fb5b",
+      "bytes": 10675,
+      "sha256": "a7f19adf3d3380b16246c73e34f2f71c9ed4f02a73fa55e4f63fa1b3e2ed0cb6",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 124,
-        "y": 116
+        "x": 104,
+        "y": 123
       },
       "atlasTrim": true,
       "displaySize": {
@@ -31138,12 +31134,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 631,
-        "y": 595,
-        "w": 85,
-        "h": 87
+        "x": 675,
+        "y": 497,
+        "w": 119,
+        "h": 67
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_arrow_1"
     },
@@ -31192,21 +31187,21 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "0cdb410afe5070e7b159dd1f2500402ae3e5f421ea4ff3fa91ba62bb4e13fe0a",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "1722203125060c60ff1f1f6544ecd00818d6295d0849fcc8f82e4424bcb6f94b",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 16012,
-      "sha256": "7b125a9b5ef47d99b2b9424305dbd83f911f460ab9c0144ed17998021a574d35",
+      "bytes": 13373,
+      "sha256": "fb96f2ca367d84d4bbe6361970046b5c5ec010cbb49b7c3aa260764bd1c7f357",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 97,
-        "y": 86
+        "x": 93,
+        "y": 103
       },
       "atlasTrim": true,
       "displaySize": {
@@ -31218,12 +31213,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 402,
-        "y": 496,
-        "w": 145,
-        "h": 153
+        "x": 2,
+        "y": 557,
+        "w": 151,
+        "h": 106
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_arrow_2"
     },
@@ -31272,21 +31266,21 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "0c87a12f9b1b2e38d93df995743333a7295d61e1f1857fb2ba4cfec8154ead72",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "e55fe982284c81bd7d079134caa26db7c44a70b567cc60d96e1ee16820c8fa0c",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 12812,
-      "sha256": "b4c61ef94066f36edfc7a716ddd763e10ef9a532bb3bb44e9537ee0428e8c93b",
+      "bytes": 9457,
+      "sha256": "361300d5087c39fbb715146386f5574ef17781559920ccf18534a5261d275fcf",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 90,
-        "y": 104
+        "x": 72,
+        "y": 87
       },
       "atlasTrim": true,
       "displaySize": {
@@ -31298,10 +31292,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 277,
-        "y": 658,
-        "w": 148,
-        "h": 108
+        "x": 665,
+        "y": 213,
+        "w": 197,
+        "h": 136
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_arrow_3"
@@ -31351,21 +31345,21 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "454822f8b3e2f98e6f7007e3028aa960fc28c70909302d9aee2838799ced4afd",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "679d80adcfe4eb7ee78c93e3785fc4c9d998d221c0b5a5f2fcede11cab109527",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 3753,
-      "sha256": "4c6caf3df1ed6227a513f518c60ea0f530b816bca33989a4cc132e02311410c0",
+      "bytes": 4799,
+      "sha256": "a53548225cba5d39232fe9322b932b61eec9a970290fbfe57e9f35d70da92a1b",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 72,
-        "y": 93
+        "x": 60,
+        "y": 79
       },
       "atlasTrim": true,
       "displaySize": {
@@ -31377,12 +31371,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 223,
+        "x": 475,
         "y": 2,
-        "w": 91,
-        "h": 184
+        "w": 222,
+        "h": 151
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_arrow_4"
     },
@@ -31431,21 +31424,21 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "d7679c0cc5b13e8ae67d81db4d0cca9e5f51b0fe8b6e705cc994f77084aed0e1",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "4a9fff4be309c719e55fff3e68900a4fc442df4cf71e4055814cc0d33dbdb235",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 1833,
-      "sha256": "6fbd77454a26fcd384e407745def6c98a57974919579b7beb63e073065a9d92d",
+      "bytes": 3165,
+      "sha256": "ec1c352d2e9004674640a278750bbe0612d4659867d38945010ec979de5eaaad",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 62,
-        "y": 84
+        "x": 58,
+        "y": 80
       },
       "atlasTrim": true,
       "displaySize": {
@@ -31458,11 +31451,10 @@
       "atlasPage": "night_effects_0",
       "atlasRect": {
         "x": 2,
-        "y": 306,
-        "w": 100,
-        "h": 204
+        "y": 83,
+        "w": 225,
+        "h": 150
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_arrow_5"
     },
@@ -31537,12 +31529,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 693,
-        "y": 301,
-        "w": 65,
-        "h": 74
+        "x": 527,
+        "y": 690,
+        "w": 74,
+        "h": 65
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_stone_1"
     },
@@ -31617,8 +31608,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 553,
-        "y": 689,
+        "x": 730,
+        "y": 716,
         "w": 86,
         "h": 74
       },
@@ -31696,12 +31687,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 551,
-        "y": 493,
-        "w": 83,
-        "h": 98
+        "x": 785,
+        "y": 629,
+        "w": 98,
+        "h": 83
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_impact_stone_3"
     },
@@ -31776,8 +31766,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 524,
-        "y": 398,
+        "x": 675,
+        "y": 568,
         "w": 106,
         "h": 91
       },
@@ -31855,8 +31845,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 429,
-        "y": 653,
+        "x": 551,
+        "y": 497,
         "w": 120,
         "h": 97
       },
@@ -32279,11 +32269,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 382,
-        "y": 710,
-        "w": 148,
-        "h": 44
+        "x": 950,
+        "y": 2,
+        "w": 44,
+        "h": 148
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "tag_recommended"
     },
@@ -32358,11 +32349,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 382,
-        "y": 662,
-        "w": 148,
-        "h": 44
+        "x": 902,
+        "y": 2,
+        "w": 44,
+        "h": 148
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "tag_favorite"
     },
@@ -43337,8 +43329,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 679,
-        "y": 749,
+        "x": 933,
+        "y": 746,
         "w": 88,
         "h": 92
       },
@@ -43409,12 +43401,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 592,
-        "y": 755,
-        "w": 83,
-        "h": 94
+        "x": 738,
+        "y": 662,
+        "w": 94,
+        "h": 83
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_shop"
     },
@@ -43479,15 +43470,230 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_0",
+      "atlasPage": "ui_1",
       "atlasRect": {
-        "x": 731,
-        "y": 662,
+        "x": 60,
+        "y": 180,
         "w": 68,
         "h": 83
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
       "importedFrameId": "icon_liang_essence"
+    },
+    {
+      "id": "icon_liang_briefs",
+      "label": "icon_liang_briefs",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/icon_liang_briefs.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 96
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/icon_liang_briefs.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "商城与背包共用的靓哥的底线图标",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/cartoon-v1/masters/liang-briefs.png",
+        "sourceHash": "dd4d0bf5fdaa76d564559162b48f2b5bd81294d254ad8681210dc19149453b3c",
+        "fullCanvas": false,
+        "outputHash": "d46e66f6ad1e16ce03e7e4b764f1c4560e37e7f892e640d08b7984ef6c3017ae",
+        "renderer": "tools/hd2d/render-cartoon.py"
+      },
+      "atlasGroup": "ui",
+      "bytes": 9401,
+      "sha256": "ebb5c32a171cb8d00f1029c9588c023d7336e0e08e81fe89f56443543f3e0f3a",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 4,
+        "y": 21
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 96,
+        "h": 96
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "ui_1",
+      "atlasRect": {
+        "x": 2,
+        "y": 182,
+        "w": 54,
+        "h": 88
+      },
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
+      "importedFrameId": "icon_liang_briefs"
+    },
+    {
+      "id": "icon_liang_bra",
+      "label": "icon_liang_bra",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/icon_liang_bra.png",
+      "width": 96,
+      "height": 96,
+      "pivot": {
+        "x": 48,
+        "y": 96
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/icon_liang_bra.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 96
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "商城与背包共用的靓哥的放纵图标",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/cartoon-v1/masters/liang-bra.png",
+        "sourceHash": "bdbe5225b7752c18b9775c0d346fde6b5a79de6777cc1094b11e21086f9c5dd6",
+        "fullCanvas": false,
+        "outputHash": "89f5c92d4f333a69cf56b10911184eda8997952e95ebe4c67c78da99eea48b7b",
+        "renderer": "tools/hd2d/render-cartoon.py"
+      },
+      "atlasGroup": "ui",
+      "bytes": 9117,
+      "sha256": "3e97ad907b011734bad01f835b00a5d09e65053c42787b3eeeca9a5f6d161a25",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 96,
+        "h": 96
+      },
+      "trimOffset": {
+        "x": 4,
+        "y": 21
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 96,
+        "h": 96
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "ui_1",
+      "atlasRect": {
+        "x": 2,
+        "y": 90,
+        "w": 54,
+        "h": 88
+      },
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
+      "importedFrameId": "icon_liang_bra"
+    },
+    {
+      "id": "patrol_rapid_gun",
+      "label": "patrol_rapid_gun",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/patrol_rapid_gun.png",
+      "width": 128,
+      "height": 160,
+      "pivot": {
+        "x": 54,
+        "y": 130
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/patrol_rapid_gun.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 160
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 160
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "淡紫儿之家打法卡与守夜城门共用的连发枪架",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/cartoon-v1/masters/patrol-rapid-gun.png",
+        "sourceHash": "9d0154f7dbc6995e18a58fc2cb829847c803d8f6d8d368a1ce610f3addad4d9b",
+        "fullCanvas": false,
+        "outputHash": "4d304480d82307285edc65bb1a3a6f0863f1c7983a00c3bc0646bbdcd070cbc3",
+        "renderer": "tools/hd2d/render-cartoon.py"
+      },
+      "atlasGroup": "ui",
+      "bytes": 32992,
+      "sha256": "2dca5fd5f6970f36ebfdb6ac8d9b3f98973c29350cdaea8a16a0afd2b7a4b6ab",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 128,
+        "h": 160
+      },
+      "trimOffset": {
+        "x": 6,
+        "y": 4
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 128,
+        "h": 160
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "ui_0",
+      "atlasRect": {
+        "x": 522,
+        "y": 658,
+        "w": 115,
+        "h": 152
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
+      "importedFrameId": "patrol_rapid_gun"
     },
     {
       "id": "fx_tower_stone_impact_1",
@@ -43525,20 +43731,20 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "983cb2cce154997465e4da018dc4b67cec1bef8cf0062e1c704e8ed2275129c9",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "80074c546a7c2e2bb6e589edb5de781fe00e46bbe37a2eac14ef9b7fe220c669",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 6250,
-      "sha256": "4052c4c373a75b690ceed51b1bbf37777bd33834ea73c27b8f95f197e181eb3e",
+      "bytes": 6927,
+      "sha256": "4526c99cbba869e17abec4bbb90b2fc9d0f4684a1d33986ceec5fd4682efabc5",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 107,
+        "x": 123,
         "y": 142
       },
       "atlasTrim": true,
@@ -43551,10 +43757,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 2,
-        "y": 715,
-        "w": 118,
-        "h": 39
+        "x": 551,
+        "y": 446,
+        "w": 75,
+        "h": 36
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_1"
@@ -43595,21 +43801,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "8189beb77a86f0b72c1ef2b04f06ac71b87f52ff068b89d7d3db79d1b65e701b",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "7066853b448e6cdc3d3b0f1f8df82177cbe0f8d71d944465a86a75ae5b30d7e9",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 8004,
-      "sha256": "2537910ac7207778a3dcde4c9a798b20b66c982acb2b20d29c1bf9764b26dae3",
+      "bytes": 15054,
+      "sha256": "96301d8d18eca12230c9d4cd913a0851ce00b61770847bc57a0100f64d661e39",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 98,
-        "y": 140
+        "x": 101,
+        "y": 113
       },
       "atlasTrim": true,
       "displaySize": {
@@ -43621,11 +43827,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 133,
-        "y": 690,
-        "w": 138,
-        "h": 44
+        "x": 460,
+        "y": 549,
+        "w": 72,
+        "h": 117
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_2"
     },
@@ -43665,21 +43872,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "b360e86283eb76739a220ac2fa80400cab81d404f8aad30e17036140b35621a9",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "54aa8cf5dde4eb282439e0ca04cdd05d29b5da0db39e130af521afc6b99ff2e7",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 15517,
-      "sha256": "2eaa60dcbb985d41b44d2eedf4bf60cd545e1f41bca33b21e51e8d3bba1fa749",
+      "bytes": 18179,
+      "sha256": "33f22e37269c002838d8d2bf566ded074086d151f382a4a6c77f937593b48b4d",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 88,
-        "y": 66
+        "x": 83,
+        "y": 91
       },
       "atlasTrim": true,
       "displaySize": {
@@ -43691,12 +43898,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 277,
-        "y": 496,
-        "w": 121,
-        "h": 158
+        "x": 394,
+        "y": 446,
+        "w": 153,
+        "h": 99
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_3"
     },
@@ -43736,21 +43942,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "a76536a0ad68d03e5fc18af0585e608423c68f028d9928070e1bd4abe078df7a",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "7fe1856e6f78939c71e38f0bf5dccd676def290a1b0de17bfd239df5b16b81d1",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 16521,
-      "sha256": "26d7274b1f9e51803890b37badd16f833e74a5ee8cdf184c9e1b046c4c9e3c48",
+      "bytes": 19961,
+      "sha256": "0a88911b48617d2777d1445f75defb66c1b45bbeb4a973c2a784faa36133fe9b",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 79,
-        "y": 56
+        "x": 69,
+        "y": 78
       },
       "atlasTrim": true,
       "displaySize": {
@@ -43762,12 +43968,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 318,
-        "y": 2,
-        "w": 135,
-        "h": 178
+        "x": 208,
+        "y": 376,
+        "w": 182,
+        "h": 116
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_4"
     },
@@ -43807,21 +44012,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "4dc3d6a36e4b69c3648df6c2f890676dfe0f4af7dfd9291bc1093f3e77c4f5ae",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "a0fff32a1b184f29297e6a30263d1080aca98b1a5b159e28166125a1cfd6e749",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 16281,
-      "sha256": "6324d22745bae3ab9fa90991e7edb9eb33fd52484b026f4c2e113d52b4141439",
+      "bytes": 20700,
+      "sha256": "c87ff77ce6c74725a2893fb54b26767c393c4ec4e949f9f0effe568542789eae",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 74,
-        "y": 51
+        "x": 57,
+        "y": 79
       },
       "atlasTrim": true,
       "displaySize": {
@@ -43833,12 +44038,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 133,
-        "y": 498,
-        "w": 140,
-        "h": 188
+        "x": 456,
+        "y": 157,
+        "w": 205,
+        "h": 119
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_5"
     },
@@ -43878,21 +44082,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "028733bd48388939bd9578427ad44abea179ce4118db0f6e013bf8feeab1f46b",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "74e74852357d823c5066864e7c359ddc272aaadcf55f975165c1467f4427ac4d",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 14373,
-      "sha256": "a863accbce3e2df0ca22c34f57bfc6b5c3ccdbd8d0b341e3132eadb003bd270c",
+      "bytes": 19735,
+      "sha256": "7807e16c764da4f90abd8c94e30d7c58c0b261f60f50e2f2f6729bddd39117cc",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 70,
-        "y": 50
+        "x": 49,
+        "y": 93
       },
       "atlasTrim": true,
       "displaySize": {
@@ -43904,12 +44108,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 106,
-        "y": 299,
-        "w": 138,
-        "h": 195
+        "x": 231,
+        "y": 91,
+        "w": 221,
+        "h": 108
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_6"
     },
@@ -43949,21 +44152,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "75dc2ac05e405491c61578d60ec246a077b0d287a5cd1e92cbe84fdc72e96adf",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "8abe9b1522c7e19455bfec7ae704a3ffaa861fdf9d06cfd212f94c2248364544",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 3843,
-      "sha256": "9193a09f2e9ec069cf6c34d909a834ba170305098a27cd72649d6c0481f169dc",
+      "bytes": 14449,
+      "sha256": "3cd5bb63b827713483c64d671a0d2e4e40197023dad1e889646b5452e53cdcbc",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 63,
-        "y": 54
+        "x": 44,
+        "y": 117
       },
       "atlasTrim": true,
       "displaySize": {
@@ -43975,12 +44178,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 2,
-        "y": 92,
-        "w": 87,
-        "h": 210
+        "x": 240,
+        "y": 2,
+        "w": 231,
+        "h": 85
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_7"
     },
@@ -44020,21 +44222,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "1bfaa6cfe51f0e8ded884df79061f88581190ec183e0ef6f2b8709c87b850320",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "71e8da425670ef842d2b47b11492cc6b29945c9231fd102073c0842c01bdfa64",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 2808,
-      "sha256": "35fbf07b58182483e7089e2e19418aae8aafff360a071f8e6bcde64e9acbb370",
+      "bytes": 12021,
+      "sha256": "cdc14b7966502830e595ca47503f39b3e7857af5f1945607c9f07bb4db4b99dd",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 59,
-        "y": 64
+        "x": 43,
+        "y": 125
       },
       "atlasTrim": true,
       "displaySize": {
@@ -44048,8 +44250,8 @@
       "atlasRect": {
         "x": 2,
         "y": 2,
-        "w": 217,
-        "h": 86
+        "w": 234,
+        "h": 77
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_8"
@@ -44090,21 +44292,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "c24e844fb85c3655a2cc6b5e1f36d5aab94aa62b1a943a536184fd491c81ef09",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "159ae7abe1f36c3c5b9c39c66fa013d1f5dc3633d83e8abc2c980393468d60a7",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 7866,
-      "sha256": "3e47122729023b4684818a1368cdc8f9919585cff183d255944f8deeedecd06b",
+      "bytes": 9601,
+      "sha256": "c7d1789e705a4ce7d5191df1dc3e7a1107849e1d214a13c8a451018b9c96cbbd",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 110,
-        "y": 108
+        "x": 123,
+        "y": 121
       },
       "atlasTrim": true,
       "displaySize": {
@@ -44116,11 +44318,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 634,
-        "y": 395,
-        "w": 98,
-        "h": 70
+        "x": 820,
+        "y": 716,
+        "w": 70,
+        "h": 76
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_1"
     },
@@ -44160,21 +44363,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "c20165053862e0000f7a463c277bc503d8fec4199d5d80ccdf52351b91c1d580",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "e8d87533ecd05e4354c2d65ea14bc99c5e1fefef2f4bca7c311d05107ff609a9",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 9769,
-      "sha256": "b7274ef6f9e1511cb6a9cf77b881cac9f8d7c6d8c5c3895c05c2b370b485d050",
+      "bytes": 14000,
+      "sha256": "66df10578a5ae50165c973cdeb851675853b095372bb8ec9c83bcb3aa9ee9f40",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 106,
-        "y": 97
+        "x": 104,
+        "y": 103
       },
       "atlasTrim": true,
       "displaySize": {
@@ -44186,12 +44389,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 604,
-        "y": 286,
-        "w": 85,
-        "h": 105
+        "x": 339,
+        "y": 549,
+        "w": 117,
+        "h": 103
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_2"
     },
@@ -44231,21 +44433,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "395b1b8151c919fdccc3a97aaa98db956d5256e5e33ce821de3119d9b8b7e347",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "1862349deb55ffd425f020b4131fbf98dd8e32290b3fbf46cd3ed73ed12a0a1f",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 14822,
-      "sha256": "67eef23fc1d29baf225ce3bee9ec6382c65f3f5116b324b1807d433b3465b910",
+      "bytes": 14204,
+      "sha256": "422c4b54cb18cef6160f0571523033f1f4c6cbeb8360d9518a7208df45d3c46a",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 102,
-        "y": 86
+        "x": 87,
+        "y": 89
       },
       "atlasTrim": true,
       "displaySize": {
@@ -44257,12 +44459,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 519,
-        "y": 166,
-        "w": 101,
-        "h": 116
+        "x": 183,
+        "y": 496,
+        "w": 152,
+        "h": 129
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_3"
     },
@@ -44302,21 +44503,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "9eb0f867fe250f418d86d11d05f157ed293c235adaa367e14fafc339f9d27386",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "8c59875bf494bdbd1adb37f4b112f3518374af17384b905ca253a477be21e800",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 16444,
-      "sha256": "3d615c8cb3767a1a4a0833f3836d6e348f75de54660b59faf3e7dfac6f4b1fb6",
+      "bytes": 14343,
+      "sha256": "afe2bdc039cb98f856c711a00a0140fab0b25db29e8913f73a3b3089c5aa3af3",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 96,
-        "y": 82
+        "x": 75,
+        "y": 79
       },
       "atlasTrim": true,
       "displaySize": {
@@ -44328,12 +44529,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 415,
-        "y": 350,
-        "w": 105,
-        "h": 137
+        "x": 2,
+        "y": 404,
+        "w": 177,
+        "h": 149
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_4"
     },
@@ -44373,21 +44573,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "06675f6f9753986159269067c3e01fa784b43f5af5f833f1ec6d9f7e4defb663",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "50e95e8fed28f8e17d4e09002a408f98b8a278e31783c8972c50404b27af70c8",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 14046,
-      "sha256": "3a7246d7cff560ab854bd0d291a35896feb6dcad6bdf15f56367204c091943b7",
+      "bytes": 14455,
+      "sha256": "de3173eb7479d71b15bd65f3031e75ea4cddd2d374d0344855c66e6a18b1334f",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 84,
-        "y": 71
+        "x": 67,
+        "y": 72
       },
       "atlasTrim": true,
       "displaySize": {
@@ -44399,10 +44599,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 248,
-        "y": 376,
-        "w": 163,
-        "h": 116
+        "x": 439,
+        "y": 280,
+        "w": 194,
+        "h": 162
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_5"
@@ -44443,21 +44643,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "e5d6c42ef0bb67829b623d66e2edf5e1bb934f046883ff385500a41af776991a",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "d565b2bb34c70c2b416e665c4e6e3140f5d758537b3def8ef959bfc3655e7766",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 5868,
-      "sha256": "6d201ed59bbd6022603ccf2c24f64c524615c67b58f05522c69fd39f58ba762a",
+      "bytes": 13633,
+      "sha256": "17b246672fd29ec2632cf8fd213754afca31fa540cebd0017bbdff73d0324c42",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 75,
-        "y": 63
+        "x": 63,
+        "y": 69
       },
       "atlasTrim": true,
       "displaySize": {
@@ -44469,12 +44669,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 248,
-        "y": 190,
-        "w": 123,
-        "h": 182
+        "x": 231,
+        "y": 203,
+        "w": 204,
+        "h": 169
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_6"
     },
@@ -44514,21 +44713,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "6cff824271de8943fe07ff6d640c3d101ea6dd19b9eb4ef66660a7ddec357071",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "d8fab77a34415c00be249216ddf5ec08f94e33efa26a9b943a82ffff239496fe",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 4641,
-      "sha256": "cd3aa2ad92bce18bccb34f48e05d643fa6c28d77205bdbb8d7ab26c1f32e78f9",
+      "bytes": 11796,
+      "sha256": "95a7bccacf314406bea2d872e24578ca1c3257dd169c28f5588398535a8c28fd",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 68,
-        "y": 58
+        "x": 62,
+        "y": 69
       },
       "atlasTrim": true,
       "displaySize": {
@@ -44540,10 +44739,10 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 2,
-        "y": 514,
-        "w": 127,
-        "h": 197
+        "x": 701,
+        "y": 2,
+        "w": 170,
+        "h": 207
       },
       "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
@@ -44585,21 +44784,21 @@
       "bundle": "battle",
       "provenance": {
         "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "006f7a56c195356b8c36fb6a7fdb32cacbd569ef48447453b54c47d9b6831437",
-        "outputHash": "332be7db19f6607206a6c4a9ff96de6f6a519614dd9c660b9f5f12185a853fcc",
+        "sourceHash": "b1d9ff3fc5979be24bdbdb6487aec0236e0929bbb71d5121c76014e3e9d82a35",
+        "outputHash": "4534f8b59d6fea7ac3a552c203c0e572477321b8756e31196064fa3aaef1fb93",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "night_effects",
-      "bytes": 3191,
-      "sha256": "8b6aeb0052808780ba28520dfe001edf1223cf26c6582cb5603a3d7a75fdf5ab",
+      "bytes": 8537,
+      "sha256": "3c7a2afa8419cad93f1ee5cf9bbcb624cf51b544d0feb05eac5e8c18b402882e",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 320,
         "h": 320
       },
       "trimOffset": {
-        "x": 65,
-        "y": 57
+        "x": 63,
+        "y": 73
       },
       "atlasTrim": true,
       "displaySize": {
@@ -44611,12 +44810,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 93,
-        "y": 92,
-        "w": 126,
-        "h": 203
+        "x": 2,
+        "y": 237,
+        "w": 202,
+        "h": 163
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_8"
     },
@@ -54867,9 +55065,47 @@
         "sourceBoundaryDifference": 0,
         "license": "Original score and synthesis; no third-party samples",
         "phoneListeningVerified": false
+      },
+      {
+        "title": "巡防旋甩 · 飞行气哨",
+        "source": "source/audio/patrol_flight.score.json",
+        "generator": "tools/build-audio.py",
+        "runtimeFile": "audio/patrol_flight.mp3",
+        "packageFile": "patrol_flight.mp3",
+        "bundle": "battle",
+        "durationSeconds": 0.96,
+        "sampleRate": 22050,
+        "channels": 1,
+        "bitrate": "32k",
+        "bytes": 4302,
+        "sha256": "cc85d367ad9f6d1bebda298258d1a2a93317d073b5bde955d2acf6e83e97a637",
+        "sourceSha256": "0a618af6efb78fac30c991a57c5d354a422417d2e9e1d07d96219d2ff54a5eb6",
+        "sourcePeak": 0.48,
+        "sourceBoundaryDifference": 0.00592041015625,
+        "license": "Original score and synthesis; no third-party samples",
+        "phoneListeningVerified": false
+      },
+      {
+        "title": "巡防旋甩 · 踏地",
+        "source": "source/audio/patrol_landing.score.json",
+        "generator": "tools/build-audio.py",
+        "runtimeFile": "audio/patrol_landing.mp3",
+        "packageFile": "patrol_landing.mp3",
+        "bundle": "battle",
+        "durationSeconds": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "bitrate": "32k",
+        "bytes": 1481,
+        "sha256": "350549f820570e6dbd1a2063b8cbf7fc3bbff37123e61356c3708c5fa8f0db6e",
+        "sourceSha256": "e89506bf5b53e40fce5b2fb050c008b6fe85e1a602554ec194f2311645a3c0af",
+        "sourcePeak": 0.6,
+        "sourceBoundaryDifference": 0,
+        "license": "Original score and synthesis; no third-party samples",
+        "phoneListeningVerified": false
       }
     ],
-    "bytes": 164243
+    "bytes": 170026
   },
   "externalAssets": [],
   "engineImport": {

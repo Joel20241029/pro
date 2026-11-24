@@ -1,6 +1,7 @@
 import { BattleSimulation, Enemy, Shot } from "../src/game/BattleSimulation";
 import { ENEMIES, PADS, RULE, TOWERS, TowerKind } from "../src/game/GameConfig";
 import { createGame, applyCommand } from "../src/game/VillageRules";
+import { FIXED_NIGHT, WAVE } from "../src/config/DefenseConfig";
 
 let passed = 0;
 function ok(value: unknown, reason: string): asserts value { if (!value) throw new Error(reason); }
@@ -13,12 +14,12 @@ function battleAt(index: number, kind: TowerKind) {
     s.policy = null;
     s.towers = PADS.map((_, i) => ({ kind: i === index ? kind : null, level: i === index ? 1 : 0, operator: i === index ? s.people[0].id : null }));
     applyCommand(s, { type: "NIGHT" });
-    s.wave = { budget: ENEMIES.enemy_raider.cost, tier: s.tier, affix: "NONE", ordinaryHealthPercent: 100, entries: [{ kind: "enemy_raider", tick: 0, appearanceSeed: 1 }] };
+    s.wave = { ...s.wave!, budget: ENEMIES.enemy_raider.cost, affix: "NONE", entries: [{ kind: "enemy_raider", tick: 0, appearanceSeed: 1 }] };
     return new BattleSimulation(s);
 }
 /** 高耐久测试靶从入口完整走到城门，让后排塔也有目标；仅测试夹具增加 HP，不修改正式敌人数值。 */
 function durableRunner(): Enemy {
-    return { seq: 100, appearanceSeed: 1, kind: "enemy_runner", progress: 0, hp: 1000000, maxHp: 1000000, speed: ENEMIES.enemy_runner.speed * 1.1, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
+    return { seq: 100, appearanceSeed: 1, kind: "enemy_runner", progress: 0, hp: 1000000, maxHp: 1000000, speed: ENEMIES.enemy_runner.speed * FIXED_NIGHT.enemySpeed * 1.1, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
 }
 function collectShots(battle: BattleSimulation): Shot[] {
     const shots: Shot[] = [];
@@ -62,7 +63,8 @@ test("Relocated towers still require an operator before they can attack", () => 
     for (let i = 0; i < PADS.length; i++) {
         const battle = battleAt(i, "ARROW"); battle.base.towers[i].operator = null;
         ok(collectShots(battle).length === 0, "an unstaffed tower fired");
-        ok(battle.gate === RULE.gateMax - ENEMIES.enemy_raider.gate, "the enemy did not reach the gate");
+        const gateDamage = Math.ceil(ENEMIES.enemy_raider.gate * (WAVE.ordinaryGateScale * FIXED_NIGHT.ordinaryGateDamage));
+        ok(battle.gate === RULE.gateMax - gateDamage, "the enemy did not reach the gate");
     }
 });
 console.log(`${passed} tower coverage checks passed`);

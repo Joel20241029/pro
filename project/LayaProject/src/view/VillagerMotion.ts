@@ -254,7 +254,7 @@ export class VillagerMotion {
     }
     /** 调用者传实际视觉时间；暂停保持动作。婚礼结束返回true，要求重选下一组可见演员。 */
     update(delta: number): boolean {
-        const dt = Math.min(RULE.frameCap * RULE.maxSpeed, Math.max(0, delta));
+        const dt = Math.min(RULE.frameCap * RULE.battleSpeed, Math.max(0, delta));
         if (!dt) return false;
         for (const m of this.people.values()) {
             if (m.animated) m.elapsed += dt;

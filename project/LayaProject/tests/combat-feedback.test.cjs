@@ -89,7 +89,7 @@ test('frost reaches living splash targets at visual impact and clears with the u
  f.sync(battle('SLOW'),[]);assert(!f.frosted(a.seq));
 });
 test('multi-step session inbox captures every shot once and no event changes family RNG',()=>{
- const store=new SaveStore({read:()=>null,write(){}}),g=new GameSession(store);g.state=createGame(7);applyCommand(g.state,{type:'NIGHT'});g.battle=new BattleSimulation(g.state);g.state.settings.speed=3;
+ const store=new SaveStore({read:()=>null,write(){}}),g=new GameSession(store);g.state=createGame(7);applyCommand(g.state,{type:'NIGHT'});g.battle=new BattleSimulation(g.state);
  // 本用例验证事件收件箱，不依赖首波敌人是否已走进调整后的塔位；将静止靶放到各已建塔最近的道路点。
  g.battle.cursor=g.battle.base.wave.entries.length;
  g.battle.enemies=g.battle.base.towers.flatMap((tower,i)=>{

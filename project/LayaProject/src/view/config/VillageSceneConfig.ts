@@ -40,15 +40,17 @@ export const TOWER_VIEW = {
 } as const;
 /** 显示塔位沿用存档塔位编号。战斗索敌使用常规高度基准，短屏绘制按下方各档避让。 */
 export const TOWER_DISPLAY_PADS: readonly GroundPoint[] = PADS;
-/** 塔位按原存档编号排列，数据由五塔武器和标注轮廓对各档战场高度试排得出。
- * y 是基准地图坐标。右下塔上移 22 像素；短屏路牌向右避开塔的轮廓和标注。
+/** points 保留原五塔在基准地图上的锚点。rightTowerLift 按第四、第五塔顺序给出沿路向北的基准像素数。
+ * 常规屏采用确认稿的 32、60；短屏依据三种塔的攻击轮廓、驻守标签和路牌位置收紧上移量。
+ * 常规、长屏的 restingSign 是日间第五位为空或石塔时的原牌位；高武器和守夜动作使用 friendshipSign 避让。
+ * 这些值只影响显示、交互及驻塔站点；改动时须核对道路净距与相邻塔、路牌的遮挡。
  */
 export const TOWER_SCREEN_LAYOUTS = [
-    { height: 492, friendshipSign: [646, 486], scale: .80, points: [[214,351], [538,353], [268,667], [439,533], [545,690]] },
-    { height: 523, friendshipSign: [652, 455], scale: .88, points: [[226,348], [540,356], [210,653], [401,509], [530,671]] },
-    { height: 593, friendshipSign: [650, 485], scale: .88, points: [[228,362], [543,331], [219,643], [413,531], [530,682]] },
-    { height: 650, friendshipSign: [575, 499], scale: .88, points: [...PADS.slice(0, 4).map(p => [p.x, p.y]), [523,694]] },
-    { height: 700, friendshipSign: [575, 499], scale: .88, points: [[238,360], [543,302], [193,606], [396,522], [514,698]] }
+    { height: 492, friendshipSign: [660, 435], rightTowerLift: [32, 22], scale: .80, points: [[214,351], [538,353], [268,667], [439,533], [545,690]] },
+    { height: 523, friendshipSign: [660, 430], rightTowerLift: [14, 7], scale: .88, points: [[226,348], [540,356], [210,653], [401,509], [530,671]] },
+    { height: 593, friendshipSign: [650, 489], rightTowerLift: [32, 38], scale: .88, points: [[228,362], [543,331], [219,643], [413,531], [530,682]] },
+    { height: 650, friendshipSign: [598, 470], restingSign: [575,499], rightTowerLift: [32, 60], scale: .88, points: [...PADS.slice(0, 4).map(p => [p.x, p.y]), [523,694]] },
+    { height: 700, friendshipSign: [575, 477], restingSign: [575,499], rightTowerLift: [32, 60], scale: .88, points: [[238,360], [543,302], [193,606], [396,522], [514,698]] }
 ] as const;
 /** 既有固定地图与高清母画布足底（中心、15/16 高度）。占地仅覆盖底座，屋顶/树冠可以遮住行人。 */
 function prop(id: string, frame: string, left: number, top: number, size: number, baseWidth: number, baseDepth: number): VillageProp {

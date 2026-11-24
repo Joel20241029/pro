@@ -1,6 +1,6 @@
-import { itemDefinition, ITEMS, LIANG_ESSENCE, PATROL_RATION, SHOP_PRODUCTS } from "../../config/ShopConfig";
+import { itemDefinition, ITEMS, LIANG_ESSENCE, LIANG_INDULGENCE, PATROL_RATION, SHOP_PRODUCTS } from "../../config/ShopConfig";
 import { GameState } from "../../game/GameState";
-import { essenceTargets, patrolRationUnavailable } from "../../game/ShopRules";
+import { essenceTargets, patrolItemUnavailable } from "../../game/ShopRules";
 import { ScrollList } from "../ScrollList";
 import { C, UI } from "../UiTheme";
 import { coloredName } from "../ViewText";
@@ -78,11 +78,12 @@ export function drawItemPanel(ctx: PanelContext, state: GameState, panel: Panel,
     detail.pos(UI.inset, detailY); box.addChild(detail);
     ctx.art.panel(detail, "panel_card", UI.contentWidth, spec.detailHeight);
     ctx.ui.image(detail, item?.icon ?? "icon_backpack", 25, (spec.detailHeight - spec.itemIcon) / 2, spec.itemIcon);
-    const ration = panel.id === PATROL_RATION.id, rationReason = ration ? patrolRationUnavailable(state) : null;
-    addItemCopy(ctx, detail, item?.name ?? "待识别道具", rationReason ?? item?.description ?? "库存已保留", 108, UI.contentWidth - 132);
-    const usable = ration ? !rationReason : panel.id === LIANG_ESSENCE.id && essenceTargets(state).length > 0;
+    const patrolItem = panel.id === PATROL_RATION.id || panel.id === LIANG_INDULGENCE.id ? panel.id : undefined;
+    const reason = patrolItem && patrolItemUnavailable(state, patrolItem);
+    addItemCopy(ctx, detail, item?.name ?? "待识别道具", reason ?? item?.description ?? "库存已保留", 108, UI.contentWidth - 132);
+    const usable = patrolItem ? !reason : panel.id === LIANG_ESSENCE.id && essenceTargets(state).length > 0;
     ctx.ui.centerButton(box, "使用", detailY + spec.detailHeight + spec.rowGap,
-        () => { if (ration) ctx.game.usePatrolRation(); else ctx.open({ type: "essenceTargets", back: panel }); },
+        () => { if (patrolItem) ctx.game.usePatrolItem(patrolItem); else ctx.open({ type: "essenceTargets", back: panel }); },
         C.green, usable, spec.actionWidth, spec.actionHeight);
 }
 
@@ -96,17 +97,16 @@ function drawItemAction(ctx: PanelContext, state: GameState, panel: Panel, avail
     if (panel.type === "itemOffer") {
         const offer = SHOP_PRODUCTS.find(product => product.id === panel.id);
         if (!offer) return;
-        const essence = offer.id === LIANG_ESSENCE.id;
-        const item = ITEMS[offer.id], box = ctx.modal(item.name, "", true, { width: UI.panelWidth, height: essence ? 637 : 472 });
+        const item = ITEMS[offer.id], box = ctx.modal(item.name, "", true, { width: UI.panelWidth, height: offer.lore ? 637 : 472 });
         ctx.ui.image(box, item.icon, (box.width - 100) / 2, 111, 100);
         centered(box, item.description, 220, 29, 42, true);
-        if (essence) {
+        if (offer.lore) {
             const card = box.addChild(new Laya.Sprite());
             card.pos(UI.inset, 271).size(UI.contentWidth, 182);
             ctx.art.panel(card, "panel_card", card.width, card.height);
-            ctx.ui.label(card, LIANG_ESSENCE.lore, 24, 16, card.width - 48, 26, C.ink, false, card.height - 32);
+            ctx.ui.label(card, offer.lore, 24, 16, card.width - 48, 26, C.ink, false, card.height - 32);
         }
-        const cost = box.addChild(new Laya.Sprite()), footer = essence ? 537 : 372;
+        const cost = box.addChild(new Laya.Sprite()), footer = offer.lore ? 537 : 372;
         cost.size(350, 56).pos((box.width - 350) / 2, footer - 74);
         ctx.art.panel(cost, "panel_card", cost.width, cost.height);
         ctx.ui.materialCosts(cost, state, offer, 46, 8, 280, 40);

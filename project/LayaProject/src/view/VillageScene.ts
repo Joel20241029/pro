@@ -16,11 +16,18 @@ export function layoutVillage(layout: GameLayout) {
         Math.abs(candidate.height - battleHeight) < Math.abs(best.height - battleHeight) ? candidate : best);
     const towerScale = authored.scale;
     const towerFootOffset = (TOWER_VIEW.top + TOWER_VIEW.size * 15 / 16) * towerScale;
-    const pads = authored.points.map(([baseX, refY], index) => {
-        const y = Math.max(layout.worldY(refY), layout.mapTop + TOWER_VIEW.hudClearance * towerScale + TOWER_VIEW.hudEdgePadding);
+    const roadEdge = (y: number, onLeft: boolean) => {
         const foot = y + towerFootOffset;
         const top = layout.referenceY(foot - TOWER_VIEW.footprintDepth);
         const bottom = layout.referenceY(foot);
+        const samples = ROAD_PROFILE.filter(([row], i) =>
+            (i === 0 || ROAD_PROFILE[i - 1][0] <= bottom) &&
+            (i === ROAD_PROFILE.length - 1 || ROAD_PROFILE[i + 1][0] >= top));
+        return onLeft ? Math.min(...samples.map(([, left]) => left)) : Math.max(...samples.map(([, , right]) => right));
+    };
+    const pads = authored.points.map(([baseX, refY], index) => {
+        const minY = layout.mapTop + TOWER_VIEW.hudClearance * towerScale + TOWER_VIEW.hudEdgePadding;
+        const y = Math.max(layout.worldY(refY), minY);
         const onLeft = TOWER_VIEW.facing[index] > 0;
         const clearance = index === 0 ? TOWER_VIEW.upperLeftRoadClearance
             : index === 1 ? TOWER_VIEW.upperRightRoadClearance
@@ -28,12 +35,13 @@ export function layoutVillage(layout: GameLayout) {
             : index === 2 && authored === TOWER_SCREEN_LAYOUTS[0] ? TOWER_VIEW.compactLowerLeftRoadClearance
             : TOWER_VIEW.roadClearance;
         const edgeGap = TOWER_VIEW.footprintWidth / 2 + clearance;
-        const samples = ROAD_PROFILE.filter(([row], i) =>
-            (i === 0 || ROAD_PROFILE[i - 1][0] <= bottom) &&
-            (i === ROAD_PROFILE.length - 1 || ROAD_PROFILE[i + 1][0] >= top));
-        const roadBound = onLeft ? Math.min(...samples.map(([, left]) => left)) - edgeGap
-            : Math.max(...samples.map(([, , right]) => right)) + edgeGap;
-        return { x: onLeft ? Math.min(baseX, roadBound) : Math.max(baseX, roadBound), y };
+        const edge = roadEdge(y, onLeft);
+        const x = onLeft ? Math.min(baseX, edge - edgeGap) : Math.max(baseX, edge + edgeGap);
+        if (index === 3 || index === 4) {
+            const liftedY = Math.max(layout.worldY(refY - authored.rightTowerLift[index - 3]), minY);
+            return { x: x + roadEdge(liftedY, onLeft) - edge, y: liftedY };
+        }
+        return { x, y };
     });
     const props = VILLAGE_PROPS.map(p => {
         const [signX, signY] = authored.friendshipSign;
@@ -72,7 +80,11 @@ export function layoutVillage(layout: GameLayout) {
         top: i < 2 ? layout.worldY(r.top) : layout.gateY - (830 - r.top), bottom: layout.worldY(r.bottom)
     }));
     const bounds = { ...MOTION.bounds, top: layout.worldY(MOTION.bounds.top), bottom: layout.footerTop - 14 };
-    return { props, pads, stops, landscape, bounds, towerScale };
+    const sign = props.find(p => p.id === "deco:friendship-road-sign")!;
+    const friendshipSign = "restingSign" in authored ? {
+        prop: sign, active: { x: sign.x, y: sign.y }, resting: point({ x: authored.restingSign[0], y: authored.restingSign[1] })
+    } : null;
+    return { props, pads, stops, landscape, bounds, towerScale, friendshipSign };
 }
 export interface DepthKey {
     id: string;

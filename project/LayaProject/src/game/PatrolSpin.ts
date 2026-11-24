@@ -1,4 +1,5 @@
 import { PATROL } from "../config/PatrolConfig";
+import { LIANG_INDULGENCE } from "../config/ShopConfig";
 import { RULE } from "../config/RuleConfig";
 import type { RoadPoint } from "./BattleRoad";
 import type { PatrolTarget } from "./Patrol";
@@ -35,11 +36,13 @@ export class PatrolSpin {
     private nextPair: PairMember[];
     private walkTicks: number;
     deployments = 0;
-    landing: { at: RoadPoint; actor: number } | null = null;
+    landing: { at: RoadPoint; actor: number; radius: number } | null = null;
+    readonly radius: number;
     readonly center = SPIN.center;
     private releaseAngle = 0;
 
-    constructor(private stats: { damage: number; ticks: number }) {
+    constructor(private stats: { damage: number; ticks: number }, wideImpact?: true) {
+        this.radius = wideImpact ? SPIN.radius * LIANG_INDULGENCE.radiusMultiplier : SPIN.radius;
         this.due = stats.ticks;
         this.nextPair = this.planPair();
         this.walkTicks = this.getWalkTicks();
@@ -130,13 +133,13 @@ export class PatrolSpin {
         if (progress < 1) return [];
 
         const at = this.target;
-        this.landing = { at, actor: second.index };
+        this.landing = { at, actor: second.index, radius: this.radius };
         this.target = null;
         this.pair = [];
         this.due = tick + this.stats.ticks;
         this.nextPair = this.planPair();
         this.walkTicks = this.getWalkTicks();
-        return targets.filter(({ enemy, at: foot }) => enemy.hp > 0 && Math.hypot(foot.x - at.x, foot.y - at.y) <= SPIN.radius)
+        return targets.filter(({ enemy, at: foot }) => enemy.hp > 0 && Math.hypot(foot.x - at.x, foot.y - at.y) <= this.radius)
             .map(({ enemy, at: foot }) => {
                 enemy.hp -= this.stats.damage;
                 return { enemy: { ...enemy }, at: foot, index: second.index, dx: foot.x - at.x, dy: foot.y - at.y };

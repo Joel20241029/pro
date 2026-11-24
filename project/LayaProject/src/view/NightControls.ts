@@ -1,7 +1,6 @@
 import { TACTIC_USE } from "../config/TacticConfig";
 import type { TacticDefinition } from "../config/TacticConfig";
 import { GameSession } from "../game/GameSession";
-import { GameState } from "../game/GameState";
 import { RULE } from "../game/GameConfig";
 import { GamePanels } from "./GamePanels";
 import { HUD, LAYOUT } from "./config/HudConfig";
@@ -13,43 +12,37 @@ import { amount } from "./ViewText";
 export class NightControls {
     readonly node = new Laya.Sprite();
     private readonly status: Laya.Text;
-    private speedText!: Laya.Text;
     private readonly buttons: { tactic: TacticDefinition; heart: Laya.Sprite; skin: Laya.Sprite; icon: Laya.Sprite; note: Laya.Text;
         ring: Laya.Sprite; muted: boolean; shownTicks: number; shownClock: string | null }[];
 
-    constructor(private game: GameSession, state: GameState, ui: UiWidgets, panels: GamePanels, refresh: () => void) {
+    constructor(private game: GameSession, ui: UiWidgets, panels: GamePanels, refresh: () => void) {
         this.node.name = "NightControls";
         this.node.size(LAYOUT.width, LAYOUT.footerHeight);
-        const cfg = HUD.night, main = HUD.footer.start, side = cfg.side, multi = cfg.multi;
-        const tactics = game.battle!.tactics, compact = tactics.length > 1;
+        const cfg = HUD.night, main = HUD.footer.start;
+        const tactics = game.battle!.tactics;
         this.status = ui.label(this.node, "", cfg.status.x, cfg.status.y, cfg.status.width, cfg.status.font, C.ink, true, cfg.status.height);
         this.status.name = "NightStatus";
-        this.status.align = "center"; this.status.wordWrap = false; this.status.overflow = Laya.Text.SHRINK;
+        this.status.align = "left"; this.status.wordWrap = false; this.status.overflow = Laya.Text.SHRINK;
         const paused = game.pauses.has("USER");
-        const controls = [
-            { title: paused ? "继续守夜" : "暂停", icon: paused ? "icon_play_dark" : "icon_pause_dark", action: () => {
-                if (game.pauses.has("USER")) game.resume("USER"); else game.pause("USER");
-                refresh();
-            } },
-            { title: `速度 ×${state.settings.speed === RULE.minSpeed ? 1 : 2}`, icon: "icon_speed", action: () => panels.send({ type: "SPEED", value: state.settings.speed === RULE.minSpeed ? RULE.maxSpeed : RULE.minSpeed }) }
-        ];
-        controls.forEach((control, i) => {
-            const width = compact ? multi.sideWidth : side.width;
-            const button = ui.button(this.node, control.title, compact ? multi.sideXs[i] : side.xs[i], side.y, width, control.action, C.muted, side.height);
-            const face = button.getChildByName("buttonFace") as Laya.Sprite;
-            ui.image(face, control.icon, (width - side.icon) / 2, side.iconY, side.icon).name = "buttonIcon";
-            const text = face.getChildByName("buttonText") as Laya.Text;
-            if (control.icon === "icon_speed") this.speedText = text;
-            const sideTextInset = 10;
-            text.pos(sideTextInset, side.textY); text.size(width - sideTextInset * 2, side.textHeight);
-            text.fontSize = side.font; text.color = C.ink; text.stroke = 0;
-            text.wordWrap = false; text.overflow = Laya.Text.SHRINK;
-        });
+        const pause = cfg.pause;
+        const control = ui.button(this.node, paused ? "继续" : "暂停", pause.x, 0, pause.width, () => {
+            if (game.pauses.has("USER")) game.resume("USER"); else game.pause("USER");
+            refresh();
+        }, C.muted, pause.height);
+        control.size(pause.width, pause.hitHeight);
+        const controlFace = control.getChildByName("buttonFace") as Laya.Sprite;
+        controlFace.y += pause.y;
+        ui.image(controlFace, paused ? "icon_play_dark" : "icon_pause_dark", pause.iconX,
+            (pause.height - pause.icon) / 2, pause.icon).name = "buttonIcon";
+        const controlText = controlFace.getChildByName("buttonText") as Laya.Text;
+        controlText.pos(pause.textX, 0); controlText.size(pause.textWidth, pause.height);
+        controlText.fontSize = pause.font; controlText.color = C.ink; controlText.stroke = 0;
+        const row = cfg.rows[tactics.length - 1];
         this.buttons = tactics.map((tactic, i) => {
-            const size = compact ? multi.size : main.size, ratio = size / main.size;
-            const x = compact ? multi.center + (i - (tactics.length - 1) / 2) * multi.pitch - size / 2 : main.x;
+            const size = row.size, ratio = size / main.size;
+            const x = row.centers[i] - size / 2;
             const act = tactic.effect === "KING_MERCY" ? () => panels.open({ type: "mercyConfirm" }) : () => game.bell(tactic.id);
-            const heart = ui.button(this.node, "", x, compact ? multi.y : main.y, size, act, C.gold, size);
+            const heart = ui.button(this.node, "", x, row.y, size, act, C.gold, size);
             heart.name = `button:${tactic.name}`;
             const face = heart.getChildByName("buttonFace") as Laya.Sprite;
             face.graphics.clear();
@@ -75,10 +68,10 @@ export class NightControls {
     update() {
         const battle = this.game.battle;
         if (!battle) return;
-        this.speedText.text = `速度 ×${this.game.patrolAiming ? .5 : this.game.state!.settings.speed === RULE.minSpeed ? 1 : 2}`;
         const hand = battle.handSpeed;
         const active = !battle.outcome && (battle.bellTicks > 0 || hand !== null);
-        this.status.text = `${this.game.pauses.size ? "已暂停" : "守夜中"} · 场上 ${amount(battle.enemies.length, true)} · 待来 ${amount(battle.pendingCount, true)}${battle.base.night!.hungry ? " · 缺粮" : ""}` +
+        const stateText = this.game.pauses.size ? "已暂停 · " : this.game.patrolAiming ? "瞄准中 · " : "";
+        this.status.text = `${stateText}场上 ${amount(battle.enemies.length, true)} · 待来 ${amount(battle.pendingCount, true)}${battle.base.night!.hungry ? " · 缺粮" : ""}` +
             (this.buttons.length > 1 || battle.tacticBudget > TACTIC_USE.perNight ? ` · 战技剩余 ${battle.tacticUsesLeft} 次` : "");
         for (const button of this.buttons) {
             const { tactic, heart, skin, icon, note, ring } = button;

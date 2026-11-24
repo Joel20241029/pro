@@ -71,14 +71,14 @@ test("Emergency traveler fills missing adults, respects cooldown/capacity and do
     s.lastTraveler = 7; s.completed = 8; s.day = 9; equal(travelerDue(s, 8), false);
     s.lastTraveler = null; s.day = 3; equal(travelerDue(s, s.people.length), false);
 });
-test("Two speed levels give identical battle ticks and result, including low-frame-rate step budget", () => {
+test("Both legacy speed settings run at the same fixed rate including low-frame-rate step budget", () => {
     const results: string[] = [];
     for (const speed of [2, 3] as const) {
         const values = new Map<string, string>(), game = new GameSession(new SaveStore({ read: key => values.get(key) ?? null, write: (key, value) => { values.set(key, value); } }));
-        const store = game.saves; store.inspect(); store.prepare(createGame(123)); store.commit(); game.load(); game.command({ type: "NIGHT" }); game.command({ type: "SPEED", value: speed });
-        const b = game.battle!; for (let i = 0; i < 120 / speed; i++) game.update(.05);
+        const store = game.saves; store.inspect(); const legacy = createGame(123); legacy.settings.speed = speed; store.prepare(legacy); store.commit(); game.load(); game.command({ type: "NIGHT" });
+        const b = game.battle!; for (let i = 0; i < 120 / RULE.battleSpeed; i++) game.update(.05);
         equal(b.tick, 120); results.push(JSON.stringify({ gate: b.gate, enemies: b.enemies, operators: b.operators }));
-        game.pause("USER"); game.update(100); equal(b.tick, 120); game.resume("USER"); game.update(.25); equal(b.tick, 120 + 5 * speed);
+        game.pause("USER"); game.update(100); equal(b.tick, 120); game.resume("USER"); game.update(.25); equal(b.tick, 120 + 5 * RULE.battleSpeed);
         const live = game.battle; game.command({ type: "MUSIC", enabled: false }); ok(game.battle === live); equal(game.state!.settings.music, false);
     }
     equal(results[0], results[1]);

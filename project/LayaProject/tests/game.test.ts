@@ -82,17 +82,17 @@ test("Concurrent valid save is never overwritten", () => {
 });
 test("Night settings save keeps live battle; reload replays baseline", () => {
     const m = new MemoryStore(), g = new GameSession(new SaveStore(m)); g.load(); g.newVillage(); g.command({ type: "NIGHT" }); for (let i = 0; i < 100; i++) g.update(.05); const live = g.battle;
-    g.command({ type: "SPEED", value: 2 }); ok(g.battle === live); const reloaded = new GameSession(new SaveStore(m)); reloaded.load(); equal(reloaded.battle!.tick, 0); equal(reloaded.state!.settings.speed, 2);
+    g.command({ type: "MUSIC", enabled: false }); ok(g.battle === live); const reloaded = new GameSession(new SaveStore(m)); reloaded.load(); equal(reloaded.battle!.tick, 0); equal(reloaded.state!.settings.speed, RULE.battleSpeed);
 });
 test("Background/resume and panel pause cannot erase user pause", () => {
-    const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.enter(); g.claimDailyRation(); g.command({ type: "NIGHT" }); g.pause("USER"); g.hide(); g.show(); g.resume("CHOICE"); g.update(2); equal(g.battle!.tick, 0); g.resume("WAIT_RESUME"); g.update(2); equal(g.battle!.tick, 0); g.resume("USER"); g.update(.05); equal(g.battle!.tick, RULE.minSpeed);
+    const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.enter(); g.claimDailyRation(); g.command({ type: "NIGHT" }); g.pause("USER"); g.hide(); g.show(); g.resume("CHOICE"); g.update(2); equal(g.battle!.tick, 0); g.resume("WAIT_RESUME"); g.update(2); equal(g.battle!.tick, 0); g.resume("USER"); g.update(.05); equal(g.battle!.tick, RULE.battleSpeed);
 });
 test("Tower dialog pause permits reassignment and resumes without changing the saved baseline", () => {
     const m = new MemoryStore(), g = new GameSession(new SaveStore(m)); g.load(); g.newVillage(); g.command({ type: "NIGHT" });
     const live = g.battle!, previous = live.operators[0], replacement = g.state!.people[4].id, baseline = JSON.stringify(g.state), writes = m.writes;
     g.reassign(0, replacement); equal(live.operators[0], previous);
     g.pause("CHOICE"); g.reassign(0, replacement); equal(live.operators[0], replacement); g.update(.1); equal(live.tick, 0);
-    g.resume("CHOICE"); g.update(.05); equal(live.tick, RULE.minSpeed); ok(g.battle === live); equal(g.pauses.size, 0);
+    g.resume("CHOICE"); g.update(.05); equal(live.tick, RULE.battleSpeed); ok(g.battle === live); equal(g.pauses.size, 0);
     equal(JSON.stringify(g.state), baseline); equal(m.writes, writes);
 });
 test("Closing tower dialog preserves an earlier manual pause", () => {
@@ -100,13 +100,13 @@ test("Closing tower dialog preserves an earlier manual pause", () => {
     const replacement = g.state!.people[4].id;
     g.pause("USER"); g.pause("CHOICE"); g.reassign(0, replacement); equal(g.battle!.operators[0], replacement);
     g.resume("CHOICE"); g.update(.1); equal(g.battle!.tick, 0); equal([...g.pauses], ["USER"]);
-    g.resume("USER"); g.update(.05); equal(g.battle!.tick, RULE.minSpeed);
+    g.resume("USER"); g.update(.05); equal(g.battle!.tick, RULE.battleSpeed);
 });
 test("Closing tower dialog does not clear background or return confirmation pauses", () => {
     const g = new GameSession(new SaveStore(new MemoryStore())); g.load(); g.newVillage(); g.enter(); g.claimDailyRation(); g.command({ type: "NIGHT" });
     g.pause("CHOICE"); g.hide(); g.resume("CHOICE"); g.update(.1); equal(g.battle!.tick, 0); ok(g.pauses.has("BACKGROUND"));
     g.show(); g.update(.1); equal(g.battle!.tick, 0); ok(g.pauses.has("WAIT_RESUME"));
-    g.resume("WAIT_RESUME"); g.update(.05); equal(g.battle!.tick, RULE.minSpeed);
+    g.resume("WAIT_RESUME"); g.update(.05); equal(g.battle!.tick, RULE.battleSpeed);
 });
 test("Pending save still blocks tower reassignment under dialog pause", () => {
     const m = new MemoryStore(), g = new GameSession(new SaveStore(m)); g.load(); g.newVillage(); g.command({ type: "NIGHT" }); g.pause("CHOICE");

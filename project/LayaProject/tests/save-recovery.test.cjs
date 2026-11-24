@@ -60,10 +60,10 @@ test('a prior annual-challenge save remains untouched until the player chooses t
 test('device settings inherit legacy values and write independently of a running battle and village slots', () => {
     const body = JSON.parse(envelope(CONFIG_VERSION));
     delete body.checksum;
-    body.payload.settings = { speed: 3, music: false };
+    body.payload.settings = { speed: 2, music: false };
     const raw = canonical({ ...body, checksum: crc32(canonical(body)) });
     const storage = new MemoryStore([raw, null]), game = session(storage);
-    assert.deepEqual(game.state.settings, body.payload.settings);
+    assert.deepEqual(game.state.settings, { speed: 3, music: false });
     assert.equal(storage.writes.length, 0);
     game.command({ type: 'NIGHT' });
     const snapshot = keys.map(key => storage.read(key)), battle = game.battle;
@@ -73,16 +73,15 @@ test('device settings inherit legacy values and write independently of a running
     assert.equal(game.saves.pending, null);
     assert(!game.pauses.has('SAVE_PENDING'));
     storage.fail = null;
-    game.command({ type: 'SPEED', value: 2 });
     game.command({ type: 'MUSIC', enabled: true });
     assert.equal(game.battle, battle);
     assert.deepEqual(keys.map(key => storage.read(key)), snapshot);
     // Newer device settings may add fields that the village checksum cannot serialize.
     storage.values.set('daidai_village.device_settings', '{"speed":2,"music":true,"interfaceScale":1.5}');
     const reopened = session(storage);
-    assert.deepEqual(reopened.state.settings, { speed: 2, music: true });
+    assert.deepEqual(reopened.state.settings, { speed: 3, music: true });
     reopened.newVillage();
-    assert.deepEqual(reopened.state.settings, { speed: 2, music: true });
+    assert.deepEqual(reopened.state.settings, { speed: 3, music: true });
 });
 
 test('old/future config and schema mismatches preserve both original slots until explicit reset', () => {
@@ -113,7 +112,7 @@ test('confirmed reset handles both foreign, mixed, missing and corrupt slots and
         storage.values.set('ranking-independent-record', 'untouched'); game.newVillage(true);
         assertNewVillage(game, storage); assert.equal(storage.values.get('ranking-independent-record'), 'untouched');
         assert.equal(storage.writes.length, 2);
-        game.command({ type: 'SPEED', value: 3 }); assert.equal(storage.writes.length, 3);
+        game.command({ type: 'MUSIC', enabled: false }); assert.equal(storage.writes.length, 3);
         assert.equal(session(storage).state.settings.speed, 3);
     }
 });

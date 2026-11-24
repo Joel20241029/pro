@@ -3,7 +3,8 @@ export const ITEMS = {
     food_bag: { name: "粮袋", description: "补充粮食", icon: "icon_food" },
     wood_pack: { name: "木材包", description: "补充木材", icon: "icon_wood" },
     gate_kit: { name: "修门工具", description: "用于修补城门", icon: "icon_build" },
-    patrol_ration: { name: "巡防口粮", description: "下一场守夜淡紫儿旋甩伤害 +50%", icon: "icon_food" },
+    patrol_ration: { name: "靓哥的底线", description: "下次旋甩守夜，伤害 +50%", icon: "icon_liang_briefs" },
+    liang_indulgence: { name: "靓哥的放纵", description: "下次旋甩守夜，砸地半径 +25%", icon: "icon_liang_bra" },
     seed_pack: { name: "种子包", description: "农田物资", icon: "icon_food" },
     planks: { name: "备用木板", description: "建筑物资", icon: "icon_wood" },
     liang_essence: { name: "靓哥的精华", description: "成年村民随机延后退休 5–20 夜", icon: "icon_liang_essence" }
@@ -20,8 +21,18 @@ export const LIANG_ESSENCE = {
     line: "靓哥，我好了"
 } as const;
 
-/** 按商品上架顺序陈列。道具下架后保留 ITEMS 定义，背包仍可识别及使用。 */
-/** 玩家确认的单夜补给。白天使用后下一夜伤害提高 50%，不叠加，补员间隔不变。 */
-export const PATROL_RATION = { id: "patrol_ration", food: 40, wood: 20, damageMultiplier: 1.5 } as const;
+/** 靓哥的底线沿用原背包 ID。白天使用后下次旋甩守夜伤害提高 50%，同一夜仅可准备一份。 */
+export const PATROL_RATION = {
+    id: "patrol_ration", food: 40, wood: 20, damageMultiplier: 1.5,
+    lore: "淡紫儿们把靓哥的红底裤往旗杆上一挂，个个精神抖擞，甩起人来格外卖力。"
+} as const;
 
-export const SHOP_PRODUCTS: readonly { readonly id: ItemId; readonly food: number; readonly wood: number }[] = [LIANG_ESSENCE, PATROL_RATION];
+/** 与底线同价；一件使下次旋甩守夜的砸地半径增加四分之一，命中面积随半径的平方变化。 */
+export const LIANG_INDULGENCE = {
+    id: "liang_indulgence", food: 40, wood: 20, radiusMultiplier: 1.25,
+    lore: "村中人称靓哥为「宇宙大帝」。他守了半辈子的清白，头一回没守住。那一夜的事，靓哥只字不提，村里却多了这么一件神器。"
+} as const;
+export type PatrolItemId = typeof PATROL_RATION.id | typeof LIANG_INDULGENCE.id;
+
+/** 按商品上架顺序陈列，详情显示配置的传闻。道具下架后，背包仍按 ITEMS 识别。 */
+export const SHOP_PRODUCTS: readonly { readonly id: ItemId; readonly food: number; readonly wood: number; readonly lore?: string }[] = [LIANG_ESSENCE, PATROL_RATION, LIANG_INDULGENCE];

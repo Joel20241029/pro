@@ -41,8 +41,8 @@ test('skills are ordered in five-wave steps, with the hand speed lore and learni
 });
 
 test('fourteen taps preserve the freeze until timeout and apply proportional damage once', () => {
-    for (const speed of [2, 3, 'switch']) {
-        const { game, b } = setup(speed === 'switch' ? 2 : speed);
+    for (const speed of [2, 3]) {
+        const { game, b } = setup(speed);
         assert(!game.tapHandSpeed());
         b.enemies[0].speed = 25; b.enemies[0].slow = .5; b.enemies[0].slowTicks = 10;
         b.base.wave.entries[0].tick = b.tick;
@@ -52,7 +52,6 @@ test('fourteen taps preserve the freeze until timeout and apply proportional dam
         assert(!b.canCast(DEFAULT_TACTIC));
         for (let i = 0; i < 14; i++) assert(game.tapHandSpeed());
         for (let i = 0; i < 30; i++) game.update(.031);
-        if (speed === 'switch') game.state.settings.speed = 3;
         game.pause('BACKGROUND');
         const left = b.handSpeed.remaining;
         game.update(.2);

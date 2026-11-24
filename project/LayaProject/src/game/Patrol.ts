@@ -1,11 +1,12 @@
-import { PATROL } from "../config/PatrolConfig";
+import { PATROL, PATROL_MODE } from "../config/PatrolConfig";
 import { RULE } from "../config/RuleConfig";
 import { ENEMIES } from "../config/EnemyConfig";
 import { SUMMON_CHARGE } from "../config/TacticConfig";
 import { PATH_LENGTH, RoadPoint } from "./BattleRoad";
 import { GameState } from "./GameState";
 import { patrolCaptain, patrolSpinStats, patrolStats } from "./PatrolRules";
-import { lanePoint, SummonCollision } from "./SummonCharge";
+import { EnemyRoadStep, lanePoint, SummonCollision } from "./SummonCharge";
+import { PatrolRapid } from "./PatrolRapid";
 import { PatrolSpin } from "./PatrolSpin";
 import type { Enemy } from "./BattleSimulation";
 
@@ -20,6 +21,7 @@ export class Patrol {
     units: PatrolUnit[] = [];
     readonly stats: ReturnType<typeof patrolStats>;
     private readonly squad: boolean;
+    readonly rapid: PatrolRapid | null;
     readonly spin: PatrolSpin | null;
     private due = Math.round(PATROL.first / RULE.step);
     deployments = 0;
@@ -28,14 +30,22 @@ export class Patrol {
     constructor(state: GameState) {
         this.squad = state.night?.patrolSquad === true;
         const captain = patrolCaptain(state);
-        this.stats = state.night?.patrolSpin ? patrolSpinStats(state.patrol.level, captain, state.night.patrolRation)
+        const rapid = state.night?.patrolMode === PATROL_MODE.rapid;
+        this.stats = state.night?.patrolSpin || rapid ? patrolSpinStats(state.patrol.level, captain, state.night?.patrolRation)
             : patrolStats(state.patrol.level, captain, this.squad);
-        this.spin = state.night?.patrolSpin ? new PatrolSpin(this.stats) : null;
+        this.rapid = rapid ? new PatrolRapid(this.stats.damage, state.patrol.level) : null;
+        this.spin = state.night?.patrolSpin ? new PatrolSpin(this.stats, state.night.patrolWideImpact) : null;
     }
 
-    secondsUntil(tick: number) { return this.spin?.secondsUntil(tick) ?? Math.max(0, this.due - tick) * RULE.step; }
+    secondsUntil(tick: number) { return this.rapid?.reloadRemaining ?? this.spin?.secondsUntil(tick) ?? Math.max(0, this.due - tick) * RULE.step; }
 
-    advance(tick: number, targets: readonly PatrolTarget[]): SummonCollision[] {
+    advance(tick: number, targets: readonly PatrolTarget[], traces: readonly EnemyRoadStep[] = [], realSeconds = RULE.step / RULE.battleSpeed): SummonCollision[] {
+        if (this.rapid) {
+            const hits = this.rapid.advance(realSeconds, traces);
+            this.deployments = this.rapid.shotsFired;
+            this.kills += hits.filter(hit => hit.enemy.hp <= 0).length;
+            return hits;
+        }
         if (this.spin) {
             const hits = this.spin.advance(tick, targets);
             this.deployments = this.spin.deployments;

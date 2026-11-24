@@ -37,8 +37,8 @@ export const FEEDBACK = {
 
 /** 128 px 定稿设计网格对应既有 160 逻辑像素，供复用箭击的表现保留原有大小。 */
 const TOWER_IMPACT_SIZE = 128 * 1.25;
-/** 三塔的弹体命中效果在 160 逻辑像素基础上扩大 25%，从 320 px 原画布采样。 */
-export const TOWER_IMPACT_SCALE = 1.25;
+/** 三塔弹体命中时显示 300 逻辑像素，为上一版 200 的 1.5 倍。继续采样 320 像素原帧。 */
+export const TOWER_IMPACT_SCALE = 300 / TOWER_IMPACT_SIZE;
 export const TOWER_IMPACT = {
     ARROW: { clip: "fx_impact_arrow", fps: FEEDBACK.impact.fps, frameCount: FEEDBACK.impact.frameCount, size: TOWER_IMPACT_SIZE },
     STONE: { clip: "fx_tower_stone_impact", fps: 28, frameCount: 8, size: TOWER_IMPACT_SIZE },

@@ -1,5 +1,6 @@
 import { QUALITY_CHANCE_SCALE, rollVillagerQuality } from "../config/VillagerQuality";
 import { ADULT_APPEARANCE, GROWTH, RULE, Skill, TOWERS, TowerKind, VILLAGER_NAMES } from "./GameConfig";
+import { PATROL_MODE, PatrolMode } from "../config/PatrolConfig";
 import { GameState, isElder, isWorkingAdult, Job, Person } from "./GameState";
 import { SeededRandom } from "./SeededRandom";
 import { generateWave } from "./WaveGenerator";
@@ -44,6 +45,9 @@ export type Command = {
     type: "BUILD";
     kind: "HOUSE" | "FARM" | "LOGGING" | "HOUSING" | "GATE";
 } | {
+    type: "PATROL_MODE";
+    mode: PatrolMode;
+} | {
     type: "PATROL_UPGRADE";
 } | {
     type: "PATROL_CAPTAIN";
@@ -72,9 +76,6 @@ export type Command = {
     type: "FAVORITE";
     id: string;
 } | {
-    type: "SPEED";
-    value: 2 | 3;
-} | {
     type: "MUSIC";
     enabled: boolean;
 };
@@ -84,11 +85,6 @@ export function applyCommand(s: GameState, c: Command) {
         requireRule(amount !== null, "今天的口粮已领取，或当前需先完成村务");
         s.food += amount;
         s.legacy.lastRationDate = c.date;
-        return;
-    }
-    if (c.type === "SPEED") {
-        requireRule(c.value === RULE.minSpeed || c.value === RULE.maxSpeed, "无效倍速");
-        s.settings.speed = c.value;
         return;
     }
     if (c.type === "MUSIC") {
@@ -218,6 +214,10 @@ export function applyCommand(s: GameState, c: Command) {
             }
             break;
         }
+        case "PATROL_MODE":
+            requireRule(c.mode === PATROL_MODE.spin || c.mode === PATROL_MODE.rapid, "未知的淡紫儿打法");
+            s.patrol.mode = c.mode;
+            break;
         case "PATROL_UPGRADE": {
             const reason = patrolUpgradeReason(s);
             requireRule(reason === null, reason!);
@@ -269,10 +269,18 @@ export function applyCommand(s: GameState, c: Command) {
             const e = economy(s);
             s.night = { adults: s.people.filter(isWorkingAdult).map(p => p.id), elders: s.people.filter(isElder).map(p => p.id), cared: s.people.filter(p => isWorkingAdult(p) && p.job === "CARE").map(p => p.careChild!), hungry: e.hungry, tactic: s.tactics.equipped };
             if (s.tactics.extraSlots) s.night.extraSlots = s.tactics.extraSlots.slice();
-            if (s.patrol.captain) { s.night.patrolSquad = true; s.night.patrolSpin = true; }
-            if (s.patrol.rationReady) {
+            if (s.patrol.captain) {
+                s.night.patrolSquad = true;
+                s.night.patrolMode = s.patrol.mode ?? PATROL_MODE.spin;
+                if (s.night.patrolMode === PATROL_MODE.spin) s.night.patrolSpin = true;
+            }
+            if (s.night.patrolSpin && s.patrol.rationReady) {
                 s.night.patrolRation = true;
                 delete s.patrol.rationReady;
+            }
+            if (s.night.patrolSpin && s.patrol.radiusReady) {
+                s.night.patrolWideImpact = true;
+                delete s.patrol.radiusReady;
             }
             s.food = e.endFood;
             s.wood = e.endWood;

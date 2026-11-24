@@ -4,6 +4,34 @@ const path=require('node:path');
 const root=process.env.DAIDAI_TEST_BUILD;
 if(!root)throw new Error('Set DAIDAI_TEST_BUILD to compiled project under Downloads');
 const {WechatMusic}=require(path.join(root,'platform/WechatMusic.js'));
+test('patrol wind loops once per airborne interval and yields to the single landing thump', () => {
+    const {music, calls, tracks, events} = setup();
+    music.setEnabled(true); music.setBattle(true); music.setPatrolFlight(true); music.patrolLanding();
+    assert.equal(calls.created, 0);
+    music.interact();
+    for (let i = 0; i < 20; i++) music.setPatrolFlight(true);
+    const wind = tracks[1];
+    assert.equal(wind.src, 'resources/music/patrol_flight.mp3');
+    assert.equal(wind.loop, true); assert.equal(wind.played.length, 1);
+    music.setPatrolFlight(false); music.setPatrolFlight(false);
+    assert.equal(wind.stops, 1);
+    music.setPatrolFlight(true);
+    music.patrolLanding(); music.setPatrolFlight(false);
+    const thump = tracks[2];
+    assert.equal(wind.stops, 2); assert.equal(wind.played.length, 2);
+    assert.equal(thump.src, 'resources/music/patrol_landing.mp3');
+    assert.equal(thump.loop, false); assert.equal(thump.played.length, 1);
+    music.setPatrolFlight(true); music.setEnabled(false); music.setEnabled(true); music.setPatrolFlight(true);
+    assert.equal(wind.stops, 3); assert.equal(wind.played.length, 3);
+    music.interact(); music.setPatrolFlight(true);
+    events.begin.forEach(fn => fn()); events.end.forEach(fn => fn());
+    music.setPatrolFlight(true); music.patrolLanding();
+    assert.equal(wind.stops, 4); assert.equal(wind.played.length, 4); assert.equal(thump.played.length, 1);
+    music.interact(); music.setPatrolFlight(true); music.suspend(); music.setPatrolFlight(true);
+    assert.equal(wind.stops, 5); assert.equal(wind.played.length, 5);
+    music.destroy();
+    assert.equal(calls.destroy, 3);
+});
 function setup(){
  const events={begin:new Set(),end:new Set()}, calls={created:0,play:0,pause:0,destroy:0,problems:0}, tracks=[];
  global.wx={createInnerAudioContext(){
