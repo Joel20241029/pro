@@ -25,6 +25,7 @@ export class PatrolRapid {
     ammo: number;
     reloadRemaining = 0;
     shotsFired = 0;
+    elapsedSeconds = 0;
     direction: RoadPoint = { x: 0, y: -1 };
     readonly projectiles: RapidProjectile[] = [];
     readonly damage: number;
@@ -48,11 +49,12 @@ export class PatrolRapid {
         return true;
     }
 
-    stop() { this.held = false; }
+    stop() { this.held = false; this.intervalLeft = Math.max(0, this.intervalLeft); }
 
     get needsTargets() { return this.held || this.projectiles.length > 0; }
 
     advance(realSeconds: number, traces: readonly EnemyRoadStep[]): SummonCollision[] {
+        this.elapsedSeconds += realSeconds;
         if (!this.ammo) {
             this.reloadRemaining = Math.max(0, this.reloadRemaining - realSeconds);
             if (this.reloadRemaining < 1e-9) { this.reloadRemaining = 0; this.ammo = this.capacity; }
@@ -60,10 +62,12 @@ export class PatrolRapid {
         if (this.held && this.intervalLeft <= 1e-9) {
             this.projectiles.push({ index: this.shotsFired++, at: this.muzzle, direction: this.direction });
             this.ammo--;
-            this.intervalLeft = 1 / spec.shotsPerSecond;
+            this.intervalLeft += 1 / spec.shotsPerSecond;
             if (!this.ammo) { this.stop(); this.reloadRemaining = spec.reloadSeconds; }
         }
-        this.intervalLeft = Math.max(0, this.intervalLeft - realSeconds);
+        this.intervalLeft -= realSeconds;
+        // 半速时两发之间是 7.5 个战斗步。连射保留不足一步的余量，停火不积攒弹数。
+        if (!this.held) this.intervalLeft = Math.max(0, this.intervalLeft);
         const hits: SummonCollision[] = [];
         const distance = spec.speed * realSeconds;
         for (let i = 0; i < this.projectiles.length;) {
@@ -78,7 +82,8 @@ export class PatrolRapid {
             let first = Infinity, contact: EnemyRoadStep | undefined;
             for (const trace of traces) {
                 if (trace.enemy.hp <= 0) continue;
-                const point = contactTime(ENEMIES[trace.enemy.kind].boss ? boss : ordinary, trace);
+                const isBoss = ENEMIES[trace.enemy.kind].boss;
+                const point = contactTime(isBoss ? boss : ordinary, trace, isBoss ? spec.contact.boss : spec.contact.ordinary);
                 if (point <= trace.end && (point < first || point === first && contact && trace.enemy.seq < contact.enemy.seq)) {
                     first = point;
                     contact = trace;

@@ -86,6 +86,9 @@ def flame(pt, phase, scale):
     return img
 
 for i,kind in enumerate(kinds):
+    # The current palisade and its hinged leaves are rendered by render-cartoon.py.
+    if kind == 'gate':
+        continue
     box=boxes[i]
     master = sheet.crop(box)
     guide = master.copy()
@@ -145,29 +148,6 @@ for i,kind in enumerate(kinds):
         if i==2:
             clip('motion_slow_idle',[angular(sprite,cut,hinge,0,round(4*math.sin(k*math.tau/10))) for k in range(10)],6)
         clip('motion_'+kind+'_attack',frames,18,True,idle)
-    if i==3:
-        dl,dt=loc(149,615)
-        dr,db=loc(288,753)
-        draw=ImageDraw.Draw(base)
-        draw.rectangle((pixel(dl),pixel(dt),pixel(dr)-1,pixel(db)-1),fill=(58,32,19,255))
-        polygon(draw,[(dl+5,db-1),(dr-4,db-1),(dr-12,db-8),(dl+12,db-8)],fill=(128,79,41,255))
-        src=full.crop(tuple(map(pixel, (dl,dt,dr,db))))
-        dw,dh=src.size
-        mid=dw//2
-        doors=[]
-        for k in range(13):
-            amount=[0,.07,.21,.40,.62,.78,.81,.81,.66,.46,.23,.08,0][k]
-            canvas=blank()
-            for start,end in ((0,mid),(mid,dw)):
-                panel=src.crop((start,0,end,dh))
-                w=max(1,round(panel.width*(1-amount*.62)))
-                px=pixel(dl) if start==0 else pixel(dr)-w
-                canvas.alpha_composite(panel.resize((w,dh),Image.Resampling.BICUBIC),(px,pixel(dt)))
-            doors.append(canvas)
-        clip('motion_gate_doors',doors,10)
-        for side,x in [('left',84),('right',345)]:
-            pt=loc(x,684)
-            clip('motion_gate_fire_'+side,[flame(pt,k/8,.43) for k in range(8)],12)
     if i==4:
         smoke=[]
         for k in range(10):

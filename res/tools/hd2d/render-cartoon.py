@@ -120,39 +120,56 @@ def draw_on(asset, img, registered, *, foot=False):
     return out
 
 
+def bubble_button(name, size):
+    # Resolve the silhouette at four times source resolution. BOX integrates coverage
+    # without the bright or dark ringing that a sharpening filter adds to transparent edges.
+    w, h = size
+    circle = name.startswith('button_')
+    disabled = name == 'panel_button_disabled'
+    if circle or name == 'panel_button_gold':
+        face, lip, outline = '#ffcb73', '#e9a051', '#86504d'
+    elif disabled:
+        face, lip, outline = '#e9dfe4', '#d5c5cc', '#a8929e'
+    elif name == 'panel_button_red':
+        face, lip, outline = '#f5b2c1', '#da8b9e', '#995969'
+    else:
+        face, lip, outline = '#ffe1d9', '#edb1b4', '#9d626e'
+    ss = 4
+    canvas = blank((w * ss, h * ss))
+    brush = ImageDraw.Draw(canvas)
+    pad, edge, depth = (6, 5, 13) if circle else (3, 4, 8)
+    radius = h / 2 - pad if circle else 52
+    def shell(inset, foot, color):
+        box = (inset, inset, w - inset, h - inset - foot)
+        brush.rounded_rectangle(tuple(round(v * ss) for v in box),
+                                radius=round((radius - inset + pad) * ss), fill=color)
+    shell(pad, 0, outline)
+    shell(pad + edge, 0, lip)
+    shell(pad + edge, depth, face)
+    if not disabled:
+        # One broad reflection, entirely inside the fixed corner of the nine-slice.
+        cx, cy, rr, weight = (w * .46, h * .48, w * .36, 9) if circle else (54, 54, 35, 6)
+        xy = [(round((cx + rr * math.cos(math.radians(a))) * ss),
+               round((cy + rr * math.sin(math.radians(a))) * ss)) for a in range(209, 249)]
+        brush.line(xy, fill='#fff6df', width=weight * ss)
+        half = weight * ss / 2
+        for x, y in [xy[0], xy[-1]]:
+            brush.ellipse((x-half, y-half, x+half, y+half), fill='#fff6df')
+    return canvas.resize(size, Image.Resampling.BOX)
+
+
 def rounded_panel(name, size):
+    if name.startswith(('button_', 'panel_button_')):
+        return bubble_button(name, size)
     w, h = size
     out = blank(size)
     d = ImageDraw.Draw(out)
-    if name.startswith('button_'):
-        # Reuse the 384px round-button canvases; icons and labels are still runtime layers.
-        deep, rim, top, bottom = (
-            ('#533d79', '#75609f', '#cfc3f4', '#8a64c1') if name == 'button_heart_round'
-            else ('#773349', '#973f61', '#f8b7c4', '#c14c78')
-        )
-        d.ellipse((4, 23, w - 5, h - 4), fill=deep)
-        d.ellipse((4, 4, w - 5, h - 21), fill=rim)
-        face = blank(size)
-        start, end = ImageColor.getrgb(top), ImageColor.getrgb(bottom)
-        for y in range(h):
-            t = min(1, max(0, (y / h - .04) / .85))
-            ImageDraw.Draw(face).line((0, y, w, y), fill=tuple(round(x + (z - x) * t) for x, z in zip(start, end)) + (255,))
-        shape = Image.new('L', size)
-        ImageDraw.Draw(shape).ellipse((16, 16, w - 17, h - 33), fill=255)
-        out.paste(face, (0, 0), shape)
-        d.arc((37, 34, w - 40, h - 54), 207, 294, fill='#fff4df', width=9)
-        d.ellipse((w - 94, 92, w - 75, 111), fill='#fff4df')
-        return out
     # Source radii fit inside the existing nine-slice corners at all button sizes.
     styles = {
         'panel_parchment': ('#cb8998', '#f7cbc9', '#ffe6df', 44),
         'panel_header': ('#993e59', '#ac4f67', '#de8a9c', 35),
         'panel_card': ('#dba695', '#fff4e4', '#fffdf6', 31),
         'panel_card_disabled': ('#beaccc', '#ebe0f2', '#f7effb', 31),
-        'panel_button_gold': ('#cd925d', '#f8ce8f', '#ffe7bf', 29),
-        'panel_button_green': ('#88304f', '#a74062', '#df8499', 29),
-        'panel_button_red': ('#8b3b55', '#b04765', '#e58c9f', 29),
-        'panel_button_disabled': ('#9b849f', '#e8dce9', '#f5eaf6', 29),
         'panel_anchored_tip': ('#d4a18e', '#fff0d9', '#fffbf1', 29),
         'panel_tip': ('#d4a18e', '#fff0d9', '#fffbf1', 29),
         'panel_portrait_frame': ('#dbad9c', '#f9e0d4', '#fff4e5', 29),
@@ -431,6 +448,9 @@ def effect(name,size):
 def building(asset,registration):
     name=asset['id']
     size=(asset['width'],asset['height'])
+    if name == 'motion_gate_body':
+        master = MASTERS / 'palisade-gate-frame.png'
+        return Image.open(master).convert('RGBA').resize(size, SCALE), master
     if name=='hd_village_window_glow':
         return translucent_glow(size,(size[0]*.5,size[1]*.5),min(size)*.41,(255,194,77),198),artwork_hash_input()
     if name=='motion_patrol_icon':
@@ -450,25 +470,23 @@ def building(asset,registration):
     wave=math.sin(i*math.tau/8)
     keyed={
         'motion_arrow_attack':'crossbow','motion_stone_attack':'catapult',
-        'motion_slow_attack':'crystal','motion_slow_idle':'crystal','motion_gate_doors':'doors',
+        'motion_slow_attack':'crystal','motion_slow_idle':'crystal',
         'motion_farm_wheat':'wheat','motion_patrol_lantern':'lantern','motion_patrol_streamer':'streamer'
     }
+    if pref == 'motion_gate_doors':
+        master = MASTERS / 'palisade-gate-doors.png'
+        pair = Image.open(master).convert('RGBA')
+        mid = round(pair.width * .503)  # Center seam of the approved double doors.
+        opening = (0,.09,.2,.36,.59,.77,.83,.83,.69,.45,.24,.08,0)[i]
+        out = blank(size)
+        for left, right, target in [(0, mid, w//2), (mid, pair.width, w-w//2)]:
+            width = max(1, round(target * (1-opening*.85)))
+            leaf = pair.crop((left, 0, right, pair.height)).resize((width, h), SCALE)
+            out.alpha_composite(leaf, (0 if left == 0 else w-width, 0))
+        return out, master
     if pref in keyed:
         key=keyed[pref]
         image=art(key)
-        if pref=='motion_gate_doors':
-            box=frame_box(asset,registration);out=blank(size);d=ImageDraw.Draw(out)
-            x,y,x1,y1=box
-            d.rectangle(box,fill='#65361f')
-            cut=(0,.09,.2,.36,.59,.77,.83,.83,.69,.45,.24,.08,0)[i]
-            image=image.resize((x1-x,y1-y),SCALE)
-            mid=image.width//2
-            for start,end,dx in [(0,mid,x),(mid,image.width,x1)]:
-                half=image.crop((start,0,end,image.height))
-                width=max(1,round(half.width*(1-cut*.64)))
-                half=half.resize((width,half.height),SCALE)
-                out.alpha_composite(half,(dx if start==0 else dx-width,y))
-            return out,source(key)
         if pref in ('motion_arrow_attack','motion_stone_attack'):
             angle=([-10,-18,-12,-5,4,5,2,0,0] if key=='crossbow' else [26,45,33,19,8,-6,-4,0,0])[i]
         elif pref=='motion_slow_attack':
@@ -794,32 +812,38 @@ def main():
     args=argparse.ArgumentParser()
     args.add_argument('--actors-only',action='store_true',help='Rebuild character drawings, their UI icons and effects')
     args.add_argument('--tower-impacts-only',action='store_true',help='Rebuild only the three tower hit sequences')
+    args.add_argument('--gate-only',action='store_true',help='Rebuild the palisade frame and hinged leaves')
     args.add_argument('--flower-valley-only',action='store_true',help='Rebuild the flower-valley map and interface surfaces')
     args.add_argument('--ui-surfaces-only',action='store_true',help='Rebuild only the common interface surfaces')
     options=args.parse_args()
     surface_only=options.flower_valley_only or options.ui_surfaces_only
-    limited=options.actors_only or options.tower_impacts_only or surface_only
-    if not options.tower_impacts_only and not options.ui_surfaces_only:
+    limited=options.actors_only or options.tower_impacts_only or surface_only or options.gate_only
+    if not options.tower_impacts_only and not options.ui_surfaces_only and not options.gate_only:
         register_boards()
     recipe=json.loads(RECIPE.read_text())
     apply_motion_quality(recipe)
     registration=json.loads((SOURCE/'registration.json').read_text())
     # The approved hit lettering is a standalone authored image, outside the cartoon contact sheets.
-    active=[a for a in recipe['assets'] if a['runtime'] and a['id'] != 'fx_patrol_bang']
+    active=[a for a in recipe['assets'] if a['runtime'] and a['id'] not in ('fx_patrol_bang', 'fx_patrol_uh')]
     if set(registration)!=set(a['id'] for a in active):
         raise ValueError('active recipe and geometry registration must match')
     RASTER.mkdir(exist_ok=True)
-    actors=None if options.tower_impacts_only or surface_only else SimpleActors(ROOT,MASTERS,chroma,registration)
+    actors=None if options.tower_impacts_only or surface_only or options.gate_only else SimpleActors(ROOT,MASTERS,chroma,registration)
     report=SOURCE/'render-report.json'
     proofs=json.loads(report.read_text()) if limited else {}
     count=0
     for a in active:
+        if options.gate_only and a['id'] != 'motion_gate_body' and a['animation'] != 'motion_gate_doors':
+            continue
         if surface_only and a['category'] not in ('ui/panels','ui/buttons') and not (options.flower_valley_only and a['category']=='terrain'):
             continue
         if options.tower_impacts_only and a['animation'] not in ('fx_impact_arrow', 'fx_tower_stone_impact', 'fx_tower_frost_impact'):
             continue
         if options.actors_only and a['category'] not in ('characters','enemies','enemy-parts','effects') and a['id'] not in ('icon_population','icon_baby'):
             continue
+        if a['id'].startswith('panel_button_'):
+            # A 52px curve and 3px clearance fit inside each fixed 60px slice.
+            a['nineSlice'].update(top=60, bottom=60, left=60, right=60, scale=.72)
         image,master=render(a,registration,actors)
         assert image.size==(a['width'],a['height']) and image.getbbox(),a['id']
         f=RASTER/(a['id']+'.png')

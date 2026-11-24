@@ -38,12 +38,12 @@ export function drawTravelerPanel(ctx: PanelContext, state: GameState, traveler:
     };
 
     const profile = card("profile", LAYOUT.profile), text = residentCardText.bind(null, ctx, profile);
-    if (special) text(quality.label, 28, 16, 100, 39, 28, traveler.quality === "HERO" ? C.heroName : C.timber, true);
-    text(traveler.name, 28, special ? 55 : 36, 340, 58, 49, C.ink, true);
-    text("希望加入村落", 28, special ? 124 : 106, 338, 36, 27, C.muted);
-    profile.graphics.drawEllipse(487, 93, 72, 72, "#f1d7a4", null, 0);
-    profile.graphics.drawEllipse(487, 93, 68, 68, "#f7e4b9", null, 0);
-    ctx.ui.image(profile, ctx.art.portraitId(traveler), 416, 20, 142, 146);
+    if (special) text(quality.label, 228, 16, 100, 39, 28, traveler.quality === "HERO" ? C.heroName : C.timber, true);
+    text(traveler.name, 228, special ? 55 : 36, 340, 58, 49, C.ink, true);
+    text("希望加入村落", 228, special ? 124 : 106, 338, 36, 27, C.muted);
+    profile.graphics.drawEllipse(112, 93, 84, 84, "#f1d7a4", null, 0);
+    profile.graphics.drawEllipse(112, 93, 80, 80, "#f7e4b9", null, 0);
+    ctx.ui.image(profile, ctx.art.portraitId(traveler), 22, 5, 180, 176);
 
     drawResidentTalent(ctx, card("talent", LAYOUT.talent), traveler, true);
     if (special) drawResidentQuality(ctx, card("bonus", LAYOUT.bonus), quality, true);

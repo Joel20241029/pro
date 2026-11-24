@@ -17,18 +17,18 @@ const FAMILY_UI = {
     rowGap: 14,
     marriageHeight: 194,
     nurtureHeight: 446,
-    portrait: 106
+    portrait: 120
 } as const;
 
 function drawPartners(ctx: PanelContext, card: Laya.Sprite, s: GameState, family: Family, cardWidth: number) {
     const portrait = FAMILY_UI.portrait, heart = 48, center = cardWidth / 2;
     family.partners.forEach((id, i) => {
         const parent = person(s, id), x = cardWidth * (i ? .75 : .25);
-        ctx.ui.image(card, ctx.art.portraitId(parent), x - portrait / 2, 18, portrait);
+        ctx.ui.image(card, ctx.art.portraitId(parent), x - portrait / 2, 8, portrait);
         const name = ctx.ui.label(card, coloredName(parent), x - 128, 130, 256, 29, C.ink, true, 42);
         name.align = "center"; name.wordWrap = false; name.overflow = Laya.Text.ELLIPSIS;
     });
-    ctx.ui.image(card, "icon_heart", center - heart / 2, 18 + (portrait - heart) / 2, heart);
+    ctx.ui.image(card, "icon_heart", center - heart / 2, 8 + (portrait - heart) / 2, heart);
 }
 
 export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
@@ -70,8 +70,10 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
     if (!s.families.length) {
         const text = nurture ? "还没有可以养育的家庭\n先到「成家」安排村民"
             : hints.marriage ? "还没有家庭\n点击上方按钮，为村民牵线吧" : "还没有家庭\n可以等孩子成年或旅人加入";
+        const emptyIcon = 108;
+        ctx.ui.image(box, nurture ? "icon_baby" : "icon_family", (box.width - emptyIcon) / 2, rowsTop + viewport / 2 - 109, emptyIcon);
         const empty = ctx.ui.label(box, text,
-            UI.inset, rowsTop, UI.contentWidth, 32, C.muted, false, viewport);
+            UI.inset, rowsTop + viewport / 2 + 7, UI.contentWidth, 28, C.muted, false, 90);
         empty.name = "emptyState";
         empty.align = "center"; empty.valign = "middle";
         return;

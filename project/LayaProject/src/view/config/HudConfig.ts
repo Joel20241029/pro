@@ -26,7 +26,8 @@ export const HUD = {
     date: { x: 232, top: 0, width: 256, font: 25, height: 32 },
     // 高清图标按可见裁框居中后与文字同高；44px图文区及8px间距避免透明留白造成错位。
     resource: { x: 28, step: 226, width: 212, textY: 0, textWidth: 154, font: 30, minFont: 20, height: 44, icon: 44, iconY: 4, gap: 8, textPadding: 4 },
-    gate: { x: 304, top: -162, width: 112, font: 22, height: 28, stroke: 1.5, barX: 316, barTop: -130, barWidth: 88, barHeight: 7, barInset: 2, fillWidth: 84, fillHeight: 3, dangerRatio: .35 },
+    // 白天将血条放在矮门顶端；连发时将整组读数放到门脚下方，为炮身转向留出空间。
+    gate: { x: 304, width: 112, font: 22, height: 28, stroke: 1.5, barTop: -76, rapidBarBottom: 70, barWidth: 88, barHeight: 7, barInset: 2, fillWidth: 84, fillHeight: 3, dangerRatio: .35 },
     // 四塔说明贴近足底（pad.y-95+124*15/16），统一居中且不按塔位左右偏移。
     // 20号字、2px行距和轻描边让长精英名也与短屏城门分开；144宽保持两行，点击区另按放大后的塔身配置。
     tower: { hitX: -68, hitY: -98, hitWidth: 136, hitHeight: 152, labelWidth: 144, top: 24, font: 20, leading: 2, stroke: 1.5, occupiedHeight: 44, emptyHeight: 28 },
@@ -44,8 +45,8 @@ export const HUD = {
         info: { x: 28, y: 12, width: 474, height: 36, font: 24 },
         wave: { x: 536, y: 0, width: 156, height: 60, font: 24 },
         // 四字按钮的墨迹保持在圆皮内圈，圆弧收窄从第 86 个逻辑像素开始计。
-        start: { x: 274, y: 54, size: 172, icon: 60, iconY: 26, textX: 29, textY: 90, textWidth: 114, textHeight: 36, font: 28, stroke: 1.4 },
-        navigation: { xs: [28, 148, 468, 588], y: 92, width: 104, height: 112, icon: 48, iconY: 12, textX: 8, textY: 68, textHeight: 34, font: 28 }
+        start: { x: 274, y: 54, size: 172, icon: 70, iconY: 17, textX: 29, textY: 90, textWidth: 114, textHeight: 36, font: 28, stroke: 1.4 },
+        navigation: { xs: [28, 148, 468, 588], y: 92, width: 104, height: 112, icon: 57, iconY: 7, textX: 8, textY: 68, textHeight: 34, font: 28 }
     },
     /** 守夜底栏沿用 242 高的安全区。右上固定暂停，下一行按已装配数量居中；所有尺寸为 720 宽逻辑像素。 */
     night: {
@@ -59,7 +60,7 @@ export const HUD = {
             { y: 76, size: 148, centers: [197, 360, 523] }
         ],
         // 两行分别按圆皮在该高度的宽度留边，缩小到多槽时沿用同一比例。
-        heart: { icon: 52, iconY: 24, textY: 79, textWidth: 118, textHeight: 32, textFont: 28,
+        heart: { icon: 61, iconY: 15, textY: 79, textWidth: 118, textHeight: 32, textFont: 28,
             noteY: 108, noteWidth: 76, noteHeight: 28, noteFont: 19, stroke: 1.4 },
         ring: { radius: 90, width: 4, segments: 64, color: "#fff0a3", track: "#a76b26", cooldownColor: "#e6eddb", cooldownTrack: "#80916e" }
     },

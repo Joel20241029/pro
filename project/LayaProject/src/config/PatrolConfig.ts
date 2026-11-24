@@ -19,12 +19,14 @@ export const PATROL = {
     // 城门连发按实际操作秒计时。一级八发，此后每升一级加三发，延长一仓可连射的时间。
     rapid: {
         name: "淡紫儿突突队", capacity: 8, roundsPerLevel: 3, shotsPerSecond: 4, reloadSeconds: 4,
-        // 连发单体命中取同级无道具旋甩伤害的六分之一，初始普通队长每发三点。
-        damageShare: 1 / 6,
+        // 连发单发基于同级无道具旋甩伤害。按首夜常见袭村怪 35 生命校准，普通队长一级每发 20，两发击倒。
+        damageShare: 1.25,
         // 标准地图的城门转台和枪口；触摸时表现层提供当前屏幕对应的屋顶投影。弹速以参考像素/现实秒计。
-        origin: { x: 360, y: 712 }, muzzleDistance: 104, speed: 700,
+        origin: { x: 360, y: 777 }, muzzleDistance: 104, speed: 700,
         // 小人撞到角色躯干即退场；碰撞中心从脚底上移，首领按较大的形体对齐。
-        ordinaryCenterHeight: 22, bossCenterHeight: 35
+        ordinaryCenterHeight: 22, bossCenterHeight: 35,
+        // 单发扫掠的躯干椭圆半轴（地图逻辑像素）。较旧判定各扩大约三分之一，分别匹配普通怪和首领的体型。
+        contact: { ordinary: { x: 32, y: 19 }, boss: { x: 44, y: 25 } }
     },
     // 双人旋转按战斗步推进。冷却来自补员，后期每级仍加伤害，补员趋近保底时间。
     spin: {

@@ -6,8 +6,8 @@ import { patrolArc } from "../game/PatrolSpin";
 import type { GameLayout } from "./GameLayout";
 import type { SpriteFrames } from "./SpriteFrames";
 
-// 门楼贴图在长短屏上均等比展示。转盘距门脚 110 逻辑像素，和枪口保持同一视觉长度。
-export const RAPID_ROOF_LIFT = 110;
+// 矮寨门横梁距门脚约 53 逻辑像素，炮身转轴、射击起点和起手区均以这里为准。
+export const RAPID_ROOF_LIFT = 53;
 /** 触点和枪口先在画面中对齐，再转换成战斗使用的地图单位。 */
 export function rapidProjection(layout: GameLayout, ux: number, uy: number) {
     const y = layout.gateY - RAPID_ROOF_LIFT, refY = layout.referenceY(y);
@@ -24,7 +24,7 @@ const LOOK = { dragThreshold: 12, arrowGap: 43, arrowMin: 66, arrowGrowth: 130,
     // 连发单独扩大门楼起手区；离开此区域后仍由最初按下的触点控制。
     rapidHalfWidth: 124, rapidAbove: 124, rapidBelow: 124,
     // 落地沿用 .72 表现秒；空砸沿用十颗小尘粒。群怪共用一团命中尘土。
-    dustCount: 10, cueSeconds: .72, wordWidth: 173 } as const;
+    dustCount: 10, cueSeconds: .72, wordWidth: 173, hitWordScale: .66 } as const;
 // 单团尘云的手绘轮廓，按命中半径记录横向位置、地面纵深、扬起高度和两轴半径。
 // 较高的中央烟柱和较低的两翼共用底部阴影；调整只影响守夜落地表现。
 const DUST_CROWN = [
@@ -79,6 +79,9 @@ export class PatrolThrowCue {
     private touchRegion = new Laya.Rectangle();
     private capture = new Laya.Sprite();
     private word?: Laya.Sprite;
+    // 每颗命中弹独立弹字；同一轮连射反复利用已淡出的节点。
+    private rapidWords: { node: Laya.Sprite; at: RoadPoint; started: number; side: number }[] = [];
+    get hasRapidWords() { return this.rapidWords.some(word => word.node.visible); }
     private layout: GameLayout | null = null;
     private battle: BattleSimulation | null = null;
     private press: { id: number; x: number; y: number } | null = null;
@@ -133,7 +136,7 @@ export class PatrolThrowCue {
         else if (spin) this.placeHitRegion(layout, spin.actors);
         if (!this.touchRegion.contains(point.x, point.y) || (!rapid && !spin?.gather())) return;
         this.press = { id: event.touchId, x: point.x, y: point.y };
-        if (!rapid) this.game.setPatrolAiming(true);
+        this.game.setPatrolAiming(true);
         const root = this.world.parent as Laya.Sprite;
         this.capture.size(root.width, root.height);
         root.addChild(this.capture);
@@ -146,7 +149,7 @@ export class PatrolThrowCue {
     private move(event: Laya.Event) {
         if (!this.press || event.touchId !== this.press.id) return;
         const rapid = this.battle?.patrol?.rapid;
-        if (!(rapid ? this.game.patrolRapidReady : this.game.patrolDragReady) || event.nativeEvent?.type === "touchcancel") { this.cancel(); return; }
+        if (!this.game.patrolAiming || !(rapid ? this.game.patrolRapidReady : this.game.patrolDragReady) || event.nativeEvent?.type === "touchcancel") { this.cancel(); return; }
         const layout = this.layout!;
         const point = this.world.globalToLocal(this.p.setTo(event.stageX, event.stageY));
         if (rapid) {
@@ -189,7 +192,7 @@ export class PatrolThrowCue {
     get aimHorizontal() { return this.preview?.ux; }
     get orbitAngle() { return this.preview ? this.angle : null; }
 
-    dispose() { this.cancel(); this.aim.removeSelf(); this.dust.destroy(); }
+    dispose() { this.cancel(); this.aim.destroy(true); this.dust.destroy(); }
 
     cancel() {
         if (!this.press) return;
@@ -222,8 +225,25 @@ export class PatrolThrowCue {
         this.layout = layout;
         const root = this.world.parent as Laya.Sprite | null;
         if (root && this.aim.parent === this.world) root.addChild(this.aim);
-        if (battle !== this.battle) { this.battle = battle; this.impact = null; this.cancel(); }
+        if (battle !== this.battle) {
+            this.battle = battle; this.impact = null; this.cancel();
+            for (const word of this.rapidWords) word.node.visible = false;
+        }
         for (const event of events) {
+            if (event.type === "patrol" && battle?.patrol?.rapid && this.art.ready("night")) {
+                let word = this.rapidWords.find(entry => !entry.node.visible);
+                if (!word) {
+                    const node = this.aim.addChild(new Laya.Sprite());
+                    node.name = "PatrolRapidHitWord";
+                    node.mouseEnabled = false;
+                    this.art.applyFrame(node, "fx_patrol_uh", LOOK.wordWidth);
+                    word = { node, at: event.at, started: time, side: 1 };
+                    this.rapidWords.push(word);
+                }
+                word.at = event.at; word.started = time;
+                word.side = event.index % 2 ? -1 : 1;
+                word.node.visible = true;
+            }
             if (event.type !== "patrolLanding") continue;
             // 追帧时同批可含不同战斗步。命中取这次旋甩的实际结算，怪物此时可能已经被击飞或移除。
             const hit = events.some(other => other.type === "patrol" && other.tick === event.tick && other.index === event.actor);
@@ -232,7 +252,7 @@ export class PatrolThrowCue {
         const spin = battle?.patrol?.spin, rapid = battle?.patrol?.rapid;
         const enabled = !blocked && (rapid ? this.game.patrolRapidReady : this.game.patrolDragReady);
         if (rapid && enabled) this.placeRapidHitRegion(layout);
-        if (!enabled) this.cancel();
+        if (!enabled || (this.press && !this.game.patrolAiming)) this.cancel();
         this.aim.mouseEnabled = enabled || !!this.press;
         if (this.press && this.capture.parent) {
             const root = this.capture.parent as Laya.Sprite;
@@ -241,6 +261,17 @@ export class PatrolThrowCue {
         const g = this.aim.graphics;
         g.clear();
         if (this.word) this.word.visible = false;
+        for (const word of this.rapidWords) {
+            if (!word.node.visible) continue;
+            const t = bound((time - word.started) / .36), node = word.node;
+            if (t >= 1) { node.visible = false; continue; }
+            const scale = (.7 + .45 * Math.sin(Math.PI / 2 * bound(t / .22)) - .15 * bound((t - .22) / .3)) * LOOK.hitWordScale;
+            node.scale(scale, scale);
+            node.alpha = 1 - bound((t - .46) / .54);
+            const w = node.width * scale / 2, h = node.height * scale / 2;
+            node.pos(Math.max(w, Math.min(PATROL.spin.map.width - w, word.at.x + word.side * (18 + 12 * t))),
+                Math.max(layout.mapTop + h, Math.min(layout.footerTop - h, layout.worldY(word.at.y) - 22 - 26 * t)));
+        }
         if ((enabled || this.press) && spin) {
             const center = spin.center, y = layout.worldY(center.y), radius = PATROL.spin.shoulder;
             this.placeHitRegion(layout, spin.actors);
@@ -305,7 +336,7 @@ export class PatrolThrowCue {
             this.word.mouseEnabled = false;
             this.art.applyFrame(this.word, "fx_patrol_bang", LOOK.wordWidth);
         }
-        const scale = (.7 + .45 * Math.sin(Math.PI / 2 * bound(t / .22)) - .15 * bound((t - .22) / .30)) * (hit ? .66 : .76);
+        const scale = (.7 + .45 * Math.sin(Math.PI / 2 * bound(t / .22)) - .15 * bound((t - .22) / .30)) * (hit ? LOOK.hitWordScale : .76);
         this.word.visible = true;
         this.word.scale(scale, scale);
         this.word.alpha = hit ? 1 - bound((t - .32) / .38) : 1 - bound((t - .62) / .31);

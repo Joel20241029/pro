@@ -66,8 +66,8 @@
     "bundles/music/patrol_flight.mp3",
     "bundles/music/patrol_landing.mp3"
   ],
-  "assetCount": 709,
-  "runtimeAssetCount": 575,
+  "assetCount": 694,
+  "runtimeAssetCount": 560,
   "reserveAssetCount": 134,
   "assets": [
     {
@@ -25132,12 +25132,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 902,
-        "y": 576,
-        "w": 96,
-        "h": 81
+        "x": 522,
+        "y": 810,
+        "w": 81,
+        "h": 96
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_food"
     },
@@ -25213,8 +25212,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_1",
       "atlasRect": {
-        "x": 60,
-        "y": 90,
+        "x": 90,
+        "y": 97,
         "w": 69,
         "h": 86
       },
@@ -25294,10 +25293,11 @@
       "atlasPage": "ui_1",
       "atlasRect": {
         "x": 2,
-        "y": 2,
-        "w": 90,
-        "h": 84
+        "y": 97,
+        "w": 84,
+        "h": 90
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
       "importedFrameId": "icon_population"
     },
@@ -25370,14 +25370,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_0",
+      "atlasPage": "ui_1",
       "atlasRect": {
-        "x": 856,
-        "y": 842,
+        "x": 2,
+        "y": 2,
         "w": 86,
         "h": 91
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
       "importedFrameId": "icon_build"
     },
     {
@@ -25451,11 +25451,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 902,
-        "y": 661,
-        "w": 96,
-        "h": 81
+        "x": 579,
+        "y": 677,
+        "w": 81,
+        "h": 96
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_house"
     },
@@ -25530,8 +25531,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 522,
-        "y": 814,
+        "x": 607,
+        "y": 777,
         "w": 78,
         "h": 96
       },
@@ -25609,7 +25610,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_1",
       "atlasRect": {
-        "x": 96,
+        "x": 92,
         "y": 2,
         "w": 73,
         "h": 84
@@ -25689,8 +25690,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 738,
-        "y": 749,
+        "x": 929,
+        "y": 677,
         "w": 93,
         "h": 83
       },
@@ -25768,8 +25769,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 763,
-        "y": 842,
+        "x": 865,
+        "y": 856,
         "w": 89,
         "h": 91
       },
@@ -25849,7 +25850,7 @@
       "atlasPage": "ui_1",
       "atlasRect": {
         "x": 2,
-        "y": 365,
+        "y": 282,
         "w": 76,
         "h": 82
       },
@@ -25929,7 +25930,7 @@
       "atlasPage": "ui_1",
       "atlasRect": {
         "x": 2,
-        "y": 274,
+        "y": 191,
         "w": 87,
         "h": 87
       },
@@ -26007,8 +26008,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 674,
-        "y": 842,
+        "x": 776,
+        "y": 856,
         "w": 85,
         "h": 92
       },
@@ -26086,11 +26087,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 946,
-        "y": 842,
-        "w": 75,
-        "h": 88
+        "x": 776,
+        "y": 773,
+        "w": 88,
+        "h": 75
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_baby"
     },
@@ -26165,8 +26167,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 604,
-        "y": 814,
+        "x": 664,
+        "y": 677,
         "w": 66,
         "h": 96
       },
@@ -26245,8 +26247,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 902,
-        "y": 489,
+        "x": 899,
+        "y": 590,
         "w": 96,
         "h": 83
       },
@@ -26324,11 +26326,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 641,
+        "x": 734,
         "y": 662,
-        "w": 93,
-        "h": 94
+        "w": 94,
+        "h": 93
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_close"
     },
@@ -26403,8 +26406,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 157,
-        "y": 629,
+        "x": 339,
+        "y": 549,
         "w": 114,
         "h": 101
       },
@@ -26482,8 +26485,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 633,
-        "y": 663,
+        "x": 157,
+        "y": 629,
         "w": 93,
         "h": 88
       },
@@ -26561,8 +26564,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 536,
-        "y": 598,
+        "x": 537,
+        "y": 656,
         "w": 93,
         "h": 88
       },
@@ -26832,12 +26835,12 @@
         "h": 128
       },
       "nineSlice": {
-        "top": 40,
-        "right": 40,
-        "bottom": 40,
-        "left": 40,
+        "top": 60,
+        "right": 60,
+        "bottom": 60,
+        "left": 60,
         "repeat": 0,
-        "scale": 0.5
+        "scale": 0.72
       },
       "mapping": "",
       "animation": null,
@@ -26858,13 +26861,13 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
-        "outputHash": "b7199bae09db418ede1751d3da47a7d3ffffa73b23140f28e7e93556b15c2fb6",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
+        "outputHash": "3e15217f5a118974e6ff7c2870978e33f8430dfc903fa7ca2ebbe0f561704be0",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "ui",
-      "bytes": 566,
-      "sha256": "fde4efa716131c5124bf8de356524a1f9b03e69ccb9510897b136baac33cc755",
+      "bytes": 2997,
+      "sha256": "41eb829b057b1a1f619367ad3524ddb7042b78f1c69838f06eb25239f6687f23",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 256,
@@ -26884,7 +26887,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 642,
+        "x": 639,
         "y": 266,
         "w": 256,
         "h": 128
@@ -26918,12 +26921,12 @@
         "h": 128
       },
       "nineSlice": {
-        "top": 40,
-        "right": 40,
-        "bottom": 40,
-        "left": 40,
+        "top": 60,
+        "right": 60,
+        "bottom": 60,
+        "left": 60,
         "repeat": 0,
-        "scale": 0.5
+        "scale": 0.72
       },
       "mapping": "",
       "animation": null,
@@ -26944,13 +26947,13 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
-        "outputHash": "7c59bd47a681734f75b4d6eb09b03a28ef74525295f5e3fb7e101dd244b8b127",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
+        "outputHash": "bc76e6603c1edfb8d788b82c3a6b465104f9cb015dc577bb05cc4445129b4768",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "ui",
-      "bytes": 599,
-      "sha256": "0e19b7636d85a3d8a21fd3ff5c81225c2fc956f3cdf374954c3ee72346617d4c",
+      "bytes": 2893,
+      "sha256": "2341a3c6b8fa8a62e4b499a47bc6a011a09d35c6cc968e3c23114f4f773020d5",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 256,
@@ -26970,7 +26973,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 382,
+        "x": 379,
         "y": 262,
         "w": 256,
         "h": 128
@@ -27004,12 +27007,12 @@
         "h": 128
       },
       "nineSlice": {
-        "top": 40,
-        "right": 40,
-        "bottom": 40,
-        "left": 40,
+        "top": 60,
+        "right": 60,
+        "bottom": 60,
+        "left": 60,
         "repeat": 0,
-        "scale": 0.5
+        "scale": 0.72
       },
       "mapping": "",
       "animation": null,
@@ -27030,13 +27033,13 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
-        "outputHash": "fe3534a7ef76816457ed92e3ec1b2c3659e4f9a93847afde617e59599923be85",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
+        "outputHash": "680de5fc734acefce732301901f8d88293d989659843d11dcc6d78b305b3757c",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "ui",
-      "bytes": 604,
-      "sha256": "4fb410f04a02d497739fa3079d06ac44eba1613bb1637dfc8b6aa253c1791b3e",
+      "bytes": 2892,
+      "sha256": "fe91e2449439798ad4b65d26ea4f246f4766497e5e55377de386bc72e1eb4515",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 256,
@@ -27056,7 +27059,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 382,
+        "x": 379,
         "y": 394,
         "w": 256,
         "h": 128
@@ -27090,12 +27093,12 @@
         "h": 128
       },
       "nineSlice": {
-        "top": 40,
-        "right": 40,
-        "bottom": 40,
-        "left": 40,
+        "top": 60,
+        "right": 60,
+        "bottom": 60,
+        "left": 60,
         "repeat": 0,
-        "scale": 0.5
+        "scale": 0.72
       },
       "mapping": "",
       "animation": null,
@@ -27116,13 +27119,13 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
-        "outputHash": "815a80ac88b4d99ab1d1640d3dc4d7ef6866ba302d75d855c1c200cc0a56e4d6",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
+        "outputHash": "e47467a08aebc87e51e54178b667336b992694b8ab3eb7dcac9b692d2e6dc52a",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "ui",
-      "bytes": 604,
-      "sha256": "2d5da542272820eb155bc99e05e015b04ae448908d56467b57b6699406956ddf",
+      "bytes": 2725,
+      "sha256": "5ea4ee6906aea10ad07ce14ad64d1dbbd260e61707f508431c64b1b3331da5df",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 256,
@@ -27142,7 +27145,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 642,
+        "x": 639,
         "y": 134,
         "w": 256,
         "h": 128
@@ -27202,7 +27205,7 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
         "outputHash": "927d3829c656704279b5bfce700c75a448688178ac3ef555d9c69598651149df",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
@@ -27229,7 +27232,7 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
-        "y": 764,
+        "y": 756,
         "w": 256,
         "h": 192
       },
@@ -27288,7 +27291,7 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
         "outputHash": "92c3005e9e0a1a29349120bb0e995f20c1adac74e812d534e5464609d4e0254f",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
@@ -27315,7 +27318,7 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 262,
-        "y": 764,
+        "y": 756,
         "w": 256,
         "h": 192
       },
@@ -27374,7 +27377,7 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
         "outputHash": "dee31f2ee85dca92eaa58e286768b112f86d651e17c9586995a2354ecf32a607",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
@@ -27400,7 +27403,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 382,
+        "x": 379,
         "y": 2,
         "w": 256,
         "h": 256
@@ -27460,7 +27463,7 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
         "outputHash": "9cf55754d942f3ba25d03846a4171c84a018916fbf3b7d0bff792a6b1f46927e",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
@@ -27486,7 +27489,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 382,
+        "x": 379,
         "y": 526,
         "w": 256,
         "h": 128
@@ -27546,7 +27549,7 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
         "outputHash": "56ea0b61afae618b79f111a3333d4f5c888a3f045c956dbf42d65e4bb608b455",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
@@ -27572,7 +27575,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 642,
+        "x": 639,
         "y": 530,
         "w": 256,
         "h": 128
@@ -27632,7 +27635,7 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
         "outputHash": "56ea0b61afae618b79f111a3333d4f5c888a3f045c956dbf42d65e4bb608b455",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
@@ -27658,7 +27661,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 642,
+        "x": 639,
         "y": 2,
         "w": 256,
         "h": 128
@@ -27718,7 +27721,7 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
         "outputHash": "3d1a959559528bdf29a8b1198e881a49dee100d006847378b1763fa7530c984e",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
@@ -27744,7 +27747,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 642,
+        "x": 639,
         "y": 398,
         "w": 256,
         "h": 128
@@ -27797,21 +27800,21 @@
         "objectBox": null,
         "alphaCutoff": 16,
         "fullCanvas": false,
-        "sourceHash": "87abc5f7d838db112be5fd0f50f458b01d551abf4fa4c1566a209ac47ffe80e3",
-        "outputHash": "a0d2f47c1160290864013b79f2a3703e3eaffc9e88d890cee818453c2eb3370a",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
+        "outputHash": "22cec134160477d872b1711234bf22293866a291b5a88230601a4bdc1bd509ac",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "ui",
-      "bytes": 4185,
-      "sha256": "adf3e963e6bfb6af72a993ee7935ed2f271d071beedb0f0c99d42985dcca3556",
+      "bytes": 17016,
+      "sha256": "b2e58acc8ca8a4ddf2ec1e9542b1ce6b6f7f4ad7bcffa7f7c5624932025d2473",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 384,
         "h": 384
       },
       "trimOffset": {
-        "x": 4,
-        "y": 4
+        "x": 6,
+        "y": 6
       },
       "atlasTrim": true,
       "displaySize": {
@@ -27824,9 +27827,9 @@
       "atlasPage": "ui_0",
       "atlasRect": {
         "x": 2,
-        "y": 383,
-        "w": 376,
-        "h": 377
+        "y": 379,
+        "w": 373,
+        "h": 373
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "button_night_round"
@@ -27902,8 +27905,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 902,
-        "y": 154,
+        "x": 899,
+        "y": 158,
         "w": 115,
         "h": 128
       },
@@ -27955,21 +27958,21 @@
         "objectBox": null,
         "alphaCutoff": 16,
         "fullCanvas": false,
-        "sourceHash": "87abc5f7d838db112be5fd0f50f458b01d551abf4fa4c1566a209ac47ffe80e3",
-        "outputHash": "e7c94ff47b7504b40bae0bb0ad203409f1358db60aea1ae18adab2e582bbf980",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
+        "outputHash": "22cec134160477d872b1711234bf22293866a291b5a88230601a4bdc1bd509ac",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "ui",
-      "bytes": 4163,
-      "sha256": "15c0b1bd02b63a63ccfb34603859e3f4af96e21c53058a8e3fd13156bbcd21af",
+      "bytes": 17016,
+      "sha256": "b2e58acc8ca8a4ddf2ec1e9542b1ce6b6f7f4ad7bcffa7f7c5624932025d2473",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 384,
         "h": 384
       },
       "trimOffset": {
-        "x": 4,
-        "y": 4
+        "x": 6,
+        "y": 6
       },
       "atlasTrim": true,
       "displaySize": {
@@ -27983,8 +27986,8 @@
       "atlasRect": {
         "x": 2,
         "y": 2,
-        "w": 376,
-        "h": 377
+        "w": 373,
+        "h": 373
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "button_heart_round"
@@ -28060,8 +28063,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 902,
-        "y": 286,
+        "x": 899,
+        "y": 290,
         "w": 120,
         "h": 108
       },
@@ -28140,12 +28143,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 382,
-        "y": 658,
-        "w": 93,
-        "h": 96
+        "x": 899,
+        "y": 402,
+        "w": 96,
+        "h": 93
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_tactic_scroll"
     },
@@ -28220,8 +28222,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 836,
-        "y": 746,
+        "x": 832,
+        "y": 677,
         "w": 93,
         "h": 92
       },
@@ -28299,11 +28301,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 2,
-        "y": 667,
-        "w": 90,
-        "h": 74
+        "x": 254,
+        "y": 629,
+        "w": 74,
+        "h": 90
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_rage_glow"
     },
@@ -28378,8 +28381,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 359,
-        "y": 656,
+        "x": 2,
+        "y": 667,
         "w": 80,
         "h": 78
       },
@@ -28527,14 +28530,85 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 803,
-        "y": 353,
+        "x": 866,
+        "y": 176,
         "w": 88,
         "h": 160
       },
       "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_patrol_bang"
+    },
+    {
+      "id": "fx_patrol_uh",
+      "label": "淡紫儿机关枪命中字",
+      "category": "effects",
+      "categoryLabel": "effects",
+      "path": "runtime/effects/fx_patrol_uh.png",
+      "width": 160,
+      "height": 88,
+      "pivot": {
+        "x": 80,
+        "y": 44
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/fx_patrol_uh.png",
+      "sourceRect": {
+        "x": 54,
+        "y": 24,
+        "w": 1599,
+        "h": 894
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 1599,
+        "h": 894
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "连发小人实际击中敌人时的独立漫画字",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/cartoon-v1/frames/fx_patrol_uh.png",
+        "sourceHash": "a6907c640f5eeaab1cff0c7feaada5bdc17ad9cdb8ffca6988a25c5b8d645391",
+        "outputHash": "096ef4d3e09998bd4909d9660c94ee5c2ab07471ab27d4ec55a4d105ffb7403b",
+        "detail": "金色「额！」透明字稿，叹号、星芒和显示画幅与旋甩「砰！」配套"
+      },
+      "atlasGroup": "night_effects",
+      "bytes": 27736,
+      "sha256": "096ef4d3e09998bd4909d9660c94ee5c2ab07471ab27d4ec55a4d105ffb7403b",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 160,
+        "h": 88
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 160,
+        "h": 88
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "night_effects_0",
+      "atlasRect": {
+        "x": 803,
+        "y": 340,
+        "w": 88,
+        "h": 160
+      },
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
+      "importedFrameId": "fx_patrol_uh"
     },
     {
       "id": "fx_rage_up",
@@ -28924,8 +28998,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 902,
-        "y": 398,
+        "x": 899,
+        "y": 499,
         "w": 96,
         "h": 87
       },
@@ -29006,7 +29080,7 @@
       "atlasPage": "night_effects_0",
       "atlasRect": {
         "x": 637,
-        "y": 353,
+        "y": 316,
         "w": 162,
         "h": 140
       },
@@ -29085,12 +29159,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 96,
-        "y": 667,
-        "w": 48,
-        "h": 68
+        "x": 2,
+        "y": 749,
+        "w": 68,
+        "h": 48
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_shield_ring"
     },
@@ -29166,8 +29239,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 443,
-        "y": 670,
+        "x": 86,
+        "y": 721,
         "w": 80,
         "h": 78
       },
@@ -30869,7 +30942,7 @@
         ],
         "alphaCutoff": 240,
         "fullCanvas": false,
-        "sourceHash": "51f7bd188cdb65d9750ff4b2e93a9314bd19828ee3be733f2e1e4c6a8b6c21a8",
+        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
         "outputHash": "bdc411a9b144cc98be80fae4f313a31232eaa3da578f15ae3bf9dd4564553160",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
@@ -30895,12 +30968,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 641,
-        "y": 760,
-        "w": 48,
-        "h": 50
+        "x": 522,
+        "y": 910,
+        "w": 50,
+        "h": 48
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "panel_anchored_tip_tail"
     },
@@ -30975,8 +31047,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 275,
-        "y": 656,
+        "x": 422,
+        "y": 661,
         "w": 80,
         "h": 78
       },
@@ -31054,8 +31126,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 798,
-        "y": 517,
+        "x": 457,
+        "y": 549,
         "w": 76,
         "h": 108
       },
@@ -31135,7 +31207,7 @@
       "atlasPage": "night_effects_0",
       "atlasRect": {
         "x": 675,
-        "y": 497,
+        "y": 460,
         "w": 119,
         "h": 67
       },
@@ -31293,7 +31365,7 @@
       "atlasPage": "night_effects_0",
       "atlasRect": {
         "x": 665,
-        "y": 213,
+        "y": 176,
         "w": 197,
         "h": 136
       },
@@ -31529,8 +31601,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 527,
-        "y": 690,
+        "x": 250,
+        "y": 723,
         "w": 74,
         "h": 65
       },
@@ -31608,8 +31680,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 730,
-        "y": 716,
+        "x": 332,
+        "y": 654,
         "w": 86,
         "h": 74
       },
@@ -31687,8 +31759,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 785,
-        "y": 629,
+        "x": 647,
+        "y": 607,
         "w": 98,
         "h": 83
       },
@@ -31766,8 +31838,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 675,
-        "y": 568,
+        "x": 537,
+        "y": 561,
         "w": 106,
         "h": 91
       },
@@ -31846,7 +31918,7 @@
       "atlasPage": "night_effects_0",
       "atlasRect": {
         "x": 551,
-        "y": 497,
+        "y": 460,
         "w": 120,
         "h": 97
       },
@@ -32269,8 +32341,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 950,
-        "y": 2,
+        "x": 531,
+        "y": 658,
         "w": 44,
         "h": 148
       },
@@ -32349,12 +32421,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 902,
-        "y": 2,
-        "w": 44,
-        "h": 148
+        "x": 379,
+        "y": 662,
+        "w": 148,
+        "h": 44
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "tag_favorite"
     },
@@ -38420,8 +38491,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 292,
-        "y": 536,
+        "x": 330,
+        "y": 664,
         "w": 18,
         "h": 14
       },
@@ -43329,12 +43400,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 933,
-        "y": 746,
-        "w": 88,
-        "h": 92
+        "x": 929,
+        "y": 764,
+        "w": 92,
+        "h": 88
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_backpack"
     },
@@ -43401,11 +43471,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 738,
-        "y": 662,
-        "w": 94,
-        "h": 83
+        "x": 689,
+        "y": 777,
+        "w": 83,
+        "h": 94
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_shop"
     },
@@ -43470,14 +43541,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_1",
+      "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 60,
-        "y": 180,
+        "x": 699,
+        "y": 875,
         "w": 68,
         "h": 83
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_liang_essence"
     },
     {
@@ -43541,15 +43612,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_1",
+      "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 182,
-        "w": 54,
-        "h": 88
+        "x": 607,
+        "y": 877,
+        "w": 88,
+        "h": 54
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_liang_briefs"
     },
     {
@@ -43613,15 +43683,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_1",
+      "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 90,
+        "x": 958,
+        "y": 856,
         "w": 54,
         "h": 88
       },
       "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_liang_bra"
     },
     {
@@ -43687,8 +43757,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 522,
-        "y": 658,
+        "x": 899,
+        "y": 2,
         "w": 115,
         "h": 152
       },
@@ -43757,11 +43827,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 551,
-        "y": 446,
-        "w": 75,
-        "h": 36
+        "x": 919,
+        "y": 340,
+        "w": 36,
+        "h": 75
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_1"
     },
@@ -43827,12 +43898,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 460,
-        "y": 549,
-        "w": 72,
-        "h": 117
+        "x": 675,
+        "y": 531,
+        "w": 117,
+        "h": 72
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_stone_impact_2"
     },
@@ -44318,12 +44388,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 820,
-        "y": 716,
-        "w": 70,
-        "h": 76
+        "x": 170,
+        "y": 721,
+        "w": 76,
+        "h": 70
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_1"
     },
@@ -44389,8 +44458,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "night_effects_0",
       "atlasRect": {
-        "x": 339,
-        "y": 549,
+        "x": 798,
+        "y": 504,
         "w": 117,
         "h": 103
       },
@@ -44741,10 +44810,9 @@
       "atlasRect": {
         "x": 701,
         "y": 2,
-        "w": 170,
-        "h": 207
+        "w": 207,
+        "h": 170
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/effects/night_effects_0.png",
       "importedFrameId": "fx_tower_frost_impact_7"
     },
@@ -44881,7 +44949,7 @@
       "atlasPage": "buildings_0",
       "atlasRect": {
         "x": 2,
-        "y": 135,
+        "y": 219,
         "w": 108,
         "h": 131
       },
@@ -44950,8 +45018,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 166,
-        "y": 2,
+        "x": 2,
+        "y": 84,
         "w": 119,
         "h": 131
       },
@@ -45020,8 +45088,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 608,
-        "y": 279,
+        "x": 105,
+        "y": 758,
         "w": 90,
         "h": 73
       },
@@ -45090,8 +45158,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 655,
-        "y": 110,
+        "x": 237,
+        "y": 195,
         "w": 107,
         "h": 84
       },
@@ -45160,8 +45228,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 655,
-        "y": 198,
+        "x": 135,
+        "y": 462,
         "w": 95,
         "h": 77
       },
@@ -45230,8 +45298,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 286,
-        "y": 208,
+        "x": 241,
+        "y": 354,
         "w": 77,
         "h": 64
       },
@@ -45300,8 +45368,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 286,
-        "y": 137,
+        "x": 234,
+        "y": 462,
         "w": 78,
         "h": 67
       },
@@ -45370,8 +45438,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 201,
-        "y": 209,
+        "x": 199,
+        "y": 739,
         "w": 76,
         "h": 66
       },
@@ -45440,8 +45508,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 114,
-        "y": 137,
+        "x": 195,
+        "y": 664,
         "w": 83,
         "h": 71
       },
@@ -45510,8 +45578,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 201,
-        "y": 137,
+        "x": 208,
+        "y": 543,
         "w": 81,
         "h": 68
       },
@@ -45580,8 +45648,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 114,
-        "y": 212,
+        "x": 105,
+        "y": 835,
         "w": 70,
         "h": 59
       },
@@ -45650,8 +45718,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 399,
-        "y": 127,
+        "x": 125,
+        "y": 84,
         "w": 115,
         "h": 107
       },
@@ -45720,8 +45788,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 460,
-        "y": 238,
+        "x": 341,
+        "y": 488,
         "w": 47,
         "h": 59
       },
@@ -45790,8 +45858,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 281,
-        "y": 276,
+        "x": 344,
+        "y": 283,
         "w": 40,
         "h": 61
       },
@@ -45860,8 +45928,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 197,
-        "y": 279,
+        "x": 328,
+        "y": 682,
         "w": 43,
         "h": 60
       },
@@ -45930,8 +45998,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 244,
-        "y": 341,
+        "x": 369,
+        "y": 348,
         "w": 48,
         "h": 56
       },
@@ -46000,8 +46068,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 414,
-        "y": 302,
+        "x": 328,
+        "y": 746,
         "w": 58,
         "h": 57
       },
@@ -46070,8 +46138,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 75,
-        "y": 275,
+        "x": 179,
+        "y": 835,
         "w": 69,
         "h": 53
       },
@@ -46140,8 +46208,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 270,
+        "x": 135,
+        "y": 543,
         "w": 69,
         "h": 54
       },
@@ -46210,8 +46278,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 328,
+        "x": 252,
+        "y": 809,
         "w": 67,
         "h": 57
       },
@@ -46280,8 +46348,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 167,
-        "y": 401,
+        "x": 375,
+        "y": 664,
         "w": 54,
         "h": 46
       },
@@ -46350,8 +46418,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 518,
-        "y": 233,
+        "x": 105,
+        "y": 664,
         "w": 86,
         "h": 90
       },
@@ -46420,8 +46488,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 244,
-        "y": 279,
+        "x": 282,
+        "y": 682,
         "w": 33,
         "h": 48
       },
@@ -46490,8 +46558,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 653,
-        "y": 407,
+        "x": 392,
+        "y": 482,
         "w": 33,
         "h": 47
       },
@@ -46560,8 +46628,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 369,
-        "y": 304,
+        "x": 371,
+        "y": 807,
         "w": 33,
         "h": 48
       },
@@ -46630,8 +46698,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 61,
-        "y": 457,
+        "x": 390,
+        "y": 714,
         "w": 33,
         "h": 48
       },
@@ -46700,8 +46768,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 583,
-        "y": 414,
+        "x": 407,
+        "y": 408,
         "w": 33,
         "h": 47
       },
@@ -46770,8 +46838,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 546,
-        "y": 385,
+        "x": 376,
+        "y": 551,
         "w": 33,
         "h": 48
       },
@@ -46840,8 +46908,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 546,
-        "y": 437,
+        "x": 413,
+        "y": 533,
         "w": 33,
         "h": 47
       },
@@ -46910,8 +46978,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 690,
-        "y": 414,
+        "x": 348,
+        "y": 202,
         "w": 32,
         "h": 46
       },
@@ -46980,8 +47048,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 726,
-        "y": 414,
+        "x": 384,
+        "y": 152,
         "w": 32,
         "h": 46
       },
@@ -47050,8 +47118,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 225,
-        "y": 401,
+        "x": 429,
+        "y": 459,
         "w": 33,
         "h": 47
       },
@@ -47120,8 +47188,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 325,
-        "y": 304,
+        "x": 363,
+        "y": 420,
         "w": 40,
         "h": 58
       },
@@ -47190,8 +47258,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 148,
-        "y": 275,
+        "x": 279,
+        "y": 739,
         "w": 45,
         "h": 64
       },
@@ -47260,8 +47328,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 702,
-        "y": 347,
+        "x": 282,
+        "y": 615,
         "w": 44,
         "h": 63
       },
@@ -47330,8 +47398,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 389,
+        "x": 316,
+        "y": 422,
         "w": 43,
         "h": 62
       },
@@ -47400,8 +47468,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 702,
-        "y": 279,
+        "x": 323,
+        "y": 807,
         "w": 44,
         "h": 64
       },
@@ -47470,8 +47538,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 73,
-        "y": 332,
+        "x": 293,
+        "y": 533,
         "w": 44,
         "h": 63
       },
@@ -47540,8 +47608,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 367,
-        "y": 238,
+        "x": 322,
+        "y": 354,
         "w": 43,
         "h": 62
       },
@@ -47610,8 +47678,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 414,
-        "y": 238,
+        "x": 330,
+        "y": 600,
         "w": 42,
         "h": 60
       },
@@ -47680,8 +47748,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 653,
-        "y": 356,
+        "x": 376,
+        "y": 603,
         "w": 33,
         "h": 47
       },
@@ -47695,7 +47763,7 @@
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_body.png",
       "width": 160,
-      "height": 134,
+      "height": 78,
       "pivot": {
         "x": 0,
         "y": 0
@@ -47705,13 +47773,13 @@
         "x": 0,
         "y": 0,
         "w": 160,
-        "h": 134
+        "h": 78
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
         "w": 160,
-        "h": 134
+        "h": 78
       },
       "nineSlice": null,
       "mapping": "",
@@ -47723,27 +47791,27 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "9dac9de4c85cd9008eab1dd76362713570ed58a4130fe1584c7f5d1646f58950",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-frame.png",
+        "sourceHash": "5cc4344726272e5a1bbec8bbdedeeca1deed4d7b6ba051f6247425f65d7f43f2",
+        "outputHash": "b45a4a2edda45e67527b6de02a0c9c31b299803cbf7a64f8fc90f21637fc5038",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 34989,
-      "sha256": "712e31bbc4923921d982405ff610efc279640a54761adc598e26b274d61ec9d4",
+      "bytes": 15851,
+      "sha256": "366a3b543a28f1b2ffa5621bbb5a87958b44f7d42a0036519eda58bffd19722f",
       "alpha": "rgba",
       "untrimmedSize": {
         "w": 160,
-        "h": 134
+        "h": 78
       },
       "trimOffset": {
         "x": 0,
-        "y": 5
+        "y": 0
       },
-      "atlasTrim": true,
+      "atlasTrim": false,
       "displaySize": {
         "w": 160,
-        "h": 134
+        "h": 78
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
@@ -47753,7 +47821,7 @@
         "x": 2,
         "y": 2,
         "w": 160,
-        "h": 129
+        "h": 78
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_body"
@@ -47764,8 +47832,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_0.png",
-      "width": 55,
-      "height": 54,
+      "width": 99,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -47774,14 +47842,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -47793,18 +47861,18 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "850638a718ae3cecfee4e11c05fb97126f293e08b6e494500a3a8ef65deb9b19",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
+        "sourceHash": "aeed9c79db2842957edfdac972eb87c3c4514591b5bd4aba57e1ab9959a04461",
+        "outputHash": "009ee804c2c13e8922fd634d7c4aff3e3035720b5d944313d8348d6548d7ec5f",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 6401,
-      "sha256": "f337a946b98da6d68b255fcb5b5bc9fe71bd48f650f074e9682c2326872be332",
+      "bytes": 10506,
+      "sha256": "b4c4679605b62f3ade5e64848a048909c43dfdda27bfb1cb820fa340bcdbd7ae",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "trimOffset": {
         "x": 0,
@@ -47812,18 +47880,18 @@
       },
       "atlasTrim": false,
       "displaySize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 121,
-        "y": 343,
-        "w": 55,
-        "h": 54
+        "x": 166,
+        "y": 2,
+        "w": 99,
+        "h": 46
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_0"
@@ -47834,8 +47902,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_1.png",
-      "width": 55,
-      "height": 54,
+      "width": 99,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -47844,14 +47912,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -47863,18 +47931,18 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "dd40ed24a22c089ea5ff113ea145f9e19867139d509feeb347e4a7acba28c013",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
+        "sourceHash": "aeed9c79db2842957edfdac972eb87c3c4514591b5bd4aba57e1ab9959a04461",
+        "outputHash": "c4dfbe0bbedc16abe5d7276447816083820f6b24c3d09b3d8949292e415c6e9b",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 6204,
-      "sha256": "75cbc8083b7d68a0ba9716e5ab5d1bfe1a7a4f4326e1d0a3d0a5b80bc709a483",
+      "bytes": 10027,
+      "sha256": "5062b41a090ac57196bbfd180a6da32da859523d483c36bcee908225d7c5ca25",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "trimOffset": {
         "x": 0,
@@ -47882,18 +47950,18 @@
       },
       "atlasTrim": false,
       "displaySize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 180,
-        "y": 343,
-        "w": 55,
-        "h": 54
+        "x": 244,
+        "y": 52,
+        "w": 99,
+        "h": 46
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_1"
@@ -47904,8 +47972,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_2.png",
-      "width": 55,
-      "height": 54,
+      "width": 99,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -47914,14 +47982,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -47933,18 +48001,18 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "13b36d0a455b600c89bd30ceffc20aeeffcb2e3327d20c1b12e146332a1b8abe",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
+        "sourceHash": "aeed9c79db2842957edfdac972eb87c3c4514591b5bd4aba57e1ab9959a04461",
+        "outputHash": "fe6ab173c9480d9ac89fc2d6b1c25f21cbad199af98823f93862f8f768bb8fee",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 5890,
-      "sha256": "967d007d81d1741badeb404e2c1a43d141e09b3655cbecc14ae1d797a7c50aff",
+      "bytes": 9305,
+      "sha256": "def0fbccd1d3c2f27e8456e852ad020e3e499fbfe6396394eb3809dc65c90d42",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "trimOffset": {
         "x": 0,
@@ -47952,18 +48020,18 @@
       },
       "atlasTrim": false,
       "displaySize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 369,
-        "y": 363,
-        "w": 55,
-        "h": 54
+        "x": 372,
+        "y": 2,
+        "w": 99,
+        "h": 46
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_2"
@@ -47974,8 +48042,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_3.png",
-      "width": 55,
-      "height": 54,
+      "width": 99,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -47984,14 +48052,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -48003,18 +48071,18 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "5995ed9950bf4c1545dba18b18581cdf9f3470a6be6631638617d9b72129a9ca",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
+        "sourceHash": "aeed9c79db2842957edfdac972eb87c3c4514591b5bd4aba57e1ab9959a04461",
+        "outputHash": "0d43594e447fb9bf8050e711bd2c6c3c0276acb3bbbd71dd8b557679fd15a4cd",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 5362,
-      "sha256": "bff7cfc9af769d7dfab25d53faa5d6f2e958a97b9eda9512610bfd7843533864",
+      "bytes": 7963,
+      "sha256": "5f1fd16fb1543e82798c899a59780c5e772efa165faaa9466dadbd9d7f099e85",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "trimOffset": {
         "x": 0,
@@ -48022,18 +48090,18 @@
       },
       "atlasTrim": false,
       "displaySize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 296,
-        "y": 366,
-        "w": 55,
-        "h": 54
+        "x": 347,
+        "y": 102,
+        "w": 99,
+        "h": 46
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_3"
@@ -48044,8 +48112,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_4.png",
-      "width": 55,
-      "height": 54,
+      "width": 99,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -48054,14 +48122,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -48073,18 +48141,18 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "21a3f1a0a3415de823ebb23a07683ed3e1d07c020fbbe3e589cd5afff9569b0d",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
+        "sourceHash": "aeed9c79db2842957edfdac972eb87c3c4514591b5bd4aba57e1ab9959a04461",
+        "outputHash": "a6eb1ad7d4a123db593bf71d0745870c6836e563c7df510e1b30eaede49aeb63",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 4386,
-      "sha256": "f63c027222a62dfeb1cef4f4d4a6785dd91d589739243926d95a6938fa85668d",
+      "bytes": 5911,
+      "sha256": "bb688c27825d899a2a37a18b79314e0fae38bd018b814086d23f000179186ff5",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "trimOffset": {
         "x": 0,
@@ -48092,18 +48160,18 @@
       },
       "atlasTrim": false,
       "displaySize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 594,
-        "y": 356,
-        "w": 55,
-        "h": 54
+        "x": 2,
+        "y": 614,
+        "w": 99,
+        "h": 46
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_4"
@@ -48114,8 +48182,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_5.png",
-      "width": 55,
-      "height": 54,
+      "width": 99,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -48124,14 +48192,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -48143,18 +48211,18 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "2b5e7759677823dc739bedcd353f296a3b086ab317aad10fd2012294420b22b8",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
+        "sourceHash": "aeed9c79db2842957edfdac972eb87c3c4514591b5bd4aba57e1ab9959a04461",
+        "outputHash": "5d17b676b6001f720397412ec7915547bc192d2a573fdb270c07d817e89cda34",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 3707,
-      "sha256": "a98194de9d223de2a73931ab51fe55cbac990bbfe8dc162e107d289b1b6ca0ba",
+      "bytes": 4275,
+      "sha256": "660883d940601c0bb8d9c8de741b95decf4fbe66a2b2534ab8f2ea7ae923fe50",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "trimOffset": {
         "x": 0,
@@ -48162,18 +48230,18 @@
       },
       "atlasTrim": false,
       "displaySize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 428,
-        "y": 385,
-        "w": 55,
-        "h": 54
+        "x": 2,
+        "y": 664,
+        "w": 99,
+        "h": 46
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_5"
@@ -48184,8 +48252,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_6.png",
-      "width": 55,
-      "height": 54,
+      "width": 99,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -48194,14 +48262,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -48213,18 +48281,18 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "26f3600d3b57f63e9e8d3c2553efa3e40575a3b1148f75373dbadb79c6b893dc",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
+        "sourceHash": "aeed9c79db2842957edfdac972eb87c3c4514591b5bd4aba57e1ab9959a04461",
+        "outputHash": "0733dc35ad8016438d024466c7029d5a8fe4b3620974c7725dde2cf980b4e83d",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 3481,
-      "sha256": "025ed9044f28219fb20f8fcdd2a9168001363d66362c43ca682e28f154d1528c",
+      "bytes": 3735,
+      "sha256": "8711129dc396bc0927ac0359d194480b90f93d6b62bce9172372666cfa847560",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "trimOffset": {
         "x": 0,
@@ -48232,18 +48300,18 @@
       },
       "atlasTrim": false,
       "displaySize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 355,
-        "y": 421,
-        "w": 55,
-        "h": 54
+        "x": 2,
+        "y": 714,
+        "w": 99,
+        "h": 46
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_6"
@@ -48254,8 +48322,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_7.png",
-      "width": 55,
-      "height": 54,
+      "width": 99,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -48264,14 +48332,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -48283,18 +48351,18 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "26f3600d3b57f63e9e8d3c2553efa3e40575a3b1148f75373dbadb79c6b893dc",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
+        "sourceHash": "aeed9c79db2842957edfdac972eb87c3c4514591b5bd4aba57e1ab9959a04461",
+        "outputHash": "0733dc35ad8016438d024466c7029d5a8fe4b3620974c7725dde2cf980b4e83d",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 3481,
-      "sha256": "025ed9044f28219fb20f8fcdd2a9168001363d66362c43ca682e28f154d1528c",
+      "bytes": 3735,
+      "sha256": "8711129dc396bc0927ac0359d194480b90f93d6b62bce9172372666cfa847560",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "trimOffset": {
         "x": 0,
@@ -48302,18 +48370,18 @@
       },
       "atlasTrim": false,
       "displaySize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 487,
-        "y": 385,
-        "w": 55,
-        "h": 54
+        "x": 2,
+        "y": 764,
+        "w": 99,
+        "h": 46
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_7"
@@ -48324,8 +48392,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_8.png",
-      "width": 55,
-      "height": 54,
+      "width": 99,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -48334,14 +48402,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -48353,18 +48421,18 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "2521dded9c5069d8297e3069b0317a79f2a2c6fa1f5bd30494feebf528637cc2",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
+        "sourceHash": "aeed9c79db2842957edfdac972eb87c3c4514591b5bd4aba57e1ab9959a04461",
+        "outputHash": "39f75f7cd058a9b17c6d34eb07604500732c955e48d4bfd6a06fde7274c22477",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 4062,
-      "sha256": "aa2c1b20a20346d0d913bd4ea9b6d8afdd3b1fed8f58c87e36e86aa1eadc7dd9",
+      "bytes": 5043,
+      "sha256": "2e1414a2f70640837eb622eb072cb405ef15c449eefaddbdd9a0874c4e111777",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "trimOffset": {
         "x": 0,
@@ -48372,18 +48440,18 @@
       },
       "atlasTrim": false,
       "displaySize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 108,
-        "y": 401,
-        "w": 55,
-        "h": 54
+        "x": 2,
+        "y": 814,
+        "w": 99,
+        "h": 46
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_8"
@@ -48394,8 +48462,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_9.png",
-      "width": 55,
-      "height": 54,
+      "width": 99,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -48404,14 +48472,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -48423,18 +48491,18 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "1bd7f1be112ed7a1a4e483b142029c5c9e9a886e237b926af62c2b1ee6d55fa6",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
+        "sourceHash": "aeed9c79db2842957edfdac972eb87c3c4514591b5bd4aba57e1ab9959a04461",
+        "outputHash": "f9b063975417c02d7281170549e7a45cf20a8cf09fc5514e7d2ac4055f160fba",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 4959,
-      "sha256": "2f7c42f76d53cb691e9cba10ce493c04f4efe9b17562e3f3eb8f349fd790da90",
+      "bytes": 7164,
+      "sha256": "05c0853e5aff4a2e1d9d6f20ade0bdc5b0c1efc433ed1b9071981ca5f632abe1",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "trimOffset": {
         "x": 0,
@@ -48442,18 +48510,18 @@
       },
       "atlasTrim": false,
       "displaySize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 457,
-        "w": 55,
-        "h": 54
+        "x": 105,
+        "y": 614,
+        "w": 99,
+        "h": 46
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_9"
@@ -48464,8 +48532,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_10.png",
-      "width": 55,
-      "height": 54,
+      "width": 99,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -48474,14 +48542,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -48493,18 +48561,18 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "e00b445abbc1170e4b53ec6d14654ec34aa4e6adf5aac4bb10d84208e4984eda",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
+        "sourceHash": "aeed9c79db2842957edfdac972eb87c3c4514591b5bd4aba57e1ab9959a04461",
+        "outputHash": "709014cecc73ff2fb2c46357efbca2cd36e810cd00d04f2dea43b7c6367d38fa",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 5799,
-      "sha256": "c6fe786209c003686afb87d62149afe9dd373f5078e82662cf9969e098050825",
+      "bytes": 8939,
+      "sha256": "e2815068b7e122988015aece07a3af9558187c17f9be6b330c594c11257c7978",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "trimOffset": {
         "x": 0,
@@ -48512,18 +48580,18 @@
       },
       "atlasTrim": false,
       "displaySize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 49,
-        "y": 399,
-        "w": 55,
-        "h": 54
+        "x": 269,
+        "y": 2,
+        "w": 99,
+        "h": 46
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_10"
@@ -48534,8 +48602,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_11.png",
-      "width": 55,
-      "height": 54,
+      "width": 99,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -48544,14 +48612,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -48563,18 +48631,18 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "ae1ad6db89e5210d221e4fca316d9e79bd5ce391e7e37efce18d7b683e498649",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
+        "sourceHash": "aeed9c79db2842957edfdac972eb87c3c4514591b5bd4aba57e1ab9959a04461",
+        "outputHash": "5c3765786d70bf664b5bba2fed5ad133e04504145687bc7e4b339d1dbbf9857c",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 6381,
-      "sha256": "bbbd5b1e53a9b4bac700b62c537787141281eff1bd0f65c2843bbbad49efb6a3",
+      "bytes": 10204,
+      "sha256": "0011c0161277e4bc6aa8ac87b59788da90e7c2e397c28339cb32f150d1883ada",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "trimOffset": {
         "x": 0,
@@ -48582,18 +48650,18 @@
       },
       "atlasTrim": false,
       "displaySize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 476,
-        "y": 327,
-        "w": 55,
-        "h": 54
+        "x": 244,
+        "y": 102,
+        "w": 99,
+        "h": 46
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_11"
@@ -48604,8 +48672,8 @@
       "category": "building-parts",
       "categoryLabel": "建筑动效",
       "path": "runtime/building-parts/motion_gate_doors_12.png",
-      "width": 55,
-      "height": 54,
+      "width": 99,
+      "height": 46,
       "pivot": {
         "x": 0,
         "y": 0
@@ -48614,14 +48682,14 @@
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "nineSlice": null,
       "mapping": "",
@@ -48633,18 +48701,18 @@
       "usage": "固定建筑主体或局部动画拆件",
       "bundle": "buildings",
       "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "850638a718ae3cecfee4e11c05fb97126f293e08b6e494500a3a8ef65deb9b19",
+        "source": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
+        "sourceHash": "aeed9c79db2842957edfdac972eb87c3c4514591b5bd4aba57e1ab9959a04461",
+        "outputHash": "009ee804c2c13e8922fd634d7c4aff3e3035720b5d944313d8348d6548d7ec5f",
         "renderer": "tools/hd2d/render-cartoon.py"
       },
       "atlasGroup": "buildings",
-      "bytes": 6401,
-      "sha256": "f337a946b98da6d68b255fcb5b5bc9fe71bd48f650f074e9682c2326872be332",
+      "bytes": 10506,
+      "sha256": "b4c4679605b62f3ade5e64848a048909c43dfdda27bfb1cb820fa340bcdbd7ae",
       "alpha": "rgba",
       "untrimmedSize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "trimOffset": {
         "x": 0,
@@ -48652,1141 +48720,21 @@
       },
       "atlasTrim": false,
       "displaySize": {
-        "w": 55,
-        "h": 54
+        "w": 99,
+        "h": 46
       },
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 535,
-        "y": 327,
-        "w": 55,
-        "h": 54
+        "x": 347,
+        "y": 52,
+        "w": 99,
+        "h": 46
       },
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_12"
-    },
-    {
-      "id": "motion_gate_fire_left_0",
-      "label": "motion_gate_fire_left_0",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_left_0.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_left_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_left",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 249,
-      "sha256": "82aaa0f6af44a5b4d503fea323e96c3b46c7818adb91b0ce0ed84ac4cd85cb9b",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 9
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 527,
-        "y": 484,
-        "w": 13,
-        "h": 14
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_left_0"
-    },
-    {
-      "id": "motion_gate_fire_left_1",
-      "label": "motion_gate_fire_left_1",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_left_1.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_left_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_left",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "e294b0383079e4e921a01c538d711cbe4176eebc153e178efa8c2723d617f476",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 253,
-      "sha256": "fc33e2ce963362fb3fade27879eef98debe21ff8435d7bd4f023d947595a9ce3",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 8
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 750,
-        "y": 395,
-        "w": 13,
-        "h": 15
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_left_1"
-    },
-    {
-      "id": "motion_gate_fire_left_2",
-      "label": "motion_gate_fire_left_2",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_left_2.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_left_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_left",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "6f5db4b206eb5a4195e51723d64e1ad636d7870af49859f7a153e200316fb67f",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 271,
-      "sha256": "f3548a604425fa49e61cff3ca0d2a5716f64e9000adcacb4543a3797e731d500",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 8
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 129,
-        "y": 573,
-        "w": 13,
-        "h": 15
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_left_2"
-    },
-    {
-      "id": "motion_gate_fire_left_3",
-      "label": "motion_gate_fire_left_3",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_left_3.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_left_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_left",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "e294b0383079e4e921a01c538d711cbe4176eebc153e178efa8c2723d617f476",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 253,
-      "sha256": "fc33e2ce963362fb3fade27879eef98debe21ff8435d7bd4f023d947595a9ce3",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 8
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 387,
-        "y": 519,
-        "w": 13,
-        "h": 15
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_left_3"
-    },
-    {
-      "id": "motion_gate_fire_left_4",
-      "label": "motion_gate_fire_left_4",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_left_4.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_left_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_left",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 249,
-      "sha256": "82aaa0f6af44a5b4d503fea323e96c3b46c7818adb91b0ce0ed84ac4cd85cb9b",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 9
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 544,
-        "y": 488,
-        "w": 13,
-        "h": 14
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_left_4"
-    },
-    {
-      "id": "motion_gate_fire_left_5",
-      "label": "motion_gate_fire_left_5",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_left_5.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_left_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_left",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 249,
-      "sha256": "82aaa0f6af44a5b4d503fea323e96c3b46c7818adb91b0ce0ed84ac4cd85cb9b",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 9
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 527,
-        "y": 502,
-        "w": 13,
-        "h": 14
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_left_5"
-    },
-    {
-      "id": "motion_gate_fire_left_6",
-      "label": "motion_gate_fire_left_6",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_left_6.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_left_6.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_left",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "732b602f96b89c9763bcc5ddea621ccc577b359d16a72603e3b16e21f6ec3090",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 233,
-      "sha256": "ad21786a7125586fe68403c8ab5ca672fec195447ba4ccc868cf0d015701c3f6",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 10
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 561,
-        "y": 506,
-        "w": 13,
-        "h": 13
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_left_6"
-    },
-    {
-      "id": "motion_gate_fire_left_7",
-      "label": "motion_gate_fire_left_7",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_left_7.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_left_7.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_left",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 249,
-      "sha256": "82aaa0f6af44a5b4d503fea323e96c3b46c7818adb91b0ce0ed84ac4cd85cb9b",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 9
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 561,
-        "y": 488,
-        "w": 13,
-        "h": 14
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_left_7"
-    },
-    {
-      "id": "motion_gate_fire_right_0",
-      "label": "motion_gate_fire_right_0",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_right_0.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_right_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_right",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 249,
-      "sha256": "82aaa0f6af44a5b4d503fea323e96c3b46c7818adb91b0ce0ed84ac4cd85cb9b",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 9
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 493,
-        "y": 503,
-        "w": 13,
-        "h": 14
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_right_0"
-    },
-    {
-      "id": "motion_gate_fire_right_1",
-      "label": "motion_gate_fire_right_1",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_right_1.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_right_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_right",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "e294b0383079e4e921a01c538d711cbe4176eebc153e178efa8c2723d617f476",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 253,
-      "sha256": "fc33e2ce963362fb3fade27879eef98debe21ff8435d7bd4f023d947595a9ce3",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 8
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 346,
-        "y": 520,
-        "w": 13,
-        "h": 15
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_right_1"
-    },
-    {
-      "id": "motion_gate_fire_right_2",
-      "label": "motion_gate_fire_right_2",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_right_2.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_right_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_right",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "6f5db4b206eb5a4195e51723d64e1ad636d7870af49859f7a153e200316fb67f",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 271,
-      "sha256": "f3548a604425fa49e61cff3ca0d2a5716f64e9000adcacb4543a3797e731d500",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 8
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 493,
-        "y": 484,
-        "w": 13,
-        "h": 15
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_right_2"
-    },
-    {
-      "id": "motion_gate_fire_right_3",
-      "label": "motion_gate_fire_right_3",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_right_3.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_right_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_right",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "e294b0383079e4e921a01c538d711cbe4176eebc153e178efa8c2723d617f476",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 253,
-      "sha256": "fc33e2ce963362fb3fade27879eef98debe21ff8435d7bd4f023d947595a9ce3",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 8
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 510,
-        "y": 484,
-        "w": 13,
-        "h": 15
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_right_3"
-    },
-    {
-      "id": "motion_gate_fire_right_4",
-      "label": "motion_gate_fire_right_4",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_right_4.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_right_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_right",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 249,
-      "sha256": "82aaa0f6af44a5b4d503fea323e96c3b46c7818adb91b0ce0ed84ac4cd85cb9b",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 9
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 510,
-        "y": 503,
-        "w": 13,
-        "h": 14
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_right_4"
-    },
-    {
-      "id": "motion_gate_fire_right_5",
-      "label": "motion_gate_fire_right_5",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_right_5.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_right_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_right",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 249,
-      "sha256": "82aaa0f6af44a5b4d503fea323e96c3b46c7818adb91b0ce0ed84ac4cd85cb9b",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 9
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 544,
-        "y": 506,
-        "w": 13,
-        "h": 14
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_right_5"
-    },
-    {
-      "id": "motion_gate_fire_right_6",
-      "label": "motion_gate_fire_right_6",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_right_6.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_right_6.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_right",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "732b602f96b89c9763bcc5ddea621ccc577b359d16a72603e3b16e21f6ec3090",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 233,
-      "sha256": "ad21786a7125586fe68403c8ab5ca672fec195447ba4ccc868cf0d015701c3f6",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 10
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 578,
-        "y": 514,
-        "w": 13,
-        "h": 13
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_right_6"
-    },
-    {
-      "id": "motion_gate_fire_right_7",
-      "label": "motion_gate_fire_right_7",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_gate_fire_right_7.png",
-      "width": 15,
-      "height": 23,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_gate_fire_right_7.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 15,
-        "h": 23
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_gate_fire_right",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "tools/hd2d/render-cartoon.py",
-        "sourceHash": "94fae554911a8ed0fbdbd12389b9673b3e36fe6629a959096072c2699eef6c32",
-        "outputHash": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 249,
-      "sha256": "82aaa0f6af44a5b4d503fea323e96c3b46c7818adb91b0ce0ed84ac4cd85cb9b",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 15,
-        "h": 23
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 9
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 15,
-        "h": 23
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 527,
-        "y": 520,
-        "w": 13,
-        "h": 14
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_gate_fire_right_7"
     },
     {
       "id": "motion_house_body",
@@ -49850,8 +48798,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 532,
-        "y": 110,
+        "x": 114,
+        "y": 219,
         "w": 119,
         "h": 119
       },
@@ -49920,8 +48868,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 501,
-        "y": 301,
+        "x": 429,
+        "y": 510,
         "w": 13,
         "h": 19
       },
@@ -49990,8 +48938,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 368,
-        "y": 137,
+        "x": 330,
+        "y": 152,
         "w": 14,
         "h": 25
       },
@@ -50060,8 +49008,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 750,
-        "y": 279,
+        "x": 413,
+        "y": 634,
         "w": 15,
         "h": 25
       },
@@ -50130,8 +49078,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 325,
-        "y": 276,
+        "x": 207,
+        "y": 52,
         "w": 14,
         "h": 24
       },
@@ -50200,8 +49148,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 750,
-        "y": 308,
+        "x": 444,
+        "y": 428,
         "w": 15,
         "h": 25
       },
@@ -50270,8 +49218,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 129,
-        "y": 550,
+        "x": 407,
+        "y": 459,
         "w": 13,
         "h": 19
       },
@@ -50340,8 +49288,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 368,
-        "y": 166,
+        "x": 189,
+        "y": 52,
         "w": 14,
         "h": 25
       },
@@ -50410,8 +49358,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 750,
-        "y": 337,
+        "x": 348,
+        "y": 252,
         "w": 15,
         "h": 25
       },
@@ -50480,8 +49428,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 343,
-        "y": 276,
+        "x": 225,
+        "y": 52,
         "w": 14,
         "h": 24
       },
@@ -50550,8 +49498,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 750,
-        "y": 366,
+        "x": 367,
+        "y": 252,
         "w": 15,
         "h": 25
       },
@@ -50620,8 +49568,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 454,
-        "y": 363,
+        "x": 349,
+        "y": 875,
         "w": 18,
         "h": 15
       },
@@ -50690,8 +49638,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 238,
-        "y": 452,
+        "x": 421,
+        "y": 387,
         "w": 18,
         "h": 15
       },
@@ -50760,8 +49708,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 406,
-        "y": 484,
+        "x": 112,
+        "y": 462,
         "w": 18,
         "h": 15
       },
@@ -50830,8 +49778,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 428,
-        "y": 484,
+        "x": 205,
+        "y": 195,
         "w": 18,
         "h": 15
       },
@@ -50900,8 +49848,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 406,
-        "y": 503,
+        "x": 199,
+        "y": 809,
         "w": 18,
         "h": 15
       },
@@ -50970,8 +49918,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 428,
-        "y": 503,
+        "x": 221,
+        "y": 809,
         "w": 18,
         "h": 15
       },
@@ -51040,8 +49988,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 365,
-        "y": 519,
+        "x": 70,
+        "y": 864,
         "w": 18,
         "h": 15
       },
@@ -51110,8 +50058,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 324,
-        "y": 520,
+        "x": 472,
+        "y": 551,
         "w": 18,
         "h": 15
       },
@@ -51180,8 +50128,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 532,
-        "y": 2,
+        "x": 112,
+        "y": 354,
         "w": 125,
         "h": 104
       },
@@ -51250,8 +50198,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 61,
-        "y": 509,
+        "x": 427,
+        "y": 714,
         "w": 39,
         "h": 36
       },
@@ -51320,8 +50268,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 365,
-        "y": 479,
+        "x": 466,
+        "y": 469,
         "w": 37,
         "h": 36
       },
@@ -51390,8 +50338,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 251,
-        "y": 516,
+        "x": 408,
+        "y": 806,
         "w": 37,
         "h": 36
       },
@@ -51460,8 +50408,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 455,
-        "y": 443,
+        "x": 434,
+        "y": 754,
         "w": 37,
         "h": 36
       },
@@ -51530,8 +50478,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 515,
+        "x": 455,
+        "y": 143,
         "w": 39,
         "h": 36
       },
@@ -51600,8 +50548,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 702,
-        "y": 509,
+        "x": 241,
+        "y": 422,
         "w": 40,
         "h": 36
       },
@@ -51670,8 +50618,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 702,
-        "y": 549,
+        "x": 390,
+        "y": 766,
         "w": 40,
         "h": 36
       },
@@ -51740,8 +50688,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 238,
-        "y": 473,
+        "x": 244,
+        "y": 152,
         "w": 40,
         "h": 36
       },
@@ -51810,8 +50758,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 742,
-        "y": 73,
+        "x": 166,
+        "y": 52,
         "w": 19,
         "h": 28
       },
@@ -51880,8 +50828,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 746,
-        "y": 570,
+        "x": 48,
+        "y": 864,
         "w": 18,
         "h": 30
       },
@@ -51950,8 +50898,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 697,
-        "y": 73,
+        "x": 316,
+        "y": 488,
         "w": 19,
         "h": 32
       },
@@ -52020,8 +50968,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 720,
-        "y": 73,
+        "x": 450,
+        "y": 551,
         "w": 18,
         "h": 29
       },
@@ -52090,8 +51038,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 746,
-        "y": 502,
+        "x": 2,
+        "y": 864,
         "w": 19,
         "h": 30
       },
@@ -52160,8 +51108,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 146,
-        "y": 506,
+        "x": 285,
+        "y": 422,
         "w": 17,
         "h": 32
       },
@@ -52230,8 +51178,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 746,
-        "y": 536,
+        "x": 25,
+        "y": 864,
         "w": 19,
         "h": 30
       },
@@ -52300,8 +51248,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 188,
-        "y": 544,
+        "x": 254,
+        "y": 615,
         "w": 17,
         "h": 31
       },
@@ -52370,8 +51318,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 262,
-        "y": 424,
+        "x": 208,
+        "y": 615,
         "w": 42,
         "h": 45
       },
@@ -52440,8 +51388,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 399,
-        "y": 2,
+        "x": 2,
+        "y": 489,
         "w": 129,
         "h": 121
       },
@@ -52510,8 +51458,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 296,
-        "y": 341,
+        "x": 125,
+        "y": 195,
         "w": 25,
         "h": 16
       },
@@ -52580,8 +51528,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 428,
-        "y": 363,
+        "x": 154,
+        "y": 195,
         "w": 22,
         "h": 15
       },
@@ -52650,8 +51598,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 476,
-        "y": 301,
+        "x": 180,
+        "y": 195,
         "w": 21,
         "h": 15
       },
@@ -52720,8 +51668,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 262,
-        "y": 401,
+        "x": 484,
+        "y": 183,
         "w": 22,
         "h": 13
       },
@@ -52790,8 +51738,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 620,
-        "y": 435,
+        "x": 455,
+        "y": 183,
         "w": 25,
         "h": 13
       },
@@ -52860,8 +51808,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 292,
-        "y": 516,
+        "x": 317,
+        "y": 875,
         "w": 28,
         "h": 16
       },
@@ -52930,8 +51878,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 620,
-        "y": 414,
+        "x": 252,
+        "y": 875,
         "w": 29,
         "h": 17
       },
@@ -53000,8 +51948,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 367,
-        "y": 208,
+        "x": 285,
+        "y": 875,
         "w": 28,
         "h": 17
       },
@@ -53070,8 +52018,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 289,
-        "y": 2,
+        "x": 2,
+        "y": 354,
         "w": 106,
         "h": 131
       },
@@ -53140,8 +52088,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 134,
-        "y": 459,
+        "x": 388,
+        "y": 301,
         "w": 29,
         "h": 43
       },
@@ -53210,8 +52158,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 655,
-        "y": 458,
+        "x": 341,
+        "y": 551,
         "w": 31,
         "h": 45
       },
@@ -53280,8 +52228,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 583,
-        "y": 465,
+        "x": 388,
+        "y": 252,
         "w": 31,
         "h": 45
       },
@@ -53350,8 +52298,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 167,
-        "y": 451,
+        "x": 413,
+        "y": 584,
         "w": 32,
         "h": 46
       },
@@ -53420,8 +52368,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 620,
-        "y": 458,
+        "x": 384,
+        "y": 202,
         "w": 31,
         "h": 46
       },
@@ -53490,8 +52438,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 308,
-        "y": 424,
+        "x": 419,
+        "y": 202,
         "w": 31,
         "h": 45
       },
@@ -53560,8 +52508,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 98,
-        "y": 459,
+        "x": 348,
+        "y": 152,
         "w": 32,
         "h": 46
       },
@@ -53630,8 +52578,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 203,
-        "y": 452,
+        "x": 420,
+        "y": 152,
         "w": 31,
         "h": 45
       },
@@ -53700,8 +52648,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 146,
-        "y": 544,
+        "x": 433,
+        "y": 674,
         "w": 38,
         "h": 36
       },
@@ -53770,8 +52718,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 414,
-        "y": 443,
+        "x": 450,
+        "y": 510,
         "w": 37,
         "h": 37
       },
@@ -53840,8 +52788,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 496,
-        "y": 443,
+        "x": 408,
+        "y": 846,
         "w": 36,
         "h": 37
       },
@@ -53910,8 +52858,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 324,
-        "y": 479,
+        "x": 466,
+        "y": 428,
         "w": 37,
         "h": 37
       },
@@ -53980,8 +52928,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 87,
-        "y": 550,
+        "x": 449,
+        "y": 584,
         "w": 38,
         "h": 36
       },
@@ -54050,8 +52998,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 732,
-        "y": 464,
+        "x": 470,
+        "y": 714,
         "w": 34,
         "h": 34
       },
@@ -54120,8 +53068,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 661,
-        "y": 73,
+        "x": 371,
+        "y": 859,
         "w": 32,
         "h": 33
       },
@@ -54190,8 +53138,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 455,
-        "y": 483,
+        "x": 448,
+        "y": 846,
         "w": 34,
         "h": 34
       },
@@ -54260,8 +53208,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 661,
-        "y": 2,
+        "x": 237,
+        "y": 283,
         "w": 103,
         "h": 67
       },
@@ -54330,8 +53278,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 167,
-        "y": 501,
+        "x": 288,
+        "y": 152,
         "w": 38,
         "h": 39
       },
@@ -54400,8 +53348,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 690,
-        "y": 464,
+        "x": 475,
+        "y": 2,
         "w": 38,
         "h": 41
       },
@@ -54470,8 +53418,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 608,
-        "y": 233,
+        "x": 450,
+        "y": 52,
         "w": 38,
         "h": 42
       },
@@ -54540,8 +53488,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 618,
-        "y": 508,
+        "x": 450,
+        "y": 98,
         "w": 38,
         "h": 41
       },
@@ -54610,8 +53558,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 282,
-        "y": 473,
+        "x": 423,
+        "y": 251,
         "w": 38,
         "h": 39
       },
@@ -54680,8 +53628,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 104,
-        "y": 509,
+        "x": 421,
+        "y": 346,
         "w": 38,
         "h": 37
       },
@@ -54750,8 +53698,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 555,
+        "x": 433,
+        "y": 634,
         "w": 38,
         "h": 36
       },
@@ -54820,8 +53768,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 45,
-        "y": 549,
+        "x": 444,
+        "y": 387,
         "w": 38,
         "h": 37
       },
@@ -54890,8 +53838,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 209,
-        "y": 513,
+        "x": 454,
+        "y": 201,
         "w": 38,
         "h": 39
       },
@@ -54960,8 +53908,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 660,
-        "y": 509,
+        "x": 421,
+        "y": 301,
         "w": 38,
         "h": 41
       },

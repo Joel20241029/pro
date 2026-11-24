@@ -11,6 +11,11 @@ const recipePath = path.join(res, 'source/asset_recipe.json');
 const recipe = JSON.parse(fs.readFileSync(recipePath));
 const approved = JSON.parse(fs.readFileSync(path.join(res, sourceDir, 'layers.json')));
 const masterHash = createHash('sha256').update(fs.readFileSync(path.join(res, sourceDir, 'approved-sheet.png'))).digest('hex');
+// The palisade is authored in the current cartoon renderer. Preserve its source, geometry
+// and hashes when regenerating the workshop from the older building contact sheet.
+const gateArt = new Map(recipe.assets.filter(a =>
+    a.id === approved.gate.body.id || a.animation === 'motion_gate_doors'
+).map(a => [a.id, a]));
 const obsolete = /^(?:hd_(?:arrow|stone|slow|gate|house|farm|logging|part)_|hd_village_part_|farm_crop_|patrol_booth_|hearth_burn_|building_hearth_lit$|motion_)/;
 const uuid = name => {
     const h = createHash('sha256').update('daidai-building-motion/' + name).digest('hex');
@@ -20,6 +25,13 @@ recipe.assets = recipe.assets.filter(a => !a.id.startsWith('motion_'));
 for (const a of recipe.assets) if (obsolete.test(a.id)) a.runtime = false;
 recipe.animations.animations = recipe.animations.animations.filter(a => a.id !== 'hearth_burn' && !/^(motion_|farm_crop_)/.test(a.id));
 const asset = (id, animation = null) => {
+    fs.writeFileSync(path.join(workshop, 'textures', id + '.png.meta'),
+        JSON.stringify({ uuid: uuid(id), importer: { textureType: 2 } }, null, 2) + '\n');
+    if (gateArt.has(id)) {
+        const current = gateArt.get(id);
+        recipe.assets.push(current);
+        return { w: current.width, h: current.height };
+    }
     const sourceSheet = sourceDir + '/' + id + '.png';
     const header = fs.readFileSync(path.join(res, sourceSheet));
     const w = header.readUInt32BE(16), h = header.readUInt32BE(20);
@@ -34,8 +46,6 @@ const asset = (id, animation = null) => {
             sourceHash: masterHash,
             outputHash: createHash('sha256').update(header).digest('hex')
         } });
-    fs.writeFileSync(path.join(workshop, 'textures', id + '.png.meta'),
-        JSON.stringify({ uuid: uuid(id), importer: { textureType: 2 } }, null, 2) + '\n');
     return { w, h };
 };
 const sprite = (name, props = {}, children) => ({

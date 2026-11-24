@@ -25,6 +25,8 @@ test("rear drag crosses threshold before firing, can sweep outside the gate, and
     class Sprite {
         constructor() { this.graphics = { clear() {} }; this.width = 720; this.height = 1200; }
         on() {}
+        scale(x,y) { this.scaleX=x; this.scaleY=y; }
+        pos(x,y) { this.x=x; this.y=y; }
         size(width, height) { this.width=width; this.height=height; }
         addChild(node) { node.parent = this; return node; }
         removeSelf() { this.parent = null; }
@@ -33,10 +35,11 @@ test("rear drag crosses threshold before firing, can sweep outside the gate, and
     global.Laya = { Sprite, Point, Rectangle: Rect, Event: {}, InputManager: { cancelClick() {} } };
     try {
         const roots = new Sprite(), world = roots.addChild(new Sprite()), aims = [];
-        let stops = 0;
+        let stops = 0, slow = false;
         const game = { patrolRapidReady: true, aimPatrolRapid(...args) { aims.push(args); return true; },
-            stopPatrolRapid() { stops++; }, setPatrolAiming(active) { assert.equal(active, false); } };
-        const cue = new PatrolThrowCue(world, game, {}), battle = { patrol: { rapid: {} } };
+            stopPatrolRapid() { stops++; }, setPatrolAiming(active) { slow = active; }, get patrolAiming() { return slow; } };
+        const art = { ready: () => true, applyFrame(node,id,size) { assert.equal(id,"fx_patrol_uh"); node.size(size,size); } };
+        const cue = new PatrolThrowCue(world, game, art), battle = { patrol: { rapid: {} } };
         const layout = new GameLayout({ windowWidth: 390, windowHeight: 844, statusBarHeight: 22 }, { width: 0, height: 0 });
         const cy = layout.gateY - RAPID_ROOF_LIFT;
         const ev = (x, y, id=1) => ({ stageX:x, stageY:y, touchId:id, stopPropagation(){} });
@@ -44,6 +47,7 @@ test("rear drag crosses threshold before firing, can sweep outside the gate, and
         cue.down(ev(100, cy));
         assert.equal(cue.press, null);
         cue.down(ev(460, cy+55));
+        assert.equal(slow,true);
         cue.move(ev(460, cy+59));
         assert.equal(aims.length, 0);
         cue.move(ev(460, cy+90));
@@ -57,6 +61,7 @@ test("rear drag crosses threshold before firing, can sweep outside the gate, and
         assert(aims[1][0].x<0 && aims[1][0].y<0);
         cue.up(ev(680, layout.height-5));
         assert.equal(stops, 1);
+        assert.equal(slow,false);
         assert.equal(cue.press, null);
         cue.down(ev(360, cy));
         cue.move(ev(355, cy+80));
@@ -71,5 +76,16 @@ test("rear drag crosses threshold before firing, can sweep outside the gate, and
         cue.update(layout, battle, [], 6, false);
         cue.move(ev(390, cy+80));
         assert.equal(aims.length, 4, "refill needs a fresh gesture");
+        assert.equal(cue.hasRapidWords, false);
+        const hit = (index, hp) => ({type:"patrol", index, enemy:{hp}, at:{x:355,y:504}});
+        cue.update(layout, battle, [hit(0, 15), hit(1, 0)], 7, false);
+        assert.equal(cue.rapidWords.filter(w => w.node.visible).length, 2);
+        assert.notEqual(cue.rapidWords[0].node.x, cue.rapidWords[1].node.x);
+        cue.update(layout, battle, [], 7.4, false);
+        assert.equal(cue.hasRapidWords,false);
+        cue.update(layout, battle, [hit(2,0)], 8, false);
+        assert.equal(cue.rapidWords.length, 2, "reuse a finished sprite");
+        cue.update(layout, null, [], 8, false);
+        assert.equal(cue.hasRapidWords,false);
     } finally { global.Laya=old; }
 });

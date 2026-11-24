@@ -9,7 +9,7 @@ const { BattleSimulation } = require(path.join(compiled, 'game/BattleSimulation.
 const { SaveStore, canonical } = require(path.join(compiled, 'storage/SaveStore.js'));
 const { validateState } = require(path.join(compiled, 'storage/StateValidation.js'));
 const { RULE, TOWERS } = require(path.join(compiled, 'game/GameConfig.js'));
-class Sprite { pos() {} addChild() {} }
+class Sprite { pos() {} size() {} addChild() {} }
 global.Laya = { Sprite, OpenDataContextView: class {}, Texture2D: class {} };
 const { drawBuildingPanel } = require(path.join(compiled, 'view/panels/BuildingPanels.js'));
 
@@ -140,8 +140,8 @@ test('tower panel offers replacement but no release action, and explains auto st
     const s = createGame(7), buttons = [], view = {}; let help;
     Object.assign(view, { game: { state: s, battle: null, pauses: new Set() },
         modal(title, overview, close, size, text) { help = text; return new Sprite(); },
-        ui: { buildRow() {}, iconValue() {}, label() { return {}; }, centerButton(parent, text) { buttons.push(text); },
-            button(parent, text) { buttons.push(text); return { getChildByName: () => ({ getChildByName: () => ({}) }) }; } } });
+        ui: { image() {}, buildRow() {}, iconValue() {}, label() { return {}; }, centerButton(parent, text) { buttons.push(text); },
+            button(parent, text) { buttons.push(text); return { getChildByName: () => ({ getChildByName: () => new Sprite() }) }; } } });
     drawBuildingPanel(view, s, { type: 'tower', index: 0 });
     assert(buttons.includes('更换驻守村民')); assert(!buttons.some(text => text.includes('释放'))); assert(help.includes('自动补上可用成年人'));
 });

@@ -59,11 +59,11 @@ test('night starts with the booth magazine and refills to the same level-depende
 
 test('an in-flight actor retains its bearing; nearest enemy takes one hit even with overlapping targets', () => {
     const rapid = new PatrolRapid(16, 1);
-    assert.equal(rapid.damage, 3);
+    assert.equal(rapid.damage, 20);
     assert(patrolRapidDamage(48) > rapid.damage);
     const origin = { x: 330, y: 610 }, head = { x: 330, y: 545 };
     const enemyStep = (id, dy) => ({
-        enemy: { seq: id, kind: 'enemy_armored', hp: 3 }, startProgress: 0, end: 1,
+        enemy: { seq: id, kind: 'enemy_armored', hp: rapid.damage }, startProgress: 0, end: 1,
         from: { x: head.x, y: head.y + dy + spec.ordinaryCenterHeight },
         to: { x: head.x, y: head.y + dy + spec.ordinaryCenterHeight }
     });
@@ -79,7 +79,27 @@ test('an in-flight actor retains its bearing; nearest enemy takes one hit even w
     assert.equal(hits.length, 1);
     assert.equal(hits[0].enemy.seq, 1);
     assert.equal(first.enemy.hp, 0);
-    assert.equal(behind.enemy.hp, 3);
+    assert.equal(behind.enemy.hp, rapid.damage);
+});
+
+test('two landed rounds defeat a full-health first-night raider with a level-one common captain', () => {
+    const state = createGame(31);
+    applyCommand(state, { type: 'PATROL_MODE', mode: 'rapid' });
+    applyCommand(state, { type: 'NIGHT' });
+    const battle = new BattleSimulation(state), rapid = battle.patrol.rapid;
+    battle.base.towers.forEach(t => { t.operator = null; });
+    for (let i = 0; i < 80 && !battle.enemies.length; i++) battle.step();
+    const enemy = battle.enemies.find(e => e.kind === 'enemy_raider');
+    assert(enemy && enemy.hp === enemy.maxHp);
+    const foot = { x: 330, y: 545 + spec.ordinaryCenterHeight };
+    const trace = { enemy, from: foot, to: foot, end: 1 };
+    rapid.aim(up, { x: foot.x, y: 610 }, 0);
+    const healthAfterHit = [];
+    for (let i = 0; i < Math.ceil(1 / dt) && enemy.hp > 0; i++) {
+        if (rapid.advance(dt, [trace]).length) healthAfterHit.push(enemy.hp);
+    }
+    assert.equal(healthAfterHit.length, 2);
+    assert(healthAfterHit[0] > 0 && healthAfterHit[1] <= 0);
 });
 
 test('rapid and spin snapshots apply the same monster pressure, including after the initial grace period', () => {
@@ -128,4 +148,58 @@ test('session only marks an actual first shot; pausing freezes reload and never 
     for (let i = 0; i < 260; i++) session.update(dt);
     assert.equal(rapid.ammo, 8);
     assert.equal(rapid.shotsFired, 8);
+});
+
+test('holding the roof slows the battle but retains four rounds and full projectile distance per real second', () => {
+    const state = createGame(31);
+    state.patrol.level = 5;
+    applyCommand(state, { type: 'PATROL_MODE', mode: 'rapid' });
+    applyCommand(state, { type: 'NIGHT' });
+    const session = new GameSession(new SaveStore({read: () => null, write() {}}));
+    session.state = state;
+    const battle = session.battle = new BattleSimulation(state), rapid = battle.patrol.rapid;
+    session.setPatrolAiming(true);
+    const advance = frames => { for (let i = 0; i < frames; i++) session.update(1 / 60); };
+    advance(60);
+    assert.equal(battle.tick, Math.round(RULE.battleSpeed * PATROL.spin.aimSpeedRatio / RULE.step));
+    assert.equal(rapid.shotsFired, 0);
+    session.aimPatrolRapid({x:1,y:0},{x:20,y:960},0);
+    advance(30);
+    assert.equal(rapid.shotsFired, 2);
+    assert(Math.abs(rapid.projectiles[0].at.x - (20 + spec.speed / 2)) < 1e-6);
+    advance(210);
+    assert.equal(rapid.shotsFired,16);
+    advance(60);
+    assert.equal(rapid.ammo,0);
+    assert.equal(session.battleSpeed,RULE.battleSpeed);
+    advance(240);
+    assert.equal(rapid.ammo,rapid.capacity);
+    assert.equal(session.patrolAiming,false);
+    assert.equal(rapid.shotsFired,20);
+    session.setPatrolAiming(true);
+    session.pause('BACKGROUND'); session.resume('BACKGROUND');
+    assert.equal(session.battleSpeed,RULE.battleSpeed);
+});
+
+test('a rapid round grazes the widened torso ellipse and misses just outside it on either axis', () => {
+    for (const [kind, height, widthRadius, heightRadius] of [
+        ['enemy_raider', spec.ordinaryCenterHeight, 32, 19],
+        ['enemy_chief', spec.bossCenterHeight, 44, 25]
+    ]) {
+        for (const vertical of [true, false]) {
+            const radius = vertical ? widthRadius : heightRadius;
+            for (const [offset, expected] of [[radius - 1, 1], [radius + 1, 0]]) {
+                const rapid = new PatrolRapid(16, 1);
+                const torso = { x: 360, y: 510 };
+                const foot = { x: torso.x, y: torso.y + height };
+                const trace = { enemy: {seq: 1, kind, hp: 100}, from: foot, to: foot, end: 1 };
+                const start = vertical ? { x: torso.x + offset, y: torso.y + 70 } : { x: torso.x - 70, y: torso.y + offset };
+                rapid.aim(vertical ? up : {x: 1, y: 0}, start, 0);
+                let hits = rapid.advance(dt, [trace]).length;
+                rapid.stop();
+                for (let i = 0; i < 20; i++) hits += rapid.advance(dt, [trace]).length;
+                assert.equal(hits, expected, kind + ' offset ' + offset);
+            }
+        }
+    }
 });

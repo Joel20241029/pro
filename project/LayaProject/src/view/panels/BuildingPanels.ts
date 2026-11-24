@@ -24,7 +24,8 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
         const footer = 300;
         const box = ctx.modal(`确认${verb}`, "", false, { width: 586, height: footer + UI.action.pairHeight + UI.action.bottom });
         const description = `第 ${index + 1} 塔位 · ${TOWERS[kind].name}\n${to ? from ? `保留 ${amount(level)} 阶` : "建成后为 1 阶" : `升至 ${amount(level + 1)} 阶`}`;
-        const details = ctx.ui.label(box, description, 34, 111, 518, 30, C.cream, true, 92);
+        ctx.ui.image(box, `icon_${kind.toLowerCase()}`, 61, 110, 104);
+        const details = ctx.ui.label(box, description, 175, 111, 355, 30, C.cream, true, 92);
         details.align = "center";
         ctx.ui.materialCosts(box, s, cost, 101, 214, 384, 50);
         if (reason) ctx.ui.label(box, reason, 34, 264, 518, 23, C.red, false, 29).align = "center";
@@ -51,10 +52,10 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
             string,
             string
         ][] = [
-            ["FARM", s.farm, "icon_food", "农田", `人均产出 ${growthPreview(laborYield("FARM", s.farm), laborYield("FARM", s.farm + 1))} · ${laborSlots("FARM", s.farm + 1)} 岗`],
-            ["LOGGING", s.logging, "icon_logging", "伐木场", `人均产出 ${growthPreview(laborYield("LOGGING", s.logging), laborYield("LOGGING", s.logging + 1))} · ${laborSlots("LOGGING", s.logging + 1)} 岗`],
-            ["HOUSING", s.housing, "icon_house", "民居修缮", `仓储 ${growthPreview(storageCapacity(s), storageCapacity({ ...s, housing: s.housing + 1 }))}`],
-            ["GATE", s.gateLevel, "icon_shield", "城门加固", `耐久上限 ${growthPreview(gateCapacity(s), gateCapacity({ ...s, gateLevel: s.gateLevel + 1 }))}`]
+            ["FARM", s.farm, "motion_farm_body", "农田", `人均产出 ${growthPreview(laborYield("FARM", s.farm), laborYield("FARM", s.farm + 1))} · ${laborSlots("FARM", s.farm + 1)} 岗`],
+            ["LOGGING", s.logging, "motion_logging_body", "伐木场", `人均产出 ${growthPreview(laborYield("LOGGING", s.logging), laborYield("LOGGING", s.logging + 1))} · ${laborSlots("LOGGING", s.logging + 1)} 岗`],
+            ["HOUSING", s.housing, "motion_house_body", "民居修缮", `仓储 ${growthPreview(storageCapacity(s), storageCapacity({ ...s, housing: s.housing + 1 }))}`],
+            ["GATE", s.gateLevel, "motion_gate_body", "城门加固", `耐久上限 ${growthPreview(gateCapacity(s), gateCapacity({ ...s, gateLevel: s.gateLevel + 1 }))}`]
         ];
         const entries = definitions.map(([kind, level, icon, title, effect]) => {
             const cost = upgradeCost(kind, level);
@@ -71,9 +72,9 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
         });
         const houseCost = residentialCost(s.houses);
         entries.push(
-            { id: "HOUSE", icon: "icon_build", title: `住宅扩建 · ${s.houses}/${RULE.houseMax} 级`, effect: `住房 ${capacity(s)} → ${Math.min(RULE.populationCap, capacity(s) + RESIDENTIAL.capacityPerLevel)} 人`, cost: s.houses >= RULE.houseMax ? null : houseCost,
+            { id: "HOUSE", icon: "motion_house_body", title: `住宅扩建 · ${s.houses}/${RULE.houseMax} 级`, effect: `住房 ${capacity(s)} → ${Math.min(RULE.populationCap, capacity(s) + RESIDENTIAL.capacityPerLevel)} 人`, cost: s.houses >= RULE.houseMax ? null : houseCost,
                 reason: s.houses >= RULE.houseMax ? `已达 ${RULE.houseMax} 级；修缮可继续扩仓储` : upgradeUnavailableReason(s, houseCost), verb: "增建", action: () => ctx.send({ type: "BUILD", kind: "HOUSE" }) },
-            { id: "REPAIR", icon: "icon_shield", title: "修复城门", effect: `当前耐久 ${amount(s.gate)}/${amount(gateCapacity(s))}`, cost: s.gate >= gateCapacity(s) ? null : { wood: repairCost(s) },
+            { id: "REPAIR", icon: "motion_gate_body", title: "修复城门", effect: `当前耐久 ${amount(s.gate)}/${amount(gateCapacity(s))}`, cost: s.gate >= gateCapacity(s) ? null : { wood: repairCost(s) },
                 reason: !day ? "请在白天修门" : s.gate >= gateCapacity(s) ? "城门完好，无需修复" : s.wood < repairCost(s) ? "材料不足" : null, verb: "修复", action: () => ctx.send({ type: "REPAIR" }) }
         );
         const step = UI.buildRowHeight + UI.buildRowGap;
@@ -105,7 +106,8 @@ export function drawBuildingPanel(ctx: PanelContext, s: GameState, p: Panel) {
                 () => ctx.open({ type: "towerConfirm", index: i, towerChange: { from: t.kind, level: t.level, to: k }, back: p }),
                 C.muted, towerOptionHeight, day && t.kind !== k && s.wood >= cost);
             const face = button.getChildByName("buttonFace") as Laya.Sprite, text = face.getChildByName("buttonText") as Laya.Text;
-            text.y = 9; text.height = 43;
+            ctx.ui.image(face, `icon_${k.toLowerCase()}`, 10, 11, 64);
+            text.pos(75, 12); text.size(110, 43);
             if (t.kind === k || !day) ctx.ui.label(face, t.kind === k ? "已建成" : "白天可建", 10, 55, 172, 25, C.muted, false, 40).align = "center";
             else ctx.ui.iconValue(face, "icon_wood", s.wood >= cost ? String(cost) : `${amount(s.wood, true)}/${cost}`, 10, 55, 172, 40, s.wood >= cost ? C.timber : C.red, 26);
         });

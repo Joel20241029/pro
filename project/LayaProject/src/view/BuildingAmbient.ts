@@ -26,15 +26,23 @@ export class BuildingAmbient {
         for (const { node, clip } of this.nodes) {
             if (clip === GATE_DOOR_CLIP) {
                 const doors = this.art.animation(clip);
+                const openTime = (doors.frameIds.length - 1) / (2 * doors.fps);
+                if (working && !night) {
+                    // 局部帧前半展开、后半合拢。有人通过时停在全开帧，连续来人从当前开度接续。
+                    if (this.gateElapsed === null) this.gateElapsed = 0;
+                    if (this.gateElapsed > openTime)
+                        this.gateElapsed = Math.max(0, 2 * openTime - this.gateElapsed);
+                }
                 const index = this.gateElapsed === null ? -1 : Math.floor(this.gateElapsed * doors.fps);
-                const frame = node.rotation || index < 0 ? doors.restFrame : doors.frameIds[index] ?? doors.restFrame;
+                const frame = index < 0 ? doors.restFrame : doors.frameIds[index] ?? doors.restFrame;
                 node.texture = this.art.get(frame);
                 if (index >= doors.frameIds.length) this.gateElapsed = null;
+                if (this.gateElapsed !== null) this.gateElapsed = working && !night ?
+                    Math.min(openTime, this.gateElapsed + delta) : this.gateElapsed + delta;
             } else {
                 node.texture = this.art.get(this.art.frameId(clip, this.time, clip !== SAW_CLIP || working));
             }
         }
-        if (this.gateElapsed !== null) this.gateElapsed += delta;
     }
     showFrostIdle(visible: boolean) {
         for (const { node, clip } of this.nodes)

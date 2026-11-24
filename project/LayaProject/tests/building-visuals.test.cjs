@@ -94,6 +94,21 @@ test('expanding without more visible rooms and consecutive upgrades each play a 
  assert(!v.beginVisibleUpgrade());
 });
 
+test('daytime crossings hold the leaves open; night closes them and dawn plays one opening cycle', () => {
+ const {visual} = create();
+ visual.sync('GATE', 1, true, 1, true);
+ const door = visual.body.getChildByName('GateDoors'), clip = clips.get('motion_gate_doors');
+ const advance = (frames,night,traffic) => { for(let i=0;i<frames;i++) visual.advance(1/clip.fps,night,traffic); };
+ advance(20,false,true);
+ assert.equal(door.texture,clip.frameIds[Math.floor(clip.frameIds.length/2)]);
+ advance(20,false,false);
+ assert.equal(door.texture,clip.restFrame);
+ advance(20,false,true); advance(1,true,true);
+ assert.equal(door.texture,clip.restFrame);
+ advance(5,false,false); assert.notEqual(door.texture,clip.restFrame);
+ advance(20,false,false); assert.equal(door.texture,clip.restFrame);
+});
+
 test('body upgrades preserve ground pivot, stable reuse and precise readable level badge', () => {
  const { owner, visual: v } = create(); owner.scaleX = -1;
  v.sync('ARROW', 13, true); assert.equal(v.badge.text, '13'); assert.equal(v.badge.scaleX, -1); assert.equal(v.upgrading, false);

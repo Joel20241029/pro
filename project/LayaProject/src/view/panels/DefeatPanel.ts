@@ -24,7 +24,7 @@ export function drawGameOver(ctx: PanelContext, state: GameState) {
     const score = card("DefeatScore", 118, 146);
     score.graphics.drawEllipse(88, 73, 55, 55, "#f0d8a7", null, 0);
     score.graphics.drawEllipse(88, 73, 50, 50, "#f7e9c5", null, 0);
-    ctx.ui.image(score, "icon_shield", 52, 37, 72);
+    ctx.ui.image(score, "motion_gate_body", 26, 13, 124, 120);
     text(score, "城门失守", 165, 27, 218, 43, 34, C.red, true);
     text(score, "本局守住", 165, 76, 218, 38, 28, C.muted);
     text(score, String(state.completed), 382, 25, 130, 90, 68, C.green, true).align = "right";

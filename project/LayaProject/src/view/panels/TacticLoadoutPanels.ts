@@ -68,10 +68,10 @@ function catalogRows(ctx: PanelContext, state: GameState, panel: Panel, box: Lay
         const inspect = () => ctx.open({ type: "tactic", id: skill.id, back: panel });
         row.name = revealed ? `TacticCard:${skill.id}` : "UnknownTactic";
         ctx.art.panel(row, revealed ? "panel_card" : "panel_card_disabled", LAYOUT.width, spec.row);
-        if (revealed) ctx.ui.image(row, skill.icon, 16, 20, 57);
+        if (revealed) ctx.ui.image(row, skill.icon, 11, 9, 78);
         else compactLabel(ctx, row, "?", 15, 0, 63, spec.row, 57, C.timber, true).align = "center";
-        compactLabel(ctx, row, revealed ? skill.name : "未知战技", 85, 9, 341, 42, 31, C.ink, true);
-        compactLabel(ctx, row, revealed ? skill.summary : `守住 ${skill.unlockWaves} 波后解锁`, 85, 51, 341, 36, 24, C.green);
+        compactLabel(ctx, row, revealed ? skill.name : "未知战技", 101, 9, 325, 42, 31, C.ink, true);
+        compactLabel(ctx, row, revealed ? skill.summary : `守住 ${skill.unlockWaves} 波后解锁`, 101, 51, 325, 36, 24, C.green);
         const button = ctx.ui.button(row, revealed ? "详情" : "传闻", 449, 23, 115, inspect, C.muted, 54);
         if (revealed && ctx.unreadTactic(skill.id)) ctx.ui.actionBadge(button, "TacticReadHint");
     });
@@ -176,10 +176,10 @@ export function drawTacticSwap(ctx: PanelContext, state: GameState, panel: Panel
         const row = new Laya.Sprite(); row.name = `TacticChoice:${skill.id}`;
         row.pos(0, y).size(LAYOUT.width, spec.row); list.content.addChild(row);
         ctx.art.panel(row, elsewhere ? "panel_card_disabled" : "panel_card", LAYOUT.width, spec.row);
-        ctx.ui.image(row, skill.icon, 14, 25, 58);
-        compactLabel(ctx, row, skill.name, 82, 9, 279, 43, 30, C.ink, true);
-        if (learned) compactLabel(ctx, row, skill.summary, 82, 53, 279, 37, 24, C.green);
-        else ctx.ui.materialCosts(row, state, skill, 82, 52, 263, 40);
+        ctx.ui.image(row, skill.icon, 12, 12, 82);
+        compactLabel(ctx, row, skill.name, 105, 9, 256, 43, 30, C.ink, true);
+        if (learned) compactLabel(ctx, row, skill.summary, 105, 53, 256, 37, 24, C.green);
+        else ctx.ui.materialCosts(row, state, skill, 105, 52, 240, 40);
         if (elsewhere) {
             compactLabel(ctx, row, `已装第 ${equipped.indexOf(skill.id) + 1} 槽`, spec.buttonX, 24, spec.buttonW, 60, 25, C.muted).align = "center";
         } else {

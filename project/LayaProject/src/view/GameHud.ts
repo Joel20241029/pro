@@ -200,9 +200,9 @@ export class GameHud {
             // 圆钮使用完整方形母画布，不能套九宫格或按可见框分别拉伸宽高。
             this.ui.image(face, "button_night_round", 0, 0, start.size, start.size, false).name = "buttonSkin";
             this.ui.image(face, "icon_night_shield", (start.size - start.icon) / 2, start.iconY, start.icon).name = "buttonIcon";
-            const caption = this.ui.label(face, "开始守夜", start.textX, start.textY, start.textWidth, start.font, C.lightEdge, true, start.textHeight);
+            const caption = this.ui.label(face, "开始守夜", start.textX, start.textY, start.textWidth, start.font, C.ink, true, start.textHeight);
             caption.name = "buttonText"; caption.align = "center"; caption.wordWrap = false; caption.overflow = Laya.Text.SHRINK;
-            caption.stroke = start.stroke; caption.strokeColor = C.outline;
+            caption.stroke = 0; caption.strokeColor = C.outline;
         }
         else if (s.phase === "NIGHT") {
             this.nightControls = new NightControls(this.game, this.ui, this.panels, this.refresh);

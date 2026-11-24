@@ -46,16 +46,16 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
     const text = residentCardText.bind(null, ctx);
     const heading = (node: Laya.Sprite, value: string) => text(node, value, 26, 14, 300, 43, 33, C.ink, true);
     const bio = card("profile", DETAIL.profile);
-    if (special) text(bio, quality.label, 28, 20, 111, 40, 27, q.quality === "HERO" ? C.heroName : C.timber, true);
-    text(bio, q.name, 28, special ? 62 : 37, 334, 60, 51, C.ink, true);
+    if (special) text(bio, quality.label, 236, 20, 111, 40, 27, q.quality === "HERO" ? C.heroName : C.timber, true);
+    text(bio, q.name, 236, special ? 62 : 37, 334, 60, 51, C.ink, true);
     const parents = q.parents.map(id => s.people.find(a => a.id === id)?.name ?? s.history.find(a => a.id === id)?.name ?? "更早的家族成员");
     const origin = q.origin === "TRAVELER" ? "路过村落的旅人" : "开村人";
-    text(bio, `第 ${q.generation} 代${parents.length ? "" : ` · ${origin}`}`, 28, special ? 129 : 107, 338, 38, 25, C.muted);
-    if (parents.length) text(bio, `双亲：${parents.join("、")}`, 28, 163, 338, 30, 24, C.muted);
+    text(bio, `第 ${q.generation} 代${parents.length ? "" : ` · ${origin}`}`, 236, special ? 129 : 107, 338, 38, 25, C.muted);
+    if (parents.length) text(bio, `双亲：${parents.join("、")}`, 236, 163, 338, 30, 24, C.muted);
     // 审稿版的麦色圆框和图集有效像素头像。圆框仅作底衬，不影响头像缩放。
-    bio.graphics.drawEllipse(487, 99, 75, 75, "#f1d7a4", null, 0);
-    bio.graphics.drawEllipse(487, 99, 70, 70, "#f7e4b9", null, 0);
-    ctx.ui.image(bio, ctx.art.portraitId(q, ancestor), 415, 29, 144, 146);
+    bio.graphics.drawEllipse(116, 103, 93, 93, "#f1d7a4", null, 0);
+    bio.graphics.drawEllipse(116, 103, 88, 88, "#f7e4b9", null, 0);
+    ctx.ui.image(bio, ctx.art.portraitId(q, ancestor), 21, 8, 190, 190);
 
     drawResidentTalent(ctx, card("talent", DETAIL.talent), q);
     if (special) drawResidentQuality(ctx, card("bonus", DETAIL.bonus), quality);

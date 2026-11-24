@@ -2312,7 +2312,7 @@
     ]
   },
   "panel_button_green": {
-    "sha256": "b7199bae09db418ede1751d3da47a7d3ffffa73b23140f28e7e93556b15c2fb6",
+    "sha256": "3e15217f5a118974e6ff7c2870978e33f8430dfc903fa7ca2ebbe0f561704be0",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       256,
@@ -2320,7 +2320,7 @@
     ]
   },
   "panel_button_gold": {
-    "sha256": "7c59bd47a681734f75b4d6eb09b03a28ef74525295f5e3fb7e101dd244b8b127",
+    "sha256": "bc76e6603c1edfb8d788b82c3a6b465104f9cb015dc577bb05cc4445129b4768",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       256,
@@ -2328,7 +2328,7 @@
     ]
   },
   "panel_button_red": {
-    "sha256": "fe3534a7ef76816457ed92e3ec1b2c3659e4f9a93847afde617e59599923be85",
+    "sha256": "680de5fc734acefce732301901f8d88293d989659843d11dcc6d78b305b3757c",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       256,
@@ -2336,7 +2336,7 @@
     ]
   },
   "panel_button_disabled": {
-    "sha256": "815a80ac88b4d99ab1d1640d3dc4d7ef6866ba302d75d855c1c200cc0a56e4d6",
+    "sha256": "e47467a08aebc87e51e54178b667336b992694b8ab3eb7dcac9b692d2e6dc52a",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       256,
@@ -2400,7 +2400,7 @@
     ]
   },
   "button_night_round": {
-    "sha256": "2446b5d30d5172b80f70dbe39fe69bdd918bae7a9c430f15b6e621e1328b01f9",
+    "sha256": "22cec134160477d872b1711234bf22293866a291b5a88230601a4bdc1bd509ac",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       384,
@@ -2416,7 +2416,7 @@
     ]
   },
   "button_heart_round": {
-    "sha256": "cf2c8358d668f4b2cf5fa446733fb2c67abc3bd641e381e11723a685c0d49582",
+    "sha256": "22cec134160477d872b1711234bf22293866a291b5a88230601a4bdc1bd509ac",
     "master": "tools/hd2d/render-cartoon.py",
     "size": [
       384,
@@ -3744,243 +3744,115 @@
     ]
   },
   "motion_gate_body": {
-    "sha256": "9dac9de4c85cd9008eab1dd76362713570ed58a4130fe1584c7f5d1646f58950",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "b45a4a2edda45e67527b6de02a0c9c31b299803cbf7a64f8fc90f21637fc5038",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-frame.png",
     "size": [
       160,
-      134
+      78
     ]
   },
   "motion_gate_doors_0": {
-    "sha256": "850638a718ae3cecfee4e11c05fb97126f293e08b6e494500a3a8ef65deb9b19",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "009ee804c2c13e8922fd634d7c4aff3e3035720b5d944313d8348d6548d7ec5f",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
     "size": [
-      55,
-      54
+      99,
+      46
     ]
   },
   "motion_gate_doors_1": {
-    "sha256": "dd40ed24a22c089ea5ff113ea145f9e19867139d509feeb347e4a7acba28c013",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "c4dfbe0bbedc16abe5d7276447816083820f6b24c3d09b3d8949292e415c6e9b",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
     "size": [
-      55,
-      54
+      99,
+      46
     ]
   },
   "motion_gate_doors_2": {
-    "sha256": "13b36d0a455b600c89bd30ceffc20aeeffcb2e3327d20c1b12e146332a1b8abe",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "fe6ab173c9480d9ac89fc2d6b1c25f21cbad199af98823f93862f8f768bb8fee",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
     "size": [
-      55,
-      54
+      99,
+      46
     ]
   },
   "motion_gate_doors_3": {
-    "sha256": "5995ed9950bf4c1545dba18b18581cdf9f3470a6be6631638617d9b72129a9ca",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "0d43594e447fb9bf8050e711bd2c6c3c0276acb3bbbd71dd8b557679fd15a4cd",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
     "size": [
-      55,
-      54
+      99,
+      46
     ]
   },
   "motion_gate_doors_4": {
-    "sha256": "21a3f1a0a3415de823ebb23a07683ed3e1d07c020fbbe3e589cd5afff9569b0d",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "a6eb1ad7d4a123db593bf71d0745870c6836e563c7df510e1b30eaede49aeb63",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
     "size": [
-      55,
-      54
+      99,
+      46
     ]
   },
   "motion_gate_doors_5": {
-    "sha256": "2b5e7759677823dc739bedcd353f296a3b086ab317aad10fd2012294420b22b8",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "5d17b676b6001f720397412ec7915547bc192d2a573fdb270c07d817e89cda34",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
     "size": [
-      55,
-      54
+      99,
+      46
     ]
   },
   "motion_gate_doors_6": {
-    "sha256": "26f3600d3b57f63e9e8d3c2553efa3e40575a3b1148f75373dbadb79c6b893dc",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "0733dc35ad8016438d024466c7029d5a8fe4b3620974c7725dde2cf980b4e83d",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
     "size": [
-      55,
-      54
+      99,
+      46
     ]
   },
   "motion_gate_doors_7": {
-    "sha256": "26f3600d3b57f63e9e8d3c2553efa3e40575a3b1148f75373dbadb79c6b893dc",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "0733dc35ad8016438d024466c7029d5a8fe4b3620974c7725dde2cf980b4e83d",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
     "size": [
-      55,
-      54
+      99,
+      46
     ]
   },
   "motion_gate_doors_8": {
-    "sha256": "2521dded9c5069d8297e3069b0317a79f2a2c6fa1f5bd30494feebf528637cc2",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "39f75f7cd058a9b17c6d34eb07604500732c955e48d4bfd6a06fde7274c22477",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
     "size": [
-      55,
-      54
+      99,
+      46
     ]
   },
   "motion_gate_doors_9": {
-    "sha256": "1bd7f1be112ed7a1a4e483b142029c5c9e9a886e237b926af62c2b1ee6d55fa6",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "f9b063975417c02d7281170549e7a45cf20a8cf09fc5514e7d2ac4055f160fba",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
     "size": [
-      55,
-      54
+      99,
+      46
     ]
   },
   "motion_gate_doors_10": {
-    "sha256": "e00b445abbc1170e4b53ec6d14654ec34aa4e6adf5aac4bb10d84208e4984eda",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "709014cecc73ff2fb2c46357efbca2cd36e810cd00d04f2dea43b7c6367d38fa",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
     "size": [
-      55,
-      54
+      99,
+      46
     ]
   },
   "motion_gate_doors_11": {
-    "sha256": "ae1ad6db89e5210d221e4fca316d9e79bd5ce391e7e37efce18d7b683e498649",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "5c3765786d70bf664b5bba2fed5ad133e04504145687bc7e4b339d1dbbf9857c",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
     "size": [
-      55,
-      54
+      99,
+      46
     ]
   },
   "motion_gate_doors_12": {
-    "sha256": "850638a718ae3cecfee4e11c05fb97126f293e08b6e494500a3a8ef65deb9b19",
-    "master": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
+    "sha256": "009ee804c2c13e8922fd634d7c4aff3e3035720b5d944313d8348d6548d7ec5f",
+    "master": "source/rendered2d/production/cartoon-v1/masters/palisade-gate-doors.png",
     "size": [
-      55,
-      54
-    ]
-  },
-  "motion_gate_fire_left_0": {
-    "sha256": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_left_1": {
-    "sha256": "e294b0383079e4e921a01c538d711cbe4176eebc153e178efa8c2723d617f476",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_left_2": {
-    "sha256": "6f5db4b206eb5a4195e51723d64e1ad636d7870af49859f7a153e200316fb67f",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_left_3": {
-    "sha256": "e294b0383079e4e921a01c538d711cbe4176eebc153e178efa8c2723d617f476",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_left_4": {
-    "sha256": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_left_5": {
-    "sha256": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_left_6": {
-    "sha256": "732b602f96b89c9763bcc5ddea621ccc577b359d16a72603e3b16e21f6ec3090",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_left_7": {
-    "sha256": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_right_0": {
-    "sha256": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_right_1": {
-    "sha256": "e294b0383079e4e921a01c538d711cbe4176eebc153e178efa8c2723d617f476",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_right_2": {
-    "sha256": "6f5db4b206eb5a4195e51723d64e1ad636d7870af49859f7a153e200316fb67f",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_right_3": {
-    "sha256": "e294b0383079e4e921a01c538d711cbe4176eebc153e178efa8c2723d617f476",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_right_4": {
-    "sha256": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_right_5": {
-    "sha256": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_right_6": {
-    "sha256": "732b602f96b89c9763bcc5ddea621ccc577b359d16a72603e3b16e21f6ec3090",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
-    ]
-  },
-  "motion_gate_fire_right_7": {
-    "sha256": "fad4ce936cd342428e10c0d08d08b9f48fcaac63a6c7f7ae7395833dbc25e8f4",
-    "master": "tools/hd2d/render-cartoon.py",
-    "size": [
-      15,
-      23
+      99,
+      46
     ]
   },
   "motion_house_body": {

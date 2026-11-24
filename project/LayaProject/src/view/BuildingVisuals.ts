@@ -108,10 +108,11 @@ export class BuildingVisuals {
             this.aboveSort = { x: upper.x, y: upper.y };
         }
         if (damaged) {
-            // 沿用城门低于35%血量的损坏档；裂缝附着门板，不改变碰撞/遮挡根。
+            // 低血量时门板暗淡，裂纹固定在左门柱上，开门时仍贴在木头上。
             const door = this.body.getChildByName("GateDoors") as Laya.Sprite;
-            door.alpha = .68; door.rotation = 6;
-            door.graphics.drawLines(door.width * .45, 2, [0, 0, -5, 8, 2, 13, -3, 22], "#41251e", 2);
+            const post = this.body.getChildByName("Structure") as Laya.Sprite;
+            door.alpha = .68;
+            post.graphics.drawLines(post.width * .13, post.height * .35, [0, 0, -4, 7, 1, 11, -3, 18], "#41251e", 2);
         }
         this.updateBadge(level, scale);
     }

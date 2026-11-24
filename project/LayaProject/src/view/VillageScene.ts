@@ -104,7 +104,8 @@ export class VillageNavigation {
         cost: number;
     }[][] = [];
     constructor(props = VILLAGE_PROPS, landscape = LANDSCAPE_FOOTPRINTS, readonly bounds: Footprint = MOTION.bounds) {
-        this.obstacles = [...props.filter(p => p.footprint).map(p => p.footprint!), ...landscape].map(r => ({
+        // 可开合的双扇门可穿行。门柱已计入两侧城墙的碰撞块。
+        this.obstacles = [...props.filter(p => p.footprint && p.id !== "building:gate").map(p => p.footprint!), ...landscape].map(r => ({
             left: r.left - MOTION.clearance, top: r.top - MOTION.clearance,
             right: r.right + MOTION.clearance, bottom: r.bottom + MOTION.clearance
         }));

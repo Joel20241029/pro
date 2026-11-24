@@ -27,8 +27,7 @@ export function lanePoint(progress: number, lane: number): Point {
     return { x: (left + right) / 2 + (right - left) * lane, y };
 }
 
-export function contactTime(unit: RoadStep, target: EnemyRoadStep) {
-    const size = ENEMIES[target.enemy.kind].boss ? C.contact.boss : C.contact.ordinary;
+export function contactTime(unit: RoadStep, target: EnemyRoadStep, size: Readonly<Point>) {
     // 相对位移与按脚部尺寸归一化的圆相交。除以 end，保留截断前的速度。
     const x = (unit.from.x - target.from.x) / size.x, y = (unit.from.y - target.from.y) / size.y;
     const dx = ((unit.to.x - unit.from.x) / (unit.end || 1) - (target.to.x - target.from.x) / (target.end || 1)) / size.x;
@@ -74,7 +73,7 @@ export class SummonCharge {
             const step = { from, to: unit.at, end };
             if (unit.progress === 0) departing.push(unit);
             for (const target of targets) {
-                const time = contactTime(step, target);
+                const time = contactTime(step, target, ENEMIES[target.enemy.kind].boss ? C.contact.boss : C.contact.ordinary);
                 const reachesGate = target.enemy.progress >= PATH_LENGTH;
                 if (time <= end && (reachesGate ? time < target.end : time <= target.end))
                     contacts.push({ time, unit, step, target });

@@ -31,7 +31,7 @@ export class PatrolVisuals {
     constructor(private world: Laya.Sprite, private art: SpriteFrames, private game: GameSession) {
         this.cue = new PatrolThrowCue(world, game, art);
     }
-    get hasLanding() { return this.cue.impact !== null; }
+    get hasLanding() { return this.cue.impact !== null || this.cue.hasRapidWords; }
     destroy() {
         this.cue.dispose();
         this.rapidView?.root.destroy(true);
@@ -61,7 +61,7 @@ export class PatrolVisuals {
                 this.rapidView.root.stackingRoot = true;
                 (this.world.parent as Laya.Sprite).addChild(this.rapidView.root);
             }
-            this.rapidView.update(layout, rapid, this.cue.rapidAim, time,
+            this.rapidView.update(layout, rapid, this.cue.rapidAim, rapid.elapsedSeconds,
                 !blocked && this.game.patrolRapidReady && !this.game.hasFiredPatrolRapid && !this.cue.rapidAim);
             return depth;
         }

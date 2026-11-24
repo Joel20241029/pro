@@ -15,7 +15,7 @@ export const TACTIC_UI = {
         footerY: 395, cancelX: 56, cancelW: 170, confirmX: 246, confirmW: 268
     },
     // 展开传闻高度按真实文字测量，这里只定义边距、标题区和动作行。
-    detail: { top: 112, width: 600, inset: 28, icon: 96, loreTop: 164, gap: 20 }
+    detail: { top: 112, width: 600, inset: 28, icon: 128, loreTop: 164, gap: 20 }
 } as const;
 
 /** 分波解锁演出与左侧入口共用图标和身份，调整顺序须同时检查飞行落点。 */

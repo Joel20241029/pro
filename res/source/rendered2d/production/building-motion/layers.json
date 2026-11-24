@@ -130,17 +130,17 @@
     "body": {
       "id": "motion_gate_body",
       "x": 0,
-      "y": 13,
+      "y": 58,
       "w": 128,
-      "h": 107
+      "h": 62
     },
     "clips": [
       {
         "id": "motion_gate_doors",
-        "x": 42,
-        "y": 66,
-        "w": 44,
-        "h": 43,
+        "x": 25,
+        "y": 79,
+        "w": 79,
+        "h": 37,
         "frames": [
           "motion_gate_doors_0",
           "motion_gate_doors_1",
@@ -158,46 +158,6 @@
         ],
         "rest": "motion_gate_doors_0",
         "fps": 10,
-        "attack": false
-      },
-      {
-        "id": "motion_gate_fire_left",
-        "x": 16,
-        "y": 73,
-        "w": 12,
-        "h": 18,
-        "frames": [
-          "motion_gate_fire_left_0",
-          "motion_gate_fire_left_1",
-          "motion_gate_fire_left_2",
-          "motion_gate_fire_left_3",
-          "motion_gate_fire_left_4",
-          "motion_gate_fire_left_5",
-          "motion_gate_fire_left_6",
-          "motion_gate_fire_left_7"
-        ],
-        "rest": "motion_gate_fire_left_0",
-        "fps": 12,
-        "attack": false
-      },
-      {
-        "id": "motion_gate_fire_right",
-        "x": 98,
-        "y": 73,
-        "w": 12,
-        "h": 18,
-        "frames": [
-          "motion_gate_fire_right_0",
-          "motion_gate_fire_right_1",
-          "motion_gate_fire_right_2",
-          "motion_gate_fire_right_3",
-          "motion_gate_fire_right_4",
-          "motion_gate_fire_right_5",
-          "motion_gate_fire_right_6",
-          "motion_gate_fire_right_7"
-        ],
-        "rest": "motion_gate_fire_right_0",
-        "fps": 12,
         "attack": false
       }
     ]

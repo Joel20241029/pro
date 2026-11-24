@@ -48,7 +48,7 @@ for(const profile of profiles) test(`${profile[0]}: safe controls, expanded vill
         near(distance(at,p),0);
     }
     const farm=scene.props.find(p=>p.id==='building:farm');
-    for(const p of scene.stops.farm) assert([-75,-30].some(d=>Math.abs(p.y-farm.y-d)<1e-6),'farmer leaves crop rows');
+    for(const p of scene.stops.farm) assert([-48,-19].some(d=>Math.abs((p.y-farm.y)*128/farm.size-d)<1e-6),'farmer leaves crop rows');
     for(const p of scene.stops.logging) {
         const tree=scene.props.find(t=>t.id===p.treeId);
         assert(p.y>tree.y,'woodcutter must stand in front of the assigned tree after screen layout');

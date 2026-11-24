@@ -2,6 +2,7 @@ import { GameState, isElder, isWorkingAdult, Person, Tower } from "../game/GameS
 import { RULE } from "../game/GameConfig";
 import { distance, GroundPoint, MOTION, VillageNavigation, VILLAGE_STOPS, WEDDING } from "./VillageScene";
 import { VisibleResidents } from "./VisibleResidents";
+import { VILLAGE_GATE } from "./config/VillageSceneConfig";
 import { villagerModel, walkDirection, WalkDirection } from "./VillagerAppearance";
 
 interface Visit { at: GroundPoint; seconds: number; working: boolean; insideTower: boolean; }
@@ -60,6 +61,15 @@ export class VillagerMotion {
     }
     get count() { return this.people.size; }
     get(id: string): Readonly<VillagerPose> { const p = this.people.get(id); if (!p) throw new Error(`未同步村民表现：${id}`); return p; }
+    /** 中央门洞是城墙唯一通路。只为近门且目的地在城墙另一侧的行人开门。 */
+    crossingGate(gateY: number) {
+        for (const m of this.people.values()) {
+            if (m.walking && Math.abs(m.x - VILLAGE_GATE.x) <= MOTION.gateApproachWidth &&
+                Math.abs(m.y - gateY) <= MOTION.gateApproachDepth &&
+                (m.y - gateY) * (m.plan[m.visit].at.y - gateY) <= 0) return true;
+        }
+        return false;
+    }
     sync(state: GameState, towers: Tower[], focus?: string) {
         const newRun = this.run !== state.run;
         if (newRun) { this.people.clear(); this.campSlots.clear(); this.waitingSlots.clear(); this.run = state.run; this.weddings = []; this.wedding = null; }

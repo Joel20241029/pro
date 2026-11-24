@@ -29,9 +29,9 @@
               "_$type": "Sprite",
               "name": "Structure",
               "x": 0,
-              "y": 13,
+              "y": 58,
               "width": 128,
-              "height": 107,
+              "height": 62,
               "texture": {
                 "_$uuid": "515128f0-62ab-b730-c5a0-0602502b2f71",
                 "_$type": "Texture"
@@ -41,10 +41,10 @@
               "_$id": "0fe6fb39",
               "_$type": "Sprite",
               "name": "GateDoors",
-              "x": 42,
-              "y": 66,
-              "width": 44,
-              "height": 43,
+              "x": 25,
+              "y": 79,
+              "width": 79,
+              "height": 37,
               "texture": {
                 "_$uuid": "808db883-f173-948a-4f0d-b7b047ec2782",
                 "_$type": "Texture"
@@ -58,32 +58,6 @@
                   "autoPlay": false
                 }
               ]
-            },
-            {
-              "_$id": "edf5e4a3",
-              "_$type": "Sprite",
-              "name": "Loop:motion_gate_fire_left",
-              "x": 16,
-              "y": 73,
-              "width": 12,
-              "height": 18,
-              "texture": {
-                "_$uuid": "55926e3a-07bb-2b7c-9b3c-c5ebf45c6a24",
-                "_$type": "Texture"
-              }
-            },
-            {
-              "_$id": "a476ea0e",
-              "_$type": "Sprite",
-              "name": "Loop:motion_gate_fire_right",
-              "x": 98,
-              "y": 73,
-              "width": 12,
-              "height": 18,
-              "texture": {
-                "_$uuid": "f172eb0c-3518-1d40-9807-24a63fc65fa2",
-                "_$type": "Texture"
-              }
             }
           ]
         },
@@ -91,20 +65,20 @@
           "_$id": "ecfba2b4",
           "_$type": "Sprite",
           "name": "VisualBounds",
-          "x": -12,
-          "y": -44,
-          "width": 152,
-          "height": 178,
+          "x": 0,
+          "y": 58,
+          "width": 128,
+          "height": 62,
           "visible": false
         },
         {
           "_$id": "0e18189d",
           "_$type": "Sprite",
           "name": "Footprint",
-          "x": 10,
-          "y": 96,
-          "width": 108,
-          "height": 24,
+          "x": 1,
+          "y": 106,
+          "width": 126,
+          "height": 14,
           "visible": false
         },
         {

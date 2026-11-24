@@ -1755,62 +1755,8 @@
       "restFrame": "motion_gate_doors_0",
       "category": "building-parts",
       "canvas": {
-        "w": 55,
-        "h": 54
-      },
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "clock": "scene_visual_or_battle"
-    },
-    {
-      "id": "motion_gate_fire_left",
-      "frameIds": [
-        "motion_gate_fire_left_0",
-        "motion_gate_fire_left_1",
-        "motion_gate_fire_left_2",
-        "motion_gate_fire_left_3",
-        "motion_gate_fire_left_4",
-        "motion_gate_fire_left_5",
-        "motion_gate_fire_left_6",
-        "motion_gate_fire_left_7"
-      ],
-      "frameCount": 8,
-      "fps": 12,
-      "loop": true,
-      "restFrame": "motion_gate_fire_left_0",
-      "category": "building-parts",
-      "canvas": {
-        "w": 15,
-        "h": 23
-      },
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "clock": "scene_visual_or_battle"
-    },
-    {
-      "id": "motion_gate_fire_right",
-      "frameIds": [
-        "motion_gate_fire_right_0",
-        "motion_gate_fire_right_1",
-        "motion_gate_fire_right_2",
-        "motion_gate_fire_right_3",
-        "motion_gate_fire_right_4",
-        "motion_gate_fire_right_5",
-        "motion_gate_fire_right_6",
-        "motion_gate_fire_right_7"
-      ],
-      "frameCount": 8,
-      "fps": 12,
-      "loop": true,
-      "restFrame": "motion_gate_fire_right_0",
-      "category": "building-parts",
-      "canvas": {
-        "w": 15,
-        "h": 23
+        "w": 99,
+        "h": 46
       },
       "pivot": {
         "x": 0,

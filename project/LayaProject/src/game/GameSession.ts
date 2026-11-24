@@ -249,6 +249,7 @@ export class GameSession {
         if (id !== BLAST_TACTIC) {
             const beforeCast = this.battle.feedback.length;
             this.battle.bell(id);
+            if (this.battle.handSpeed) this.stopPatrolRapid();
             // 瞬发战技在点击当下产生反馈，不能等下一步清空信箱再收集。
             this.combatFeedback.push(...this.battle.feedback.slice(beforeCast));
         }
@@ -276,17 +277,22 @@ export class GameSession {
     aimPatrolRapid(direction: RoadPoint, origin: RoadPoint = PATROL.rapid.origin, muzzleDistance: number = PATROL.rapid.muzzleDistance) {
         return this.patrolRapidReady && this.battle!.patrol!.rapid!.aim(direction, origin, muzzleDistance);
     }
-    stopPatrolRapid() { this.battle?.patrol?.rapid?.stop(); }
+    stopPatrolRapid() {
+        if (this.battle?.patrol?.rapid) {
+            this.battle.patrol.rapid.stop();
+            this.aimingPatrolIn = null;
+        }
+    }
     get patrolDragReady() {
         const battle = this.battle;
         return !!battle?.patrol?.spin?.canGather && !battle.outcome && !battle.handSpeed && !this.blastAiming &&
             !this.pauses.size && !this.saves.pending;
     }
     setPatrolAiming(active: boolean) {
-        this.aimingPatrolIn = active && this.patrolDragReady ? this.battle : null;
+        this.aimingPatrolIn = active && (this.patrolDragReady || this.patrolRapidReady) ? this.battle : null;
     }
     get patrolAiming() {
-        return this.aimingPatrolIn === this.battle && this.patrolDragReady;
+        return !!this.aimingPatrolIn && this.aimingPatrolIn === this.battle && (this.patrolDragReady || this.patrolRapidReady);
     }
     get battleSpeed() {
         return this.patrolAiming ? RULE.battleSpeed * PATROL.spin.aimSpeedRatio : RULE.battleSpeed;
@@ -323,21 +329,24 @@ export class GameSession {
             this.refreshDailyTasks();
         }
         if (this.pauses.size || !this.battle || !this.state || this.battle.outcome) return;
-        const realDelta = Math.min(RULE.frameCap, Math.max(0, delta)), speed = this.battleSpeed;
+        const realDelta = Math.min(RULE.frameCap, Math.max(0, delta));
         if (this.battle.handSpeed) {
             const battle = this.battle;
             battle.step(realDelta);
             this.collectBattleStep(battle, this.state);
             return;
         }
-        this.accumulator += realDelta * speed;
-        let steps = 0;
-        while (this.accumulator + 1e-9 >= RULE.step && steps++ < RULE.maxSteps) {
-            this.accumulator -= RULE.step;
+        // 累积现实秒。打空弹仓可以在同一帧恢复战场常速，机关枪始终按实际经过的时间推进。
+        this.accumulator += realDelta;
+        for (let steps = 0; steps < RULE.maxSteps; steps++) {
+            const realStep = RULE.step / this.battleSpeed;
+            if (this.accumulator + 1e-9 < realStep) break;
+            this.accumulator -= realStep;
             const battle = this.battle;
             const rapid = battle.patrol?.rapid;
             const firstRapidShot = rapid?.shotsFired === 0;
-            battle.step();
+            battle.step(realStep);
+            if (rapid && !rapid.ammo) this.aimingPatrolIn = null;
             if (firstRapidShot && rapid.shotsFired > 0) this.deviceSettings.markPatrolRapidFired();
             if (this.collectBattleStep(battle, this.state)) break;
         }

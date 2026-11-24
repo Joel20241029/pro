@@ -197,7 +197,7 @@ export class VillageWorld {
     }
     /** 返回血条下边沿，复用原2D城门上方布局，不依赖上一帧建筑是否已绘制。 */
     gateAnchor() {
-        return { x: HUD.gate.x + HUD.gate.width / 2, y: this.layout.gateY + (this.game.battle?.patrol?.rapid ? 20 : HUD.gate.barTop + HUD.gate.barHeight) };
+        return { x: HUD.gate.x + HUD.gate.width / 2, y: this.layout.gateY + (this.game.battle?.patrol?.rapid ? HUD.gate.rapidBarBottom : HUD.gate.barTop + HUD.gate.barHeight) };
     }
     destroy() {
         this.patrolVisuals.destroy();
@@ -295,7 +295,9 @@ export class VillageWorld {
         if (advancing) {
             if (s?.phase === "DAY" || s?.phase === "NIGHT") this.villageMotionSeconds += visualTime;
             const chopping = s?.phase === "DAY" && this.motion.visiblePeople.some(person => person.job === "LOGGING" && this.motion.get(person.id).clip.endsWith("_work"));
-            this.props.forEach(p => p.visual?.advance(visualTime, s?.phase === "NIGHT", p.id === "building:logging" && chopping));
+            const gateTraffic = s?.phase === "DAY" && this.motion.crossingGate(this.layout.gateY);
+            this.props.forEach(p => p.visual?.advance(visualTime, s?.phase === "NIGHT",
+                p.id === "building:gate" ? gateTraffic : p.id === "building:logging" && chopping));
         }
         const battle = this.game.battle;
         if (battle !== this.lastBattle) {

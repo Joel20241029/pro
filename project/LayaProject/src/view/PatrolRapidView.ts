@@ -31,22 +31,6 @@ export class PatrolRapidView {
         this.root.addChild(this.ammo);
         // 图集登记的支点 (54,130) 到可见枪口 (54,5)，保留实际旋转轴。
         this.art.applyFrame(this.gun, "patrol_rapid_gun", PATROL.rapid.muzzleDistance * 128 / 125);
-        // 炮尾挂在炮身上，局部原点对准转轴，转向和后坐均随炮身。双臂之间露出城门。
-        const tail = this.gun.addChild(new Laya.Sprite());
-        tail.mouseEnabled = false;
-        tail.pos(this.gun.pivotX, this.gun.pivotY);
-        for (const side of [-1, 1]) {
-            const rail = tail.addChild(new Laya.Sprite());
-            rail.mouseEnabled = false;
-            rail.scaleX = side;
-            const g = rail.graphics;
-            g.drawPoly(0, 0, [12,13, 26,13, 35,63, 34,74, 27,78, 24,71],
-                "#8d4660", "#512c39", 3);
-            g.drawPoly(0, 0, [17,19, 22,19, 31,63, 28,66], "#c77b8c");
-            g.drawPoly(0, 0, [22,54, 34,51, 35,59, 24,62], "#edac50", "#75402e", 2);
-            g.drawPoly(0, 0, [11,13, 26,10, 29,23, 13,26], "#d79847", "#673531", 2);
-            g.drawCircle(20,18,3,"#ffdf80", "#87512e", 1);
-        }
         this.ammo.font = "sans-serif";
         this.ammo.fontSize = 19; this.ammo.bold = true; this.ammo.align = "center"; this.ammo.valign = "middle";
         this.ammo.wordWrap = false; this.ammo.overflow = Laya.Text.SHRINK;

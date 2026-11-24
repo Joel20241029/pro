@@ -8,7 +8,7 @@ import { Panel, PanelContext } from "./PanelContext";
 
 /** 已审稿的高面板。高度随可用屏幕收紧，标题、详情和底部操作留在滑动区域以外。 */
 const LAYOUT = { top: 121, gutter: 24, insetBottom: UI.action.bottom, shopHeight: 930, backpackHeight: 728,
-    shopRow: 139, rowGap: 12, itemIcon: 60, emptyIcon: 80, columns: 4, tileGap: 12,
+    shopRow: 139, rowGap: 12, itemIcon: 92, emptyIcon: 112, columns: 4, tileGap: 12,
     detailHeight: 110, actionHeight: 62, actionWidth: 192 } as const;
 
 function message(ctx: PanelContext, box: Laya.Sprite, icon: string, text: string) {
@@ -38,9 +38,9 @@ export function drawItemPanel(ctx: PanelContext, state: GameState, panel: Panel,
             const product = SHOP_PRODUCTS[index], { id } = product, item = ITEMS[id], width = UI.contentWidth - UI.scrollGutter;
             row.name = `ShopProduct:${id}`;
             ctx.art.panel(row, "panel_card", width, spec.shopRow);
-            ctx.ui.image(row, item.icon, 26, (spec.shopRow - spec.itemIcon) / 2, spec.itemIcon);
-            addItemCopy(ctx, row, item.name, item.description, 108, width - 236);
-            ctx.ui.materialCosts(row, state, product, 108, 94, width - 236, 35);
+            ctx.ui.image(row, item.icon, 12, (spec.shopRow - spec.itemIcon) / 2, spec.itemIcon);
+            addItemCopy(ctx, row, item.name, item.description, 120, width - 248);
+            ctx.ui.materialCosts(row, state, product, 120, 94, width - 248, 35);
             ctx.ui.button(row, "详情", width - 118, (spec.shopRow - 55) / 2, 103, () => ctx.open({ type: "itemOffer", id, back: panel }), C.green, 55);
         });
         return;
@@ -77,10 +77,10 @@ export function drawItemPanel(ctx: PanelContext, state: GameState, panel: Panel,
     const item = itemDefinition(panel.id!), detail = new Laya.Sprite();
     detail.pos(UI.inset, detailY); box.addChild(detail);
     ctx.art.panel(detail, "panel_card", UI.contentWidth, spec.detailHeight);
-    ctx.ui.image(detail, item?.icon ?? "icon_backpack", 25, (spec.detailHeight - spec.itemIcon) / 2, spec.itemIcon);
+    ctx.ui.image(detail, item?.icon ?? "icon_backpack", 12, (spec.detailHeight - spec.itemIcon) / 2, spec.itemIcon);
     const patrolItem = panel.id === PATROL_RATION.id || panel.id === LIANG_INDULGENCE.id ? panel.id : undefined;
     const reason = patrolItem && patrolItemUnavailable(state, patrolItem);
-    addItemCopy(ctx, detail, item?.name ?? "待识别道具", reason ?? item?.description ?? "库存已保留", 108, UI.contentWidth - 132);
+    addItemCopy(ctx, detail, item?.name ?? "待识别道具", reason ?? item?.description ?? "库存已保留", 118, UI.contentWidth - 143);
     const usable = patrolItem ? !reason : panel.id === LIANG_ESSENCE.id && essenceTargets(state).length > 0;
     ctx.ui.centerButton(box, "使用", detailY + spec.detailHeight + spec.rowGap,
         () => { if (patrolItem) ctx.game.usePatrolItem(patrolItem); else ctx.open({ type: "essenceTargets", back: panel }); },
@@ -97,23 +97,23 @@ function drawItemAction(ctx: PanelContext, state: GameState, panel: Panel, avail
     if (panel.type === "itemOffer") {
         const offer = SHOP_PRODUCTS.find(product => product.id === panel.id);
         if (!offer) return;
-        const item = ITEMS[offer.id], box = ctx.modal(item.name, "", true, { width: UI.panelWidth, height: offer.lore ? 637 : 472 });
-        ctx.ui.image(box, item.icon, (box.width - 100) / 2, 111, 100);
-        centered(box, item.description, 220, 29, 42, true);
-        if (offer.lore) {
-            const card = box.addChild(new Laya.Sprite());
-            card.pos(UI.inset, 271).size(UI.contentWidth, 182);
-            ctx.art.panel(card, "panel_card", card.width, card.height);
-            ctx.ui.label(card, offer.lore, 24, 16, card.width - 48, 26, C.ink, false, card.height - 32);
-        }
-        const cost = box.addChild(new Laya.Sprite()), footer = offer.lore ? 537 : 372;
+        const item = ITEMS[offer.id];
+        const box = ctx.modal(item.name, "", true, { width: UI.panelWidth, height: 648 },
+            offer.lore ? `村中传闻\n${offer.lore}` : undefined);
+        const display = new Laya.Sprite();
+        display.pos(UI.inset, 116); box.addChild(display);
+        ctx.art.panel(display, "panel_card", UI.contentWidth, 267);
+        display.graphics.drawEllipse(UI.contentWidth / 2, 133, 119, 109, "#ffe3ce", null, 0);
+        ctx.ui.image(display, item.icon, (UI.contentWidth - 220) / 2, 23, 220);
+        centered(box, item.description, 399, 29, 48, true);
+        const cost = box.addChild(new Laya.Sprite()), footer = 536;
         cost.size(350, 56).pos((box.width - 350) / 2, footer - 74);
         ctx.art.panel(cost, "panel_card", cost.width, cost.height);
         ctx.ui.materialCosts(cost, state, offer, 46, 8, 280, 40);
         const affordable = state.food >= offer.food && state.wood >= offer.wood;
         ctx.ui.button(box, "返回", 115, footer, 152, back, C.muted, 62);
         ctx.ui.button(box, affordable ? "购买" : "粮木不足", 352, footer, 178,
-            () => { if (ctx.current === panel) ctx.game.buyItem(offer.id); }, C.green, 62, affordable);
+            () => { if (ctx.current === panel) ctx.game.buyItem(offer.id); }, C.gold, 62, affordable);
         return;
     }
     if (panel.type === "essenceTargets") {

@@ -59,8 +59,11 @@ function prop(id: string, frame: string, left: number, top: number, size: number
 }
 /** 村内西侧的巡防建筑，与佟楼正面错开。三档主体共用占地。 */
 export const PATROL_PROP = "building:patrol";
+// 128×62 的矮木门按等比画在原村口中心，足点稍前于木栅以盖住接缝。
+export const VILLAGE_GATE = prop("building:gate", "motion_gate_body", 307, 730.875, 106, 108, 14);
 export const VILLAGE_PROPS: VillageProp[] = [
-    ...[28, 92, 156, 220, 500, 564, 628, 692].map((x, i): VillageProp => ({ id: `wall:${i}`, frame: "building_palisade", x, y: 830, size: 78, footprint: null })),
+    // 两个内段搭接矮寨门的门柱，栅栏和门石共用同一条地面基线。
+    ...[28, 92, 156, 220, 500, 564, 628, 692, 274, 446].map((x, i): VillageProp => ({ id: `wall:${i}`, frame: "building_palisade", x, y: 830, size: 78, footprint: null })),
     // 村名牌靠左城墙，底座落在已有墙体安全边内；牌面与火把分开，不增加通行障碍。
     { id: "deco:village-sign", frame: "deco_village_sign", x: 153, y: 836, size: 140, footprint: null, signText: "文明里村" },
     { id: "deco:friendship-road-sign", frame: "deco_village_sign", x: 575, y: 499, size: 120, footprint: null, signText: "友谊路" },
@@ -80,24 +83,24 @@ export const VILLAGE_PROPS: VillageProp[] = [
     ] },
     // 松树使用88宽，与圆树同一量级、树形稍高；根部仍在行走横向边界外，左右错位保留活动区。
     { id: "tree:corner-pine-left", frame: "deco_tree_pine", x: 43, y: 976, size: 88, footprint: { left: 32, top: 961, right: 54, bottom: 976 } },
-    { id: "tree:corner-pine-right", frame: "deco_tree_pine", x: 677, y: 880, size: 88, footprint: { left: 666, top: 865, right: 688, bottom: 880 } },
-    { id: "deco:logs", frame: "deco_log_pile", x: 588, y: 1024, size: 60, footprint: null },
+    { id: "tree:corner-pine-right", frame: "deco_tree_pine", x: 677, y: 861, size: 88, footprint: { left: 666, top: 846, right: 688, bottom: 861 } },
+    { id: "deco:logs", frame: "deco_log_pile", x: 644, y: 1024, size: 48, footprint: null },
     // 保留佟楼的 140px 外观，底座按满级厢房宽度预留，扩建时村民仍能绕开墙脚。
     prop("building:house-a", "motion_house_body", 38, 794.75, 140, 123, 33),
     // 田地是可站立地面，用农田自身源pivot；不加入建筑排序/导航障碍，人物真正走入垄沟。
-    { id: "building:farm", frame: "motion_farm_body", x: 546, y: 954, size: 202, footprint: null, ground: true },
-    prop("building:logging", "motion_logging_body", 482, 922.625, 106, 87, 28),
+    { id: "building:farm", frame: "motion_farm_body", x: 594, y: 946, size: 158, footprint: null, ground: true },
+    prop("building:logging", "motion_logging_body", 558, 943.25, 84, 69, 22),
     prop("building:hearth", "motion_hearth_body", 321, 891, 78, 44, 15),
     prop(PATROL_PROP, PATROL_BOOTH_FRAME, 152, 801.25, 148, 102, 43),
-    prop("building:gate", "motion_gate_body", 282, 684, 156, 132, 30),
+    VILLAGE_GATE,
     ...TOWER_DISPLAY_PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, TOWER_VIEW.footprintWidth, TOWER_VIEW.footprintDepth))
 ];
 export const farm = VILLAGE_PROPS.find(p => p.id === "building:farm")!;
 const wheel = FARM_WHEEL_FOOTPRINT, farmScale = farm.size / 128;
-/** 林带合并为 2 个固定块，墙体合并为左右两段；城门两边保留 40px 侧道，扣除足底间距后仍可通行。 */
+/** 林带合并为两个固定块。左右栅栏一直阻挡到门柱内侧，中央双扇门洞供村民通行。 */
 export const LANDSCAPE_FOOTPRINTS: Footprint[] = [
     { left: 0, top: 260, right: 154, bottom: 764 }, { left: 566, top: 260, right: 720, bottom: 764 },
-    { left: -7, top: 817, right: 254, bottom: 830 }, { left: 466, top: 817, right: 727, bottom: 830 },
+    { left: -7, top: 817, right: 319, bottom: 830 }, { left: 401, top: 817, right: 727, bottom: 830 },
     // 独立水车底座，升级前后统一预留。屋顶与水轮上半部不参与阻挡。
     { left: farm.x + (wheel.x - 64) * farmScale, top: farm.y + (wheel.y - 120) * farmScale,
         right: farm.x + (wheel.x + wheel.width - 64) * farmScale, bottom: farm.y + (wheel.y + wheel.height - 120) * farmScale }
@@ -105,6 +108,8 @@ export const LANDSCAPE_FOOTPRINTS: Footprint[] = [
 /** 纯表现参数：逻辑像素/秒与秒；调整只改变行走节奏、驻足时间和离建筑的距离，不参与生产/战斗结算。 */
 export const MOTION = {
     adultSpeed: 40, childSpeed: 31, clearance: 7, cornerGap: 1,
+    // 门前接近区略宽于门洞，纵向预留开门所需的步行距离。只驱动门扇表现。
+    gateApproachWidth: 62, gateApproachDepth: 36,
     // 摇椅只围绕接地点轻摆，座位及寿命不被动画推进。
     elderRock: { periodSeconds: 2.8, angleDegrees: 3 },
     workSeconds: 4.5, restSeconds: 1.8, staggerSeconds: .23,
@@ -139,19 +144,21 @@ export const VILLAGE_STOPS = {
     homes: [
         // 左侧站位沿佟楼与巡防建筑前缘排布，右侧避开伐木场底座。
         ...[[58, 950], [107, 950], [151, 950], [193, 968], [238, 968], [188, 989],
-            [50, 1022], [182, 1022], [230, 1022], [599, 995], [614, 986], [674, 1018], [644, 970], [674, 932], [630, 850]].map(([x, y]) => ({ x, y })),
+            [50, 1022], [182, 1022], [230, 1022], [519, 995], [590, 978], [674, 1018], [644, 970], [674, 932], [630, 850]].map(([x, y]) => ({ x, y })),
         // 左侧两个家门点避开花树前的新工位，保留至少24像素的停留间距。
         ...[58, 98, 140, 182, 224].map(x => ({ x, y: x <= 98 ? 878 : 874 }))
     ],
-    farm: [{ x: 486, y: 879, direction: "RIGHT" }, { x: 546, y: 879, direction: "RIGHT" }, { x: 606, y: 879, direction: "LEFT" },
-        { x: 486, y: 924, direction: "RIGHT" }, { x: 546, y: 924, direction: "RIGHT" }, { x: 606, y: 924, direction: "LEFT" }] as (GroundPoint & { direction: "LEFT" | "RIGHT" })[],
+    // 沿用原画两排三垄的相对位置；地块缩放或平移时，六个落脚点随地块一起移动。
+    farm: [[-38, -48], [0, -48], [38, -48], [-38, -19], [0, -19], [38, -19]].map(([dx, dy]) => ({
+        x: farm.x + dx * farmScale, y: farm.y + dy * farmScale, direction: dx > 0 ? "LEFT" : "RIGHT"
+    })) as (GroundPoint & { direction: "LEFT" | "RIGHT" })[],
     // 复用耕田的刀，落点在树根侧边。站在树脚前方，身体在树干上层绘制。
     logging: [
         { treeId: "tree:logging", treeX: 164, x: 136, y: 1014 },
         { treeId: "tree:corner-blossom", treeX: 38, x: 66, y: 843 },
         { treeId: "tree:corner-fruit", treeX: 677, x: 649, y: 1001 },
         { treeId: "tree:corner-pine-left", treeX: 43, x: 71, y: 983 },
-        { treeId: "tree:corner-pine-right", treeX: 677, x: 649, y: 883 }
+        { treeId: "tree:corner-pine-right", treeX: 677, x: 649, y: 864 }
     ] as LoggingStop[],
     // 有意包含屋后与屋前的休息点，行人绕过墙基后会自然发生遮挡切换。
     rest: CAMP_STOPS,
@@ -159,7 +166,7 @@ export const VILLAGE_STOPS = {
     children: CAMP_STOPS,
     // 火堆下方两排供待命村民驻足。中心优先，实时排除建筑与已用站位，满员仍保留安全间距。
     waiting: Array.from({ length: 32 }, (_, i) => ({ x: 68 + 38 * (i % 16), y: i < 16 ? 1022 : 988 }))
-        .filter(({ x }) => x < 484 || x > 591)
+        .filter(({ x }) => x < 558 || x > 642)
         .sort((a, b) => b.y - a.y || Math.abs(a.x - 360) - Math.abs(b.x - 360)),
     // 篝火前的双人会合点，与所有家门/工作点共用导航和足底遮挡；不新增建筑或家庭归属。
     wedding: [{ x: 330, y: 990 }, { x: 370, y: 990 }],

@@ -28,12 +28,13 @@ test("Walking faces the actual travel axis, keeps hysteresis at the diagonal bou
     equal(walkDirection(11, -10, "UP"), "UP");
     equal(walkDirection(13, -10, "UP"), "RIGHT");
 });
-test("Forest and palisades have shared collision blocks and preserve both gate passages", () => {
+test("Forest, posts and palisades block passage; residents can cross through the double gate", () => {
     ok(!VILLAGE_PROPS.some(p => p.id.startsWith("forest:") || p.id.startsWith("bush:")), "baked landscape must not create duplicate sprites");
     equal(VILLAGE_PROPS.filter(p => p.id.startsWith("tree:")).length, 5);
     ok(navigation.obstacles.length <= 20, "only the five working trees add trunk obstacles, not every forest decoration");
-    ok(navigation.clear({ x: 274, y: 770 }, { x: 274, y: 850 }), "left gate passage blocked");
-    ok(navigation.clear({ x: 446, y: 770 }, { x: 446, y: 850 }), "right gate passage blocked");
+    ok(navigation.clear({ x: 360, y: 770 }, { x: 360, y: 850 }), "gate passage blocked");
+    for (const x of [274, 309, 411, 446])
+        ok(!navigation.clear({ x, y: 770 }, { x, y: 850 }), "new fence or post permits walking through");
     ok(!navigation.clear({ x: 220, y: 780 }, { x: 220, y: 850 }), "wall has no collision");
     ok(!navigation.walkable({ x: 90, y: 600 }), "forest has no collision");
 });
@@ -143,6 +144,14 @@ test("Tower watch hides only after arrival and reappears on reassignment, replac
     battle.reassign(1, id); motion.sync(s, battle.base.towers); for (let i = 0; i < 1000; i++) motion.update(.05);
     ok(motion.get(id).insideTower); s.phase = "DAWN"; motion.sync(s, s.towers);
     for (const p of s.people) ok(!motion.get(p.id).insideTower);
+    s.phase = "DAY"; motion.sync(s, s.towers);
+    let openedForReturn = false;
+    for (let i = 0; i < 1200; i++) {
+        motion.update(.05);
+        if (motion.crossingGate(830)) openedForReturn = true;
+    }
+    ok(openedForReturn, "returning tower guards should open the gate when approaching it");
+    ok(!motion.crossingGate(830), "the gate should close after the guards pass");
 });
 test("Babies stay home, children walk, growth retains position, retired people are removed", () => {
     const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id });

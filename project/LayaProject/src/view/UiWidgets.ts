@@ -132,47 +132,47 @@ export class UiWidgets {
     }
     /** 建设条目共用图标、效果和材料布局；整个条目可点，原因直接可见，不再靠点击后弹Tip解释。 */
     buildRow(parent: Laya.Sprite, y: number, icon: string, title: string, effect: string, owned: Materials, cost: MaterialCost | null, reason: string | null, action: () => void, caption = "升级") {
-        const row = this.button(parent, "", 0, y, UI.contentWidth - UI.scrollGutter, action, C.muted, UI.buildRowHeight, !reason);
+        const row = this.button(parent, "", 0, y, UI.contentWidth - UI.scrollGutter, action, C.muted, UI.buildRowHeight, !reason, true);
         const face = row.getChildAt(0) as Laya.Sprite;
-        const frame = new Laya.Sprite(); frame.pos(16, (UI.buildRowHeight - 112) / 2);
-        this.art.panel(frame, reason ? "panel_card_disabled" : "panel_portrait_frame", 112, 112);
+        const frame = new Laya.Sprite(); frame.pos(12, (UI.buildRowHeight - 150) / 2);
+        this.art.panel(frame, reason ? "panel_card_disabled" : "panel_portrait_frame", 150, 150);
         frame.mouseEnabled = false; face.addChild(frame);
-        this.image(frame, icon, 7, 7, 98).alpha = reason ? .55 : 1;
-        const copyWidth = 282, badgeWidth = 132, badgeHeight = 62;
-        const titleText = this.label(face, title, 140, 14, copyWidth, 28, C.ink, true, 40);
+        this.image(frame, icon, 5, 5, 140).alpha = reason ? .55 : 1;
+        const copyWidth = 254, badgeWidth = 132, badgeHeight = 62;
+        const titleText = this.label(face, title, 171, 14, copyWidth, 28, C.ink, true, 40);
         titleText.wordWrap = false; titleText.overflow = Laya.Text.SHRINK;
-        const effectText = this.label(face, effect, 140, 56, copyWidth, 25, C.green, false, 36);
+        const effectText = this.label(face, effect, 171, 56, copyWidth, 25, C.green, false, 36);
         effectText.wordWrap = false; effectText.overflow = Laya.Text.SHRINK;
-        if (cost) this.materialCosts(face, owned, cost, 140, 96, copyWidth, 38);
+        if (cost) this.materialCosts(face, owned, cost, 171, 96, copyWidth, 38);
         const note = reasonBesideCost(reason);
         if (note) {
-            const label = this.label(face, note, 140, 138, copyWidth, 24, C.red, false, 34);
+            const label = this.label(face, note, 171, 138, copyWidth, 24, C.red, false, 34);
             label.wordWrap = false; label.overflow = Laya.Text.SHRINK;
         }
         const badge = new Laya.Sprite(); badge.pos(row.width - badgeWidth - 16, (row.height - badgeHeight) / 2); badge.mouseEnabled = false;
         badge.name = "BuildAction";
-        this.art.panel(badge, reason ? "panel_button_disabled" : "panel_button_green", badgeWidth, badgeHeight); face.addChild(badge);
-        this.label(badge, reason ? "未满足" : caption, 8, 8, badgeWidth - 16, 28, reason ? C.muted : C.cream, true, badgeHeight - 16).align = "center";
+        this.art.panel(badge, reason ? "panel_button_disabled" : "panel_button_gold", badgeWidth, badgeHeight); face.addChild(badge);
+        this.label(badge, reason ? "未满足" : caption, 8, 8, badgeWidth - 16, 28, reason ? C.muted : C.ink, true, badgeHeight - 16).align = "center";
         return row;
     }
     /** 村民与家庭共用图文条目：头像留独立区域，文字不挤进边框，滚动仍由ScrollList取消误触。 */
     listItem(parent: Laya.Sprite, title: string, icon: string, y: number, action: () => void, enabled: boolean, height: number = UI.listHeight) {
-        const row = this.button(parent, title, 0, y, UI.contentWidth - UI.scrollGutter, action, C.muted, height, enabled);
+        const row = this.button(parent, title, 0, y, UI.contentWidth - UI.scrollGutter, action, C.muted, height, enabled, true);
         const face = row.getChildAt(0) as Laya.Sprite;
         const text = face.getChildByName("buttonText") as Laya.Text;
-        text.pos(116, 14);
-        text.size(enabled ? 404 : 446, height - 28);
+        text.pos(134, 14);
+        text.size(enabled ? 390 : 428, height - 28);
         text.align = "left";
         text.fontSize = 28;
         text.leading = 6;
         text.wordWrap = false;
         text.overflow = Laya.Text.SHRINK;
         const frame = new Laya.Sprite();
-        frame.pos(20, 15);
-        this.art.panel(frame, "panel_portrait_frame", 88, 88);
+        frame.pos(14, (height - 104) / 2);
+        this.art.panel(frame, "panel_portrait_frame", 104, 104);
         frame.mouseEnabled = false;
         face.addChild(frame);
-        this.image(frame, icon, 4, 4, 80).alpha = enabled ? 1 : .5;
+        this.image(frame, icon, 2, 2, 100).alpha = enabled ? 1 : .5;
         if (enabled) this.label(face, "›", row.width - 60, height - 60, 48, 40, C.ink, true, 45).align = "center";
         return row;
     }
@@ -189,22 +189,23 @@ export class UiWidgets {
     bindClick(target: Laya.Sprite, action: (event: Laya.Event) => void, face?: Laya.Sprite) {
         bindButtonClick(target, event => { this.playClick(); action(event); }, face);
     }
-    button(parent: Laya.Sprite, title: string, x: number, y: number, w: number, action: () => void, color = C.green, h = 72, enabled = true) {
+    button(parent: Laya.Sprite, title: string, x: number, y: number, w: number, action: () => void, color = C.green, h = 72, enabled = true, card = false) {
         const b = new Laya.Sprite();
         b.name = `button:${title}`;
         b.size(w, h);
         b.pos(x, y);
-        const skin = color === C.muted ? (enabled ? "panel_card" : "panel_card_disabled") : !enabled ? "panel_button_disabled" : color === C.gold ? "panel_button_gold" : color === C.red ? "panel_button_red" : "panel_button_green";
+        const skin = !enabled ? "panel_button_disabled" : color === C.gold ? "panel_button_gold" : color === C.red ? "panel_button_red" : "panel_button_green";
         // 底板、文字及调用方附加的图标共用面层，整体按压；外层点击区域始终固定。
         const face = new Laya.Sprite();
         face.name = "buttonFace";
         face.mouseEnabled = false;
-        this.art.panel(face, skin, w, h);
+        if (card) this.art.panel(face, enabled ? "panel_card" : "panel_card_disabled", w, h);
+        else this.art.panel(face, skin, w, h);
         b.addChild(face);
         if (title) {
             // 家庭说明/迎接按钮只有50～54高，不能继续扣掉普通按钮的28px纵向留白。
             const insetY = h < 48 ? 4 : h <= 60 ? 8 : 14;
-            const textColor = !enabled ? C.muted : color === C.gold || color === C.muted ? C.ink : C.cream;
+            const textColor = !enabled ? C.muted : C.ink;
             const t = this.label(face, title, 16, insetY, w - 32, h <= 60 ? 26 : UI.button, textColor, true, h - insetY * 2);
             t.name = "buttonText";
             t.align = "center";
