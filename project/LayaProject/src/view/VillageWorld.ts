@@ -39,7 +39,7 @@ import { TimedBlastVisuals } from "./TimedBlastVisuals";
 /** 动效先播放上箭头，再交给常规两秒气泡；单位为前台表现秒。 */
 const ESSENCE_CUE = { riseSeconds: .72, arrowSize: 64, riseDistance: 55 } as const;
 // 守夜及最后击飞期间收起日间生产设施，给淡紫儿留出操作空间；建筑状态和占地仍由原系统维护。
-const DAY_ONLY_PROPS = new Set(["building:house-a", "building:farm", "building:logging", "building:hearth", "deco:logs"]);
+const DAY_ONLY_PROPS = new Set(["building:house-a", "building:farm", "building:logging", "deco:logs"]);
 /** 地图、人物、建筑与战斗表现的唯一所有者。视觉时钟不推进 GameSession/业务随机数。 */
 export class VillageWorld {
     readonly scenery = new Laya.Sprite();
@@ -435,7 +435,6 @@ export class VillageWorld {
                 kind = "LOGGING";
                 level = s.logging;
             }
-            if (p.id === "building:hearth") { kind = "HEARTH"; level = 1; }
             p.visual?.sync(kind, level, this.freshBuildingVillage, rooms, damaged, facing, kind === "HOUSE" ? s.houses : 0);
             if (!panelOpen && !this.game.pauses.size) p.visual?.beginVisibleUpgrade();
             if (HOUSE_TIP_NAMES[p.id]) {

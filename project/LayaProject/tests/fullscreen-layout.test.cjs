@@ -30,6 +30,9 @@ for(const profile of profiles) test(`${profile[0]}: safe controls, expanded vill
     assert(adultCanvas >= 90.3 - 1e-6 && adultCanvas <= 94.5 + 1e-6);
     assert(l.safeBottom-l.safeTop>=860, 'full panel must fit safe region');
     assert.deepEqual(scene.props.filter(p=>p.id.startsWith('building:house-')).map(p=>p.id), ['building:house-a']);
+    assert(!scene.props.some(p => p.id === 'building:hearth'));
+    const yardY = l.worldY(964);
+    assert(nav.clear({ x: 330, y: yardY }, { x: 390, y: yardY }), 'villagers can cross the former hearth site');
     const patrol=scene.props.find(p=>p.id==='building:patrol');
     near(patrol.size,148); near(patrol.x,226);
     const { PATROL } = require(path.join(compiled, 'config/PatrolConfig.js'));

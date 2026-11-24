@@ -25,8 +25,8 @@ export const PATROL = {
         origin: { x: 360, y: 777 }, muzzleDistance: 104, speed: 700,
         // 小人撞到角色躯干即退场；碰撞中心从脚底上移，首领按较大的形体对齐。
         ordinaryCenterHeight: 22, bossCenterHeight: 35,
-        // 单发扫掠的躯干椭圆半轴（地图逻辑像素）。较旧判定各扩大约三分之一，分别匹配普通怪和首领的体型。
-        contact: { ordinary: { x: 32, y: 19 }, boss: { x: 44, y: 25 } }
+        // 单发扫掠的躯干椭圆半轴（地图逻辑像素）。在 1.0.113 的判定上横纵各扩大 50%，分别匹配普通怪和首领的体型。
+        contact: { ordinary: { x: 48, y: 28.5 }, boss: { x: 66, y: 37.5 } }
     },
     // 双人旋转按战斗步推进。冷却来自补员，后期每级仍加伤害，补员趋近保底时间。
     spin: {

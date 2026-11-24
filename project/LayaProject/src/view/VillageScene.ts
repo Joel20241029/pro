@@ -54,9 +54,9 @@ export function layoutVillage(layout: GameLayout) {
         const dx = at.x - p.x, dy = at.y - p.y;
         return { ...p, ...at, footprint: p.footprint ? { left: p.footprint.left + dx, right: p.footprint.right + dx, top: p.footprint.top + dy, bottom: p.footprint.bottom + dy } : null };
     });
-    // 小村庄优先占用靠近火堆的位置；基准排序固定，换屏时不交换席位或照料者的左右关系。
-    const hearth = VILLAGE_PROPS.find(p => p.id === "building:hearth")!;
-    const campOrder = CAMP_STOPS.map((_, i) => i).sort((a, b) => distance(CAMP_STOPS[a], hearth) - distance(CAMP_STOPS[b], hearth));
+    // 小村庄优先占用靠近村中央的位置；基准排序固定，换屏时不交换席位或照料者的左右关系。
+    const campCenter = { x: 360, y: 964 };
+    const campOrder = CAMP_STOPS.map((_, i) => i).sort((a, b) => distance(CAMP_STOPS[a], campCenter) - distance(CAMP_STOPS[b], campCenter));
     const camp = campOrder.map(i => point(CAMP_STOPS[i]));
     const nightCamp = campOrder.map(i => point(VILLAGE_STOPS.nightRest[i]));
     const relative = <T extends GroundPoint>(points: T[], anchor: string) => {

@@ -183,8 +183,8 @@ test('holding the roof slows the battle but retains four rounds and full project
 
 test('a rapid round grazes the widened torso ellipse and misses just outside it on either axis', () => {
     for (const [kind, height, widthRadius, heightRadius] of [
-        ['enemy_raider', spec.ordinaryCenterHeight, 32, 19],
-        ['enemy_chief', spec.bossCenterHeight, 44, 25]
+        ['enemy_raider', spec.ordinaryCenterHeight, 48, 28.5],
+        ['enemy_chief', spec.bossCenterHeight, 66, 37.5]
     ]) {
         for (const vertical of [true, false]) {
             const radius = vertical ? widthRadius : heightRadius;

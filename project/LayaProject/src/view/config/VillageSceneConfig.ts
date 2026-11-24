@@ -88,9 +88,8 @@ export const VILLAGE_PROPS: VillageProp[] = [
     // 保留佟楼的 140px 外观，底座按满级厢房宽度预留，扩建时村民仍能绕开墙脚。
     prop("building:house-a", "motion_house_body", 38, 794.75, 140, 123, 33),
     // 田地是可站立地面，用农田自身源pivot；不加入建筑排序/导航障碍，人物真正走入垄沟。
-    { id: "building:farm", frame: "motion_farm_body", x: 594, y: 946, size: 158, footprint: null, ground: true },
-    prop("building:logging", "motion_logging_body", 558, 943.25, 84, 69, 22),
-    prop("building:hearth", "motion_hearth_body", 321, 891, 78, 44, 15),
+    { id: "building:farm", frame: "motion_farm_body", x: 594, y: 954, size: 174, footprint: null, ground: true },
+    prop("building:logging", "motion_logging_body", 533, 922.625, 106, 87, 28),
     prop(PATROL_PROP, PATROL_BOOTH_FRAME, 152, 801.25, 148, 102, 43),
     VILLAGE_GATE,
     ...TOWER_DISPLAY_PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, TOWER_VIEW.footprintWidth, TOWER_VIEW.footprintDepth))
@@ -115,7 +114,7 @@ export const MOTION = {
     workSeconds: 4.5, restSeconds: 1.8, staggerSeconds: .23,
     bounds: { left: 44, top: 275, right: 676, bottom: 1028 }
 } as const;
-/** 火堆周围的20个足底站点，避开房屋、农田、炉体底座；新生儿从出生起使用其中的育儿位置。
+/** 村中央的20个足底站点，避开房屋、农田；新生儿从出生起使用其中的育儿位置。
  * 只作表现，不增加人口容量。按存活人物保留分配，不能以永久人口编号取模复用占位。
  */
 export const CAMP_STOPS: GroundPoint[] = [
@@ -125,7 +124,7 @@ export const CAMP_STOPS: GroundPoint[] = [
     { x: 286, y: 1024 }, { x: 334, y: 1024 }, { x: 382, y: 1024 }, { x: 430, y: 1024 },
     { x: 334, y: 988 }, { x: 382, y: 988 }, { x: 244, y: 984 }, { x: 472, y: 972 }
 ];
-/** 夜间把城门内的八个营火席位挪到两侧，给淡紫儿集合与后拉留出空间。 */
+/** 夜间把城门内的八个休息席位挪到两侧，给淡紫儿集合与后拉留出空间。 */
 export const NIGHT_CAMP_STOPS = [
     ...[[72, 852], [116, 852], [178, 860], [222, 858],
         [68, 950], [112, 950], [156, 960], [201, 978]].map(([x, y]) => ({ x, y })),
@@ -140,7 +139,7 @@ export const WEDDING = {
 } as const;
 /** 站点均在占地之外。工作点对应现有最大岗位数，家门仅为表现站点，不新增住宅归属规则。 */
 export const VILLAGE_STOPS = {
-    // 家门与火堆/休息点跨集合留出间距，避免一个回家、另一个休息时仍站在一起。
+    // 家门与中央休息点跨集合留出间距，避免一个回家、另一个休息时仍站在一起。
     homes: [
         // 左侧站位沿佟楼与巡防建筑前缘排布，右侧避开伐木场底座。
         ...[[58, 950], [107, 950], [151, 950], [193, 968], [238, 968], [188, 989],
@@ -164,11 +163,11 @@ export const VILLAGE_STOPS = {
     rest: CAMP_STOPS,
     nightRest: NIGHT_CAMP_STOPS,
     children: CAMP_STOPS,
-    // 火堆下方两排供待命村民驻足。中心优先，实时排除建筑与已用站位，满员仍保留安全间距。
+    // 村中空地南侧两排供待命村民驻足。中心优先，实时排除建筑与已用站位，满员仍保留安全间距。
     waiting: Array.from({ length: 32 }, (_, i) => ({ x: 68 + 38 * (i % 16), y: i < 16 ? 1022 : 988 }))
         .filter(({ x }) => x < 558 || x > 642)
         .sort((a, b) => b.y - a.y || Math.abs(a.x - 360) - Math.abs(b.x - 360)),
-    // 篝火前的双人会合点，与所有家门/工作点共用导航和足底遮挡；不新增建筑或家庭归属。
+    // 村中空地的双人会合点，与所有家门/工作点共用导航和足底遮挡；不新增建筑或家庭归属。
     wedding: [{ x: 330, y: 990 }, { x: 370, y: 990 }],
     towers: TOWER_DISPLAY_PADS.map(p => ({ x: p.x, y: p.y + 54 }))
 };

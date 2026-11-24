@@ -97,7 +97,7 @@ export class VillagerMotion {
         const sorted = this.visiblePeople.slice().sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
         for (const p of sorted) if (!this.campSlots.has(p.id)) {
             const used = new Set(this.campSlots.values()), slot = this.stops.rest.findIndex((_, i) => !used.has(i));
-            if (slot < 0) throw new Error("火堆站点少于在村人数");
+            if (slot < 0) throw new Error("村中休息站点少于在村人数");
             this.campSlots.set(p.id, slot);
         }
         // 先保护孩子的固定位置，再把照料者与最近的非孩子位置交换；满员也不会重叠或挪动婴儿。
@@ -166,7 +166,7 @@ export class VillagerMotion {
         }
         for (const p of waiting) if (!next.has(p.id)) {
             const index = open.shift();
-            if (index === undefined) throw new Error("火堆下方待命站位不足");
+            if (index === undefined) throw new Error("村中待命站位不足");
             next.set(p.id, index);
         }
         this.waitingSlots = next;
