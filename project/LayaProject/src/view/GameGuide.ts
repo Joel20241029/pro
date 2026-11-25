@@ -30,7 +30,7 @@ export const GUIDE_CHAPTERS: ReadonlyArray<{ title: string; sections: ReadonlyAr
         { title: "“距退休”是什么意思", body: `普通新成人可劳作 ${RULE.adultNights} 夜，精英、英雄、传说分别可劳作 ${VILLAGER_QUALITY.ELITE.adultNights}、${VILLAGER_QUALITY.HERO.adultNights}、${VILLAGER_QUALITY.LEGENDARY.adultNights} 夜。每成功守住一夜，剩余时间减 1，失败或退出不减。开村人的年龄不同，所以有人较早退休。剩余时间不会因休息增加；要提前养育孩子、接纳旅人接班。` },
         { title: "退休后仍是村里的一员", body: `劳作时间用完会变成老人，退出工作和驻塔，不能再成家或生育。普通老人养老 ${RULE.elderNights} 个成功守夜夜晚，精英、英雄、传说分别 ${VILLAGER_QUALITY.ELITE.elderNights}、${VILLAGER_QUALITY.HERO.elderNights}、${VILLAGER_QUALITY.LEGENDARY.elderNights} 夜；仍吃口粮、占住房。养老结束后寿终离村，进入家谱，才空出人口名额。` },
         { title: "家谱留住先辈", body: `家谱只记录已寿终的村民，刚退休的老人仍在名册中。普通记录保留最近 ${RULE.historyCap} 位，可珍藏 ${RULE.favoriteCap} 位；珍藏满了可先取消一位，再收藏其他先辈。` },
-        { title: "旅人补充新伙伴", body: "清晨可能有旅人来访，可以欢迎或谢绝。有空住房才能接纳；清晨不能临时建房，满员可先谢绝，再在白天准备住房。成年男女出现断档时，会优先带来缺少的性别，但来访有间隔，不会每夜都补人。" },
+        { title: "旅人补充新伙伴", body: "清晨可能有旅人来访，可以欢迎或谢绝。有空住房时可以接纳。客满时来访会记入守夜简报，可在白天扩建民居。成年男女出现断档时，会优先带来缺少的性别，但来访有间隔，不会每夜都补人。" },
         { title: "遇见特殊品质村民", body: `孩子或来访旅人可能是精英。本局守住 ${VILLAGER_QUALITY.HERO.minWins} 波后可能遇到英雄，守住 ${VILLAGER_QUALITY.LEGENDARY.minWins} 波后可能遇到传说。三档分别有青、紫、金色脚环，耕伐和驻塔更强。品质在出生或来访时决定，孩子需要成功守住 ${RULE.growNights} 夜成年。` }
     ] },
     { title: "家庭", sections: [

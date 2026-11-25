@@ -1,5 +1,5 @@
 (() => {
-  const namespace = 'codex_preview_1.0.116-b249e6bea7e4_all_modules:';
+  const namespace = 'codex_preview_1.0.116-377146726be8_all_modules:';
   const gameKey = key => typeof key === 'string' && key.startsWith('daidai_village.');
   const toStorageKey = key => gameKey(key) ? namespace + key : key;
   const read = wx.getStorageSync.bind(wx);

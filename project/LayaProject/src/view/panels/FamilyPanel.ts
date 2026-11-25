@@ -1,6 +1,6 @@
 import { capacity, person, birthUnavailableReason } from "../../game/VillageRules";
-import { Family, GameState } from "../../game/GameState";
-import { RULE } from "../../game/GameConfig";
+import { GameState, Person } from "../../game/GameState";
+import { RULE, TRAITS } from "../../game/GameConfig";
 import { C, UI } from "../UiTheme";
 import { actionHintsBlocked, familyActionHints } from "../ActionHints";
 import { ScrollList } from "../ScrollList";
@@ -20,20 +20,25 @@ const FAMILY_UI = {
     portrait: 120
 } as const;
 
-function drawPartners(ctx: PanelContext, card: Laya.Sprite, s: GameState, family: Family, cardWidth: number) {
+function drawPartners(ctx: PanelContext, card: Laya.Sprite, partners: Person[], cardWidth: number, showTraits = false) {
     const portrait = FAMILY_UI.portrait, heart = 48, center = cardWidth / 2;
-    family.partners.forEach((id, i) => {
-        const parent = person(s, id), x = cardWidth * (i ? .75 : .25);
+    partners.forEach((parent, i) => {
+        const x = cardWidth * (i ? .75 : .25);
         ctx.ui.image(card, ctx.art.portraitId(parent), x - portrait / 2, 8, portrait);
         const name = ctx.ui.label(card, coloredName(parent), x - 128, 130, 256, 29, C.ink, true, 42);
         name.align = "center"; name.wordWrap = false; name.overflow = Laya.Text.ELLIPSIS;
+        if (showTraits) {
+            const traits = ctx.ui.label(card, parent.traits.map(t => TRAITS[t][0]).join(" · "), x - 133, 172, 266, 24, C.muted, false, 38);
+            traits.align = "center"; traits.wordWrap = false; traits.overflow = Laya.Text.SHRINK;
+        }
     });
     ctx.ui.image(card, "icon_heart", center - heart / 2, 8 + (portrait - heart) / 2, heart);
 }
 
 export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
     const tab = p.tab === 1 ? 1 : 0, nurture = tab === 1, blocked = actionHintsBlocked(ctx.game);
-    const hints = familyActionHints(s, blocked);
+    const hints = familyActionHints(s, blocked, !nurture);
+    const pair = hints.onlyPair;
     const help = nurture ? `双亲需未退休，村中有空床位。同一家庭两次迎接孩子须间隔 ${RULE.birthCooldown} 次守夜胜利。孩子随村成长，守住 ${RULE.growNights} 夜可让孩子成年。`
         : "成家需要成年、未退休、没有配偶的一男一女。直系亲属和兄弟姐妹不能成家。";
     const box = ctx.modal("家庭与养育", "", true, undefined, help), tabs = FAMILY_UI.tabs, tabWidth = (UI.contentWidth - tabs.gap) / 2;
@@ -49,7 +54,7 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
         if (ready && i !== tab) ctx.ui.actionBadge(button, "FamilyTabActionHint");
     });
 
-    const subtitle = nurture ? "已成家的村民可以迎接孩子。" : hints.marriage ? "为成年、未退休的单身男女安排成家。"
+    const subtitle = nurture ? "已成家的村民可以迎接孩子。" : pair ? "可以成家的一对" : hints.marriage ? "为成年、未退休的单身男女安排成家。"
         : s.phase !== "DAY" ? "白天可安排成家" : !Number.isSafeInteger(s.nextFamily + 1) ? "家庭编号已达安全范围" : "暂无可成家的单身男女";
     ctx.ui.label(box, subtitle, UI.inset, !nurture && !hints.marriage ? 214 : 195, UI.contentWidth, 27, C.muted, false, 40).align = "center";
     if (nurture) {
@@ -59,11 +64,18 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
         ctx.ui.label(food, "现有／所需", 14, 8, 128, 24, C.muted, false, 54);
         ctx.ui.iconValue(food, "icon_food", `${amount(s.food, true)}/${RULE.birthCost}`, 142, 9, tabWidth - 152, 52,
             s.food < RULE.birthCost ? C.red : C.timber, 26);
+    } else if (pair) {
+        const card = new Laya.Sprite(); card.pos(UI.inset, 242); box.addChild(card);
+        ctx.art.panel(card, "panel_card", UI.contentWidth, 298);
+        drawPartners(ctx, card, pair, UI.contentWidth, true);
+        const button = ctx.ui.button(card, "确认成家", (UI.contentWidth - 224) / 2, 222, 224,
+            () => ctx.send({ type: "FAMILY", a: pair[0].id, b: pair[1].id }), C.gold, 60);
+        ctx.ui.actionBadge(button, "MarriageActionHint");
     } else {
         const button = ctx.ui.centerButton(box, "安排村民成家", hints.marriage ? 240 : 256, () => ctx.open({ type: "partners" }), C.green, hints.marriage);
         if (hints.marriage) ctx.ui.actionBadge(button, "MarriageActionHint");
     }
-    const rowsTop = FAMILY_UI.rowsTop[nurture ? "nurture" : hints.marriage ? "marriage" : "unavailable"];
+    const rowsTop = pair ? 602 : FAMILY_UI.rowsTop[nurture ? "nurture" : hints.marriage ? "marriage" : "unavailable"];
     ctx.ui.label(box, nurture ? "家庭养育" : "已有家庭", UI.inset + 2, rowsTop - 42, 320, 28, C.ink, true, 40);
 
     const viewport = UI.panelHeight - rowsTop - UI.inset;
@@ -90,7 +102,7 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
         card.name = `family:${family.id}`;
         ctx.art.panel(card, "panel_card", cardWidth, rowHeight);
         row.addChild(card);
-        drawPartners(ctx, card, s, family, cardWidth);
+        drawPartners(ctx, card, family.partners.map(id => person(s, id)), cardWidth);
         if (!nurture) return;
         const child = s.people.find(q => !q.adult && q.parents.some(id => family.partners.includes(id)));
         const childPortrait = 70;

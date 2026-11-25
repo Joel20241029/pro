@@ -1,3 +1,4 @@
+import { summarizeFullHouseVisit } from "./VillageLifecycle";
 import { BattleSimulation, CombatFeedback } from "./BattleSimulation";
 import { clone, GameState, isWorkingAdult, ownsTowerAmmo } from "./GameState";
 import { RULE } from "./GameConfig";
@@ -129,6 +130,11 @@ export class GameSession {
         if (s.phase === "DAY" && s.patrol.captain === null && s.people.some(isWorkingAdult)) {
             s = clone(s);
             autoAssignNightDuties(s);
+        }
+        // 已落盘的清晨待办也使用相同的简报规则，保留同日待选村规。
+        if (s.phase === "DAWN" && s.choices[0]?.kind === "TRAVELER") {
+            s = { ...s };
+            summarizeFullHouseVisit(s);
         }
         const settings = this.deviceSettings.resolve(s.settings);
         if (s.settings.music !== settings.music || s.settings.speed !== settings.speed) s = { ...s, settings };

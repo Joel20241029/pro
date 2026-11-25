@@ -162,6 +162,12 @@ export class GamePanels implements PanelContext {
                 this.current = p;
             }
         }
+        if (((p.type === "patrolModes" && p.id) || (p.type === "patrolUpgrade" && p.pendingPatrolLevel !== undefined)) && !this.game.saves.pending) {
+            const applied = p.type === "patrolModes" ? s.patrol.mode === p.id : s.patrol.level === p.pendingPatrolLevel;
+            delete p.id;
+            delete p.pendingPatrolLevel;
+            if (applied) this.current = p = p.back ?? { type: "patrol" };
+        }
         if ((p.type === "patrolConfirm" || p.type === "patrolCandidates") && p.id && s.patrol.captain === p.id) {
             const detail = p.type === "patrolConfirm" ? p.back?.back : p.back;
             this.current = p = detail ?? { type: "patrol" };

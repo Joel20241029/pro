@@ -6,6 +6,13 @@ import { nextSex, travelerDue } from "./Population";
 import { person, capacity } from "./VillageQueries";
 import { autoAssignJobs, autoAssignNightDuties } from "./VillageJobs";
 import { requireRule, newId, pruneHistory } from "./VillageStateOps";
+/** 客满的定期来访已按原规则抽人并记入间隔，只把无法接纳的待办换成清晨消息。 */
+export function summarizeFullHouseVisit(s: GameState) {
+    if (s.choices[0]?.kind !== "TRAVELER" || s.people.length < capacity(s)) return;
+    s.choices = s.choices.slice(1);
+    s.summary += "有旅人经过，村中客满。";
+}
+
 export function finishNight(s: GameState, gate: number, operators: (string | null)[]) {
     requireRule(s.phase === "NIGHT" && s.night, "守夜已经结算");
     s.gate = gate;
@@ -83,4 +90,5 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
     }
     s.rng.world = world.state;
     s.summary = `守夜成功！${grown.length ? `${grown.length} 个孩子成年。` : ""}${retired.length ? `${retired.length} 位村民荣休，留村养老。` : ""}${departed.length ? `${departed.length} 位长辈安然辞世，已记入家谱。` : ""}`;
+    summarizeFullHouseVisit(s);
 }

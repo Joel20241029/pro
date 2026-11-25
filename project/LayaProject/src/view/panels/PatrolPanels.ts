@@ -6,9 +6,23 @@ import { patrolRapidCapacity, patrolRapidDamage, patrolReloadSeconds } from "../
 import { ScrollList } from "../ScrollList";
 import { C, UI } from "../UiTheme";
 import { PATROL_BOOTH_FRAME } from "../BuildingLayout";
-import { amount, coloredName, growthPreview } from "../ViewText";
+import { amount, coloredName } from "../ViewText";
 import { Panel, PanelContext } from "./PanelContext";
 import { actionHintsBlocked } from "../ActionHints";
+
+function drawBack(ctx: PanelContext, box: Laya.Sprite, name: string, back: () => void) {
+    const button = ctx.ui.button(box, "", 30, 32, 54, back, C.muted, 54);
+    button.name = name;
+    ctx.ui.image(button.getChildByName("buttonFace") as Laya.Sprite, "icon_back", 10, 10, 34);
+}
+
+function modePicture(ctx: PanelContext, parent: Laya.Sprite, rapid: boolean, x: number, y: number) {
+    if (rapid) ctx.ui.image(parent, "patrol_rapid_gun", x, y, 154, 114);
+    else {
+        ctx.ui.image(parent, "patrol_walk_0", x, y + 4, 83, 106);
+        ctx.ui.image(parent, "patrol_walk_shuffle_0", x + 75, y + 8, 83, 102);
+    }
+}
 
 export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
     const current = patrolCaptain(s), level = s.patrol.level;
@@ -45,9 +59,7 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
         const baseline = patrolSpinStats(level);
         adults.sort((a, b) => Number(towers.has(a.id)) - Number(towers.has(b.id)) || rank(b) - rank(a) || b.nights - a.nights);
         const box = ctx.modal(current ? `更换${PATROL.role}` : PATROL.appoint, "", true, undefined, "白天工作照常。队长不能同时驻塔，换走塔手前会显示补位结果。");
-        const backButton = ctx.ui.button(box, "", 30, 32, 54, back, C.muted, 54);
-        backButton.name = "PatrolCandidatesBack";
-        ctx.ui.image(backButton.getChildByName("buttonFace") as Laya.Sprite, "icon_back", 10, 10, 34);
+        drawBack(ctx, box, "PatrolCandidatesBack", back);
         if (!adults.length) {
             ctx.ui.label(box, "暂无成年且未荣休的村民", 34, 316, 600, 30, C.cream, false, 76).align = "center";
             return;
@@ -76,71 +88,88 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
         });
         return;
     }
-    const appointY = 728, appointHeight = 72;
-    const box = ctx.modal(PATROL.building, "", true,
-        { width: UI.panelWidth, height: appointY + appointHeight + UI.action.bottom },
-        "白天轻点打法卡，守夜按已选打法出征。村中成年人可自动补任队长，也可手动更换。强健提高两种打法的伤害；灵巧让旋甩更快补员、连发更快补弹。\n\n村中传闻\n起初两人比谁甩衣服甩得远。比到最后，衣服还在，人先飞了。");
-    if (panel.back) {
-        const backButton = ctx.ui.button(box, "", 30, 32, 54, back, C.muted, 54);
-        backButton.name = "PatrolDetailBack";
-        ctx.ui.image(backButton.getChildByName("buttonFace") as Laya.Sprite, "icon_back", 10, 10, 34);
-    }
-    ctx.ui.image(box, PATROL_BOOTH_FRAME, 35, 106, 121, 110);
-    ctx.ui.label(box, `之家 ${amount(level)} 级`, 166, 115, 460, 28, C.ink, true, 40);
-    ctx.ui.label(box, current ? `队长 · ${coloredName(current)}` : `${PATROL.role}待任命`, 166, 159, 460, 28, C.ink, true, 44);
-
     const ration = !!(s.patrol.rationReady || s.night?.patrolRation);
     const wide = !!(s.patrol.radiusReady || s.night?.patrolWideImpact);
-    const stats = patrolSpinStats(level, current, !rapid && ration);
-    ctx.ui.label(box, "守夜打法", UI.inset, 217, 240, 30, C.ink, true, 32);
-    ctx.ui.label(box, day ? "点选后，下场守夜使用" : "本夜打法已锁定", 295, 217, 340, 25, C.muted, false, 32).align = "right";
-    const modes = [
-        { id: PATROL_MODE.spin, name: "淡紫儿飞速旋转", icon: "patrol_walk_0" },
-        { id: PATROL_MODE.rapid, name: "城门连发", icon: "patrol_rapid_gun" }
-    ] as const;
-    modes.forEach((choice, i) => {
-        const selected = mode === choice.id;
-        const card = ctx.ui.button(box, "", UI.inset + i * 307, 252, 293, () => {
-            if (ctx.current === panel && !selected) ctx.send({ type: "PATROL_MODE", mode: choice.id });
-        }, selected ? C.gold : C.muted, 156, selected || canManage, true);
-        card.name = `PatrolMode:${choice.id}`;
-        card.mouseEnabled = !selected && canManage;
-        const face = card.getChildByName("buttonFace") as Laya.Sprite;
-        if (selected) face.graphics.drawRoundRect(3, 3, card.width - 6, card.height - 6, 18, 18, 18, 18, null, C.gold, 4);
-        if (choice.id === PATROL_MODE.spin) {
-            ctx.ui.image(face, choice.icon, 66, 7, 85, 82);
-            ctx.ui.image(face, "patrol_walk_shuffle_0", 137, 11, 85, 78);
-        } else ctx.ui.image(face, choice.icon, 75, 6, 143, 86);
-        ctx.ui.label(face, choice.name, 10, 91, 273, 29, C.ink, true, 36).align = "center";
-        ctx.ui.label(face, selected ? "✓ 已选用" : (day ? "点此选用" : "未选用"),
-            10, 124, 273, 24, selected ? C.timber : C.muted, false, 28).align = "center";
-    });
-
-    const guide = new Laya.Sprite();
-    guide.name = "PatrolModeDetails"; guide.pos(UI.inset, 414); box.addChild(guide);
-    ctx.art.panel(guide, "panel_card", UI.contentWidth, 110);
-    const controls = rapid ? "后拉城门枪架，拉住连发，松手停火。" : "后拉淡紫儿，松手砸向落点圈内的敌人。";
-    const spec = PATROL.rapid;
-    const profile = rapid ? `每发 ${amount(patrolRapidDamage(stats.damage))} 伤害 · ${amount(patrolRapidCapacity(level))} 发/仓 · 每秒 ${spec.shotsPerSecond} 发 · 补弹 ${patrolReloadSeconds(current)} 秒`
-        : `每次 ${amount(stats.damage)} 伤害 · 约 ${Math.round(stats.seconds)} 秒补一批`;
-    ctx.ui.label(guide, controls, 18, 4, 564, 27, C.ink, true, 34);
-    ctx.ui.label(guide, current ? profile : "任命队长后即可出征", 18, 39, 564, 25, C.green, false, 32).overflow = Laya.Text.SHRINK;
-    if (ration || wide) {
-        const effect = ration && wide ? "伤害、范围提升" : ration ? "伤害提升" : "范围提升";
-        const applied = s.night?.patrolRation || s.night?.patrolWideImpact;
-        ctx.ui.label(guide, `${effect} · ${applied ? "本夜旋甩生效" : "下次旋甩生效"}`, 18, 70, 564, 24, C.timber, true, 34);
-    } else {
-        ctx.ui.label(guide, rapid ? "松手保留余弹，打空才补弹。" : "落点圈内的敌人受到同样伤害。", 18, 70, 564, 24, C.muted, false, 34);
+    const stats = patrolSpinStats(level, current);
+    const spinName = PATROL.spin.name, rapidName = "城门连发";
+    const details = current
+        ? `旋甩每次 ${amount(patrolSpinStats(level, current, ration).damage)} 伤害，约 ${Math.round(stats.seconds)} 秒补一批。落点圈内所有敌人受到相同伤害。\n连发每发 ${amount(patrolRapidDamage(stats.damage))} 伤害，${amount(patrolRapidCapacity(level))} 发/仓，每秒 ${PATROL.rapid.shotsPerSecond} 发。松手保留余弹，打空后 ${patrolReloadSeconds(current)} 秒补满。`
+        : "任命队长后即可出征。";
+    if (panel.type === "patrolModes") {
+        const box = ctx.modal("选择守夜打法", "", true, { width: UI.panelWidth, height: 574 }, details);
+        drawBack(ctx, box, "PatrolModesBack", back);
+        for (const [i, choice] of [PATROL_MODE.spin, PATROL_MODE.rapid].entries()) {
+            const gun = choice === PATROL_MODE.rapid, selected = mode === choice;
+            const card = new Laya.Sprite(); card.pos(UI.inset, 120 + i * 213); box.addChild(card);
+            ctx.art.panel(card, "panel_card", UI.contentWidth, 193);
+            if (selected) card.graphics.drawRoundRect(3, 3, UI.contentWidth - 6, 187, 18, 18, 18, 18, null, C.gold, 4);
+            modePicture(ctx, card, gun, 17, 40);
+            ctx.ui.label(card, gun ? rapidName : spinName, 200, 16, 385, 32, C.ink, true, 48);
+            ctx.ui.label(card, gun ? "按住后拉，持续连发" : "后拉松手，范围砸击", 200, 68, 381, 26, C.muted, false, 43);
+            if (selected || !canManage) {
+                ctx.ui.label(card, selected ? "✓ 已选用" : "本夜未选用", 200, 128, 370, 27, selected ? C.green : C.muted, true, 44);
+            } else ctx.ui.button(card, "选用", 379, 119, 185, () => {
+                if (ctx.current !== panel || panel.id) return;
+                panel.id = choice;
+                ctx.send({ type: "PATROL_MODE", mode: choice });
+            }, C.gold, 59);
+            card.name = `PatrolMode:${choice}`;
+        }
+        return;
     }
-    const row = new Laya.Sprite(); row.pos(42, 531); box.addChild(row);
-    const build = ctx.ui.buildRow(row, 0, PATROL_BOOTH_FRAME, `升级至 ${amount(level + 1)} 级`,
-        rapid ? `弹仓 ${growthPreview(patrolRapidCapacity(level), patrolRapidCapacity(level + 1))} 发` : "伤害提升 · 补员更快",
-        s, patrolCost(s), patrolUpgradeReason(s), () => ctx.send({ type: "PATROL_UPGRADE" }), "升级");
-    build.name = "PatrolUpgradeAction";
+    if (panel.type === "patrolUpgrade") {
+        const reason = patrolUpgradeReason(s);
+        const box = ctx.modal(`升级${PATROL.building}`, "", true, { width: UI.panelWidth, height: reason ? 644 : 596 });
+        drawBack(ctx, box, "PatrolUpgradeBack", back);
+        ctx.ui.image(box, PATROL_BOOTH_FRAME, 103, 112, 145, 137);
+        ctx.ui.label(box, `${amount(level)} 级 → ${amount(level + 1)} 级`, 268, 148, 342, 39, C.ink, true, 60);
+        const gains = new Laya.Sprite(); gains.pos(UI.inset, 263); box.addChild(gains);
+        ctx.art.panel(gains, "panel_card", UI.contentWidth, 135);
+        ctx.ui.image(gains, "patrol_walk_0", 20, 6, 49, 54);
+        ctx.ui.label(gains, "旋甩　伤害提升、补员更快", 89, 9, 490, 28, C.ink, true, 52);
+        ctx.ui.image(gains, "patrol_rapid_gun", 12, 74, 65, 47);
+        ctx.ui.label(gains, `连发　弹仓增加 ${PATROL.rapid.roundsPerLevel} 发`, 89, 74, 490, 28, C.ink, true, 50);
+        ctx.ui.materialCosts(box, s, patrolCost(s), 121, 415, 425, 54);
+        if (reason) ctx.ui.label(box, reason, UI.inset, 472, UI.contentWidth, 25, C.red, true, 42).align = "center";
+        ctx.ui.centerButton(box, "确认升级", reason ? 532 : 484, () => {
+            if (ctx.current !== panel || panel.pendingPatrolLevel !== undefined || s.patrol.level !== level) return;
+            panel.pendingPatrolLevel = level + 1;
+            ctx.send({ type: "PATROL_UPGRADE" });
+        }, C.gold, canManage && !reason, 258, 68);
+        return;
+    }
+
+    const buff = ration || wide;
+    const box = ctx.modal(PATROL.building, "", true, { width: UI.panelWidth, height: buff ? 729 : 679 },
+        "白天点「切换打法」选择下场守夜的招式。队长由村中成年人自动补任，也可手动更换。\n\n" + details +
+        "\n\n村中传闻\n起初两人比谁甩衣服甩得远。比到最后，衣服还在，人先飞了。");
+    if (panel.back) drawBack(ctx, box, "PatrolDetailBack", back);
+    ctx.ui.image(box, PATROL_BOOTH_FRAME, 82, 113, 213, 193);
+    ctx.ui.label(box, `${amount(level)} 级`, 338, 136, 237, 44, C.ink, true, 65);
+    ctx.ui.button(box, "升级", 331, 216, 202, () => ctx.open({ type: "patrolUpgrade", back: panel }), C.gold, 65);
+
+    const captainRow = new Laya.Sprite(); captainRow.pos(UI.inset, 315); box.addChild(captainRow);
+    ctx.art.panel(captainRow, "panel_card", UI.contentWidth, 98);
+    if (current) ctx.ui.image(captainRow, ctx.art.portraitId(current), 13, 8, 82);
+    const label = ctx.ui.label(captainRow, current ? `队长 · ${coloredName(current)}` : "队长待任命",
+        current ? 105 : 23, 21, current ? 310 : 380, 29, C.ink, true, 55);
+    label.wordWrap = false; label.overflow = Laya.Text.SHRINK;
     const alternatives = s.people.filter(p => p !== current && isWorkingAdult(p));
-    const appoint = ctx.ui.centerButton(box, current ? `更换${PATROL.role}` : PATROL.appoint, appointY,
-        () => ctx.open({ type: "patrolCandidates", back: panel }), C.gold, canManage && alternatives.length > 0, 312, appointHeight);
+    const appoint = ctx.ui.button(captainRow, current ? "换人" : "任命", 427, 17, 150,
+        () => ctx.open({ type: "patrolCandidates", back: panel }), C.gold, 62, canManage && alternatives.length > 0);
     const operators = new Set(s.towers.map(t => t.operator));
     if (canManage && alternatives.some(p => !operators.has(p.id) && (!current || rank(p) > rank(current))))
         ctx.ui.actionBadge(appoint, "PatrolCaptainActionHint");
+
+    const active = new Laya.Sprite(); active.pos(UI.inset, 434); box.addChild(active);
+    ctx.art.panel(active, "panel_card", UI.contentWidth, buff ? 250 : 200);
+    modePicture(ctx, active, rapid, 20, 42);
+    ctx.ui.label(active, "守夜打法", 205, 13, 365, 25, C.muted, false, 40);
+    ctx.ui.label(active, rapid ? rapidName : spinName, 205, 56, 380, 32, C.ink, true, 50);
+    ctx.ui.button(active, day ? "切换打法" : "查看打法", 205, 120, 226, () => ctx.open({ type: "patrolModes", back: panel }), C.gold, 60);
+    if (buff) {
+        const effect = ration && wide ? "伤害、范围提升" : ration ? "伤害提升" : "范围提升";
+        const applied = s.night?.patrolRation || s.night?.patrolWideImpact;
+        ctx.ui.label(active, `${effect} · ${applied ? "本夜旋甩生效" : "下次旋甩生效"}`, 17, 194, 566, 25, C.timber, true, 40).align = "center";
+    }
 }

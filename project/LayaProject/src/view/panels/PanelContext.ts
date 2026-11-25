@@ -20,6 +20,8 @@ export type Panel = {
     pendingTactic?: { id: string | null; slot: number };
     /** 只在这次购买的存档提交成功后选中新槽。 */
     pendingSlotUnlock?: number;
+    /** 只在本次弹板确认的升级提交成功后返回之家。 */
+    pendingPatrolLevel?: number;
     /** 确认前的塔型与等级快照，用于防止重复提交和校验成功结果。 */
     towerChange?: { from: TowerKind | null; level: number; to?: TowerKind; submitted?: boolean };
     tab?: number;

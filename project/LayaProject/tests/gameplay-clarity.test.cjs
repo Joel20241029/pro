@@ -196,7 +196,11 @@ test('the patrol card opens from the construction list without materials and ret
     row.event('click');
     assert.equal(view.current.type, 'patrol');
     assert.equal(canonical(game.state), before);
-    assert(!view.box.children.map(n=>n.getChildByName('PatrolUpgradeAction')).find(Boolean).mouseEnabled);
+    view.box.getChildByName('button:升级').event('click');
+    assert.equal(view.current.type,'patrolUpgrade');
+    assert(!view.box.getChildByName('button:确认升级').handlers.click);
+    assert(view.box.children.some(n=>n.text?.includes('还缺 35 木、15 粮')));
+    view.box.getChildByName('PatrolUpgradeBack').event('click');
     assert.equal(view.box.getChildByName('button:返回'), undefined);
     const detailBack = view.box.getChildByName('PatrolDetailBack');
     assert.equal(detailBack.getChildByName('buttonFace').getChildByName('icon_back').width, 34);
@@ -209,14 +213,18 @@ test('the patrol card opens from the construction list without materials and ret
     assert(badge() && badge().y >= 0 && badge().x + badge().width <= card().width);
     card().event('click');
     const detail = view.current;
-    view.box.children.map(n=>n.getChildByName('PatrolUpgradeAction')).find(Boolean).event('click');
+    view.box.getChildByName('button:升级').event('click');
+    assert.equal(game.state.patrol.level,1);
+    const confirm=view.box.getChildByName('button:确认升级');
+    confirm.event('click'); confirm.event('click');
+    assert.equal(view.current,detail);
     assert.equal(game.state.patrol.level, 2);
     assert.deepEqual([game.state.wood, game.state.food], [65, 85]);
     const idle = game.state.people.find(p => p.id !== game.state.patrol.captain && p.adult && p.nights > 0 && !game.state.towers.some(t => t.operator === p.id));
     const free = game.state.people.find(p => p.traits.includes('trait_strong'));
     game.state.towers.find(t => t.operator === free.id).operator = idle.id;
     view.draw(game.state, detail);
-    const manage = () => view.box.getChildByName('button:更换淡紫队长');
+    const manage = () => view.box.children.map(n=>n.getChildByName('button:换人')).find(Boolean);
     assert(manage().getChildByName('buttonFace').getChildByName('PatrolCaptainActionHint'));
     manage().event('click');
     assert.equal(view.box.getChildByName('button:返回'), undefined);
@@ -243,26 +251,31 @@ test('patrol house selection stays visible, fits a short screen and preserves pr
     const { game } = session(), view = panelView(game);
     view.ui.image = imageNode;
     const detail = { type: 'patrol' };
+    view.art.portraitId=p=>p.id;
     game.changed = () => { if (view.current) view.draw(game.state, view.current); };
     game.state.patrol.rationReady = game.state.patrol.radiusReady = true;
     view.open(detail);
-    const card = id => view.box.getChildByName('PatrolMode:' + id);
-    const copy = () => view.box.getChildByName('PatrolModeDetails').children.map(n => n.text).join(' ');
-    assert(!card('spin').mouseEnabled && card('rapid').mouseEnabled);
-    assert(card('spin').x + card('spin').width < card('rapid').x);
+    const nodes = n => [n,...n.children.flatMap(nodes)];
+    const find = name => nodes(view.box).find(n=>n.name===name);
+    const copy = () => nodes(view.box).map(n=>n.text).filter(Boolean).join(' ');
     const { GameLayout } = require(path.join(compiled, 'view/GameLayout.js'));
-    const short = new GameLayout({windowWidth: 600, windowHeight: 760, statusBarHeight: 0, safeArea:{top:15,bottom:735}}, {width:0,height:0});
-    assert(view.box.height <= short.safeBottom - short.safeTop);
-    assert(card('rapid').y + card('rapid').height < view.box.getChildByName('PatrolModeDetails').y);
-    card('rapid').event('click');
-    assert.equal(game.state.patrol.mode, 'rapid');
-    assert(card('spin').mouseEnabled && !card('rapid').mouseEnabled);
-    assert.match(copy(), /8 发.仓.*每秒 4 发.*补弹 4 秒/);
-    assert.match(copy(), /伤害、范围提升 · 下次旋甩生效/);
-    game.command({type:'NIGHT'});
-    view.open(detail);
-    assert(!card('spin').mouseEnabled && !card('rapid').mouseEnabled);
-    assert.match(copy(), /下次旋甩生效/);
+    const short = new GameLayout({windowWidth:600,windowHeight:760,statusBarHeight:0,safeArea:{top:15,bottom:735}},{width:0,height:0});
+    assert(view.box.height <= short.safeBottom-short.safeTop);
+    assert(find(game.state.patrol.captain));
+    assert.match(copy(),/淡紫儿飞速旋转/); assert.doesNotMatch(copy(),/城门连发/);
+    find('button:切换打法').event('click');
+    assert.equal(view.current.type,'patrolModes');
+    assert(find('PatrolMode:rapid').y >= find('PatrolMode:spin').y + 193);
+    assert(!find('PatrolMode:spin').getChildByName('button:选用'));
+    find('PatrolMode:rapid').getChildByName('button:选用').event('click');
+    assert.equal(game.state.patrol.mode,'rapid'); assert.equal(view.current,detail);
+    assert.match(copy(),/城门连发/); assert.match(copy(),/伤害、范围提升 · 下次旋甩生效/);
+    game.command({type:'NIGHT'}); view.open(detail);
+    assert.match(copy(),/下次旋甩生效/);
+    find('button:查看打法').event('click'); assert(!find('button:选用'));
+    find('PatrolModesBack').event('click');
+    find('button:升级').event('click'); assert(!find('button:确认升级').handlers.click);
+    assert.equal(game.state.patrol.level,1);
 });
 
 test('night controls retain independent pause reasons and combat actions on the single-speed footer', () => {
@@ -873,5 +886,57 @@ test('ammo selection keeps controls fixed and preserves the last visible row acr
         for (const key of fixtures) delete TOWER_AMMO[key];
         // Restore insertion order for later tests.
         const ice = TOWER_AMMO.SLOW; delete TOWER_AMMO.SLOW; TOWER_AMMO.SLOW = ice;
+    }
+});
+
+test('the sole eligible couple can marry from the family tab with both portraits and talents visible', () => {
+    const {game} = session(), view = panelView(game);
+    view.ui.image = imageNode;
+    view.art.portraitId = p => p.id;
+    const [,,first,second,a,b] = game.state.people;
+    game.command({type:'FAMILY', a:first.id, b:second.id});
+    view.open({type:'families'});
+    const nodes = node => [node, ...node.children.flatMap(nodes)];
+    const button = nodes(view.box).find(n => n.name === 'button:确认成家');
+    assert(button);
+    const card = nodes(button.parent);
+    for (const p of [a,b]) {
+        assert(card.some(n => n.name === p.id));
+        assert(card.some(n => n.text?.includes(p.name)));
+    }
+    assert(card.some(n => n.text === '伐木') && card.some(n => n.text === '农艺'));
+    const count = game.state.families.length;
+    button.event('click');
+    assert.equal(game.state.families.length, count + 1);
+    assert.deepEqual(game.state.families.at(-1).partners, [a.id,b.id]);
+    button.event('click');
+    assert.equal(game.state.families.length, count + 1);
+});
+
+test('regular full-house visits preserve the arrival clock, random draws, IDs and concurrent season choice', () => {
+    const {finishNight} = require(path.join(compiled,'game/VillageRules.js'));
+    for (const day of [4,12]) {
+        const full = createGame(121);
+        full.day = day; full.completed = day-1; full.legacy.bestNight = day-1;
+        for (const p of full.people.slice(4)) full.people.push({...p,id:'1:'+full.nextPerson++,job:'WAITING'});
+        const spare = JSON.parse(JSON.stringify(full)); spare.houses++;
+        for (const state of [full,spare]) {
+            applyCommand(state,{type:'NIGHT'}); finishNight(state,state.gate,state.towers.map(t=>t.operator));
+        }
+        assert.equal(spare.choices[0].kind,'TRAVELER');
+        assert.deepEqual(full.choices,spare.choices.slice(1));
+        assert.equal(full.choices.length,day===12 ? 1 : 0);
+        assert.deepEqual([full.rng,full.nextPerson,full.lastTraveler],[spare.rng,spare.nextPerson,day]);
+        assert.equal(spare.lastTraveler,day);
+        assert.match(full.summary,/有旅人经过，村中客满/);
+        assert.doesNotMatch(spare.summary,/客满/);
+        // 模拟上一候选版已保存的清晨。重复读档、选村规、自动进入白天均不得重复记入来访。
+        const {game} = session(); spare.houses = full.houses;
+        game.saves.prepare(spare); game.saves.commit(); game.load();
+        assert.deepEqual(game.state.choices,full.choices);
+        assert.equal(game.state.summary,full.summary);
+        if (day===12) game.command({type:'CHOOSE', value:'policy_logging'});
+        game.load(); assert.equal(game.state.phase,'DAY');
+        assert.equal(game.state.summary,full.summary);
     }
 });
