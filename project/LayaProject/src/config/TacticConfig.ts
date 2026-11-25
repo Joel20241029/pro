@@ -2,13 +2,13 @@ import { RULE } from "./RuleConfig";
 import { RESOURCE_CONTRACT } from "./ResourceManifest";
 import { PATH_LENGTH } from "../game/BattleRoad";
 
-/** 单战技至多两次，从施放开始计个人冷却；共享间隔从本次效果结束开始计。 */
-export const TACTIC_USE = { perNight: 2, cooldownTicks: 21 / RULE.step, recoveryTicks: 4 / RULE.step } as const;
+/** 单战技至多两次，从施放开始计个人冷却，当前效果结束后可接续其他就绪战技。 */
+export const TACTIC_USE = { perNight: 2, cooldownTicks: 21 / RULE.step } as const;
 /** 额外槽按次序购买；门槛错开战技学习，第三槽才增加守夜的共享次数。 */
 export const TACTIC_SLOTS = [{ unlockWaves: 15, wood: 80, food: 40 }, { unlockWaves: 35, wood: 160, food: 80 }] as const;
 export const TACTIC_NIGHT_USES = [2, 2, 3] as const;
 
-/** 村庄战技与村民专长分离；目录只登记已实现的效果。
+/** 村庄战技与村民天赋分离；目录只登记已实现的效果。
  * 波数是当前村庄成功防守数，木粮为一次学习费用。大王的怜悯另在施放时献纳库存。
  * 持续时间使用固定战斗步，暂停与倍速由原战斗时钟管理；更改效果需重新调平。
  */
@@ -111,7 +111,7 @@ export const TACTICS: readonly TacticDefinition[] = [{
     summary: "全塔伤害 +50% · 持续 15 秒",
     lore: "相传，文明里村的三位开拓者曾立誓并肩，生死与共。至于谁是谁的爹，三人争了一辈子。直到敌军兵临城下，塔上齐声喝道：「退后，让爹来！」",
     ...tacticLearning[2],
-    // 与大王之心等长；独立伤害乘区1.5在既有护甲和最终取整前计算，不新增破甲。
+    // 与大王之心等长；独立伤害乘区1.5在最终取整前计算。
     effect: "ATTACK_DAMAGE", ticks: RULE.bellTicks, usesPerNight: TACTIC_USE.perNight, multiplier: 1.5
 }, {
     id: SPLIT_TACTIC, name: "分裂术·超", icon: "icon_arrow", order: 3,

@@ -1,8 +1,18 @@
 export type TowerKind = "ARROW" | "STONE" | "SLOW";
+/** 统一石炮塔以弹种区分战斗行为。旧塔型 ID 继续标识已装弹种，保留夜战与存档引用。 */
+export const TOWER_AMMO = {
+    ARROW: { name: "弓箭", icon: "cannon_ammo_arrow", effect: "单体快攻" },
+    STONE: { name: "石弹", icon: "cannon_ammo_stone", effect: "命中时溅射周围敌人" },
+    SLOW: { name: "冰弹", icon: "icon_slow", effect: "命中后使周围敌人减速" }
+} as const;
+/** 开村的两座炮塔按塔位顺序预装免费弹种。其他新建塔一律装第一种。 */
+export const STARTER_AMMO = ["ARROW", "STONE"] as const;
+/** 同一弹种全村共用等级；从 1 级起每级额外提供 5% 的基础伤害，加法累计。 */
+export const AMMO_DAMAGE_PER_LEVEL = .05;
 export const TOWERS = {
-    ARROW: { name: "箭楼", damage: 12, interval: .8, range: 175, cost: 30, splash: 0, image: "building_tower_arrow" },
-    STONE: { name: "石塔", damage: 22, interval: 1.6, range: 165, cost: 45, splash: 70, image: "building_tower_stone" },
-    SLOW: { name: "寒塔", damage: 4, interval: 1.5, range: 160, cost: 35, splash: 60, image: "building_tower_slow" }
+    ARROW: { damage: 12, interval: .8, range: 175, cost: 30, splash: 0 },
+    STONE: { damage: 22, interval: 1.6, range: 165, cost: 45, splash: 70 },
+    SLOW: { damage: 4, interval: 1.5, range: 160, cost: 35, splash: 60 }
 } as const;
 /** 720×1280 的固定逻辑路径/塔位，首版地图配置；改变坐标会影响射程和到门时间。 */
 export const PATH = [{ x: 360, y: 230 }, { x: 360, y: 350 }, { x: 250, y: 435 }, { x: 470, y: 550 }, { x: 360, y: 655 }, { x: 360, y: 760 }];
@@ -65,12 +75,13 @@ export const WAVE_PROGRESSION = {
 export function isDenseWave(ordinaryHealthPercent: number) {
     return WAVE.ordinaryHealth.some(percent => percent === ordinaryHealthPercent);
 }
-/** 原 BattleSimulation 的词缀、天赋、专长及减速参数，单位为倍率/逻辑距离/战斗步。
+/** 原 BattleSimulation 的词缀、天赋及减速参数，单位为倍率/逻辑距离/战斗步。
  * 保留原加法、乘法、取整与扣减顺序；本表只替代散落字面量，不改变战斗规则。
  */
 export const COMBAT = {
     fastHealth: .9, sturdyHealth: 1.15, fastSpeed: 1.1, sturdySpeed: .9,
-    nimbleSpeed: .1, focusedSpeed: .15, farsightRange: .15, disruptRange: 190,
-    strongDamage: .2, throwingDamage: .25, archeryDamage: .25, stoneArmorDivisor: 2,
-    slowMax: .6, slowBase: .3, patientSlow: .1, wardingSlow: .1, shotLifetimeTicks: 5
+    // 五天赋方案：单个驻守者覆盖所有弹种。按开村双塔火力试算，防止首次换弹丢失加成。
+    nimbleSpeed: .35, disruptRange: 190,
+    strongDamage: .45,
+    slowBase: .3, shotLifetimeTicks: 5
 } as const;

@@ -74,8 +74,8 @@ export class GamePanels implements PanelContext {
             const tower = this.game.state?.towers[this.current!.index!];
             if (tower?.kind === (change.to ?? change.from) &&
                 tower?.level === (change.to ? Math.max(1, change.level) : change.level + 1)) {
-                this.current = null;
-                this.game.resume("CHOICE");
+                this.current = change.from && change.to ? { type: "tower", index: this.current!.index } : null;
+                if (!this.current) this.game.resume("CHOICE");
             } else change.submitted = false;
         }
         const animate = !this.game.pauses.has("BACKGROUND") && !this.game.pauses.has("DISABLED");
@@ -172,7 +172,7 @@ export class GamePanels implements PanelContext {
             drawTacticPanel(this, s, p, this.layout.safeBottom - this.layout.safeTop);
         else if (p.type === "person" || p.type === "ancestor")
             drawPersonDetailPanel(this, s, p, this.layout.safeBottom - this.layout.safeTop);
-        else if (["people", "history", "partners", "carers", "operators", "care", "workers"].includes(p.type))
+        else if (["people", "history", "partners", "operators", "workers"].includes(p.type))
             drawPeoplePanel(this, s, p);
         else if (p.type === "dailyTasks")
             drawDailyTaskPanel(this, s, (task, date, icon) => this.onDailyClaim?.(task.kind, date, icon));
@@ -180,10 +180,10 @@ export class GamePanels implements PanelContext {
             drawItemPanel(this, s, p, this.layout.safeBottom - this.layout.safeTop);
         else if (p.type === "families")
             drawFamilyPanel(this, s, p);
-        else if (p.type === "wave" || p.type === "start")
+        else if (p.type === "start")
             drawWavePanel(this, s, p);
-        else if (p.type === "build" || p.type === "tower" || p.type === "towerConfirm")
-            drawBuildingPanel(this, s, p);
+        else if (p.type === "build" || p.type === "tower" || p.type === "towerConfirm" || p.type === "towerAmmo" || p.type === "ammoUpgrade")
+            drawBuildingPanel(this, s, p, this.layout.safeBottom - this.layout.safeTop);
         else
             drawJournalPanel(this, s, p, this.deferRankingCanvas);
     }

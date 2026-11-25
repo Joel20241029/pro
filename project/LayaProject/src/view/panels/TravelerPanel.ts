@@ -14,7 +14,8 @@ const LAYOUT = { top: 118, screenMargin: 24, profile: 186, talent: 158, bonus: 1
 export function drawTravelerPanel(ctx: PanelContext, state: GameState, traveler: Person, safeHeight: number) {
     const quality = VILLAGER_QUALITY[traveler.quality], special = traveler.quality !== "COMMON";
     const count = state.people.length, slots = capacity(state), full = count >= slots;
-    const contentHeight = LAYOUT.profile + LAYOUT.gap + LAYOUT.talent + (special ? LAYOUT.gap + LAYOUT.bonus : 0);
+    const talentHeight = LAYOUT.talent + (traveler.traits.length - 2) * 44;
+    const contentHeight = LAYOUT.profile + LAYOUT.gap + talentHeight + (special ? LAYOUT.gap + LAYOUT.bonus : 0);
     const footerHeight = LAYOUT.actionTop + (full ? LAYOUT.fullNote : 0) + UI.action.pairHeight + UI.action.bottom;
     const height = Math.min(LAYOUT.top + contentHeight + footerHeight, Math.floor(safeHeight) - 2 * LAYOUT.screenMargin);
     const help = "有空余住房就能接纳旅人。谢绝后可在白天扩建民居，等待下一位旅人。";
@@ -45,7 +46,7 @@ export function drawTravelerPanel(ctx: PanelContext, state: GameState, traveler:
     profile.graphics.drawEllipse(112, 93, 80, 80, "#f7e4b9", null, 0);
     ctx.ui.image(profile, ctx.art.portraitId(traveler), 22, 5, 180, 176);
 
-    drawResidentTalent(ctx, card("talent", LAYOUT.talent), traveler, true);
+    drawResidentTalent(ctx, card("talent", talentHeight), traveler, true);
     if (special) drawResidentQuality(ctx, card("bonus", LAYOUT.bonus), quality, true);
 
     ctx.ui.iconValue(box, "icon_house", `住房 ${count}/${slots}`, 224, footerTop + 17, 220, 44, C.ink, 29);

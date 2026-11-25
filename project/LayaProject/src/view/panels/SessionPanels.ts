@@ -1,11 +1,9 @@
-import { person } from "../../game/VillageRules";
 import { GameState } from "../../game/GameState";
-import { POLICIES, RULE, SEASONS, SKILLS } from "../../game/GameConfig";
+import { POLICIES, RULE, SEASONS } from "../../game/GameConfig";
 import { season } from "../../game/WaveGenerator";
 import { C, UI } from "../UiTheme";
 import { dailyRationAmount } from "../../game/DailyRation";
 import { PanelContext } from "./PanelContext";
-import { coloredName } from "../ViewText";
 import { drawTravelerPanel } from "./TravelerPanel";
 import { drawGameOver } from "./DefeatPanel";
 export function drawBoot(ctx: PanelContext) {
@@ -38,9 +36,9 @@ export function drawBoot(ctx: PanelContext) {
         return;
     }
     const box = ctx.modal("一处村落，代代相守", "白天经营村庄，夜晚守住城门。", false, undefined,
-        "可安排村民耕作、驻塔、成家与照料孩子。孩子继承双亲之一的天赋，成年后可选专长。");
+        "可安排村民耕作、驻塔、成家与迎接孩子。孩子优先继承父母的天赋，成年后自动补岗。");
     ctx.ui.image(box, "icon_house", 239, 228, 190);
-    ctx.ui.label(box, "先让村民成家，迎接孩子、安排照料。\n守住两夜，再为孩子选择一项专长。", 42, 450, 584, 30, C.green, true, 122).align = "center";
+    ctx.ui.label(box, "先让村民成家，迎接孩子。\n守住两夜，孩子就能成年干活。", 42, 450, 584, 30, C.green, true, 122).align = "center";
     ctx.ui.centerButton(box, "开始开村", 646, () => ctx.game.newVillage(), C.gold);
 }
 export function drawPending(ctx: PanelContext) {
@@ -58,19 +56,11 @@ function drawDawn(ctx: PanelContext, s: GameState, safeHeight: number) {
         drawTravelerPanel(ctx, s, q.person, safeHeight);
         return;
     }
-    const help = q.kind === "SKILL" ? "孩子成年后选定一项专长。专长会影响生产、照料或驻防表现。"
-            : `村规持续 ${RULE.seasonDays} 天，换季后可以再选。绿色为提升，红色为代价。`;
+    const help = `村规持续 ${RULE.seasonDays} 天，换季后可以再选。可选产粮、产木或塔伤加成。`;
     const box = ctx.modal("天亮了 · 新的一天", s.summary, false, undefined, help);
     const optionWidth = 500, optionHeight = 112;
-    if (q.kind === "SKILL") {
-        ctx.ui.label(box, `${coloredName(person(s, q.person))} 成年了\n选择一项专长：`, 34, 226, 600, 32, C.green, true, 104).align = "center";
-        q.options.forEach((k, i) => ctx.ui.button(box, SKILLS[k].join("\n"), (box.width - optionWidth) / 2, 378 + i * 132,
-            optionWidth, () => ctx.send({ type: "CHOOSE", value: k }), i === 0 ? C.gold : C.green, optionHeight));
-    }
-    else if (q.kind === "POLICY") {
-        ctx.ui.label(box, `为${SEASONS[season(s.day)]}季定下村规\n持续 ${RULE.seasonDays} 天`, 34, 226, 600, 32, C.green, true, 104).align = "center";
-        q.options.forEach((id, i) => drawPolicyOption(ctx, box, id, 378 + i * 132, optionWidth, optionHeight));
-    }
+    ctx.ui.label(box, `为${SEASONS[season(s.day)]}季定下村规\n持续 ${RULE.seasonDays} 天`, 34, 226, 600, 32, C.green, true, 104).align = "center";
+    q.options.forEach((id, i) => drawPolicyOption(ctx, box, id, 378 + i * 132, optionWidth, optionHeight));
 }
 /** 村规直接以定义的数值绘制，不另维护一份可能与实际效果不一致的说明。 */
 function drawPolicyOption(ctx: PanelContext, box: Laya.Sprite, id: string, y: number, width: number, height: number) {
@@ -78,20 +68,11 @@ function drawPolicyOption(ctx: PanelContext, box: Laya.Sprite, id: string, y: nu
     const button = ctx.ui.button(box, policy.name, (box.width - width) / 2, y, width, () => ctx.send({ type: "CHOOSE", value: id }), C.muted, height);
     const face = button.getChildByName("buttonFace") as Laya.Sprite, name = face.getChildByName("buttonText") as Laya.Text;
     name.y = 8; name.height = 43;
-    const effects = [
-        { title: "产出", value: policy.food, icon: "icon_food" }, { title: "产出", value: policy.wood, icon: "icon_wood" },
-        { title: "口粮", value: policy.ration, icon: "icon_food", reduces: true }, { title: "照料", value: policy.care, icon: "icon_food", absolute: true },
-        { title: "攻速", value: policy.speed }, { title: "伤害", value: policy.damage }, { title: "射程", value: policy.range },
-        { title: "箭楼攻速", value: policy.arrowSpeed }, { title: "石塔攻速", value: policy.stoneSpeed },
-        { title: "石塔伤害", value: policy.stoneDamage }, { title: "减速", value: policy.slow },
-        { title: "修门效果", value: policy.repair }, { title: "城门受伤", value: policy.gate, reduces: true }
-    ].filter(entry => entry.value !== undefined);
-    effects.forEach(({ title, value, icon, reduces, absolute }, i) => {
-        const text = `${title} ${value! > 0 ? "+" : "−"}${Math.round(Math.abs(value!) * (absolute ? 1 : 100))}${absolute ? "" : "%"}`;
-        const w = (width - 40) / effects.length, x = 20 + i * w, color = (value! > 0) !== !!reduces ? C.green : C.red;
-        if (icon) ctx.ui.iconValue(face, icon, text, x, 55, w, 36, color, 24);
-        else ctx.ui.label(face, text, x, 55, w, 24, color, true, 36).align = "center";
-    });
+    const bonus = policy.food ?? policy.wood ?? policy.damage!;
+    const percent = `+${Math.round(bonus * 100)}%`;
+    if (policy.food || policy.wood)
+        ctx.ui.iconValue(face, policy.food ? "icon_food" : "icon_wood", `产出 ${percent}`, 20, 55, width - 40, 36, C.green, 24);
+    else ctx.ui.label(face, `塔伤 ${percent}`, 20, 55, width - 40, 24, C.green, true, 36).align = "center";
 }
 /** 保存、口粮和回前台先处理，随后是结算，再接失败、清晨或普通界面。 */
 export function drawSessionPanel(ctx: PanelContext, s: GameState, safeHeight: number, drawResult?: () => boolean) {

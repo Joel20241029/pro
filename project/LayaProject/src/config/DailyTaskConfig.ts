@@ -9,7 +9,9 @@ export const TASK_GOALS = {
     casts: [1, 2], equipped: [1, 1], towersHit: [2, 3], arrowHits: [4, 8], stoneSplash: [2, 2], frostHits: [3, 6],
     food: [16, 24], wood: [10, 18], both: [12, 18], farmers: [2, 2], loggers: [2, 2], rations: [1, 1],
     towerBuild: [1, 1], towerUpgrade: [1, 1], farmUpgrade: [1, 1], loggingUpgrade: [1, 1], gateUpgrade: [1, 1], repair: [1, 1],
-    houseBuild: [1, 1], housingUpgrade: [1, 1], marriage: [1, 1], child: [1, 1], worker: [1, 1], operator: [1, 1]
+    houseBuild: [1, 1], marriage: [1, 1], child: [1, 1],
+    // 已发的手动派工任务仍可读档、计数和领奖，后续刷新不再抽取。
+    worker: [1, 1], operator: [1, 1]
 } as const;
 /** 三倍波次的随军数量类任务。沿用战前预演收紧上限，历史任务继续按原目标入档。 */
 export const DENSE_TASK_GOALS = { kills: [18, 36], enemyKind: [6, 12] } as const;

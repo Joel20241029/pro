@@ -1,11 +1,11 @@
 import { RULE } from "./RuleConfig";
 
-/** 饮食、天赋和专长沿用原规则；品质倍率乘在产出或驻塔伤害加成之后，再按原公式取整。 */
+/** 每人固定拥有 1/2/2/3 项不同天赋；英雄与精英的差异另由产出、战力和寿命决定。 */
 export const VILLAGER_QUALITY = {
-    COMMON: { label: "普通", minWins: 0, birth: 0, traveler: 0, production: 1, damage: 1, careFood: 0, adultNights: RULE.adultNights, elderNights: RULE.elderNights, scale: 1 },
-    ELITE: { label: "精英", minWins: 0, birth: 15, traveler: 45, production: 1.5, damage: 1.25, careFood: 1, adultNights: 18, elderNights: 5, scale: 1.25 },
-    HERO: { label: "英雄", minWins: 12, birth: 3, traveler: 7, production: 1.7, damage: 1.4, careFood: 2, adultNights: 20, elderNights: 6, scale: 1.36 },
-    LEGENDARY: { label: "传说", minWins: 30, birth: 1, traveler: 3, production: 1.9, damage: 1.55, careFood: 3, adultNights: 22, elderNights: 7, scale: 1.48 }
+    COMMON: { label: "普通", traitCount: 1, minWins: 0, birth: 0, traveler: 0, production: 1, damage: 1, adultNights: RULE.adultNights, elderNights: RULE.elderNights, scale: 1 },
+    ELITE: { label: "精英", traitCount: 2, minWins: 0, birth: 15, traveler: 45, production: 1.5, damage: 1.25, adultNights: 18, elderNights: 5, scale: 1.25 },
+    HERO: { label: "英雄", traitCount: 2, minWins: 12, birth: 3, traveler: 7, production: 1.7, damage: 1.4, adultNights: 20, elderNights: 6, scale: 1.36 },
+    LEGENDARY: { label: "传说", traitCount: 3, minWins: 30, birth: 1, traveler: 3, production: 1.9, damage: 1.55, adultNights: 22, elderNights: 7, scale: 1.48 }
 } as const;
 
 export type VillagerQuality = keyof typeof VILLAGER_QUALITY;

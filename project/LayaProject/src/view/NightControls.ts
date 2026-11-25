@@ -104,7 +104,7 @@ export class NightControls {
             if (!clock) continue;
             const cfg = HUD.night.ring, center = HUD.footer.start.size / 2;
             ring.graphics.drawCircle(center, center, cfg.radius, null, cooling ? cfg.cooldownTrack : cfg.track, cfg.width);
-            const span = cooling ? Math.max(TACTIC_USE.recoveryTicks, TACTIC_USE.cooldownTicks - tactic.ticks) : tactic.ticks;
+            const span = cooling ? TACTIC_USE.cooldownTicks : tactic.ticks;
             const points: number[] = [], end = Math.PI * 2 * Math.min(1, ticks / span);
             for (let i = 0; i <= cfg.segments; i++) {
                 const angle = -Math.PI / 2 + end * i / cfg.segments;

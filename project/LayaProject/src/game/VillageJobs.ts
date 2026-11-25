@@ -3,8 +3,8 @@ import { GameState, isWorkingAdult, Job } from "./GameState";
 import { laborSlots } from "./Growth";
 import { person } from "./VillageQueries";
 import { requireRule } from "./VillageStateOps";
-export const JOB_NAMES: Record<Job, string> = { WAITING: "待安排", FARM: "耕作", LOGGING: "伐木", CARE: "照料" };
-/** 用户确认的自动分配顺序：先农艺/伐木专长对应空岗，再先农田后伐木；各轮按在村顺序。
+export const JOB_NAMES: Record<Job, string> = { WAITING: "待安排", FARM: "耕作", LOGGING: "伐木" };
+/** 用户确认的自动分配顺序：先农艺/伐木天赋对应空岗，再先农田后伐木；各轮按在村顺序。
  * 只处理待安排成年人，不换走在岗者、不自动照料、不使用随机数；没有空岗仍为待安排。
  */
 export function autoAssignJobs(s: GameState) {
@@ -13,15 +13,15 @@ export function autoAssignJobs(s: GameState) {
         LOGGING: laborSlots("LOGGING", s.logging) - s.people.filter(p => p.job === "LOGGING").length
     };
     for (const p of s.people)
-        if (isWorkingAdult(p) && p.skill !== null && p.job === "WAITING") {
-            const job = p.skill === "skill_farming" ? "FARM" : p.skill === "skill_logging" ? "LOGGING" : null;
+        if (isWorkingAdult(p) && p.job === "WAITING") {
+            const job = free.FARM > 0 && p.traits.includes("trait_diligent") ? "FARM" : p.traits.includes("trait_woodwise") ? "LOGGING" : null;
             if (job && free[job] > 0) {
                 p.job = job;
                 free[job]--;
             }
         }
     for (const p of s.people)
-        if (isWorkingAdult(p) && p.skill !== null && p.job === "WAITING") {
+        if (isWorkingAdult(p) && p.job === "WAITING") {
             if (free.FARM > 0) {
                 p.job = "FARM";
                 free.FARM--;

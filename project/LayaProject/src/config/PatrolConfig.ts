@@ -19,6 +19,8 @@ export const PATROL = {
     // 城门连发按实际操作秒计时。一级八发，此后每升一级加三发，延长一仓可连射的时间。
     rapid: {
         name: "淡紫儿突突队", capacity: 8, roundsPerLevel: 3, shotsPerSecond: 4, reloadSeconds: 4,
+        // 灵巧队长的整仓补弹由 4 秒减为 3 秒，不改变连射节奏。
+        nimbleReloadReduction: .25,
         // 连发单发基于同级无道具旋甩伤害。按首夜常见袭村怪 35 生命校准，普通队长一级每发 20，两发击倒。
         damageShare: 1.25,
         // 标准地图的城门转台和枪口；触摸时表现层提供当前屏幕对应的屋顶投影。弹速以参考像素/现实秒计。

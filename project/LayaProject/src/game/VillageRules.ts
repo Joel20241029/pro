@@ -1,13 +1,14 @@
-import { QUALITY_CHANCE_SCALE, rollVillagerQuality } from "../config/VillagerQuality";
-import { ADULT_APPEARANCE, GROWTH, RULE, Skill, TOWERS, TowerKind, VILLAGER_NAMES } from "./GameConfig";
+import { QUALITY_CHANCE_SCALE, rollVillagerQuality, VILLAGER_QUALITY } from "../config/VillagerQuality";
+import { ADULT_APPEARANCE, RULE, TRAIT_POOL, TOWERS, TowerKind, VILLAGER_NAMES } from "./GameConfig";
 import { PATROL_MODE, PatrolMode } from "../config/PatrolConfig";
-import { GameState, isElder, isWorkingAdult, Job, Person } from "./GameState";
+import { STARTER_AMMO } from "../config/DefenseConfig";
+import { GameState, ownsTowerAmmo, isElder, isWorkingAdult, Job, Person } from "./GameState";
 import { SeededRandom } from "./SeededRandom";
 import { generateWave } from "./WaveGenerator";
-import { gateCapacity, laborSlots, repairCost, residentialCost, upgradeCost, upgradeUnavailableReason } from "./Growth";
+import { gateCapacity, gateRepairQuote, laborSlots, repairCost, residentialCost, residentialUpgradeReason, upgradeCost, upgradeUnavailableReason } from "./Growth";
 import { nextSex } from "./Population";
 import { dailyRationAmount } from "./DailyRation";
-import { person, capacity, canMarry, birthUnavailableReason, economy, policy } from "./VillageQueries";
+import { person, capacity, canMarry, birthUnavailableReason, economy } from "./VillageQueries";
 import { autoAssignJobs, autoAssignNightDuties, autoAssignOperators, assignOperator } from "./VillageJobs";
 import { requireRule, spend, newId, remember, pruneHistory } from "./VillageStateOps";
 import { patrolUpgradeReason, patrolCost } from "./PatrolRules";
@@ -31,7 +32,6 @@ export type Command = {
     type: "JOB";
     id: string;
     job: Job;
-    child?: string;
     replace?: string;
 } | {
     type: "FAMILY";
@@ -40,10 +40,9 @@ export type Command = {
 } | {
     type: "BIRTH";
     family: string;
-    carer: string;
 } | {
     type: "BUILD";
-    kind: "HOUSE" | "FARM" | "LOGGING" | "HOUSING" | "GATE";
+    kind: "HOUSE" | "FARM" | "LOGGING" | "GATE";
 } | {
     type: "PATROL_MODE";
     mode: PatrolMode;
@@ -54,6 +53,11 @@ export type Command = {
     id: string;
 } | {
     type: "REPAIR";
+    full?: boolean;
+} | {
+    type: "UPGRADE_AMMO";
+    kind: TowerKind;
+    level: number;
 } | {
     type: "TOWER";
     index: number;
@@ -132,6 +136,7 @@ export function applyCommand(s: GameState, c: Command) {
             s.tactics.extraSlots![c.slot - 1] = null;
             break;
         case "JOB": {
+            requireRule(c.job === "WAITING" || c.job === "FARM" || c.job === "LOGGING", "岗位不存在");
             const p = person(s, c.id);
             requireRule(isWorkingAdult(p), "孩子和荣休老人不能安排工作");
             let replaced: Person | null = null;
@@ -148,16 +153,10 @@ export function applyCommand(s: GameState, c: Command) {
             else {
                 requireRule(!c.replace, "此岗位不支持替换工人");
             }
-            if (c.job === "CARE") {
-                requireRule(c.child && !person(s, c.child).adult, "请选择孩子");
-                requireRule(!s.people.some(q => q.id !== p.id && q.careChild === c.child), "这个孩子已有照料人");
-            }
             if (replaced) {
                 replaced.job = "WAITING";
-                replaced.careChild = null;
             }
             p.job = c.job;
-            p.careChild = c.job === "CARE" ? c.child! : null;
             break;
         }
         case "FAMILY": {
@@ -167,42 +166,44 @@ export function applyCommand(s: GameState, c: Command) {
             break;
         }
         case "BIRTH": {
-            const reason = birthUnavailableReason(s, c.family, c.carer);
+            const reason = birthUnavailableReason(s, c.family);
             requireRule(reason === null, reason!);
             const f = s.families.find(f => f.id === c.family)!;
-            const parents = f.partners.map(id => person(s, id)), carer = person(s, c.carer);
+            const parents = f.partners.map(id => person(s, id));
             spend(s, "food", RULE.birthCost);
             const rng = new SeededRandom(s.rng.family), sex = nextSex(s.people, rng);
-            const trait = parents[0].trait === parents[1].trait ? parents[0].trait : parents[rng.range(2)].trait;
             const id = newId(s);
             // 姓名分支使用原快照，主随机流仍按原顺序消费姓名和品质。
             const nameState = rng.state, nameIndex = rng.range(VILLAGER_NAMES.child.length);
             const quality = rollVillagerQuality(rng.range(QUALITY_CHANCE_SCALE), s.completed, "birth");
             const name = quality !== "COMMON" ? VILLAGER_NAMES.special[new SeededRandom(nameState).range(VILLAGER_NAMES.special.length)]
                 : `小${VILLAGER_NAMES.child[nameIndex]}${s.nextPerson - 1}`;
-            const child: Person = { id, name, sex, origin: "BORN", quality, appearance: ADULT_APPEARANCE[sex], trait, skill: null, generation: Math.max(...parents.map(p => p.generation)) + 1, parents: f.partners.slice(), ancestors: Array.from(new Set([...f.partners, ...parents[0].ancestors, ...parents[1].ancestors])), adult: false, nights: 0, elderNights: 0, growth: 0, job: "WAITING", careChild: null };
+            const pool = Array.from(new Set([...parents[0].traits, ...parents[1].traits]));
+            const count = VILLAGER_QUALITY[quality].traitCount;
+            const traits = rng.choices(pool, Math.min(count, pool.length));
+            if (traits.length < count)
+                traits.push(...rng.choices(TRAIT_POOL.filter(t => !traits.includes(t)), count - traits.length));
+            const child: Person = { id, name, sex, origin: "BORN", quality, appearance: ADULT_APPEARANCE[sex], traits, generation: Math.max(...parents.map(p => p.generation)) + 1, parents: f.partners.slice(), ancestors: Array.from(new Set([...f.partners, ...parents[0].ancestors, ...parents[1].ancestors])), adult: false, nights: 0, elderNights: 0, growth: 0, job: "WAITING" };
             s.people.push(child);
-            carer.job = "CARE";
-            carer.careChild = id;
             f.lastBirth = s.completed;
             s.stats.births++;
             s.legacy.births++;
             s.stats.generation = Math.max(s.stats.generation, child.generation);
-            remember(s, trait);
+            traits.forEach(t => remember(s, t));
             s.rng.family = rng.state;
             break;
         }
         case "BUILD": {
             if (c.kind === "HOUSE") {
-                requireRule(s.houses < RULE.houseMax, "民居已达上限");
-                const cost = residentialCost(s.houses), reason = upgradeUnavailableReason(s, cost);
+                const cost = residentialCost(s.houses), reason = residentialUpgradeReason(s);
                 requireRule(!reason, reason!);
                 spend(s, "wood", cost.wood);
                 spend(s, "food", cost.food);
                 s.houses++;
             }
             else {
-                const field = c.kind === "FARM" ? "farm" : c.kind === "LOGGING" ? "logging" : c.kind === "HOUSING" ? "housing" : "gateLevel";
+                requireRule(c.kind === "FARM" || c.kind === "LOGGING" || c.kind === "GATE", "未知建设项目");
+                const field = c.kind === "FARM" ? "farm" : c.kind === "LOGGING" ? "logging" : "gateLevel";
                 const cost = upgradeCost(c.kind, s[field]), reason = upgradeUnavailableReason(s, cost);
                 requireRule(!reason, reason!);
                 const oldMax = gateCapacity(s);
@@ -235,19 +236,36 @@ export function applyCommand(s: GameState, c: Command) {
             autoAssignOperators(s);
             break;
         }
-        case "REPAIR":
-            requireRule(s.gate < gateCapacity(s), "城门完好");
-            spend(s, "wood", repairCost(s));
-            s.gate = Math.min(gateCapacity(s), s.gate + Math.ceil(gateCapacity(s) * GROWTH.repairFraction * (1 + (policy(s).repair || 0))));
+        case "REPAIR": {
+            const quote = gateRepairQuote(s);
+            requireRule(quote.count > 0, "城门完好");
+            spend(s, "wood", c.full ? quote.fullCost : repairCost(s));
+            s.gate = c.full ? quote.maximum : Math.min(quote.maximum, s.gate + quote.perRepair);
             break;
+        }
         case "TOWER": {
             const t = s.towers[c.index];
-            requireRule(t && c.kind in TOWERS, "塔位无效");
-            requireRule(t.kind !== c.kind, "已是此类防塔");
-            spend(s, "wood", t.kind ? RULE.towerConvert : TOWERS[c.kind].cost);
+            requireRule(t && Object.prototype.hasOwnProperty.call(TOWERS, c.kind), "塔位无效");
+            requireRule(t.kind !== c.kind, "此弹药已装备");
+            requireRule(ownsTowerAmmo(s, c.kind), "请先到商城购买冰弹");
+            if (!t.kind) {
+                requireRule(c.kind === STARTER_AMMO[0], "新塔默认使用弓箭");
+                spend(s, "wood", TOWERS[STARTER_AMMO[0]].cost);
+            }
             t.kind = c.kind;
             if (!t.level)
                 t.level = 1;
+            break;
+        }
+        case "UPGRADE_AMMO": {
+            requireRule(ownsTowerAmmo(s, c.kind), "请先解锁弹药");
+            const level = s.ammoLevels[c.kind];
+            requireRule(level === c.level, "弹药等级已变化");
+            const cost = upgradeCost("TOWER", level), reason = upgradeUnavailableReason(s, cost);
+            requireRule(!reason, reason!);
+            spend(s, "wood", cost.wood);
+            spend(s, "food", cost.food);
+            s.ammoLevels[c.kind]++;
             break;
         }
         case "UPGRADE": {
@@ -267,7 +285,7 @@ export function applyCommand(s: GameState, c: Command) {
             requireRule(s.wave !== null, "波次未准备好");
             autoAssignNightDuties(s);
             const e = economy(s);
-            s.night = { adults: s.people.filter(isWorkingAdult).map(p => p.id), elders: s.people.filter(isElder).map(p => p.id), cared: s.people.filter(p => isWorkingAdult(p) && p.job === "CARE").map(p => p.careChild!), hungry: e.hungry, tactic: s.tactics.equipped };
+            s.night = { adults: s.people.filter(isWorkingAdult).map(p => p.id), elders: s.people.filter(isElder).map(p => p.id), hungry: e.hungry, tactic: s.tactics.equipped };
             if (s.tactics.extraSlots) s.night.extraSlots = s.tactics.extraSlots.slice();
             if (s.patrol.captain) {
                 s.night.patrolSquad = true;
@@ -296,16 +314,12 @@ export function applyCommand(s: GameState, c: Command) {
 function choose(s: GameState, value: string) {
     const q = s.choices[0];
     switch (q.kind) {
-        case "SKILL":
-            requireRule(q.options.includes(value as Skill), "请选择列出的专长");
-            person(s, q.person).skill = value as Skill;
-            break;
         case "TRAVELER":
             requireRule(value === "accept" || value === "decline", "旅人选项无效");
             if (value === "accept") {
                 requireRule(s.people.length < capacity(s), "民居已满，可以谢绝旅人");
                 s.people.push(q.person);
-                remember(s, q.person.trait);
+                q.person.traits.forEach(t => remember(s, t));
             }
             break;
         case "POLICY":

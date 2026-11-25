@@ -17,7 +17,7 @@ test('each native enemy prefab owns one bottom-layer contact shadow and exports 
  }
 });
 test('HD replacement contains only selected source images; pixels and native prefab sources are traceable',()=>{
- const ids=new Set();for(const a of recipe.assets){assert(!ids.has(a.id));ids.add(a.id);assert.equal(typeof a.runtime,'boolean');assert(a.sourceSheet.startsWith('source/rendered2d/production/'));assert(fs.existsSync(path.join(source,a.sourceSheet)));assert.equal(a.sampling,'Lanczos');assert(a.provenance.sourceHash);assert(a.provenance.outputHash);if(a.category==='building-parts')assert.equal(a.bundle,'buildings');}
+ const ids=new Set();for(const a of recipe.assets){assert(!ids.has(a.id));ids.add(a.id);assert.equal(typeof a.runtime,'boolean');assert(a.sourceSheet.startsWith(a.id.startsWith('cannon_') ? 'source/buildings/stone-cannon/' : 'source/rendered2d/production/'));assert(fs.existsSync(path.join(source,a.sourceSheet)));assert.equal(a.sampling,'Lanczos');assert(a.provenance.sourceHash);assert(a.provenance.outputHash);if(a.category==='building-parts')assert.equal(a.bundle,'buildings');}
  assert.equal(Object.keys(recipe.animations.walkDirections).length,7);
  assert.equal(Object.keys(recipe.animations.laborDirections).length,6);
  for(const [groups, headings] of [[recipe.animations.walkDirections,['DOWN','LEFT','RIGHT','UP']],[recipe.animations.laborDirections,['LEFT','RIGHT']]]){

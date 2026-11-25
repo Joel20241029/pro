@@ -6,28 +6,28 @@ let passed = 0;
 function ok(value: unknown, message = "assertion failed"): asserts value { if (!value) throw new Error(message); }
 function equal(a: unknown, b: unknown) { ok(JSON.stringify(a) === JSON.stringify(b), `${JSON.stringify(a)} != ${JSON.stringify(b)}`); }
 function test(name: string, check: () => void) { check(); passed++; console.log("PASS", name); }
-function blocked(s: GameState, expected: string, carer = s.people[1].id, family = s.families[0].id) {
+function blocked(s: GameState, expected: string, family = s.families[0].id) {
     const before = JSON.stringify(s);
-    equal(birthUnavailableReason(s, family, carer), expected);
+    equal(birthUnavailableReason(s, family), expected);
     let message: string | null = null;
-    try { applyCommand(s, { type: "BIRTH", family, carer }); } catch (error) { message = (error as Error).message; }
+    try { applyCommand(s, { type: "BIRTH", family }); } catch (error) { message = (error as Error).message; }
     equal(message, expected); equal(JSON.stringify(s), before);
 }
 
-test("First birth preview is pure and its enabled command creates exactly one cared child", () => {
+test("First birth preview is pure and its enabled command creates exactly one child without changing the parents’ jobs", () => {
     const s = createGame(21), before = JSON.stringify(s), family = s.families[0].id;
     for (let i = 0; i < 20; i++) equal(birthUnavailableReason(s, family), null);
     equal(JSON.stringify(s), before);
-    applyCommand(s, { type: "BIRTH", family, carer: s.people[1].id });
+    applyCommand(s, { type: "BIRTH", family });
     equal(s.people.length, 7); equal(s.food, RULE.initialResource - RULE.birthCost);
-    equal(s.people[1].careChild, s.people[6].id); equal(s.people[1].job, "CARE");
+    equal(s.people[1].job, "FARM");
 });
 test("Food 19 is blocked without mutation; exact birth cost is accepted", () => {
     const s = createGame(1); s.food = RULE.birthCost - 1;
     equal(birthUnavailableReason(s, s.families[0].id), `还缺 1 粮（现有 ${s.food}/${RULE.birthCost}）`);
     blocked(s, `还缺 1 粮（现有 ${s.food}/${RULE.birthCost}）`);
     s.food = RULE.birthCost; equal(birthUnavailableReason(s, s.families[0].id), null);
-    applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id }); equal(s.food, 0);
+    applyCommand(s, { type: "BIRTH", family: s.families[0].id }); equal(s.food, 0);
 });
 test("Last housing place is available and full housing is visibly blocked", () => {
     const s = createGame(2);
@@ -35,22 +35,23 @@ test("Last housing place is available and full housing is visibly blocked", () =
     equal(birthUnavailableReason(s, s.families[0].id), null);
     const full = clone(s); const other = clone(extra); other.id = "1:8"; full.people.push(other); full.nextPerson = 9;
     blocked(full, "住房已满 8/8 人，请增建民居");
-    applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id }); equal(s.people.length, 8);
+    applyCommand(s, { type: "BIRTH", family: s.families[0].id }); equal(s.people.length, 8);
 });
-test("Each parent independently needs three remaining working nights", () => {
+test("A working parent can welcome a child on the last working night", () => {
     for (const index of [0, 1]) {
-        const s = createGame(3); s.people[index].nights = RULE.parentMinNights - 1;
-        blocked(s, `${s.people[index].name}距退休 ${RULE.parentMinNights - 1} 夜，至少需 ${RULE.parentMinNights} 夜`);
-        s.people[index].nights = RULE.parentMinNights; equal(birthUnavailableReason(s, s.families[0].id), null);
+        const s = createGame(3); s.people[index].nights = 1;
+        equal(birthUnavailableReason(s, s.families[0].id), null);
     }
 });
 test("A retired partner is blocked even while still living in the village", () => {
     const s = createGame(4); s.people[0].nights = 0; s.people[0].elderNights = RULE.elderNights;
     blocked(s, `${s.people[0].name}已退休，不能迎接孩子`);
 });
-test("An existing child remains a blocker and is not mistaken for cooldown alone", () => {
-    const s = createGame(5); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id });
-    blocked(s, "已有孩子未成年，请先照料长大", s.people[5].id);
+test("An existing child does not block another birth after the family cooldown", () => {
+    const s = createGame(5); applyCommand(s, { type: "BIRTH", family: s.families[0].id });
+    blocked(s, `再成功守住 ${RULE.birthCooldown} 夜可迎接`);
+    s.completed = RULE.birthCooldown; applyCommand(s, { type: "BIRTH", family: s.families[0].id });
+    equal(s.people.filter(p => !p.adult).length, 2);
 });
 test("Cooldown reports remaining successful nights and unlocks at four", () => {
     const s = createGame(6); s.families[0].lastBirth = 7;
@@ -61,27 +62,15 @@ test("Cooldown reports remaining successful nights and unlocks at four", () => {
     s.completed = 7 + RULE.birthCooldown; equal(birthUnavailableReason(s, s.families[0].id), null);
     s.completed = 0; s.families[0].lastBirth = null; equal(birthUnavailableReason(s, s.families[0].id), null);
 });
-test("No free carer disables family selection; chosen busy carer remains rejected", () => {
-    const s = createGame(7); s.people.forEach(p => { p.job = "CARE"; p.careChild = "other-child"; });
-    const before = JSON.stringify(s); equal(birthUnavailableReason(s, s.families[0].id), "没有可接手照料的成年人"); equal(JSON.stringify(s), before);
-    blocked(s, `${s.people[1].name}正在照料其他孩子`);
-    s.people[5].job = "FARM"; s.people[5].careChild = null;
-    equal(birthUnavailableReason(s, s.families[0].id), null); blocked(s, `${s.people[1].name}正在照料其他孩子`);
-    equal(birthUnavailableReason(s, s.families[0].id, s.people[5].id), null);
-});
-test("Invalid and nonworking chosen carers cannot be interpreted as an unchosen carer", () => {
-    const s = createGame(8);
-    blocked(s, "照料者已不在村中，请重新选择", ""); blocked(s, "照料者已不在村中，请重新选择", "missing");
-    s.people[5].nights = 0; s.people[5].elderNights = RULE.elderNights;
-    blocked(s, `${s.people[5].name}已退休，无法照料`, s.people[5].id);
-    blocked(s, "家庭不存在", s.people[1].id, "missing");
+test("Unknown family cannot spend resources", () => {
+    blocked(createGame(8), "家庭不存在", "missing");
 });
 test("Night and dawn restrictions match command rejection and preserve all state", () => {
     const s = createGame(9); applyCommand(s, { type: "NIGHT" }); blocked(s, "请在白天安排村务");
     s.phase = "DAWN"; blocked(s, "请在白天安排村务");
 });
 test("Final command rechecks food after a previously available preview", () => {
-    const s = createGame(10); equal(birthUnavailableReason(s, s.families[0].id, s.people[1].id), null);
+    const s = createGame(10); equal(birthUnavailableReason(s, s.families[0].id), null);
     s.food = 0; blocked(s, `还缺 ${RULE.birthCost} 粮（现有 0/${RULE.birthCost}）`);
 });
 console.log(`${passed} birth availability checks passed`);

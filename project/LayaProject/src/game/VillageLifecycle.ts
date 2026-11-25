@@ -1,5 +1,5 @@
 import { QUALITY_CHANCE_SCALE, rollVillagerQuality, VILLAGER_QUALITY } from "../config/VillagerQuality";
-import { ADULT_APPEARANCE, POLICIES, RULE, SKILLS, Skill, TRAITS, Trait, VILLAGER_NAMES } from "./GameConfig";
+import { ADULT_APPEARANCE, POLICIES, RULE, TRAIT_POOL, VILLAGER_NAMES } from "./GameConfig";
 import { GameState, Person } from "./GameState";
 import { SeededRandom } from "./SeededRandom";
 import { nextSex, travelerDue } from "./Population";
@@ -19,7 +19,7 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
     }
     const mercy = s.tactics.mercyCooldown;
     if (mercy && mercy.wavesLeft > 0 && !s.night.mercySpent) mercy.wavesLeft--;
-    const rng = new SeededRandom(s.rng.family), world = new SeededRandom(s.rng.world);
+    const world = new SeededRandom(s.rng.world);
     // 只递减入夜时已经在养老的人，新荣休者从下一夜开始计时，失败夜已在上方返回。
     for (const id of s.night.elders)
         person(s, id).elderNights--;
@@ -27,8 +27,7 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
     for (const id of s.night.adults)
         person(s, id).nights--;
     const grown: Person[] = [];
-    for (const id of s.night.cared) {
-        const p = person(s, id);
+    for (const p of s.people) {
         if (!p.adult && ++p.growth >= RULE.growNights) {
             p.adult = true;
             p.nights = VILLAGER_QUALITY[p.quality].adultNights;
@@ -36,17 +35,10 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
             grown.push(p);
         }
     }
-    for (const p of s.people)
-        if (grown.some(c => c.id === p.careChild)) {
-            p.job = "WAITING";
-            p.careChild = null;
-        }
     const retired = s.night.adults.map(id => person(s, id)).filter(p => p.nights === 0), retiredIds = retired.map(p => p.id);
-    const uncared = retired.filter(p => p.careChild && !person(s, p.careChild).adult).length;
     for (const p of retired) {
         p.elderNights = VILLAGER_QUALITY[p.quality].elderNights;
         p.job = "WAITING";
-        p.careChild = null;
     }
     s.towers.forEach(t => {
         if (t.operator && retiredIds.includes(t.operator))
@@ -73,7 +65,7 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
     s.wave = null;
     s.night = null;
     s.legacy.bestNight = Math.max(s.legacy.bestNight, s.completed);
-    s.choices = grown.sort((a, b) => Number(a.id.split(":")[1]) - Number(b.id.split(":")[1])).map(p => ({ kind: "SKILL" as const, person: p.id, options: rng.choices(Object.keys(SKILLS) as Skill[], 3) }));
+    s.choices = [];
     if (travelerDue(s, capacity(s))) {
         s.lastTraveler = s.completed;
         const sex = nextSex(s.people, world, true);
@@ -82,14 +74,13 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
         const quality = rollVillagerQuality(world.range(QUALITY_CHANCE_SCALE), s.completed, "traveler");
         const name = quality !== "COMMON" ? VILLAGER_NAMES.special[new SeededRandom(nameState).range(VILLAGER_NAMES.special.length)]
             : VILLAGER_NAMES.traveler[nameIndex];
-        const traveler: Person = { id: newId(s), name, sex, origin: "TRAVELER", quality, appearance: ADULT_APPEARANCE[sex], trait: (Object.keys(TRAITS) as Trait[])[world.range(8)], skill: (Object.keys(SKILLS) as Skill[])[world.range(6)], generation: 1, parents: [], ancestors: [], adult: true, nights: VILLAGER_QUALITY[quality].adultNights, elderNights: 0, growth: 0, job: "WAITING", careChild: null };
+        const traveler: Person = { id: newId(s), name, sex, origin: "TRAVELER", quality, appearance: ADULT_APPEARANCE[sex], traits: world.choices(TRAIT_POOL, VILLAGER_QUALITY[quality].traitCount), generation: 1, parents: [], ancestors: [], adult: true, nights: VILLAGER_QUALITY[quality].adultNights, elderNights: 0, growth: 0, job: "WAITING" };
         s.choices.push({ kind: "TRAVELER", person: traveler });
     }
-    s.rng.family = rng.state;
     if ((s.day - 1) % RULE.seasonDays === 0) {
         s.policy = null;
-        s.choices.push({ kind: "POLICY", options: world.choices(Object.keys(POLICIES), 3) });
+        s.choices.push({ kind: "POLICY", options: Object.keys(POLICIES) });
     }
     s.rng.world = world.state;
-    s.summary = `守夜成功！${grown.length ? `${grown.length} 个孩子成年。` : ""}${retired.length ? `${retired.length} 位村民荣休，留村养老。` : ""}${departed.length ? `${departed.length} 位长辈安然辞世，已记入家谱。` : ""}${uncared ? `${uncared} 个孩子的照料者荣休，请重新安排。` : ""}`;
+    s.summary = `守夜成功！${grown.length ? `${grown.length} 个孩子成年。` : ""}${retired.length ? `${retired.length} 位村民荣休，留村养老。` : ""}${departed.length ? `${departed.length} 位长辈安然辞世，已记入家谱。` : ""}`;
 }

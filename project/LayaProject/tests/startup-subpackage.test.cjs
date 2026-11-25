@@ -184,6 +184,47 @@ test('patrol flight follows the live night, and each landing reaches native audi
     }
     f.main.onDestroy();
 });
+test('rapid fire plays on real shots, respects mute, and a lethal hit adds no impact sound', async () => {
+    const f = setup(), plays = [];
+    wx.createInnerAudioContext = () => ({
+        onError() {}, stop() {}, pause() {}, destroy() {}, play() { plays.push(this.src); }
+    });
+    const { createGame, applyCommand } = actualRequire('./game/VillageRules');
+    const { BattleSimulation } = actualRequire('./game/BattleSimulation');
+    const { enemyPoint } = actualRequire('./game/BattleRoad');
+    await boot(f);
+    f.main.platform.syncBestNight = () => {};
+    const s = f.main.session, state = createGame(245);
+    applyCommand(state, {type: 'PATROL_MODE', mode: 'rapid'});
+    applyCommand(state, {type: 'NIGHT'});
+    s.state = state;
+    const b = s.battle = new BattleSimulation(state);
+    const night = f.main.resources.ensure('night');
+    await flush(); f.downloads.get('night').resolve(); await night;
+    state.settings.music = true;
+    f.main.interact(); f.main.onUpdate();
+    b.cursor = b.base.wave.entries.length;
+    b.base.towers.forEach(t => t.operator = null);
+    const unit = {seq: 0, kind: 'enemy_raider', appearanceSeed: 0, hp: 1, maxHp: 1, speed: 0, progress: 150,
+        walkDistance: 0, slow: 0, slowTicks: 0, born: 0, summoned: 0};
+    b.enemies = [unit];
+    const count = cue => plays.filter(src => src === 'resources/music/patrol_rapid_' + cue + '.mp3').length;
+    const advance = frames => { for (let i = 0; i < frames; i++) f.main.onUpdate(); };
+    const miss = () => s.aimPatrolRapid({x:-1,y:0},{x:5,y:700},0);
+    assert(miss()); advance(20); s.stopPatrolRapid();
+    assert.equal(b.patrol.rapid.shotsFired, 4); assert.equal(count('fire'), 4); assert.equal(count('hit'), 0);
+    state.settings.music = false;
+    assert(miss()); advance(5); s.stopPatrolRapid();
+    assert.equal(b.patrol.rapid.shotsFired, 5); assert.equal(count('fire'), 4);
+    state.settings.music = true;
+    f.main.interact(); advance(5);
+    const foot = enemyPoint(unit);
+    assert(s.aimPatrolRapid({x:0,y:-1}, {x:foot.x,y:foot.y-22}, 0));
+    advance(5);
+    assert.equal(b.outcome, 'WIN'); assert.equal(count('fire'), 5); assert.equal(count('hit'), 0);
+    assert(s.takeCombatFeedback().some(event => event.type === 'patrol'));
+    f.main.onDestroy();
+});
 test('bundled launcher is ready before the village download and startup waits for complete art', async () => {
     const f = setup(), local = deferred();
     f.setArtwork(local.promise);

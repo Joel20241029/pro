@@ -1,3 +1,4 @@
+import { CANNON_MUZZLES } from "./config/CannonArt";
 import { SpriteFrames } from "./SpriteFrames";
 import { BuildingLook, BuildingNode, buildingLayoutId } from "./BuildingLayout";
 import { BattleSimulation, Shot } from "../game/BattleSimulation";
@@ -14,14 +15,13 @@ const TOWER_GROWTH = { seconds: .6, stretchAt: .65, overshoot: .12 } as const;
 
 /** 原生编辑器部件与局部帧共用同一地图足点。 */
 export class BuildingVisuals {
-    private key = ""; private level = 0; private rooms = 1;
+    private key = ""; private level = 0;
     private parts = new Laya.Sprite(); private badge = new Laya.Text();
     private body: Laya.Sprite | null = null; private muzzle: Laya.Sprite | null = null;
     private upgrades: Laya.AnimatorClip2D[] = [];
-    private attack: { node: Laya.Sprite; clip: string }[] = [];
+    private barrel: { rest: Laya.Sprite; aimed: Laya.Sprite; restX: number; restY: number; x: number; y: number } | null = null;
     private above: Laya.Sprite | null = null; private aboveSort: GroundPoint | null = null;
     private upgradePending = 0;
-    private expansion = 0;
     private gateFlare = 0;
     private ambient: BuildingAmbient;
     private elapsed = 0; private upgrading = false;
@@ -45,7 +45,6 @@ export class BuildingVisuals {
             if (data[property] !== undefined) (node as any)[property] = data[property];
         parent.addChild(node);
         this.ambient.bind(node);
-        if (data.name.startsWith("Attack:")) this.attack.push({ node, clip: data.name.slice("Attack:".length) });
         if (data.name === "Muzzle") this.muzzle = node;
         for (const child of data.children || []) this.create(child, node);
         if (data.clip) {
@@ -56,20 +55,19 @@ export class BuildingVisuals {
         }
         return node;
     }
-    sync(kind: BuildingLook | null, level: number, freshVillage: boolean, rooms = 1, damaged = false, facing = 1, expansion = 0) {
+    sync(kind: BuildingLook | null, level: number, freshVillage: boolean, damaged = false, facing = 1) {
         const key = `${kind}:${damaged}:${facing}`;
-        this.tower = kind === "ARROW" || kind === "STONE" || kind === "SLOW";
+        this.tower = kind === "CANNON";
         if (freshVillage) {
             this.upgradePending = 0; this.upgrading = false; this.gateFlare = 0; this.ambient.reset();
             this.upgrades.forEach(a => a.gotoAndStop(1)); this.latestShot = null;
             this.parts.scale(this.bodyScale, this.bodyScale);
         } else if (kind && this.level > 0) {
-            const gains = Math.max(level - this.level, expansion - this.expansion, rooms - this.rooms, 0);
+            const gains = Math.max(level - this.level, 0);
             if (kind === "HOUSE" || kind === "FARM" || kind === "LOGGING" || kind === "GATE") this.upgradePending += gains;
             else if (gains) this.upgradePending = 1;
         }
-        this.expansion = expansion;
-        this.level = level; this.rooms = rooms;
+        this.level = level;
         if (key === this.key) {
             this.updateBadge(level, this.owner.width / 128);
             return;
@@ -77,7 +75,7 @@ export class BuildingVisuals {
         this.key = key;
         this.upgrading = false;
         this.parts.destroyChildren(); this.above?.destroy(true); this.above = null; this.aboveSort = null;
-        this.body = this.muzzle = null; this.upgrades = []; this.attack = []; this.ambient.clear();
+        this.body = this.muzzle = null; this.upgrades = []; this.barrel = null; this.ambient.clear();
         this.cachedBodyRegion = null;
         this.latestShot = null; this.badge.visible = false;
         if (!kind) { this.upgradePending = 0; this.upgrading = false; return; }
@@ -90,15 +88,12 @@ export class BuildingVisuals {
         this.bodyScale = scale * BUILDING_ART_SCALE;
         this.parts.scale(this.bodyScale, this.bodyScale);
         this.body = root.getChildByName("Body") as Laya.Sprite;
-        if (kind === "ARROW") {
-            // 左右武器各自预渲染；只切换武器组，主体与固定光照不随塔位镜像。
+        if (kind === "CANNON") {
+            this.body.scaleX = facing;
             const weapon = this.body.getChildByName("Weapon") as Laya.Sprite;
-            const right = weapon.getChildByName("FacingRight") as Laya.Sprite, left = weapon.getChildByName("FacingLeft") as Laya.Sprite;
-            right.visible = facing > 0; left.visible = facing < 0;
-            this.muzzle = (facing > 0 ? right : left).getChildByName("Muzzle") as Laya.Sprite;
-        } else if (kind === "STONE" || kind === "SLOW") {
-            // 石塔原画的抛兜在后方，默认与箭塔的正向相反；整套结构和挂点一起换边。
-            this.body.scaleX = kind === "STONE" ? -facing : facing;
+            const aimed = weapon.getChildByName("AimedBarrel") as Laya.Sprite;
+            this.barrel = { rest: weapon.getChildByName("RestBarrel") as Laya.Sprite, aimed,
+                x: aimed.x, y: aimed.y, restX: this.muzzle!.x, restY: this.muzzle!.y };
         }
         const upper = root.getChildByName("AboveGround") as Laya.Sprite;
         if (upper) {
@@ -173,22 +168,28 @@ export class BuildingVisuals {
         return { id: this.above.name, y: foot.y, node: this.above };
     }
     /** 齐射共用一次局部动画。表现时钟和弹道共用，结算时最后一发也能播完。 */
-    updateAttack(battle: BattleSimulation | null, tower: number, shots: Iterable<Shot>, time: number) {
+    updateAttack(battle: BattleSimulation | null, tower: number, shots: Iterable<Shot>, time: number, screenY: (y: number) => number) {
         if (battle !== this.battle) { this.battle = battle; this.latestShot = null; }
-        if (!this.attack.length) return;
+        const barrel = this.barrel;
+        if (!barrel || !this.muzzle) return;
         if (battle) for (const shot of shots)
             if (shot.tower === tower && (!this.latestShot || shot.tick > this.latestShot.tick)) this.latestShot = shot;
-        const age = this.latestShot ? Math.max(0, time - (this.latestShot.tick + 1) * RULE.step) : Infinity;
-        for (const { node, clip } of this.attack) {
-            const animation = this.art.animation(clip);
-            const index = Math.floor(age * animation.fps);
-            const active = index < animation.frameIds.length;
-            node.texture = this.art.get(active ? animation.frameIds[index] : animation.restFrame);
-            if (clip === "motion_slow_attack") {
-                node.visible = active;
-                this.ambient.showFrostIdle(!active);
-            }
-        }
+        const shot = this.latestShot;
+        barrel.rest.visible = !shot;
+        barrel.aimed.visible = !!shot;
+        if (!shot) { this.muzzle.pos(barrel.restX, barrel.restY); return; }
+        const pivot = this.weaponAnchor();
+        const dx = Math.max(0, (shot.x - pivot.x) * this.body!.scaleX);
+        const angle = Math.atan2(pivot.y - screenY(shot.y), dx);
+        const index = Math.round((angle / Math.PI + .5) * (CANNON_MUZZLES.length - 1));
+        const tip = CANNON_MUZZLES[index];
+        const age = Math.max(0, time - (shot.tick + 1) * RULE.step);
+        // 炮管在发射后沿自身方向后坐，0.16 秒内回到炮架。
+        const recoil = 3 * Math.max(0, 1 - age / .16);
+        const rx = -Math.cos(angle) * recoil, ry = Math.sin(angle) * recoil;
+        barrel.aimed.texture = this.art.get(`cannon_yaw_${index}`);
+        barrel.aimed.pos(barrel.x + rx, barrel.y + ry);
+        this.muzzle.pos(tip.x + rx, tip.y + ry);
     }
     /** 编辑器 Muzzle 挂点应用结构缩放和左右镜像；弹道在发射时保存此坐标。 */
     launchPoint(): GroundPoint {

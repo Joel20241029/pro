@@ -3,7 +3,7 @@ import { LIANG_ESSENCE } from "../config/ShopConfig";
 import { patrolSpinStats, patrolStats } from "../game/PatrolRules";
 import { validDailyTaskDay } from "../game/DailyTaskState";
 import { VILLAGER_QUALITY } from "../config/VillagerQuality";
-import { ADULT_APPEARANCE, ENEMIES, PADS, POLICIES, RULE, SKILLS, TOWERS, TRAITS } from "../game/GameConfig";
+import { ADULT_APPEARANCE, ENEMIES, PADS, POLICIES, RULE, TOWERS, TRAITS } from "../game/GameConfig";
 import { GameState, isElder, isWorkingAdult, Person } from "../game/GameState";
 import { gateCapacity, laborSlots, levelPower, storageCapacity } from "../game/Growth";
 import { validRationDate } from "../game/DailyRation";
@@ -24,17 +24,17 @@ function validatePerson(p: Person) {
     check(p.origin !== "FOUNDER" || p.quality === "COMMON", "开村村民使用普通品质");
     const quality = VILLAGER_QUALITY[p.quality];
     check(p.appearance === ADULT_APPEARANCE[p.sex], "人物外观与当前资源版本不匹配");
-    check(own(p.trait, TRAITS) && (p.skill === null || own(p.skill, SKILLS)) && int(p.generation, 1));
+    check(ids(p.traits, quality.traitCount) && p.traits.length === quality.traitCount && p.traits.every(t => own(t, TRAITS)) && int(p.generation, 1));
     check(ids(p.parents, 2) && p.parents.length === (p.origin === "BORN" ? 2 : 0) && ids(p.ancestors, RULE.populationCap));
     const uses = p.retirementDelayUses;
     if (uses !== undefined) check(p.adult && int(uses, 1, LIANG_ESSENCE.maxUses), "村民延寿次数无效");
     check(!p.parents.includes(p.id) && !p.ancestors.includes(p.id) && typeof p.adult === "boolean" &&
         int(p.nights, 0, quality.adultNights + (uses ?? 0) * LIANG_ESSENCE.maxNights) && int(p.growth, 0, RULE.growNights));
     check(int(p.elderNights, 0, quality.elderNights));
-    check(["WAITING", "FARM", "LOGGING", "CARE"].includes(p.job) && (p.job === "CARE" ? text(p.careChild) : p.careChild === null));
-    if (!p.adult) check(p.nights === 0 && p.elderNights === 0 && p.skill === null && p.job === "WAITING" && p.growth < RULE.growNights);
+    check(["WAITING", "FARM", "LOGGING"].includes(p.job));
+    if (!p.adult) check(p.nights === 0 && p.elderNights === 0 && p.job === "WAITING" && p.growth < RULE.growNights);
     else if (isWorkingAdult(p)) check(p.elderNights === 0);
-    else check(p.skill !== null && p.job === "WAITING" && p.careChild === null);
+    else check(p.job === "WAITING");
 }
 /** 载入即验证业务引用；损坏内容不自动补值、不自动清档。 */
 export function validateState(s: GameState) {
@@ -53,9 +53,9 @@ export function validateState(s: GameState) {
         const carried = [s.tactics.equipped, ...extra.filter(id => id !== null)];
         check(new Set(carried).size === carried.length, "战技槽重复携带");
     }
-    check(int(s.housing, 1) && int(s.gateLevel, 1) && int(storageCapacity(s), RULE.storageCap) && int(gateCapacity(s), RULE.gateMax));
+    check(int(s.gateLevel, 1) && int(storageCapacity(s), RULE.storageCap) && int(gateCapacity(s), RULE.gateMax));
     check(int(s.food, 0, storageCapacity(s)) && int(s.wood, 0, storageCapacity(s)) && int(s.gate, 0, gateCapacity(s)) && (s.phase === "GAME_OVER" ? s.gate === 0 : s.gate > 0));
-    check(int(s.houses, 1, RULE.houseMax) && int(s.farm, 1) && int(s.logging, 1) && s.tier === RULE.maxTier && (s.policy === null || own(s.policy, POLICIES)));
+    check(int(s.houses, 1) && int(s.farm, 1) && int(s.logging, 1) && s.tier === RULE.maxTier && (s.policy === null || own(s.policy, POLICIES)));
     check(s.lastTraveler === null || int(s.lastTraveler, 1, s.completed));
     check(Array.isArray(s.people) && s.people.length <= capacity(s)); s.people.forEach(validatePerson);
     check(Array.isArray(s.history) && s.history.length <= RULE.historyCap + RULE.favoriteCap); s.history.forEach(validatePerson);
@@ -66,8 +66,6 @@ export function validateState(s: GameState) {
     check(adults.every(p => isWorkingAdult(p) || isElder(p)));
     check(s.history.every(p => p.adult && p.nights === 0 && p.elderNights === 0 && p.job === "WAITING"));
     check(s.people.every(p => p.ancestors.every(id => s.people.some(a => a.id === id))));
-    const cares = workers.filter(p => p.job === "CARE").map(p => p.careChild);
-    check(new Set(cares).size === cares.length && cares.every(id => children.some(p => p.id === id)));
     check(workers.filter(p => p.job === "FARM").length <= laborSlots("FARM", s.farm) && workers.filter(p => p.job === "LOGGING").length <= laborSlots("LOGGING", s.logging));
     check(Array.isArray(s.families) && s.families.length <= Math.floor(s.people.length / 2));
     const partners: string[] = [];
@@ -78,9 +76,12 @@ export function validateState(s: GameState) {
     }
     check(new Set(partners).size === partners.length && new Set(s.families.map(f => f.id)).size === s.families.length);
     check(Array.isArray(s.towers) && s.towers.length === PADS.length);
+    check(s.ammoLevels && Object.keys(TOWERS).every(k => int(s.ammoLevels[k as keyof typeof TOWERS], 1)), "弹药等级无效");
+    check(s.iceAmmoUnlocked === undefined || s.iceAmmoUnlocked === true, "冰弹解锁数据无效");
     const operators: string[] = [];
     for (const t of s.towers) {
         check(t.kind === null ? t.level === 0 && t.operator === null : own(t.kind, TOWERS) && int(t.level, 1) && Number.isSafeInteger(Math.ceil(levelPower(t.level) * TOWERS[t.kind].damage)));
+        if (t.kind === "SLOW") check(s.iceAmmoUnlocked === true, "未解锁冰弹");
         if (t.operator !== null) { check(workers.some(p => p.id === t.operator)); operators.push(t.operator); }
     }
     check(new Set(operators).size === operators.length && ids(s.favorites, RULE.favoriteCap) && s.favorites.every(id => s.history.some(p => p.id === id)));
@@ -97,13 +98,11 @@ export function validateState(s: GameState) {
         !operators.includes(p.id) && int(patrolNumbers(p).damage, 1)), "淡紫队长数据无效");
     check(Array.isArray(s.choices) && s.choices.length <= RULE.populationCap + 3);
     for (const q of s.choices) {
-        check(q && ["SKILL", "TRAVELER", "POLICY"].includes(q.kind));
-        if (q.kind === "SKILL") check(workers.some(p => p.id === q.person && p.skill === null) && ids(q.options, 3) && q.options.length === 3 && q.options.every(k => own(k, SKILLS)));
+        check(q && ["TRAVELER", "POLICY"].includes(q.kind));
         if (q.kind === "TRAVELER") { validatePerson(q.person); check(q.person.origin === "TRAVELER" && isWorkingAdult(q.person) && !all.some(p => p.id === q.person.id)); }
         if (q.kind === "POLICY") check(ids(q.options, 3) && q.options.length === 3 && q.options.every(k => own(k, POLICIES)));
     }
     if (s.phase !== "DAWN") check(!s.choices.length);
-    for (const p of workers) if (p.skill === null) check(s.phase === "DAWN" && s.choices.some(q => q.kind === "SKILL" && q.person === p.id));
     if (s.phase === "DAY" || s.phase === "NIGHT") {
         const w = s.wave;
         check(w && w.tier === s.tier && ["NONE", "FAST", "STURDY", "GROUP"].includes(w.affix) && Array.isArray(w.entries) && w.entries.length > 0);
@@ -137,16 +136,15 @@ export function validateState(s: GameState) {
             check(s.night.mercySpent === true && (s.night.tactic === KING_MERCY_TACTIC || nightExtra?.includes(KING_MERCY_TACTIC)) &&
                 mercy && mercy.wavesLeft === KING_MERCY.baseCooldownWaves + mercy.casts, "本夜怜悯存档无效");
         }
-        check(s.night && ids(s.night.adults, RULE.populationCap) && ids(s.night.elders, RULE.populationCap) && ids(s.night.cared, RULE.populationCap) && typeof s.night.hungry === "boolean");
+        check(s.night && ids(s.night.adults, RULE.populationCap) && ids(s.night.elders, RULE.populationCap) && typeof s.night.hungry === "boolean");
         check(s.night.adults.length === workers.length && s.night.adults.every(id => workers.some(p => p.id === id)));
         check(s.night.elders.length === elders.length && s.night.elders.every(id => elders.some(p => p.id === id)));
-        check(s.night.cared.length === cares.length && s.night.cared.every(id => cares.includes(id)));
     } else check(s.night === null);
     check(s.rng && [s.rng.family, s.rng.world].every(n => int(n, 0, 0xffffffff)));
     check(s.stats && int(s.stats.births) && int(s.stats.retirees) && int(s.stats.generation, 1));
     check(s.legacy && int(s.legacy.births, s.stats.births) && int(s.legacy.retirees, s.stats.retirees) && int(s.legacy.bestNight, s.completed) && int(s.legacy.nextRun, s.run + 1));
     if (s.dailyTasks !== undefined) check(validDailyTaskDay(s.dailyTasks), "每日任务存档无效");
     check(s.legacy.lastRationDate === null || validRationDate(s.legacy.lastRationDate));
-    check(ids(s.legacy.traits, Object.keys(TRAITS).length) && s.legacy.traits.every(k => own(k, TRAITS)) && s.people.every(p => s.legacy.traits.includes(p.trait)));
+    check(ids(s.legacy.traits, Object.keys(TRAITS).length) && s.legacy.traits.every(k => own(k, TRAITS)) && s.people.every(p => p.traits.every(t => s.legacy.traits.includes(t))));
     check(s.settings && (s.settings.speed === RULE.legacySlowSpeed || s.settings.speed === RULE.battleSpeed) && typeof s.settings.music === "boolean" && typeof s.summary === "string" && s.summary.length < 300);
 }

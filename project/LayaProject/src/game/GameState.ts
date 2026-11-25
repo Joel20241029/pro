@@ -1,12 +1,12 @@
-import { EnemyKind, Skill, TowerKind, Trait } from "./GameConfig";
+import { EnemyKind, TowerKind, Trait } from "./GameConfig";
 import type { PatrolMode } from "../config/PatrolConfig";
 import type { WaveRhythm } from "../config/DefenseConfig";
 import type { VillagerQuality } from "../config/VillagerQuality";
 import type { DailyTaskDay } from "./DailyTaskState";
-export type Job = "WAITING" | "FARM" | "LOGGING" | "CARE";
+export type Job = "WAITING" | "FARM" | "LOGGING";
 export interface Person {
     id: string; name: string; sex: "MALE" | "FEMALE"; origin: "FOUNDER" | "TRAVELER" | "BORN";
-    appearance: string; trait: Trait; skill: Skill | null; generation: number;
+    appearance: string; traits: Trait[]; generation: number;
     /** 出生或来访时抽定，成年、荣休和家谱沿用同一品质。 */
     quality: VillagerQuality;
     parents: string[]; ancestors: string[]; adult: boolean; nights: number; growth: number;
@@ -14,9 +14,10 @@ export interface Person {
     elderNights: number;
     /** 曾为该村民使用的续寿道具数，随本人和家谱保存。旧档缺席表示从未使用。 */
     retirementDelayUses?: number;
-    job: Job; careChild: string | null;
+    job: Job;
 }
 export interface Family { id: string; partners: string[]; lastBirth: number | null; }
+/** kind 保存该塔所装弹种；null 表示塔位尚未建设。 */
 export interface Tower { kind: TowerKind | null; level: number; operator: string | null; }
 export interface Wave {
     budget: number; tier: number; affix: "NONE" | "FAST" | "STURDY" | "GROUP";
@@ -26,7 +27,7 @@ export interface Wave {
     /** 可选规则标记。已经保存的旧波次继续使用原规则。 */
     rhythm?: WaveRhythm;
 }
-export type Choice = { kind: "SKILL"; person: string; options: Skill[] } | { kind: "TRAVELER"; person: Person } | { kind: "POLICY"; options: string[] };
+export type Choice = { kind: "TRAVELER"; person: Person } | { kind: "POLICY"; options: string[] };
 export interface Legacy {
     births: number; retirees: number; bestNight: number; traits: Trait[]; nextRun: number;
     /** 每日口粮最后成功入档的本地日历日期 YYYY-MM-DD；null 表示未领过，每次新开村清空。 */
@@ -35,11 +36,15 @@ export interface Legacy {
 export interface GameState {
     run: number; nextPerson: number; nextFamily: number; day: number; completed: number;
     phase: "DAY" | "NIGHT" | "DAWN" | "GAME_OVER"; food: number; wood: number; gate: number;
-    /** 住宅扩建等级1–100，影响人口；housing是独立修缮等级，影响仓储与住宅主体外观。 */
-    houses: number; housing: number; gateLevel: number; farm: number; logging: number; tier: number; policy: string | null;
+    /** 民居扩建等级同时决定住房与仓储；住房达到人口上限后仅仓储继续增长。 */
+    houses: number; gateLevel: number; farm: number; logging: number; tier: number; policy: string | null;
     /** 上次提供旅人时的成功守夜数；谢绝也记时，新村null，不迁移旧配置。 */
     lastTraveler: number | null;
     people: Person[]; families: Family[]; towers: Tower[];
+    /** 冰弹一次买断，与扣款同笔写入村庄；开局赠送的两种弹药无需存储。 */
+    iceAmmoUnlocked?: true;
+    /** 每村独立保存弹种等级。同弹种的所有塔共享升级结果。 */
+    ammoLevels: Record<TowerKind, number>;
     /** 开局即有此建筑，夜战只读战前快照。 */
     patrol: { level: number; captain: string | null; mode?: PatrolMode; rationReady?: true; radiusReady?: true };
     /** 战技学习结果与当前携带；资格由本村成功波数推导，查看提醒使用独立的界面记录。 */
@@ -51,7 +56,7 @@ export interface GameState {
     };
     history: Person[]; favorites: string[]; choices: Choice[];
     wave: Wave | null; night: {
-        adults: string[]; elders: string[]; cared: string[]; hungry: boolean; tactic: string; extraSlots?: (string | null)[];
+        adults: string[]; elders: string[]; hungry: boolean; tactic: string; extraSlots?: (string | null)[];
         /** 与献纳和门血同笔保存，夜间冷启动恢复已用次数并排除施放当夜。 */
         mercySpent?: true;
         /** 历史字段名。标记现代交会判定与出征间隔；无标记的旧夜战沿用原接触规则。 */
@@ -69,8 +74,12 @@ export interface GameState {
     /** speed 保留原存档字段以兼容旧档；读入会话和新开村均使用固定常速。 */
     settings: { speed: 2 | 3; music: boolean }; summary: string;
 }
+/** 本村免费获赠两种弹药，冰弹由买断标记解锁。 */
+export function ownsTowerAmmo(s: GameState, kind: TowerKind): boolean {
+    return kind === "ARROW" || kind === "STONE" || kind === "SLOW" && s.iceAmmoUnlocked === true;
+}
 export function clone<T>(v: T): T { return JSON.parse(JSON.stringify(v)); }
-/** 工作、驻塔、照料与成家共用资格；已成年并不代表仍在劳作期。 */
+/** 工作、驻塔与成家共用资格；已成年并不代表仍在劳作期。 */
 export function isWorkingAdult(p: Person): boolean { return p.adult && p.nights > 0; }
 /** 在村老人的阶段判断；家谱成员的晚年计时归零，显示由家谱上下文决定。 */
 export function isElder(p: Person): boolean { return p.adult && p.nights === 0 && p.elderNights > 0; }

@@ -29,7 +29,8 @@
     "bundles/music/tower_fire.mp3",
     "bundles/music/enemy_defeat.mp3",
     "bundles/music/patrol_flight.mp3",
-    "bundles/music/patrol_landing.mp3"
+    "bundles/music/patrol_landing.mp3",
+    "bundles/music/patrol_rapid_fire.mp3"
   ],
   "stages": {
     "village": [
@@ -64,10 +65,11 @@
     "bundles/music/tower_fire.mp3",
     "bundles/music/enemy_defeat.mp3",
     "bundles/music/patrol_flight.mp3",
-    "bundles/music/patrol_landing.mp3"
+    "bundles/music/patrol_landing.mp3",
+    "bundles/music/patrol_rapid_fire.mp3"
   ],
-  "assetCount": 694,
-  "runtimeAssetCount": 560,
+  "assetCount": 676,
+  "runtimeAssetCount": 542,
   "reserveAssetCount": 134,
   "assets": [
     {
@@ -25132,8 +25134,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 522,
-        "y": 810,
+        "x": 634,
+        "y": 722,
         "w": 81,
         "h": 96
       },
@@ -25210,15 +25212,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_1",
+      "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 90,
-        "y": 97,
+        "x": 830,
+        "y": 909,
         "w": 69,
         "h": 86
       },
       "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_wood"
     },
     {
@@ -25290,15 +25292,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_1",
+      "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 97,
+        "x": 801,
+        "y": 724,
         "w": 84,
         "h": 90
       },
       "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_population"
     },
     {
@@ -25370,14 +25372,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_1",
+      "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 2,
-        "w": 86,
-        "h": 91
+        "x": 830,
+        "y": 634,
+        "w": 91,
+        "h": 86
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_build"
     },
     {
@@ -25451,8 +25454,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 579,
-        "y": 677,
+        "x": 637,
+        "y": 822,
         "w": 81,
         "h": 96
       },
@@ -25531,8 +25534,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 607,
-        "y": 777,
+        "x": 719,
+        "y": 722,
         "w": 78,
         "h": 96
       },
@@ -25608,15 +25611,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_1",
+      "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 92,
-        "y": 2,
-        "w": 73,
-        "h": 84
+        "x": 903,
+        "y": 759,
+        "w": 84,
+        "h": 73
       },
-      "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_family"
     },
     {
@@ -25690,8 +25692,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 929,
-        "y": 677,
+        "x": 830,
+        "y": 458,
         "w": 93,
         "h": 83
       },
@@ -25769,12 +25771,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 865,
-        "y": 856,
-        "w": 89,
-        "h": 91
+        "x": 926,
+        "y": 550,
+        "w": 91,
+        "h": 89
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_arrow"
     },
@@ -25847,15 +25848,15 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_1",
+      "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 282,
+        "x": 903,
+        "y": 920,
         "w": 76,
         "h": 82
       },
       "atlasRotated": true,
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_stone"
     },
     {
@@ -25927,14 +25928,14 @@
       "pivotUnit": "pixels in original source canvas, origin top-left",
       "importStatus": "imported_via_atlas",
       "reviewStatus": "visual_v11",
-      "atlasPage": "ui_1",
+      "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 191,
+        "x": 809,
+        "y": 818,
         "w": 87,
         "h": 87
       },
-      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_slow"
     },
     {
@@ -26008,11 +26009,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 776,
-        "y": 856,
-        "w": 85,
-        "h": 92
+        "x": 830,
+        "y": 545,
+        "w": 92,
+        "h": 85
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_shield"
     },
@@ -26087,8 +26089,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 776,
-        "y": 773,
+        "x": 154,
+        "y": 379,
         "w": 88,
         "h": 75
       },
@@ -26167,8 +26169,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 664,
-        "y": 677,
+        "x": 190,
+        "y": 918,
         "w": 66,
         "h": 96
       },
@@ -26247,11 +26249,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 899,
-        "y": 590,
-        "w": 96,
-        "h": 83
+        "x": 550,
+        "y": 846,
+        "w": 83,
+        "h": 96
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_trophy"
     },
@@ -26326,12 +26329,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 734,
-        "y": 662,
-        "w": 94,
-        "h": 93
+        "x": 637,
+        "y": 922,
+        "w": 93,
+        "h": 94
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_close"
     },
@@ -26887,8 +26889,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 639,
-        "y": 266,
+        "x": 522,
+        "y": 458,
         "w": 256,
         "h": 128
       },
@@ -26973,8 +26975,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 379,
-        "y": 262,
+        "x": 2,
+        "y": 786,
         "w": 256,
         "h": 128
       },
@@ -27059,8 +27061,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 379,
-        "y": 394,
+        "x": 262,
+        "y": 511,
         "w": 256,
         "h": 128
       },
@@ -27145,8 +27147,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 639,
-        "y": 134,
+        "x": 2,
+        "y": 654,
         "w": 256,
         "h": 128
       },
@@ -27231,8 +27233,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 756,
+        "x": 756,
+        "y": 262,
         "w": 256,
         "h": 192
       },
@@ -27317,8 +27319,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 262,
-        "y": 756,
+        "x": 2,
+        "y": 458,
         "w": 256,
         "h": 192
       },
@@ -27403,7 +27405,7 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 379,
+        "x": 756,
         "y": 2,
         "w": 256,
         "h": 256
@@ -27489,8 +27491,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 379,
-        "y": 526,
+        "x": 522,
+        "y": 590,
         "w": 256,
         "h": 128
       },
@@ -27575,8 +27577,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 639,
-        "y": 530,
+        "x": 262,
+        "y": 775,
         "w": 256,
         "h": 128
       },
@@ -27661,8 +27663,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 639,
-        "y": 2,
+        "x": 262,
+        "y": 379,
         "w": 256,
         "h": 128
       },
@@ -27747,8 +27749,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 639,
-        "y": 398,
+        "x": 262,
+        "y": 643,
         "w": 256,
         "h": 128
       },
@@ -27826,8 +27828,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 2,
-        "y": 379,
+        "x": 379,
+        "y": 2,
         "w": 373,
         "h": 373
       },
@@ -27905,11 +27907,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 899,
-        "y": 158,
-        "w": 115,
-        "h": 128
+        "x": 418,
+        "y": 907,
+        "w": 128,
+        "h": 115
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_night_shield"
     },
@@ -28063,12 +28066,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 899,
-        "y": 290,
-        "w": 120,
-        "h": 108
+        "x": 522,
+        "y": 722,
+        "w": 108,
+        "h": 120
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_crowned_heart"
     },
@@ -28143,11 +28145,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 899,
-        "y": 402,
-        "w": 96,
-        "h": 93
+        "x": 2,
+        "y": 918,
+        "w": 93,
+        "h": 96
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_tactic_scroll"
     },
@@ -28222,11 +28225,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 832,
-        "y": 677,
-        "w": 93,
-        "h": 92
+        "x": 734,
+        "y": 920,
+        "w": 92,
+        "h": 93
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_tactic_rage"
     },
@@ -28998,12 +29002,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 899,
-        "y": 499,
-        "w": 96,
-        "h": 87
+        "x": 99,
+        "y": 918,
+        "w": 87,
+        "h": 96
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_tactic_shield"
     },
@@ -30968,11 +30971,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 522,
-        "y": 910,
-        "w": 50,
-        "h": 48
+        "x": 674,
+        "y": 379,
+        "w": 48,
+        "h": 50
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "panel_anchored_tip_tail"
     },
@@ -32341,12 +32345,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 531,
-        "y": 658,
-        "w": 44,
-        "h": 148
+        "x": 2,
+        "y": 379,
+        "w": 148,
+        "h": 44
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "tag_recommended"
     },
@@ -32421,8 +32424,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 379,
-        "y": 662,
+        "x": 522,
+        "y": 379,
         "w": 148,
         "h": 44
       },
@@ -38491,8 +38494,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 330,
-        "y": 664,
+        "x": 436,
+        "y": 711,
         "w": 18,
         "h": 14
       },
@@ -43400,8 +43403,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 929,
-        "y": 764,
+        "x": 927,
+        "y": 458,
         "w": 92,
         "h": 88
       },
@@ -43471,8 +43474,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 689,
-        "y": 777,
+        "x": 722,
+        "y": 822,
         "w": 83,
         "h": 94
       },
@@ -43543,11 +43546,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 699,
-        "y": 875,
-        "w": 68,
-        "h": 83
+        "x": 550,
+        "y": 946,
+        "w": 83,
+        "h": 68
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_liang_essence"
     },
@@ -43614,8 +43618,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 607,
-        "y": 877,
+        "x": 925,
+        "y": 701,
         "w": 88,
         "h": 54
       },
@@ -43685,12 +43689,11 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 958,
-        "y": 856,
-        "w": 54,
-        "h": 88
+        "x": 925,
+        "y": 643,
+        "w": 88,
+        "h": 54
       },
-      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "icon_liang_bra"
     },
@@ -43757,11 +43760,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "ui_0",
       "atlasRect": {
-        "x": 899,
-        "y": 2,
-        "w": 115,
-        "h": 152
+        "x": 262,
+        "y": 907,
+        "w": 152,
+        "h": 115
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
       "importedFrameId": "patrol_rapid_gun"
     },
@@ -44949,2812 +44953,13 @@
       "atlasPage": "buildings_0",
       "atlasRect": {
         "x": 2,
-        "y": 219,
-        "w": 108,
-        "h": 131
+        "y": 368,
+        "w": 131,
+        "h": 108
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_patrol_icon"
-    },
-    {
-      "id": "motion_arrow_body",
-      "label": "motion_arrow_body",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_body.png",
-      "width": 119,
-      "height": 156,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_body.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 119,
-        "h": 156
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 119,
-        "h": 156
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "b1f6583da45651bc7ae076a72bdde492a185864b3d0f94ab9eff5d81974492f7",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 31045,
-      "sha256": "396dee34e1bd8d5c3d356e48acb1c41e1ab383d9f4d39bec14ec2cfd331eb685",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 119,
-        "h": 156
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 25
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 119,
-        "h": 156
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 2,
-        "y": 84,
-        "w": 119,
-        "h": 131
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_arrow_body"
-    },
-    {
-      "id": "motion_arrow_attack_0",
-      "label": "motion_arrow_attack_0",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_0.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "7e2f740ed804a40cf4781f5ac28347f044da7e029799114236e02c694ce8f7fb",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 12512,
-      "sha256": "21db61e554588b2a77c0323549b4a36e6756ed5593bf7013c8e321508ca8ff09",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 121,
-        "h": 95
-      },
-      "trimOffset": {
-        "x": 12,
-        "y": 6
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 121,
-        "h": 95
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 105,
-        "y": 758,
-        "w": 90,
-        "h": 73
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_arrow_attack_0"
-    },
-    {
-      "id": "motion_arrow_attack_1",
-      "label": "motion_arrow_attack_1",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_1.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "4eaa15f02e20d67b06a084ff985994014c76bb81065378277f0f4ece359c7f24",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 15663,
-      "sha256": "938945ae815d2087a1823c32344a2282d6b30082cfaa1709a86e9393a53c015b",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 121,
-        "h": 95
-      },
-      "trimOffset": {
-        "x": 4,
-        "y": 11
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 121,
-        "h": 95
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 237,
-        "y": 195,
-        "w": 107,
-        "h": 84
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_arrow_attack_1"
-    },
-    {
-      "id": "motion_arrow_attack_2",
-      "label": "motion_arrow_attack_2",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_2.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "5853d342d2a4db226657cdd1b169a3fa64da2af422ff1c3385616e9f3c0a11cd",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 13527,
-      "sha256": "1afd83cc1e4257cf87c725bba716f20f554c5c36b92be57afd5850e9c1e998ed",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 121,
-        "h": 95
-      },
-      "trimOffset": {
-        "x": 10,
-        "y": 10
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 121,
-        "h": 95
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 135,
-        "y": 462,
-        "w": 95,
-        "h": 77
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_arrow_attack_2"
-    },
-    {
-      "id": "motion_arrow_attack_3",
-      "label": "motion_arrow_attack_3",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_3.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "1ee77b2ac588598d20ddb56f83047da9071eb1a38a17814adb06b75b2ae7dcab",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 10201,
-      "sha256": "7ac504e948592a5293365c27bf6fb3436aaa60e29bb6e3916d2fe20f122d5be0",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 121,
-        "h": 95
-      },
-      "trimOffset": {
-        "x": 20,
-        "y": 6
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 121,
-        "h": 95
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 241,
-        "y": 354,
-        "w": 77,
-        "h": 64
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_arrow_attack_3"
-    },
-    {
-      "id": "motion_arrow_attack_4",
-      "label": "motion_arrow_attack_4",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_4.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "c1e2ca953bca220c8e71e1eef5b3223835d13445eba15c6a5b79e4f0da0a3af5",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 11681,
-      "sha256": "70dd86f25741b48424b61ac0001c442364fee73e06f85f89e7709be3586175f2",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 121,
-        "h": 95
-      },
-      "trimOffset": {
-        "x": 20,
-        "y": 1
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 121,
-        "h": 95
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 234,
-        "y": 462,
-        "w": 78,
-        "h": 67
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_arrow_attack_4"
-    },
-    {
-      "id": "motion_arrow_attack_5",
-      "label": "motion_arrow_attack_5",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_5.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "d69361f53cee3ba8ee4db06ef0cbb774a61ecaa0d1d05f0daaed44dc02f64f48",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 11460,
-      "sha256": "f791537ee533a80f3b771e18aa8d810983ff6f1481a6de7e7d7383a11d5093d6",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 121,
-        "h": 95
-      },
-      "trimOffset": {
-        "x": 22,
-        "y": 1
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 121,
-        "h": 95
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 199,
-        "y": 739,
-        "w": 76,
-        "h": 66
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_arrow_attack_5"
-    },
-    {
-      "id": "motion_arrow_attack_6",
-      "label": "motion_arrow_attack_6",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_6.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_6.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "856a85a35322f7f361497e437acafa1c1d29bea45097facb259bdbcca80bc287",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 12654,
-      "sha256": "e882001f133a714513f6f0f2c233cf4fb2b844e4d17fdb6eb52d5dfd0df132b5",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 121,
-        "h": 95
-      },
-      "trimOffset": {
-        "x": 18,
-        "y": 1
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 121,
-        "h": 95
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 195,
-        "y": 664,
-        "w": 83,
-        "h": 71
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_arrow_attack_6"
-    },
-    {
-      "id": "motion_arrow_attack_7",
-      "label": "motion_arrow_attack_7",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_7.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_7.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "c0f507bc392577c3351751d07e0d51f0a90dfd5369a35ba38c0dccbbd99f94ad",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 11708,
-      "sha256": "3a4da120ccfeeadf8b3628ea0407f50c1278f19e8a42dd03ef4e839f5a4d8078",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 121,
-        "h": 95
-      },
-      "trimOffset": {
-        "x": 19,
-        "y": 2
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 121,
-        "h": 95
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 208,
-        "y": 543,
-        "w": 81,
-        "h": 68
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_arrow_attack_7"
-    },
-    {
-      "id": "motion_arrow_attack_8",
-      "label": "motion_arrow_attack_8",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_8.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_8.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "a45c2fbf195226dab5899a22cadfa493882e80dc40eefc6e522f742a6fa8eaaa",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 9175,
-      "sha256": "e5f4464e063fe682ca5f2a09cd94bc3350b77ce7a0e7bc9e2eb0f76b770a520e",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 121,
-        "h": 95
-      },
-      "trimOffset": {
-        "x": 18,
-        "y": 11
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 121,
-        "h": 95
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 105,
-        "y": 835,
-        "w": 70,
-        "h": 59
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_arrow_attack_8"
-    },
-    {
-      "id": "motion_stone_body",
-      "label": "motion_stone_body",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_body.png",
-      "width": 115,
-      "height": 138,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_body.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 115,
-        "h": 138
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 115,
-        "h": 138
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "422d88f6e30cad1528d903deb50c3aa44d250d26cbb63d162d36044259f5bb37",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 25929,
-      "sha256": "83555e6bd281474a477fc5c070ec80998cb8c68a40975ca310bb2b4247fb3049",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 115,
-        "h": 138
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 31
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 115,
-        "h": 138
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 125,
-        "y": 84,
-        "w": 115,
-        "h": 107
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_stone_body"
-    },
-    {
-      "id": "motion_stone_attack_0",
-      "label": "motion_stone_attack_0",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_0.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "e13e1a8f77a606e1203cc2eec08ed136e463b652bfcead4b517e2939af55637f",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 6077,
-      "sha256": "581d34b45f058084ae804832f56505c86ceaed4c8b41f22ffbaac4f6fb1aaaf5",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 69,
-        "h": 61
-      },
-      "trimOffset": {
-        "x": 8,
-        "y": 2
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 69,
-        "h": 61
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 341,
-        "y": 488,
-        "w": 47,
-        "h": 59
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_stone_attack_0"
-    },
-    {
-      "id": "motion_stone_attack_1",
-      "label": "motion_stone_attack_1",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_1.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "b9a195e76f6e36e3d5d09be4cfe7329803a9f45c9169f01f952905a89c75b5ea",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 5594,
-      "sha256": "4599e408544a4050bae8c36d06fed64f94fb232ff7d203c1ef844345d8b9b79f",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 69,
-        "h": 61
-      },
-      "trimOffset": {
-        "x": 12,
-        "y": 0
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 69,
-        "h": 61
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 344,
-        "y": 283,
-        "w": 40,
-        "h": 61
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_stone_attack_1"
-    },
-    {
-      "id": "motion_stone_attack_2",
-      "label": "motion_stone_attack_2",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_2.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "53d067d7224eea16cd54a6b9ec3aa25fee49bf39a87360160abc4d80c4c2d490",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 5895,
-      "sha256": "ad3b7cbbd190a722e3644608a441cde58dd7dc494746e6b257275151d32b65aa",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 69,
-        "h": 61
-      },
-      "trimOffset": {
-        "x": 12,
-        "y": 1
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 69,
-        "h": 61
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 328,
-        "y": 682,
-        "w": 43,
-        "h": 60
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_stone_attack_2"
-    },
-    {
-      "id": "motion_stone_attack_3",
-      "label": "motion_stone_attack_3",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_3.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "4c41d3706f5751d378c78e67c3a2f347796a7bd5ff105c91d073ea63be961651",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 5899,
-      "sha256": "a24f98954d1b0de00fc7bc5af8bea09e3526d8a33adc2dd9ccb199497ee5b7a7",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 69,
-        "h": 61
-      },
-      "trimOffset": {
-        "x": 10,
-        "y": 5
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 69,
-        "h": 61
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 369,
-        "y": 348,
-        "w": 48,
-        "h": 56
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_stone_attack_3"
-    },
-    {
-      "id": "motion_stone_attack_4",
-      "label": "motion_stone_attack_4",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_4.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "93bd3f253dc95f47e4c472316c33b5c72a1463acdda37155ce43fc7809094d1a",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 6768,
-      "sha256": "8ef18860d450f1987c1eec08272382f506e93a09a2700a1960c6b983a8bd02fa",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 69,
-        "h": 61
-      },
-      "trimOffset": {
-        "x": 5,
-        "y": 4
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 69,
-        "h": 61
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 328,
-        "y": 746,
-        "w": 58,
-        "h": 57
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_stone_attack_4"
-    },
-    {
-      "id": "motion_stone_attack_5",
-      "label": "motion_stone_attack_5",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_5.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "30e6d91547e32ff0f2887a1cc46d56ea120cdda968caf067b4743578a42561ea",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 7172,
-      "sha256": "33d541d13c48228fe59b3e502a5a5286bb3cf6e27b47ca2b202be88c02f6b949",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 69,
-        "h": 61
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 8
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 69,
-        "h": 61
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 179,
-        "y": 835,
-        "w": 69,
-        "h": 53
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_stone_attack_5"
-    },
-    {
-      "id": "motion_stone_attack_6",
-      "label": "motion_stone_attack_6",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_6.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_6.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "b56c728b60c16bbff4650d55d4de5e599ba36adfd2f54ba23afaa17f779131a6",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 7310,
-      "sha256": "248cfd1bc54f249e6ee9e6c9f7ae48ce712c0cc9ccfb7756d5561bdfca037deb",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 69,
-        "h": 61
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 7
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 69,
-        "h": 61
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 135,
-        "y": 543,
-        "w": 69,
-        "h": 54
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_stone_attack_6"
-    },
-    {
-      "id": "motion_stone_attack_7",
-      "label": "motion_stone_attack_7",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_7.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_7.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "83eeb9a5540547ceae32c9ed270fb611aebb71b39452782743f05321b8e8679d",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 7435,
-      "sha256": "e61d2c155b551b50542045e0e44989419601317c6210b805a477845781fa82b9",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 69,
-        "h": 61
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 4
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 69,
-        "h": 61
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 252,
-        "y": 809,
-        "w": 67,
-        "h": 57
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_stone_attack_7"
-    },
-    {
-      "id": "motion_stone_attack_8",
-      "label": "motion_stone_attack_8",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_8.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_8.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "26dd9ec7346cb0118060ec2552147367e26f66e75145e80e8a82fdd62aa8ace1",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 5332,
-      "sha256": "9582ce6272ff4723550b28fd6b029f79f776b85a6310fd506908888fed389059",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 69,
-        "h": 61
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 15
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 69,
-        "h": 61
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 375,
-        "y": 664,
-        "w": 54,
-        "h": 46
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_stone_attack_8"
-    },
-    {
-      "id": "motion_slow_body",
-      "label": "motion_slow_body",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_body.png",
-      "width": 86,
-      "height": 149,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_body.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 149
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 149
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "7c48fccf2ffadaed059d4272a767e0c78714472255d6d3ab12d84c39c5622284",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 18004,
-      "sha256": "4893cade80fca202d9460cdf8c8358d2a68f44353112217bd903ff5f12ab1a4d",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 86,
-        "h": 149
-      },
-      "trimOffset": {
-        "x": 0,
-        "y": 59
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 86,
-        "h": 149
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 105,
-        "y": 664,
-        "w": 86,
-        "h": 90
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_body"
-    },
-    {
-      "id": "motion_slow_idle_0",
-      "label": "motion_slow_idle_0",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_0.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "72c5e8c802b9ebaa06f8c4fa94b79c36eb9f687d8aa7f2eee5bc0e0b746c1a90",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 3419,
-      "sha256": "b00c8fb14ef01704e8137d5f23f244dab1f7c3ff0b4f40bfc9a7629a922cd2bd",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 35,
-        "h": 56
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 3
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 35,
-        "h": 56
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 282,
-        "y": 682,
-        "w": 33,
-        "h": 48
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_idle_0"
-    },
-    {
-      "id": "motion_slow_idle_1",
-      "label": "motion_slow_idle_1",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_1.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "4ede8bdef77dcaa815507e67b4b1f2230698bcf52dabdac202e3fc1e2125fb22",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 3361,
-      "sha256": "8709d2095c59a9882f59b99baba368fdf72c6151eb037c74a3bb19d18a2a96ce",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 35,
-        "h": 56
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 6
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 35,
-        "h": 56
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 392,
-        "y": 482,
-        "w": 33,
-        "h": 47
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_idle_1"
-    },
-    {
-      "id": "motion_slow_idle_2",
-      "label": "motion_slow_idle_2",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_2.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "603afd46564d385bdbf7239df05130b5de1f053b623f15b0a24309d25f551112",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 3350,
-      "sha256": "9dd4e4645c6465dfd7ee9d57a4de022665fc131da72b0e0ea3cf81e6a9119c91",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 35,
-        "h": 56
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 8
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 35,
-        "h": 56
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 371,
-        "y": 807,
-        "w": 33,
-        "h": 48
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_idle_2"
-    },
-    {
-      "id": "motion_slow_idle_3",
-      "label": "motion_slow_idle_3",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_3.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "603afd46564d385bdbf7239df05130b5de1f053b623f15b0a24309d25f551112",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 3350,
-      "sha256": "9dd4e4645c6465dfd7ee9d57a4de022665fc131da72b0e0ea3cf81e6a9119c91",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 35,
-        "h": 56
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 8
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 35,
-        "h": 56
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 390,
-        "y": 714,
-        "w": 33,
-        "h": 48
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_idle_3"
-    },
-    {
-      "id": "motion_slow_idle_4",
-      "label": "motion_slow_idle_4",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_4.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "4ede8bdef77dcaa815507e67b4b1f2230698bcf52dabdac202e3fc1e2125fb22",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 3361,
-      "sha256": "8709d2095c59a9882f59b99baba368fdf72c6151eb037c74a3bb19d18a2a96ce",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 35,
-        "h": 56
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 6
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 35,
-        "h": 56
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 407,
-        "y": 408,
-        "w": 33,
-        "h": 47
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_idle_4"
-    },
-    {
-      "id": "motion_slow_idle_5",
-      "label": "motion_slow_idle_5",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_5.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "72c5e8c802b9ebaa06f8c4fa94b79c36eb9f687d8aa7f2eee5bc0e0b746c1a90",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 3419,
-      "sha256": "b00c8fb14ef01704e8137d5f23f244dab1f7c3ff0b4f40bfc9a7629a922cd2bd",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 35,
-        "h": 56
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 3
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 35,
-        "h": 56
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 376,
-        "y": 551,
-        "w": 33,
-        "h": 48
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_idle_5"
-    },
-    {
-      "id": "motion_slow_idle_6",
-      "label": "motion_slow_idle_6",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_6.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_6.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "de11a263e10d43db37596a5cb5271d62d6102c9ef644797484fd96952ea63e11",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 3350,
-      "sha256": "ec997ebc502764306cf14a36b4713e7f22a7bd73a87f674275d033eb7e0baef8",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 35,
-        "h": 56
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 35,
-        "h": 56
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 413,
-        "y": 533,
-        "w": 33,
-        "h": 47
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_idle_6"
-    },
-    {
-      "id": "motion_slow_idle_7",
-      "label": "motion_slow_idle_7",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_7.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_7.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "af142e0f4c042659dc7d3e7f314c28459f7c8be3035d5952a7bf0b6069dd4812",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 3244,
-      "sha256": "ed8010445fda1b56277263b5d121c2c330c9ee225d4062fb487a17778b8701b1",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 35,
-        "h": 56
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 0
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 35,
-        "h": 56
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 348,
-        "y": 202,
-        "w": 32,
-        "h": 46
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_idle_7"
-    },
-    {
-      "id": "motion_slow_idle_8",
-      "label": "motion_slow_idle_8",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_8.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_8.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "af142e0f4c042659dc7d3e7f314c28459f7c8be3035d5952a7bf0b6069dd4812",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 3244,
-      "sha256": "ed8010445fda1b56277263b5d121c2c330c9ee225d4062fb487a17778b8701b1",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 35,
-        "h": 56
-      },
-      "trimOffset": {
-        "x": 2,
-        "y": 0
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 35,
-        "h": 56
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 384,
-        "y": 152,
-        "w": 32,
-        "h": 46
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_idle_8"
-    },
-    {
-      "id": "motion_slow_idle_9",
-      "label": "motion_slow_idle_9",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_9.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_9.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "de11a263e10d43db37596a5cb5271d62d6102c9ef644797484fd96952ea63e11",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 3350,
-      "sha256": "ec997ebc502764306cf14a36b4713e7f22a7bd73a87f674275d033eb7e0baef8",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 35,
-        "h": 56
-      },
-      "trimOffset": {
-        "x": 1,
-        "y": 1
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 35,
-        "h": 56
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 429,
-        "y": 459,
-        "w": 33,
-        "h": 47
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_idle_9"
-    },
-    {
-      "id": "motion_slow_attack_0",
-      "label": "motion_slow_attack_0",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_0.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "8deecf74aeea986bbc2e375b7eb6dbd1f8d790e96f73c47c6ff67355d59723e2",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 4694,
-      "sha256": "d91c1c0b416b8f16de613f07b0640baf9323b68dfc5f33065acb1b4b4979c8d1",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 86,
-        "h": 86
-      },
-      "trimOffset": {
-        "x": 22,
-        "y": 4
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 86,
-        "h": 86
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 363,
-        "y": 420,
-        "w": 40,
-        "h": 58
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_attack_0"
-    },
-    {
-      "id": "motion_slow_attack_1",
-      "label": "motion_slow_attack_1",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_1.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "efb668e9cd0d456733d59f821020ee7189ae51ebff35bd12b9e782233ea379db",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 5669,
-      "sha256": "2dbdfbad9ad30162f7ea0faeeb2a43dfa2e9d44ba382fd17cf99131c5b74aa05",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 86,
-        "h": 86
-      },
-      "trimOffset": {
-        "x": 20,
-        "y": 0
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 86,
-        "h": 86
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 279,
-        "y": 739,
-        "w": 45,
-        "h": 64
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_attack_1"
-    },
-    {
-      "id": "motion_slow_attack_2",
-      "label": "motion_slow_attack_2",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_2.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "949756e169de6a2e366fe8d9e4dfc1584d7a228dc32bf77147ec57a411ecd46e",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 5379,
-      "sha256": "61faecf23c9af81cdf5f6fadab423e66a2afd94949fcc2732cfb994af6659e08",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 86,
-        "h": 86
-      },
-      "trimOffset": {
-        "x": 20,
-        "y": 3
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 86,
-        "h": 86
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 282,
-        "y": 615,
-        "w": 44,
-        "h": 63
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_attack_2"
-    },
-    {
-      "id": "motion_slow_attack_3",
-      "label": "motion_slow_attack_3",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_3.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "2f2d3d3cd8043a06fd0c34b9bcc42f9474c1119e348073147b0becb67e3af4cd",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 5164,
-      "sha256": "5dc60c01705bd5666bdb99977a63451cccdf2efc3dc0a9e2a4332221819e3360",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 86,
-        "h": 86
-      },
-      "trimOffset": {
-        "x": 21,
-        "y": 8
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 86,
-        "h": 86
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 316,
-        "y": 422,
-        "w": 43,
-        "h": 62
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_attack_3"
-    },
-    {
-      "id": "motion_slow_attack_4",
-      "label": "motion_slow_attack_4",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_4.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "0603379ed52cc4bf3731bd9c411992da7b91fbf7649813d79dd69bbe8abc02b8",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 5443,
-      "sha256": "9827539763c706ca9db7c74e24a1c8c0f743f57e0e6975fa3f622ae4b537a72d",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 86,
-        "h": 86
-      },
-      "trimOffset": {
-        "x": 20,
-        "y": 18
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 86,
-        "h": 86
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 323,
-        "y": 807,
-        "w": 44,
-        "h": 64
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_attack_4"
-    },
-    {
-      "id": "motion_slow_attack_5",
-      "label": "motion_slow_attack_5",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_5.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "c2b079139fc71c977ae0e6ac64cb65943ed1a898260ff98be77f85942b59c3c5",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 5427,
-      "sha256": "8b754878a039550ec3da598c1cf8aeefa4170b4f7e0a0f5e4e48300d288c5617",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 86,
-        "h": 86
-      },
-      "trimOffset": {
-        "x": 20,
-        "y": 22
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 86,
-        "h": 86
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 293,
-        "y": 533,
-        "w": 44,
-        "h": 63
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_attack_5"
-    },
-    {
-      "id": "motion_slow_attack_6",
-      "label": "motion_slow_attack_6",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_6.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_6.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "e8aa20f09f5d3033e4824eb8ccdaef34965c269204827180b826a1f596ba9391",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 5260,
-      "sha256": "21cbb4507b3f4a85a22b5c5eafef6bce74fcc3c9bf2f67645467fd145f06d9ac",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 86,
-        "h": 86
-      },
-      "trimOffset": {
-        "x": 21,
-        "y": 19
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 86,
-        "h": 86
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 322,
-        "y": 354,
-        "w": 43,
-        "h": 62
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_attack_6"
-    },
-    {
-      "id": "motion_slow_attack_7",
-      "label": "motion_slow_attack_7",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_7.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_7.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "f8520208d20146ec01e2fc1e01a270916f7099361e73472396634bbfc20fe709",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 4993,
-      "sha256": "cea11ab69c45911d608a211af1ee47df8d2e6ef13690b5907f745149ee36651d",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 86,
-        "h": 86
-      },
-      "trimOffset": {
-        "x": 22,
-        "y": 19
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 86,
-        "h": 86
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 330,
-        "y": 600,
-        "w": 42,
-        "h": 60
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_attack_7"
-    },
-    {
-      "id": "motion_slow_attack_8",
-      "label": "motion_slow_attack_8",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_8.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_8.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "9f00250c5522c8e8414f9e5987b60a8c7866b96f4c796889377d6a3459d29c4b",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      },
-      "atlasGroup": "buildings",
-      "bytes": 3561,
-      "sha256": "b96fb123075c59dfea502501a57f357580b57781d74fcb369f2fafe00f0f6b1b",
-      "alpha": "rgba",
-      "untrimmedSize": {
-        "w": 86,
-        "h": 86
-      },
-      "trimOffset": {
-        "x": 26,
-        "y": 25
-      },
-      "atlasTrim": true,
-      "displaySize": {
-        "w": 86,
-        "h": 86
-      },
-      "pivotUnit": "pixels in original source canvas, origin top-left",
-      "importStatus": "imported_via_atlas",
-      "reviewStatus": "visual_v11",
-      "atlasPage": "buildings_0",
-      "atlasRect": {
-        "x": 376,
-        "y": 603,
-        "w": 33,
-        "h": 47
-      },
-      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
-      "importedFrameId": "motion_slow_attack_8"
     },
     {
       "id": "motion_gate_body",
@@ -47818,8 +45023,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 2,
+        "x": 444,
+        "y": 135,
         "w": 160,
         "h": 78
       },
@@ -47888,11 +45093,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 166,
+        "x": 715,
         "y": 2,
-        "w": 99,
-        "h": 46
+        "w": 46,
+        "h": 99
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_0"
     },
@@ -47958,8 +45164,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 244,
-        "y": 52,
+        "x": 2,
+        "y": 560,
         "w": 99,
         "h": 46
       },
@@ -48028,8 +45234,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 372,
-        "y": 2,
+        "x": 268,
+        "y": 532,
         "w": 99,
         "h": 46
       },
@@ -48098,11 +45304,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 347,
-        "y": 102,
-        "w": 99,
-        "h": 46
+        "x": 371,
+        "y": 532,
+        "w": 46,
+        "h": 99
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_3"
     },
@@ -48168,8 +45375,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 614,
+        "x": 268,
+        "y": 582,
         "w": 99,
         "h": 46
       },
@@ -48238,11 +45445,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 664,
-        "w": 99,
-        "h": 46
+        "x": 208,
+        "y": 620,
+        "w": 46,
+        "h": 99
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_5"
     },
@@ -48308,8 +45516,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 714,
+        "x": 105,
+        "y": 638,
         "w": 99,
         "h": 46
       },
@@ -48379,7 +45587,7 @@
       "atlasPage": "buildings_0",
       "atlasRect": {
         "x": 2,
-        "y": 764,
+        "y": 660,
         "w": 99,
         "h": 46
       },
@@ -48448,8 +45656,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 814,
+        "x": 105,
+        "y": 688,
         "w": 99,
         "h": 46
       },
@@ -48518,8 +45726,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 105,
-        "y": 614,
+        "x": 2,
+        "y": 710,
         "w": 99,
         "h": 46
       },
@@ -48588,11 +45796,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 269,
-        "y": 2,
-        "w": 99,
-        "h": 46
+        "x": 218,
+        "y": 517,
+        "w": 46,
+        "h": 99
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_gate_doors_10"
     },
@@ -48658,8 +45867,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 244,
-        "y": 102,
+        "x": 105,
+        "y": 588,
         "w": 99,
         "h": 46
       },
@@ -48728,8 +45937,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 347,
-        "y": 52,
+        "x": 2,
+        "y": 610,
         "w": 99,
         "h": 46
       },
@@ -48798,8 +46007,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 114,
-        "y": 219,
+        "x": 440,
+        "y": 426,
         "w": 119,
         "h": 119
       },
@@ -48868,11 +46077,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 429,
-        "y": 510,
-        "w": 13,
-        "h": 19
+        "x": 347,
+        "y": 738,
+        "w": 19,
+        "h": 13
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_house_smoke_0"
     },
@@ -48938,11 +46148,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 330,
-        "y": 152,
-        "w": 14,
-        "h": 25
+        "x": 738,
+        "y": 688,
+        "w": 25,
+        "h": 14
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_house_smoke_1"
     },
@@ -49008,11 +46219,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 413,
-        "y": 634,
-        "w": 15,
-        "h": 25
+        "x": 740,
+        "y": 612,
+        "w": 25,
+        "h": 15
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_house_smoke_2"
     },
@@ -49078,11 +46290,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 207,
-        "y": 52,
-        "w": 14,
-        "h": 24
+        "x": 736,
+        "y": 724,
+        "w": 24,
+        "h": 14
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_house_smoke_3"
     },
@@ -49148,11 +46361,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 444,
-        "y": 428,
-        "w": 15,
-        "h": 25
+        "x": 740,
+        "y": 631,
+        "w": 25,
+        "h": 15
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_house_smoke_4"
     },
@@ -49218,11 +46432,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 407,
-        "y": 459,
-        "w": 13,
-        "h": 19
+        "x": 303,
+        "y": 753,
+        "w": 19,
+        "h": 13
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_house_smoke_5"
     },
@@ -49288,11 +46503,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 189,
-        "y": 52,
-        "w": 14,
-        "h": 25
+        "x": 738,
+        "y": 706,
+        "w": 25,
+        "h": 14
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_house_smoke_6"
     },
@@ -49358,11 +46574,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 348,
-        "y": 252,
-        "w": 15,
-        "h": 25
+        "x": 738,
+        "y": 650,
+        "w": 25,
+        "h": 15
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_house_smoke_7"
     },
@@ -49428,11 +46645,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 225,
-        "y": 52,
-        "w": 14,
-        "h": 24
+        "x": 736,
+        "y": 742,
+        "w": 24,
+        "h": 14
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_house_smoke_8"
     },
@@ -49498,11 +46716,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 367,
-        "y": 252,
-        "w": 15,
-        "h": 25
+        "x": 738,
+        "y": 669,
+        "w": 25,
+        "h": 15
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_house_smoke_9"
     },
@@ -49568,11 +46787,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 349,
-        "y": 875,
-        "w": 18,
-        "h": 15
+        "x": 326,
+        "y": 753,
+        "w": 15,
+        "h": 18
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_house_window_0"
     },
@@ -49638,8 +46858,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 421,
-        "y": 387,
+        "x": 253,
+        "y": 755,
         "w": 18,
         "h": 15
       },
@@ -49708,8 +46928,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 112,
-        "y": 462,
+        "x": 275,
+        "y": 755,
         "w": 18,
         "h": 15
       },
@@ -49778,8 +46998,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 205,
-        "y": 195,
+        "x": 297,
+        "y": 770,
         "w": 18,
         "h": 15
       },
@@ -49848,8 +47068,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 199,
-        "y": 809,
+        "x": 193,
+        "y": 765,
         "w": 18,
         "h": 15
       },
@@ -49918,8 +47138,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 221,
-        "y": 809,
+        "x": 215,
+        "y": 765,
         "w": 18,
         "h": 15
       },
@@ -49988,8 +47208,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 70,
-        "y": 864,
+        "x": 237,
+        "y": 774,
         "w": 18,
         "h": 15
       },
@@ -50058,8 +47278,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 472,
-        "y": 551,
+        "x": 259,
+        "y": 774,
         "w": 18,
         "h": 15
       },
@@ -50128,11 +47348,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 112,
-        "y": 354,
-        "w": 125,
-        "h": 104
+        "x": 442,
+        "y": 297,
+        "w": 104,
+        "h": 125
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_farm_body"
     },
@@ -50198,8 +47419,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 427,
-        "y": 714,
+        "x": 654,
+        "y": 592,
         "w": 39,
         "h": 36
       },
@@ -50268,8 +47489,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 466,
-        "y": 469,
+        "x": 556,
+        "y": 673,
         "w": 37,
         "h": 36
       },
@@ -50338,8 +47559,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 408,
-        "y": 806,
+        "x": 597,
+        "y": 675,
         "w": 37,
         "h": 36
       },
@@ -50408,8 +47629,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 434,
-        "y": 754,
+        "x": 556,
+        "y": 713,
         "w": 37,
         "h": 36
       },
@@ -50478,8 +47699,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 455,
-        "y": 143,
+        "x": 697,
+        "y": 592,
         "w": 39,
         "h": 36
       },
@@ -50548,8 +47769,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 241,
-        "y": 422,
+        "x": 303,
+        "y": 713,
         "w": 40,
         "h": 36
       },
@@ -50618,8 +47839,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 390,
-        "y": 766,
+        "x": 105,
+        "y": 738,
         "w": 40,
         "h": 36
       },
@@ -50688,8 +47909,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 244,
-        "y": 152,
+        "x": 149,
+        "y": 738,
         "w": 40,
         "h": 36
       },
@@ -50758,8 +47979,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 166,
-        "y": 52,
+        "x": 715,
+        "y": 140,
         "w": 19,
         "h": 28
       },
@@ -50828,8 +48049,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 48,
-        "y": 864,
+        "x": 204,
+        "y": 261,
         "w": 18,
         "h": 30
       },
@@ -50898,8 +48119,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 316,
-        "y": 488,
+        "x": 111,
+        "y": 480,
         "w": 19,
         "h": 32
       },
@@ -50968,11 +48189,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 450,
-        "y": 551,
-        "w": 18,
-        "h": 29
+        "x": 268,
+        "y": 510,
+        "w": 29,
+        "h": 18
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_farm_wheel_3"
     },
@@ -51038,8 +48260,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 864,
+        "x": 158,
+        "y": 261,
         "w": 19,
         "h": 30
       },
@@ -51108,8 +48330,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 285,
-        "y": 422,
+        "x": 137,
+        "y": 368,
         "w": 17,
         "h": 32
       },
@@ -51178,8 +48400,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 25,
-        "y": 864,
+        "x": 181,
+        "y": 261,
         "w": 19,
         "h": 30
       },
@@ -51248,8 +48470,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 254,
-        "y": 615,
+        "x": 400,
+        "y": 635,
         "w": 17,
         "h": 31
       },
@@ -51318,11 +48540,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 208,
-        "y": 615,
-        "w": 42,
-        "h": 45
+        "x": 721,
+        "y": 279,
+        "w": 45,
+        "h": 42
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_farm_wheel_base"
     },
@@ -51388,8 +48611,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 489,
+        "x": 307,
+        "y": 407,
         "w": 129,
         "h": 121
       },
@@ -51458,8 +48681,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 125,
-        "y": 195,
+        "x": 740,
+        "y": 592,
         "w": 25,
         "h": 16
       },
@@ -51528,8 +48751,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 154,
-        "y": 195,
+        "x": 347,
+        "y": 719,
         "w": 22,
         "h": 15
       },
@@ -51598,8 +48821,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 180,
-        "y": 195,
+        "x": 373,
+        "y": 736,
         "w": 21,
         "h": 15
       },
@@ -51668,8 +48891,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 484,
-        "y": 183,
+        "x": 373,
+        "y": 719,
         "w": 22,
         "h": 13
       },
@@ -51738,11 +48961,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 455,
-        "y": 183,
-        "w": 25,
-        "h": 13
+        "x": 88,
+        "y": 760,
+        "w": 13,
+        "h": 25
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_logging_saw_4"
     },
@@ -51808,11 +49032,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 317,
-        "y": 875,
-        "w": 28,
-        "h": 16
+        "x": 226,
+        "y": 261,
+        "w": 16,
+        "h": 28
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_logging_saw_5"
     },
@@ -51878,11 +49103,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 252,
-        "y": 875,
-        "w": 29,
-        "h": 17
+        "x": 400,
+        "y": 670,
+        "w": 17,
+        "h": 29
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_logging_saw_6"
     },
@@ -51948,8 +49174,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 285,
-        "y": 875,
+        "x": 738,
+        "y": 140,
         "w": 28,
         "h": 17
       },
@@ -52018,11 +49244,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 2,
-        "y": 354,
-        "w": 106,
-        "h": 131
+        "x": 307,
+        "y": 297,
+        "w": 131,
+        "h": 106
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_patrol_body"
     },
@@ -52088,11 +49315,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 388,
-        "y": 301,
-        "w": 29,
-        "h": 43
+        "x": 516,
+        "y": 549,
+        "w": 43,
+        "h": 29
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_patrol_lantern_0"
     },
@@ -52158,11 +49386,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 341,
-        "y": 551,
-        "w": 31,
-        "h": 45
+        "x": 721,
+        "y": 325,
+        "w": 45,
+        "h": 31
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_patrol_lantern_1"
     },
@@ -52228,11 +49457,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 388,
-        "y": 252,
-        "w": 31,
-        "h": 45
+        "x": 721,
+        "y": 360,
+        "w": 45,
+        "h": 31
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_patrol_lantern_2"
     },
@@ -52298,8 +49528,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 413,
-        "y": 584,
+        "x": 268,
+        "y": 410,
         "w": 32,
         "h": 46
       },
@@ -52368,11 +49598,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 384,
-        "y": 202,
-        "w": 31,
-        "h": 46
+        "x": 715,
+        "y": 105,
+        "w": 46,
+        "h": 31
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_patrol_lantern_4"
     },
@@ -52438,11 +49669,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 419,
-        "y": 202,
-        "w": 31,
-        "h": 45
+        "x": 721,
+        "y": 395,
+        "w": 45,
+        "h": 31
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_patrol_lantern_5"
     },
@@ -52508,8 +49740,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 348,
-        "y": 152,
+        "x": 268,
+        "y": 460,
         "w": 32,
         "h": 46
       },
@@ -52578,8 +49810,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 420,
-        "y": 152,
+        "x": 565,
+        "y": 217,
         "w": 31,
         "h": 45
       },
@@ -52648,8 +49880,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 433,
-        "y": 674,
+        "x": 696,
+        "y": 672,
         "w": 38,
         "h": 36
       },
@@ -52718,8 +49950,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 450,
-        "y": 510,
+        "x": 695,
+        "y": 712,
         "w": 37,
         "h": 37
       },
@@ -52788,11 +50020,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 408,
-        "y": 846,
-        "w": 36,
-        "h": 37
+        "x": 638,
+        "y": 713,
+        "w": 37,
+        "h": 36
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_patrol_streamer_2"
     },
@@ -52858,8 +50091,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 466,
-        "y": 428,
+        "x": 515,
+        "y": 673,
         "w": 37,
         "h": 37
       },
@@ -52928,8 +50161,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 449,
-        "y": 584,
+        "x": 653,
+        "y": 673,
         "w": 38,
         "h": 36
       },
@@ -52998,8 +50231,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 470,
-        "y": 714,
+        "x": 406,
+        "y": 173,
         "w": 34,
         "h": 34
       },
@@ -53068,11 +50301,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 371,
-        "y": 859,
-        "w": 32,
-        "h": 33
+        "x": 399,
+        "y": 711,
+        "w": 33,
+        "h": 32
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_patrol_streamer_6"
     },
@@ -53138,8 +50372,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 448,
-        "y": 846,
+        "x": 597,
+        "y": 715,
         "w": 34,
         "h": 34
       },
@@ -53208,8 +50442,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 237,
-        "y": 283,
+        "x": 111,
+        "y": 517,
         "w": 103,
         "h": 67
       },
@@ -53278,11 +50512,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 288,
-        "y": 152,
-        "w": 38,
-        "h": 39
+        "x": 2,
+        "y": 760,
+        "w": 39,
+        "h": 38
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_hearth_flame_0"
     },
@@ -53348,11 +50583,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 475,
-        "y": 2,
-        "w": 38,
-        "h": 41
+        "x": 354,
+        "y": 677,
+        "w": 41,
+        "h": 38
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_hearth_flame_1"
     },
@@ -53418,11 +50654,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 450,
-        "y": 52,
-        "w": 38,
-        "h": 42
+        "x": 354,
+        "y": 635,
+        "w": 42,
+        "h": 38
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_hearth_flame_2"
     },
@@ -53488,11 +50725,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 450,
-        "y": 98,
-        "w": 38,
-        "h": 41
+        "x": 258,
+        "y": 713,
+        "w": 41,
+        "h": 38
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_hearth_flame_3"
     },
@@ -53558,11 +50796,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 423,
-        "y": 251,
-        "w": 38,
-        "h": 39
+        "x": 45,
+        "y": 760,
+        "w": 39,
+        "h": 38
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_hearth_flame_4"
     },
@@ -53628,8 +50867,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 421,
-        "y": 346,
+        "x": 654,
+        "y": 632,
         "w": 38,
         "h": 37
       },
@@ -53698,8 +50937,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 433,
-        "y": 634,
+        "x": 696,
+        "y": 632,
         "w": 38,
         "h": 36
       },
@@ -53768,8 +51007,8 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 444,
-        "y": 387,
+        "x": 611,
+        "y": 634,
         "w": 38,
         "h": 37
       },
@@ -53838,11 +51077,12 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 454,
-        "y": 201,
-        "w": 38,
-        "h": 39
+        "x": 611,
+        "y": 592,
+        "w": 39,
+        "h": 38
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_hearth_flame_8"
     },
@@ -53908,13 +51148,1536 @@
       "reviewStatus": "visual_v11",
       "atlasPage": "buildings_0",
       "atlasRect": {
-        "x": 421,
-        "y": 301,
-        "w": 38,
-        "h": 41
+        "x": 208,
+        "y": 723,
+        "w": 41,
+        "h": 38
       },
+      "atlasRotated": true,
       "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
       "importedFrameId": "motion_hearth_flame_9"
+    },
+    {
+      "id": "cannon_masonry",
+      "label": "cannon_masonry",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_masonry.png",
+      "width": 194,
+      "height": 167,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_masonry.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 194,
+        "h": 167
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 194,
+        "h": 167
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_masonry.png",
+        "sourceHash": "35845b24f5295233d5489c16f5dbdc22a3e327fe7e5ed85076142dbbaa8616d4",
+        "outputHash": "35845b24f5295233d5489c16f5dbdc22a3e327fe7e5ed85076142dbbaa8616d4"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 55684,
+      "sha256": "a23634fe8f3355a4f60bf7efe8b1f10312c9ab75fc96d7daea8a31d7b7d2caea",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 194,
+        "h": 167
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 194,
+        "h": 167
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 246,
+        "y": 2,
+        "w": 194,
+        "h": 167
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_masonry"
+    },
+    {
+      "id": "cannon_flag_0",
+      "label": "cannon_flag_0",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_0.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_0.png",
+        "sourceHash": "6ebc852c07a01f567976c76b2f3db84e3e90316502f8c8a72e04f83d5cd7920b",
+        "outputHash": "6ebc852c07a01f567976c76b2f3db84e3e90316502f8c8a72e04f83d5cd7920b"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 12727,
+      "sha256": "6823a7a869f879b1c84cea6137403f6e91249fa7782a039b5ed958d23f4fc137",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 92,
+        "h": 77
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 92,
+        "h": 77
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 258,
+        "y": 632,
+        "w": 92,
+        "h": 77
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_flag_0"
+    },
+    {
+      "id": "cannon_flag_1",
+      "label": "cannon_flag_1",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_1.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_1.png",
+        "sourceHash": "2159d40396e00abe9c375ed4dfb50559f3f5de242a62af7653274e1202e7c83d",
+        "outputHash": "2159d40396e00abe9c375ed4dfb50559f3f5de242a62af7653274e1202e7c83d"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 12801,
+      "sha256": "0a181cdc82ee7c286364dae651de5446fa6dac79f38578b2d270e84628ee87bd",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 92,
+        "h": 77
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 92,
+        "h": 77
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 563,
+        "y": 430,
+        "w": 92,
+        "h": 77
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_flag_1"
+    },
+    {
+      "id": "cannon_flag_2",
+      "label": "cannon_flag_2",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_2.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_2.png",
+        "sourceHash": "f8af73bb7a42cb6214ff39dcd4b02bbb8c8fba81d1678739f84dfe9046c6da8b",
+        "outputHash": "f8af73bb7a42cb6214ff39dcd4b02bbb8c8fba81d1678739f84dfe9046c6da8b"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 12750,
+      "sha256": "b19aafe5f25d4bb762a65a982859aad83e9dcc06a21aed435110049335336f07",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 92,
+        "h": 77
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 92,
+        "h": 77
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 659,
+        "y": 430,
+        "w": 92,
+        "h": 77
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_flag_2"
+    },
+    {
+      "id": "cannon_flag_3",
+      "label": "cannon_flag_3",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_3.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_3.png",
+        "sourceHash": "24ea32f7f829dcd65d02e1adb514e142acccaef59cf76d27dc5a8ff2add1a346",
+        "outputHash": "24ea32f7f829dcd65d02e1adb514e142acccaef59cf76d27dc5a8ff2add1a346"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 12607,
+      "sha256": "3349ea50c3f92df43d1c29de696ac216f71855031397363a27e68fd7cb48e892",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 92,
+        "h": 77
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 92,
+        "h": 77
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 563,
+        "y": 511,
+        "w": 92,
+        "h": 77
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_flag_3"
+    },
+    {
+      "id": "cannon_flag_4",
+      "label": "cannon_flag_4",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_4.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_4.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_4.png",
+        "sourceHash": "f1320eeeb0020d2ca7164fc7b208f554c3498d76df89b6f9975e4c1f0efb2b12",
+        "outputHash": "f1320eeeb0020d2ca7164fc7b208f554c3498d76df89b6f9975e4c1f0efb2b12"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 12391,
+      "sha256": "9ac73f42d2ab7425ed2656c6c85f710d4ac4dd836e6c192bb56098b8ace63641",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 92,
+        "h": 77
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 92,
+        "h": 77
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 659,
+        "y": 511,
+        "w": 92,
+        "h": 77
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_flag_4"
+    },
+    {
+      "id": "cannon_flag_5",
+      "label": "cannon_flag_5",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_5.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_5.png",
+        "sourceHash": "4fc296a8787301fa3b7bc9796f73b518b0e1adb2cef8aa0ba022f934c722a6e4",
+        "outputHash": "4fc296a8787301fa3b7bc9796f73b518b0e1adb2cef8aa0ba022f934c722a6e4"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 12227,
+      "sha256": "be4bd4a5a6e4951dfb397f59afbff382e8fd03a343c7ecf1aa4a66ed60cf7b6a",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 92,
+        "h": 77
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 0
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 92,
+        "h": 77
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 421,
+        "y": 549,
+        "w": 91,
+        "h": 77
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_flag_5"
+    },
+    {
+      "id": "cannon_flag_6",
+      "label": "cannon_flag_6",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_6.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_6.png",
+        "sourceHash": "7aeeffd8402b256e14e07dfd08b919b0bc88ab9d41bddf46897b4dcad9bfa4d8",
+        "outputHash": "7aeeffd8402b256e14e07dfd08b919b0bc88ab9d41bddf46897b4dcad9bfa4d8"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 12264,
+      "sha256": "e14819f6122dbc3c9d4f6c332a57fc1e002e08e9b73b71decaf95965b49b5f44",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 92,
+        "h": 77
+      },
+      "trimOffset": {
+        "x": 2,
+        "y": 0
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 92,
+        "h": 77
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 421,
+        "y": 630,
+        "w": 90,
+        "h": 77
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_flag_6"
+    },
+    {
+      "id": "cannon_flag_7",
+      "label": "cannon_flag_7",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_7.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_7.png",
+        "sourceHash": "cc1bfb1ac50dd035f106c8cf93d5f6a1532e1db428a32321f76cd4a37a96c09c",
+        "outputHash": "cc1bfb1ac50dd035f106c8cf93d5f6a1532e1db428a32321f76cd4a37a96c09c"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 12519,
+      "sha256": "c24ff5152caff676a7419073bda25a6a3f55f88e02b11d00fbf03c26640a5474",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 92,
+        "h": 77
+      },
+      "trimOffset": {
+        "x": 1,
+        "y": 0
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 92,
+        "h": 77
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 516,
+        "y": 592,
+        "w": 91,
+        "h": 77
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_flag_7"
+    },
+    {
+      "id": "cannon_portrait",
+      "label": "cannon_portrait",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_portrait.png",
+      "width": 240,
+      "height": 255,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_portrait.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 240,
+        "h": 255
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 240,
+        "h": 255
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_portrait.png",
+        "sourceHash": "963b0c252fa7b07588355d3fe2a764d08756efb32de1d15b0153650d771d0278",
+        "outputHash": "963b0c252fa7b07588355d3fe2a764d08756efb32de1d15b0153650d771d0278"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 89287,
+      "sha256": "aac772a4c89bdab7c2e6dfbdda0442e53da4064a95924bac876f64ab67992289",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 240,
+        "h": 255
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 240,
+        "h": 255
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 2,
+        "y": 2,
+        "w": 240,
+        "h": 255
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_portrait"
+    },
+    {
+      "id": "cannon_rest",
+      "label": "cannon_rest",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_rest.png",
+      "width": 145,
+      "height": 111,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_rest.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 145,
+        "h": 111
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 145,
+        "h": 111
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_rest.png",
+        "sourceHash": "db6c57998b60df96b7833f2f69534e0caf0dd1fffd67510da5cf93c2d6fa21ca",
+        "outputHash": "db6c57998b60df96b7833f2f69534e0caf0dd1fffd67510da5cf93c2d6fa21ca"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 26804,
+      "sha256": "03665956b70c8a037a5ff0ebfebb8c336a5d466ed94c83dbd3a42a0a841bd369",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 145,
+        "h": 111
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "atlasTrim": false,
+      "displaySize": {
+        "w": 145,
+        "h": 111
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 158,
+        "y": 295,
+        "w": 145,
+        "h": 111
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_rest"
+    },
+    {
+      "id": "cannon_yaw_0",
+      "label": "cannon_yaw_0",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_0.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_0.png",
+        "sourceHash": "6b8cf9e60fd5f6269e3b3457d6ec4978f5d902d9a378192299faa39ee5f0762d",
+        "outputHash": "6b8cf9e60fd5f6269e3b3457d6ec4978f5d902d9a378192299faa39ee5f0762d"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 12428,
+      "sha256": "5890b1b34d634234b8eb9207315c330f56f10fedd3880965dd2172945b051b10",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 168,
+        "h": 163
+      },
+      "trimOffset": {
+        "x": 19,
+        "y": 57
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 168,
+        "h": 163
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 2,
+        "y": 480,
+        "w": 105,
+        "h": 76
+      },
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_yaw_0"
+    },
+    {
+      "id": "cannon_yaw_1",
+      "label": "cannon_yaw_1",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_1.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_1.png",
+        "sourceHash": "c011e88a487c10feaa8278516315ed8c2d1d41d002806a80dfa5f6cb9215715a",
+        "outputHash": "c011e88a487c10feaa8278516315ed8c2d1d41d002806a80dfa5f6cb9215715a"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 17623,
+      "sha256": "c84df0c4154bfe9a9cb33fc05c0b958c93b7d329a9a5fc0fc93ae050a09e1709",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 168,
+        "h": 163
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 57
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 168,
+        "h": 163
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 137,
+        "y": 410,
+        "w": 118,
+        "h": 103
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_yaw_1"
+    },
+    {
+      "id": "cannon_yaw_2",
+      "label": "cannon_yaw_2",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_2.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_2.png",
+        "sourceHash": "a071147f3666adff0c83b0829c0ae245439a94ea024d175b6cde727e847ab3fe",
+        "outputHash": "a071147f3666adff0c83b0829c0ae245439a94ea024d175b6cde727e847ab3fe"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 19363,
+      "sha256": "4080428b19fcfffc82118b9c523431ab57be925b470ea80b9e1a0b1ba09a3f54",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 168,
+        "h": 163
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 57
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 168,
+        "h": 163
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 2,
+        "y": 261,
+        "w": 152,
+        "h": 103
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_yaw_2"
+    },
+    {
+      "id": "cannon_yaw_3",
+      "label": "cannon_yaw_3",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_3.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_3.png",
+        "sourceHash": "fe7241a852122616d8241b1c98b6b0c115e0d88acf1fd8ff9332d8c78ae48fdd",
+        "outputHash": "fe7241a852122616d8241b1c98b6b0c115e0d88acf1fd8ff9332d8c78ae48fdd"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 18170,
+      "sha256": "6d0ed6b19613ae79cf26caca875ce5bff1f7117d4181265a424cef7ad446ac7a",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 168,
+        "h": 163
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 58
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 168,
+        "h": 163
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 614,
+        "y": 2,
+        "w": 97,
+        "h": 166
+      },
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_yaw_3"
+    },
+    {
+      "id": "cannon_yaw_4",
+      "label": "cannon_yaw_4",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_4.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_4.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_4.png",
+        "sourceHash": "adb2a65c69ba4efc4c4c1a7e035ace63d6798870878b6e6f44041d5a7ddc4b25",
+        "outputHash": "adb2a65c69ba4efc4c4c1a7e035ace63d6798870878b6e6f44041d5a7ddc4b25"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 15378,
+      "sha256": "52fb129e90bc75cfb044622c3b96e4fd9dfcea36a976a0c37b43aa813287f630",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 168,
+        "h": 163
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 44
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 168,
+        "h": 163
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 608,
+        "y": 172,
+        "w": 158,
+        "h": 103
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_yaw_4"
+    },
+    {
+      "id": "cannon_yaw_5",
+      "label": "cannon_yaw_5",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_5.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_5.png",
+        "sourceHash": "08384f5502fc720f60e912f5ffaf01c1483a505f6f4b462cc2c91e85c0a96bdd",
+        "outputHash": "08384f5502fc720f60e912f5ffaf01c1483a505f6f4b462cc2c91e85c0a96bdd"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 21026,
+      "sha256": "395f6c4d45af4797c8b8f75782eb981de06ae1af459db983d515e7bd01ab4801",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 168,
+        "h": 163
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 26
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 168,
+        "h": 163
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 444,
+        "y": 2,
+        "w": 166,
+        "h": 129
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_yaw_5"
+    },
+    {
+      "id": "cannon_yaw_6",
+      "label": "cannon_yaw_6",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_6.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_6.png",
+        "sourceHash": "7e85ab034bf6b76cde0e1e90d6e3fc91256c0118218fcb4997e788daef58c523",
+        "outputHash": "7e85ab034bf6b76cde0e1e90d6e3fc91256c0118218fcb4997e788daef58c523"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 21013,
+      "sha256": "f1f53e1a6318c3c32071c6f9d6f0b2b5589d3b5d32ebc2900f9c2cb8d2306916",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 168,
+        "h": 163
+      },
+      "trimOffset": {
+        "x": 0,
+        "y": 12
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 168,
+        "h": 163
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 565,
+        "y": 279,
+        "w": 152,
+        "h": 147
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_yaw_6"
+    },
+    {
+      "id": "cannon_yaw_7",
+      "label": "cannon_yaw_7",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_7.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_7.png",
+        "sourceHash": "d57cbc78b33b92aedf417a0a678af6545d4ba5f585a0026445b261783541316a",
+        "outputHash": "d57cbc78b33b92aedf417a0a678af6545d4ba5f585a0026445b261783541316a"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 19632,
+      "sha256": "dbb39a1eec14892136875c604e2aedb4c89a42d92f30ae609a17e52cb03f1263",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 168,
+        "h": 163
+      },
+      "trimOffset": {
+        "x": 9,
+        "y": 3
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 168,
+        "h": 163
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 246,
+        "y": 173,
+        "w": 156,
+        "h": 118
+      },
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_yaw_7"
+    },
+    {
+      "id": "cannon_yaw_8",
+      "label": "cannon_yaw_8",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_8.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_8.png",
+        "sourceHash": "b0fb91ab628a3b92dee62d61cdd13d34109ad33b4c81a35019ca554b0c8a6854",
+        "outputHash": "b0fb91ab628a3b92dee62d61cdd13d34109ad33b4c81a35019ca554b0c8a6854"
+      },
+      "atlasGroup": "buildings",
+      "bytes": 13188,
+      "sha256": "4791ff69e4b432eb68470b8c1d0d45b840b14048a0ea8d481a822354ce9758f1",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 168,
+        "h": 163
+      },
+      "trimOffset": {
+        "x": 19,
+        "y": 0
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 168,
+        "h": 163
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "buildings_0",
+      "atlasRect": {
+        "x": 406,
+        "y": 217,
+        "w": 155,
+        "h": 76
+      },
+      "atlasRotated": true,
+      "importedLayaAtlasPath": "assets/resources/gameplay/buildings/buildings_0.png",
+      "importedFrameId": "cannon_yaw_8"
+    },
+    {
+      "id": "cannon_ammo_stone",
+      "label": "cannon_ammo_stone",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/cannon_ammo_stone.png",
+      "width": 100,
+      "height": 100,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_ammo_stone.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "炮塔弹药图标",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_ammo_stone.png",
+        "sourceHash": "df9a11807e277a5b353e1fd5cfd69652a114d7f98cc9daa560226c9f3134e288",
+        "outputHash": "a1d5cadc896e9fd9286e39d46ecb89ecbc07a92f2724c80c00e19ba01fe0c506"
+      },
+      "atlasGroup": "ui",
+      "bytes": 724,
+      "sha256": "a1d5cadc896e9fd9286e39d46ecb89ecbc07a92f2724c80c00e19ba01fe0c506",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 100,
+        "h": 100
+      },
+      "trimOffset": {
+        "x": 10,
+        "y": 17
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 100,
+        "h": 100
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "ui_1",
+      "atlasRect": {
+        "x": 2,
+        "y": 2,
+        "w": 82,
+        "h": 71
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_1.png",
+      "importedFrameId": "cannon_ammo_stone"
+    },
+    {
+      "id": "cannon_ammo_arrow",
+      "label": "cannon_ammo_arrow",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/cannon_ammo_arrow.png",
+      "width": 100,
+      "height": 100,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_ammo_arrow.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "炮塔弹药图标",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_ammo_arrow.png",
+        "sourceHash": "29bfa847ffce25296d6604821c38d8e6cb8e704ff5729d0c1a84e6190c41614a",
+        "outputHash": "b284b804b9ad77ae47a07512cc810b519946ea1d21d99a78471fb06b93093633"
+      },
+      "atlasGroup": "ui",
+      "bytes": 774,
+      "sha256": "b284b804b9ad77ae47a07512cc810b519946ea1d21d99a78471fb06b93093633",
+      "alpha": "rgba",
+      "untrimmedSize": {
+        "w": 100,
+        "h": 100
+      },
+      "trimOffset": {
+        "x": 7,
+        "y": 10
+      },
+      "atlasTrim": true,
+      "displaySize": {
+        "w": 100,
+        "h": 100
+      },
+      "pivotUnit": "pixels in original source canvas, origin top-left",
+      "importStatus": "imported_via_atlas",
+      "reviewStatus": "visual_v11",
+      "atlasPage": "ui_0",
+      "atlasRect": {
+        "x": 903,
+        "y": 836,
+        "w": 83,
+        "h": 80
+      },
+      "importedLayaAtlasPath": "assets/resources/gameplay/ui/ui_0.png",
+      "importedFrameId": "cannon_ammo_arrow"
     }
   ],
   "audio": {
@@ -54051,9 +52814,28 @@
         "sourceBoundaryDifference": 0,
         "license": "Original score and synthesis; no third-party samples",
         "phoneListeningVerified": false
+      },
+      {
+        "title": "淡紫机关枪 · 开火",
+        "source": "source/audio/patrol_rapid_fire.score.json",
+        "generator": "tools/build-audio.py",
+        "runtimeFile": "audio/patrol_rapid_fire.mp3",
+        "packageFile": "patrol_rapid_fire.mp3",
+        "bundle": "battle",
+        "durationSeconds": 0.08498866213151927,
+        "sampleRate": 22050,
+        "channels": 1,
+        "bitrate": "32k",
+        "bytes": 854,
+        "sha256": "d2a2f0cbd0e97d6fd9a6c2cd197a126db92b76fdeea02a75e9afb21f7876a57a",
+        "sourceSha256": "870596f427fef6cea8b7130b1b21a01e490c3fc24840df955473244dbba49832",
+        "sourcePeak": 0.59,
+        "sourceBoundaryDifference": 0.000030517578125,
+        "license": "Original score and synthesis; no third-party samples",
+        "phoneListeningVerified": false
       }
     ],
-    "bytes": 170026
+    "bytes": 170880
   },
   "externalAssets": [],
   "engineImport": {

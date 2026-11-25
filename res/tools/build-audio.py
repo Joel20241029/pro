@@ -203,6 +203,7 @@ tracks = [build('village_loop', village_samples), build('battle_loop', battle_sa
 if tracks[-1]['bytes'] > 3_000:
     raise ValueError('Enemy defeat sound exceeded the approved 3 KB target')
 tracks.extend([build('patrol_flight', patrol_flight_samples), build('patrol_landing', patrol_landing_samples)])
+tracks.append(build('patrol_rapid_fire', patrol_landing_samples))
 if tracks[0]['bytes'] > 120_000:
     raise ValueError('Village music exceeded the approved 120 KB target')
 if sum(track['bytes'] for track in tracks[1:]) > 80_000:

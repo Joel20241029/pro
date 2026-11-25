@@ -1,4 +1,4 @@
-export type BuildingLook = "HOUSE" | "FARM" | "LOGGING" | "GATE" | "ARROW" | "STONE" | "SLOW" | "PATROL" | "HEARTH";
+export type BuildingLook = "HOUSE" | "FARM" | "LOGGING" | "GATE" | "CANNON" | "PATROL" | "HEARTH";
 /** 编辑器 Sprite 的已验证属性子集，转换器拒绝其余属性，运行时不猜测纹理或布局。 */
 export interface BuildingNode {
     name: string; frame?: string; clip?: "upgrade" | "attack"; children?: BuildingNode[];

@@ -36,7 +36,8 @@ export const TOWER_VIEW = {
     roadClearance: 38, upperLeftRoadClearance: 32, upperRightRoadClearance: 33, compactLowerLeftRoadClearance: 34,
     // 第五塔靠近内侧弯道，保留 25 像素草地余量，避免占地伸到土路。
     lowerRightRoadClearance: 25,
-    muzzle: { ARROW: { x: 92, y: 35 }, STONE: { x: 55, y: 59 }, SLOW: { x: 64, y: 32 } }
+    // 定稿炮管静止姿态，由 Weapon 与 Muzzle 相加，围绕足点放大 25%。
+    muzzle: { x: 64 + (70.16 + 31.36 - 64) * 1.25, y: 120 + (57.28 - 29.12 - 120) * 1.25 }
 } as const;
 /** 显示塔位沿用存档塔位编号。战斗索敌使用常规高度基准，短屏绘制按下方各档避让。 */
 export const TOWER_DISPLAY_PADS: readonly GroundPoint[] = PADS;

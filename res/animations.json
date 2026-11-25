@@ -1623,116 +1623,6 @@
       "trimPolicy": "atlas_trim_restore_source_canvas"
     },
     {
-      "id": "motion_arrow_attack",
-      "frameIds": [
-        "motion_arrow_attack_0",
-        "motion_arrow_attack_1",
-        "motion_arrow_attack_2",
-        "motion_arrow_attack_3",
-        "motion_arrow_attack_4",
-        "motion_arrow_attack_5",
-        "motion_arrow_attack_6",
-        "motion_arrow_attack_7"
-      ],
-      "frameCount": 8,
-      "fps": 18,
-      "loop": false,
-      "restFrame": "motion_arrow_attack_8",
-      "category": "building-parts",
-      "canvas": {
-        "w": 121,
-        "h": 95
-      },
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "clock": "battle_shot"
-    },
-    {
-      "id": "motion_stone_attack",
-      "frameIds": [
-        "motion_stone_attack_0",
-        "motion_stone_attack_1",
-        "motion_stone_attack_2",
-        "motion_stone_attack_3",
-        "motion_stone_attack_4",
-        "motion_stone_attack_5",
-        "motion_stone_attack_6",
-        "motion_stone_attack_7"
-      ],
-      "frameCount": 8,
-      "fps": 18,
-      "loop": false,
-      "restFrame": "motion_stone_attack_8",
-      "category": "building-parts",
-      "canvas": {
-        "w": 69,
-        "h": 61
-      },
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "clock": "battle_shot"
-    },
-    {
-      "id": "motion_slow_idle",
-      "frameIds": [
-        "motion_slow_idle_0",
-        "motion_slow_idle_1",
-        "motion_slow_idle_2",
-        "motion_slow_idle_3",
-        "motion_slow_idle_4",
-        "motion_slow_idle_5",
-        "motion_slow_idle_6",
-        "motion_slow_idle_7",
-        "motion_slow_idle_8",
-        "motion_slow_idle_9"
-      ],
-      "frameCount": 10,
-      "fps": 6,
-      "loop": true,
-      "restFrame": "motion_slow_idle_0",
-      "category": "building-parts",
-      "canvas": {
-        "w": 35,
-        "h": 56
-      },
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "clock": "scene_visual_or_battle"
-    },
-    {
-      "id": "motion_slow_attack",
-      "frameIds": [
-        "motion_slow_attack_0",
-        "motion_slow_attack_1",
-        "motion_slow_attack_2",
-        "motion_slow_attack_3",
-        "motion_slow_attack_4",
-        "motion_slow_attack_5",
-        "motion_slow_attack_6",
-        "motion_slow_attack_7"
-      ],
-      "frameCount": 8,
-      "fps": 18,
-      "loop": false,
-      "restFrame": "motion_slow_attack_8",
-      "category": "building-parts",
-      "canvas": {
-        "w": 86,
-        "h": 86
-      },
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "clock": "battle_shot"
-    },
-    {
       "id": "motion_gate_doors",
       "frameIds": [
         "motion_gate_doors_0",
@@ -1983,6 +1873,33 @@
         "y": 0
       },
       "clock": "scene_visual_or_battle"
+    },
+    {
+      "id": "cannon_flag",
+      "frameIds": [
+        "cannon_flag_0",
+        "cannon_flag_1",
+        "cannon_flag_2",
+        "cannon_flag_3",
+        "cannon_flag_4",
+        "cannon_flag_5",
+        "cannon_flag_6",
+        "cannon_flag_7"
+      ],
+      "frameCount": 8,
+      "fps": 6,
+      "loop": true,
+      "restFrame": "cannon_flag_0",
+      "category": "building-parts",
+      "canvas": {
+        "w": 92,
+        "h": 77
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "clock": "ambient"
     }
   ],
   "walkDirections": {

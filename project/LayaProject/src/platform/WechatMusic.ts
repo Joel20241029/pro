@@ -32,6 +32,7 @@ export class WechatMusic {
     private defeat: CombatAudio = { spec: MUSIC.defeat, context: null, lastAt: -Infinity };
     private flight: SoundCue = { spec: MUSIC.patrolFlight, context: null };
     private landing: CombatAudio = { spec: MUSIC.patrolLanding, context: null, lastAt: -Infinity };
+    private rapidFire: CombatAudio = { spec: MUSIC.rapidFire, context: null, lastAt: -Infinity };
     private flightPlaying = false;
     private battle = false;
     private enabled = false;
@@ -110,7 +111,9 @@ export class WechatMusic {
         try { this.tower.context?.stop(); } catch (error) { this.fail(error); }
         try { this.defeat.context?.stop(); } catch (error) { this.fail(error); }
         this.setPatrolFlight(false);
-        try { this.landing.context?.stop(); } catch (error) { this.fail(error); }
+        for (const cue of [this.landing, this.rapidFire]) {
+            try { cue.context?.stop(); } catch (error) { this.fail(error); }
+        }
     }
     towerShot() { if (this.battle) this.playCombatSound(this.tower); }
     /** 最后一发可以在 BGM 切回白天后才命中，仍随实际死亡开始播放。 */
@@ -125,6 +128,9 @@ export class WechatMusic {
                 if (this.flightPlaying) audio.play();
             } else this.flight.context?.stop();
         } catch (error) { this.fail(error); }
+    }
+    patrolRapidFire() {
+        this.playCombatSound(this.rapidFire);
     }
     patrolLanding() {
         this.setPatrolFlight(false);
@@ -149,9 +155,9 @@ export class WechatMusic {
         } catch (error) { this.fail(error); }
     }
     private releaseAudio() {
-        const contexts = [this.audio, this.clickAudio, this.tower.context, this.defeat.context, this.flight.context, this.landing.context];
+        const contexts = [this.audio, this.clickAudio, this.tower.context, this.defeat.context, this.flight.context, this.landing.context, this.rapidFire.context];
         // 先解除引用，销毁过程中及之后的错误都不能影响当前状态。
-        this.audio = this.clickAudio = this.tower.context = this.defeat.context = this.flight.context = this.landing.context = null;
+        this.audio = this.clickAudio = this.tower.context = this.defeat.context = this.flight.context = this.landing.context = this.rapidFire.context = null;
         this.flightPlaying = false;
         let failure: { error: unknown } | null = null;
         for (const audio of contexts) {

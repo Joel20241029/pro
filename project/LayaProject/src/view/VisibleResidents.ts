@@ -5,7 +5,7 @@ import { GameState, Person, Tower } from "../game/GameState";
  */
 export const RESIDENT_DISPLAY = { limit: 20, farmers: 6, loggers: 4 } as const;
 
-/** 稳定选取地图演员，不复制或改写村民数据；照料对子和正在庆祝的夫妻作为整体选择。 */
+/** 稳定选取地图演员，不复制或改写村民数据；正在庆祝的夫妻作为整体选择。 */
 export class VisibleResidents {
     private run: number | null = null;
     private selected: string[] = [];
@@ -20,7 +20,6 @@ export class VisibleResidents {
             for (const id of ids) for (const member of groups.get(id) || []) united.add(member);
             for (const id of united) groups.set(id, united);
         };
-        for (const p of state.people) if (p.careChild) join([p.id, p.careChild]);
         const newcomers = fresh ? [] : state.families.filter(f => !this.families.has(f.id)).reduce<string[]>((ids, f) => ids.concat(f.partners), []);
         for (const f of state.families) if (f.partners.some(id => celebrating.includes(id) || newcomers.includes(id))) join(f.partners);
         this.families = new Set(state.families.map(f => f.id));

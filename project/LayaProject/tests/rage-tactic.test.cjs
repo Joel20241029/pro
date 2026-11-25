@@ -23,7 +23,7 @@ function battle(kind = 'ARROW', tactic = RAGE_TACTIC) {
     const s = learned(); s.food = 100; s.policy = null; s.tactics.equipped = tactic;
     applyCommand(s, { type: 'NIGHT' }); const b = new BattleSimulation(s);
     b.base.towers.forEach((t, i) => { t.kind = i === 0 ? kind : null; t.level = 1; t.operator = i === 0 ? s.people[0].id : null; });
-    const operator = b.base.people[0]; operator.trait = 'trait_fertile'; operator.skill = null; operator.quality = "COMMON";
+    const operator = b.base.people[0]; operator.traits = ['trait_frugal']; operator.quality = "COMMON";
     b.cursor = b.base.wave.entries.length; b.enemies = [enemy(0)]; return b;
 }
 test('rage learns at ten current-village wins with one exact 45 wood + 20 food debit', () => {
@@ -40,17 +40,16 @@ test('rage learns at ten current-village wins with one exact 45 wood + 20 food d
     applyCommand(s, { type: 'TACTIC_EQUIP', id: DEFAULT_TACTIC }); applyCommand(s, { type: 'TACTIC_EQUIP', id: RAGE_TACTIC });
     assert.deepEqual([s.wood, s.food], [0, 0]);
 });
-test('three tower damage paths use rage before armor and final rounding, with no extra frost splash damage', () => {
-    // Explicit expected lvl1 damage, no trait/policy/elite: unarmored then armor .4; stone retains half-armor rule.
-    for (const [kind, normal, boosted, armorNormal, armorBoosted] of [['ARROW',12,18,7,10], ['STONE',22,33,17,26], ['SLOW',4,6,2,3]]) {
-        for (const [armored, expected] of [[false,[normal,boosted]], [true,[armorNormal,armorBoosted]]]) {
+test('three tower damage paths use rage before final rounding across enemy kinds, with no extra frost splash damage', () => {
+    for (const [kind, normal, boosted] of [['ARROW',12,18], ['STONE',22,33], ['SLOW',4,6]]) {
+        for (const targetKind of ['enemy_raider','enemy_armored','enemy_commander']) {
             for (const active of [false,true]) {
                 // 两个靶子放在同一条路带，保持这个用例专门覆盖近邻溅射。
-                const b = battle(kind); b.enemies = [enemy(0, armored ? 'enemy_armored' : 'enemy_raider'), enemy(3, armored ? 'enemy_armored' : 'enemy_raider')];
+                const b = battle(kind); b.enemies = [enemy(0, targetKind), enemy(3, targetKind)];
                 if (active) b.bell(); b.step();
                 const event = b.feedback.find(e => e.type === 'shot'); assert(event);
                 assert.equal(event.shot.empowered, active); assert.equal(event.hurt.length, kind === 'STONE' ? 2 : 1);
-                for (const victim of event.hurt) assert.equal(100000 - victim.hp, expected[+active], kind);
+                for (const victim of event.hurt) assert.equal(100000 - victim.hp, active ? boosted : normal, kind);
                 if (kind === 'SLOW') {
                     const neighbor = b.enemies.find(e => e.seq !== event.target);
                     assert.equal(neighbor.hp, 100000); assert.equal(neighbor.slow, .3); assert.equal(neighbor.slowTicks, RULE.slowTicks);
@@ -73,11 +72,11 @@ test('rage preserves firing schedule; heart still speeds attacks without increas
     assert.equal(plain.enemies[0].hp, heart.enemies[0].hp); assert.equal(heart.shots[0].empowered, false);
 });
 test('rage multiplies accumulated bonuses and keeps the last active attack snapshot after expiry', () => {
-    const b = battle('STONE'); b.base.people[0].quality = "ELITE"; b.base.people[0].trait = 'trait_strong';
-    b.base.people[0].skill = 'skill_throwing'; b.base.policy = 'policy_stones';
+    const b = battle('STONE'); b.base.people[0].quality = "ELITE"; b.base.people[0].traits = ['trait_strong'];
+    b.base.policy = 'policy_prepare';
     b.bell(); b.bellTicks = 1; b.step();
-    // 22 * (1 + .2 + .25 + .25) * 1.25 elite * 1.5 rage = 70.125 => 70.
-    assert.equal(100000 - b.enemies[0].hp, 70); assert.equal(b.bellTicks, 0); assert(b.shots[0].empowered);
+    // 22 × (1 + .45 strong + .10 prepare) × 1.25 elite × 1.5 rage is floored to 63.
+    assert.equal(100000 - b.enemies[0].hp, 63); assert.equal(b.bellTicks, 0); assert(b.shots[0].empowered);
     const boosted = b.shots[0]; b.charge[0] = 1; b.step(); assert.equal(b.shots.at(-1).empowered, false); assert(boosted.empowered);
 });
 test('boosted impact remains visible across a full 3x catch-up, freezes on pause and is removed once', () => {

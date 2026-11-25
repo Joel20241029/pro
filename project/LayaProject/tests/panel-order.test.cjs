@@ -1,7 +1,7 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),path=require('node:path');
 const root=process.env.DAIDAI_TEST_BUILD;
 const {orderPanelRows}=require(path.join(root,'view/panels/PanelListOrder'));
-const {personNeedsAttention,actionHints}=require(path.join(root,'view/ActionHints'));
+const {actionHints}=require(path.join(root,'view/ActionHints'));
 const {createGame}=require(path.join(root,'game/VillageRules'));
 test('entry sorting is stable, refresh uses fresh rows without moving them, reopening recomputes',()=>{
  const p={type:'build',scroll:80},rows=[{id:'farm',ready:false,value:1},{id:'house',ready:true,value:1},{id:'gate',ready:true,value:1}];
@@ -16,10 +16,9 @@ test('added and removed IDs do not move surviving rows or select stale objects',
  sort([{id:'a',ready:false},{id:'b',ready:true}]);
  const live={id:'a',ready:true};assert.deepEqual(sort([live,{id:'c',ready:true}]).map(r=>r.id),['a','c']);assert.equal(sort([live])[0],live);
 });
-test('people priorities lead to adults who can act, not an uncared child with no action button',()=>{
- const s=createGame(9),child={...s.people[0],id:'test-child',adult:false,job:'WAITING',nights:0,careChild:null};
- s.people[0].job='WAITING';assert(!s.people.some(p=>personNeedsAttention(s,p)));
- s.people.unshift(child);
- const eligible=s.people.filter(p=>personNeedsAttention(s,p));assert(eligible.length);assert(!eligible.includes(child));assert(eligible.every(p=>p.adult&&p.nights>0&&p.job!=='CARE'));assert(actionHints(s,false).people);
- s.phase='NIGHT';assert(!s.people.some(p=>personNeedsAttention(s,p)));
+test('children growing naturally cause no staffing alert in either phase',()=>{
+ const s=createGame(9);
+ s.people.unshift({...s.people[0],id:'test-child',adult:false,job:'WAITING',nights:0});
+ assert.equal(actionHints(s,false).people,false);
+ s.phase='NIGHT';assert.equal(actionHints(s,false).people,false);
 });

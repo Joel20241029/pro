@@ -6,7 +6,7 @@ import { PATH_LENGTH, RoadPoint } from "./BattleRoad";
 import { GameState } from "./GameState";
 import { patrolCaptain, patrolSpinStats, patrolStats } from "./PatrolRules";
 import { EnemyRoadStep, lanePoint, SummonCollision } from "./SummonCharge";
-import { PatrolRapid } from "./PatrolRapid";
+import { PatrolRapid, patrolReloadSeconds } from "./PatrolRapid";
 import { PatrolSpin } from "./PatrolSpin";
 import type { Enemy } from "./BattleSimulation";
 
@@ -33,7 +33,7 @@ export class Patrol {
         const rapid = state.night?.patrolMode === PATROL_MODE.rapid;
         this.stats = state.night?.patrolSpin || rapid ? patrolSpinStats(state.patrol.level, captain, state.night?.patrolRation)
             : patrolStats(state.patrol.level, captain, this.squad);
-        this.rapid = rapid ? new PatrolRapid(this.stats.damage, state.patrol.level) : null;
+        this.rapid = rapid ? new PatrolRapid(this.stats.damage, state.patrol.level, patrolReloadSeconds(captain)) : null;
         this.spin = state.night?.patrolSpin ? new PatrolSpin(this.stats, state.night.patrolWideImpact) : null;
     }
 
@@ -96,7 +96,7 @@ export class Patrol {
                 continue;
             }
             const enemy = contact.enemy;
-            enemy.hp -= Math.max(1, Math.floor(this.stats.damage * (1 - ENEMIES[enemy.kind].armor)));
+            enemy.hp -= Math.max(1, Math.floor(this.stats.damage));
             if (enemy.hp <= 0) this.kills++;
             hits.push({ enemy: { ...enemy }, index: unit.index, at: this.squad ? contact.at : unit.at,
                 dx: unit.at.x - from.x, dy: unit.at.y - from.y });

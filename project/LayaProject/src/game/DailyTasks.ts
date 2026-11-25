@@ -6,7 +6,7 @@ import { DailyTaskCombat } from "./DailyTaskCombat";
 import { activeDailyTasks, DailyTask } from "./DailyTaskState";
 import { ENEMIES, RULE, TOWERS } from "./GameConfig";
 import { clone, GameState, isWorkingAdult } from "./GameState";
-import { gateCapacity, laborSlots, repairCost, residentialCost, upgradeCost, upgradeUnavailableReason, UpgradeCost } from "./Growth";
+import { gateCapacity, repairCost, residentialCost, residentialUpgradeReason, upgradeCost, upgradeUnavailableReason, UpgradeCost } from "./Growth";
 import { SeededRandom } from "./SeededRandom";
 import { birthUnavailableReason, canMarry, economy } from "./VillageQueries";
 import { applyCommand, Command } from "./VillageRules";
@@ -102,18 +102,11 @@ export function prepareDailyTasks(s: GameState, date: string) {
     affordable(3, "loggingUpgrade", upgradeCost("LOGGING", s.logging));
     affordable(3, "gateUpgrade", upgradeCost("GATE", s.gateLevel));
     if (s.gate < gateCapacity(s)) affordable(3, "repair", { wood: repairCost(s), food: 0 });
-    if (s.houses < RULE.houseMax) affordable(4, "houseBuild", residentialCost(s.houses));
-    affordable(4, "housingUpgrade", upgradeCost("HOUSING", s.housing));
+    if (residentialUpgradeReason(s) === null) count(4, "houseBuild", 1, { cost: residentialCost(s.houses) });
     const unpaired = adults.filter(p => !s.families.some(f => f.partners.includes(p.id)));
     one(4, "marriage", Number.isSafeInteger(s.nextFamily + 1) && unpaired.some(a => unpaired.some(b => canMarry(s, a, b))));
     if (Number.isSafeInteger(s.nextPerson + 1) && s.families.some(f => birthUnavailableReason(s, f.id) === null))
         affordable(4, "child", { food: RULE.birthCost, wood: 0 });
-    one(4, "worker", adults.some(p => p.job === "WAITING") &&
-        (adults.filter(p => p.job === "FARM").length < laborSlots("FARM", s.farm) ||
-            adults.filter(p => p.job === "LOGGING").length < laborSlots("LOGGING", s.logging)));
-    one(4, "operator", s.towers.some(t => t.kind && !t.operator) &&
-        adults.some(p => !s.towers.some(t => t.operator === p.id)));
-
     const chosen: Candidate[] = [];
     // Shuffle the eligible themes, with the normal one-wave objective guaranteed when a win is feasible.
     if (wins) {
@@ -157,7 +150,7 @@ function credit(s: GameState, date: string, amount: (task: DailyTask) => number)
 export function creditTaskCommand(before: GameState, after: GameState, c: Command, date: string) {
     if (before.phase !== "DAY" || !activeDailyTasks(after, date)) return;
     const building = { FARM: "farmUpgrade", LOGGING: "loggingUpgrade", GATE: "gateUpgrade",
-        HOUSE: "houseBuild", HOUSING: "housingUpgrade" } as const;
+        HOUSE: "houseBuild" } as const;
     switch (c.type) {
         case "NIGHT": {
             const e = economy(before);

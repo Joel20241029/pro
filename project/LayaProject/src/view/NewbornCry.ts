@@ -1,6 +1,6 @@
 import { Person } from "../game/GameState";
 
-/** 出生阶段的一条纯视觉提示。时长和间隔使用白天场景秒，不改变成长或照料。 */
+/** 出生阶段的一条纯视觉提示。时长和间隔使用白天场景秒，不改变成长。 */
 export const CRY = { delayAfterBirth: .35, firstRepeat: 14, repeat: 18, duration: 1.5, size: 51 } as const;
 
 export class NewbornCry {

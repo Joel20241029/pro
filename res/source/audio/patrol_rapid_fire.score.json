@@ -1,0 +1,24 @@
+{
+  "title": "淡紫机关枪 · 开火",
+  "authorship": "Original synthesized short cartoon launcher pop.",
+  "sampleRate": 22050,
+  "durationSeconds": 0.085,
+  "mp3Bitrate": "32k",
+  "synthesis": {
+    "bodyHz": 328,
+    "dropHz": 540,
+    "pitchDecaySeconds": 0.009,
+    "bodyDecaySeconds": 0.018,
+    "soleRatio": 2.19,
+    "soleGain": 0.41,
+    "soleDecaySeconds": 0.009,
+    "grainGain": 1.32,
+    "grainSmoothing": 0.82,
+    "grainDecaySeconds": 0.011,
+    "noiseSeed": 10802,
+    "attackSeconds": 0.003,
+    "releaseSeconds": 0.012,
+    "peak": 0.59
+  },
+  "bundle": "battle"
+}

@@ -380,7 +380,7 @@ export class VillageWorld {
         }
         for (const p of this.props) {
             if (DAY_ONLY_PROPS.has(p.id)) p.node.visible = !night;
-            let kind: BuildingLook | null = null, level = 0, rooms = 1, damaged = false, facing = 1;
+            let kind: BuildingLook | null = null, level = 0, damaged = false, facing = 1;
             if (p.id === PATROL_PROP) {
                 kind = "PATROL";
                 level = s.patrol.level;
@@ -419,13 +419,12 @@ export class VillageWorld {
                 const scale = this.scene.towerScale * (t.kind ? 1 : TOWER_VIEW.emptyScale);
                 p.node.scale(scale, scale);
                 facing = TOWER_VIEW.facing[index];
-                kind = t.kind;
+                kind = t.kind ? "CANNON" : null;
                 level = t.level;
             }
             else if (p.id.startsWith("building:house-")) {
                 kind = "HOUSE";
-                level = s.housing;
-                rooms = s.houses;
+                level = s.houses;
             }
             else if (p.id === "building:farm") {
                 kind = "FARM";
@@ -435,7 +434,7 @@ export class VillageWorld {
                 kind = "LOGGING";
                 level = s.logging;
             }
-            p.visual?.sync(kind, level, this.freshBuildingVillage, rooms, damaged, facing, kind === "HOUSE" ? s.houses : 0);
+            p.visual?.sync(kind, level, this.freshBuildingVillage, damaged, facing);
             if (!panelOpen && !this.game.pauses.size) p.visual?.beginVisibleUpgrade();
             if (HOUSE_TIP_NAMES[p.id]) {
                 const { node, bounds } = p.visual!.bodyRegion();
@@ -452,7 +451,7 @@ export class VillageWorld {
         }
         for (const p of this.props)
             if (p.id.startsWith("tower:"))
-                p.visual!.updateAttack(presentation, Number(p.id.split(":")[1]), this.feedback.shots.keys(), this.feedback.presentationTick * RULE.step);
+                p.visual!.updateAttack(presentation, Number(p.id.split(":")[1]), this.feedback.shots.keys(), this.feedback.presentationTick * RULE.step, y => this.layout.worldY(y));
         this.projectiles.update(presentation, this.layout, this.scene.pads, index => this.props.find(p => p.id === `tower:${index}`)!.visual!.launchPoint(), this.feedback, enemy => enemyImpactLift(this.art, enemy));
         if (this.feedback.takeDefeatCue() && !this.game.pauses.size) this.playDefeat?.();
         this.freshBuildingVillage = false;

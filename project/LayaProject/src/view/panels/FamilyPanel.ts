@@ -34,7 +34,7 @@ function drawPartners(ctx: PanelContext, card: Laya.Sprite, s: GameState, family
 export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
     const tab = p.tab === 1 ? 1 : 0, nurture = tab === 1, blocked = actionHintsBlocked(ctx.game);
     const hints = familyActionHints(s, blocked);
-    const help = nurture ? `双亲需未退休，并且各自还能劳作至少 ${RULE.parentMinNights} 夜。已有孩子须先成年。选好照料者后，照料并守住 ${RULE.growNights} 夜可让孩子成年。`
+    const help = nurture ? `双亲需未退休，村中有空床位。同一家庭两次迎接孩子须间隔 ${RULE.birthCooldown} 次守夜胜利。孩子随村成长，守住 ${RULE.growNights} 夜可让孩子成年。`
         : "成家需要成年、未退休、没有配偶的一男一女。直系亲属和兄弟姐妹不能成家。";
     const box = ctx.modal("家庭与养育", "", true, undefined, help), tabs = FAMILY_UI.tabs, tabWidth = (UI.contentWidth - tabs.gap) / 2;
     ([["成家", "icon_heart", hints.marriage], ["养育", "icon_baby", hints.nurture]] as const).forEach(([title, icon, ready], i) => {
@@ -49,7 +49,7 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
         if (ready && i !== tab) ctx.ui.actionBadge(button, "FamilyTabActionHint");
     });
 
-    const subtitle = nurture ? "已成家的村民可以迎接孩子，并安排照料。" : hints.marriage ? "为成年、未退休的单身男女安排成家。"
+    const subtitle = nurture ? "已成家的村民可以迎接孩子。" : hints.marriage ? "为成年、未退休的单身男女安排成家。"
         : s.phase !== "DAY" ? "白天可安排成家" : !Number.isSafeInteger(s.nextFamily + 1) ? "家庭编号已达安全范围" : "暂无可成家的单身男女";
     ctx.ui.label(box, subtitle, UI.inset, !nurture && !hints.marriage ? 214 : 195, UI.contentWidth, 27, C.muted, false, 40).align = "center";
     if (nurture) {
@@ -93,20 +93,19 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: Panel) {
         drawPartners(ctx, card, s, family, cardWidth);
         if (!nurture) return;
         const child = s.people.find(q => !q.adult && q.parents.some(id => family.partners.includes(id)));
-        const carer = child && s.people.find(q => q.careChild === child.id);
         const childPortrait = 70;
         ctx.ui.image(card, child ? ctx.art.portraitId(child) : "icon_baby", (cardWidth - childPortrait) / 2, 174, childPortrait);
         const childText = ctx.ui.label(card, child ? `${coloredName(child)} · 成长 ${child.growth}/${RULE.growNights}` : "本户暂无未成年孩子",
             24, 246, cardWidth - 48, 26, C.ink, true, 37);
         childText.align = "center"; childText.wordWrap = false; childText.overflow = Laya.Text.SHRINK;
         if (child) {
-            const caregiver = ctx.ui.label(card, carer ? `${carer.name}正在照料` : "无人照料，成长暂停", 24, 283, cardWidth - 48, 26, C.muted, false, 37);
+            const caregiver = ctx.ui.label(card, "每守住一夜，成长一步", 24, 283, cardWidth - 48, 26, C.muted, false, 37);
             caregiver.align = "center"; caregiver.wordWrap = false; caregiver.overflow = Laya.Text.SHRINK;
         }
         const reason = birthUnavailableReason(s, family.id) ?? (Number.isSafeInteger(s.nextPerson + 1) ? null : "人口编号已达安全范围");
         const available = reason === null && !blocked;
-        const note = ctx.ui.label(card, reason ? reasonBesideCost(reason) ?? "费用不足，缺口见上方" : "选定照料者后迎接孩子", 24, 320, cardWidth - 48, 25, reason ? C.muted : C.green, false, 40);
+        const note = ctx.ui.label(card, reason ? reasonBesideCost(reason) ?? "费用不足，缺口见上方" : "孩子将在守夜后自然成长", 24, 320, cardWidth - 48, 25, reason ? C.muted : C.green, false, 40);
         note.align = "center"; note.wordWrap = false; note.overflow = Laya.Text.SHRINK;
-        ctx.ui.button(card, available ? "迎接孩子" : "暂不可迎接", (cardWidth - 238) / 2, 368, 238, () => ctx.open({ type: "carers", id: family.id }), C.green, 56, available);
+        ctx.ui.button(card, available ? "迎接孩子" : "暂不可迎接", (cardWidth - 238) / 2, 368, 238, () => ctx.send({ type: "BIRTH", family: family.id }), C.green, 56, available);
     });
 }

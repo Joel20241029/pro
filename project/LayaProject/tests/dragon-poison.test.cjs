@@ -78,7 +78,7 @@ test('all enemies infect on cast or spawn and take six one-second poison ticks f
     assert.deepEqual([small.hp, boss.hp, newEnemy.hp], [760, 910, initialHp - newEnemyDamage * 5]);
     assert(!b.isPoisoned(small.seq));
     assert(b.isPoisoned(newEnemy.seq));
-    assert.equal(b.cooldownFor(DEFAULT_TACTIC), TACTIC_USE.recoveryTicks);
+    assert.equal(b.cooldownFor(DEFAULT_TACTIC), 0);
     stepUntil(b, 125);
     assert.equal(newEnemy.hp, initialHp - newEnemyDamage * 6);
     assert(!b.isPoisoned(newEnemy.seq));
@@ -87,7 +87,7 @@ test('all enemies infect on cast or spawn and take six one-second poison ticks f
 
 test('late spawns and summoned children are poisoned after all early poison expires and during another tactic', () => {
     const b = battle(), opening = enemy(10, 'enemy_raider', 1000);
-    const ready = tacticDefinition(DRAGON_POISON_TACTIC).ticks + TACTIC_USE.recoveryTicks;
+    const ready = tacticDefinition(DRAGON_POISON_TACTIC).ticks;
     b.base.wave.entries = [{ tick: ready + 10, kind: 'enemy_chief', appearanceSeed: 7 }];
     b.enemies = [opening];
     assert(b.bell(DRAGON_POISON_TACTIC));

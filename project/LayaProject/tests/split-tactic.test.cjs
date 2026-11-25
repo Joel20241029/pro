@@ -26,7 +26,7 @@ function battle(kind = 'ARROW', active = true) {
     const s = learned(); s.food = 100; s.policy = null; applyCommand(s, { type: 'NIGHT' });
     const b = new BattleSimulation(s);
     b.base.towers.forEach((t, i) => { t.kind = i === 0 ? kind : null; t.level = 1; t.operator = i === 0 ? s.people[0].id : null; });
-    for (const p of b.base.people) { p.trait = 'trait_fertile'; p.skill = null; p.quality = "COMMON"; }
+    for (const p of b.base.people) { p.traits = ['trait_frugal']; p.quality = "COMMON"; }
     b.cursor = b.base.wave.entries.length; b.enemies = [enemy(0), enemy(1), enemy(2)];
     if (active) b.bell(); return b;
 }
@@ -64,9 +64,9 @@ for (const kind of ['ARROW', 'STONE', 'SLOW']) test(`${kind}: zero to five candi
     assert.deepEqual(shots(b).map(e => e.target), [4, 5, 6]);
 });
 
-test('split leaves single-shot damage, armor and elite bonuses unchanged for all three towers', () => {
-    for (const [kind, normal, armored, elite] of [['ARROW', 12, 7, 15], ['STONE', 22, 17, 27], ['SLOW', 4, 2, 5]]) {
-        for (const [enemyKind, isElite, damage] of [['enemy_raider', false, normal], ['enemy_armored', false, armored], ['enemy_raider', true, elite]]) {
+test('split leaves single-shot damage and elite bonuses unchanged for all three towers', () => {
+    for (const [kind, normal, elite] of [['ARROW', 12, 15], ['STONE', 22, 27], ['SLOW', 4, 5]]) {
+        for (const [enemyKind, isElite, damage] of [['enemy_raider', false, normal], ['enemy_armored', false, normal], ['enemy_raider', true, elite]]) {
             const b = battle(kind); b.base.people[0].quality = isElite ? "ELITE" : "COMMON";
             b.enemies = [0, 1, 2].map(i => enemy(i, 260 - i, 100000, enemyKind)); b.step();
             assert.equal(shots(b).length, 3);
@@ -155,9 +155,8 @@ test('cadence is identical to uncast attacks; final active step fires three then
 test('max catch-up preserves all volley events and normal four-tower load fits the existing visual pool', () => {
     for (const kind of ['ARROW', 'STONE', 'SLOW']) {
         const b = battle(kind), f = new CombatPresentation(), p = new ProjectileMotion();
-        b.base.policy = 'policy_arrows';
         b.base.towers.forEach((t, i) => { t.kind = kind; t.operator = b.base.people[i].id; });
-        b.base.people.forEach(v => v.trait = 'trait_focused');
+        b.base.people.forEach(v => v.traits = ['trait_nimble']);
         b.enemies = Array.from({ length: 36 }, (_, i) => enemy(i, 140 + i * 14, 10000000));
         let maxPoses = 0, launched = 0, arrived = 0, forcedDiscard = 0;
         const discard = f.discard.bind(f); f.discard = shot => { if (!p.poses.find(v => v.shot === shot).impacted) forcedDiscard++; discard(shot); };

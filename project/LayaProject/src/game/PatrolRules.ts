@@ -17,8 +17,8 @@ export function patrolUpgradeReason(s: GameState) {
 /** 队长选择、建筑预览与战斗使用同一取整，间隔对齐实际固定步。 */
 export function patrolStats(level: number, captain?: Person, squad = true) {
     const quality = captain?.quality ?? "COMMON";
-    const strength = captain?.trait === "trait_strong" ? PATROL.strongBonus : 0;
-    const haste = PATROL.qualityHaste[quality] + (captain?.trait === "trait_nimble" ? PATROL.nimbleBonus : 0);
+    const strength = captain?.traits.includes("trait_strong") ? PATROL.strongBonus : 0;
+    const haste = PATROL.qualityHaste[quality] + (captain?.traits.includes("trait_nimble") ? PATROL.nimbleBonus : 0);
     const perPerson = squad ? PATROL.squad.damage : PATROL.legacy.damage;
     const interval = squad ? PATROL.interval : PATROL.interval - PATROL.legacy.perLevel * (level - 1);
     const ticks = Math.round(Math.max(PATROL.minimum, interval * (1 - haste)) / RULE.step);
@@ -34,8 +34,8 @@ export function patrolCaptain(s: GameState) {
 
 export function patrolSpinStats(level: number, captain?: Person, ration = false): ReturnType<typeof patrolStats> {
     const quality = captain?.quality ?? "COMMON", spec = PATROL.spin, n = level - 1;
-    const strength = captain?.trait === "trait_strong" ? PATROL.strongBonus : 0;
-    const haste = PATROL.qualityHaste[quality] + (captain?.trait === "trait_nimble" ? PATROL.nimbleBonus : 0);
+    const strength = captain?.traits.includes("trait_strong") ? PATROL.strongBonus : 0;
+    const haste = PATROL.qualityHaste[quality] + (captain?.traits.includes("trait_nimble") ? PATROL.nimbleBonus : 0);
     const reserve = spec.interval - spec.intervalFloor;
     const interval = (spec.intervalFloor + reserve / (1 + spec.intervalGrowth * n)) * (1 - haste);
     const ticks = Math.round(Math.max(spec.minimum, interval) / RULE.step);

@@ -1,12 +1,12 @@
 import { BattleSimulation, CombatFeedback } from "./BattleSimulation";
-import { clone, GameState, isWorkingAdult } from "./GameState";
+import { clone, GameState, isWorkingAdult, ownsTowerAmmo } from "./GameState";
 import { RULE } from "./GameConfig";
 import { applyCommand, Command, createGame, finishNight } from "./VillageRules";
 import { LoadResult, SaveMode, SaveStore } from "../storage/SaveStore";
 import { DeviceSettings } from "../storage/DeviceSettings";
 import { BackpackChange, VillageItemStorage } from "../storage/VillageItemStorage";
 import { VillageGuides } from "../storage/VillageGuides";
-import { ItemId, ITEMS, LIANG_ESSENCE, LIANG_INDULGENCE, PatrolItemId } from "../config/ShopConfig";
+import { ICE_AMMO_OFFER, ItemId, ITEMS, LIANG_ESSENCE, LIANG_INDULGENCE, PatrolItemId } from "../config/ShopConfig";
 import { essenceTargets, patrolItemUnavailable, shopOffer } from "./ShopRules";
 import { dailyRationAmount, localRationDate } from "./DailyRation";
 import { BLAST_TACTIC, KING_MERCY, KING_MERCY_TACTIC } from "../config/TacticConfig";
@@ -34,6 +34,7 @@ export class GameSession {
     /** 跨一帧多个逻辑步的表现信箱；换战斗时清空，结算不等待动画。 */
     private combatFeedback: CombatFeedback[] = [];
     onPatrolLanding?: () => void;
+    onPatrolRapidFire?: () => void;
     takeCombatFeedback(): CombatFeedback[] { const events = this.combatFeedback; this.combatFeedback = []; return events; }
     readonly pauses = new Set<Pause>(); boot: LoadResult | null = null;
     private currentError = "";
@@ -173,7 +174,7 @@ export class GameSession {
             const purchase = this.saves.pending.backpack?.change.delta === 1 && this.boot?.kind !== "complete-backpack-change";
             const state = this.saves.commit(), newVillage = this.pendingNewVillage;
             this.essenceFeedback = this.pendingEssence; this.pendingEssence = undefined;
-            this.purchaseFeedback = purchase;
+            this.purchaseFeedback = purchase || !!(this.state && !newVillage && !ownsTowerAmmo(this.state, "SLOW") && state.iceAmmoUnlocked);
             this.pendingNewVillage = false; this.accept(state, newVillage);
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
@@ -182,10 +183,16 @@ export class GameSession {
         if (!state || this.saves.pending || this.pauses.has("BACKGROUND") || this.pauses.has("DISABLED")) return;
         try {
             const { product, affordable } = shopOffer(state, id);
+            if (id === ICE_AMMO_OFFER.id && ownsTowerAmmo(state, "SLOW")) throw new Error("冰弹已拥有");
             if (!affordable) throw new Error("粮木不足");
             this.villageItems.shop();
+            const next = { ...state, food: state.food - product.food, wood: state.wood - product.wood };
+            if (id === ICE_AMMO_OFFER.id) {
+                this.submit({ ...next, iceAmmoUnlocked: true });
+                return;
+            }
             const count = this.villageItems.backpack().items[id] ?? 0;
-            this.submit({ ...state, food: state.food - product.food, wood: state.wood - product.wood }, false, undefined, { id, delta: 1, before: count });
+            this.submit(next, false, undefined, { id, delta: 1, before: count });
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
     useEssence(person: string) {
@@ -344,10 +351,13 @@ export class GameSession {
             this.accumulator -= realStep;
             const battle = this.battle;
             const rapid = battle.patrol?.rapid;
-            const firstRapidShot = rapid?.shotsFired === 0;
+            const previousShots = rapid?.shotsFired;
             battle.step(realStep);
             if (rapid && !rapid.ammo) this.aimingPatrolIn = null;
-            if (firstRapidShot && rapid.shotsFired > 0) this.deviceSettings.markPatrolRapidFired();
+            if (rapid && previousShots !== undefined && rapid.shotsFired > previousShots) {
+                this.onPatrolRapidFire?.();
+                if (previousShots === 0) this.deviceSettings.markPatrolRapidFired();
+            }
             if (this.collectBattleStep(battle, this.state)) break;
         }
     }

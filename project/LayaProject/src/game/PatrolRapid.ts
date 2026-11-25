@@ -3,6 +3,8 @@ import { ENEMIES } from "../config/EnemyConfig";
 import type { RoadPoint } from "./BattleRoad";
 import { contactTime, EnemyRoadStep, SummonCollision } from "./SummonCharge";
 
+import type { Person } from "./GameState";
+
 const spec = PATROL.rapid;
 
 export function patrolRapidCapacity(level: number) {
@@ -11,6 +13,11 @@ export function patrolRapidCapacity(level: number) {
 
 export function patrolRapidDamage(spinDamage: number) {
     return Math.max(1, Math.round(spinDamage * spec.damageShare));
+}
+
+/** 灵巧在机关枪模式，仅缩短打空后的整仓补弹。 */
+export function patrolReloadSeconds(captain?: Person) {
+    return spec.reloadSeconds * (captain?.traits.includes("trait_nimble") ? 1 - spec.nimbleReloadReduction : 1);
 }
 
 interface RapidProjectile {
@@ -33,7 +40,7 @@ export class PatrolRapid {
     private intervalLeft = 0;
     private muzzle: RoadPoint = spec.origin;
 
-    constructor(spinDamage: number, level: number) {
+    constructor(spinDamage: number, level: number, readonly reloadSeconds: number) {
         this.capacity = patrolRapidCapacity(level);
         this.ammo = this.capacity;
         this.damage = patrolRapidDamage(spinDamage);
@@ -63,7 +70,7 @@ export class PatrolRapid {
             this.projectiles.push({ index: this.shotsFired++, at: this.muzzle, direction: this.direction });
             this.ammo--;
             this.intervalLeft += 1 / spec.shotsPerSecond;
-            if (!this.ammo) { this.stop(); this.reloadRemaining = spec.reloadSeconds; }
+            if (!this.ammo) { this.stop(); this.reloadRemaining = this.reloadSeconds; }
         }
         this.intervalLeft -= realSeconds;
         // 半速时两发之间是 7.5 个战斗步。连射保留不足一步的余量，停火不积攒弹数。

@@ -74,7 +74,7 @@ for(const profile of profiles) test(`${profile[0]}: safe controls, expanded vill
     for(let i=0;i<scene.pads.length;i++) for(const kind of ['ARROW','STONE','SLOW']) {
         const start=towerLaunch(i,kind,scene.pads), tower=scene.props.find(p=>p.id===`tower:${i}`);
         near(tower.y,scene.pads[i].y+(TOWER_VIEW.top+TOWER_VIEW.size*15/16)*scene.towerScale);
-        near(start.y,scene.pads[i].y+TOWER_VIEW.top+TOWER_VIEW.muzzle[kind].y*TOWER_VIEW.size/128);
+        near(start.y,scene.pads[i].y+TOWER_VIEW.top+TOWER_VIEW.muzzle.y*TOWER_VIEW.size/128);
     }
     const state=createGame(7); state.people.forEach(p=>p.job='WAITING');
     while(state.people.length<20) state.people.push({...state.people[state.people.length%6],id:`1:${state.people.length+1}`});
@@ -158,28 +158,16 @@ test('in-flight native muzzle offset survives recoil and paused screen resize', 
     m.update(b,after,next.pads,()=>{throw new Error('paused resize must not resample recoil');});
     assert.equal(calls,1);assert.equal(b.tick,age);near(p.from.x,next.pads[0].x+offset.x);near(p.from.y,next.pads[0].y+offset.y);
 });
-test('crowded childcare keeps babies stationary and carers beside them across layout changes', () => {
-    const s=createGame(11);s.people.forEach((p,i)=>{p.job='CARE';p.careChild=`1:${7+i}`;});
-    while(s.people.length<20){const i=s.people.length;s.people.push({...s.people[0],id:`1:${i+1}`,adult:false,growth:0,job:'WAITING',careChild:null});}
+test('crowded villages keep babies stationary across layout changes', () => {
+    const s=createGame(11);
+    while(s.people.length<20){const i=s.people.length;s.people.push({...s.people[0],id:`1:${i+1}`,adult:false,growth:0,job:'WAITING'});}
     let current=layout(profiles[0]),data=sceneAt(current),m=new VillagerMotion(data.nav,data.scene.stops);m.sync(s,s.towers);
     for(const profile of [profiles[9],profiles[4],profiles[0]]) {
         const next=layout(profile),fresh=sceneAt(next);
         m.relayout(fresh.nav,fresh.scene.stops,p=>({x:p.x,y:next.worldY(current.referenceY(p.y))}));
         const babies=s.people.filter(p=>!p.adult).map(p=>({...m.get(p.id)}));
-        const caring=new Set();
-        for(let i=0;i<1500;i++){m.update(.05);for(const p of s.people){const pose=m.get(p.id);assert(fresh.nav.walkable(pose));
-            const carerStop=p.job==='CARE' ? m.careStops.get(p.id) ?? fresh.scene.stops.rest[m.campSlots.get(p.id)] : null;
-            if(carerStop && distance(pose,carerStop)<1e-6 && !pose.walking){
-                assert(!pose.animated && pose.clip.endsWith('_walk'));
-                const child=m.get(p.careChild),dx=child.x-pose.x,dy=child.y-pose.y;
-                const [x,y]={UP:[0,-1],DOWN:[0,1],LEFT:[-1,0],RIGHT:[1,0]}[pose.direction];
-                // Cardinal poses can hold across the 45-degree boundary by up to 5 degrees.
-                assert(x*dx+y*dy >= Math.hypot(dx,dy)*Math.cos(50*Math.PI/180));
-                assert(Math.abs(dx)>=24);caring.add(p.id);
-            }
-        }}
+        for(let i=0;i<1500;i++){m.update(.05);for(const p of s.people)assert(fresh.nav.walkable(m.get(p.id)));}
         babies.forEach(p=>near(distance(p,m.get(p.id)),0));
-        assert.equal(caring.size,6);
         current=next;
     }
 });

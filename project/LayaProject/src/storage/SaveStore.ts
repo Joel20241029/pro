@@ -7,8 +7,8 @@ import { clearVillageGuides } from "./VillageGuides";
 /** 微信实现将读异常向外抛出；null 只能表示 keys 列表确认键不存在。 */
 export interface StoragePort { read(key: string): string | null; write(key: string, value: string): void; remove?(key: string): void; }
 const KEYS = ["daidai_village.save.a", "daidai_village.save.b"];
-/** 双槽封套格式 3。只在旧格式无法安全兼容时升级；业务规则的转换按来源配置执行。 */
-const SCHEMA_VERSION = 4;
+// 第五版引入村级弹药等级、移除照料岗位。旧封套进入已有的确认重开流程。
+const SCHEMA_VERSION = 5;
 /** 普通进度轮换单槽；纯净开局的标记让启动时可补齐同一份双槽候选。 */
 type CommitType = "NORMAL" | "CLEAN_START";
 /** RESET 是异版/坏档的显式覆盖流程，仍拒绝跨异版槽自动续写。 */

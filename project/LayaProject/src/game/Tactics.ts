@@ -28,7 +28,7 @@ export function tacticUnavailableReason(s: GameState, id: string, action: Tactic
 }
 function materialsUnavailable(s: GameState, cost: { wood: number; food: number }) {
     const cap = storageCapacity(s);
-    if (Math.max(cost.wood, cost.food) > cap) return `先修缮民居，当前仓储 ${cap}`;
+    if (Math.max(cost.wood, cost.food) > cap) return `先扩建民居，当前仓储 ${cap}`;
     const wood = Math.max(0, cost.wood - s.wood), food = Math.max(0, cost.food - s.food);
     if (wood && food) return `还缺 ${wood} 木、${food} 粮`;
     if (wood) return `还缺 ${wood} 木`;

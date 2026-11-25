@@ -19,13 +19,13 @@ function taskTitle(task: DailyTask): string {
         enemyKind: task.enemy ? `胜局击倒 ${goal} 只${ENEMIES[task.enemy].name}` : "",
         enemyTypes: `一夜击倒 ${goal} 种小怪并守胜`, casts: `胜局累计发动 ${goal} 次战技`,
         equipped: task.tactic ? `发动一次「${tacticDefinition(task.tactic).name}」并守胜` : "",
-        towersHit: `一夜有 ${goal} 座塔命中并守胜`, arrowHits: `箭楼命中 ${goal} 只来敌并守胜`,
-        stoneSplash: `石塔一击命中 ${goal} 只来敌并守胜`, frostHits: `寒塔减速 ${goal} 只来敌并守胜`,
+        towersHit: `一夜有 ${goal} 座塔命中并守胜`, arrowHits: `弓箭命中 ${goal} 只来敌并守胜`,
+        stoneSplash: `石弹一击命中 ${goal} 只来敌并守胜`, frostHits: `冰弹减速 ${goal} 只来敌并守胜`,
         food: `累计生产 ${goal} 粮`, wood: `累计生产 ${goal} 木`, both: `单夜生产 ${goal} 粮和 ${task.woodGoal} 木`,
         farmers: `单夜由 ${goal} 位村民耕作产粮`, loggers: `单夜由 ${goal} 位村民伐木产木`, rations: "单夜粮食产量足以支付口粮",
         towerBuild: "在空塔位建造一座塔", towerUpgrade: "升级一座防塔", farmUpgrade: "升级农田一次",
         loggingUpgrade: "升级伐木场一次", gateUpgrade: "加固城门一次", repair: "修复城门一次",
-        houseBuild: "增建民居一次", housingUpgrade: "修缮民居一次", marriage: "安排一对村民成家",
+        houseBuild: "增建民居一次", marriage: "安排一对村民成家",
         child: "迎接一个孩子", worker: "安排一位待安排村民耕作或伐木", operator: "为一座空岗防塔安排驻守"
     };
     return titles[kind];

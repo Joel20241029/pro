@@ -1,5 +1,5 @@
-import { itemDefinition, ITEMS, LIANG_ESSENCE, LIANG_INDULGENCE, PATROL_RATION, SHOP_PRODUCTS } from "../../config/ShopConfig";
-import { GameState } from "../../game/GameState";
+import { ICE_AMMO_OFFER, itemDefinition, ITEMS, LIANG_ESSENCE, LIANG_INDULGENCE, PATROL_RATION, SHOP_PRODUCTS } from "../../config/ShopConfig";
+import { GameState, ownsTowerAmmo } from "../../game/GameState";
 import { essenceTargets, patrolItemUnavailable } from "../../game/ShopRules";
 import { ScrollList } from "../ScrollList";
 import { C, UI } from "../UiTheme";
@@ -40,7 +40,9 @@ export function drawItemPanel(ctx: PanelContext, state: GameState, panel: Panel,
             ctx.art.panel(row, "panel_card", width, spec.shopRow);
             ctx.ui.image(row, item.icon, 12, (spec.shopRow - spec.itemIcon) / 2, spec.itemIcon);
             addItemCopy(ctx, row, item.name, item.description, 120, width - 248);
-            ctx.ui.materialCosts(row, state, product, 120, 94, width - 248, 35);
+            if (id === ICE_AMMO_OFFER.id && ownsTowerAmmo(state, "SLOW"))
+                ctx.ui.label(row, "已拥有", 120, 94, width - 248, 24, C.green, true, 35);
+            else ctx.ui.materialCosts(row, state, product, 120, 94, width - 248, 35);
             ctx.ui.button(row, "详情", width - 118, (spec.shopRow - 55) / 2, 103, () => ctx.open({ type: "itemOffer", id, back: panel }), C.green, 55);
         });
         return;
@@ -110,10 +112,11 @@ function drawItemAction(ctx: PanelContext, state: GameState, panel: Panel, avail
         cost.size(350, 56).pos((box.width - 350) / 2, footer - 74);
         ctx.art.panel(cost, "panel_card", cost.width, cost.height);
         ctx.ui.materialCosts(cost, state, offer, 46, 8, 280, 40);
+        const owned = offer.id === ICE_AMMO_OFFER.id && ownsTowerAmmo(state, "SLOW");
         const affordable = state.food >= offer.food && state.wood >= offer.wood;
         ctx.ui.button(box, "返回", 115, footer, 152, back, C.muted, 62);
-        ctx.ui.button(box, affordable ? "购买" : "粮木不足", 352, footer, 178,
-            () => { if (ctx.current === panel) ctx.game.buyItem(offer.id); }, C.gold, 62, affordable);
+        ctx.ui.button(box, owned ? "已拥有" : affordable ? "购买" : "粮木不足", 352, footer, 178,
+            () => { if (ctx.current === panel) ctx.game.buyItem(offer.id); }, C.gold, 62, affordable && !owned);
         return;
     }
     if (panel.type === "essenceTargets") {

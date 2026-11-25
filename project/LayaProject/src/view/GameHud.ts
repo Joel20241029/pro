@@ -1,3 +1,4 @@
+import { TOWER_AMMO } from "../config/DefenseConfig";
 import { featureUnlocked } from "../config/DailyTaskConfig";
 import { dailyTasksClaimable } from "../game/DailyTaskState";
 import { nextTacticSlotReady } from "../game/Tactics";
@@ -160,7 +161,7 @@ export class GameHud {
             }
             const op = t.operator ? coloredName(person(s, t.operator)) : "成年村民不足";
             // 沿用城门文字的独立字号做法，避开通用地图文字24号下限；所有塔名与姓名都对齐塔中心。
-            const label = this.ui.label(this.node, `${TOWERS[t.kind].name} ${amount(t.level)}阶\n${op}`, pos.x - HUD.tower.labelWidth / 2, pos.y, HUD.tower.labelWidth, HUD.tower.font, t.operator ? C.cream : "#fff0b2", true, HUD.tower.occupiedHeight);
+            const label = this.ui.label(this.node, `${TOWER_AMMO[t.kind].name} ${amount(t.level)}阶\n${op}`, pos.x - HUD.tower.labelWidth / 2, pos.y, HUD.tower.labelWidth, HUD.tower.font, t.operator ? C.cream : "#fff0b2", true, HUD.tower.occupiedHeight);
             label.fontSize = HUD.tower.font;
             label.leading = HUD.tower.leading;
             label.stroke = HUD.tower.stroke;
@@ -183,7 +184,7 @@ export class GameHud {
             this.ui.iconValue(this.node, "icon_food", `口粮 −${amount(e.rations, true)}`, info.x + width, y, width, info.height, e.hungry ? C.red : C.timber, 22);
             this.ui.iconValue(this.node, "icon_wood", `产出 +${amount(e.wood, true)}`, info.x + width * 2, y, width, info.height, C.ink, 22);
             // 来敌入口退为信息行文字，仍复用原按钮的点击、音效和按压取消逻辑。
-            const preview = this.ui.button(this.node, `来敌 ${amount(count, true)} ›`, wave.x, bottomY + wave.y, wave.width, () => this.panels.open({ type: "wave" }), C.muted, wave.height);
+            const preview = this.ui.button(this.node, `来敌 ${amount(count, true)} ›`, wave.x, bottomY + wave.y, wave.width, () => this.panels.open({ type: "start", showNightDetails: true }), C.muted, wave.height);
             preview.name = "button:今夜来敌";
             const previewFace = preview.getChildByName("buttonFace") as Laya.Sprite;
             previewFace.graphics.clear();

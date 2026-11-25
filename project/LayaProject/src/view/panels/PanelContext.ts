@@ -12,6 +12,7 @@ export type Panel = {
     id?: string;
     index?: number;
     scroll?: number;
+    showNightDetails?: boolean;
     /** 仅本次面板进入的条目身份顺序，不进入存档。 */
     rowOrder?: string[];
     /** 战技详情/战前返回链仅用于当前面板，保存失败时保留，成功后按来源导航。 */

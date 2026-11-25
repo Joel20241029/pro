@@ -12,7 +12,7 @@ function equal(a: unknown, b: unknown) { ok(canonical(a) === canonical(b), `${JS
 function rejects(f: () => void) { let rejected = false; try { f(); } catch { rejected = true; } ok(rejected, "expected rejection"); }
 function test(name: string, f: () => void) { f(); passed++; console.log("PASS", name); }
 function dawn(s: GameState) {
-    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "SKILL" || q.kind === "POLICY" ? q.options[0] : "decline" }); }
+    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" ? q.options[0] : "decline" }); }
     applyCommand(s, { type: "FINALIZE" });
 }
 function win(s: GameState) { applyCommand(s, { type: "NIGHT" }); validateState(s); finishNight(s, RULE.gateMax, s.towers.map(t => t.operator)); validateState(s); }
@@ -29,14 +29,14 @@ class MemoryStore implements StoragePort {
 
 test("Retirement preserves home and family, frees work/tower/care, and starts three full elder nights", () => {
     const s = separateCaptainVillage(3), p = s.people[0], spouse = s.people[1];
-    applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: p.id }); p.nights = 1; assignOperator(s, 0, p.id);
+    applyCommand(s, { type: "BIRTH", family: s.families[0].id }); p.nights = 1; assignOperator(s, 0, p.id);
     const child = s.people[6], count = s.people.length; win(s);
-    ok(isElder(p) && !isWorkingAdult(p)); equal(p.elderNights, 3); equal(p.job, "WAITING"); equal(p.careChild, null);
+    ok(isElder(p) && !isWorkingAdult(p)); equal(p.elderNights, 3); equal(p.job, "WAITING");
     equal(s.people.length, count); equal(s.history.length, 0); equal(s.families.length, 1); ok(s.towers[0].operator !== null && s.towers[0].operator !== p.id); ok(isWorkingAdult(s.people.find(q => q.id === s.towers[0].operator)!));
-    ok(child.ancestors.includes(p.id)); equal(child.growth, 1); ok(s.summary.includes("照料者荣休")); equal(s.stats.retirees, 1);
+    ok(child.ancestors.includes(p.id)); equal(child.growth, 1); equal(s.stats.retirees, 1);
     dawn(s); const state = canonical(s); autoAssignJobs(s); equal(canonical(s), state);
     ok(!canMarry(s, spouse, s.people[4]), "living spouse still owns the family bond");
-    for (const remaining of [2, 1]) { win(s); equal(p.elderNights, remaining); ok(s.people.includes(p)); equal(s.history.length, 0); equal(child.growth, 1); dawn(s); }
+    for (const remaining of [2, 1]) { win(s); equal(p.elderNights, remaining); ok(s.people.includes(p)); equal(s.history.length, 0); ok(child.adult); dawn(s); }
     win(s); equal(p.elderNights, 0); ok(!s.people.includes(p)); equal(s.history[0].id, p.id); equal(s.people.length, count - 1);
     equal(s.stats.retirees, 1); equal(s.legacy.retirees, 1); equal(s.families.length, 0); ok(!child.ancestors.includes(p.id)); ok(child.parents.includes(p.id));
     ok(s.summary.includes("安然辞世")); dawn(s); ok(canMarry(s, spouse, s.people.find(p => p.id === "1:5")!));
@@ -50,8 +50,8 @@ test("Elder ration is included exactly once, honors frugal/winter/policy, and pr
     for (const p of s.people.slice(0, 2)) { p.nights = 0; p.elderNights = 3; }
     s.day = 4; s.policy = null; const base = economy(s); equal([base.food, base.wood, base.rations, base.elderRations], [0, 0, 11, 3]);
     s.day = 10; equal(economy(s).rations, Math.ceil(11 * 1.2));
-    s.policy = "policy_rations"; equal(economy(s).rations, 11); equal(economy(s).elderRations, 3);
-    s.food = 200; equal(economy(s).endFood, 189); s.food = 0; ok(economy(s).hungry); equal(economy(s).endFood, 0);
+    s.policy = "policy_harvest"; equal(economy(s).rations, 14); equal(economy(s).elderRations, 3);
+    s.food = 200; equal(economy(s).endFood, 186); s.food = 0; ok(economy(s).hungry); equal(economy(s).endFood, 0);
 });
 test("Failed nights and a replay do not decrement elder life or charge food again", () => {
     const s = separateCaptainVillage(2), p = s.people[0]; p.nights = 0; p.elderNights = 2; p.job = "WAITING";
@@ -60,21 +60,21 @@ test("Failed nights and a replay do not decrement elder life or charge food agai
     finishNight(s, 0, s.towers.map(t => t.operator)); equal(p.elderNights, 2); equal(s.day, before.day); equal(s.food, before.food); equal(s.stats.retirees, 0); validateState(s);
 });
 test("Elders are rejected by jobs, childcare, marriage and daytime/nighttime tower entry points", () => {
-    const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id });
+    const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id });
     const p = s.people[4]; p.nights = 0; p.elderNights = 3; p.job = "WAITING";
     const before = canonical(s);
-    for (const job of ["WAITING", "FARM", "LOGGING", "CARE"] as const) rejects(() => applyCommand(s, { type: "JOB", id: p.id, job, child: s.people[6].id }));
+    for (const job of ["WAITING", "FARM", "LOGGING"] as const) rejects(() => applyCommand(s, { type: "JOB", id: p.id, job }));
     rejects(() => applyCommand(s, { type: "FAMILY", a: p.id, b: s.people[5].id })); rejects(() => assignOperator(s, 0, p.id)); equal(canonical(s), before);
     applyCommand(s, { type: "NIGHT" }); const b = new BattleSimulation(s), op = b.operators[0]; rejects(() => b.reassign(0, p.id)); equal(b.operators[0], op);
 });
 test("Retired spouses cannot give birth and their families are kept until departure", () => {
     const s = separateCaptainVillage(1), p = s.people[0]; p.nights = 0; p.elderNights = 3; p.job = "WAITING";
-    const before = canonical(s); rejects(() => applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[4].id })); equal(canonical(s), before); validateState(s);
+    const before = canonical(s); rejects(() => applyCommand(s, { type: "BIRTH", family: s.families[0].id })); equal(canonical(s), before); validateState(s);
 });
 test("Elders still occupy housing and block extra birth/traveler at full capacity", () => {
     const s = separateCaptainVillage(1); for (let i = 0; i < 2; i++) { const p = clone(s.people[4]); p.id = `1:${s.nextPerson++}`; p.job = "WAITING"; s.people.push(p); }
     s.people[0].nights = 0; s.people[0].elderNights = 3; s.people[0].job = "WAITING"; equal(s.people.length, capacity(s));
-    applyCommand(s, { type: "FAMILY", a: s.people[4].id, b: s.people[5].id }); rejects(() => applyCommand(s, { type: "BIRTH", family: s.families[1].id, carer: s.people[3].id }));
+    applyCommand(s, { type: "FAMILY", a: s.people[4].id, b: s.people[5].id }); rejects(() => applyCommand(s, { type: "BIRTH", family: s.families[1].id }));
     const traveler = clone(s.people[4]); traveler.id = `1:${s.nextPerson++}`; traveler.origin = "TRAVELER";
     s.phase = "DAWN"; s.wave = null; s.choices = [{ kind: "TRAVELER", person: traveler }]; validateState(s);
     const before = canonical(s); rejects(() => applyCommand(s, { type: "CHOOSE", value: "accept" })); equal(canonical(s), before);
@@ -84,7 +84,7 @@ test("Current-state validation rejects missing timers, working elders, stale tow
     for (const mutate of [
         (s: GameState) => { delete (s.people[0] as Partial<typeof s.people[0]>).elderNights; },
         (s: GameState) => { s.people[0].elderNights = 0; },
-        (s: GameState) => { s.people[0].job = "CARE"; s.people[0].careChild = s.people[1].id; },
+        (s: GameState) => { Object.assign(s.people[0], { job: "CARE" }); },
         (s: GameState) => { s.people[1].elderNights = 1; },
         (s: GameState) => { s.towers[0].operator = s.people[0].id; }
     ]) { const s = clone(base); mutate(s); rejects(() => validateState(s)); }

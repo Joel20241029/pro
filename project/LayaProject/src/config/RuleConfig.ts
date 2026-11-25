@@ -1,7 +1,7 @@
 import { PATROL } from "./PatrolConfig";
 
-/** v19 使用四档村民品质和中后期波次规则；当前村庄存档只接受此配置版本。 */
-export const CONFIG_VERSION = 19;
+/** v22 合并民居等级和村规；v21 为多天赋村民；旧封套须由玩家确认重开。 */
+export const CONFIG_VERSION = 22;
 /** 持续成长基础来自 doc/tech/12，百级住宅与数量型波次按 doc/tech/46 重平衡。
  * 设施等级不封顶，产出线性、战力与费用二次增长；更改须复跑经营模拟及升级预检。
  */
@@ -12,14 +12,14 @@ export const GROWTH = {
     // 数量优先后个体线性成长，避免人口封顶、设施升级变慢时敌人平方增长形成必败墙。
     enemyStartDay: 12, enemyLevelNights: 32,
     costWoodPerLevel: 25, costFoodPerLevel: 10,
-    costs: { FARM: { wood: 40, food: 15 }, LOGGING: { wood: 35, food: 15 }, HOUSING: { wood: 30, food: 10 }, GATE: { wood: 30, food: 10 }, TOWER: { wood: 35, food: 10 }, PATROL: PATROL.upgrade },
+    costs: { FARM: { wood: 40, food: 15 }, LOGGING: { wood: 35, food: 15 }, GATE: { wood: 30, food: 10 }, TOWER: { wood: 35, food: 10 }, PATROL: PATROL.upgrade },
     repairWoodPerLevel: 5, repairFraction: .2
 } as const;
-/** doc/tech/46 已确认：住宅从1级、8容量起，每级+1，100级共107容量；不直接赠送居民。
+/** doc/tech/46 已确认：住宅从1级、8容量起，每级+1，100级共107容量，此后只增加仓储；不直接赠送居民。
  * 原 houses 字段改存扩建等级。成本按当前级别计算，粮木共同限制快速扩张；改动须重新模拟。
  */
 export const RESIDENTIAL = {
-    maxLevel: 100, initialCapacity: 8, capacityPerLevel: 1,
+    lastBedLevel: 100, initialCapacity: 8, capacityPerLevel: 1,
     woodBase: 30, woodPerLevel: 10, woodQuadratic: .5, foodBase: 10, foodPerLevel: 5
 } as const;
 /** 已确认的柔性人口平衡：出生最多偏置25个百分点、旅人35个百分点；不使用固定交替性别。
@@ -30,17 +30,16 @@ export const POPULATION = { birthBias: .25, travelerBias: .35, firstTravelerDay:
 export const RULE = {
     storageCap: 200,
     // 真实人口安全上界由住宅最终容量推导；地图绘制人数另由表现配置控制。
-    populationCap: RESIDENTIAL.initialCapacity + (RESIDENTIAL.maxLevel - 1) * RESIDENTIAL.capacityPerLevel,
-    houseMax: RESIDENTIAL.maxLevel,
+    populationCap: RESIDENTIAL.initialCapacity + (RESIDENTIAL.lastBedLevel - 1) * RESIDENTIAL.capacityPerLevel,
     initialResource: 60, gateMax: 200, repairCost: 10,
     // 用户确认固定20粮；同村本地自然日一次、仓满截断、确认后记领取日。新开村清空日期，可再次领取。
     dailyFood: 20,
-    birthCost: 20, birthCooldown: 4, parentMinNights: 3, growNights: 2, adultNights: 12,
+    birthCost: 20, birthCooldown: 4, growNights: 2, adultNights: 12,
     // 用户确认的晚年为 3 个成功守夜夜晚；刚荣休的清晨不扣减，改变此值会影响口粮与床位占用。
     elderNights: 3,
     // 劳作剩余 2 夜起预告荣休，仅影响提醒，不提前释放岗位或减少劳动产出。
     retirementNoticeNights: 2,
-    // 成人及老人共用普通 2 粮、节俭 1 粮的口粮规则，再统一应用季节和村规。
+    // 成人及老人共用普通 2 粮、节俭 1 粮的口粮规则，再统一应用冬季消耗。
     farmBase: 8, logBase: 6, adultRation: 2, childRation: 1,
     farmSlots: [2, 4, 6], logSlots: [2, 3, 4], towerConvert: 20,
     yearDays: 12, seasonDays: 3,
@@ -58,42 +57,22 @@ export const RULE = {
     planCap: 288,
     // 进攻战技持续 15 个战斗秒（300 步×0.05 秒）。每夜施放与冷却规则见 TacticConfig。
     bellTicks: 300,
-    // 沿用原警钟攻速+50%；战斗与说明共用，乘在天赋/村规加成之后，再乘缺粮/扰阵减益。
+    // 沿用原警钟攻速+50%；战斗与说明共用，乘在驻塔天赋加成之后，再乘缺粮/扰阵减益。
     bellSpeedMultiplier: 1.5,
     slowTicks: 30, hungerSpeed: .7, disruptSpeed: .8,
     spawnTicks: 480, summonTicks: [120, 240], effectCap: 32
 } as const;
 export interface Policy {
     name: string;
-    desc: string;
     food?: number;
     wood?: number;
-    ration?: number;
-    speed?: number;
     damage?: number;
-    range?: number;
-    arrowSpeed?: number;
-    stoneSpeed?: number;
-    stoneDamage?: number;
-    slow?: number;
-    care?: number;
-    repair?: number;
-    gate?: number;
 }
-/** 村规三天生效；加成相加，特别倍率由战斗/经济边界统一应用。 */
+/** 每季固定三选一。生产加成与个人和季节加成相加；备战作用于所有塔弹药。 */
 export const POLICIES: Record<string, Policy> = {
-    policy_harvest: { name: "丰收", desc: "产粮 +25%，产木 -10%", food: .25, wood: -.1 },
-    policy_tillage: { name: "深耕", desc: "产粮 +40%，攻速 -10%", food: .4, speed: -.1 },
-    policy_logging: { name: "开林", desc: "产木 +25%，产粮 -10%", wood: .25, food: -.1 },
-    policy_rations: { name: "节粮", desc: "口粮 -20%，攻速 -10%", ration: -.2, speed: -.1 },
-    policy_prepare: { name: "备战", desc: "伤害 +15%，产粮 -10%", damage: .15, food: -.1 },
-    policy_watch: { name: "瞭望", desc: "射程 +15%，产木 -10%", range: .15, wood: -.1 },
-    policy_arrows: { name: "疾箭", desc: "箭楼攻速 +25%，石塔攻速 -10%", arrowSpeed: .25, stoneSpeed: -.1 },
-    policy_stones: { name: "重石", desc: "石塔伤害 +25%，箭楼攻速 -10%", stoneDamage: .25, arrowSpeed: -.1 },
-    policy_slow: { name: "凝霜", desc: "减速 +10%，伤害 -10%", slow: .1, damage: -.1 },
-    policy_nurture: { name: "育苗", desc: "照料者产 3 粮，产木 -10%", care: 3, wood: -.1 },
-    policy_repair: { name: "固门", desc: "修门效果 +50%，伤害 -5%", repair: .5, damage: -.05 },
-    policy_patrol: { name: "巡防", desc: "城门受伤 -15%，产粮 -10%", gate: -.15, food: -.1 }
+    policy_harvest: { name: "丰收", food: .2 },
+    policy_logging: { name: "开林", wood: .2 },
+    policy_prepare: { name: "备战", damage: .1 }
 };
 export const SEASONS = ["春", "夏", "秋", "冬"];
 /** 原 VillageRules.economy 的加成与口粮数值，逐项原值迁移。
@@ -101,7 +80,8 @@ export const SEASONS = ["春", "夏", "秋", "冬"];
  * 修改会影响经营平衡，需要对照成长模拟和配置版本；此次没有调参。
  */
 export const ECONOMY = {
-    diligentFood: .2, farmingFood: .2, springFood: .1,
-    woodwiseWood: .2, loggingWood: .2, autumnWood: .15,
-    nurturingFood: 2, frugalRation: 1, winterRation: .2
+    // 合并原来两项生产加成，开村农田和伐木场维持原有产出。
+    diligentFood: .4, springFood: .1,
+    woodwiseWood: .4, autumnWood: .15,
+    frugalRation: 1, winterRation: .2
 } as const;

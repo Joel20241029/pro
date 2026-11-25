@@ -34,7 +34,7 @@ function savedSession(s) {
     return { open, port, next: () => date = tomorrow };
 }
 test('three entrances open at 1, 3 and 6; existing scores qualify on loaded saves', () => {
-    assert.equal(Object.keys(TASK_GOALS).length, 30);
+    assert.equal(Object.keys(TASK_GOALS).length, 29);
     for (const [feature, threshold] of [['ranking',1],['tactics',3],['dailyTasks',6]]) {
         assert(!featureUnlocked(threshold-1,feature));
         assert(featureUnlocked(threshold,feature));
@@ -58,6 +58,7 @@ test('generated tasks remain unchanged on same date, carry one small reward each
         assert(validDailyTaskDay(s.dailyTasks));
         assert(s.dailyTasks.tasks.reduce((sum,task) => sum+task.reward,0) <= 24);
         s.dailyTasks.tasks.forEach(t=>{
+            assert(!['worker', 'operator'].includes(t.kind));
             seen.add(t.kind);
             if (t.kind === 'kills' || t.kind === 'enemyKind') {
                 const [min,max] = DENSE_TASK_GOALS[t.kind];
@@ -72,6 +73,29 @@ test('generated tasks remain unchanged on same date, carry one small reward each
         assert.equal(s.dailyTasks,dailyTasks);
     }
     assert(seen.size >= 12, [...seen].join(','));
+});
+test('previously issued appointment goals survive load and remain claimable', () => {
+    const s = attach(village(), [{kind:'worker',progress:1},{kind:'operator',progress:1}]);
+    const restored = savedSession(s).open().state, wood = restored.wood;
+    assert(validDailyTaskDay(restored.dailyTasks));
+    for (const kind of ['worker','operator']) claimDailyTask(restored,kind,today,today);
+    assert.equal(restored.wood, wood + 16);
+});
+test('full repair charges once at the single-repair price including the last partial repair', () => {
+    for (const durability of [1, 79, 80, 81, 159, 160, 199]) {
+        const s = attach(village(), [{kind:'repair'}]); s.gate = durability; s.wood = 100;
+        const singles = clone(s), before = clone(s);
+        while (singles.gate < gateCapacity(singles)) applyCommand(singles,{type:'REPAIR'});
+        const command = {type:'REPAIR',full:true};
+        applyCommand(s,command); creditTaskCommand(before,s,command,today);
+        assert.equal(s.gate, singles.gate); assert.equal(s.wood, singles.wood);
+        assert.equal(s.dailyTasks.tasks[0].progress, 1);
+        assert.throws(() => applyCommand(s,command));
+    }
+    const s = village(); s.gate = 80; s.wood = 29;
+    assert.throws(() => applyCommand(s,{type:'REPAIR',full:true}));
+    assert.deepEqual([s.gate,s.wood],[80,29]);
+    applyCommand(s,{type:'REPAIR'}); assert.deepEqual([s.gate,s.wood],[120,19]);
 });
 test('old combat task goals still load alongside the dense-wave ranges', () => {
     const s = attach(village(), [{ kind: 'kills', goal: 12 }, { kind: 'enemyKind', goal: 4, enemy: 'enemy_raider' }]);
@@ -102,11 +126,19 @@ test('construction and family progress advance only for real successful changes'
         const before=clone(s); applyCommand(s,c); creditTaskCommand(before,s,c,today);
         return s.dailyTasks.tasks.map(t=>t.progress);
     };
-    assert.deepEqual(command({type:'TOWER',index:0,kind:'SLOW'}),[0,0,0]);
+    assert.deepEqual(command({type:'TOWER',index:0,kind:'STONE'}),[0,0,0]);
     assert.deepEqual(command({type:'TOWER',index:2,kind:'ARROW'}),[1,0,0]);
     assert.deepEqual(command({type:'REPAIR'}),[1,1,0]);
     const a=s.people.find(p=>p.sex==='MALE'&&!s.families.some(f=>f.partners.includes(p.id))),b=s.people.find(p=>p.sex==='FEMALE'&&!s.families.some(f=>f.partners.includes(p.id)));
     assert.deepEqual(command({type:'FAMILY',a:a.id,b:b.id}),[1,1,1]);
+});
+test('expanding a population-capped residence credits its single daily task', () => {
+    const s = attach(village(), [{kind:'houseBuild'}]);
+    s.houses = 100; s.wood = s.food = storageCapacity(s);
+    const before = clone(s), command = {type:'BUILD', kind:'HOUSE'};
+    applyCommand(s, command); creditTaskCommand(before, s, command, today);
+    assert.equal(s.houses, 101); assert(storageCapacity(s) > storageCapacity(before));
+    assert.equal(s.dailyTasks.tasks[0].progress, 1);
 });
 test('production credits are booked once with the start command and never inflate the inventory', () => {
     const s=attach(village(),[{kind:'food',goal:16},{kind:'wood',goal:10},{kind:'both',goal:12,woodGoal:6}]);

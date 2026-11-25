@@ -4,8 +4,8 @@ import { GameLayout } from "./GameLayout";
 import { farm } from "./config/VillageSceneConfig";
 import { GroundPoint, Footprint, TOWER_VIEW, TOWER_SCREEN_LAYOUTS, VILLAGE_PROPS, LANDSCAPE_FOOTPRINTS, MOTION, CAMP_STOPS, VILLAGE_STOPS } from "./config/VillageSceneConfig";
 export { GroundPoint, Footprint, VillageProp, TOWER_VIEW, VILLAGE_PROPS, LANDSCAPE_FOOTPRINTS, MOTION, CAMP_STOPS, WEDDING, VILLAGE_STOPS } from "./config/VillageSceneConfig";
-export function towerLaunch(index: number, kind: TowerKind, pads: readonly GroundPoint[] = PADS): GroundPoint {
-    const pad = pads[index], at = TOWER_VIEW.muzzle[kind], scale = TOWER_VIEW.size / TOWER_VIEW.canvas;
+export function towerLaunch(index: number, _kind: TowerKind, pads: readonly GroundPoint[] = PADS): GroundPoint {
+    const pad = pads[index], at = TOWER_VIEW.muzzle, scale = TOWER_VIEW.size / TOWER_VIEW.canvas;
     return { x: pad.x + (at.x - TOWER_VIEW.canvas / 2) * scale * TOWER_VIEW.facing[index], y: pad.y + TOWER_VIEW.top + at.y * scale };
 }
 /** 建筑底座保持图片的真实尺寸；农田/伐木工作点跟随各自资源，不能把动作点单独拉到图外。 */
@@ -54,7 +54,7 @@ export function layoutVillage(layout: GameLayout) {
         const dx = at.x - p.x, dy = at.y - p.y;
         return { ...p, ...at, footprint: p.footprint ? { left: p.footprint.left + dx, right: p.footprint.right + dx, top: p.footprint.top + dy, bottom: p.footprint.bottom + dy } : null };
     });
-    // 小村庄优先占用靠近村中央的位置；基准排序固定，换屏时不交换席位或照料者的左右关系。
+    // 小村庄优先占用靠近村中央的位置；基准排序固定，换屏时不交换席位。
     const campCenter = { x: 360, y: 964 };
     const campOrder = CAMP_STOPS.map((_, i) => i).sort((a, b) => distance(CAMP_STOPS[a], campCenter) - distance(CAMP_STOPS[b], campCenter));
     const camp = campOrder.map(i => point(CAMP_STOPS[i]));

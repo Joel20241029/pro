@@ -1,12 +1,13 @@
 import { appearanceSeed, APPEARANCE_DOMAIN } from "./EnemySeed";
 import { COMBAT, FIXED_NIGHT, isDenseWave, WAVE, WAVE_RHYTHM } from "../config/DefenseConfig";
+import { HEAVY_ORDINARY } from "../config/EnemyConfig";
 import { PATROL } from "../config/PatrolConfig";
-import { VILLAGER_QUALITY } from "../config/VillagerQuality";
+import { towerStats } from "./TowerStats";
 import { ENEMIES, EnemyKind, PADS, RULE, TOWERS, TowerKind } from "./GameConfig";
 import { enemyPoint, onBattleRoad, PATH_LENGTH, RoadPoint } from "./BattleRoad";
 export { pointAt, PATH_LENGTH } from "./BattleRoad";
 import { clone, GameState } from "./GameState";
-import { assignOperator, person, policy } from "./VillageRules";
+import { assignOperator, person } from "./VillageRules";
 import { waveDifficulty } from "./WaveDifficulty";
 import { enemyPower, gateCapacity, levelPower } from "./Growth";
 import { DRAGON_POISON, HAND_SPEED, KING_MERCY_TACTIC, TACTIC_NIGHT_USES, TACTIC_USE, TIMED_BLAST, TacticDefinition, tacticDefinition, ZHOU_LOVE_HEAL } from "../config/TacticConfig";
@@ -63,7 +64,6 @@ export class BattleSimulation {
     private tacticUses = 0;
     readonly tacticBudget: number;
     private readonly personal = new Map<string, { uses: number; readyAt: number }>();
-    private sharedReadyAt = 0;
     bellTicks = 0;
     readonly patrol: Patrol | null;
     summonCharge: SummonCharge | null = null;
@@ -112,7 +112,7 @@ export class BattleSimulation {
     get mindLocked() { return !this.outcome && this.bellTicks > 0 && this.tactic.effect === "MIND_LOCK"; }
     isPoisoned(seq: number) { return !this.outcome && !!this.poison?.targets.has(seq); }
     usesLeftFor(tactic: TacticDefinition) { return tactic.usesPerNight - (this.personal.get(tactic.id)?.uses ?? 0); }
-    cooldownFor(id: string) { return Math.max(0, this.sharedReadyAt - this.tick, (this.personal.get(id)?.readyAt ?? 0) - this.tick); }
+    cooldownFor(id: string) { return Math.max(0, (this.personal.get(id)?.readyAt ?? 0) - this.tick); }
     canCast(id: string) {
         const tactic = this.tactics.find(t => t.id === id);
         return !!tactic && !this.outcome && this.bellTicks === 0 && !this.tapWindow && this.tacticUsesLeft > 0 && this.usesLeftFor(tactic) > 0 && this.cooldownFor(id) === 0 &&
@@ -151,7 +151,6 @@ export class BattleSimulation {
         this.tactic = tactic;
         this.tacticUses++;
         this.personal.set(KING_MERCY_TACTIC, { uses: 1, readyAt: 0 });
-        this.sharedReadyAt = this.tick + TACTIC_USE.recoveryTicks;
         this.gate = gateCapacity(this.base);
         const hurt = this.enemies.filter(e => e.hp > 0).map(e => ({ ...e, hp: 0 }));
         this.enemies = [];
@@ -212,7 +211,6 @@ export class BattleSimulation {
             this.enemies = [];
             this.poison?.targets.clear();
         }
-        this.sharedReadyAt = this.tick + TACTIC_USE.recoveryTicks;
         this.feedback.push({ type: "zhouLove", cleared, targets });
     }
     tapHandSpeed() {
@@ -228,7 +226,6 @@ export class BattleSimulation {
     }
     private resolveHandSpeed(taps: number) {
         this.tapWindow = null;
-        this.sharedReadyAt = this.tick + TACTIC_USE.recoveryTicks;
         if (!taps) return;
         const burst = taps === HAND_SPEED.burstTaps;
         const hurt: Enemy[] = [];
@@ -269,7 +266,7 @@ export class BattleSimulation {
         const difficulty = this.waveDifficulty;
         const power = difficulty ? (data.boss ? difficulty.bossHealth : difficulty.health) : this.olderEnemyPower;
         const speedScale = difficulty?.speed ?? 1;
-        const heavyScale = difficulty && !data.boss && (data.armor > 0 || data.disrupt) ? difficulty.heavyHealth : 1;
+        const heavyScale = difficulty && HEAVY_ORDINARY.has(kind) ? difficulty.heavyHealth : 1;
         const pressure = PATROL.spin.pressure, day = this.base.day;
         const patrolHealth = (this.patrol?.spin || this.patrol?.rapid) && !data.boss && day >= pressure.from
             ? 1 + pressure.start + (pressure.maximum - pressure.start) * Math.min(1, (day - pressure.from) / (pressure.full - pressure.from))
@@ -304,9 +301,9 @@ export class BattleSimulation {
             this.spawn(q.kind, q.progress, q.appearanceSeed);
         }
         const existingSlow = new Set(this.enemies.filter(e => e.slowTicks > 0).map(e => e.seq));
-        const refreshed = new Set<number>(), po = policy(this.base);
+        const refreshed = new Set<number>();
         const rush = this.summonCharge?.active ? this.summonCharge : null;
-        const hadEffect = this.bellTicks > 0, frozen = this.mindLocked;
+        const frozen = this.mindLocked;
         const traceEnemies = !!rush || this.patrol?.rapid?.needsTargets;
         const traces: EnemyRoadStep[] = [];
         const patrolTargets: PatrolTarget[] = [];
@@ -339,7 +336,7 @@ export class BattleSimulation {
             if (e.hp > 0 && e.progress >= PATH_LENGTH) {
                 const blocked = this.gateProtected, at = enemyPoint(e);
                 const enemy = ENEMIES[e.kind], impact = this.denseWave && !enemy.boss ? WAVE.ordinaryGateScale * (this.fixedPace ? FIXED_NIGHT.ordinaryGateDamage : 1) : 1;
-                if (!blocked) this.gate -= Math.ceil(enemy.gate * impact * (this.waveDifficulty?.gate ?? this.olderEnemyPower) * (1 + (po.gate || 0)));
+                if (!blocked) this.gate -= Math.ceil(enemy.gate * impact * (this.waveDifficulty?.gate ?? this.olderEnemyPower));
                 e.hp = 0;
                 this.poison?.targets.delete(e.seq);
                 // 快照记录逻辑坐标及当步保护状态；追帧、到期和窗口重排不能改写旧反馈。
@@ -358,16 +355,16 @@ export class BattleSimulation {
                 continue;
             const p = person(this.base, tower.operator), t = TOWERS[tower.kind], at = PADS[i];
             const distance = (e: Enemy) => { const pos = enemyPoint(e); return Math.hypot(pos.x - at.x, pos.y - at.y); };
-            let speed = 1 + (p.trait === "trait_nimble" ? COMBAT.nimbleSpeed : 0) + (p.trait === "trait_focused" && tower.kind === "ARROW" ? COMBAT.focusedSpeed : 0) + (po.speed || 0) + (tower.kind === "ARROW" ? po.arrowSpeed || 0 : tower.kind === "STONE" ? po.stoneSpeed || 0 : 0);
+            const stats = towerStats(this.base, tower.kind, tower.level, p);
+            let speed = stats.speed;
             if (this.bellTicks > 0 && this.tactic.effect === "ATTACK_SPEED")
                 speed *= this.tactic.multiplier;
             if (this.base.night!.hungry)
                 speed *= RULE.hungerSpeed;
             if (this.enemies.some(e => e.hp > 0 && ENEMIES[e.kind].disrupt && distance(e) <= COMBAT.disruptRange))
                 speed *= RULE.disruptSpeed;
-            const interval = this.fixedPace ? t.interval / FIXED_NIGHT.towerFireRate : t.interval;
-            this.charge[i] += RULE.step * speed / interval;
-            const range = t.range * (1 + (p.trait === "trait_farsight" ? COMBAT.farsightRange : 0) + (po.range || 0));
+            this.charge[i] += RULE.step * speed / stats.interval;
+            const range = stats.range;
             const candidates = this.enemies.filter(e => e.hp > 0 && distance(e) <= range).sort((a, b) => b.progress - a.progress || a.seq - b.seq);
             if (!candidates.length) {
                 this.charge[i] = Math.min(1, this.charge[i]);
@@ -387,7 +384,6 @@ export class BattleSimulation {
                 });
                 return { target, center, nearby };
             });
-            const bonus = (po.damage || 0) + (tower.kind === "STONE" ? (p.trait === "trait_strong" ? COMBAT.strongDamage : 0) + (p.skill === "skill_throwing" ? COMBAT.throwingDamage : 0) + (po.stoneDamage || 0) : tower.kind === "ARROW" && p.skill === "skill_archery" ? COMBAT.archeryDamage : 0);
             const empowered = this.bellTicks > 0 && this.tactic.effect === "ATTACK_DAMAGE";
             const tacticDamage = this.bellTicks > 0 && this.tactic.effect === "ATTACK_DAMAGE" ? this.tactic.multiplier : 1;
             const claimed = new Set<Enemy>();
@@ -398,12 +394,11 @@ export class BattleSimulation {
                     claimed.add(e); return true;
                 }) : [target];
                 for (const e of hurt) {
-                    const armor = ENEMIES[e.kind].armor;
-                    e.hp -= Math.max(1, Math.floor(t.damage * levelPower(tower.level) * (1 + bonus) * VILLAGER_QUALITY[p.quality].damage * tacticDamage * (1 - armor / (tower.kind === "STONE" ? COMBAT.stoneArmorDivisor : 1))));
+                    e.hp -= Math.max(1, Math.floor(stats.damage * tacticDamage));
                 }
                 const slowed: number[] | undefined = tower.kind === "SLOW" ? [] : undefined;
                 if (slowed) {
-                    const strength = Math.min(COMBAT.slowMax, COMBAT.slowBase + (p.trait === "trait_patient" ? COMBAT.patientSlow : 0) + (p.skill === "skill_warding" ? COMBAT.wardingSlow : 0) + (po.slow || 0));
+                    const strength = stats.slow;
                     for (const e of nearby)
                         if (!e.slowTicks || strength >= e.slow) {
                             e.slow = strength;
@@ -436,9 +431,6 @@ export class BattleSimulation {
                 e.slowTicks--;
         if (this.bellTicks > 0)
             this.bellTicks--;
-        if (hadEffect && this.bellTicks === 0) {
-            this.sharedReadyAt = this.tick + 1 + TACTIC_USE.recoveryTicks;
-        }
         this.tasks?.observe(this.feedback);
         this.tick++;
     }

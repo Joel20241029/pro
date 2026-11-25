@@ -99,8 +99,7 @@ test('on step sixty blast kills the entire circle, including armored enemies and
     const blast = b.feedback.find(e => e.type === 'blast');
     assert.deepEqual(blast.at, castPoint);
     assert.deepEqual(blast.hurt.map(e => [e.seq, e.hp]), [[0, 0], [1, 0], [expandedEdge.seq, 0], [3, 0], [4, 0]]);
-    assert.equal(b.cooldownFor(DEFAULT_TACTIC), TACTIC_USE.recoveryTicks);
-    for (let i = 0; i < TACTIC_USE.recoveryTicks; i++) b.step();
+    assert.equal(b.cooldownFor(DEFAULT_TACTIC), 0);
     assert(b.canCast(DEFAULT_TACTIC));
     assert(!b.bell(BLAST_TACTIC, castPoint));
 });

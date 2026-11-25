@@ -13,7 +13,7 @@ import { drawResidentTalent, drawResidentQuality, residentCardText } from "./Res
 
 /** 审稿版的卡片尺度，单位为逻辑像素。留白同时给短屏的面板回弹预留空间。 */
 const DETAIL = { top: 118, bottom: 49, screenMargin: 24, gap: 19, profile: 206, talent: 170, bonus: 156,
-    work: 251, closedWork: 144, status: 138, archive: 162 } as const;
+    work: 177, closedWork: 144, status: 138, archive: 162 } as const;
 
 export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel, safeHeight: number) {
     const ancestor = p.type === "ancestor";
@@ -22,12 +22,13 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
     const elder = isElder(q), worker = isWorkingAdult(q), canAssign = worker && s.phase === "DAY" && !ancestor;
     const favorite = s.favorites.includes(q.id), favoriteFull = s.favorites.length >= RULE.favoriteCap;
     const statusHeight = ancestor ? DETAIL.archive : worker ? canAssign ? DETAIL.work : DETAIL.closedWork : DETAIL.status;
-    const contentHeight = DETAIL.profile + DETAIL.talent + statusHeight + DETAIL.gap * 2 + (special ? DETAIL.bonus + DETAIL.gap : 0);
+    const talentHeight = DETAIL.talent + (q.traits.length - 2) * 44;
+    const contentHeight = DETAIL.profile + talentHeight + statusHeight + DETAIL.gap * 2 + (special ? DETAIL.bonus + DETAIL.gap : 0);
     const preferredHeight = DETAIL.top + contentHeight + DETAIL.bottom;
     const height = Math.min(preferredHeight, Math.floor(safeHeight) - DETAIL.screenMargin * 2);
     const help = ancestor ? `珍藏最多 ${RULE.favoriteCap} 位，满了可先取消一位。普通家谱保留最近 ${RULE.historyCap} 位先辈。`
         : elder ? "养老的人仍占一个住房名额，口粮计入全村。成功守夜推进晚年，寿终后记入家谱。"
-            : !q.adult ? "孩子由成年村民照料，成功守夜才能成长。在成人详情中安排照料。"
+            : !q.adult ? "每成功守夜一次，孩子成长一夜。"
                 : `白天工作与夜间岗位互不占用。夜间可驻塔，或在${PATROL.building}担任${PATROL.role}。`;
     const box = ctx.modal(ancestor ? "先辈详情" : "村民详情", "", true, { width: UI.panelWidth, height }, help);
     let parent = box, x: number = UI.inset, y: number = DETAIL.top;
@@ -57,7 +58,7 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
     bio.graphics.drawEllipse(116, 103, 88, 88, "#f7e4b9", null, 0);
     ctx.ui.image(bio, ctx.art.portraitId(q, ancestor), 21, 8, 190, 190);
 
-    drawResidentTalent(ctx, card("talent", DETAIL.talent), q);
+    drawResidentTalent(ctx, card("talent", talentHeight), q);
     if (special) drawResidentQuality(ctx, card("bonus", DETAIL.bonus), quality);
 
     const status = card(worker && !ancestor ? "jobs" : "status", statusHeight);
@@ -71,17 +72,16 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
         return;
     }
     if (!worker) {
-        heading(status, elder ? "养老" : "成长与照料");
-        const carer = s.people.find(a => a.careChild === q.id);
-        text(status, elder ? `养老还剩 ${q.elderNights} 夜` : `还需照料并守住 ${RULE.growNights - q.growth} 夜`, 28, 63, 516, 31, 27, C.ink, true);
+        heading(status, elder ? "养老" : "成长");
+        text(status, elder ? `养老还剩 ${q.elderNights} 夜` : `距成年还需守住 ${RULE.growNights - q.growth} 夜`, 28, 63, 516, 31, 27, C.ink, true);
         if (elder) {
             text(status, "基础口粮", 28, 98, 111, 30, 25, C.muted);
-            ctx.ui.iconValue(status, "icon_food", `${q.trait === "trait_frugal" ? ECONOMY.frugalRation : RULE.adultRation}/夜`, 146, 95, 130, 36, C.timber, 25, "left");
-        } else text(status, carer ? `${carer.name} 正在照料` : "无人照料，成长暂停", 28, 98, 510, 30, 25, C.muted);
+            ctx.ui.iconValue(status, "icon_food", `${q.traits.includes("trait_frugal") ? ECONOMY.frugalRation : RULE.adultRation}/夜`, 146, 95, 130, 36, C.timber, 25, "left");
+        } else text(status, "每次成功守夜自动成长", 28, 98, 510, 30, 25, C.muted);
         return;
     }
 
-    heading(status, "工作与照料");
+    heading(status, "岗位");
     status.graphics.drawRoundRect(395, 17, 180, 40, 14, 14, 14, 14, "#e9eed3");
     text(status, `距退休 ${q.nights} 夜`, 399, 17, 172, 40, 24, C.green, true).align = "center";
     const captain = q.id === s.patrol.captain;
@@ -101,12 +101,4 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
             }, C.green, 72);
         if (recommendedPeople(s.people, job, towers).includes(q)) ctx.ui.personRibbon(button, "tag_recommended");
     });
-    status.graphics.drawRect(24, 169, status.width - 48, 1, "#e1c28a");
-    const needsCare = s.people.some(child => !child.adult && !s.people.some(a => a.careChild === child.id));
-    const caredChild = s.people.find(child => child.id === q.careChild);
-    text(status, caredChild ? `照料 · ${caredChild.name}` : "照料孩子", 28, 184, 294, 44, 28, C.ink, true);
-    if (needsCare) {
-        const button = ctx.ui.button(status, "选择孩子", 383, 180, 190, () => ctx.open({ type: "care", id: q.id }), C.green, 57);
-        if (recommendedPeople(s.people, "CARE", towers).includes(q)) ctx.ui.personRibbon(button, "tag_recommended");
-    } else if (!caredChild) text(status, "暂无待照料的孩子", 215, 184, 357, 44, 27, C.muted).align = "right";
 }

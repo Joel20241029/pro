@@ -52,6 +52,9 @@ export class Main extends Laya.Script {
         this.session.onPatrolLanding = () => {
             if (this.session?.state?.settings.music && this.resources.ready("night")) this.music?.patrolLanding();
         };
+        this.session.onPatrolRapidFire = () => {
+            if (this.session?.state?.settings.music && this.resources.ready("night")) this.music?.patrolRapidFire();
+        };
         this.session.pause("ASSETS"); platform.bind(this.hide, this.show);
         this.resources.changed = () => { this.syncResourcePause(); this.updateLoadingStatus(); this.view?.refresh(); };
         await this.startVillage();

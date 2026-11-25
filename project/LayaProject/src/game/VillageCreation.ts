@@ -1,3 +1,4 @@
+import { STARTER_AMMO } from "../config/DefenseConfig";
 import { FOUNDERS, PADS, RULE, Trait } from "./GameConfig";
 import { clone, GameState, Legacy, Person, Tower } from "./GameState";
 import { generateWave } from "./WaveGenerator";
@@ -14,18 +15,19 @@ export function createGame(seed: number, old?: Legacy, inherited?: Trait, histor
     const s: GameState = {
         run: legacy.nextRun++, nextPerson: 1, nextFamily: 2, day: 1, completed: 0,
         phase: "DAY", food: RULE.initialResource, wood: RULE.initialResource, gate: RULE.gateMax,
-        houses: 1, housing: 1, gateLevel: 1, farm: 1, logging: 1, tier: RULE.maxTier, policy: null, lastTraveler: null,
+        houses: 1, gateLevel: 1, farm: 1, logging: 1, tier: RULE.maxTier, policy: null, lastTraveler: null,
         people: [], families: [], towers: [], history: clone(history), favorites: favorites.slice(), choices: [], wave: null, night: null,
+        ammoLevels: { ARROW: 1, STONE: 1, SLOW: 1 },
         patrol: { level: PATROL.startLevel, captain: null },
         tactics: { learned: [DEFAULT_TACTIC], equipped: DEFAULT_TACTIC },
         // 家庭与世界通过不同固定掩码分离；战斗不使用随机数，重进不重新取时间。
         rng: { family: (seed ^ 0xa341316c) >>> 0, world: (seed ^ 0xc8013ea4) >>> 0 },
         stats: { births: 0, retirees: 0, generation: 1 }, legacy, settings: { speed: RULE.battleSpeed, music: true }, summary: ""
     };
-    s.people = FOUNDERS.map((f, i): Person => ({ id: newId(s), name: f.name, sex: f.sex, origin: "FOUNDER", quality: "COMMON", appearance: f.appearance, trait: i === 0 && inherited ? inherited : f.trait, skill: f.skill, generation: 1, parents: [], ancestors: [], adult: true, nights: f.nights, elderNights: 0, growth: 0, job: f.job, careChild: null }));
+    s.people = FOUNDERS.map((f, i): Person => ({ id: newId(s), name: f.name, sex: f.sex, origin: "FOUNDER", quality: "COMMON", appearance: f.appearance, traits: [i === 0 && inherited ? inherited : f.trait], generation: 1, parents: [], ancestors: [], adult: true, nights: f.nights, elderNights: 0, growth: 0, job: f.job }));
     s.families.push({ id: `${s.run}:f1`, partners: [s.people[0].id, s.people[1].id], lastBirth: null });
-    s.towers = PADS.map((_, i): Tower => i === 0 ? { kind: "ARROW", level: 1, operator: s.people[3].id } : i === 1 ? { kind: "STONE", level: 1, operator: s.people[2].id } : { kind: null, level: 0, operator: null });
-    s.people.forEach(p => remember(s, p.trait));
+    s.towers = PADS.map((_, i): Tower => i === 0 ? { kind: STARTER_AMMO[0], level: 1, operator: s.people[3].id } : i === 1 ? { kind: STARTER_AMMO[1], level: 1, operator: s.people[2].id } : { kind: null, level: 0, operator: null });
+    s.people.forEach(p => p.traits.forEach(trait => remember(s, trait)));
     autoAssignJobs(s);
     autoAssignNightDuties(s);
     s.wave = generateWave(s);

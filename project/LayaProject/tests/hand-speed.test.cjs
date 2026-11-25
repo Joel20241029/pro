@@ -71,7 +71,7 @@ test('fourteen taps preserve the freeze until timeout and apply proportional dam
         const hits = game.takeCombatFeedback().filter(e => e.type === 'handSpeed');
         assert.equal(hits.length, 1);
         assert.equal(hits[0].hurt.length, 2);
-        assert.equal(b.cooldownFor(DEFAULT_TACTIC), TACTIC_USE.recoveryTicks);
+        assert.equal(b.cooldownFor(DEFAULT_TACTIC), 0);
         assert.equal(b.usesLeftFor(b.tactic), 0);
         game.update(.05);
         assert(b.tick > 0 && b.tick <= 3);

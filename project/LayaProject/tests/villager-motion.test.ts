@@ -154,7 +154,7 @@ test("Tower watch hides only after arrival and reappears on reassignment, replac
     ok(!motion.crossingGate(830), "the gate should close after the guards pass");
 });
 test("Babies stay home, children walk, growth retains position, retired people are removed", () => {
-    const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id });
+    const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id });
     const child = s.people[s.people.length - 1], motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     const baby = { ...motion.get(child.id) };
     for (let i = 0; i < 50; i++) motion.update(.1);
@@ -254,16 +254,13 @@ test("Multiple new families celebrate one pair at a time with no lingering poole
     equal([...seen].sort(), [s.people[2].id, s.people[3].id, s.people[4].id, s.people[5].id].sort());
     ok(s.people.every(p => motion.get(p.id).heartElapsed === null));
 });
-test("Adults use side-facing work frames for both jobs and stand beside babies", () => {
-    for (const index of [0, 1]) for (const job of ["FARM", "LOGGING", "CARE"] as const) {
+test("Adults use side-facing work frames for both jobs", () => {
+    for (const index of [0, 1]) for (const job of ["FARM", "LOGGING"] as const) {
         const s = createGame(3), p = s.people[index];
-        if (job === "CARE") applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: p.id });
-        else if (job === "LOGGING") applyCommand(s, { type: "JOB", id: p.id, job, replace: s.people[2].id });
+        if (job === "LOGGING") applyCommand(s, { type: "JOB", id: p.id, job, replace: s.people[2].id });
         const motion = new VillagerMotion(navigation); motion.sync(s, s.towers); let played = false;
         for (let i = 0; i < 1600; i++) { motion.update(.05); const m = motion.get(p.id); if (m.walking) continue;
-            if (job === "CARE") {
-                if (!m.animated && m.clip === `villager_${villagerModel(p)}_walk` && distance(m, motion.get(p.careChild!)) < 55) played = true;
-            } else if (m.animated && m.elapsed > .5 && m.clip === `villager_${villagerModel(p)}_work`) {
+            if (m.animated && m.elapsed > .5 && m.clip === `villager_${villagerModel(p)}_work`) {
                 ok(m.direction === "LEFT" || m.direction === "RIGHT");
                 played = true;
             } }

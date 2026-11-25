@@ -131,9 +131,19 @@ export class UiWidgets {
         }
     }
     /** 建设条目共用图标、效果和材料布局；整个条目可点，原因直接可见，不再靠点击后弹Tip解释。 */
-    buildRow(parent: Laya.Sprite, y: number, icon: string, title: string, effect: string, owned: Materials, cost: MaterialCost | null, reason: string | null, action: () => void, caption = "升级") {
-        const row = this.button(parent, "", 0, y, UI.contentWidth - UI.scrollGutter, action, C.muted, UI.buildRowHeight, !reason, true);
-        const face = row.getChildAt(0) as Laya.Sprite;
+    buildRow(parent: Laya.Sprite, y: number, icon: string, title: string, effect: string, owned: Materials, cost: MaterialCost | null, reason: string | null, action: () => void, caption = "升级",
+        fullRepair?: { wood: number; enabled: boolean; action: () => void }) {
+        const width = UI.contentWidth - UI.scrollGutter;
+        let row: Laya.Sprite, face: Laya.Sprite;
+        if (fullRepair) {
+            // 两种价格的修门操作各自命中；卡片空白处和置灰按钮都不会扣木。
+            row = new Laya.Sprite(); row.pos(0, y); row.size(width, UI.buildRowHeight); parent.addChild(row);
+            this.art.panel(row, reason ? "panel_card_disabled" : "panel_card", width, UI.buildRowHeight);
+            face = row;
+        } else {
+            row = this.button(parent, "", 0, y, width, action, C.muted, UI.buildRowHeight, !reason, true);
+            face = row.getChildAt(0) as Laya.Sprite;
+        }
         const frame = new Laya.Sprite(); frame.pos(12, (UI.buildRowHeight - 150) / 2);
         this.art.panel(frame, reason ? "panel_card_disabled" : "panel_portrait_frame", 150, 150);
         frame.mouseEnabled = false; face.addChild(frame);
@@ -148,6 +158,12 @@ export class UiWidgets {
         if (note) {
             const label = this.label(face, note, 171, 138, copyWidth, 24, C.red, false, 34);
             label.wordWrap = false; label.overflow = Laya.Text.SHRINK;
+        }
+        if (fullRepair) {
+            const x = width - 168;
+            this.button(row, "修一次", x, 26, 152, action, C.green, 58, !reason);
+            this.button(row, `修满 · ${fullRepair.wood}木`, x, 99, 152, fullRepair.action, C.gold, 58, fullRepair.enabled);
+            return row;
         }
         const badge = new Laya.Sprite(); badge.pos(row.width - badgeWidth - 16, (row.height - badgeHeight) / 2); badge.mouseEnabled = false;
         badge.name = "BuildAction";

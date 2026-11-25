@@ -15,7 +15,7 @@ function equal(a: unknown, b: unknown) { ok(JSON.stringify(a) === JSON.stringify
 function rejects(f: () => void) { let threw = false; try { f(); } catch { threw = true; } ok(threw, "expected rejection"); }
 function test(name: string, f: () => void) { f(); passed++; console.log("PASS", name); }
 function dawn(s: GameState) {
-    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "SKILL" || q.kind === "POLICY" ? q.options[0] : "decline" }); }
+    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" ? q.options[0] : "decline" }); }
     if (s.phase === "DAWN") applyCommand(s, { type: "FINALIZE" });
 }
 class MemoryStore implements StoragePort {
@@ -29,24 +29,24 @@ test("LCG fixed vector, canonical UTF8 and CRC", () => {
 });
 test("Fixed founders and valid first night", () => { const s = createGame(1); validateState(s); equal(s.people.length, 6); applyCommand(s, { type: "NIGHT" }); validateState(s); });
 test("Consumption occurs before warehouse cap", () => {
-    const s = createGame(1); s.food = 195; s.people.forEach(p => { p.job = "WAITING"; p.trait = "trait_farsight"; p.skill = "skill_archery"; });
+    const s = createGame(1); s.food = 195; s.people.forEach(p => { p.job = "WAITING"; p.traits = ["trait_strong"]; });
     s.day = 4; s.people[0].job = s.people[1].job = "FARM";
     const child = clone(s.people[0]); child.id = "1:7"; child.adult = false; s.people.push(child);
     const e = economy(s); equal([e.food, e.rations, e.endFood], [16, 13, 198]);
 });
-test("Birth once, two cared wins, new adult receives its configured lifespan", () => {
-    const s = createGame(6); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id }); equal(s.food, 40); validateState(s);
-    const child = s.people[6]; ok(child.parents.length === 2); ok(child.trait === s.people[0].trait || child.trait === s.people[1].trait);
-    rejects(() => applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[5].id }));
+test("Birth once, two successful nights, new adult receives its configured lifespan", () => {
+    const s = createGame(6); applyCommand(s, { type: "BIRTH", family: s.families[0].id }); equal(s.food, 40); validateState(s);
+    const child = s.people[6]; ok(child.parents.length === 2); ok(child.traits.some(t => s.people[0].traits.includes(t) || s.people[1].traits.includes(t)));
+    rejects(() => applyCommand(s, { type: "BIRTH", family: s.families[0].id }));
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); dawn(s); equal(child.growth, 1);
-    applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); validateState(s); equal(child.nights, VILLAGER_QUALITY[child.quality].adultNights); ok(child.adult); equal(s.people[1].job, "WAITING"); ok(s.choices[0].kind === "SKILL"); dawn(s); validateState(s);
+    applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); validateState(s); equal(child.nights, VILLAGER_QUALITY[child.quality].adultNights); ok(child.adult); equal(s.people[1].job, "FARM"); ok(!s.choices.length); dawn(s); validateState(s);
 });
-test("Uncared child does not grow; failed night does not age", () => {
-    const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id }); applyCommand(s, { type: "JOB", id: s.people[1].id, job: "WAITING" });
+test("Failed night does not age children or parents", () => {
+    const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id }); applyCommand(s, { type: "JOB", id: s.people[1].id, job: "WAITING" });
     applyCommand(s, { type: "NIGHT" }); const nights = s.people[0].nights; finishNight(s, 0, s.towers.map(t => t.operator)); equal(s.people[0].nights, nights); equal(s.people[6].growth, 0); equal(s.day, 1); validateState(s);
 });
 test("Retiring carer can finish child's growth", () => {
-    const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[1].id }); s.people[1].nights = 1; s.people[6].growth = 1;
+    const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id }); s.people[1].nights = 1; s.people[6].growth = 1;
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); equal(s.people[6].nights, 12); equal(s.people[1].elderNights, 3); equal(s.history.length, 0); dawn(s); validateState(s);
 });
 test("Parents and siblings blocked, unrelated origins allowed", () => {
@@ -142,15 +142,15 @@ test("Traveler uses world RNG without advancing family RNG", () => {
 test("Highest tier stays fixed across the year without a difficulty choice", () => {
     const s = createGame(1); s.day = 12; s.completed = 11;  s.wave = generateWave(s);
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator));
-    ok(s.choices.every(q => ["SKILL", "TRAVELER", "POLICY"].includes(q.kind))); ok(s.choices.some(q => q.kind === "POLICY"));
-    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" || q.kind === "SKILL" ? q.options[0] : "decline" }); }
+    ok(s.choices.every(q => ["TRAVELER", "POLICY"].includes(q.kind))); ok(s.choices.some(q => q.kind === "POLICY"));
+    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" ? q.options[0] : "decline" }); }
     equal(s.day, 13); equal(s.tier, RULE.maxTier); equal(s.wave, null); const replay = clone(s); applyCommand(s, { type: "FINALIZE" }); equal(s.wave!.tier, 3); equal(s.wave, generateWave(replay));
 });
 test("400 dawn settlements keep village and history bounded", () => {
     const s = createGame(1);
     for (let day = 0; day < 400; day++) {
         applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator));
-        while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" || q.kind === "SKILL" ? q.options[0] : "accept" }); }
+        while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" ? q.options[0] : "accept" }); }
         applyCommand(s, { type: "FINALIZE" }); validateState(s); ok(s.history.length <= 80 && s.people.length <= 20);
     }
     equal(s.day, 401); ok(s.history.length === 60);

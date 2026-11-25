@@ -63,7 +63,7 @@ test('female-majority immediately defeats living enemies and bosses; elders and 
     assert.equal(event.cleared, true);
     assert.deepEqual(event.targets.map(e => [e.seq, e.hp]), [[200, 0], [201, 0], [202, 0]]);
     assert.equal(b.tacticUsesLeft, 1);
-    assert.equal(b.cooldownFor(DEFAULT_TACTIC), TACTIC_USE.recoveryTicks);
+    assert.equal(b.cooldownFor(DEFAULT_TACTIC), 0);
     for (let i = 0; i <= 12; i++) b.step();
     assert.equal(b.enemies.length, 1);
     assert.notEqual(b.enemies[0].seq, 200);

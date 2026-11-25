@@ -68,7 +68,7 @@ test('slot thresholds, each exact cost, duplicate validation and compatibility w
     assert.deepEqual(game.state.tactics, { learned: [DEFAULT_TACTIC], equipped: DEFAULT_TACTIC });
 });
 
-test('casts share a nightly pool, cannot overlap and wait a full four seconds after the last active step', () => {
+test('casts share a nightly pool, cannot overlap and allow a ready skill on the first step after expiry', () => {
     const s = village(50);
     s.tactics = { learned: [DEFAULT_TACTIC, SHIELD_TACTIC, MIND_LOCK_TACTIC], equipped: SHIELD_TACTIC, extraSlots: [MIND_LOCK_TACTIC, DEFAULT_TACTIC] };
     applyCommand(s, { type: 'NIGHT' });
@@ -79,11 +79,10 @@ test('casts share a nightly pool, cannot overlap and wait a full four seconds af
     b.bell(MIND_LOCK_TACTIC);
     assert.equal(b.tacticUsesLeft, 2);
     while (b.bellTicks) b.step();
-    assert.equal(b.cooldownFor(MIND_LOCK_TACTIC), TACTIC_USE.recoveryTicks);
+    assert.equal(b.cooldownFor(MIND_LOCK_TACTIC), 0);
     assert.equal(b.cooldownFor(SHIELD_TACTIC) * RULE.step, 14);
-    while (b.cooldownFor(MIND_LOCK_TACTIC) > 1) b.step();
-    assert(!b.canCast(MIND_LOCK_TACTIC));
-    b.step(); b.bell(MIND_LOCK_TACTIC);
+    assert(b.canCast(MIND_LOCK_TACTIC));
+    b.bell(MIND_LOCK_TACTIC);
     assert(b.mindLocked);
     assert.equal(b.tacticUsesLeft, 1);
     while (b.bellTicks || b.cooldownFor(DEFAULT_TACTIC)) b.step();

@@ -6,7 +6,7 @@ export interface UpgradeCost { wood: number; food: number; }
 /** 规则、预览和存档校验共用成长计算；没有全局等级上限，也不增加同屏对象。 */
 export function levelPower(level: number) { const n = level - 1; return 1 + GROWTH.powerLinear * n + GROWTH.powerQuadratic * n * n; }
 export function enemyPower(day: number) { return 1 + Math.max(0, day - GROWTH.enemyStartDay) / GROWTH.enemyLevelNights; }
-export function storageCapacity(s: GameState) { const n = s.housing - 1; return RULE.storageCap + GROWTH.storagePerLevel * n + GROWTH.storageQuadratic * n * n; }
+export function storageCapacity(s: Pick<GameState, "houses">) { const n = s.houses - 1; return RULE.storageCap + GROWTH.storagePerLevel * n + GROWTH.storageQuadratic * n * n; }
 export function gateCapacity(s: GameState) { return Math.ceil(RULE.gateMax * levelPower(s.gateLevel)); }
 export function laborSlots(job: "FARM" | "LOGGING", level: number) {
     const slots = job === "FARM" ? RULE.farmSlots : RULE.logSlots;
@@ -18,20 +18,31 @@ export function upgradeCost(kind: UpgradeKind, level: number): UpgradeCost {
     return { wood: base.wood + GROWTH.costWoodPerLevel * n + GROWTH.costWoodQuadratic * n * n,
         food: base.food + GROWTH.costFoodPerLevel * n + Math.floor(GROWTH.costFoodQuadratic * n * n) };
 }
-/** 住宅扩建与设施修缮分开计价；命令、预览、红点共用，避免显示可扩建却扣费失败。 */
+/** 民居一次扩建同时增加住房和仓储；命令、预览、红点共用，避免显示可扩建却扣费失败。 */
 export function residentialCost(level: number): UpgradeCost {
     const n = level - 1;
     return { wood: RESIDENTIAL.woodBase + RESIDENTIAL.woodPerLevel * n + Math.floor(RESIDENTIAL.woodQuadratic * n * n),
         food: RESIDENTIAL.foodBase + RESIDENTIAL.foodPerLevel * n };
 }
 export function repairCost(s: GameState) { return RULE.repairCost + GROWTH.repairWoodPerLevel * (s.gateLevel - 1); }
+/** 总价按补满所需的整次修复计算，末次封顶；用于面板报价和提交时重新结算。 */
+export function gateRepairQuote(s: GameState) {
+    const maximum = gateCapacity(s), perRepair = Math.ceil(maximum * GROWTH.repairFraction);
+    const count = Math.ceil((maximum - s.gate) / perRepair);
+    return { maximum, perRepair, count, fullCost: count * repairCost(s) };
+}
 /** 共同预检先指出仓储不足，再指出实际材料不足；不扣费、不改存档。 */
 export function upgradeUnavailableReason(s: GameState, cost: UpgradeCost): string | null {
     if (s.phase !== "DAY") return "请在白天建设";
     if (!Number.isSafeInteger(cost.wood) || !Number.isSafeInteger(cost.food)) return "建设数值已达安全范围";
-    if (Math.max(cost.wood, cost.food) > storageCapacity(s)) return `费用超出仓储 ${storageCapacity(s)}，先修缮民居`;
+    if (Math.max(cost.wood, cost.food) > storageCapacity(s)) return `费用超出仓储 ${storageCapacity(s)}，先扩建民居`;
     if (s.wood < cost.wood && s.food < cost.food) return `还缺 ${cost.wood - s.wood} 木、${cost.food - s.food} 粮`;
     if (s.wood < cost.wood) return `还缺 ${cost.wood - s.wood} 木材`;
     if (s.food < cost.food) return `还缺 ${cost.food - s.food} 粮食`;
     return null;
+}
+/** 人口满员后仍可扩仓；库存必须能用安全整数保存。命令、面板与任务使用同一预检。 */
+export function residentialUpgradeReason(s: GameState) {
+    return Number.isSafeInteger(storageCapacity({ houses: s.houses + 1 }))
+        ? upgradeUnavailableReason(s, residentialCost(s.houses)) : "建设数值已达安全范围";
 }

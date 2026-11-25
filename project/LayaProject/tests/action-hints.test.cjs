@@ -23,22 +23,19 @@ test('family hint represents a legal marriage even without birth food, not a sam
     s.people[1].sex = 'FEMALE'; s.people[1].parents = [s.people[0].id]; s.people[1].ancestors = [s.people[0].id]; assert.equal(hint(s).families, false);
     s.people[1].parents = []; s.people[1].ancestors = []; s.nextFamily = Number.MAX_SAFE_INTEGER; assert.equal(hint(s).families, false);
 });
-test('birth hint shares cooldown, child, parent, carer, food, space and safe ID restrictions', () => {
+test('birth hint shares cooldown, parent, food, space and safe ID restrictions', () => {
     for (const block of [
         s => s.food = RULE.birthCost - 1,
         s => s.families[0].lastBirth = s.completed,
-        s => s.people[0].nights = RULE.parentMinNights - 1,
         s => s.people[0].nights = 0,
-        s => s.people.forEach(p => p.job = 'CARE'),
         s => s.nextPerson = Number.MAX_SAFE_INTEGER,
-        s => s.people.push({...s.people[0], id:'child', adult:false, parents:[s.people[0].id]}),
         s => { while (s.people.length < capacity(s)) s.people.push({...s.people[0], id:`elder:${s.people.length}`, nights:0}); }
     ]) { const s = marriedOnly(); assert(hint(s).families); block(s); assert.equal(hint(s).families, false); }
     const s = marriedOnly(); applyCommand(s, {type:'BIRTH', family:s.families[0].id, carer:s.people[0].id}); assert.equal(hint(s).families, false);
 });
 test('build hints switch at exact costs, full houses/gate do not keep them lit', () => {
-    const s = noFunds(); applyCommand(s, {type:'PATROL_CAPTAIN', id:s.people[4].id}); s.houses = RULE.houseMax; s.gate = gateCapacity(s); assert.equal(hint(s).build, false);
-    s.housing=18; s.houses--; const expansion = residentialCost(s.houses); s.wood = expansion.wood; s.food = expansion.food - 1;
+    const s = noFunds(); applyCommand(s, {type:'PATROL_CAPTAIN', id:s.people[4].id}); s.houses = 100; s.gate = gateCapacity(s); assert.equal(hint(s).build, false);
+    s.houses--; const expansion = residentialCost(s.houses); s.wood = expansion.wood; s.food = expansion.food - 1;
     // Other cheap upgrades can also light the shared dot; expansion's own boundary is tested through its command.
     assert.throws(() => applyCommand(s, {type:'BUILD',kind:'HOUSE'}));
     s.food++; assert(hint(s).build); applyCommand(s, {type:'BUILD',kind:'HOUSE'}); assert.equal(hint(s).build, false);
@@ -51,12 +48,11 @@ test('tower state never creates a map hint or adds work to the archive button', 
     s.towers.forEach(t => { t.kind = null; t.level = 0; t.operator = null; });
     assert.equal('towers' in hint(s), false); assert.equal(hint(s).history, false);
 });
-test('people hints cover unassigned children but skip automatically filled jobs', () => {
+test('children grow without alerting the player to assign a carer', () => {
     const s=createGame(1);assert.equal(hint(s).people,false);
     s.people.find(p=>p.job==='FARM').job='WAITING';assert.equal(hint(s).people,false);
     applyCommand(s,{type:'JOB',id:s.people.find(p=>p.job==='WAITING').id,job:'FARM'});assert.equal(hint(s).people,false);
-    const child={...s.people[0],id:'child',adult:false,nights:0,job:'WAITING',careChild:null};s.people.push(child);assert(hint(s).people);
-    applyCommand(s,{type:'JOB',id:s.people[0].id,job:'CARE',child:child.id});assert.equal(hint(s).people,false);
+    const child={...s.people[0],id:'child',adult:false,nights:0,job:'WAITING'};s.people.push(child);assert.equal(hint(s).people,false);
 });
 test('loading, foreground confirmation, rewards and save-pending suppress hints; normal panels do not', () => {
     const values=new Map(),store=new SaveStore({read:k=>values.get(k)??null,write:(k,v)=>values.set(k,v)}),game=new GameSession(store);game.state=createGame(3);

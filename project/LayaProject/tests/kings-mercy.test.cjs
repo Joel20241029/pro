@@ -103,7 +103,7 @@ test('unsuccessful verification never applies combat effects, retry charges once
         assert.equal(game.state.night.mercySpent, true);
         assert.deepEqual(game.state.tactics.mercyCooldown, { casts: 1, wavesLeft: 6 });
         assert.equal(b.tacticUsesLeft, b.tacticBudget - 1);
-        assert.equal(b.cooldownFor(DEFAULT_TACTIC), TACTIC_USE.recoveryTicks);
+        assert.equal(b.cooldownFor(DEFAULT_TACTIC), 0);
         const events = game.takeCombatFeedback();
         assert.equal(events.length, 1);
         assert.equal(events[0].type, 'mercy');

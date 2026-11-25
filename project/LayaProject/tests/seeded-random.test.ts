@@ -59,10 +59,10 @@ test("Actual BIRTH commands inherit from both parents across the saved family st
         let familyState = seed, maternal = 0, paternal = 0;
         for (let i = 0; i < 1000; i++) {
             const state = createGame(seed); state.rng.family = familyState;
-            state.people[0].trait = "trait_diligent"; state.people[1].trait = "trait_woodwise";
-            applyCommand(state, { type: "BIRTH", family: state.families[0].id, carer: state.people[1].id });
+            state.people[0].traits = ["trait_diligent"]; state.people[1].traits = ["trait_woodwise"];
+            applyCommand(state, { type: "BIRTH", family: state.families[0].id });
             familyState = state.rng.family;
-            if (state.people[6].trait === "trait_diligent") paternal++; else maternal++;
+            if (state.people[6].traits[0] === "trait_diligent") paternal++; else maternal++;
         }
         ok(paternal > 400 && maternal > 400, `actual inheritance: ${paternal}/${maternal}`);
     }

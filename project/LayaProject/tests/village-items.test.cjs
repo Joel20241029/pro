@@ -8,7 +8,7 @@ const { GUIDE_SAVE_KEY } = read('storage/VillageGuides');
 const { GameSession } = read('game/GameSession');
 const { createGame } = read('game/VillageRules');
 const { featureUnlocked } = read('config/DailyTaskConfig');
-const { SHOP_PRODUCTS, ITEMS, LIANG_ESSENCE, PATROL_RATION, LIANG_INDULGENCE } = read('config/ShopConfig');
+const { SHOP_PRODUCTS, ITEMS, LIANG_ESSENCE, PATROL_RATION, LIANG_INDULGENCE, ICE_AMMO_OFFER } = read('config/ShopConfig');
 
 const mainA = 'daidai_village.save.a', mainB = 'daidai_village.save.b';
 const unrelated = 'daidai_village.device_settings';
@@ -160,7 +160,7 @@ test('backpack and shop gates are distinct, and only confirmed offers are purcha
     assert.equal(featureUnlocked(8, 'backpack'), true);
     assert.equal(featureUnlocked(12, 'shop'), false);
     assert.equal(featureUnlocked(13, 'shop'), true);
-    assert.deepEqual(SHOP_PRODUCTS, [LIANG_ESSENCE, PATROL_RATION, LIANG_INDULGENCE]);
+    assert.deepEqual(SHOP_PRODUCTS, [LIANG_ESSENCE, PATROL_RATION, LIANG_INDULGENCE, ICE_AMMO_OFFER]);
     assert.equal(ITEMS.patrol_ration.name, '靓哥的底线');
     assert.equal(ITEMS.patrol_ration.icon, 'icon_liang_briefs');
     assert.match(PATROL_RATION.lore, /靓哥的红底裤/);
@@ -374,4 +374,38 @@ test('interrupted item operations converge after retry, cold start and an uncert
     assert.equal(game.takePurchaseFeedback(), true);
     assert.equal(game.state.food, 80);
     assert.equal(game.villageItems.backpack().items[id], 1);
+});
+
+test('ice purchase unlocks both towers and a single shared upgrade survives reopening', () => {
+    const { towerStats } = read('game/TowerStats');
+    const { upgradeCost } = read('game/Growth');
+    const f = fixture(), game = f.reopen();
+    game.newVillage();
+    assert.deepEqual(game.state.towers.map(t => t.kind), ['ARROW','STONE',null,null,null]);
+    game.buyItem(ICE_AMMO_OFFER.id);
+    assert.equal(game.state.iceAmmoUnlocked, undefined);
+    game.state.legacy.bestNight = 13;
+    game.state.wood = ICE_AMMO_OFFER.wood - 1;
+    game.buyItem(ICE_AMMO_OFFER.id);
+    assert.equal(game.state.iceAmmoUnlocked, undefined);
+    game.state.wood = game.state.food = 180;
+    const bagBefore = f.values.get(keys.backpack);
+    game.buyItem(ICE_AMMO_OFFER.id);
+    assert.equal(game.state.iceAmmoUnlocked, true);
+    assert.equal(game.takePurchaseFeedback(), true);
+    game.buyItem(ICE_AMMO_OFFER.id);
+    assert.equal(game.state.wood, 180 - ICE_AMMO_OFFER.wood);
+    assert.equal(f.values.get(keys.backpack), bagBefore);
+    for (const index of [0,1]) game.command({type:'TOWER', index, kind:'SLOW'});
+    const damage = () => game.state.towers.slice(0,2).map(t => towerStats(game.state,t.kind,t.level,game.state.people.find(p => p.id===t.operator)).damage);
+    const original = damage(), cost = upgradeCost('TOWER', 1);
+    for (let attempt=0;attempt<2;attempt++) game.command({type:'UPGRADE_AMMO',kind:'SLOW',level:1});
+    assert.equal(game.state.food,180-cost.food);
+    assert.equal(game.state.wood,180-ICE_AMMO_OFFER.wood-cost.wood);
+    assert.deepEqual(game.state.ammoLevels,{ARROW:1,STONE:1,SLOW:2});
+    damage().forEach((d,i)=>assert(Math.abs(d-original[i]*1.05)<1e-9));
+    const next = f.reopen();
+    assert.deepEqual(next.state.ammoLevels, game.state.ammoLevels);
+    assert.deepEqual(next.state.towers, game.state.towers);
+    assert.equal(next.state.iceAmmoUnlocked,true);
 });

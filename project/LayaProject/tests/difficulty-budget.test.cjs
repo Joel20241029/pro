@@ -144,3 +144,17 @@ test('an already planned paired wave retains its older headcount, deadline and s
  assert.equal(current.entries.length,190);assert.equal(current.entries.at(-1).tick,waveDifficulty(s.day).spawnTicks);
  assert.equal(waveDifficulty(s.day,WAVE_RHYTHM.extended).spawnTicks,2416);
 });
+
+test('heavy ordinary health scaling survives removal of enemy armor', () => {
+ const s=createGame(1);
+ s.wave.affix='NONE';
+ applyCommand(s,{type:'NIGHT'});
+ const b=new BattleSimulation(s), difficulty=waveDifficulty(s.day);
+ for(const kind of ['enemy_runner','enemy_armored','enemy_boar','enemy_disruptor','enemy_commander']){
+  b.spawn(kind,0,1);
+  const data=ENEMIES[kind], heavy=['enemy_armored','enemy_boar','enemy_disruptor'].includes(kind);
+  const hp=data.boss ? data.hp*difficulty.bossHealth : data.hp*FIXED_NIGHT.otherOrdinaryHealth*difficulty.health*
+   (heavy?difficulty.heavyHealth:1)*s.wave.ordinaryHealthPercent/100;
+  assert.equal(b.enemies.at(-1).maxHp,Math.ceil(hp),kind);
+ }
+});

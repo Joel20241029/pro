@@ -1,20 +1,20 @@
 {
   "_$ver": 1,
-  "_$id": "1bb66336",
+  "_$id": "2a516a5a",
   "_$type": "Sprite",
-  "name": "SLOW",
+  "name": "CANNON",
   "width": 128,
   "height": 128,
   "_$child": [
     {
-      "_$id": "e4238198",
+      "_$id": "6c9b6464",
       "_$type": "Sprite",
-      "name": "SLOW_1_1",
+      "name": "CANNON_1_1",
       "width": 128,
       "height": 128,
       "_$child": [
         {
-          "_$id": "456fa115",
+          "_$id": "6498cdc0",
           "_$type": "Sprite",
           "name": "Body",
           "x": 64,
@@ -25,81 +25,82 @@
           "anchorY": 0.9375,
           "_$child": [
             {
-              "_$id": "56653bf7",
+              "_$id": "e04785b0",
               "_$type": "Sprite",
               "name": "Structure",
-              "x": 30,
-              "y": 1,
-              "width": 69,
-              "height": 119,
               "texture": {
-                "_$uuid": "979b3c35-8578-7d1a-92f3-24644b70372c",
+                "_$uuid": "191c634f-b95b-5701-93d8-3a648831cd23",
                 "_$type": "Texture"
-              }
+              },
+              "x": 20,
+              "y": 44,
+              "width": 88,
+              "height": 76
             },
             {
-              "_$id": "52e88197",
+              "_$id": "c246aebc",
+              "_$type": "Sprite",
+              "name": "Loop:cannon_flag",
+              "texture": {
+                "_$uuid": "d03eb250-27bd-5c04-88f9-494ea9f55f95",
+                "_$type": "Texture"
+              },
+              "x": -1,
+              "y": 44,
+              "width": 42,
+              "height": 35
+            },
+            {
+              "_$id": "663c0f7f",
               "_$type": "Sprite",
               "name": "Weapon",
-              "width": 128,
-              "height": 46,
+              "x": 64,
+              "y": 52,
+              "width": 0,
+              "height": 0,
               "_$child": [
                 {
-                  "_$id": "f13d4aee",
+                  "_$id": "5962f332",
                   "_$type": "Sprite",
-                  "name": "Loop:motion_slow_idle",
-                  "x": 48,
-                  "y": -3,
-                  "width": 28,
-                  "height": 45,
+                  "name": "RestBarrel",
                   "texture": {
-                    "_$uuid": "ae071b46-130a-bc7b-fe14-6eb133112e72",
-                    "_$type": "Texture"
-                  }
-                },
-                {
-                  "_$id": "224da192",
-                  "_$type": "Sprite",
-                  "name": "Attack:motion_slow_attack",
-                  "x": 28,
-                  "y": -15,
-                  "width": 69,
-                  "height": 69,
-                  "texture": {
-                    "_$uuid": "accb9999-0d48-bc1a-da9d-513a723c44d9",
+                    "_$uuid": "3dd06730-87a2-55f4-a47a-16de755df7d6",
                     "_$type": "Texture"
                   },
-                  "_$comp": [
-                    {
-                      "_$type": "AnimatorClip2D",
-                      "clip": {
-                        "_$uuid": "068ee65b-f485-4791-88bd-87e719ae37b4"
-                      },
-                      "autoPlay": false
-                    }
-                  ]
+                  "x": -26,
+                  "y": -48,
+                  "width": 66,
+                  "height": 50.4
                 },
                 {
-                  "_$id": "9cbfc537",
+                  "_$id": "f2d9c2cd",
+                  "_$type": "Sprite",
+                  "name": "AimedBarrel",
+                  "texture": {
+                    "_$uuid": "7c04eb85-34f8-559b-b013-ed74d3c750c1",
+                    "_$type": "Texture"
+                  },
+                  "x": -25.92,
+                  "y": -57.92,
+                  "width": 76.48,
+                  "height": 73.92,
+                  "visible": false
+                },
+                {
+                  "_$id": "b9ea05a4",
                   "_$type": "Sprite",
                   "name": "Muzzle",
-                  "x": 62,
-                  "y": 11,
+                  "x": 29.218,
+                  "y": -28.762,
                   "width": 0,
                   "height": 0
                 }
-              ],
-              "x": 62,
-              "y": 33,
-              "scaleX": 1.5,
-              "scaleY": 1.5,
-              "anchorX": 0.484375,
-              "anchorY": 0.717391304347826
+              ]
             }
           ]
         },
         {
-          "_$id": "f3473452",
+          "_$id": "49a105b7",
           "_$type": "Sprite",
           "name": "VisualBounds",
           "x": -12,
@@ -109,7 +110,7 @@
           "visible": false
         },
         {
-          "_$id": "06b43286",
+          "_$id": "6cc7a4ef",
           "_$type": "Sprite",
           "name": "Footprint",
           "x": 22,
@@ -119,7 +120,7 @@
           "visible": false
         },
         {
-          "_$id": "991a69e9",
+          "_$id": "0db42f16",
           "_$type": "Sprite",
           "name": "SortOrigin",
           "x": 64,

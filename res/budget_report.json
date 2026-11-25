@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-24T13:09:22.828Z",
-  "runtimeAssetCount": 560,
+  "generatedAt": "2026-11-25T04:49:36.734Z",
+  "runtimeAssetCount": 542,
   "reserveAssetCount": 134,
-  "animationCount": 72,
-  "animationFrames": 432,
+  "animationCount": 69,
+  "animationFrames": 406,
   "categoryStats": {
     "enemies": {
       "count": 70,
@@ -24,15 +24,15 @@
       "reserve": 0
     },
     "building-parts": {
-      "count": 249,
-      "bytes": 2416035,
-      "runtime": 130,
+      "count": 229,
+      "bytes": 2525838,
+      "runtime": 110,
       "reserve": 119
     },
     "ui/icons": {
-      "count": 29,
-      "bytes": 421677,
-      "runtime": 29,
+      "count": 31,
+      "bytes": 423175,
+      "runtime": 31,
       "reserve": 0
     },
     "effects": {
@@ -71,20 +71,20 @@
       "id": "ui_0",
       "path": "atlases/ui_0.png",
       "runtimeFile": "ui/ui_0.png",
-      "width": 1024,
-      "height": 960,
-      "bytes": 412672,
-      "sha256": "a4186771d92a2dd40c114095c2dc5bfe4c95c7519d9c4d5323d3bc72de0398c1",
+      "width": 1021,
+      "height": 1024,
+      "bytes": 478422,
+      "sha256": "18eb9d526f673b046f62d181b8fdeaf7f5eaf5f8a9c8edd87eac2e2aaf9eb332",
       "group": "ui"
     },
     {
       "id": "ui_1",
       "path": "atlases/ui_1.png",
       "runtimeFile": "ui/ui_1.png",
-      "width": 167,
-      "height": 366,
-      "bytes": 81224,
-      "sha256": "d796ecd925ed8349758796e1f2c04ee1995f0f31acb8c095a6c3e99e6b333f35",
+      "width": 86,
+      "height": 75,
+      "bytes": 585,
+      "sha256": "12dfeb64dc20880f12671d47492a8413d45bfc24aed7c4d4d97349fa39c82250",
       "group": "ui"
     },
     {
@@ -111,10 +111,10 @@
       "id": "buildings_0",
       "path": "atlases/buildings_0.png",
       "runtimeFile": "buildings/buildings_0.png",
-      "width": 515,
-      "height": 896,
-      "bytes": 668337,
-      "sha256": "88bda61e42bdbf4dcce08aea9050e36e9538348720caf9aba0315f15a2c3a924",
+      "width": 768,
+      "height": 800,
+      "bytes": 761670,
+      "sha256": "7a3fa8eb54a1a46f18e9131c634f3462cb7028dc19ae4308486e57bb308d357c",
       "group": "buildings"
     },
     {
@@ -189,21 +189,21 @@
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 12751660,
-    "atlasContentPixels": 7230866,
-    "savedContentPixels": 5520794,
-    "savedContentPercent": 43.29,
-    "trimmedAssetCount": 532,
+    "sourceCanvasPixels": 12909733,
+    "atlasContentPixels": 7396369,
+    "savedContentPixels": 5513364,
+    "savedContentPercent": 42.71,
+    "trimmedAssetCount": 506,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "atlasImageBytes": 7519937,
-    "metadataBytes": 159308,
-    "audioBytes": 170026,
-    "totalBytes": 7849271,
+    "atlasImageBytes": 7598381,
+    "metadataBytes": 153580,
+    "audioBytes": 170880,
+    "totalBytes": 7922841,
     "files": [
       "bundles/map/frames.bin",
       "bundles/characters/animations.bin",
@@ -231,7 +231,8 @@
       "bundles/music/tower_fire.mp3",
       "bundles/music/enemy_defeat.mp3",
       "bundles/music/patrol_flight.mp3",
-      "bundles/music/patrol_landing.mp3"
+      "bundles/music/patrol_landing.mp3",
+      "bundles/music/patrol_rapid_fire.mp3"
     ]
   },
   "nineSliceCompaction": {
@@ -247,7 +248,7 @@
   },
   "sourceBytes": 49652112,
   "budgetComparison": {
-    "villageAtlasImageBytes": 5826464,
+    "villageAtlasImageBytes": 5904908,
     "nightAtlasImageBytes": 1693473
   },
   "limitations": [

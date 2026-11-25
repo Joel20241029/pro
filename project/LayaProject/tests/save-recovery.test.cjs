@@ -9,7 +9,7 @@ global.Laya = { Sprite: class {}, OpenDataContextView: class {}, Texture2D: clas
 const { drawBoot } = require(path.join(compiled, 'view/panels/SessionPanels.js'));
 const keys = ['daidai_village.save.a', 'daidai_village.save.b'];
 
-function envelope(configVersion, revision = 1, seed = 1, schemaVersion = 4) {
+function envelope(configVersion, revision = 1, seed = 1, schemaVersion = 5) {
     const body = { schemaVersion, configVersion, revision, commitId: `fixture:${seed}:${revision}`, commitType: 'NORMAL', payload: createGame(seed) };
     return canonical({ ...body, checksum: crc32(canonical(body)) });
 }
@@ -85,7 +85,7 @@ test('device settings inherit legacy values and write independently of a running
 });
 
 test('old/future config and schema mismatches preserve both original slots until explicit reset', () => {
-    for (const raw of [envelope(CONFIG_VERSION - 2), envelope(CONFIG_VERSION + 1), envelope(CONFIG_VERSION, 1, 1, 1), envelope(CONFIG_VERSION, 1, 1, 5)]) {
+    for (const raw of [envelope(CONFIG_VERSION - 1), envelope(CONFIG_VERSION - 2), envelope(CONFIG_VERSION + 1), envelope(CONFIG_VERSION, 1, 1, 4), envelope(CONFIG_VERSION, 1, 1, 6)]) {
         const storage = new MemoryStore([raw, raw]), game = session(storage);
         assert.equal(game.boot.kind, 'incompatible'); assert.equal(game.state, null);
         game.retry(); assert.equal(game.boot.kind, 'incompatible');

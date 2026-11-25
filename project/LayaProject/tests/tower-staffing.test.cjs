@@ -9,7 +9,7 @@ const { BattleSimulation } = require(path.join(compiled, 'game/BattleSimulation.
 const { SaveStore, canonical } = require(path.join(compiled, 'storage/SaveStore.js'));
 const { validateState } = require(path.join(compiled, 'storage/StateValidation.js'));
 const { RULE, TOWERS } = require(path.join(compiled, 'game/GameConfig.js'));
-class Sprite { pos() {} size() {} addChild() {} }
+class Sprite { pos() {return this;} size() {return this;} addChild(n) {return n;} }
 global.Laya = { Sprite, OpenDataContextView: class {}, Texture2D: class {} };
 const { drawBuildingPanel } = require(path.join(compiled, 'view/panels/BuildingPanels.js'));
 
@@ -45,10 +45,10 @@ test('new towers fill immediately and changing tower type keeps its chosen opera
     applyCommand(s, { type: 'TOWER', index: 2, kind: 'STONE' }); assert.deepEqual(operators(s), crew); assertCoverage(s);
 });
 
-test('daytime occupations including childcare do not exclude eligible tower operators', () => {
+test('daytime occupations after a birth do not exclude eligible tower operators', () => {
     const s = createGame(7); applyCommand(s, { type: 'BIRTH', family: s.families[0].id, carer: s.people[1].id });
     s.towers[0].operator = null; autoAssignOperators(s);
-    assert.equal(s.towers[0].operator, s.people[1].id); assert.equal(s.people[1].job, 'CARE'); assertCoverage(s);
+    assert.equal(s.towers[0].operator, s.people[1].id); assert.equal(s.people[1].job, 'FARM'); assertCoverage(s);
 });
 
 test('only an adult shortage leaves built towers unstaffed and empty building pads stay empty', () => {
@@ -83,14 +83,14 @@ test('a retiring operator is replaced at the successful dawn without waiting for
     assert(!operators(s).includes(retired)); assert.equal(s.towers[1].operator, retained); assertCoverage(s);
 });
 
-test('a child becoming an adult fills a vacancy even while the skill choice is pending', () => {
+test('a child becoming an adult fills a vacancy immediately without a dawn skill choice', () => {
     const s = createGame(7), carer = s.people[1];
     applyCommand(s, { type: 'BIRTH', family: s.families[0].id, carer: carer.id });
     const child = s.people.find(p => !p.adult); child.growth = RULE.growNights - 1;
     retainWorkers(s, [carer.id]); assertCoverage(s);
     applyCommand(s, { type: 'NIGHT' }); finishNight(s, s.gate, operators(s));
-    assert.equal(child.adult, true); assert.equal(child.skill, null); assert(operators(s).includes(child.id)); assertCoverage(s);
-    const choice = s.choices.find(q => q.kind === 'SKILL'); applyCommand(s, { type: 'CHOOSE', value: choice.options[0] }); assertCoverage(s);
+    assert.equal(child.adult, true); assert(child.traits.length > 0); assert(operators(s).includes(child.id)); assertCoverage(s);
+    assert(!s.choices.some(q => q.kind === 'SKILL')); assertCoverage(s);
 });
 
 test('accepting a traveler immediately fills a vacancy; declining does not add an operator', () => {
@@ -138,10 +138,10 @@ test('night swaps preserve battle progress and saved assignments, then resume wi
 
 test('tower panel offers replacement but no release action, and explains auto staffing', () => {
     const s = createGame(7), buttons = [], view = {}; let help;
-    Object.assign(view, { game: { state: s, battle: null, pauses: new Set() },
+    Object.assign(view, { art: {panel(){}, portraitId(p){return p.id;}}, game: { state: s, battle: null, pauses: new Set() },
         modal(title, overview, close, size, text) { help = text; return new Sprite(); },
         ui: { image() {}, buildRow() {}, iconValue() {}, label() { return {}; }, centerButton(parent, text) { buttons.push(text); },
             button(parent, text) { buttons.push(text); return { getChildByName: () => ({ getChildByName: () => new Sprite() }) }; } } });
     drawBuildingPanel(view, s, { type: 'tower', index: 0 });
-    assert(buttons.includes('更换驻守村民')); assert(!buttons.some(text => text.includes('释放'))); assert(help.includes('自动补上可用成年人'));
+    assert(buttons.includes('换人')); assert(!buttons.some(text => text.includes('释放'))); assert(help.includes('自动补上可用成年人'));
 });

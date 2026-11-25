@@ -18,7 +18,7 @@ const run = (rapid, seconds) => {
 };
 
 test('partial pulls retain rounds and cadence; empty clip reloads once and requires a fresh pull', () => {
-    const rapid = new PatrolRapid(16, 1);
+    const rapid = new PatrolRapid(16, 1, PATROL.rapid.reloadSeconds);
     assert(pull(rapid)); run(rapid, .75);
     assert.equal(rapid.ammo, 5);
     rapid.stop(); run(rapid, 2);
@@ -58,7 +58,7 @@ test('night starts with the booth magazine and refills to the same level-depende
 });
 
 test('an in-flight actor retains its bearing; nearest enemy takes one hit even with overlapping targets', () => {
-    const rapid = new PatrolRapid(16, 1);
+    const rapid = new PatrolRapid(16, 1, PATROL.rapid.reloadSeconds);
     assert.equal(rapid.damage, 20);
     assert(patrolRapidDamage(48) > rapid.damage);
     const origin = { x: 330, y: 610 }, head = { x: 330, y: 545 };
@@ -189,7 +189,7 @@ test('a rapid round grazes the widened torso ellipse and misses just outside it 
         for (const vertical of [true, false]) {
             const radius = vertical ? widthRadius : heightRadius;
             for (const [offset, expected] of [[radius - 1, 1], [radius + 1, 0]]) {
-                const rapid = new PatrolRapid(16, 1);
+                const rapid = new PatrolRapid(16, 1, PATROL.rapid.reloadSeconds);
                 const torso = { x: 360, y: 510 };
                 const foot = { x: torso.x, y: torso.y + height };
                 const trace = { enemy: {seq: 1, kind, hp: 100}, from: foot, to: foot, end: 1 };

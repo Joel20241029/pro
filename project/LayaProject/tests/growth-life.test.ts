@@ -1,7 +1,7 @@
 import { createGame, applyCommand, economy, finishNight } from "../src/game/VillageRules";
 import { clone } from "../src/game/GameState";
 import { RULE } from "../src/game/GameConfig";
-import { enemyPower, gateCapacity, laborSlots, storageCapacity, upgradeCost } from "../src/game/Growth";
+import { enemyPower, gateCapacity, laborSlots, storageCapacity, residentialCost, upgradeCost } from "../src/game/Growth";
 import { maleBirthProbability, nextSex, travelerDue } from "../src/game/Population";
 import { SeededRandom } from "../src/game/SeededRandom";
 import { validateState } from "../src/storage/StateValidation";
@@ -20,7 +20,7 @@ function equal(a: unknown, b: unknown) { ok(JSON.stringify(a) === JSON.stringify
 function test(name: string, run: () => void) { run(); passed++; console.log("PASS", name); }
 
 test("Higher buildings improve yield and add work slots; upgrades charge both resources", () => {
-    const s = createGame(1); s.housing = 4; s.food = s.wood = storageCapacity(s); s.farm = 3; s.logging = 3;
+    const s = createGame(1); s.houses = 4; s.food = s.wood = storageCapacity(s); s.farm = 3; s.logging = 3;
     const before = economy(s), cost = upgradeCost("FARM", s.farm), food = s.food, wood = s.wood;
     applyCommand(s, { type: "BUILD", kind: "FARM" }); equal(s.farm, 4); equal([s.food, s.wood], [food - cost.food, wood - cost.wood]); ok(economy(s).food > before.food);
     equal([laborSlots("FARM", 3), laborSlots("LOGGING", 3)], [6, 4]);
@@ -32,8 +32,8 @@ test("Higher buildings improve yield and add work slots; upgrades charge both re
 });
 test("Housing self-upgrade always fits its current warehouse; gate upgrades preserve existing damage", () => {
     const s = createGame(1);
-    for (const level of [1, 2, 50, 10000, 1000000]) { s.housing = level; const c = upgradeCost("HOUSING", level); ok(c.wood < storageCapacity(s) && c.food < storageCapacity(s)); }
-    s.housing = 3; s.food = s.wood = 300; s.gate = 110;
+    for (const level of [1, 2, 50, 10000, 1000000]) { s.houses = level; const c = residentialCost(level); ok(c.wood < storageCapacity(s) && c.food < storageCapacity(s)); }
+    s.houses = 3; s.food = s.wood = 300; s.gate = 110;
     applyCommand(s, { type: "BUILD", kind: "GATE" }); equal([gateCapacity(s), s.gate], [300, 210]);
     applyCommand(s, { type: "REPAIR" }); equal(s.gate, 270); validateState(s);
 });
@@ -83,13 +83,13 @@ test("Both legacy speed settings run at the same fixed rate including low-frame-
     }
     equal(results[0], results[1]);
 });
-test("Camp has 20 unique navigable stops; baby stays still and carers face the baby", () => {
+test("Camp has 20 unique navigable stops; newborn stays still while parents work", () => {
     const nav = new VillageNavigation(); equal(new Set(CAMP_STOPS.map(p => `${p.x}:${p.y}`)).size, 20); ok(CAMP_STOPS.every(p => nav.walkable(p)));
-    for (const carerIndex of [0, 1]) {
-        const s = createGame(4); applyCommand(s, { type: "BIRTH", family: s.families[0].id, carer: s.people[carerIndex].id });
-        const motion = new VillagerMotion(nav); motion.sync(s, s.towers); const baby = s.people[s.people.length - 1], original = { ...motion.get(baby.id) }; let observed = false;
-        for (let i = 0; i < 500; i++) { motion.update(.1); const p = motion.get(s.people[carerIndex].id); if (!p.walking && !p.animated && p.clip.endsWith("_walk") && distance(p, original) < 55) { const child = motion.get(baby.id); ok(p.direction.includes(child.x < p.x ? "LEFT" : "RIGHT")); ok(Math.abs(child.x - p.x) > Math.abs(child.y - p.y), "carer must stand to baby's side"); observed = true; } }
-        ok(observed); equal([motion.get(baby.id).x, motion.get(baby.id).y], [original.x, original.y]);
+    {
+        const s = createGame(4); applyCommand(s, { type: "BIRTH", family: s.families[0].id });
+        const motion = new VillagerMotion(nav); motion.sync(s, s.towers); const baby = s.people[s.people.length - 1], original = { ...motion.get(baby.id) };
+        for (let i = 0; i < 500; i++) motion.update(.1);
+        equal([motion.get(baby.id).x, motion.get(baby.id).y], [original.x, original.y]);
         applyCommand(s, { type: "NIGHT" }); motion.sync(s, s.towers); for (let i = 0; i < 2000; i++) motion.update(.1);
         s.people.forEach(p => { const pose = motion.get(p.id); if (s.towers.some(t => t.operator === p.id)) ok(pose.insideTower); else ok(VILLAGE_STOPS.nightRest.some(at => distance(at, pose) < .01)); });
         const bed = { ...motion.get(baby.id) };
@@ -107,19 +107,17 @@ test("Thoughts use short configurable lines, skip hidden speakers and keep a vil
     s.people = s.people.filter(q => q.id !== p.id); thoughts.sync(s); equal(thoughts.current, null);
     thoughts.update(s, SPEECH.idleMin - .1, () => true); equal(thoughts.current, null);
 });
-test("Full camps with many babies keep lateral carers and stable birth locations across repeated syncs", () => {
-    for (const adults of [1, 4, 10]) for (let target = adults; target < 20; target++) {
+test("Full camps with many babies keep individual seats and stable birth locations across repeated syncs", () => {
+    for (const adults of [1, 4, 10]) {
         const s = createGame(4), template = s.people[0]; s.families = []; s.towers.forEach(t => t.operator = null); s.phase = "NIGHT";
         s.people = Array.from({ length: 20 }, (_, i) => ({ ...clone(template), id: `1:${20000 + i}`, adult: i < adults,
-            job: i < adults ? "CARE" as const : "WAITING" as const, nights: i < adults ? 12 : 0, growth: 0,
-            careChild: i < adults ? `1:${20000 + adults + (target - adults + i) % (20 - adults)}` : null }));
+            job: "WAITING" as const, nights: i < adults ? 12 : 0, growth: 0 }));
         const motion = new VillagerMotion(); motion.sync(s, s.towers);
         const babies = s.people.filter(p => !p.adult).map(p => ({ id: p.id, x: motion.get(p.id).x, y: motion.get(p.id).y }));
         for (let i = 0; i < 800; i++) { if (i % 40 === 0) motion.sync(s, s.towers); motion.update(.1); }
         for (const baby of babies) equal([motion.get(baby.id).x, motion.get(baby.id).y], [baby.x, baby.y]);
         for (const p of s.people.filter(p => p.adult)) {
-            const at = motion.get(p.id), child = motion.get(p.careChild!); ok(!at.walking && !at.animated && at.clip.endsWith("_walk"));
-            ok(Math.abs(at.x - child.x) > Math.abs(at.y - child.y)); ok(at.direction.includes(child.x < at.x ? "LEFT" : "RIGHT"));
+            const at = motion.get(p.id); ok(!at.walking && !at.animated && at.clip.endsWith("_walk"));
         }
         for (let i = 0; i < s.people.length; i++) for (let j = i + 1; j < s.people.length; j++) ok(distance(motion.get(s.people[i].id), motion.get(s.people[j].id)) >= 22, "camp occupants overlap");
     }

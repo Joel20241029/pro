@@ -29612,1646 +29612,6 @@
       }
     },
     {
-      "id": "motion_arrow_body",
-      "label": "motion_arrow_body",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_body.png",
-      "width": 119,
-      "height": 156,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_body.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 119,
-        "h": 156
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 119,
-        "h": 156
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "b1f6583da45651bc7ae076a72bdde492a185864b3d0f94ab9eff5d81974492f7",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_arrow_attack_0",
-      "label": "motion_arrow_attack_0",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_0.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "7e2f740ed804a40cf4781f5ac28347f044da7e029799114236e02c694ce8f7fb",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_arrow_attack_1",
-      "label": "motion_arrow_attack_1",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_1.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "4eaa15f02e20d67b06a084ff985994014c76bb81065378277f0f4ece359c7f24",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_arrow_attack_2",
-      "label": "motion_arrow_attack_2",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_2.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "5853d342d2a4db226657cdd1b169a3fa64da2af422ff1c3385616e9f3c0a11cd",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_arrow_attack_3",
-      "label": "motion_arrow_attack_3",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_3.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "1ee77b2ac588598d20ddb56f83047da9071eb1a38a17814adb06b75b2ae7dcab",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_arrow_attack_4",
-      "label": "motion_arrow_attack_4",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_4.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "c1e2ca953bca220c8e71e1eef5b3223835d13445eba15c6a5b79e4f0da0a3af5",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_arrow_attack_5",
-      "label": "motion_arrow_attack_5",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_5.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "d69361f53cee3ba8ee4db06ef0cbb774a61ecaa0d1d05f0daaed44dc02f64f48",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_arrow_attack_6",
-      "label": "motion_arrow_attack_6",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_6.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_6.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "856a85a35322f7f361497e437acafa1c1d29bea45097facb259bdbcca80bc287",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_arrow_attack_7",
-      "label": "motion_arrow_attack_7",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_7.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_7.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "c0f507bc392577c3351751d07e0d51f0a90dfd5369a35ba38c0dccbbd99f94ad",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_arrow_attack_8",
-      "label": "motion_arrow_attack_8",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_arrow_attack_8.png",
-      "width": 121,
-      "height": 95,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_arrow_attack_8.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 121,
-        "h": 95
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_arrow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "a45c2fbf195226dab5899a22cadfa493882e80dc40eefc6e522f742a6fa8eaaa",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_stone_body",
-      "label": "motion_stone_body",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_body.png",
-      "width": 115,
-      "height": 138,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_body.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 115,
-        "h": 138
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 115,
-        "h": 138
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "422d88f6e30cad1528d903deb50c3aa44d250d26cbb63d162d36044259f5bb37",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_stone_attack_0",
-      "label": "motion_stone_attack_0",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_0.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "e13e1a8f77a606e1203cc2eec08ed136e463b652bfcead4b517e2939af55637f",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_stone_attack_1",
-      "label": "motion_stone_attack_1",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_1.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "b9a195e76f6e36e3d5d09be4cfe7329803a9f45c9169f01f952905a89c75b5ea",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_stone_attack_2",
-      "label": "motion_stone_attack_2",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_2.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "53d067d7224eea16cd54a6b9ec3aa25fee49bf39a87360160abc4d80c4c2d490",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_stone_attack_3",
-      "label": "motion_stone_attack_3",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_3.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "4c41d3706f5751d378c78e67c3a2f347796a7bd5ff105c91d073ea63be961651",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_stone_attack_4",
-      "label": "motion_stone_attack_4",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_4.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "93bd3f253dc95f47e4c472316c33b5c72a1463acdda37155ce43fc7809094d1a",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_stone_attack_5",
-      "label": "motion_stone_attack_5",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_5.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "30e6d91547e32ff0f2887a1cc46d56ea120cdda968caf067b4743578a42561ea",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_stone_attack_6",
-      "label": "motion_stone_attack_6",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_6.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_6.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "b56c728b60c16bbff4650d55d4de5e599ba36adfd2f54ba23afaa17f779131a6",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_stone_attack_7",
-      "label": "motion_stone_attack_7",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_7.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_7.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "83eeb9a5540547ceae32c9ed270fb611aebb71b39452782743f05321b8e8679d",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_stone_attack_8",
-      "label": "motion_stone_attack_8",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_stone_attack_8.png",
-      "width": 69,
-      "height": 61,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_stone_attack_8.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 69,
-        "h": 61
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_stone_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "26dd9ec7346cb0118060ec2552147367e26f66e75145e80e8a82fdd62aa8ace1",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_body",
-      "label": "motion_slow_body",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_body.png",
-      "width": 86,
-      "height": 149,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_body.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 149
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 149
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": null,
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "7c48fccf2ffadaed059d4272a767e0c78714472255d6d3ab12d84c39c5622284",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_idle_0",
-      "label": "motion_slow_idle_0",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_0.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "72c5e8c802b9ebaa06f8c4fa94b79c36eb9f687d8aa7f2eee5bc0e0b746c1a90",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_idle_1",
-      "label": "motion_slow_idle_1",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_1.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "4ede8bdef77dcaa815507e67b4b1f2230698bcf52dabdac202e3fc1e2125fb22",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_idle_2",
-      "label": "motion_slow_idle_2",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_2.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "603afd46564d385bdbf7239df05130b5de1f053b623f15b0a24309d25f551112",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_idle_3",
-      "label": "motion_slow_idle_3",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_3.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "603afd46564d385bdbf7239df05130b5de1f053b623f15b0a24309d25f551112",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_idle_4",
-      "label": "motion_slow_idle_4",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_4.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "4ede8bdef77dcaa815507e67b4b1f2230698bcf52dabdac202e3fc1e2125fb22",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_idle_5",
-      "label": "motion_slow_idle_5",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_5.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "72c5e8c802b9ebaa06f8c4fa94b79c36eb9f687d8aa7f2eee5bc0e0b746c1a90",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_idle_6",
-      "label": "motion_slow_idle_6",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_6.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_6.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "de11a263e10d43db37596a5cb5271d62d6102c9ef644797484fd96952ea63e11",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_idle_7",
-      "label": "motion_slow_idle_7",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_7.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_7.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "af142e0f4c042659dc7d3e7f314c28459f7c8be3035d5952a7bf0b6069dd4812",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_idle_8",
-      "label": "motion_slow_idle_8",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_8.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_8.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "af142e0f4c042659dc7d3e7f314c28459f7c8be3035d5952a7bf0b6069dd4812",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_idle_9",
-      "label": "motion_slow_idle_9",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_idle_9.png",
-      "width": 35,
-      "height": 56,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_idle_9.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 35,
-        "h": 56
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_idle",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "de11a263e10d43db37596a5cb5271d62d6102c9ef644797484fd96952ea63e11",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_attack_0",
-      "label": "motion_slow_attack_0",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_0.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "8deecf74aeea986bbc2e375b7eb6dbd1f8d790e96f73c47c6ff67355d59723e2",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_attack_1",
-      "label": "motion_slow_attack_1",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_1.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "efb668e9cd0d456733d59f821020ee7189ae51ebff35bd12b9e782233ea379db",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_attack_2",
-      "label": "motion_slow_attack_2",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_2.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "949756e169de6a2e366fe8d9e4dfc1584d7a228dc32bf77147ec57a411ecd46e",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_attack_3",
-      "label": "motion_slow_attack_3",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_3.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "2f2d3d3cd8043a06fd0c34b9bcc42f9474c1119e348073147b0becb67e3af4cd",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_attack_4",
-      "label": "motion_slow_attack_4",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_4.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "0603379ed52cc4bf3731bd9c411992da7b91fbf7649813d79dd69bbe8abc02b8",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_attack_5",
-      "label": "motion_slow_attack_5",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_5.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "c2b079139fc71c977ae0e6ac64cb65943ed1a898260ff98be77f85942b59c3c5",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_attack_6",
-      "label": "motion_slow_attack_6",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_6.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_6.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "e8aa20f09f5d3033e4824eb8ccdaef34965c269204827180b826a1f596ba9391",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_attack_7",
-      "label": "motion_slow_attack_7",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_7.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_7.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "f8520208d20146ec01e2fc1e01a270916f7099361e73472396634bbfc20fe709",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
-      "id": "motion_slow_attack_8",
-      "label": "motion_slow_attack_8",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/motion_slow_attack_8.png",
-      "width": 86,
-      "height": 86,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/motion_slow_attack_8.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 86,
-        "h": 86
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "motion_slow_attack",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/rendered2d/production/cartoon-v1/masters/buildings.png",
-        "sourceHash": "9fa1736f06403446afdfe7309999629da2922ac8e1d37f80b98dea2b29d5c865",
-        "outputHash": "9f00250c5522c8e8414f9e5987b60a8c7866b96f4c796889377d6a3459d29c4b",
-        "renderer": "tools/hd2d/render-cartoon.py"
-      }
-    },
-    {
       "id": "motion_gate_body",
       "label": "motion_gate_body",
       "category": "building-parts",
@@ -34858,6 +33218,886 @@
         "outputHash": "cac072fc51228e66d8f7924dae40fd38c6b2186876c188618206e4420645e396",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
+    },
+    {
+      "id": "cannon_masonry",
+      "label": "cannon_masonry",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_masonry.png",
+      "width": 194,
+      "height": 167,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_masonry.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 194,
+        "h": 167
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 194,
+        "h": 167
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_masonry.png",
+        "sourceHash": "35845b24f5295233d5489c16f5dbdc22a3e327fe7e5ed85076142dbbaa8616d4",
+        "outputHash": "35845b24f5295233d5489c16f5dbdc22a3e327fe7e5ed85076142dbbaa8616d4"
+      }
+    },
+    {
+      "id": "cannon_flag_0",
+      "label": "cannon_flag_0",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_0.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_0.png",
+        "sourceHash": "6ebc852c07a01f567976c76b2f3db84e3e90316502f8c8a72e04f83d5cd7920b",
+        "outputHash": "6ebc852c07a01f567976c76b2f3db84e3e90316502f8c8a72e04f83d5cd7920b"
+      }
+    },
+    {
+      "id": "cannon_flag_1",
+      "label": "cannon_flag_1",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_1.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_1.png",
+        "sourceHash": "2159d40396e00abe9c375ed4dfb50559f3f5de242a62af7653274e1202e7c83d",
+        "outputHash": "2159d40396e00abe9c375ed4dfb50559f3f5de242a62af7653274e1202e7c83d"
+      }
+    },
+    {
+      "id": "cannon_flag_2",
+      "label": "cannon_flag_2",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_2.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_2.png",
+        "sourceHash": "f8af73bb7a42cb6214ff39dcd4b02bbb8c8fba81d1678739f84dfe9046c6da8b",
+        "outputHash": "f8af73bb7a42cb6214ff39dcd4b02bbb8c8fba81d1678739f84dfe9046c6da8b"
+      }
+    },
+    {
+      "id": "cannon_flag_3",
+      "label": "cannon_flag_3",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_3.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_3.png",
+        "sourceHash": "24ea32f7f829dcd65d02e1adb514e142acccaef59cf76d27dc5a8ff2add1a346",
+        "outputHash": "24ea32f7f829dcd65d02e1adb514e142acccaef59cf76d27dc5a8ff2add1a346"
+      }
+    },
+    {
+      "id": "cannon_flag_4",
+      "label": "cannon_flag_4",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_4.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_4.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_4.png",
+        "sourceHash": "f1320eeeb0020d2ca7164fc7b208f554c3498d76df89b6f9975e4c1f0efb2b12",
+        "outputHash": "f1320eeeb0020d2ca7164fc7b208f554c3498d76df89b6f9975e4c1f0efb2b12"
+      }
+    },
+    {
+      "id": "cannon_flag_5",
+      "label": "cannon_flag_5",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_5.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_5.png",
+        "sourceHash": "4fc296a8787301fa3b7bc9796f73b518b0e1adb2cef8aa0ba022f934c722a6e4",
+        "outputHash": "4fc296a8787301fa3b7bc9796f73b518b0e1adb2cef8aa0ba022f934c722a6e4"
+      }
+    },
+    {
+      "id": "cannon_flag_6",
+      "label": "cannon_flag_6",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_6.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_6.png",
+        "sourceHash": "7aeeffd8402b256e14e07dfd08b919b0bc88ab9d41bddf46897b4dcad9bfa4d8",
+        "outputHash": "7aeeffd8402b256e14e07dfd08b919b0bc88ab9d41bddf46897b4dcad9bfa4d8"
+      }
+    },
+    {
+      "id": "cannon_flag_7",
+      "label": "cannon_flag_7",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_flag_7.png",
+      "width": 92,
+      "height": 77,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 92,
+        "h": 77
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": "cannon_flag",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_flag_7.png",
+        "sourceHash": "cc1bfb1ac50dd035f106c8cf93d5f6a1532e1db428a32321f76cd4a37a96c09c",
+        "outputHash": "cc1bfb1ac50dd035f106c8cf93d5f6a1532e1db428a32321f76cd4a37a96c09c"
+      }
+    },
+    {
+      "id": "cannon_portrait",
+      "label": "cannon_portrait",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_portrait.png",
+      "width": 240,
+      "height": 255,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_portrait.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 240,
+        "h": 255
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 240,
+        "h": 255
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_portrait.png",
+        "sourceHash": "963b0c252fa7b07588355d3fe2a764d08756efb32de1d15b0153650d771d0278",
+        "outputHash": "963b0c252fa7b07588355d3fe2a764d08756efb32de1d15b0153650d771d0278"
+      }
+    },
+    {
+      "id": "cannon_rest",
+      "label": "cannon_rest",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_rest.png",
+      "width": 145,
+      "height": 111,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_rest.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 145,
+        "h": 111
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 145,
+        "h": 111
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_rest.png",
+        "sourceHash": "db6c57998b60df96b7833f2f69534e0caf0dd1fffd67510da5cf93c2d6fa21ca",
+        "outputHash": "db6c57998b60df96b7833f2f69534e0caf0dd1fffd67510da5cf93c2d6fa21ca"
+      }
+    },
+    {
+      "id": "cannon_yaw_0",
+      "label": "cannon_yaw_0",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_0.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_0.png",
+        "sourceHash": "6b8cf9e60fd5f6269e3b3457d6ec4978f5d902d9a378192299faa39ee5f0762d",
+        "outputHash": "6b8cf9e60fd5f6269e3b3457d6ec4978f5d902d9a378192299faa39ee5f0762d"
+      }
+    },
+    {
+      "id": "cannon_yaw_1",
+      "label": "cannon_yaw_1",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_1.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_1.png",
+        "sourceHash": "c011e88a487c10feaa8278516315ed8c2d1d41d002806a80dfa5f6cb9215715a",
+        "outputHash": "c011e88a487c10feaa8278516315ed8c2d1d41d002806a80dfa5f6cb9215715a"
+      }
+    },
+    {
+      "id": "cannon_yaw_2",
+      "label": "cannon_yaw_2",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_2.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_2.png",
+        "sourceHash": "a071147f3666adff0c83b0829c0ae245439a94ea024d175b6cde727e847ab3fe",
+        "outputHash": "a071147f3666adff0c83b0829c0ae245439a94ea024d175b6cde727e847ab3fe"
+      }
+    },
+    {
+      "id": "cannon_yaw_3",
+      "label": "cannon_yaw_3",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_3.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_3.png",
+        "sourceHash": "fe7241a852122616d8241b1c98b6b0c115e0d88acf1fd8ff9332d8c78ae48fdd",
+        "outputHash": "fe7241a852122616d8241b1c98b6b0c115e0d88acf1fd8ff9332d8c78ae48fdd"
+      }
+    },
+    {
+      "id": "cannon_yaw_4",
+      "label": "cannon_yaw_4",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_4.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_4.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_4.png",
+        "sourceHash": "adb2a65c69ba4efc4c4c1a7e035ace63d6798870878b6e6f44041d5a7ddc4b25",
+        "outputHash": "adb2a65c69ba4efc4c4c1a7e035ace63d6798870878b6e6f44041d5a7ddc4b25"
+      }
+    },
+    {
+      "id": "cannon_yaw_5",
+      "label": "cannon_yaw_5",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_5.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_5.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_5.png",
+        "sourceHash": "08384f5502fc720f60e912f5ffaf01c1483a505f6f4b462cc2c91e85c0a96bdd",
+        "outputHash": "08384f5502fc720f60e912f5ffaf01c1483a505f6f4b462cc2c91e85c0a96bdd"
+      }
+    },
+    {
+      "id": "cannon_yaw_6",
+      "label": "cannon_yaw_6",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_6.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_6.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_6.png",
+        "sourceHash": "7e85ab034bf6b76cde0e1e90d6e3fc91256c0118218fcb4997e788daef58c523",
+        "outputHash": "7e85ab034bf6b76cde0e1e90d6e3fc91256c0118218fcb4997e788daef58c523"
+      }
+    },
+    {
+      "id": "cannon_yaw_7",
+      "label": "cannon_yaw_7",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_7.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_7.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_7.png",
+        "sourceHash": "d57cbc78b33b92aedf417a0a678af6545d4ba5f585a0026445b261783541316a",
+        "outputHash": "d57cbc78b33b92aedf417a0a678af6545d4ba5f585a0026445b261783541316a"
+      }
+    },
+    {
+      "id": "cannon_yaw_8",
+      "label": "cannon_yaw_8",
+      "category": "building-parts",
+      "categoryLabel": "建筑动效",
+      "path": "runtime/building-parts/cannon_yaw_8.png",
+      "width": 168,
+      "height": 163,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_yaw_8.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 168,
+        "h": 163
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "固定建筑主体或局部动画拆件",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_yaw_8.png",
+        "sourceHash": "b0fb91ab628a3b92dee62d61cdd13d34109ad33b4c81a35019ca554b0c8a6854",
+        "outputHash": "b0fb91ab628a3b92dee62d61cdd13d34109ad33b4c81a35019ca554b0c8a6854"
+      }
+    },
+    {
+      "id": "cannon_ammo_stone",
+      "label": "cannon_ammo_stone",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/cannon_ammo_stone.png",
+      "width": 100,
+      "height": 100,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_ammo_stone.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "炮塔弹药图标",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_ammo_stone.png",
+        "sourceHash": "df9a11807e277a5b353e1fd5cfd69652a114d7f98cc9daa560226c9f3134e288",
+        "outputHash": "a1d5cadc896e9fd9286e39d46ecb89ecbc07a92f2724c80c00e19ba01fe0c506"
+      }
+    },
+    {
+      "id": "cannon_ammo_arrow",
+      "label": "cannon_ammo_arrow",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/cannon_ammo_arrow.png",
+      "width": 100,
+      "height": 100,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/buildings/stone-cannon/cannon_ammo_arrow.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "炮塔弹药图标",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/buildings/stone-cannon/cannon_ammo_arrow.png",
+        "sourceHash": "29bfa847ffce25296d6604821c38d8e6cb8e704ff5729d0c1a84e6190c41614a",
+        "outputHash": "b284b804b9ad77ae47a07512cc810b519946ea1d21d99a78471fb06b93093633"
+      }
     }
   ],
   "animations": {
@@ -34889,7 +34129,7 @@
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 37.0
+        "stridePixels": 37
       },
       {
         "id": "enemy_runner_walk",
@@ -34917,7 +34157,7 @@
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 42.0
+        "stridePixels": 42
       },
       {
         "id": "enemy_armored_walk",
@@ -34945,7 +34185,7 @@
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 33.0
+        "stridePixels": 33
       },
       {
         "id": "enemy_boar_walk",
@@ -35001,7 +34241,7 @@
         },
         "clock": "battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 35.0
+        "stridePixels": 35
       },
       {
         "id": "enemy_chief_walk",
@@ -35179,7 +34419,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_blue_walk_right",
@@ -35207,7 +34447,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_blue_walk_up",
@@ -35233,7 +34473,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_blue_walk_left",
@@ -35261,7 +34501,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_straw_walk_down",
@@ -35289,7 +34529,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_straw_walk_right",
@@ -35317,7 +34557,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_straw_walk_up",
@@ -35343,7 +34583,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_straw_walk_left",
@@ -35371,7 +34611,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_red_walk_down",
@@ -35399,7 +34639,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_red_walk_right",
@@ -35427,7 +34667,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_red_walk_up",
@@ -35453,7 +34693,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_red_walk_left",
@@ -35481,7 +34721,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_jade_walk_down",
@@ -35509,7 +34749,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_jade_walk_right",
@@ -35537,7 +34777,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_jade_walk_up",
@@ -35563,7 +34803,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_jade_walk_left",
@@ -35591,7 +34831,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_elite_male_walk_down",
@@ -35619,7 +34859,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_elite_male_walk_right",
@@ -35647,7 +34887,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_elite_male_walk_up",
@@ -35673,7 +34913,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_elite_male_walk_left",
@@ -35701,7 +34941,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_elite_female_walk_down",
@@ -35729,7 +34969,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_elite_female_walk_right",
@@ -35757,7 +34997,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_elite_female_walk_up",
@@ -35783,7 +35023,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_elite_female_walk_left",
@@ -35811,7 +35051,7 @@
         },
         "clock": "scene_visual_or_battle",
         "trimPolicy": "atlas_trim_restore_source_canvas",
-        "stridePixels": 36.0
+        "stridePixels": 36
       },
       {
         "id": "villager_child_walk_down",
@@ -36485,116 +35725,6 @@
         "trimPolicy": "atlas_trim_restore_source_canvas"
       },
       {
-        "id": "motion_arrow_attack",
-        "frameIds": [
-          "motion_arrow_attack_0",
-          "motion_arrow_attack_1",
-          "motion_arrow_attack_2",
-          "motion_arrow_attack_3",
-          "motion_arrow_attack_4",
-          "motion_arrow_attack_5",
-          "motion_arrow_attack_6",
-          "motion_arrow_attack_7"
-        ],
-        "frameCount": 8,
-        "fps": 18,
-        "loop": false,
-        "restFrame": "motion_arrow_attack_8",
-        "category": "building-parts",
-        "canvas": {
-          "w": 121,
-          "h": 95
-        },
-        "pivot": {
-          "x": 0,
-          "y": 0
-        },
-        "clock": "battle_shot"
-      },
-      {
-        "id": "motion_stone_attack",
-        "frameIds": [
-          "motion_stone_attack_0",
-          "motion_stone_attack_1",
-          "motion_stone_attack_2",
-          "motion_stone_attack_3",
-          "motion_stone_attack_4",
-          "motion_stone_attack_5",
-          "motion_stone_attack_6",
-          "motion_stone_attack_7"
-        ],
-        "frameCount": 8,
-        "fps": 18,
-        "loop": false,
-        "restFrame": "motion_stone_attack_8",
-        "category": "building-parts",
-        "canvas": {
-          "w": 69,
-          "h": 61
-        },
-        "pivot": {
-          "x": 0,
-          "y": 0
-        },
-        "clock": "battle_shot"
-      },
-      {
-        "id": "motion_slow_idle",
-        "frameIds": [
-          "motion_slow_idle_0",
-          "motion_slow_idle_1",
-          "motion_slow_idle_2",
-          "motion_slow_idle_3",
-          "motion_slow_idle_4",
-          "motion_slow_idle_5",
-          "motion_slow_idle_6",
-          "motion_slow_idle_7",
-          "motion_slow_idle_8",
-          "motion_slow_idle_9"
-        ],
-        "frameCount": 10,
-        "fps": 6,
-        "loop": true,
-        "restFrame": "motion_slow_idle_0",
-        "category": "building-parts",
-        "canvas": {
-          "w": 35,
-          "h": 56
-        },
-        "pivot": {
-          "x": 0,
-          "y": 0
-        },
-        "clock": "scene_visual_or_battle"
-      },
-      {
-        "id": "motion_slow_attack",
-        "frameIds": [
-          "motion_slow_attack_0",
-          "motion_slow_attack_1",
-          "motion_slow_attack_2",
-          "motion_slow_attack_3",
-          "motion_slow_attack_4",
-          "motion_slow_attack_5",
-          "motion_slow_attack_6",
-          "motion_slow_attack_7"
-        ],
-        "frameCount": 8,
-        "fps": 18,
-        "loop": false,
-        "restFrame": "motion_slow_attack_8",
-        "category": "building-parts",
-        "canvas": {
-          "w": 86,
-          "h": 86
-        },
-        "pivot": {
-          "x": 0,
-          "y": 0
-        },
-        "clock": "battle_shot"
-      },
-      {
         "id": "motion_gate_doors",
         "frameIds": [
           "motion_gate_doors_0",
@@ -36845,6 +35975,33 @@
           "y": 0
         },
         "clock": "scene_visual_or_battle"
+      },
+      {
+        "id": "cannon_flag",
+        "frameIds": [
+          "cannon_flag_0",
+          "cannon_flag_1",
+          "cannon_flag_2",
+          "cannon_flag_3",
+          "cannon_flag_4",
+          "cannon_flag_5",
+          "cannon_flag_6",
+          "cannon_flag_7"
+        ],
+        "frameCount": 8,
+        "fps": 6,
+        "loop": true,
+        "restFrame": "cannon_flag_0",
+        "category": "building-parts",
+        "canvas": {
+          "w": 92,
+          "h": 77
+        },
+        "pivot": {
+          "x": 0,
+          "y": 0
+        },
+        "clock": "ambient"
       }
     ],
     "walkDirections": {

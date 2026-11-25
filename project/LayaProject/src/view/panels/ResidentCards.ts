@@ -1,6 +1,6 @@
 import { ECONOMY } from "../../config/RuleConfig";
 import { VILLAGER_QUALITY } from "../../config/VillagerQuality";
-import { SKILLS, TRAITS } from "../../game/GameConfig";
+import { TRAITS } from "../../game/GameConfig";
 import type { Person } from "../../game/GameState";
 import { C } from "../UiTheme";
 import type { PanelContext } from "./PanelContext";
@@ -17,9 +17,7 @@ export function residentCardText(ctx: PanelContext, node: Laya.Sprite, value: st
 /** 村民详情与旅人预览共用数据和图标。旅人的卡片行距略紧，为固定操作区留空间。 */
 export function drawResidentTalent(ctx: PanelContext, card: Laya.Sprite, person: Person, compact = false) {
     const text = residentCardText.bind(null, ctx, card);
-    text("天赋与专长", 26, 14, 300, 43, 33, C.ink, true);
-    const trait = TRAITS[person.trait], skill = person.skill ? SKILLS[person.skill] : null;
-    const traitY = compact ? 63 : 70, skillY = compact ? 109 : 114;
+    text("村民天赋", 26, 14, 300, 43, 33, C.ink, true);
     const effect = (title: string, description: string, row: number, resource?: { icon: string; value: string }) => {
         text(title, 28, row, 100, 40, 28, C.green, true);
         const copyX = 143, right = card.width - 28, resourceWidth = 116, gap = 12;
@@ -28,14 +26,17 @@ export function drawResidentTalent(ctx: PanelContext, card: Laya.Sprite, person:
         if (resource) ctx.ui.iconValue(card, resource.icon, resource.value,
             copyX + Math.min(copyWidth, Math.ceil(line.textWidth)) + gap, row, resourceWidth, 40, C.timber, 27, "left");
     };
-    if (person.trait === "trait_frugal") effect(trait[0], "成人每日口粮", traitY, { icon: "icon_food", value: String(ECONOMY.frugalRation) });
-    else effect(trait[0], person.trait === "trait_diligent" ? `耕作产出 +${Math.round(ECONOMY.diligentFood * 100)}%` : trait[1], traitY);
-    if (person.skill === "skill_nurturing") effect(skill![0], "照料孩子时产出", skillY, { icon: "icon_food", value: String(ECONOMY.nurturingFood) });
-    else if (person.skill === "skill_farming" || person.skill === "skill_logging") effect(skill![0], "产量", skillY, {
-        icon: person.skill === "skill_farming" ? "icon_food" : "icon_wood",
-        value: `+${Math.round((person.skill === "skill_farming" ? ECONOMY.farmingFood : ECONOMY.loggingWood) * 100)}%`
+    person.traits.forEach((id, i) => {
+        const [title, description] = TRAITS[id], y = (compact ? 63 : 70) + i * 44;
+        if (id === "trait_diligent" || id === "trait_woodwise") {
+            const farming = id === "trait_diligent";
+            effect(title, "个人产量", y, { icon: farming ? "icon_food" : "icon_wood",
+                value: `+${Math.round((farming ? ECONOMY.diligentFood : ECONOMY.woodwiseWood) * 100)}%` });
+        } else if (id === "trait_frugal") {
+            effect(title, "成人每日基础口粮", y, { icon: "icon_food", value: String(ECONOMY.frugalRation) });
+        } else effect(title, description, y);
     });
-    else effect(skill?.[0] ?? "专长", skill?.[1] ?? "成年后选择", skillY);
+
 }
 
 export function drawResidentQuality(ctx: PanelContext, card: Laya.Sprite, quality: typeof VILLAGER_QUALITY[Person["quality"]], compact = false) {
@@ -43,7 +44,5 @@ export function drawResidentQuality(ctx: PanelContext, card: Laya.Sprite, qualit
     text(`${quality.label}加成`, 26, 14, 300, 43, 33, C.ink, true);
     text(`耕伐 +${Math.round((quality.production - 1) * 100)}%`, 27, effectsY, 176, 40, 28, C.green, true);
     text(`塔伤 +${Math.round((quality.damage - 1) * 100)}%`, 221, effectsY, 178, 40, 28, C.green, true);
-    text("照料", 404, effectsY, 68, 40, 27, C.green, true);
-    ctx.ui.iconValue(card, "icon_food", `+${quality.careFood}`, 471, effectsY, 98, 40, C.green, 27, "left");
     text(`劳作 ${quality.adultNights} 夜 · 养老 ${quality.elderNights} 夜`, 28, compact ? 101 : 110, 520, 32, 24, C.muted);
 }

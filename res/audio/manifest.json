@@ -132,7 +132,26 @@
       "sourceBoundaryDifference": 0.0,
       "license": "Original score and synthesis; no third-party samples",
       "phoneListeningVerified": false
+    },
+    {
+      "title": "淡紫机关枪 · 开火",
+      "source": "source/audio/patrol_rapid_fire.score.json",
+      "generator": "tools/build-audio.py",
+      "runtimeFile": "audio/patrol_rapid_fire.mp3",
+      "packageFile": "patrol_rapid_fire.mp3",
+      "bundle": "battle",
+      "durationSeconds": 0.08498866213151927,
+      "sampleRate": 22050,
+      "channels": 1,
+      "bitrate": "32k",
+      "bytes": 854,
+      "sha256": "d2a2f0cbd0e97d6fd9a6c2cd197a126db92b76fdeea02a75e9afb21f7876a57a",
+      "sourceSha256": "870596f427fef6cea8b7130b1b21a01e490c3fc24840df955473244dbba49832",
+      "sourcePeak": 0.59,
+      "sourceBoundaryDifference": 3.0517578125e-05,
+      "license": "Original score and synthesis; no third-party samples",
+      "phoneListeningVerified": false
     }
   ],
-  "bytes": 170026
+  "bytes": 170880
 }

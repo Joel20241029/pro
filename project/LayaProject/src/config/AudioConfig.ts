@@ -8,5 +8,7 @@ export const MUSIC = { file: "village_loop.mp3", battleFile: "battle_loop.mp3", 
     // 淡紫儿脱手后循环播放轻风声，音量低于落地瞬态；时长由真实在飞状态决定。
     patrolFlight: { file: "patrol_flight.mp3", volume: .24 },
     // 每次真实落地只产生一个事件，空砸和群体命中使用同一声，无需现实时间限频。
-    patrolLanding: { file: "patrol_landing.mp3", volume: .36, intervalMs: 0 }
+    patrolLanding: { file: "patrol_landing.mp3", volume: .36, intervalMs: 0 },
+    // 机关枪每次实际扣弹播放一次发射声，使用原试听稿的音量。
+    rapidFire: { file: "patrol_rapid_fire.mp3", volume: .30, intervalMs: 0 }
 } as const;

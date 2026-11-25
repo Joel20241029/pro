@@ -1,7 +1,7 @@
 const { test } = require('node:test'), assert = require('node:assert/strict'), path = require('node:path');
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
-const { RULE, TRAITS } = require(path.join(compiled, 'game/GameConfig.js'));
+const { RULE } = require(path.join(compiled, 'game/GameConfig.js'));
 const { KING_MERCY_TACTIC } = require(path.join(compiled, 'config/TacticConfig.js'));
 const { createGame, applyCommand } = require(path.join(compiled, 'game/VillageRules.js'));
 const { GameSession } = require(path.join(compiled, 'game/GameSession.js'));
@@ -52,10 +52,9 @@ function assertMirrored(f, raw) {
 
 test('restart replaces all village progress with fresh defaults and preserves independent device settings', () => {
     const original = createGame(2), retired = { ...original.people[0], nights: 0, elderNights: 0, job: 'WAITING' };
-    const extraTrait = Object.keys(TRAITS).find(trait => !original.legacy.traits.includes(trait));
-    original.legacy.traits.push(extraTrait);
+    const inherited = 'trait_strong';
     Object.assign(original.legacy, { bestNight: 17, births: 8, retirees: 3, lastRationDate: date });
-    const old = createGame(3, original.legacy, extraTrait, [retired], [retired.id]);
+    const old = createGame(3, original.legacy, inherited, [retired], [retired.id]);
     Object.assign(old.legacy, { lastRationDate: date }); old.food = 125; old.settings.speed = 3;
     old.tactics.learned.push(KING_MERCY_TACTIC);
     old.tactics.extraSlots = [KING_MERCY_TACTIC];

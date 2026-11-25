@@ -1,5 +1,7 @@
+import { TOWERS, TOWER_AMMO, TowerKind } from "./DefenseConfig";
 /** 道具 ID 用于独立背包存档。下架时只移除 SHOP_PRODUCTS 中的引用，保留已有道具定义。 */
 export const ITEMS = {
+    ice_ammo: { name: TOWER_AMMO.SLOW.name, description: "永久解锁，可在石炮塔中装配", icon: TOWER_AMMO.SLOW.icon },
     food_bag: { name: "粮袋", description: "补充粮食", icon: "icon_food" },
     wood_pack: { name: "木材包", description: "补充木材", icon: "icon_wood" },
     gate_kit: { name: "修门工具", description: "用于修补城门", icon: "icon_build" },
@@ -34,5 +36,7 @@ export const LIANG_INDULGENCE = {
 } as const;
 export type PatrolItemId = typeof PATROL_RATION.id | typeof LIANG_INDULGENCE.id;
 
+/** 冰弹沿用原寒塔的35木门槛，改为每村购买一次，直接解锁所有塔的装配资格。 */
+export const ICE_AMMO_OFFER = { id: "ice_ammo", ammo: "SLOW", wood: TOWERS.SLOW.cost, food: 0 } as const;
 /** 按商品上架顺序陈列，详情显示配置的传闻。道具下架后，背包仍按 ITEMS 识别。 */
-export const SHOP_PRODUCTS: readonly { readonly id: ItemId; readonly food: number; readonly wood: number; readonly lore?: string }[] = [LIANG_ESSENCE, PATROL_RATION, LIANG_INDULGENCE];
+export const SHOP_PRODUCTS: readonly { readonly id: ItemId; readonly food: number; readonly wood: number; readonly ammo?: TowerKind; readonly lore?: string }[] = [LIANG_ESSENCE, PATROL_RATION, LIANG_INDULGENCE, ICE_AMMO_OFFER];

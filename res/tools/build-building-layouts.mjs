@@ -51,7 +51,7 @@ export function buildBuildingLayouts(resRoot) {
         }
         return out;
     };
-    const kinds = ['HOUSE', 'FARM', 'LOGGING', 'GATE', 'ARROW', 'STONE', 'SLOW', 'PATROL', 'HEARTH'];
+    const kinds = ['HOUSE', 'FARM', 'LOGGING', 'GATE', 'CANNON', 'PATROL', 'HEARTH'];
     const files = fs.readdirSync(path.join(source, 'prefabs')).filter(f => f.endsWith('.lh')).sort();
     if (files.length !== kinds.length || files.some(f => !kinds.includes(f.slice(0, -3)))) throw new Error('必须每种建筑一个固定外观预制体');
     const find = (node, name) => node.name === name ? node : (node.children || []).map(n => find(n, name)).find(Boolean);
@@ -67,7 +67,7 @@ export function buildBuildingLayouts(resRoot) {
             if (!layout.name.startsWith(id + '_') || layouts[layout.name]) throw new Error('无效/重复建筑变体:' + layout.name);
             const body = layout.children?.find(n => n.name === 'Body');
             if (!body || !find(body, 'Structure') || body.clip) throw new Error('建筑主体必须使用固定单张贴图:' + layout.name);
-            if (['ARROW', 'STONE', 'SLOW'].includes(id) && (!find(body, 'Muzzle') || !find(body, 'Weapon') || !find(body, 'Attack:motion_' + id.toLowerCase() + '_attack'))) throw new Error('缺少射口或武器:' + layout.name);
+            if (id === 'CANNON' && ['Muzzle', 'Weapon', 'RestBarrel', 'AimedBarrel', 'Loop:cannon_flag'].some(name => !find(body, name))) throw new Error('缺少射口或武器:' + layout.name);
             const marker = name => {
                 const value = layout.children.find(n => n.name === name);
                 if (!value || value.visible !== false || Object.keys(value).some(k => !['name', 'visible', 'x', 'y', 'width', 'height'].includes(k))) throw new Error('无效范围标记:' + layout.name + '/' + name);

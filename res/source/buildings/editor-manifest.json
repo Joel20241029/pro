@@ -2,15 +2,13 @@
   "format": "Laya Sprite prefab source",
   "sourceDirectory": "res/editor/BuildingWorkshop/assets/buildingAuthoring",
   "sources": {
-    "ARROW": "58fd06b362f79eb86c40d5928fc796b7d779a32aa470f5eeb3c24e327fd5c8b7",
+    "CANNON": "45edfecd6c0acecce442718d140852108c5897f6f34ce95c8781a964894c74a9",
     "FARM": "af1b65bc9db994ab7e33ad0d1f022aad2307de889e42a8b097b9b063bfaa6ac7",
     "GATE": "1c994f3bdb268c3b71a7becfcb25baf9b8ef113042febf98a7261512d6d128da",
     "HEARTH": "b7db6f7cd141cafbeaa5fdd1fa0113b1041b156c04784a6030c9f16e506eca72",
     "HOUSE": "7cc7f6a917a39c6c41ba7c90d65bcf7507c9624a0e9ec8fb196a1d7d765405f0",
     "LOGGING": "3a4502afb6d3ddbd860d775cf70a2c9aa9773f7544d01262a84b04e92b3f2c5b",
-    "PATROL": "89242746e4246f6cc2dff092e9108997a75a8ef32f9f6199ada59c18fe0a725c",
-    "SLOW": "3f12b7a36ef280caf36e6f88ac3b6f9bcfde31194aaa96b9cfca2c87692c0ea6",
-    "STONE": "9a955d0b6047d4ee1079726e8287061e1bc0dcb3b3598e65e4500a906238dbc7"
+    "PATROL": "89242746e4246f6cc2dff092e9108997a75a8ef32f9f6199ada59c18fe0a725c"
   },
   "nativeFiles": [
     "native/building_upgrade.mc",

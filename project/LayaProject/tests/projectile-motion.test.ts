@@ -93,9 +93,7 @@ test("All three tower types launch from their visible source anchor at all five 
         b.tick = 1; b.shots = [s]; m.update(b); const start = towerLaunch(tower, kind);
         near(m.poses[0].x, start.x); near(m.poses[0].y, start.y);
         const rightBank = [1, 3, 4].includes(tower);
-        if (kind === "ARROW") ok(rightBank ? start.x < PADS[tower].x : start.x > PADS[tower].x);
-        if (kind === "STONE") ok(rightBank ? start.x > PADS[tower].x : start.x < PADS[tower].x);
-        if (kind === "SLOW") near(start.x, PADS[tower].x);
+        ok(rightBank ? start.x < PADS[tower].x : start.x > PADS[tower].x);
     }
 });
 console.log(`${passed} projectile motion checks passed`);

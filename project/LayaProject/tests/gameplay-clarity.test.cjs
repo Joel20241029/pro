@@ -82,7 +82,7 @@ test('bell increases actual fire rate by 50%, hunger multiplies it, damage stays
     for (const [bell, hungry] of [[false, false], [true, false], [true, true]]) {
         const b = longBattle(); b.base.towers.slice(1).forEach(t => t.operator = null);
         b.base.policy = null; b.base.night.hungry = hungry;
-        const op = b.base.people.find(p => p.id === b.operators[0]); op.trait = 'trait_frugal'; op.skill = 'skill_farming'; op.quality = "COMMON";
+        const op = b.base.people.find(p => p.id === b.operators[0]); op.traits = ['trait_frugal']; op.quality = "COMMON";
         let progress = 0, distance = Infinity;
         for (let at = 0; at < PATH_LENGTH; at++) {
             const p = pointAt(at), d = Math.hypot(p.x - PADS[0].x, p.y - PADS[0].y);
@@ -100,7 +100,7 @@ test('bell increases actual fire rate by 50%, hunger multiplies it, damage stays
 });
 
 test('full population gives a feasible remedy; preview and execution share the same rejection', () => {
-    const s = createGame(4); s.houses = RULE.houseMax;
+    const s = createGame(4); s.houses = 100;
     while (s.people.length < RULE.populationCap) s.people.push({ ...s.people[4], id: `test:${s.people.length}` });
     const before = canonical(s), reason = `人口已满 ${RULE.populationCap} 人，需等空出名额`;
     assert.equal(birthUnavailableReason(s, s.families[0].id), reason);
@@ -112,7 +112,7 @@ test('upgrade preview explains both deficits, exact resources pass, storage is c
     const s = createGame(3), cost = upgradeCost('FARM', s.farm); s.food = 0; s.wood = 0;
     assert.equal(upgradeUnavailableReason(s, cost), `还缺 ${cost.wood} 木、${cost.food} 粮`);
     const before = canonical(s); assert.throws(() => applyCommand(s, { type: 'BUILD', kind: 'FARM' }), { message: upgradeUnavailableReason(s, cost) }); assert.equal(canonical(s), before);
-    assert.equal(upgradeUnavailableReason(s, { wood: RULE.storageCap + 1, food: 1 }), `费用超出仓储 ${RULE.storageCap}，先修缮民居`);
+    assert.equal(upgradeUnavailableReason(s, { wood: RULE.storageCap + 1, food: 1 }), `费用超出仓储 ${RULE.storageCap}，先扩建民居`);
     s.wood = cost.wood; s.food = cost.food; assert.equal(upgradeUnavailableReason(s, cost), null);
     applyCommand(s, { type: 'BUILD', kind: 'FARM' }); assert.equal(s.farm, 2); assert.equal(s.food, 0); assert.equal(s.wood, 0);
 });
@@ -213,7 +213,7 @@ test('the patrol card opens from the construction list without materials and ret
     assert.equal(game.state.patrol.level, 2);
     assert.deepEqual([game.state.wood, game.state.food], [65, 85]);
     const idle = game.state.people.find(p => p.id !== game.state.patrol.captain && p.adult && p.nights > 0 && !game.state.towers.some(t => t.operator === p.id));
-    const free = game.state.people.find(p => p.trait === 'trait_strong');
+    const free = game.state.people.find(p => p.traits.includes('trait_strong'));
     game.state.towers.find(t => t.operator === free.id).operator = idle.id;
     view.draw(game.state, detail);
     const manage = () => view.box.getChildByName('button:更换淡紫队长');
@@ -460,10 +460,10 @@ test('opening and closing help removes only CHOICE, leaving independent pauses i
 test('tower building is disabled before payment when short of wood or during night', () => {
     const { game } = session(), view = panelView(game); view.ui.image = () => ({}); view.ui.buildRow = () => {};
     game.state.wood = TOWERS.ARROW.cost - 1; view.open({ type: 'tower', index: 2 });
-    const unavailable = view.box.children.find(n => n.name.startsWith('button:箭楼')); assert.equal(unavailable.getChildByName('buttonFace').getChildByName('readout:icon_wood').getChildByName('readoutText').text, (TOWERS.ARROW.cost-1)+'/'+TOWERS.ARROW.cost); assert(!unavailable.handlers.click);
-    game.state.wood++; view.open({ type: 'tower', index: 2 }); assert(view.box.children.find(n => n.name.startsWith('button:箭楼')).handlers.click);
+    const unavailable = view.box.children.find(n => n.name.startsWith('button:建造石炮塔')); assert.equal(view.box.children.find(n=>n.getChildByName('readout:icon_wood')).getChildByName('readout:icon_wood').getChildByName('readoutText').text, (TOWERS.ARROW.cost-1)+'/'+TOWERS.ARROW.cost); assert(!unavailable.handlers.click);
+    game.state.wood++; view.open({ type: 'tower', index: 2 }); assert(view.box.children.find(n => n.name.startsWith('button:建造石炮塔')).handlers.click);
     game.command({ type: 'NIGHT' }); view.open({ type: 'tower', index: 2 });
-    assert(!view.box.children.find(n => n.name.startsWith('button:箭楼')).handlers.click);
+    assert(!view.box.children.find(n => n.name.startsWith('button:建造石炮塔')).handlers.click);
 });
 
 
@@ -519,14 +519,41 @@ test('resizing an open guide preserves its panel, scroll list, offset and pause 
     assert(game.pauses.has('CHOICE')); assert.equal(canonical([...values]), saved); assert.equal(canonical(game.state), state);
 });
 
+test('night preparation toggles details in place and shows the actual defence and patrol mode',()=>{
+    const {game} = session(), view = panelView(game); view.ui.image = imageNode;
+    view.resources = { ready:()=>true, states:{night:{phase:'READY'}}, ensure:()=>{} };
+    const texts = node => [node.text,...node.children.flatMap(texts)].filter(Boolean);
+    const panel = {type:'start'}; view.open(panel);
+    assert(texts(view.box).includes('2/2 已驻守'));
+    assert(texts(view.box).includes('淡紫儿飞速旋转'));
+    assert(!texts(view.box).includes('入夜后库存'));
+    game.state.patrol.mode='rapid'; game.state.towers[0].operator=null;
+    view.box.getChildByName('button:查看明细').event('click',{});
+    assert.equal(view.current,panel); assert(texts(view.box).includes('入夜后库存'));
+    assert(texts(view.box).includes('还有 1 座塔无人驻守'));
+    assert(texts(view.box).includes('淡紫儿突突队'));
+    assert(!texts(view.box).includes('淡紫儿飞速旋转')); assert.equal(game.state.phase,'DAY');
+    view.box.getChildByName('button:收起明细').event('click',{});
+    assert(!texts(view.box).includes('入夜后库存'));
+});
+test('disabled bulk repair has no clickable row behind it and a single repair stays available',()=>{
+    const {game} = session(), view = panelView(game); view.ui.image=imageNode;
+    game.state.gate=80; game.state.wood=29; view.open({type:'build'});
+    const rows=view.box.getChildByName('ScrollList').content.children;
+    const row=rows.find(node=>node.getChildByName('button:修一次'));
+    assert(row); row.event('click',{}); row.getChildByName('button:修满 · 30木').event('click',{});
+    assert.deepEqual([game.state.gate,game.state.wood],[80,29]);
+    row.getChildByName('button:修一次').event('click',{});
+    assert.deepEqual([game.state.gate,game.state.wood],[120,19]);
+});
 test('construction orders available rows on entry but refreshes conditions in place after purchase',()=>{
     const {game}=session(),view=panelView(game);game.state.wood=30;game.state.food=10;
     let drawn=[];const buildRow=view.ui.buildRow.bind(view.ui);
     view.ui.buildRow=(...args)=>{const [,,,title,,,,reason,action]=args;drawn.push({title,reason,action});return buildRow(...args);};
-    view.open({type:'build'});assert.deepEqual(view.current.rowOrder,['PATROL','HOUSING','GATE','HOUSE','FARM','LOGGING','REPAIR']);
-    assert(drawn[1].title.startsWith('民居修缮'));assert.equal(drawn[1].reason,null);view.current.scroll=90;
-    drawn[1].action();drawn=[];view.refresh();assert(drawn[1].title.startsWith('民居修缮'));assert(drawn[1].reason);assert.equal(view.current.scroll,90);
-    view.close();view.open({type:'build'});assert.deepEqual(view.current.rowOrder,['PATROL','FARM','LOGGING','HOUSING','GATE','HOUSE','REPAIR']);
+    view.open({type:'build'});assert.deepEqual(view.current.rowOrder,['PATROL','GATE','HOUSE','FARM','LOGGING','REPAIR']);
+    assert(drawn[2].title.startsWith('民居扩建'));assert.equal(drawn[2].reason,null);view.current.scroll=90;
+    drawn[2].action();drawn=[];view.refresh();assert(drawn[2].title.startsWith('民居扩建'));assert(drawn[2].reason);assert.equal(view.current.scroll,90);
+    view.close();view.open({type:'build'});assert.deepEqual(view.current.rowOrder,['PATROL','FARM','LOGGING','GATE','HOUSE','REPAIR']);
 });
 test('family readiness reorders on entry only; current card data and button state still refresh',()=>{
     const {game}=session(),view=panelView(game);view.ui.image=imageNode;view.art.portraitId=q=>q.id;
@@ -562,7 +589,7 @@ test('family tabs isolate actionable dots and preserve their own scroll position
     s.houses = 39;
     s.people = []; s.families = [];
     for (let i = 0; i < 20; i++) {
-        const parents = adults.map((p, j) => ({ ...p, id: `1:${2 * i + j + 1}`, nights: RULE.parentMinNights }));
+        const parents = adults.map((p, j) => ({ ...p, id: `1:${2 * i + j + 1}`, nights: 1 }));
         s.people.push(...parents);
         s.families.push({ id: `1:f${i + 1}`, partners: parents.map(p => p.id), lastBirth: null });
     }
@@ -588,7 +615,7 @@ test('night operator selection reads live reassignment and puts the current guar
     view.ui.listItem=(_parent,_desc,portrait)=>portrait;
     view.ui.personRibbon=(id,frame)=>{ assert.equal(frame,'tag_recommended'); tagged.push(id); };
     const pendingGuard=game.state.people[4], spare=game.state.people[5], released=game.state.towers[0].operator;
-    pendingGuard.job='WAITING'; spare.job='WAITING'; spare.skill='skill_archery';
+    pendingGuard.job='WAITING'; spare.job='WAITING'; spare.traits=['trait_nimble'];
     game.command({type:'NIGHT'});game.pause('CHOICE');const id=pendingGuard.id;assert(game.reassign(0,id));
     assert.notEqual(game.state.towers[0].operator,id);view.open({type:'operators',index:0});assert.equal(view.current.rowOrder.at(-1),id);
     assert.equal(view.current.rowOrder[0],released);
@@ -597,12 +624,12 @@ test('night operator selection reads live reassignment and puts the current guar
 test('role recommendations shortlist three pending adults by benefit and retain stable ties',()=>{
     const { recommendedPeople }=require(path.join(compiled,'view/RoleRecommendations'));
     const s=createGame(7), template=s.people[0];
-    const candidate=(id,extra={})=>({...template,id,job:'WAITING',trait:'trait_frugal',skill:'skill_farming',...extra});
+    const candidate=(id,extra={})=>({...template,id,job:'WAITING',traits:['trait_diligent'],...extra});
     const people=[candidate('working',{job:'FARM',quality:"ELITE"}),candidate('first'),candidate('second'),candidate('third'),
         candidate('elite',{quality:"ELITE"}),candidate('guard',{quality:"ELITE"}),candidate('elder',{nights:0})];
     const towers=[{...s.towers[0],operator:'guard'}];
     assert.deepEqual(recommendedPeople(people,'FARM',towers).map(p=>p.id),['elite','first','second']);
-    assert.deepEqual(recommendedPeople(people,'CARE',towers).map(p=>p.id),['elite']);
+    assert.deepEqual(recommendedPeople(people,'LOGGING',towers).map(p=>p.id),['elite']);
 });
 test('a 107-person roster mounts only the window and each remounted callback targets the correct person',()=>{
     const {game}=session(),view=panelView(game),template=game.state.people[0];
@@ -813,4 +840,38 @@ test('guide shade leaves a live target window and disappears with the guide',()=
     target.visible=true;guide.tick(1,layout,0,target);
     guide.tick(null,layout,0,target);
     assert(!guide.node.visible && !guide.spotlight.visible);
+});
+
+test('ammo selection keeps controls fixed and preserves the last visible row across upgrade and return', () => {
+    const { game } = session(), view = panelView(game);
+    const { TOWER_AMMO } = require(path.join(compiled, 'config/DefenseConfig.js'));
+    const fixtures = Array.from({length: 21}, (_, i) => 'test_ammo_' + i);
+    try {
+        // Put the two genuinely owned starter types at opposite ends of a test-only long catalogue.
+        const stone = TOWER_AMMO.STONE;
+        for (const key of fixtures) TOWER_AMMO[key] = { ...stone, name: key };
+        delete TOWER_AMMO.STONE; TOWER_AMMO.STONE = stone;
+        view.ui.image = imageNode;
+        view.layout.safeBottom = 882;
+        const menu = { type: 'towerAmmo', index: 0, id: 'ARROW', back: { type: 'tower', index: 0 } };
+        view.open(menu);
+        const list = () => view.box.getChildByName('ScrollList');
+        const action = title => view.box.getChildByName('button:' + title);
+        const footer = action('已装备').y;
+        assert(list().maximum > 0 && view.box.height <= view.layout.safeBottom - view.layout.safeTop);
+        list().setOffset(list().maximum);
+        const offset = menu.scroll;
+        list().content.children.at(-1).getChildByName('ammo:STONE').event('click');
+        assert.equal(menu.id, 'STONE'); assert.equal(menu.scroll, offset);
+        assert.equal(action('装备石弹').y, footer);
+        action('升级石弹').event('click'); assert.equal(view.current.type, 'ammoUpgrade');
+        action('取消').event('click'); assert.equal(view.current, menu); assert.equal(list().offset, offset);
+        const {food, wood} = game.state;
+        action('装备石弹').event('click'); assert.equal(game.state.towers[0].kind, 'STONE');
+        assert.deepEqual([game.state.food, game.state.wood], [food, wood]);
+    } finally {
+        for (const key of fixtures) delete TOWER_AMMO[key];
+        // Restore insertion order for later tests.
+        const ice = TOWER_AMMO.SLOW; delete TOWER_AMMO.SLOW; TOWER_AMMO.SLOW = ice;
+    }
 });

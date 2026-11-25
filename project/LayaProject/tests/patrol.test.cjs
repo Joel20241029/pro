@@ -270,11 +270,11 @@ test('new patrol has a distinct save rule and continuous damage growth with boun
     validateState(s);
     assert.equal(s.night.patrolSpin, true);
     assert(new Patrol(s).spin);
-    const common = patrolSpinStats(1), strongLegend = patrolSpinStats(1, { quality: 'LEGENDARY', trait: 'trait_strong' });
+    const common = patrolSpinStats(1), strongLegend = patrolSpinStats(1, { quality: 'LEGENDARY', traits: ['trait_strong','trait_frugal','trait_diligent'] });
     assert.equal(common.seconds, 4.5);
     assert(strongLegend.damage > common.damage && strongLegend.ticks < common.ticks);
     assert(patrolSpinStats(1000).damage > patrolSpinStats(999).damage);
-    assert(patrolSpinStats(1000, { quality: 'LEGENDARY', trait: 'trait_nimble' }).seconds >= PATROL.spin.minimum);
+    assert(patrolSpinStats(1000, { quality: 'LEGENDARY', traits: ['trait_nimble','trait_frugal','trait_diligent'] }).seconds >= PATROL.spin.minimum);
     delete s.night.patrolMode;
     delete s.night.patrolSpin;
     assert.equal(new Patrol(s).spin, null);

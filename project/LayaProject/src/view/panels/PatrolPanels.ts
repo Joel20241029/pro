@@ -2,7 +2,7 @@ import { PATROL, PATROL_MODE } from "../../config/PatrolConfig";
 import { clone, GameState, isWorkingAdult } from "../../game/GameState";
 import { patrolUpgradeReason, patrolCaptain, patrolCost, patrolSpinStats } from "../../game/PatrolRules";
 import { applyCommand } from "../../game/VillageRules";
-import { patrolRapidCapacity, patrolRapidDamage } from "../../game/PatrolRapid";
+import { patrolRapidCapacity, patrolRapidDamage, patrolReloadSeconds } from "../../game/PatrolRapid";
 import { ScrollList } from "../ScrollList";
 import { C, UI } from "../UiTheme";
 import { PATROL_BOOTH_FRAME } from "../BuildingLayout";
@@ -17,6 +17,14 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
     const rapid = mode === PATROL_MODE.rapid;
     const canManage = day && !actionHintsBlocked(ctx.game);
     const back = () => ctx.open(panel.back ?? { type: "patrol" }, true);
+    // 同一打法的候选排序与换人红点共用持续输出，计入一仓连射和打空后的补弹时间。
+    const rank = (q: typeof current) => {
+        const stats = patrolSpinStats(level, q);
+        if (!rapid) return stats.damage / stats.seconds;
+        const capacity = patrolRapidCapacity(level);
+        const cycle = (capacity - 1) / PATROL.rapid.shotsPerSecond + patrolReloadSeconds(q);
+        return patrolRapidDamage(stats.damage) * capacity / cycle;
+    };
     if (panel.type === "patrolConfirm") {
         const next = clone(s);
         applyCommand(next, { type: "PATROL_CAPTAIN", id: panel.id! });
@@ -34,10 +42,6 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
     }
     if (panel.type === "patrolCandidates") {
         const adults = s.people.filter(isWorkingAdult), towers = new Set(s.towers.map(t => t.operator));
-        const rank = (q: typeof adults[number]) => {
-            const stats = patrolSpinStats(level, q);
-            return rapid ? patrolRapidDamage(stats.damage) : stats.damage / stats.seconds;
-        };
         const baseline = patrolSpinStats(level);
         adults.sort((a, b) => Number(towers.has(a.id)) - Number(towers.has(b.id)) || rank(b) - rank(a) || b.nights - a.nights);
         const box = ctx.modal(current ? `更换${PATROL.role}` : PATROL.appoint, "", true, undefined, "白天工作照常。队长不能同时驻塔，换走塔手前会显示补位结果。");
@@ -57,13 +61,14 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
             const status = q === current ? "现任队长" : stationed ? `驻守第 ${s.towers.findIndex(t => t.operator === q.id) + 1} 塔位` : "夜间空闲";
             const stronger = rapid ? patrolRapidDamage(stats.damage) > patrolRapidDamage(baseline.damage) : stats.damage > baseline.damage;
             const damage = stronger ? "伤害较高" : "伤害一般";
-            const interval = rapid ? "" : stats.ticks < baseline.ticks ? " · 出征较快" : " · 常规出征";
+            const faster = rapid ? patrolReloadSeconds(q) < patrolReloadSeconds() : stats.ticks < baseline.ticks;
+            const interval = rapid ? faster ? " · 补弹较快" : "" : stats.ticks < baseline.ticks ? " · 出征较快" : " · 常规出征";
             const button = ctx.ui.listItem(row, `${coloredName(q)} · ${status}\n${damage}${interval} · 剩 ${q.nights} 夜`,
                 ctx.art.portraitId(q), 0, () => {
                     if (stationed) ctx.open({ type: "patrolConfirm", id: q.id, back: panel });
                     else ctx.send({ type: "PATROL_CAPTAIN", id: q.id });
                 }, canManage && q !== current);
-            if (!stationed && q !== current && (stronger || (!rapid && stats.ticks < baseline.ticks))) {
+            if (!stationed && q !== current && (stronger || faster)) {
                 ctx.ui.personRibbon(button, "tag_recommended", true);
                 const label = button.getChildByName("buttonFace").getChildByName("buttonText") as Laya.Text;
                 label.wordWrap = true;
@@ -74,7 +79,7 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
     const appointY = 728, appointHeight = 72;
     const box = ctx.modal(PATROL.building, "", true,
         { width: UI.panelWidth, height: appointY + appointHeight + UI.action.bottom },
-        "白天轻点打法卡，守夜按已选打法出征。村中成年人可自动补任队长，也可手动更换。升级或更换队长可提高伤害；旋甩还会缩短补员时间。\n\n村中传闻\n起初两人比谁甩衣服甩得远。比到最后，衣服还在，人先飞了。");
+        "白天轻点打法卡，守夜按已选打法出征。村中成年人可自动补任队长，也可手动更换。强健提高两种打法的伤害；灵巧让旋甩更快补员、连发更快补弹。\n\n村中传闻\n起初两人比谁甩衣服甩得远。比到最后，衣服还在，人先飞了。");
     if (panel.back) {
         const backButton = ctx.ui.button(box, "", 30, 32, 54, back, C.muted, 54);
         backButton.name = "PatrolDetailBack";
@@ -116,7 +121,7 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
     ctx.art.panel(guide, "panel_card", UI.contentWidth, 110);
     const controls = rapid ? "后拉城门枪架，拉住连发，松手停火。" : "后拉淡紫儿，松手砸向落点圈内的敌人。";
     const spec = PATROL.rapid;
-    const profile = rapid ? `每发 ${amount(patrolRapidDamage(stats.damage))} 伤害 · ${amount(patrolRapidCapacity(level))} 发/仓 · 每秒 ${spec.shotsPerSecond} 发 · 补弹 ${spec.reloadSeconds} 秒`
+    const profile = rapid ? `每发 ${amount(patrolRapidDamage(stats.damage))} 伤害 · ${amount(patrolRapidCapacity(level))} 发/仓 · 每秒 ${spec.shotsPerSecond} 发 · 补弹 ${patrolReloadSeconds(current)} 秒`
         : `每次 ${amount(stats.damage)} 伤害 · 约 ${Math.round(stats.seconds)} 秒补一批`;
     ctx.ui.label(guide, controls, 18, 4, 564, 27, C.ink, true, 34);
     ctx.ui.label(guide, current ? profile : "任命队长后即可出征", 18, 39, 564, 25, C.green, false, 32).overflow = Laya.Text.SHRINK;
@@ -136,10 +141,6 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel) {
     const appoint = ctx.ui.centerButton(box, current ? `更换${PATROL.role}` : PATROL.appoint, appointY,
         () => ctx.open({ type: "patrolCandidates", back: panel }), C.gold, canManage && alternatives.length > 0, 312, appointHeight);
     const operators = new Set(s.towers.map(t => t.operator));
-    if (canManage && alternatives.some(p => {
-        if (operators.has(p.id)) return false;
-        const candidate = patrolSpinStats(level, p, !rapid && ration);
-        return !current || (rapid ? patrolRapidDamage(candidate.damage) > patrolRapidDamage(stats.damage)
-            : candidate.damage * stats.ticks > stats.damage * candidate.ticks);
-    })) ctx.ui.actionBadge(appoint, "PatrolCaptainActionHint");
+    if (canManage && alternatives.some(p => !operators.has(p.id) && (!current || rank(p) > rank(current))))
+        ctx.ui.actionBadge(appoint, "PatrolCaptainActionHint");
 }
