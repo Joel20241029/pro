@@ -54,6 +54,7 @@ export class RankingDiagnostics {
     private deliveryWarning = false;
     private deliveryConfirmed = false;
     private environment = "unavailable";
+    get accountEnvironment() { return this.environment; }
     private readonly runtimeError = (error: string) => { if (this.active) this.failure("runtime_error", this.active, error); };
     constructor(private platform: RankingLogPlatform) {
         const common: Record<string, string> = { version: RELEASE.version, build: RELEASE.build, render: RANKING_CANVAS.mode, env: "unavailable" };

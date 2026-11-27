@@ -1,8 +1,8 @@
 const { test } = require('node:test'), assert = require('node:assert/strict'), path = require('node:path');
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
-const { RULE, POLICIES } = require(path.join(compiled, 'game/GameConfig.js'));
-const { createGame, applyCommand } = require(path.join(compiled, 'game/VillageRules.js'));
+const { RULE } = require(path.join(compiled, 'game/GameConfig.js'));
+const { createGame, applyCommand, finishNight } = require(path.join(compiled, 'game/VillageRules.js'));
 const { dailyRationAmount, localRationDate, validRationDate } = require(path.join(compiled, 'game/DailyRation.js'));
 const { GameSession } = require(path.join(compiled, 'game/GameSession.js'));
 const { SaveStore, canonical } = require(path.join(compiled, 'storage/SaveStore.js'));
@@ -116,9 +116,13 @@ test('background and disabled states cannot accept the visible reward', () => {
 });
 
 test('dawn choices and game over finish before reward; a new village can claim again on the same day', () => {
-    const dawn = createGame(7); dawn.phase = 'DAWN'; dawn.wave = null; dawn.choices = [{ kind: 'POLICY', options: Object.keys(POLICIES).slice(0, 3) }];
+    const dawn = createGame(7);
+    dawn.day = 4; dawn.completed = dawn.legacy.bestNight = 3;
+    applyCommand(dawn, { type: 'NIGHT' });
+    finishNight(dawn, 200, dawn.towers.map(t => t.operator));
+    assert.equal(dawn.choices[0].kind, 'TRAVELER');
     const first = fixture(dawn).game; first.enter(); assert.equal(first.dailyRationDate, null);
-    first.command({ type: 'CHOOSE', value: dawn.choices[0].options[0] }); assert.equal(first.state.phase, 'DAY'); assert.equal(first.dailyRationDate, '2026-11-11');
+    first.command({ type: 'CHOOSE', value: 'decline' }); assert.equal(first.state.phase, 'DAY'); assert.equal(first.dailyRationDate, '2026-11-11');
     first.claimDailyRation(); first.newVillage();
     assert.equal(first.state.legacy.lastRationDate, null); assert.equal(first.dailyRationDate, '2026-11-11'); assert.equal(first.state.food, RULE.initialResource);
     first.claimDailyRation(); assert.equal(first.state.food, RULE.initialResource + RULE.dailyFood);

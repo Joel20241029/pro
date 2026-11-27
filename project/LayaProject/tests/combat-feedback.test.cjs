@@ -8,9 +8,9 @@ const {SaveStore}=require(path.join(build,'storage/SaveStore'));
 const {CombatPresentation}=require(path.join(build,'view/CombatPresentation'));
 const {ProjectileMotion,PROJECTILE_STYLE}=require(path.join(build,'view/ProjectileMotion'));
 const {LoggingFeedback}=require(path.join(build,'view/LoggingFeedback'));
-const {FEEDBACK}=require(path.join(build,'view/config/FeedbackConfig'));
+const {FEEDBACK,TOWER_IMPACT}=require(path.join(build,'view/config/FeedbackConfig'));
 const {RULE,PADS,TOWERS}=require(path.join(build,'game/GameConfig'));
-function battle(kind='ARROW') {const s=createGame(7);applyCommand(s,{type:'NIGHT'});const b=new BattleSimulation(s);b.patrol=null; b.base.towers.forEach((t,i)=>{t.kind=i===0?kind:null;t.operator=i===0?s.people[1].id:null;});b.cursor=b.base.wave.entries.length;return b;}
+function battle(kind='ARROW', tasks) {const s=createGame(7);applyCommand(s,{type:'NIGHT'});const b=new BattleSimulation(s,tasks);b.patrol=null; b.base.towers.forEach((t,i)=>{t.kind=i===0?kind:null;t.operator=i===0?s.people[1].id:null;});b.cursor=b.base.wave.entries.length;return b;}
 function enemy(seq,hp=1000,progress=200){return {seq,kind:'enemy_raider',appearanceSeed:87,progress,hp,speed:0,slow:0,slowTicks:0, walkDistance: 0,born:0,summoned:0};}
 // Pick an actual close pair so damage and frost tests do not depend on how a particular sequence is distributed.
 function nearbyEnemy(target,kind) {
@@ -22,6 +22,29 @@ function nearbyEnemy(target,kind) {
  assert(match,'expected a real splash neighbor');return match;
 }
 function shot(tick,kind='ARROW'){return {tower:0,x:300,y:400,kind,tick};}
+test('hero contact follows the actual target direction, survives a lethal strike and does not move combat positions',()=>{
+ const b=battle(),f=new CombatPresentation(),alive=enemy(20),killed=enemy(21,0),untouched=enemy(22);
+ const at=enemyPoint(alive),deathAt=enemyPoint(killed);
+ b.enemies=[alive,untouched];
+ f.sync(b,[{type:'heroHit',tick:0,at:{x:at.x+30,y:at.y-10},direction:'LEFT',strike:0,hurt:[alive]},
+  {type:'heroHit',tick:0,at:deathAt,direction:'DOWN',strike:1,hurt:[killed]}]);
+ assert.deepEqual(f.heroImpact(alive.seq,1),{age:0,x:-0,y:0,delivery:false});
+ assert.equal(f.heroImpact(untouched.seq,1),undefined);
+ assert(f.deathPose(killed.seq));
+ f.advance(FEEDBACK.heroRecoil.peakSeconds);
+ const recoil=f.heroImpact(alive.seq,2),fatal=f.heroImpact(killed.seq,1);
+ assert(recoil.x<0&&recoil.y>0);
+ assert(Math.abs(Math.hypot(recoil.x,recoil.y)-FEEDBACK.heroRecoil.pixels)<1e-9);
+ assert.equal(fatal.y,FEEDBACK.heroRecoil.pixels);
+ assert.equal(f.hitShake(alive.seq),0);
+ assert.deepEqual(enemyPoint(alive),at);
+ assert.deepEqual(enemyPoint(killed),deathAt);
+ f.advance(FEEDBACK.heroRecoil.seconds-FEEDBACK.heroRecoil.peakSeconds+.001);
+ assert.equal(f.heroImpact(alive.seq,1).x,-0);
+ f.advance(TOWER_IMPACT.ARROW.frameCount/TOWER_IMPACT.ARROW.fps);
+ assert.equal(f.heroImpact(alive.seq,1),undefined);
+ assert.equal(f.heroImpact(killed.seq,1),undefined);
+});
 test('patrol hit clock belongs to the target through movement, a finishing blow and battle replacement',()=>{
  const b=battle(),f=new CombatPresentation(),a=enemy(1),c=enemy(2);
  const hit=(enemy,tick)=>({type:'patrol',tick,enemy:{...enemy},index:tick,at:enemyPoint(enemy),dx:0,dy:-1});
@@ -87,6 +110,19 @@ test('frost reaches living splash targets at visual impact and clears with the u
  const dropped={...e.shot};a.slowTicks=RULE.slowTicks;f.sync(b,[{...e,shot:dropped}]);f.discard(dropped);
  assert(f.frosted(a.seq)&&!f.frosted(neighbor.seq));
  f.sync(battle('SLOW'),[]);assert(!f.frosted(a.seq));
+});
+test('frost tasks count distinct living slowed targets, including splash, and exclude a lethal primary hit',()=>{
+ const {DailyTaskCombat}=require(path.join(build,'game/DailyTaskCombat'));
+ for(const hp of [1,1000]){
+  const tasks=new DailyTaskCombat(),b=battle('SLOW',tasks),a=enemy(10),other=nearbyEnemy(a,'SLOW');
+  other.hp=hp; // Farther along the path, so the tower picks this enemy first.
+  b.enemies=[a,other];b.step();
+  const hit=b.feedback.find(e=>e.type==='shot');
+  assert.equal(hit.target,other.seq);
+  assert.deepEqual([...tasks.frost],hp===1?[a.seq]:[a.seq,other.seq]);
+  for(let i=0;i<180;i++)b.step();
+  assert.deepEqual([...tasks.frost],hp===1?[a.seq]:[a.seq,other.seq]);
+ }
 });
 test('multi-step session inbox captures every shot once and no event changes family RNG',()=>{
  const store=new SaveStore({read:()=>null,write(){}}),g=new GameSession(store);g.state=createGame(7);applyCommand(g.state,{type:'NIGHT'});g.battle=new BattleSimulation(g.state);

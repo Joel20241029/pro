@@ -82,24 +82,27 @@ test('an in-flight actor retains its bearing; nearest enemy takes one hit even w
     assert.equal(behind.enemy.hp, rapid.damage);
 });
 
-test('two landed rounds defeat a full-health first-night raider with a level-one common captain', () => {
-    const state = createGame(31);
-    applyCommand(state, { type: 'PATROL_MODE', mode: 'rapid' });
-    applyCommand(state, { type: 'NIGHT' });
-    const battle = new BattleSimulation(state), rapid = battle.patrol.rapid;
-    battle.base.towers.forEach(t => { t.operator = null; });
-    for (let i = 0; i < 80 && !battle.enemies.length; i++) battle.step();
-    const enemy = battle.enemies.find(e => e.kind === 'enemy_raider');
-    assert(enemy && enemy.hp === enemy.maxHp);
-    const foot = { x: 330, y: 545 + spec.ordinaryCenterHeight };
-    const trace = { enemy, from: foot, to: foot, end: 1 };
-    rapid.aim(up, { x: foot.x, y: 610 }, 0);
-    const healthAfterHit = [];
-    for (let i = 0; i < Math.ceil(1 / dt) && enemy.hp > 0; i++) {
-        if (rapid.advance(dt, [trace]).length) healthAfterHit.push(enemy.hp);
+test('a full-health first-night raider takes three rapid rounds on new nights and two on saved old nights', () => {
+    for (const [reinforced, startingHealth, healthAfterRounds] of [[true, 47, [27, 7, -13]], [false, 36, [16, -4]]]) {
+        const state = createGame(31);
+        applyCommand(state, { type: 'PATROL_MODE', mode: 'rapid' });
+        applyCommand(state, { type: 'NIGHT' });
+        if (!reinforced) delete state.night.reinforcedEnemies;
+        const battle = new BattleSimulation(state), rapid = battle.patrol.rapid;
+        battle.base.towers.forEach(t => { t.operator = null; });
+        for (let i = 0; i < 80 && !battle.enemies.length; i++) battle.step();
+        const enemy = battle.enemies.find(e => e.kind === 'enemy_raider');
+        assert(enemy && enemy.hp === enemy.maxHp);
+        assert.equal(enemy.hp, startingHealth);
+        const foot = { x: 330, y: 545 + spec.ordinaryCenterHeight };
+        const trace = { enemy, from: foot, to: foot, end: 1 };
+        rapid.aim(up, { x: foot.x, y: 610 }, 0);
+        const healthAfterHit = [];
+        for (let i = 0; i < Math.ceil(1 / dt) && enemy.hp > 0; i++) {
+            if (rapid.advance(dt, [trace]).length) healthAfterHit.push(enemy.hp);
+        }
+        assert.deepEqual(healthAfterHit, healthAfterRounds);
     }
-    assert.equal(healthAfterHit.length, 2);
-    assert(healthAfterHit[0] > 0 && healthAfterHit[1] <= 0);
 });
 
 test('rapid and spin snapshots apply the same monster pressure, including after the initial grace period', () => {

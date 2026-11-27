@@ -24,6 +24,31 @@ const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).d
 const geometry = r => `${r.w}x${r.h}+${r.x}+${r.y}`;
 const decode = file => run([file, '-depth', '8', 'rgba:-']);
 const recipe = read('source/asset_recipe.json'), assets = [];
+// 地图角色的实际显示小于母画布。下采样交付贴图，按同比例换算锚点和步幅，不修改可编辑原画。
+const compactVillagerWidths = { 96: 80, 104: 84, 120: 96, 144: 116, 168: 136 };
+const compactActorScales = new Map();
+for (const asset of recipe.assets) {
+    if (!asset.runtime) continue;
+    const width = asset.id.startsWith('portrait_hd_') ? 320
+        : asset.category !== 'characters' ? undefined
+        : /^hero_(zhizhuo|delivery)_/.test(asset.id) ? 112
+        : asset.id.startsWith('hd_') ? compactVillagerWidths[asset.width] : undefined;
+    if (!width || width >= asset.width) continue;
+    const scale = width / asset.width;
+    compactActorScales.set(asset.id, scale);
+    asset.width = width;
+    asset.height = Math.round(asset.height * scale);
+    asset.pivot = { x: asset.pivot.x * scale, y: asset.pivot.y * scale };
+}
+for (const clip of recipe.animations.animations) {
+    const scale = compactActorScales.get(clip.frameIds[0]);
+    if (!scale) continue;
+    if ([...clip.frameIds, clip.restFrame].some(id => compactActorScales.get(id) !== scale))
+        throw new Error('同一角色动画不能混用纹理缩放：' + clip.id);
+    clip.canvas = { w: Math.round(clip.canvas.w * scale), h: Math.round(clip.canvas.h * scale) };
+    clip.pivot = { x: clip.pivot.x * scale, y: clip.pivot.y * scale };
+    if (clip.stridePixels !== undefined) clip.stridePixels *= scale;
+}
 const previousFiles = read('manifest.json').runtimeWhitelist;
 let nineSliceOriginalPixels = 0, nineSliceCompactPixels = 0;
 let originalArea = 0, trimmedArea = 0, trimmedCount = 0;

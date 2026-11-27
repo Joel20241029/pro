@@ -16,7 +16,27 @@ function journal(s: Laya.Sprite) {
 }
 const PAINTERS: Record<string, Painter> = {
     icon_settings: journal, icon_journal: journal,
+    icon_yuexiu_cards: s => {
+        const g = s.graphics;
+        poly(g, [7, 20, 30, 8, 49, 44, 25, 57], "#8da8c5", "#493241", 3);
+        poly(g, [17, 13, 43, 7, 53, 48, 27, 54], "#cb6b79", "#493241", 3);
+        g.drawRoundRect(28, 11, 29, 43, 4, 4, 4, 4, "#fff3d5", "#493241", 3);
+        poly(g, [42, 23, 50, 32, 42, 41, 34, 32], "#c94450", "#a63544", 1.2);
+        line(g, [34, 18, 39, 18], "#c94450", 2.3);
+        line(g, [46, 47, 51, 47], "#c94450", 2.3);
+    },
     icon_back: s => line(s.graphics, [41, 11, 20, 32, 41, 53], G.dark, 8),
+    icon_expedition_521: s => {
+        const g = s.graphics;
+        g.drawRoundRect(6, 6, 52, 35, 7, 7, 7, 7, "#ad5068", "#623742", 3);
+        // 三位数字刻在招牌上，和下方键盘共用 64 像素矢量画布。
+        line(g, [22, 16, 13, 16, 13, 23, 22, 23, 22, 30, 13, 30], G.cream, 2.6);
+        line(g, [27, 16, 36, 16, 36, 23, 27, 23, 27, 30, 36, 30], G.cream, 2.6);
+        line(g, [42, 19, 48, 16, 48, 30], G.cream, 2.6);
+        poly(g, [12, 43, 52, 43, 58, 56, 6, 56], "#e7b778", "#754655", 2.5);
+        line(g, [14, 48, 50, 48], "#754655", 2);
+        line(g, [21, 53, 43, 53], "#754655", 2.6);
+    },
     icon_daily_tasks: s => {
         const g = s.graphics;
         g.drawRoundRect(10, 10, 44, 49, 5, 5, 5, 5, G.cream, G.outline, 3);
@@ -37,10 +57,10 @@ const PAINTERS: Record<string, Painter> = {
     },
     icon_slot_lock: s => {
         const g = s.graphics;
-        line(g, [19, 31, 19, 20, 23, 12, 29, 8, 35, 8, 41, 12, 45, 20, 45, 31], "#c7ae75", 6);
-        g.drawRoundRect(13, 26, 38, 29, 5, 5, 5, 5, "#d8bd80", "#785b32", 2);
-        g.drawCircle(32, 37, 4, "#785b32");
-        line(g, [32, 38, 32, 46], "#785b32", 4);
+        line(g, [19, 31, 19, 20, 23, 12, 29, 8, 35, 8, 41, 12, 45, 20, 45, 31], "#7787a6", 6);
+        g.drawRoundRect(13, 26, 38, 29, 5, 5, 5, 5, "#9eafc9", "#62718d", 2);
+        g.drawCircle(32, 37, 4, "#495978");
+        line(g, [32, 38, 32, 46], "#495978", 4);
     },
     [HAND_SPEED.icon]: s => {
         const g = s.graphics;

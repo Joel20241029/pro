@@ -4,6 +4,8 @@ export const FEEDBACK = {
     flashSeconds: .14, flashColor: '#ff6560',
     // 视觉接触后短促衰减，位移是 720 画布像素。身体和挂件使用同一偏移，足点及阴影固定。
     hitShake: { seconds: .10, pixels: 4.2, cycles: 1.5 },
+    // 挥瓶受击的顺向后挫，按屏幕逻辑像素计。快速顶出并收回，不改变怪物行进进度。
+    heroRecoil: { seconds: .18, peakSeconds: .05, pixels: 17 },
     // 淡紫落地对实际命中的怪单独加重反馈，720 画布像素，不参与塔弹或伤害计算。
     patrolHit: { seconds: .26, shakeSeconds: .19, pixels: 13, cycles: 2, frameSizeScale: 1.48,
         // 旋甩落地的径向回弹，约一帧起动后向外到顶，再回到站位。数值是屏幕逻辑像素。

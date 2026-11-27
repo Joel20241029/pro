@@ -8,7 +8,8 @@ const { GameSession } = require(path.join(compiled, 'game/GameSession.js'));
 const { BattleSimulation } = require(path.join(compiled, 'game/BattleSimulation.js'));
 const { SaveStore, canonical } = require(path.join(compiled, 'storage/SaveStore.js'));
 const { validateState } = require(path.join(compiled, 'storage/StateValidation.js'));
-const { RULE, TOWERS } = require(path.join(compiled, 'game/GameConfig.js'));
+const { TOWER_BUILD_WOOD } = require(path.join(compiled, 'config/DefenseConfig.js'));
+const { RULE } = require(path.join(compiled, 'game/GameConfig.js'));
 class Sprite { pos() {return this;} size() {return this;} addChild(n) {return n;} }
 global.Laya = { Sprite, OpenDataContextView: class {}, Texture2D: class {} };
 const { drawBuildingPanel } = require(path.join(compiled, 'view/panels/BuildingPanels.js'));
@@ -37,7 +38,7 @@ test('automatic staffing preserves founders, existing choices, daytime jobs and 
 });
 
 test('new towers fill immediately and changing tower type keeps its chosen operator', () => {
-    const s = createGame(7), original = operators(s); s.wood = TOWERS.ARROW.cost * 2;
+    const s = createGame(7), original = operators(s); s.wood = TOWER_BUILD_WOOD * 2;
     applyCommand(s, { type: 'TOWER', index: 2, kind: 'ARROW' });
     assert.equal(s.towers[2].operator, s.people[1].id); assert.deepEqual(operators(s).slice(0, 2), original.slice(0, 2));
     applyCommand(s, { type: 'TOWER', index: 3, kind: 'ARROW' }); assertCoverage(s);
@@ -67,6 +68,24 @@ test('during a shortage the player can move the only operator to a chosen later 
     const s = createGame(7), id = s.people[1].id; retainWorkers(s, [s.patrol.captain, id]);
     assignOperator(s, 1, id); assert.deepEqual(operators(s), [null, id, null, null, null]);
     autoAssignOperators(s); assert.deepEqual(operators(s), [null, id, null, null, null]); assertCoverage(s);
+});
+
+test('moving a captain to a chosen tower fills the captain vacancy without moving that tower guard', () => {
+    for (const otherAdults of [0, 1, 3]) {
+        const s = createGame(7), captain = s.patrol.captain;
+        retainWorkers(s, [captain, ...s.people.filter(q => q.id !== captain).slice(0, otherAdults).map(q => q.id)]);
+        assignOperator(s, 1, captain);
+        assert.equal(s.towers[1].operator, captain);
+        assert.notEqual(s.patrol.captain, captain);
+        assert.equal(!!s.patrol.captain, otherAdults > 0);
+        const assigned = canonical(s);
+        autoAssignNightDuties(s);
+        assert.equal(canonical(s), assigned);
+        assertCoverage(s);
+        applyCommand(s, { type: 'NIGHT' });
+        assert.equal(s.towers[1].operator, captain);
+        assertCoverage(s);
+    }
 });
 
 test('null, empty, missing, child and retired selections are rejected without modifying assignments', () => {
@@ -136,12 +155,32 @@ test('night swaps preserve battle progress and saved assignments, then resume wi
     const reopened = new GameSession(new SaveStore(storage)); reopened.load(); assert.deepEqual(reopened.battle.operators, original);
 });
 
+test('night captain reassignment carries both jobs through settlement while cold restart uses the original team', () => {
+    const values = new Map(), storage = { read: key => values.get(key) ?? null, write: (key, raw) => values.set(key, raw) };
+    const game = new GameSession(new SaveStore(storage)); game.load(); game.newVillage();
+    game.command({ type: 'NIGHT' }); game.pause('CHOICE');
+    const battle = game.battle, captain = game.state.patrol.captain, originalPatrol = battle.patrol;
+    assert(game.reassign(0, captain));
+    const newCaptain = battle.base.patrol.captain;
+    assert(newCaptain && newCaptain !== captain);
+    assert.equal(battle.patrol, originalPatrol);
+    assert.equal(game.state.patrol.captain, captain);
+    const reopened = new GameSession(new SaveStore(storage)); reopened.load();
+    assert.notEqual(reopened.battle.operators[0], captain);
+    assert.equal(reopened.battle.base.patrol.captain, captain);
+    battle.outcome = 'WIN';
+    assert(game.collectBattleStep(battle, game.state));
+    assert.equal(game.state.patrol.captain, newCaptain);
+    assert.equal(game.state.towers[0].operator, captain);
+    assertCoverage(game.state);
+});
+
 test('tower panel offers replacement but no release action, and explains auto staffing', () => {
     const s = createGame(7), buttons = [], view = {}; let help;
-    Object.assign(view, { art: {panel(){}, portraitId(p){return p.id;}}, game: { state: s, battle: null, pauses: new Set() },
+    Object.assign(view, { art: {panel(){}, portraitId(p){return p.id;}}, game: { state: s, battle: null, pauses: new Set(), saves: {pending: false}, dailyRationDate: null },
         modal(title, overview, close, size, text) { help = text; return new Sprite(); },
-        ui: { image() {}, buildRow() {}, iconValue() {}, label() { return {}; }, centerButton(parent, text) { buttons.push(text); },
+        ui: { image() {}, iconValue() {}, actionBadge() {}, label() { return {}; }, centerButton(parent, text) { buttons.push(text); },
             button(parent, text) { buttons.push(text); return { getChildByName: () => ({ getChildByName: () => new Sprite() }) }; } } });
     drawBuildingPanel(view, s, { type: 'tower', index: 0 });
-    assert(buttons.includes('换人')); assert(!buttons.some(text => text.includes('释放'))); assert(help.includes('自动补上可用成年人'));
+    assert(buttons.includes('选村民')); assert(!buttons.some(text => text.includes('释放'))); assert(help.includes('自动补上可用成年人'));
 });

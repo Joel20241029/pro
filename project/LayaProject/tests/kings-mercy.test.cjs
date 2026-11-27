@@ -1,7 +1,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const read = name => require(`${process.env.DAIDAI_TEST_BUILD}/${name}.js`);
-const { DEFAULT_TACTIC, KING_MERCY_TACTIC, TACTIC_USE, tacticDefinition } = read('config/TacticConfig');
+const { DEFAULT_TACTIC, KING_MERCY_TACTIC, tacticDefinition } = read('config/TacticConfig');
 const { BattleSimulation } = read('game/BattleSimulation');
 const { GameSession } = read('game/GameSession');
 const { SaveStore } = read('storage/SaveStore');
@@ -72,7 +72,7 @@ test('mercy learns on wave fifty, while generic, cancelled and empty-inventory c
         assert.match(game.error, new RegExp(reason));
         game.resume('CHOICE');
         assert.equal(writes(), before);
-        assert.equal(b.tacticUsesLeft, b.tacticBudget);
+        assert.equal(b.usesLeftFor(tacticDefinition(KING_MERCY_TACTIC)), 1);
         assert.equal(b.enemies.length, 2);
         assert.equal(b.gate, 12);
     }
@@ -102,7 +102,7 @@ test('unsuccessful verification never applies combat effects, retry charges once
         assert(!game.pauses.size);
         assert.equal(game.state.night.mercySpent, true);
         assert.deepEqual(game.state.tactics.mercyCooldown, { casts: 1, wavesLeft: 6 });
-        assert.equal(b.tacticUsesLeft, b.tacticBudget - 1);
+        assert.equal(b.usesLeftFor(tacticDefinition(KING_MERCY_TACTIC)), 0);
         assert.equal(b.cooldownFor(DEFAULT_TACTIC), 0);
         const events = game.takeCombatFeedback();
         assert.equal(events.length, 1);
@@ -118,7 +118,7 @@ test('unsuccessful verification never applies combat effects, retry charges once
         restored.load();
         assert.deepEqual([restored.state.wood, restored.state.food], [40, 25]);
         assert.equal(restored.battle.gate, b.gate);
-        assert.equal(restored.battle.tacticUsesLeft, restored.battle.tacticBudget - 1);
+        assert.equal(restored.battle.usesLeftFor(tacticDefinition(KING_MERCY_TACTIC)), 0);
         assert(!restored.canCast(KING_MERCY_TACTIC));
         restored.pause('CHOICE'); restored.confirmMercy();
         assert.deepEqual(restored.takeCombatFeedback(), []);

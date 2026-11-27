@@ -10,13 +10,14 @@ class Sprite {
     constructor() {
         this.x = this.y = this.pivotX = this.pivotY = this.width = this.height = 0;
         this.scaleX = this.scaleY = this.alpha = 1; this.visible = true; this.name = '';
-        this.children = []; this.events = {}; this.graphics = { clear() {} };
+        this.children = []; this.events = {}; this.graphics = { clear() {}, drawCircle() {}, drawEllipse() {} };
     }
     pos(x, y) { this.x = x; this.y = y; return this; }
     size(width, height) { this.width = width; this.height = height; return this; }
     pivot(x, y) { this.pivotX = x; this.pivotY = y; return this; }
     scale(x, y) { this.scaleX = x; this.scaleY = y; return this; }
     addChild(node) { this.children.push(node); node.parent = this; return node; }
+    getChildByName(name) { return this.children.find(node => node.name === name); }
     removeSelf() { if (this.parent) this.parent.children = this.parent.children.filter(node => node !== this); this.parent = null; return this; }
     destroy() { this.removeSelf(); this.events = {}; }
     on(type, caller, fn) { (this.events[type] ||= []).push(fn.bind(caller)); }
@@ -105,10 +106,19 @@ test('farm ground permits person selection but the independent wheel blocks it',
     obstacle(f, 'building:farm', 1010, true); tap(node, at); assert.equal(f.opened.length, 1);
     obstacle(f, 'building:farm:above', 1015); tap(node, at); assert.equal(f.opened.length, 1);
 });
-test('person picking follows mirrored elite scale and parent transforms', () => {
+test('person picking follows mirrored sprites and parent transforms', () => {
     const f = setup(), node = f.world.people[0];
     f.world.world.pos(20, 70).scale(.7, .7); node.scale(-1.6, 1.6);
     tap(node, point(node)); assert.deepEqual(f.opened, [f.state.people[0].id]);
+});
+test('all four villager qualities use the same map scale, with rings for special qualities', () => {
+    const f = setup(), qualities = ['COMMON', 'ELITE', 'HERO', 'LEGENDARY'];
+    f.state.people.slice(0,4).forEach((person,index) => { person.quality = qualities[index]; });
+    f.world.render(false);
+    const nodes = f.world.people.slice(0,4);
+    assert(nodes.every(node => node.visible));
+    assert.equal(new Set(nodes.map(node => `${Math.abs(node.scaleX)}:${node.scaleY}:${node.width}`)).size,1);
+    assert.deepEqual(f.world.qualityRings.slice(0,4).map(ring => ring.plane.visible), [false,true,true,true]);
 });
 test('a hidden tower occupant and an already removed person are not selected', () => {
     const f = setup(), node = f.world.people[0], at = point(node), id = f.state.people[0].id;

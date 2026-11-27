@@ -1,7 +1,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const read = name => require(`${process.env.DAIDAI_TEST_BUILD}/${name}.js`);
-const { DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, MIND_LOCK_TACTIC, TACTIC_USE, tacticDefinition } = read('config/TacticConfig');
+const { DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, MIND_LOCK_TACTIC, tacticCooldownTicks, tacticDefinition } = read('config/TacticConfig');
 const { RULE } = read('config/RuleConfig');
 const { createGame, applyCommand } = read('game/VillageRules');
 const { generateWave } = read('game/WaveGenerator');
@@ -34,7 +34,7 @@ test('slot thresholds, each exact cost, duplicate validation and compatibility w
     assert.throws(() => unlock(middle, 1), /按顺序/);
     assert.throws(() => unlock(middle, 2), /还需守住 20 波/);
     applyCommand(middle, { type: 'NIGHT' });
-    assert.equal(new BattleSimulation(middle).tacticUsesLeft, 2);
+    assert.equal(new BattleSimulation(middle).tactics.length, 1);
 
     const s = village(35);
     assert.throws(() => unlock(s, 2), /按顺序/);
@@ -63,38 +63,35 @@ test('slot thresholds, each exact cost, duplicate validation and compatibility w
     const game = new GameSession(new SaveStore(port));
     game.load();
     assert.deepEqual(game.battle.tactics.map(t => t.id), [DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC]);
-    assert.equal(game.battle.tacticUsesLeft, 3);
+    assert(game.battle.tactics.every(t => game.battle.usesLeftFor(t) === null));
     game.newVillage();
     assert.deepEqual(game.state.tactics, { learned: [DEFAULT_TACTIC], equipped: DEFAULT_TACTIC });
 });
 
-test('casts share a nightly pool, cannot overlap and allow a ready skill on the first step after expiry', () => {
+test('cooldown-only tactics recharge independently and can rotate beyond three total casts', () => {
     const s = village(50);
     s.tactics = { learned: [DEFAULT_TACTIC, SHIELD_TACTIC, MIND_LOCK_TACTIC], equipped: SHIELD_TACTIC, extraSlots: [MIND_LOCK_TACTIC, DEFAULT_TACTIC] };
     applyCommand(s, { type: 'NIGHT' });
     const b = new BattleSimulation(s);
-    b.base.wave.entries = [{ kind: 'enemy_raider', tick: 2000, appearanceSeed: 10 }];
-    b.bell(SHIELD_TACTIC);
+    b.base.wave.entries = [{ kind: 'enemy_raider', tick: 5000, appearanceSeed: 10 }];
+    assert(b.bell(SHIELD_TACTIC));
     assert(b.gateProtected);
-    b.bell(MIND_LOCK_TACTIC);
-    assert.equal(b.tacticUsesLeft, 2);
+    assert(!b.bell(MIND_LOCK_TACTIC));
     while (b.bellTicks) b.step();
     assert.equal(b.cooldownFor(MIND_LOCK_TACTIC), 0);
-    assert.equal(b.cooldownFor(SHIELD_TACTIC) * RULE.step, 14);
-    assert(b.canCast(MIND_LOCK_TACTIC));
-    b.bell(MIND_LOCK_TACTIC);
+    assert.equal(b.cooldownFor(SHIELD_TACTIC), tacticCooldownTicks(tacticDefinition(SHIELD_TACTIC)) - b.tick);
+    assert(b.bell(MIND_LOCK_TACTIC));
     assert(b.mindLocked);
-    assert.equal(b.tacticUsesLeft, 1);
-    while (b.bellTicks || b.cooldownFor(DEFAULT_TACTIC)) b.step();
+    while (b.bellTicks) b.step();
     assert(!b.canCast(MIND_LOCK_TACTIC));
-    b.bell(DEFAULT_TACTIC);
+    assert(b.bell(DEFAULT_TACTIC));
     while (b.bellTicks || b.cooldownFor(SHIELD_TACTIC)) b.step();
-    assert(!b.canCast(SHIELD_TACTIC));
-    assert.equal(b.tacticUsesLeft, 0);
-    assert.equal(new BattleSimulation(s).tacticUsesLeft, 3);
+    assert(b.bell(SHIELD_TACTIC));
+    const fresh = new BattleSimulation(s);
+    assert(fresh.canCast(DEFAULT_TACTIC));
 });
 
-test('six-second hold stops walk and progress for live and newly spawned enemies while tower shots still land', () => {
+test('nine-second hold stops walk and progress for live and newly spawned enemies while tower shots still land', () => {
     const s = village(50);
     learn(s, MIND_LOCK_TACTIC, 0);
     applyCommand(s, { type: 'NIGHT' });
@@ -106,7 +103,7 @@ test('six-second hold stops walk and progress for live and newly spawned enemies
     const duration = tacticDefinition(MIND_LOCK_TACTIC).ticks;
     b.bell();
     for (let i = 0; i < duration; i++) b.step();
-    assert.equal(duration * RULE.step, 6);
+    assert.equal(duration * RULE.step, 9);
     assert.deepEqual([boss.progress, boss.walkDistance], [160, 45]);
     assert(boss.hp < boss.maxHp, 'towers continued firing');
     assert(boss.summoned > 0, 'boss still summons while rooted');

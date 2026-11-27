@@ -1,9 +1,12 @@
 const { test } = require('node:test'), assert = require('node:assert/strict'), path = require('node:path');
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
-const { actionHints, actionHintsBlocked } = require(path.join(compiled, 'view/ActionHints.js'));
+const { actionHints, actionHintsBlocked, constructionHints, towerActionHints, towerAmmoActionHints } = require(path.join(compiled, 'view/ActionHints.js'));
 const { createGame, applyCommand, capacity } = require(path.join(compiled, 'game/VillageRules.js'));
-const { RULE, TOWERS } = require(path.join(compiled, 'game/GameConfig.js'));
+const { RULE } = require(path.join(compiled, 'game/GameConfig.js'));
+const { TOWER_BUILD_WOOD } = require(path.join(compiled, 'config/DefenseConfig.js'));
+const { ICE_AMMO_OFFER } = require(path.join(compiled, 'config/ShopConfig.js'));
+const { FEATURE_WINS } = require(path.join(compiled, 'config/DailyTaskConfig.js'));
 const { gateCapacity, upgradeCost, residentialCost } = require(path.join(compiled, 'game/Growth.js'));
 const { GameSession } = require(path.join(compiled, 'game/GameSession.js'));
 const { SaveStore } = require(path.join(compiled, 'storage/SaveStore.js'));
@@ -33,24 +36,59 @@ test('birth hint shares cooldown, parent, food, space and safe ID restrictions',
     ]) { const s = marriedOnly(); assert(hint(s).families); block(s); assert.equal(hint(s).families, false); }
     const s = marriedOnly(); applyCommand(s, {type:'BIRTH', family:s.families[0].id, carer:s.people[0].id}); assert.equal(hint(s).families, false);
 });
-test('build hints switch at exact costs, full houses/gate do not keep them lit', () => {
-    const s = noFunds(); applyCommand(s, {type:'PATROL_CAPTAIN', id:s.people[4].id}); s.houses = 100; s.gate = gateCapacity(s); assert.equal(hint(s).build, false);
-    s.houses--; const expansion = residentialCost(s.houses); s.wood = expansion.wood; s.food = expansion.food - 1;
-    // Other cheap upgrades can also light the shared dot; expansion's own boundary is tested through its command.
-    assert.throws(() => applyCommand(s, {type:'BUILD',kind:'HOUSE'}));
-    s.food++; assert(hint(s).build); applyCommand(s, {type:'BUILD',kind:'HOUSE'}); assert.equal(hint(s).build, false);
-    s.gate--; s.wood = RULE.repairCost; assert(hint(s).build); applyCommand(s,{type:'REPAIR'}); assert.equal(hint(s).build, false);
-    const cost = upgradeCost('FARM', s.farm); s.wood = cost.wood; s.food = cost.food; assert(hint(s).build);
-    assert.doesNotThrow(() => applyCommand(s,{type:'BUILD',kind:'FARM'}));
+test('construction alerts for every affordable improvement and only marks damage that can be repaired', () => {
+    const s = createGame(2);
+    s.wood = s.food = 100;
+    const repairs = () => constructionHints(s, false).REPAIR;
+    assert.deepEqual(constructionHints(s, false), {
+        REPAIR: false, HOUSE: true, PATROL: true, FARM: true, LOGGING: true, GATE: true
+    });
+    s.gate = gateCapacity(s) - 1;
+    s.wood = RULE.repairCost - 1; assert(!repairs());
+    s.wood++; assert(repairs()); assert(hint(s).build);
+    applyCommand(s, { type: 'REPAIR' }); assert(!repairs());
+    const cost = residentialCost(s.houses);
+    s.wood = cost.wood; s.food = cost.food - 1;
+    assert(!constructionHints(s, false).HOUSE);
+    s.food++; assert(constructionHints(s, false).HOUSE);
+    applyCommand(s, { type: 'BUILD', kind: 'HOUSE' });
+    assert(!constructionHints(s, false).HOUSE);
+    s.houses = 100;
+    Object.assign(s, residentialCost(s.houses));
+    assert(constructionHints(s, false).HOUSE, 'expansion still adds storage');
+    assert(!Object.values(constructionHints(s, true)).some(Boolean));
 });
-test('tower state never creates a map hint or adds work to the archive button', () => {
-    const s = createGame(1); assert.equal('towers' in hint(s), false);
-    s.towers.forEach(t => { t.kind = null; t.level = 0; t.operator = null; });
-    assert.equal('towers' in hint(s), false); assert.equal(hint(s).history, false);
+test('towers alert only for build, upgrade, genuine vacancy filling, and actionable ammo', () => {
+    const s = createGame(1);
+    const empty = s.towers.findIndex(t => !t.kind), tower = s.towers.findIndex(t => t.kind);
+    const towerHints = index => towerActionHints(s, index, false);
+    assert.equal(hint(s).history, false);
+    s.wood = TOWER_BUILD_WOOD - 1; s.food = 0;
+    assert(!towerHints(empty).build);
+    s.wood++; assert(towerHints(empty).build);
+    assert(!towerHints(tower).ammo, 'ordinary swapping does not generate a reminder');
+    Object.assign(s, upgradeCost('TOWER', s.towers[tower].level));
+    assert(towerHints(tower).upgrade);
+    assert(towerHints(tower).ammo);
+    s.food = s.wood = 0;
+    s.towers[tower].operator = null;
+    assert(towerHints(tower).staff);
+    s.people = s.people.filter(q => s.towers.some(t => t.operator === q.id) || q.id === s.patrol.captain);
+    assert(!towerHints(tower).staff, 'swaps alone only relocate an empty position');
+    s.legacy.bestNight = FEATURE_WINS.shop;
+    s.wood = ICE_AMMO_OFFER.wood;
+    assert(!Object.values(towerAmmoActionHints(s, 'SLOW', false)).some(Boolean));
+    assert(!towerHints(tower).ammo, 'locked ammo is only promoted in the shop');
+    s.iceAmmoUnlocked = true;
+    assert(towerAmmoActionHints(s, 'SLOW', false).equip);
+    assert(towerHints(tower).ammo);
+    s.towers[tower].kind = 'SLOW';
+    assert(!towerAmmoActionHints(s, 'SLOW', false).equip);
+    assert(!Object.values(towerActionHints(s, tower, true)).some(Boolean));
 });
-test('children grow without alerting the player to assign a carer', () => {
+test('a daytime vacancy points to an idle adult and child growth has no assignment hint', () => {
     const s=createGame(1);assert.equal(hint(s).people,false);
-    s.people.find(p=>p.job==='FARM').job='WAITING';assert.equal(hint(s).people,false);
+    s.people.find(p=>p.job==='FARM').job='WAITING';assert.equal(hint(s).people,true);
     applyCommand(s,{type:'JOB',id:s.people.find(p=>p.job==='WAITING').id,job:'FARM'});assert.equal(hint(s).people,false);
     const child={...s.people[0],id:'child',adult:false,nights:0,job:'WAITING'};s.people.push(child);assert.equal(hint(s).people,false);
 });

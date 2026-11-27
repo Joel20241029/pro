@@ -1,6 +1,6 @@
 import { featureUnlocked } from "../config/DailyTaskConfig";
 import { ItemId, LIANG_ESSENCE, LIANG_INDULGENCE, PatrolItemId, SHOP_PRODUCTS } from "../config/ShopConfig";
-import { GameState, isWorkingAdult } from "./GameState";
+import { GameState, isAvailableAdult } from "./GameState";
 import { patrolCaptain, patrolSpinStats } from "./PatrolRules";
 
 export function shopOffer(state: GameState, id: ItemId) {
@@ -12,7 +12,7 @@ export function shopOffer(state: GameState, id: ItemId) {
 
 export function essenceTargets(state: GameState) {
     if (state.phase !== "DAY" || !featureUnlocked(state.legacy.bestNight, "backpack")) return [];
-    return state.people.filter(p => isWorkingAdult(p) && (p.retirementDelayUses ?? 0) < LIANG_ESSENCE.maxUses);
+    return state.people.filter(p => isAvailableAdult(state, p) && (p.retirementDelayUses ?? 0) < LIANG_ESSENCE.maxUses);
 }
 
 export function patrolItemUnavailable(state: GameState, id: PatrolItemId) {
@@ -22,4 +22,9 @@ export function patrolItemUnavailable(state: GameState, id: PatrolItemId) {
     if (state.patrol.rationReady) return "下次旋甩已获鼓舞";
     if (!Number.isSafeInteger(patrolSpinStats(state.patrol.level, patrolCaptain(state), true).damage)) return "伤害已达安全范围";
     return null;
+}
+
+export function rewardDiceUnavailable(state: GameState) {
+    if (state.phase !== "DAY" || !featureUnlocked(state.legacy.bestNight, "backpack")) return "白天才可在背包使用";
+    return state.rewardDie === undefined ? null : "下场守夜的骰子点数已确定";
 }

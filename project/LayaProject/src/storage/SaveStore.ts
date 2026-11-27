@@ -1,6 +1,6 @@
 import { PATROL } from "../config/PatrolConfig";
 import { CONFIG_VERSION } from "../game/GameConfig";
-import { GameState } from "../game/GameState";
+import { GameState, nightReturnPoint } from "../game/GameState";
 import { validateState } from "./StateValidation";
 import { BackpackChange, clearVillageItemSaves, validBackpackChange, VillageItemStorage } from "./VillageItemStorage";
 import { clearVillageGuides } from "./VillageGuides";
@@ -29,6 +29,24 @@ export function crc32(value: string): string {
 }
 type ValidSlot = { kind: "valid"; data: Envelope; state: GameState };
 type Slot = { kind: "missing" } | ValidSlot | { kind: "corrupt" | "version" };
+/** v22 曾保存这三个村规 ID。只移除经过校验的旧字段，原封套和字节继续用于双槽比较。 */
+const RETIRED_POLICY_IDS = new Set(["policy_harvest", "policy_logging", "policy_prepare"]);
+function stripRetiredCalendar(state: GameState & { policy?: unknown }): GameState {
+    if (!state || typeof state !== "object" || !Array.isArray(state.choices)) return state;
+    const hadPolicy = Object.prototype.hasOwnProperty.call(state, "policy");
+    const { policy, ...active } = state;
+    if (hadPolicy && policy !== null && (typeof policy !== "string" || !RETIRED_POLICY_IDS.has(policy)))
+        throw new Error("旧村规字段无效");
+    const choices = state.choices.filter((choice: unknown) => {
+        if (!choice || typeof choice !== "object" || !("kind" in choice) || choice.kind !== "POLICY") return true;
+        const options = "options" in choice ? choice.options : undefined;
+        if (state.phase !== "DAWN" || !Array.isArray(options) || new Set(options).size !== RETIRED_POLICY_IDS.size ||
+            options.length !== RETIRED_POLICY_IDS.size || !options.every(id => RETIRED_POLICY_IDS.has(id)))
+            throw new Error("旧村规待办无效");
+        return false;
+    });
+    return hadPolicy || choices.length !== state.choices.length ? { ...active, choices } : state;
+}
 function decode(raw: string | null): Slot {
     if (raw === null) return { kind: "missing" };
     try {
@@ -41,7 +59,7 @@ function decode(raw: string | null): Slot {
         const { checksum, ...body } = e;
         if (typeof checksum !== "string" || crc32(canonical(body)) !== checksum || !Number.isSafeInteger(e.revision) || e.revision < 1 || typeof e.commitId !== "string" || !e.commitId.length) return { kind: "corrupt" };
         // 已校验版本与校验和。旧村缺少巡防建筑时补齐运行态，保留双槽原始字节直到正常保存。
-        const payload = e.payload;
+        const payload = stripRetiredCalendar(e.payload);
         const state = payload && typeof payload === "object" && !Object.prototype.hasOwnProperty.call(payload, "patrol")
             ? { ...payload, patrol: { level: PATROL.startLevel, captain: null } } : payload;
         validateState(state);
@@ -81,7 +99,14 @@ export class SaveStore {
                 mode: "CLEAN_START", villageId: this.owner, opening: this.owner !== null };
             return { kind: "complete-clean-start" };
         }
-        return { kind: slots.some(s => s.kind === "corrupt") ? "recover" : "ready", state };
+        const previous = valid[1]?.s;
+        // 旧夜只有另一槽明确是同村、同一天的上一笔白天进度时，才能补齐精确的回退点。
+        const sameDay = data.villageId !== undefined && previous?.data.villageId === data.villageId &&
+            previous.data.revision === data.revision - 1 && previous.state.phase === "DAY" &&
+            previous.state.run === state.run && previous.state.day === state.day;
+        const restored = state.night && !state.night.returnPoint && sameDay
+            ? { ...state, night: { ...state.night, returnPoint: nightReturnPoint(previous.state) } } : state;
+        return { kind: slots.some(s => s.kind === "corrupt") ? "recover" : "ready", state: restored };
     }
     /** RESET 仅由玩家确认放弃异版或损坏进度后传入；同一候选替换双槽，不做旧档迁移。 */
     prepare(state: GameState, mode: SaveMode = "NORMAL", opening = mode !== "NORMAL", backpackChange?: BackpackChange) {

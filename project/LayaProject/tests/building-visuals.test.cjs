@@ -57,6 +57,10 @@ test('the approved animations only replace local components with small registere
   const { visual: v, owner } = create();
   v.sync(kind, 25, true);
   const nodes = descendants(owner).filter(n=>/^Loop:|^Attack:|^GateDoors$/.test(n.name));
+  if (kind === 'CANNON') {
+   assert.equal(nodes.length, 0, 'the cannon uses its aiming frames and a separate map pennant');
+   continue;
+  }
   assert(nodes.length, kind);
   for (const node of nodes) {
    const id = node.name === 'GateDoors' ? 'motion_gate_doors' : node.name.split(':')[1];
@@ -64,8 +68,7 @@ test('the approved animations only replace local components with small registere
    assert(anim.frameIds.length > 1);
    assert(node.width * node.height < 128 * 128);
    assert(anim.frameIds.every(frame => assets.get(frame)?.runtime && assets.get(frame)?.animation===id));
-   if (kind === 'CANNON') assert(anim.frameIds.every(frame => assets.get(frame).width >= node.width && assets.get(frame).height >= node.height));
-   else assert(anim.frameIds.every(frame => assets.get(frame).width===Math.round(node.width*1.25) && assets.get(frame).height===Math.round(node.height*1.25)));
+   assert(anim.frameIds.every(frame => assets.get(frame).width===Math.round(node.width*1.25) && assets.get(frame).height===Math.round(node.height*1.25)));
   }
   const target = nodes.find(n=>n.name.startsWith('Loop:'));
   if (target) {

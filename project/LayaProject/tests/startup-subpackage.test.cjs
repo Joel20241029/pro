@@ -119,6 +119,8 @@ test('patrol flight follows the live night, and each landing reaches native audi
     f.main.platform.syncBestNight = () => {};
     const session = f.main.session, state = createGame(245);
     applyCommand(state, {type: 'NIGHT'});
+    // Night audio tests schedule kills by the patrol itself.
+    delete state.night.activeHero;
     state.settings.music = true;
     const battle = session.battle = new BattleSimulation(state);
     session.state = state;
@@ -197,6 +199,7 @@ test('rapid fire plays on real shots, respects mute, and a lethal hit adds no im
     const s = f.main.session, state = createGame(245);
     applyCommand(state, {type: 'PATROL_MODE', mode: 'rapid'});
     applyCommand(state, {type: 'NIGHT'});
+    delete state.night.activeHero;
     s.state = state;
     const b = s.battle = new BattleSimulation(state);
     const night = f.main.resources.ensure('night');

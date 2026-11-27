@@ -6,6 +6,8 @@ import { RULE } from "../game/GameConfig";
 import { GroundPoint } from "./VillageScene";
 import { BuildingAmbient } from "./BuildingAmbient";
 import { TipTarget } from "./AnchoredTip";
+import type { TowerFlag } from "../config/DefenseConfig";
+import { TowerPennant } from "./TowerPennant";
 export { BuildingLook } from "./BuildingLayout";
 
 /** 图稿按原地图足点等比放大25%。这个比例只用于贴图、局部动效和挂点。 */
@@ -29,6 +31,7 @@ export class BuildingVisuals {
     private bodyScale = 1;
     private battle: BattleSimulation | null = null; private latestShot: Shot | null = null;
     private cachedBodyRegion: TipTarget | null = null;
+    private pennant: TowerPennant | null = null;
     constructor(private owner: Laya.Sprite, private art: SpriteFrames) {
         this.ambient = new BuildingAmbient(art);
         this.parts.name = "EditorBuilding"; this.parts.mouseEnabled = false; owner.addChild(this.parts);
@@ -119,6 +122,10 @@ export class BuildingVisuals {
             this.badge.scaleX = this.owner.scaleX;
         }
     }
+    syncPennant(flag: TowerFlag | undefined, facing: number) {
+        if (flag) this.pennant ??= new TowerPennant(this.owner);
+        this.pennant?.sync(flag, facing, this.bodyScale);
+    }
     /** 面板收起后再播。塔的整套表现共用足点，其他建筑沿用本地部件动画。 */
     beginVisibleUpgrade(): boolean {
         if (!this.upgradePending || this.upgrading || (!this.tower && !this.upgrades.length)) return false;
@@ -144,6 +151,7 @@ export class BuildingVisuals {
         }
         this.gateFlare = this.upgrading ? Math.sin(Math.PI * progress) : 0;
         this.ambient.advance(delta, night, working);
+        this.pennant?.advance(delta);
     }
     upgradeFlare() { return this.gateFlare; }
     /** 实际贴图范围用于民房点击和屋顶提示；编辑器bounds含安全留白，不能作为屋顶。

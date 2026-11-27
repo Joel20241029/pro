@@ -60,6 +60,9 @@ function prop(id: string, frame: string, left: number, top: number, size: number
 }
 /** 村内西侧的巡防建筑，与佟楼正面错开。三档主体共用占地。 */
 export const PATROL_PROP = "building:patrol";
+/** 村委会放在村内中部，城门方向留出通行空间，与右侧农田错开。 */
+export const HERO_COMMITTEE_PROP = "building:hero-committee";
+export const HERO_COMMITTEE_FRAME = "hero_committee";
 // 128×62 的矮木门按等比画在原村口中心，足点稍前于木栅以盖住接缝。
 export const VILLAGE_GATE = prop("building:gate", "motion_gate_body", 307, 730.875, 106, 108, 14);
 export const VILLAGE_PROPS: VillageProp[] = [
@@ -92,6 +95,8 @@ export const VILLAGE_PROPS: VillageProp[] = [
     { id: "building:farm", frame: "motion_farm_body", x: 594, y: 954, size: 174, footprint: null, ground: true },
     prop("building:logging", "motion_logging_body", 533, 922.625, 106, 87, 28),
     prop(PATROL_PROP, PATROL_BOOTH_FRAME, 152, 801.25, 148, 102, 43),
+    // Larger roof and facade still stand on the existing foundation, protecting nearby compact-screen waiting positions.
+    prop(HERO_COMMITTEE_PROP, HERO_COMMITTEE_FRAME, 286, 817.25, 148, 76, 24),
     VILLAGE_GATE,
     ...TOWER_DISPLAY_PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, TOWER_VIEW.footprintWidth, TOWER_VIEW.footprintDepth))
 ];

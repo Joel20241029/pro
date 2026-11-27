@@ -2,7 +2,7 @@ import { SpriteFrames } from "./SpriteFrames";
 import { C, UI, PANEL_TEXT } from "./UiTheme";
 import { drawUiGlyph } from "./UiGlyphs";
 import { bindButtonClick } from "./ButtonFeedback";
-import { amount, reasonBesideCost } from "./ViewText";
+import { reasonBesideCost } from "./ViewText";
 import { HUD } from "./config/HudConfig";
 
 type Materials = { wood: number; food: number };
@@ -89,7 +89,7 @@ export class UiWidgets {
         const active = MATERIALS.filter(key => cost[key] !== undefined);
         for (const [i, key] of active.entries()) {
             const required = cost[key]!, short = owned[key] < required, cell = width / active.length;
-            this.iconValue(parent, `icon_${key}`, short ? `${amount(owned[key], true)}/${required}` : String(required),
+            this.iconValue(parent, `icon_${key}`, String(required),
                 x + i * cell, y, cell, height, short ? C.red : C.timber, 25, "left");
         }
     }
@@ -114,7 +114,8 @@ export class UiWidgets {
     }
     /** 操作提醒放在图文层上，按压时跟随按钮，尺寸由 HUD 和面板共用。 */
     actionBadge(button: Laya.Sprite, name: string) {
-        const face = button.getChildByName("buttonFace") as Laya.Sprite, { size, inset } = HUD.actionDot;
+        // 地图热点直接承载提醒，常规按钮仍随面层一起按压。
+        const face = (button.getChildByName("buttonFace") || button) as Laya.Sprite, { size, inset } = HUD.actionDot;
         const badge = this.image(face, "icon_action_dot", button.width - inset - size / 2, inset - size / 2, size);
         badge.name = name;
         return badge;
@@ -162,18 +163,20 @@ export class UiWidgets {
         if (fullRepair) {
             const x = width - 168;
             this.button(row, "修一次", x, 26, 152, action, C.green, 58, !reason);
-            this.button(row, `修满 · ${fullRepair.wood}木`, x, 99, 152, fullRepair.action, C.gold, 58, fullRepair.enabled);
+            const full = this.button(row, `修满 ${fullRepair.wood}`, x, 99, 152, fullRepair.action, C.gold, 58, fullRepair.enabled);
+            full.name = "RepairFull";
+            this.buttonIcon(full, "icon_wood", 24);
             return row;
         }
         const badge = new Laya.Sprite(); badge.pos(row.width - badgeWidth - 16, (row.height - badgeHeight) / 2); badge.mouseEnabled = false;
-        badge.name = "BuildAction";
+        badge.name = "BuildAction"; badge.size(badgeWidth, badgeHeight);
         this.art.panel(badge, reason ? "panel_button_disabled" : "panel_button_gold", badgeWidth, badgeHeight); face.addChild(badge);
         this.label(badge, reason ? "未满足" : caption, 8, 8, badgeWidth - 16, 28, reason ? C.muted : C.ink, true, badgeHeight - 16).align = "center";
         return row;
     }
     /** 村民与家庭共用图文条目：头像留独立区域，文字不挤进边框，滚动仍由ScrollList取消误触。 */
-    listItem(parent: Laya.Sprite, title: string, icon: string, y: number, action: () => void, enabled: boolean, height: number = UI.listHeight) {
-        const row = this.button(parent, title, 0, y, UI.contentWidth - UI.scrollGutter, action, C.muted, height, enabled, true);
+    listItem(parent: Laya.Sprite, title: string, icon: string, y: number, action: () => void, enabled: boolean, height: number = UI.listHeight, navigate = true, card: true | "panel_card_fern" | "panel_card_blue" = true) {
+        const row = this.button(parent, title, 0, y, UI.contentWidth - UI.scrollGutter, action, C.muted, height, enabled, card);
         const face = row.getChildAt(0) as Laya.Sprite;
         const text = face.getChildByName("buttonText") as Laya.Text;
         text.pos(134, 14);
@@ -189,8 +192,39 @@ export class UiWidgets {
         frame.mouseEnabled = false;
         face.addChild(frame);
         this.image(frame, icon, 2, 2, 100).alpha = enabled ? 1 : .5;
-        if (enabled) this.label(face, "›", row.width - 60, height - 60, 48, 40, C.ink, true, 45).align = "center";
+        if (enabled && navigate) this.label(face, "›", row.width - 60, height - 60, 48, 40, C.ink, true, 45).align = "center";
         return row;
+    }
+    /** 边框标记本页预览，勾和状态文案标记实际生效项。两者可同时出现。 */
+    choiceState(row: Laya.Sprite, selected: boolean, applied?: string, locked = false, statusX = row.width - 132) {
+        const face = row.getChildByName("buttonFace") as Laya.Sprite ?? row;
+        if (selected) face.graphics.drawRoundRect(3, 3, row.width - 6, row.height - 6, 16, 16, 16, 16, null, C.selection, 3);
+        if (applied === undefined && !locked) return;
+        const copy = face.getChildByName("buttonText") as Laya.Text | null;
+        if (copy && copy.x < statusX) copy.width = statusX - copy.x - 8;
+        const y = (row.height - 40) / 2;
+        if (locked) this.image(face, "icon_slot_lock", statusX, y + 7, 25);
+        const badge = this.label(face, locked ? "未解锁" : "✓ " + applied, statusX + (locked ? 29 : 0), y, locked ? 93 : 115,
+            24, locked ? C.muted : C.green, true, 40);
+        badge.valign = "middle"; badge.wordWrap = false; badge.overflow = Laya.Text.SHRINK;
+    }
+    tabButton(parent: Laya.Sprite, title: string, x: number, y: number, w: number, height: number, selected: boolean, action: () => void) {
+        return this.button(parent, title, x, y, w, action, selected ? C.green : C.muted, height);
+    }
+    backButton(parent: Laya.Sprite, action: () => void, name = "PanelBack") {
+        const button = this.button(parent, "", 30, 32, 54, action, C.muted, 54);
+        button.name = name;
+        this.image(button.getChildByName("buttonFace") as Laya.Sprite, "icon_back", 10, 10, 34);
+        return button;
+    }
+    /** 候选名单的提交区在滚动区外，禁用原因和按钮共用一处。 */
+    choiceAction(parent: Laya.Sprite, title: string, y: number, action: () => void, reason?: string, detail?: string) {
+        const description = reason ?? detail;
+        if (description) {
+            const note = this.label(parent, description, UI.inset, y - 38, parent.width - 2 * UI.inset, 23, C.muted, false, 34);
+            note.align = "center"; note.wordWrap = false; note.overflow = Laya.Text.SHRINK;
+        }
+        return this.centerButton(parent, title, y, action, C.gold, !reason, 310, 66);
     }
     /** 面板独立操作沿用原按钮的皮肤、红点与按压层。较长文案在可用宽度内自适应字号。 */
     centerButton(parent: Laya.Sprite, title: string, y: number, action: () => void, color = C.green, enabled = true,
@@ -205,17 +239,17 @@ export class UiWidgets {
     bindClick(target: Laya.Sprite, action: (event: Laya.Event) => void, face?: Laya.Sprite) {
         bindButtonClick(target, event => { this.playClick(); action(event); }, face);
     }
-    button(parent: Laya.Sprite, title: string, x: number, y: number, w: number, action: () => void, color = C.green, h = 72, enabled = true, card = false) {
+    button(parent: Laya.Sprite, title: string, x: number, y: number, w: number, action: () => void, color = C.green, h = 72, enabled = true, card: boolean | "panel_card_fern" | "panel_card_blue" = false) {
         const b = new Laya.Sprite();
         b.name = `button:${title}`;
         b.size(w, h);
         b.pos(x, y);
-        const skin = !enabled ? "panel_button_disabled" : color === C.gold ? "panel_button_gold" : color === C.red ? "panel_button_red" : "panel_button_green";
+        const skin = !enabled ? "panel_button_disabled" : color === C.gold ? "panel_button_gold" : color === C.red ? "panel_button_red" : color === C.green ? "panel_button_fern" : "panel_button_green";
         // 底板、文字及调用方附加的图标共用面层，整体按压；外层点击区域始终固定。
         const face = new Laya.Sprite();
         face.name = "buttonFace";
         face.mouseEnabled = false;
-        if (card) this.art.panel(face, enabled ? "panel_card" : "panel_card_disabled", w, h);
+        if (card) this.art.panel(face, enabled ? (card === true ? "panel_card" : card) : "panel_card_disabled", w, h);
         else this.art.panel(face, skin, w, h);
         b.addChild(face);
         if (title) {

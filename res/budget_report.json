@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-25T04:49:36.734Z",
-  "runtimeAssetCount": 542,
+  "generatedAt": "2026-11-27T02:10:45.887Z",
+  "runtimeAssetCount": 631,
   "reserveAssetCount": 134,
-  "animationCount": 69,
-  "animationFrames": 406,
+  "animationCount": 88,
+  "animationFrames": 478,
   "categoryStats": {
     "enemies": {
       "count": 70,
@@ -18,27 +18,27 @@
       "reserve": 0
     },
     "characters": {
-      "count": 255,
-      "bytes": 4416380,
-      "runtime": 255,
+      "count": 337,
+      "bytes": 4798149,
+      "runtime": 337,
       "reserve": 0
     },
     "building-parts": {
-      "count": 229,
-      "bytes": 2525838,
-      "runtime": 110,
+      "count": 222,
+      "bytes": 2626909,
+      "runtime": 103,
       "reserve": 119
     },
     "ui/icons": {
-      "count": 31,
-      "bytes": 423175,
-      "runtime": 31,
+      "count": 37,
+      "bytes": 623620,
+      "runtime": 37,
       "reserve": 0
     },
     "effects": {
-      "count": 50,
-      "bytes": 429722,
-      "runtime": 45,
+      "count": 53,
+      "bytes": 497097,
+      "runtime": 48,
       "reserve": 5
     },
     "decorations": {
@@ -48,20 +48,20 @@
       "reserve": 7
     },
     "ui/panels": {
-      "count": 12,
-      "bytes": 16689,
-      "runtime": 12,
+      "count": 17,
+      "bytes": 33926,
+      "runtime": 17,
       "reserve": 0
     },
     "ui/buttons": {
       "count": 2,
-      "bytes": 34032,
+      "bytes": 14488,
       "runtime": 2,
       "reserve": 0
     },
     "terrain": {
       "count": 4,
-      "bytes": 775756,
+      "bytes": 821894,
       "runtime": 1,
       "reserve": 3
     }
@@ -71,20 +71,10 @@
       "id": "ui_0",
       "path": "atlases/ui_0.png",
       "runtimeFile": "ui/ui_0.png",
-      "width": 1021,
-      "height": 1024,
-      "bytes": 478422,
-      "sha256": "18eb9d526f673b046f62d181b8fdeaf7f5eaf5f8a9c8edd87eac2e2aaf9eb332",
-      "group": "ui"
-    },
-    {
-      "id": "ui_1",
-      "path": "atlases/ui_1.png",
-      "runtimeFile": "ui/ui_1.png",
-      "width": 86,
-      "height": 75,
-      "bytes": 585,
-      "sha256": "12dfeb64dc20880f12671d47492a8413d45bfc24aed7c4d4d97349fa39c82250",
+      "width": 1024,
+      "height": 955,
+      "bytes": 722583,
+      "sha256": "f6075f40cbf249072860d4e9e4736cbd8ad3f69c7c1345616956f85f03b117e1",
       "group": "ui"
     },
     {
@@ -93,8 +83,8 @@
       "runtimeFile": "map/terrain_0.jpg",
       "width": 1126,
       "height": 1406,
-      "bytes": 247490,
-      "sha256": "febe91cef23c5c3e49d609579ae0dafb79f3db6e4a29d558232acd3301991560",
+      "bytes": 241575,
+      "sha256": "071c3c9aba6b87317d803761e8ed87f4c2bf2691c0d3e88fff240593f2efa13d",
       "group": "terrain"
     },
     {
@@ -112,19 +102,19 @@
       "path": "atlases/buildings_0.png",
       "runtimeFile": "buildings/buildings_0.png",
       "width": 768,
-      "height": 800,
-      "bytes": 761670,
-      "sha256": "7a3fa8eb54a1a46f18e9131c634f3462cb7028dc19ae4308486e57bb308d357c",
+      "height": 740,
+      "bytes": 715657,
+      "sha256": "dbc4b102486c2282b466ea5607ed67607faede5bb146c05aac4ad6f4ef1764b0",
       "group": "buildings"
     },
     {
       "id": "characters_0",
       "path": "atlases/characters_0.png",
       "runtimeFile": "characters/characters_0.png",
-      "width": 1021,
+      "width": 1024,
       "height": 1024,
-      "bytes": 1440291,
-      "sha256": "df2cd4ebe2d2aca4e153c2e30b9d69cb241e63074b4f68b35b278bd3dcdf8acf",
+      "bytes": 1555182,
+      "sha256": "69dfce3b48d77085af65c4faebc5bd32d1b9ab1d561f8b67792df1dc025532df",
       "group": "characters"
     },
     {
@@ -132,19 +122,9 @@
       "path": "atlases/characters_1.png",
       "runtimeFile": "characters/characters_1.png",
       "width": 1024,
-      "height": 1024,
-      "bytes": 1506581,
-      "sha256": "5cbc0582609f22d90c452be2a39828098dc9eab76f35cfdac5501a7c0d517a3e",
-      "group": "characters"
-    },
-    {
-      "id": "characters_2",
-      "path": "atlases/characters_2.png",
-      "runtimeFile": "characters/characters_2.png",
-      "width": 746,
-      "height": 1020,
-      "bytes": 1071864,
-      "sha256": "bf77ba2e5c944472d433b41be8b0a34b16db4b345895fbfd9055efe715d4d318",
+      "height": 1008,
+      "bytes": 1610283,
+      "sha256": "263b50cd8b767ab9f14b2909b6cbf27831dee2dcfbb3e3ab91012cbc47df803d",
       "group": "characters"
     },
     {
@@ -152,9 +132,9 @@
       "path": "atlases/village_effects_0.png",
       "runtimeFile": "effects/village_effects_0.png",
       "width": 220,
-      "height": 314,
-      "bytes": 23991,
-      "sha256": "ff2e8e7f3ef16a9f500091034db7a5cff4ee3d5aa330a77b960d6f9164d92d4d",
+      "height": 418,
+      "bytes": 56050,
+      "sha256": "13094fe6b96d8710fe1e3cdc12fef0a998cb39fd29ed925ef8a2d3501d98c1d8",
       "group": "village_effects"
     },
     {
@@ -178,44 +158,63 @@
       "group": "enemies"
     },
     {
+      "id": "heroes_0",
+      "path": "atlases/heroes_0.png",
+      "runtimeFile": "characters/heroes_0.png",
+      "width": 763,
+      "height": 607,
+      "bytes": 762748,
+      "sha256": "a497fc09ec0ebc2c82c349ea7aeedb0e94bc383400a7f25945dbf21377089673",
+      "group": "heroes"
+    },
+    {
+      "id": "delivery_combat_0",
+      "path": "atlases/delivery_combat_0.png",
+      "runtimeFile": "characters/delivery_combat_0.png",
+      "width": 135,
+      "height": 853,
+      "bytes": 164207,
+      "sha256": "6518b082184af7cb971982c91feffa1e1b1892e59dcaf58143e6afb196c17880",
+      "group": "delivery_combat"
+    },
+    {
       "id": "night_effects_0",
       "path": "atlases/night_effects_0.png",
       "runtimeFile": "effects/night_effects_0.png",
-      "width": 957,
-      "height": 801,
-      "bytes": 367366,
-      "sha256": "e60209fdf97ab90eedbe81400f7e7cba395e62f7b8c79e3185c75c2749f0343b",
+      "width": 896,
+      "height": 825,
+      "bytes": 408048,
+      "sha256": "58abb3e36630ceaab57db81454030e263cf63e243ecbb710f77698153842dc12",
       "group": "night_effects"
     }
   ],
   "packing": {
-    "sourceCanvasPixels": 12909733,
-    "atlasContentPixels": 7396369,
-    "savedContentPixels": 5513364,
-    "savedContentPercent": 42.71,
-    "trimmedAssetCount": 506,
+    "sourceCanvasPixels": 12337725,
+    "atlasContentPixels": 6990698,
+    "savedContentPixels": 5347027,
+    "savedContentPercent": 43.34,
+    "trimmedAssetCount": 591,
     "alphaThreshold": 0,
     "nineSlicePreserved": true,
     "paddingPerSide": 2
   },
   "selectedRuntime": {
     "mode": "atlas_plus_audio",
-    "atlasImageBytes": 7598381,
-    "metadataBytes": 153580,
-    "audioBytes": 170880,
-    "totalBytes": 7922841,
+    "atlasImageBytes": 7936454,
+    "metadataBytes": 178786,
+    "audioBytes": 176167,
+    "totalBytes": 8291407,
     "files": [
       "bundles/map/frames.bin",
       "bundles/characters/animations.bin",
       "bundles/ui/ui_0.png",
-      "bundles/ui/ui_1.png",
       "bundles/map/terrain_0.jpg",
       "bundles/map/map_0.png",
       "bundles/buildings/buildings_0.png",
       "bundles/characters/characters_0.png",
       "bundles/characters/characters_1.png",
-      "bundles/characters/characters_2.png",
       "bundles/effects/village_effects_0.png",
+      "bundles/characters/heroes_0.png",
       "bundles/buildings/buildings.bin",
       "bundles/buildings/building_upgrade.mc",
       "bundles/buildings/building_attack.mc",
@@ -223,6 +222,7 @@
       "bundles/enemies/animations.bin",
       "bundles/enemies/enemies_0.png",
       "bundles/enemies/enemies_1.png",
+      "bundles/characters/delivery_combat_0.png",
       "bundles/effects/night_effects_0.png",
       "bundles/enemies/enemies.bin",
       "bundles/music/village_loop.mp3",
@@ -232,7 +232,9 @@
       "bundles/music/enemy_defeat.mp3",
       "bundles/music/patrol_flight.mp3",
       "bundles/music/patrol_landing.mp3",
-      "bundles/music/patrol_rapid_fire.mp3"
+      "bundles/music/patrol_rapid_fire.mp3",
+      "bundles/music/hero_hit.mp3",
+      "bundles/music/delivery_splash.mp3"
     ]
   },
   "nineSliceCompaction": {
@@ -248,8 +250,8 @@
   },
   "sourceBytes": 49652112,
   "budgetComparison": {
-    "villageAtlasImageBytes": 5904908,
-    "nightAtlasImageBytes": 1693473
+    "villageAtlasImageBytes": 6038092,
+    "nightAtlasImageBytes": 1898362
   },
   "limitations": [
     "Atlas content-pixel savings are not identical to PNG byte savings",

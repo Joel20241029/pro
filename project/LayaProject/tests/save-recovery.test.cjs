@@ -95,12 +95,12 @@ test('old/future config and schema mismatches preserve both original slots until
 
 test('incompatible popup offers a working explicit reset instead of an ineffective reload action', () => {
     const storage = new MemoryStore([envelope(CONFIG_VERSION - 2), envelope(CONFIG_VERSION - 2)]), game = session(storage);
-    const buttons = [], modals = [], view = {};
+    const buttons = [], modals = [], labels = [], view = {};
     Object.assign(view, {
-        game, modal(title, reason, close) { modals.push({ title, reason, close }); return {}; },
-        ui: { label() { return {}; }, centerButton(parent, text, y, action) { buttons.push({ text, action }); } }
+        game, modal(title, reason, close) { modals.push({ title, reason, close }); return { graphics: { drawRoundRect() {} } }; },
+        ui: { image() {}, label(parent, text) { labels.push(text); return {}; }, centerButton(parent, text, y, action) { buttons.push({ text, action }); } }
     });
-    drawBoot(view); assert.equal(modals[0].close, false); assert.match(modals[0].reason, /替换旧进度/);
+    drawBoot(view); assert.equal(modals[0].close, false); assert.match(labels[0], /替换旧进度/);
     assert.equal(buttons.length, 1); assert.equal(buttons[0].text, '重新开村');
     buttons[0].action(); assertNewVillage(game, storage);
 });
@@ -205,4 +205,47 @@ test('explicit incompatible reset does not inherit stale in-memory legacy or his
     const foreign = envelope(CONFIG_VERSION - 2); storage.values.set(keys[0], foreign); storage.values.set(keys[1], foreign); game.load();
     assert.equal(game.boot.kind, 'incompatible'); game.newVillage(true); assertNewVillage(game, storage);
     assert.equal(game.state.legacy.bestNight, 0); assert.equal(game.state.legacy.births, 0); assert.deepEqual(game.state.history, []);
+});
+
+test('a checksummed v22 calendar save loses only retired choices, without wiping travelers or the saved enemy schedule', () => {
+    const { applyCommand, finishNight } = require(path.join(compiled, 'game/VillageRules.js'));
+    const old = raw => {
+        const { checksum, ...body } = JSON.parse(envelope(CONFIG_VERSION));
+        body.payload = raw;
+        return canonical({ ...body, checksum: crc32(canonical(body)) });
+    };
+    const options = ['policy_harvest', 'policy_logging', 'policy_prepare'];
+    const policy = { kind: 'POLICY', options };
+    const awake = createGame(11);
+    awake.day = 4; awake.completed = awake.legacy.bestNight = 3;
+    applyCommand(awake, { type: 'NIGHT' });
+    const stock = [awake.food, awake.wood], wave = canonical(awake.wave);
+    const loadedNight = new SaveStore(new MemoryStore([old({ ...awake, policy: 'policy_prepare' }), null])).inspect();
+    assert.equal(loadedNight.kind, 'ready');
+    assert.equal(loadedNight.state.phase, 'NIGHT');
+    assert.equal(canonical(loadedNight.state.wave), wave);
+    assert.deepEqual([loadedNight.state.food, loadedNight.state.wood], stock);
+    assert(!Object.hasOwn(loadedNight.state, 'policy'));
+
+    finishNight(awake, 200, awake.towers.map(t => t.operator));
+    const traveler = awake.choices[0];
+    assert.equal(traveler.kind, 'TRAVELER');
+    const raw = old({ ...awake, policy: null, choices: [policy, traveler] });
+    const memory = new MemoryStore([raw, null]);
+    const pending = session(memory);
+    assert.equal(pending.state.phase, 'DAWN');
+    assert.deepEqual(pending.state.choices, [traveler]);
+    assert.equal(memory.writes.length, 0);
+    assert.equal(memory.values.get(keys[0]), raw);
+    pending.command({ type: 'CHOOSE', value: 'decline' });
+    assert.equal(pending.state.phase, 'DAY');
+    assert(!Object.hasOwn(pending.state, 'policy'));
+    assert(!Object.hasOwn(JSON.parse(memory.values.get(keys[1])).payload, 'policy'));
+
+    const onlyPolicy = new MemoryStore([old({ ...awake, policy: null, choices: [policy] }), null]);
+    const skipped = session(onlyPolicy);
+    assert.equal(skipped.state.phase, 'DAY');
+    assert.equal(skipped.state.day, 5);
+    const malformed = old({ ...awake, policy: null, choices: [{ ...policy, options: [options[0], options[0], 'other'] }] });
+    assert.equal(new SaveStore(new MemoryStore([malformed, null])).inspect().kind, 'blocked');
 });

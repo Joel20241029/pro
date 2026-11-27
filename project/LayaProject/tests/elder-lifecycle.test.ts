@@ -12,7 +12,7 @@ function equal(a: unknown, b: unknown) { ok(canonical(a) === canonical(b), `${JS
 function rejects(f: () => void) { let rejected = false; try { f(); } catch { rejected = true; } ok(rejected, "expected rejection"); }
 function test(name: string, f: () => void) { f(); passed++; console.log("PASS", name); }
 function dawn(s: GameState) {
-    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" ? q.options[0] : "decline" }); }
+    while (s.choices.length) { applyCommand(s, { type: "CHOOSE", value: "decline" }); }
     applyCommand(s, { type: "FINALIZE" });
 }
 function win(s: GameState) { applyCommand(s, { type: "NIGHT" }); validateState(s); finishNight(s, RULE.gateMax, s.towers.map(t => t.operator)); validateState(s); }
@@ -45,13 +45,12 @@ test("A new retiree is not aged with an existing elder, even when that elder dep
     const s = separateCaptainVillage(1), old = s.people[0], next = s.people[1]; old.nights = 0; old.elderNights = 1; old.job = "WAITING"; next.nights = 1;
     win(s); equal(s.history[0].id, old.id); ok(isElder(next)); equal(next.elderNights, 3); equal(s.people.length, 5); equal(s.stats.retirees, 1);
 });
-test("Elder ration is included exactly once, honors frugal/winter/policy, and produces no resources", () => {
+test("Elder ration is included exactly once, honors frugal without a calendar surcharge, and produces no resources", () => {
     const s = createGame(1); s.people.forEach(p => p.job = "WAITING");
     for (const p of s.people.slice(0, 2)) { p.nights = 0; p.elderNights = 3; }
-    s.day = 4; s.policy = null; const base = economy(s); equal([base.food, base.wood, base.rations, base.elderRations], [0, 0, 11, 3]);
-    s.day = 10; equal(economy(s).rations, Math.ceil(11 * 1.2));
-    s.policy = "policy_harvest"; equal(economy(s).rations, 14); equal(economy(s).elderRations, 3);
-    s.food = 200; equal(economy(s).endFood, 186); s.food = 0; ok(economy(s).hungry); equal(economy(s).endFood, 0);
+    s.day = 4; const base = economy(s); equal([base.food, base.wood, base.rations, base.elderRations], [0, 0, 11, 3]);
+    s.day = 10; equal(economy(s).rations, 11); equal(economy(s).elderRations, 3);
+    s.food = 200; equal(economy(s).endFood, 189); s.food = 0; ok(economy(s).hungry); equal(economy(s).endFood, 0);
 });
 test("Failed nights and a replay do not decrement elder life or charge food again", () => {
     const s = separateCaptainVillage(2), p = s.people[0]; p.nights = 0; p.elderNights = 2; p.job = "WAITING";

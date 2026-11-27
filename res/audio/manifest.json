@@ -151,7 +151,45 @@
       "sourceBoundaryDifference": 3.0517578125e-05,
       "license": "Original score and synthesis; no third-party samples",
       "phoneListeningVerified": false
+    },
+    {
+      "title": "英雄近战 · 卡通剑气",
+      "source": "source/audio/hero_hit.score.json",
+      "generator": "tools/build-audio.py",
+      "runtimeFile": "audio/hero_hit.mp3",
+      "packageFile": "hero_hit.mp3",
+      "bundle": "battle",
+      "durationSeconds": 0.1880045351473923,
+      "sampleRate": 44100,
+      "channels": 1,
+      "bitrate": "96k",
+      "bytes": 3179,
+      "sha256": "57b220ede37cb76ef7028e2c0c54993dc12664e6b616f51b795619112c72d526",
+      "sourceSha256": "b0c7f27f4d657ad4ae09da34daf6d52394fdd7726e9153e0e57050f5e24bbfff",
+      "sourcePeak": 0.72,
+      "sourceBoundaryDifference": 0.0,
+      "license": "Original score and synthesis; no third-party samples",
+      "phoneListeningVerified": false
+    },
+    {
+      "title": "外卖加急 · 餐盒溅落",
+      "source": "source/audio/delivery_splash.score.json",
+      "generator": "tools/build-audio.py",
+      "runtimeFile": "audio/delivery_splash.mp3",
+      "packageFile": "delivery_splash.mp3",
+      "bundle": "battle",
+      "durationSeconds": 0.24498866213151926,
+      "sampleRate": 22050,
+      "channels": 1,
+      "bitrate": "48k",
+      "bytes": 2108,
+      "sha256": "c2d4d8e400c2182ee943b15266e8e5fd7efb16edf1028519de094a54dcbed99b",
+      "sourceSha256": "9c8cc71346fbf7ae4e5af05fa3e4e5a24c2405ee01cdb7d6570308bde13a4679",
+      "sourcePeak": 0.69,
+      "sourceBoundaryDifference": 0.0,
+      "license": "Original score and synthesis; no third-party samples",
+      "phoneListeningVerified": false
     }
   ],
-  "bytes": 170880
+  "bytes": 176167
 }

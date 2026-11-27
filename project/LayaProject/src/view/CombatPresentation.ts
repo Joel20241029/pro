@@ -1,10 +1,12 @@
 import { BattleSimulation, CombatFeedback, Enemy, Shot } from '../game/BattleSimulation';
 import { enemyPoint } from '../game/BattleRoad';
-import { FEEDBACK } from './config/FeedbackConfig';
+import { FEEDBACK, TOWER_IMPACT } from './config/FeedbackConfig';
 import { ENEMIES, RULE } from '../game/GameConfig';
 interface PatrolHop { at: number; seconds: number; dx: number; dy: number; distance: number; lift: number; }
 interface Defeat { enemy: Enemy; fatal: Shot | null; started: number | null; hop?: PatrolHop; }
 export interface ZhouLoveCue { cleared: boolean; age: number; }
+const HERO_FACING = { RIGHT: { x: 1, y: 0 }, LEFT: { x: -1, y: 0 }, UP: { x: 0, y: -1 }, DOWN: { x: 0, y: 1 } } as const;
+const HERO_IMPACT_SECONDS = TOWER_IMPACT.ARROW.frameCount / TOWER_IMPACT.ARROW.fps;
 /** 独立视觉时间线。死亡快照不进入 simulation.enemies；保留统一死亡位置供迟到弹道使用。 */
 export class CombatPresentation {
     private battle: BattleSimulation | null = null;
@@ -23,12 +25,14 @@ export class CombatPresentation {
     private loveTargets = new Map<number, { cleared: boolean; started: number }>();
     private burstTargets = new Map<number, number>();
     private patrolHits = new Map<number, { started: number; recoil: { dx: number; dy: number; pixels: number } | null }>();
+    private heroHits = new Map<number, { started: number; dx: number; dy: number; delivery: boolean; electric: boolean }>();
     sync(battle: BattleSimulation | null, events: CombatFeedback[]) {
         if (battle !== this.battle || !battle) {
             this.battle = battle; this.shots.clear(); this.deaths.clear(); this.deathPositions.clear(); this.flashes.clear(); this.retired.clear();
             this.loveTargets.clear(); this.burstTargets.clear();
             this.visibleFrost.clear();
             this.patrolHits.clear();
+            this.heroHits.clear();
             this.tailSeconds = 0; this.defeatCue = false;
         }
         if (!battle) return;
@@ -68,6 +72,16 @@ export class CombatPresentation {
                     this.burstTargets.set(enemy.seq, this.clock);
                     this.immediateHit(enemy);
                 }
+            } else if (event.type === 'heroHit' || event.type === 'deliveryHit') {
+                for (const enemy of event.hurt) {
+                    if (this.retired.has(enemy.seq)) continue;
+                    const point = enemyPoint(enemy);
+                    let dx = point.x - event.at.x, dy = point.y - event.at.y;
+                    if (dx === 0 && dy === 0) ({ x: dx, y: dy } = HERO_FACING[event.direction]);
+                    this.heroHits.set(enemy.seq, { started: this.clock, dx, dy, delivery: event.type === 'deliveryHit',
+                        electric: event.type === 'heroHit' && event.electric === true });
+                    this.immediateHit(enemy);
+                }
             } else if (event.type === 'blast' || event.type === 'poison') {
                 event.hurt.forEach(enemy => this.immediateHit(enemy));
             } else if (event.type === 'zhouLove') {
@@ -75,7 +89,7 @@ export class CombatPresentation {
                     this.loveTargets.set(enemy.seq, { cleared: event.cleared, started: this.clock });
                     if (event.cleared) this.immediateHit(enemy);
                 }
-            } else {
+            } else if (event.type === 'shot') {
                 this.shots.set(event.shot, event);
                 for (const enemy of event.hurt) if (enemy.hp <= 0 && !this.retired.has(enemy.seq)) {
                     this.deathPositions.set(enemy.seq, enemyPoint(enemy));
@@ -106,6 +120,8 @@ export class CombatPresentation {
             const spec = FEEDBACK.patrolHit;
             if (this.clock - hit.started >= (hit.recoil ? Math.max(spec.seconds, spec.recoilSeconds) : spec.seconds)) this.patrolHits.delete(seq);
         }
+        for (const [seq, hit] of this.heroHits)
+            if (this.clock - hit.started >= HERO_IMPACT_SECONDS) this.heroHits.delete(seq);
         for (const [seq, cue] of this.loveTargets) {
             const seconds = cue.cleared ? FEEDBACK.impact.frameCount / FEEDBACK.impact.fps : FEEDBACK.loveHeal.seconds;
             if (this.clock - cue.started >= seconds) this.loveTargets.delete(seq);
@@ -138,6 +154,17 @@ export class CombatPresentation {
         if (!hit) return undefined;
         const age = this.clock - hit.started;
         return age < FEEDBACK.patrolHit.seconds ? age : undefined;
+    }
+    heroImpact(seq: number, verticalScale: number): { age: number; x: number; y: number; delivery: boolean; electric?: true } | undefined {
+        const hit = this.heroHits.get(seq);
+        if (!hit) return undefined;
+        const age = this.clock - hit.started, spec = FEEDBACK.heroRecoil;
+        const y = hit.dy * verticalScale, distance = Math.hypot(hit.dx, y);
+        const strength = age < spec.peakSeconds ? Math.sin(age / spec.peakSeconds * Math.PI / 2)
+            : Math.max(0, (spec.seconds - age) / (spec.seconds - spec.peakSeconds)) ** 2;
+        const scale = !hit.electric && distance > 0 ? strength * spec.pixels / distance : 0;
+        const impact = { age, x: hit.dx * scale, y: y * scale, delivery: hit.delivery };
+        return hit.electric ? { ...impact, electric: true } : impact;
     }
     patrolRecoil(seq: number, verticalScale: number) {
         const hop = this.deaths.get(seq)?.hop;
@@ -208,6 +235,7 @@ export class CombatPresentation {
             const spec = FEEDBACK.patrolHit, t = patrolAge / spec.shakeSeconds;
             return spec.pixels * (1 - t) * Math.cos(t * Math.PI * 2 * spec.cycles);
         }
+        if (this.heroHits.has(seq)) return 0;
         const end = this.flashes.get(seq);
         if (end === undefined) return 0;
         const spec = FEEDBACK.hitShake, age = this.clock - (end - FEEDBACK.flashSeconds);

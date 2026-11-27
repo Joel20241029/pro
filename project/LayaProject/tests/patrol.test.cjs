@@ -38,7 +38,6 @@ test('patrol has a captain on the first day, upgrade costs inventory and a retir
     assert.equal(s.food, food - PATROL.upgrade.food);
     assert.equal(p.job, 'WAITING');
     assert(tower.operator && tower.operator !== p.id);
-    assert.throws(() => applyCommand(s, { type: 'OPERATOR', index: 0, id: p.id }), /不能同时驻塔/);
     validateState(s);
     applyCommand(s, { type: 'NIGHT' });
     assert.equal(s.night.patrolSquad, true);

@@ -20,7 +20,7 @@ function enemy(seq, kind = 'enemy_raider') {
     return { seq, kind, appearanceSeed: 87, progress: 256 + seq, hp: 100000, speed: 0, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
 }
 function battle(kind = 'ARROW', tactic = RAGE_TACTIC) {
-    const s = learned(); s.food = 100; s.policy = null; s.tactics.equipped = tactic;
+    const s = learned(); s.food = 100; s.tactics.equipped = tactic;
     applyCommand(s, { type: 'NIGHT' }); const b = new BattleSimulation(s);
     b.base.towers.forEach((t, i) => { t.kind = i === 0 ? kind : null; t.level = 1; t.operator = i === 0 ? s.people[0].id : null; });
     const operator = b.base.people[0]; operator.traits = ['trait_frugal']; operator.quality = "COMMON";
@@ -28,7 +28,7 @@ function battle(kind = 'ARROW', tactic = RAGE_TACTIC) {
 }
 test('rage learns at ten current-village wins with one exact 45 wood + 20 food debit', () => {
     const t = tacticDefinition(RAGE_TACTIC);
-    assert.deepEqual([t.name, t.unlockWaves, t.wood, t.food, t.effect, t.multiplier, t.ticks * RULE.step], ['百毅靓之怒', 10, 45, 20, 'ATTACK_DAMAGE', 1.5, 15]);
+    assert.deepEqual([t.name, t.unlockWaves, t.wood, t.food, t.effect, t.multiplier, t.ticks * RULE.step], ['百毅靓之怒', 10, 45, 20, 'ATTACK_DAMAGE', 1.5, 18]);
     const s = createGame(7); s.completed = 9; s.day = 10; s.legacy.bestNight = 100; s.tactics.learned.push(SHIELD_TACTIC);
     assert.equal(tacticUnavailableReason(s, RAGE_TACTIC, 'LEARN'), '还需守住 1 波'); assert(!canLearnTactic(s));
     const old = clone(s); assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC })); assert.deepEqual(s, old);
@@ -73,10 +73,9 @@ test('rage preserves firing schedule; heart still speeds attacks without increas
 });
 test('rage multiplies accumulated bonuses and keeps the last active attack snapshot after expiry', () => {
     const b = battle('STONE'); b.base.people[0].quality = "ELITE"; b.base.people[0].traits = ['trait_strong'];
-    b.base.policy = 'policy_prepare';
     b.bell(); b.bellTicks = 1; b.step();
-    // 22 × (1 + .45 strong + .10 prepare) × 1.25 elite × 1.5 rage is floored to 63.
-    assert.equal(100000 - b.enemies[0].hp, 63); assert.equal(b.bellTicks, 0); assert(b.shots[0].empowered);
+    // 22 × (1 + .45 strong) × 1.25 elite × 1.5 rage is floored to 59.
+    assert.equal(100000 - b.enemies[0].hp, 59); assert.equal(b.bellTicks, 0); assert(b.shots[0].empowered);
     const boosted = b.shots[0]; b.charge[0] = 1; b.step(); assert.equal(b.shots.at(-1).empowered, false); assert(boosted.empowered);
 });
 test('boosted impact remains visible across a full 3x catch-up, freezes on pause and is removed once', () => {

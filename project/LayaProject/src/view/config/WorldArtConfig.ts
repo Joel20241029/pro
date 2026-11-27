@@ -7,8 +7,7 @@ export const WORLD_ART = {
     enemyPoolReserve: 80,
     // 阴影贴图中心位于192画布约(96,142)，软边保留alpha。地面投影向右下偏移，照明来自左上。
     shadow: { centerX: .5, centerY: .74, actorWidth: .72, buildingWidth: .94, treeWidth: .88, alpha: .36, x: 4, y: 3 },
-    // 复用百毅靓之怒的俯视红环，放在精英脚下压扁成地面椭圆。相位和尺寸仅为身份提示。
-    // 正俯视小图在足底压成地面椭圆，由人物自然遮挡后缘。
+    // 真圆贴图旋转后由父节点投影成固定椭圆，由人物自然遮挡后缘。
     qualityRing: {
         frames: { ELITE: "fx_quality_elite", HERO: "fx_quality_hero", LEGENDARY: "fx_quality_legendary" },
         width: 59, heightRatio: .43, turnSeconds: 5.6, alpha: .88

@@ -11,6 +11,10 @@ const { GameSession } = read('game/GameSession');
 const { SaveStore } = read('storage/SaveStore');
 const { CombatPresentation } = read('view/CombatPresentation');
 const { SUMMON_TACTIC, SUMMON_CHARGE, tacticDefinition } = read('config/TacticConfig');
+const { HERO } = read('config/HeroConfig');
+const { RESOURCE_CONTRACT } = read('config/ResourceManifest');
+const { SummonChargeVisuals } = read('view/SummonChargeVisuals');
+const heroClips = new Map(require('../../../res/animations.json').animations.map(clip => [clip.id, clip]));
 const { RULE } = read('config/RuleConfig');
 
 function state() {
@@ -45,6 +49,38 @@ function gathered(b) {
     for (let i = 0; i < SUMMON_CHARGE.gatherTicks; i++) b.step();
 }
 
+test('the summon and its twenty rendered doubles use the same villager chief art', () => {
+    const spec = tacticDefinition(SUMMON_TACTIC);
+    assert.equal(HERO.name, '村长·智卓');
+    assert.equal(spec.icon, HERO.portrait);
+    assert(RESOURCE_CONTRACT.village.frames.includes(spec.icon));
+    for (const facing of ['up', 'down', 'left', 'right']) {
+        const id = `${HERO.spritePrefix}_${facing}_walk`;
+        assert(RESOURCE_CONTRACT.village.clips.includes(id));
+        assert(heroClips.get(id).stridePixels > 0);
+    }
+    const saved = global.Laya;
+    class Sprite {
+        children = [];
+        graphics = { clear() {}, drawEllipse() {}, drawCircle() {} };
+        addChild(node) { this.children.push(node); }
+        pos(x, y) { this.x = x; this.y = y; }
+        scale() {}
+    }
+    global.Laya = { Sprite };
+    try {
+        const world = new Sprite(), frames = new Map();
+        const art = { ready: stage => stage === 'village', animation: id => heroClips.get(id), applyFrame: (node, frame) => frames.set(node, frame) };
+        const visual = new SummonChargeVisuals(world, art), b = battle();
+        gathered(b);
+        for (let i = 0; i < 16; i++) b.step();
+        visual.update(b, { worldY: y => y, personScale: 1 }, [], 1);
+        const units = world.children.filter(node => node.name.startsWith('SummonedVillager:'));
+        assert.equal(units.length, SUMMON_CHARGE.count);
+        assert(units.every(unit => unit.visible && frames.get(unit.children[1]).startsWith(HERO.spritePrefix + '_')));
+    } finally { global.Laya = saved; }
+});
+
 test('summon reveals at 35 current wins and costs 160 wood and 80 food once', () => {
     const s = createGame(2);
     s.completed = 34; s.legacy.bestNight = 62; s.wood = 160; s.food = 80;
@@ -55,10 +91,10 @@ test('summon reveals at 35 current wins and costs 160 wood and 80 food once', ()
     s.wood = 160; applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC });
     assert.deepEqual([s.wood, s.food, s.tactics.equipped], [0, 0, SUMMON_TACTIC]);
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC }));
-    assert.equal(tacticDefinition(SUMMON_TACTIC).usesPerNight, 1);
+    assert.equal(tacticDefinition(SUMMON_TACTIC).usesPerNight, 2);
 });
 
-test('20 units gather without stepping and follow the curved road to its end; a second cast is unavailable', () => {
+test('20 units gather without stepping and follow the curved road to its end; the second cast opens after its cooldown and the third stays locked', () => {
     const b = battle();
     b.enemies = [enemy(99, 0)]; b.enemies[0].hp = 0;
     // Keep a future entry so the battle remains open while all 20 run off the road.
@@ -77,10 +113,12 @@ test('20 units gather without stepping and follow the curved road to its end; a 
     assert(rush.villagers.every(v => v.progress === 0 && v.retired));
     assert.equal(b.bellTicks, 0);
     while (b.tacticCooldownTicks > 0) b.step();
-    b.bell();
-    assert.equal(b.summonCharge, rush);
+    assert(b.bell());
+    assert.notEqual(b.summonCharge, rush);
     assert.equal(b.usesLeftFor(b.tactic), 0);
-    assert.equal(new BattleSimulation(b.base).usesLeftFor(b.tactic), 1);
+    while (b.tacticCooldownTicks > 0) b.step();
+    assert(!b.bell());
+    assert.equal(new BattleSimulation(b.base).usesLeftFor(b.tactic), 2);
 });
 
 test('swept collisions consume exactly one summon per living enemy, with a cap of twenty', () => {

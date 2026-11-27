@@ -1,11 +1,12 @@
 import { QUALITY_CHANCE_SCALE, rollVillagerQuality, VILLAGER_QUALITY } from "../config/VillagerQuality";
-import { ADULT_APPEARANCE, POLICIES, RULE, TRAIT_POOL, VILLAGER_NAMES } from "./GameConfig";
+import { ADULT_APPEARANCE, RULE, TRAIT_POOL, VILLAGER_NAMES } from "./GameConfig";
 import { GameState, Person } from "./GameState";
 import { SeededRandom } from "./SeededRandom";
 import { nextSex, travelerDue } from "./Population";
 import { person, capacity } from "./VillageQueries";
 import { autoAssignJobs, autoAssignNightDuties } from "./VillageJobs";
 import { requireRule, newId, pruneHistory } from "./VillageStateOps";
+import { advanceExpedition } from "./Expedition";
 /** 客满的定期来访已按原规则抽人并记入间隔，只把无法接纳的待办换成清晨消息。 */
 export function summarizeFullHouseVisit(s: GameState) {
     if (s.choices[0]?.kind !== "TRAVELER" || s.people.length < capacity(s)) return;
@@ -61,6 +62,8 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
     for (const p of s.people)
         p.ancestors = p.ancestors.filter(id => !departedIds.includes(id));
     s.families = s.families.filter(f => !f.partners.some(id => departedIds.includes(id)));
+    // 回村发生在本夜年龄结算之后、自动补位之前，返村这一夜仍不扣探索者寿命。
+    advanceExpedition(s);
     autoAssignJobs(s);
     autoAssignNightDuties(s);
     s.stats.retirees += retired.length;
@@ -83,10 +86,6 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
             : VILLAGER_NAMES.traveler[nameIndex];
         const traveler: Person = { id: newId(s), name, sex, origin: "TRAVELER", quality, appearance: ADULT_APPEARANCE[sex], traits: world.choices(TRAIT_POOL, VILLAGER_QUALITY[quality].traitCount), generation: 1, parents: [], ancestors: [], adult: true, nights: VILLAGER_QUALITY[quality].adultNights, elderNights: 0, growth: 0, job: "WAITING" };
         s.choices.push({ kind: "TRAVELER", person: traveler });
-    }
-    if ((s.day - 1) % RULE.seasonDays === 0) {
-        s.policy = null;
-        s.choices.push({ kind: "POLICY", options: Object.keys(POLICIES) });
     }
     s.rng.world = world.state;
     s.summary = `守夜成功！${grown.length ? `${grown.length} 个孩子成年。` : ""}${retired.length ? `${retired.length} 位村民荣休，留村养老。` : ""}${departed.length ? `${departed.length} 位长辈安然辞世，已记入家谱。` : ""}`;

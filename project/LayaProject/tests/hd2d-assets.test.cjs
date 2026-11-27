@@ -27,7 +27,12 @@ test('HD replacement contains only selected source images; pixels and native pre
    assert(Object.values(directions).every(direction=>direction.mirror===false));
   }
  }
- assert(!recipe.assets.some(a=>a.category==='characters'&&/_(up|down)_(left|right)_/.test(a.id)));assert(!recipe.assets.some(a=>a.id.startsWith("emote_")));assert(recipe.assets.filter(a=>a.nineSlice).every(a=>a.height>=128 && a.nineSlice.scale>0));
+ assert(!recipe.assets.some(a=>a.category==='characters'&&/_(up|down)_(left|right)_/.test(a.id)));assert(!recipe.assets.some(a=>a.id.startsWith("emote_")));
+ for (const asset of recipe.assets.filter(a=>a.nineSlice)) {
+  const {width,height,nineSlice:g}=asset;
+  assert(width>g.left+g.right && height>g.top+g.bottom);
+  assert(g.scale>0 && g.scale<=.5, `不足 2 个纹理像素／逻辑像素：${asset.id}`);
+ }
  for (const kind of ['arrow','stone']){
   const id='fx_impact_'+kind, size=motionQuality.impactSources[id];
   const clip=recipe.animations.animations.find(a=>a.id===id);assert.equal(clip.frameCount,5);assert.equal(clip.loop,false);
@@ -93,7 +98,8 @@ test('AnySize pages end at the last padded slot and rotation preserves the logic
  const atlas=require('../../../res/atlases/frames.json');
  const {padding,frames}=atlas;
  assert(Object.values(frames).some(frame=>frame.rotated));
- assert(atlas.pages.some(page=>page.width!==page.height && page.width%2===1));
+ assert(atlas.pages.some(page=>page.group!=='terrain' && page.width!==page.height &&
+  ((page.width & (page.width-1))!==0 || (page.height & (page.height-1))!==0)));
  for(const page of atlas.pages){
   const packed=Object.values(frames).filter(frame=>frame.page===page.id);
   assert.equal(page.width,Math.max(...packed.map(({rect})=>rect.x+rect.w+padding)));
@@ -135,7 +141,8 @@ test('the full-size terrain uses one village atlas page and keeps its gate align
 test('villager combat clips and pages stay out of both resource stages',()=>{
  const manifest=require('../../../res/manifest.json');
  assert(!recipe.animations.animations.some(clip=>/^villager_.*_strike_/.test(clip.id)));
- assert(!recipe.assets.some(asset=>asset.category==='characters'&&asset.bundle==='battle'));
+ assert(!recipe.assets.some(asset=>asset.category==='characters'&&asset.bundle==='battle'&&asset.id.startsWith('villager_')));
+ assert.equal(recipe.assets.filter(asset=>asset.category==='characters'&&asset.bundle==='battle'&&asset.id.startsWith('hero_zhizhuo_')).length,36);
  assert(!manifest.runtimeWhitelist.some(file=>file.includes('night_characters')));
  assert(!manifest.runtimeWhitelist.includes('bundles/map/terrain_0.png'));
 });
@@ -150,6 +157,7 @@ test('resizing preserves normalized feet and stride; panel portraits retain thei
  for(const clip of recipe.animations.animations){
   const a=byId.get(clip.frameIds[0]);assert.deepEqual(clip.canvas,{w:a.width,h:a.height});assert.deepEqual(clip.pivot,a.pivot);
   if(clip.mapping==='patrol'){assert.equal(clip.frameCount,4);assert(clip.stridePixels>0);assert.deepEqual(clip.pivot,{x:48,y:93});continue;}
+  if(['zhizhuo','delivery','songlei'].includes(clip.mapping)){assert.equal(clip.frameCount,4);assert.deepEqual(clip.pivot,{x:72,y:134});continue;}
   if(clip.stridePixels===undefined)continue;
   if(a.category==='enemies') { const d=defs[a.id.replace(/_walk_\d+$/,'')];assert(Math.abs(clip.stridePixels/clip.canvas.w-d.stride/d.canvas)<1e-12);continue; }
   const role=clip.id.slice('villager_'.length).split('_walk_')[0];
@@ -166,5 +174,28 @@ test('enemy textures and attachments retain their sampling budget before the app
  for(const [kind,look]of Object.entries(ENEMY_LOOKS))for(const frame of defs[kind].frames){
   assert(assets.get(frame.body).width>=look.size*sampling,frame.body);
   for(const [id,part]of Object.entries(frame.parts))assert(assets.get(id).width>=part.width/96*look.size*sampling,kind+'/'+id);
+ }
+});
+
+test('compact actor textures preserve normalized pivots, stride and the authored frame sequence',()=>{
+ const packed=require('../../../res/atlases/frames.json').frames;
+ const clips=new Map(require('../../../res/animations.json').animations.map(clip=>[clip.id,clip]));
+ for(const [id,width] of [['hd_blue_down_0',96],['hd_child_down_0',84],['hd_elite_female_work_right_1',116],['hero_zhizhuo_down_idle',112],['hero_delivery_down_idle',112],['portrait_hd_blue_down_idle',320]]){
+  const source=recipe.assets.find(asset=>asset.id===id),frame=packed[id];
+  assert.equal(frame.sourceSize.w,width,id);
+  assert(width<source.width,id);
+  assert(Math.abs(frame.pivot.x/width-source.pivot.x/source.width)<1e-12,id);
+  assert(Math.abs(frame.pivot.y/frame.sourceSize.h-source.pivot.y/source.height)<1e-12,id);
+ }
+ for(const original of recipe.animations.animations.filter(clip=>clip.id.startsWith('villager_')||clip.id.startsWith('hero_zhizhuo_'))){
+  const next=clips.get(original.id);
+  assert.deepEqual(next.frameIds,original.frameIds);
+  assert.equal(next.fps,original.fps);
+  if(original.stridePixels!==undefined)
+   assert(Math.abs(next.stridePixels/next.canvas.w-original.stridePixels/original.canvas.w)<1e-12,original.id);
+ }
+ for(const quality of ['elite','hero','legendary']){
+  const {rect}=packed['fx_quality_'+quality];
+  assert(Math.abs(rect.w-rect.h)<=1);
  }
 });

@@ -25,8 +25,11 @@ declare const wx: RankingLogPlatform & RankingCanvasApi & {
 const FRIEND_SCOPE = "scope.WxFriendInteraction";
 /** 微信 3.17.6 实测的隐私声明缺失错误；由开发者后台处理，不能误导玩家反复授权。 */
 const PRIVACY_DECLARATION_ERROR = "please go to mp to announce your privacy usage";
+/** 体验与开发环境共用独立测试存档。正式版继续读写原键名。 */
+const TEST_STORAGE_PREFIX = "daidai_test:";
 export class WechatPlatform implements StoragePort {
     readonly rankingDiagnostics = new RankingDiagnostics(wx);
+    readonly testEntryEnabled = ["trial", "develop"].includes(this.rankingDiagnostics.accountEnvironment);
     readonly rankingCanvas = new WechatRankingCanvas(wx, this.rankingDiagnostics);
     get window() { return wx.getWindowInfo(); }
     get menu() { return wx.getMenuButtonBoundingClientRect(); }
@@ -34,14 +37,17 @@ export class WechatPlatform implements StoragePort {
     private shareRegistered = false;
     /** 稳定引用用于精确解绑；每次返回新对象，微信侧修改不会污染下一次分享。 */
     private readonly shareMessage = () => ({ title: SHARE.title, imageUrl: SHARE.imageUrl });
+    private storageKey(key: string) { return this.testEntryEnabled ? TEST_STORAGE_PREFIX + key : key; }
     read(key: string): string | null {
+        key = this.storageKey(key);
         if (!wx.getStorageInfoSync().keys.includes(key)) return null;
         const value = wx.getStorageSync(key);
         if (typeof value !== "string") throw new Error("微信存储返回了非字符串内容，已保留原数据");
         return value;
     }
-    write(key: string, value: string) { wx.setStorageSync(key, value); }
+    write(key: string, value: string) { wx.setStorageSync(this.storageKey(key), value); }
     remove(key: string) {
+        key = this.storageKey(key);
         if (wx.getStorageInfoSync().keys.includes(key)) wx.removeStorageSync(key);
     }
     bind(hide: () => void, show: () => void) {
@@ -65,13 +71,17 @@ export class WechatPlatform implements StoragePort {
     }
     /** 网络能力与本地提交隔离：同步失败保留本地纪录，重开榜单或产生新纪录再尝试，不逐帧重试。 */
     syncBestNight(bestNight: number) {
-        if (bestNight <= this.notifiedBest) return;
+        if (this.testEntryEnabled || bestNight <= this.notifiedBest) return;
         this.notifiedBest = bestNight;
         this.postRanking({ bestNight });
     }
     postRanking(message: object, request: string | null = null): void {
         try {
-            this.rankingCanvas.context.postMessage(request ? { ...message, diagnosticRequest: request } : message);
+            const payload = { ...message } as { bestNight?: number; diagnosticRequest?: string };
+            // 打开和刷新好友榜也会发送成绩。测试进度只可读榜，所有同类消息都在此移除分数。
+            if (this.testEntryEnabled) delete payload.bestNight;
+            if (request) payload.diagnosticRequest = request;
+            this.rankingCanvas.context.postMessage(payload);
             // 仅说明主域调用返回；不是开放域已绘制、成绩已上传或好友数据已读取的确认。
             const kind = "showRanking" in message ? "show" : "refreshRanking" in message ? "refresh" : "authorizationError" in message ? "authorization" : (message as { type?: string }).type === "close" ? "close" : "type" in message ? "viewport" : "score";
             this.rankingDiagnostics.record("message_returned", request, { message: kind });

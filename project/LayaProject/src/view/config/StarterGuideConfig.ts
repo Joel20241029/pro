@@ -14,6 +14,6 @@ export const PATROL_LESSONS = [
     { text: `点${PATROL.building}，在「切换打法」里选旋甩或连发。` }
 ] as const;
 
-/** 分波开放后的单步引导。空背包、空商城也可打开并完成。 */
-export const BACKPACK_LESSON = [{ text: "拿到的道具都在背包里。点一件，就能看看它有什么用。" }] as const;
-export const SHOP_LESSON = [{ text: "村口的集市开了。买下的道具会放进背包。" }] as const;
+/** 开村即可查看的单步引导。空背包、空商城也可打开并完成。 */
+export const BACKPACK_LESSON = [{ text: "打开背包就能看到每件道具的用途，点旁边的按钮就能使用或选村民。" }] as const;
+export const SHOP_LESSON = [{ text: "买下的道具在背包里使用，买到的弹药可在塔上换装。" }] as const;

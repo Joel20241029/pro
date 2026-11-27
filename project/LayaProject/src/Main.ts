@@ -1,3 +1,4 @@
+import { C } from "./view/UiTheme";
 import { GameSession } from "./game/GameSession";
 import { BattleSimulation } from "./game/BattleSimulation";
 import { SaveStore } from "./storage/SaveStore";
@@ -43,17 +44,23 @@ export class Main extends Laya.Script {
         this.music?.setEnabled(session.state.settings.music); this.music?.interact();
     };
     async onStart() {
-        Laya.stage.bgColor = "#162c20";
+        Laya.stage.bgColor = C.nightRibbon;
         const platform = this.platform = new WechatPlatform();
         this.loading = new StartupView(() => { void this.startVillage(); }, () => new GameLayout(platform.window, platform.menu));
         Laya.stage.addChild(this.loading);
         Laya.stage.on(Laya.Event.RESIZE, this, this.resize);
-        this.session = new GameSession(new SaveStore(platform));
+        this.session = new GameSession(new SaveStore(platform), undefined, platform.testEntryEnabled);
         this.session.onPatrolLanding = () => {
             if (this.session?.state?.settings.music && this.resources.ready("night")) this.music?.patrolLanding();
         };
         this.session.onPatrolRapidFire = () => {
             if (this.session?.state?.settings.music && this.resources.ready("night")) this.music?.patrolRapidFire();
+        };
+        this.session.onHeroHit = () => {
+            if (this.session?.state?.settings.music && this.resources.ready("night")) this.music?.heroStrike();
+        };
+        this.session.onDeliveryHit = () => {
+            if (this.session?.state?.settings.music && this.resources.ready("night")) this.music?.deliverySplash();
         };
         this.session.pause("ASSETS"); platform.bind(this.hide, this.show);
         this.resources.changed = () => { this.syncResourcePause(); this.updateLoadingStatus(); this.view?.refresh(); };

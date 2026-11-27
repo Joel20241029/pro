@@ -1,7 +1,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const read = name => require(`${process.env.DAIDAI_TEST_BUILD}/${name}.js`);
-const { DEFAULT_TACTIC, DRAGON_POISON, DRAGON_POISON_TACTIC, TACTIC_USE, tacticDefinition } = read('config/TacticConfig');
+const { DEFAULT_TACTIC, DRAGON_POISON, DRAGON_POISON_TACTIC, tacticDefinition } = read('config/TacticConfig');
 const { PADS, RULE, TOWERS } = read('game/GameConfig');
 const { createGame, applyCommand } = read('game/VillageRules');
 const { generateWave } = read('game/WaveGenerator');
@@ -22,6 +22,8 @@ function village() {
 function battle() {
     const s = village();
     applyCommand(s, { type: 'NIGHT' });
+    // This isolated poison fixture uses a night without committee support.
+    delete s.night.activeHero;
     const b = new BattleSimulation(s);
     b.base.towers.forEach(t => t.operator = null);
     b.base.wave.entries = [{ tick: 5, kind: 'enemy_raider', appearanceSeed: 7 }];
@@ -54,7 +56,7 @@ test('dragon poison learns at wave 45 with one fee and survives a saved loadout 
     game.bell(DRAGON_POISON_TACTIC);
     game.pause('USER'); game.update(RULE.step);
     assert.equal(game.battle.bellTicks, 120);
-    assert.equal(game.battle.tacticUsesLeft, 1);
+    assert.equal(game.battle.usesLeftFor(tacticDefinition(DRAGON_POISON_TACTIC)), 0);
 });
 
 test('all enemies infect on cast or spawn and take six one-second poison ticks from their own infection', () => {

@@ -36,12 +36,13 @@ const { GameView } = require(path.join(compiled, 'view/GameView.js'));
 const { GamePanels } = require(path.join(compiled, 'view/GamePanels.js'));
 const { GameHud } = require(path.join(compiled, 'view/GameHud.js'));
 const { NightResultPresentation } = require(path.join(compiled, 'view/NightResultPresentation.js'));
+const { TACTIC_UI } = require(path.join(compiled, 'view/config/TacticUiConfig.js'));
 const { FEEDBACK } = require(path.join(compiled, 'view/config/FeedbackConfig.js'));
 const { TacticNotices } = require(path.join(compiled, 'view/TacticNotices.js'));
 Laya.Point = class { setTo(x, y) { this.x = x; this.y = y; return this; } };
 const { VillageWorld } = require(path.join(compiled, 'view/VillageWorld.js'));
 const { GameLayout } = require(path.join(compiled, 'view/GameLayout.js'));
-const { layoutVillage } = require(path.join(compiled, 'view/VillageScene.js'));
+const { layoutVillage, VillageNavigation } = require(path.join(compiled, 'view/VillageScene.js'));
 const layout = new GameLayout({ windowWidth: 390, windowHeight: 844, screenTop: 0, statusBarHeight: 47, safeArea: { top: 47, bottom: 810 } }, { width: 88, height: 32, bottom: 76 });
 const scene = layoutVillage(layout);
 const { GameSession } = require(path.join(compiled, 'game/GameSession.js'));
@@ -133,7 +134,7 @@ function gameView(session, platform) {
     // is exercised with the real UiWidgets in gameplay-clarity.test.cjs.
     const ui = { image(parent,id,x,y,w,h=w) { return parent.addChild(new Sprite().pos(x,y).size(w,h)); },
         iconValue(parent,id,value,x,y,w,h){const node=parent.addChild(new Sprite().pos(x,y).size(w,h)); node.text=value; return node;},
-        actionBadge(button, name) { const dot = button.getChildByName('buttonFace').addChild(new Sprite()); dot.name = name; return dot; },
+        actionBadge(button, name) { const dot = (button.getChildByName('buttonFace') || button).addChild(new Sprite()); dot.name = name; return dot; },
         buttonIcon() {}, label: () => ({}), button: fakeButton,
         centerButton: require(path.join(compiled, 'view/UiWidgets.js')).UiWidgets.prototype.centerButton, bindClick() {} };
     const panels = new GamePanels(session, art, platform, ui, overlay, layout, () => view.refresh(), { ready: () => true });
@@ -141,7 +142,8 @@ function gameView(session, platform) {
         const box = new Sprite().size(size.width, size.height); box.name = 'panel:' + title; overlay.addChild(box); return box;
     };
     const village = Object.create(VillageWorld.prototype);
-    Object.assign(village, { game: session, layout, scene, feedback: { hasPatrolImpact: false, deaths: new Map() }, motion: { sync() {} }, thoughts: { sync() {} }, crying: { sync() {} }, cryIcon: new Sprite(), speechTip: { hide() {} }, essenceArrow: new Sprite(), essenceTip: { hide() {} }, shield: { reset() {} }, summon: { reset() {} }, interaction: { cancelPresses() {}, clearDepth() {} }, drawScenery() {} });
+    Object.assign(village, { game: session, layout, scene, walkNavigation: new VillageNavigation(scene.props, scene.landscape, scene.bounds),
+        feedback: { hasPatrolImpact: false, deaths: new Map() }, motion: { sync() {} }, thoughts: { sync() {} }, crying: { sync() {} }, cryIcon: new Sprite(), speechTip: { hide() {} }, heroTip: { hide() {} }, deliveryTip: { hide() {} }, heroVisuals: { stroll: { reset() {} } }, deliveryVisuals: { stroll: { reset() {} } }, songLeiVisuals: { stroll: { reset() {} } }, essenceArrow: new Sprite(), essenceTip: { hide() {} }, shield: { reset() {} }, summon: { reset() {} }, interaction: { cancelPresses() {}, clearDepth() {} }, drawScenery() {} });
     Object.assign(view, { resources: { ready: () => true }, game: session, observedVillageRevision: session.villageRevision, platform, layout, panels, village,
         shownErrorRevision: 0, observedRun: 0, observedDawn: 0, overlay, tip: { show() {} }, anchoredTip: { hide() {} },
         reminder: { reset() {}, tick() {}, hide() {} }, patrolGuide: { resetProgress() {}, hide() {}, tick() {}, node: { visible: false } }, starterGuide: { resetProgress() {}, hide() {}, tick() {}, node: { visible: false } },
@@ -175,8 +177,13 @@ test('the terminal patrol impact plays before both the victory and defeat panels
 test('first committed win retains the summary through collection and reveals only the ranking on landing', () => {
     const s = setup(), session = new GameSession(new SaveStore(s.platform)); session.load(); session.newVillage();
     const view = gameView(session, s.platform), main = new Main(); main.platform = s.platform; main.session = session;
+    const itemButtons = () => ['BackpackButton', 'ShopButton'].map(name => view.hud.node.getChildByName(name));
     session.changed = () => view.refresh(); view.refresh(); assert.equal(view.hud.node.getChildByName('RankingButton'), undefined);
+    const [bag, shop] = itemButtons();
+    assert(bag.visible && bag.mouseEnabled && shop.visible && shop.mouseEnabled);
+    assert.equal(shop.y - bag.y - bag.height, TACTIC_UI.side.gap);
     session.command({ type: 'NIGHT' }); assert.equal(view.hud.node.getChildByName('RankingButton'), undefined);
+    assert(itemButtons().every(button => button === undefined));
     for (let step = 0; step < 1000 && session.state.phase === 'NIGHT'; step++) session.update(.25);
     const box = () => view.overlay.getChildAt(0), ranking = () => view.hud.node.getChildByName('RankingButton');
     const tactics = () => view.hud.node.getChildByName('TacticsButton');
@@ -188,6 +195,7 @@ test('first committed win retains the summary through collection and reveals onl
     view.results.advance(FEEDBACK.victoryClearSeconds / 2, false, false);
     assert.equal(box().name, 'panel:守夜成功');
     assert.equal(ranking().visible, false); assert.equal(tactics(), undefined);
+    assert(itemButtons().every(button => button?.visible && button.mouseEnabled));
     main.onUpdate(); assert.deepEqual(s.messages, [{ bestNight: 1 }]);
     const stock = [session.state.food,session.state.wood];
     view.panels.advance(.24);
@@ -218,6 +226,7 @@ test('first committed win retains the summary through collection and reveals onl
     assert.deepEqual([session.state.food,session.state.wood],stock);
     assert.equal(s.privacy.length,0);
     session.newVillage(); assert.equal(session.state.completed, 0); assert.equal(view.hud.node.getChildByName('RankingButton'), undefined);
+    assert(itemButtons().every(button => button?.visible && button.mouseEnabled));
 });
 test('failed first wave and an uncommitted victory do not unlock ranking', () => {
     const s = setup(), session = new GameSession(new SaveStore(s.platform)); session.load(); session.newVillage();
@@ -246,8 +255,8 @@ test('a committed defeat opens restart directly without collection or an unlock'
     const labels = name => box().getChildByName(name).children.flatMap(n => typeof n.text === 'string' ? [n.text] : []);
     assert.deepEqual(labels('DefeatScore'), ['城门失守', '本局守住', '0', '夜']);
     assert.deepEqual(labels('DefeatVillage'), ['本局村庄', '传承', '1 代', '迎来孩子', '0 人', '荣休村民', '0 位']);
-    assert.deepEqual(labels('DefeatRecords'), ['历史纪录', '最长坚守', '0 夜', '累计出生', '0 人']);
-    const cardBottom = box().getChildByName('DefeatRecords');
+    assert(!box().getChildByName('DefeatRecords'));
+    const cardBottom = box().getChildByName('DefeatVillage');
     const restart = box().getChildByName('button:重新开村');
     assert(cardBottom.y + cardBottom.height < restart.y);
     assert.equal(box().height - restart.y - restart.height, 48);
@@ -268,7 +277,8 @@ test('new tactic marks survive reload and are cleared by viewing, rollback and a
     const notices = new TacticNotices(port); notices.observe(state, false); assert(!notices.unread);
     state.completed = 10; notices.observe(state, false); assert(notices.unread);
     let restored = new TacticNotices(port); restored.observe(state, false); assert(restored.unread);
-    restored.markSeen(); restored = new TacticNotices(port); restored.observe(state, false); assert(!restored.unread);
+    const unlocked = require(path.join(compiled, 'config/TacticConfig')).TACTICS.find(t => t.unlockWaves === state.completed);
+    restored.markSeen(unlocked.id); restored = new TacticNotices(port); restored.observe(state, false); assert(!restored.unread);
     state.completed = 15; restored.observe(state, false); assert(restored.unread);
     state.completed = 14; restored.observe(state, false); assert(!restored.unread);
     state.completed = 15; restored.observe(state, false); assert(restored.unread);
@@ -395,7 +405,7 @@ test('native initialization failure keeps frame closable and shows upgrade or re
         if (unavailable) s.wx.getOpenDataContext = () => { throw Error('native failed'); };
         else s.wx.getAppBaseInfo = () => ({ SDKVersion: '3.6.5' });
         s.platform = new WechatPlatform();
-        assert.doesNotThrow(() => drawJournalPanel({ platform: s.platform, modal: () => new Sprite(), ui: { label: (box, text) => { labels.push(text); return {}; } } }, createGame(1), { type: 'ranking' }));
+        assert.doesNotThrow(() => drawJournalPanel({ platform: s.platform, modal: () => new Sprite(), ui: { image() {}, label: (box, text) => { labels.push(text); return {}; } } }, createGame(1), { type: 'ranking' }));
         assert(labels[0].includes(unavailable ? '重试' : '升级微信'));
         assert(logs.some(l => l.event === 'view_error')); assert.equal(logs.at(-1).event, 'close');
         assert.equal(s.privacy.length, 0); assert.equal(s.authorization.length, 0);
@@ -466,7 +476,7 @@ test('partially failed native placement is still hidden by failed-panel cleanup'
     Object.defineProperty(s.canvas.style, 'height', { configurable: true, get: () => height, set: value => {
         if (value !== '1px') throw Error('native style update failed'); height = value;
     } });
-    assert.doesNotThrow(() => drawJournalPanel({ platform: s.platform, modal: () => new Sprite(), ui: { label: (box, text) => { labels.push(text); return {}; } } }, createGame(1), { type: 'ranking' }));
+    assert.doesNotThrow(() => drawJournalPanel({ platform: s.platform, modal: () => new Sprite(), ui: { image() {}, label: (box, text) => { labels.push(text); return {}; } } }, createGame(1), { type: 'ranking' }));
     assert(labels[0].includes('重试')); assert.equal(s.canvas.style.width, '1px'); assert.equal(s.canvas.style.left, '-100px');
     assert.equal(s.platform.rankingCanvas.owner, null); assert.equal(s.privacy.length, 0);
 });

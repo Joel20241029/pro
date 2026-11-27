@@ -7,9 +7,10 @@ import math
 import random
 import re
 
-from PIL import Image, ImageColor, ImageDraw, ImageFont, ImageOps
+from PIL import Image, ImageColor, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 from simple_actors import SimpleActors
+from patrol_cannon import profile_barrel, battle_layers, LAYER_FRAMES, BATTLE_MASTER
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / 'source/rendered2d/production/cartoon-v1'
@@ -17,6 +18,8 @@ MASTERS = SOURCE / 'masters'
 RASTER = SOURCE / 'frames'
 RECIPE = ROOT / 'source/asset_recipe.json'
 ARTS = {}
+PATROL_CANNON_FRAMES = ('patrol_rapid_gun', *LAYER_FRAMES)
+VILLAGE_MAP_FRAMES = ('map_scene', 'fx_quality_elite', 'fx_quality_hero', 'fx_quality_legendary')
 INK = '#39271e'
 SCALE = Image.Resampling.LANCZOS
 
@@ -59,6 +62,16 @@ def partition(board, columns, rows, subjects, *, row_edges=None, column_edges=No
         ARTS[name] = (crop.crop(bbox), board + '.png')
 
 
+def register_patrol_cannon():
+    filename = 'patrol-rapid-gun.png'
+    img = Image.open(MASTERS / filename).convert('RGBA')
+    bounds = img.getchannel('A').point(lambda alpha: 255 if alpha >= 10 else 0).getbbox()
+    ARTS['patrol_rapid_gun'] = (img.crop(bounds), filename)
+    ARTS['patrol_rapid_barrel'] = (profile_barrel(MASTERS / filename), filename)
+    for name, frame in battle_layers(MASTERS / BATTLE_MASTER).items():
+        ARTS[name] = (frame, BATTLE_MASTER)
+
+
 def register_boards():
     partition('buildings',4,4,[*'arrow-body crossbow stone-body catapult slow-body crystal gate-body doors house-body farm-body waterwheel logging-body patrol-body hearth-body streamer'.split(),None], column_edges=(0,313,622,943,1254))
     booth=art('patrol-body')
@@ -81,11 +94,11 @@ def register_boards():
     partition('scenery',4,3,'oak pine sign palisade empty-pad pears apples blossom logs torch rock wheat'.split())
     partition('icons',5,5,'food wood population build house logging family heart arrow stone slow shield baby_icon view trophy close night_shield crowned_heart tactic_scroll tactic_rage tactic_shield backpack shop liang_essence genealogy'.split(), column_edges=(0,256,513,769,997,1283))
     # Fit standalone transparent illustrations to their registered cells.
-    for key, filename in [('liang_briefs', 'liang-briefs.png'), ('liang_bra', 'liang-bra.png'),
-                          ('patrol_rapid_gun', 'patrol-rapid-gun.png')]:
+    for key, filename in [('liang_briefs', 'liang-briefs.png'), ('liang_bra', 'liang-bra.png')]:
         illustration = Image.open(MASTERS / filename).convert('RGBA')
         bounds = illustration.getchannel('A').point(lambda alpha: 255 if alpha >= 10 else 0).getbbox()
         ARTS[key] = (illustration.crop(bounds), filename)
+    register_patrol_cannon()
 
 
 def blank(size):
@@ -120,69 +133,59 @@ def draw_on(asset, img, registered, *, foot=False):
     return out
 
 
-def bubble_button(name, size):
-    # Resolve the silhouette at four times source resolution. BOX integrates coverage
-    # without the bright or dark ringing that a sharpening filter adds to transparent edges.
-    w, h = size
-    circle = name.startswith('button_')
-    disabled = name == 'panel_button_disabled'
-    if circle or name == 'panel_button_gold':
-        face, lip, outline = '#ffcb73', '#e9a051', '#86504d'
-    elif disabled:
-        face, lip, outline = '#e9dfe4', '#d5c5cc', '#a8929e'
-    elif name == 'panel_button_red':
-        face, lip, outline = '#f5b2c1', '#da8b9e', '#995969'
-    else:
-        face, lip, outline = '#ffe1d9', '#edb1b4', '#9d626e'
-    ss = 4
-    canvas = blank((w * ss, h * ss))
-    brush = ImageDraw.Draw(canvas)
-    pad, edge, depth = (6, 5, 13) if circle else (3, 4, 8)
-    radius = h / 2 - pad if circle else 52
-    def shell(inset, foot, color):
-        box = (inset, inset, w - inset, h - inset - foot)
-        brush.rounded_rectangle(tuple(round(v * ss) for v in box),
-                                radius=round((radius - inset + pad) * ss), fill=color)
-    shell(pad, 0, outline)
-    shell(pad + edge, 0, lip)
-    shell(pad + edge, depth, face)
-    if not disabled:
-        # One broad reflection, entirely inside the fixed corner of the nine-slice.
-        cx, cy, rr, weight = (w * .46, h * .48, w * .36, 9) if circle else (54, 54, 35, 6)
-        xy = [(round((cx + rr * math.cos(math.radians(a))) * ss),
-               round((cy + rr * math.sin(math.radians(a))) * ss)) for a in range(209, 249)]
-        brush.line(xy, fill='#fff6df', width=weight * ss)
-        half = weight * ss / 2
-        for x, y in [xy[0], xy[-1]]:
-            brush.ellipse((x-half, y-half, x+half, y+half), fill='#fff6df')
-    return canvas.resize(size, Image.Resampling.BOX)
+# Approved solid-color palette. Each tuple is edge, face, bottom band, logical radius,
+# edge weight, and band thickness. The ellipse uses the same stepped profile.
+UI_SURFACES = {
+    'panel_parchment': ('#654732', '#fff1ca', '#e6bd73', 28, 5, 9),
+    'panel_header': ('#654732', '#d96f64', '#b1544b', 25, 4, 8),
+    'panel_header_night': ('#495978', '#687ba7', '#495978', 25, 4, 8),
+    'panel_header_fern': ('#47613a', '#7fac61', '#537645', 25, 4, 8),
+    'panel_card': ('#c4a26e', '#fff7dd', '#eddbab', 22, 2.5, 4),
+    'panel_card_disabled': ('#aca18a', '#e9e1cf', '#d6cbb2', 22, 2.5, 4),
+    'panel_card_fern': ('#88a15f', '#edf2d5', '#dce6b7', 22, 2.5, 4),
+    'panel_card_blue': ('#9eafc9', '#e9edf2', '#d5e0ed', 22, 2.5, 4),
+    'panel_anchored_tip': ('#96704d', '#fff7dd', '#e6bd73', 19, 3, 4),
+    'panel_tip': ('#96704d', '#fff7dd', '#e6bd73', 19, 3, 4),
+    'panel_portrait_frame': ('#c4a26e', '#f7dda0', '#e9c881', 18, 2.5, 4),
+    'panel_button_green': ('#a98b5f', '#f3deb3', '#c5a579', 16, 2.5, 4),
+    'panel_button_fern': ('#577747', '#a4cb76', '#678c50', 16, 3, 5),
+    'panel_button_gold': ('#94613a', '#ffc65d', '#d28a42', 19, 3, 6),
+    'panel_button_red': ('#a36359', '#f8bd9e', '#ce8a77', 22, 3, 4),
+    'panel_button_disabled': ('#a99e85', '#ddd3bc', '#c5b79b', 16, 2.5, 4),
+    'button_night_round': ('#805230', '#ffc65d', '#cc8843', 0, 10, 16),
+    'button_heart_round': ('#805230', '#ffc65d', '#cc8843', 0, 10, 16),
+}
 
 
 def rounded_panel(name, size):
-    if name.startswith(('button_', 'panel_button_')):
-        return bubble_button(name, size)
+    # Pixel-space curves are drawn at higher resolution and integrated once.
+    # A constant-color center keeps both nine-grid seams straight under linear sampling.
     w, h = size
-    out = blank(size)
-    d = ImageDraw.Draw(out)
-    # Source radii fit inside the existing nine-slice corners at all button sizes.
-    styles = {
-        'panel_parchment': ('#cb8998', '#f7cbc9', '#ffe6df', 44),
-        'panel_header': ('#993e59', '#ac4f67', '#de8a9c', 35),
-        'panel_card': ('#dba695', '#fff4e4', '#fffdf6', 31),
-        'panel_card_disabled': ('#beaccc', '#ebe0f2', '#f7effb', 31),
-        'panel_anchored_tip': ('#d4a18e', '#fff0d9', '#fffbf1', 29),
-        'panel_tip': ('#d4a18e', '#fff0d9', '#fffbf1', 29),
-        'panel_portrait_frame': ('#dbad9c', '#f9e0d4', '#fff4e5', 29),
-    }
+    supersample = 4
+    raster = blank((w * supersample, h * supersample))
+    brush = ImageDraw.Draw(raster)
     if name == 'panel_anchored_tip_tail':
-        points = [(7, 8), (w-8, 8), (w//2, h-9)]
-        d.polygon(points, fill='#fff0d9', outline='#d4a18e', width=5)
-        return out
-    edge, face, shine, radius = styles[name]
-    d.rounded_rectangle((0, 2, w-1, h-1), radius=radius, fill=edge)
-    d.rounded_rectangle((4, 4, w-5, h-8), radius=radius-4, fill=face)
-    d.line((radius, 8, w-1-radius, 8), fill=shine, width=3)
-    return out
+        coords = lambda points: [(round(x * supersample), round(y * supersample)) for x, y in points]
+        brush.polygon(coords([(7, 5), (w - 7, 5), (w / 2, h - 7)]), fill='#96704d')
+        brush.polygon(coords([(16, 5), (w - 16, 5), (w / 2, h - 17)]), fill='#fff7dd')
+    else:
+        rim, face, lip, radius, edge, depth = UI_SURFACES[name]
+        circle = name.startswith('button_')
+        # Two texture pixels per logical pixel on stretchable surfaces.
+        pad = 6 if circle else 2
+        unit = 1 if circle else 2
+
+        def layer(inset, foot, fill):
+            box = tuple(round(v * supersample) for v in (inset, inset, w - 1 - inset, h - 1 - inset - foot))
+            if circle:
+                brush.ellipse(box, fill=fill)
+            else:
+                brush.rounded_rectangle(box, radius=round(max(0, radius * unit + pad - inset) * supersample), fill=fill)
+
+        layer(pad, 0, rim)
+        layer(pad + edge * unit, 0, lip)
+        layer(pad + edge * unit, depth * unit, face)
+    return raster.resize(size, Image.Resampling.BOX)
 
 
 def tag(name,size):
@@ -429,6 +432,9 @@ def effect(name,size):
         d.polygon(points([(.5,.17),(.70,.37),(.57,.38),(.57,.72),(.45,.74),(.44,.36),(.31,.37)]),fill='#ff9853')
     elif name in ('fx_rage_orbit','fx_quality_elite','fx_quality_hero','fx_quality_legendary','fx_shield_ring','fx_slow_ring','fx_shield_dome'):
         color={'fx_rage_orbit':'#f75024','fx_quality_elite':'#5ae7ff','fx_quality_hero':'#dc86ff','fx_quality_legendary':'#ffcb45','fx_shield_ring':'#5ae0cd','fx_slow_ring':'#71dcff','fx_shield_dome':'#8cf2e8'}[name]
+        if name.startswith('fx_quality_'):
+            # The runtime parent applies perspective after the circular texture rotates.
+            return orbit((w * 3, h * 3), color, ratio=1).resize(size, SCALE)
         return orbit(size,color,fill=(86,202,215,77) if name=='fx_shield_dome' else None,ratio=.86 if name=='fx_shield_dome' else .69)
     elif name=='fx_rage_glow':
         return translucent_glow(size,(x,y),r*.46,(255,90,47),210)
@@ -661,15 +667,15 @@ def terrain(size):
     for x,y,rx,ry in [(w-108,486,92,38),(116,702,104,37),(w*.48,1162,132,42),(w*.81,1280,120,42)]:
         ellipse(d,x,y,rx,ry,fill='#bdad75')
         ellipse(d,x-5,y-3,rx*.88,ry*.8,fill='#c8ba83')
-    def paint_road(points, color):
-        # Supersample the soil edge so the curved shoulder stays smooth after atlas compression.
+    def paint_road(points, color, feather):
+        # Feather only the dirt mask to preserve the nearby props and original traversable profile.
         samples = 4
         mask = Image.new('L', (w * samples, h * samples), 0)
         ImageDraw.Draw(mask).polygon([(round(x * samples), round(y * samples)) for x, y in points], fill=255)
-        out.paste(color, (0, 0, w, h), mask.resize(size, SCALE))
-    paint_road(left + right[::-1], '#edb45a')
+        out.paste(color, (0, 0, w, h), mask.resize(size, SCALE).filter(ImageFilter.GaussianBlur(feather)))
+    paint_road(left + right[::-1], '#edb45a', 8)
     lim = 860
-    paint_road([(x+7,y) for x,y in left[:lim]]+[(x-7,y) for x,y in reversed(right[:lim])], '#ffd37b')
+    paint_road([(x+7,y) for x,y in left[:lim]]+[(x-7,y) for x,y in reversed(right[:lim])], '#ffd37b', 4)
     d.rectangle((0,wall-12,w,wall+26),fill='#ffcc73')
     d.line((0,wall+26,w,wall+26),fill='#e4ab54',width=3)
     for _ in range(380):
@@ -732,6 +738,8 @@ def render(asset,registration,actors):
     if cat in ('ui/panels','ui/buttons'):
         return rounded_panel(name,size),artwork_hash_input()
     if cat=='ui/icons':
+        if name in LAYER_FRAMES:
+            return art(name),source(name)
         if name in ('icon_population','icon_baby'):
             out=blank(size)
             if name=='icon_baby':
@@ -815,20 +823,38 @@ def main():
     args.add_argument('--gate-only',action='store_true',help='Rebuild the palisade frame and hinged leaves')
     args.add_argument('--flower-valley-only',action='store_true',help='Rebuild the flower-valley map and interface surfaces')
     args.add_argument('--ui-surfaces-only',action='store_true',help='Rebuild only the common interface surfaces')
+    args.add_argument('--patrol-cannon-only',action='store_true',help='Rebuild only the vermilion patrol cannon')
+    args.add_argument('--village-map-only',action='store_true',help='Rebuild only the village terrain and rotating quality rings')
     options=args.parse_args()
     surface_only=options.flower_valley_only or options.ui_surfaces_only
-    limited=options.actors_only or options.tower_impacts_only or surface_only or options.gate_only
-    if not options.tower_impacts_only and not options.ui_surfaces_only and not options.gate_only:
+    limited=options.actors_only or options.tower_impacts_only or surface_only or options.gate_only or options.patrol_cannon_only or options.village_map_only
+    if options.patrol_cannon_only:
+        register_patrol_cannon()
+    elif not options.tower_impacts_only and not options.ui_surfaces_only and not options.gate_only:
         register_boards()
     recipe=json.loads(RECIPE.read_text())
-    apply_motion_quality(recipe)
+    if not options.patrol_cannon_only and not options.village_map_only and not options.ui_surfaces_only:
+        apply_motion_quality(recipe)
     registration=json.loads((SOURCE/'registration.json').read_text())
     # The approved hit lettering is a standalone authored image, outside the cartoon contact sheets.
-    active=[a for a in recipe['assets'] if a['runtime'] and a['id'] not in ('fx_patrol_bang', 'fx_patrol_uh')]
-    if set(registration)!=set(a['id'] for a in active):
+    active=[a for a in recipe['assets'] if a['runtime'] and a['id'] not in ('fx_patrol_bang', 'fx_patrol_uh')
+            and a.get('provenance', {}).get('renderer') != 'tools/hd2d/import-hero.py']
+    if options.patrol_cannon_only:
+        active=[a for a in active if a['id'] in PATROL_CANNON_FRAMES]
+        if {a['id'] for a in active} != set(PATROL_CANNON_FRAMES) or not set(PATROL_CANNON_FRAMES) <= registration.keys():
+            raise ValueError('patrol cannon recipe and geometry registration must match')
+    elif options.village_map_only:
+        active=[a for a in active if a['id'] in VILLAGE_MAP_FRAMES]
+        if {a['id'] for a in active} != set(VILLAGE_MAP_FRAMES) or not set(VILLAGE_MAP_FRAMES) <= registration.keys():
+            raise ValueError('village map recipe and geometry registration must match')
+    elif options.ui_surfaces_only:
+        active = [a for a in active if a['category'] in ('ui/panels', 'ui/buttons')]
+        if {a['id'] for a in active} != UI_SURFACES.keys() | {'panel_anchored_tip_tail'}:
+            raise ValueError('UI surface recipe and drawing styles must match')
+    elif set(registration)!=set(a['id'] for a in active):
         raise ValueError('active recipe and geometry registration must match')
     RASTER.mkdir(exist_ok=True)
-    actors=None if options.tower_impacts_only or surface_only or options.gate_only else SimpleActors(ROOT,MASTERS,chroma,registration)
+    actors=None if options.tower_impacts_only or surface_only or options.gate_only or options.patrol_cannon_only or options.village_map_only else SimpleActors(ROOT,MASTERS,chroma,registration)
     report=SOURCE/'render-report.json'
     proofs=json.loads(report.read_text()) if limited else {}
     count=0
@@ -841,9 +867,6 @@ def main():
             continue
         if options.actors_only and a['category'] not in ('characters','enemies','enemy-parts','effects') and a['id'] not in ('icon_population','icon_baby'):
             continue
-        if a['id'].startswith('panel_button_'):
-            # A 52px curve and 3px clearance fit inside each fixed 60px slice.
-            a['nineSlice'].update(top=60, bottom=60, left=60, right=60, scale=.72)
         image,master=render(a,registration,actors)
         assert image.size==(a['width'],a['height']) and image.getbbox(),a['id']
         f=RASTER/(a['id']+'.png')
@@ -854,7 +877,7 @@ def main():
         a.update(sourceSheet=path,sourceRect=rect,sourceCropWithinCell=rect,resizeMode='stretch',fitPadding=0)
         if 'alphaCutoff' in a:
             del a['alphaCutoff']
-        renderer = Path(__file__).with_name('cartoon_labor.py') if '_work_' in a['id'] else (
+        renderer = Path(__file__).with_name('patrol_cannon.py') if a['id'] in LAYER_FRAMES else Path(__file__).with_name('cartoon_labor.py') if '_work_' in a['id'] else (
             Path(__file__).with_name('simple_actors.py') if a['category'] in ('characters','enemies','enemy-parts') else artwork_hash_input())
         a['provenance'].update(source=master.relative_to(ROOT).as_posix(),sourceHash=digest(master),outputHash=digest(f),renderer=renderer.relative_to(ROOT).as_posix())
         proofs[a['id']]={'sha256':digest(f),'master':a['provenance']['source'],'size':image.size}

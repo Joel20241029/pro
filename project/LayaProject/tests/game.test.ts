@@ -15,7 +15,7 @@ function equal(a: unknown, b: unknown) { ok(JSON.stringify(a) === JSON.stringify
 function rejects(f: () => void) { let threw = false; try { f(); } catch { threw = true; } ok(threw, "expected rejection"); }
 function test(name: string, f: () => void) { f(); passed++; console.log("PASS", name); }
 function dawn(s: GameState) {
-    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" ? q.options[0] : "decline" }); }
+    while (s.choices.length) { applyCommand(s, { type: "CHOOSE", value: "decline" }); }
     if (s.phase === "DAWN") applyCommand(s, { type: "FINALIZE" });
 }
 class MemoryStore implements StoragePort {
@@ -139,18 +139,18 @@ test("Traveler uses world RNG without advancing family RNG", () => {
     const s = createGame(12); s.day = 4; s.completed = 3;  s.wave = generateWave(s); const family = s.rng.family, world = s.rng.world;
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); equal(s.rng.family, family); ok(s.rng.world !== world); ok(s.choices.some(q => q.kind === "TRAVELER"));
 });
-test("Highest tier stays fixed across the year without a difficulty choice", () => {
+test("highest tier stays fixed after the twelfth wave and dawn only retains a traveler", () => {
     const s = createGame(1); s.day = 12; s.completed = 11;  s.wave = generateWave(s);
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator));
-    ok(s.choices.every(q => ["TRAVELER", "POLICY"].includes(q.kind))); ok(s.choices.some(q => q.kind === "POLICY"));
-    while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" ? q.options[0] : "decline" }); }
+    ok(s.choices.every(q => q.kind === "TRAVELER"));
+    while (s.choices.length) { applyCommand(s, { type: "CHOOSE", value: "decline" }); }
     equal(s.day, 13); equal(s.tier, RULE.maxTier); equal(s.wave, null); const replay = clone(s); applyCommand(s, { type: "FINALIZE" }); equal(s.wave!.tier, 3); equal(s.wave, generateWave(replay));
 });
 test("400 dawn settlements keep village and history bounded", () => {
     const s = createGame(1);
     for (let day = 0; day < 400; day++) {
         applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator));
-        while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" ? q.options[0] : "accept" }); }
+        while (s.choices.length) { applyCommand(s, { type: "CHOOSE", value: "accept" }); }
         applyCommand(s, { type: "FINALIZE" }); validateState(s); ok(s.history.length <= 80 && s.people.length <= 20);
     }
     equal(s.day, 401); ok(s.history.length === 60);

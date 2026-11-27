@@ -1,24 +1,30 @@
 import { appearanceSeed, APPEARANCE_DOMAIN } from "./EnemySeed";
-import { COMBAT, FIXED_NIGHT, isDenseWave, WAVE, WAVE_RHYTHM } from "../config/DefenseConfig";
+import { COMBAT, FIXED_NIGHT, isDenseWave, REINFORCED_NIGHT, WAVE, WAVE_RHYTHM } from "../config/DefenseConfig";
 import { HEAVY_ORDINARY } from "../config/EnemyConfig";
 import { PATROL } from "../config/PatrolConfig";
+import { HERO, SONGLEI } from "../config/HeroConfig";
+import { DELIVERY_HERO } from "../config/DeliveryHeroConfig";
 import { towerStats } from "./TowerStats";
 import { ENEMIES, EnemyKind, PADS, RULE, TOWERS, TowerKind } from "./GameConfig";
-import { enemyPoint, onBattleRoad, PATH_LENGTH, RoadPoint } from "./BattleRoad";
+import { enemyPoint, onBattleRoad, PATH_LENGTH, RoadPoint, spreadRoadLane } from "./BattleRoad";
 export { pointAt, PATH_LENGTH } from "./BattleRoad";
 import { clone, GameState } from "./GameState";
 import { assignOperator, person } from "./VillageRules";
 import { waveDifficulty } from "./WaveDifficulty";
 import { enemyPower, gateCapacity, levelPower } from "./Growth";
-import { DRAGON_POISON, HAND_SPEED, KING_MERCY_TACTIC, TACTIC_NIGHT_USES, TACTIC_USE, TIMED_BLAST, TacticDefinition, tacticDefinition, ZHOU_LOVE_HEAL } from "../config/TacticConfig";
+import { DRAGON_POISON, HAND_SPEED, KING_MERCY_TACTIC, TIMED_BLAST, TacticDefinition, tacticCooldownTicks, tacticDefinition, ZHOU_LOVE_HEAL, ZHOU_LOVE_SPAWN_HEALTH_PERCENT } from "../config/TacticConfig";
 import { EnemyRoadStep, SummonCharge, SummonCollision } from "./SummonCharge";
 import { Patrol, PatrolTarget } from "./Patrol";
+import { HeroSortie, heroStrikeDamage, HeroHit, HeroTarget, paralyzed } from "./HeroSortie";
+import { DeliverySortie, deliveryDamage, deliveryEnemySlow, DeliveryEvent } from "./DeliverySortie";
 import type { DailyTaskCombat } from "./DailyTaskCombat";
 export interface Enemy {
     seq: number;
     kind: EnemyKind;
     appearanceSeed: number;
     progress: number;
+    /** 新夜由入场序号采样的横向位置，一生固定，受击快照会保留它。 */
+    roadLane?: number;
     /** 累计实际二维路程；出生横向偏移不计，减速会同步放慢步态，不进入业务存档。 */
     walkDistance: number;
     hp: number;
@@ -26,6 +32,10 @@ export interface Enemy {
     speed: number;
     slow: number;
     slowTicks: number;
+    /** 外卖减速用独立截止步，可与冰塔计时重叠。 */
+    deliverySlowUntil?: number;
+    /** 麻痹截止战斗步；每次开战按战前快照重演，不单独存储。 */
+    paralyzedUntil?: number;
     born: number;
     summoned: number;
 }
@@ -47,6 +57,7 @@ export type CombatFeedback = { type: "shot"; shot: Shot; target: number; hurt: E
     { type: "poison"; hurt: Enemy[] } |
     { type: "zhouLove"; cleared: boolean; targets: Enemy[] } |
     { type: "patrolLanding"; at: RoadPoint; actor: number; tick: number; radius: number } |
+    ({ type: "heroHit"; tick: number } & HeroHit) | DeliveryEvent |
     ({ type: "summon"; tick: number } & SummonCollision) |
     ({ type: "patrol"; tick: number } & SummonCollision);
 export class BattleSimulation {
@@ -61,11 +72,11 @@ export class BattleSimulation {
     /** 累计有效齐射次数，仅供音效观察；分裂的三枚弹体仍计一次，不影响伤害或快照。 */
     volleys = 0;
     gate: number;
-    private tacticUses = 0;
-    readonly tacticBudget: number;
     private readonly personal = new Map<string, { uses: number; readyAt: number }>();
     bellTicks = 0;
     readonly patrol: Patrol | null;
+    readonly hero: HeroSortie | null;
+    readonly delivery: DeliverySortie | null;
     summonCharge: SummonCharge | null = null;
     blastAt: Readonly<RoadPoint> | null = null;
     private tapWindow: { remaining: number; taps: number } | null = null;
@@ -77,8 +88,10 @@ export class BattleSimulation {
     private readonly fixedPace: boolean;
     private readonly waveDifficulty: ReturnType<typeof waveDifficulty> | null;
     private readonly olderEnemyPower: number;
+    private readonly enemyHealthPercent: number;
     private cursor = 0;
     private seq = 0;
+    private zhouLoveWeakensSpawns = false;
     private charge = PADS.map(() => 1);
     private queued: {
         kind: EnemyKind;
@@ -93,29 +106,41 @@ export class BattleSimulation {
         this.waveDifficulty = state.wave.rhythm === undefined ? null : waveDifficulty(state.day, state.wave.rhythm);
         this.denseWave = this.waveDifficulty !== null || isDenseWave(state.wave.ordinaryHealthPercent);
         this.olderEnemyPower = enemyPower(state.day);
+        this.enemyHealthPercent = state.night.reinforcedEnemies
+            ? Math.min(REINFORCED_NIGHT.maximumHealthPercent, REINFORCED_NIGHT.initialHealthPercent + (state.day - 1) * REINFORCED_NIGHT.healthPercentPerNight)
+            : 100;
         this.patrol = this.base.patrol.captain ? new Patrol(this.base) : null;
+        const night = state.night, solo = night.activeHero !== undefined;
+        // 旧双人测试快照由智卓出战。更早尚未启用英雄的夜战维持原样。
+        const selected = night.activeHero ?? (night.heroSortie ? HERO.actorId : night.deliveryHero ? DELIVERY_HERO.actorId : undefined);
+        this.hero = selected === HERO.actorId || selected === SONGLEI.actorId
+            ? new HeroSortie(heroStrikeDamage(state.day, state.wave.rhythm, solo, selected === SONGLEI.actorId),
+                night.reinforcedEnemies === true, night.extendedHeroSortie, solo, selected) : null;
+        this.delivery = selected === DELIVERY_HERO.actorId
+            ? new DeliverySortie(deliveryDamage(state.day, state.wave.rhythm, solo), solo, night.deliveryPatrol) : null;
         const loadout = [state.night.tactic, ...(state.night.extraSlots ?? [])];
         this.tactics = loadout.filter(id => id !== null).map(id => ({ ...tacticDefinition(id) }));
         this.tactic = this.tactics[0];
-        this.tacticBudget = TACTIC_NIGHT_USES[loadout.length - 1];
         this.gate = state.gate;
         if (state.night.mercySpent) {
-            this.tacticUses++;
             this.personal.set(KING_MERCY_TACTIC, { uses: 1, readyAt: 0 });
         }
     }
     get operators() { return this.base.towers.map(t => t.operator); }
     get pendingCount() { return this.base.wave!.entries.length - this.cursor + this.queued.length; }
-    get tacticUsesLeft() { return this.tacticBudget - this.tacticUses; }
     get tacticCooldownTicks() { return this.cooldownFor(this.tactics[0].id); }
     get canCastTactic() { return this.canCast(this.tactics[0].id); }
     get mindLocked() { return !this.outcome && this.bellTicks > 0 && this.tactic.effect === "MIND_LOCK"; }
+    get wavePoisoned() { return this.poison !== null; }
+    get weakenedReinforcements() { return this.zhouLoveWeakensSpawns; }
     isPoisoned(seq: number) { return !this.outcome && !!this.poison?.targets.has(seq); }
-    usesLeftFor(tactic: TacticDefinition) { return tactic.usesPerNight - (this.personal.get(tactic.id)?.uses ?? 0); }
+    usesLeftFor(tactic: TacticDefinition) {
+        return tactic.usesPerNight === undefined ? null : tactic.usesPerNight - (this.personal.get(tactic.id)?.uses ?? 0);
+    }
     cooldownFor(id: string) { return Math.max(0, (this.personal.get(id)?.readyAt ?? 0) - this.tick); }
     canCast(id: string) {
         const tactic = this.tactics.find(t => t.id === id);
-        return !!tactic && !this.outcome && this.bellTicks === 0 && !this.tapWindow && this.tacticUsesLeft > 0 && this.usesLeftFor(tactic) > 0 && this.cooldownFor(id) === 0 &&
+        return !!tactic && !this.outcome && this.bellTicks === 0 && !this.tapWindow && this.usesLeftFor(tactic) !== 0 && this.cooldownFor(id) === 0 &&
             (id !== KING_MERCY_TACTIC || !this.base.tactics.mercyCooldown?.wavesLeft);
     }
     /** 与扣血判定共用：最后一个有效步保护该步全部触门者，步末才减时。 */
@@ -126,8 +151,7 @@ export class BattleSimulation {
         if (tactic.effect === "TIMED_BLAST" && (!at || !onBattleRoad(at))) return false;
         const firstEvent = this.feedback.length;
         this.tactic = tactic;
-        this.tacticUses++;
-        this.personal.set(id, { uses: (this.personal.get(id)?.uses ?? 0) + 1, readyAt: this.tick + TACTIC_USE.cooldownTicks });
+        this.personal.set(id, { uses: (this.personal.get(id)?.uses ?? 0) + 1, readyAt: this.tick + tacticCooldownTicks(tactic) });
         if (tactic.effect === "HAND_SPEED") {
             this.patrol?.rapid?.stop();
             this.tapWindow = { remaining: HAND_SPEED.seconds, taps: 0 };
@@ -149,7 +173,6 @@ export class BattleSimulation {
         const tactic = this.tactics.find(t => t.id === KING_MERCY_TACTIC);
         if (!tactic || !this.canCast(KING_MERCY_TACTIC)) return;
         this.tactic = tactic;
-        this.tacticUses++;
         this.personal.set(KING_MERCY_TACTIC, { uses: 1, readyAt: 0 });
         this.gate = gateCapacity(this.base);
         const hurt = this.enemies.filter(e => e.hp > 0).map(e => ({ ...e, hp: 0 }));
@@ -206,8 +229,8 @@ export class BattleSimulation {
             enemy.hp = cleared ? 0 : Math.min(enemy.maxHp, enemy.hp + Math.floor(enemy.maxHp * ZHOU_LOVE_HEAL));
             targets.push({ ...enemy });
         }
-        // 只影响已经入场的目标，胜负继续由下一战斗步统一判定和保存。
         if (cleared) {
+            this.zhouLoveWeakensSpawns = true;
             this.enemies = [];
             this.poison?.targets.clear();
         }
@@ -273,9 +296,13 @@ export class BattleSimulation {
             : 1;
         const baseHp = this.fixedPace && !data.boss ? data.hp * (kind === "enemy_raider" ? FIXED_NIGHT.raiderHealth : FIXED_NIGHT.otherOrdinaryHealth) : data.hp;
         const baseSpeed = this.fixedPace ? data.speed * FIXED_NIGHT.enemySpeed : data.speed;
-        const hp = Math.ceil(baseHp * power * heavyScale * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1) * healthScale * patrolHealth);
+        const heroPressure = (this.base.night!.activeHero !== undefined || this.hero) && !data.boss ? 1 + HERO.ordinaryHealthBonus : 1;
+        const baselineHp = Math.ceil(baseHp * power * heavyScale * (affix === "FAST" ? COMBAT.fastHealth : affix === "STURDY" ? COMBAT.sturdyHealth : 1) * healthScale * patrolHealth * heroPressure);
+        const maxHp = Math.round(baselineHp * this.enemyHealthPercent / 100);
+        const hp = this.zhouLoveWeakensSpawns ? Math.max(1, Math.floor(maxHp * ZHOU_LOVE_SPAWN_HEALTH_PERCENT / 100)) : maxHp;
         const seq = this.seq++;
-        this.enemies.push({ seq, kind, appearanceSeed: seed, progress, walkDistance: 0, hp, maxHp: hp, speed: baseSpeed * speedScale * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
+        const roadLane = this.base.night!.spreadEnemyFormation ? spreadRoadLane(seq) : undefined;
+        this.enemies.push({ seq, kind, appearanceSeed: seed, progress, roadLane, walkDistance: 0, hp, maxHp, speed: baseSpeed * speedScale * (affix === "FAST" ? COMBAT.fastSpeed : affix === "STURDY" ? COMBAT.sturdySpeed : 1), slow: 0, slowTicks: 0, born: this.tick, summoned: 0 });
         if (this.poison) this.infect(seq);
     }
     step(realSeconds = RULE.step / RULE.battleSpeed) {
@@ -307,13 +334,16 @@ export class BattleSimulation {
         const traceEnemies = !!rush || this.patrol?.rapid?.needsTargets;
         const traces: EnemyRoadStep[] = [];
         const patrolTargets: PatrolTarget[] = [];
+        const heroTargets: HeroTarget[] = [];
         for (const e of this.enemies) {
             const startProgress = e.progress;
             const before = enemyPoint(e);
-            if (!frozen) e.progress += e.speed * RULE.step * (e.slowTicks > 0 ? 1 - e.slow : 1);
+            if (!frozen && !paralyzed(e, this.tick))
+                e.progress += e.speed * RULE.step * (1 - Math.max(e.slowTicks > 0 ? e.slow : 0, deliveryEnemySlow(e, this.tick)));
             const after = enemyPoint(e);
             e.walkDistance += Math.hypot(after.x - before.x, after.y - before.y);
             if (this.patrol && !this.patrol.rapid && e.hp > 0) patrolTargets.push({ enemy: e, fromY: before.y, at: after });
+            if ((this.hero?.phase === "sortie" || this.delivery?.needsTargets) && e.hp > 0) heroTargets.push({ enemy: e, at: after });
             if (traceEnemies && e.hp > 0) {
                 const end = e.progress >= PATH_LENGTH
                     ? Math.max(0, (PATH_LENGTH - startProgress) / (e.progress - startProgress || 1)) : 1;
@@ -329,11 +359,16 @@ export class BattleSimulation {
             this.feedback.push({ type: "patrol", tick: this.tick, ...hit });
         const landing = this.patrol?.spin?.landing;
         if (landing) this.feedback.push({ type: "patrolLanding", tick: this.tick, ...landing });
+        // 智卓和巡防共享真实移动足点。出手在撞门前，死去的敌人不会继续撞门。
+        const heroHit = this.hero?.advance(this.tick, heroTargets);
+        if (heroHit) this.feedback.push({ type: "heroHit", tick: this.tick, ...heroHit });
+        const deliveryEvent = this.delivery?.advance(this.tick, heroTargets);
+        if (deliveryEvent) this.feedback.push(deliveryEvent);
         // 读引爆这一战斗步的真实足点；同一步内先结算爆炸，再处理仍活着的触门敌人。
         if (this.blastAt && this.bellTicks === 1) this.detonate(this.blastAt);
         let poisonedKills = this.tickPoison();
         for (const e of this.enemies) {
-            if (e.hp > 0 && e.progress >= PATH_LENGTH) {
+            if (e.hp > 0 && e.progress >= PATH_LENGTH && !paralyzed(e, this.tick)) {
                 const blocked = this.gateProtected, at = enemyPoint(e);
                 const enemy = ENEMIES[e.kind], impact = this.denseWave && !enemy.boss ? WAVE.ordinaryGateScale * (this.fixedPace ? FIXED_NIGHT.ordinaryGateDamage : 1) : 1;
                 if (!blocked) this.gate -= Math.ceil(enemy.gate * impact * (this.waveDifficulty?.gate ?? this.olderEnemyPower));
@@ -404,10 +439,7 @@ export class BattleSimulation {
                             e.slow = strength;
                             e.slowTicks = RULE.slowTicks;
                             refreshed.add(e.seq);
-                            if (e.hp > 0) {
-                                slowed.push(e.seq);
-                                this.tasks?.frost.add(e.seq);
-                            }
+                            if (e.hp > 0) slowed.push(e.seq);
                         }
                 }
                 const shot: Shot = { tower: i, x: center.x, y: center.y, kind: tower.kind, tick: this.tick, empowered };
@@ -424,7 +456,7 @@ export class BattleSimulation {
         }
         this.enemies = this.enemies.filter(e => e.hp > 0);
         this.shots = this.shots.filter(s => this.tick - s.tick < COMBAT.shotLifetimeTicks).slice(-RULE.effectCap);
-        if (!this.enemies.length && this.pendingCount === 0 && !this.patrol?.spin?.flying)
+        if (!this.enemies.length && this.pendingCount === 0 && !this.patrol?.spin?.flying && !this.delivery?.flight)
             this.outcome = "WIN";
         for (const e of this.enemies)
             if (existingSlow.has(e.seq) && !refreshed.has(e.seq) && e.slowTicks > 0)

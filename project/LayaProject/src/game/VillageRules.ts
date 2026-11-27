@@ -1,11 +1,18 @@
 import { QUALITY_CHANCE_SCALE, rollVillagerQuality, VILLAGER_QUALITY } from "../config/VillagerQuality";
 import { ADULT_APPEARANCE, RULE, TRAIT_POOL, TOWERS, TowerKind, VILLAGER_NAMES } from "./GameConfig";
 import { PATROL_MODE, PatrolMode } from "../config/PatrolConfig";
-import { STARTER_AMMO } from "../config/DefenseConfig";
-import { GameState, ownsTowerAmmo, isElder, isWorkingAdult, Job, Person } from "./GameState";
+import { STARTER_AMMO, TOWER_BUILD_WOOD } from "../config/DefenseConfig";
+import { towerFlag } from "./EnemySeed";
+import { HERO, SLOWER_HERO_SORTIE, SONGLEI } from "../config/HeroConfig";
+import { DELIVERY_HERO, DELIVERY_PATROL_HUNT } from "../config/DeliveryHeroConfig";
+import { deliveryRecruitmentReason } from "./DeliverySortie";
+import { songLeiRecruitmentReason } from "./HeroSortie";
+import { GameState, HeroChoice, ownsTowerAmmo, isElder, isAvailableAdult, isExploring, Job, nightReturnPoint, Person } from "./GameState";
+import type { ExpeditionRoute } from "../config/ExpeditionConfig";
+import { settleExpedition, startExpedition } from "./Expedition";
 import { SeededRandom } from "./SeededRandom";
 import { generateWave } from "./WaveGenerator";
-import { gateCapacity, gateRepairQuote, laborSlots, repairCost, residentialCost, residentialUpgradeReason, upgradeCost, upgradeUnavailableReason } from "./Growth";
+import { gateCapacity, gateRepairQuote, laborSlots, repairCost, residentialCost, residentialUpgradeReason, storageCapacity, upgradeCost, upgradeUnavailableReason } from "./Growth";
 import { nextSex } from "./Population";
 import { dailyRationAmount } from "./DailyRation";
 import { person, capacity, canMarry, birthUnavailableReason, economy } from "./VillageQueries";
@@ -16,7 +23,7 @@ import { applyTactic, unlockTacticSlot } from "./Tactics";
 /** 原村务 API 保持不变；内部模块只依赖具体实现，禁止反向引用此入口。 */
 export { createGame } from "./VillageCreation";
 export { finishNight } from "./VillageLifecycle";
-export { person, policy, capacity, canMarry, birthUnavailableReason, economy } from "./VillageQueries";
+export { person, capacity, canMarry, birthUnavailableReason, economy } from "./VillageQueries";
 export { JOB_NAMES, autoAssignJobs, autoAssignOperators, assignOperator } from "./VillageJobs";
 export type Command = {
     type: "TACTIC_LEARN" | "TACTIC_EQUIP";
@@ -41,6 +48,17 @@ export type Command = {
     type: "BIRTH";
     family: string;
 } | {
+    type: "START_EXPEDITION";
+    id: string;
+    route: ExpeditionRoute;
+} | {
+    type: "CLAIM_EXPEDITION" | "DISMISS_EXPEDITION";
+} | {
+    type: "ACK_EXPEDITION_REPORT";
+    run: number;
+    departedAfter: number;
+    reportCount: number;
+} | {
     type: "BUILD";
     kind: "HOUSE" | "FARM" | "LOGGING" | "GATE";
 } | {
@@ -48,6 +66,11 @@ export type Command = {
     mode: PatrolMode;
 } | {
     type: "PATROL_UPGRADE";
+} | {
+    type: "RECRUIT_DELIVERY" | "RECRUIT_SONGLEI";
+} | {
+    type: "SELECT_HERO";
+    id: HeroChoice;
 } | {
     type: "PATROL_CAPTAIN";
     id: string;
@@ -84,10 +107,23 @@ export type Command = {
     enabled: boolean;
 };
 export function applyCommand(s: GameState, c: Command) {
+    if (c.type === "ACK_EXPEDITION_REPORT") {
+        const trip = s.expedition;
+        requireRule((s.phase === "DAY" || s.phase === "DAWN") && !!trip?.reportPending && s.run === c.run &&
+            trip.departedAfter === c.departedAfter && trip.reports.length === c.reportCount, "这份探索战报已处理");
+        delete trip!.reportPending;
+        return;
+    }
+    if (c.type === "CLAIM_EXPEDITION" || c.type === "DISMISS_EXPEDITION") {
+        settleExpedition(s, c.type === "CLAIM_EXPEDITION");
+        return;
+    }
     if (c.type === "DAILY_RATION") {
         const amount = dailyRationAmount(s, c.date);
         requireRule(amount !== null, "今天的口粮已领取，或当前需先完成村务");
         s.food += amount;
+        const back = s.night?.returnPoint;
+        if (back) back.food = Math.min(storageCapacity(s), back.food + amount);
         s.legacy.lastRationDate = c.date;
         return;
     }
@@ -124,6 +160,30 @@ export function applyCommand(s: GameState, c: Command) {
     }
     requireRule(s.phase === "DAY", "请在白天安排村务");
     switch (c.type) {
+        case "START_EXPEDITION":
+            startExpedition(s, c.id, c.route);
+            break;
+        case "RECRUIT_DELIVERY": {
+            const reason = deliveryRecruitmentReason(s);
+            requireRule(reason === null, reason!);
+            spend(s, "wood", DELIVERY_HERO.recruitment.wood);
+            spend(s, "food", DELIVERY_HERO.recruitment.food);
+            s.deliveryUnlocked = true;
+            break;
+        }
+        case "RECRUIT_SONGLEI": {
+            const reason = songLeiRecruitmentReason(s);
+            requireRule(reason === null, reason!);
+            spend(s, "wood", SONGLEI.recruitment.wood);
+            spend(s, "food", SONGLEI.recruitment.food);
+            s.songLeiUnlocked = true;
+            break;
+        }
+        case "SELECT_HERO":
+            requireRule(c.id === HERO.actorId || (c.id === DELIVERY_HERO.actorId && s.deliveryUnlocked === true) ||
+                (c.id === SONGLEI.actorId && s.songLeiUnlocked === true), "此英雄尚未加入村庄");
+            s.selectedHero = c.id;
+            break;
         case "TACTIC_LEARN":
         case "TACTIC_EQUIP":
             applyTactic(s, c.id, c.type === "TACTIC_LEARN" ? "LEARN" : "EQUIP", c.slot);
@@ -138,14 +198,14 @@ export function applyCommand(s: GameState, c: Command) {
         case "JOB": {
             requireRule(c.job === "WAITING" || c.job === "FARM" || c.job === "LOGGING", "岗位不存在");
             const p = person(s, c.id);
-            requireRule(isWorkingAdult(p), "孩子和荣休老人不能安排工作");
+            requireRule(isAvailableAdult(s, p), isExploring(s, p.id) ? "村民探索中" : "孩子和荣休老人不能安排工作");
             let replaced: Person | null = null;
             if (c.job === "FARM" || c.job === "LOGGING") {
                 const max = laborSlots(c.job, c.job === "FARM" ? s.farm : s.logging);
                 const full = s.people.filter(q => q.id !== p.id && q.job === c.job).length >= max;
                 if (c.replace) {
                     replaced = person(s, c.replace);
-                    requireRule(full && p.job !== c.job && replaced.id !== p.id && isWorkingAdult(replaced) && replaced.job === c.job, "请选择该岗位当前的另一位村民");
+                    requireRule(full && p.job !== c.job && replaced.id !== p.id && isAvailableAdult(s, replaced) && replaced.job === c.job, "请选择该岗位当前的另一位村民");
                 }
                 else
                     requireRule(!full, "岗位已满，请选择替换对象或升级建筑");
@@ -229,7 +289,7 @@ export function applyCommand(s: GameState, c: Command) {
             break;
         }
         case "PATROL_CAPTAIN": {
-            requireRule(isWorkingAdult(person(s, c.id)), "请选择成年且未荣休的村民");
+            requireRule(isAvailableAdult(s, person(s, c.id)), "请选择在村、成年且未荣休的村民");
             const tower = s.towers.find(t => t.operator === c.id);
             if (tower) tower.operator = null;
             s.patrol.captain = c.id;
@@ -250,7 +310,8 @@ export function applyCommand(s: GameState, c: Command) {
             requireRule(ownsTowerAmmo(s, c.kind), "请先到商城购买冰弹");
             if (!t.kind) {
                 requireRule(c.kind === STARTER_AMMO[0], "新塔默认使用弓箭");
-                spend(s, "wood", TOWERS[STARTER_AMMO[0]].cost);
+                spend(s, "wood", TOWER_BUILD_WOOD);
+                t.flag = towerFlag(s.run, c.index, s.rng.world);
             }
             t.kind = c.kind;
             if (!t.level)
@@ -285,7 +346,14 @@ export function applyCommand(s: GameState, c: Command) {
             requireRule(s.wave !== null, "波次未准备好");
             autoAssignNightDuties(s);
             const e = economy(s);
-            s.night = { adults: s.people.filter(isWorkingAdult).map(p => p.id), elders: s.people.filter(isElder).map(p => p.id), hungry: e.hungry, tactic: s.tactics.equipped };
+            s.night = { adults: s.people.filter(p => isAvailableAdult(s, p)).map(p => p.id), elders: s.people.filter(isElder).map(p => p.id),
+                hungry: e.hungry, tactic: s.tactics.equipped, activeHero: s.selectedHero ?? HERO.actorId, extendedHeroSortie: SLOWER_HERO_SORTIE,
+                reinforcedEnemies: true, spreadEnemyFormation: true, returnPoint: nightReturnPoint(s) };
+            if (s.rewardDie !== undefined) {
+                s.night.rewardDie = s.rewardDie;
+                delete s.rewardDie;
+            }
+            if (s.night.activeHero === DELIVERY_HERO.actorId) s.night.deliveryPatrol = DELIVERY_PATROL_HUNT;
             if (s.tactics.extraSlots) s.night.extraSlots = s.tactics.extraSlots.slice();
             if (s.patrol.captain) {
                 s.night.patrolSquad = true;
@@ -313,19 +381,11 @@ export function applyCommand(s: GameState, c: Command) {
 }
 function choose(s: GameState, value: string) {
     const q = s.choices[0];
-    switch (q.kind) {
-        case "TRAVELER":
-            requireRule(value === "accept" || value === "decline", "旅人选项无效");
-            if (value === "accept") {
-                requireRule(s.people.length < capacity(s), "民居已满，可以谢绝旅人");
-                s.people.push(q.person);
-                q.person.traits.forEach(t => remember(s, t));
-            }
-            break;
-        case "POLICY":
-            requireRule(q.options.includes(value), "村规选项无效");
-            s.policy = value;
-            break;
+    requireRule(value === "accept" || value === "decline", "旅人选项无效");
+    if (value === "accept") {
+        requireRule(s.people.length < capacity(s), "民居已满，可以谢绝旅人");
+        s.people.push(q.person);
+        q.person.traits.forEach(t => remember(s, t));
     }
     s.choices.shift();
 }

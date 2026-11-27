@@ -1,4 +1,4 @@
-import { tacticDefinition, SUMMON_TACTIC } from "../config/TacticConfig";
+import { HERO } from "../config/HeroConfig";
 import { StoragePort } from "../storage/SaveStore";
 import { GameLayout } from "./GameLayout";
 import { SpriteFrames } from "./SpriteFrames";
@@ -124,9 +124,9 @@ export class StarterGuide {
         const paper = new Laya.Sprite();
         paper.mouseEnabled = false;
         this.node.addChild(paper);
-        this.ui.image(this.node, tacticDefinition(SUMMON_TACTIC).icon, inset, inset, portrait);
+        this.ui.image(this.node, HERO.portrait, inset, inset, portrait);
         const textX = inset + portrait + gap, textWidth = width - textX - inset;
-        this.ui.label(this.node, "智卓", textX, 12, textWidth, 29, C.timber, true, 40);
+        this.ui.label(this.node, HERO.name, textX, 12, textWidth, 29, C.timber, true, 40);
         const text = this.ui.label(this.node, lesson.text, textX, 56, textWidth, 27, C.ink, false, 200);
         text.height = Math.ceil(text.textHeight) + 4;
         const actionTop = Math.max(inset + portrait, text.y + text.height) + gap;

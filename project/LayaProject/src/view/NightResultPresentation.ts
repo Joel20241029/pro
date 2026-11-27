@@ -6,6 +6,7 @@ import { GameSession } from "../game/GameSession";
 import { GameState } from "../game/GameState";
 import { tacticRevealed } from "../game/Tactics";
 import { economy } from "../game/VillageQueries";
+import { expeditionClaimQuote, ExpeditionMaterials } from "../game/Expedition";
 import { GameHud } from "./GameHud";
 import { FEEDBACK } from "./config/FeedbackConfig";
 import { UiWidgets } from "./UiWidgets";
@@ -26,9 +27,11 @@ const RAISED_FLIGHT_SECONDS = MOTION.grow + MOTION.hold + MOTION.flight;
 const MATERIAL_KEYS = ["food", "wood"] as const;
 type FlightPoint = { x: number; y: number; size: number };
 type DailyFlight = { kind: TaskKind; date: string; material: TaskMaterial; source: FlightPoint; raised: FlightPoint; elapsed: number | null };
+type ExpeditionFlight = { run: number; departedAfter: number; before: ExpeditionMaterials; amounts: ExpeditionMaterials;
+    sources: [FlightPoint, FlightPoint]; raised: FlightPoint; elapsed: number | null };
 type Stage = "impact" | "summary" | "collect" | "unlock" | "tactic";
 
-/** 只消费已提交的本次战斗结果。领取和解锁均为表现，不写存档、不发命令。 */
+/** 结算、解锁与领取飞行只展示已提交的结果。 */
 export class NightResultPresentation {
     readonly layer = new Laya.Sprite();
     private tiles: Laya.Sprite[] = [];
@@ -36,6 +39,7 @@ export class NightResultPresentation {
     private result: NightResult | null = null;
     private featureUnlock = -1;
     private dailyFlight: DailyFlight | null = null;
+    private expeditionFlight: ExpeditionFlight | null = null;
     private newTactic: TacticDefinition | null = null;
     private phase: Stage | null = null;
     private elapsed = 0;
@@ -53,6 +57,7 @@ export class NightResultPresentation {
 
     reset() {
         this.dailyFlight = null;
+        this.expeditionFlight = null;
         this.featureUnlock = -1;
         this.lastResult = null; this.result = null; this.phase = null; this.box = null; this.sources = []; this.newTactic = null;
         this.hideFlights();
@@ -66,9 +71,17 @@ export class NightResultPresentation {
             if (s && activeDailyTasks(s, flight.date)?.tasks.some(task => task.kind === flight.kind && task.claimed)) flight.elapsed = 0;
             else this.dailyFlight = null;
         }
+        const expedition = this.expeditionFlight;
+        if (expedition && expedition.elapsed === null && !game.saves.pending) {
+            const trip = s?.expedition, remaining = trip?.remaining;
+            const sameTrip = !trip || (remaining && trip.departedAfter === expedition.departedAfter);
+            if (s?.run === expedition.run && sameTrip && MATERIAL_KEYS.every(key => expedition.before[key] - (remaining?.[key] ?? 0) === expedition.amounts[key]))
+                expedition.elapsed = 0;
+            else this.expeditionFlight = null;
+        }
         const battle = game.presentationBattle;
         if (!s || game.battle || game.saves.pending || !battle?.outcome || battle === this.lastResult || battle.base.run !== s.run) return;
-        const patrolImpact = patrolImpactPlaying || battle.feedback.some(event => event.type === "patrol");
+        const patrolImpact = patrolImpactPlaying || battle.feedback.some(event => event.type === "patrol" || event.type === "deliveryHit");
         if (battle.outcome === "LOSE") {
             if (s.phase !== "GAME_OVER" || !patrolImpact) return;
             this.lastResult = battle;
@@ -81,9 +94,10 @@ export class NightResultPresentation {
         const production = economy(battle.base);
         this.lastResult = battle;
         this.result = { night: battle.base.day, food: production.food, wood: production.wood, rations: production.rations,
-            stock: { food: s.food, wood: s.wood }, patrol: battle.patrol ?? undefined, recap: s.summary.replace(/^守夜成功！/, "") };
+            rewardDie: battle.base.night?.rewardDie, patrol: battle.patrol ?? undefined, recap: s.summary.replace(/^守夜成功！/, "") };
         this.featureUnlock = SIDE_FEATURES.findIndex(feature => {
             const threshold = FEATURE_WINS[feature.panel];
+            if (feature.panel === "expedition") return battle.base.completed < threshold && threshold <= s.completed;
             return battle.base.legacy.bestNight < threshold && threshold <= s.legacy.bestNight;
         });
         this.newTactic = TACTICS.find(t => !tacticRevealed(battle.base, t.id) && tacticRevealed(s, t.id)) ?? null;
@@ -101,6 +115,17 @@ export class NightResultPresentation {
         this.dailyFlight = { kind, date, material: task.material, source: this.center(icon), raised: this.center(box), elapsed: null };
         game.claimTask(kind, date);
         if (this.dailyFlight?.elapsed === null && !game.saves.pending) this.dailyFlight = null;
+    }
+
+    claimExpedition(game: GameSession, food: Laya.Sprite, wood: Laya.Sprite) {
+        const s = game.state, trip = s?.expedition, card = food.parent?.parent as Laya.Sprite | undefined;
+        if (this.expeditionFlight || !s || !trip?.remaining || !card || game.saves.pending) return;
+        const amounts = expeditionClaimQuote(s);
+        if (!amounts.food && !amounts.wood) return;
+        this.expeditionFlight = { run: s.run, departedAfter: trip.departedAfter, before: { ...trip.remaining }, amounts,
+            sources: [this.center(food), this.center(wood)], raised: this.center(card), elapsed: null };
+        game.command({ type: "CLAIM_EXPEDITION" });
+        if (this.expeditionFlight?.elapsed === null && !game.saves.pending) this.expeditionFlight = null;
     }
 
     draw(ctx: PanelContext): boolean {
@@ -123,7 +148,21 @@ export class NightResultPresentation {
     advance(seconds: number, patrolImpactPlaying = false, enemyDeathsPlaying = false) {
         this.hideFlights();
         const flight = this.dailyFlight;
-        if (flight && flight.elapsed !== null) {
+        const expedition = this.expeditionFlight;
+        if (expedition && expedition.elapsed !== null) {
+            let sequenceSeconds = 0;
+            const age = expedition.elapsed;
+            MATERIAL_KEYS.forEach((key, i) => {
+                const target = this.hud.materialIcons[key];
+                if (expedition.amounts[key] <= 0 || !target) return;
+                const elapsed = age - sequenceSeconds;
+                sequenceSeconds += RAISED_FLIGHT_SECONDS;
+                if (elapsed >= 0 && elapsed < RAISED_FLIGHT_SECONDS)
+                    this.raisedFlight(i, `icon_${key}`, expedition.sources[i], target, expedition.raised, MOTION.gainPeak, elapsed);
+            });
+            if (age >= sequenceSeconds) this.expeditionFlight = null;
+            else expedition.elapsed += seconds;
+        } else if (flight && flight.elapsed !== null) {
             const target = this.hud.materialIcons[flight.material];
             if (target && flight.elapsed < RAISED_FLIGHT_SECONDS) {
                 this.raisedFlight(0, `icon_${flight.material}`, flight.source, target, flight.raised, MOTION.gainPeak, flight.elapsed);
@@ -174,7 +213,7 @@ export class NightResultPresentation {
         }
         const index = this.featureUnlock, feature = SIDE_FEATURES[index];
         const progress = (this.elapsed - MOTION.unlockNotice) / MOTION.unlockSeconds;
-        const target = this.hud.featureButtons[index];
+        const target = this.hud.featureButtons.find(button => button.name === feature.name);
         if (target && progress >= 0) {
             const source = this.sources[0];
             source.visible = false;

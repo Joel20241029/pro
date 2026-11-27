@@ -2,24 +2,28 @@ import { PATROL } from "../../config/PatrolConfig";
 import { ECONOMY } from "../../config/RuleConfig";
 import { VILLAGER_QUALITY } from "../../config/VillagerQuality";
 import { RULE } from "../../game/GameConfig";
-import { GameState, isElder, isWorkingAdult } from "../../game/GameState";
-import { laborSlots } from "../../game/Growth";
+import { GameState, isElder, isExploring, isWorkingAdult } from "../../game/GameState";
+import { expeditionNightsLeft } from "../../game/Expedition";
+import { dayJobChoice } from "./PeoplePanels";
+import { actionHintsBlocked, jobVacancyHints } from "../ActionHints";
 import { JOB_NAMES, person } from "../../game/VillageRules";
 import { recommendedPeople } from "../RoleRecommendations";
 import { ScrollList } from "../ScrollList";
 import { C, UI } from "../UiTheme";
+import { cardArt } from "./PanelCards";
 import { Panel, PanelContext } from "./PanelContext";
 import { drawResidentTalent, drawResidentQuality, residentCardText } from "./ResidentCards";
 
 /** 审稿版的卡片尺度，单位为逻辑像素。留白同时给短屏的面板回弹预留空间。 */
-const DETAIL = { top: 118, bottom: 49, screenMargin: 24, gap: 19, profile: 206, talent: 170, bonus: 156,
+const DETAIL = { top: 118, bottom: 49, screenMargin: 24, gap: 19, profile: 246, talent: 170, bonus: 156,
     work: 177, closedWork: 144, status: 138, archive: 162 } as const;
 
 export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel, safeHeight: number) {
     const ancestor = p.type === "ancestor";
     const q = ancestor ? s.history.find(person => person.id === p.id)! : person(s, p.id!);
     const quality = VILLAGER_QUALITY[q.quality], special = q.quality !== "COMMON";
-    const elder = isElder(q), worker = isWorkingAdult(q), canAssign = worker && s.phase === "DAY" && !ancestor;
+    const elder = isElder(q), worker = isWorkingAdult(q), away = isExploring(s, q.id);
+    const canAssign = worker && !away && s.phase === "DAY" && !ancestor;
     const favorite = s.favorites.includes(q.id), favoriteFull = s.favorites.length >= RULE.favoriteCap;
     const statusHeight = ancestor ? DETAIL.archive : worker ? canAssign ? DETAIL.work : DETAIL.closedWork : DETAIL.status;
     const talentHeight = DETAIL.talent + (q.traits.length - 2) * 44;
@@ -31,6 +35,7 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
             : !q.adult ? "每成功守夜一次，孩子成长一夜。"
                 : `白天工作与夜间岗位互不占用。夜间可驻塔，或在${PATROL.building}担任${PATROL.role}。`;
     const box = ctx.modal(ancestor ? "先辈详情" : "村民详情", "", true, { width: UI.panelWidth, height }, help);
+    if (p.back) ctx.ui.backButton(box, () => ctx.open(p.back!, true));
     let parent = box, x: number = UI.inset, y: number = DETAIL.top;
     if (height < preferredHeight) {
         const list = new ScrollList(UI.contentWidth + UI.scrollGutter, height - DETAIL.top - DETAIL.bottom,
@@ -47,16 +52,13 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
     const text = residentCardText.bind(null, ctx);
     const heading = (node: Laya.Sprite, value: string) => text(node, value, 26, 14, 300, 43, 33, C.ink, true);
     const bio = card("profile", DETAIL.profile);
-    if (special) text(bio, quality.label, 236, 20, 111, 40, 27, q.quality === "HERO" ? C.heroName : C.timber, true);
-    text(bio, q.name, 236, special ? 62 : 37, 334, 60, 51, C.ink, true);
+    if (special) text(bio, quality.label, 272, 35, 111, 40, 27, q.quality === "HERO" ? C.heroName : C.timber, true);
+    text(bio, q.name, 272, special ? 80 : 55, 302, 63, 48, C.ink, true);
     const parents = q.parents.map(id => s.people.find(a => a.id === id)?.name ?? s.history.find(a => a.id === id)?.name ?? "更早的家族成员");
     const origin = q.origin === "TRAVELER" ? "路过村落的旅人" : "开村人";
-    text(bio, `第 ${q.generation} 代${parents.length ? "" : ` · ${origin}`}`, 236, special ? 129 : 107, 338, 38, 25, C.muted);
-    if (parents.length) text(bio, `双亲：${parents.join("、")}`, 236, 163, 338, 30, 24, C.muted);
-    // 审稿版的麦色圆框和图集有效像素头像。圆框仅作底衬，不影响头像缩放。
-    bio.graphics.drawEllipse(116, 103, 93, 93, "#f1d7a4", null, 0);
-    bio.graphics.drawEllipse(116, 103, 88, 88, "#f7e4b9", null, 0);
-    ctx.ui.image(bio, ctx.art.portraitId(q, ancestor), 21, 8, 190, 190);
+    text(bio, `第 ${q.generation} 代${parents.length ? "" : ` · ${origin}`}`, 272, special ? 153 : 130, 302, 38, 25, C.muted);
+    if (parents.length) text(bio, `双亲 ${parents.join("、")}`, 272, 198, 302, 30, 24, C.muted);
+    cardArt(ctx, bio, ctx.art.portraitId(q, ancestor), 20, 13, 220);
 
     drawResidentTalent(ctx, card("talent", talentHeight), q);
     if (special) drawResidentQuality(ctx, card("bonus", DETAIL.bonus), quality);
@@ -82,23 +84,27 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
     }
 
     heading(status, "岗位");
-    status.graphics.drawRoundRect(395, 17, 180, 40, 14, 14, 14, 14, "#e9eed3");
+    status.graphics.drawRoundRect(395, 17, 180, 40, 14, 14, 14, 14, C.fernArt);
     text(status, `距退休 ${q.nights} 夜`, 399, 17, 172, 40, 24, C.green, true).align = "center";
-    const captain = q.id === s.patrol.captain;
-    text(status, "白天岗位", 27, 69, 145, 31, 25, C.muted);
-    text(status, JOB_NAMES[q.job], 28, 101, 152, 40, 33, C.ink, true);
-    if (captain) text(status, `夜间 · ${PATROL.role}`, canAssign ? 28 : 315, canAssign ? 143 : 100, canAssign ? 272 : 255, 24, 24, C.muted);
+    if (away) {
+        text(status, `探索中 · 还剩 ${expeditionNightsLeft(s.expedition!)} 夜`, 28, 63, 544, 32, 27, C.ink, true);
+        text(status, "离村期间寿命暂停", 28, 101, 544, 32, 25, C.muted);
+        return;
+    }
+    const towers = ctx.game.battle?.base.towers ?? s.towers, stationed = towers.findIndex(t => t.operator === q.id);
+    const duty = q.id === s.patrol.captain ? PATROL.role : stationed < 0 ? "空闲" : `第 ${stationed + 1} 塔`;
+    text(status, JOB_NAMES[q.job], 28, 66, 155, 44, 33, C.ink, true);
+    text(status, `夜间 · ${duty}`, 28, 117, 181, 32, 24, C.muted);
     if (!canAssign) return;
-    const towers = ctx.game.battle?.base.towers ?? s.towers;
+    const vacancies = jobVacancyHints(s, actionHintsBlocked(ctx.game));
     const jobs = (["FARM", "LOGGING"] as const).filter(job => q.job !== job);
+    const vacantJob = q.job === "WAITING" && jobs.find(job => vacancies[job]);
     jobs.forEach((job, i) => {
-        const full = s.people.filter(a => a.job === job).length >= laborSlots(job, job === "FARM" ? s.farm : s.logging);
+        const choice = dayJobChoice(ctx, s, job, p), full = choice.full;
         const title = `${full ? "更换" : "安排"}${JOB_NAMES[job]}${full && jobs.length === 1 ? "村民" : ""}`;
         const button = ctx.ui.button(status, title, jobs.length === 1 ? 315 : 207 + 185 * i, 79,
-            jobs.length === 1 ? 259 : 182, () => {
-                if (full) ctx.open({ type: "workers", id: q.id, job });
-                else ctx.send({ type: "JOB", id: q.id, job });
-            }, C.green, 72);
-        if (recommendedPeople(s.people, job, towers).includes(q)) ctx.ui.personRibbon(button, "tag_recommended");
+            jobs.length === 1 ? 259 : 182, () => choice.select(q.id), C.green, 72);
+        if (recommendedPeople(s.people.filter(p => !isExploring(s, p.id)), job, towers).includes(q)) ctx.ui.personRibbon(button, "tag_recommended");
+        if (job === vacantJob) ctx.ui.actionBadge(button, "JobAssignActionHint");
     });
 }

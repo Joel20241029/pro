@@ -3,6 +3,7 @@ import { VILLAGER_QUALITY } from "../../config/VillagerQuality";
 import { TRAITS } from "../../game/GameConfig";
 import type { Person } from "../../game/GameState";
 import { C } from "../UiTheme";
+import { cardArt } from "./PanelCards";
 import type { PanelContext } from "./PanelContext";
 
 export function residentCardText(ctx: PanelContext, node: Laya.Sprite, value: string, x: number, y: number,
@@ -12,6 +13,25 @@ export function residentCardText(ctx: PanelContext, node: Laya.Sprite, value: st
     label.overflow = Laya.Text.SHRINK;
     label.valign = "middle";
     return label;
+}
+
+/** 名单大卡沿用 listItem 的回收、点击和奖励角标，姓名与大图给下方操作留出独立命中区。 */
+export const RESIDENT_ROW_HEIGHT = 168;
+export function residentListItem(ctx: PanelContext, parent: Laya.Sprite, title: string, image: string, click: () => void, job?: Person["job"]) {
+    const skin = job === "FARM" ? "panel_card_fern" : job === "LOGGING" ? "panel_card_blue" : true;
+    const row = ctx.ui.listItem(parent, title, image, 0, click, true, RESIDENT_ROW_HEIGHT, false, skin);
+    const face = row?.getChildByName("buttonFace") as Laya.Sprite | undefined;
+    const label = face?.getChildByName("buttonText") as Laya.Text | undefined;
+    if (face && label) {
+        // listItem 面层的第二个节点是普通名单的小头像框；大卡用卡片同一套插画衬底。
+        face.getChildAt(1)?.destroy(true);
+        const tint = job === "FARM" ? C.fernArt : job === "LOGGING" ? C.blueArt : C.petal;
+        cardArt(ctx, face, image, 14, 11, 144, 144, tint);
+        label.pos(178, 12).size(row.width - 199, 88);
+        label.fontSize = 30;
+        label.leading = 7;
+    }
+    return row;
 }
 
 /** 村民详情与旅人预览共用数据和图标。旅人的卡片行距略紧，为固定操作区留空间。 */

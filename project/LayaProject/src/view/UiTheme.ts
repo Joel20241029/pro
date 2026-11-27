@@ -1,10 +1,15 @@
-/** 720逻辑宽度的花谷村奶油草莓配色，来源为已确认的界面稿；全界面共用，只影响美术与阅读。 */
+/** 720 逻辑宽度的纯色卡通界面配色，来自定稿。语义色同时供按钮区分操作类型。 */
 export const C = {
-    ink: "#502f44", muted: "#665164", cream: "#fff4e4", paper: "#f5e3d7",
-    green: "#326b1b", gold: "#edaa17", red: "#bf3c1d", grass: "#a0aa72", night: "#354f53",
-    outline: "#4b2b3c", lightEdge: "#fff9ec",
-    // 花谷布局使用的梅紫层级。正向数值仍用语义绿。
-    status: "#95465c", trim: "#cb8998", petal: "#ffd9df", petalCenter: "#e49aab",
+    ink: "#53372b", muted: "#695641", cream: "#fff7dd", paper: "#f6e5bb",
+    green: "#3f6935", gold: "#ac6b16", red: "#a23f31", grass: "#a0aa72", night: "#354f53",
+    outline: "#654732", lightEdge: "#fff9e9",
+    // 现有图标和场景色保留各自语义。
+    status: "#89443f", trim: "#c4a26e", petal: "#f7dda0", petalCenter: "#d96f64",
+    selection: "#678c50", coral: "#d96f64", blue: "#687ba7", fern: "#7fac61",
+    fernArt: "#dce6b7", blueArt: "#d5e0ed",
+    // 色带用深色阶支撑浅字。蓝灰锁槽和高亮绿框是两种独立状态。
+    dayRibbon: "#855c3d", nightRibbon: "#4e5f83", lockedFill: "#d6ddec", lockedRim: "#7787a6",
+    actionFace: "#ffc65d", actionLip: "#d28a42",
     // 木色用于资源、成长及米黄底板上的屏中提示；不改变资源是否足够的判定。
     timber: "#9a591f",
     // 浅麦金 Tip 底图的暖棕正文，中心区域对比度≥5.26:1；仅用于短提示，不改变警示语义。
@@ -13,7 +18,7 @@ export const C = {
     maleName: "#276b9c", femaleName: "#90541c",
     heroName: "#783b98", legendaryName: "#9b590f"
 };
-/** 既有浅字在浅桃粉面板上改用深梅墨色。按钮面层继续使用自身的对比色。 */
+/** 既有浅字在奶油色面板上改用深棕色。按钮面层继续使用自身的对比色。 */
 export const PANEL_TEXT: Readonly<Record<string, string>> = { [C.cream]: C.ink };
 /** 标题/正文/按钮按手机约一半缩放后的阅读尺寸设置；滚动列表保持同一列宽和行距。 */
 export const UI = {

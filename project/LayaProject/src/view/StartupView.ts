@@ -3,12 +3,12 @@ import { PreparationState } from "../platform/ResourcePreparation";
 import { bindButtonClick } from "./ButtonFeedback";
 import { ResourceProgress } from "./ResourceProgress";
 import { GameLayout } from "./GameLayout";
-import { UI } from "./UiTheme";
+import { C, UI } from "./UiTheme";
 
 /** 左右最多各裁约 9%，限定到启动图标题以外的出血。长屏伸展底部低对比草地。 */
 const STRETCH_START = .77;
 const SAFE_ART_WIDTH = .82;
-/** 主包尚未有村庄图集，启动卡沿用审稿的绿金配色和底部操作留白。 */
+/** 主包用原生图形绘制纯色启动卡，给底部重试操作预留空间。 */
 const PREPARATION_LAYOUT = { plateWidth: 556, progressInset: 28, progressWidth: 436, retryTop: 133, retryWidth: 294, retryHeight: 84, safeGap: 46 };
 
 export class StartupView extends Laya.Sprite {
@@ -31,10 +31,11 @@ export class StartupView extends Laya.Sprite {
         this.retryButton.addChild(this.retryFace);
         this.retryFace.addChild(this.retryText);
         this.retryFace.mouseEnabled = this.retryText.mouseEnabled = false;
-        this.retryFace.graphics.drawRoundRect(0, 0, retryWidth, retryHeight, 14, 14, 14, 14, "#eac17b", "#ad7a3c", 3);
+        this.retryFace.graphics.drawRoundRect(0, 0, retryWidth, retryHeight, 21, 21, 21, 21, C.actionLip, C.outline, 4);
+        this.retryFace.graphics.drawRoundRect(4, 4, retryWidth - 8, retryHeight - 15, 17, 17, 17, 17, C.actionFace);
         this.retryText.text = "重新下载";
         this.retryText.fontSize = 30;
-        this.retryText.color = "#533720";
+        this.retryText.color = C.ink;
         this.retryText.bold = true;
         this.retryText.align = "center";
         this.retryText.valign = "middle";
@@ -78,7 +79,7 @@ export class StartupView extends Laya.Sprite {
         const safeBottom = Math.min(height, this.layout().safeBottom);
         this.size(width, height);
         this.graphics.clear();
-        this.graphics.drawRect(0, 0, width, height, "#162c20");
+        this.graphics.drawRect(0, 0, width, height, C.nightRibbon);
         if (this.top && this.bottom) {
             const artWidth = Math.min(width / SAFE_ART_WIDTH, Math.max(width, height * this.top.width / (this.top.height + this.bottom.height)));
             const x = (width - artWidth) / 2;
@@ -90,8 +91,8 @@ export class StartupView extends Laya.Sprite {
         const plateWidth = Math.min(p.plateWidth, width * .85), progressWidth = Math.min(p.progressWidth, plateWidth - 48);
         const plateHeight = this.retryButton.visible ? p.retryTop + p.retryHeight + UI.action.bottom : 174;
         const plateX = (width - plateWidth) / 2, plateY = safeBottom - plateHeight - p.safeGap;
-        this.graphics.drawRoundRect(plateX, plateY, plateWidth, plateHeight, 17, 17, 17, 17, "#496627", "#bb8236", 7);
-        this.graphics.drawRoundRect(plateX + 7, plateY + 7, plateWidth - 14, plateHeight - 14, 11, 11, 11, 11, null, "#efcf79", 2);
+        this.graphics.drawRoundRect(plateX, plateY, plateWidth, plateHeight, 26, 26, 26, 26, C.actionLip, C.outline, 5);
+        this.graphics.drawRoundRect(plateX + 5, plateY + 5, plateWidth - 10, plateHeight - 16, 21, 21, 21, 21, C.cream);
         this.progress.setWidth(progressWidth);
         this.progress.pos((width - progressWidth) / 2, plateY + p.progressInset);
         this.retryButton.pos((width - p.retryWidth) / 2, plateY + p.retryTop);

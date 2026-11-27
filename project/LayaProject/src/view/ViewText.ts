@@ -20,7 +20,7 @@ export function growthPreview(current: number, next: number) {
     const before = amount(current), after = amount(next);
     return before === after ? `${before}（+${amount(next - current)}）` : `${before} → ${after}`;
 }
-/** 费用行已用红字显示当前／所需。保留其余资格、仓储和时段限制。 */
+/** 费用行用红字标出不足的材料。保留其余资格、仓储和时段限制。 */
 export function reasonBesideCost(reason: string | null) {
     return reason?.startsWith("还缺 ") || reason === "材料不足" ? null : reason;
 }

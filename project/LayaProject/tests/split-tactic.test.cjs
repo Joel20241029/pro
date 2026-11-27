@@ -23,7 +23,7 @@ function enemy(seq, progress = 260 - seq, hp = 100000, kind = 'enemy_raider') {
     return { seq, kind, appearanceSeed: 87, progress, hp, speed: 0, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
 }
 function battle(kind = 'ARROW', active = true) {
-    const s = learned(); s.food = 100; s.policy = null; applyCommand(s, { type: 'NIGHT' });
+    const s = learned(); s.food = 100; applyCommand(s, { type: 'NIGHT' });
     const b = new BattleSimulation(s);
     b.base.towers.forEach((t, i) => { t.kind = i === 0 ? kind : null; t.level = 1; t.operator = i === 0 ? s.people[0].id : null; });
     for (const p of b.base.people) { p.traits = ['trait_frugal']; p.quality = "COMMON"; }
@@ -32,10 +32,10 @@ function battle(kind = 'ARROW', active = true) {
 }
 const shots = b => b.feedback.filter(e => e.type === 'shot');
 
-test('split uses the approved name, cost, fifteen current-village wins and twelve combat seconds', () => {
+test('split uses the approved name, cost, fifteen current-village wins and fifteen combat seconds', () => {
     const t = tacticDefinition(SPLIT_TACTIC);
     assert.deepEqual([t.name, t.effect, t.targets, t.ticks * RULE.step, t.unlockWaves, t.wood, t.food],
-        ['分裂术·超', 'MULTI_TARGET', 3, 12, 15, 60, 30]);
+        ['分裂术·超', 'MULTI_TARGET', 3, 15, 15, 60, 30]);
     const s = createGame(7); s.completed = 14; s.day = 15; s.legacy.bestNight = 100;
     assert.equal(tacticUnavailableReason(s, SPLIT_TACTIC, 'LEARN'), '还需守住 1 波');
     const before = clone(s); assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC })); assert.deepEqual(s, before);
@@ -191,6 +191,6 @@ test('purchase persists once; pause, reassign, triple speed and cold reload keep
     g.resume('CHOICE'); g.update(.1); assert.equal(b.bellTicks, duration - 6);
     g.bell(); assert.equal(b.bellTicks, duration - 6);
     const reopened = new GameSession(new SaveStore(port)); reopened.load();
-    assert.equal(reopened.battle.tactic.id, SPLIT_TACTIC); assert.equal(reopened.battle.tacticUsesLeft, 2);
+    assert.equal(reopened.battle.tactic.id, SPLIT_TACTIC); assert.equal(reopened.battle.usesLeftFor(reopened.battle.tactic), null);
     assert(reopened.state.tactics.learned.includes(SPLIT_TACTIC));
 });

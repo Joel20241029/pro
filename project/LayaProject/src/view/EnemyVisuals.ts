@@ -1,4 +1,4 @@
-import { FEEDBACK, TOWER_IMPACT } from "./config/FeedbackConfig";
+import { FEEDBACK, TOWER_IMPACT, TOWER_IMPACT_SCALE } from "./config/FeedbackConfig";
 import { Enemy } from "../game/BattleSimulation";
 import { EnemyKind } from "../config/EnemyConfig";
 import { SpriteFrames } from "./SpriteFrames";
@@ -8,6 +8,12 @@ import { DRAGON_POISON } from "../config/TacticConfig";
 import { drawUiGlyph } from "./UiGlyphs";
 /** 留诊只摆动身体，脚底阴影、受击点与头顶的状态符号保留同一地图锚点。 */
 const MIND_VISUAL = { sway: 2.5, cycle: .55, markSize: 24, violet: "#6739a2", light: "#f3dcff" } as const;
+/** 宋磊受击电弧使用表现秒，麻痹图标则由战斗步决定是否持续。 */
+const ELECTRIC_VISUAL = { seconds: .20, markSize: 24, fill: "#4c3274", outline: "#c0a9ff", core: "#eeffff" } as const;
+const ELECTRIC_BRANCHES = [
+    [-32, 11, -17, -7, -5, 5, 8, -14, 18, -7, 30, -20],
+    [-25, -20, -13, -12, -5, -18, 7, 1, 22, -4, 29, 12]
+] as const;
 /** Laya 的批量图片路径会忽略旋转帧的顶点顺序。地图怪物使用同一组双三角形索引还原这类帧。 */
 /** 躯干落点取在有效高度中线略下的位置，与巡防命中共用。 */
 const BODY_CONTACT_RATIO = .56;
@@ -34,11 +40,14 @@ export class EnemyVisuals {
     private frostMark?: Laya.Sprite;
     private burstImpact?: Laya.Sprite;
     private patrolImpact?: Laya.Sprite;
+    private heroImpact?: Laya.Sprite;
+    private paralysisMark?: Laya.Sprite;
+    private electricImpact?: Laya.Sprite;
     constructor(readonly node: Laya.Sprite, private art: SpriteFrames) {
         this.body.name = "EnemyBody"; this.body.mouseEnabled = false;
         node.addChild(this.body);
     }
-    draw(kind: EnemyKind, seed: number, walkDistance: number, mirror: boolean, flashing = false, death?: { scaleY: number; alpha: number }, shake = 0, mindTime?: number, love?: ZhouLoveCue, poisoned = false, burstAge?: number, frosted = false, patrolImpactAge?: number, patrolAir?: { lift: number; degrees: number }) {
+    draw(kind: EnemyKind, seed: number, walkDistance: number, mirror: boolean, flashing = false, death?: { scaleY: number; alpha: number }, shake = 0, mindTime?: number, love?: ZhouLoveCue, poisoned = false, burstAge?: number, frosted = false, patrolImpactAge?: number, patrolAir?: { lift: number; degrees: number }, heroImpactAge?: number, electric?: { paralyzed: boolean; age?: number }) {
         const definition = this.art.enemyLayouts[kind], look = ENEMY_LOOKS[kind];
         if (!definition) throw new Error("未声明的怪物布局：" + kind);
         let value = seed >>> 0;
@@ -54,10 +63,10 @@ export class EnemyVisuals {
         const bodyShift = (shake + (mindTime === undefined ? 0 : MIND_VISUAL.sway * Math.sin(phase))) / (mirror ? -scale : scale);
         const lift = (patrolAir?.lift ?? 0) / scale;
         const frame = definition.frames[index], canvas = definition.canvas;
-        const statusCount = Number(mindTime !== undefined) + Number(frosted) + Number(poisoned);
+        const statusCount = Number(mindTime !== undefined) + Number(frosted) + Number(poisoned) + Number(electric?.paralyzed === true);
         const statusStep = FEEDBACK.enemyStatus.spacing / (mirror ? -scale : scale);
         const statusX = definition.foot.x - (statusCount - 1) * statusStep / 2;
-        const bounds = statusCount || love || burstAge !== undefined || patrolImpactAge !== undefined || patrolAir
+        const bounds = statusCount || love || burstAge !== undefined || patrolImpactAge !== undefined || patrolAir || heroImpactAge !== undefined || electric?.age !== undefined
             ? this.art.contentBounds(frame.body) : null;
         const spriteUnit = bounds ? canvas / bounds.sourceSize.h : 0;
         const headY = frame.y + (bounds ? bounds.trimOffset.y * spriteUnit : 0);
@@ -114,9 +123,43 @@ export class EnemyVisuals {
                 this.node.addChild(this.poisonMark);
             }
             this.poisonMark.visible = true;
-            this.poisonMark.pos(statusX + (statusCount - 1) * statusStep, statusY + size / 2 / scale);
+            this.poisonMark.pos(statusX + (Number(mindTime !== undefined) + Number(frosted)) * statusStep, statusY + size / 2 / scale);
             this.poisonMark.scale((mirror ? -1 : 1) / scale, 1 / scale);
         } else if (this.poisonMark) this.poisonMark.visible = false;
+        if (electric?.paralyzed) {
+            if (!this.paralysisMark) {
+                const mark = this.paralysisMark = new Laya.Sprite();
+                mark.name = "ParalysisMark";
+                mark.mouseEnabled = false;
+                mark.graphics.drawCircle(0, 0, ELECTRIC_VISUAL.markSize / 2, ELECTRIC_VISUAL.fill, ELECTRIC_VISUAL.outline, 1.5);
+                mark.graphics.drawPoly(0, 0, [1, -9, -6, 1, -1, 1, -3, 9, 7, -2, 2, -2, 4, -9], ELECTRIC_VISUAL.core);
+                this.node.addChild(mark);
+            }
+            this.paralysisMark.visible = true;
+            this.paralysisMark.pos(statusX + (statusCount - 1) * statusStep, statusY);
+            this.paralysisMark.scale((mirror ? -1 : 1) / scale, 1 / scale);
+        } else if (this.paralysisMark) this.paralysisMark.visible = false;
+        if (electric?.age !== undefined && electric.age < ELECTRIC_VISUAL.seconds) {
+            if (!this.electricImpact) {
+                const impact = this.electricImpact = new Laya.Sprite();
+                impact.name = "ElectricBatonImpact";
+                impact.mouseEnabled = false;
+                for (const points of ELECTRIC_BRANCHES) {
+                    impact.graphics.drawLines(0, 0, [...points], "#3760a9", 7);
+                    impact.graphics.drawLines(0, 0, [...points], "#55dfff", 4);
+                    impact.graphics.drawLines(0, 0, [...points], ELECTRIC_VISUAL.core, 1.6);
+                }
+                this.node.addChild(impact);
+            }
+            const age = electric.age / ELECTRIC_VISUAL.seconds;
+            const impact = this.electricImpact, squash = death?.scaleY ?? 1;
+            const size = (.85 + age * .32) / scale;
+            impact.visible = true;
+            impact.pos(definition.foot.x, impactY);
+            impact.scale((mirror ? -1 : 1) * size, size / Math.max(.20, squash));
+            impact.rotation = Math.floor(age * 4) % 2 ? -11 : 8;
+            impact.alpha = 1 - age * age;
+        } else if (this.electricImpact) this.electricImpact.visible = false;
         if (love && (love.cleared || !death)) {
             if (!this.loveCue) {
                 this.loveCue = new Laya.Sprite();
@@ -173,6 +216,19 @@ export class EnemyVisuals {
             impact.scale((mirror ? -1 : 1) / scale, 1 / (scale * (death?.scaleY ?? 1)));
             impact.visible = true;
         } else if (this.patrolImpact) this.patrolImpact.visible = false;
+        if (heroImpactAge !== undefined) {
+            if (!this.heroImpact) {
+                this.heroImpact = new Laya.Sprite();
+                this.heroImpact.name = "HeroArrowImpact";
+                this.heroImpact.mouseEnabled = false;
+                this.node.addChild(this.heroImpact);
+            }
+            const impact = this.heroImpact, squash = death?.scaleY ?? 1, arrow = TOWER_IMPACT.ARROW;
+            this.art.applyFrame(impact, this.art.frameId(arrow.clip, heroImpactAge), arrow.size * TOWER_IMPACT_SCALE);
+            impact.pos(definition.foot.x + bodyShift, impactY - lift);
+            impact.scale((mirror ? -1 : 1) / scale, 1 / (scale * squash));
+            impact.visible = true;
+        } else if (this.heroImpact) this.heroImpact.visible = false;
         if (key === this.key) return;
         this.key = key;
         this.node.size(canvas, canvas).pivot(definition.foot.x, definition.foot.y);

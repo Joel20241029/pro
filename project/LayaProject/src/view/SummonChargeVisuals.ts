@@ -1,4 +1,5 @@
 import { SUMMON_CHARGE } from "../config/TacticConfig";
+import { HERO } from "../config/HeroConfig";
 import { enemyPoint } from "../game/BattleRoad";
 import type { BattleSimulation, CombatFeedback } from "../game/BattleSimulation";
 import type { GameLayout } from "./GameLayout";
@@ -7,14 +8,14 @@ import { walkDirection, WalkDirection } from "./VillagerAppearance";
 import { WalkAnimation } from "./WalkAnimation";
 import { FEEDBACK } from "./config/FeedbackConfig";
 
-/** 错列可读性及固定表现长度。距离以720逻辑画布为基准，收尾秒数从首个可见命中起算。 */
-const V = { model: "straw", canvas: 42, fadeDistance: 48, aftermath: .32, endFade: .22 } as const;
+/** 智卓帧的可见部分较窄，分身画布略放大以保持原队列读感。单位为 720 逻辑画布像素和表现秒。 */
+const V = { canvas: 54, fadeDistance: 48, aftermath: .32, endFade: .22 } as const;
 type Hit = Extract<CombatFeedback, { type: "summon" }>;
 type Depth = { id: string; y: number; node: Laya.Sprite };
 interface Actor { root: Laya.Sprite; dust: Laya.Sprite; body: Laya.Sprite; direction: WalkDirection; }
 interface Impact { node: Laya.Sprite; hit: Hit | null; seenAt: number; }
 
-/** 固定20组节点与已有行走图集。逻辑退场即时发生，短光效可在结算后继续播放。 */
+/** 固定20组节点复用村长的四向行走图集。逻辑退场即时发生，短光效可在结算后继续播放。 */
 export class SummonChargeVisuals {
     private battle: BattleSimulation | null = null;
     private actors: Actor[] = [];
@@ -77,13 +78,13 @@ export class SummonChargeVisuals {
             root.alpha = ending * Math.min(1, unit.progress / V.fadeDistance) * (.3 + .7 * Math.min(1, rush.gathered * 2.8));
             const dx = unit.at.x - unit.from.x, dy = unit.at.y - unit.from.y;
             actor.direction = walkDirection(dx, dy, actor.direction);
-            const facing = this.art.walk(V.model, actor.direction);
-            const width = V.canvas * (this.art.animation(facing.clip).displayScale ?? 1);
+            const clip = `${HERO.spritePrefix}_${actor.direction.toLowerCase()}_walk`;
+            const width = V.canvas;
             const scale = layout.personScale;
-            const frame = this.walk.frame({ id: root.name, walkDistance: unit.distance, walking: unit.distance > 0 }, facing.clip, width * scale);
+            const frame = this.walk.frame({ id: root.name, walkDistance: unit.distance, walking: unit.distance > 0 }, clip, width * scale);
             this.art.applyFrame(body, frame, width);
             const entryScale = scale * (.83 + .17 * Math.min(1, rush.gathered * 2.5));
-            body.scale((facing.mirror ? -1 : 1) * entryScale, entryScale);
+            body.scale(entryScale, entryScale);
             dust.graphics.clear();
             dust.graphics.drawEllipse(0, 1, width * .23, width * .09, "rgba(64,45,24,0.28)", null, 0);
             if (unit.distance > 0) {

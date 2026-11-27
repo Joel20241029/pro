@@ -2,12 +2,12 @@ import { CombatPresentation } from "./CombatPresentation";
 import { LoggingFeedback } from "./LoggingFeedback";
 import { EnemyVisuals, enemyImpactLift } from "./EnemyVisuals";
 import { EssenceFeedback, GameSession } from "../game/GameSession";
-import { ITEMS, LIANG_ESSENCE } from "../config/ShopConfig";
+import { LIANG_ESSENCE } from "../config/ShopConfig";
 import { GameState } from "../game/GameState";
-import { VILLAGER_QUALITY } from "../config/VillagerQuality";
 import { RULE } from "../game/GameConfig";
 import { BattleSimulation } from "../game/BattleSimulation";
 import { enemyPoint } from "../game/BattleRoad";
+import { deliveryEnemySlow } from "../game/DeliverySortie";
 import { gateCapacity } from "../game/Growth";
 import { SpriteFrames } from "./SpriteFrames";
 import { compareDepth, layoutVillage, MOTION, TOWER_VIEW, VillageNavigation, WEDDING } from "./VillageScene";
@@ -33,13 +33,29 @@ import { WorldInteraction, WorldItem } from "./WorldInteraction";
 import { ProjectileVisuals } from "./ProjectileVisuals";
 import { SummonChargeVisuals } from "./SummonChargeVisuals";
 import { PatrolVisuals } from "./PatrolVisuals";
-import { PATROL_PROP } from "./config/VillageSceneConfig";
+import { HERO_COMMITTEE_PROP, PATROL_PROP } from "./config/VillageSceneConfig";
 import { PATROL } from "../config/PatrolConfig";
 import { TimedBlastVisuals } from "./TimedBlastVisuals";
+import { HeroVisuals } from "./HeroVisuals";
+import { SONGLEI } from "../config/HeroConfig";
+import { paralyzed } from "../game/HeroSortie";
+import { DeliveryHeroVisuals } from "./DeliveryHeroVisuals";
+import { towerFlag } from "../game/EnemySeed";
+import type { TowerFlag } from "../config/DefenseConfig";
 /** 动效先播放上箭头，再交给常规两秒气泡；单位为前台表现秒。 */
 const ESSENCE_CUE = { riseSeconds: .72, arrowSize: 64, riseDistance: 55 } as const;
+/** 英雄的白天台词独立于村民。触发间隔按前台表现秒，仅在村内南侧驻足说话，给城门血条留空。 */
+const HERO_SPEECH = {
+    first: 1.8, interval: 12, variance: 7, clearOfGateY: 928,
+    lines: ["白天巡村，晚上守门。", "这对瓶子可不能拿去换粮。", "城门挺牢靠，我再转一圈。", "绕完这一圈，就该等天黑了。"]
+} as const;
+/** 右侧巡村的外卖大王独立选词，跟其他气泡错开。 */
+const DELIVERY_SPEECH = {
+    first: 7, interval: 14, variance: 6,
+    lines: ["村东头，还有一单。", "门口就好，我不歇脚。", "这单算村里建设费。", "汤没洒，我先走了。"]
+} as const;
 // 守夜及最后击飞期间收起日间生产设施，给淡紫儿留出操作空间；建筑状态和占地仍由原系统维护。
-const DAY_ONLY_PROPS = new Set(["building:house-a", "building:farm", "building:logging", "deco:logs"]);
+const DAY_ONLY_PROPS = new Set(["building:house-a", "building:farm", "building:logging", "deco:logs", HERO_COMMITTEE_PROP]);
 /** 地图、人物、建筑与战斗表现的唯一所有者。视觉时钟不推进 GameSession/业务随机数。 */
 export class VillageWorld {
     readonly scenery = new Laya.Sprite();
@@ -47,6 +63,11 @@ export class VillageWorld {
     readonly shots = new Laya.Sprite();
     readonly bellAura = new Laya.Sprite();
     readonly speechTip = new AnchoredTip(this.art, SPEECH.width, SPEECH.height, SPEECH.font, true);
+    readonly heroTip = new AnchoredTip(this.art, SPEECH.width, SPEECH.height, SPEECH.font, true, SPEECH.seconds);
+    readonly deliveryTip = new AnchoredTip(this.art, SPEECH.width, SPEECH.height, SPEECH.font, true, SPEECH.seconds);
+    private nextHeroSpeech: number = HERO_SPEECH.first;
+    private nextDeliverySpeech: number = DELIVERY_SPEECH.first;
+    private heroSpeechPoint = new Laya.Point();
     readonly essenceArrow = new Laya.Sprite();
     readonly essenceTip = new AnchoredTip(this.art, SPEECH.width, SPEECH.height, SPEECH.font, true, SPEECH.seconds);
     private essence: (EssenceFeedback & { elapsed: number; spoken: boolean }) | null = null;
@@ -64,12 +85,13 @@ export class VillageWorld {
     private freshBuildingVillage = true;
     scene = layoutVillage(this.layout);
     private patrolVisuals = new PatrolVisuals(this.world, this.art, this.game);
+    private heroVisuals = new HeroVisuals(this.world, this.art);
+    private songLeiVisuals = new HeroVisuals(this.world, this.art, SONGLEI);
+    private deliveryVisuals = new DeliveryHeroVisuals(this.world, this.art);
     private patrolTimer: Laya.Text | undefined;
     private patrolGlow: Laya.Sprite | undefined;
-    readonly patrolBuffSign = new Laya.Sprite();
-    private patrolBuffIcons: Laya.Sprite[] = [];
-    private patrolBuffStatus: Laya.Text;
-    private motion = new VillagerMotion(this.navigation(), this.scene.stops);
+    private walkNavigation = this.navigation();
+    private motion = new VillagerMotion(this.walkNavigation, this.scene.stops);
     private navigation(scene = this.scene) {
         return new VillageNavigation(scene.props, scene.landscape, scene.bounds);
     }
@@ -97,15 +119,16 @@ export class VillageWorld {
     private villageMotionSeconds = 0;
     private hitTop = new Laya.Point();
     private hitBottom = new Laya.Point();
-    get hasPatrolImpact() { return this.feedback.hasPatrolImpact || !!this.patrolVisuals?.hasLanding; }
+    get hasPatrolImpact() { return this.feedback.hasPatrolImpact || !!this.patrolVisuals?.hasLanding || this.deliveryVisuals.hasImpact; }
     get hasEnemyDeaths() { return this.feedback.deaths.size > 0; }
     constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private layout: GameLayout,
-        houseClicked: (name: string, visual: BuildingVisuals) => void, personClicked: (id: string) => void, private playDefeat?: () => void, patrolClicked?: () => void) {
+        houseClicked: (name: string, visual: BuildingVisuals) => void, personClicked: (id: string) => void, private playDefeat?: () => void,
+        patrolClicked?: () => void, committeeClicked?: (heroId?: string) => void) {
         this.world.name = "VillageWorld";
         this.rage = new TowerRageEffects(this.world, art);
         this.shield = new GateShieldEffects(this.world, art);
         this.summon = new SummonChargeVisuals(this.world, art);
-        const clickNodes: Laya.Sprite[] = [];
+        const clickNodes: Laya.Sprite[] = [this.heroVisuals.body, this.deliveryVisuals.body, this.songLeiVisuals.body];
         for (const p of this.scene.props) {
             const node = new Laya.Sprite();
             node.name = p.id;
@@ -114,8 +137,13 @@ export class VillageWorld {
             this.art.applyFrame(node, p.frame, p.size);
             node.pos(p.x, p.y);
             this.world.addChild(node);
-            const upgradeable = p.id.startsWith("tower:") || p.id.startsWith("building:");
+            const upgradeable = p.id !== HERO_COMMITTEE_PROP && (p.id.startsWith("tower:") || p.id.startsWith("building:"));
             this.props.push({ id: p.id, y: p.ground ? -1 : p.y, node, ground: p.ground, visual: upgradeable ? new BuildingVisuals(node, art) : undefined });
+            if (p.id === HERO_COMMITTEE_PROP) {
+                node.visible = false;
+                node.hitArea = new Laya.Rectangle(0, 0, node.width, node.height);
+                clickNodes.push(node);
+            }
             if (p.id === PATROL_PROP) {
                 node.visible = false;
                 node.hitArea = new Laya.Rectangle(0, 0, p.size, p.size);
@@ -127,18 +155,6 @@ export class VillageWorld {
                 this.patrolTimer.mouseEnabled = false;
                 this.patrolGlow = node.addChild(new Laya.Sprite());
                 this.patrolGlow.mouseEnabled = false;
-
-                // 挂在屋檐右侧，倒计时仍在屋顶中央；图标不接管点击或拖拽。
-                const sign = this.patrolBuffSign;
-                sign.name = "PatrolHouseBuffs";
-                sign.mouseEnabled = sign.visible = false;
-                this.art.panel(sign, "panel_card", 96, 57);
-                this.patrolBuffIcons = [ITEMS.patrol_ration.icon, ITEMS.liang_indulgence.icon].map(icon =>
-                    this.ui.image(sign, icon, 0, 3, 34, 30));
-                this.patrolBuffStatus = this.ui.label(sign, "", 2, 32, 92, 20, C.ink, true, 22);
-                this.patrolBuffStatus.fontSize = 20;
-                this.patrolBuffStatus.align = "center";
-                this.patrolBuffStatus.wordWrap = false;
 
                 clickNodes.push(node);
             }
@@ -188,7 +204,7 @@ export class VillageWorld {
             plane.mouseEnabled = disc.mouseEnabled = false;
             plane.addChild(disc); this.world.addChild(plane); this.qualityRings.push({ plane, disc });
         }
-        this.interaction.bind(clickNodes, this.ui, houseClicked, personClicked, patrolClicked);
+        this.interaction.bind(clickNodes, this.ui, houseClicked, personClicked, patrolClicked, committeeClicked);
     }
     /** 高清 HUD 沿用像素塔足底下方的标签位置，与塔的左右镜像无关。 */
     towerAnchor(index: number) {
@@ -216,7 +232,14 @@ export class VillageWorld {
         this.summon.reset();
         this.interaction.cancelPresses();
         this.interaction.clearDepth();
-        this.motion = new VillagerMotion(this.navigation(), this.scene.stops);
+        this.motion = new VillagerMotion(this.walkNavigation, this.scene.stops);
+        this.heroVisuals.stroll.reset();
+        this.deliveryVisuals.stroll.reset();
+        this.songLeiVisuals.stroll.reset();
+        this.heroTip.hide();
+        this.deliveryTip.hide();
+        this.nextHeroSpeech = HERO_SPEECH.first;
+        this.nextDeliverySpeech = DELIVERY_SPEECH.first;
         this.thoughts = new VillagerThoughts(); this.crying = new NewbornCry(); this.cryIcon.visible = false;
         this.hideSpeech(); this.walkAnimation = new WalkAnimation(this.art);
         this.projectiles = new ProjectileMotion();
@@ -231,7 +254,10 @@ export class VillageWorld {
     }
     relayout(next: GameLayout) {
         const previous = this.layout, scene = layoutVillage(next);
-        this.motion.relayout(this.navigation(scene), scene.stops, p => ({ x: p.x, y: next.worldY(previous.referenceY(p.y)) }));
+        this.walkNavigation = this.navigation(scene);
+        this.motion.relayout(this.walkNavigation, scene.stops, p => ({ x: p.x, y: next.worldY(previous.referenceY(p.y)) }));
+        for (const visual of [this.heroVisuals, this.deliveryVisuals, this.songLeiVisuals])
+            visual.stroll.relayout(previous, next, this.walkNavigation);
         this.layout = next;
         this.scene = scene;
         this.backgroundKey = "";
@@ -295,7 +321,8 @@ export class VillageWorld {
         if (advancing) {
             if (s?.phase === "DAY" || s?.phase === "NIGHT") this.villageMotionSeconds += visualTime;
             const chopping = s?.phase === "DAY" && this.motion.visiblePeople.some(person => person.job === "LOGGING" && this.motion.get(person.id).clip.endsWith("_work"));
-            const gateTraffic = s?.phase === "DAY" && this.motion.crossingGate(this.layout.gateY);
+            const gateTraffic = s?.phase === "DAY" ? this.motion.crossingGate(this.layout.gateY)
+                : this.game.battle?.hero?.atGate === true || this.game.battle?.delivery?.atGate === true;
             this.props.forEach(p => p.visual?.advance(visualTime, s?.phase === "NIGHT",
                 p.id === "building:gate" ? gateTraffic : p.id === "building:logging" && chopping));
         }
@@ -320,6 +347,15 @@ export class VillageWorld {
             this.logging.advance(visualDelta);
             for (const tree of this.props) if (tree.id.startsWith("tree:")) tree.node.rotation = this.logging.rotation(tree.id);
             if (s.phase === "DAY" && !this.residentCuesBlocked) {
+                this.heroVisuals.stroll.advance(visualDelta, this.layout, this.walkNavigation);
+                this.heroTip.advance(visualDelta);
+                this.nextHeroSpeech = Math.max(0, this.nextHeroSpeech - visualDelta);
+                if (s.deliveryUnlocked) {
+                    this.deliveryVisuals.stroll.advance(visualDelta, this.layout, this.walkNavigation);
+                    this.deliveryTip.advance(visualDelta);
+                    this.nextDeliverySpeech = Math.max(0, this.nextDeliverySpeech - visualDelta);
+                }
+                if (s.songLeiUnlocked) this.songLeiVisuals.stroll.advance(visualDelta, this.layout, this.walkNavigation);
                 const visible = (id: string) => {
                     if (!this.motion.visiblePeople.some(p => p.id === id)) return false;
                     const pose = this.motion.get(id);
@@ -330,9 +366,17 @@ export class VillageWorld {
                     this.essenceTip.advance(visualDelta);
                     if (this.essence.spoken && !this.essenceTip.visible) this.essence = null;
                 } else {
-                    this.crying.advance(visualDelta, !this.thoughts.current, visible);
-                    if (!this.crying.current) this.thoughts.update(s, visualDelta, visible);
+                    const speaking = this.heroTip.visible || this.deliveryTip.visible;
+                    this.crying.advance(visualDelta, !this.thoughts.current && !speaking, visible);
+                    if (!this.crying.current && !speaking) this.thoughts.update(s, visualDelta, visible);
                     this.speechTip.advance(visualDelta);
+                    if (!speaking && !this.thoughts.current && !this.crying.current) {
+                        if (!this.nextHeroSpeech && this.heroVisuals.stroll.standing && this.showHeroSpeech(this.heroVisuals.body, this.heroTip, HERO_SPEECH.lines))
+                            this.nextHeroSpeech = HERO_SPEECH.interval + Math.random() * HERO_SPEECH.variance;
+                        else if (s.deliveryUnlocked && !this.nextDeliverySpeech && this.deliveryVisuals.stroll.standing &&
+                            this.showHeroSpeech(this.deliveryVisuals.body, this.deliveryTip, DELIVERY_SPEECH.lines))
+                            this.nextDeliverySpeech = DELIVERY_SPEECH.interval + Math.random() * DELIVERY_SPEECH.variance;
+                    }
                 }
             }
         }
@@ -341,6 +385,15 @@ export class VillageWorld {
             return false;
         // Keep the fractional frame so 16/17 ms host updates do not alternate between two and three updates per draw.
         this.renderDelta %= 1 / 30;
+        return true;
+    }
+    /** 两位英雄使用同一套头顶锚点和遮挡规则，屋后和城门血条附近延后显示。 */
+    private showHeroSpeech(body: Laya.Sprite, tip: AnchoredTip, lines: readonly string[]) {
+        if (!body.visible || body.y < this.layout.worldY(HERO_SPEECH.clearOfGateY)) return false;
+        const bounds = body.hitArea as Laya.Rectangle;
+        const point = body.localToGlobal(this.heroSpeechPoint.setTo(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2));
+        if (this.interaction.pickAt(point.x, point.y)?.node !== body) return false;
+        tip.show(lines[Math.floor(Math.random() * lines.length)], () => ({ node: body, bounds }));
         return true;
     }
     /** 同帧绘制战斗反馈，并将献纳成功信号交给上层提示。 */
@@ -363,15 +416,17 @@ export class VillageWorld {
         this.cryIcon.visible = false;
         this.essenceArrow.visible = false;
         this.residentCuesBlocked = night || panelOpen || houseTipOpen || this.game.pauses.size > 0 || s?.phase !== "DAY";
-        if (this.residentCuesBlocked) { this.hideSpeech(); this.crying.dismiss(); }
+        if (this.residentCuesBlocked) { this.hideSpeech(); this.heroTip.hide(); this.deliveryTip.hide(); this.crying.dismiss(); }
         if (s?.phase !== "DAY" && this.essence) { this.essence = null; this.essenceTip.hide(); }
         const depth = this.props.slice();
         const booth = this.props.find(item => item.id === PATROL_PROP)!;
         booth.node.visible = !!s;
         booth.node.mouseEnabled = !!s && !panelOpen;
         if (!s) {
-            this.patrolBuffSign.visible = false;
             this.patrolVisuals.update(null, this.layout);
+            this.heroVisuals.update(null, this.layout, []);
+            this.deliveryVisuals.update(null, this.layout, [], 0, 0, false, false);
+            this.songLeiVisuals.update(null, this.layout, []);
             this.rage.update(null, []);
             this.shield.reset();
             depth.sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
@@ -380,7 +435,9 @@ export class VillageWorld {
         }
         for (const p of this.props) {
             if (DAY_ONLY_PROPS.has(p.id)) p.node.visible = !night;
+            if (p.id === HERO_COMMITTEE_PROP) p.node.mouseEnabled = s.phase === "DAY" && !panelOpen;
             let kind: BuildingLook | null = null, level = 0, damaged = false, facing = 1;
+            let flag: TowerFlag | undefined;
             if (p.id === PATROL_PROP) {
                 kind = "PATROL";
                 level = s.patrol.level;
@@ -395,18 +452,7 @@ export class VillageWorld {
                     glow.graphics.drawEllipse(size * .37, size * .51, size * .22, size * .19, "rgba(255,151,175,0.20)", null, 0);
                 }
                 glow.alpha = .55 + .45 * Math.sin(this.sceneSeconds * 4);
-                const damage = !!(s.patrol.rationReady || s.night?.patrolRation);
-                const radius = !!(s.patrol.radiusReady || s.night?.patrolWideImpact);
-                this.patrolBuffSign.visible = (damage || radius) && s.phase !== "GAME_OVER";
-                if (this.patrolBuffSign.visible) {
-                    this.patrolBuffSign.pos(p.node.x - p.node.pivotX + size * .81, p.node.y - p.node.pivotY + size * .30);
-                    const [damageIcon, radiusIcon] = this.patrolBuffIcons;
-                    damageIcon.visible = damage;
-                    radiusIcon.visible = radius;
-                    damageIcon.x = radius ? 10 : 31;
-                    radiusIcon.x = damage ? 51 : 31;
-                    this.patrolBuffStatus.text = s.night?.patrolRation || s.night?.patrolWideImpact ? "生效中" : "待旋甩";
-                }
+
             }
             if (p.id === "building:gate") {
                 damaged = (battle ? battle.gate : s.gate) / gateCapacity(s) < .35;
@@ -421,6 +467,7 @@ export class VillageWorld {
                 facing = TOWER_VIEW.facing[index];
                 kind = t.kind ? "CANNON" : null;
                 level = t.level;
+                if (t.kind) flag = t.flag ?? towerFlag(s.run, index);
             }
             else if (p.id.startsWith("building:house-")) {
                 kind = "HOUSE";
@@ -435,6 +482,7 @@ export class VillageWorld {
                 level = s.logging;
             }
             p.visual?.sync(kind, level, this.freshBuildingVillage, damaged, facing);
+            if (p.id.startsWith("tower:")) p.visual!.syncPennant(flag, facing);
             if (!panelOpen && !this.game.pauses.size) p.visual?.beginVisibleUpgrade();
             if (HOUSE_TIP_NAMES[p.id]) {
                 const { node, bounds } = p.visual!.bodyRegion();
@@ -464,7 +512,7 @@ export class VillageWorld {
             const model = villagerModel(p), walkingClip = pose.clip.endsWith("_walk");
             const seated = model === "elder";
             const facing = walkingClip ? this.art.walk(model, pose.direction) : model === "baby" || seated ? { clip: pose.clip, mirror: false } : this.art.labor(pose.clip, pose.direction);
-            const scale = VILLAGER_QUALITY[p.quality].scale * this.layout.personScale;
+            const scale = this.layout.personScale;
             const size = p.adult ? 56 : p.growth === 0 ? 42 : 48;
             const displayScale = seated ? 1 : this.art.animation(facing.clip).displayScale ?? 1;
             const frame = seated ? facing.clip : walkingClip ? this.walkAnimation.frame(pose, facing.clip, size * scale) : this.art.frameId(facing.clip, pose.elapsed, pose.animated);
@@ -556,16 +604,21 @@ export class VillageWorld {
             this.reserveEnemies(visibleEnemies.length);
             visibleEnemies.forEach(({ enemy: e, mindTime }, i) => {
                 const n = this.enemies[i], at = enemyPoint(e);
+                const y = this.layout.worldY(at.y), verticalScale = this.layout.worldY(at.y + 1) - y;
+                const heroImpact = this.feedback.heroImpact(e.seq, verticalScale);
+                const electric = { paralyzed: e.hp > 0 && paralyzed(e, presentation.tick), age: heroImpact?.electric ? heroImpact.age : undefined };
                 n.visible = true;
                 n.name = `enemy:${e.seq}`;
                 this.enemyVisuals[i].draw(e.kind, e.appearanceSeed, e.walkDistance,
                     this.art.enemyMirror(e.kind, enemyPoint({ ...e, progress: e.progress + 1 }).x - at.x),
                     this.feedback.flashing(e.seq), this.feedback.deathPose(e.seq), this.feedback.hitShake(e.seq), mindTime,
                     this.feedback.zhouLoveCue(e.seq), e.hp > 0 && presentation.isPoisoned(e.seq), this.feedback.burstAge(e.seq),
-                    e.hp > 0 && e.slowTicks > 0 && this.feedback.frosted(e.seq), this.feedback.patrolImpactAge(e.seq), this.feedback.patrolAir(e.seq));
-                const y = this.layout.worldY(at.y);
-                const recoil = this.feedback.patrolRecoil(e.seq, this.layout.worldY(at.y + 1) - y);
-                n.pos(at.x + (recoil?.x ?? 0), y + (recoil?.y ?? 0));
+                    e.hp > 0 && (deliveryEnemySlow(e, presentation.tick) > 0 || (e.slowTicks > 0 && this.feedback.frosted(e.seq))),
+                    this.feedback.patrolImpactAge(e.seq), this.feedback.patrolAir(e.seq),
+                    heroImpact?.delivery || heroImpact?.electric ? undefined : heroImpact?.age,
+                    electric.paralyzed || electric.age !== undefined ? electric : undefined);
+                const recoil = this.feedback.patrolRecoil(e.seq, verticalScale);
+                n.pos(at.x + (recoil?.x ?? 0) + (heroImpact?.x ?? 0), y + (recoil?.y ?? 0) + (heroImpact?.y ?? 0));
                 depth.push({ id: n.name, y: n.y, node: n });
             });
             this.projectileVisuals.draw(this.projectiles.poses);
@@ -585,9 +638,15 @@ export class VillageWorld {
         const shieldDepth = this.shield.update(battle, { node: gate.node, visual: gate.visual! }, this.layout, events);
         const summonDepth = this.summon.update(presentation, this.layout, events, this.feedback.time);
         const patrolDepth = this.patrolVisuals.update(presentation, this.layout, events, this.feedback.time, panelOpen);
-        [...depth, ...rageDepth, ...shieldDepth, ...summonDepth, ...patrolDepth].sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
-        depth.sort(compareDepth);
-        this.interaction.update(depth);
+        const dayHero = s.phase === "DAY" && !night;
+        const heroDepth = this.heroVisuals.update(presentation, this.layout, events, this.feedback.time, dayHero, !this.residentCuesBlocked);
+        const deliveryDepth = this.deliveryVisuals.update(presentation, this.layout, events, this.feedback.time,
+            this.feedback.presentationTick, dayHero && s.deliveryUnlocked === true, !this.residentCuesBlocked);
+        const songLeiDepth = this.songLeiVisuals.update(presentation, this.layout, events, this.feedback.time,
+            dayHero && s.songLeiUnlocked === true, !this.residentCuesBlocked);
+        [...depth, ...rageDepth, ...shieldDepth, ...summonDepth, ...patrolDepth, ...heroDepth, ...deliveryDepth, ...songLeiDepth]
+            .sort(compareDepth).forEach((p, i) => p.node.zIndex = i);
+        this.interaction.update((dayHero ? [...depth, ...heroDepth, ...deliveryDepth, ...songLeiDepth] : depth).sort(compareDepth));
         return events.some(event => event.type === "mercy");
     }
 }

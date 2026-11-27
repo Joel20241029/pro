@@ -21,11 +21,14 @@ export class DailyTaskCombat {
                     this.towers.add(event.shot.tower);
                     if (event.shot.kind === "ARROW") this.arrows.add(event.target);
                     if (event.shot.kind === "STONE") this.splash = Math.max(this.splash, event.hurt.length);
+                    if (event.slowed) for (const seq of event.slowed) this.frost.add(seq);
                     this.countKills(event.hurt);
                     break;
                 case "blast":
                 case "handSpeed":
                 case "mercy":
+                case "heroHit":
+                case "deliveryHit":
                 case "poison": this.countKills(event.hurt); break;
                 case "patrol":
                 case "summon": this.countKills([event.enemy]); break;

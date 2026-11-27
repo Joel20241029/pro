@@ -1,4 +1,7 @@
 export type TowerKind = "ARROW" | "STONE" | "SLOW";
+/** 石炮塔可保存的装饰旗样式。仅改变地图外观，使用固定 ID 便于旧村继续读档。 */
+export const TOWER_FLAGS = ["briefs", "bra", "sock"] as const;
+export type TowerFlag = typeof TOWER_FLAGS[number];
 /** 统一石炮塔以弹种区分战斗行为。旧塔型 ID 继续标识已装弹种，保留夜战与存档引用。 */
 export const TOWER_AMMO = {
     ARROW: { name: "弓箭", icon: "cannon_ammo_arrow", effect: "单体快攻" },
@@ -9,11 +12,15 @@ export const TOWER_AMMO = {
 export const STARTER_AMMO = ["ARROW", "STONE"] as const;
 /** 同一弹种全村共用等级；从 1 级起每级额外提供 5% 的基础伤害，加法累计。 */
 export const AMMO_DAMAGE_PER_LEVEL = .05;
+/** 新建一座石炮塔统一消耗 30 木，沿用初始弓箭塔造价。建造、费用提示和每日任务预算共用此值。 */
+export const TOWER_BUILD_WOOD = 30;
 export const TOWERS = {
-    ARROW: { damage: 12, interval: .8, range: 175, cost: 30, splash: 0 },
-    STONE: { damage: 22, interval: 1.6, range: 165, cost: 45, splash: 70 },
-    SLOW: { damage: 4, interval: 1.5, range: 160, cost: 35, splash: 60 }
+    ARROW: { damage: 12, interval: .8, range: 175, splash: 0 },
+    STONE: { damage: 22, interval: 1.6, range: 165, splash: 70 },
+    SLOW: { damage: 4, interval: 1.5, range: 160, splash: 60 }
 } as const;
+/** 新开夜战在旧最终生命上额外加 30%，每过一夜多 1 个百分点，第 71 夜到 200%。试算只调整生命。 */
+export const REINFORCED_NIGHT = { initialHealthPercent: 130, healthPercentPerNight: 1, maximumHealthPercent: 200 } as const;
 /** 720×1280 的固定逻辑路径/塔位，首版地图配置；改变坐标会影响射程和到门时间。 */
 export const PATH = [{ x: 360, y: 230 }, { x: 360, y: 350 }, { x: 250, y: 435 }, { x: 470, y: 550 }, { x: 360, y: 655 }, { x: 360, y: 760 }];
 /** 正常战场高度的塔位基准。下标沿用存档编号，与屏幕投影、战斗索敌及弹道共用。 */
@@ -68,7 +75,7 @@ export const WAVE_PROGRESSION = {
     extendedArrivalScale: 2,
     // 90 人以下保留原窗口，180 人起窗口额外加 25%，让重叠最明显的大波次先降密。
     denseArrival: { fromCount: 90, fullCount: 180, extraWindowScale: .25 },
-    eliteFirstWeightPercent: 32, eliteWeightPerBand: 5, eliteWeightBonusMax: 12, seasonalWeightPercent: 125
+    eliteFirstWeightPercent: 32, eliteWeightPerBand: 5, eliteWeightBonusMax: 12
 } as const;
 
 /** 保留老波次的密集出怪标记。新波次从显式 rhythm 字段识别。 */

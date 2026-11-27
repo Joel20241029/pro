@@ -10,5 +10,9 @@ export const MUSIC = { file: "village_loop.mp3", battleFile: "battle_loop.mp3", 
     // 每次真实落地只产生一个事件，空砸和群体命中使用同一声，无需现实时间限频。
     patrolLanding: { file: "patrol_landing.mp3", volume: .36, intervalMs: 0 },
     // 机关枪每次实际扣弹播放一次发射声，使用原试听稿的音量。
-    rapidFire: { file: "patrol_rapid_fire.mp3", volume: .30, intervalMs: 0 }
+    rapidFire: { file: "patrol_rapid_fire.mp3", volume: .30, intervalMs: 0 },
+    // 所有英雄共用实际命中的短击声。50 毫秒间隔防重播，保留三倍速下相距约 83 毫秒的双瓶接触。
+    heroHit: { file: "hero_hit.mp3", volume: .35, intervalMs: 50 },
+    // 一袋落地只发一次餐盒与汤汁声，群伤不会叠音。
+    deliverySplash: { file: "delivery_splash.mp3", volume: .38, intervalMs: 0 }
 } as const;

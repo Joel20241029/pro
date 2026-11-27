@@ -1,7 +1,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const read = name => require(`${process.env.DAIDAI_TEST_BUILD}/${name}.js`);
-const { ZHOU_LOVE_TACTIC, DEFAULT_TACTIC, TACTIC_USE, tacticDefinition } = read('config/TacticConfig');
+const { ZHOU_LOVE_TACTIC, ZHOU_LOVE_SPAWN_HEALTH_PERCENT, DEFAULT_TACTIC, tacticDefinition } = read('config/TacticConfig');
 const { RULE } = read('config/RuleConfig');
 const { createGame, applyCommand } = read('game/VillageRules');
 const { generateWave } = read('game/WaveGenerator');
@@ -43,7 +43,7 @@ test('Zhou Bo learns at wave 40, costs 180 wood / 90 food and has four couplets 
     assert.equal(couplets.length, 4);
     assert(couplets.every(line => /^[^，。]{7}，[^，。]{7}。$/.test(line)));
     assert.match(couplets[0], /为情所困/);
-    assert.match(t.summary, /女村民多于男村民/);
+    assert.match(t.summary, /女村民更多：清场/);
     assert.deepEqual([s.wood, s.food, s.tactics.extraSlots[0]], [20, 110, ZHOU_LOVE_TACTIC]);
     const early = createGame(13); early.completed = 39; early.day = 40; early.wood = early.food = 200;
     assert.throws(() => applyCommand(early, { type: 'TACTIC_LEARN', id: ZHOU_LOVE_TACTIC }), /还需守住 1 波/);
@@ -62,12 +62,33 @@ test('female-majority immediately defeats living enemies and bosses; elders and 
     const event = b.feedback.at(-1);
     assert.equal(event.cleared, true);
     assert.deepEqual(event.targets.map(e => [e.seq, e.hp]), [[200, 0], [201, 0], [202, 0]]);
-    assert.equal(b.tacticUsesLeft, 1);
+    assert.equal(b.usesLeftFor(tacticDefinition(ZHOU_LOVE_TACTIC)), 0);
     assert.equal(b.cooldownFor(DEFAULT_TACTIC), 0);
     for (let i = 0; i <= 12; i++) b.step();
     assert.equal(b.enemies.length, 1);
     assert.notEqual(b.enemies[0].seq, 200);
+    const [newcomer] = b.enemies;
+    assert.equal(newcomer.hp, Math.floor(newcomer.maxHp * 65 / 100));
     assert(!b.bell(ZHOU_LOVE_TACTIC));
+});
+
+test('a successful clear also weakens a later boss and its summoned enemies, without changing maximum HP', () => {
+    const b = battle(), control = battle();
+    b.base.people.find(p => p.sex === 'MALE').sex = 'FEMALE';
+    for (const current of [b, control]) {
+        current.base.wave.entries = [{ tick: 1, kind: 'enemy_chief', appearanceSeed: 3 }];
+        current.enemies = [];
+        current.patrol = null;
+        current.hero = null;
+    }
+    assert(b.bell(ZHOU_LOVE_TACTIC));
+    for (let i = 0; i <= RULE.summonTicks[0] + 1; i++) {
+        b.step();
+        control.step();
+    }
+    assert.deepEqual(b.enemies.map(e => e.kind), ['enemy_chief', 'enemy_raider', 'enemy_raider']);
+    assert.deepEqual(b.enemies.map(e => e.maxHp), control.enemies.map(e => e.maxHp));
+    for (const e of b.enemies) assert.equal(e.hp, Math.floor(e.maxHp * ZHOU_LOVE_SPAWN_HEALTH_PERCENT / 100));
 });
 
 test('male-majority and parity cast without restrictions, heal 25% capped, and mark every living target', () => {
@@ -86,6 +107,9 @@ test('male-majority and parity cast without restrictions, heal 25% capped, and m
         assert.equal(f.zhouLoveCue(203), undefined);
         f.advance(1);
         assert.equal(f.zhouLoveCue(202), undefined);
+        for (let i = 0; i <= 12; i++) b.step();
+        const newcomer = b.enemies.find(e => e.seq < 200);
+        assert(newcomer && newcomer.hp === newcomer.maxHp);
     }
 });
 
@@ -97,7 +121,7 @@ test('session forwards instant effects once, then settles and persists a last-en
     const b = prepare(game.battle);
     b.base.people.find(p => p.sex === 'MALE').sex = 'FEMALE';
     b.base.wave.entries = [];
-    game.pause('USER'); game.bell(ZHOU_LOVE_TACTIC); assert.equal(b.tacticUsesLeft, 2);
+    game.pause('USER'); game.bell(ZHOU_LOVE_TACTIC); assert.equal(b.usesLeftFor(tacticDefinition(ZHOU_LOVE_TACTIC)), 1);
     game.resume('USER'); game.bell(ZHOU_LOVE_TACTIC);
     const events = game.takeCombatFeedback();
     assert.equal(events.length, 1);

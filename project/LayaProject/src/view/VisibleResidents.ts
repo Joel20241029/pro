@@ -1,4 +1,4 @@
-import { GameState, Person, Tower } from "../game/GameState";
+import { GameState, isExploring, Person, Tower } from "../game/GameState";
 
 /** doc/tech/46：地图最多20人，业务人口仍按住宅全量结算。白天实景只有6个田间站点、
  * 5棵可伐木树（保留1棵供轮换），不因扩建生成重叠工人；夜间不受生产站点限制。
@@ -13,8 +13,9 @@ export class VisibleResidents {
     select(state: GameState, towers: Tower[], celebrating: readonly string[], focus?: string): Person[] {
         const fresh = this.run !== state.run;
         if (fresh) { this.selected = []; this.families.clear(); this.run = state.run; }
+        const people = state.people.filter(p => !isExploring(state, p.id));
         const groups = new Map<string, Set<string>>();
-        for (const p of state.people) groups.set(p.id, new Set([p.id]));
+        for (const p of people) groups.set(p.id, new Set([p.id]));
         const join = (ids: readonly string[]) => {
             const united = new Set<string>();
             for (const id of ids) for (const member of groups.get(id) || []) united.add(member);
@@ -23,8 +24,8 @@ export class VisibleResidents {
         const newcomers = fresh ? [] : state.families.filter(f => !this.families.has(f.id)).reduce<string[]>((ids, f) => ids.concat(f.partners), []);
         for (const f of state.families) if (f.partners.some(id => celebrating.includes(id) || newcomers.includes(id))) join(f.partners);
         this.families = new Set(state.families.map(f => f.id));
-        const byId = new Map(state.people.map(p => [p.id, p]));
-        const priority = [...(focus ? [focus] : []), ...celebrating, ...newcomers, ...towers.reduce<string[]>((ids, t) => t.operator ? ids.concat(t.operator) : ids, []), ...this.selected, ...state.people.map(p => p.id)];
+        const byId = new Map(people.map(p => [p.id, p]));
+        const priority = [...(focus ? [focus] : []), ...celebrating, ...newcomers, ...towers.reduce<string[]>((ids, t) => t.operator ? ids.concat(t.operator) : ids, []), ...this.selected, ...people.map(p => p.id)];
         const chosen = new Set<string>(), visited = new Set<Set<string>>();
         let farmers = 0, loggers = 0;
         for (const id of priority) {

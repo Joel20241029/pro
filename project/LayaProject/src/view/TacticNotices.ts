@@ -34,10 +34,9 @@ export class TacticNotices {
         if (!sameRun || previous.villageId !== villageId || previous.completed !== s.completed || previous.unread.join("|") !== unread.join("|"))
             this.save();
     }
-    markSeen(id?: string) {
-        if (!this.current?.unread.length) return;
-        if (id && !this.hasUnread(id)) return;
-        this.current.unread = id ? this.current.unread.filter(tactic => tactic !== id) : [];
+    markSeen(id: string) {
+        if (!this.current?.unread.includes(id)) return;
+        this.current.unread = this.current.unread.filter(tactic => tactic !== id);
         this.save();
     }
     private save() {

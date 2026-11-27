@@ -6,7 +6,8 @@ const {isWorkingAdult}=require(root+'/game/GameState');
 const {BattleSimulation}=require(root+'/game/BattleSimulation');
 const {gateCapacity,storageCapacity,laborSlots,upgradeCost,residentialCost,enemyPower,levelPower}=require(root+'/game/Growth');
 const {validateState}=require(root+'/storage/StateValidation');
-const {RULE,PADS,TOWERS}=require(root+'/game/GameConfig');
+const {TOWER_BUILD_WOOD}=require(root+'/config/DefenseConfig');
+const {RULE,PADS}=require(root+'/game/GameConfig');
 const {TACTICS}=require(root+'/config/TacticConfig');
 const {VILLAGER_QUALITY}=require(root+'/config/VillagerQuality');
 const {tacticUnavailableReason}=require(root+'/game/Tactics');
@@ -19,9 +20,8 @@ function play(seed, nights=300, verbose=false, options={}) {
  for(let d=0;d<nights;d++) {
   for(const p of [...s.people,...s.choices.filter(q=>q.kind==='TRAVELER').map(q=>q.person)])
    if(p.quality!=='COMMON') firstQuality[p.quality] ??= s.day;
-  while(s.choices.length){const q=s.choices[0];let value;
-   if(q.kind==='POLICY')value=[options.policy || 'policy_logging','policy_harvest','policy_prepare'].find(k=>q.options.includes(k))||q.options[0];
-   else value=s.people.length<Math.min(options.populationLimit||RULE.populationCap,capacity(s))?'accept':'decline';
+  while(s.choices.length){
+   const value=s.people.length<Math.min(options.populationLimit||RULE.populationCap,capacity(s))?'accept':'decline';
    applyCommand(s,{type:'CHOOSE',value});
   }
   if(s.phase==='DAWN')applyCommand(s,{type:'FINALIZE'});
@@ -56,7 +56,7 @@ function play(seed, nights=300, verbose=false, options={}) {
   if(s.logging<target+2)upgrade('LOGGING');
   if(economy(s).food-economy(s).rations<Math.max(12,s.logging*5)||s.farm<target)upgrade('FARM');
   if(s.people.filter(isWorkingAdult).length>=4)for(let i=0;i<PADS.length;i++){
-   if(!s.towers[i].kind && s.wood>=TOWERS.ARROW.cost)applyCommand(s,{type:'TOWER',index:i,kind:'ARROW'});
+   if(!s.towers[i].kind && s.wood>=TOWER_BUILD_WOOD)applyCommand(s,{type:'TOWER',index:i,kind:'ARROW'});
    const kind=options.towerKind;
    if(s.towers[i].kind && kind && kind!==s.towers[i].kind && (kind!=='SLOW'||s.iceAmmoUnlocked))
     applyCommand(s,{type:'TOWER',index:i,kind});
@@ -67,7 +67,7 @@ function play(seed, nights=300, verbose=false, options={}) {
    if(operators.length)applyCommand(s,{type:'OPERATOR',index:i,id:operators.shift().id});
   }
   for(const i of [1,0,3,4,2]){const t=s.towers[i]; if(t.kind&&t.level<target&&affordable(upgradeCost('TOWER',t.level))){applyCommand(s,{type:'UPGRADE',index:i});upgrades++;}}
-  // Fortify before a sparse generation meets the annual chief; waiting for damage can be too late.
+  // Fortify before a sparse generation meets the twelfth-wave boss; waiting for damage can be too late.
   const gateTarget=workers.length<4?target:Math.ceil(target/2);
   if(s.gateLevel<gateTarget||s.gateLevel<target&&s.gate<gateCapacity(s)*.8)upgrade('GATE');
   while(s.gate<gateCapacity(s)*.95&&s.wood>=10+5*(s.gateLevel-1))applyCommand(s,{type:'REPAIR'});

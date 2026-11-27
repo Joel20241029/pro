@@ -1,4 +1,4 @@
-import { TACTIC_USE } from "../config/TacticConfig";
+import { tacticCooldownTicks } from "../config/TacticConfig";
 import type { TacticDefinition } from "../config/TacticConfig";
 import { GameSession } from "../game/GameSession";
 import { RULE } from "../game/GameConfig";
@@ -22,9 +22,15 @@ export class NightControls {
         const tactics = game.battle!.tactics;
         this.status = ui.label(this.node, "", cfg.status.x, cfg.status.y, cfg.status.width, cfg.status.font, C.ink, true, cfg.status.height);
         this.status.name = "NightStatus";
-        this.status.align = "left"; this.status.wordWrap = false; this.status.overflow = Laya.Text.SHRINK;
+        this.status.align = "center"; this.status.wordWrap = false; this.status.overflow = Laya.Text.SHRINK;
         const paused = game.pauses.has("USER");
         const pause = cfg.pause;
+        const exit = ui.button(this.node, "退出", cfg.exitX, 0, pause.width,
+            () => panels.open({ type: "nightExit" }), C.muted, pause.height);
+        exit.size(pause.width, pause.hitHeight);
+        const exitFace = exit.getChildByName("buttonFace") as Laya.Sprite;
+        exitFace.y += pause.y;
+        (exitFace.getChildByName("buttonText") as Laya.Text).fontSize = pause.font;
         const control = ui.button(this.node, paused ? "继续" : "暂停", pause.x, 0, pause.width, () => {
             if (game.pauses.has("USER")) game.resume("USER"); else game.pause("USER");
             refresh();
@@ -46,7 +52,7 @@ export class NightControls {
             heart.name = `button:${tactic.name}`;
             const face = heart.getChildByName("buttonFace") as Laya.Sprite;
             face.graphics.clear();
-            const skin = ui.image(face, "button_heart_round", 0, 0, size, size, false);
+            const skin = ui.image(face, HUD.roundButtonSkin, 0, 0, size, size, false);
             skin.name = "buttonSkin";
             const iconSize = cfg.heart.icon * ratio;
             const icon = ui.image(face, tactic.icon, (size - iconSize) / 2, cfg.heart.iconY * ratio, iconSize);
@@ -71,18 +77,18 @@ export class NightControls {
         const hand = battle.handSpeed;
         const active = !battle.outcome && (battle.bellTicks > 0 || hand !== null);
         const stateText = this.game.pauses.size ? "已暂停 · " : this.game.patrolAiming ? "瞄准中 · " : "";
-        this.status.text = `${stateText}场上 ${amount(battle.enemies.length, true)} · 待来 ${amount(battle.pendingCount, true)}${battle.base.night!.hungry ? " · 缺粮" : ""}` +
-            (this.buttons.length > 1 || battle.tacticBudget > TACTIC_USE.perNight ? ` · 战技剩余 ${battle.tacticUsesLeft} 次` : "");
+        this.status.text = `${stateText}场上 ${amount(battle.enemies.length, true)} · 待来 ${amount(battle.pendingCount, true)}${battle.base.night!.hungry ? " · 缺粮" : ""}`;
         for (const button of this.buttons) {
             const { tactic, heart, skin, icon, note, ring } = button;
             const ringing = active && battle.tactic.id === tactic.id;
-            const left = Math.min(battle.tacticUsesLeft, battle.usesLeftFor(tactic));
+            const left = battle.usesLeftFor(tactic);
             const mercy = tactic.effect === "KING_MERCY";
             const waves = mercy ? this.game.state!.tactics.mercyCooldown?.wavesLeft ?? 0 : 0;
-            const cooling = !mercy && !active && left > 0 && battle.cooldownFor(tactic.id) > 0;
+            const cooldown = battle.cooldownFor(tactic.id);
+            const cooling = !ringing && left !== 0 && cooldown > 0;
             const tapping = ringing ? hand : null;
             const clock = ringing && !tapping ? "active" : cooling ? "cooldown" : null;
-            const ticks = ringing ? battle.bellTicks : cooling ? battle.cooldownFor(tactic.id) : 0;
+            const ticks = ringing ? battle.bellTicks : cooling ? cooldown : 0;
             const seconds = Math.ceil(ticks * RULE.step / this.game.battleSpeed);
             const enabled = this.game.canCast(tactic.id);
             heart.mouseEnabled = enabled;
@@ -94,17 +100,18 @@ export class NightControls {
                 button.muted = muted;
             }
             const blast = tactic.effect === "TIMED_BLAST";
-            note.text = mercy && this.game.state!.night?.mercySpent ? "本夜已用" : waves ? `再守 ${waves} 波` : tapping ? "连点中" :
-                blast && this.game.blastAiming ? "点路面" : ringing ? `${blast ? "引爆" : "生效"} ${seconds}秒` :
-                    cooling ? `冷却 ${seconds}秒` : !left ? "已用完" :
-                        active || mercy && battle.cooldownFor(tactic.id) > 0 ? "待机" : this.game.pauses.size ? "暂停中" : mercy ? "可祈求" : `可用 ${left} 次`;
+            note.text = tapping ? "连点中" : blast && this.game.blastAiming ? "点路面" :
+                ringing ? `${blast ? "引爆" : "生效"} ${seconds}秒` :
+                left === 0 ? "本夜已用完" : waves ? `再守 ${waves} 波` :
+                cooling ? (left === null ? `冷却 ${seconds}秒` : `余${left}次 · ${seconds}秒`) :
+                this.game.pauses.size ? "暂停中" : active ? "待机" : left === null ? "就绪" : `剩 ${left} 次`;
             if (button.shownTicks === ticks && button.shownClock === clock) continue;
             button.shownTicks = ticks; button.shownClock = clock;
             ring.graphics.clear();
             if (!clock) continue;
             const cfg = HUD.night.ring, center = HUD.footer.start.size / 2;
             ring.graphics.drawCircle(center, center, cfg.radius, null, cooling ? cfg.cooldownTrack : cfg.track, cfg.width);
-            const span = cooling ? TACTIC_USE.cooldownTicks : tactic.ticks;
+            const span = cooling ? tacticCooldownTicks(tactic) : tactic.ticks;
             const points: number[] = [], end = Math.PI * 2 * Math.min(1, ticks / span);
             for (let i = 0; i <= cfg.segments; i++) {
                 const angle = -Math.PI / 2 + end * i / cfg.segments;

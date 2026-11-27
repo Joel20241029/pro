@@ -1,11 +1,11 @@
 import { DAILY_BOTH_WOOD, DAILY_TASKS, DENSE_TASK_GOALS, TASK_GOALS, TaskKind, featureUnlocked } from "../config/DailyTaskConfig";
-import { isDenseWave } from "../config/DefenseConfig";
+import { isDenseWave, TOWER_BUILD_WOOD } from "../config/DefenseConfig";
 import { BattleSimulation } from "./BattleSimulation";
 import { PATH_LENGTH, pointAt } from "./BattleRoad";
 import { DailyTaskCombat } from "./DailyTaskCombat";
 import { activeDailyTasks, DailyTask } from "./DailyTaskState";
-import { ENEMIES, RULE, TOWERS } from "./GameConfig";
-import { clone, GameState, isWorkingAdult } from "./GameState";
+import { ENEMIES, RULE } from "./GameConfig";
+import { clone, GameState, isAvailableAdult } from "./GameState";
 import { gateCapacity, repairCost, residentialCost, residentialUpgradeReason, upgradeCost, upgradeUnavailableReason, UpgradeCost } from "./Growth";
 import { SeededRandom } from "./SeededRandom";
 import { birthUnavailableReason, canMarry, economy } from "./VillageQueries";
@@ -85,7 +85,7 @@ export function prepareDailyTasks(s: GameState, date: string) {
         }
     }
 
-    const e = economy(s), adults = s.people.filter(isWorkingAdult);
+    const e = economy(s), adults = s.people.filter(p => isAvailableAdult(s, p));
     // Production is booked when the player starts the night, even if the village does not survive.
     count(2, "food", e.food);
     count(2, "wood", e.wood);
@@ -95,7 +95,7 @@ export function prepareDailyTasks(s: GameState, date: string) {
     count(2, "loggers", adults.filter(p => p.job === "LOGGING").length);
     one(2, "rations", e.food >= e.rations);
 
-    if (s.towers.some(t => !t.kind)) affordable(3, "towerBuild", { wood: Math.min(...Object.values(TOWERS).map(t => t.cost)), food: 0 });
+    if (s.towers.some(t => !t.kind)) affordable(3, "towerBuild", { wood: TOWER_BUILD_WOOD, food: 0 });
     const towerLevels = s.towers.filter(t => t.kind).map(t => t.level);
     if (towerLevels.length) affordable(3, "towerUpgrade", upgradeCost("TOWER", Math.min(...towerLevels)));
     affordable(3, "farmUpgrade", upgradeCost("FARM", s.farm));
@@ -159,8 +159,8 @@ export function creditTaskCommand(before: GameState, after: GameState, c: Comman
                     case "food": return e.food;
                     case "wood": return e.wood;
                     case "both": return e.food >= task.goal && e.wood >= task.woodGoal! ? task.goal : 0;
-                    case "farmers": return before.people.filter(p => isWorkingAdult(p) && p.job === "FARM").length >= task.goal ? task.goal : 0;
-                    case "loggers": return before.people.filter(p => isWorkingAdult(p) && p.job === "LOGGING").length >= task.goal ? task.goal : 0;
+                    case "farmers": return before.people.filter(p => isAvailableAdult(before, p) && p.job === "FARM").length >= task.goal ? task.goal : 0;
+                    case "loggers": return before.people.filter(p => isAvailableAdult(before, p) && p.job === "LOGGING").length >= task.goal ? task.goal : 0;
                     case "rations": return e.food >= e.rations ? 1 : 0;
                     default: return 0;
                 }

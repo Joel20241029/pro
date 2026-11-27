@@ -22,7 +22,7 @@ function enemy(seq, kind = 'enemy_raider', progress = PATH_LENGTH - 1, speed = 4
     return { seq, kind, appearanceSeed: 87, progress, hp: 100000, speed, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
 }
 function battle(tactic = SHIELD_TACTIC) {
-    const s = learned(); s.food = 100; s.policy = null; s.tactics.equipped = tactic;
+    const s = learned(); s.food = 100; s.tactics.equipped = tactic;
     applyCommand(s, { type: 'NIGHT' }); const b = new BattleSimulation(s);
     b.base.towers.forEach(t => { t.kind = null; t.operator = null; });
     b.cursor = b.base.wave.entries.length; b.seq = 100;
@@ -36,7 +36,7 @@ function fixture() {
 }
 test('shield requires five current wins and one atomic 30 wood / 15 food purchase', () => {
     const t = tacticDefinition(SHIELD_TACTIC);
-    assert.deepEqual([t.name,t.unlockWaves,t.wood,t.food,t.ticks * RULE.step,t.effect], ['二楠之盾',5,30,15,7,'GATE_INVULNERABLE']);
+    assert.deepEqual([t.name,t.unlockWaves,t.wood,t.food,t.ticks * RULE.step,t.effect], ['二楠之盾',5,30,15,12,'GATE_INVULNERABLE']);
     assert(!('multiplier' in t));
     assert.throws(() => validateTactics(TACTICS.map(x => x.id === SHIELD_TACTIC ? {...x,multiplier:1} : x)));
     const s = createGame(7); s.day = 5; s.completed = 4; s.legacy.bestNight = 99;
@@ -74,11 +74,11 @@ test('unactivated shield and expired shield preserve lethal arrival and failure'
         b.step(); assert.equal(b.gate,0); assert.equal(b.outcome,'LOSE'); assert.equal(b.feedback[0].blocked,false);
     }
 });
-test('shield lasts exactly 140 combat steps and cannot be refreshed', () => {
+test('shield lasts exactly 240 combat steps and cannot be refreshed', () => {
     const b = battle(); b.bell();
-    for(let i=0;i<139;i++){assert(b.gateProtected);b.step();}
+    for(let i=0;i<239;i++){assert(b.gateProtected);b.step();}
     assert.equal(b.bellTicks,1); b.step(); assert.equal(b.bellTicks,0); assert(!b.gateProtected);
-    b.bell(); assert.equal(b.bellTicks,0); assert.equal(b.tick,140);
+    b.bell(); assert.equal(b.bellTicks,0); assert.equal(b.tick,240);
 });
 test('blocking a summoning chief preserves already spawned children, then stops future summons', () => {
     const b = battle(); b.tick=RULE.summonTicks[0]; b.enemies.push(enemy(0,'enemy_chief',PATH_LENGTH-3.5,100));
@@ -106,9 +106,9 @@ test('shield does not change tower damage, cadence or crowd-control', () => {
 });
 test('pause, reassignment and 3x keep the same shield; reopen restarts saved pre-night state', () => {
     const f=fixture(),g=f.game; g.state.food=100; g.command({type:'NIGHT'}); const b=g.battle; g.bell();
-    g.pause('CHOICE');g.update(.1);assert.equal(b.bellTicks,140);assert(g.reassign(0,g.state.people[2].id));
-    g.resume('CHOICE');g.command({type:'SPEED',value:3});g.update(.1);assert.equal(g.battle,b);assert.equal(b.bellTicks,134);
-    g.bell();assert.equal(b.bellTicks,134); const reopened=f.reopen();
+    g.pause('CHOICE');g.update(.1);assert.equal(b.bellTicks,240);assert(g.reassign(0,g.state.people[2].id));
+    g.resume('CHOICE');g.command({type:'SPEED',value:3});g.update(.1);assert.equal(g.battle,b);assert.equal(b.bellTicks,234);
+    g.bell();assert.equal(b.bellTicks,234); const reopened=f.reopen();
     assert.equal(reopened.battle.tactic.id,SHIELD_TACTIC);assert.equal(reopened.battle.bellTicks,0);assert.equal(reopened.battle.tick,0);
 });
 test('session settles final block without holding the night open for visual feedback', () => {

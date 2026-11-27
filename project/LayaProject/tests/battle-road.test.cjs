@@ -1,6 +1,6 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),path=require('node:path');
 const build=process.env.DAIDAI_TEST_BUILD;
-const {enemyPoint,pointAt,PATH_LENGTH,roadFootprintBounds}=require(path.join(build,'game/BattleRoad'));
+const {enemyPoint,pointAt,PATH_LENGTH,roadFootprintBounds,spreadRoadLane}=require(path.join(build,'game/BattleRoad'));
 const {BattleSimulation}=require(path.join(build,'game/BattleSimulation'));
 const {createGame,applyCommand}=require(path.join(build,'game/VillageRules'));
 const {ENEMIES,PATH,PADS,TOWERS,RULE}=require(path.join(build,'game/GameConfig'));
@@ -12,6 +12,27 @@ function battle(tower,index=0){
  b.cursor=b.base.wave.entries.length;b.base.towers.forEach((t,i)=>{t.kind=i===index?tower:null;t.operator=i===index?state.people[0].id:null;});
  b.gate=1e9;return b;
 }
+test('new nights assign all five continuous road bands, while old nights reconstruct the original path',()=>{
+ const state=createGame(19);
+ applyCommand(state,{type:'NIGHT'});
+ const expanded=new BattleSimulation(state);
+ delete state.night.spreadEnemyFormation;
+ const original=new BattleSimulation(state);
+ const widths=new Set(),bands=new Set();
+ for(let seq=0;seq<160;seq++){
+  for(const b of [expanded,original])b.spawn('enemy_raider',0,99);
+  const newEnemy=expanded.enemies.at(-1),oldEnemy=original.enemies.at(-1),lane=newEnemy.roadLane;
+  assert.equal(oldEnemy.roadLane,undefined);
+  assert.equal(lane,spreadRoadLane(seq));
+  assert(Math.abs(lane)<=.475+1e-10);
+  widths.add(lane.toFixed(2));bands.add(Math.round(lane/.19));
+  const a=enemyPoint(newEnemy),b=enemyPoint(oldEnemy);
+  assert.equal(a.y,b.y);
+  assert.deepEqual(enemyPoint({...newEnemy,progress:PATH_LENGTH}),enemyPoint({...oldEnemy,progress:PATH_LENGTH}));
+ }
+ assert.equal(bands.size,5);
+ assert(widths.size>55);
+});
 test('all ten kinds stay within the allowed road shoulder and preserve the original progress axis',()=>{
  assert.equal(PATH_LENGTH,PATH.slice(1).reduce((n,p,i)=>n+Math.hypot(p.x-PATH[i].x,p.y-PATH[i].y),0));
  for(const kind of Object.keys(ENEMIES))for(let seq=0;seq<RULE.planCap;seq++)for(let progress=0;progress<=PATH_LENGTH;progress+=3){

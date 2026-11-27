@@ -1,7 +1,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const read = name => require(`${process.env.DAIDAI_TEST_BUILD}/${name}.js`);
-const { HAND_SPEED, HAND_SPEED_TACTIC, DEFAULT_TACTIC, TACTICS, TACTIC_USE } = read('config/TacticConfig');
+const { HAND_SPEED, HAND_SPEED_TACTIC, DEFAULT_TACTIC, TACTICS, tacticCooldownTicks } = read('config/TacticConfig');
 const { BattleSimulation, PATH_LENGTH } = read('game/BattleSimulation');
 const { GameSession } = read('game/GameSession');
 const { SaveStore } = read('storage/SaveStore');
@@ -48,7 +48,7 @@ test('fourteen taps preserve the freeze until timeout and apply proportional dam
         b.base.wave.entries[0].tick = b.tick;
         const frozen = b.enemies.map(e => ({ ...e })), queued = b.pendingCount;
         game.bell(HAND_SPEED_TACTIC);
-        assert.equal(b.tacticUsesLeft, 1);
+        assert.equal(b.usesLeftFor(b.tactic), null);
         assert(!b.canCast(DEFAULT_TACTIC));
         for (let i = 0; i < 14; i++) assert(game.tapHandSpeed());
         for (let i = 0; i < 30; i++) game.update(.031);
@@ -58,7 +58,7 @@ test('fourteen taps preserve the freeze until timeout and apply proportional dam
         assert.equal(b.handSpeed.remaining, left);
         assert(!game.tapHandSpeed());
         game.resume('BACKGROUND');
-        for (let i = 0; i < 60; i++) game.update(.034);
+        for (let i = 0; i < 90; i++) game.update(.034);
         assert(b.handSpeed.remaining > 0);
         assert.deepEqual(b.enemies, frozen);
         assert.equal(b.pendingCount, queued);
@@ -66,13 +66,13 @@ test('fourteen taps preserve the freeze until timeout and apply proportional dam
         game.update(.03);
         assert(!game.tapHandSpeed());
         assert.equal(b.handSpeed, null);
-        assert.deepEqual(b.enemies.map(e => e.hp), [480, 3664]);
+        assert.deepEqual(b.enemies.map(e => e.hp), [480, 3440]);
         assert.equal(b.tick, 0);
         const hits = game.takeCombatFeedback().filter(e => e.type === 'handSpeed');
         assert.equal(hits.length, 1);
         assert.equal(hits[0].hurt.length, 2);
         assert.equal(b.cooldownFor(DEFAULT_TACTIC), 0);
-        assert.equal(b.usesLeftFor(b.tactic), 0);
+        assert.equal(b.usesLeftFor(b.tactic), null);
         game.update(.05);
         assert(b.tick > 0 && b.tick <= 3);
         assert(b.enemies[0].progress > frozen[0].progress);
@@ -114,14 +114,14 @@ test('the fifteenth tap ends the freeze immediately and caps each live enemy at 
 
 test('zero taps deal nothing and enemies only touch the gate after the freeze expires', () => {
     const empty = setup(2).b;
-    empty.bell(HAND_SPEED_TACTIC); empty.step(3);
+    empty.bell(HAND_SPEED_TACTIC); empty.step(HAND_SPEED.seconds);
     assert(!empty.feedback.some(e => e.type === 'handSpeed'));
-    assert.equal(empty.tacticUsesLeft, 1);
+    assert.equal(empty.usesLeftFor(empty.tactic), null);
 
     const last = setup(2).b;
     last.enemies = [enemy(103, 'enemy_raider', 3, 100, PATH_LENGTH - 1, 25)];
     last.bell(HAND_SPEED_TACTIC); assert(last.tapHandSpeed());
-    last.step(3);
+    last.step(HAND_SPEED.seconds);
     assert(last.feedback.some(e => e.type === 'handSpeed' && e.hurt[0].hp === 0));
     assert(!last.feedback.some(e => e.type === 'gate'));
 
@@ -131,7 +131,7 @@ test('zero taps deal nothing and enemies only touch the gate after the freeze ex
     assert.equal(lose.gate, 1);
     assert.equal(lose.outcome, null);
     assert.equal(lose.enemies[0].progress, PATH_LENGTH - 1);
-    lose.step(1);
+    lose.step(HAND_SPEED.seconds - 2);
     assert.equal(lose.gate, 1);
     assert.equal(lose.outcome, null);
     lose.step();
@@ -139,6 +139,24 @@ test('zero taps deal nothing and enemies only touch the gate after the freeze ex
     assert.equal(lose.handSpeed, null);
     assert(!lose.tapHandSpeed());
     assert(!lose.feedback.some(e => e.type === 'handSpeed'));
+});
+
+test('hand speed becomes usable twice after its own cooldown, counting from the end of the freeze', () => {
+    const { b } = setup(3);
+    b.base.wave.entries[0].tick = 4000;
+    assert(b.bell(HAND_SPEED_TACTIC));
+    const ticks = tacticCooldownTicks(b.tactic);
+    assert.equal(b.tactic.cooldownSeconds, 26);
+    for (let i = 0; i < HAND_SPEED.burstTaps; i++) assert(b.tapHandSpeed());
+    assert.equal(b.cooldownFor(HAND_SPEED_TACTIC), ticks);
+    for (let i = 0; i < ticks - 1; i++) b.step();
+    assert.equal(b.cooldownFor(HAND_SPEED_TACTIC), 1);
+    assert(!b.bell(HAND_SPEED_TACTIC));
+    assert(b.canCast(DEFAULT_TACTIC));
+    b.step();
+    assert(b.bell(HAND_SPEED_TACTIC));
+    assert(b.handSpeed);
+    assert.equal(b.usesLeftFor(b.tactic), null);
 });
 
 test('a final hand speed kill is saved and supplies a single daily kill and a visual at the frozen location', () => {
@@ -149,7 +167,7 @@ test('a final hand speed kill is saved and supplies a single daily kill and a vi
     battle.enemies = [enemy(110, 'enemy_raider', 3, 100, PATH_LENGTH - 1, 25)];
     game.bell(HAND_SPEED_TACTIC);
     assert(game.tapHandSpeed());
-    for (let i = 0; i < 12; i++) game.update(.25);
+    for (let i = 0; i < HAND_SPEED.seconds / .25; i++) game.update(.25);
     assert.equal(battle.outcome, 'WIN');
     assert.equal(game.state.completed, 31);
     assert.equal(game.presentationBattle, battle);

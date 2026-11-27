@@ -9,20 +9,20 @@ function decode(value) {
     return value.replace(/&(amp|lt|gt|quot|apos);/g, entity => entities[entity]);
 }
 const style = {
-    root: { width: 600, height: 680, backgroundColor: '#f7cbc9', flexDirection: 'column' },
-    header: { width: 600, height: 44, flexDirection: 'row', backgroundColor: '#ac4f67', alignItems: 'center' },
-    rank: { width: 66, height: 44, lineHeight: 44, fontSize: 26, color: '#9a591f', textAlign: 'center', fontWeight: 'bold' },
-    player: { width: 354, height: 44, lineHeight: 44, fontSize: 26, color: '#502f44' },
-    score: { width: 180, height: 44, lineHeight: 44, fontSize: 28, color: '#326b1b', textAlign: 'center', fontWeight: 'bold' },
+    root: { width: 600, height: 680, backgroundColor: '#fff1ca', flexDirection: 'column' },
+    header: { width: 600, height: 44, flexDirection: 'row', backgroundColor: '#4e5f83', alignItems: 'center' },
+    rank: { width: 66, height: 44, lineHeight: 44, fontSize: 30, color: '#4e5f83', textAlign: 'center', fontWeight: 'bold' },
+    player: { width: 354, height: 44, lineHeight: 44, fontSize: 26, color: '#53372b' },
+    score: { width: 180, height: 44, lineHeight: 44, fontSize: 28, color: '#3f6935', textAlign: 'center', fontWeight: 'bold' },
     list: { width: 600, height: 586 },
-    row: { width: 600, height: 84, flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff4e4', borderBottomWidth: 2, borderColor: '#dba695' },
-    alternate: { backgroundColor: '#f9e9e2' },
+    row: { width: 600, height: 143, flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff7dd', borderBottomWidth: 4, borderColor: '#d8c49c' },
+    alternate: { backgroundColor: '#e9edf2' },
     headLabel: { color: '#fff7df' },
-    avatar: { width: 56, height: 56, borderRadius: 8 },
-    avatarSpace: { width: 56, height: 56 },
-    name: { width: 278, height: 44, lineHeight: 44, marginLeft: 20, fontSize: 28, color: '#502f44', textOverflow: 'ellipsis' },
-    tip: { width: 600, height: 50, lineHeight: 50, textAlign: 'center', fontSize: 24, color: '#502f44' },
-    message: { width: 600, height: 80, lineHeight: 80, fontSize: 28, color: '#502f44', textAlign: 'center' },
+    avatar: { width: 112, height: 112, borderRadius: 20 },
+    avatarSpace: { width: 112, height: 112, borderRadius: 20, backgroundColor: '#dce6b7' },
+    name: { width: 222, height: 48, lineHeight: 48, marginLeft: 20, fontSize: 31, color: '#53372b', textOverflow: 'ellipsis' },
+    tip: { width: 600, height: 50, lineHeight: 50, textAlign: 'center', fontSize: 24, color: '#53372b' },
+    message: { width: 600, height: 80, lineHeight: 80, fontSize: 28, color: '#53372b', textAlign: 'center' },
     spacer: { width: 600, height: 230 }
 };
 function template(rows, invalid) {

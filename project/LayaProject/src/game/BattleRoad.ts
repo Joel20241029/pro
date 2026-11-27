@@ -49,19 +49,34 @@ export function roadFootprintBounds(y: number, footprint: EnemyKind | RoadFootpr
     return { left, right };
 }
 
-/** 渲染与战斗共用足点。分路只由入场序号确定，外观随机不影响战斗。 */
-export function enemyPoint(enemy: { seq: number; kind: EnemyKind; progress: number }) {
-    const y = progressY(enemy.progress), bounds = roadFootprintBounds(y, enemy.kind);
-    const { laneBands, laneStep, laneJitter, shoulderAllowance, formation } = ROAD_MOVEMENT;
-    const group = Math.floor(enemy.seq / formation.size);
+/** 新入场单怪预采样一个固定横位，无需为路径或表现消耗业务随机数。 */
+export function spreadRoadLane(seq: number) {
+    const { formation, spread, laneStep } = ROAD_MOVEMENT;
+    const group = Math.floor(seq / formation.size), count = spread.laneBands.length;
+    const lead = appearanceSeed(spread.seedDomain, group) % count;
+    const roll = appearanceSeed(spread.seedDomain, seq, group) % formation.sampleSize;
+    const offset = spread.offsets[roll < spread.mainWeight ? 0 : 1 + Math.floor((roll - spread.mainWeight) / spread.otherWeight)];
+    const jitter = ((seq * laneStep + .5) % 1 - .5) * spread.laneJitter;
+    return spread.laneBands[(lead + offset + count) % count] + jitter;
+}
+
+function originalRoadLane(seq: number) {
+    const { laneBands, laneStep, laneJitter, formation } = ROAD_MOVEMENT;
+    const group = Math.floor(seq / formation.size);
     const leadLane = appearanceSeed(formation.seedDomain, group) % laneBands.length;
-    const roll = appearanceSeed(formation.seedDomain, enemy.seq, group) % formation.sampleSize;
+    const roll = appearanceSeed(formation.seedDomain, seq, group) % formation.sampleSize;
     const laneOffset = roll < formation.mainWeight ? 0 : roll < formation.mainWeight + formation.secondWeight ? 1 : 2;
     const laneIndex = (leadLane + laneOffset) % laneBands.length;
-    const phase = (enemy.seq * laneStep + .5) % 1 - .5;
-    const lane = laneBands[laneIndex] + phase * laneJitter;
+    const phase = (seq * laneStep + .5) % 1 - .5;
+    return laneBands[laneIndex] + phase * laneJitter;
+}
+
+/** 渲染与战斗共用足点。没有预采样横位的旧夜继续按原三条带重演。 */
+export function enemyPoint(enemy: { seq: number; kind: EnemyKind; progress: number; roadLane?: number }) {
+    const y = progressY(enemy.progress), bounds = roadFootprintBounds(y, enemy.kind);
+    const lane = enemy.roadLane ?? originalRoadLane(enemy.seq);
     const t = Math.max(0, (y - ROAD_MOVEMENT.gatherY) / (PATH[PATH.length - 1].y - ROAD_MOVEMENT.gatherY));
     const gather = t * t * (3 - 2 * t);
-    const width = bounds.right - bounds.left + 2 * shoulderAllowance;
+    const width = bounds.right - bounds.left + 2 * ROAD_MOVEMENT.shoulderAllowance;
     return { x: (bounds.left + bounds.right) / 2 + width * lane * (1 - gather), y };
 }

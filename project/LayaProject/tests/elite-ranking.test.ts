@@ -14,7 +14,7 @@ function ok(v: unknown, why = "assertion failed"): asserts v { if (!v) throw new
 function eq(a: unknown, b: unknown) { ok(canonical(a) === canonical(b), `${JSON.stringify(a)} != ${JSON.stringify(b)}`); }
 function rejects(fn: () => void) { let threw = false; try { fn(); } catch { threw = true; } ok(threw); }
 function test(name: string, fn: () => void) { fn(); passed++; console.log("PASS", name); }
-function dawn(s: GameState) { while (s.choices.length) { const q = s.choices[0]; applyCommand(s, { type: "CHOOSE", value: q.kind === "POLICY" ? q.options[0] : "decline" }); } applyCommand(s, { type: "FINALIZE" }); }
+function dawn(s: GameState) { while (s.choices.length) { applyCommand(s, { type: "CHOOSE", value: "decline" }); } applyCommand(s, { type: "FINALIZE" }); }
 function win(s: GameState) { applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); validateState(s); }
 function birth(s: GameState) { applyCommand(s, { type: "BIRTH", family: s.families[0].id }); return s.people[s.people.length - 1]; }
 function seedForRoll(roll: number, traveler: boolean) {
@@ -89,10 +89,10 @@ test("Traveler choice survives save/reload and accepting never rerolls", () => {
 });
 test("Farm/logging multiply after additive bonuses and before one floor; rations unchanged", () => {
     const s = createGame(1); s.people.forEach(p => p.job = "WAITING"); const p = s.people[0]; p.origin = "TRAVELER";
-    p.job = "FARM"; s.policy = "policy_harvest"; const rations = economy(s).rations; p.quality = "ELITE";
-    eq(economy(s).food, Math.floor(8 * (1 + .2 + .2 + .1 + .2) * 1.5)); eq(economy(s).rations, rations);
-    p.job = "LOGGING"; p.traits = ["trait_woodwise"]; s.policy = "policy_logging"; s.day = 7;
-    eq(economy(s).wood, Math.floor(6 * (1 + .2 + .2 + .15 + .2) * 1.5));
+    p.job = "FARM"; const rations = economy(s).rations; p.quality = "ELITE";
+    eq(economy(s).food, Math.floor(8 * (1 + .4) * 1.5)); eq(economy(s).rations, rations);
+    p.job = "LOGGING"; p.traits = ["trait_woodwise"]; s.day = 7;
+    eq(economy(s).wood, Math.floor(6 * (1 + .4) * 1.5));
 });
 test("Birth leaves other villagers at work and children grow in two nights", () => {
     const s = createGame(seedForRoll(4, false)), child = birth(s), carer = s.people[1]; carer.job = "WAITING"; const regular = economy(s);

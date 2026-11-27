@@ -1,17 +1,19 @@
 import { summarizeFullHouseVisit } from "./VillageLifecycle";
 import { BattleSimulation, CombatFeedback } from "./BattleSimulation";
-import { clone, GameState, isWorkingAdult, ownsTowerAmmo } from "./GameState";
+import { clone, GameState, isAvailableAdult, ownsTowerAmmo } from "./GameState";
 import { RULE } from "./GameConfig";
 import { applyCommand, Command, createGame, finishNight } from "./VillageRules";
 import { LoadResult, SaveMode, SaveStore } from "../storage/SaveStore";
 import { DeviceSettings } from "../storage/DeviceSettings";
 import { BackpackChange, VillageItemStorage } from "../storage/VillageItemStorage";
 import { VillageGuides } from "../storage/VillageGuides";
-import { ICE_AMMO_OFFER, ItemId, ITEMS, LIANG_ESSENCE, LIANG_INDULGENCE, PatrolItemId } from "../config/ShopConfig";
-import { essenceTargets, patrolItemUnavailable, shopOffer } from "./ShopRules";
+import { ICE_AMMO_OFFER, ItemId, ITEMS, LIANG_ESSENCE, LIANG_INDULGENCE, PatrolItemId, YUEXIU_DICE } from "../config/ShopConfig";
+import { essenceTargets, patrolItemUnavailable, rewardDiceUnavailable, shopOffer } from "./ShopRules";
 import { dailyRationAmount, localRationDate } from "./DailyRation";
 import { BLAST_TACTIC, KING_MERCY, KING_MERCY_TACTIC } from "../config/TacticConfig";
-import { gateCapacity } from "./Growth";
+import { gateCapacity, storageCapacity } from "./Growth";
+import { generateWave } from "./WaveGenerator";
+import { EXPEDITION } from "../config/ExpeditionConfig";
 import { mercyOffering } from "./Tactics";
 
 import { DAILY_TASKS, TaskKind } from "../config/DailyTaskConfig";
@@ -22,6 +24,8 @@ import type { RoadPoint } from "./BattleRoad";
 import { PATROL } from "../config/PatrolConfig";
 import { autoAssignNightDuties } from "./VillageJobs";
 export type Pause = "USER" | "BACKGROUND" | "WAIT_RESUME" | "CHOICE" | "SAVE_PENDING" | "DISABLED" | "DAILY_RATION" | "ASSETS";
+/** 体验版一键验收用目标关卡和资源。只写测试村庄的双槽。 */
+const TEST_ENTRY = { day: 30, resources: 500 } as const;
 export interface EssenceFeedback { person: string; nights: number; }
 export class GameSession {
     state: GameState | null = null; battle: BattleSimulation | null = null;
@@ -36,6 +40,8 @@ export class GameSession {
     private combatFeedback: CombatFeedback[] = [];
     onPatrolLanding?: () => void;
     onPatrolRapidFire?: () => void;
+    onHeroHit?: () => void;
+    onDeliveryHit?: () => void;
     takeCombatFeedback(): CombatFeedback[] { const events = this.combatFeedback; this.combatFeedback = []; return events; }
     readonly pauses = new Set<Pause>(); boot: LoadResult | null = null;
     private currentError = "";
@@ -60,7 +66,7 @@ export class GameSession {
     private purchaseFeedback = false;
     takeEssenceFeedback() { const result = this.essenceFeedback; this.essenceFeedback = undefined; return result; }
     takePurchaseFeedback() { const result = this.purchaseFeedback; this.purchaseFeedback = false; return result; }
-    constructor(readonly saves: SaveStore, private today = () => localRationDate(new Date())) {}
+    constructor(readonly saves: SaveStore, private today = () => localRationDate(new Date()), readonly testEntryEnabled = false) {}
     get taskDate() { return this.today(); }
     enter() { this.visitDate = this.today(); this.checkDailyRation(); if (!this.refreshDailyTasks()) this.changed(); }
 
@@ -127,17 +133,18 @@ export class GameSession {
     }
     private accept(s: GameState, newVillage = false) {
         // 旧白天档在校验后才补岗，只改变运行态；下次正常保存时入档。已开打的夜战按存档重放。
-        if (s.phase === "DAY" && s.patrol.captain === null && s.people.some(isWorkingAdult)) {
+        if (s.phase === "DAY" && s.patrol.captain === null && s.people.some(p => isAvailableAdult(s, p))) {
             s = clone(s);
             autoAssignNightDuties(s);
         }
-        // 已落盘的清晨待办也使用相同的简报规则，保留同日待选村规。
+        // 已落盘的清晨待办也使用相同的客满简报规则。
         if (s.phase === "DAWN" && s.choices[0]?.kind === "TRAVELER") {
             s = { ...s };
             summarizeFullHouseVisit(s);
         }
         const settings = this.deviceSettings.resolve(s.settings);
         if (s.settings.music !== settings.music || s.settings.speed !== settings.speed) s = { ...s, settings };
+        const abandonedNight = this.state?.phase === "NIGHT" && s.phase === "DAY";
         const sameNight = !newVillage && this.continuingBattle && this.battle !== null && s.phase === "NIGHT";
         const mercyAccepted = sameNight && !this.state?.night?.mercySpent && s.night?.mercySpent === true;
         if (newVillage) {
@@ -148,10 +155,15 @@ export class GameSession {
             this.aimingBlastIn = null;
             this.nextTaskClockCheck = 0;
         }
+        if (abandonedNight) {
+            this.pauses.delete("USER");
+            this.pauses.delete("CHOICE");
+            this.aimingBlastIn = this.aimingPatrolIn = null;
+        }
         this.state = s; this.boot = null; this.error = ""; this.pauses.delete("SAVE_PENDING");
         if (!sameNight) {
             // 清晨递归FINALIZE及结算保存重试保留尚未消费的最终事件；不能把最后一击清掉。
-            if (newVillage || s.phase === "NIGHT") { this.finishedBattle = null; this.combatFeedback = []; }
+            if (newVillage || abandonedNight || s.phase === "NIGHT") { this.finishedBattle = null; this.combatFeedback = []; }
             this.taskCombat = s.phase === "NIGHT" && s.dailyTasks?.tasks.length ? new DailyTaskCombat() : null;
             this.battle = s.phase === "NIGHT" ? new BattleSimulation(s, this.taskCombat ?? undefined) : null; this.accumulator = 0;
         } else if (mercyAccepted && this.battle) {
@@ -230,9 +242,43 @@ export class GameSession {
             this.submit(next, false, undefined, { id, delta: -1, before: count });
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
+    rollRewardDice() {
+        const state = this.state;
+        if (!state || this.saves.pending || this.pauses.has("BACKGROUND") || this.pauses.has("DISABLED")) return;
+        try {
+            const reason = rewardDiceUnavailable(state), id = YUEXIU_DICE.id;
+            if (reason) throw new Error(reason);
+            const count = this.villageItems.backpack().items[id] ?? 0;
+            if (!count) throw new Error("背包里没有「越秀路六家」");
+            // 和道具扣除一起提交，动画和存档重试都读取同一颗骰子的结果。
+            const rewardDie = 1 + Math.floor(Math.random() * YUEXIU_DICE.faces);
+            this.submit({ ...state, rewardDie }, false, undefined, { id, delta: -1, before: count });
+        } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
+    }
+    jumpToTestNight() {
+        const state = this.state;
+        if (!this.testEntryEnabled || state?.phase !== "DAY" || this.saves.pending || this.pauses.size || this.dailyRationDate !== null) return;
+        const { day, resources } = TEST_ENTRY, completed = day - 1;
+        const next = clone(state), offset = completed - state.completed;
+        next.day = day; next.completed = completed;
+        next.legacy.bestNight = Math.max(next.legacy.bestNight, completed);
+        while (storageCapacity(next) < resources) next.houses++;
+        next.food = resources; next.wood = resources;
+        if (offset !== 0) {
+            // 对齐依赖波数的记录，保留家族和探索的相对进度。
+            if (next.lastTraveler !== null) next.lastTraveler = Math.max(1, next.lastTraveler + offset);
+            for (const family of next.families)
+                if (family.lastBirth !== null) family.lastBirth = Math.max(0, family.lastBirth + offset);
+            if (next.expedition) next.expedition.departedAfter = Math.max(EXPEDITION.wins, next.expedition.departedAfter + offset);
+            next.wave = generateWave(next);
+        }
+        prepareDailyTasks(next, this.taskDate);
+        this.submit(next);
+    }
     command(c: Command) {
         if (!this.state || this.saves.pending || (c.type === "NIGHT" && this.pauses.has("ASSETS"))) return;
         try {
+            if (c.type === "NIGHT" && this.state.expedition?.reportPending) throw new Error("请先查看探索战报");
             const before = this.state, next = clone(before), date = this.taskDate;
             if (c.type !== "MUSIC") prepareDailyTasks(next, date);
             applyCommand(next, c);
@@ -246,6 +292,26 @@ export class GameSession {
             this.submit(next, next.phase === "NIGHT" && this.state.phase === "NIGHT");
         }
         catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
+    }
+    abandonNight() {
+        const { state, battle } = this;
+        if (state?.phase !== "NIGHT" || !state.night?.returnPoint || !battle || battle.outcome || this.saves.pending ||
+            !this.pauses.has("CHOICE") || [...this.pauses].some(reason => reason !== "CHOICE" && reason !== "USER")) return;
+        const next = clone(state), night = next.night!, back = night.returnPoint!;
+        next.food = back.food;
+        next.wood = back.wood;
+        next.gate = back.gate;
+        if (back.dailyTasks) next.dailyTasks = back.dailyTasks;
+        else delete next.dailyTasks;
+        if (back.mercyCooldown) next.tactics.mercyCooldown = back.mercyCooldown;
+        else delete next.tactics.mercyCooldown;
+        if (night.patrolRation) next.patrol.rationReady = true;
+        if (night.patrolWideImpact) next.patrol.radiusReady = true;
+        if (night.rewardDie !== undefined) next.rewardDie = night.rewardDie;
+        next.night = null;
+        next.phase = "DAY";
+        // SaveStore publishes the state only after the same candidate has committed, including retries.
+        this.submit(next);
     }
     pause(reason: Pause) { this.stopPatrolRapid(); this.pauses.add(reason); this.accumulator = 0; this.aimingBlastIn = this.aimingPatrolIn = null; }
     resume(reason: Pause) { this.pauses.delete(reason); this.accumulator = 0; }
@@ -372,10 +438,13 @@ export class GameSession {
         this.combatFeedback.push(...battle.feedback);
         // 每批人只产生一个落地事件，包括空砸；在本步结算换场前交付音效，表现信箱仍保留完整事件。
         if (this.onPatrolLanding && battle.feedback.some(event => event.type === "patrolLanding")) this.onPatrolLanding();
+        if (this.onHeroHit && battle.feedback.some(event => event.type === "heroHit" && event.hurt.length)) this.onHeroHit();
+        if (this.onDeliveryHit && battle.feedback.some(event => event.type === "deliveryHit")) this.onDeliveryHit();
         if (!battle.outcome) return false;
         this.finishedBattle = battle;
         const next = clone(state);
         if (this.taskCombat) creditTaskVictory(next, this.taskDate, battle, this.taskCombat);
+        next.patrol.captain = battle.base.patrol.captain;
         finishNight(next, battle.gate, battle.operators);
         this.submit(next);
         return true;

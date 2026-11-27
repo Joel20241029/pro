@@ -1,11 +1,10 @@
 /** GameLayout 的 720 逻辑像素布局参数。
  * 只决定屏幕映射、阅读尺寸和居民区高度，不修改 PATH/PADS、射程或生长速度。
- * 日期行避让微信胶囊，资源紧随其下；回收的顶部间距全部交给地图，调整须复查短屏站点。
+ * 资源条避让微信胶囊，回收的顶部间距交给地图。
  */
 export const LAYOUT = {
-    // Compact the rows below the native menu while retaining the northern tower's full attack silhouette on 16:9.
-    width: 720, dateTop: 64, menuGap: 10, resourcesGap: 32, mapGap: 86,
-    footerHeight: 242, battleMax: 700, villageMin: 260, battleMin: 440, battleRatio: .68,
+    width: 720, menuGap: 8, resourceBottomGap: 6,
+    footerHeight: 228, battleMax: 700, villageMin: 260, battleMin: 440, battleRatio: .68,
     // 高清共同画布含完整四向动作留白；按2026-11-13反馈再放大约7%，足点/速度不变，步幅随显示尺寸换算。
     personMin: 86, personMax: 90, personBase: 56, personGrowthHeight: 300, personGrowthStep: 40,
     // 390逻辑宽对照后确定：地图村民放大5%，保留足点及行走目标。砍树接触检查覆盖6个成年模型和5棵树。
@@ -16,14 +15,11 @@ export const LAYOUT = {
 } as const;
 /** 常驻 HUD 的坐标、尺寸与图文间距，单位为逻辑像素。
  * 只管理显示和点击区域；塔标签偏移不得用于战斗或寻路，城门血量始终按同一中心对齐。
- * 标题与日期文本框对称于屏幕中心360，小记留在左侧；标题32号为短屏右侧原生按钮保留空间。
- * 标题与小记的top相对日期行，紧凑组合为一块，避免胶囊避让后标题和日期被拉远。
+ * 设置与左侧入口呼应，守夜时位于整夜效果框下方。
  */
 export const HUD = {
-    statusHeight: 37,
-    title: { x: 240, top: -40, width: 240, font: 30, height: 38 },
-    settings: { x: 28, top: -36, width: 126, height: 60 },
-    date: { x: 232, top: 0, width: 256, font: 25, height: 32 },
+    statusHeight: 32,
+    settings: { right: 10, size: 94, gap: 10, icon: 46, iconTop: 8, captionTop: 57, font: 23 },
     // 高清图标按可见裁框居中后与文字同高；44px图文区及8px间距避免透明留白造成错位。
     resource: { x: 28, step: 226, width: 212, textY: 0, textWidth: 154, font: 30, minFont: 20, height: 44, icon: 44, iconY: 4, gap: 8, textPadding: 4 },
     // 白天将血条放在矮门顶端；连发时将整组读数放到门脚下方，为炮身转向留出空间。
@@ -37,27 +33,29 @@ export const HUD = {
     // 仅底部村务按钮使用，地图防塔不再放红点。
     // 所有可操作和新战技红点共用放大 1.5 倍后的尺寸；内收重定中心以保留边框留白。
     actionDot: { size: 42, inset: 14 },
-    /** 已确认的圆形居中底栏（720×242）：白天两侧各两个村务入口，主按钮整图等比显示。
-     * 字号/颜色由同一配置与 C 控制；按钮按下仍整体下移3px，底边保留至少13px安全留白。
-     * 仅改变HUD布局，不调整地图高度、守夜确认、下载重试或战斗操作。
+    // 白天开始守夜及夜间战技共用的圆钮底图。盾牌、战技图标及文字分别叠绘。
+    roundButtonSkin: "button_heart_round",
+    /** 白天两侧各两个村务入口，主按钮保持圆形并为底部手势留出净空。
      */
     footer: {
-        info: { x: 28, y: 12, width: 474, height: 36, font: 24 },
-        wave: { x: 536, y: 0, width: 156, height: 60, font: 24 },
-        // 四字按钮的墨迹保持在圆皮内圈，圆弧收窄从第 86 个逻辑像素开始计。
-        start: { x: 274, y: 54, size: 172, icon: 70, iconY: 17, textX: 29, textY: 90, textWidth: 114, textHeight: 36, font: 28, stroke: 1.4 },
-        navigation: { xs: [28, 148, 468, 588], y: 92, width: 104, height: 112, icon: 57, iconY: 7, textX: 8, textY: 68, textHeight: 34, font: 28 }
+        info: { x: 28, y: 7, width: 474, height: 36, font: 24 },
+        wave: { x: 536, y: 0, width: 156, height: 48, font: 24 },
+        // 盾牌与四字按钮文案居中，保留圆钮边缘留白。
+        start: { x: 274, y: 47, size: 172, icon: 70, iconY: 17, textX: 29, textY: 90, textWidth: 114, textHeight: 36, font: 28 },
+        navigation: { xs: [28, 148, 468, 588], y: 83, width: 104, height: 112, icon: 57, iconY: 7, textX: 8, textY: 68, textHeight: 34, font: 28 }
     },
-    /** 守夜底栏沿用 242 高的安全区。右上固定暂停，下一行按已装配数量居中；所有尺寸为 720 宽逻辑像素。 */
+    /** 守夜底栏上方固定暂停，下一行按已装配数量居中。 */
     night: {
-        status: { x: 28, y: 17, width: 565, height: 54, font: 24 },
+        // 夜况在退出和暂停之间缩排，两边热区与三战技圆钮保持间距。
+        status: { x: 123, y: 17, width: 474, height: 54, font: 24 },
+        exitX: 11,
         // 100 方形热区进入 320 宽屏仍有 44 点；奶油按钮的可见高度较小，给战技让出视觉空间。
         pause: { x: 609, y: 14, width: 100, height: 61, hitHeight: 100, icon: 33, iconX: 6, textX: 34, textWidth: 57, font: 23 },
         // 按一至三项战技排列。圆环、按钮弹性及地图高度沿用原值，第三枚的热区与暂停相隔 12 逻辑像素。
         rows: [
-            { y: 56, size: 172, centers: [360] },
-            { y: 67, size: 162, centers: [264, 456] },
-            { y: 76, size: 148, centers: [197, 360, 523] }
+            { y: 47, size: 172, centers: [360] },
+            { y: 58, size: 162, centers: [264, 456] },
+            { y: 67, size: 148, centers: [197, 360, 523] }
         ],
         // 两行分别按圆皮在该高度的宽度留边，缩小到多槽时沿用同一比例。
         heart: { icon: 61, iconY: 15, textY: 79, textWidth: 118, textHeight: 32, textFont: 28,

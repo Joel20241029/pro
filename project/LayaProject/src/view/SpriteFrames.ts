@@ -6,7 +6,7 @@ import { GAMEPLAY_ROOT, ResourceStage, STAGE_METADATA } from "../config/Resource
 import { Person } from "../game/GameState";
 interface Frame { page: string; rect: { x: number; y: number; w: number; h: number }; sourceSize: { w: number; h: number }; trimOffset: { x: number; y: number }; pivot: { x: number; y: number }; nineSlice: { top: number; right: number; bottom: number; left: number; repeat: number; scale: number } | null; }
 type PackedFrame = Frame & { rotated?: boolean };
-/** 高清预渲染二维合同：恢复源画布、共同足底与真实方向，九宫格保留原图渐变。 */
+/** 高清预渲染二维合同：恢复源画布、共同足底与真实方向，九宫格保留原图的固定角和描边。 */
 export class SpriteFrames {
     enemyLayouts: Record<string, EnemyLayout> = {};
     buildingLayouts: Record<string, BuildingDefinition> = {};

@@ -15,7 +15,7 @@ export function createGame(seed: number, old?: Legacy, inherited?: Trait, histor
     const s: GameState = {
         run: legacy.nextRun++, nextPerson: 1, nextFamily: 2, day: 1, completed: 0,
         phase: "DAY", food: RULE.initialResource, wood: RULE.initialResource, gate: RULE.gateMax,
-        houses: 1, gateLevel: 1, farm: 1, logging: 1, tier: RULE.maxTier, policy: null, lastTraveler: null,
+        houses: 1, gateLevel: 1, farm: 1, logging: 1, tier: RULE.maxTier, lastTraveler: null,
         people: [], families: [], towers: [], history: clone(history), favorites: favorites.slice(), choices: [], wave: null, night: null,
         ammoLevels: { ARROW: 1, STONE: 1, SLOW: 1 },
         patrol: { level: PATROL.startLevel, captain: null },

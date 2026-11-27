@@ -29,7 +29,6 @@ export class GameLayout {
     readonly height: number;
     readonly safeTop: number;
     readonly safeBottom: number;
-    readonly dateY: number;
     readonly resourcesY: number;
     readonly mapTop: number;
     readonly gateY: number;
@@ -46,13 +45,10 @@ export class GameLayout {
         this.safeBottom = Math.min(window.windowHeight, window.safeArea ? window.safeArea.bottom - screenTop : window.windowHeight) * scale;
         const hasMenu = menu.width > 0 && menu.height > 0;
         const menuBottom = hasMenu ? (menu.bottom - screenTop) * scale : this.safeTop;
-        // 微信「更多游戏」可在胶囊同一行向左展开。整行留给平台，仍以屏幕中心对齐标题。
-        const headerClearance = hasMenu ? -HUD.title.top : LAYOUT.menuGap;
-        this.dateY = Math.max(this.safeTop + LAYOUT.dateTop, menuBottom + headerClearance);
-        this.resourcesY = this.dateY + LAYOUT.resourcesGap;
-        this.mapTop = this.resourcesY + LAYOUT.mapGap;
-        // 操作区沿用242高；地图按战场68%、居民区32%分配，进一步收紧居民区高度。
-        // 战场上限700、居民区至少260逻辑像素，保持短屏站点可走；仅调整显示区域，不改逻辑塔位/射程。
+        // 微信「更多游戏」可在胶囊同一行向左展开，资源从这一行下方起排。
+        this.resourcesY = Math.max(this.safeTop, menuBottom) + LAYOUT.menuGap;
+        this.mapTop = this.resourcesY + HUD.resource.height + LAYOUT.resourceBottomGap + HUD.statusHeight;
+        // 战场上限700、居民区至少260逻辑像素，保持短屏站点可走。
         this.footerTop = this.safeBottom - LAYOUT.footerHeight;
         const mapHeight = this.footerTop - this.mapTop;
         const battleHeight = Math.min(LAYOUT.battleMax, mapHeight - LAYOUT.villageMin, Math.max(LAYOUT.battleMin, mapHeight * LAYOUT.battleRatio));

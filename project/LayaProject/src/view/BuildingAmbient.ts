@@ -19,14 +19,13 @@ export class BuildingAmbient {
     }
     advance(delta: number, night: boolean, working: boolean) {
         this.time += delta;
-        if (this.night && !night) this.gateElapsed = 0;
+        if (this.night !== night) this.gateElapsed = night && !working ? null : 0;
         this.night = night;
-        if (night) this.gateElapsed = null;
         for (const { node, clip } of this.nodes) {
             if (clip === GATE_DOOR_CLIP) {
                 const doors = this.art.animation(clip);
                 const openTime = (doors.frameIds.length - 1) / (2 * doors.fps);
-                if (working && !night) {
+                if (working) {
                     // 局部帧前半展开、后半合拢。有人通过时停在全开帧，连续来人从当前开度接续。
                     if (this.gateElapsed === null) this.gateElapsed = 0;
                     if (this.gateElapsed > openTime)
@@ -36,7 +35,7 @@ export class BuildingAmbient {
                 const frame = index < 0 ? doors.restFrame : doors.frameIds[index] ?? doors.restFrame;
                 node.texture = this.art.get(frame);
                 if (index >= doors.frameIds.length) this.gateElapsed = null;
-                if (this.gateElapsed !== null) this.gateElapsed = working && !night ?
+                if (this.gateElapsed !== null) this.gateElapsed = working ?
                     Math.min(openTime, this.gateElapsed + delta) : this.gateElapsed + delta;
             } else {
                 node.texture = this.art.get(this.art.frameId(clip, this.time, clip !== SAW_CLIP || working));

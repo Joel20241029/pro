@@ -1,7 +1,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const read = name => require(`${process.env.DAIDAI_TEST_BUILD}/${name}.js`);
-const { BLAST_TACTIC, DEFAULT_TACTIC, SUMMON_TACTIC, TACTIC_USE, TIMED_BLAST, tacticDefinition } = read('config/TacticConfig');
+const { BLAST_TACTIC, DEFAULT_TACTIC, SUMMON_TACTIC, TIMED_BLAST, tacticCooldownTicks, tacticDefinition } = read('config/TacticConfig');
 const { BattleSimulation } = read('game/BattleSimulation');
 const { enemyPoint, onBattleRoad, PATH_LENGTH } = read('game/BattleRoad');
 const { createGame, applyCommand } = read('game/VillageRules');
@@ -24,6 +24,8 @@ function fight() {
     s.tactics.extraSlots = [null, null];
     applyCommand(s, { type: 'TACTIC_LEARN', id: BLAST_TACTIC, slot: 1 });
     applyCommand(s, { type: 'NIGHT' });
+    // Ensure a separate auto attack cannot kill the target before the timed blast.
+    delete s.night.activeHero;
     const b = new BattleSimulation(s);
     b.base.wave.entries = [{ tick: 900, kind: 'enemy_raider', appearanceSeed: 3 }];
     b.base.towers.forEach(t => t.operator = null);
@@ -36,7 +38,7 @@ const castPoint = enemyPoint(enemy(0, 'enemy_raider', 120, 1));
 
 test('blast purchase uses twenty current wins and reordered learned skills remain visible on old saves', () => {
     const s = state(19), t = tacticDefinition(BLAST_TACTIC);
-    assert.deepEqual([t.name, t.buttonName, t.unlockWaves, t.wood, t.food, t.usesPerNight, t.ticks], ['孟昭易·泻火', '泻火', 20, 80, 40, 1, 60]);
+    assert.deepEqual([t.name, t.buttonName, t.unlockWaves, t.wood, t.food, t.usesPerNight, t.ticks], ['孟昭易·泻火', '泻火', 20, 80, 40, 2, 60]);
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: BLAST_TACTIC }), /还需守住 1 波/);
     s.completed = 20; s.day = 21;
     applyCommand(s, { type: 'TACTIC_LEARN', id: BLAST_TACTIC });
@@ -48,7 +50,7 @@ test('blast purchase uses twenty current wins and reordered learned skills remai
     assert(!tacticRevealed(state(20), SUMMON_TACTIC));
 });
 
-test('targeting can be cancelled and only a valid road click spends the shared cast', () => {
+test('targeting can be cancelled and only a valid road click spends a cast', () => {
     const s = state();
     s.tactics.learned.push(BLAST_TACTIC);
     s.tactics.equipped = BLAST_TACTIC;
@@ -64,12 +66,12 @@ test('targeting can be cancelled and only a valid road click spends the shared c
     g.bell(BLAST_TACTIC); assert(!g.blastAiming);
     g.bell(BLAST_TACTIC); g.pause('USER'); g.resume('USER'); assert(!g.blastAiming);
     g.bell(BLAST_TACTIC); assert(g.placeBlast(castPoint));
-    assert.equal(g.battle.tacticUsesLeft, 1); assert(!g.blastAiming);
+    assert.equal(g.battle.usesLeftFor(tacticDefinition(BLAST_TACTIC)), 1); assert(!g.blastAiming);
     g.pause('CHOICE'); g.update(.25); assert.equal(g.battle.bellTicks, 60);
     assert.deepEqual(g.battle.blastAt, castPoint);
 });
 
-test('on step sixty blast kills the entire circle, including armored enemies and bosses, then starts shared cooldown', () => {
+test('on step sixty blast kills the entire circle, including armored enemies and bosses, while personal cooldown counts from placement', () => {
     const b = fight();
     assert(onBattleRoad(castPoint));
     assert(!b.bell(BLAST_TACTIC));
@@ -116,6 +118,25 @@ test('blast includes the exact boundary and excludes the same enemy just outside
         assert.equal(b.enemies.length, killed ? 0 : 1);
         assert.equal(b.feedback.find(event => event.type === 'blast').hurt.length, killed ? 1 : 0);
     }
+});
+
+test('two bombs observe the exact personal cooldown and leave the heart usable', () => {
+    const b = fight();
+    b.base.wave.entries[0].tick = 5000;
+    const blast = tacticDefinition(BLAST_TACTIC);
+    const cooldown = tacticCooldownTicks(blast);
+    assert(b.bell(BLAST_TACTIC, castPoint));
+    assert.equal(b.usesLeftFor(blast), 1);
+    while (b.bellTicks) b.step();
+    assert(b.bell(DEFAULT_TACTIC));
+    while (b.tick < cooldown - 1) b.step();
+    assert(!b.bell(BLAST_TACTIC, castPoint));
+    b.step();
+    assert(b.bell(BLAST_TACTIC, castPoint));
+    assert.equal(b.usesLeftFor(blast), 0);
+    while (b.cooldownFor(BLAST_TACTIC)) b.step();
+    assert(!b.bell(BLAST_TACTIC, castPoint));
+    assert(b.canCast(DEFAULT_TACTIC));
 });
 
 test('the last-step blast hits a moving enemy before gate damage and survives as final visual feedback', () => {

@@ -67,7 +67,7 @@ export function buildBuildingLayouts(resRoot) {
             if (!layout.name.startsWith(id + '_') || layouts[layout.name]) throw new Error('无效/重复建筑变体:' + layout.name);
             const body = layout.children?.find(n => n.name === 'Body');
             if (!body || !find(body, 'Structure') || body.clip) throw new Error('建筑主体必须使用固定单张贴图:' + layout.name);
-            if (id === 'CANNON' && ['Muzzle', 'Weapon', 'RestBarrel', 'AimedBarrel', 'Loop:cannon_flag'].some(name => !find(body, name))) throw new Error('缺少射口或武器:' + layout.name);
+            if (id === 'CANNON' && ['Muzzle', 'Weapon', 'RestBarrel', 'AimedBarrel'].some(name => !find(body, name))) throw new Error('缺少射口或武器:' + layout.name);
             const marker = name => {
                 const value = layout.children.find(n => n.name === name);
                 if (!value || value.visible !== false || Object.keys(value).some(k => !['name', 'visible', 'x', 'y', 'width', 'height'].includes(k))) throw new Error('无效范围标记:' + layout.name + '/' + name);

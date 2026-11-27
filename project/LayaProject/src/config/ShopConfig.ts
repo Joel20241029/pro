@@ -1,12 +1,23 @@
-import { TOWERS, TOWER_AMMO, TowerKind } from "./DefenseConfig";
+import { TOWER_AMMO, TowerKind } from "./DefenseConfig";
+import { PATROL } from "./PatrolConfig";
+
+/** 骰子点数一经投出就固定。奖励倍率只影响下一场守夜产出的粮木，口粮照常消耗。 */
+export const YUEXIU_DICE = {
+    id: "yuexiu_dice", food: 20, wood: 12, faces: 6, highFrom: 4, highMultiplier: 2, lowMultiplier: .5
+} as const;
+export function nightRewardMultiplier(roll: number | undefined) {
+    if (roll === undefined) return 1;
+    return roll >= YUEXIU_DICE.highFrom ? YUEXIU_DICE.highMultiplier : YUEXIU_DICE.lowMultiplier;
+}
 /** 道具 ID 用于独立背包存档。下架时只移除 SHOP_PRODUCTS 中的引用，保留已有道具定义。 */
 export const ITEMS = {
     ice_ammo: { name: TOWER_AMMO.SLOW.name, description: "永久解锁，可在石炮塔中装配", icon: TOWER_AMMO.SLOW.icon },
     food_bag: { name: "粮袋", description: "补充粮食", icon: "icon_food" },
     wood_pack: { name: "木材包", description: "补充木材", icon: "icon_wood" },
     gate_kit: { name: "修门工具", description: "用于修补城门", icon: "icon_build" },
-    patrol_ration: { name: "靓哥的底线", description: "下次旋甩守夜，伤害 +50%", icon: "icon_liang_briefs" },
-    liang_indulgence: { name: "靓哥的放纵", description: "下次旋甩守夜，砸地半径 +25%", icon: "icon_liang_bra" },
+    patrol_ration: { name: "靓哥的底线", description: `下次使用「${PATROL.spin.name}」守夜，砸地伤害 +50%`, icon: "icon_liang_briefs" },
+    liang_indulgence: { name: "靓哥的放纵", description: `下次使用「${PATROL.spin.name}」守夜，砸地半径 +25%`, icon: "icon_liang_bra" },
+    yuexiu_dice: { name: "越秀路六家", description: "投骰子决定下场守夜的粮木产出：1–3 点减半，4–6 点翻倍", icon: "icon_yuexiu_cards" },
     seed_pack: { name: "种子包", description: "农田物资", icon: "icon_food" },
     planks: { name: "备用木板", description: "建筑物资", icon: "icon_wood" },
     liang_essence: { name: "靓哥的精华", description: "成年村民随机延后退休 5–20 夜", icon: "icon_liang_essence" }
@@ -37,6 +48,6 @@ export const LIANG_INDULGENCE = {
 export type PatrolItemId = typeof PATROL_RATION.id | typeof LIANG_INDULGENCE.id;
 
 /** 冰弹沿用原寒塔的35木门槛，改为每村购买一次，直接解锁所有塔的装配资格。 */
-export const ICE_AMMO_OFFER = { id: "ice_ammo", ammo: "SLOW", wood: TOWERS.SLOW.cost, food: 0 } as const;
+export const ICE_AMMO_OFFER = { id: "ice_ammo", ammo: "SLOW", wood: 35, food: 0 } as const;
 /** 按商品上架顺序陈列，详情显示配置的传闻。道具下架后，背包仍按 ITEMS 识别。 */
-export const SHOP_PRODUCTS: readonly { readonly id: ItemId; readonly food: number; readonly wood: number; readonly ammo?: TowerKind; readonly lore?: string }[] = [LIANG_ESSENCE, PATROL_RATION, LIANG_INDULGENCE, ICE_AMMO_OFFER];
+export const SHOP_PRODUCTS: readonly { readonly id: ItemId; readonly food: number; readonly wood: number; readonly ammo?: TowerKind; readonly lore?: string }[] = [LIANG_ESSENCE, PATROL_RATION, LIANG_INDULGENCE, YUEXIU_DICE, ICE_AMMO_OFFER];

@@ -3,7 +3,7 @@ const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 const { ROAD_PROFILE } = require(path.join(compiled, 'config/RoadGeometry.js'));
 const { GameLayout } = require(path.join(compiled, 'view/GameLayout.js'));
-const { HUD } = require(path.join(compiled, 'view/config/HudConfig.js'));
+const { HUD, LAYOUT } = require(path.join(compiled, 'view/config/HudConfig.js'));
 const { layoutVillage, VillageNavigation, towerLaunch, TOWER_VIEW, distance } = require(path.join(compiled, 'view/VillageScene.js'));
 const { VillagerMotion } = require(path.join(compiled, 'view/VillagerMotion.js'));
 const { ProjectileMotion } = require(path.join(compiled, 'view/ProjectileMotion.js'));
@@ -24,7 +24,13 @@ function near(a,b) { assert(Math.abs(a-b)<1e-6,`${a} != ${b}`); }
 for(const profile of profiles) test(`${profile[0]}: safe controls, expanded village, reachable stops and intact source proportions`, () => {
     const l=layout(profile), {scene,nav}=sceneAt(l), [name,w,h,top,bottom,mt,mb]=profile;
     near(l.height,h*720/w); near(l.safeTop,top*720/w); near(l.safeBottom,bottom*720/w);
-    assert(l.dateY+HUD.title.top>=mb*720/w-1e-6); assert(l.footerTop+228<=l.safeBottom);
+    assert(l.resourcesY>=mb*720/w-1e-6); near(l.footerTop+LAYOUT.footerHeight,l.safeBottom);
+    const oldMapTop = Math.max(top*720/w + 64, mb*720/w + 40) + 118;
+    const oldFooterTop = l.safeBottom - 242;
+    assert(l.footerTop-l.mapTop >= oldFooterTop-oldMapTop+82-1e-6, 'at least 82 more logical pixels are visible');
+    near(l.worldY(LAYOUT.referenceTop),l.mapTop);
+    near(l.worldY(LAYOUT.referenceGate + LAYOUT.referenceVillageHeight),l.footerTop);
+    for(const row of HUD.night.rows) assert(l.footerTop + row.y + row.size < l.safeBottom);
     assert(l.footerTop-l.gateY>=260);
     const adultCanvas = l.personScale * 56;
     assert(adultCanvas >= 90.3 - 1e-6 && adultCanvas <= 94.5 + 1e-6);
@@ -87,9 +93,9 @@ for(const profile of profiles) test(`${profile[0]}: safe controls, expanded vill
 test('missing safeArea uses reported status bar; screenTop removes already excluded status pixels; empty menu adds no phantom inset', () => {
     const menu={top:0,bottom:0,left:0,right:0,width:0,height:0};
     let l=new GameLayout({windowWidth:360,windowHeight:800,screenTop:0,statusBarHeight:24},menu);
-    near(l.safeTop,48); near(l.safeBottom,1600); near(l.dateY,112);
+    near(l.safeTop,48); near(l.safeBottom,1600); near(l.resourcesY,56);
     l=new GameLayout({windowWidth:360,windowHeight:776,screenTop:24,statusBarHeight:24,safeArea:{top:24,bottom:776,left:0,right:360}}, {top:28,bottom:60,left:262,right:350,width:88,height:32});
-    near(l.safeTop,0); near(l.safeBottom,1504); near(l.dateY,112);
+    near(l.safeTop,0); near(l.safeBottom,1504); near(l.resourcesY,80);
 });
 test('iPhone 12 window without screenTop keeps layout, village stops and controls inside the visible window', () => {
     const menu={top:51,bottom:83,left:292,right:380,width:88,height:32};
@@ -98,7 +104,7 @@ test('iPhone 12 window without screenTop keeps layout, village stops and control
         const l=new GameLayout(metrics,menu);
         for(const [key,value] of Object.entries(l)) assert(Number.isFinite(value),`invalid layout ${key}: ${value}`);
         assert.deepEqual(l,new GameLayout({...metrics,screenTop:0},menu));
-        assert(l.dateY+HUD.title.top>=menu.bottom*720/390-1e-6); assert(l.footerTop+228<=l.safeBottom);
+        assert(l.resourcesY>=menu.bottom*720/390-1e-6); near(l.footerTop+LAYOUT.footerHeight,l.safeBottom);
         const {scene,nav}=sceneAt(l);
         for(const [key,stops] of Object.entries(scene.stops)) for(const point of stops) {
             assert(Number.isFinite(point.x) && Number.isFinite(point.y),`invalid ${key} stop`);
@@ -181,7 +187,7 @@ test('layout resize without screenTop preserves the visible popup and updates th
     const box={width:668,height:860,y:0,pos(x,y){this.x=x;this.y=y;},scale(){},getChildByName(name){assert.equal(name,'FriendRankingCanvas');return ranking;}};
     const overlay={numChildren:1,graphics:{clear(){clears++;},drawRect(){}},size(){},getChildAt(){return box;}};
     const view=Object.create(GameView.prototype), w={windowWidth:360,windowHeight:880,statusBarHeight:28,safeArea:{top:28,bottom:856,left:0,right:360}}, menu={width:88,height:32,top:32,bottom:64,left:262,right:350};
-    const village=Object.create(VillageWorld.prototype); Object.assign(village,{layout:old,scene:data.scene,motion,props:data.scene.props.map(p=>({...p,node:{pos(){}}}))});
+    const village=Object.create(VillageWorld.prototype); Object.assign(village,{layout:old,scene:data.scene,motion,heroVisuals:{stroll:{relayout(){}}},deliveryVisuals:{stroll:{relayout(){}}},songLeiVisuals:{stroll:{relayout(){}}},props:data.scene.props.map(p=>({...p,node:{pos(){}}}))});
     const panels=new GamePanels(game,{}, {}, {},overlay,old,()=>{},{});
     Object.assign(view,{layout:old,village,panels,platform:{window:w,menu},root:{size(){}},overlay,tip:{pos(){}},refresh(preserve){assert.equal(preserve,true);refreshes++;}});
     const before=JSON.stringify(game);view.resize();assert.equal(view.overlay,overlay);assert.equal(view.overlay.getChildAt(0),box);assert.equal(viewportUpdates,1);
@@ -191,15 +197,15 @@ test('layout resize without screenTop preserves the visible popup and updates th
 test('approved right-bank tower positions and friendship sign follow the current tower and scene', () => {
     global.Laya = { Sprite: class {}, OpenDataContextView: class {}, Texture2D: class {} };
     const l = layout(profiles[4]), scene = layoutVillage(l);
-    near(scene.pads[3].x, 395.661); near(scene.pads[3].y, 631.5049632107023);
-    near(scene.pads[4].x, 547.898); near(scene.pads[4].y, 763.2778952062428);
+    near(scene.pads[3].x, 395.661); near(scene.pads[3].y, l.worldY(490));
+    near(scene.pads[4].x, 549.907); near(scene.pads[4].y, l.worldY(638));
     const { VillageWorld } = require(path.join(compiled, 'view/VillageWorld.js'));
     const state = createGame(7), sign = scene.friendshipSign.prop;
     const item = { id: sign.id, y: sign.y, node: { pos(x, y) { this.x = x; this.y = y; } } };
     const world = Object.assign(Object.create(VillageWorld.prototype), { game: { state }, scene, props: [item] });
     for (const [kind, night, x, y] of [
-        ['STONE', false, 575, 499], ['STONE', true, 598, 470],
-        ['ARROW', false, 598, 470], ['SLOW', false, 598, 470], [null, false, 575, 499]
+        ['STONE', false, 575, 499], ['STONE', true, 575, 477],
+        ['ARROW', false, 575, 477], ['SLOW', false, 575, 477], [null, false, 575, 499]
     ]) {
         state.towers[4].kind = kind;
         world.backgroundKey = night ? 'night' : 'day';

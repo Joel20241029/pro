@@ -22,5 +22,7 @@ export const ENEMIES: Record<EnemyKind, EnemyDefinition> = {
 };
 /** 铁鬃、野猪和巫医沿用重型小怪的逐波生命成长。此分类仅作用于初始血量。 */
 export const HEAVY_ORDINARY: ReadonlySet<EnemyKind> = new Set<EnemyKind>(["enemy_armored", "enemy_boar", "enemy_disruptor"]);
-/** 前5场依次展示全部首领；之后循环底型，外观单独组合。周期仍沿用 RULE.yearDays。 */
+/** 延续原每 12 波一场的首领节奏；调整只影响之后生成的波次。 */
+export const BOSS_INTERVAL_NIGHTS = 12;
+/** 前 5 场依次展示全部首领，之后循环底型，外观单独组合。 */
 export const BOSS_ROTATION: readonly EnemyKind[] = ["enemy_chief", "enemy_commander", "enemy_wolfking", "enemy_tuskking", "enemy_shaman"];

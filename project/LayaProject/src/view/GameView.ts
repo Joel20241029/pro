@@ -1,6 +1,7 @@
 import { ResourcePreparation } from "../platform/ResourcePreparation";
 import { drawNightResourcePanel } from "./panels/ResourcePanel";
 import { GameSession } from "../game/GameSession";
+import { ICE_AMMO_OFFER } from "../config/ShopConfig";
 import { RULE } from "../game/GameConfig";
 import { SpriteFrames } from "./SpriteFrames";
 import { GameLayout } from "./GameLayout";
@@ -19,7 +20,7 @@ import { PATROL_PROP } from "./config/VillageSceneConfig";
 import { BACKPACK_LESSON, PATROL_LESSONS, SHOP_LESSON, STARTER_LESSONS } from "./config/StarterGuideConfig";
 import { SIDE_FEATURES } from "./config/TacticUiConfig";
 import { TacticNotices } from "./TacticNotices";
-import { nextTacticSlotReady } from "../game/Tactics";
+import { tacticActionReady } from "./panels/TacticLoadoutPanels";
 import { drawBoot, drawSessionPanel } from "./panels/SessionPanels";
 import { TRAVELER_TITLE } from "./panels/TravelerPanel";
 /** 会话到表现的唯一刷新入口；各表现模块不自行订阅 changed，避免同步命令导致重复刷新。 */
@@ -50,9 +51,12 @@ export class GameView {
             this.panels.open({ type: "person", id });
     }, this.playDefeat, () => {
         if (!this.overlay.numChildren && this.game.state) this.panels.open({ type: "patrol" });
+    }, id => {
+        if (!this.overlay.numChildren && this.game.state?.phase === "DAY") this.panels.open({ type: "heroCommittee", id });
     });
     private panels = new GamePanels(this.game, this.art, this.platform, this.ui, this.overlay, this.layout, () => this.refresh(), this.resources,
-        this.tacticNotices, (kind, date, icon) => this.results.claimDaily(this.game, kind, date, icon));
+        this.tacticNotices, (kind, date, icon) => this.results.claimDaily(this.game, kind, date, icon),
+        (food, wood) => this.results.claimExpedition(this.game, food, wood));
     private hud = new GameHud(this.game, this.art, this.ui, this.panels, () => this.refresh());
     private results = new NightResultPresentation(this.ui, this.hud, () => this.refresh());
     private tip: Tip;
@@ -76,7 +80,9 @@ export class GameView {
         this.village.speechTip.name = "VillagerThought";
         this.village.speechTip.zIndex = 3;
         this.root.addChild(this.village.speechTip);
-        for (const node of [this.village.essenceArrow, this.village.essenceTip, this.village.patrolBuffSign]) {
+        this.village.heroTip.name = "HeroThought";
+        this.village.deliveryTip.name = "DeliveryThought";
+        for (const node of [this.village.heroTip, this.village.deliveryTip, this.village.essenceArrow, this.village.essenceTip]) {
             node.mouseEnabled = false; node.visible = false; node.zIndex = 3;
             this.root.addChild(node);
         }
@@ -133,7 +139,7 @@ export class GameView {
     /** 保留原面板/开放域实例与人物日程，不执行命令、读档或重复请求授权。 */
     resize() {
         const next = new GameLayout(this.platform.window, this.platform.menu), previous = this.layout;
-        if (next.height === previous.height && next.safeTop === previous.safeTop && next.safeBottom === previous.safeBottom && next.dateY === previous.dateY) {
+        if (next.height === previous.height && next.safeTop === previous.safeTop && next.safeBottom === previous.safeBottom && next.resourcesY === previous.resourcesY) {
             // 等比例窗口缩放可能不改变逻辑布局；原生榜单仍需更新 CSS 像素与触摸区域。
             this.panels.relayout(next);
             return;
@@ -166,9 +172,10 @@ export class GameView {
         }
         const essence = this.game.takeEssenceFeedback();
         if (this.game.takePurchaseFeedback() && this.panels.current?.type === "itemOffer") {
+            const iceAmmo = this.panels.current.id === ICE_AMMO_OFFER.id;
             this.panels.current = this.panels.current.back ?? null;
             if (!this.panels.current) this.game.resume("CHOICE");
-            this.tip.show("购买成功");
+            this.tip.show(iceAmmo ? "冰弹已解锁，点任意已建成的塔可装配" : "购买成功");
         }
         if (essence) {
             this.panels.current = null;
@@ -193,14 +200,14 @@ export class GameView {
         if (s) {
             this.village.sync(s, preserveOverlay);
             this.hud.draw(s, this.layout, this.village.scene, this.village, this.results.shownFeatures, this.tacticNotices.unread);
-            if (this.hud.tacticBadge && this.results.revealingTactic && !nextTacticSlotReady(s)) this.hud.tacticBadge.visible = false;
+            if (this.hud.tacticBadge && this.results.revealingTactic && !tacticActionReady(s)) this.hud.tacticBadge.visible = false;
         }
         if (!preserveOverlay) this.panels.redraw(() => {
             if (restoringNight) drawNightResourcePanel(this.panels);
             else if (!s) drawBoot(this.panels);
             else drawSessionPanel(this.panels, s, this.layout.safeBottom - this.layout.safeTop, () => this.results.draw(this.panels));
         });
-        if (s && this.hud.tacticBadge && !this.tacticNotices.unread && !nextTacticSlotReady(s)) this.hud.tacticBadge.visible = false;
+        if (s && this.hud.tacticBadge && !this.tacticNotices.unread && !tacticActionReady(s)) this.hud.tacticBadge.visible = false;
         this.updateActors();
         this.handSpeed.update(this.layout, 0, this.overlay.numChildren > 0, this.results.playingFinalImpact);
     }
@@ -247,7 +254,7 @@ export class GameView {
         this.reminder.tick(day?.day ?? 0, showGuide ? this.hud.startButton : null, visualDelta);
     }
     private updateActors() {
-        if (this.village.render(this.overlay.numChildren > 0, this.anchoredTip.visible)) this.tip.show("大王怜悯你");
+        if (this.village.render(this.overlay.numChildren > 0, this.anchoredTip.visible)) this.tip.show("大王怜悯你，急单已送达！");
         this.hud.update();
         // 每日口粮/欢迎回来等自动面板也通过overlay显示，不仅检查主动打开的panels.current。
         if (this.overlay.numChildren) { this.anchoredTip.hide(); this.reminder.hide(); }

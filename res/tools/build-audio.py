@@ -117,15 +117,15 @@ def tower_samples(score):
     return samples
 
 
-def defeat_samples(score):
-    # 以首次上传的母带为源，保留原始波形和时长。
+def master_samples(score):
+    # 使用批准的母带及其校验值，确保资源重建时保留试听音色和时长。
     master = root / score['masterWav']
     if hashlib.sha256(master.read_bytes()).hexdigest() != score['masterSha256']:
-        raise ValueError('Enemy defeat master does not match the archived 1.0.35 WAV')
+        raise ValueError(f"音频母带校验失败：{score['masterWav']}")
     with wave.open(str(master), 'rb') as wav:
         expected = (1, 2, score['sampleRate'], round(score['sampleRate'] * score['durationSeconds']))
         if wav.getparams()[:4] != expected:
-            raise ValueError('Enemy defeat master has unexpected channels, rate or duration')
+            raise ValueError(f"音频母带声道、采样率或时长不符：{score['masterWav']}")
         samples = array.array('h')
         samples.frombytes(wav.readframes(wav.getnframes()))
     return samples
@@ -169,6 +169,28 @@ def patrol_landing_samples(score):
     return samples
 
 
+def delivery_splash_samples(score):
+    rate, duration, mix = score['sampleRate'], score['durationSeconds'], score['synthesis']
+    rng = random.Random(mix['noiseSeed'])
+    smooth = 0.0
+    samples = []
+    for i in range(round(duration * rate)):
+        t = i / rate
+        noise = rng.uniform(-1, 1)
+        smooth += .23 * (noise - smooth)
+        # 硬纸盒先碰地，紧跟三声短促汤汁泡响；单声道也能分清「啪、噗噜」。
+        box = (math.sin(math.tau * mix['boxHz'] * t) + (noise - smooth) * .8) * math.exp(-t / .017)
+        splash = 1.4 * smooth * min(1, t / .009) * math.exp(-t / .047)
+        drops = 0.0
+        for start, frequency in mix['drops']:
+            age = t - start
+            if age >= 0:
+                phase = math.tau * frequency * (age + .019 * (1 - math.exp(-age / .016)))
+                drops += .62 * math.sin(phase) * min(1, age / .004) * math.exp(-age / .017)
+        samples.append((box + splash + drops) * min(1, t / .0015, (duration - t) / .015))
+    return samples
+
+
 def build(name, render):
     score_path = root / f'source/audio/{name}.score.json'
     score = json.loads(score_path.read_text())
@@ -199,11 +221,13 @@ def build(name, render):
 
 
 tracks = [build('village_loop', village_samples), build('battle_loop', battle_samples), build('ui_click', click_samples),
-          build('tower_fire', tower_samples), build('enemy_defeat', defeat_samples)]
+          build('tower_fire', tower_samples), build('enemy_defeat', master_samples)]
 if tracks[-1]['bytes'] > 3_000:
     raise ValueError('Enemy defeat sound exceeded the approved 3 KB target')
 tracks.extend([build('patrol_flight', patrol_flight_samples), build('patrol_landing', patrol_landing_samples)])
 tracks.append(build('patrol_rapid_fire', patrol_landing_samples))
+tracks.append(build('hero_hit', master_samples))
+tracks.append(build('delivery_splash', delivery_splash_samples))
 if tracks[0]['bytes'] > 120_000:
     raise ValueError('Village music exceeded the approved 120 KB target')
 if sum(track['bytes'] for track in tracks[1:]) > 80_000:

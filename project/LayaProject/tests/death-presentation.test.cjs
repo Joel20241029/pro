@@ -110,7 +110,7 @@ test('last-kill synchronous render cannot spend the old frame delta before conta
         const b = battle(), f = new CombatPresentation(), p = new ProjectileMotion(), event = fatal(b);
         const world = Object.create(VillageWorld.prototype);
         Object.assign(world, { feedback: f, feedbackFrame: -1, props: [{ id: 'building:patrol', node: new Sprite() }], people: [], enemies: [], actorShadows: [], qualityRings: [], hearts: [],
-            bellAura: new Sprite(), cryIcon: new Sprite(), essenceArrow: new Sprite(), patrolBuffSign: new Sprite(), crying: { dismiss() {} }, hideSpeech() {}, projectileVisuals: { clear() {} }, rage: { update() {} }, patrolVisuals: { update() { return []; } }, shield: { reset() {} },
+            bellAura: new Sprite(), cryIcon: new Sprite(), essenceArrow: new Sprite(), patrolBuffSign: new Sprite(), crying: { dismiss() {} }, hideSpeech() {}, heroTip: { hide() {} }, deliveryTip: { hide() {} }, projectileVisuals: { clear() {} }, rage: { update() {} }, patrolVisuals: { update() { return []; } }, heroVisuals: { update() { return []; } }, deliveryVisuals: { update() { return []; } }, songLeiVisuals: { update() { return []; } }, shield: { reset() {} },
             interaction: { clearDepth() {} }, blast: { update() {} }, handSpeed: { update() {} }, renderDelta: 0, lastBattle: null, lastBattleTick: 0,
             game: { state: null, battle: null, presentationBattle: b, pauses: new Set(), takeCombatFeedback: () => [event] } });
         b.tick = 20; b.outcome = 'WIN'; Laya.timer.currFrame = 100;

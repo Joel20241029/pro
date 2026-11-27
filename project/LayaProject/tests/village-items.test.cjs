@@ -8,7 +8,7 @@ const { GUIDE_SAVE_KEY } = read('storage/VillageGuides');
 const { GameSession } = read('game/GameSession');
 const { createGame } = read('game/VillageRules');
 const { featureUnlocked } = read('config/DailyTaskConfig');
-const { SHOP_PRODUCTS, ITEMS, LIANG_ESSENCE, PATROL_RATION, LIANG_INDULGENCE, ICE_AMMO_OFFER } = read('config/ShopConfig');
+const { SHOP_PRODUCTS, ITEMS, LIANG_ESSENCE, PATROL_RATION, LIANG_INDULGENCE, ICE_AMMO_OFFER, YUEXIU_DICE } = read('config/ShopConfig');
 
 const mainA = 'daidai_village.save.a', mainB = 'daidai_village.save.b';
 const unrelated = 'daidai_village.device_settings';
@@ -155,12 +155,10 @@ test('unknown versions and foreign-village inventories remain preserved', () => 
     }
 });
 
-test('backpack and shop gates are distinct, and only confirmed offers are purchasable', () => {
-    assert.equal(featureUnlocked(7, 'backpack'), false);
-    assert.equal(featureUnlocked(8, 'backpack'), true);
-    assert.equal(featureUnlocked(12, 'shop'), false);
-    assert.equal(featureUnlocked(13, 'shop'), true);
-    assert.deepEqual(SHOP_PRODUCTS, [LIANG_ESSENCE, PATROL_RATION, LIANG_INDULGENCE, ICE_AMMO_OFFER]);
+test('backpack and shop are available before the first night, with only configured offers', () => {
+    assert.equal(featureUnlocked(0, 'backpack'), true);
+    assert.equal(featureUnlocked(0, 'shop'), true);
+    assert.deepEqual(SHOP_PRODUCTS, [LIANG_ESSENCE, PATROL_RATION, LIANG_INDULGENCE, YUEXIU_DICE, ICE_AMMO_OFFER]);
     assert.equal(ITEMS.patrol_ration.name, '靓哥的底线');
     assert.equal(ITEMS.patrol_ration.icon, 'icon_liang_briefs');
     assert.match(PATROL_RATION.lore, /靓哥的红底裤/);
@@ -170,7 +168,7 @@ test('backpack and shop gates are distinct, and only confirmed offers are purcha
 test('patrol ration atomically consumes one bag and boosts only the next night, including reload', () => {
     const f = fixture(), game = f.reopen(), id = PATROL_RATION.id;
     game.newVillage();
-    game.state.legacy.bestNight = 13;
+    assert.equal(game.state.completed, 0);
     const { food, wood } = game.state;
     game.buyItem(id);
     assert.equal(game.state.food, food - 40);
@@ -382,9 +380,8 @@ test('ice purchase unlocks both towers and a single shared upgrade survives reop
     const f = fixture(), game = f.reopen();
     game.newVillage();
     assert.deepEqual(game.state.towers.map(t => t.kind), ['ARROW','STONE',null,null,null]);
-    game.buyItem(ICE_AMMO_OFFER.id);
+    assert.equal(game.state.completed, 0);
     assert.equal(game.state.iceAmmoUnlocked, undefined);
-    game.state.legacy.bestNight = 13;
     game.state.wood = ICE_AMMO_OFFER.wood - 1;
     game.buyItem(ICE_AMMO_OFFER.id);
     assert.equal(game.state.iceAmmoUnlocked, undefined);
@@ -408,4 +405,59 @@ test('ice purchase unlocks both towers and a single shared upgrade survives reop
     assert.deepEqual(next.state.ammoLevels, game.state.ammoLevels);
     assert.deepEqual(next.state.towers, game.state.towers);
     assert.equal(next.state.iceAmmoUnlocked,true);
+});
+
+test('reward die is committed once, scales one night and returns unchanged when the night is abandoned', () => {
+    const { economy } = read('game/VillageQueries');
+    const { finishNight } = read('game/VillageLifecycle');
+    const id = YUEXIU_DICE.id;
+    for (const [random, roll, multiplier] of [[0, 1, .5], [.5, 4, 2], [.999, 6, 2]]) {
+        const f = fixture(), game = f.reopen();
+        game.newVillage();
+        const opening = { food: game.state.food, wood: game.state.wood };
+        game.buyItem(id);
+        assert.deepEqual([game.state.food, game.state.wood], [opening.food - YUEXIU_DICE.food, opening.wood - YUEXIU_DICE.wood]);
+        game.villageItems.saveItems({ [id]: 2 });
+        const normal = economy(game.state);
+        const originalRandom = Math.random;
+        let rolls = 0;
+        try {
+            Math.random = () => { rolls++; return random; };
+            f.fault.beforeWrite = keys.backpack;
+            game.rollRewardDice();
+            assert(game.saves.pending);
+            assert.equal(game.state.rewardDie, undefined);
+        } finally { Math.random = originalRandom; }
+        delete f.fault.beforeWrite;
+        game.retry();
+        assert.equal(rolls, 1);
+        assert.equal(game.state.rewardDie, roll);
+        assert.equal(game.villageItems.backpack().items[id], 1);
+        const resumed = f.reopen();
+        assert.equal(resumed.state.rewardDie, roll);
+        resumed.rollRewardDice();
+        assert.equal(resumed.state.rewardDie, roll);
+        assert.equal(resumed.villageItems.backpack().items[id], 1);
+        const adjusted = economy(resumed.state), before = [resumed.state.food, resumed.state.wood];
+        assert.deepEqual([adjusted.food, adjusted.wood, adjusted.rations],
+            [Math.floor(normal.food * multiplier), Math.floor(normal.wood * multiplier), normal.rations]);
+        resumed.command({ type: 'NIGHT' });
+        assert.equal(resumed.state.rewardDie, undefined);
+        assert.equal(resumed.state.night.rewardDie, roll);
+        assert.deepEqual([resumed.state.food, resumed.state.wood], [adjusted.endFood, adjusted.endWood]);
+        assert.equal(economy(resumed.battle.base).food, adjusted.food);
+        const replay = f.reopen();
+        replay.pause('CHOICE'); replay.abandonNight();
+        assert.equal(replay.state.rewardDie, roll);
+        assert.deepEqual([replay.state.food, replay.state.wood], before);
+        replay.command({ type: 'NIGHT' });
+        const settled = structuredClone(replay.state);
+        finishNight(settled, 145, replay.battle.operators);
+        assert.equal(settled.rewardDie, undefined);
+        assert.equal(settled.night, null);
+        const lost = structuredClone(replay.state);
+        finishNight(lost, 0, replay.battle.operators);
+        assert.equal(lost.phase, 'GAME_OVER');
+        assert.equal(lost.rewardDie, undefined);
+    }
 });

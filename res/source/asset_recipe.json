@@ -17519,32 +17519,32 @@
       "category": "ui/panels",
       "categoryLabel": "ui/panels",
       "path": "runtime/ui/panels/panel_button_green.png",
-      "width": 256,
-      "height": 128,
+      "width": 86,
+      "height": 86,
       "pivot": {
-        "x": 128,
-        "y": 128
+        "x": 43,
+        "y": 86
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_button_green.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 86,
+        "h": 86
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 86,
+        "h": 86
       },
       "nineSlice": {
-        "top": 60,
-        "right": 60,
-        "bottom": 60,
-        "left": 60,
+        "top": 42,
+        "right": 42,
+        "bottom": 42,
+        "left": 42,
         "repeat": 0,
-        "scale": 0.72
+        "scale": 0.5
       },
       "mapping": "",
       "animation": null,
@@ -17565,8 +17565,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "3e15217f5a118974e6ff7c2870978e33f8430dfc903fa7ca2ebbe0f561704be0",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "fb566aca0ba62a47ade8f95f1ed55a01c4726090ae853dbc6784b6e15d55e891",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -17576,32 +17576,32 @@
       "category": "ui/panels",
       "categoryLabel": "ui/panels",
       "path": "runtime/ui/panels/panel_button_gold.png",
-      "width": 256,
-      "height": 128,
+      "width": 94,
+      "height": 94,
       "pivot": {
-        "x": 128,
-        "y": 128
+        "x": 47,
+        "y": 94
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_button_gold.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 94,
+        "h": 94
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 94,
+        "h": 94
       },
       "nineSlice": {
-        "top": 60,
-        "right": 60,
-        "bottom": 60,
-        "left": 60,
+        "top": 46,
+        "right": 46,
+        "bottom": 46,
+        "left": 46,
         "repeat": 0,
-        "scale": 0.72
+        "scale": 0.5
       },
       "mapping": "",
       "animation": null,
@@ -17622,8 +17622,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "bc76e6603c1edfb8d788b82c3a6b465104f9cb015dc577bb05cc4445129b4768",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "1a383f19f7ae5dc19669fcca748d0a5ed7fb61f78aebbed3c084a4306b265494",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -17633,32 +17633,32 @@
       "category": "ui/panels",
       "categoryLabel": "ui/panels",
       "path": "runtime/ui/panels/panel_button_red.png",
-      "width": 256,
-      "height": 128,
+      "width": 102,
+      "height": 102,
       "pivot": {
-        "x": 128,
-        "y": 128
+        "x": 51,
+        "y": 102
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_button_red.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 102,
+        "h": 102
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 102,
+        "h": 102
       },
       "nineSlice": {
-        "top": 60,
-        "right": 60,
-        "bottom": 60,
-        "left": 60,
+        "top": 50,
+        "right": 50,
+        "bottom": 50,
+        "left": 50,
         "repeat": 0,
-        "scale": 0.72
+        "scale": 0.5
       },
       "mapping": "",
       "animation": null,
@@ -17679,8 +17679,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "680de5fc734acefce732301901f8d88293d989659843d11dcc6d78b305b3757c",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "429d72522e8efaeaf888b44d3a37c9aed2046ed364e3fce2520cf2dfa3258498",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -17690,32 +17690,32 @@
       "category": "ui/panels",
       "categoryLabel": "ui/panels",
       "path": "runtime/ui/panels/panel_button_disabled.png",
-      "width": 256,
-      "height": 128,
+      "width": 86,
+      "height": 86,
       "pivot": {
-        "x": 128,
-        "y": 128
+        "x": 43,
+        "y": 86
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_button_disabled.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 86,
+        "h": 86
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 86,
+        "h": 86
       },
       "nineSlice": {
-        "top": 60,
-        "right": 60,
-        "bottom": 60,
-        "left": 60,
+        "top": 42,
+        "right": 42,
+        "bottom": 42,
+        "left": 42,
         "repeat": 0,
-        "scale": 0.72
+        "scale": 0.5
       },
       "mapping": "",
       "animation": null,
@@ -17736,8 +17736,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "e47467a08aebc87e51e54178b667336b992694b8ab3eb7dcac9b692d2e6dc52a",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "3fa3e47126b4c5fef192f6d067b032c024ae2f5f9fcf69a978660df220a3d796",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -17747,30 +17747,30 @@
       "category": "ui/panels",
       "categoryLabel": "ui/panels",
       "path": "runtime/ui/panels/panel_card.png",
-      "width": 256,
-      "height": 192,
+      "width": 106,
+      "height": 106,
       "pivot": {
-        "x": 128,
-        "y": 192
+        "x": 53,
+        "y": 106
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_card.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 192
+        "w": 106,
+        "h": 106
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 192
+        "w": 106,
+        "h": 106
       },
       "nineSlice": {
-        "top": 32,
-        "right": 32,
-        "bottom": 32,
-        "left": 32,
+        "top": 52,
+        "right": 52,
+        "bottom": 52,
+        "left": 52,
         "repeat": 0,
         "scale": 0.5
       },
@@ -17793,8 +17793,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "927d3829c656704279b5bfce700c75a448688178ac3ef555d9c69598651149df",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "e66241d66a9ec9e5fb1689017c066448a4651f05ea0518905bee1bf8c63fe239",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -17804,30 +17804,30 @@
       "category": "ui/panels",
       "categoryLabel": "ui/panels",
       "path": "runtime/ui/panels/panel_card_disabled.png",
-      "width": 256,
-      "height": 192,
+      "width": 106,
+      "height": 106,
       "pivot": {
-        "x": 128,
-        "y": 192
+        "x": 53,
+        "y": 106
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_card_disabled.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 192
+        "w": 106,
+        "h": 106
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 192
+        "w": 106,
+        "h": 106
       },
       "nineSlice": {
-        "top": 32,
-        "right": 32,
-        "bottom": 32,
-        "left": 32,
+        "top": 52,
+        "right": 52,
+        "bottom": 52,
+        "left": 52,
         "repeat": 0,
         "scale": 0.5
       },
@@ -17850,8 +17850,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "92c3005e9e0a1a29349120bb0e995f20c1adac74e812d534e5464609d4e0254f",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "1583dcf9ea22aef8b96d5024391742644ef7f8895bd96b603dfb1a6e41b20810",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -17861,32 +17861,32 @@
       "category": "ui/panels",
       "categoryLabel": "ui/panels",
       "path": "runtime/ui/panels/panel_parchment.png",
-      "width": 256,
-      "height": 256,
+      "width": 130,
+      "height": 130,
       "pivot": {
-        "x": 128,
-        "y": 256
+        "x": 65,
+        "y": 130
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_parchment.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 256
+        "w": 130,
+        "h": 130
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 256
+        "w": 130,
+        "h": 130
       },
       "nineSlice": {
-        "top": 48,
-        "right": 48,
-        "bottom": 48,
-        "left": 48,
+        "top": 64,
+        "right": 64,
+        "bottom": 64,
+        "left": 64,
         "repeat": 0,
-        "scale": 0.75
+        "scale": 0.5
       },
       "mapping": "",
       "animation": null,
@@ -17907,8 +17907,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "dee31f2ee85dca92eaa58e286768b112f86d651e17c9586995a2354ecf32a607",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "219de2c97fbc6d6c471f43686c7b85878f456f2bb1821c34d6f0cfc5c62c267b",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -17918,30 +17918,30 @@
       "category": "ui/panels",
       "categoryLabel": "ui/panels",
       "path": "runtime/ui/panels/panel_header.png",
-      "width": 256,
-      "height": 128,
+      "width": 118,
+      "height": 118,
       "pivot": {
-        "x": 128,
-        "y": 128
+        "x": 59,
+        "y": 118
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_header.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 118,
+        "h": 118
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 118,
+        "h": 118
       },
       "nineSlice": {
-        "top": 40,
-        "right": 40,
-        "bottom": 40,
-        "left": 40,
+        "top": 58,
+        "right": 58,
+        "bottom": 58,
+        "left": 58,
         "repeat": 0,
         "scale": 0.5
       },
@@ -17964,8 +17964,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "9cf55754d942f3ba25d03846a4171c84a018916fbf3b7d0bff792a6b1f46927e",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "629456cd81844aeb8cb07a9674c21d153edc76912df86648f1123da5888509ad",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -17975,30 +17975,30 @@
       "category": "ui/panels",
       "categoryLabel": "ui/panels",
       "path": "runtime/ui/panels/panel_tip.png",
-      "width": 256,
-      "height": 128,
+      "width": 98,
+      "height": 98,
       "pivot": {
-        "x": 128,
-        "y": 128
+        "x": 49,
+        "y": 98
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_tip.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 98,
+        "h": 98
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 98,
+        "h": 98
       },
       "nineSlice": {
-        "top": 40,
-        "right": 40,
-        "bottom": 40,
-        "left": 40,
+        "top": 48,
+        "right": 48,
+        "bottom": 48,
+        "left": 48,
         "repeat": 0,
         "scale": 0.5
       },
@@ -18021,8 +18021,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "56ea0b61afae618b79f111a3333d4f5c888a3f045c956dbf42d65e4bb608b455",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "2096377ade9d0f0bfb76c1748d549b32fca2922b40f352fee97f19f34e04436d",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -18032,30 +18032,30 @@
       "category": "ui/panels",
       "categoryLabel": "ui/panels",
       "path": "runtime/ui/panels/panel_anchored_tip.png",
-      "width": 256,
-      "height": 128,
+      "width": 98,
+      "height": 98,
       "pivot": {
-        "x": 128,
-        "y": 128
+        "x": 49,
+        "y": 98
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_anchored_tip.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 98,
+        "h": 98
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 98,
+        "h": 98
       },
       "nineSlice": {
-        "top": 40,
-        "right": 40,
-        "bottom": 40,
-        "left": 40,
+        "top": 48,
+        "right": 48,
+        "bottom": 48,
+        "left": 48,
         "repeat": 0,
         "scale": 0.5
       },
@@ -18078,8 +18078,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "56ea0b61afae618b79f111a3333d4f5c888a3f045c956dbf42d65e4bb608b455",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "2096377ade9d0f0bfb76c1748d549b32fca2922b40f352fee97f19f34e04436d",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -18089,30 +18089,30 @@
       "category": "ui/panels",
       "categoryLabel": "ui/panels",
       "path": "runtime/ui/panels/panel_portrait_frame.png",
-      "width": 256,
-      "height": 128,
+      "width": 90,
+      "height": 90,
       "pivot": {
-        "x": 128,
-        "y": 128
+        "x": 45,
+        "y": 90
       },
       "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_portrait_frame.png",
       "sourceRect": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 90,
+        "h": 90
       },
       "sourceCropWithinCell": {
         "x": 0,
         "y": 0,
-        "w": 256,
-        "h": 128
+        "w": 90,
+        "h": 90
       },
       "nineSlice": {
-        "top": 24,
-        "right": 24,
-        "bottom": 24,
-        "left": 24,
+        "top": 44,
+        "right": 44,
+        "bottom": 44,
+        "left": 44,
         "repeat": 0,
         "scale": 0.5
       },
@@ -18135,8 +18135,8 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "3d1a959559528bdf29a8b1198e881a49dee100d006847378b1763fa7530c984e",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "68bdda4690de446536ef3047b03b3d047f6cde0123f59a286ac4075b295ae61d",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -18185,8 +18185,8 @@
         "objectBox": null,
         "alphaCutoff": 16,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "22cec134160477d872b1711234bf22293866a291b5a88230601a4bdc1bd509ac",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "2b14161505f1291db52200b508e67e3766a449aaab78c8b0cf5bcc25a6436131",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -18285,8 +18285,8 @@
         "objectBox": null,
         "alphaCutoff": 16,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "22cec134160477d872b1711234bf22293866a291b5a88230601a4bdc1bd509ac",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "2b14161505f1291db52200b508e67e3766a449aaab78c8b0cf5bcc25a6436131",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -18767,8 +18767,8 @@
         "objectBox": null,
         "alphaCutoff": 28,
         "fullCanvas": true,
-        "sourceHash": "0efe6dcf297f1664d5f5b07b4f96c6f1873ee905fe3466ac85e56d6858f3c4c3",
-        "outputHash": "80f1294f6bd35dcc12e440c9b1ac59ed26c20dc66acf102e155690bc02ea972c",
+        "sourceHash": "c98e7e1244c28cfec49367b0ecf7b641314a1f511521b6247d58b4a817487f12",
+        "outputHash": "438233bdc2887b25e4237ac99ec6639ae9a4097ba794e4a9472381ad475027ac",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -18817,8 +18817,8 @@
         "objectBox": null,
         "alphaCutoff": 28,
         "fullCanvas": true,
-        "sourceHash": "0efe6dcf297f1664d5f5b07b4f96c6f1873ee905fe3466ac85e56d6858f3c4c3",
-        "outputHash": "84a47b27956a7d513b0b4c5d959d66503e9223d7421ca13dbca89aab81d6d832",
+        "sourceHash": "c98e7e1244c28cfec49367b0ecf7b641314a1f511521b6247d58b4a817487f12",
+        "outputHash": "c02d8fef7cc9e92afe16fa51570a0525922b515c3d1e0e3b4ff69f6a2780884a",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -18867,8 +18867,8 @@
         "objectBox": null,
         "alphaCutoff": 28,
         "fullCanvas": true,
-        "sourceHash": "0efe6dcf297f1664d5f5b07b4f96c6f1873ee905fe3466ac85e56d6858f3c4c3",
-        "outputHash": "23dc3558f5998460bcb5f2ad214ad58018963c5031db8c8109d64fd4e075ecfd",
+        "sourceHash": "c98e7e1244c28cfec49367b0ecf7b641314a1f511521b6247d58b4a817487f12",
+        "outputHash": "6be5d232c49a7efa5a7d4316dde1780011826a0e23dd269cf9606c669168f42c",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -20260,8 +20260,8 @@
         ],
         "alphaCutoff": 240,
         "fullCanvas": false,
-        "sourceHash": "ef00c8a8997e56636f7a7f5a7826666f3f42d9faac30023ef4d5e20c8b2852b5",
-        "outputHash": "bdc411a9b144cc98be80fae4f313a31232eaa3da578f15ae3bf9dd4564553160",
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "5caf618866f80c3db8e7fb673ee31dbd0ec0b74eaf5c9fb9349131a34c9491c8",
         "renderer": "tools/hd2d/render-cartoon.py"
       }
     },
@@ -21453,11 +21453,11 @@
         "objectBox": null,
         "alphaCutoff": 0,
         "fullCanvas": true,
-        "sourceHash": "32b9d59d6a44d4f0793e64a642901fc6cf5bafccc5892301b2e128ecf0f704a4",
-        "outputHash": "32b9d59d6a44d4f0793e64a642901fc6cf5bafccc5892301b2e128ecf0f704a4",
+        "sourceHash": "d8cf5171b2e155ce50f58d70b1b140660c3a41bca640377953fabd17306e48bc",
+        "outputHash": "d8cf5171b2e155ce50f58d70b1b140660c3a41bca640377953fabd17306e48bc",
         "registration": {
           "roadRows": 593,
-          "minRoadMargin": 5.46,
+          "minRoadMargin": 5.97,
           "referenceWidth": 720,
           "referenceTop": 140,
           "referenceGate": 830,
@@ -28904,14 +28904,140 @@
       "resizeMode": "stretch",
       "sampling": "Lanczos",
       "runtime": true,
-      "usage": "淡紫儿之家打法卡与守夜城门共用的连发枪架",
+      "usage": "淡紫儿之家打法卡与升级预览的朱红单管炮完整图",
       "bundle": "base",
       "provenance": {
         "source": "source/rendered2d/production/cartoon-v1/masters/patrol-rapid-gun.png",
-        "sourceHash": "9d0154f7dbc6995e18a58fc2cb829847c803d8f6d8d368a1ce610f3addad4d9b",
+        "sourceHash": "757f1f392c99a929e977fc1c5c7567aa82f40e8afbdc48c04cd5dd2be91db15d",
         "fullCanvas": false,
-        "outputHash": "4d304480d82307285edc65bb1a3a6f0863f1c7983a00c3bc0646bbdcd070cbc3",
+        "outputHash": "8bd633d1a80f97f5b11920ba86ca969850c79e2875f91baa3f95c1206408637c",
         "renderer": "tools/hd2d/render-cartoon.py"
+      }
+    },
+    {
+      "id": "patrol_rapid_barrel",
+      "label": "patrol_rapid_barrel",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/patrol_rapid_barrel.png",
+      "width": 228,
+      "height": 216,
+      "pivot": {
+        "x": 100,
+        "y": 138
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/patrol_rapid_barrel.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 228,
+        "h": 216
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 228,
+        "h": 216
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "守夜城门连发的活动炮身与臭袜",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/cartoon-v1/masters/patrol-rapid-gun.png",
+        "sourceHash": "757f1f392c99a929e977fc1c5c7567aa82f40e8afbdc48c04cd5dd2be91db15d",
+        "fullCanvas": false,
+        "outputHash": "2ab9e97693b649982307d754b06feb8d70b1a69f5ee8c02d39984c299826de46",
+        "renderer": "tools/hd2d/patrol_cannon.py"
+      }
+    },
+    {
+      "id": "patrol_rapid_barrel_rear",
+      "label": "patrol_rapid_barrel_rear",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/patrol_rapid_barrel_rear.png",
+      "width": 228,
+      "height": 216,
+      "pivot": {
+        "x": 100,
+        "y": 138
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/patrol_rapid_barrel_rear.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 228,
+        "h": 216
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 228,
+        "h": 216
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "守夜城门连发朝向敌人时的俯视背面炮身与臭袜",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/cartoon-v1/masters/patrol-rapid-gun-battle.png",
+        "sourceHash": "276be2e6a42309e648bf430d21f4fbcfb7c07b4d662bc5a4c0f60fc71341338a",
+        "fullCanvas": false,
+        "outputHash": "08a83452167046d0f9846d48c10e4fe4ed793cff093966edf42559f586d1fa3e",
+        "renderer": "tools/hd2d/patrol_cannon.py"
+      }
+    },
+    {
+      "id": "patrol_rapid_mount",
+      "label": "patrol_rapid_mount",
+      "category": "ui/icons",
+      "categoryLabel": "ui/icons",
+      "path": "runtime/ui/icons/patrol_rapid_mount.png",
+      "width": 228,
+      "height": 216,
+      "pivot": {
+        "x": 100,
+        "y": 138
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/patrol_rapid_mount.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 228,
+        "h": 216
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 228,
+        "h": 216
+      },
+      "nineSlice": null,
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "守夜城门连发的固定木底座",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/cartoon-v1/masters/patrol-rapid-gun-battle.png",
+        "sourceHash": "276be2e6a42309e648bf430d21f4fbcfb7c07b4d662bc5a4c0f60fc71341338a",
+        "fullCanvas": false,
+        "outputHash": "1a0f08c86d8e855cb17ffff54890ff152e0078273eec1805bced173e03dabe3b",
+        "renderer": "tools/hd2d/patrol_cannon.py"
       }
     },
     {
@@ -33260,326 +33386,6 @@
       }
     },
     {
-      "id": "cannon_flag_0",
-      "label": "cannon_flag_0",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/cannon_flag_0.png",
-      "width": 92,
-      "height": 77,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_0.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "cannon_flag",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/buildings/stone-cannon/cannon_flag_0.png",
-        "sourceHash": "6ebc852c07a01f567976c76b2f3db84e3e90316502f8c8a72e04f83d5cd7920b",
-        "outputHash": "6ebc852c07a01f567976c76b2f3db84e3e90316502f8c8a72e04f83d5cd7920b"
-      }
-    },
-    {
-      "id": "cannon_flag_1",
-      "label": "cannon_flag_1",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/cannon_flag_1.png",
-      "width": 92,
-      "height": 77,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_1.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "cannon_flag",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/buildings/stone-cannon/cannon_flag_1.png",
-        "sourceHash": "2159d40396e00abe9c375ed4dfb50559f3f5de242a62af7653274e1202e7c83d",
-        "outputHash": "2159d40396e00abe9c375ed4dfb50559f3f5de242a62af7653274e1202e7c83d"
-      }
-    },
-    {
-      "id": "cannon_flag_2",
-      "label": "cannon_flag_2",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/cannon_flag_2.png",
-      "width": 92,
-      "height": 77,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_2.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "cannon_flag",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/buildings/stone-cannon/cannon_flag_2.png",
-        "sourceHash": "f8af73bb7a42cb6214ff39dcd4b02bbb8c8fba81d1678739f84dfe9046c6da8b",
-        "outputHash": "f8af73bb7a42cb6214ff39dcd4b02bbb8c8fba81d1678739f84dfe9046c6da8b"
-      }
-    },
-    {
-      "id": "cannon_flag_3",
-      "label": "cannon_flag_3",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/cannon_flag_3.png",
-      "width": 92,
-      "height": 77,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_3.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "cannon_flag",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/buildings/stone-cannon/cannon_flag_3.png",
-        "sourceHash": "24ea32f7f829dcd65d02e1adb514e142acccaef59cf76d27dc5a8ff2add1a346",
-        "outputHash": "24ea32f7f829dcd65d02e1adb514e142acccaef59cf76d27dc5a8ff2add1a346"
-      }
-    },
-    {
-      "id": "cannon_flag_4",
-      "label": "cannon_flag_4",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/cannon_flag_4.png",
-      "width": 92,
-      "height": 77,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_4.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "cannon_flag",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/buildings/stone-cannon/cannon_flag_4.png",
-        "sourceHash": "f1320eeeb0020d2ca7164fc7b208f554c3498d76df89b6f9975e4c1f0efb2b12",
-        "outputHash": "f1320eeeb0020d2ca7164fc7b208f554c3498d76df89b6f9975e4c1f0efb2b12"
-      }
-    },
-    {
-      "id": "cannon_flag_5",
-      "label": "cannon_flag_5",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/cannon_flag_5.png",
-      "width": 92,
-      "height": 77,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_5.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "cannon_flag",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/buildings/stone-cannon/cannon_flag_5.png",
-        "sourceHash": "4fc296a8787301fa3b7bc9796f73b518b0e1adb2cef8aa0ba022f934c722a6e4",
-        "outputHash": "4fc296a8787301fa3b7bc9796f73b518b0e1adb2cef8aa0ba022f934c722a6e4"
-      }
-    },
-    {
-      "id": "cannon_flag_6",
-      "label": "cannon_flag_6",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/cannon_flag_6.png",
-      "width": 92,
-      "height": 77,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_6.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "cannon_flag",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/buildings/stone-cannon/cannon_flag_6.png",
-        "sourceHash": "7aeeffd8402b256e14e07dfd08b919b0bc88ab9d41bddf46897b4dcad9bfa4d8",
-        "outputHash": "7aeeffd8402b256e14e07dfd08b919b0bc88ab9d41bddf46897b4dcad9bfa4d8"
-      }
-    },
-    {
-      "id": "cannon_flag_7",
-      "label": "cannon_flag_7",
-      "category": "building-parts",
-      "categoryLabel": "建筑动效",
-      "path": "runtime/building-parts/cannon_flag_7.png",
-      "width": 92,
-      "height": 77,
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "sourceSheet": "source/buildings/stone-cannon/cannon_flag_7.png",
-      "sourceRect": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "sourceCropWithinCell": {
-        "x": 0,
-        "y": 0,
-        "w": 92,
-        "h": 77
-      },
-      "nineSlice": null,
-      "mapping": "",
-      "animation": "cannon_flag",
-      "fitPadding": 0,
-      "resizeMode": "stretch",
-      "sampling": "Lanczos",
-      "runtime": true,
-      "usage": "固定建筑主体或局部动画拆件",
-      "bundle": "buildings",
-      "provenance": {
-        "source": "source/buildings/stone-cannon/cannon_flag_7.png",
-        "sourceHash": "cc1bfb1ac50dd035f106c8cf93d5f6a1532e1db428a32321f76cd4a37a96c09c",
-        "outputHash": "cc1bfb1ac50dd035f106c8cf93d5f6a1532e1db428a32321f76cd4a37a96c09c"
-      }
-    },
-    {
       "id": "cannon_portrait",
       "label": "cannon_portrait",
       "category": "building-parts",
@@ -34097,6 +33903,4029 @@
         "source": "source/buildings/stone-cannon/cannon_ammo_arrow.png",
         "sourceHash": "29bfa847ffce25296d6604821c38d8e6cb8e704ff5729d0c1a84e6190c41614a",
         "outputHash": "b284b804b9ad77ae47a07512cc810b519946ea1d21d99a78471fb06b93093633"
+      }
+    },
+    {
+      "id": "panel_header_night",
+      "label": "panel_header_night",
+      "category": "ui/panels",
+      "categoryLabel": "ui/panels",
+      "path": "runtime/ui/panels/panel_header_night.png",
+      "width": 118,
+      "height": 118,
+      "pivot": {
+        "x": 59,
+        "y": 118
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_header_night.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 118,
+        "h": 118
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 118,
+        "h": 118
+      },
+      "nineSlice": {
+        "top": 58,
+        "right": 58,
+        "bottom": 58,
+        "left": 58,
+        "repeat": 0,
+        "scale": 0.5
+      },
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "base",
+      "provenance": {
+        "source": "tools/hd2d/render-cartoon.py",
+        "crop": [
+          446,
+          964,
+          362,
+          148
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": false,
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "b41e942243592e3a53211d559da8a328845b8e3d21d0b30f711aaf61881be2ed",
+        "renderer": "tools/hd2d/render-cartoon.py"
+      }
+    },
+    {
+      "id": "panel_header_fern",
+      "label": "panel_header_fern",
+      "category": "ui/panels",
+      "categoryLabel": "ui/panels",
+      "path": "runtime/ui/panels/panel_header_fern.png",
+      "width": 118,
+      "height": 118,
+      "pivot": {
+        "x": 59,
+        "y": 118
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_header_fern.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 118,
+        "h": 118
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 118,
+        "h": 118
+      },
+      "nineSlice": {
+        "top": 58,
+        "right": 58,
+        "bottom": 58,
+        "left": 58,
+        "repeat": 0,
+        "scale": 0.5
+      },
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "base",
+      "provenance": {
+        "source": "tools/hd2d/render-cartoon.py",
+        "crop": [
+          446,
+          964,
+          362,
+          148
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": false,
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "30a05e02d91727cf73d94d09cd1f1d305d952042307bf220eece7c2ef5851607",
+        "renderer": "tools/hd2d/render-cartoon.py"
+      }
+    },
+    {
+      "id": "panel_button_fern",
+      "label": "panel_button_fern",
+      "category": "ui/panels",
+      "categoryLabel": "ui/panels",
+      "path": "runtime/ui/panels/panel_button_fern.png",
+      "width": 86,
+      "height": 86,
+      "pivot": {
+        "x": 43,
+        "y": 86
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_button_fern.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 86,
+        "h": 86
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 86,
+        "h": 86
+      },
+      "nineSlice": {
+        "top": 42,
+        "right": 42,
+        "bottom": 42,
+        "left": 42,
+        "repeat": 0,
+        "scale": 0.5
+      },
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "base",
+      "provenance": {
+        "source": "tools/hd2d/render-cartoon.py",
+        "crop": [
+          31,
+          147,
+          361,
+          147
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": false,
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "92d4555f84893afef4d7f22a245ba2155743d800e64e1f147ea693cca122c6a1",
+        "renderer": "tools/hd2d/render-cartoon.py"
+      }
+    },
+    {
+      "id": "panel_card_fern",
+      "label": "panel_card_fern",
+      "category": "ui/panels",
+      "categoryLabel": "ui/panels",
+      "path": "runtime/ui/panels/panel_card_fern.png",
+      "width": 106,
+      "height": 106,
+      "pivot": {
+        "x": 53,
+        "y": 106
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_card_fern.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 106,
+        "h": 106
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 106,
+        "h": 106
+      },
+      "nineSlice": {
+        "top": 52,
+        "right": 52,
+        "bottom": 52,
+        "left": 52,
+        "repeat": 0,
+        "scale": 0.5
+      },
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "base",
+      "provenance": {
+        "source": "tools/hd2d/render-cartoon.py",
+        "crop": [
+          445,
+          493,
+          365,
+          268
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": false,
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "4cf0461b57345964358b8c070bc5a4234d3258b289a55d41c38a398eab9d3fee",
+        "renderer": "tools/hd2d/render-cartoon.py"
+      }
+    },
+    {
+      "id": "panel_card_blue",
+      "label": "panel_card_blue",
+      "category": "ui/panels",
+      "categoryLabel": "ui/panels",
+      "path": "runtime/ui/panels/panel_card_blue.png",
+      "width": 106,
+      "height": 106,
+      "pivot": {
+        "x": 53,
+        "y": 106
+      },
+      "sourceSheet": "source/rendered2d/production/cartoon-v1/frames/panel_card_blue.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 106,
+        "h": 106
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 106,
+        "h": 106
+      },
+      "nineSlice": {
+        "top": 52,
+        "right": 52,
+        "bottom": 52,
+        "left": 52,
+        "repeat": 0,
+        "scale": 0.5
+      },
+      "mapping": "",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "HD production",
+      "bundle": "base",
+      "provenance": {
+        "source": "tools/hd2d/render-cartoon.py",
+        "crop": [
+          445,
+          493,
+          365,
+          268
+        ],
+        "objectBox": null,
+        "alphaCutoff": 0,
+        "fullCanvas": false,
+        "sourceHash": "bb94be3e59c1958a2333542c7e114a30cdcbf84372856ef6b43927ff7a771ea9",
+        "outputHash": "4fc6bcbda04289104570066fcd388dde05b0c6aa0f486066860234430e08acb2",
+        "renderer": "tools/hd2d/render-cartoon.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_down_idle",
+      "label": "hero_zhizhuo_down_idle",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_down_idle.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_down_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/idle.png",
+        "sourceHash": "6a19510f864156db06f2f3789c73c03074f230575fef239f311917ea353873e2",
+        "fullCanvas": false,
+        "outputHash": "172025dfa66063f0be65f0ac5a15e3756ede2bd77dc161f4263b369b87796deb",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "zhizhuo_portrait",
+      "label": "zhizhuo_portrait",
+      "category": "ui/icons",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/ui/icons/zhizhuo_portrait.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/zhizhuo_portrait.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/idle.png",
+        "sourceHash": "6a19510f864156db06f2f3789c73c03074f230575fef239f311917ea353873e2",
+        "fullCanvas": false,
+        "outputHash": "ad18505bb7065d288915bddc6e7a8cb293f1c6fec269832215ffd4871c658f56",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_down_walk_0",
+      "label": "hero_zhizhuo_down_walk_0",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_down_walk_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_down_walk_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_down_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/down.png",
+        "sourceHash": "98a17b730b1473256ced5cab347e7b0275cafd446e9cabb2bccca081c4957e08",
+        "fullCanvas": false,
+        "outputHash": "92b43e696e91a3e92a99872c6d05181efc3dbb874e2ea2ca9cfbd8d3bf5b4cef",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_down_walk_1",
+      "label": "hero_zhizhuo_down_walk_1",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_down_walk_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_down_walk_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_down_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/down.png",
+        "sourceHash": "98a17b730b1473256ced5cab347e7b0275cafd446e9cabb2bccca081c4957e08",
+        "fullCanvas": false,
+        "outputHash": "7d26302a643c234403b907826935e82a071a7c7d57d9faa1951b2b0cabab527f",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_down_walk_2",
+      "label": "hero_zhizhuo_down_walk_2",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_down_walk_2.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_down_walk_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_down_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/down.png",
+        "sourceHash": "98a17b730b1473256ced5cab347e7b0275cafd446e9cabb2bccca081c4957e08",
+        "fullCanvas": false,
+        "outputHash": "90728faff0cb2b8b5530b8c0273c93330ba5d697129ed79bd6a721f98d3ffd05",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_down_walk_3",
+      "label": "hero_zhizhuo_down_walk_3",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_down_walk_3.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_down_walk_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_down_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/down.png",
+        "sourceHash": "98a17b730b1473256ced5cab347e7b0275cafd446e9cabb2bccca081c4957e08",
+        "fullCanvas": false,
+        "outputHash": "ff2d602c472499857daeb01e6a617bf5a0d45ce3a26b61c7df4689d1ec60f3c7",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_down_attack_0",
+      "label": "hero_zhizhuo_down_attack_0",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_down_attack_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_down_attack_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_down_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/down.png",
+        "sourceHash": "98a17b730b1473256ced5cab347e7b0275cafd446e9cabb2bccca081c4957e08",
+        "fullCanvas": false,
+        "outputHash": "f071176140eaf27b3885969096dcfdd2674dfdea6f162af552ac53c74229e3b3",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_down_attack_1",
+      "label": "hero_zhizhuo_down_attack_1",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_down_attack_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_down_attack_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_down_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/down.png",
+        "sourceHash": "98a17b730b1473256ced5cab347e7b0275cafd446e9cabb2bccca081c4957e08",
+        "fullCanvas": false,
+        "outputHash": "1558f8e9c2de5fa131ce65a3b843cc7a881b871b0108a8dc1d7192f128e0f29f",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_down_attack_2",
+      "label": "hero_zhizhuo_down_attack_2",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_down_attack_2.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_down_attack_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_down_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/down.png",
+        "sourceHash": "98a17b730b1473256ced5cab347e7b0275cafd446e9cabb2bccca081c4957e08",
+        "fullCanvas": false,
+        "outputHash": "7bf8821d50def0d852be8cd46018798861f06436b399e4da7c84a9bdb479adab",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_down_attack_3",
+      "label": "hero_zhizhuo_down_attack_3",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_down_attack_3.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_down_attack_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_down_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/down.png",
+        "sourceHash": "98a17b730b1473256ced5cab347e7b0275cafd446e9cabb2bccca081c4957e08",
+        "fullCanvas": false,
+        "outputHash": "084479ae867df347833898c3dedcc159cfc9bc12808d512e926352e54ededa3d",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_left_idle",
+      "label": "hero_zhizhuo_left_idle",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_left_idle.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_left_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/idle.png",
+        "sourceHash": "6a19510f864156db06f2f3789c73c03074f230575fef239f311917ea353873e2",
+        "fullCanvas": false,
+        "outputHash": "a093377abab1aedf19f3df88722a4fe4ba1238bae616f1902d86d4394e49618b",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_left_walk_0",
+      "label": "hero_zhizhuo_left_walk_0",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_left_walk_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_left_walk_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_left_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/left.png",
+        "sourceHash": "056ff1e9df8bc9126516683d42da2af4f1ac4ff1dcb667979bb8237facd279dc",
+        "fullCanvas": false,
+        "outputHash": "296e191618aee3c874a29bb49e068a936e6deaa6a566e010a4aebe6ecb3a1ffb",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_left_walk_1",
+      "label": "hero_zhizhuo_left_walk_1",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_left_walk_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_left_walk_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_left_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/left.png",
+        "sourceHash": "056ff1e9df8bc9126516683d42da2af4f1ac4ff1dcb667979bb8237facd279dc",
+        "fullCanvas": false,
+        "outputHash": "71d0417543f49f7592e56f5ca32b9d41eee49406ab4b45cc8fcb5308bb7190af",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_left_walk_2",
+      "label": "hero_zhizhuo_left_walk_2",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_left_walk_2.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_left_walk_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_left_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/left.png",
+        "sourceHash": "056ff1e9df8bc9126516683d42da2af4f1ac4ff1dcb667979bb8237facd279dc",
+        "fullCanvas": false,
+        "outputHash": "81f813515a46a8ad04c755438fa01d6cc97621aac1032675607c2e7741c98bf8",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_left_walk_3",
+      "label": "hero_zhizhuo_left_walk_3",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_left_walk_3.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_left_walk_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_left_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/left.png",
+        "sourceHash": "056ff1e9df8bc9126516683d42da2af4f1ac4ff1dcb667979bb8237facd279dc",
+        "fullCanvas": false,
+        "outputHash": "37f271d5c368ce6c11ef0f558ca71d11ad3bf60cf058d3a1a291d9c1569ce20d",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_left_attack_0",
+      "label": "hero_zhizhuo_left_attack_0",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_left_attack_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_left_attack_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_left_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/left.png",
+        "sourceHash": "056ff1e9df8bc9126516683d42da2af4f1ac4ff1dcb667979bb8237facd279dc",
+        "fullCanvas": false,
+        "outputHash": "eec3f7fe18235260f0892f340ee767707d06241b14bf861438cd9b9d75b9c94e",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_left_attack_1",
+      "label": "hero_zhizhuo_left_attack_1",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_left_attack_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_left_attack_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_left_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/left.png",
+        "sourceHash": "056ff1e9df8bc9126516683d42da2af4f1ac4ff1dcb667979bb8237facd279dc",
+        "fullCanvas": false,
+        "outputHash": "27798312706677addfc6470b9d9d0b268d4a0c0ef6d4e7a0197b3b0ea10141da",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_left_attack_2",
+      "label": "hero_zhizhuo_left_attack_2",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_left_attack_2.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_left_attack_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_left_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/left.png",
+        "sourceHash": "056ff1e9df8bc9126516683d42da2af4f1ac4ff1dcb667979bb8237facd279dc",
+        "fullCanvas": false,
+        "outputHash": "a00b9029e04fdf0c0ab96d553ecf9fff7c717fafc049364ab5a09da08f356211",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_left_attack_3",
+      "label": "hero_zhizhuo_left_attack_3",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_left_attack_3.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_left_attack_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_left_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/left.png",
+        "sourceHash": "056ff1e9df8bc9126516683d42da2af4f1ac4ff1dcb667979bb8237facd279dc",
+        "fullCanvas": false,
+        "outputHash": "af0292aa848b773ebac54a45616697241956668bc9302a1e71a5c8e7c8857849",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_right_idle",
+      "label": "hero_zhizhuo_right_idle",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_right_idle.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_right_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/idle.png",
+        "sourceHash": "6a19510f864156db06f2f3789c73c03074f230575fef239f311917ea353873e2",
+        "fullCanvas": false,
+        "outputHash": "03e6fe8e07948a5d95602fcf1752078fcb86e4f5416928761523b5c99c86d37e",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_right_walk_0",
+      "label": "hero_zhizhuo_right_walk_0",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_right_walk_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_right_walk_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_right_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/right.png",
+        "sourceHash": "45c77ce1e51b75f8567a1cc01d4620a0695d28bd18e490383b36bd0a0ae37da8",
+        "fullCanvas": false,
+        "outputHash": "64f2b1bb1cdf64ba830ad11f01dbbfd186a4d676517ed54623f516f5a08ad7bf",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_right_walk_1",
+      "label": "hero_zhizhuo_right_walk_1",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_right_walk_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_right_walk_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_right_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/right.png",
+        "sourceHash": "45c77ce1e51b75f8567a1cc01d4620a0695d28bd18e490383b36bd0a0ae37da8",
+        "fullCanvas": false,
+        "outputHash": "818906f98201b49ee3eab85a6655883455ec730b0485b2e1ccdb809a8e023d54",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_right_walk_2",
+      "label": "hero_zhizhuo_right_walk_2",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_right_walk_2.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_right_walk_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_right_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/right.png",
+        "sourceHash": "45c77ce1e51b75f8567a1cc01d4620a0695d28bd18e490383b36bd0a0ae37da8",
+        "fullCanvas": false,
+        "outputHash": "f23d2836567f5123d2d4282ede43ca28addbd6c0c0c69fff16c0d0bcf518209d",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_right_walk_3",
+      "label": "hero_zhizhuo_right_walk_3",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_right_walk_3.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_right_walk_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_right_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/right.png",
+        "sourceHash": "45c77ce1e51b75f8567a1cc01d4620a0695d28bd18e490383b36bd0a0ae37da8",
+        "fullCanvas": false,
+        "outputHash": "19a13e21e828d6010834e7acb59106dbea2968f77e47dbd361d57b5a142b3702",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_right_attack_0",
+      "label": "hero_zhizhuo_right_attack_0",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_right_attack_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_right_attack_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_right_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/right.png",
+        "sourceHash": "45c77ce1e51b75f8567a1cc01d4620a0695d28bd18e490383b36bd0a0ae37da8",
+        "fullCanvas": false,
+        "outputHash": "1606226d8940698c9282e224b0175a6883773568e425e6eed3457301fd23dd08",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_right_attack_1",
+      "label": "hero_zhizhuo_right_attack_1",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_right_attack_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_right_attack_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_right_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/right.png",
+        "sourceHash": "45c77ce1e51b75f8567a1cc01d4620a0695d28bd18e490383b36bd0a0ae37da8",
+        "fullCanvas": false,
+        "outputHash": "8d71626d190e7e0de2130425437ecbb3b71b56de5142a2c21419d1bc0174a5ac",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_right_attack_2",
+      "label": "hero_zhizhuo_right_attack_2",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_right_attack_2.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_right_attack_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_right_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/right.png",
+        "sourceHash": "45c77ce1e51b75f8567a1cc01d4620a0695d28bd18e490383b36bd0a0ae37da8",
+        "fullCanvas": false,
+        "outputHash": "2905f33c6876d457de52ee0a9b5abba97ab1107cadc199c3a2967378f69832fb",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_right_attack_3",
+      "label": "hero_zhizhuo_right_attack_3",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_right_attack_3.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_right_attack_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_right_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/right.png",
+        "sourceHash": "45c77ce1e51b75f8567a1cc01d4620a0695d28bd18e490383b36bd0a0ae37da8",
+        "fullCanvas": false,
+        "outputHash": "05cc77e6531d8da642374c1bdcdfb8a5553961362b801a6eaa3aeda814899a49",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_up_idle",
+      "label": "hero_zhizhuo_up_idle",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_up_idle.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_up_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/idle.png",
+        "sourceHash": "6a19510f864156db06f2f3789c73c03074f230575fef239f311917ea353873e2",
+        "fullCanvas": false,
+        "outputHash": "9cdc00b57b51f5cddf882ff60d0274616b97020db0f05519c228a9ed3015d173",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_up_walk_0",
+      "label": "hero_zhizhuo_up_walk_0",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_up_walk_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_up_walk_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_up_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/up.png",
+        "sourceHash": "27f31f0818154ab150ffee4d7924387f215945db1fb4847005b9b3d080407918",
+        "fullCanvas": false,
+        "outputHash": "6886c705903da8fdbfe7b567814ccc71f1dc5cd1d8ee338d0661de91ef422db2",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_up_walk_1",
+      "label": "hero_zhizhuo_up_walk_1",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_up_walk_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_up_walk_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_up_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/up.png",
+        "sourceHash": "27f31f0818154ab150ffee4d7924387f215945db1fb4847005b9b3d080407918",
+        "fullCanvas": false,
+        "outputHash": "7477ee2dc4bd76b41df088c19496c5f579f05092317deed0c634cd63c1b743ce",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_up_walk_2",
+      "label": "hero_zhizhuo_up_walk_2",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_up_walk_2.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_up_walk_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_up_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/up.png",
+        "sourceHash": "27f31f0818154ab150ffee4d7924387f215945db1fb4847005b9b3d080407918",
+        "fullCanvas": false,
+        "outputHash": "726cdd0872f8d938b021be7044e25677c5ab070e183fa6eba9fef19b8451ec72",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_up_walk_3",
+      "label": "hero_zhizhuo_up_walk_3",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_up_walk_3.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_up_walk_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_up_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/up.png",
+        "sourceHash": "27f31f0818154ab150ffee4d7924387f215945db1fb4847005b9b3d080407918",
+        "fullCanvas": false,
+        "outputHash": "060ddb04719736966e17bebd1aad9895e4c7fbfc01c40ac47913ff840fb65eaf",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_up_attack_0",
+      "label": "hero_zhizhuo_up_attack_0",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_up_attack_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_up_attack_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_up_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/up.png",
+        "sourceHash": "27f31f0818154ab150ffee4d7924387f215945db1fb4847005b9b3d080407918",
+        "fullCanvas": false,
+        "outputHash": "9696f45cc4eff0ec77f1ed3276e46a14c022d98d5cd712770b5cf476d65e4e57",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_up_attack_1",
+      "label": "hero_zhizhuo_up_attack_1",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_up_attack_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_up_attack_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_up_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/up.png",
+        "sourceHash": "27f31f0818154ab150ffee4d7924387f215945db1fb4847005b9b3d080407918",
+        "fullCanvas": false,
+        "outputHash": "705e657abaa1a60748a6081ede665f0fcfb05deeb1ad820b90923babc4b17be8",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_up_attack_2",
+      "label": "hero_zhizhuo_up_attack_2",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_up_attack_2.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_up_attack_2.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_up_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/up.png",
+        "sourceHash": "27f31f0818154ab150ffee4d7924387f215945db1fb4847005b9b3d080407918",
+        "fullCanvas": false,
+        "outputHash": "5eb45c10a82c7bb9d0e08d9306c4644577660c1e53b302cb15e578a2c6b306b6",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_zhizhuo_up_attack_3",
+      "label": "hero_zhizhuo_up_attack_3",
+      "category": "characters",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/characters/hero_zhizhuo_up_attack_3.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_zhizhuo_up_attack_3.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": "hero_zhizhuo_up_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/up.png",
+        "sourceHash": "27f31f0818154ab150ffee4d7924387f215945db1fb4847005b9b3d080407918",
+        "fullCanvas": false,
+        "outputHash": "31813a1313349043b14759dd632d08dd5710b1db964326622f85ba7b6a7fa630",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_committee",
+      "label": "hero_committee",
+      "category": "building-parts",
+      "categoryLabel": "文明里村委会",
+      "path": "runtime/building-parts/hero_committee.png",
+      "width": 176,
+      "height": 158,
+      "pivot": {
+        "x": 88,
+        "y": 150
+      },
+      "sourceSheet": "source/rendered2d/production/hero-committee/frames/hero_committee.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 176,
+        "h": 158
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 176,
+        "h": 158
+      },
+      "nineSlice": null,
+      "mapping": "zhizhuo",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "英雄四向资源或委员会静态图",
+      "bundle": "buildings",
+      "provenance": {
+        "source": "source/rendered2d/production/hero-committee/masters/committee.png",
+        "sourceHash": "8a1dfceb24464b6d3d9d593dc9d9ecb70b346dcc84eb4ef762132949bb465c43",
+        "fullCanvas": false,
+        "outputHash": "f77bcf6828cebe71caf224124fee8b817ec4d359a16ecc738b190f6ec59bc0a9",
+        "renderer": "tools/hd2d/import-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_down_idle",
+      "label": "hero_delivery_down_idle",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_down_idle.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_down_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/down.png",
+        "sourceHash": "b1a3a9516614b6f525b33f289e5f777a01486417855d414660b3cff91f0c8825",
+        "fullCanvas": false,
+        "outputHash": "7ed33c04be4880b44358884c4faf6a66d12b3936cb7d0f2472f1717089ec0dda",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_down_walk_0",
+      "label": "hero_delivery_down_walk_0",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_down_walk_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_down_walk_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": "hero_delivery_down_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/down.png",
+        "sourceHash": "b1a3a9516614b6f525b33f289e5f777a01486417855d414660b3cff91f0c8825",
+        "fullCanvas": false,
+        "outputHash": "bfc624c0920fec360c760855f843fcf8207d085c781b48a3d88cebba322d80a0",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_down_walk_1",
+      "label": "hero_delivery_down_walk_1",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_down_walk_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_down_walk_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": "hero_delivery_down_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/down-other-foot.png",
+        "sourceHash": "1b1d43af76bd938796c22b2fa1d7818921353b4603a968691354be50ee086b3e",
+        "fullCanvas": false,
+        "outputHash": "68ffb9d8e8d80d3cd5313b42934d81f684a970d177ad6b6a56b28342443f31a2",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_down_windup",
+      "label": "hero_delivery_down_windup",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_down_windup.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_down_windup.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/throws.png",
+        "sourceHash": "2f7da64b6cd36bb3c3a573627f991972c64691fa20b5de05ae2c214a8cc3e94a",
+        "fullCanvas": false,
+        "outputHash": "bdc1139a3e5359d34b6b95c84b77fa3508901271a8582933cc5ffb2c559a6798",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_down_throw",
+      "label": "hero_delivery_down_throw",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_down_throw.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_down_throw.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/throws.png",
+        "sourceHash": "2f7da64b6cd36bb3c3a573627f991972c64691fa20b5de05ae2c214a8cc3e94a",
+        "fullCanvas": false,
+        "outputHash": "c6fdbe1c2ce5c44842abdf52cd4063faed8e78bde23da91ff2e842ffadd6fb9a",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_down_recover",
+      "label": "hero_delivery_down_recover",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_down_recover.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_down_recover.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/throws.png",
+        "sourceHash": "2f7da64b6cd36bb3c3a573627f991972c64691fa20b5de05ae2c214a8cc3e94a",
+        "fullCanvas": false,
+        "outputHash": "8c7e79c4346441a95d625b31dd6a53c08c78e94e6ce4cc852a2ab5306fa2a8eb",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_down_ride",
+      "label": "hero_delivery_down_ride",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_down_ride.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_down_ride.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/scooter.png",
+        "sourceHash": "f91d6fb8d1a93c7e93b79208e8d12c1161dc2d061d91764ead4408880309619b",
+        "fullCanvas": false,
+        "outputHash": "29b71173086fa88df90e9e2bb099bf26bbdd7e988f83512bbe12187ac27002e1",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_left_idle",
+      "label": "hero_delivery_left_idle",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_left_idle.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_left_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/left.png",
+        "sourceHash": "74a4c7d6aa53ef912aa96c0cc910bc46af85958b9c264fe7e51ac927cf0f200e",
+        "fullCanvas": false,
+        "outputHash": "6efda276994546b4c663a00d8775b6b2a85de3b2b8494dc15669227748adf342",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_left_walk_0",
+      "label": "hero_delivery_left_walk_0",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_left_walk_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_left_walk_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": "hero_delivery_left_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/left.png",
+        "sourceHash": "74a4c7d6aa53ef912aa96c0cc910bc46af85958b9c264fe7e51ac927cf0f200e",
+        "fullCanvas": false,
+        "outputHash": "9571b38458becca4856abb6740484dae5179e2be847bf3bcbec56785f2a4148d",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_left_walk_1",
+      "label": "hero_delivery_left_walk_1",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_left_walk_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_left_walk_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": "hero_delivery_left_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/left.png",
+        "sourceHash": "74a4c7d6aa53ef912aa96c0cc910bc46af85958b9c264fe7e51ac927cf0f200e",
+        "fullCanvas": false,
+        "outputHash": "8f68e342be49df9c9e6b1e053f746bd8ca8594cdb1948300680e912d29a44e8e",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_left_windup",
+      "label": "hero_delivery_left_windup",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_left_windup.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_left_windup.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/throws.png",
+        "sourceHash": "2f7da64b6cd36bb3c3a573627f991972c64691fa20b5de05ae2c214a8cc3e94a",
+        "fullCanvas": false,
+        "outputHash": "199a3ab5ff7bf700c785251b5a7ce9dadd7a5fa6f5bc62379690ec368cc21487",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_left_throw",
+      "label": "hero_delivery_left_throw",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_left_throw.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_left_throw.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/throws.png",
+        "sourceHash": "2f7da64b6cd36bb3c3a573627f991972c64691fa20b5de05ae2c214a8cc3e94a",
+        "fullCanvas": false,
+        "outputHash": "240297cc84ba6d77812b668dfa6a12e6ae8cad852ab135a31533ddbefd93ddee",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_left_recover",
+      "label": "hero_delivery_left_recover",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_left_recover.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_left_recover.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/throws.png",
+        "sourceHash": "2f7da64b6cd36bb3c3a573627f991972c64691fa20b5de05ae2c214a8cc3e94a",
+        "fullCanvas": false,
+        "outputHash": "94b933c8e82f67aa65b163213c33993342711ba224ab5327ba30c555ff1f8117",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_right_idle",
+      "label": "hero_delivery_right_idle",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_right_idle.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_right_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/right.png",
+        "sourceHash": "4528ddfcd88973dda925588bf0d5a4e4a47c05673bfaacc9cdfdd32869412aa7",
+        "fullCanvas": false,
+        "outputHash": "3bee8b638c8e50f7a567574f41a1a24706cfaa2f30d2b83a3abc9a6fb29b8ef1",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_right_walk_0",
+      "label": "hero_delivery_right_walk_0",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_right_walk_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_right_walk_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": "hero_delivery_right_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/right.png",
+        "sourceHash": "4528ddfcd88973dda925588bf0d5a4e4a47c05673bfaacc9cdfdd32869412aa7",
+        "fullCanvas": false,
+        "outputHash": "558d2e7019e38ad370303db606791d916cdb5c5b4bb083456b4904db4aade378",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_right_walk_1",
+      "label": "hero_delivery_right_walk_1",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_right_walk_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_right_walk_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": "hero_delivery_right_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/right.png",
+        "sourceHash": "4528ddfcd88973dda925588bf0d5a4e4a47c05673bfaacc9cdfdd32869412aa7",
+        "fullCanvas": false,
+        "outputHash": "113a016350358c06f4c23e2978e067df3f2b4d5033fcb21b820dcc76d07ea8a4",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_right_windup",
+      "label": "hero_delivery_right_windup",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_right_windup.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_right_windup.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/right-throw.png",
+        "sourceHash": "b406be904ae96475042445e639b65d139be3336973027d3847e8af3c967bd17f",
+        "fullCanvas": false,
+        "outputHash": "4d28771938abc77c6e4aeba608a49c53c1b73217d69d51951ec417e671bf089d",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_right_throw",
+      "label": "hero_delivery_right_throw",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_right_throw.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_right_throw.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/right-throw.png",
+        "sourceHash": "b406be904ae96475042445e639b65d139be3336973027d3847e8af3c967bd17f",
+        "fullCanvas": false,
+        "outputHash": "12ad9542bd511eca373a87b73931ec20632bc00c62fac109694d2cf1b83a4044",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_right_recover",
+      "label": "hero_delivery_right_recover",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_right_recover.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_right_recover.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/right-throw.png",
+        "sourceHash": "b406be904ae96475042445e639b65d139be3336973027d3847e8af3c967bd17f",
+        "fullCanvas": false,
+        "outputHash": "ca97c5ebfa2695dd14be386f82a80abda53e1d9946c9e3f30b57051918cc81c4",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_up_idle",
+      "label": "hero_delivery_up_idle",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_up_idle.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_up_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/up.png",
+        "sourceHash": "473cc4ea58fcf4c5141bf7a520fdb647f307248ff52faeb66bdf5088b9ead88e",
+        "fullCanvas": false,
+        "outputHash": "cd23376ccd9740b538ee303b2a465e57ae32a4fe3309588b9bb082c26483a77d",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_up_walk_0",
+      "label": "hero_delivery_up_walk_0",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_up_walk_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_up_walk_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": "hero_delivery_up_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/up.png",
+        "sourceHash": "473cc4ea58fcf4c5141bf7a520fdb647f307248ff52faeb66bdf5088b9ead88e",
+        "fullCanvas": false,
+        "outputHash": "76d3c27cda718caef59f73ab5fe83d1d4e59f7b8ae0dd2b64c3982e7976ad005",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_up_walk_1",
+      "label": "hero_delivery_up_walk_1",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_up_walk_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_up_walk_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": "hero_delivery_up_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/up.png",
+        "sourceHash": "473cc4ea58fcf4c5141bf7a520fdb647f307248ff52faeb66bdf5088b9ead88e",
+        "fullCanvas": false,
+        "outputHash": "9425723289d7e6363e143975f1da906b93e8ef58cd68694a2509d3d6b4901a21",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_up_windup",
+      "label": "hero_delivery_up_windup",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_up_windup.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_up_windup.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/throws.png",
+        "sourceHash": "2f7da64b6cd36bb3c3a573627f991972c64691fa20b5de05ae2c214a8cc3e94a",
+        "fullCanvas": false,
+        "outputHash": "73b2ab99c89f19e2330d55ce242bb3d43f6baf5e91dc4329e05094fbd1308cb6",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_up_throw",
+      "label": "hero_delivery_up_throw",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_up_throw.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_up_throw.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/throws.png",
+        "sourceHash": "2f7da64b6cd36bb3c3a573627f991972c64691fa20b5de05ae2c214a8cc3e94a",
+        "fullCanvas": false,
+        "outputHash": "bf854b1e297a81cdbc026be81c2c09a5dd7b5cb449eac91c2991438e1bae4279",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_up_recover",
+      "label": "hero_delivery_up_recover",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_up_recover.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_up_recover.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/throws.png",
+        "sourceHash": "2f7da64b6cd36bb3c3a573627f991972c64691fa20b5de05ae2c214a8cc3e94a",
+        "fullCanvas": false,
+        "outputHash": "4b78c2aaff960d5261607c564995572fea651053b97b409a252ceba9f5668373",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_delivery_up_ride",
+      "label": "hero_delivery_up_ride",
+      "category": "characters",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/characters/hero_delivery_up_ride.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/hero_delivery_up_ride.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/scooter.png",
+        "sourceHash": "f91d6fb8d1a93c7e93b79208e8d12c1161dc2d061d91764ead4408880309619b",
+        "fullCanvas": false,
+        "outputHash": "330770b9bf071bd628ae404181b4db6dc1122ea9d0954bfe6e12c6f102dafbb1",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "delivery_portrait",
+      "label": "delivery_portrait",
+      "category": "ui/icons",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/ui/icons/delivery_portrait.png",
+      "width": 143,
+      "height": 180,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/delivery_portrait.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 143,
+        "h": 180
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 143,
+        "h": 180
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/down.png",
+        "sourceHash": "b1a3a9516614b6f525b33f289e5f777a01486417855d414660b3cff91f0c8825",
+        "fullCanvas": false,
+        "outputHash": "14fdf52b1361fbf8314abd47641fcc345b679888c68685e65f2f6ab065f7aa85",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "delivery_bike",
+      "label": "delivery_bike",
+      "category": "effects",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/effects/delivery_bike.png",
+      "width": 140,
+      "height": 100,
+      "pivot": {
+        "x": 70.0,
+        "y": 100
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/delivery_bike.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 100
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 100
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/prop-text.png",
+        "sourceHash": "9236c9c11584e63ee398cf0572c65fa25899f62afb18efefc9e5992a0bdde6dd",
+        "fullCanvas": false,
+        "outputHash": "eafa6bcacbf3998c475999253f768a0fc2f0d74ee78eef640a862d6c13a375c3",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "delivery_bag",
+      "label": "delivery_bag",
+      "category": "effects",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/effects/delivery_bag.png",
+      "width": 59,
+      "height": 64,
+      "pivot": {
+        "x": 29.5,
+        "y": 32.0
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/delivery_bag.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 59,
+        "h": 64
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 59,
+        "h": 64
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/approved.png",
+        "sourceHash": "be9224dabfd959d6e6268a55d38ac817c3e6aac33bbac8027b37996019bd2167",
+        "fullCanvas": false,
+        "outputHash": "46c47675cb1aa3284fd6c1ec4b06ae46fbde18f60bdb13f5811fee90e9be9ad4",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "fx_delivery_arrived",
+      "label": "fx_delivery_arrived",
+      "category": "effects",
+      "categoryLabel": "外卖大王",
+      "path": "runtime/effects/fx_delivery_arrived.png",
+      "width": 172,
+      "height": 83,
+      "pivot": {
+        "x": 86.0,
+        "y": 41.5
+      },
+      "sourceSheet": "source/rendered2d/production/delivery-hero/frames/fx_delivery_arrived.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 172,
+        "h": 83
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 172,
+        "h": 83
+      },
+      "nineSlice": null,
+      "mapping": "delivery",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "大王四向动作、补给与漫画落点",
+      "bundle": "battle",
+      "provenance": {
+        "source": "source/rendered2d/production/delivery-hero/masters/prop-text.png",
+        "sourceHash": "9236c9c11584e63ee398cf0572c65fa25899f62afb18efefc9e5992a0bdde6dd",
+        "fullCanvas": false,
+        "outputHash": "863867cdd75852a2656abf7e9fdf2b646bd02b0fd18332b15f88c7d7e4cbef67",
+        "renderer": "tools/hd2d/import-delivery-hero.py"
+      }
+    },
+    {
+      "id": "hero_songlei_down_idle",
+      "label": "hero_songlei_down_idle",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_down_idle.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_down_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/idle.png",
+        "sourceHash": "fe258ccffe3314bc02fa13e910ee3073d4a5d69b647a8427fe1b1b1cc2be7311",
+        "fullCanvas": false,
+        "outputHash": "5ead138acf7d37e1971bc1fb8561b7319836ca07ec4a9bab9292c46e9eb2f17e",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_down_walk_0",
+      "label": "hero_songlei_down_walk_0",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_down_walk_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_down_walk_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_down_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/walk.png",
+        "sourceHash": "e5d465b55bceed2e2c483eeb60bc7b76e52fa3e81b5f4ba7ee772467b82fa1fa",
+        "fullCanvas": false,
+        "outputHash": "5ec44a5a609a4c492e94da52b300f7920590437fe396d36c9b6453167c394044",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_down_attack_0",
+      "label": "hero_songlei_down_attack_0",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_down_attack_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_down_attack_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_down_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/attack.png",
+        "sourceHash": "d2a9e99f8dc8620a67d1fe475bf11d425c8c5f6ea81316e6a5071eaa07d0593b",
+        "fullCanvas": false,
+        "outputHash": "25b5b3c24e90db2423333c358ee674f93bec59fedc691976d62b343fb81e05a8",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_down_walk_1",
+      "label": "hero_songlei_down_walk_1",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_down_walk_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_down_walk_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_down_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/walk.png",
+        "sourceHash": "e5d465b55bceed2e2c483eeb60bc7b76e52fa3e81b5f4ba7ee772467b82fa1fa",
+        "fullCanvas": false,
+        "outputHash": "57beae62929e45928957c062a6d31ab9d23c76305cc543dab866b30287250798",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_down_attack_1",
+      "label": "hero_songlei_down_attack_1",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_down_attack_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_down_attack_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_down_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/attack.png",
+        "sourceHash": "d2a9e99f8dc8620a67d1fe475bf11d425c8c5f6ea81316e6a5071eaa07d0593b",
+        "fullCanvas": false,
+        "outputHash": "af3d0ed631fa94c4d2fcb027680433aca68d6931ffdb667c5e59c27ad2be69e4",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_up_idle",
+      "label": "hero_songlei_up_idle",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_up_idle.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_up_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/idle.png",
+        "sourceHash": "fe258ccffe3314bc02fa13e910ee3073d4a5d69b647a8427fe1b1b1cc2be7311",
+        "fullCanvas": false,
+        "outputHash": "03d7519b75b399a0aa4c67e2f816014eb6ecf49f50a4a057bb97f1dd8c52e5ff",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_up_walk_0",
+      "label": "hero_songlei_up_walk_0",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_up_walk_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_up_walk_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_up_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/walk.png",
+        "sourceHash": "e5d465b55bceed2e2c483eeb60bc7b76e52fa3e81b5f4ba7ee772467b82fa1fa",
+        "fullCanvas": false,
+        "outputHash": "c81ad6d9627ac9d366c9b5e743ae9754e7f6b069797f7585cf60ddfdb7706152",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_up_attack_0",
+      "label": "hero_songlei_up_attack_0",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_up_attack_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_up_attack_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_up_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/attack.png",
+        "sourceHash": "d2a9e99f8dc8620a67d1fe475bf11d425c8c5f6ea81316e6a5071eaa07d0593b",
+        "fullCanvas": false,
+        "outputHash": "1867662af67a3eb698017c7e5e68366c4a419cbf53e12853d430ce2bedeac65a",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_up_walk_1",
+      "label": "hero_songlei_up_walk_1",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_up_walk_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_up_walk_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_up_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/walk.png",
+        "sourceHash": "e5d465b55bceed2e2c483eeb60bc7b76e52fa3e81b5f4ba7ee772467b82fa1fa",
+        "fullCanvas": false,
+        "outputHash": "691ac3e4f185b1e12392f2b00529e9282868ffdc888f14fa8ebf1db131b6c72c",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_up_attack_1",
+      "label": "hero_songlei_up_attack_1",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_up_attack_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_up_attack_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_up_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/attack.png",
+        "sourceHash": "d2a9e99f8dc8620a67d1fe475bf11d425c8c5f6ea81316e6a5071eaa07d0593b",
+        "fullCanvas": false,
+        "outputHash": "8de31d2a2b307bffcd43e6b3dc93333dcd3730004708e70b6c87ef65a93d4ac1",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_left_idle",
+      "label": "hero_songlei_left_idle",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_left_idle.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_left_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/idle.png",
+        "sourceHash": "fe258ccffe3314bc02fa13e910ee3073d4a5d69b647a8427fe1b1b1cc2be7311",
+        "fullCanvas": false,
+        "outputHash": "b1b12166b6ff81423d5c80d9beb7e87a546d406a3f0f09c7254f4dbf0c17c77d",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_left_walk_0",
+      "label": "hero_songlei_left_walk_0",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_left_walk_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_left_walk_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_left_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/walk.png",
+        "sourceHash": "e5d465b55bceed2e2c483eeb60bc7b76e52fa3e81b5f4ba7ee772467b82fa1fa",
+        "fullCanvas": false,
+        "outputHash": "f9f3c18ccb2f3a21e7540c7d1038fb335b40613785755bacdcce43577059e224",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_left_attack_0",
+      "label": "hero_songlei_left_attack_0",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_left_attack_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_left_attack_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_left_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/attack.png",
+        "sourceHash": "d2a9e99f8dc8620a67d1fe475bf11d425c8c5f6ea81316e6a5071eaa07d0593b",
+        "fullCanvas": false,
+        "outputHash": "763188136f43fa04f07a1cc7ef802577bdc6460cc9300f6bb7988969450adbb1",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_left_walk_1",
+      "label": "hero_songlei_left_walk_1",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_left_walk_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_left_walk_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_left_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/walk.png",
+        "sourceHash": "e5d465b55bceed2e2c483eeb60bc7b76e52fa3e81b5f4ba7ee772467b82fa1fa",
+        "fullCanvas": false,
+        "outputHash": "bcfcfc92dcbf0eb874e0595088ddd5e7ad35d1df57afaac63386a85fd43606c7",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_left_attack_1",
+      "label": "hero_songlei_left_attack_1",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_left_attack_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_left_attack_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_left_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/attack.png",
+        "sourceHash": "d2a9e99f8dc8620a67d1fe475bf11d425c8c5f6ea81316e6a5071eaa07d0593b",
+        "fullCanvas": false,
+        "outputHash": "230c93217e53a3a096271e420c6f3246f926878eea0d2500e63094df442cb79c",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_right_idle",
+      "label": "hero_songlei_right_idle",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_right_idle.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_right_idle.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/idle.png",
+        "sourceHash": "fe258ccffe3314bc02fa13e910ee3073d4a5d69b647a8427fe1b1b1cc2be7311",
+        "fullCanvas": false,
+        "outputHash": "16d85f13f91f6c4a404821ef74d29dc558c340a8ca02888a29800a2cd953539f",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_right_walk_0",
+      "label": "hero_songlei_right_walk_0",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_right_walk_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_right_walk_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_right_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/right-walk.png",
+        "sourceHash": "7a022aa1d043fefda5bda26a68bad5ee4713d42478b3c88f61314864e870c9f8",
+        "fullCanvas": false,
+        "outputHash": "b8ad581d06465c2f2f5c04c9cf0122047cdb8f2b9d535c47d77366f68f969f7f",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_right_attack_0",
+      "label": "hero_songlei_right_attack_0",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_right_attack_0.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_right_attack_0.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_right_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/attack.png",
+        "sourceHash": "d2a9e99f8dc8620a67d1fe475bf11d425c8c5f6ea81316e6a5071eaa07d0593b",
+        "fullCanvas": false,
+        "outputHash": "749b8ab753a1a34e62aa1dbbd02720af7754b63db9832157dba09b6fbb99314b",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_right_walk_1",
+      "label": "hero_songlei_right_walk_1",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_right_walk_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_right_walk_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_right_walk",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/right-walk.png",
+        "sourceHash": "7a022aa1d043fefda5bda26a68bad5ee4713d42478b3c88f61314864e870c9f8",
+        "fullCanvas": false,
+        "outputHash": "e6c3fd4545a995a83b7334a315b999e83a65dcbeed537bcd550e85c1f4595d8c",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "hero_songlei_right_attack_1",
+      "label": "hero_songlei_right_attack_1",
+      "category": "characters",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/characters/hero_songlei_right_attack_1.png",
+      "width": 144,
+      "height": 144,
+      "pivot": {
+        "x": 72,
+        "y": 134
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/hero_songlei_right_attack_1.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": "hero_songlei_right_attack",
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/attack.png",
+        "sourceHash": "d2a9e99f8dc8620a67d1fe475bf11d425c8c5f6ea81316e6a5071eaa07d0593b",
+        "fullCanvas": false,
+        "outputHash": "ccf3aeae836f88ecdd0ba11d69c4155d3583f033410edf5dfb5f84d01238603b",
+        "renderer": "tools/hd2d/import-songlei.py"
+      }
+    },
+    {
+      "id": "songlei_portrait",
+      "label": "songlei_portrait",
+      "category": "ui/icons",
+      "categoryLabel": "大夫宋磊",
+      "path": "runtime/ui/icons/songlei_portrait.png",
+      "width": 142,
+      "height": 180,
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceSheet": "source/rendered2d/production/songlei/frames/songlei_portrait.png",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 142,
+        "h": 180
+      },
+      "sourceCropWithinCell": {
+        "x": 0,
+        "y": 0,
+        "w": 142,
+        "h": 180
+      },
+      "nineSlice": null,
+      "mapping": "songlei",
+      "animation": null,
+      "fitPadding": 0,
+      "resizeMode": "stretch",
+      "sampling": "Lanczos",
+      "runtime": true,
+      "usage": "宋磊四向站姿、走路与双棍命中",
+      "bundle": "base",
+      "provenance": {
+        "source": "source/rendered2d/production/songlei/masters/idle.png",
+        "sourceHash": "fe258ccffe3314bc02fa13e910ee3073d4a5d69b647a8427fe1b1b1cc2be7311",
+        "fullCanvas": false,
+        "outputHash": "8bed1f8d9f072dce39229a415dca62b2ad522a293bb0aee3dc2188f67e6876fd",
+        "renderer": "tools/hd2d/import-songlei.py"
       }
     }
   ],
@@ -35977,31 +39806,508 @@
         "clock": "scene_visual_or_battle"
       },
       {
-        "id": "cannon_flag",
+        "id": "hero_zhizhuo_down_walk",
         "frameIds": [
-          "cannon_flag_0",
-          "cannon_flag_1",
-          "cannon_flag_2",
-          "cannon_flag_3",
-          "cannon_flag_4",
-          "cannon_flag_5",
-          "cannon_flag_6",
-          "cannon_flag_7"
+          "hero_zhizhuo_down_walk_0",
+          "hero_zhizhuo_down_walk_1",
+          "hero_zhizhuo_down_walk_2",
+          "hero_zhizhuo_down_walk_3"
         ],
-        "frameCount": 8,
-        "fps": 6,
+        "frameCount": 4,
+        "fps": 8,
         "loop": true,
-        "restFrame": "cannon_flag_0",
-        "category": "building-parts",
+        "restFrame": "hero_zhizhuo_down_idle",
+        "category": "characters",
+        "mapping": "zhizhuo",
         "canvas": {
-          "w": 92,
-          "h": 77
+          "w": 144,
+          "h": 144
         },
         "pivot": {
-          "x": 0,
-          "y": 0
+          "x": 72,
+          "y": 134
         },
-        "clock": "ambient"
+        "clock": "battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 50
+      },
+      {
+        "id": "hero_zhizhuo_down_attack",
+        "frameIds": [
+          "hero_zhizhuo_down_attack_0",
+          "hero_zhizhuo_down_attack_1",
+          "hero_zhizhuo_down_attack_2",
+          "hero_zhizhuo_down_attack_3"
+        ],
+        "frameCount": 4,
+        "fps": 4,
+        "loop": false,
+        "restFrame": "hero_zhizhuo_down_idle",
+        "category": "characters",
+        "mapping": "zhizhuo",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "clock": "battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "hero_zhizhuo_left_walk",
+        "frameIds": [
+          "hero_zhizhuo_left_walk_0",
+          "hero_zhizhuo_left_walk_1",
+          "hero_zhizhuo_left_walk_2",
+          "hero_zhizhuo_left_walk_3"
+        ],
+        "frameCount": 4,
+        "fps": 8,
+        "loop": true,
+        "restFrame": "hero_zhizhuo_left_idle",
+        "category": "characters",
+        "mapping": "zhizhuo",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "clock": "battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 50
+      },
+      {
+        "id": "hero_zhizhuo_left_attack",
+        "frameIds": [
+          "hero_zhizhuo_left_attack_0",
+          "hero_zhizhuo_left_attack_1",
+          "hero_zhizhuo_left_attack_2",
+          "hero_zhizhuo_left_attack_3"
+        ],
+        "frameCount": 4,
+        "fps": 4,
+        "loop": false,
+        "restFrame": "hero_zhizhuo_left_idle",
+        "category": "characters",
+        "mapping": "zhizhuo",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "clock": "battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "hero_zhizhuo_right_walk",
+        "frameIds": [
+          "hero_zhizhuo_right_walk_0",
+          "hero_zhizhuo_right_walk_1",
+          "hero_zhizhuo_right_walk_2",
+          "hero_zhizhuo_right_walk_3"
+        ],
+        "frameCount": 4,
+        "fps": 8,
+        "loop": true,
+        "restFrame": "hero_zhizhuo_right_idle",
+        "category": "characters",
+        "mapping": "zhizhuo",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "clock": "battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 50
+      },
+      {
+        "id": "hero_zhizhuo_right_attack",
+        "frameIds": [
+          "hero_zhizhuo_right_attack_0",
+          "hero_zhizhuo_right_attack_1",
+          "hero_zhizhuo_right_attack_2",
+          "hero_zhizhuo_right_attack_3"
+        ],
+        "frameCount": 4,
+        "fps": 4,
+        "loop": false,
+        "restFrame": "hero_zhizhuo_right_idle",
+        "category": "characters",
+        "mapping": "zhizhuo",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "clock": "battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "hero_zhizhuo_up_walk",
+        "frameIds": [
+          "hero_zhizhuo_up_walk_0",
+          "hero_zhizhuo_up_walk_1",
+          "hero_zhizhuo_up_walk_2",
+          "hero_zhizhuo_up_walk_3"
+        ],
+        "frameCount": 4,
+        "fps": 8,
+        "loop": true,
+        "restFrame": "hero_zhizhuo_up_idle",
+        "category": "characters",
+        "mapping": "zhizhuo",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "clock": "battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 50
+      },
+      {
+        "id": "hero_zhizhuo_up_attack",
+        "frameIds": [
+          "hero_zhizhuo_up_attack_0",
+          "hero_zhizhuo_up_attack_1",
+          "hero_zhizhuo_up_attack_2",
+          "hero_zhizhuo_up_attack_3"
+        ],
+        "frameCount": 4,
+        "fps": 4,
+        "loop": false,
+        "restFrame": "hero_zhizhuo_up_idle",
+        "category": "characters",
+        "mapping": "zhizhuo",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "clock": "battle",
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "hero_delivery_down_walk",
+        "frameIds": [
+          "hero_delivery_down_walk_0",
+          "hero_delivery_down_idle",
+          "hero_delivery_down_walk_1",
+          "hero_delivery_down_idle"
+        ],
+        "frameCount": 4,
+        "fps": 8,
+        "loop": true,
+        "restFrame": "hero_delivery_down_idle",
+        "category": "characters",
+        "mapping": "delivery",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "clock": "distance",
+        "stridePixels": 48,
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "hero_delivery_left_walk",
+        "frameIds": [
+          "hero_delivery_left_walk_0",
+          "hero_delivery_left_idle",
+          "hero_delivery_left_walk_1",
+          "hero_delivery_left_idle"
+        ],
+        "frameCount": 4,
+        "fps": 8,
+        "loop": true,
+        "restFrame": "hero_delivery_left_idle",
+        "category": "characters",
+        "mapping": "delivery",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "clock": "distance",
+        "stridePixels": 48,
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "hero_delivery_right_walk",
+        "frameIds": [
+          "hero_delivery_right_walk_0",
+          "hero_delivery_right_idle",
+          "hero_delivery_right_walk_1",
+          "hero_delivery_right_idle"
+        ],
+        "frameCount": 4,
+        "fps": 8,
+        "loop": true,
+        "restFrame": "hero_delivery_right_idle",
+        "category": "characters",
+        "mapping": "delivery",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "clock": "distance",
+        "stridePixels": 48,
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "hero_delivery_up_walk",
+        "frameIds": [
+          "hero_delivery_up_walk_0",
+          "hero_delivery_up_idle",
+          "hero_delivery_up_walk_1",
+          "hero_delivery_up_idle"
+        ],
+        "frameCount": 4,
+        "fps": 8,
+        "loop": true,
+        "restFrame": "hero_delivery_up_idle",
+        "category": "characters",
+        "mapping": "delivery",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "clock": "distance",
+        "stridePixels": 48,
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "hero_songlei_down_walk",
+        "frameIds": [
+          "hero_songlei_down_walk_0",
+          "hero_songlei_down_idle",
+          "hero_songlei_down_walk_1",
+          "hero_songlei_down_idle"
+        ],
+        "frameCount": 4,
+        "fps": 8,
+        "loop": true,
+        "restFrame": "hero_songlei_down_idle",
+        "category": "characters",
+        "mapping": "songlei",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 48
+      },
+      {
+        "id": "hero_songlei_down_attack",
+        "frameIds": [
+          "hero_songlei_down_idle",
+          "hero_songlei_down_attack_0",
+          "hero_songlei_down_attack_1",
+          "hero_songlei_down_idle"
+        ],
+        "frameCount": 4,
+        "fps": 4,
+        "loop": false,
+        "restFrame": "hero_songlei_down_idle",
+        "category": "characters",
+        "mapping": "songlei",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "hero_songlei_up_walk",
+        "frameIds": [
+          "hero_songlei_up_walk_0",
+          "hero_songlei_up_idle",
+          "hero_songlei_up_walk_1",
+          "hero_songlei_up_idle"
+        ],
+        "frameCount": 4,
+        "fps": 8,
+        "loop": true,
+        "restFrame": "hero_songlei_up_idle",
+        "category": "characters",
+        "mapping": "songlei",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 48
+      },
+      {
+        "id": "hero_songlei_up_attack",
+        "frameIds": [
+          "hero_songlei_up_idle",
+          "hero_songlei_up_attack_0",
+          "hero_songlei_up_attack_1",
+          "hero_songlei_up_idle"
+        ],
+        "frameCount": 4,
+        "fps": 4,
+        "loop": false,
+        "restFrame": "hero_songlei_up_idle",
+        "category": "characters",
+        "mapping": "songlei",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "hero_songlei_left_walk",
+        "frameIds": [
+          "hero_songlei_left_walk_0",
+          "hero_songlei_left_idle",
+          "hero_songlei_left_walk_1",
+          "hero_songlei_left_idle"
+        ],
+        "frameCount": 4,
+        "fps": 8,
+        "loop": true,
+        "restFrame": "hero_songlei_left_idle",
+        "category": "characters",
+        "mapping": "songlei",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 48
+      },
+      {
+        "id": "hero_songlei_left_attack",
+        "frameIds": [
+          "hero_songlei_left_idle",
+          "hero_songlei_left_attack_0",
+          "hero_songlei_left_attack_1",
+          "hero_songlei_left_idle"
+        ],
+        "frameCount": 4,
+        "fps": 4,
+        "loop": false,
+        "restFrame": "hero_songlei_left_idle",
+        "category": "characters",
+        "mapping": "songlei",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "trimPolicy": "atlas_trim_restore_source_canvas"
+      },
+      {
+        "id": "hero_songlei_right_walk",
+        "frameIds": [
+          "hero_songlei_right_walk_0",
+          "hero_songlei_right_idle",
+          "hero_songlei_right_walk_1",
+          "hero_songlei_right_idle"
+        ],
+        "frameCount": 4,
+        "fps": 8,
+        "loop": true,
+        "restFrame": "hero_songlei_right_idle",
+        "category": "characters",
+        "mapping": "songlei",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "trimPolicy": "atlas_trim_restore_source_canvas",
+        "stridePixels": 48
+      },
+      {
+        "id": "hero_songlei_right_attack",
+        "frameIds": [
+          "hero_songlei_right_idle",
+          "hero_songlei_right_attack_0",
+          "hero_songlei_right_attack_1",
+          "hero_songlei_right_idle"
+        ],
+        "frameCount": 4,
+        "fps": 4,
+        "loop": false,
+        "restFrame": "hero_songlei_right_idle",
+        "category": "characters",
+        "mapping": "songlei",
+        "canvas": {
+          "w": 144,
+          "h": 144
+        },
+        "pivot": {
+          "x": 72,
+          "y": 134
+        },
+        "trimPolicy": "atlas_trim_restore_source_canvas"
       }
     ],
     "walkDirections": {

@@ -49,7 +49,7 @@ test("A retired partner is blocked even while still living in the village", () =
 });
 test("An existing child does not block another birth after the family cooldown", () => {
     const s = createGame(5); applyCommand(s, { type: "BIRTH", family: s.families[0].id });
-    blocked(s, `再成功守住 ${RULE.birthCooldown} 夜可迎接`);
+    blocked(s, `再守住 ${RULE.birthCooldown} 夜`);
     s.completed = RULE.birthCooldown; applyCommand(s, { type: "BIRTH", family: s.families[0].id });
     equal(s.people.filter(p => !p.adult).length, 2);
 });
@@ -57,7 +57,7 @@ test("Cooldown reports remaining successful nights and unlocks at four", () => {
     const s = createGame(6); s.families[0].lastBirth = 7;
     for (const elapsed of [0, 1, 3]) {
         s.completed = 7 + elapsed;
-        blocked(s, `再成功守住 ${RULE.birthCooldown - elapsed} 夜可迎接`);
+        blocked(s, `再守住 ${RULE.birthCooldown - elapsed} 夜`);
     }
     s.completed = 7 + RULE.birthCooldown; equal(birthUnavailableReason(s, s.families[0].id), null);
     s.completed = 0; s.families[0].lastBirth = null; equal(birthUnavailableReason(s, s.families[0].id), null);

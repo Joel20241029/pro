@@ -1,14 +1,17 @@
 import { PATROL, PATROL_MODE } from "../config/PatrolConfig";
-import { LIANG_ESSENCE } from "../config/ShopConfig";
+import { LIANG_ESSENCE, YUEXIU_DICE } from "../config/ShopConfig";
+import { HERO, SLOWER_HERO_SORTIE, SONGLEI } from "../config/HeroConfig";
+import { DELIVERY_HERO, DELIVERY_PATROL_HUNT } from "../config/DeliveryHeroConfig";
 import { patrolSpinStats, patrolStats } from "../game/PatrolRules";
 import { validDailyTaskDay } from "../game/DailyTaskState";
 import { VILLAGER_QUALITY } from "../config/VillagerQuality";
-import { ADULT_APPEARANCE, ENEMIES, PADS, POLICIES, RULE, TOWERS, TRAITS } from "../game/GameConfig";
-import { GameState, isElder, isWorkingAdult, Person } from "../game/GameState";
+import { ADULT_APPEARANCE, ENEMIES, PADS, RULE, TOWERS, TRAITS } from "../game/GameConfig";
+import { GameState, isElder, isWorkingAdult, isAvailableAdult, Person } from "../game/GameState";
+import { validExpedition } from "../game/Expedition";
 import { gateCapacity, laborSlots, levelPower, storageCapacity } from "../game/Growth";
 import { validRationDate } from "../game/DailyRation";
 import { capacity } from "../game/VillageQueries";
-import { WAVE_PROGRESSION, WAVE, WAVE_RHYTHM } from "../config/DefenseConfig";
+import { TOWER_FLAGS, WAVE_PROGRESSION, WAVE, WAVE_RHYTHM } from "../config/DefenseConfig";
 import { waveDifficulty } from "../game/WaveDifficulty";
 import { DEFAULT_TACTIC, KING_MERCY, KING_MERCY_TACTIC, TACTICS, TACTIC_SLOTS } from "../config/TacticConfig";
 /** 与生成器共用预算配置；覆盖一年末、累计跨年加成及最高挑战档，调难度后不会误拒合法存档。 */
@@ -39,6 +42,12 @@ function validatePerson(p: Person) {
 /** 载入即验证业务引用；损坏内容不自动补值、不自动清档。 */
 export function validateState(s: GameState) {
     check(s && int(s.run, 1) && int(s.nextPerson, 1) && int(s.nextFamily, 1) && int(s.day, 1) && int(s.completed) && s.day === s.completed + 1);
+    check(s.rewardDie === undefined || s.phase === "DAY" && int(s.rewardDie, 1, YUEXIU_DICE.faces), "下场守夜骰子点数无效");
+    check(s.deliveryUnlocked === undefined || (s.deliveryUnlocked === true && s.completed >= DELIVERY_HERO.recruitment.waves), "外卖大王招募状态无效");
+    check(s.songLeiUnlocked === undefined || (s.songLeiUnlocked === true && s.completed >= SONGLEI.recruitment.waves), "宋磊招募状态无效");
+    const heroAvailable = (id: unknown) => id === HERO.actorId || (id === DELIVERY_HERO.actorId && s.deliveryUnlocked === true) ||
+        (id === SONGLEI.actorId && s.songLeiUnlocked === true);
+    check(s.selectedHero === undefined || heroAvailable(s.selectedHero), "出战英雄无效");
     check(["DAY", "NIGHT", "DAWN", "GAME_OVER"].includes(s.phase));
     check(s.tactics && ids(s.tactics.learned, TACTICS.length) && s.tactics.learned.includes(DEFAULT_TACTIC) &&
         s.tactics.learned.every(id => TACTICS.some(t => t.id === id)) && s.tactics.learned.includes(s.tactics.equipped), "战技存档无效");
@@ -55,7 +64,7 @@ export function validateState(s: GameState) {
     }
     check(int(s.gateLevel, 1) && int(storageCapacity(s), RULE.storageCap) && int(gateCapacity(s), RULE.gateMax));
     check(int(s.food, 0, storageCapacity(s)) && int(s.wood, 0, storageCapacity(s)) && int(s.gate, 0, gateCapacity(s)) && (s.phase === "GAME_OVER" ? s.gate === 0 : s.gate > 0));
-    check(int(s.houses, 1) && int(s.farm, 1) && int(s.logging, 1) && s.tier === RULE.maxTier && (s.policy === null || own(s.policy, POLICIES)));
+    check(int(s.houses, 1) && int(s.farm, 1) && int(s.logging, 1) && s.tier === RULE.maxTier);
     check(s.lastTraveler === null || int(s.lastTraveler, 1, s.completed));
     check(Array.isArray(s.people) && s.people.length <= capacity(s)); s.people.forEach(validatePerson);
     check(Array.isArray(s.history) && s.history.length <= RULE.historyCap + RULE.favoriteCap); s.history.forEach(validatePerson);
@@ -81,6 +90,7 @@ export function validateState(s: GameState) {
     const operators: string[] = [];
     for (const t of s.towers) {
         check(t.kind === null ? t.level === 0 && t.operator === null : own(t.kind, TOWERS) && int(t.level, 1) && Number.isSafeInteger(Math.ceil(levelPower(t.level) * TOWERS[t.kind].damage)));
+        check(t.flag === undefined || (t.kind !== null && TOWER_FLAGS.includes(t.flag)), "塔旗样式无效");
         if (t.kind === "SLOW") check(s.iceAmmoUnlocked === true, "未解锁冰弹");
         if (t.operator !== null) { check(workers.some(p => p.id === t.operator)); operators.push(t.operator); }
     }
@@ -96,11 +106,12 @@ export function validateState(s: GameState) {
     if (patrol.radiusReady !== undefined) check(patrol.radiusReady === true && !s.night?.patrolSpin, "淡紫儿砸地范围准备状态无效");
     check(patrol.captain === null || workers.some(p => p.id === patrol.captain &&
         !operators.includes(p.id) && int(patrolNumbers(p).damage, 1)), "淡紫队长数据无效");
+    check(validExpedition(s), "勇闯521存档无效");
     check(Array.isArray(s.choices) && s.choices.length <= RULE.populationCap + 3);
     for (const q of s.choices) {
-        check(q && ["TRAVELER", "POLICY"].includes(q.kind));
-        if (q.kind === "TRAVELER") { validatePerson(q.person); check(q.person.origin === "TRAVELER" && isWorkingAdult(q.person) && !all.some(p => p.id === q.person.id)); }
-        if (q.kind === "POLICY") check(ids(q.options, 3) && q.options.length === 3 && q.options.every(k => own(k, POLICIES)));
+        check(q && q.kind === "TRAVELER");
+        validatePerson(q.person);
+        check(q.person.origin === "TRAVELER" && isWorkingAdult(q.person) && !all.some(p => p.id === q.person.id));
     }
     if (s.phase !== "DAWN") check(!s.choices.length);
     if (s.phase === "DAY" || s.phase === "NIGHT") {
@@ -119,6 +130,26 @@ export function validateState(s: GameState) {
     } else check(s.wave === null);
     if (s.phase === "NIGHT") {
         check(s.night && s.night.tactic === s.tactics.equipped, "本夜战技快照不一致");
+        if (s.night.activeHero !== undefined)
+            check(heroAvailable(s.night.activeHero) && s.night.heroSortie === undefined && s.night.deliveryHero === undefined, "本夜出战英雄快照无效");
+        if (s.night.deliveryPatrol !== undefined)
+            check((s.night.deliveryPatrol === true || s.night.deliveryPatrol === DELIVERY_PATROL_HUNT) &&
+                s.night.activeHero === DELIVERY_HERO.actorId, "本夜大王巡路快照无效");
+        if (s.night.heroSortie !== undefined) check(s.night.heroSortie === true, "本夜英雄快照无效");
+        if (s.night.deliveryHero !== undefined) check(s.night.deliveryHero === true && s.deliveryUnlocked === true, "本夜外卖大王快照无效");
+        if (s.night.extendedHeroSortie !== undefined)
+            check(s.night.extendedHeroSortie === true || s.night.extendedHeroSortie === SLOWER_HERO_SORTIE, "本夜英雄出战快照无效");
+        if (s.night.reinforcedEnemies !== undefined) check(s.night.reinforcedEnemies === true, "本夜怪物强化快照无效");
+        if (s.night.spreadEnemyFormation !== undefined) check(s.night.spreadEnemyFormation === true, "本夜怪物阵型快照无效");
+        const back = s.night.returnPoint;
+        if (back !== undefined) {
+            const storage = storageCapacity(s);
+            check(back && int(back.food, 0, storage) && int(back.wood, 0, storage) && int(back.gate, 1, gateCapacity(s)), "战前进度无效");
+            check(back.dailyTasks === undefined || validDailyTaskDay(back.dailyTasks), "战前任务进度无效");
+            const cooldown = back.mercyCooldown;
+            if (cooldown !== undefined) check(cooldown && mercy && int(cooldown.casts, 1, mercy.casts) &&
+                int(cooldown.wavesLeft, 0, KING_MERCY.baseCooldownWaves + cooldown.casts), "战前怜悯冷却无效");
+        }
         if (s.night.patrolSquad !== undefined) check(s.night.patrolSquad === true && !!patrol.captain, "本夜淡紫儿出征规则无效");
         if (s.night.patrolSpin !== undefined) check(s.night.patrolSpin === true && s.night.patrolSquad === true, "本夜淡紫儿旋转规则无效");
         if (s.night.patrolMode !== undefined) {
@@ -129,6 +160,7 @@ export function validateState(s: GameState) {
         }
         if (s.night.patrolRation !== undefined) check(s.night.patrolRation === true && s.night.patrolSpin === true, "本夜淡紫儿鼓舞无效");
         if (s.night.patrolWideImpact !== undefined) check(s.night.patrolWideImpact === true && s.night.patrolSpin === true, "本夜淡紫儿砸地范围无效");
+        check(s.night.rewardDie === undefined || int(s.night.rewardDie, 1, YUEXIU_DICE.faces), "本夜骰子点数无效");
         const nightExtra = s.night.extraSlots;
         check(nightExtra === undefined ? extra === undefined : Array.isArray(nightExtra) && nightExtra.length === extra?.length &&
             nightExtra.every((id, i) => id === extra[i]), "本夜战技槽快照不一致");
@@ -137,7 +169,8 @@ export function validateState(s: GameState) {
                 mercy && mercy.wavesLeft === KING_MERCY.baseCooldownWaves + mercy.casts, "本夜怜悯存档无效");
         }
         check(s.night && ids(s.night.adults, RULE.populationCap) && ids(s.night.elders, RULE.populationCap) && typeof s.night.hungry === "boolean");
-        check(s.night.adults.length === workers.length && s.night.adults.every(id => workers.some(p => p.id === id)));
+        const onDuty = workers.filter(p => isAvailableAdult(s, p));
+        check(s.night.adults.length === onDuty.length && s.night.adults.every(id => onDuty.some(p => p.id === id)));
         check(s.night.elders.length === elders.length && s.night.elders.every(id => elders.some(p => p.id === id)));
     } else check(s.night === null);
     check(s.rng && [s.rng.family, s.rng.world].every(n => int(n, 0, 0xffffffff)));

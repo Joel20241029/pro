@@ -2,7 +2,7 @@ const { test, after } = require('node:test'), assert = require('node:assert/stri
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 const read = name => require(path.join(compiled, name + '.js'));
-const { TACTIC_USE, TACTICS, DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC, MIND_LOCK_TACTIC, BLAST_TACTIC, ZHOU_LOVE_TACTIC, DRAGON_POISON_TACTIC, KING_MERCY_TACTIC, validateTactics, tacticDefinition } = read('config/TacticConfig');
+const { tacticCooldownTicks, TACTICS, DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC, SPLIT_TACTIC, SUMMON_TACTIC, MIND_LOCK_TACTIC, BLAST_TACTIC, ZHOU_LOVE_TACTIC, DRAGON_POISON_TACTIC, KING_MERCY_TACTIC, validateTactics, tacticDefinition } = read('config/TacticConfig');
 const { RULE } = read('game/GameConfig');
 const { createGame, applyCommand } = read('game/VillageRules');
 const { clone } = read('game/GameState');
@@ -47,7 +47,7 @@ test('production includes the summon while preserving the free heart combat para
     const t = production[0];
     assert.equal(t.wood + t.food + t.unlockWaves, 0);
     assert.equal(t.ticks, RULE.bellTicks); assert.equal(t.multiplier, RULE.bellSpeedMultiplier);
-    assert.equal(t.ticks * RULE.step, 15); assert.equal(t.multiplier, 1.5);
+    assert.equal(t.ticks * RULE.step, 18); assert.equal(t.multiplier, 1.5);
 });
 
 test('new village has a valid equipped tactic and config rejects unknown or duplicate definitions', () => {
@@ -126,7 +126,7 @@ test('night snapshots equipment and forbids changing or learning even while paus
     assert.equal(canLearnTactic(f.game.state), false);
 });
 
-test('heart still casts with no visible enemies, and pause or reassign never reset its quota', () => {
+test('heart still casts with no visible enemies, and pause or reassign keep its independent clock', () => {
     const f = fixture(); f.game.command({ type: 'NIGHT' });
     const battle = f.game.battle; assert.equal(battle.enemies.length, 0); assert(f.game.canRingBell);
     f.game.bell(); assert.equal(battle.bellTicks, RULE.bellTicks);
@@ -137,19 +137,22 @@ test('heart still casts with no visible enemies, and pause or reassign never res
     assert.equal(battle.bellTicks, RULE.bellTicks - 6); assert.equal(f.game.canRingBell, false);
     f.game.bell(); assert.equal(battle.bellTicks, RULE.bellTicks - 6);
     const reopened = f.reopen(); assert.equal(reopened.battle.tick, 0);
-    assert.equal(reopened.battle.tacticUsesLeft, TACTIC_USE.perNight); assert.equal(reopened.battle.tacticCooldownTicks, 0);
+    assert.equal(reopened.battle.usesLeftFor(battle.tactic), null); assert.equal(reopened.battle.tacticCooldownTicks, 0);
     assert.equal(reopened.battle.tactic.id, battle.tactic.id);
 });
 
-test('two-use tactics can start a second full effect after 21 battle seconds', () => {
-    assert.equal(TACTIC_USE.cooldownTicks * RULE.step, 21);
-    for (const tactic of production.filter(t => t.usesPerNight === 2)) {
+test('all five timed cooldown-only tactics can activate three times at their own exact boundaries', () => {
+    const timed = production.filter(t => t.usesPerNight === undefined && t.effect !== 'HAND_SPEED');
+    assert.equal(timed.length, 5);
+    for (const tactic of timed) {
         const s = state(tactic.unlockWaves); s.tactics.learned = [...new Set([DEFAULT_TACTIC, tactic.id])];
-        s.tactics.equipped = tactic.id; s.wave.entries = [{...s.wave.entries[0], tick: 950}];
+        s.tactics.equipped = tactic.id; s.wave.entries = [{...s.wave.entries[0], tick: 4500}];
         applyCommand(s, { type: 'NIGHT' });
         const b = new BattleSimulation(s);
         b.bell(); assert.equal(b.bellTicks, tactic.ticks);
-        while (b.tick < TACTIC_USE.cooldownTicks) b.step();
+        while (b.tick < tacticCooldownTicks(tactic) - 1) b.step();
+        assert(!b.canCastTactic);
+        b.step();
         assert.equal(b.bellTicks, 0); assert.equal(b.canCastTactic, true);
         b.bell(); assert.equal(b.bellTicks, tactic.ticks); assert.equal(b.canCastTactic, false);
         const gate = b.gate;
@@ -158,6 +161,8 @@ test('two-use tactics can start a second full effect after 21 battle seconds', (
                 speed: 1, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0}];
             b.step(); assert.equal(b.gate, gate); assert(b.feedback.some(e => e.type === 'gate' && e.blocked));
         }
+        while (b.tacticCooldownTicks) b.step();
+        assert(b.bell()); assert.equal(b.usesLeftFor(tactic), null);
     }
 });
 
@@ -188,7 +193,7 @@ test('save validation refuses unknown IDs, missing initial, duplicates and misma
     assert.throws(() => validateState(s), /战技快照/);
 });
 
-test('detail navigation returns only after committed purchase, preserves list order and keeps choice pause', () => {
+test('committed learning stays on the same tactics page with expanded card and scroll intact', () => {
     // 绘图函数以记录器替换，测试真实 GamePanels 生命周期，不需要伪造 Canvas 的像素行为。
     global.Laya = { Sprite: class {}, Text: class {}, Texture2D: class {}, OpenDataContextView: class {} };
     const tacticPanels = read('view/panels/TacticPanels'), buildingPanels = read('view/panels/WavePanel');
@@ -199,20 +204,23 @@ test('detail navigation returns only after committed purchase, preserves list or
     try {
         for (const fromStart of [false, true]) {
             const f = fixture(), start = { type: 'start' }, order = [DEFAULT_TACTIC, learnedId];
-            const list = { type: 'tactics', rowOrder: order, scroll: 84, ...(fromStart ? { back: start } : {}) };
-            const detail = { type: 'tacticSwap', index: 0, back: list };
+            const list = { type: 'tactics', index: 0, preview: learnedId, rowOrder: order, scroll: 84, ...(fromStart ? { back: start } : {}) };
             const render = () => { if (panels.current) panels.draw(f.game.state, panels.current); };
-            const panels = new GamePanels(f.game, {}, {}, {}, {}, {}, render, { ready: () => true });
-            f.game.changed = render; panels.open(detail);
-            detail.pendingTactic = {id: learnedId, slot: 0}; f.port.failure = 'before';
+            const panels = new GamePanels(f.game, {}, {}, {}, {}, {}, render, { ready: () => true, ensure() {} });
+            f.game.changed = render; panels.open(list, true);
+            list.pendingTactic = {id: learnedId, slot: 0}; f.port.failure = 'before';
             panels.send({ type: 'TACTIC_LEARN', id: learnedId });
-            assert.equal(panels.current, detail); assert.deepEqual(detail.pendingTactic, {id: learnedId, slot: 0});
+            assert.equal(panels.current, list); assert.deepEqual(list.pendingTactic, {id: learnedId, slot: 0});
             f.port.failure = null; f.game.retry();
-            assert.equal(panels.current, fromStart ? start : list);
+            assert.equal(panels.current, list);
+            assert.equal(list.pendingTactic, undefined); assert.equal(list.preview, learnedId);
+            assert.equal(list.back, fromStart ? start : undefined);
             assert.equal(list.rowOrder, order); assert.equal(list.scroll, 84);
             assert(f.game.pauses.has('CHOICE')); assert.equal(f.writes.filter(raw => JSON.parse(raw).payload).length, 1);
-            panels.open(detail); panels.open(list, true);
-            assert.equal(list.rowOrder, order); assert.equal(list.scroll, 84);
+            if (fromStart) {
+                panels.open(list.back, true);
+                assert.equal(panels.current, start); assert.equal(drawn.at(-1), start);
+            }
             f.game.pause('USER'); panels.close();
             assert(!f.game.pauses.has('CHOICE')); assert(f.game.pauses.has('USER'));
         }

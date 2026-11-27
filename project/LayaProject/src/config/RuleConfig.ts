@@ -1,6 +1,6 @@
 import { PATROL } from "./PatrolConfig";
 
-/** v22 合并民居等级和村规；v21 为多天赋村民；旧封套须由玩家确认重开。 */
+/** v22 起使用合并后的民居等级。退役的节令和村规字段由旧档读取流程移除。 */
 export const CONFIG_VERSION = 22;
 /** 持续成长基础来自 doc/tech/12，百级住宅与数量型波次按 doc/tech/46 重平衡。
  * 设施等级不封顶，产出线性、战力与费用二次增长；更改须复跑经营模拟及升级预检。
@@ -39,11 +39,10 @@ export const RULE = {
     elderNights: 3,
     // 劳作剩余 2 夜起预告荣休，仅影响提醒，不提前释放岗位或减少劳动产出。
     retirementNoticeNights: 2,
-    // 成人及老人共用普通 2 粮、节俭 1 粮的口粮规则，再统一应用冬季消耗。
+    // 成人和老人共用普通 2 粮、节俭 1 粮的口粮规则。
     farmBase: 8, logBase: 6, adultRation: 2, childRation: 1,
     farmSlots: [2, 4, 6], logSlots: [2, 3, 4], towerConvert: 20,
-    yearDays: 12, seasonDays: 3,
-    // 用户确认从第一年起固定原最高3档，跨年不再选择；新波次按双波难度曲线生成，调整须验证首夜及长期经营。
+    // 开局沿用固定最高档，敌人强度按连续守夜波数增长。
     maxTier: 3, historyCap: 60, favoriteCap: 20,
     // 守夜固定采用旧界面 ×2 档的真实倍率，每现实秒推进 3 个战斗秒；瞄准减速以它为基准。
     battleSpeed: 3,
@@ -55,33 +54,14 @@ export const RULE = {
     legacyEnemyCap: 40,
     // 旧版已排定的波次校验上限，新规则按当夜预算校验。
     planCap: 288,
-    // 进攻战技持续 15 个战斗秒（300 步×0.05 秒）。每夜施放与冷却规则见 TacticConfig。
-    bellTicks: 300,
+    // 攻速和增伤战技持续 18 个战斗秒（360 步×0.05 秒）。每夜施放与冷却规则见 TacticConfig。
+    bellTicks: 360,
     // 沿用原警钟攻速+50%；战斗与说明共用，乘在驻塔天赋加成之后，再乘缺粮/扰阵减益。
     bellSpeedMultiplier: 1.5,
     slowTicks: 30, hungerSpeed: .7, disruptSpeed: .8,
     spawnTicks: 480, summonTicks: [120, 240], effectCap: 32
 } as const;
-export interface Policy {
-    name: string;
-    food?: number;
-    wood?: number;
-    damage?: number;
-}
-/** 每季固定三选一。生产加成与个人和季节加成相加；备战作用于所有塔弹药。 */
-export const POLICIES: Record<string, Policy> = {
-    policy_harvest: { name: "丰收", food: .2 },
-    policy_logging: { name: "开林", wood: .2 },
-    policy_prepare: { name: "备战", damage: .1 }
-};
-export const SEASONS = ["春", "夏", "秋", "冬"];
-/** 原 VillageRules.economy 的加成与口粮数值，逐项原值迁移。
- * 加成仍先相加、乘精英倍率后取整；季节口粮最后统一向上取整。
- * 修改会影响经营平衡，需要对照成长模拟和配置版本；此次没有调参。
- */
+/** 常年适用的村民生产与口粮加成，每人产出乘品质和天赋后取整。 */
 export const ECONOMY = {
-    // 合并原来两项生产加成，开村农田和伐木场维持原有产出。
-    diligentFood: .4, springFood: .1,
-    woodwiseWood: .4, autumnWood: .15,
-    frugalRation: 1, winterRation: .2
+    diligentFood: .4, woodwiseWood: .4, frugalRation: 1
 } as const;

@@ -1,0 +1,14 @@
+{
+  "title": "外卖加急 · 餐盒溅落",
+  "authorship": "Original layered carton impact and liquid droplets.",
+  "sampleRate": 22050,
+  "durationSeconds": 0.245,
+  "mp3Bitrate": "48k",
+  "synthesis": {
+    "noiseSeed": 52607,
+    "boxHz": 169,
+    "drops": [[0.026, 795], [0.049, 540], [0.079, 665]],
+    "peak": 0.69
+  },
+  "bundle": "battle"
+}

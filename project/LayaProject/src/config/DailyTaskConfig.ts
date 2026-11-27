@@ -1,7 +1,9 @@
+import { EXPEDITION } from "./ExpeditionConfig";
+
 /** 每日任务池按五个主题抽取；一条常规守夜优先，其余优先选不同主题。调整奖励会影响每日资源上限。 */
 export const DAILY_TASKS = { limit: 3, rewardMin: 5, rewardMax: 8, winsToUnlock: 6, clockCheckMs: 1000 } as const;
-/** 左侧入口的首次胜利门槛。背包、商城错开开放，预留各自的解锁演出与引导节奏。 */
-export const FEATURE_WINS = { ranking: 1, tactics: 3, dailyTasks: DAILY_TASKS.winsToUnlock, backpack: 8, shop: 13 } as const;
+/** 左侧入口的首次胜利门槛。0 表示开村即开放，不触发守夜解锁演出。 */
+export const FEATURE_WINS = { ranking: 1, tactics: 3, dailyTasks: DAILY_TASKS.winsToUnlock, backpack: 0, shop: 0, expedition: EXPEDITION.wins } as const;
 
 /** 目标区间是抽取上限，出题按生产、有效防线、现有人员及材料收紧至当前可完成的数值。 */
 export const TASK_GOALS = {

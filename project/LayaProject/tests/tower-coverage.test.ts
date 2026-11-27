@@ -11,9 +11,11 @@ const kinds: TowerKind[] = ["ARROW", "STONE", "SLOW"];
 function battleAt(index: number, kind: TowerKind) {
     const s = createGame(17);
     s.people.forEach(p => { p.traits = ["trait_frugal"]; p.quality = "COMMON"; });
-    s.policy = null;
+
     s.towers = PADS.map((_, i) => ({ kind: i === index ? kind : null, level: i === index ? 1 : 0, operator: i === index ? s.people[0].id : null }));
     applyCommand(s, { type: "NIGHT" });
+    // 只核验塔位射程，让单个测试靶走完整条路。
+    delete s.night!.activeHero;
     s.wave = { ...s.wave!, budget: ENEMIES.enemy_raider.cost, affix: "NONE", entries: [{ kind: "enemy_raider", tick: 0, appearanceSeed: 1 }] };
     return new BattleSimulation(s);
 }

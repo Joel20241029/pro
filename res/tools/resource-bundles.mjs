@@ -11,10 +11,12 @@ export const atlasGroups = {
     characters: { category: 'characters', stage: 'village' },
     village_effects: { category: 'effects', stage: 'village' },
     enemies: { category: 'enemies', stage: 'night' },
+    heroes: { category: 'characters', stage: 'village' },
+    delivery_combat: { category: 'characters', stage: 'night' },
     night_effects: { category: 'effects', stage: 'night' }
 };
 /** 村内常驻特效及已加载的战技红环，三种品质小图共用此图页。 */
-const villageEffects = new Set(['fx_hearts', 'icon_baby_cry', 'fx_rage_orbit', 'fx_rage_up', 'fx_quality_elite', 'fx_quality_hero', 'fx_quality_legendary']);
+const villageEffects = new Set(['fx_hearts', 'icon_baby_cry', 'fx_rage_orbit', 'fx_rage_up', 'fx_quality_elite', 'fx_quality_hero', 'fx_quality_legendary', 'delivery_bike']);
 
 export function atlasGroup(asset) {
     const category = asset.category.split('/')[0];
@@ -23,7 +25,11 @@ export function atlasGroup(asset) {
         case 'terrain': return 'terrain';
         case 'decorations': return 'map';
         case 'building-parts': return 'buildings';
-        case 'characters': return 'characters';
+        case 'characters': {
+            if (asset.id.startsWith('hero_delivery_'))
+                return /_(ride|windup|throw|recover)$/.test(asset.id) ? 'delivery_combat' : 'heroes';
+            return /^hero_(zhizhuo|songlei)_/.test(asset.id) ? 'heroes' : 'characters';
+        }
         case 'enemies':
         case 'enemy-parts': return 'enemies';
         case 'effects': return villageEffects.has(asset.id) ? 'village_effects' : 'night_effects';
