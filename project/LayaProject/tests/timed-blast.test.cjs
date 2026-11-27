@@ -15,7 +15,7 @@ function state(waves = 50) {
     const s = createGame(52);
     s.completed = s.legacy.bestNight = waves;
     s.day = waves + 1;
-    s.wood = s.food = 200;
+    s.coins = 200;
     return s;
 }
 
@@ -38,11 +38,11 @@ const castPoint = enemyPoint(enemy(0, 'enemy_raider', 120, 1));
 
 test('blast purchase uses twenty current wins and reordered learned skills remain visible on old saves', () => {
     const s = state(19), t = tacticDefinition(BLAST_TACTIC);
-    assert.deepEqual([t.name, t.buttonName, t.unlockWaves, t.wood, t.food, t.usesPerNight, t.ticks], ['孟昭易·泻火', '泻火', 20, 80, 40, 2, 60]);
+    assert.deepEqual([t.name, t.buttonName, t.unlockWaves, t.coins, t.usesPerNight, t.ticks], ['孟昭易·泻火', '泻火', 20, 100, 2, 60]);
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: BLAST_TACTIC }), /还需守住 1 波/);
     s.completed = 20; s.day = 21;
     applyCommand(s, { type: 'TACTIC_LEARN', id: BLAST_TACTIC });
-    assert.deepEqual([s.wood, s.food], [120, 160]);
+    assert.equal(s.coins, 100);
     s.tactics.learned.push(SUMMON_TACTIC);
     assert(tacticRevealed(s, SUMMON_TACTIC));
     applyCommand(s, { type: 'TACTIC_EQUIP', id: SUMMON_TACTIC });

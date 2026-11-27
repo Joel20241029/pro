@@ -2,6 +2,7 @@ import { applyCommand, createGame } from "../src/game/VillageRules";
 import { clone } from "../src/game/GameState";
 import { BattleSimulation } from "../src/game/BattleSimulation";
 import { RULE } from "../src/game/GameConfig";
+import { sewingDayCap } from "../src/game/Growth";
 import { GameLayout } from "../src/view/GameLayout";
 import { compareDepth, distance, layoutVillage, MOTION, VillageNavigation, VILLAGE_PROPS, VILLAGE_STOPS, WEDDING } from "../src/view/VillageScene";
 import { VillagerMotion, walkDirection, WalkDirection } from "../src/view/VillagerMotion";
@@ -10,6 +11,12 @@ import { villagerModel } from "../src/view/VillagerAppearance";
 let passed = 0;
 function ok(v: unknown, reason = "assertion failed"): asserts v { if (!v) throw new Error(reason); }
 function equal(a: unknown, b: unknown) { ok(JSON.stringify(a) === JSON.stringify(b), `${JSON.stringify(a)} != ${JSON.stringify(b)}`); }
+function createMotionVillage(seed: number, legacy?: Parameters<typeof createGame>[1]) {
+    const state = createGame(seed, legacy);
+    // Motion scenarios explicitly assign their work party and keep the remaining actors on waiting posts.
+    state.people.forEach(p => p.job = "WAITING");
+    return state;
+}
 function test(name: string, f: () => void) { f(); passed++; console.log("PASS", name); }
 const navigation = new VillageNavigation();
 
@@ -40,7 +47,7 @@ test("Forest, posts and palisades block passage; residents can cross through the
 });
 
 test("Every real map stop is reachable without crossing any footprint", () => {
-    const stops = [...VILLAGE_STOPS.homes, ...VILLAGE_STOPS.farm, ...VILLAGE_STOPS.logging, ...VILLAGE_STOPS.rest, ...VILLAGE_STOPS.children, ...VILLAGE_STOPS.towers, ...VILLAGE_STOPS.wedding];
+    const stops = [...VILLAGE_STOPS.homes, ...VILLAGE_STOPS.sewing, ...VILLAGE_STOPS.rest, ...VILLAGE_STOPS.children, ...VILLAGE_STOPS.towers, ...VILLAGE_STOPS.wedding];
     for (const from of stops) for (const to of stops) {
         const route = navigation.route(from, to); let at = from;
         for (const p of route) { ok(navigation.clear(at, p), "path crosses building"); at = p; }
@@ -57,9 +64,11 @@ test("A walk from behind a house goes around its foundation", () => {
     equal(tied.slice().reverse().sort(compareDepth), tied.slice().sort(compareDepth));
 });
 test("Working founders keep their routines while idle founders face forward at stationary posts", () => {
-    const s = createGame(17), before = JSON.stringify(s), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    const s = createMotionVillage(17), motion = new VillagerMotion(navigation);
+    s.people.slice(0, 3).forEach(p => p.job = "SEWING");
+    const before = JSON.stringify(s); motion.sync(s, s.towers);
     const initial = s.people.map(p => ({ ...motion.get(p.id) }));
-    const traveled = new Set<string>(), working = new Set<string>(), rested = new Set<string>();
+    const traveled = new Set<string>(), working = new Set<string>();
     for (let step = 0; step < 2400; step++) {
         const previous = s.people.map(p => ({ ...motion.get(p.id) })); motion.update(.05);
         s.people.forEach((p, i) => {
@@ -67,19 +76,57 @@ test("Working founders keep their routines while idle founders face forward at s
             ok(navigation.walkable(m)); ok(navigation.clear(previous[i], m));
             ok(distance(previous[i], m) <= MOTION.adultSpeed * .05 + 1e-7, "movement exceeds speed");
             if (distance(initial[i], m) > 40) traveled.add(p.id);
-            if (!m.walking && m.clip.endsWith("_work")) working.add(p.id);
-            if (!m.walking && VILLAGE_STOPS.rest.some(p => distance(p, m) < .01)) rested.add(p.id);
+            if (!m.walking && m.clip === "sewing") working.add(p.id);
         });
     }
     const waiting = s.people.filter(p => p.job === "WAITING");
-    equal(traveled.size, s.people.length); ok(working.size >= 3); equal(rested.size, s.people.length - waiting.length);
+    equal(traveled.size, s.people.length); equal(working.size, 3);
     const idle = waiting.map(p => ({ ...motion.get(p.id) }));
     idle.forEach(m => { ok(!m.walking && !m.animated && m.direction === "DOWN"); ok(VILLAGE_STOPS.waiting.some(p => distance(p, m) < .01)); });
     motion.update(.25); idle.forEach(m => equal([motion.get(m.id).x, motion.get(m.id).y], [m.x, m.y]));
     equal(JSON.stringify(s), before);
 });
+test("A committed sewing batch sends seated and indoor workers on a break before they return", () => {
+    const s = createGame(42), motion = new VillagerMotion();
+    motion.sync(s, s.towers);
+    for (let i = 0; i < 120; i++) motion.update(.25);
+    const seated = s.people.find(p => motion.get(p.id).clip === "sewing")!;
+    const indoor = s.people.find(p => motion.get(p.id).insideFactory)!;
+    ok(seated && indoor);
+    s.factory.batches = 1;
+    s.factory.earned = 10;
+    motion.sync(s, s.towers);
+    for (const p of [seated, indoor]) {
+        const pose = motion.get(p.id);
+        ok(pose.walking && pose.clip !== "sewing" && !pose.insideFactory);
+    }
+    for (let i = 0; i < 160 && motion.get(seated.id).walking; i++) motion.update(.25);
+    const rest = { ...motion.get(seated.id) };
+    ok(!rest.walking && rest.clip !== "sewing" && VILLAGE_STOPS.rest.some(at => distance(at, rest) < .01));
+    for (let i = 0; i < MOTION.sewingBreakSeconds * 4 - 1; i++) { motion.sync(s, s.towers); motion.update(.25); }
+    ok(distance(rest, motion.get(seated.id)) < .01);
+    for (let i = 0; i < 120; i++) { motion.sync(s, s.towers); motion.update(.25); }
+    equal(motion.get(seated.id).clip, "sewing");
+    ok(motion.get(indoor.id).insideFactory);
+});
+test("Exhausted sewing stays closed after reloading, yields to the night route and opens on a new day", () => {
+    const s = createGame(42), motion = new VillagerMotion(), person = s.people.find(p => p.id === s.towers[0].operator)!;
+    s.factory.batches = 1;
+    s.factory.earned = sewingDayCap(s);
+    motion.sync(s, s.towers);
+    for (let i = 0; i < 160; i++) motion.update(.25);
+    for (const p of s.people) ok(!motion.get(p.id).walking && motion.get(p.id).clip !== "sewing" && !motion.get(p.id).insideFactory);
+    applyCommand(s, { type: "NIGHT" });
+    motion.sync(s, s.towers);
+    for (let i = 0; i < 160; i++) motion.update(.25);
+    ok(motion.get(person.id).insideTower);
+    s.phase = "DAWN"; s.day++; s.factory.batches = s.factory.earned = 0;
+    motion.sync(s, s.towers);
+    for (let i = 0; i < 160; i++) motion.update(.25);
+    equal(s.people.filter(p => motion.get(p.id).clip === "sewing").length, 3);
+});
 test("Moving poses match signed displacement across work, tower travel and return", () => {
-    const s = createGame(17), motion = new VillagerMotion(navigation), directions = new Set<WalkDirection>(); motion.sync(s, s.towers);
+    const s = createMotionVillage(17), motion = new VillagerMotion(navigation), directions = new Set<WalkDirection>(); motion.sync(s, s.towers);
     for (let i = 0; i < 4800; i++) {
         if (i === 2400) { applyCommand(s, { type: "NIGHT" }); motion.sync(s, s.towers); }
         if (i === 3600) { s.phase = "DAY"; motion.sync(s, s.towers); }
@@ -98,22 +145,22 @@ test("Moving poses match signed displacement across work, tower travel and retur
     equal(directions.size, 4);
 });
 test("Pause and unrelated UI sync preserve position, path and current animation time", () => {
-    const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers); motion.update(.2);
+    const s = createMotionVillage(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers); motion.update(.2);
     const first = JSON.stringify(motion.get(s.people[0].id));
     for (let i = 0; i < 60; i++) { motion.sync(clone(s), clone(s.towers)); motion.update(0); }
     equal(JSON.stringify(motion.get(s.people[0].id)), first);
     motion.update(.1); ok(JSON.stringify(motion.get(s.people[0].id)) !== first);
 });
 test("Changing jobs replans from current feet, without teleport or resetting other villagers", () => {
-    const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    const s = createMotionVillage(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     for (let i = 0; i < 30; i++) motion.update(.1);
     const p = s.people[0], before = { ...motion.get(p.id) }, other = { ...motion.get(s.people[5].id) };
-    applyCommand(s, { type: "JOB", id: p.id, job: "LOGGING", replace: s.people[2].id }); motion.sync(s, s.towers);
+    p.job = "SEWING"; motion.sync(s, s.towers);
     equal([motion.get(p.id).x, motion.get(p.id).y], [before.x, before.y]); equal(motion.get(s.people[5].id).x, other.x);
     for (let i = 0; i < 500; i++) { const previous = { ...motion.get(p.id) }; motion.update(.1); ok(navigation.clear(previous, motion.get(p.id))); }
 });
 test("Night watch uses live reassignment while towers already attack during travel", () => {
-    const s = createGame(7), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    const s = createMotionVillage(7), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     applyCommand(s, { type: "NIGHT" }); const battle = new BattleSimulation(s); motion.sync(s, battle.base.towers);
     let attackedWhileWalking = false;
     for (let i = 0; i < 400 && !battle.outcome; i++) {
@@ -128,7 +175,7 @@ test("Night watch uses live reassignment while towers already attack during trav
     ok(s.towers[0].operator !== id, "test must distinguish live and saved assignments");
 });
 test("Tower watch hides only after arrival and reappears on reassignment, replacement and dawn", () => {
-    const s = createGame(7), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    const s = createMotionVillage(7), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     applyCommand(s, { type: "NIGHT" }); const battle = new BattleSimulation(s); motion.sync(s, battle.base.towers);
     const id = battle.base.towers[0].operator!;
     ok(motion.get(id).walking && !motion.get(id).insideTower);
@@ -154,7 +201,7 @@ test("Tower watch hides only after arrival and reappears on reassignment, replac
     ok(!motion.crossingGate(830), "the gate should close after the guards pass");
 });
 test("Babies stay home, children walk, growth retains position, retired people are removed", () => {
-    const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id });
+    const s = createMotionVillage(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id });
     const child = s.people[s.people.length - 1], motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     const baby = { ...motion.get(child.id) };
     for (let i = 0; i < 50; i++) motion.update(.1);
@@ -166,19 +213,20 @@ test("Babies stay home, children walk, growth retains position, retired people a
     const feet = { ...motion.get(child.id) }; child.adult = true; child.nights = RULE.adultNights; child.job = "WAITING"; motion.sync(s, s.towers);
     equal([motion.get(child.id).x, motion.get(child.id).y], [feet.x, feet.y]);
     s.people.splice(0, 1); motion.sync(s, s.towers); equal(motion.count, s.people.length);
-    const next = createGame(99); next.run = s.run + 1; next.people.forEach(p => p.id = `${next.run}:${p.id.split(":")[1]}`);
+    const next = createMotionVillage(99); next.run = s.run + 1; next.people.forEach(p => p.id = `${next.run}:${p.id.split(":")[1]}`);
     motion.sync(next, next.towers); equal(motion.count, next.people.length);
 });
 test("Full population and maximum production slots stay bounded and outside buildings", () => {
-    const s = createGame(1); s.people.forEach(p => p.job = "WAITING");
+    const s = createMotionVillage(1); s.people.forEach(p => p.job = "WAITING");
     for (let i = 7; i <= 20; i++) { const p = clone(s.people[i % 6]); p.id = `1:${i}`; s.people.push(p); }
-    s.people.slice(0, 6).forEach(p => p.job = "FARM"); s.people.slice(6, 10).forEach(p => p.job = "LOGGING");
+    s.people.slice(0, 6).forEach(p => p.job = "SEWING");
     const motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
-    for (let i = 0; i < 3600; i++) { motion.update(.05); for (const p of s.people) ok(navigation.walkable(motion.get(p.id))); }
-    equal(motion.count, 20);
+    for (let i = 0; i < 3600; i++) { motion.update(.05); for (const p of motion.visiblePeople) ok(navigation.walkable(motion.get(p.id))); }
+    equal(motion.count, 20); equal(s.people.length, 20);
+    equal(motion.visiblePeople.filter(p => motion.get(p.id).insideFactory).length, 3);
 });
 test("New spouses walk to reachable meeting points, wait for each other, then show hearts without changing business state", () => {
-    const s = createGame(17), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    const s = createMotionVillage(17), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     const pair = [s.people[4], s.people[5]]; applyCommand(s, { type: "FAMILY", a: pair[0].id, b: pair[1].id });
     const before = JSON.stringify(s); motion.sync(s, s.towers); let oneWaiting = false, together = false;
     for (let step = 0; step < 1200; step++) {
@@ -197,10 +245,10 @@ test("New spouses walk to reachable meeting points, wait for each other, then sh
     ok(pair.every(p => motion.get(p.id).heartElapsed === null)); equal(JSON.stringify(s), before);
 });
 test("Loading existing families never replays a wedding and repeated sync never queues it twice", () => {
-    const s = createGame(1); applyCommand(s, { type: "FAMILY", a: s.people[4].id, b: s.people[5].id });
+    const s = createMotionVillage(1); applyCommand(s, { type: "FAMILY", a: s.people[4].id, b: s.people[5].id });
     const loaded = new VillagerMotion(navigation); loaded.sync(s, s.towers);
     for (let i = 0; i < 800; i++) { loaded.update(.1); ok(s.people.every(p => loaded.get(p.id).heartElapsed === null)); }
-    const motion = new VillagerMotion(navigation), fresh = createGame(2); motion.sync(fresh, fresh.towers);
+    const motion = new VillagerMotion(navigation), fresh = createMotionVillage(2); motion.sync(fresh, fresh.towers);
     applyCommand(fresh, { type: "FAMILY", a: fresh.people[4].id, b: fresh.people[5].id });
     let starts = 0, active = false;
     for (let i = 0; i < 1200; i++) {
@@ -211,18 +259,18 @@ test("Loading existing families never replays a wedding and repeated sync never 
     equal(starts, 1);
 });
 test("Changing a spouse's job during the ceremony restores the latest daily routine", () => {
-    const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    const s = createMotionVillage(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     const p = s.people[2]; applyCommand(s, { type: "FAMILY", a: p.id, b: s.people[3].id }); motion.sync(s, s.towers);
     for (let i = 0; i < 1200 && motion.get(p.id).heartElapsed === null; i++) motion.update(.05);
     ok(motion.get(p.id).heartElapsed !== null); const at = { ...motion.get(p.id) };
-    applyCommand(s, { type: "JOB", id: p.id, job: "FARM", replace: s.people[0].id }); motion.sync(s, s.towers);
+    p.job = "SEWING"; motion.sync(s, s.towers);
     equal([motion.get(p.id).x, motion.get(p.id).y], [at.x, at.y]); ok(motion.get(p.id).heartElapsed !== null);
-    let farmed = false;
-    for (let i = 0; i < 1400; i++) { motion.update(.05); const m = motion.get(p.id); if (!m.walking && m.clip.endsWith("_work")) { ok(m.loggingTree === null); farmed = true; } }
-    ok(farmed);
+    let worked = false;
+    for (let i = 0; i < 1400; i++) { motion.update(.05); const m = motion.get(p.id); if (!m.walking && m.clip === "sewing") { worked = true; } }
+    ok(worked);
 });
 test("Night cancels both meeting and queued weddings, and dawn does not replay them", () => {
-    const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    const s = createMotionVillage(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     applyCommand(s, { type: "FAMILY", a: s.people[4].id, b: s.people[5].id }); applyCommand(s, { type: "FAMILY", a: s.people[2].id, b: s.people[3].id }); motion.sync(s, s.towers);
     for (let i = 0; i < 1200 && motion.get(s.people[4].id).heartElapsed === null; i++) motion.update(.05);
     ok(motion.get(s.people[4].id).heartElapsed !== null);
@@ -234,16 +282,16 @@ test("Night cancels both meeting and queued weddings, and dawn does not replay t
     for (let i = 0; i < 800; i++) { motion.update(.05); ok(s.people.every(p => motion.get(p.id).heartElapsed === null)); }
 });
 test("Spouse removal and a new run clear all wedding state", () => {
-    const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    const s = createMotionVillage(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     applyCommand(s, { type: "FAMILY", a: s.people[4].id, b: s.people[5].id }); motion.sync(s, s.towers); motion.update(.1);
     const removed = s.people[4].id; s.people = s.people.filter(p => p.id !== removed); s.families = s.families.filter(f => !f.partners.includes(removed)); motion.sync(s, s.towers);
     for (let i = 0; i < 800; i++) { motion.update(.05); ok(s.people.every(p => motion.get(p.id).heartElapsed === null)); }
-    const next = createGame(2, s.legacy); motion.sync(next, next.towers);
+    const next = createMotionVillage(2, s.legacy); motion.sync(next, next.towers);
     for (let i = 0; i < 800; i++) { motion.update(.05); ok(next.people.every(p => motion.get(p.id).heartElapsed === null)); }
     equal(motion.count, next.people.length);
 });
 test("Multiple new families celebrate one pair at a time with no lingering pooled hearts", () => {
-    const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    const s = createMotionVillage(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     applyCommand(s, { type: "FAMILY", a: s.people[4].id, b: s.people[5].id }); applyCommand(s, { type: "FAMILY", a: s.people[2].id, b: s.people[3].id }); motion.sync(s, s.towers);
     const seen = new Set<string>();
     for (let i = 0; i < 2400; i++) {
@@ -254,54 +302,30 @@ test("Multiple new families celebrate one pair at a time with no lingering poole
     equal([...seen].sort(), [s.people[2].id, s.people[3].id, s.people[4].id, s.people[5].id].sort());
     ok(s.people.every(p => motion.get(p.id).heartElapsed === null));
 });
-test("Adults use side-facing work frames for both jobs", () => {
-    for (const index of [0, 1]) for (const job of ["FARM", "LOGGING"] as const) {
-        const s = createGame(3), p = s.people[index];
-        if (job === "LOGGING") applyCommand(s, { type: "JOB", id: p.id, job, replace: s.people[2].id });
-        const motion = new VillagerMotion(navigation); motion.sync(s, s.towers); let played = false;
-        for (let i = 0; i < 1600; i++) { motion.update(.05); const m = motion.get(p.id); if (m.walking) continue;
-            if (m.animated && m.elapsed > .5 && m.clip === `villager_${villagerModel(p)}_work`) {
-                ok(m.direction === "LEFT" || m.direction === "RIGHT");
-                played = true;
-            } }
-        ok(played, `${p.appearance}/${job} never played`);
-    }
-});
-test("Male and female woodcutters face the tree at every work stop before and after a resize", () => {
+test("Men and women work facing forward and keep the machine foot position on resize", () => {
     const menu = { top: 0, bottom: 0, left: 0, right: 0, width: 0, height: 0 };
     const before = new GameLayout({ windowWidth: 360, windowHeight: 720, statusBarHeight: 24 }, menu);
     const after = new GameLayout({ windowWidth: 360, windowHeight: 800, statusBarHeight: 24 }, menu);
     const original = layoutVillage(before), resized = layoutVillage(after);
-    ok(original.stops.logging[0].y !== resized.stops.logging[0].y);
-    for (const offset of [0, 1]) {
-        const s = createGame(3), adults = s.people.slice(0, 2);
-        s.people = s.people.map((p, i) => i < 4
-            ? { ...clone(adults[(i + offset) % adults.length]), id: p.id, job: "LOGGING" }
-            : { ...p, job: "WAITING" });
-        const workers = s.people.filter(p => p.job === "LOGGING");
-        const motion = new VillagerMotion(new VillageNavigation(original.props, original.landscape, original.bounds), original.stops);
-        motion.sync(s, s.towers);
-        for (const scene of [original, resized]) {
-            const seen = new Set<string>();
-            for (let step = 0; step < 1600 && seen.size < workers.length; step++) {
-                workers.forEach(worker => {
-                    const pose = motion.get(worker.id);
-                    if (pose.walking || !pose.clip.endsWith("_work")) return;
-                    const stop = scene.stops.logging.find(stop => stop.treeId === pose.loggingTree)!;
-                    equal([pose.x, pose.y], [stop.x, stop.y]);
-                    ok(pose.direction.includes(stop.x > stop.treeX ? "LEFT" : "RIGHT"));
-                    seen.add(worker.id);
-                });
-                motion.update(.05);
-            }
-            equal(seen.size, workers.length);
-            if (scene === original) motion.relayout(new VillageNavigation(resized.props, resized.landscape, resized.bounds), resized.stops,
-                p => ({ x: p.x, y: after.worldY(before.referenceY(p.y)) }));
+    ok(original.stops.sewing[0].y !== resized.stops.sewing[0].y);
+    const s = createMotionVillage(3);
+    const workers = s.people.slice(0, 3);
+    workers.forEach(p => p.job = "SEWING");
+    const motion = new VillagerMotion(new VillageNavigation(original.props, original.landscape, original.bounds), original.stops);
+    motion.sync(s, s.towers);
+    for (let i = 0; i < 1200; i++) motion.update(.05);
+    for (const scene of [original, resized]) {
+        for (const [i, worker] of workers.entries()) {
+            const pose = motion.get(worker.id), stop = scene.stops.sewing[i];
+            ok(pose.animated && !pose.walking && pose.elapsed > .5);
+            equal([pose.clip, pose.direction, pose.x, pose.y], ["sewing", "DOWN", stop.x, stop.y]);
         }
+        if (scene === original) motion.relayout(new VillageNavigation(resized.props, resized.landscape, resized.bounds), resized.stops,
+            p => ({ x: p.x, y: after.worldY(before.referenceY(p.y)) }));
     }
 });
 test("Retirement seats elders in separate chairs that keep rocking in place from daytime to night", () => {
-    const s = createGame(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
+    const s = createMotionVillage(1), motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     for (let i = 0; i < 30; i++) motion.update(.1);
     const elders = s.people.slice(0, 2);
     elders.forEach(p => { p.nights = 0; p.elderNights = RULE.elderNights; p.job = "WAITING"; }); motion.sync(s, s.towers);
@@ -321,7 +345,7 @@ test("Retirement seats elders in separate chairs that keep rocking in place from
     }
 });
 test("Many generations never alias home/rest slots by permanent person number", () => {
-    const s = createGame(1); s.families = []; s.towers.forEach(t => t.operator = null);
+    const s = createMotionVillage(1); s.families = []; s.towers.forEach(t => t.operator = null);
     s.people = Array.from({ length: RULE.populationCap }, (_, i) => ({ ...clone(s.people[0]), id: `1:${1 + i * 20}`, job: "WAITING" as const }));
     const motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     const homes = motion.visiblePeople.map(p => { const at = motion.get(p.id); return `${at.x}:${at.y}`; });
@@ -333,17 +357,17 @@ test("Many generations never alias home/rest slots by permanent person number", 
     equal([motion.get(survivor).x, motion.get(survivor).y], [before.x, before.y]);
     for (let i = 0; i < 1200; i++) { motion.update(.05); for (const p of motion.visiblePeople) ok(navigation.walkable(motion.get(p.id))); }
 });
-test("Farmers work within the walkable ground field; scenery no longer blocks the entire crop plot", () => {
-    const farm = VILLAGE_PROPS.find(p => p.id === "building:farm")!;
-    equal(farm.ground, true); equal(farm.footprint, null);
-    for (const p of VILLAGE_STOPS.farm) { ok(navigation.walkable(p)); ok(Math.abs(p.x - farm.x) < farm.size / 2); ok(p.y < farm.y && p.y > farm.y - farm.size / 2); }
+test("Factory frontage leaves each staffed machine reachable in front of the building", () => {
+    const factory = VILLAGE_PROPS.find(p => p.id === "building:factory")!;
+    ok(factory.footprint && !navigation.walkable(factory));
+    for (const p of VILLAGE_STOPS.sewing) { ok(navigation.walkable(p)); ok(p.y > factory.y); }
 });
 test("Mixed full village never parks unrelated home/rest/work routines on top of one another", () => {
-    const s = createGame(1); s.families = [];
-    s.people = Array.from({ length: RULE.populationCap }, (_, i) => ({ ...clone(s.people[i % 6]), id: `1:${i + 1}`, job: i < 6 ? "FARM" as const : i < 10 ? "LOGGING" as const : "WAITING" as const, nights: i < 10 ? 8 : 0, elderNights: i < 10 ? 0 : RULE.elderNights }));
+    const s = createMotionVillage(1); s.families = [];
+    s.people = Array.from({ length: RULE.populationCap }, (_, i) => ({ ...clone(s.people[i % 6]), id: `1:${i + 1}`, job: i < 6 ? "SEWING" as const : "WAITING" as const, nights: i < 10 ? 8 : 0, elderNights: i < 10 ? 0 : RULE.elderNights }));
     const motion = new VillagerMotion(navigation); motion.sync(s, s.towers);
     for (let step = 0; step < 3600; step++) {
-        motion.update(.05); const parked = motion.visiblePeople.map(p => motion.get(p.id)).filter(p => !p.walking);
+        motion.update(.05); const parked = motion.visiblePeople.map(p => motion.get(p.id)).filter(p => !p.walking && !p.insideFactory);
         for (let i = 0; i < parked.length; i++) for (let j = 0; j < i; j++) ok(distance(parked[i], parked[j]) >= 24, `stationary overlap: ${parked[i].id}/${parked[j].id}`);
     }
 });

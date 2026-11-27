@@ -1,4 +1,4 @@
-import { FEATURE_WINS, TaskKind, TaskMaterial } from "../config/DailyTaskConfig";
+import { FEATURE_WINS, TaskKind } from "../config/DailyTaskConfig";
 import { activeDailyTasks } from "../game/DailyTaskState";
 import { BattleSimulation } from "../game/BattleSimulation";
 import { TACTICS, TacticDefinition } from "../config/TacticConfig";
@@ -6,7 +6,10 @@ import { GameSession } from "../game/GameSession";
 import { GameState } from "../game/GameState";
 import { tacticRevealed } from "../game/Tactics";
 import { economy } from "../game/VillageQueries";
-import { expeditionClaimQuote, ExpeditionMaterials } from "../game/Expedition";
+import { expeditionClaimQuote } from "../game/Expedition";
+import { itemDefinition } from "../config/ShopConfig";
+import { amount } from "./ViewText";
+import { C } from "./UiTheme";
 import { GameHud } from "./GameHud";
 import { FEEDBACK } from "./config/FeedbackConfig";
 import { UiWidgets } from "./UiWidgets";
@@ -24,11 +27,12 @@ const MOTION = {
     featureSize: 84
 } as const;
 const RAISED_FLIGHT_SECONDS = MOTION.grow + MOTION.hold + MOTION.flight;
-const MATERIAL_KEYS = ["food", "wood"] as const;
 type FlightPoint = { x: number; y: number; size: number };
-type DailyFlight = { kind: TaskKind; date: string; material: TaskMaterial; source: FlightPoint; raised: FlightPoint; elapsed: number | null };
-type ExpeditionFlight = { run: number; departedAfter: number; before: ExpeditionMaterials; amounts: ExpeditionMaterials;
-    sources: [FlightPoint, FlightPoint]; raised: FlightPoint; elapsed: number | null };
+type RewardFlight = { icon: string; source: FlightPoint; raised: FlightPoint; elapsed: number | null };
+type DailyFlight = RewardFlight & { kind: TaskKind; date: string };
+type ExpeditionFlight = RewardFlight & { run: number; departedAfter: number };
+type SewingPayout = { from: FlightPoint; icon: Laya.Sprite; value: Laya.Text; age: number };
+const SEWING_FLIGHT = { seconds: .65, size: 44, gap: 10, labelWidth: 116, labelHeight: 40 } as const;
 type Stage = "impact" | "summary" | "collect" | "unlock" | "tactic";
 
 /** 结算、解锁与领取飞行只展示已提交的结果。 */
@@ -40,6 +44,8 @@ export class NightResultPresentation {
     private featureUnlock = -1;
     private dailyFlight: DailyFlight | null = null;
     private expeditionFlight: ExpeditionFlight | null = null;
+    private sewingPayouts: SewingPayout[] = [];
+    private sewingLayer = new Laya.Sprite();
     private newTactic: TacticDefinition | null = null;
     private phase: Stage | null = null;
     private elapsed = 0;
@@ -53,11 +59,13 @@ export class NightResultPresentation {
 
     constructor(private ui: UiWidgets, private hud: GameHud, private refresh: () => void) {
         this.layer.name = "NightFlights"; this.layer.mouseEnabled = false;
+        this.layer.addChild(this.sewingLayer); this.sewingLayer.mouseEnabled = false;
     }
 
     reset() {
         this.dailyFlight = null;
         this.expeditionFlight = null;
+        this.sewingPayouts.length = 0; this.sewingLayer.destroyChildren();
         this.featureUnlock = -1;
         this.lastResult = null; this.result = null; this.phase = null; this.box = null; this.sources = []; this.newTactic = null;
         this.hideFlights();
@@ -73,9 +81,8 @@ export class NightResultPresentation {
         }
         const expedition = this.expeditionFlight;
         if (expedition && expedition.elapsed === null && !game.saves.pending) {
-            const trip = s?.expedition, remaining = trip?.remaining;
-            const sameTrip = !trip || (remaining && trip.departedAfter === expedition.departedAfter);
-            if (s?.run === expedition.run && sameTrip && MATERIAL_KEYS.every(key => expedition.before[key] - (remaining?.[key] ?? 0) === expedition.amounts[key]))
+            const trip = s?.expedition;
+            if (s?.run === expedition.run && !game.error && (!trip || (trip.departedAfter === expedition.departedAfter && !trip.remaining)))
                 expedition.elapsed = 0;
             else this.expeditionFlight = null;
         }
@@ -93,7 +100,7 @@ export class NightResultPresentation {
         if (!committed) return;
         const production = economy(battle.base);
         this.lastResult = battle;
-        this.result = { night: battle.base.day, food: production.food, wood: production.wood, rations: production.rations,
+        this.result = { night: battle.base.day, ...production,
             rewardDie: battle.base.night?.rewardDie, patrol: battle.patrol ?? undefined, recap: s.summary.replace(/^守夜成功！/, "") };
         this.featureUnlock = SIDE_FEATURES.findIndex(feature => {
             const threshold = FEATURE_WINS[feature.panel];
@@ -112,23 +119,33 @@ export class NightResultPresentation {
         const box = icon.parent?.parent?.parent as Laya.Sprite | undefined;
         if (!task || !box) return;
         // Successful commits rebuild the panel and HUD. Snapshot the old source and use the live HUD target.
-        this.dailyFlight = { kind, date, material: task.material, source: this.center(icon), raised: this.center(box), elapsed: null };
+        this.dailyFlight = { kind, date, icon: itemDefinition(task.reward)!.icon, source: this.center(icon), raised: this.center(box), elapsed: null };
         game.claimTask(kind, date);
         if (this.dailyFlight?.elapsed === null && !game.saves.pending) this.dailyFlight = null;
     }
 
-    claimExpedition(game: GameSession, food: Laya.Sprite, wood: Laya.Sprite) {
-        const s = game.state, trip = s?.expedition, card = food.parent?.parent as Laya.Sprite | undefined;
-        if (this.expeditionFlight || !s || !trip?.remaining || !card || game.saves.pending) return;
-        const amounts = expeditionClaimQuote(s);
-        if (!amounts.food && !amounts.wood) return;
-        this.expeditionFlight = { run: s.run, departedAfter: trip.departedAfter, before: { ...trip.remaining }, amounts,
-            sources: [this.center(food), this.center(wood)], raised: this.center(card), elapsed: null };
+    claimExpedition(game: GameSession, icon: Laya.Sprite) {
+        const s = game.state, trip = s?.expedition;
+        if (this.expeditionFlight || !s || !trip?.remaining || game.saves.pending) return;
+        const reward = expeditionClaimQuote(s);
+        if (!reward) return;
+        const source = this.center(icon), plaque = icon.parent?.parent as Laya.Sprite | undefined;
+        this.expeditionFlight = { run: s.run, departedAfter: trip.departedAfter, icon: itemDefinition(reward)!.icon,
+            source, raised: plaque?.width && plaque.height ? this.center(plaque) : source, elapsed: null };
         game.command({ type: "CLAIM_EXPEDITION" });
         if (this.expeditionFlight?.elapsed === null && !game.saves.pending) this.expeditionFlight = null;
     }
 
-    draw(ctx: PanelContext): boolean {
+    showSewingPayout(from: { x: number; y: number }, coins: number) {
+        const v = SEWING_FLIGHT;
+        const icon = this.ui.image(this.sewingLayer, "icon_coin", from.x, from.y, v.size);
+        icon.pivot(v.size / 2, v.size / 2);
+        const value = this.ui.label(this.sewingLayer, `+${amount(coins, true)}`, 0, 0, v.labelWidth, 24, C.timber, true, v.labelHeight);
+        value.wordWrap = false;
+        this.sewingPayouts.push({ from: { ...from, size: v.size }, icon, value, age: 0 });
+    }
+
+    draw(ctx: PanelContext, safeHeight: number): boolean {
         if (this.phase === "impact") return true;
         if (!this.phase || !this.result) return false;
         if (this.phase === "unlock" || this.phase === "tactic") {
@@ -139,7 +156,7 @@ export class NightResultPresentation {
                 if (this.phase !== "summary") return;
                 this.phase = "collect"; this.elapsed = 0;
                 this.refresh();
-            });
+            }, safeHeight);
             this.box = view.box; this.sources = view.sources;
         }
         return true;
@@ -149,25 +166,29 @@ export class NightResultPresentation {
         this.hideFlights();
         const flight = this.dailyFlight;
         const expedition = this.expeditionFlight;
-        if (expedition && expedition.elapsed !== null) {
-            let sequenceSeconds = 0;
-            const age = expedition.elapsed;
-            MATERIAL_KEYS.forEach((key, i) => {
-                const target = this.hud.materialIcons[key];
-                if (expedition.amounts[key] <= 0 || !target) return;
-                const elapsed = age - sequenceSeconds;
-                sequenceSeconds += RAISED_FLIGHT_SECONDS;
-                if (elapsed >= 0 && elapsed < RAISED_FLIGHT_SECONDS)
-                    this.raisedFlight(i, `icon_${key}`, expedition.sources[i], target, expedition.raised, MOTION.gainPeak, elapsed);
-            });
-            if (age >= sequenceSeconds) this.expeditionFlight = null;
-            else expedition.elapsed += seconds;
-        } else if (flight && flight.elapsed !== null) {
-            const target = this.hud.materialIcons[flight.material];
-            if (target && flight.elapsed < RAISED_FLIGHT_SECONDS) {
-                this.raisedFlight(0, `icon_${flight.material}`, flight.source, target, flight.raised, MOTION.gainPeak, flight.elapsed);
-                flight.elapsed += seconds;
-            } else this.dailyFlight = null;
+        const wallet = this.hud.coinIcon;
+        for (let i = this.sewingPayouts.length - 1; i >= 0; i--) {
+            const payout = this.sewingPayouts[i], { icon, value } = payout, v = SEWING_FLIGHT;
+            if (!wallet || payout.age >= v.seconds) {
+                icon.destroy(true); value.destroy(true); this.sewingPayouts.splice(i, 1);
+                continue;
+            }
+            const t = payout.age / v.seconds;
+            this.curve(icon, payout.from, this.center(wallet), t * t, i % 2 ? 1 : -1);
+            icon.alpha = 1 - .28 * t;
+            value.pos(icon.x + v.gap, icon.y - v.labelHeight);
+            value.alpha = 1 - t;
+            this.sewingLayer.visible = this.layer.visible = true;
+            payout.age += seconds;
+        }
+        const reward = expedition && expedition.elapsed !== null ? expedition : flight;
+        if (reward && reward.elapsed !== null) {
+            const backpack = this.hud.featureButtons.find(node => node.name === "BackpackButton");
+            if (backpack && reward.elapsed < RAISED_FLIGHT_SECONDS) {
+                this.raisedFlight(0, reward.icon, reward.source, backpack, reward.raised, MOTION.gainPeak, reward.elapsed);
+                reward.elapsed += seconds;
+            } else if (reward === expedition) this.expeditionFlight = null;
+            else this.dailyFlight = null;
         }
         if (this.phase === "impact") {
             if (this.result) {
@@ -182,16 +203,10 @@ export class NightResultPresentation {
         if (!this.phase || this.phase === "summary" || !this.box?.displayedInStage || !this.box.mouseEnabled) return;
         this.elapsed += seconds;
         if (this.phase === "collect") {
-            const result = this.result!;
-            let sequenceSeconds = 0;
-            MATERIAL_KEYS.forEach((key, i) => {
-                const target = this.hud.materialIcons[key];
-                if (result[key] <= 0 || !target) return;
-                const elapsed = this.elapsed - sequenceSeconds;
-                sequenceSeconds += RAISED_FLIGHT_SECONDS;
-                if (elapsed >= 0 && elapsed < RAISED_FLIGHT_SECONDS)
-                    this.raisedFlight(i, `icon_${key}`, this.center(this.sources[i]), target, this.center(this.box!), MOTION.gainPeak, elapsed);
-            });
+            const target = this.hud.coinIcon;
+            const sequenceSeconds = this.result!.total > 0 && target ? RAISED_FLIGHT_SECONDS : 0;
+            if (target && this.elapsed < sequenceSeconds)
+                this.raisedFlight(0, "icon_coin", this.center(this.sources[0]), target, this.center(this.box!), MOTION.gainPeak, this.elapsed);
             if (this.elapsed >= sequenceSeconds + MOTION.collectTail)
                 this.next(this.featureUnlock >= 0 ? "unlock" : this.newTactic ? "tactic" : null);
             return;
@@ -282,7 +297,7 @@ export class NightResultPresentation {
     }
 
     hideFlights() {
-        this.layer.visible = false;
+        this.layer.visible = this.sewingLayer.visible = false;
         this.tiles.forEach(tile => tile.visible = false);
     }
 }

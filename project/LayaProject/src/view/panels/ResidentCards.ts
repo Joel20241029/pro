@@ -1,4 +1,4 @@
-import { ECONOMY } from "../../config/RuleConfig";
+import { SEWING } from "../../config/RuleConfig";
 import { VILLAGER_QUALITY } from "../../config/VillagerQuality";
 import { TRAITS } from "../../game/GameConfig";
 import type { Person } from "../../game/GameState";
@@ -18,14 +18,14 @@ export function residentCardText(ctx: PanelContext, node: Laya.Sprite, value: st
 /** 名单大卡沿用 listItem 的回收、点击和奖励角标，姓名与大图给下方操作留出独立命中区。 */
 export const RESIDENT_ROW_HEIGHT = 168;
 export function residentListItem(ctx: PanelContext, parent: Laya.Sprite, title: string, image: string, click: () => void, job?: Person["job"]) {
-    const skin = job === "FARM" ? "panel_card_fern" : job === "LOGGING" ? "panel_card_blue" : true;
+    const skin = job === "SEWING" ? "panel_card_fern" : true;
     const row = ctx.ui.listItem(parent, title, image, 0, click, true, RESIDENT_ROW_HEIGHT, false, skin);
     const face = row?.getChildByName("buttonFace") as Laya.Sprite | undefined;
     const label = face?.getChildByName("buttonText") as Laya.Text | undefined;
     if (face && label) {
         // listItem 面层的第二个节点是普通名单的小头像框；大卡用卡片同一套插画衬底。
         face.getChildAt(1)?.destroy(true);
-        const tint = job === "FARM" ? C.fernArt : job === "LOGGING" ? C.blueArt : C.petal;
+        const tint = job === "SEWING" ? C.fernArt : C.petal;
         cardArt(ctx, face, image, 14, 11, 144, 144, tint);
         label.pos(178, 12).size(row.width - 199, 88);
         label.fontSize = 30;
@@ -48,13 +48,8 @@ export function drawResidentTalent(ctx: PanelContext, card: Laya.Sprite, person:
     };
     person.traits.forEach((id, i) => {
         const [title, description] = TRAITS[id], y = (compact ? 63 : 70) + i * 44;
-        if (id === "trait_diligent" || id === "trait_woodwise") {
-            const farming = id === "trait_diligent";
-            effect(title, "个人产量", y, { icon: farming ? "icon_food" : "icon_wood",
-                value: `+${Math.round((farming ? ECONOMY.diligentFood : ECONOMY.woodwiseWood) * 100)}%` });
-        } else if (id === "trait_frugal") {
-            effect(title, "成人每日基础口粮", y, { icon: "icon_food", value: String(ECONOMY.frugalRation) });
-        } else effect(title, description, y);
+        if (id === "trait_crafty") effect(title, "每批及守夜制衣收益", y, { icon: "icon_coin", value: `+${SEWING.craftyBonus}` });
+        else effect(title, description, y);
     });
 
 }
@@ -62,7 +57,7 @@ export function drawResidentTalent(ctx: PanelContext, card: Laya.Sprite, person:
 export function drawResidentQuality(ctx: PanelContext, card: Laya.Sprite, quality: typeof VILLAGER_QUALITY[Person["quality"]], compact = false) {
     const text = residentCardText.bind(null, ctx, card), effectsY = compact ? 57 : 65;
     text(`${quality.label}加成`, 26, 14, 300, 43, 33, C.ink, true);
-    text(`耕伐 +${Math.round((quality.production - 1) * 100)}%`, 27, effectsY, 176, 40, 28, C.green, true);
+    text(`制衣 +${quality.sewingDay - VILLAGER_QUALITY.COMMON.sewingDay}`, 27, effectsY, 176, 40, 28, C.green, true);
     text(`塔伤 +${Math.round((quality.damage - 1) * 100)}%`, 221, effectsY, 178, 40, 28, C.green, true);
     text(`劳作 ${quality.adultNights} 夜 · 养老 ${quality.elderNights} 夜`, 28, compact ? 101 : 110, 520, 32, 24, C.muted);
 }

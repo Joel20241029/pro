@@ -28,24 +28,24 @@ test("LCG fixed vector, canonical UTF8 and CRC", () => {
     equal(crc32("123456789"), "cbf43926"); equal(canonical({ b: 2, a: "村" }), '{"a":"村","b":2}'); rejects(() => canonical({ a: undefined }));
 });
 test("Fixed founders and valid first night", () => { const s = createGame(1); validateState(s); equal(s.people.length, 6); applyCommand(s, { type: "NIGHT" }); validateState(s); });
-test("Consumption occurs before warehouse cap", () => {
-    const s = createGame(1); s.food = 195; s.people.forEach(p => { p.job = "WAITING"; p.traits = ["trait_strong"]; });
-    s.day = 4; s.people[0].job = s.people[1].job = "FARM";
+test("Only employed adults add their production to post-night rewards", () => {
+    const s = createGame(1); s.people.forEach(p => { p.job = "WAITING"; p.traits = ["trait_strong"]; });
+    s.people[0].job = s.people[1].job = "SEWING";
     const child = clone(s.people[0]); child.id = "1:7"; child.adult = false; s.people.push(child);
-    const e = economy(s); equal([e.food, e.rations, e.endFood], [16, 13, 198]);
+    const e = economy(s); equal([e.base, e.sewing, e.total], [30, 4, 34]);
 });
 test("Birth once, two successful nights, new adult receives its configured lifespan", () => {
-    const s = createGame(6); applyCommand(s, { type: "BIRTH", family: s.families[0].id }); equal(s.food, 40); validateState(s);
+    const s = createGame(6); applyCommand(s, { type: "BIRTH", family: s.families[0].id }); equal(s.coins, RULE.initialCoins - RULE.birthCost); validateState(s);
     const child = s.people[6]; ok(child.parents.length === 2); ok(child.traits.some(t => s.people[0].traits.includes(t) || s.people[1].traits.includes(t)));
     rejects(() => applyCommand(s, { type: "BIRTH", family: s.families[0].id }));
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); dawn(s); equal(child.growth, 1);
-    applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); validateState(s); equal(child.nights, VILLAGER_QUALITY[child.quality].adultNights); ok(child.adult); equal(s.people[1].job, "FARM"); ok(!s.choices.length); dawn(s); validateState(s);
+    applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); validateState(s); equal(child.nights, VILLAGER_QUALITY[child.quality].adultNights); ok(child.adult); equal(s.people[1].job, "SEWING"); ok(!s.choices.length); dawn(s); validateState(s);
 });
 test("Failed night does not age children or parents", () => {
-    const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id }); applyCommand(s, { type: "JOB", id: s.people[1].id, job: "WAITING" });
+    const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id });
     applyCommand(s, { type: "NIGHT" }); const nights = s.people[0].nights; finishNight(s, 0, s.towers.map(t => t.operator)); equal(s.people[0].nights, nights); equal(s.people[6].growth, 0); equal(s.day, 1); validateState(s);
 });
-test("Retiring carer can finish child's growth", () => {
+test("Retiring parent can finish child's growth", () => {
     const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id }); s.people[1].nights = 1; s.people[6].growth = 1;
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 200, s.towers.map(t => t.operator)); equal(s.people[6].nights, 12); equal(s.people[1].elderNights, 3); equal(s.history.length, 0); dawn(s); validateState(s);
 });
@@ -120,7 +120,7 @@ test("Empty dawn resumes once without repeated age settlement", () => {
 });
 test("Repeated command errors each notify the Tip without changing saved business state", () => {
     const m = new MemoryStore(), g = new GameSession(new SaveStore(m)); g.load(); g.newVillage();
-    g.state!.wood = 0; const before = JSON.stringify(g.state), revision = g.errorRevision, writes = m.writes;
+    g.state!.coins = 0; const before = JSON.stringify(g.state), revision = g.errorRevision, writes = m.writes;
     g.command({ type: "BUILD", kind: "HOUSE" }); const message = g.error;
     ok(message.length > 0); equal(g.errorRevision, revision + 1);
     g.command({ type: "BUILD", kind: "HOUSE" }); equal(g.error, message); equal(g.errorRevision, revision + 2);

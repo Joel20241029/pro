@@ -2,8 +2,8 @@ const { test } = require('node:test'), assert = require('node:assert/strict'), p
 const compiled = process.env.DAIDAI_TEST_BUILD;
 if (!compiled) throw new Error('Set DAIDAI_TEST_BUILD to the compiled project under Downloads');
 const { RULE, TOWERS, PADS } = require(path.join(compiled, 'game/GameConfig.js'));
-const { FIXED_NIGHT, TOWER_BUILD_WOOD } = require(path.join(compiled, 'config/DefenseConfig.js'));
-const { tacticCooldownTicks } = require(path.join(compiled, 'config/TacticConfig.js'));
+const { FIXED_NIGHT, TOWER_BUILD_COINS } = require(path.join(compiled, 'config/DefenseConfig.js'));
+const { TACTIC_SLOTS, tacticCooldownTicks } = require(path.join(compiled, 'config/TacticConfig.js'));
 const { createGame, applyCommand, birthUnavailableReason } = require(path.join(compiled, 'game/VillageRules.js'));
 const { BattleSimulation, pointAt, PATH_LENGTH } = require(path.join(compiled, 'game/BattleSimulation.js'));
 const { GameSession } = require(path.join(compiled, 'game/GameSession.js'));
@@ -78,12 +78,11 @@ test('every pause freezes bell and attacks; tower swaps retain current charge an
     game.resume('CHOICE'); game.update(RULE.step); assert.equal(b.bellTicks, remaining - RULE.battleSpeed);
 });
 
-test('bell increases actual fire rate by 50%, hunger multiplies it, damage stays unchanged', () => {
+test('bell increases actual fire rate by 50%, damage stays unchanged', () => {
     const results = [];
-    for (const [bell, hungry] of [[false, false], [true, false], [true, true]]) {
+    for (const bell of [false, true]) {
         const b = longBattle(); b.base.towers.slice(1).forEach(t => t.operator = null);
-        b.base.night.hungry = hungry;
-        const op = b.base.people.find(p => p.id === b.operators[0]); op.traits = ['trait_frugal']; op.quality = "COMMON";
+        const op = b.base.people.find(p => p.id === b.operators[0]); op.traits = ['trait_crafty']; op.quality = "COMMON";
         let progress = 0, distance = Infinity;
         for (let at = 0; at < PATH_LENGTH; at++) {
             const p = pointAt(at), d = Math.hypot(p.x - PADS[0].x, p.y - PADS[0].y);
@@ -93,11 +92,11 @@ test('bell increases actual fire rate by 50%, hunger multiplies it, damage stays
         const enemy = { seq: 1, kind: 'enemy_raider', progress, hp: 100000, speed: 0, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
         b.enemies = [enemy]; b.charge[0] = 0; if (bell) b.bell(); let shots = 0;
         for (let i = 0; i < RULE.bellTicks; i++) { const tick = b.tick; b.step(); shots += b.shots.filter(s => s.tick === tick).length; }
-        const speed = (bell ? 1.5 : 1) * (hungry ? .7 : 1);
+        const speed = (bell ? 1.5 : 1);
         assert.equal(shots, Math.floor(RULE.bellTicks * RULE.step * speed * FIXED_NIGHT.towerFireRate / TOWERS.ARROW.interval));
         assert.equal(100000 - enemy.hp, shots * TOWERS.ARROW.damage); results.push(shots);
     }
-    assert(results[1] > results[0]); assert(results[2] < results[1]);
+    assert(results[1] > results[0]);
 });
 
 test('full population gives a feasible remedy; preview and execution share the same rejection', () => {
@@ -109,13 +108,17 @@ test('full population gives a feasible remedy; preview and execution share the s
     assert.equal(canonical(s), before);
 });
 
-test('upgrade preview explains both deficits, exact resources pass, storage is checked first', () => {
-    const s = createGame(3), cost = upgradeCost('FARM', s.farm); s.food = 0; s.wood = 0;
-    assert.equal(upgradeUnavailableReason(s, cost), `还缺 ${cost.wood} 木、${cost.food} 粮`);
-    const before = canonical(s); assert.throws(() => applyCommand(s, { type: 'BUILD', kind: 'FARM' }), { message: upgradeUnavailableReason(s, cost) }); assert.equal(canonical(s), before);
-    assert.equal(upgradeUnavailableReason(s, { wood: RULE.storageCap + 1, food: 1 }), `费用超出仓储 ${RULE.storageCap}，先扩建民居`);
-    s.wood = cost.wood; s.food = cost.food; assert.equal(upgradeUnavailableReason(s, cost), null);
-    applyCommand(s, { type: 'BUILD', kind: 'FARM' }); assert.equal(s.farm, 2); assert.equal(s.food, 0); assert.equal(s.wood, 0);
+test('upgrade preview, transaction and display use the same coin requirement', () => {
+    const s = createGame(3), cost = upgradeCost('FACTORY', s.factory.level);
+    s.coins = cost.coins - 1;
+    assert.equal(upgradeUnavailableReason(s, cost), '还缺 1 尔币');
+    const before = canonical(s);
+    assert.throws(() => applyCommand(s, { type: 'BUILD', kind: 'FACTORY' }), { message: upgradeUnavailableReason(s, cost) });
+    assert.equal(canonical(s), before);
+    s.coins = cost.coins;
+    assert.equal(upgradeUnavailableReason(s, cost), null);
+    applyCommand(s, { type: 'BUILD', kind: 'FACTORY' });
+    assert.equal(s.factory.level, 2); assert.equal(s.coins, 0);
 });
 
 // Display-list test doubles verify interaction and scroll bounds, not native font measurements.
@@ -173,6 +176,16 @@ function imageNode(parent, id, x, y, width, height = width) {
     parent.addChild(node); return node;
 }
 
+
+function assertCellBadge(card, name) {
+    const { size, right, top } = require(path.join(compiled, 'view/UiTheme')).UI.cellActionDot;
+    const badge = card.getChildByName(name);
+    const descendants = node => [node, ...node.children.flatMap(descendants)];
+    assert(badge, name);
+    assert.deepEqual([badge.x, badge.y, badge.width], [card.width - right - size, top, size]);
+    assert.equal(descendants(card).filter(node => node.name === name).length, 1);
+}
+
 test('the patrol card opens from the construction list without materials and returns to the same list', () => {
     const { game } = session(), view = panelView(game);
     const { generateWave } = require(path.join(compiled, 'game/WaveGenerator.js'));
@@ -181,13 +194,12 @@ test('the patrol card opens from the construction list without materials and ret
     game.changed = () => { if (view.current) view.draw(game.state, view.current); };
     const list = () => view.box.getChildByName('ScrollList');
     const card = () => list().content.getChildByName('PatrolConstructionCard');
-    const marker = () => card().getChildByName('buttonFace').getChildByName('BuildAction');
-    const badge = () => marker().getChildByName('PatrolActionDot');
+    const badge = () => card().getChildByName('PatrolActionDot');
     view.open({ type: 'build' });
     assert(card());
 
     const s = game.state;
-    s.food = s.wood = 0;
+    s.coins = 0;
     const build = { type: 'build', scroll: 14 };
     view.open(build);
     assert(!view.box.getChildByName('button:淡紫儿之家'));
@@ -201,7 +213,7 @@ test('the patrol card opens from the construction list without materials and ret
     view.box.getChildByName('button:升级').event('click');
     assert.equal(view.current.type,'patrolUpgrade');
     assert(!view.box.getChildByName('button:确认升级').handlers.click);
-    assert(view.box.children.some(n=>n.text?.includes('还缺 35 木、15 粮')));
+    assert(view.box.children.some(n=>n.text?.includes(`还缺 ${upgradeCost('PATROL', 1).coins} 尔币`)));
     view.box.getChildByName('PatrolUpgradeBack').event('click');
     assert.equal(view.box.getChildByName('button:返回'), undefined);
     const detailBack = view.box.getChildByName('PatrolDetailBack');
@@ -210,10 +222,10 @@ test('the patrol card opens from the construction list without materials and ret
     assert.equal(view.current, build);
     assert.equal(list().offset, 14);
 
-    s.food = s.wood = 100;
+    s.coins = 100;
     view.draw(s, build);
     assert(badge(), 'an affordable patrol upgrade lights the construction entry');
-    assert(badge().x > marker().width / 2 && badge().x < marker().width);
+    assertCellBadge(card(), 'PatrolActionDot');
     card().event('click');
     const detail = view.current;
     const upgrade = view.box.getChildByName('button:升级');
@@ -225,8 +237,8 @@ test('the patrol card opens from the construction list without materials and ret
     confirm.event('click'); confirm.event('click');
     assert.equal(view.current,detail);
     assert.equal(game.state.patrol.level, 2);
-    assert.deepEqual([game.state.wood, game.state.food], [65, 85]);
-    game.state.food = game.state.wood = 0;
+    assert.equal(game.state.coins, 100 - upgradeCost('PATROL', 1).coins);
+    game.state.coins = 0;
     const idle = game.state.people.find(p => p.id !== game.state.patrol.captain && p.adult && p.nights > 0 && !game.state.towers.some(t => t.operator === p.id));
     const free = game.state.people.find(p => p.traits.includes('trait_strong'));
     game.state.towers.find(t => t.operator === free.id).operator = idle.id;
@@ -265,7 +277,7 @@ test('the patrol card opens from the construction list without materials and ret
     assert.equal(view.current, build);
     assert.equal(list().offset, 14);
     assert(!badge());
-    game.state.food = game.state.wood = 0;
+    game.state.coins = 0;
     view.draw(game.state, build);
     assert(card().mouseEnabled && !badge());
     game.state.patrol.captain = null;
@@ -274,7 +286,7 @@ test('the patrol card opens from the construction list without materials and ret
     view.open({ type: 'patrol' });
     assert.equal(view.box.getChildByName('PatrolDetailBack'), undefined);
     const appoint = nodes(view.box).find(n => n.name === 'button:任命');
-    assert(appoint.getChildByName('buttonFace').getChildByName('PatrolCaptainActionHint'));
+    assertCellBadge(appoint.parent, 'PatrolCaptainActionHint');
     appoint.event('click');
     assert(nodes(view.box).some(n => n.name === 'PatrolCaptainActionHint'));
 });
@@ -300,13 +312,13 @@ test('patrol house selection stays visible, fits a short screen and preserves pr
     assert(find('PatrolMode:rapid').y >= find('PatrolMode:spin').y + find('PatrolMode:spin').height);
     assert.equal(view.box.getChildByName('button:选用'), undefined);
     assert.equal(find('PatrolMode:spin').getChildByName('button:选用'), undefined);
-    const [food, wood] = [game.state.food, game.state.wood];
+    const { coins } = game.state;
     find('PatrolMode:rapid').getChildByName('button:选用').event('click');
     assert.equal(game.state.patrol.mode,'rapid'); assert.equal(view.current,detail);
-    assert.deepEqual([game.state.food,game.state.wood],[food,wood]);
+    assert.equal(game.state.coins, coins);
     assert(find('PatrolBuffActionHint'));
     find('button:切换打法').event('click');
-    assert(find('PatrolMode:spin').getChildByName('button:选用').getChildByName('buttonFace').getChildByName('PatrolBuffActionHint'));
+    assertCellBadge(find('PatrolMode:spin'), 'PatrolBuffActionHint');
     find('PatrolModesBack').event('click');
     assert.match(copy(),/城门连发/); assert.match(copy(),/伤害、范围提升 · 下次旋甩生效/);
     game.command({type:'NIGHT'}); view.open(detail);
@@ -445,7 +457,7 @@ test('action badges follow the pressed button face, sit on its upper-right corne
     assert(view.box.getChildByName('button:建造石炮塔').getChildByName('buttonFace').getChildByName('TowerBuildActionHint'));
     assert.equal(hud.node.getChildByName('button:家谱').getChildByName('buttonFace').getChildByName('ActionHint:history'),undefined);
     applyCommand(game.state,{type:'PATROL_CAPTAIN',id:game.state.people[4].id});
-    game.state.food=0;game.state.wood=0;hud.clear();hud.draw(game.state,layout,{pads:PADS},anchors);
+    game.state.coins=0;hud.clear();hud.draw(game.state,layout,{pads:PADS},anchors);
     assert.equal(hud.node.getChildByName('button:建设').getChildByName('buttonFace').getChildByName('ActionHint:build'),undefined);
 });
 
@@ -533,11 +545,14 @@ test('opening and closing help removes only CHOICE, leaving independent pauses i
     game.update(RULE.step); assert.equal(game.battle.tick, tick + RULE.battleSpeed);
 });
 
-test('tower building is disabled before payment when short of wood or during night', () => {
+test('tower building is disabled before payment when short of coins or during night', () => {
     const { game } = session(), view = panelView(game); view.ui.image = () => ({}); view.ui.buildRow = () => {};
-    game.state.wood = TOWER_BUILD_WOOD - 1; view.open({ type: 'tower', index: 2 });
-    const unavailable = view.box.children.find(n => n.name.startsWith('button:建造石炮塔')); assert.equal(view.box.children.find(n=>n.getChildByName('readout:icon_wood')).getChildByName('readout:icon_wood').getChildByName('readoutText').text, (TOWER_BUILD_WOOD-1)+'/'+TOWER_BUILD_WOOD); assert(!unavailable.handlers.click);
-    game.state.wood++; view.open({ type: 'tower', index: 2 }); assert(view.box.children.find(n => n.name.startsWith('button:建造石炮塔')).handlers.click);
+    game.state.coins = TOWER_BUILD_COINS - 1; view.open({ type: 'tower', index: 2 });
+    const unavailable = view.box.children.find(n => n.name.startsWith('button:建造石炮塔'));
+    const readout = view.box.children.find(n => n.getChildByName('readout:icon_coin')).getChildByName('readout:icon_coin');
+    assert.equal(readout.getChildByName('readoutText').text, String(TOWER_BUILD_COINS));
+    assert(!unavailable.handlers.click);
+    game.state.coins++; view.open({ type: 'tower', index: 2 }); assert(view.box.children.find(n => n.name.startsWith('button:建造石炮塔')).handlers.click);
     game.command({ type: 'NIGHT' }); view.open({ type: 'tower', index: 2 });
     assert(!view.box.children.find(n => n.name.startsWith('button:建造石炮塔')).handlers.click);
 });
@@ -605,8 +620,8 @@ test('night preparation keeps its actions while details and controls open separa
     const panel = {type:'start'}; view.open(panel);
     assert(texts().includes('2/2 已驻守'));
     assert(texts().includes('淡紫儿飞速旋转'));
-    assert(texts().includes('城门耐久') && texts().includes('本夜口粮'));
-    assert(!texts().includes('入夜后库存'));
+    assert(texts().includes('城门耐久') && texts().includes('守住后可得'));
+    assert(!texts().includes('守夜奖励合计'));
     view.layout.safeBottom = view.layout.safeTop + 650;
     view.refresh();
     const prepareList = view.box.getChildByName('ScrollList');
@@ -618,14 +633,14 @@ test('night preparation keeps its actions while details and controls open separa
     view.box.getChildByName('button:敌情与收支').event('click',{});
     assert.equal(view.current.type,'nightDetails');
     assert.equal(view.current.back,panel);
-    assert(texts().includes('入夜后库存'));
+    assert(texts().includes('守夜奖励合计'));
     assert(nodes(view.box).some(node => node.name === `${game.state.wave.entries[0].kind}_walk_00`));
     assert(!view.box.getChildByName('button:开始守夜'));
     view.box.getChildByName('PanelBack').event('click',{});
     assert.equal(view.current,panel);
     assert(texts().includes('还有 1 座塔无人驻守'));
     assert(texts().includes('淡紫儿突突队'));
-    assert(!texts().includes('入夜后库存'));
+    assert(!texts().includes('守夜奖励合计'));
     nodes(view.box).find(node => node.name === 'button:?').event('click',{});
     assert(texts().includes('按住城门枪架后拉，持续连发。'));
     view.box.getChildByName('PanelBack').event('click',{});
@@ -634,43 +649,43 @@ test('night preparation keeps its actions while details and controls open separa
 
 test('disabled bulk repair has no clickable row behind it and a single repair stays available',()=>{
     const {game} = session(), view = panelView(game); view.ui.image=imageNode;
-    game.state.gate=80; game.state.wood=29; view.open({type:'build'});
+    game.state.gate=80; game.state.coins=23; view.open({type:'build'});
     const construction = view.current;
     const rows=view.box.getChildByName('ScrollList').content.children;
     const row=rows.find(node=>node.getChildByName('button:修一次'));
     assert(row); row.event('click',{}); row.getChildByName('RepairFull').event('click',{});
-    assert.deepEqual([game.state.gate,game.state.wood],[80,29]);
+    assert.deepEqual([game.state.gate,game.state.coins],[80,23]);
     row.getChildByName('button:修一次').event('click',{});
     assert.equal(view.current.type,'spendConfirm');
-    assert.deepEqual([game.state.gate,game.state.wood],[80,29]);
+    assert.deepEqual([game.state.gate,game.state.coins],[80,23]);
     view.box.getChildByName('button:确认修复').event('click',{});
     assert.equal(view.current, construction);
-    assert.deepEqual([game.state.gate,game.state.wood],[120,19]);
-    game.state.wood=20; view.refresh();
+    assert.deepEqual([game.state.gate,game.state.coins],[120,15]);
+    game.state.coins=16; view.refresh();
     const full=view.box.getChildByName('ScrollList').content.children.find(node=>node.getChildByName('RepairFull'));
     full.getChildByName('RepairFull').event('click',{});
     assert.equal(view.current.type,'spendConfirm');
-    assert.deepEqual([game.state.gate,game.state.wood],[120,20]);
+    assert.deepEqual([game.state.gate,game.state.coins],[120,16]);
     view.box.getChildByName('button:确认修满').event('click',{});
     assert.equal(view.current,construction);
-    assert.deepEqual([game.state.gate,game.state.wood],[200,0]);
+    assert.deepEqual([game.state.gate,game.state.coins],[200,0]);
 });
 test('construction orders available rows on entry but refreshes conditions in place after purchase',()=>{
-    const {game}=session(),view=panelView(game);game.state.wood=30;game.state.food=10;
+    const {game}=session(),view=panelView(game);game.state.coins=35;
     let drawn=[];const buildRow=view.ui.buildRow.bind(view.ui);
     view.ui.buildRow=(...args)=>{const [,,,title,,,,reason,action]=args;drawn.push({title,reason,action});return buildRow(...args);};
-    view.open({type:'build'});assert.deepEqual(view.current.rowOrder,['HERO_COMMITTEE','PATROL','GATE','HOUSE','FARM','LOGGING','REPAIR']);
+    view.open({type:'build'});assert.deepEqual(view.current.rowOrder,['HERO_COMMITTEE','PATROL','FACTORY','HOUSE','GATE','REPAIR']);
     assert(drawn[3].title.startsWith('民居扩建'));assert.equal(drawn[3].reason,null);view.current.scroll=90;
     drawn[3].action();
     assert.equal(view.current.type,'spendConfirm');
-    assert.deepEqual([game.state.wood,game.state.food],[30,10]);
+    assert.equal(game.state.coins,35);
     drawn=[];
     view.box.getChildByName('button:取消').event('click');
     assert.equal(view.current.type,'build');assert.equal(view.current.scroll,90);
     assert(drawn[3].title.startsWith('民居扩建'));
     drawn[3].action();view.box.getChildByName('button:确认增建').event('click');
     drawn=[];view.refresh();assert(drawn[3].title.startsWith('民居扩建'));assert(drawn[3].reason);assert.equal(view.current.scroll,90);
-    view.close();view.open({type:'build'});assert.deepEqual(view.current.rowOrder,['HERO_COMMITTEE','PATROL','FARM','LOGGING','GATE','HOUSE','REPAIR']);
+    view.close();view.open({type:'build'});assert.deepEqual(view.current.rowOrder,['HERO_COMMITTEE','PATROL','FACTORY','GATE','HOUSE','REPAIR']);
 });
 test('family readiness reorders on entry only; current card data and button state still refresh',()=>{
     const {game}=session(),view=panelView(game);view.ui.image=imageNode;view.art.portraitId=q=>q.id;
@@ -683,13 +698,13 @@ test('family readiness reorders on entry only; current card data and button stat
     const list=view.box.getChildByName('ScrollList');
     assert.equal(view.box.height,816);assert(list.content.children[1].y + cards()[1].height <= list.height);
     assert(cards()[1].children.some(n=>n.text===birthUnavailableReason(game.state,a.id)));
-    game.state.food=0;view.refresh();assert.equal(cards()[0].name,'family:'+b.id);
-    assert(!cards()[0].getChildByName('button:迎接孩子'));assert(cards()[0].children.some(n=>n.text==='粮食不足'));
+    game.state.coins=0;view.refresh();assert.equal(cards()[0].name,'family:'+b.id);
+    assert(!cards()[0].getChildByName('button:迎接孩子'));assert(cards()[0].children.some(n=>n.text==='尔币不足'));
     view.close();view.open({type:'families',tab:1});assert.equal(cards()[0].name,'family:'+a.id);
-    game.state.food=RULE.birthCost;view.refresh();
+    game.state.coins=RULE.birthCost;view.refresh();
     cards()[1].getChildByName('button:迎接孩子').event('click',{});view.refresh();
     assert.equal(view.current.type,'spendConfirm');
-    assert.equal(game.state.food,RULE.birthCost);
+    assert.equal(game.state.coins,RULE.birthCost);
     assert(!game.state.people.some(q=>!q.adult));
     const origin=view.current.back;
     view.box.getChildByName('button:取消').event('click');
@@ -697,7 +712,7 @@ test('family readiness reorders on entry only; current card data and button stat
     cards()[1].getChildByName('button:迎接孩子').event('click',{});view.refresh();
     view.box.getChildByName('button:确认迎接').event('click');view.refresh();
     const child=game.state.people.find(q=>!q.adult);
-    assert(child.parents.includes(b.partners[0]));assert.equal(game.state.food,0);
+    assert(child.parents.includes(b.partners[0]));assert.equal(game.state.coins,0);
     assert(cards()[1].children.some(n=>n.text?.includes(child.name) && n.text.includes('成长 0/'+RULE.growNights)));
 });
 test('family tabs isolate actionable dots and preserve their own scroll positions without writes', () => {
@@ -706,7 +721,7 @@ test('family tabs isolate actionable dots and preserve their own scroll position
     const tab = caption => view.box.getChildByName('button:' + caption);
     const dot = caption => !!tab(caption).getChildByName('buttonFace').getChildByName('FamilyTabActionHint');
     const pick = caption => tab(caption).event('click');
-    s.food = 0;
+    s.coins = 0;
     const panel = { type: 'families' }, save = canonical([...values]);
     view.open(panel);
     assert.deepEqual([dot('成家'), dot('养育')], [false, false]);
@@ -715,7 +730,7 @@ test('family tabs isolate actionable dots and preserve their own scroll position
     assert.equal(view.current, panel);
     assert.equal(view.box.getChildByName('button:安排村民成家'), undefined);
     assert(view.box.getChildByName('ScrollList').content.children[0].children[0].name.startsWith('family:'));
-    s.food = RULE.birthCost;
+    s.coins = RULE.birthCost;
     view.refresh();
     assert.deepEqual([dot('成家'), dot('养育')], [true, false]);
     pick('成家'); assert.deepEqual([dot('成家'), dot('养育')], [false, true]);
@@ -732,7 +747,7 @@ test('family tabs isolate actionable dots and preserve their own scroll position
     assert.equal(view.current.tab,1);
     assert.deepEqual([dot('成家'), dot('养育')], [false, false]);
     const firstFamily=view.box.getChildByName('ScrollList').content.children[0].children[0];
-    assert(firstFamily.getChildByName('button:迎接孩子').getChildByName('buttonFace').getChildByName('BirthActionHint'));
+    assertCellBadge(firstFamily, 'BirthActionHint');
     pick('成家');
     const rows = () => view.box.getChildByName('ScrollList');
     rows().setOffset(710);
@@ -778,6 +793,7 @@ test('night operator selection reads live reassignment and excludes the current 
     view.ui.personRibbon=(row,frame)=>{ assert.equal(frame,'tag_recommended'); tagged.push(row.name); };
     const pendingGuard=game.state.people[4], spare=game.state.people[5], released=game.state.towers[0].operator;
     pendingGuard.job='WAITING'; spare.job='WAITING'; spare.traits=['trait_nimble'];
+    game.state.people.find(p => p.id === released).job = 'WAITING';
     game.command({type:'NIGHT'});game.pause('CHOICE');const id=pendingGuard.id;assert(game.reassign(0,id));
     assert.notEqual(game.state.towers[0].operator,id);view.open({type:'operators',index:0});assert(!view.current.rowOrder.includes(id));
     assert.equal(view.current.rowOrder[0],released);
@@ -794,32 +810,32 @@ test('night operator selection reads live reassignment and excludes the current 
 test('role recommendations shortlist three pending adults by benefit and retain stable ties',()=>{
     const { recommendedPeople }=require(path.join(compiled,'view/RoleRecommendations'));
     const s=createGame(7), template=s.people[0];
-    const candidate=(id,extra={})=>({...template,id,job:'WAITING',traits:['trait_diligent'],...extra});
-    const people=[candidate('working',{job:'FARM',quality:"ELITE"}),candidate('first'),candidate('second'),candidate('third'),
+    const candidate=(id,extra={})=>({...template,id,job:'WAITING',traits:['trait_crafty'],...extra});
+    const people=[candidate('working',{job:'SEWING',quality:"ELITE"}),candidate('first'),candidate('second'),candidate('third'),
         candidate('elite',{quality:"ELITE"}),candidate('guard',{quality:"ELITE"}),candidate('elder',{nights:0})];
     const towers=[{...s.towers[0],operator:'guard'}];
-    assert.deepEqual(recommendedPeople(people,'FARM',towers).map(p=>p.id),['elite','first','second']);
-    assert.deepEqual(recommendedPeople(people,'LOGGING',towers).map(p=>p.id),['elite']);
+    assert.deepEqual(recommendedPeople(people,'SEWING',towers).map(p=>p.id),['elite','first','second']);
+    assert.deepEqual(recommendedPeople(people,'SEWING',[]).map(p=>p.id),['elite','guard','first']);
 });
 test('job tabs show incumbents and suitable idle villagers; assignment respects full slots and nighttime', () => {
     const {game} = session(), view = panelView(game), s = game.state;
     view.art.portraitId = q => q.id;
     view.ui.image = imageNode;
     const byJob = job => s.people.filter(q => q.job === job);
-    const farmers = byJob('FARM'), loggers = byJob('LOGGING'), idle = byJob('WAITING');
-    // Pick an idle villager with a farming benefit, free of any nighttime tower post.
-    const candidate = idle.find(q => q.traits.includes('trait_diligent'));
+    const workers = byJob('SEWING');
+    const candidate = { ...workers[0], id: 'sewing:candidate', job: 'WAITING' };
+    s.people.push(candidate);
+    // Add an eligible idling adult after the starter jobs filled automatically.
     s.towers.forEach(tower => { if (tower.operator === candidate.id) tower.operator = null; });
     const body = () => view.box.getChildByName('ScrollList').content;
     const action = label => body().getChildByName('JobCandidate:' + candidate.id).getChildByName('button:' + label);
     const incumbentRows = () => body().children.filter(row => !row.name && row.numChildren).map(row => row.getChildAt(0).name);
     const roster = {type:'people',tab:1};
     view.open(roster);
-    assert.equal(incumbentRows().length, farmers.length);
-    for (const q of farmers) assert(incumbentRows().some(name => name.includes(q.name)));
-    for (const q of loggers) assert(!incumbentRows().some(name => name.includes(q.name)));
-    assert(!body().getChildByName('JobCandidate:' + farmers[0].id));
-    action('调岗').event('click'); assert.equal(view.current.type,'workers'); assert.equal(view.current.id,candidate.id); assert.equal(view.current.job,'FARM');
+    assert.equal(incumbentRows().length, 4);
+    for (const q of workers.slice(0, 4)) assert(incumbentRows().some(name => name.includes(q.name)));
+    assert(!body().getChildByName('JobCandidate:' + workers[0].id));
+    action('调岗').event('click'); assert.equal(view.current.type,'workers'); assert.equal(view.current.id,candidate.id); assert.equal(view.current.job,'SEWING');
     assert.equal(candidate.job,'WAITING');
     view.box.getChildByName('WorkersBack').event('click');
     assert.equal(view.current, roster);
@@ -828,25 +844,73 @@ test('job tabs show incumbents and suitable idle villagers; assignment respects 
     const safeBottom = view.layout.safeBottom;
     view.layout.safeBottom = 620;
     view.open(detail);
-    body().getChildByName('ResidentDetail:jobs').getChildByName('button:更换耕作').event('click');
+    body().getChildByName('ResidentDetail:jobs').getChildByName('button:更换制衣村民').event('click');
     assert.equal(view.current.back, detail);
     view.box.getChildByName('WorkersBack').event('click');
     assert.equal(view.current, detail);
     assert.equal(view.box.getChildByName('ScrollList').offset, 40);
     view.layout.safeBottom = safeBottom;
-    // Increasing the farm level opens a slot. Capture the actual outgoing command without saving a fixture.
-    s.farm = 10; view.open({type:'people'});
-    const farmTab = view.box.getChildByName('button:耕作');
-    assert(farmTab.getChildByName('buttonFace').getChildByName('JobTabActionHint'));
-    farmTab.event('click');
+    // Increasing the factory level opens a slot. Capture the actual outgoing command without saving a fixture.
+    s.factory.level = 10; view.open({type:'people'});
+    const sewingTab = view.box.getChildByName('button:制衣');
+    assert(sewingTab.getChildByName('buttonFace').getChildByName('JobTabActionHint'));
+    sewingTab.event('click');
     let command; view.send = c => { command = c; };
-    assert(action('安排').getChildByName('buttonFace').getChildByName('JobVacancyActionHint'));
-    action('安排').event('click'); assert.deepEqual(command,{type:'JOB',id:candidate.id,job:'FARM'});
-    view.box.getChildByName('button:伐木').event('click');
+    assertCellBadge(action('安排').parent, 'JobVacancyActionHint');
+    action('安排').event('click'); assert.deepEqual(command,{type:'JOB',id:candidate.id,job:'SEWING'});
+    view.box.getChildByName('button:待安排').event('click');
     assert(!body().getChildByName('JobCandidate:' + candidate.id));
     s.phase = 'NIGHT'; view.open({type:'people',tab:1});
     assert(!body().getChildByName('JobCandidate:' + candidate.id));
 });
+test('factory view reads the live timer, keeps price confirmation and brings players back to the current factory level', () => {
+    const { game } = session(), view = panelView(game);
+    const { sewingDayCap } = require(path.join(compiled, 'game/Growth'));
+    const { SEWING } = require(path.join(compiled, 'config/RuleConfig'));
+    const nodes = node => [node, ...node.children.flatMap(nodes)];
+    const find = name => nodes(view.box).find(node => node.name === name);
+    view.ui.image = imageNode;
+    view.art.portraitId = p => p.id;
+    game.changed = () => view.refresh();
+    const back = { type: 'build' }, factory = { type: 'factory', back };
+    game.state.coins = 200;
+    view.open(factory);
+    assert.equal(find('SewingProgress').text, '下一批 30 秒 · 已完成 0/3 批');
+    for (let i = 0; i < 40; i++) game.update(.25);
+    view.advance(.25);
+    assert.equal(find('SewingProgress').text, '下一批 20 秒 · 已完成 0/3 批');
+    const paid = sewingDayCap(game.state);
+    for (let i = 40; i < SEWING.batchMs / 250; i++) game.update(.25);
+    assert.equal(game.state.coins, 200 + paid);
+    assert.equal(find('SewingProgress').text, '已收工 · 守住下一波再开工');
+    find('button:升级制衣厂').event('click');
+    assert.equal(view.current.type, 'spendConfirm');
+    assert.equal(game.state.factory.level, 1);
+    find('button:确认升级').event('click');
+    assert.equal(view.current, factory);
+    assert.equal(game.state.factory.level, 2);
+    assert.equal(game.state.coins, 200 + paid - upgradeCost('FACTORY', 1).coins);
+    find('PanelBack').event('click');
+    assert.equal(view.current, back);
+});
+
+test('a short screen scrolls the full victory breakdown behind a fixed collect button', () => {
+    const { game } = session(), view = panelView(game); view.ui.image = imageNode;
+    const { drawNightResult } = require(path.join(compiled, 'view/panels/NightResultPanel'));
+    const safeHeight = 680;
+    let claimed = false;
+    const { box, sources } = drawNightResult(view, { night: 12, base: 54, sewing: 25, boss: 15, total: 94,
+        recap: '1 位村民荣休，1 位孩子已经成年。', patrol: { deployments: 5, kills: 15 } }, false, () => claimed = true, safeHeight);
+    assert(box.height < safeHeight);
+    const body = box.getChildByName('ScrollList'), claim = box.getChildByName('button:收下');
+    assert(body.maximum > 0);
+    assert(body.y + body.height < claim.y);
+    assert(box.height > claim.y + claim.height);
+    assert.equal(sources.length, 1);
+    claim.event('click');
+    assert(claimed);
+});
+
 test('a 107-person roster mounts only the window and each remounted callback targets the correct person',()=>{
     const {game}=session(),view=panelView(game),template=game.state.people[0];
     game.state.people=Array.from({length:107},(_,i)=>({...template,id:`1:${i+1}`}));game.state.families=[];view.art.portraitId=q=>q.id;
@@ -859,9 +923,10 @@ test('a 107-person roster mounts only the window and each remounted callback tar
 test('the roster uses one arrangement button for weekday jobs and night towers', () => {
     const { game } = session(), view = panelView(game), s = game.state;
     view.ui.image = imageNode; view.art.portraitId = q => q.id;
-    const target = s.people.find(q => q.job === 'WAITING');
-    s.farm = 10;
-    const panel = { type: 'people', tab: 3 };
+    const target = { ...s.people[0], id: 'sewing:candidate', job: 'WAITING' };
+    s.people.push(target);
+    s.factory.level = 10;
+    const panel = { type: 'people', tab: 2 };
     view.open(panel);
     const rows = () => view.box.getChildByName('ScrollList').content;
     const first = () => rows().children[0];
@@ -873,18 +938,18 @@ test('the roster uses one arrangement button for weekday jobs and night towers',
     const assignment = () => rows().getChildByName('RosterAssignment:' + target.id);
     const tower = s.towers.findIndex(t => t.kind && t.operator !== target.id);
     const commands = []; view.send = c => { commands.push(c); };
-    assignment().getChildByName('button:耕作').event('click');
+    assignment().getChildByName('button:制衣').event('click');
     assignment().getChildByName(`button:${tower + 1}塔`).event('click');
     assert.deepEqual(commands, [
-        { type: 'JOB', id: target.id, job: 'FARM' },
+        { type: 'JOB', id: target.id, job: 'SEWING' },
         { type: 'OPERATOR', id: target.id, index: tower }
     ]);
     first().getChildByName('button:收起').event('click');
     assert.equal(assignment(), undefined);
     assert.equal(view.current, panel);
-    s.farm = 1;
+    s.factory.level = 1;
     first().getChildByName('button:安排').event('click');
-    assignment().getChildByName('button:换到耕作').event('click');
+    assignment().getChildByName('button:换到制衣').event('click');
     assert.equal(view.current.type, 'workers');
     view.box.getChildByName('WorkersBack').event('click');
     assert.equal(view.current, panel);
@@ -926,7 +991,7 @@ test('essence targets show retirement and uses before confirmation, soonest firs
     assert.equal(view.current.type,'essenceConfirm');assert.equal(view.current.id,soon.id);
     assert.equal(canonical(s),before);
 });
-test('the tactics page gives unread and affordable tactics one action badge and keeps unaffordable notices on the card',()=>{
+test('the tactics page keeps one corner badge when a tactic is both unread and affordable',()=>{
     const {game}=session(),view=panelView(game),{TACTICS}=require(path.join(compiled,'config/TacticConfig'));
     view.ui.image=imageNode;game.state.completed=game.state.legacy.bestNight=50;
     const unread=new Set(TACTICS.slice(-2).map(t=>t.id));
@@ -937,13 +1002,14 @@ test('the tactics page gives unread and affordable tactics one action badge and 
     const row=id=>list().content.getChildByName('TacticCard:'+id);
     const inspect=id=>row(id).getChildByName('TacticInspect');
     const badge=id=>row(id).getChildByName('TacticReadHint');
-    const action=id=>row(id).getChildByName('button:学习并装配').getChildByName('buttonFace').getChildByName('TacticChoiceActionHint');
+    const action=id=>row(id).getChildByName('TacticChoiceActionHint');
     assert(badge(focus.id));assert(badge(TACTICS.at(-1).id));
     assert(!action(focus.id));
-    game.state.wood=game.state.food=200;view.refresh();
-    assert(!badge(focus.id) && action(focus.id));
+    game.state.coins=400;view.refresh();
+    assert(!badge(focus.id));
+    assertCellBadge(row(focus.id), 'TacticChoiceActionHint');
     assert(!badge(TACTICS.at(-1).id) && action(TACTICS.at(-1).id));
-    game.state.wood=game.state.food=0;view.refresh();
+    game.state.coins=0;view.refresh();
     list().setOffset(list().maximum);
     const saved=list().offset;
     inspect(focus.id).event('click');
@@ -998,11 +1064,11 @@ test('the single list opens anonymous lore and revealed details inline and confi
     }
     assert.equal(JSON.stringify(game.state.tactics),before);
     game.state.completed=10;const tactic=TACTICS[1];
-    game.state.wood=1;view.open({type:'tactics'});
-    assert(labels(card(tactic.id)).includes(String(tactic.wood)));
-    assert(!labels(card(tactic.id)).includes(`1/${tactic.wood}`));
+    game.state.coins=1;view.open({type:'tactics'});
+    assert(labels(card(tactic.id)).includes(String(tactic.coins)));
+    assert(!labels(card(tactic.id)).includes(`1/${tactic.coins}`));
     assert(!card(tactic.id).getChildByName('button:学习并装配').handlers.click);
-    game.state.wood=tactic.wood;game.state.food=tactic.food;
+    game.state.coins=tactic.coins;
     const commands=[];view.send=command=>commands.push(command);
     view.open({type:'tactics'});
     view.box.getChildByName('TacticSlot:1').event('click');
@@ -1045,14 +1111,14 @@ test('round slots open a separate confirmation, and the spotlight guide can be s
     view.box.getChildByName('button:取消').event('click');
     assert.equal(view.current, panel);
     assert.equal(panel.scroll, 186);
-    game.state.completed = 15; game.state.wood = 75; game.state.food = 100; view.refresh();
+    game.state.completed = 15; game.state.coins = TACTIC_SLOTS[0].coins - 5; view.refresh();
     assert(guide());
-    assert(!view.box.getChildByName('TacticSlot:2').getChildByName('buttonFace').getChildByName('TacticSlotUnlockHint'));
+    assert(!view.box.getChildByName('TacticSlot:2').getChildByName('TacticSlotUnlockHint'));
     assert.equal(view.box.getChildByName('TacticSlotSpotlight').mouseEnabled, false);
     const list = view.box.getChildByName('ScrollList');
     assert(list.y + list.height <= guide().y && guide().y + guide().height < view.box.height);
     choose(2);
-    assert(view.box.children.some(node => node.text === '还缺 5 木'));
+    assert(view.box.children.some(node => node.text === '还缺 5 尔币'));
     assert(!confirm().handlers.click);
     view.box.getChildByName('button:取消').event('click');
     choose(3);
@@ -1065,9 +1131,9 @@ test('round slots open a separate confirmation, and the spotlight guide can be s
     const reopened = panelView(game); reopened.ui.image = imageNode;
     reopened.open({ type: 'tactics' });
     assert(!reopened.box.getChildByName('TacticSlotGuide'));
-    game.state.wood = 100; view.refresh();
-    assert(view.box.getChildByName('TacticSlot:2').getChildByName('buttonFace').getChildByName('TacticSlotUnlockHint'));
-    assert(!view.box.getChildByName('TacticSlot:3').getChildByName('buttonFace').getChildByName('TacticSlotUnlockHint'));
+    game.state.coins = TACTIC_SLOTS[0].coins; view.refresh();
+    assertCellBadge(view.box.getChildByName('TacticSlot:2'), 'TacticSlotUnlockHint');
+    assert(!view.box.getChildByName('TacticSlot:3').getChildByName('TacticSlotUnlockHint'));
     game.state.phase = 'NIGHT'; view.refresh();
     assert(!view.box.getChildByName('TacticSlot:2').handlers.click && !guide());
 });
@@ -1078,7 +1144,7 @@ test('slot purchase selects the new empty slot only after a successful save or r
     view.ui.image = imageNode;
     const panel = { type: 'tactics', scroll: 186 };
     const progress = wins => {
-        Object.assign(game.state, { completed: wins, day: wins + 1, wood: 200, food: 200 });
+        Object.assign(game.state, { completed: wins, day: wins + 1, coins: 400 });
         game.state.legacy.bestNight = wins;
         game.state.wave = generateWave(game.state);
     };
@@ -1094,20 +1160,20 @@ test('slot purchase selects the new empty slot only after a successful save or r
     assert.equal(view.current, confirmation);
     assert.equal(confirmation.pendingSlotUnlock, 1);
     assert.equal(panel.scroll, 186);
-    assert.equal(game.state.wood, 200);
+    assert.equal(game.state.coins, 400);
     game.saves.port.write = original;
     game.retry();
     assert.equal(view.current, panel);
     assert.equal(view.current.index, 1);
     assert.equal(panel.scroll, 0);
     assert.equal(confirmation.pendingSlotUnlock, undefined);
-    assert.deepEqual([game.state.wood, game.state.food, game.state.tactics.extraSlots], [120, 160, [null]]);
+    assert.deepEqual([game.state.coins, game.state.tactics.extraSlots], [400 - TACTIC_SLOTS[0].coins, [null]]);
     progress(35); view.open(panel, true);
     view.box.getChildByName('TacticSlot:3').event('click');
     view.box.getChildByName('button:确认解锁').event('click');
     assert.equal(view.current, panel);
     assert.equal(view.current.index, 2);
-    assert.deepEqual([game.state.wood, game.state.food, game.state.tactics.extraSlots], [40, 120, [null, null]]);
+    assert.deepEqual([game.state.coins, game.state.tactics.extraSlots], [400 - TACTIC_SLOTS[1].coins, [null, null]]);
     assert(!view.box.getChildByName('TacticSlotUnlock'));
 });
 
@@ -1118,18 +1184,18 @@ test('tactic reminders continue from an actionable slot to the candidate and cle
     view.ui.image = imageNode;
     const s = game.state;
     s.completed = s.legacy.bestNight = 5;
-    s.food = s.wood = 100;
+    s.coins = 100;
     const overview = { type: 'tactics' };
     view.open(overview);
     const badge = (button, name) => button.getChildByName('buttonFace').getChildByName(name);
     const slot = n => view.box.getChildByName(`TacticSlot:${n}`);
     const row = id => view.box.getChildByName('ScrollList').content.getChildByName('TacticCard:' + id);
     assert(tacticActionReady(s));
-    assert(!badge(slot(1), 'TacticSlotActionHint'));
+    assert(!slot(1).getChildByName('TacticSlotActionHint'));
     slot(1).event('click');
     assert.equal(view.current, overview);
     assert(!row(DEFAULT_TACTIC).getChildByName('button:卸下'));
-    assert(badge(row(SHIELD_TACTIC).getChildByName('button:学习并装配'), 'TacticChoiceActionHint'));
+    assertCellBadge(row(SHIELD_TACTIC), 'TacticChoiceActionHint');
     row(SHIELD_TACTIC).getChildByName('button:学习并装配').event('click');
     assert(!s.tactics.learned.includes(SHIELD_TACTIC));
     assert(badge(view.box.getChildByName('button:确认学习'), 'SpendConfirmActionHint'));
@@ -1137,16 +1203,16 @@ test('tactic reminders continue from an actionable slot to the candidate and cle
     s.tactics.extraSlots = [null];
     assert(tacticActionReady(s));
     view.open(overview);
-    assert(!badge(slot(1), 'TacticSlotActionHint'));
-    assert(badge(slot(2), 'TacticSlotActionHint'));
+    assert(!slot(1).getChildByName('TacticSlotActionHint'));
+    assertCellBadge(slot(2), 'TacticSlotActionHint');
     slot(2).event('click');
     assert.equal(view.current, overview);
     assert.equal(overview.index, 1);
-    assert(!badge(slot(2), 'TacticSlotActionHint'));
+    assert(!slot(2).getChildByName('TacticSlotActionHint'));
     assert(!row(DEFAULT_TACTIC).getChildByName('button:装配'));
     assert.equal(s.tactics.extraSlots[0],null);
     const equip = row(SHIELD_TACTIC).getChildByName('button:装配'), commands = [];
-    assert(badge(equip, 'TacticChoiceActionHint'));
+    assertCellBadge(equip.parent, 'TacticChoiceActionHint');
     view.send = command => commands.push(command);
     equip.event('click');
     assert.deepEqual(commands,[{type:'TACTIC_EQUIP',id:SHIELD_TACTIC,slot:1}]);
@@ -1154,12 +1220,12 @@ test('tactic reminders continue from an actionable slot to the candidate and cle
     s.tactics.extraSlots[0] = SHIELD_TACTIC;
     assert(!tacticActionReady(s));
     view.open(overview);
-    assert(!badge(slot(2), 'TacticSlotActionHint'));
+    assert(!slot(2).getChildByName('TacticSlotActionHint'));
     row(SHIELD_TACTIC).getChildByName('button:卸下').event('click');
     assert.deepEqual(commands.at(-1), {type:'TACTIC_CLEAR_SLOT',slot:1});
     s.tactics.extraSlots[0] = null;
     game.pause('SAVE_PENDING'); view.refresh();
-    assert(!badge(slot(2), 'TacticSlotActionHint'));
+    assert(!slot(2).getChildByName('TacticSlotActionHint'));
 });
 
 test('catch-up picks earlier eligible lessons and keeps the active step until it closes', () => {
@@ -1285,9 +1351,9 @@ test('ammo actions stay in their cards and preserve the last visible row across 
         assert(action('装备石弹').y + action('装备石弹').height < action('装备石弹').parent.height);
         action('升级石弹').event('click'); assert.equal(view.current.type, 'ammoUpgrade');
         action('取消').event('click'); assert.equal(view.current, menu); assert.equal(list().offset, offset);
-        const {food, wood} = game.state;
+        const {coins} = game.state;
         action('装备石弹').event('click'); assert.equal(game.state.towers[0].kind, 'STONE');
-        assert.deepEqual([game.state.food, game.state.wood], [food, wood]);
+        assert.equal(game.state.coins, coins);
     } finally {
         gameState.ownsTowerAmmo = owns;
         for (const key of fixtures) delete TOWER_AMMO[key];
@@ -1311,7 +1377,7 @@ test('the sole eligible couple can marry from the family tab with both portraits
         assert(card.some(n => n.name === p.id));
         assert(card.some(n => n.text?.includes(p.name)));
     }
-    assert(card.some(n => n.text === '伐木') && card.some(n => n.text === '农艺'));
+    assert(card.some(n => n.text === '强健') && card.some(n => n.text === '灵巧'));
     const count = game.state.families.length;
     button.event('click');
     assert.equal(game.state.families.length, count + 1);
@@ -1359,6 +1425,7 @@ test('backpack grid keeps inventory and confirmation tied to the selected item',
     const use = id => detail(id).getChildByName('button:使用');
     const badge = (button, name) => button.getChildByName('buttonFace').getChildByName(name);
     const { itemActionHints } = require(path.join(compiled, 'view/panels/ItemPanels.js'));
+    const { ICE_AMMO_OFFER } = require(path.join(compiled, 'config/ShopConfig.js'));
     const hasText = (node, text) => node.children.some(child => child.text?.includes(text));
     game.villageItems.saveItems({liang_essence:2, patrol_ration:2, liang_indulgence:1, future_item:1});
     view.open(bag);
@@ -1396,7 +1463,7 @@ test('backpack grid keeps inventory and confirmation tied to the selected item',
     row('liang_essence').event('click');
     assert.equal(view.current, bag);
     const chosen = contents().children.find(child=>child.name.startsWith('EssenceTarget:')).getChildByName('button:使用');
-    assert(badge(chosen, 'EssenceSelectHint'));
+    assertCellBadge(chosen.parent, 'EssenceSelectHint');
     chosen.event('click');
     assert.equal(view.current.type, 'essenceConfirm');
     assert(badge(view.box.getChildByName('button:确认使用'), 'EssenceConfirmHint'));
@@ -1416,7 +1483,8 @@ test('backpack grid keeps inventory and confirmation tied to the selected item',
 test('ice ammo stays out of tower inventory until the shop purchase, then equips for free', () => {
     const {game} = session(), view = panelView(game), s = game.state;
     const { itemActionHints } = require(path.join(compiled, 'view/panels/ItemPanels.js'));
-    assert.equal(s.completed, 0); s.food = 0; s.wood = 35;
+    const { ICE_AMMO_OFFER } = require(path.join(compiled, 'config/ShopConfig.js'));
+    assert.equal(s.completed, 0); s.coins = ICE_AMMO_OFFER.coins;
     view.ui.image = imageNode;
     const openAmmo = () => view.open({type:'towerAmmo', id:'ARROW', index:0, back:{type:'tower', index:0}});
     const entry = kind => view.box.getChildByName('ScrollList').content.children.map(row => row.getChildByName('ammo:'+kind)).find(Boolean);
@@ -1448,13 +1516,11 @@ test('ice ammo stays out of tower inventory until the shop purchase, then equips
     const effect = '永久解锁，可在石炮塔中装配';
     const offer = view.box.getChildByName('ScrollList').content.getChildByName('ShopProduct:ice_ammo');
     const purchase = offer.getChildByName('button:购买');
-    assert(!offer.getChildByName('ShopOfferHint'));
-    const badge = purchase.getChildByName('buttonFace').getChildByName('ShopOfferHint');
-    assert(badge && purchase.x + badge.x + badge.width <= offer.width && purchase.y + badge.y >= 0);
+    assertCellBadge(offer, 'ShopOfferHint');
     assert(!hasText(offer, effect));
     purchase.event('click');
     assert.equal(view.current.type, 'itemOffer');
-    assert.equal(game.state.wood, 35);
+    assert.equal(game.state.coins, ICE_AMMO_OFFER.coins);
     assert(!game.state.iceAmmoUnlocked);
     assert(hasText(view.box, effect));
     view.box.getChildByName('PanelBack').event('click');
@@ -1467,16 +1533,16 @@ test('ice ammo stays out of tower inventory until the shop purchase, then equips
     confirm.event('click');
     assert(game.state.iceAmmoUnlocked);
     assert(!itemActionHints(game,game.state,false).shop);
-    assert.equal(game.state.wood, 0);
+    assert.equal(game.state.coins, 0);
     openAmmo();
-    assert(entry('SLOW').getChildByName('button:装备冰弹').getChildByName('buttonFace').getChildByName('AmmoEquipActionHint'));
+    assertCellBadge(entry('SLOW'), 'AmmoEquipActionHint');
     assert(!entry('SLOW').getChildByName('buttonFace').getChildByName('AmmoTileActionHint'));
     entry('SLOW').event('click');
     const action = entry('SLOW').getChildByName('button:装备冰弹');
-    assert(action.getChildByName('buttonFace').getChildByName('AmmoEquipActionHint'));
+    assertCellBadge(action.parent, 'AmmoEquipActionHint');
     action.event('click');
     assert.equal(game.state.towers[0].kind, 'SLOW');
-    assert.equal(game.state.wood, 0);
+    assert.equal(game.state.coins, 0);
     game.state.phase = 'NIGHT';
     openAmmo();
     assert(entry('SLOW'));
@@ -1489,7 +1555,7 @@ test('traveler ability detail preserves the pending invitation, with a badge on 
     const { drawSessionPanel } = require(path.join(compiled, 'view/panels/SessionPanels.js'));
     const { capacity } = require(path.join(compiled, 'game/VillageRules.js'));
     view.ui.image = imageNode; view.art.portraitId = () => 'portrait';
-    const traveler = {...s.people[0], id:'1:70', name:'来客', quality:'ELITE', traits:['trait_strong','trait_diligent']};
+    const traveler = {...s.people[0], id:'1:70', name:'来客', quality:'ELITE', traits:['trait_strong','trait_crafty']};
     s.phase = 'DAWN'; s.choices = [{kind:'TRAVELER', person:traveler}];
     const before = canonical(s), saved = canonical([...values]);
     drawSessionPanel(view,s,690);
@@ -1508,22 +1574,20 @@ test('traveler ability detail preserves the pending invitation, with a badge on 
     assert(!view.box.getChildByName('button:欢迎加入').handlers.click);
 });
 
-test('daily task detail keeps win conditions and storage shortage while marking only a usable claim', () => {
+test('daily tasks show victory conditions and mark only a usable item claim', () => {
     const {game} = session(), view = panelView(game), s = game.state;
     view.ui.image = imageNode;
     s.legacy.bestNight = 13;
     s.dailyTasks = {date:game.taskDate, tasks:[
-        {kind:'win', goal:2, progress:2, material:'food', reward:8, claimed:false},
-        {kind:'gateHealth', goal:70, progress:0, material:'wood', reward:7, claimed:false}
+        {kind:'win', goal:2, progress:2, reward:'gate_kit', claimed:false},
+        {kind:'gateHealth', goal:70, progress:0, reward:'patrol_ration', claimed:false}
     ]};
     view.open({type:'dailyTasks'});
     const win = () => view.box.getChildByName('DailyTask:win');
-    assert(win().getChildByName('button:领取').getChildByName('buttonFace').getChildByName('ClaimRewardHint'));
+    assertCellBadge(win(), 'ClaimRewardHint');
     assert(view.box.getChildByName('DailyTask:gateHealth').children.some(n=>n.text==='守胜 · 耐久 ≥ 70%'));
-    s.food = require(path.join(compiled, 'game/Growth.js')).storageCapacity(s)-2;
-    view.refresh();
-    assert(!win().getChildByName('button:领取'));
-    assert.equal(win().getChildByName('TaskStorageNote').text,'需腾出 6 格');
+    assert(win().getChildByName('button:领取'));
+    assert(!view.box.getChildByName('DailyTask:gateHealth').getChildByName('button:领取'));
     view.layout.safeBottom = 540;
     view.refresh();
     const list = view.box.getChildByName('ScrollList');

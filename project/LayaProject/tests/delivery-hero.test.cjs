@@ -30,13 +30,12 @@ test('recruitment is once per village and only equips the new night snapshot', (
     state.day = C.recruitment.waves + 1;
     state.completed = state.legacy.bestNight = state.day - 1;
     state.wave = generateWave(state);
-    state.wood = C.recruitment.wood - 1;
-    state.food = C.recruitment.food;
-    assert.throws(() => applyCommand(state, recruit), /粮木不足/);
-    assert.equal(state.food, C.recruitment.food);
-    state.wood++;
+    state.coins = C.recruitment.coins - 1;
+    assert.throws(() => applyCommand(state, recruit), /尔币不足/);
+    assert.equal(state.coins, C.recruitment.coins - 1);
+    state.coins++;
     applyCommand(state, recruit);
-    assert.deepEqual([state.wood, state.food, state.deliveryUnlocked], [0, 0, true]);
+    assert.deepEqual([state.coins, state.deliveryUnlocked], [0, true]);
     assert.throws(() => applyCommand(state, recruit), /已加入/);
     validateState(state);
     const withChief = structuredClone(state);

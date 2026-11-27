@@ -56,12 +56,8 @@ for(const profile of profiles) test(`${profile[0]}: safe controls, expanded vill
         for(const end of nav.route(at,p)) { assert(nav.clear(at,end)); at=end; }
         near(distance(at,p),0);
     }
-    const farm=scene.props.find(p=>p.id==='building:farm');
-    for(const p of scene.stops.farm) assert([-48,-19].some(d=>Math.abs((p.y-farm.y)*128/farm.size-d)<1e-6),'farmer leaves crop rows');
-    for(const p of scene.stops.logging) {
-        const tree=scene.props.find(t=>t.id===p.treeId);
-        assert(p.y>tree.y,'woodcutter must stand in front of the assigned tree after screen layout');
-    }
+    const factory=scene.props.find(p=>p.id==='building:factory');
+    for(const p of scene.stops.sewing) near(p.y-factory.y,31);
     assert.deepEqual(TOWER_VIEW.facing, [1, -1, 1, -1, -1], `${name}: two towers west and three east`);
     assert(scene.pads[0].y < scene.pads[3].y && scene.pads[3].y < scene.pads[2].y && scene.pads[2].y < scene.pads[4].y);
     assert(scene.pads[1].y < scene.pads[3].y);
@@ -84,10 +80,10 @@ for(const profile of profiles) test(`${profile[0]}: safe controls, expanded vill
     }
     const state=createGame(7); state.people.forEach(p=>p.job='WAITING');
     while(state.people.length<20) state.people.push({...state.people[state.people.length%6],id:`1:${state.people.length+1}`});
-    state.people.slice(0,6).forEach(p=>p.job='FARM'); state.people.slice(6,10).forEach(p=>p.job='LOGGING');
+    state.people.slice(0,6).forEach(p=>p.job='SEWING');
     const before=JSON.stringify(state), motion=new VillagerMotion(nav,scene.stops);
     motion.sync(state,state.towers);
-    for(let i=0;i<2400;i++) { motion.update(.05); for(const p of state.people) assert(nav.walkable(motion.get(p.id))); }
+    for(let i=0;i<2400;i++) { motion.update(.05); for(const p of motion.visiblePeople) assert(nav.walkable(motion.get(p.id))); }
     assert.equal(JSON.stringify(state),before);
 });
 test('missing safeArea uses reported status bar; screenTop removes already excluded status pixels; empty menu adds no phantom inset', () => {

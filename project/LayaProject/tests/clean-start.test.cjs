@@ -55,11 +55,11 @@ test('restart replaces all village progress with fresh defaults and preserves in
     const inherited = 'trait_strong';
     Object.assign(original.legacy, { bestNight: 17, births: 8, retirees: 3, lastRationDate: date });
     const old = createGame(3, original.legacy, inherited, [retired], [retired.id]);
-    Object.assign(old.legacy, { lastRationDate: date }); old.food = 125; old.settings.speed = 3;
+    Object.assign(old.legacy, { lastRationDate: date }); old.coins = 125; old.settings.speed = 3;
     old.tactics.learned.push(KING_MERCY_TACTIC);
     old.tactics.extraSlots = [KING_MERCY_TACTIC];
     old.tactics.mercyCooldown = { casts: 2, wavesLeft: 5 };
-    old.dailyTasks = { date, tasks: [{ kind: 'win', goal: 1, progress: 1, material: 'wood', reward: 5, claimed: true }] };
+    old.dailyTasks = { date, tasks: [{ kind: 'win', goal: 1, progress: 1, reward: 'gate_kit', claimed: true }] };
     applyCommand(old, { type: 'NIGHT' });
     const f = fixture(old), { game } = f, expected = createGame(seed);
     f.values.set('external-rank-cache', 'untouched');
@@ -74,12 +74,15 @@ test('restart replaces all village progress with fresh defaults and preserves in
     assert.equal(f.values.get('external-rank-cache'), 'untouched');
     assertMirrored(f, f.writes[0][1]);
     game.resume('BACKGROUND'); game.resume('DISABLED'); game.claimDailyRation();
-    assert.equal(game.state.food, RULE.initialResource + RULE.dailyFood);
+    assert.equal(game.state.coins, RULE.initialCoins);
     assert.equal(game.state.legacy.lastRationDate, date); assert.equal(game.villageRevision, 1);
-    assert.equal(f.writes.length, 3); assert.equal(JSON.parse(f.writes[2][1]).commitType, 'NORMAL');
+    assert.equal(f.writes.filter(([key]) => keys.includes(key)).length, 4);
+    assert.equal(game.villageItems.backpack().items.gate_kit, 1);
+    assert.equal(JSON.parse(f.writes[2][1]).commitType, 'NORMAL');
+    const afterGift = f.writes.length;
     const reopened = f.reopen(); reopened.enter(); reopened.claimDailyRation();
     assert.equal(reopened.dailyRationDate, null); assert.deepEqual(reopened.state, game.state);
-    assert.equal(f.writes.length, 3);
+    assert.equal(f.writes.length, afterGift);
 });
 
 for (const failure of ['before', 'after']) for (const step of [1, 2]) {
@@ -163,14 +166,15 @@ test('restart after a durable first slot keeps completing the same candidate acr
     const final = f.reopen(); final.enter();
     f.port.fail = null; final.retry();
     assertMirrored(f, raw); assert.equal(f.writes.length, 2); assert.equal(final.villageRevision, 1);
-    assert.equal(final.dailyRationDate, date); assert.equal(final.state.food, RULE.initialResource);
-    final.claimDailyRation(); assert.equal(final.state.food, RULE.initialResource + RULE.dailyFood);
+    assert.equal(final.dailyRationDate, date); assert.equal(final.state.coins, RULE.initialCoins);
+    final.claimDailyRation(); assert.equal(final.state.coins, RULE.initialCoins);
+    assert.equal(final.villageItems.backpack().items.gate_kit, 1);
 });
 
 test('a completed clean start restores its new village after either slot becomes corrupt or missing', () => {
     for (const key of keys) for (const broken of ['corrupt', null]) {
-        const old = createGame(1); old.legacy.bestNight = 9; old.food = 5;
-        old.dailyTasks = { date, tasks: [{ kind: "win", goal: 1, progress: 1, material: "wood", reward: 5, claimed: true }] };
+        const old = createGame(1); old.legacy.bestNight = 9; old.coins = 5;
+        old.dailyTasks = { date, tasks: [{ kind: "win", goal: 1, progress: 1, reward: "gate_kit", claimed: true }] };
         const f = fixture(old); start(f.game);
         const raw = f.values.get(key);
         if (broken === null) f.values.delete(key); else f.values.set(key, broken);
@@ -214,7 +218,7 @@ test('ordinary run-one day-one startup and a higher normal save do not trigger c
     f.game.newVillage(); assert.equal(f.game.villageRevision, 1); assert.equal(f.writes.length, 1);
     const ordinary = f.reopen(); assert.equal(ordinary.state.run, 1); assert.equal(ordinary.state.day, 1);
     assert.equal(ordinary.villageRevision, 0); assert.equal(f.writes.length, 1);
-    start(ordinary); ordinary.command({ type: 'BUILD', kind: 'FARM' });
+    start(ordinary); ordinary.command({ type: 'BUILD', kind: 'FACTORY' });
     assert.notEqual(f.values.get(keys[0]), f.values.get(keys[1]));
     const reopened = f.reopen();
     assert.deepEqual(reopened.state, ordinary.state); assert.equal(reopened.villageRevision, 0);

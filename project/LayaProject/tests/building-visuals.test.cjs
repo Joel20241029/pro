@@ -1,11 +1,11 @@
 const test = require('node:test'), assert = require('node:assert/strict'), path = require('node:path'), fs = require('node:fs');
 const build = process.env.DAIDAI_TEST_BUILD;
-const { buildingLayoutId, FARM_WHEEL_FOOTPRINT, PATROL_BOOTH_FRAME } = require(path.join(build, 'view/BuildingLayout.js'));
+const { buildingLayoutId, PATROL_BOOTH_FRAME } = require(path.join(build, 'view/BuildingLayout.js'));
 const { layouts } = require('../../../res/native/buildings.json');
 const { VILLAGE_PROPS, TOWER_VIEW } = require(path.join(build, 'view/VillageScene.js'));
 const recipe = require('../../../res/source/asset_recipe.json');
 const frames = new Set(recipe.assets.filter(a => a.runtime).map(a => a.id));
-const kinds = ['HOUSE', 'FARM', 'LOGGING', 'GATE', 'CANNON', 'PATROL', 'HEARTH'];
+const kinds = ['HOUSE', 'GATE', 'CANNON', 'PATROL', 'HEARTH'];
 
 // Sprite matrix semantics are isolated here; actual .mc decoding/rendering is also checked in the editor.
 class Sprite {
@@ -31,7 +31,7 @@ const descendants = n => [n, ...n.children.flatMap(descendants)];
 
 test('each native prefab has one fixed static body for all levels and rooms', () => {
  const source = path.resolve(__dirname, '../../../res/editor/BuildingWorkshop/assets/buildingAuthoring/prefabs');
- assert.deepEqual(fs.readdirSync(source).filter(f => f.endsWith('.lh')).sort(), kinds.map(k => k + '.lh').sort());
+ assert.deepEqual(fs.readdirSync(source).filter(f => f.endsWith('.lh') && !['FARM.lh','LOGGING.lh'].includes(f)).sort(), kinds.map(k => k + '.lh').sort());
  assert.equal(Object.keys(layouts).length, kinds.length);
  for (const kind of kinds) {
   const id = buildingLayoutId(kind);
@@ -186,13 +186,12 @@ test('cannon support remains within the center of its stone deck on either bank'
 });
 
 test('authored hard footprints remain inside the pre-reserved navigation base', () => {
- const propFor = { HOUSE: ['building:house-a'], FARM: ['building:farm'], LOGGING: ['building:logging'], GATE: ['building:gate'], CANNON: ['tower:0'] };
+ const propFor = { HOUSE: ['building:house-a'], GATE: ['building:gate'], CANNON: ['tower:0'] };
  for (const [id, layout] of Object.entries(layouts)) {
   for (const region of [layout.bounds, layout.footprint, ...(layout.aboveFootprint ? [layout.aboveFootprint] : [])]) {
    assert(Object.values(region).every(Number.isFinite), id); assert(region.width >= 0 && region.height >= 0, id);
   }
   const kind = id.split('_')[0], r = layout.footprint;
-  if (kind === 'FARM') { assert.equal(r.width * r.height, 0); if (layout.aboveFootprint) assert.deepEqual(layout.aboveFootprint, FARM_WHEEL_FOOTPRINT); continue; }
   for (const name of propFor[kind] ?? []) {
    const p = VILLAGE_PROPS.find(p => p.id === name), s = p.size / 128, base = p.footprint;
    assert(p.x + (r.x - 64) * s >= base.left && p.x + (r.x + r.width - 64) * s <= base.right, id + ' width');
@@ -201,14 +200,11 @@ test('authored hard footprints remain inside the pre-reserved navigation base', 
  }
 });
 
-test('farm upper structure sorts independently and leaves no stale object through rebuild/resize/restart', () => {
- const { owner, world, visual: v } = create(); v.sync('FARM', 5, true);
- assert.deepEqual(layouts.FARM_1_1.aboveFootprint, FARM_WHEEL_FOOTPRINT);
- const upper = v.occluder(); assert.equal(upper.y, owner.y - 27 * 1.25); assert.equal(world.children.length, 2);
- owner.y += 80; assert.equal(v.occluder().y, upper.y + 80);
- v.sync('FARM', 6, false); assert.equal(world.children.length, 2); assert.equal(v.occluder().node, upper.node);
- v.sync('FARM', 1, true); assert.equal(v.occluder().node, upper.node);
- v.sync(null, 0, false); assert.equal(v.occluder(), null); assert.equal(world.children.length, 1);
+test('factory frontage uses one signed image and retires both production prefab layouts', () => {
+ const factory=VILLAGE_PROPS.find(p=>p.id==='building:factory');
+ assert(factory && frames.has(factory.frame));
+ assert(!layouts.FARM_1_1 && !layouts.LOGGING_1_1);
+ assert(!VILLAGE_PROPS.some(p=>p.id==='building:farm'||p.id==='building:logging'));
 });
 
 test('both banks aim through nine authored poses, recoil and reset at dawn', () => {

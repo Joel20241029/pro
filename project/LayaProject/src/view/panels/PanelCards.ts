@@ -12,9 +12,9 @@ export function cardArt(ctx: PanelContext, parent: Laya.Sprite, image: string, x
 }
 
 export function drawSpendConfirm(ctx: PanelContext, s: GameState, p: Panel) {
-    const spend = p.spend!, width = 586, keys = (["wood", "food"] as const).filter(key => !!spend[key]);
+    const spend = p.spend!, width = 586, coins = spend.coins ?? 0;
     const artY = 118, artSize = 150, wordsY = 278, materialY = spend.detail ? 357 : wordsY;
-    const materialHeight = keys.length ? 112 : 0;
+    const materialHeight = coins > 0 ? 112 : 0;
     const quantityY = materialY + materialHeight;
     const footer = quantityY + (spend.quantity ? 63 : 25);
     const box = ctx.modal(spend.title, "", false, { width, height: footer + UI.action.pairHeight + UI.action.bottom });
@@ -23,21 +23,18 @@ export function drawSpendConfirm(ctx: PanelContext, s: GameState, p: Panel) {
         const text = ctx.ui.label(box, spend.detail, 34, wordsY, width - 68, 28, C.ink, true, 67);
         text.align = "center"; text.valign = "middle";
     }
-    const gap = 14, tileWidth = keys.length === 1 ? 320 : 246;
-    const origin = (width - keys.length * tileWidth - gap * (keys.length - 1)) / 2;
-    keys.forEach((key, i) => {
-        const tile = box.addChild(new Laya.Sprite()).pos(origin + i * (tileWidth + gap), materialY).size(tileWidth, 106);
+    if (coins > 0) {
+        const tileWidth = 320;
+        const tile = box.addChild(new Laya.Sprite()).pos((width - tileWidth) / 2, materialY).size(tileWidth, 106);
         ctx.art.panel(tile, "panel_card", tileWidth, 106);
-        ctx.ui.image(tile, `icon_${key}`, (tileWidth - 43) / 2, 10, 43);
-        const required = spend[key]!, short = s[key] < required;
-        const value = ctx.ui.label(tile, amount(required, true),
-            12, 54, tileWidth - 24, 35, short ? C.red : C.ink, true, 43);
+        ctx.ui.image(tile, "icon_coin", (tileWidth - 43) / 2, 10, 43);
+        const value = ctx.ui.label(tile, amount(coins, true), 12, 54, tileWidth - 24, 35, s.coins < coins ? C.red : C.ink, true, 43);
         value.align = "center"; value.wordWrap = false; value.overflow = Laya.Text.SHRINK;
-    });
+    }
     if (spend.quantity)
         ctx.ui.label(box, spend.quantity, 34, quantityY + 3, width - 68, 26, C.muted, true, 44).align = "center";
     ctx.ui.button(box, "取消", 61, footer, 180, () => ctx.open(p.back!, true), C.muted, UI.action.pairHeight);
-    const ready = s.phase === "DAY" && !actionHintsBlocked(ctx.game) && keys.every(key => s[key] >= spend[key]!);
+    const ready = s.phase === "DAY" && !actionHintsBlocked(ctx.game) && s.coins >= coins;
     const confirm = ctx.ui.button(box, spend.actionText, 263, footer, 262, spend.commit, C.gold, UI.action.pairHeight, ready);
     if (ready && spend.showBadge) ctx.ui.actionBadge(confirm, "SpendConfirmActionHint");
 }

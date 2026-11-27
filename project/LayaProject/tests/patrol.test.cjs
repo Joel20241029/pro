@@ -8,7 +8,7 @@ const { RULE } = load('config/RuleConfig');
 const { PATROL } = load('config/PatrolConfig');
 const { WAVE } = load('config/DefenseConfig');
 const { createGame, applyCommand, finishNight } = load('game/VillageRules');
-const { patrolStats } = load('game/PatrolRules');
+const { patrolCost, patrolStats } = load('game/PatrolRules');
 const { BattleSimulation } = load('game/BattleSimulation');
 const { DailyTaskCombat } = load('game/DailyTaskCombat');
 const { PATH_LENGTH, onBattleRoad } = load('game/BattleRoad');
@@ -27,16 +27,15 @@ function unlocked() {
     return s;
 }
 
-test('patrol has a captain on the first day, upgrade costs inventory and a retired captain is replaced', () => {
-    const s = createGame(245), wood = s.wood, food = s.food;
+test('patrol has a captain on the first day, upgrade costs coins and a retired captain is replaced', () => {
+    const s = createGame(245), coins = s.coins, cost = patrolCost(s);
     assert.deepEqual(s.patrol, { level: 1, captain: s.people[0].id });
     const tower = s.towers[0], p = s.people.find(p => p.id === tower.operator);
     p.nights = 1;
     applyCommand(s, { type: 'PATROL_UPGRADE' });
     applyCommand(s, { type: 'PATROL_CAPTAIN', id: p.id });
-    assert.equal(s.wood, wood - PATROL.upgrade.wood);
-    assert.equal(s.food, food - PATROL.upgrade.food);
-    assert.equal(p.job, 'WAITING');
+    assert.equal(s.coins, coins - cost.coins);
+    assert.equal(p.job, 'SEWING');
     assert(tower.operator && tower.operator !== p.id);
     validateState(s);
     applyCommand(s, { type: 'NIGHT' });
@@ -46,22 +45,30 @@ test('patrol has a captain on the first day, upgrade costs inventory and a retir
     validateState(s);
 });
 
-test('an older slot without a patrol house loads level one without writing back, and existing patrol records are preserved', () => {
+test('a v22 slot without a patrol house loads level one without rewriting its bytes', () => {
     const s = unlocked(), values = new Map();
     const port = { read: key => values.get(key) ?? null, write: (key, data) => values.set(key, data) };
     const saves = new SaveStore(port);
     saves.inspect(); saves.prepare(s); saves.commit();
     const [key] = values.keys(), old = JSON.parse(values.get(key));
-    delete old.payload.patrol;
+    const { coins, factory, patrol, ...state } = old.payload;
+    const legacyTrait = trait => trait === 'trait_crafty' ? 'trait_diligent' : trait;
+    old.configVersion = 22;
+    old.payload = { ...state, wood: coins, food: 0, farm: factory.level, logging: 1,
+        people: state.people.map((person, index) => ({ ...person, job: index < 2 ? 'FARM' : index < 4 ? 'LOGGING' : 'WAITING',
+            traits: person.traits.map(legacyTrait) })),
+        legacy: { ...state.legacy, traits: state.legacy.traits.map(legacyTrait) } };
     delete old.checksum;
     old.checksum = crc32(canonical(old));
     const oldBytes = canonical(old); values.set(key, oldBytes);
     const inspection = new SaveStore(port).inspect();
     assert.equal(inspection.kind, 'ready');
-    assert.deepEqual(inspection.state, { ...s, patrol: { level: 1, captain: null } });
+    assert.deepEqual(inspection.state.patrol, { level: 1, captain: null });
+    assert.equal(inspection.state.coins, s.coins);
     const game = new GameSession(new SaveStore(port));
     game.load();
-    assert.deepEqual(game.state, s);
+    assert.deepEqual(game.state.patrol, s.patrol);
+    assert.equal(game.state.coins, s.coins);
     assert.equal(values.get(key), oldBytes);
     const current = new SaveStore(port);
     current.inspect();
@@ -269,11 +276,11 @@ test('new patrol has a distinct save rule and continuous damage growth with boun
     validateState(s);
     assert.equal(s.night.patrolSpin, true);
     assert(new Patrol(s).spin);
-    const common = patrolSpinStats(1), strongLegend = patrolSpinStats(1, { quality: 'LEGENDARY', traits: ['trait_strong','trait_frugal','trait_diligent'] });
+    const common = patrolSpinStats(1), strongLegend = patrolSpinStats(1, { quality: 'LEGENDARY', traits: ['trait_strong', 'trait_crafty'] });
     assert.equal(common.seconds, 4.5);
     assert(strongLegend.damage > common.damage && strongLegend.ticks < common.ticks);
     assert(patrolSpinStats(1000).damage > patrolSpinStats(999).damage);
-    assert(patrolSpinStats(1000, { quality: 'LEGENDARY', traits: ['trait_nimble','trait_frugal','trait_diligent'] }).seconds >= PATROL.spin.minimum);
+    assert(patrolSpinStats(1000, { quality: 'LEGENDARY', traits: ['trait_nimble', 'trait_crafty'] }).seconds >= PATROL.spin.minimum);
     delete s.night.patrolMode;
     delete s.night.patrolSpin;
     assert.equal(new Patrol(s).spin, null);

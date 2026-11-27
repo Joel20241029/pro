@@ -18,7 +18,7 @@ type RosterEntry = {
     recruitment?: {
         unlocked: (state: GameState) => boolean;
         reason: (state: GameState) => string | null;
-        cost: { wood: number; food: number };
+        cost: { coins: number };
         command: "RECRUIT_DELIVERY" | "RECRUIT_SONGLEI";
     };
 };
@@ -95,13 +95,13 @@ export function drawHeroCommittee(ctx: PanelContext, s: GameState, p: Panel, ava
         ctx.art.panel(card, "panel_card", rowWidth, height);
 
         cardArt(ctx, card, hero.frame, 12, 17, LAYOUT.artWidth, LAYOUT.artHeight);
-        const textX = LAYOUT.artWidth + 26, textWidth = rowWidth - textX - 15;
+        const textX = LAYOUT.artWidth + 26, textWidth = rowWidth - textX - UI.cellActionDot.clearRight;
         const name = ctx.ui.label(card, hero.name, textX, 21, textWidth, 36, C.ink, true, 49);
         name.wordWrap = false; name.overflow = Laya.Text.SHRINK;
         ctx.ui.label(card, hero.skill, textX, 73, textWidth, 26, C.status, true, 35);
         if (recruit) {
             ctx.ui.label(card, reason ?? "可招募", textX, 109, textWidth, 25, reason ? C.muted : C.green, true, 38);
-            ctx.ui.materialCosts(card, s, recruit.cost, textX, 145, textWidth, 34);
+            ctx.ui.coinCost(card, s, recruit.cost, textX, 145, textWidth, 34);
         } else if (selected) {
             ctx.ui.iconValue(card, "icon_night_shield", "今晚出战", textX, 115, textWidth, 46, C.green, 28, "left");
         }
@@ -119,18 +119,18 @@ export function drawHeroCommittee(ctx: PanelContext, s: GameState, p: Panel, ava
         }
         if (!selected) {
             const enabled = reason === null && !actionHintsBlocked(ctx.game);
-            const action = ctx.ui.button(card, recruit ? "招募" : "派出", rowWidth - 155, 188, 140, () => {
+            ctx.ui.button(card, recruit ? "招募" : "派出", rowWidth - 155, 188, 140, () => {
                 if (!canAct()) return;
                 if (recruit) {
                     ctx.confirmSpend({ title: `招募${hero.name}`, actionText: "确认招募", image: hero.frame,
-                        detail: "招募后可在村委会安排出战。", food: recruit.cost.food, wood: recruit.cost.wood,
+                        detail: "招募后可在村委会安排出战。", coins: recruit.cost.coins,
                         showBadge: true }, () => ctx.send({ type: recruit.command }));
                 } else {
                     if (p.back) p.pendingChoice = { accepted: next => next.selectedHero === hero.id, back: p.back };
                     ctx.send({ type: "SELECT_HERO", id: hero.id });
                 }
             }, C.gold, 52, enabled);
-            if (recruit && enabled) ctx.ui.actionBadge(action, "HeroRecruitHint");
+            if (recruit && enabled) ctx.ui.cellActionBadge(card, "HeroRecruitHint");
         }
 
         if (open) {

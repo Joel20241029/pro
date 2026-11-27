@@ -7,11 +7,11 @@ const { clone } = read('game/GameState');
 const { generateWave } = read('game/WaveGenerator');
 const { BattleSimulation } = read('game/BattleSimulation');
 const { DailyTaskCombat } = read('game/DailyTaskCombat');
-const { prepareDailyTasks, creditTaskCommand, creditTaskVictory } = read('game/DailyTasks');
-const { claimDailyTask, dailyTaskStatus, dailyTasksClaimable, validDailyTaskDay } = read('game/DailyTaskState');
+const { prepareDailyTasks, creditTaskCommand, creditTaskVictory, creditTaskSewing } = read('game/DailyTasks');
+const { claimDailyTask, dailyTaskStatus, dailyTasksClaimable, validDailyTaskDay, migrateLegacyDailyTaskDay } = read('game/DailyTaskState');
 const { SaveStore } = read('storage/SaveStore');
 const { GameSession } = read('game/GameSession');
-const { gateCapacity, storageCapacity } = read('game/Growth');
+const { gateCapacity } = read('game/Growth');
 
 const today = '2026-11-18', tomorrow = '2026-11-19';
 function village(seed = 42) {
@@ -22,7 +22,7 @@ function village(seed = 42) {
 }
 function attach(s, options) {
     s.dailyTasks = { date: today, tasks: options.map(task => ({ goal: 1, progress: 0,
-        material: 'wood', reward: 8, claimed: false, ...task })) };
+        reward: 'gate_kit', claimed: false, ...task })) };
     return s;
 }
 function savedSession(s) {
@@ -34,7 +34,7 @@ function savedSession(s) {
     return { open, port, next: () => date = tomorrow };
 }
 test('three entrances open at 1, 3 and 6; existing scores qualify on loaded saves', () => {
-    assert.equal(Object.keys(TASK_GOALS).length, 29);
+    assert.equal(Object.keys(TASK_GOALS).length, 22);
     for (const [feature, threshold] of [['ranking',1],['tactics',3],['dailyTasks',6]]) {
         assert(!featureUnlocked(threshold-1,feature));
         assert(featureUnlocked(threshold,feature));
@@ -51,14 +51,14 @@ test('generated tasks remain unchanged on same date, carry one small reward each
     const seen = new Set();
     for (let seed=1;seed<=35;seed++) {
         const s = village(seed);
-        s.wood = 150; s.food = 110; s.gate -= 20;
+        s.coins = 150; s.gate -= 20;
         const baseline = clone(s);
         prepareDailyTasks(s,today);
         assert.equal(s.dailyTasks.tasks.length, DAILY_TASKS.limit);
         assert(validDailyTaskDay(s.dailyTasks));
-        assert(s.dailyTasks.tasks.reduce((sum,task) => sum+task.reward,0) <= 24);
+        assert.deepEqual(s.dailyTasks.tasks.map(task => task.reward), DAILY_TASKS.rewards);
         s.dailyTasks.tasks.forEach(t=>{
-            assert(!['worker', 'operator'].includes(t.kind));
+            assert(!['farmer', 'loggers', 'rations'].includes(t.kind));
             seen.add(t.kind);
             if (t.kind === 'kills' || t.kind === 'enemyKind') {
                 const [min,max] = DENSE_TASK_GOALS[t.kind];
@@ -67,35 +67,36 @@ test('generated tasks remain unchanged on same date, carry one small reward each
         });
         const { dailyTasks, ...v } = s;
         assert.deepEqual(v,baseline);
-        s.wood=0; s.food=0; prepareDailyTasks(s,today);
+        s.coins=0; prepareDailyTasks(s,today);
         assert.equal(s.dailyTasks,dailyTasks);
         prepareDailyTasks(s,'2026-11-17');
         assert.equal(s.dailyTasks,dailyTasks);
     }
     assert(seen.size >= 12, [...seen].join(','));
 });
-test('previously issued appointment goals survive load and remain claimable', () => {
-    const s = attach(village(), [{kind:'worker',progress:1},{kind:'operator',progress:1}]);
-    const restored = savedSession(s).open().state, wood = restored.wood;
-    assert(validDailyTaskDay(restored.dailyTasks));
-    for (const kind of ['worker','operator']) claimDailyTask(restored,kind,today,today);
-    assert.equal(restored.wood, wood + 16);
+test('v22 issued and completed rewards are converted once and unfinished valid goals stay visible', () => {
+    const { day, coins } = migrateLegacyDailyTaskDay({ date: today, tasks: [
+        { kind: 'worker', goal: 1, progress: 1, material: 'wood', reward: 8, claimed: false },
+        { kind: 'operator', goal: 1, progress: 0, material: 'food', reward: 8, claimed: false }
+    ] });
+    assert.equal(coins, 8);
+    assert.deepEqual(day, { date: today, tasks: [{ kind: 'operator', goal: 1, progress: 0, claimed: false, reward: 'patrol_ration' }] });
 });
 test('full repair charges once at the single-repair price including the last partial repair', () => {
     for (const durability of [1, 79, 80, 81, 159, 160, 199]) {
-        const s = attach(village(), [{kind:'repair'}]); s.gate = durability; s.wood = 100;
+        const s = attach(village(), [{kind:'repair'}]); s.gate = durability; s.coins = 100;
         const singles = clone(s), before = clone(s);
         while (singles.gate < gateCapacity(singles)) applyCommand(singles,{type:'REPAIR'});
         const command = {type:'REPAIR',full:true};
         applyCommand(s,command); creditTaskCommand(before,s,command,today);
-        assert.equal(s.gate, singles.gate); assert.equal(s.wood, singles.wood);
+        assert.equal(s.gate, singles.gate); assert.equal(s.coins, singles.coins);
         assert.equal(s.dailyTasks.tasks[0].progress, 1);
         assert.throws(() => applyCommand(s,command));
     }
-    const s = village(); s.gate = 80; s.wood = 29;
+    const s = village(); s.gate = 80; s.coins = 23;
     assert.throws(() => applyCommand(s,{type:'REPAIR',full:true}));
-    assert.deepEqual([s.gate,s.wood],[80,29]);
-    applyCommand(s,{type:'REPAIR'}); assert.deepEqual([s.gate,s.wood],[120,19]);
+    assert.deepEqual([s.gate,s.coins],[80,23]);
+    applyCommand(s,{type:'REPAIR'}); assert.deepEqual([s.gate,s.coins],[120,15]);
 });
 test('old combat task goals still load alongside the dense-wave ranges', () => {
     const s = attach(village(), [{ kind: 'kills', goal: 12 }, { kind: 'enemyKind', goal: 4, enemy: 'enemy_raider' }]);
@@ -111,17 +112,17 @@ test('old combat task goals still load alongside the dense-wave ranges', () => {
 test('generation rejects won-night and tower goals in a doomed next wave and rejects blocked construction and nursery', () => {
     for(let seed=1;seed<=10;seed++) {
         const s=village(seed);
-        s.wood=s.food=0; s.houses=100; s.gate=1;
+        s.coins=0; s.houses=100; s.gate=1;
         s.people=[]; s.families=[];
         s.towers=s.towers.map(() => ({kind:null,level:0,operator:null}));
         prepareDailyTasks(s,today);
-        assert(s.dailyTasks.tasks.every(t=>t.kind==='rations'));
+        assert.deepEqual(s.dailyTasks.tasks, []);
         assert(validDailyTaskDay(s.dailyTasks));
     }
 });
 test('construction and family progress advance only for real successful changes', () => {
     const s=attach(village(), [{kind:'towerBuild'},{kind:'repair'},{kind:'marriage'}]);
-    s.wood=200; s.gate=gateCapacity(s)-12;
+    s.coins=200; s.gate=gateCapacity(s)-12;
     const command=c=>{
         const before=clone(s); applyCommand(s,c); creditTaskCommand(before,s,c,today);
         return s.dailyTasks.tasks.map(t=>t.progress);
@@ -134,20 +135,22 @@ test('construction and family progress advance only for real successful changes'
 });
 test('expanding a population-capped residence credits its single daily task', () => {
     const s = attach(village(), [{kind:'houseBuild'}]);
-    s.houses = 100; s.wood = s.food = storageCapacity(s);
+    s.houses = 5; s.coins = 20000;
     const before = clone(s), command = {type:'BUILD', kind:'HOUSE'};
     applyCommand(s, command); creditTaskCommand(before, s, command, today);
-    assert.equal(s.houses, 101); assert(storageCapacity(s) > storageCapacity(before));
+    assert.equal(s.houses, before.houses + 1);
     assert.equal(s.dailyTasks.tasks[0].progress, 1);
 });
-test('production credits are booked once with the start command and never inflate the inventory', () => {
-    const s=attach(village(),[{kind:'food',goal:16},{kind:'wood',goal:10},{kind:'both',goal:12,woodGoal:6}]);
-    const before=clone(s);
-    applyCommand(s,{type:'NIGHT'});
-    const stock=[s.wood,s.food];
-    creditTaskCommand(before,s,{type:'NIGHT'},today);
-    assert.deepEqual(s.dailyTasks.tasks.map(t=>t.progress),[16,10,12]);
-    assert.deepEqual([s.wood,s.food],stock);
+test('sewing progress tracks credited coins and leaves wallet settlement to the economy transaction', () => {
+    const s = attach(village(), [{ kind: 'sewCoins', goal: 8 }]);
+    const wallet = s.coins;
+    creditTaskSewing(s, tomorrow, 5);
+    assert.equal(s.dailyTasks.tasks[0].progress, 0);
+    creditTaskSewing(s, today, 5);
+    assert.equal(s.dailyTasks.tasks[0].progress, 5);
+    creditTaskSewing(s, today, 5);
+    assert.equal(s.dailyTasks.tasks[0].progress, 8);
+    assert.equal(s.coins, wallet);
 });
 test('successful combat counts actual kills, useful tower hits and successful tactic uses; no credit for defeat', () => {
     const s=attach(village(),[{kind:'kills',goal:6},{kind:'towersHit',goal:2},{kind:'casts'}]);
@@ -166,36 +169,34 @@ test('successful combat counts actual kills, useful tower hits and successful ta
     creditTaskVictory(lost,today,{outcome:'LOSE'},combat);
     assert.equal(lost.dailyTasks.tasks[0].progress,0);
 });
-test('full storage cannot claim or show red dot; once enough space exists the exact reward commits once', () => {
-    const s=attach(village(),[{kind:'win',progress:1}]);
-    const task=s.dailyTasks.tasks[0];
-    s.wood=storageCapacity(s)-7;
-    assert.equal(dailyTaskStatus(s,task),'full'); assert(!dailyTasksClaimable(s,today));
-    assert.throws(()=>claimDailyTask(s,'win',today,today),/仓储/);
-    s.wood--;
-    assert(dailyTasksClaimable(s,today));
-    claimDailyTask(s,'win',today,today);
-    assert.equal(s.wood,storageCapacity(s)); assert.equal(dailyTaskStatus(s,task),'claimed');
-    assert.throws(()=>claimDailyTask(s,'win',today,today),/已经领取/);
+test('claim provides the configured item once and never modifies the wallet', () => {
+    const s = attach(village(), [{ kind: 'win', progress: 1 }]);
+    const task = s.dailyTasks.tasks[0], wallet = s.coins;
+    assert(dailyTasksClaimable(s, today));
+    assert.equal(claimDailyTask(s, 'win', today, today), 'gate_kit');
+    assert.equal(s.coins, wallet);
+    assert.equal(dailyTaskStatus(task), 'claimed');
+    assert(!dailyTasksClaimable(s, today));
+    assert.throws(() => claimDailyTask(s, 'win', today, today), /已经领取/);
 });
 test('a failed claim retries the exact save candidate even at midnight; no old reward can be claimed on the new day', () => {
-    const s=attach(village(),[{kind:'win',progress:1}]); s.wood=50;
+    const s=attach(village(),[{kind:'win',progress:1}]); s.coins=50;
     const f=savedSession(s), game=f.open(), write=f.port.write;
     f.port.write=()=>{ throw Error('write failed'); };
     game.claimTask('win',today);
     assert(game.saves.pending);
-    assert.equal(game.state.wood,50);
-    assert.equal(game.saves.pending.state.wood,58);
+    assert.equal(game.state.coins,50);
+    assert.equal(game.saves.pending.state.coins,50);
     assert(game.saves.pending.state.dailyTasks.tasks[0].claimed);
     game.claimTask('win',today);
-    assert.equal(game.saves.pending.state.wood,58);
+    assert.equal(game.saves.pending.state.coins,50);
     f.next(); f.port.write=write; game.retry();
-    assert.equal(game.state.wood,58);
+    assert.equal(game.state.coins,50); assert.equal(game.villageItems.backpack().items.gate_kit,1);
     assert(game.state.dailyTasks.tasks[0].claimed);
     game.update(.05);
     assert.equal(game.state.dailyTasks.date,tomorrow);
     const reopened=f.open(); reopened.claimTask('win',today);
-    assert.equal(reopened.state.wood,58);
+    assert.equal(reopened.state.coins,50); assert.equal(reopened.villageItems.backpack().items.gate_kit,1);
     assert.match(reopened.error,/已刷新/);
 });
 test('midnight refreshes an existing village; a restart clears all tasks until that village unlocks them', () => {
@@ -217,7 +218,7 @@ test('legacy saves may omit daily data; malformed rewards, dates and duplicate t
     const s=attach(village(),[{kind:'win',progress:1}]);
     for(const corrupt of [
         d=>d.date='2026-02-30', d=>d.tasks[0].reward=9, d=>d.tasks.push(d.tasks[0]), d=>d.tasks[0].progress=2,
-        d=>d.tasks[0].material='both', d=>d.tasks[0].kind='toString', d=>{d.tasks[0].kind='equipped'; d.tasks[0].tactic='unknown';}
+        d=>d.tasks[0].reward='unknown', d=>d.tasks[0].kind='toString', d=>{d.tasks[0].kind='equipped'; d.tasks[0].tactic='unknown';}
     ]) {
         const record=clone(s.dailyTasks); corrupt(record); assert(!validDailyTaskDay(record));
     }

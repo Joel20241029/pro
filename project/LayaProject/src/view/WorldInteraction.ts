@@ -2,7 +2,7 @@ import { GameState } from "../game/GameState";
 import { BuildingVisuals } from "./BuildingVisuals";
 import { VillagerMotion } from "./VillagerMotion";
 import { UiWidgets } from "./UiWidgets";
-import { HERO_COMMITTEE_PROP, PATROL_PROP } from "./config/VillageSceneConfig";
+import { FACTORY_PROP, HERO_COMMITTEE_PROP, PATROL_PROP } from "./config/VillageSceneConfig";
 import { HOUSE_TIP_NAMES } from "./config/AnchoredTipConfig";
 import { HERO_ACTOR_ID } from "./HeroVisuals";
 import { DELIVERY_HERO } from "../config/DeliveryHeroConfig";
@@ -21,7 +21,7 @@ export class WorldInteraction {
     private pickBounds = new Laya.Rectangle();
     constructor(private state: () => GameState | null, private motion: () => VillagerMotion) { }
     bind(clickNodes: Laya.Sprite[], ui: UiWidgets, houseClicked: (name: string, visual: BuildingVisuals) => void, personClicked: (id: string) => void,
-        patrolClicked?: () => void, committeeClicked?: (heroId?: string) => void) {
+        patrolClicked?: () => void, committeeClicked?: (heroId?: string) => void, factoryClicked?: () => void) {
         for (const node of clickNodes) {
             node.on(Laya.Event.MOUSE_DOWN, this, (event: Laya.Event) => {
                 const target = this.pickAt(event.stageX, event.stageY);
@@ -34,6 +34,7 @@ export class WorldInteraction {
                 const target = this.pickAt(event.stageX, event.stageY);
                 if (!down || !target || !down.source.visible || down.source.name !== down.sourceId || target.id !== down.target.id || target.node !== down.target.node) return;
                 if (target.personId) personClicked(target.personId);
+                else if (target.id === FACTORY_PROP) factoryClicked?.();
                 else if (target.id === PATROL_PROP) patrolClicked?.();
                 else if (target.id === HERO_COMMITTEE_PROP) committeeClicked?.();
                 else if (target.id === HERO_ACTOR_ID || target.id === DELIVERY_HERO.actorId || target.id === SONGLEI.actorId)
@@ -51,7 +52,7 @@ export class WorldInteraction {
             });
         }
     }
-    /** 输入遍历不服从zIndex；逆序复用绘制深度，前景实体挡住后景，农田地面仍可点到农夫。 */
+    /** 输入遍历不服从zIndex；逆序复用绘制深度，前景实体挡住后景，地面装饰不拦截点选。 */
     pickAt(stageX: number, stageY: number): WorldItem | null {
         const state = this.state();
         if (!state) return null;
@@ -62,9 +63,10 @@ export class WorldInteraction {
             node.globalToLocal(this.pickPoint.setTo(stageX, stageY));
             // 人物只取自身贴图，红心不扩大点击范围；建筑/树木包含自己的可见部件。
             const hero = state.phase === "DAY" && (item.id === HERO_ACTOR_ID || item.id === DELIVERY_HERO.actorId || item.id === SONGLEI.actorId);
-            const bounds = item.personId || hero ? node.getGraphicBounds(false, this.pickBounds) : node.getSelfBounds(this.pickBounds, true);
+            const atMachine = item.personId && this.motion().get(item.personId).clip === "sewing";
+            const bounds = atMachine ? node.hitArea as Laya.Rectangle : item.personId || hero ? node.getGraphicBounds(false, this.pickBounds) : node.getSelfBounds(this.pickBounds, true);
             if (bounds.contains(this.pickPoint.x, this.pickPoint.y))
-                return item.personId || hero || HOUSE_TIP_NAMES[item.id] || item.id === PATROL_PROP || item.id === HERO_COMMITTEE_PROP ? item : null;
+                return item.personId || hero || HOUSE_TIP_NAMES[item.id] || item.id === FACTORY_PROP || item.id === PATROL_PROP || item.id === HERO_COMMITTEE_PROP ? item : null;
         }
         return null;
     }

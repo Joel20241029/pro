@@ -1,14 +1,14 @@
 import { ROAD_PROFILE } from "../config/RoadGeometry";
 import { PADS, TowerKind } from "../game/GameConfig";
 import { GameLayout } from "./GameLayout";
-import { farm } from "./config/VillageSceneConfig";
+import { FACTORY_PROP } from "./config/VillageSceneConfig";
 import { GroundPoint, Footprint, TOWER_VIEW, TOWER_SCREEN_LAYOUTS, VILLAGE_PROPS, LANDSCAPE_FOOTPRINTS, MOTION, CAMP_STOPS, VILLAGE_STOPS } from "./config/VillageSceneConfig";
 export { GroundPoint, Footprint, VillageProp, TOWER_VIEW, VILLAGE_PROPS, LANDSCAPE_FOOTPRINTS, MOTION, CAMP_STOPS, WEDDING, VILLAGE_STOPS } from "./config/VillageSceneConfig";
 export function towerLaunch(index: number, _kind: TowerKind, pads: readonly GroundPoint[] = PADS): GroundPoint {
     const pad = pads[index], at = TOWER_VIEW.muzzle, scale = TOWER_VIEW.size / TOWER_VIEW.canvas;
     return { x: pad.x + (at.x - TOWER_VIEW.canvas / 2) * scale * TOWER_VIEW.facing[index], y: pad.y + TOWER_VIEW.top + at.y * scale };
 }
-/** 建筑底座保持图片的真实尺寸；农田/伐木工作点跟随各自资源，不能把动作点单独拉到图外。 */
+/** 建筑底座保持图片的真实尺寸；制衣工位跟随厂房足点，不能把动作点单独拉到图外。 */
 export function layoutVillage(layout: GameLayout) {
     const point = (p: GroundPoint): GroundPoint => ({ x: p.x, y: layout.worldY(p.y) });
     const battleHeight = layout.gateY - layout.mapTop;
@@ -64,19 +64,16 @@ export function layoutVillage(layout: GameLayout) {
         return points.map(p => ({ ...p, y: after.y + p.y - before.y }));
     };
     const stops = {
-        homes: VILLAGE_STOPS.homes.map(point), farm: relative(VILLAGE_STOPS.farm, "building:farm"),
-        logging: VILLAGE_STOPS.logging.map(stop => {
-            const before = VILLAGE_PROPS.find(p => p.id === stop.treeId)!, after = props.find(p => p.id === stop.treeId)!;
-            return { ...stop, treeX: after.x, y: after.y + stop.y - before.y };
-        }), rest: camp, nightRest: nightCamp, children: camp, waiting: VILLAGE_STOPS.waiting.map(point),
+        homes: VILLAGE_STOPS.homes.map(point), factoryDoor: relative(VILLAGE_STOPS.factoryDoor, FACTORY_PROP),
+        sewing: relative(VILLAGE_STOPS.sewing, FACTORY_PROP),
+        rest: camp, nightRest: nightCamp, children: camp, waiting: VILLAGE_STOPS.waiting.map(point),
         wedding: VILLAGE_STOPS.wedding.map(point), // 首塔在短屏靠近林带边缘，驻塔村民从通行区的一侧接近。
         towers: pads.map(p => ({
             x: Math.max(LANDSCAPE_FOOTPRINTS[0].right + MOTION.clearance + MOTION.cornerGap, Math.min(p.x, LANDSCAPE_FOOTPRINTS[1].left - MOTION.clearance - MOTION.cornerGap)),
             y: Math.min(p.y + 54, layout.gateY - 27)
         }))
     };
-    const farmShift = props.find(p => p.id === "building:farm")!.y - farm.y;
-    const landscape = LANDSCAPE_FOOTPRINTS.map((r, i) => i === 4 ? { ...r, top: r.top + farmShift, bottom: r.bottom + farmShift } : ({ ...r,
+    const landscape = LANDSCAPE_FOOTPRINTS.map((r, i) => ({ ...r,
         top: i < 2 ? layout.worldY(r.top) : layout.gateY - (830 - r.top), bottom: layout.worldY(r.bottom)
     }));
     const bounds = { ...MOTION.bounds, top: layout.worldY(MOTION.bounds.top), bottom: layout.footerTop - 14 };

@@ -12,7 +12,7 @@ const { RULE } = read('game/GameConfig');
 
 function learned() {
     const s = createGame(7); const t = tacticDefinition(RAGE_TACTIC);
-    s.completed = t.unlockWaves; s.day = s.completed + 1; s.wood = t.wood; s.food = t.food;
+    s.completed = t.unlockWaves; s.day = s.completed + 1; s.coins = t.coins;
     applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC }); return s;
 }
 function enemy(seq, kind = 'enemy_raider') {
@@ -20,25 +20,25 @@ function enemy(seq, kind = 'enemy_raider') {
     return { seq, kind, appearanceSeed: 87, progress: 256 + seq, hp: 100000, speed: 0, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
 }
 function battle(kind = 'ARROW', tactic = RAGE_TACTIC) {
-    const s = learned(); s.food = 100; s.tactics.equipped = tactic;
+    const s = learned(); s.tactics.equipped = tactic;
     applyCommand(s, { type: 'NIGHT' }); const b = new BattleSimulation(s);
     b.base.towers.forEach((t, i) => { t.kind = i === 0 ? kind : null; t.level = 1; t.operator = i === 0 ? s.people[0].id : null; });
-    const operator = b.base.people[0]; operator.traits = ['trait_frugal']; operator.quality = "COMMON";
+    const operator = b.base.people[0]; operator.traits = ['trait_crafty']; operator.quality = "COMMON";
     b.cursor = b.base.wave.entries.length; b.enemies = [enemy(0)]; return b;
 }
-test('rage learns at ten current-village wins with one exact 45 wood + 20 food debit', () => {
+test('rage learns at ten current-village wins with one exact 60-coin debit', () => {
     const t = tacticDefinition(RAGE_TACTIC);
-    assert.deepEqual([t.name, t.unlockWaves, t.wood, t.food, t.effect, t.multiplier, t.ticks * RULE.step], ['百毅靓之怒', 10, 45, 20, 'ATTACK_DAMAGE', 1.5, 18]);
+    assert.deepEqual([t.name, t.unlockWaves, t.coins, t.effect, t.multiplier, t.ticks * RULE.step], ['百毅靓之怒', 10, 60, 'ATTACK_DAMAGE', 1.5, 18]);
     const s = createGame(7); s.completed = 9; s.day = 10; s.legacy.bestNight = 100; s.tactics.learned.push(SHIELD_TACTIC);
     assert.equal(tacticUnavailableReason(s, RAGE_TACTIC, 'LEARN'), '还需守住 1 波'); assert(!canLearnTactic(s));
     const old = clone(s); assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC })); assert.deepEqual(s, old);
-    s.completed = 10; s.day = 11; s.wood = 45; s.food = 19;
-    assert.equal(tacticUnavailableReason(s, RAGE_TACTIC, 'LEARN'), '还缺 1 粮');
-    s.food = 20; assert(canLearnTactic(s)); applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC });
-    assert.deepEqual([s.wood, s.food, s.tactics.equipped], [0, 0, RAGE_TACTIC]); assert(!canLearnTactic(s));
+    s.completed = 10; s.day = 11; s.coins = 59;
+    assert.equal(tacticUnavailableReason(s, RAGE_TACTIC, 'LEARN'), '还缺 1 尔币');
+    s.coins = 60; assert(canLearnTactic(s)); applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC });
+    assert.deepEqual([s.coins, s.tactics.equipped], [0, RAGE_TACTIC]); assert(!canLearnTactic(s));
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: RAGE_TACTIC }));
     applyCommand(s, { type: 'TACTIC_EQUIP', id: DEFAULT_TACTIC }); applyCommand(s, { type: 'TACTIC_EQUIP', id: RAGE_TACTIC });
-    assert.deepEqual([s.wood, s.food], [0, 0]);
+    assert.equal(s.coins, 0);
 });
 test('three tower damage paths use rage before final rounding across enemy kinds, with no extra frost splash damage', () => {
     for (const [kind, normal, boosted] of [['ARROW',12,18], ['STONE',22,33], ['SLOW',4,6]]) {

@@ -51,8 +51,8 @@ export function buildBuildingLayouts(resRoot) {
         }
         return out;
     };
-    const kinds = ['HOUSE', 'FARM', 'LOGGING', 'GATE', 'CANNON', 'PATROL', 'HEARTH'];
-    const files = fs.readdirSync(path.join(source, 'prefabs')).filter(f => f.endsWith('.lh')).sort();
+    const kinds = ['HOUSE', 'GATE', 'CANNON', 'PATROL', 'HEARTH'];
+    const files = fs.readdirSync(path.join(source, 'prefabs')).filter(f => f.endsWith('.lh') && !['FARM.lh', 'LOGGING.lh'].includes(f)).sort();
     if (files.length !== kinds.length || files.some(f => !kinds.includes(f.slice(0, -3)))) throw new Error('必须每种建筑一个固定外观预制体');
     const find = (node, name) => node.name === name ? node : (node.children || []).map(n => find(n, name)).find(Boolean);
     for (const file of files) {

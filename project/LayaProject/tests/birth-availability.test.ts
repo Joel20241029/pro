@@ -19,15 +19,15 @@ test("First birth preview is pure and its enabled command creates exactly one ch
     for (let i = 0; i < 20; i++) equal(birthUnavailableReason(s, family), null);
     equal(JSON.stringify(s), before);
     applyCommand(s, { type: "BIRTH", family });
-    equal(s.people.length, 7); equal(s.food, RULE.initialResource - RULE.birthCost);
-    equal(s.people[1].job, "FARM");
+    equal(s.people.length, 7); equal(s.coins, RULE.initialCoins - RULE.birthCost);
+    equal(s.people[1].job, "SEWING");
 });
 test("Food 19 is blocked without mutation; exact birth cost is accepted", () => {
-    const s = createGame(1); s.food = RULE.birthCost - 1;
-    equal(birthUnavailableReason(s, s.families[0].id), `还缺 1 粮（现有 ${s.food}/${RULE.birthCost}）`);
-    blocked(s, `还缺 1 粮（现有 ${s.food}/${RULE.birthCost}）`);
-    s.food = RULE.birthCost; equal(birthUnavailableReason(s, s.families[0].id), null);
-    applyCommand(s, { type: "BIRTH", family: s.families[0].id }); equal(s.food, 0);
+    const s = createGame(1); s.coins = RULE.birthCost - 1;
+    equal(birthUnavailableReason(s, s.families[0].id), `还缺 1 尔币`);
+    blocked(s, `还缺 1 尔币`);
+    s.coins = RULE.birthCost; equal(birthUnavailableReason(s, s.families[0].id), null);
+    applyCommand(s, { type: "BIRTH", family: s.families[0].id }); equal(s.coins, 0);
 });
 test("Last housing place is available and full housing is visibly blocked", () => {
     const s = createGame(2);
@@ -71,6 +71,6 @@ test("Night and dawn restrictions match command rejection and preserve all state
 });
 test("Final command rechecks food after a previously available preview", () => {
     const s = createGame(10); equal(birthUnavailableReason(s, s.families[0].id), null);
-    s.food = 0; blocked(s, `还缺 ${RULE.birthCost} 粮（现有 0/${RULE.birthCost}）`);
+    s.coins = 0; blocked(s, `还缺 ${RULE.birthCost} 尔币`);
 });
 console.log(`${passed} birth availability checks passed`);

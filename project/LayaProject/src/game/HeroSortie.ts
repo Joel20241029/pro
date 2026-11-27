@@ -34,10 +34,10 @@ export function paralyzed(enemy: Enemy, tick: number) {
 
 /** 村委会与招募事务复用同一门槛。 */
 export function songLeiRecruitmentReason(state: GameState) {
-    const { waves, wood, food } = SONGLEI.recruitment;
+    const { waves, coins } = SONGLEI.recruitment;
     if (state.songLeiUnlocked) return `${SONGLEI.name}已加入`;
     if (state.completed < waves) return `守住 ${waves} 波后可招募`;
-    if (state.wood < wood || state.food < food) return "粮木不足";
+    if (state.coins < coins) return "尔币不足";
     return null;
 }
 

@@ -13,7 +13,7 @@ const { CombatPresentation } = read('view/CombatPresentation');
 function village() {
     const s = createGame(13);
     s.completed = 40; s.day = 41; s.legacy.bestNight = 40;
-    s.wood = s.food = 200; s.wave = generateWave(s);
+    s.coins = 225; s.wave = generateWave(s);
     s.tactics.extraSlots = [null];
     applyCommand(s, { type: 'TACTIC_LEARN', id: ZHOU_LOVE_TACTIC, slot: 1 });
     return s;
@@ -36,16 +36,16 @@ function battle() {
     return prepare(new BattleSimulation(s));
 }
 
-test('Zhou Bo learns at wave 40, costs 180 wood / 90 food and has four couplets of lore', () => {
+test('Zhou Bo learns at wave 40, costs 205 coins and has four couplets of lore', () => {
     const s = village(), t = tacticDefinition(ZHOU_LOVE_TACTIC);
-    assert.deepEqual([t.name, t.unlockWaves, t.ticks, t.usesPerNight], ['周博的爱', 40, 0, 1]);
+    assert.deepEqual([t.name, t.unlockWaves, t.ticks, t.usesPerNight, t.coins], ['周博的爱', 40, 0, 1, 205]);
     const couplets = t.lore.split('\n');
     assert.equal(couplets.length, 4);
     assert(couplets.every(line => /^[^，。]{7}，[^，。]{7}。$/.test(line)));
     assert.match(couplets[0], /为情所困/);
     assert.match(t.summary, /女村民更多：清场/);
-    assert.deepEqual([s.wood, s.food, s.tactics.extraSlots[0]], [20, 110, ZHOU_LOVE_TACTIC]);
-    const early = createGame(13); early.completed = 39; early.day = 40; early.wood = early.food = 200;
+    assert.deepEqual([s.coins, s.tactics.extraSlots[0]], [20, ZHOU_LOVE_TACTIC]);
+    const early = createGame(13); early.completed = 39; early.day = 40; early.coins = 225;
     assert.throws(() => applyCommand(early, { type: 'TACTIC_LEARN', id: ZHOU_LOVE_TACTIC }), /还需守住 1 波/);
 });
 

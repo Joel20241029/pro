@@ -8,6 +8,7 @@ const { CONFIG_VERSION } = require(path.join(compiled, 'game/GameConfig.js'));
 global.Laya = { Sprite: class {}, OpenDataContextView: class {}, Texture2D: class {} };
 const { drawBoot } = require(path.join(compiled, 'view/panels/SessionPanels.js'));
 const keys = ['daidai_village.save.a', 'daidai_village.save.b'];
+const recordedLegacyNight = require('./fixtures/save-v22-night.json');
 
 function envelope(configVersion, revision = 1, seed = 1, schemaVersion = 5) {
     const body = { schemaVersion, configVersion, revision, commitId: `fixture:${seed}:${revision}`, commitType: 'NORMAL', payload: createGame(seed) };
@@ -85,7 +86,7 @@ test('device settings inherit legacy values and write independently of a running
 });
 
 test('old/future config and schema mismatches preserve both original slots until explicit reset', () => {
-    for (const raw of [envelope(CONFIG_VERSION - 1), envelope(CONFIG_VERSION - 2), envelope(CONFIG_VERSION + 1), envelope(CONFIG_VERSION, 1, 1, 4), envelope(CONFIG_VERSION, 1, 1, 6)]) {
+    for (const raw of [envelope(20), envelope(21), envelope(CONFIG_VERSION + 1), envelope(CONFIG_VERSION, 1, 1, 4), envelope(CONFIG_VERSION, 1, 1, 6)]) {
         const storage = new MemoryStore([raw, raw]), game = session(storage);
         assert.equal(game.boot.kind, 'incompatible'); assert.equal(game.state, null);
         game.retry(); assert.equal(game.boot.kind, 'incompatible');
@@ -207,34 +208,97 @@ test('explicit incompatible reset does not inherit stale in-memory legacy or his
     assert.equal(game.state.legacy.bestNight, 0); assert.equal(game.state.legacy.births, 0); assert.deepEqual(game.state.history, []);
 });
 
-test('a checksummed v22 calendar save loses only retired choices, without wiping travelers or the saved enemy schedule', () => {
-    const { applyCommand, finishNight } = require(path.join(compiled, 'game/VillageRules.js'));
-    const old = raw => {
-        const { checksum, ...body } = JSON.parse(envelope(CONFIG_VERSION));
-        body.payload = raw;
-        return canonical({ ...body, checksum: crc32(canonical(body)) });
-    };
+function legacyEnvelope(edit) {
+    const { checksum, ...body } = structuredClone(recordedLegacyNight);
+    edit(body.payload, body);
+    return canonical({ ...body, checksum: crc32(canonical(body)) });
+}
+
+test('v22 migration rolls back the recorded night once and preserves both slots until a new save', () => {
+    const { payload } = recordedLegacyNight;
+    const raw = canonical(recordedLegacyNight), memory = new MemoryStore([raw, null]);
+    const store = new SaveStore(memory), loaded = store.inspect();
+    assert.equal(loaded.kind, 'ready');
+    assert.equal(loaded.state.phase, 'DAY');
+    assert.equal(loaded.state.night, null);
+    const back = payload.night.returnPoint;
+    assert.equal(loaded.state.coins, back.wood + Math.floor(back.food / 2));
+    assert.equal(loaded.state.gate, back.gate);
+    assert.equal(loaded.state.rewardDie, 6);
+    assert.equal(loaded.state.patrol.rationReady, true);
+    assert.equal(loaded.state.patrol.radiusReady, true);
+    assert.deepEqual(loaded.state.wave, payload.wave);
+    assert.deepEqual(loaded.state.rng, payload.rng);
+    assert.equal(memory.writes.length, 0);
+    assert.equal(memory.read(keys[0]), raw);
+
+    store.prepare({ ...loaded.state, coins: loaded.state.coins + 7 });
+    store.commit();
+    const latest = JSON.parse(memory.read(keys[1]));
+    assert.equal(latest.configVersion, CONFIG_VERSION);
+    assert.equal(latest.villageId, recordedLegacyNight.villageId);
+    assert.equal(latest.revision, recordedLegacyNight.revision + 1);
+    assert.equal(memory.read(keys[0]), raw);
+    assert.equal(new SaveStore(memory).inspect().state.coins, loaded.state.coins + 7);
+});
+
+test('v22 historical night without a trustworthy rollback keeps its battle and receives no second reward', () => {
+    const raw = legacyEnvelope(legacy => { delete legacy.night.returnPoint; legacy.night.hungry = true; });
+    const { payload } = recordedLegacyNight;
+    const loaded = new SaveStore(new MemoryStore([raw, null])).inspect();
+    assert.equal(loaded.kind, 'ready');
+    assert.equal(loaded.state.phase, 'NIGHT');
+    assert.equal(loaded.state.night.reward, undefined);
+    assert.equal(loaded.state.night.hungry, true);
+    assert.equal(loaded.state.coins, payload.wood + Math.floor(payload.food / 2));
+    assert.deepEqual(loaded.state.wave, payload.wave);
+});
+
+test('v22 pending backpack transaction completes with the original operation identifier exactly once', () => {
+    const backpack = 'daidai_village.backpack';
+    const raw = legacyEnvelope((legacy, envelope) => {
+        legacy.phase = 'DAY'; legacy.night = null;
+        envelope.backpackChange = { id: 'liang_essence', delta: 1, before: 0 };
+    });
+    const memory = new MemoryStore([raw, raw]), store = new SaveStore(memory);
+    assert.equal(store.inspect().kind, 'complete-backpack-change');
+    assert.equal(store.pending.raw, raw);
+    assert.equal(store.pending.backpack.operation, recordedLegacyNight.commitId);
+    store.commit();
+    assert.equal(new SaveStore(memory).inspect().kind, 'ready');
+    assert.deepEqual(JSON.parse(memory.read(backpack)).items, { liang_essence: 1 });
+    assert.equal(JSON.parse(memory.read(backpack)).lastAppliedOperation, recordedLegacyNight.commitId);
+    assert.deepEqual(memory.writes.map(([key]) => key), [backpack]);
+    assert.deepEqual(keys.map(key => memory.read(key)), [raw, raw]);
+});
+
+test('v22 checksum failure preserves the original slot before inspecting economy fields', () => {
+    const tampered = structuredClone(recordedLegacyNight);
+    tampered.payload.wood++;
+    const raw = canonical(tampered), memory = new MemoryStore([raw, null]);
+    assert.equal(new SaveStore(memory).inspect().kind, 'blocked');
+    assert.equal(memory.writes.length, 0);
+    assert.equal(memory.read(keys[0]), raw);
+});
+
+test('v22 dawn migration filters retired village policies and preserves pending travelers', () => {
     const options = ['policy_harvest', 'policy_logging', 'policy_prepare'];
     const policy = { kind: 'POLICY', options };
-    const awake = createGame(11);
-    awake.day = 4; awake.completed = awake.legacy.bestNight = 3;
-    applyCommand(awake, { type: 'NIGHT' });
-    const stock = [awake.food, awake.wood], wave = canonical(awake.wave);
-    const loadedNight = new SaveStore(new MemoryStore([old({ ...awake, policy: 'policy_prepare' }), null])).inspect();
-    assert.equal(loadedNight.kind, 'ready');
-    assert.equal(loadedNight.state.phase, 'NIGHT');
-    assert.equal(canonical(loadedNight.state.wave), wave);
-    assert.deepEqual([loadedNight.state.food, loadedNight.state.wood], stock);
-    assert(!Object.hasOwn(loadedNight.state, 'policy'));
-
-    finishNight(awake, 200, awake.towers.map(t => t.operator));
-    const traveler = awake.choices[0];
-    assert.equal(traveler.kind, 'TRAVELER');
-    const raw = old({ ...awake, policy: null, choices: [policy, traveler] });
+    const dawn = (choices) => legacyEnvelope(legacy => {
+        legacy.phase = 'DAWN'; legacy.day = 5; legacy.completed = legacy.legacy.bestNight = 4;
+        legacy.wave = null; legacy.night = null; legacy.policy = null;
+        legacy.choices = choices(legacy);
+    });
+    const raw = dawn(legacy => [policy, { kind: 'TRAVELER', person: {
+        ...legacy.people[0], id: `${legacy.run}:${legacy.nextPerson++}`, name: '旅人', origin: 'TRAVELER',
+        quality: 'LEGENDARY', job: 'WAITING', nights: 22, traits: ['trait_diligent', 'trait_woodwise', 'trait_frugal']
+    } }]);
     const memory = new MemoryStore([raw, null]);
     const pending = session(memory);
     assert.equal(pending.state.phase, 'DAWN');
-    assert.deepEqual(pending.state.choices, [traveler]);
+    assert.equal(pending.state.choices.length, 1);
+    assert.equal(pending.state.choices[0].person.name, '旅人');
+    assert.deepEqual(new Set(pending.state.choices[0].person.traits), new Set(['trait_crafty', 'trait_strong', 'trait_nimble']));
     assert.equal(memory.writes.length, 0);
     assert.equal(memory.values.get(keys[0]), raw);
     pending.command({ type: 'CHOOSE', value: 'decline' });
@@ -242,10 +306,10 @@ test('a checksummed v22 calendar save loses only retired choices, without wiping
     assert(!Object.hasOwn(pending.state, 'policy'));
     assert(!Object.hasOwn(JSON.parse(memory.values.get(keys[1])).payload, 'policy'));
 
-    const onlyPolicy = new MemoryStore([old({ ...awake, policy: null, choices: [policy] }), null]);
+    const onlyPolicy = new MemoryStore([dawn(() => [policy]), null]);
     const skipped = session(onlyPolicy);
     assert.equal(skipped.state.phase, 'DAY');
     assert.equal(skipped.state.day, 5);
-    const malformed = old({ ...awake, policy: null, choices: [{ ...policy, options: [options[0], options[0], 'other'] }] });
+    const malformed = dawn(() => [{ ...policy, options: [options[0], options[0], 'other'] }]);
     assert.equal(new SaveStore(new MemoryStore([malformed, null])).inspect().kind, 'blocked');
 });

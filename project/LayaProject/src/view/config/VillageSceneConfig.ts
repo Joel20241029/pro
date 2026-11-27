@@ -1,11 +1,9 @@
 import { PADS } from "../../game/GameConfig";
-import { FARM_WHEEL_FOOTPRINT, PATROL_BOOTH_FRAME } from "../BuildingLayout";
+import { PATROL_BOOTH_FRAME } from "../BuildingLayout";
 export interface GroundPoint {
     x: number;
     y: number;
 }
-/** 伐木表现目标：树ID稳定用于预占/摇树，站点在树的村内前侧；不决定生产结算。 */
-export interface LoggingStop extends GroundPoint { treeId: string; treeX: number; }
 export interface Footprint {
     left: number;
     top: number;
@@ -60,8 +58,11 @@ function prop(id: string, frame: string, left: number, top: number, size: number
 }
 /** 村内西侧的巡防建筑，与佟楼正面错开。三档主体共用占地。 */
 export const PATROL_PROP = "building:patrol";
-/** 村委会放在村内中部，城门方向留出通行空间，与右侧农田错开。 */
+/** 村委会放在村内中部，城门方向留出通行空间，与右侧制衣厂错开。 */
 export const HERO_COMMITTEE_PROP = "building:hero-committee";
+/** 制衣厂占用右侧原生产用地，牌匾已经绘入主体。前方三台机器只展示实际在岗村民。 */
+export const FACTORY_PROP = "building:factory";
+export const FACTORY_FRAME = "motion_factory_body";
 export const HERO_COMMITTEE_FRAME = "hero_committee";
 // 128×62 的矮木门按等比画在原村口中心，足点稍前于木栅以盖住接缝。
 export const VILLAGE_GATE = prop("building:gate", "motion_gate_body", 307, 730.875, 106, 108, 14);
@@ -71,14 +72,14 @@ export const VILLAGE_PROPS: VillageProp[] = [
     // 村名牌靠左城墙，底座落在已有墙体安全边内；牌面与火把分开，不增加通行障碍。
     { id: "deco:village-sign", frame: "deco_village_sign", x: 153, y: 836, size: 140, footprint: null, signText: "文明里村" },
     { id: "deco:friendship-road-sign", frame: "deco_village_sign", x: 575, y: 499, size: 120, footprint: null, signText: "友谊路" },
-    // 下方圆树与左侧松树横向错开66，避免圆树树冠挡住松树前的落斧动作；仍保留原高度/尺寸。
+    // 下方圆树与左侧松树横向错开66，保留两棵树各自的树冠轮廓；仍保留原高度/尺寸。
     { id: "tree:logging", frame: "deco_tree_oak", x: 164, y: 1012, size: 90, footprint: { left: 153, top: 997, right: 175, bottom: 1012 }, canopyDetails: [
         { frame: "deco_apple_pair", x: .22, y: .37, size: .14, alpha: .85 },
         { frame: "deco_apple_pair", x: .59, y: .24, size: .12, alpha: .8 }
     ] },
     // 角落圆树参考原伐木树90宽，调整至84/86宽，树冠高度超过成人；足底靠边并留出完整树冠。
     // 花果各一簇、低透明度，无闪烁或跳动；复用林带素材，仅树干底部参与寻路阻挡。
-    // 花树靠城墙内侧，前侧工位与民房屋顶分开，避免人虽在树前仍被民房遮住。
+    // 花树靠城墙内侧，与民房屋顶错开。
     { id: "tree:corner-blossom", frame: "deco_tree_oak", x: 38, y: 836, size: 84, footprint: { left: 27, top: 821, right: 49, bottom: 836 }, canopyDetails: [
         { frame: "deco_blossom_ivory", x: .55, y: .28, size: .12, alpha: .78 }
     ] },
@@ -88,27 +89,21 @@ export const VILLAGE_PROPS: VillageProp[] = [
     // 松树使用88宽，与圆树同一量级、树形稍高；根部仍在行走横向边界外，左右错位保留活动区。
     { id: "tree:corner-pine-left", frame: "deco_tree_pine", x: 43, y: 976, size: 88, footprint: { left: 32, top: 961, right: 54, bottom: 976 } },
     { id: "tree:corner-pine-right", frame: "deco_tree_pine", x: 677, y: 861, size: 88, footprint: { left: 666, top: 846, right: 688, bottom: 861 } },
-    { id: "deco:logs", frame: "deco_log_pile", x: 644, y: 1024, size: 48, footprint: null },
     // 保留佟楼的 140px 外观，底座按满级厢房宽度预留，扩建时村民仍能绕开墙脚。
     prop("building:house-a", "motion_house_body", 38, 794.75, 140, 123, 33),
-    // 田地是可站立地面，用农田自身源pivot；不加入建筑排序/导航障碍，人物真正走入垄沟。
-    { id: "building:farm", frame: "motion_farm_body", x: 594, y: 954, size: 174, footprint: null, ground: true },
-    prop("building:logging", "motion_logging_body", 533, 922.625, 106, 87, 28),
+    // 足点仍在原田地中心，窄底座给前排机器和绕行留出通道。
+    prop(FACTORY_PROP, FACTORY_FRAME, 495, 768.375, 198, 110, 24),
     prop(PATROL_PROP, PATROL_BOOTH_FRAME, 152, 801.25, 148, 102, 43),
     // Larger roof and facade still stand on the existing foundation, protecting nearby compact-screen waiting positions.
     prop(HERO_COMMITTEE_PROP, HERO_COMMITTEE_FRAME, 286, 817.25, 148, 76, 24),
     VILLAGE_GATE,
     ...TOWER_DISPLAY_PADS.map((p, i) => prop(`tower:${i}`, "building_tower_pad", p.x - TOWER_VIEW.size / 2, p.y + TOWER_VIEW.top, TOWER_VIEW.size, TOWER_VIEW.footprintWidth, TOWER_VIEW.footprintDepth))
 ];
-export const farm = VILLAGE_PROPS.find(p => p.id === "building:farm")!;
-const wheel = FARM_WHEEL_FOOTPRINT, farmScale = farm.size / 128;
 /** 林带合并为两个固定块。左右栅栏一直阻挡到门柱内侧，中央双扇门洞供村民通行。 */
 export const LANDSCAPE_FOOTPRINTS: Footprint[] = [
     { left: 0, top: 260, right: 154, bottom: 764 }, { left: 566, top: 260, right: 720, bottom: 764 },
     { left: -7, top: 817, right: 319, bottom: 830 }, { left: 401, top: 817, right: 727, bottom: 830 },
-    // 独立水车底座，升级前后统一预留。屋顶与水轮上半部不参与阻挡。
-    { left: farm.x + (wheel.x - 64) * farmScale, top: farm.y + (wheel.y - 120) * farmScale,
-        right: farm.x + (wheel.x + wheel.width - 64) * farmScale, bottom: farm.y + (wheel.y + wheel.height - 120) * farmScale }
+
 ];
 /** 纯表现参数：逻辑像素/秒与秒；调整只改变行走节奏、驻足时间和离建筑的距离，不参与生产/战斗结算。 */
 export const MOTION = {
@@ -117,10 +112,12 @@ export const MOTION = {
     gateApproachWidth: 62, gateApproachDepth: 36,
     // 摇椅只围绕接地点轻摆，座位及寿命不被动画推进。
     elderRock: { periodSeconds: 2.8, angleDegrees: 3 },
-    workSeconds: 4.5, restSeconds: 1.8, staggerSeconds: .23,
+    restSeconds: 1.8,
+    // 每批到账后在散步目的地驻足。只控制动作节奏，制衣计时和收入仍按会话经济规则结算。
+    sewingBreakSeconds: 3,
     bounds: { left: 44, top: 275, right: 676, bottom: 1028 }
 } as const;
-/** 村中央的20个足底站点，避开房屋、农田；新生儿从出生起使用其中的育儿位置。
+/** 村中央的20个足底站点，避开建筑和厂房；新生儿从出生起使用其中的育儿位置。
  * 只作表现，不增加人口容量。按存活人物保留分配，不能以永久人口编号取模复用占位。
  */
 export const CAMP_STOPS: GroundPoint[] = [
@@ -147,24 +144,15 @@ export const WEDDING = {
 export const VILLAGE_STOPS = {
     // 家门与中央休息点跨集合留出间距，避免一个回家、另一个休息时仍站在一起。
     homes: [
-        // 左侧站位沿佟楼与巡防建筑前缘排布，右侧避开伐木场底座。
+        // 左侧站位沿佟楼与巡防建筑前缘排布，右侧避开厂房底座。
         ...[[58, 950], [107, 950], [151, 950], [193, 968], [238, 968], [188, 989],
             [50, 1022], [182, 1022], [230, 1022], [519, 995], [590, 978], [674, 1018], [644, 970], [674, 932], [630, 850]].map(([x, y]) => ({ x, y })),
-        // 左侧两个家门点避开花树前的新工位，保留至少24像素的停留间距。
+        // 左侧两个家门点避开花树，保留至少24像素的停留间距。
         ...[58, 98, 140, 182, 224].map(x => ({ x, y: x <= 98 ? 878 : 874 }))
     ],
-    // 沿用原画两排三垄的相对位置；地块缩放或平移时，六个落脚点随地块一起移动。
-    farm: [[-38, -48], [0, -48], [38, -48], [-38, -19], [0, -19], [38, -19]].map(([dx, dy]) => ({
-        x: farm.x + dx * farmScale, y: farm.y + dy * farmScale, direction: dx > 0 ? "LEFT" : "RIGHT"
-    })) as (GroundPoint & { direction: "LEFT" | "RIGHT" })[],
-    // 复用耕田的刀，落点在树根侧边。站在树脚前方，身体在树干上层绘制。
-    logging: [
-        { treeId: "tree:logging", treeX: 164, x: 136, y: 1014 },
-        { treeId: "tree:corner-blossom", treeX: 38, x: 66, y: 843 },
-        { treeId: "tree:corner-fruit", treeX: 677, x: 649, y: 1001 },
-        { treeId: "tree:corner-pine-left", treeX: 43, x: 71, y: 983 },
-        { treeId: "tree:corner-pine-right", treeX: 677, x: 649, y: 864 }
-    ] as LoggingStop[],
+    // 三台展示工位沿厂门前排列，80像素的工作台彼此错开。生产容量由制衣厂规则独立决定。
+    factoryDoor: [{ x: 594, y: 966 }],
+    sewing: [{ x: 498, y: 985 }, { x: 579, y: 985 }, { x: 650, y: 985 }],
     // 有意包含屋后与屋前的休息点，行人绕过墙基后会自然发生遮挡切换。
     rest: CAMP_STOPS,
     nightRest: NIGHT_CAMP_STOPS,

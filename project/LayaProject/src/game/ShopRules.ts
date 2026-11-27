@@ -1,13 +1,19 @@
 import { featureUnlocked } from "../config/DailyTaskConfig";
 import { ItemId, LIANG_ESSENCE, LIANG_INDULGENCE, PatrolItemId, SHOP_PRODUCTS } from "../config/ShopConfig";
 import { GameState, isAvailableAdult } from "./GameState";
+import { gateCapacity } from "./Growth";
 import { patrolCaptain, patrolSpinStats } from "./PatrolRules";
 
 export function shopOffer(state: GameState, id: ItemId) {
     const product = SHOP_PRODUCTS.find(item => item.id === id);
     if (!product || state.phase !== "DAY" || !featureUnlocked(state.legacy.bestNight, "shop"))
         throw new Error("当前无法购买此商品");
-    return { product, affordable: state.wood >= product.wood && state.food >= product.food };
+    return { product, affordable: state.coins >= product.coins };
+}
+
+export function gateKitUnavailable(state: GameState) {
+    if (state.phase !== "DAY" || !featureUnlocked(state.legacy.bestNight, "backpack")) return "白天才可在背包使用";
+    return state.gate >= gateCapacity(state) ? "城门已完好" : null;
 }
 
 export function essenceTargets(state: GameState) {

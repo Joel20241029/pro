@@ -60,8 +60,8 @@ export const SONGLEI = {
     spritePrefix: "hero_songlei",
     attackName: "双棍麻痹",
     lore: "吴家窑诊所关门后，宋磊拎着两根电棍去了城门。守门人问他来做什么，他说，看看谁跑得最急。",
-    // 第一只首领之后开放。粮木按开村经营实跑校准，给守门与招募都留支出空间。
-    recruitment: { waves: 12, wood: 55, food: 35 },
+    // 第一只首领之后开放。尔币费用按开村经营实跑校准，给守门与招募都留支出空间。
+    recruitment: { waves: 12, coins: 115 },
     damage: 11, interval: 1.6, walkSpeed: 57, windupRange: 55, hitRange: 74,
     // 每棍独立抽样，倒下的怪不再附加状态。调整时同时观察重复控住首领的概率。
     paralysis: { chancePercent: 30, seconds: 5.4, bossSeconds: 2.1 }

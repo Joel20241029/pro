@@ -1,12 +1,12 @@
 import { patrolCaptain, patrolSpinStats } from "../game/PatrolRules";
 import { patrolRapidCapacity, patrolRapidDamage, patrolReloadSeconds } from "../game/PatrolRapid";
 import { PATROL, PATROL_MODE, PatrolMode } from "../config/PatrolConfig";
-import { TOWER_AMMO, TOWER_BUILD_WOOD } from "../config/DefenseConfig";
+import { TOWER_AMMO, TOWER_BUILD_COINS } from "../config/DefenseConfig";
 import { SHOP_PRODUCTS } from "../config/ShopConfig";
 import { GameSession, Pause } from "../game/GameSession";
 import { GameState, isAvailableAdult, ownsTowerAmmo, Person } from "../game/GameState";
 import { birthUnavailableReason, canMarry } from "../game/VillageQueries";
-import { gateCapacity, laborSlots, repairCost, residentialUpgradeReason, upgradeCost, upgradeUnavailableReason } from "../game/Growth";
+import { gateCapacity, sewingSlots, repairCost, residentialUpgradeReason, upgradeCost, upgradeUnavailableReason } from "../game/Growth";
 import { replacementOperators } from "../game/VillageJobs";
 import type { TowerKind } from "../config/DefenseConfig";
 import { patrolActionHints } from "./PatrolActionHints";
@@ -20,10 +20,7 @@ export function actionHintsBlocked(game: GameSession): boolean {
 /** 只标记有待安排成年人可以实际填补的白天空岗。 */
 export function jobVacancyHints(s: GameState, blocked: boolean) {
     const ready = !blocked && s.phase === "DAY" && s.people.some(q => q.job === "WAITING" && isAvailableAdult(s, q));
-    return {
-        FARM: ready && s.people.filter(q => q.job === "FARM").length < laborSlots("FARM", s.farm),
-        LOGGING: ready && s.people.filter(q => q.job === "LOGGING").length < laborSlots("LOGGING", s.logging)
-    };
+    return { SEWING: ready && s.people.filter(q => q.job === "SEWING").length < sewingSlots(s.factory.level) };
 }
 /** 家庭入口与两个标签共用可执行条件；红点由当前可办事项决定。 */
 export function familyActionHints(s: GameState, blocked: boolean, identifyOnlyPair = false) {
@@ -49,11 +46,10 @@ export function familyActionHints(s: GameState, blocked: boolean, identifyOnlyPa
 export function constructionHints(s: GameState, blocked: boolean) {
     const ready = !blocked && s.phase === "DAY";
     return {
-        REPAIR: ready && s.gate < gateCapacity(s) && s.wood >= repairCost(s),
+        REPAIR: ready && s.gate < gateCapacity(s) && s.coins >= repairCost(s),
         HOUSE: ready && residentialUpgradeReason(s) === null,
         PATROL: Object.values(patrolActionHints(s, blocked)).some(Boolean),
-        FARM: ready && upgradeUnavailableReason(s, upgradeCost("FARM", s.farm)) === null,
-        LOGGING: ready && upgradeUnavailableReason(s, upgradeCost("LOGGING", s.logging)) === null,
+        FACTORY: ready && (jobVacancyHints(s, blocked).SEWING || upgradeUnavailableReason(s, upgradeCost("FACTORY", s.factory.level)) === null),
         GATE: ready && upgradeUnavailableReason(s, upgradeCost("GATE", s.gateLevel)) === null
     };
 }
@@ -63,7 +59,7 @@ export function towerAmmoActionHints(s: GameState, kind: TowerKind, blocked: boo
     const owned = ownsTowerAmmo(s, kind), active = !blocked && s.phase === "DAY";
     const offer = SHOP_PRODUCTS.find(product => product.ammo === kind);
     return {
-        upgrade: active && owned && upgradeUnavailableReason(s, upgradeCost("TOWER", s.ammoLevels[kind])) === null,
+        upgrade: active && owned && upgradeUnavailableReason(s, upgradeCost("AMMO", s.ammoLevels[kind])) === null,
         equip: active && owned && !!offer && !s.towers.some(tower => tower.kind === kind)
     };
 }
@@ -74,7 +70,7 @@ export function towerActionHints(s: GameState, index: number, blocked: boolean) 
     const tower = s.towers[index];
     if (!tower || blocked || s.phase !== "DAY") return hints;
     if (!tower.kind) {
-        hints.build = upgradeUnavailableReason(s, { wood: TOWER_BUILD_WOOD, food: 0 }) === null;
+        hints.build = upgradeUnavailableReason(s, { coins: TOWER_BUILD_COINS }) === null;
         return hints;
     }
     hints.upgrade = upgradeUnavailableReason(s, upgradeCost("TOWER", tower.level)) === null;
@@ -115,7 +111,7 @@ export function actionHints(s: GameState, blocked: boolean) {
     const hints = { people: false, families: false, build: false, history: false };
     if (blocked || s.phase !== "DAY") return hints;
     const jobs = jobVacancyHints(s, blocked);
-    hints.people = jobs.FARM || jobs.LOGGING;
+    hints.people = jobs.SEWING;
     const { marriage, nurture } = familyActionHints(s, blocked);
     hints.families = marriage || nurture;
     const building = constructionHints(s, blocked);

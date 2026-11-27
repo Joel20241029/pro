@@ -28,7 +28,7 @@ test('all nine-slice surfaces preserve drawing state and leave a positive center
 });
 test('trimmed UI icons fit their box and have a centered visible outline',()=>{
  const ui=new UiWidgets(art,()=>{}),parent=new Sprite();
- for(const id of ['icon_food','icon_wood','icon_population','icon_house']){
+ for(const id of ['icon_coin','icon_population','icon_house']){
   const image=ui.image(parent,id,12,24,44,44),child=image.children[0],f=frames[id],scale=child.width/f.sourceSize.w;
   const x=child.x+f.trimOffset.x*scale,y=child.y+f.trimOffset.y*scale;
   assert(x>=-1e-6&&y>=-1e-6);near(x+f.rect.w*scale/2,22);near(y+f.rect.h*scale/2,22);

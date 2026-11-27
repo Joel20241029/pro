@@ -5,11 +5,12 @@ import { DELIVERY_HERO, DELIVERY_PATROL_HUNT } from "../config/DeliveryHeroConfi
 import { patrolSpinStats, patrolStats } from "../game/PatrolRules";
 import { validDailyTaskDay } from "../game/DailyTaskState";
 import { VILLAGER_QUALITY } from "../config/VillagerQuality";
+import { SEWING } from "../config/RuleConfig";
 import { ADULT_APPEARANCE, ENEMIES, PADS, RULE, TOWERS, TRAITS } from "../game/GameConfig";
 import { GameState, isElder, isWorkingAdult, isAvailableAdult, Person } from "../game/GameState";
 import { validExpedition } from "../game/Expedition";
-import { gateCapacity, laborSlots, levelPower, storageCapacity } from "../game/Growth";
-import { validRationDate } from "../game/DailyRation";
+import { gateCapacity, levelPower, sewingDayCap, sewingSlots, upgradeCost } from "../game/Growth";
+import { validGiftDate } from "../game/DailyRation";
 import { capacity } from "../game/VillageQueries";
 import { TOWER_FLAGS, WAVE_PROGRESSION, WAVE, WAVE_RHYTHM } from "../config/DefenseConfig";
 import { waveDifficulty } from "../game/WaveDifficulty";
@@ -34,13 +35,13 @@ function validatePerson(p: Person) {
     check(!p.parents.includes(p.id) && !p.ancestors.includes(p.id) && typeof p.adult === "boolean" &&
         int(p.nights, 0, quality.adultNights + (uses ?? 0) * LIANG_ESSENCE.maxNights) && int(p.growth, 0, RULE.growNights));
     check(int(p.elderNights, 0, quality.elderNights));
-    check(["WAITING", "FARM", "LOGGING"].includes(p.job));
+    check(p.job === "WAITING" || p.job === "SEWING");
     if (!p.adult) check(p.nights === 0 && p.elderNights === 0 && p.job === "WAITING" && p.growth < RULE.growNights);
     else if (isWorkingAdult(p)) check(p.elderNights === 0);
     else check(p.job === "WAITING");
 }
 /** 载入即验证业务引用；损坏内容不自动补值、不自动清档。 */
-export function validateState(s: GameState) {
+export function validateState(s: GameState, migratingLegacyNight = false) {
     check(s && int(s.run, 1) && int(s.nextPerson, 1) && int(s.nextFamily, 1) && int(s.day, 1) && int(s.completed) && s.day === s.completed + 1);
     check(s.rewardDie === undefined || s.phase === "DAY" && int(s.rewardDie, 1, YUEXIU_DICE.faces), "下场守夜骰子点数无效");
     check(s.deliveryUnlocked === undefined || (s.deliveryUnlocked === true && s.completed >= DELIVERY_HERO.recruitment.waves), "外卖大王招募状态无效");
@@ -62,9 +63,15 @@ export function validateState(s: GameState) {
         const carried = [s.tactics.equipped, ...extra.filter(id => id !== null)];
         check(new Set(carried).size === carried.length, "战技槽重复携带");
     }
-    check(int(s.gateLevel, 1) && int(storageCapacity(s), RULE.storageCap) && int(gateCapacity(s), RULE.gateMax));
-    check(int(s.food, 0, storageCapacity(s)) && int(s.wood, 0, storageCapacity(s)) && int(s.gate, 0, gateCapacity(s)) && (s.phase === "GAME_OVER" ? s.gate === 0 : s.gate > 0));
-    check(int(s.houses, 1) && int(s.farm, 1) && int(s.logging, 1) && s.tier === RULE.maxTier);
+    check(int(s.gateLevel, 1) && int(gateCapacity(s), RULE.gateMax));
+    check(int(s.coins) && int(s.gate, 0, gateCapacity(s)) && (s.phase === "GAME_OVER" ? s.gate === 0 : s.gate > 0));
+    check(int(s.houses, 1) && s.tier === RULE.maxTier);
+    check(!("wood" in s || "food" in s || "farm" in s || "logging" in s), "存档仍包含已停用的粮木字段");
+    const factory = s.factory;
+    check(factory && int(factory.level, 1) && int(upgradeCost("FACTORY", factory.level).coins, 1) &&
+        int(sewingSlots(factory.level), 1) && int(sewingDayCap(s), 1) &&
+        int(factory.batches, 0, SEWING.maxBatches) && int(factory.earned, 0, sewingDayCap(s)) &&
+        (factory.batches > 0 || factory.earned === 0) && int(factory.elapsedMs, 0, SEWING.batchMs - 1), "制衣厂产出存档无效");
     check(s.lastTraveler === null || int(s.lastTraveler, 1, s.completed));
     check(Array.isArray(s.people) && s.people.length <= capacity(s)); s.people.forEach(validatePerson);
     check(Array.isArray(s.history) && s.history.length <= RULE.historyCap + RULE.favoriteCap); s.history.forEach(validatePerson);
@@ -75,7 +82,8 @@ export function validateState(s: GameState) {
     check(adults.every(p => isWorkingAdult(p) || isElder(p)));
     check(s.history.every(p => p.adult && p.nights === 0 && p.elderNights === 0 && p.job === "WAITING"));
     check(s.people.every(p => p.ancestors.every(id => s.people.some(a => a.id === id))));
-    check(workers.filter(p => p.job === "FARM").length <= laborSlots("FARM", s.farm) && workers.filter(p => p.job === "LOGGING").length <= laborSlots("LOGGING", s.logging));
+    const sewing = workers.filter(p => p.job === "SEWING");
+    check(sewing.length <= sewingSlots(factory.level) && sewing.every(p => isAvailableAdult(s, p)), "制衣厂岗位存档无效");
     check(Array.isArray(s.families) && s.families.length <= Math.floor(s.people.length / 2));
     const partners: string[] = [];
     for (const f of s.families) {
@@ -143,12 +151,19 @@ export function validateState(s: GameState) {
         if (s.night.spreadEnemyFormation !== undefined) check(s.night.spreadEnemyFormation === true, "本夜怪物阵型快照无效");
         const back = s.night.returnPoint;
         if (back !== undefined) {
-            const storage = storageCapacity(s);
-            check(back && int(back.food, 0, storage) && int(back.wood, 0, storage) && int(back.gate, 1, gateCapacity(s)), "战前进度无效");
+            check(back && int(back.coins) && int(back.gate, 1, gateCapacity(s)) && !("wood" in back || "food" in back), "战前进度无效");
             check(back.dailyTasks === undefined || validDailyTaskDay(back.dailyTasks), "战前任务进度无效");
             const cooldown = back.mercyCooldown;
             if (cooldown !== undefined) check(cooldown && mercy && int(cooldown.casts, 1, mercy.casts) &&
                 int(cooldown.wavesLeft, 0, KING_MERCY.baseCooldownWaves + cooldown.casts), "战前怜悯冷却无效");
+        }
+        const reward = s.night.reward;
+        if (reward !== undefined) {
+            check(reward && back && s.night.hungry === undefined && int(reward.base) && int(reward.sewing) && int(reward.boss) &&
+                int(reward.total) && reward.total === reward.base + reward.sewing + reward.boss, "本夜尔币奖励无效");
+        } else {
+            // 无精确回退点的旧夜已经入库，沿用旧战斗，不生成第二份胜利奖励。
+            check(back === undefined || migratingLegacyNight, "缺少本夜尔币奖励快照");
         }
         if (s.night.patrolSquad !== undefined) check(s.night.patrolSquad === true && !!patrol.captain, "本夜淡紫儿出征规则无效");
         if (s.night.patrolSpin !== undefined) check(s.night.patrolSpin === true && s.night.patrolSquad === true, "本夜淡紫儿旋转规则无效");
@@ -168,7 +183,8 @@ export function validateState(s: GameState) {
             check(s.night.mercySpent === true && (s.night.tactic === KING_MERCY_TACTIC || nightExtra?.includes(KING_MERCY_TACTIC)) &&
                 mercy && mercy.wavesLeft === KING_MERCY.baseCooldownWaves + mercy.casts, "本夜怜悯存档无效");
         }
-        check(s.night && ids(s.night.adults, RULE.populationCap) && ids(s.night.elders, RULE.populationCap) && typeof s.night.hungry === "boolean");
+        check(s.night && ids(s.night.adults, RULE.populationCap) && ids(s.night.elders, RULE.populationCap) &&
+            (s.night.hungry === undefined || s.night.hungry === true));
         const onDuty = workers.filter(p => isAvailableAdult(s, p));
         check(s.night.adults.length === onDuty.length && s.night.adults.every(id => onDuty.some(p => p.id === id)));
         check(s.night.elders.length === elders.length && s.night.elders.every(id => elders.some(p => p.id === id)));
@@ -177,7 +193,7 @@ export function validateState(s: GameState) {
     check(s.stats && int(s.stats.births) && int(s.stats.retirees) && int(s.stats.generation, 1));
     check(s.legacy && int(s.legacy.births, s.stats.births) && int(s.legacy.retirees, s.stats.retirees) && int(s.legacy.bestNight, s.completed) && int(s.legacy.nextRun, s.run + 1));
     if (s.dailyTasks !== undefined) check(validDailyTaskDay(s.dailyTasks), "每日任务存档无效");
-    check(s.legacy.lastRationDate === null || validRationDate(s.legacy.lastRationDate));
+    check(s.legacy.lastRationDate === null || validGiftDate(s.legacy.lastRationDate));
     check(ids(s.legacy.traits, Object.keys(TRAITS).length) && s.legacy.traits.every(k => own(k, TRAITS)) && s.people.every(p => p.traits.every(t => s.legacy.traits.includes(t))));
     check(s.settings && (s.settings.speed === RULE.legacySlowSpeed || s.settings.speed === RULE.battleSpeed) && typeof s.settings.music === "boolean" && typeof s.summary === "string" && s.summary.length < 300);
 }

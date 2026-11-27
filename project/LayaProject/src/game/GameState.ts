@@ -6,7 +6,7 @@ import type { DELIVERY_HERO, DELIVERY_PATROL_HUNT } from "../config/DeliveryHero
 import type { VillagerQuality } from "../config/VillagerQuality";
 import type { DailyTaskDay } from "./DailyTaskState";
 import type { Expedition } from "./Expedition";
-export type Job = "WAITING" | "FARM" | "LOGGING";
+export type Job = "WAITING" | "SEWING";
 export type HeroChoice = typeof HERO.actorId | typeof DELIVERY_HERO.actorId | typeof SONGLEI.actorId;
 export interface Person {
     id: string; name: string; sex: "MALE" | "FEMALE"; origin: "FOUNDER" | "TRAVELER" | "BORN";
@@ -34,22 +34,25 @@ export interface Wave {
 export type Choice = { kind: "TRAVELER"; person: Person };
 export interface Legacy {
     births: number; retirees: number; bestNight: number; traits: Trait[]; nextRun: number;
-    /** 每日口粮最后成功入档的本地日历日期 YYYY-MM-DD；null 表示未领过，每次新开村清空。 */
+    /** 每日村礼最后成功入档的本地日历日期 YYYY-MM-DD；null 表示未领过，每次新开村清空。 */
     lastRationDate: string | null;
 }
+/** 开战时冻结的胜利奖励。旧版已经预发收益的夜战没有这个字段。 */
+export interface NightReward { base: number; sewing: number; boss: number; total: number; }
 export interface GameState {
     run: number; nextPerson: number; nextFamily: number; day: number; completed: number;
-    phase: "DAY" | "NIGHT" | "DAWN" | "GAME_OVER"; food: number; wood: number; gate: number;
-    /** 民居扩建等级同时决定住房与仓储；住房达到人口上限后仅仓储继续增长。 */
-    houses: number; gateLevel: number; farm: number; logging: number; tier: number;
+    phase: "DAY" | "NIGHT" | "DAWN" | "GAME_OVER"; coins: number; gate: number;
+    houses: number; gateLevel: number; tier: number;
+    /** 批次、入账与部分进度随钱包共同入档；成功守夜才刷新。 */
+    factory: { level: number; batches: number; earned: number; elapsedMs: number };
     /** 上次提供旅人时的成功守夜数；谢绝也记时，新村null，不迁移旧配置。 */
     lastTraveler: number | null;
     people: Person[]; families: Family[]; towers: Tower[];
     /** 冰弹一次买断，与扣款同笔写入村庄；开局赠送的两种弹药无需存储。 */
     iceAmmoUnlocked?: true;
-    /** 外卖大王的招募和粮木扣款随本村一起提交。 */
+    /** 外卖大王的招募和尔币扣款随本村一起提交。 */
     deliveryUnlocked?: true;
-    /** 招募与粮木扣款同笔保存，缺席表示尚未招募。 */
+    /** 招募与尔币扣款同笔保存，缺席表示尚未招募。 */
     songLeiUnlocked?: true;
     /** 白天选择下次派谁。旧村缺此字段时沿用开局英雄智卓。 */
     selectedHero?: HeroChoice;
@@ -68,7 +71,7 @@ export interface GameState {
     };
     history: Person[]; favorites: string[]; choices: Choice[];
     wave: Wave | null; night: {
-        adults: string[]; elders: string[]; hungry: boolean; tactic: string; extraSlots?: (string | null)[];
+        adults: string[]; elders: string[]; hungry?: true; reward?: NightReward; tactic: string; extraSlots?: (string | null)[];
         /** 每个新夜只有一名出战英雄，读档重打仍使用开战时的人选。 */
         activeHero?: HeroChoice;
         /** true 是路肩停车，ROUTE_HUNT 是沿路索敌。已开始的夜战保留其战前规则。 */
@@ -93,7 +96,7 @@ export interface GameState {
         patrolMode?: PatrolMode;
         patrolRation?: true;
         patrolWideImpact?: true;
-        /** 本夜粮木产出的骰子点数。退出守夜时转回白天。 */
+        /** 本夜基础奖励的骰子点数。退出守夜时转回白天。 */
         rewardDie?: number;
     } | null;
     rng: { family: number; world: number };
@@ -105,12 +108,12 @@ export interface GameState {
     /** speed 保留原存档字段以兼容旧档；读入会话和新开村均使用固定常速。 */
     settings: { speed: 2 | 3; music: boolean }; summary: string;
 }
-type NightReturnPoint = Pick<GameState, "food" | "wood" | "gate" | "dailyTasks"> &
+type NightReturnPoint = Pick<GameState, "coins" | "gate" | "dailyTasks"> &
     Pick<GameState["tactics"], "mercyCooldown">;
 
 export function nightReturnPoint(s: GameState): NightReturnPoint {
-    const { food, wood, gate, dailyTasks, tactics: { mercyCooldown } } = s;
-    return { food, wood, gate, ...(dailyTasks ? { dailyTasks: clone(dailyTasks) } : {}),
+    const { coins, gate, dailyTasks, tactics: { mercyCooldown } } = s;
+    return { coins, gate, ...(dailyTasks ? { dailyTasks: clone(dailyTasks) } : {}),
         ...(mercyCooldown ? { mercyCooldown: { ...mercyCooldown } } : {}) };
 }
 /** 本村免费获赠两种弹药，冰弹由买断标记解锁。 */

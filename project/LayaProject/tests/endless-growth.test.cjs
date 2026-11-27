@@ -2,7 +2,7 @@ const {test}=require('node:test'), assert=require('node:assert/strict'), path=re
 const read=file=>require(path.join(process.env.DAIDAI_TEST_BUILD,file));
 const {createGame,applyCommand,capacity,economy,finishNight}=read('game/VillageRules');
 const {RULE,PADS,ENEMIES}=read('game/GameConfig');
-const {residentialCost,storageCapacity,upgradeCost}=read('game/Growth');
+const {residentialCost,sewingSlots}=read('game/Growth');
 const {validateState}=read('storage/StateValidation');
 const {SaveStore}=read('storage/SaveStore');
 const {VisibleResidents}=read('view/VisibleResidents');
@@ -30,61 +30,58 @@ test('grouped waves stagger their three arrivals within the existing wave window
 
 function population(count=107) {
  const s=createGame(7), templates=s.people;
- s.houses=100;s.farm=110;s.logging=110;s.families=[];
- s.people=Array.from({length:count},(_,i)=>({...structuredClone(templates[i%templates.length]),id:`${s.run}:${i+1}`,job:i%2?'LOGGING':'FARM',careChild:null}));
- s.nextPerson=count+1;s.food=s.wood=storageCapacity(s);return s;
+ s.houses=100;s.factory.level=52;s.families=[];
+ s.people=Array.from({length:count},(_,i)=>({...structuredClone(templates[i%templates.length]),id:`${s.run}:${i+1}`,job:'SEWING'}));
+ s.nextPerson=count+1;s.coins=500;return s;
 }
-test('residential expansion keeps growing storage past 100 with capacity 107 and one atomic dual-resource payment',()=>{
+test('residential expansion ends at capacity 107 with one exact coin payment each',()=>{
  const s=createGame(7);assert.equal(s.houses,1);assert.equal(capacity(s),8);
  for(let level=1;level<100;level++){
-  const cost=residentialCost(level);s.food=cost.food;s.wood=cost.wood;
-  applyCommand(s,{type:'BUILD',kind:'HOUSE'});assert.equal(s.houses,level+1);assert.equal(capacity(s),8+level);assert.equal(s.food+s.wood,0);
+  const cost=residentialCost(level);s.coins=cost.coins;
+  applyCommand(s,{type:'BUILD',kind:'HOUSE'});assert.equal(s.houses,level+1);assert.equal(capacity(s),8+level);assert.equal(s.coins,0);
  }
  assert.equal(s.people.length,6);assert.equal(capacity(s),107);
- const before=JSON.stringify(s);assert.throws(()=>applyCommand(s,{type:'BUILD',kind:'HOUSE'}));assert.equal(JSON.stringify(s),before);
- const cap=storageCapacity(s),next=residentialCost(s.houses);s.food=next.food;s.wood=next.wood;
- applyCommand(s,{type:'BUILD',kind:'HOUSE'});assert.equal(capacity(s),107);assert(storageCapacity(s)>cap);validateState(s);
- for(const level of [1,5,50,100,10000]){s.houses=level;const c=residentialCost(level);assert(Math.max(c.food,c.wood)<=storageCapacity(s));}
+ s.coins=1000000;const before=JSON.stringify(s);
+ assert.throws(()=>applyCommand(s,{type:'BUILD',kind:'HOUSE'}));assert.equal(JSON.stringify(s),before);validateState(s);
 });
-test('full population saves and settles food, work and ageing even when only twenty residents are displayed',()=>{
+test('full population saves, settles coins and ages all adults even if only a subset is displayed',()=>{
  const s=population(),selection=new VisibleResidents();validateState(s);
  const original=JSON.stringify(s),shown=selection.select(s,s.towers,[]);
- assert(shown.length<=20);assert.equal(JSON.stringify(s),original);
- const production=economy(s),small=economy({...s,people:shown});
- assert(production.food>small.food*3);assert(production.wood>small.wood*3);assert(production.rations>small.rations*3);
+ assert(shown.length<=20);assert.equal(JSON.stringify(s),original);assert.equal(sewingSlots(s.factory.level),107);
+ const production=economy(s);
+ assert.equal(production.sewing,15);
  const values=new Map(),port={read:k=>values.get(k)??null,write:(k,v)=>values.set(k,v)};
  const save=new SaveStore(port);save.inspect();save.prepare(s);save.commit();assert.equal(new SaveStore(port).inspect().state.people.length,107);
- const food=s.food,wood=s.wood,nights=new Map(s.people.map(p=>[p.id,p.nights]));
- applyCommand(s,{type:'NIGHT'});assert.equal(s.food,Math.min(storageCapacity(s),food+production.food-production.rations));assert.equal(s.wood,Math.min(storageCapacity(s),wood+production.wood));
- finishNight(s,s.gate,s.towers.map(t=>t.operator));
+ const coins=s.coins,nights=new Map(s.people.map(p=>[p.id,p.nights]));
+ applyCommand(s,{type:'NIGHT'});assert.equal(s.coins,coins);
+ finishNight(s,s.gate,s.towers.map(t=>t.operator));assert.equal(s.coins,coins+production.total);
  assert.equal(s.people.length,107);for(const p of s.people)assert.equal(p.nights,nights.get(p.id)-1);validateState(s);
 });
-test('display selection stays bounded and stable through population, care and day/night changes',()=>{
+test('display selection remains bounded and stable through population and day/night changes',()=>{
  const s=population(),motion=new VillagerMotion();const before=JSON.stringify(s);
  motion.sync(s,s.towers);const ids=motion.visiblePeople.map(p=>p.id);motion.sync(s,s.towers);assert.deepEqual(motion.visiblePeople.map(p=>p.id),ids);
  for(let i=0;i<20;i++){s.phase=i%2?'DAY':'NIGHT';motion.sync(s,s.towers);motion.update(.1);assert(motion.count<=20);assert.equal(s.people.length,107);}
  s.phase='DAY';assert.equal(JSON.stringify(s),before);
- const carer=s.people[100],child=s.people[101];carer.job='CARE';carer.careChild=child.id;child.adult=false;child.growth=0;child.job='WAITING';child.nights=0;
- const selector=new VisibleResidents(),selected=selector.select(s,s.towers,[carer.id]);
- assert(selected.includes(carer)&&selected.includes(child));assert(selected.length<=20);
+ const worker=s.people[100];
+ const selector=new VisibleResidents(),selected=selector.select(s,s.towers,[worker.id]);
+ assert(selected.includes(worker));assert(selected.length<=20);
 });
-test('three consecutive logging couples all celebrate without exceeding four displayed logging workers',()=>{
- const s=createGame(7);s.families=[];s.logging=7;s.people.forEach(p=>p.job='LOGGING');
+test('three consecutive weddings retain six appearances while workers return to their stations',()=>{
+ const s=createGame(7);s.families=[];
  const motion=new VillagerMotion();motion.sync(s,s.towers);
  for(let i=0;i<3;i++)applyCommand(s,{type:'FAMILY',a:s.people[i*2].id,b:s.people[i*2+1].id});
  motion.sync(s,s.towers);
  const celebrated=new Set();
  for(let i=0;i<2400;i++){
-  // 模拟真实世界推进：没有面板刷新，只在婚礼完成发出重选信号时同步。
   if(motion.update(.1))motion.sync(s,s.towers);
-  assert(motion.visiblePeople.filter(p=>p.job==='LOGGING').length<=4);
+  assert(motion.visiblePeople.filter(p=>motion.get(p.id).clip==='sewing').length<=3);
   for(const p of motion.visiblePeople)if(motion.get(p.id).heartElapsed!==null)celebrated.add(p.id);
  }
  assert.equal(celebrated.size,6);assert.equal(s.families.length,3);
 });
 test('five pads start with two towers and validate all five occupants',()=>{
  const s=createGame(7);assert.equal(PADS.length,5);assert.equal(s.towers.length,5);assert.equal(s.towers.filter(t=>t.kind).length,2);
- s.houses=3;s.wood=500;s.food=300;for(let i=2;i<5;i++)applyCommand(s,{type:'TOWER',index:i,kind:'ARROW'});
+ s.houses=3;s.coins=500;for(let i=2;i<5;i++)applyCommand(s,{type:'TOWER',index:i,kind:'ARROW'});
  assert(s.towers.every(t=>t.kind&&t.operator));assert.equal(new Set(s.towers.map(t=>t.operator)).size,5);validateState(s);
  const b=structuredClone(s);b.towers.pop();assert.throws(()=>validateState(b));
 });

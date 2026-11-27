@@ -16,7 +16,6 @@ export class SpriteFrames {
     private clips = new Map<string, Clip>();
     private layouts = new Map<string, Frame>();
     private directions: Record<string, Record<WalkDirection, { clip: string; mirror: boolean }>> = {};
-    private laborDirections: Record<string, Record<string, { clip: string; mirror: boolean }>> = {};
     private enemyFacing: Record<string, string> = {};
     private stages = new Set<ResourceStage>();
     private failedUrls = new Set<string>();
@@ -72,7 +71,6 @@ export class SpriteFrames {
             for (const [id, texture] of created) { this.textures.set(id, texture); this.layouts.set(id, logicalFrames.get(id)!); }
             for (const clip of clips) this.clips.set(clip.id, clip);
             Object.assign(this.directions, result[1].data.walkDirections);
-            Object.assign(this.laborDirections, result[1].data.laborDirections);
             Object.assign(this.enemyFacing, result[1].data.enemyNativeFacing);
             if (stage === "village") { this.buildingLayouts = result[2].data.layouts; this.buildingUpgrade = result[3]; this.buildingAttack = result[4]; }
             if (enemyLayouts) this.enemyLayouts = enemyLayouts;
@@ -108,7 +106,6 @@ export class SpriteFrames {
         sprite.size(size, height).pivot(f.pivot.x / f.sourceSize.w * size, f.pivot.y / f.sourceSize.h * height);
     }
     walk(character: string, direction: WalkDirection) { const pose = this.directions[character]?.[direction]; if (!pose) throw new Error(`未声明的方向：${character}/${direction}`); return pose; }
-    labor(action: string, direction: WalkDirection) { const pose = this.laborDirections[action]?.[direction]; if (!pose) throw new Error(`未声明的劳动方向：${action}/${direction}`); return pose; }
     enemyMirror(kind: string, dx: number) { return dx > 0 && this.enemyFacing[kind] === "LEFT"; }
     panel(sprite: Laya.Sprite, id: string, width: number, height: number) {
         const grid = this.layouts.get(id)?.nineSlice;

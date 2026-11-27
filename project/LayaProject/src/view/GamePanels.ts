@@ -17,6 +17,7 @@ import { drawPeoplePanel } from "./panels/PeoplePanels";
 import { drawPersonDetailPanel } from "./panels/PersonDetailPanel";
 import { drawFamilyPanel } from "./panels/FamilyPanel";
 import { drawBuildingPanel } from "./panels/BuildingPanels";
+import { drawFactoryPanel, sewingProgressText } from "./panels/FactoryPanel";
 import { drawHeroCommittee } from "./panels/HeroCommitteePanel";
 import { drawWavePanel } from "./panels/WavePanel";
 import { drawJournalPanel } from "./panels/JournalPanels";
@@ -33,17 +34,18 @@ import type { TacticNotices } from "./TacticNotices";
 /** 面板状态与 CHOICE 暂停的唯一所有者。绘制模块不会各自缓存面板或注册刷新回调。 */
 export class GamePanels implements PanelContext {
     current: Panel | null = null;
+    private sewingProgress: Laya.Text | null = null;
     private motion = new PanelMotion(this.overlay);
     private deferRankingCanvas = false;
     private seenGuides = new Set<GuideTrack>();
     constructor(readonly game: GameSession, readonly art: SpriteFrames, readonly platform: WechatPlatform, readonly ui: UiWidgets, readonly overlay: Laya.Sprite, public layout: GameLayout, readonly refresh: () => void, readonly resources: ResourcePreparation, private tacticsNotices?: TacticNotices,
         private onDailyClaim?: (kind: TaskKind, date: string, icon: Laya.Sprite) => void,
-        private onExpeditionClaim?: (food: Laya.Sprite, wood: Laya.Sprite) => void) { }
+        private onExpeditionClaim?: (icon: Laya.Sprite) => void) { }
     open(panel: Panel, preserve = false) {
         if (!this.resources.ready("village") || this.game.pauses.has("ASSETS")) return;
         if (panel.type === "mercyConfirm" && !this.game.canCast(KING_MERCY_TACTIC)) return;
         if (panel.type === "nightExit" && (this.game.state?.phase !== "NIGHT" || !this.game.battle || this.game.battle.outcome || this.game.saves.pending)) return;
-        if (panel.type === "heroCommittee" && this.game.state?.phase !== "DAY") return;
+        if ((panel.type === "heroCommittee" || panel.type.startsWith("factory")) && this.game.state?.phase !== "DAY") return;
         if (panel.type === "expedition" && (this.game.state?.phase !== "DAY" || !featureUnlocked(this.game.state.completed, "expedition"))) return;
         const bestNight = this.game.state?.legacy.bestNight ?? 0;
         if (panel.type === "dailyTasks" && (!featureUnlocked(bestNight, "dailyTasks") || this.game.state?.phase !== "DAY")) return;
@@ -98,9 +100,16 @@ export class GamePanels implements PanelContext {
         this.layout = layout;
         this.motion.relayout(layout, previous.height !== layout.height || previous.safeTop !== layout.safeTop || previous.safeBottom !== layout.safeBottom);
     }
-    advance(seconds: number) { return this.motion.advance(seconds, this.layout); }
-    claimExpedition(food: Laya.Sprite, wood: Laya.Sprite) {
-        this.onExpeditionClaim?.(food, wood);
+    advance(seconds: number) {
+        const label = this.current?.type === "factory" && this.game.state ? this.sewingProgress : null;
+        if (label && !label.destroyed) {
+            const progress = sewingProgressText(this.game.state!, this.game.sewingProgressMs);
+            if (label.text !== progress) label.text = progress;
+        }
+        return this.motion.advance(seconds, this.layout);
+    }
+    claimExpedition(coin: Laya.Sprite) {
+        this.onExpeditionClaim?.(coin);
     }
     confirmSpend(details: SpendDetails, commit: () => void) {
         const origin = this.current;
@@ -216,6 +225,8 @@ export class GamePanels implements PanelContext {
             drawExpeditionPanel(this, s, p, this.layout.safeBottom - this.layout.safeTop);
         else if (["backpack", "shop", "itemOffer", "essenceConfirm", "rewardDice"].includes(p.type))
             drawItemPanel(this, s, p, this.layout.safeBottom - this.layout.safeTop);
+        else if (p.type.startsWith("factory"))
+            this.sewingProgress = drawFactoryPanel(this, s, p, this.layout.safeBottom - this.layout.safeTop) ?? null;
         else if (p.type === "families")
             drawFamilyPanel(this, s, p, this.layout.safeBottom - this.layout.safeTop);
         else if (p.type === "start" || p.type === "nightDetails" || p.type === "nightPatrolHelp")

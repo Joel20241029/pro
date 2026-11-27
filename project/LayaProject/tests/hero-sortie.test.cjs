@@ -34,13 +34,13 @@ test('a newly built tower saves its flag without consuming gameplay randomness',
 
 test('a new night has the free hero while old active nights keep their own rules', () => {
     const state = createGame(12);
-    const balances = [state.wood, state.food];
+    const coins = state.coins;
     applyCommand(state, { type: 'NIGHT' });
     validateState(state);
     assert.equal(state.night.activeHero, HERO.actorId);
     assert.equal(state.night.extendedHeroSortie, SLOWER_HERO_SORTIE);
     assert.equal(state.night.reinforcedEnemies, true);
-    assert.deepEqual([state.night.returnPoint.wood, state.night.returnPoint.food], balances);
+    assert.equal(state.night.returnPoint.coins, coins);
     const current = new BattleSimulation(state);
     const oldNight = clone(state);
     delete oldNight.night.activeHero;

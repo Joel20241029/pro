@@ -82,7 +82,7 @@ export function drawJournalPanel(ctx: PanelContext, s: GameState, p: Panel, avai
         });
         const sections = chapter.sections.map((section, index) => ({ section, index }))
             .filter(({ section }) => !section.tactic || tacticRevealed(s, section.tactic));
-        const icons = active === 0 ? ["icon_night_shield", "icon_house", "icon_food", "icon_backpack", "icon_wood", "icon_build", "icon_house"] : [];
+        const icons = active === 0 ? ["icon_night_shield", "icon_house", "icon_coin", "icon_backpack", "icon_coin", "icon_build", "icon_house"] : [];
         const chapterIcons = ["icon_house", "icon_population", "icon_family", "icon_build", "icon_night_shield"];
         const detail = sections.find(row => row.index === p.index);
         const body = detail ? new Laya.Sprite().size(rowWidth, 0) : null;

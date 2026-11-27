@@ -338,7 +338,8 @@ test('null atlas pages are retried after siblings finish', async () => {
 for (const [label, file, mutate] of [
     ['missing frame', villageFrames, data => { delete data.frames[Object.keys(data.frames)[0]]; }],
     ['incomplete clips', villageAnimations, data => data.animations.pop()],
-    ['missing labor directions', villageAnimations, data => { data.laborDirections = {}; }],
+    ['missing villager walk direction', villageAnimations, data => { delete data.walkDirections.elite_female.RIGHT; }],
+    ['missing sewing pedal frame', villageFrames, data => { delete data.frames.sew_motion_3; }],
     ['invalid building layout', root + 'buildings/buildings.bin', data => { delete data.layouts.HOUSE_1_1; }],
     ['invalid late frame', villageFrames, data => { data.frames[Object.keys(data.frames)[2]].rect.w = 0; }]
 ]) test(label + ' rolls back staged textures and retries metadata', async () => {
@@ -375,15 +376,17 @@ for (const [label, alter] of [
 test('daytime scene includes real directions, full portraits and the shared effects', async () => {
     const f = setup(); await boot(f);
     const art = f.main.frames;
-    for (const name of ['shadow_actor', 'fx_rage_orbit', 'fx_hearts', 'icon_baby_cry', 'hd_elder_chair']) assert(art.get(name));
+    for (const name of ['shadow_actor', 'fx_rage_orbit', 'fx_hearts', 'icon_baby_cry', 'hd_elder_chair', 'motion_factory_body', 'icon_coin', 'sew_station', 'sew_wheel']) assert(art.get(name));
     for (const identity of ['blue', 'straw', 'red', 'jade', 'elite_male', 'elite_female', 'child'])
         for (const direction of ['DOWN', 'RIGHT', 'UP', 'LEFT']) assert.equal(art.walk(identity, direction).mirror, false);
+    for (let i = 0; i < 8; i++) assert(art.get('sew_motion_' + i));
+    for (const identity of ['blue', 'straw', 'red', 'jade', 'elite_male', 'elite_female'])
+        assert.notEqual(art.get('sew_' + identity), art.get('sew_' + identity + '_smile'));
+    assert.throws(() => art.get('hd_blue_work_right_1'), /未声明的图片/);
     for (const sex of ['MALE', 'FEMALE']) {
         const person = { id: "1:1", sex, appearance: sex === 'MALE' ? 'male_a' : 'female_a', adult: true, elderNights: 0, nights: 12, growth: 0 };
         assert(art.get(art.portraitId(person)));
         assert(art.get(art.portraitId(person, true)));
-        const labor = sex === 'MALE' ? 'villager_blue_work' : 'villager_red_work';
-        assert.notEqual(art.labor(labor, "RIGHT").clip, art.labor(labor, "LEFT").clip);
         person.adult = false; assert(art.get(art.portraitId(person)));
         person.growth = 1; assert.equal(art.portraitId(person), art.portraitId({ ...person, sex: sex === 'MALE' ? 'FEMALE' : 'MALE' })); assert(art.get(art.portraitId(person)));
     }

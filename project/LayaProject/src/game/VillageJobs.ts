@@ -1,35 +1,18 @@
 import { GameState, isAvailableAdult, Job } from "./GameState";
-import { laborSlots } from "./Growth";
+import { sewingSlots, sewingYield } from "./Growth";
 import { person } from "./VillageQueries";
 import { requireRule } from "./VillageStateOps";
-export const JOB_NAMES: Record<Job, string> = { WAITING: "待安排", FARM: "耕作", LOGGING: "伐木" };
-/** 用户确认的自动分配顺序：先农艺/伐木天赋对应空岗，再先农田后伐木；各轮按在村顺序。
- * 只处理待安排成年人，不换走在岗者、不自动照料、不使用随机数；没有空岗仍为待安排。
- */
+export const JOB_NAMES: Record<Job, string> = { WAITING: "待安排", SEWING: "制衣" };
+/** 只补空岗，已有安排优先；同等效率沿用在村顺序。驻塔和队长是另一个夜间岗位。 */
 export function autoAssignJobs(s: GameState) {
-    const free = {
-        FARM: laborSlots("FARM", s.farm) - s.people.filter(p => p.job === "FARM").length,
-        LOGGING: laborSlots("LOGGING", s.logging) - s.people.filter(p => p.job === "LOGGING").length
-    };
     for (const p of s.people)
-        if (isAvailableAdult(s, p) && p.job === "WAITING") {
-            const job = free.FARM > 0 && p.traits.includes("trait_diligent") ? "FARM" : p.traits.includes("trait_woodwise") ? "LOGGING" : null;
-            if (job && free[job] > 0) {
-                p.job = job;
-                free[job]--;
-            }
-        }
-    for (const p of s.people)
-        if (isAvailableAdult(s, p) && p.job === "WAITING") {
-            if (free.FARM > 0) {
-                p.job = "FARM";
-                free.FARM--;
-            }
-            else if (free.LOGGING > 0) {
-                p.job = "LOGGING";
-                free.LOGGING--;
-            }
-        }
+        if (p.job === "SEWING" && !isAvailableAdult(s, p)) p.job = "WAITING";
+    const free = sewingSlots(s.factory.level) - s.people.filter(p => p.job === "SEWING").length;
+    if (free <= 0) return;
+    const candidates = s.people.filter(p => isAvailableAdult(s, p) && p.job === "WAITING");
+    candidates.sort((a, b) => sewingYield(s, b, "day") - sewingYield(s, a, "day") ||
+        sewingYield(s, b, "night") - sewingYield(s, a, "night"));
+    for (const p of candidates.slice(0, free)) p.job = "SEWING";
 }
 /** 已建塔有成年村民就补满；沿用在村顺序与塔位顺序，不换已有驻守、不占白天岗位、不消耗随机数。 */
 export function autoAssignOperators(s: GameState) {

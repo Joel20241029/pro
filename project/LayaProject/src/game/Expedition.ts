@@ -1,13 +1,11 @@
-import { EXPEDITION, EXPEDITION_EVENTS, EXPEDITION_ROUTES, ExpeditionRoute } from "../config/ExpeditionConfig";
+import { EXPEDITION, EXPEDITION_EVENTS, EXPEDITION_ROUTES, ExpeditionRewardId, ExpeditionRoute } from "../config/ExpeditionConfig";
 import { clone, GameState, isWorkingAdult } from "./GameState";
-import { storageCapacity } from "./Growth";
 import { SeededRandom } from "./SeededRandom";
 import { autoAssignJobs, autoAssignNightDuties } from "./VillageJobs";
 import { economy } from "./VillageQueries";
 import { requireRule } from "./VillageStateOps";
 
-export type ExpeditionMaterials = { wood: number; food: number };
-export type ExpeditionReport = ExpeditionMaterials & { event: keyof typeof EXPEDITION_EVENTS };
+export type ExpeditionReport = { event: keyof typeof EXPEDITION_EVENTS };
 export type Expedition = {
     route: ExpeditionRoute;
     personId: string;
@@ -16,9 +14,11 @@ export type Expedition = {
     reports: ExpeditionReport[];
     /** 最新胜利产生的战报待玩家确认，跟随同一份胜利存档提交。 */
     reportPending?: true;
-    /** 存在即表示已回村，粮木已领部分从此处扣除。 */
-    remaining?: ExpeditionMaterials;
-    /** 已处理回村弹窗；部分奖励可继续从入口领。 */
+    /** 存在即表示已回村，路线道具可以一次领取。 */
+    remaining?: true;
+    /** 旧档未读终章仍需显示；旧奖励已计入币余额，不再发放路线道具。 */
+    rewardConverted?: true;
+    /** 已处理回村弹窗；奖励可继续从入口领。 */
     noticed?: true;
 };
 
@@ -47,39 +47,32 @@ export function startExpedition(s: GameState, id: string, route: ExpeditionRoute
     autoAssignNightDuties(s);
 }
 
-/** 白天预览用真实补岗和生产计算，人员变化后会随村庄当前状态更新。 */
+/** 白天预览用真实补岗计算守夜缝纫加成变化，人员变化后更新。 */
 export function expeditionDeparturePreview(s: GameState, id: string, route: ExpeditionRoute) {
-    const next = clone(s), before = economy(s);
+    const next = clone(s);
     startExpedition(next, id, route);
-    const after = economy(next);
     const replacements = next.people.filter(p => s.people.some(q => q.id === p.id && q.job === "WAITING" && p.job !== q.job));
-    return { wood: after.wood - before.wood, food: after.food - before.food, rations: after.rations - before.rations, replacements };
-}
-
-export function expeditionTotal(trip: Expedition) {
-    return trip.reports.reduce((sum, report) => ({ food: sum.food + report.food, wood: sum.wood + report.wood }), { food: 0, wood: 0 });
+    return { coins: economy(next).sewing - economy(s).sewing, replacements };
 }
 
 export function expeditionNightsLeft(trip: Expedition) {
-    return EXPEDITION_ROUTES[trip.route].nights.length - trip.reports.length;
+    return EXPEDITION_ROUTES[trip.route].nights - trip.reports.length;
 }
 
 /** 只在胜利结算候选写一次。s.completed 指完成这场战斗前的波数。 */
 export function advanceExpedition(s: GameState) {
     const trip = s.expedition;
     if (!trip || trip.remaining) return;
-    const step = EXPEDITION_ROUTES[trip.route].nights[trip.reports.length];
     const random = new SeededRandom((s.rng.world ^ EXPEDITION_RANDOM_DOMAIN ^ s.run ^ Math.imul(trip.departedAfter, 0x45d9f3b) ^ s.completed) >>> 0);
     const available = (Object.keys(EXPEDITION_EVENTS) as ExpeditionReport["event"][]).filter(event => !trip.reports.some(report => report.event === event));
-    const amount = ([min, max]: readonly [number, number]) => min + random.range(max - min + 1);
-    trip.reports.push({ event: available[random.range(available.length)], wood: amount(step.wood), food: amount(step.food) });
+    trip.reports.push({ event: available[random.range(available.length)] });
     trip.reportPending = true;
-    if (expeditionNightsLeft(trip) === 0) trip.remaining = expeditionTotal(trip);
+    if (expeditionNightsLeft(trip) === 0) trip.remaining = true;
 }
 
-export function expeditionClaimQuote(s: GameState): ExpeditionMaterials {
-    const cap = storageCapacity(s), remaining = s.expedition?.remaining;
-    return remaining ? { wood: Math.min(remaining.wood, cap - s.wood), food: Math.min(remaining.food, cap - s.food) } : { wood: 0, food: 0 };
+export function expeditionClaimQuote(s: GameState): ExpeditionRewardId | null {
+    const trip = s.expedition;
+    return trip?.remaining && !trip.rewardConverted ? EXPEDITION_ROUTES[trip.route].reward : null;
 }
 
 export function settleExpedition(s: GameState, claim: boolean) {
@@ -87,13 +80,9 @@ export function settleExpedition(s: GameState, claim: boolean) {
     requireRule((s.phase === "DAY" || s.phase === "DAWN") && !!trip?.remaining, "暂无已归村的探索");
     requireRule(!trip?.reportPending, "请先查看探索战报");
     if (claim) {
-        const amount = expeditionClaimQuote(s);
-        requireRule(amount.food > 0 || amount.wood > 0, "仓储已满，奖励留在行囊");
-        s.food += amount.food;
-        s.wood += amount.wood;
-        trip!.remaining!.food -= amount.food;
-        trip!.remaining!.wood -= amount.wood;
-        if (!(trip!.remaining!.food || trip!.remaining!.wood)) { delete s.expedition; return; }
+        requireRule(expeditionClaimQuote(s) !== null, "这趟奖励已经领取");
+        delete s.expedition;
+        return;
     }
     trip!.noticed = true;
 }
@@ -105,24 +94,56 @@ export function validExpedition(s: GameState) {
     const route = EXPEDITION_ROUTES[trip.route], member = s.people.find(p => p.id === trip.personId);
     if (typeof trip.personId !== "string" || typeof trip.name !== "string" || !trip.name.length ||
         !Number.isSafeInteger(trip.departedAfter) || trip.departedAfter < EXPEDITION.wins ||
-        !Array.isArray(trip.reports) || trip.reports.length > route.nights.length ||
+        !Array.isArray(trip.reports) || trip.reports.length > route.nights ||
         trip.departedAfter + trip.reports.length > s.completed ||
         (trip.reportPending !== undefined && (trip.reportPending !== true || !trip.reports.length ||
             trip.departedAfter + trip.reports.length !== s.completed || !member || member.name !== trip.name || trip.noticed ||
             (s.phase !== "DAY" && s.phase !== "DAWN"))) ||
-        (trip.noticed !== undefined && (trip.noticed !== true || !trip.remaining))) return false;
-    const range = (n: number, min: number, max: number) => Number.isSafeInteger(n) && n >= min && n <= max;
-    if (!trip.reports.every((report, i) => report && Object.prototype.hasOwnProperty.call(EXPEDITION_EVENTS, report.event) &&
-        range(report.wood, route.nights[i].wood[0], route.nights[i].wood[1]) &&
-        range(report.food, route.nights[i].food[0], route.nights[i].food[1])) ||
+        (trip.noticed !== undefined && (trip.noticed !== true || !trip.remaining)) ||
+        (trip.rewardConverted !== undefined && (trip.rewardConverted !== true || !trip.remaining || !trip.reportPending))) return false;
+    if (!trip.reports.every(report => report && Object.prototype.hasOwnProperty.call(EXPEDITION_EVENTS, report.event)) ||
         new Set(trip.reports.map(report => report.event)).size !== trip.reports.length) return false;
-    if (trip.remaining !== undefined) {
-        const total = expeditionTotal(trip);
-        return !!trip.remaining && trip.reports.length === route.nights.length &&
-            range(trip.remaining.food, 0, total.food) && range(trip.remaining.wood, 0, total.wood) &&
-            trip.remaining.food + trip.remaining.wood > 0;
-    }
-    return trip.reports.length < route.nights.length && trip.departedAfter + trip.reports.length === s.completed &&
+    if (trip.remaining !== undefined) return trip.remaining === true && trip.reports.length === route.nights;
+    return trip.reports.length < route.nights && trip.departedAfter + trip.reports.length === s.completed &&
         !!member && member.name === trip.name && isWorkingAdult(member) && member.job === "WAITING" &&
         s.patrol.captain !== trip.personId && !s.towers.some(t => t.operator === trip.personId);
+}
+
+/** V22 的逐夜物资范围，用来核验待折算的旧探索报告。 */
+const OLD_REPORT_AMOUNTS = {
+    lobby: [[4, 6, 3, 4], [5, 7, 3, 4], [5, 7, 4, 6]],
+    overnight: [[5, 7, 3, 4], [5, 7, 3, 4], [5, 7, 4, 5], [5, 6, 4, 5], [6, 7, 4, 6]]
+} as const;
+
+/** V22 专用。保留旧报告中的事件，旧货物只转换已回村的未领余量。 */
+export function migrateLegacyExpedition(raw: unknown, completed: number): { trip?: Expedition; coins: number } {
+    if (raw === undefined) return { coins: 0 };
+    type OldMaterials = { food: number; wood: number };
+    const old = raw as Omit<Expedition, "reports" | "remaining"> & {
+        reports: (ExpeditionReport & OldMaterials)[];
+        remaining?: OldMaterials;
+    };
+    const range = (n: number, min: number, max: number) => Number.isSafeInteger(n) && n >= min && n <= max;
+    if (!old || !Object.prototype.hasOwnProperty.call(EXPEDITION_ROUTES, old.route) ||
+        typeof old.personId !== "string" || typeof old.name !== "string" || !old.name.length ||
+        !Array.isArray(old.reports) || old.reports.length > EXPEDITION_ROUTES[old.route].nights || old.rewardConverted !== undefined ||
+        !range(old.departedAfter, EXPEDITION.wins, completed - old.reports.length) ||
+        (old.reportPending !== undefined && (old.reportPending !== true || !old.reports.length ||
+            old.departedAfter + old.reports.length !== completed || old.noticed !== undefined)) ||
+        (old.noticed !== undefined && (old.noticed !== true || old.remaining === undefined)) ||
+        !old.reports.every((report, i) => {
+            const [woodMin, woodMax, foodMin, foodMax] = OLD_REPORT_AMOUNTS[old.route][i];
+            return report && Object.prototype.hasOwnProperty.call(EXPEDITION_EVENTS, report.event) &&
+                range(report.wood, woodMin, woodMax) && range(report.food, foodMin, foodMax);
+        }) || new Set(old.reports.map(report => report.event)).size !== old.reports.length)
+        throw new Error("旧探索战报无效");
+    const { reports, remaining, ...state } = old;
+    const trip: Expedition = { ...state, reports: reports.map(({ event }) => ({ event })) };
+    if (remaining === undefined) return { trip, coins: 0 };
+    const earned = reports.reduce((sum, report) => ({ food: sum.food + report.food, wood: sum.wood + report.wood }), { food: 0, wood: 0 });
+    if (reports.length !== EXPEDITION_ROUTES[old.route].nights || !remaining ||
+        !range(remaining.food, 0, earned.food) || !range(remaining.wood, 0, earned.wood) || !(remaining.food || remaining.wood))
+        throw new Error("旧探索奖励无效");
+    const coins = remaining.wood + Math.floor(remaining.food / 2);
+    return trip.reportPending ? { trip: { ...trip, remaining: true, rewardConverted: true }, coins } : { coins };
 }

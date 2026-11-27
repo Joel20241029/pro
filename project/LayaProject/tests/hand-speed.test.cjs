@@ -16,7 +16,7 @@ const enemy = (seq, kind, hp, maxHp = hp, progress = 140, speed = 0) => ({
 function setup(speed) {
     const state = createGame(13);
     state.completed = 30; state.day = 31; state.legacy.bestNight = 30;
-    state.wood = state.food = 200; state.settings.speed = speed;
+    state.coins = 200; state.settings.speed = speed;
     state.wave = generateWave(state);
     state.tactics.extraSlots = [null];
     applyCommand(state, { type: 'TACTIC_LEARN', id: HAND_SPEED_TACTIC, slot: 1 });
@@ -34,8 +34,9 @@ function setup(speed) {
 }
 
 test('skills are ordered in five-wave steps, with the hand speed lore and learning costs', () => {
-    assert.deepEqual(TACTICS.map(t => [t.order, t.unlockWaves, t.wood, t.food]), [
-        [0,0,0,0], [1,5,30,15], [2,10,45,20], [3,15,60,30], [4,20,80,40], [5,25,100,50], [6,30,130,65], [7,35,160,80], [8,40,180,90], [9,45,200,100], [10,50,200,120]
+    assert.deepEqual(TACTICS.map(t => [t.order, t.unlockWaves, t.coins]), [
+        [0,0,0], [1,5,45], [2,10,60], [3,15,80], [4,20,100], [5,25,125],
+        [6,30,150], [7,35,180], [8,40,205], [9,45,230], [10,50,260]
     ]);
     assert.match(TACTICS[6].lore, /讲义气.*手速也是全村第一/);
 });

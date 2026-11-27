@@ -56,7 +56,7 @@ test("Hero and legendary enter only at the approved thresholds and occupy indepe
 test("Hero and legendary quality use the configured lifetime from adulthood through recorded history", () => {
     for (const quality of ["HERO", "LEGENDARY"] as const) {
         const s = createGame(7), child = birth(s), spec = VILLAGER_QUALITY[quality];
-        child.quality = quality; child.traits = quality === "HERO" ? ["trait_diligent", "trait_frugal"] : ["trait_diligent", "trait_frugal", "trait_strong"];
+        child.quality = quality; child.traits = quality === "HERO" ? ["trait_nimble", "trait_crafty"] : ["trait_nimble", "trait_crafty", "trait_strong"];
         win(s); dawn(s); win(s); dawn(s);
         eq(child.nights, spec.adultNights);
         child.nights = 1;
@@ -87,21 +87,21 @@ test("Traveler choice survives save/reload and accepting never rerolls", () => {
     const restored = loaded.state; applyCommand(restored, { type: "CHOOSE", value: "accept" });
     const actual = restored.people.find(p => p.id === traveler.id)!; ok(actual.quality === "ELITE"); eq(actual.nights, 18); eq(restored.rng, rng); validateState(restored);
 });
-test("Farm/logging multiply after additive bonuses and before one floor; rations unchanged", () => {
-    const s = createGame(1); s.people.forEach(p => p.job = "WAITING"); const p = s.people[0]; p.origin = "TRAVELER";
-    p.job = "FARM"; const rations = economy(s).rations; p.quality = "ELITE";
-    eq(economy(s).food, Math.floor(8 * (1 + .4) * 1.5)); eq(economy(s).rations, rations);
-    p.job = "LOGGING"; p.traits = ["trait_woodwise"]; s.day = 7;
-    eq(economy(s).wood, Math.floor(6 * (1 + .4) * 1.5));
+test("Sewing quality and Crafty add to post-night pay, and idle villagers earn no bonus", () => {
+    const s = createGame(1); s.people.forEach(p => p.job = "WAITING"); const p = s.people[0];
+    p.job = "SEWING"; p.quality = "ELITE";
+    eq(economy(s).sewing, 4);
+    p.traits = ["trait_strong", "trait_nimble"]; eq(economy(s).sewing, 3);
+    p.job = "WAITING"; eq(economy(s).sewing, 0);
 });
 test("Birth leaves other villagers at work and children grow in two nights", () => {
     const s = createGame(seedForRoll(4, false)), child = birth(s), carer = s.people[1]; carer.job = "WAITING"; const regular = economy(s);
-    carer.quality = "ELITE"; carer.traits.push("trait_nimble"); carer.origin = "TRAVELER"; eq(economy(s).food, regular.food); eq(economy(s).rations, regular.rations);
+    carer.quality = "ELITE"; carer.traits.push("trait_nimble"); carer.origin = "TRAVELER"; eq(economy(s), regular);
     win(s); eq(child.growth, 1); ok(!child.adult); dawn(s); win(s); ok(child.adult && child.quality === "ELITE"); eq(child.nights, 18); eq(child.growth, RULE.growNights);
 });
 test("All three tower types gain damage with unchanged speed/range/slow and final damage rounded down", () => {
     for (const kind of ["ARROW", "STONE", "SLOW"] as TowerKind[]) {
-        const s = createGame(1); const p = s.people[0]; p.origin = "TRAVELER"; p.traits = ["trait_frugal"];
+        const s = createGame(1); const p = s.people[0]; p.origin = "TRAVELER"; p.traits = ["trait_crafty"];
         applyCommand(s, { type: "PATROL_CAPTAIN", id: s.people[5].id });
         s.towers.forEach(t => { t.kind = null; t.level = 0; t.operator = null; }); s.towers[0].kind = kind; s.towers[0].level = 1; assignOperator(s, 0, p.id); applyCommand(s, { type: "NIGHT" });
         const normal = new BattleSimulation(s); s.people[0].quality = "ELITE"; const elite = new BattleSimulation(s);
@@ -120,14 +120,14 @@ test("All three tower types gain damage with unchanged speed/range/slow and fina
     }
 });
 test("Elite has eighteen work nights and five full elder nights, then keeps badge in history", () => {
-    const s = createGame(1), p = s.people[4]; p.quality = "ELITE"; p.traits.push("trait_frugal"); p.origin = "TRAVELER"; p.nights = 18;
+    const s = createGame(1), p = s.people[4]; p.quality = "ELITE"; p.traits.push("trait_crafty"); p.origin = "TRAVELER"; p.nights = 18;
     for (let i = 17; i >= 0; i--) { win(s); eq(p.nights, i); if (i) ok(!isElder(p)); else eq(p.elderNights, 5); dawn(s); }
     for (let i = 4; i >= 0; i--) { win(s); eq(p.elderNights, i); if (i) ok(s.people.includes(p)); else { ok(!s.people.includes(p)); ok(s.history.find(h => h.id === p.id)!.quality === "ELITE"); } dawn(s); }
     validateState(s);
 });
 test("Failed night ages neither elite workers nor elders and does not raise best wave", () => {
-    const s = createGame(1); for (const p of s.people.slice(4)) { p.quality = "ELITE"; p.traits.push("trait_frugal"); p.origin = "TRAVELER"; }
-    s.people[4].nights = 18; s.people[5].nights = 0; s.people[5].elderNights = 5;
+    const s = createGame(1); for (const p of s.people.slice(4)) { p.quality = "ELITE"; p.traits.push("trait_crafty"); p.origin = "TRAVELER"; }
+    s.people[4].nights = 18; s.people[5].nights = 0; s.people[5].elderNights = 5; s.people[5].job = "WAITING";
     applyCommand(s, { type: "NIGHT" }); finishNight(s, 0, s.towers.map(t => t.operator));
     eq([s.people[4].nights, s.people[5].elderNights, s.completed, s.legacy.bestNight], [18, 5, 0, 0]); validateState(s);
 });

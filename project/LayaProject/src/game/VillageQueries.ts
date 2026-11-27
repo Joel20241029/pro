@@ -1,9 +1,9 @@
-import { ECONOMY, RESIDENTIAL } from "../config/RuleConfig";
-import { nightRewardMultiplier } from "../config/ShopConfig";
-import { VILLAGER_QUALITY } from "../config/VillagerQuality";
+import { BOSS_INTERVAL_NIGHTS } from "../config/EnemyConfig";
+import { RESIDENTIAL, WIN_REWARD } from "../config/RuleConfig";
+import { nightRewardWithDice } from "../config/ShopConfig";
 import { RULE } from "./GameConfig";
-import { GameState, isElder, isWorkingAdult, isAvailableAdult, isExploring, Person } from "./GameState";
-import { laborYield, storageCapacity } from "./Growth";
+import { GameState, isWorkingAdult, isAvailableAdult, isExploring, NightReward, Person } from "./GameState";
+import { sewingYield } from "./Growth";
 /** 村务只读查询与预检；不修改状态、不消耗随机数。 */
 export function person(s: GameState, id: string): Person {
     const p = s.people.find(p => p.id === id);
@@ -34,29 +34,19 @@ export function birthUnavailableReason(s: GameState, familyId: string): string |
         return s.people.length >= RULE.populationCap ? `人口已满 ${RULE.populationCap} 人，需等空出名额` : `住房已满 ${s.people.length}/${capacity(s)} 人，请增建民居`;
     if (family.lastBirth !== null && s.completed - family.lastBirth < RULE.birthCooldown)
         return `再守住 ${RULE.birthCooldown - (s.completed - family.lastBirth)} 夜`;
-    if (s.food < RULE.birthCost)
-        return `还缺 ${RULE.birthCost - s.food} 粮（现有 ${s.food}/${RULE.birthCost}）`;
+    if (s.coins < RULE.birthCost)
+        return `还缺 ${RULE.birthCost - s.coins} 尔币`;
     return null;
 }
-export function economy(s: GameState) {
-    let food = 0, wood = 0, rations = 0, elderRations = 0;
-    for (const p of s.people) {
-        if (isExploring(s, p.id)) continue;
-        const ration = p.adult ? (p.traits.includes("trait_frugal") ? ECONOMY.frugalRation : RULE.adultRation) : RULE.childRation;
-        rations += ration;
-        if (isElder(p))
-            elderRations += ration;
-        if (!isWorkingAdult(p))
-            continue;
-        const { production } = VILLAGER_QUALITY[p.quality];
-        if (p.job === "FARM")
-            food += Math.floor(production * laborYield("FARM", s.farm) * (1 + (p.traits.includes("trait_diligent") ? ECONOMY.diligentFood : 0)));
-        if (p.job === "LOGGING")
-            wood += Math.floor(production * laborYield("LOGGING", s.logging) * (1 + (p.traits.includes("trait_woodwise") ? ECONOMY.woodwiseWood : 0)));
-    }
-    const rewardMultiplier = nightRewardMultiplier(s.night?.rewardDie ?? s.rewardDie);
-    food = Math.floor(food * rewardMultiplier);
-    wood = Math.floor(wood * rewardMultiplier);
-    // elderRations 已包含在总口粮中，仅供 UI 解释。
-    return { food, wood, rations, elderRations, hungry: s.food + food < rations, endFood: Math.min(storageCapacity(s), Math.max(0, s.food + food - rations)), endWood: Math.min(storageCapacity(s), s.wood + wood) };
+/** 守夜准备锁定工资和骰子结果；参与缝纫的村民在战斗前已经确定。 */
+export function economy(s: GameState): NightReward {
+    if (s.night?.reward) return s.night.reward;
+    if (s.phase === "NIGHT") return { base: 0, sewing: 0, boss: 0, total: 0 };
+    const basePay = WIN_REWARD.base + WIN_REWARD.perWave * s.completed;
+    const sewingPay = s.people.reduce((sum, p) => sum + (p.job === "SEWING" && isAvailableAdult(s, p) ?
+        sewingYield(s, p, "night") : 0), 0);
+    const sewing = Math.min(sewingPay, Math.floor(basePay * WIN_REWARD.sewingLimit));
+    const boss = s.day % BOSS_INTERVAL_NIGHTS === 0 ? Math.floor((basePay + sewing) * WIN_REWARD.bossBonus) : 0;
+    const base = nightRewardWithDice(basePay, s.rewardDie);
+    return { base, sewing, boss, total: base + sewing + boss };
 }

@@ -1,7 +1,7 @@
 import { GameState } from "../../game/GameState";
-import { RULE } from "../../game/GameConfig";
 import { C, UI } from "../UiTheme";
-import { dailyRationAmount } from "../../game/DailyRation";
+import { DAILY_GIFT_ITEM } from "../../game/DailyRation";
+import { ITEMS } from "../../config/ShopConfig";
 import { PanelContext } from "./PanelContext";
 import { drawTravelerPanel } from "./TravelerPanel";
 import { drawGameOver } from "./DefeatPanel";
@@ -49,7 +49,7 @@ export function drawBoot(ctx: PanelContext) {
     }
     const buttonY = 547;
     const box = ctx.modal("一处村落，代代相守", "", false, { width: UI.panelWidth, height: buttonY + 122 },
-        "可安排村民耕作、驻塔、成家与迎接孩子。孩子优先继承父母的天赋，成年后自动补岗。");
+        "可安排村民缝纫、驻塔、成家与迎接孩子。孩子优先继承父母的天赋，成年后自动补岗。");
     cardArt(ctx, box, "icon_house", 151, 122, 366, 350, C.paper);
     ctx.ui.label(box, "白天经营，夜晚守村", 42, 475, 584, 35, C.ink, true, 58).align = "center";
     ctx.ui.centerButton(box, "开始开村", buttonY, () => ctx.game.newVillage(), C.gold);
@@ -74,21 +74,17 @@ export function drawNightExitConfirm(ctx: PanelContext, s: GameState) {
     ctx.ui.button(box, "确认退出", width - UI.inset - buttonWidth, y, buttonWidth,
         () => ctx.game.abandonNight(), C.red, UI.action.pairHeight);
 }
-/** 保存、口粮和回前台先处理，随后是结算，再接失败、清晨或普通界面。 */
+/** 保存、每日礼和回前台先处理，随后是结算，再接失败、清晨或普通界面。 */
 export function drawSessionPanel(ctx: PanelContext, s: GameState, safeHeight: number, drawResult?: () => boolean) {
     if (ctx.game.saves.pending)
         drawPending(ctx);
     else if (ctx.game.dailyRationDate !== null) {
-        const amount = dailyRationAmount(s, ctx.game.dailyRationDate)!;
+        const gift = ITEMS[DAILY_GIFT_ITEM];
         const buttonY = 415, buttonHeight = 82;
-        const box = ctx.modal("每日口粮", "", false, { width: 540, height: buttonY + buttonHeight + UI.action.bottom }, `本村每天可领一次。每日补给 ${RULE.dailyFood} 粮，放不下时按剩余仓储发放。`);
-        cardArt(ctx, box, "icon_food", 191, 109, 158);
-        ctx.ui.label(box, "本次到账", 34, 274, 472, 28, C.cream, true, 36).align = "center";
-        ctx.ui.iconValue(box, "icon_food", `+${amount}`, 34, 311, 472, 51, amount ? C.ink : C.muted, 39);
-        const detail = amount === 0 ? "仓储已满，确认后计为已领" : amount < RULE.dailyFood ? "按剩余仓储发放，今天只领一次" : "确认后入库，本村今日仅领一次";
-        const note = ctx.ui.label(box, detail, 34, 363, 472, 26, C.muted, false, 43);
-        note.align = "center";
-        note.valign = "middle";
+        const box = ctx.modal("每日村礼", "", false, { width: 540, height: buttonY + buttonHeight + UI.action.bottom }, "每天到村可手动领取 1 件修门工具，奖励存入背包。");
+        cardArt(ctx, box, gift.icon, 191, 109, 158);
+        ctx.ui.label(box, gift.name + " ×1", 34, 277, 472, 57, C.cream, true, 53).align = "center";
+        ctx.ui.label(box, "确认后放入背包，本村今天只可领取一次", 34, 347, 472, 26, C.muted, false, 45).align = "center";
         ctx.ui.centerButton(box, ctx.game.pauses.has("WAIT_RESUME") ? "确认并继续" : "确认领取", buttonY, () => ctx.game.claimDailyRation(), C.gold, true, 292, buttonHeight);
     }
     else if (ctx.game.pauses.has("WAIT_RESUME")) {

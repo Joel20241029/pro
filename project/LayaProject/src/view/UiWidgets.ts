@@ -5,9 +5,7 @@ import { bindButtonClick } from "./ButtonFeedback";
 import { reasonBesideCost } from "./ViewText";
 import { HUD } from "./config/HudConfig";
 
-type Materials = { wood: number; food: number };
-export type MaterialCost = Partial<Materials>;
-const MATERIALS = ["wood", "food"] as const;
+export type CoinCost = { coins: number };
 /** 同一套按钮/图文节点与触控约定；只绘制控件，不持有面板、存档或暂停状态。 */
 export class UiWidgets {
     constructor(private art: SpriteFrames, private playClick: () => void) { }
@@ -85,13 +83,9 @@ export class UiWidgets {
         text.x = left + iconWidth + gap; text.width = textWidth;
         return icon;
     }
-    materialCosts(parent: Laya.Sprite, owned: Materials, cost: MaterialCost, x: number, y: number, width: number, height: number) {
-        const active = MATERIALS.filter(key => cost[key] !== undefined);
-        for (const [i, key] of active.entries()) {
-            const required = cost[key]!, short = owned[key] < required, cell = width / active.length;
-            this.iconValue(parent, `icon_${key}`, String(required),
-                x + i * cell, y, cell, height, short ? C.red : C.timber, 25, "left");
-        }
+    coinCost(parent: Laya.Sprite, owned: CoinCost, cost: CoinCost, x: number, y: number, width: number, height: number) {
+        return this.iconValue(parent, "icon_coin", String(cost.coins), x, y, width, height,
+            owned.coins < cost.coins ? C.red : C.timber, 25, "left");
     }
     /** 图标与文案共享按压面层；内容变化时仍以实际字宽居中，不依赖固定文字位置。 */
     buttonIcon(button: Laya.Sprite, id: string, size = 40) {
@@ -120,10 +114,16 @@ export class UiWidgets {
         badge.name = name;
         return badge;
     }
+    /** 提醒归整张卡片，避免按钮动效带着红点走。 */
+    cellActionBadge(cell: Laya.Sprite, name: string) {
+        const { size, right, top } = UI.cellActionDot;
+        this.image(cell, "icon_action_dot", cell.width - right - size, top, size).name = name;
+    }
     /** 图片含字，统一挂在按钮右上角；名单条目同时给文本预留标签宽度。 */
-    personRibbon(button: Laya.Sprite, frame: "tag_recommended" | "tag_favorite", listRow = false) {
+    personRibbon(button: Laya.Sprite, frame: "tag_recommended" | "tag_favorite", listRow = false, keepCellCorner = false) {
         const face = button.getChildByName("buttonFace") as Laya.Sprite, width = listRow ? 110 : 94;
-        const ribbon = this.image(face, frame, button.width - width - 10, listRow ? 7 : -10, width, 34);
+        const inset = keepCellCorner ? UI.cellActionDot.clearRight : 10;
+        const ribbon = this.image(face, frame, button.width - width - inset, listRow ? 7 : -10, width, 34);
         ribbon.name = frame;
         if (listRow) {
             const copy = face.getChildByName("buttonText") as Laya.Text;
@@ -132,12 +132,12 @@ export class UiWidgets {
         }
     }
     /** 建设条目共用图标、效果和材料布局；整个条目可点，原因直接可见，不再靠点击后弹Tip解释。 */
-    buildRow(parent: Laya.Sprite, y: number, icon: string, title: string, effect: string, owned: Materials, cost: MaterialCost | null, reason: string | null, action: () => void, caption = "升级",
-        fullRepair?: { wood: number; enabled: boolean; action: () => void }) {
+    buildRow(parent: Laya.Sprite, y: number, icon: string, title: string, effect: string, owned: CoinCost, cost: CoinCost | null, reason: string | null, action: () => void, caption = "升级",
+        fullRepair?: { coins: number; enabled: boolean; action: () => void }) {
         const width = UI.contentWidth - UI.scrollGutter;
         let row: Laya.Sprite, face: Laya.Sprite;
         if (fullRepair) {
-            // 两种价格的修门操作各自命中；卡片空白处和置灰按钮都不会扣木。
+            // 两种价格的修门操作各自命中；卡片空白处和置灰按钮都不会扣尔币。
             row = new Laya.Sprite(); row.pos(0, y); row.size(width, UI.buildRowHeight); parent.addChild(row);
             this.art.panel(row, reason ? "panel_card_disabled" : "panel_card", width, UI.buildRowHeight);
             face = row;
@@ -154,7 +154,7 @@ export class UiWidgets {
         titleText.wordWrap = false; titleText.overflow = Laya.Text.SHRINK;
         const effectText = this.label(face, effect, 171, 56, copyWidth, 25, C.green, false, 36);
         effectText.wordWrap = false; effectText.overflow = Laya.Text.SHRINK;
-        if (cost) this.materialCosts(face, owned, cost, 171, 96, copyWidth, 38);
+        if (cost) this.coinCost(face, owned, cost, 171, 96, copyWidth, 38);
         const note = reasonBesideCost(reason);
         if (note) {
             const label = this.label(face, note, 171, 138, copyWidth, 24, C.red, false, 34);
@@ -162,10 +162,10 @@ export class UiWidgets {
         }
         if (fullRepair) {
             const x = width - 168;
-            this.button(row, "修一次", x, 26, 152, action, C.green, 58, !reason);
-            const full = this.button(row, `修满 ${fullRepair.wood}`, x, 99, 152, fullRepair.action, C.gold, 58, fullRepair.enabled);
+            this.button(row, "修一次", x, UI.cellActionDot.top + UI.cellActionDot.size + 4, 152, action, C.green, 58, !reason);
+            const full = this.button(row, `修满 ${fullRepair.coins}`, x, 99, 152, fullRepair.action, C.gold, 58, fullRepair.enabled);
             full.name = "RepairFull";
-            this.buttonIcon(full, "icon_wood", 24);
+            this.buttonIcon(full, "icon_coin", 24);
             return row;
         }
         const badge = new Laya.Sprite(); badge.pos(row.width - badgeWidth - 16, (row.height - badgeHeight) / 2); badge.mouseEnabled = false;

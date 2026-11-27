@@ -53,10 +53,10 @@ export function deliveryDamage(day: number, rhythm: WaveRhythm | undefined, solo
 
 /** 同一招募条件供村委会按钮和事务提交前复核。 */
 export function deliveryRecruitmentReason(state: GameState) {
-    const { waves, wood, food } = C.recruitment;
+    const { waves, coins } = C.recruitment;
     if (state.deliveryUnlocked) return `${C.name}已加入`;
     if (state.completed < waves) return `守住 ${waves} 波后可招募`;
-    if (state.wood < wood || state.food < food) return "粮木不足";
+    if (state.coins < coins) return "尔币不足";
     return null;
 }
 

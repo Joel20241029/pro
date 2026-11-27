@@ -1,9 +1,8 @@
 import { GameState, isExploring, Person, Tower } from "../game/GameState";
 
-/** doc/tech/46：地图最多20人，业务人口仍按住宅全量结算。白天实景只有6个田间站点、
- * 5棵可伐木树（保留1棵供轮换），不因扩建生成重叠工人；夜间不受生产站点限制。
- */
-export const RESIDENT_DISPLAY = { limit: 20, farmers: 6, loggers: 4 } as const;
+
+/** 二十个地图演员共用既有池；白天同时可见的制衣工以实际摆放的机位数为限。 */
+export const RESIDENT_DISPLAY = { limit: 20 } as const;
 
 /** 稳定选取地图演员，不复制或改写村民数据；正在庆祝的夫妻作为整体选择。 */
 export class VisibleResidents {
@@ -27,16 +26,13 @@ export class VisibleResidents {
         const byId = new Map(people.map(p => [p.id, p]));
         const priority = [...(focus ? [focus] : []), ...celebrating, ...newcomers, ...towers.reduce<string[]>((ids, t) => t.operator ? ids.concat(t.operator) : ids, []), ...this.selected, ...people.map(p => p.id)];
         const chosen = new Set<string>(), visited = new Set<Set<string>>();
-        let farmers = 0, loggers = 0;
         for (const id of priority) {
             const group = groups.get(id);
             if (!group || visited.has(group)) continue;
             visited.add(group);
             const members = [...group].map(key => byId.get(key)!);
-            const f = members.filter(p => p.job === "FARM").length, l = members.filter(p => p.job === "LOGGING").length;
-            if (chosen.size + group.size > RESIDENT_DISPLAY.limit || (state.phase !== "NIGHT" &&
-                (farmers + f > RESIDENT_DISPLAY.farmers || loggers + l > RESIDENT_DISPLAY.loggers))) continue;
-            members.forEach(p => chosen.add(p.id)); farmers += f; loggers += l;
+            if (chosen.size + group.size > RESIDENT_DISPLAY.limit) continue;
+            members.forEach(p => chosen.add(p.id));
         }
         // 保留已有演员的池顺序，避免无关状态刷新导致人物交换节点、点击目标变化。
         this.selected = [...this.selected.filter(id => chosen.delete(id)), ...chosen];

@@ -1,31 +1,34 @@
 import { summarizeFullHouseVisit } from "./VillageLifecycle";
 import { BattleSimulation, CombatFeedback } from "./BattleSimulation";
 import { clone, GameState, isAvailableAdult, ownsTowerAmmo } from "./GameState";
-import { RULE } from "./GameConfig";
+import { RULE, SEWING } from "./GameConfig";
 import { applyCommand, Command, createGame, finishNight } from "./VillageRules";
 import { LoadResult, SaveMode, SaveStore } from "../storage/SaveStore";
 import { DeviceSettings } from "../storage/DeviceSettings";
 import { BackpackChange, VillageItemStorage } from "../storage/VillageItemStorage";
 import { VillageGuides } from "../storage/VillageGuides";
 import { ICE_AMMO_OFFER, ItemId, ITEMS, LIANG_ESSENCE, LIANG_INDULGENCE, PatrolItemId, YUEXIU_DICE } from "../config/ShopConfig";
-import { essenceTargets, patrolItemUnavailable, rewardDiceUnavailable, shopOffer } from "./ShopRules";
-import { dailyRationAmount, localRationDate } from "./DailyRation";
+import { essenceTargets, gateKitUnavailable, patrolItemUnavailable, rewardDiceUnavailable, shopOffer } from "./ShopRules";
+import { DAILY_GIFT_ITEM, dailyGiftAvailable, localGiftDate } from "./DailyRation";
 import { BLAST_TACTIC, KING_MERCY, KING_MERCY_TACTIC } from "../config/TacticConfig";
-import { gateCapacity, storageCapacity } from "./Growth";
+import { gateCapacity, gateRepairQuote, sewingDayCap, sewingYield } from "./Growth";
 import { generateWave } from "./WaveGenerator";
+import { spend, earnCoins, requireRule } from "./VillageStateOps";
+import { expeditionClaimQuote } from "./Expedition";
 import { EXPEDITION } from "../config/ExpeditionConfig";
 import { mercyOffering } from "./Tactics";
 
 import { DAILY_TASKS, TaskKind } from "../config/DailyTaskConfig";
 import { DailyTaskCombat } from "./DailyTaskCombat";
 import { claimDailyTask } from "./DailyTaskState";
-import { creditTaskCommand, creditTaskVictory, dailyTasksNeedRefresh, prepareDailyTasks } from "./DailyTasks";
+import { creditTaskCommand, creditTaskSewing, creditTaskVictory, dailyTasksNeedRefresh, prepareDailyTasks } from "./DailyTasks";
 import type { RoadPoint } from "./BattleRoad";
 import { PATROL } from "../config/PatrolConfig";
 import { autoAssignNightDuties } from "./VillageJobs";
 export type Pause = "USER" | "BACKGROUND" | "WAIT_RESUME" | "CHOICE" | "SAVE_PENDING" | "DISABLED" | "DAILY_RATION" | "ASSETS";
 /** 体验版一键验收用目标关卡和资源。只写测试村庄的双槽。 */
 const TEST_ENTRY = { day: 30, resources: 500 } as const;
+export interface SewingFeedback { id: string; coins: number; }
 export interface EssenceFeedback { person: string; nights: number; }
 export class GameSession {
     state: GameState | null = null; battle: BattleSimulation | null = null;
@@ -64,9 +67,18 @@ export class GameSession {
     private pendingEssence: EssenceFeedback | undefined;
     private essenceFeedback: EssenceFeedback | undefined;
     private purchaseFeedback = false;
+    private sewingElapsedMs = 0;
+    get sewingProgressMs() { return this.sewingElapsedMs; }
+    private pendingSewing: SewingFeedback[] = [];
+    private sewingFeedback: SewingFeedback[] = [];
+    takeSewingFeedback() {
+        const events = this.sewingFeedback;
+        this.sewingFeedback = [];
+        return events;
+    }
     takeEssenceFeedback() { const result = this.essenceFeedback; this.essenceFeedback = undefined; return result; }
     takePurchaseFeedback() { const result = this.purchaseFeedback; this.purchaseFeedback = false; return result; }
-    constructor(readonly saves: SaveStore, private today = () => localRationDate(new Date()), readonly testEntryEnabled = false) {}
+    constructor(readonly saves: SaveStore, private today = () => localGiftDate(new Date()), readonly testEntryEnabled = false) {}
     get taskDate() { return this.today(); }
     enter() { this.visitDate = this.today(); this.checkDailyRation(); if (!this.refreshDailyTasks()) this.changed(); }
 
@@ -85,8 +97,8 @@ export class GameSession {
         if (this.refreshDailyTasks()) return;
         const next = clone(this.state);
         try {
-            claimDailyTask(next, kind, issuedDate, this.taskDate);
-            this.submit(next);
+            const id = claimDailyTask(next, kind, issuedDate, this.taskDate);
+            this.submit(next, false, undefined, { id, delta: 1, before: this.villageItems.backpack().items[id] ?? 0 });
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
     /** 与状态接受共用调度：清晨/失败/启动/保存先完成，安全时才暂停领取。 */
@@ -97,15 +109,15 @@ export class GameSession {
             this.dailyRationDate = null; this.resume("DAILY_RATION"); this.resume("WAIT_RESUME");
         }
         if (this.visitDate === null || (s.phase !== "DAY" && s.phase !== "NIGHT")) return;
-        if (dailyRationAmount(s, this.visitDate) !== null) {
+        if (dailyGiftAvailable(s, this.visitDate)) {
             this.dailyRationDate = this.visitDate; this.pause("DAILY_RATION");
         } else { this.dailyRationDate = null; this.resume("DAILY_RATION"); }
     }
     claimDailyRation() {
         if (!this.state || this.dailyRationDate === null || this.saves.pending || this.pauses.has("BACKGROUND") || this.pauses.has("DISABLED")) return;
-        // 确认时再次核对日期和仓储；一旦创建保存候选，重试只提交该候选，不重新取日期或加粮。
+        // 确认时再次核对日期；道具和领取日共用同一保存候选。
         this.visitDate = this.today();
-        if (dailyRationAmount(this.state, this.visitDate) === null) { this.checkDailyRation(); this.changed(); return; }
+        if (!dailyGiftAvailable(this.state, this.visitDate)) { this.checkDailyRation(); this.changed(); return; }
         this.dailyRationDate = this.visitDate;
         this.command({ type: "DAILY_RATION", date: this.visitDate });
     }
@@ -154,12 +166,14 @@ export class GameSession {
             this.dailyRationDate = null;
             this.aimingBlastIn = null;
             this.nextTaskClockCheck = 0;
+            this.sewingFeedback = [];
         }
         if (abandonedNight) {
             this.pauses.delete("USER");
             this.pauses.delete("CHOICE");
             this.aimingBlastIn = this.aimingPatrolIn = null;
         }
+        this.sewingElapsedMs = s.factory.elapsedMs;
         this.state = s; this.boot = null; this.error = ""; this.pauses.delete("SAVE_PENDING");
         if (!sameNight) {
             // 清晨递归FINALIZE及结算保存重试保留尚未消费的最终事件；不能把最后一击清掉。
@@ -177,11 +191,14 @@ export class GameSession {
         this.checkDailyRation();
         this.changed();
     }
-    private submit(next: GameState, keepBattle = false, start?: SaveMode, backpack?: BackpackChange, essence?: EssenceFeedback) {
+    private submit(next: GameState, keepBattle = false, start?: SaveMode, backpack?: BackpackChange, essence?: EssenceFeedback, sewing: SewingFeedback[] = []) {
         try {
+            if (start === undefined && !sewing.length && this.state?.phase === "DAY" && this.state.day === next.day)
+                next.factory = { ...next.factory, elapsedMs: Math.min(SEWING.batchMs - 1, Math.floor(this.sewingElapsedMs)) };
             if (start !== undefined) next.settings = this.deviceSettings.resolve(next.settings);
             this.saves.prepare(next, start, start !== undefined, backpack); this.continuingBattle = keepBattle; this.pendingNewVillage = start !== undefined;
             this.pendingEssence = essence;
+            this.pendingSewing = sewing;
             this.stopPatrolRapid();
             this.pauses.add("SAVE_PENDING"); this.retry();
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
@@ -189,8 +206,10 @@ export class GameSession {
     retry() {
         if (!this.saves.pending) { this.load(); return; }
         try {
-            const purchase = this.saves.pending.backpack?.change.delta === 1 && this.boot?.kind !== "complete-backpack-change";
+            const purchase = this.saves.pending.backpack?.change.delta === 1 && !!this.state && this.state.coins > this.saves.pending.state.coins;
             const state = this.saves.commit(), newVillage = this.pendingNewVillage;
+            this.sewingFeedback.push(...this.pendingSewing);
+            this.pendingSewing = [];
             this.essenceFeedback = this.pendingEssence; this.pendingEssence = undefined;
             this.purchaseFeedback = purchase || !!(this.state && !newVillage && !ownsTowerAmmo(this.state, "SLOW") && state.iceAmmoUnlocked);
             this.pendingNewVillage = false; this.accept(state, newVillage);
@@ -202,15 +221,30 @@ export class GameSession {
         try {
             const { product, affordable } = shopOffer(state, id);
             if (id === ICE_AMMO_OFFER.id && ownsTowerAmmo(state, "SLOW")) throw new Error("冰弹已拥有");
-            if (!affordable) throw new Error("粮木不足");
+            if (!affordable) throw new Error("尔币不足");
             this.villageItems.shop();
-            const next = { ...state, food: state.food - product.food, wood: state.wood - product.wood };
+            const next = { ...state };
+            spend(next, product.coins);
             if (id === ICE_AMMO_OFFER.id) {
                 this.submit({ ...next, iceAmmoUnlocked: true });
                 return;
             }
             const count = this.villageItems.backpack().items[id] ?? 0;
             this.submit(next, false, undefined, { id, delta: 1, before: count });
+        } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
+    }
+    useGateKit() {
+        const state = this.state;
+        if (!state || this.saves.pending || this.pauses.has("BACKGROUND") || this.pauses.has("DISABLED")) return;
+        try {
+            const reason = gateKitUnavailable(state), id = DAILY_GIFT_ITEM;
+            requireRule(!reason, reason!);
+            const count = this.villageItems.backpack().items[id] ?? 0;
+            requireRule(count > 0, "背包里没有修门工具");
+            const next = clone(state), quote = gateRepairQuote(state);
+            next.gate = Math.min(quote.maximum, state.gate + quote.perRepair);
+            creditTaskCommand(state, next, { type: "REPAIR" }, this.taskDate);
+            this.submit(next, false, undefined, { id, delta: -1, before: count });
         } catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
     useEssence(person: string) {
@@ -262,8 +296,8 @@ export class GameSession {
         const next = clone(state), offset = completed - state.completed;
         next.day = day; next.completed = completed;
         next.legacy.bestNight = Math.max(next.legacy.bestNight, completed);
-        while (storageCapacity(next) < resources) next.houses++;
-        next.food = resources; next.wood = resources;
+        next.coins = resources;
+        next.factory = { ...next.factory, batches: 0, earned: 0, elapsedMs: 0 };
         if (offset !== 0) {
             // 对齐依赖波数的记录，保留家族和探索的相对进度。
             if (next.lastTraveler !== null) next.lastTraveler = Math.max(1, next.lastTraveler + offset);
@@ -281,6 +315,8 @@ export class GameSession {
             if (c.type === "NIGHT" && this.state.expedition?.reportPending) throw new Error("请先查看探索战报");
             const before = this.state, next = clone(before), date = this.taskDate;
             if (c.type !== "MUSIC") prepareDailyTasks(next, date);
+            const gift = c.type === "DAILY_RATION" ? DAILY_GIFT_ITEM :
+                c.type === "CLAIM_EXPEDITION" ? expeditionClaimQuote(before) : null;
             applyCommand(next, c);
             if (before.phase !== "DAY" && next.phase === "DAY") prepareDailyTasks(next, date);
             creditTaskCommand(before, next, c, date);
@@ -289,7 +325,8 @@ export class GameSession {
                 this.state = next; this.error = ""; this.changed();
                 return;
             }
-            this.submit(next, next.phase === "NIGHT" && this.state.phase === "NIGHT");
+            const backpack = gift ? { id: gift, delta: 1 as const, before: this.villageItems.backpack().items[gift] ?? 0 } : undefined;
+            this.submit(next, next.phase === "NIGHT" && this.state.phase === "NIGHT", undefined, backpack);
         }
         catch (e) { this.error = e instanceof Error ? e.message : String(e); this.changed(); }
     }
@@ -298,8 +335,7 @@ export class GameSession {
         if (state?.phase !== "NIGHT" || !state.night?.returnPoint || !battle || battle.outcome || this.saves.pending ||
             !this.pauses.has("CHOICE") || [...this.pauses].some(reason => reason !== "CHOICE" && reason !== "USER")) return;
         const next = clone(state), night = next.night!, back = night.returnPoint!;
-        next.food = back.food;
-        next.wood = back.wood;
+        next.coins = back.coins;
         next.gate = back.gate;
         if (back.dailyTasks) next.dailyTasks = back.dailyTasks;
         else delete next.dailyTasks;
@@ -315,7 +351,12 @@ export class GameSession {
     }
     pause(reason: Pause) { this.stopPatrolRapid(); this.pauses.add(reason); this.accumulator = 0; this.aimingBlastIn = this.aimingPatrolIn = null; }
     resume(reason: Pause) { this.pauses.delete(reason); this.accumulator = 0; }
-    hide = () => { this.pause("BACKGROUND"); this.changed(); };
+    hide = () => {
+        this.pause("BACKGROUND");
+        if (this.state?.phase === "DAY" && !this.saves.pending && Math.floor(this.sewingElapsedMs) !== this.state.factory.elapsedMs)
+            this.submit(clone(this.state));
+        else this.changed();
+    };
     show = () => { this.resume("BACKGROUND"); this.pause("WAIT_RESUME"); this.enter(); };
     get canRingBell() { return this.canCast(this.battle?.tactics[0].id); }
     canCast(id?: string) { return this.state?.phase === "NIGHT" && id !== undefined && this.battle?.canCast(id) === true && !this.pauses.size && !this.saves.pending; }
@@ -341,8 +382,7 @@ export class GameSession {
         const cost = mercyOffering(state);
         if (cost.reason) { this.error = cost.reason; this.changed(); return; }
         const next = clone(state), casts = (state.tactics.mercyCooldown?.casts ?? 0) + 1;
-        next.wood -= cost.wood;
-        next.food -= cost.food;
+        spend(next, cost.coins);
         next.gate = gateCapacity(state);
         next.night!.mercySpent = true;
         next.tactics.mercyCooldown = { casts, wavesLeft: KING_MERCY.baseCooldownWaves + casts };
@@ -401,14 +441,46 @@ export class GameSession {
         try { this.battle.reassign(index, id); this.error = ""; this.changed(); return true; }
         catch (e) { this.error = String(e); this.changed(); return false; }
     }
+    /** 只推进前台白天的批次。耗尽额度停工，飞币只消费成功写入的反馈。 */
+    private updateSewing(state: GameState, realDelta: number) {
+        const remaining = sewingDayCap(state) - state.factory.earned;
+        if (state.factory.batches >= SEWING.maxBatches || remaining <= 0 ||
+            !state.people.some(p => p.job === "SEWING" && isAvailableAdult(state, p))) return;
+        this.sewingElapsedMs = Math.min(SEWING.batchMs, this.sewingElapsedMs + realDelta * 1000);
+        if (this.sewingElapsedMs < SEWING.batchMs) return;
+        const contributions = state.people.filter(p => p.job === "SEWING" && isAvailableAdult(state, p))
+            .map(p => ({ id: p.id, coins: sewingYield(state, p, "day") }));
+        const production = contributions.reduce((sum, contribution) => sum + contribution.coins, 0);
+        const total = Math.min(remaining, production, Number.MAX_SAFE_INTEGER - state.coins);
+        if (!total) return;
+        // 收工批次按各人的产量比例分摊，既保留品质差异，也不会在首批触顶时漏掉后排工人。
+        const payout = contributions.map(({ id, coins }) => ({ id, coins: Math.floor(coins * total / production) }));
+        let unassigned = total - payout.reduce((sum, contribution) => sum + contribution.coins, 0);
+        for (const share of payout) {
+            if (unassigned === 0) break;
+            share.coins++;
+            unassigned--;
+        }
+        const next = clone(state);
+        earnCoins(next, total);
+        next.factory = { ...next.factory, batches: next.factory.batches + 1, earned: next.factory.earned + total, elapsedMs: 0 };
+        creditTaskSewing(next, this.taskDate, total);
+        this.submit(next, false, undefined, undefined, undefined, payout.filter(p => p.coins > 0));
+    }
     update(delta: number) {
         const now = Date.now();
         if (this.state?.phase === "DAY" && now >= this.nextTaskClockCheck) {
             this.nextTaskClockCheck = now + DAILY_TASKS.clockCheckMs;
             this.refreshDailyTasks();
         }
-        if (this.pauses.size || !this.battle || !this.state || this.battle.outcome) return;
+        if (this.saves.pending || !this.state) return;
         const realDelta = Math.min(RULE.frameCap, Math.max(0, delta));
+        if (this.state.phase === "DAY") {
+            if (!this.pauses.size || this.pauses.size === 1 && this.pauses.has("CHOICE"))
+                this.updateSewing(this.state, realDelta);
+            return;
+        }
+        if (this.pauses.size || !this.battle || this.battle.outcome) return;
         if (this.battle.handSpeed) {
             const battle = this.battle;
             battle.step(realDelta);

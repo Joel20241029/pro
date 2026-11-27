@@ -15,7 +15,7 @@ const { GameSession } = read('game/GameSession');
 const { SaveStore } = read('storage/SaveStore');
 
 function learned() {
-    const s = createGame(7); s.completed = 30; s.day = 31; s.legacy.bestNight = 30; s.wood = 80; s.food = 40;
+    const s = createGame(7); s.completed = 30; s.day = 31; s.legacy.bestNight = 30; s.coins = 120;
     s.wave = generateWave(s);
     applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC }); return s;
 }
@@ -23,10 +23,10 @@ function enemy(seq, progress = 260 - seq, hp = 100000, kind = 'enemy_raider') {
     return { seq, kind, appearanceSeed: 87, progress, hp, speed: 0, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
 }
 function battle(kind = 'ARROW', active = true) {
-    const s = learned(); s.food = 100; applyCommand(s, { type: 'NIGHT' });
+    const s = learned(); applyCommand(s, { type: 'NIGHT' });
     const b = new BattleSimulation(s);
     b.base.towers.forEach((t, i) => { t.kind = i === 0 ? kind : null; t.level = 1; t.operator = i === 0 ? s.people[0].id : null; });
-    for (const p of b.base.people) { p.traits = ['trait_frugal']; p.quality = "COMMON"; }
+    for (const p of b.base.people) { p.traits = ['trait_crafty']; p.quality = "COMMON"; }
     b.cursor = b.base.wave.entries.length; b.enemies = [enemy(0), enemy(1), enemy(2)];
     if (active) b.bell(); return b;
 }
@@ -34,18 +34,18 @@ const shots = b => b.feedback.filter(e => e.type === 'shot');
 
 test('split uses the approved name, cost, fifteen current-village wins and fifteen combat seconds', () => {
     const t = tacticDefinition(SPLIT_TACTIC);
-    assert.deepEqual([t.name, t.effect, t.targets, t.ticks * RULE.step, t.unlockWaves, t.wood, t.food],
-        ['分裂术·超', 'MULTI_TARGET', 3, 15, 15, 60, 30]);
+    assert.deepEqual([t.name, t.effect, t.targets, t.ticks * RULE.step, t.unlockWaves, t.coins],
+        ['分裂术·超', 'MULTI_TARGET', 3, 15, 15, 80]);
     const s = createGame(7); s.completed = 14; s.day = 15; s.legacy.bestNight = 100;
     assert.equal(tacticUnavailableReason(s, SPLIT_TACTIC, 'LEARN'), '还需守住 1 波');
     const before = clone(s); assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC })); assert.deepEqual(s, before);
-    s.completed = 15; s.day = 16; s.wood = 59; s.food = 29;
-    assert.equal(tacticUnavailableReason(s, SPLIT_TACTIC, 'LEARN'), '还缺 1 木、1 粮');
-    s.wood = 60; s.food = 30; applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC });
-    assert.deepEqual([s.wood, s.food, s.tactics.equipped], [0, 0, SPLIT_TACTIC]);
+    s.completed = 15; s.day = 16; s.coins = 79;
+    assert.equal(tacticUnavailableReason(s, SPLIT_TACTIC, 'LEARN'), '还缺 1 尔币');
+    s.coins = 80; applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC });
+    assert.deepEqual([s.coins, s.tactics.equipped], [0, SPLIT_TACTIC]);
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SPLIT_TACTIC }));
     applyCommand(s, { type: 'TACTIC_EQUIP', id: DEFAULT_TACTIC }); applyCommand(s, { type: 'TACTIC_EQUIP', id: SPLIT_TACTIC });
-    assert.deepEqual([s.wood, s.food], [0, 0]);
+    assert.equal(s.coins, 0);
     for (const patch of [{ targets: 0 }, { targets: 1 }, { targets: 2.5 }, { targets: NaN }, { targets: RULE.effectCap + 1 }, { multiplier: 1.5 }])
         assert.throws(() => validateTactics(TACTICS.map(value => value.id === SPLIT_TACTIC ? { ...value, ...patch } : value)));
 });
@@ -183,7 +183,7 @@ test('forced visual overflow begins orphan death animations without a false flas
 test('purchase persists once; pause, reassign, triple speed and cold reload keep existing skill lifecycle', () => {
     const values = new Map(), port = { read: k => values.get(k) || null, write: (k, v) => values.set(k, v) };
     const saves = new SaveStore(port); saves.inspect(); saves.prepare(learned()); saves.commit();
-    const g = new GameSession(saves); g.load(); g.state.food = 100; g.command({ type: 'NIGHT' });
+    const g = new GameSession(saves); g.load(); g.command({ type: 'NIGHT' });
     const b = g.battle; assert.equal(b.tactic.id, SPLIT_TACTIC); assert.equal(g.state.night.tactic, SPLIT_TACTIC);
     const duration = tacticDefinition(SPLIT_TACTIC).ticks;
     g.bell(); assert.equal(b.bellTicks, duration); g.pause('CHOICE'); g.update(.25); assert.equal(b.bellTicks, duration);

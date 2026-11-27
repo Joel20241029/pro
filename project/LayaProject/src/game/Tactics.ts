@@ -1,16 +1,13 @@
 import { KING_MERCY, TACTICS, TACTIC_SLOTS, tacticDefinition } from "../config/TacticConfig";
 import { GameState } from "./GameState";
-import { storageCapacity } from "./Growth";
-import { requireRule } from "./VillageStateOps";
+import { requireRule, spend } from "./VillageStateOps";
 
 export type TacticAction = "LEARN" | "EQUIP";
 export function equippedTactics(s: GameState) { return [s.tactics.equipped, ...(s.tactics.extraSlots ?? [])]; }
-/** 确认面板和扣费共用当前库存。两种材料都必须能献纳至少一点。 */
-export function mercyOffering(s: Pick<GameState, "food" | "wood">) {
-    const wood = Math.ceil(s.wood * KING_MERCY.offeringPercent / 100);
-    const food = Math.ceil(s.food * KING_MERCY.offeringPercent / 100);
-    const missing = !wood && !food ? "粮食和木材" : !wood ? "木材" : !food ? "粮食" : null;
-    return { wood, food, reason: missing === null ? null : `${missing}不足，祈求未成` };
+/** 读实时余额，确认面板与提交共用同一献纳报价。 */
+export function mercyOffering(s: Pick<GameState, "coins">) {
+    const coins = Math.max(KING_MERCY.minimumCoins, Math.ceil(s.coins * KING_MERCY.offeringPercent / 100));
+    return { coins, reason: s.coins < coins ? `需要至少 ${KING_MERCY.minimumCoins} 尔币，祈求未成` : null };
 }
 /** 已学会的传承战技始终可见；其余守住对应波数才揭晓，列表和说明书共用。 */
 export function tacticRevealed(s: GameState, id: string): boolean {
@@ -26,22 +23,15 @@ export function tacticUnavailableReason(s: GameState, id: string, action: Tactic
     if (s.completed < t.unlockWaves) return `还需守住 ${t.unlockWaves - s.completed} 波`;
     return materialsUnavailable(s, t);
 }
-function materialsUnavailable(s: GameState, cost: { wood: number; food: number }) {
-    const cap = storageCapacity(s);
-    if (Math.max(cost.wood, cost.food) > cap) return `先扩建民居，当前仓储 ${cap}`;
-    const wood = Math.max(0, cost.wood - s.wood), food = Math.max(0, cost.food - s.food);
-    if (wood && food) return `还缺 ${wood} 木、${food} 粮`;
-    if (wood) return `还缺 ${wood} 木`;
-    if (food) return `还缺 ${food} 粮`;
-    return null;
+function materialsUnavailable(s: GameState, cost: { coins: number }) {
+    return s.coins < cost.coins ? `还缺 ${cost.coins - s.coins} 尔币` : null;
 }
-/** 只改调用者的候选状态；GameSession 将双材料、学习与携带作为同一笔存档提交。 */
 export function applyTactic(s: GameState, id: string, action: TacticAction, slot = 0) {
     const reason = tacticUnavailableReason(s, id, action, slot);
     requireRule(reason === null, reason!);
     if (action === "LEARN") {
         const t = tacticDefinition(id);
-        s.wood -= t.wood; s.food -= t.food;
+        spend(s, t.coins);
         s.tactics.learned.push(id);
     }
     if (slot === 0) s.tactics.equipped = id;
@@ -58,14 +48,14 @@ export function unlockTacticSlot(s: GameState, slot: number) {
     const reason = slotUnavailableReason(s, slot);
     requireRule(reason === null, reason!);
     const cost = TACTIC_SLOTS[slot - 1];
-    s.wood -= cost.wood; s.food -= cost.food;
+    spend(s, cost.coins);
     (s.tactics.extraSlots ??= []).push(null);
 }
 export function canLearnTactic(s: GameState): boolean {
     return TACTICS.some(t => !s.tactics.learned.includes(t.id) && tacticUnavailableReason(s, t.id, "LEARN") === null);
 }
 
-/** 世界入口和槽位卡共用解锁资格，只有下一槽满足波数、仓储和费用才提醒。 */
+/** 世界入口和槽位卡共用解锁资格，只有下一槽满足波数和费用才提醒。 */
 export function nextTacticSlotReady(s: GameState) {
     return slotUnavailableReason(s, equippedTactics(s).length) === null;
 }

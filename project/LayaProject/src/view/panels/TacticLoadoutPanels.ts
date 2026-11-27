@@ -99,8 +99,8 @@ export function drawTacticOverview(ctx: PanelContext, s: GameState, panel: Panel
         roundMedallion(ctx, face, skill?.icon ?? (opened ? "icon_build_plus" : "icon_slot_lock"), spec.width / 2,
             spec.circleY, spec.radius, opened ? spec.icon : 52, !opened);
         compactLabel(ctx, face, skill?.name ?? (opened ? "空槽位" : "未解锁"), 8, 135, spec.width - 16, 31, 25, ink, true).align = "center";
-        if (slotReady && i === equipped.length) ctx.ui.actionBadge(card, "TacticSlotUnlockHint");
-        if (!active && i === vacantSlot) ctx.ui.actionBadge(card, "TacticSlotActionHint");
+        if (slotReady && i === equipped.length) ctx.ui.cellActionBadge(card, "TacticSlotUnlockHint");
+        if (!active && i === vacantSlot) ctx.ui.cellActionBadge(card, "TacticSlotActionHint");
     }
     compactLabel(ctx, box, `战技列表 · 第 ${slot + 1} 槽`, UI.inset, listTop - 46, UI.contentWidth, 36, 29, C.ink, true);
 
@@ -186,19 +186,19 @@ export function drawTacticOverview(ctx: PanelContext, s: GameState, panel: Panel
             const question = compactLabel(ctx, face, "?", 19, cy - 43, 104, 86, 61, C.timber, true);
             question.align = "center"; question.valign = "middle";
         }
-        const titleWidth = infoWidth - 170;
+        const unread = !blocked && day && revealed && !expanded && ctx.unreadTactic(id);
+        const caretInset = unread && !hasAction ? UI.cellActionDot.clearRight : 5;
+        const titleWidth = infoWidth - 165 - caretInset;
         compactLabel(ctx, face, revealed ? skill.name : "未知战技", 137, 15, titleWidth, 42, 32, C.ink, true);
-        compactLabel(ctx, face, expanded ? "⌃" : "⌄", infoWidth - 39, 20, 34, 35, 28, C.timber, true).align = "center";
+        compactLabel(ctx, face, expanded ? "⌃" : "⌄", infoWidth - 34 - caretInset, 20, 34, 35, 28, C.timber, true).align = "center";
         const summary = revealed ? skill.summary : `守住 ${skill.unlockWaves} 波后解锁`;
         const costShown = revealed && !learned;
         const copy = ctx.ui.label(face, summary, 137, 58, titleWidth, 25, C.muted, false, costShown || equippedAt >= 0 ? 44 : 66);
         copy.valign = "middle"; copy.overflow = Laya.Text.SHRINK;
-        if (costShown) ctx.ui.materialCosts(face, s, skill, 137, 105, titleWidth, 32);
+        if (costShown) ctx.ui.coinCost(face, s, skill, 137, 105, titleWidth, 32);
         if (equippedAt >= 0) compactLabel(ctx, face, `✓ 已装第 ${equippedAt + 1} 槽`, 137, 106, titleWidth, 31, 24, C.green, true);
-        const unread = !blocked && day && revealed && !expanded && ctx.unreadTactic(id);
         const actionHint = hasAction && !blocked && !reason && !removable &&
             (!learned || !equipped[slot] || unread);
-        if (unread && !actionHint) ctx.ui.actionBadge(row, "TacticReadHint");
 
         if (hasAction) {
             const enabled = !blocked && !reason;
@@ -210,16 +210,16 @@ export function drawTacticOverview(ctx: PanelContext, s: GameState, panel: Panel
                 ctx.send(removable ? { type: "TACTIC_CLEAR_SLOT", slot } :
                     { type: learned ? "TACTIC_EQUIP" : "TACTIC_LEARN", id, slot });
             };
-            const button = ctx.ui.button(row, removable ? "卸下" : learned ? "装配" : "学习并装配", actionX, actionY, actionWidth, () => {
+            ctx.ui.button(row, removable ? "卸下" : learned ? "装配" : "学习并装配", actionX, actionY, actionWidth, () => {
                 if (ctx.current !== panel || actionHintsBlocked(ctx.game)) return;
                 if (learned) submit();
                 else ctx.confirmSpend({ title: skill.name, actionText: "确认学习", image: skill.icon,
-                    detail: skill.summary, wood: skill.wood, food: skill.food, showBadge: true }, submit);
+                    detail: skill.summary, coins: skill.coins, showBadge: true }, submit);
             }, removable ? C.muted : C.gold, actionHeight, enabled);
-            if (actionHint) ctx.ui.actionBadge(button, "TacticChoiceActionHint");
             if (enabled && !removable && actionSpot === undefined) actionSpot = y;
             if (reason) compactLabel(ctx, row, reason, actionX - 8, 110, actionWidth + 16, 29, 22, C.red).align = "center";
         }
+        if (actionHint || unread) ctx.ui.cellActionBadge(row, actionHint ? "TacticChoiceActionHint" : "TacticReadHint");
         y += step;
         if (expanded) {
             detail.pos(0, y - 5); list.content.addChild(detail);

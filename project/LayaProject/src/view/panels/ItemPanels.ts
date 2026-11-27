@@ -2,7 +2,7 @@ import { ICE_AMMO_OFFER, itemDefinition, ITEMS, LIANG_ESSENCE, LIANG_INDULGENCE,
 import { featureUnlocked } from "../../config/DailyTaskConfig";
 import { GameState, ownsTowerAmmo } from "../../game/GameState";
 import type { GameSession } from "../../game/GameSession";
-import { essenceTargets, patrolItemUnavailable, rewardDiceUnavailable } from "../../game/ShopRules";
+import { essenceTargets, gateKitUnavailable, patrolItemUnavailable, rewardDiceUnavailable } from "../../game/ShopRules";
 import { actionHintsBlocked } from "../ActionHints";
 import { replayButtonPress } from "../ButtonFeedback";
 import { ScrollList } from "../ScrollList";
@@ -25,15 +25,15 @@ const SHOP_TABS = [
 type Product = typeof SHOP_PRODUCTS[number];
 function backpackAction(state: GameState, id: string, hasEssenceTarget: boolean) {
     const patrolItem = id === PATROL_RATION.id || id === LIANG_INDULGENCE.id ? id : undefined;
-    const essence = id === LIANG_ESSENCE.id, dice = id === YUEXIU_DICE.id;
+    const essence = id === LIANG_ESSENCE.id, dice = id === YUEXIU_DICE.id, repair = id === "gate_kit";
     const reason = patrolItem ? patrolItemUnavailable(state, patrolItem)
-        : dice ? rewardDiceUnavailable(state) : essence && !hasEssenceTarget ? "没有可使用的成年村民" : null;
-    return { patrolItem, dice, reason, enabled: !!(patrolItem || essence || dice) && reason === null };
+        : dice ? rewardDiceUnavailable(state) : repair ? gateKitUnavailable(state) : essence && !hasEssenceTarget ? "没有可使用的成年村民" : null;
+    return { patrolItem, dice, repair, reason, enabled: !!(patrolItem || essence || dice || repair) && reason === null };
 }
 
 /** 道具增益和购买的 HUD、列表、确认按钮共用同一套当前可操作条件。 */
 function purchaseReady(state: GameState, offer: Product, inventory: Record<string, number> | undefined) {
-    return state.food >= offer.food && state.wood >= offer.wood && (offer.id === ICE_AMMO_OFFER.id
+    return state.coins >= offer.coins && (offer.id === ICE_AMMO_OFFER.id
         ? !ownsTowerAmmo(state, "SLOW")
         : !!inventory && Number.isSafeInteger((inventory[offer.id] ?? 0) + 1));
 }
@@ -119,11 +119,11 @@ export function drawItemPanel(ctx: PanelContext, state: GameState, panel: Panel,
             const textX = 152, actionWidth = 116, actionX = width - actionWidth - 17, textWidth = actionX - textX - 14;
             const title = ctx.ui.label(row, item.name, textX, 26, textWidth, 33, C.ink, true, 47);
             title.wordWrap = false; title.overflow = Laya.Text.SHRINK;
-            if (!owned) ctx.ui.materialCosts(row, state, product.food ? product : { wood: product.wood }, textX, 81, textWidth, 39);
+            if (!owned) ctx.ui.coinCost(row, state, product, textX, 81, textWidth, 39);
             else ctx.ui.label(row, "✓ 已拥有", textX, 81, textWidth, 24, C.green, true, 39);
-            const buy = ctx.ui.button(row, owned ? "详情" : "购买", actionX, 49, actionWidth,
+            ctx.ui.button(row, owned ? "详情" : "购买", actionX, 49, actionWidth,
                 () => ctx.open({ type: "itemOffer", id, back: panel }), owned ? C.muted : C.gold, 62);
-            if (purchasable(product)) ctx.ui.actionBadge(buy, "ShopOfferHint");
+            if (purchasable(product)) ctx.ui.cellActionBadge(row, "ShopOfferHint");
         });
         return;
     }
@@ -164,31 +164,32 @@ export function drawItemPanel(ctx: PanelContext, state: GameState, panel: Panel,
             panel.scroll = Math.max(panel.scroll ?? 0, detailY + spec.detail - viewport);
             ctx.refresh();
         });
-        if (canOperate && enabled && selected?.[0] !== id) {
-            const badge = ctx.ui.actionBadge(tile, "BackpackUseHint");
-            badge.pos(tileWidth - badge.width, 0);
-        }
+        if (canOperate && enabled && selected?.[0] !== id) ctx.ui.cellActionBadge(tile, "BackpackUseHint");
     });
     if (!selected) return;
     const [id] = selected, item = itemDefinition(id);
-    const { patrolItem, dice, reason, enabled } = backpackAction(state, id, !!targets.length);
+    const { patrolItem, dice, repair, reason, enabled } = backpackAction(state, id, !!targets.length);
     const detail = list.content.addChild(new Laya.Sprite()).pos(0, detailY).size(width, spec.detail);
     detail.name = `BackpackDetail:${id}`;
     ctx.art.panel(detail, "panel_card", width, spec.detail);
-    const copyWidth = patrolItem || dice ? width - 172 : width - 36;
+    const copyWidth = patrolItem || dice || repair ? width - 172 : width - 36;
     ctx.ui.label(detail, item?.name ?? "待识别道具", 18, 11, copyWidth, 30, C.ink, true, 40);
     const copy = ctx.ui.label(detail, item?.description ?? "库存已保留", 18, 51, copyWidth, 24, C.muted, false, reason ? 44 : 66);
     copy.wordWrap = true; copy.overflow = Laya.Text.SHRINK;
-    const status = dice && state.rewardDie !== undefined ? `已掷出 ${state.rewardDie} 点 · 产出 ×${nightRewardMultiplier(state.rewardDie)}` : reason;
+    const status = dice && state.rewardDie !== undefined ? `已掷出 ${state.rewardDie} 点 · 基础奖部分 ×${nightRewardMultiplier(state.rewardDie)}` : reason;
     if (status) ctx.ui.label(detail, status, 18, 96, copyWidth, 23, C.muted, false, 30);
-    if ((patrolItem || dice) && item) {
-        const use = ctx.ui.button(detail, "使用", width - 139, 36, 122, () => {
+    if ((patrolItem || dice || repair) && item) {
+        ctx.ui.button(detail, "使用", width - 139, 36, 122, () => {
             if (ctx.current !== panel) return;
             if (dice) { ctx.open({ type: "rewardDice", back: panel }); return; }
             ctx.confirmSpend({ title: item.name, actionText: "确认使用", image: item.icon, detail: item.description, quantity: "×1" },
-                () => { if (patrolItem && ctx.current === panel) ctx.game.usePatrolItem(patrolItem); });
+                () => {
+                    if (ctx.current !== panel) return;
+                    if (repair) ctx.game.useGateKit();
+                    else if (patrolItem) ctx.game.usePatrolItem(patrolItem);
+                });
         }, C.gold, 62, canOperate && enabled);
-        if (canOperate && enabled) ctx.ui.actionBadge(use, "BackpackUseHint");
+        if (canOperate && enabled) ctx.ui.cellActionBadge(detail, "BackpackUseHint");
     }
     if (recipients.length) ctx.ui.label(list.content, "选择一位村民", 15, targetY - 40, width - 30, 26, C.ink, true, 40);
     recipients.forEach((target, index) => {
@@ -201,10 +202,10 @@ export function drawItemPanel(ctx: PanelContext, state: GameState, panel: Panel,
         const uses = LIANG_ESSENCE.maxUses - (target.retirementDelayUses ?? 0);
         const notes = ctx.ui.label(row, `距退休 ${target.nights} 夜 · 还可用 ${uses} 次`, 113, 59, width - 265, 24, C.muted, false, 37);
         notes.wordWrap = false; notes.overflow = Laya.Text.SHRINK;
-        const use = ctx.ui.button(row, "使用", width - 139, 25, 122, () => {
+        ctx.ui.button(row, "使用", width - 122 - UI.cellActionDot.clearRight, 25, 122, () => {
             if (ctx.current === panel) ctx.open({ type: "essenceConfirm", id: target.id, back: panel });
         }, C.gold, 62, canOperate && enabled);
-        if (canOperate && enabled) ctx.ui.actionBadge(use, "EssenceSelectHint");
+        if (canOperate && enabled) ctx.ui.cellActionBadge(row, "EssenceSelectHint");
     });
 }
 
@@ -234,9 +235,9 @@ function drawItemAction(ctx: PanelContext, state: GameState, panel: Panel) {
         const cost = box.addChild(new Laya.Sprite()), footer = 536;
         cost.size(350, 56).pos((box.width - 350) / 2, footer - 74);
         ctx.art.panel(cost, "panel_card", cost.width, cost.height);
-        ctx.ui.materialCosts(cost, state, offer, 46, 8, 280, 40);
+        ctx.ui.coinCost(cost, state, offer, 46, 8, 280, 40);
         const owned = offer.id === ICE_AMMO_OFFER.id && ownsTowerAmmo(state, "SLOW");
-        const affordable = state.food >= offer.food && state.wood >= offer.wood;
+        const affordable = state.coins >= offer.coins;
         let canBuy = false;
         if (canOperate && featureUnlocked(state.legacy.bestNight, "shop") && affordable && !owned) {
             try {
@@ -247,7 +248,7 @@ function drawItemAction(ctx: PanelContext, state: GameState, panel: Panel) {
         if (owned) centered(box, "✓ 已拥有", footer, 27, 60, true);
         else ctx.ui.choiceAction(box, "确认购买", footer + 30, () => {
             if (ctx.current === panel) ctx.game.buyItem(offer.id);
-        }, canBuy ? undefined : !affordable ? "粮木不足" : !canOperate ? "白天可购买" : "暂不可购买");
+        }, canBuy ? undefined : !affordable ? "尔币不足" : !canOperate ? "白天可购买" : "暂不可购买");
         return;
     }
     const targets = essenceTargets(state);
@@ -323,8 +324,8 @@ function drawRewardDice(ctx: PanelContext, state: GameState, panel: Panel) {
         panel.rewardDiceAnimationDone = true;
         ctx.refresh();
     } : undefined));
-    const text = roll === undefined ? "1–3 点 · 粮木产出减半\n4–6 点 · 粮木产出翻倍"
-        : animation ? "骰子滚动中…" : `${roll} 点 · 下场守夜粮木产出 ×${nightRewardMultiplier(roll)}`;
+    const text = roll === undefined ? ITEMS[YUEXIU_DICE.id].description
+        : animation ? "骰子滚动中…" : `${roll} 点 · 下场守夜最多 ${YUEXIU_DICE.stakeCap} 尔币 ×${nightRewardMultiplier(roll)}`;
     const line = ctx.ui.label(box, text, 36, 278, width - 72, 28, roll !== undefined && roll < YUEXIU_DICE.highFrom ? C.red : C.ink, true, 80);
     line.align = "center"; line.valign = "middle"; line.overflow = Laya.Text.SHRINK;
     if (animation) return;

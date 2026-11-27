@@ -14,10 +14,9 @@ function village(completed = 6) {
     s.completed = s.legacy.bestNight = completed;
     s.day = completed + 1;
     s.wave = generateWave(s);
-    s.food = 70;
-    s.wood = 199;
+    s.coins = 199;
     s.gate = 150;
-    s.dailyTasks = { date, tasks: [{ kind: 'food', goal: 16, progress: 0, material: 'wood', reward: 8, claimed: false }] };
+    s.dailyTasks = { date, tasks: [{ kind: 'sewCoins', goal: 8, progress: 0, reward: 'gate_kit', claimed: false }] };
     return s;
 }
 
@@ -43,12 +42,13 @@ function session(state) {
     return { game: open(), open, failWrites: value => { fail = value; } };
 }
 
-test('exiting after a cold read reverses warehouse-clamped production and tasks and keeps the same wave', () => {
+test('exiting after a cold read preserves wallet and tasks and keeps the same wave', () => {
     const f = session(village()), game = f.game;
     const before = clone(game.state);
     game.command({ type: 'NIGHT' });
-    assert.equal(game.state.wood, 200);
-    assert(game.state.dailyTasks.tasks[0].progress > 0);
+    assert.equal(game.state.coins, before.coins);
+    assert(game.state.night.reward.total > 0);
+    assert.equal(game.state.dailyTasks.tasks[0].progress, 0);
     const restored = f.open();
     const battle = restored.battle;
     restored.abandonNight();
@@ -71,7 +71,7 @@ test('exiting after a cold read reverses warehouse-clamped production and tasks 
     assert.deepEqual(restored.battle.base.wave, battle.base.wave);
 });
 
-test('abandoning restores mercy and prepared items while retaining separately granted daily rations', () => {
+test('abandoning restores mercy and prepared items while retaining separately granted daily gifts', () => {
     const s = village(50);
     s.tactics.learned.push(KING_MERCY_TACTIC);
     s.tactics.equipped = KING_MERCY_TACTIC;
@@ -79,18 +79,17 @@ test('abandoning restores mercy and prepared items while retaining separately gr
     s.patrol.rationReady = s.patrol.radiusReady = true;
     const { game } = session(s);
     game.command({ type: 'NIGHT' });
-    const beforeRation = game.state.food;
     game.command({ type: 'DAILY_RATION', date });
-    const ration = game.state.food - beforeRation;
-    assert(ration > 0);
+    assert.equal(game.villageItems.backpack().items.gate_kit, 1);
+    assert.equal(game.state.coins, s.coins);
     game.pause('CHOICE');
     game.confirmMercy();
     assert.equal(game.state.night.mercySpent, true);
     assert.equal(game.state.tactics.mercyCooldown.casts, 3);
     game.pause('CHOICE');
     game.abandonNight();
-    assert.equal(game.state.food, s.food + ration);
-    assert.equal(game.state.wood, s.wood);
+    assert.equal(game.state.coins, s.coins);
+    assert.equal(game.villageItems.backpack().items.gate_kit, 1);
     assert.equal(game.state.gate, s.gate);
     assert.equal(game.state.legacy.lastRationDate, date);
     assert.deepEqual(game.state.tactics.mercyCooldown, s.tactics.mercyCooldown);
@@ -119,23 +118,14 @@ test('failed exit freezes the night and commits the same day on retry', () => {
     assert.equal(game.pauses.size, 0);
 });
 
-test('old nights use only the verified adjacent day slot to restore balances', () => {
-    const seed = village();
-    for (const overwroteDay of [false, true]) {
-        const { game, open } = session(seed);
-        const oldNight = clone(game.state);
-        applyCommand(oldNight, { type: 'NIGHT' });
-        delete oldNight.night.returnPoint;
-        game.saves.prepare(oldNight);
-        game.saves.commit();
-        if (overwroteDay) {
-            game.saves.prepare(oldNight);
-            game.saves.commit();
-        }
-        const restored = open();
-        restored.pause('CHOICE');
-        restored.abandonNight();
-        assert.equal(restored.state.phase, overwroteDay ? 'NIGHT' : 'DAY');
-        assert.equal(restored.state.wood, overwroteDay ? oldNight.wood : seed.wood);
-    }
+test('a cold-replayed coin night requires and retains an exact withdrawal snapshot', () => {
+    const seed = village(), { game, open } = session(seed);
+    game.command({ type: 'NIGHT' });
+    const next = clone(game.state);
+    delete next.night.returnPoint;
+    assert.throws(() => read('storage/StateValidation').validateState(next));
+    const restored = open();
+    restored.pause('CHOICE'); restored.abandonNight();
+    assert.equal(restored.state.phase, 'DAY');
+    assert.equal(restored.state.coins, seed.coins);
 });

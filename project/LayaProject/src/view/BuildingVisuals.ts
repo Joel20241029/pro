@@ -67,7 +67,7 @@ export class BuildingVisuals {
             this.parts.scale(this.bodyScale, this.bodyScale);
         } else if (kind && this.level > 0) {
             const gains = Math.max(level - this.level, 0);
-            if (kind === "HOUSE" || kind === "FARM" || kind === "LOGGING" || kind === "GATE") this.upgradePending += gains;
+            if (kind === "HOUSE" || kind === "GATE") this.upgradePending += gains;
             else if (gains) this.upgradePending = 1;
         }
         this.level = level;

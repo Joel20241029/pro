@@ -7,15 +7,15 @@ import { requireRule, newId, remember } from "./VillageStateOps";
 import { PATROL } from "../config/PatrolConfig";
 import { DEFAULT_TACTIC } from "../config/TacticConfig";
 export function createGame(seed: number, old?: Legacy, inherited?: Trait, history: Person[] = [], favorites: string[] = []): GameState {
-    // 口粮按当前村庄领取；即使传承其他记录，新村也从未领取开始。
+    // 每日村礼按当前村庄领取；即使传承其他记录，新村也从未领取开始。
     const legacy: Legacy = old ? { ...clone(old), lastRationDate: null } : { births: 0, retirees: 0, bestNight: 0, traits: [], nextRun: 1, lastRationDate: null };
     requireRule(Number.isSafeInteger(legacy.nextRun + 1), "村落编号已达安全范围");
     if (inherited)
         requireRule(legacy.traits.includes(inherited), "尚未发现此天赋");
     const s: GameState = {
         run: legacy.nextRun++, nextPerson: 1, nextFamily: 2, day: 1, completed: 0,
-        phase: "DAY", food: RULE.initialResource, wood: RULE.initialResource, gate: RULE.gateMax,
-        houses: 1, gateLevel: 1, farm: 1, logging: 1, tier: RULE.maxTier, lastTraveler: null,
+        phase: "DAY", coins: RULE.initialCoins, gate: RULE.gateMax,
+        houses: 1, gateLevel: 1, factory: { level: 1, batches: 0, earned: 0, elapsedMs: 0 }, tier: RULE.maxTier, lastTraveler: null,
         people: [], families: [], towers: [], history: clone(history), favorites: favorites.slice(), choices: [], wave: null, night: null,
         ammoLevels: { ARROW: 1, STONE: 1, SLOW: 1 },
         patrol: { level: PATROL.startLevel, captain: null },

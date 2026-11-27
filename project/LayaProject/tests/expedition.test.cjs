@@ -7,10 +7,9 @@ const { validateState } = read('storage/StateValidation');
 const { createGame, applyCommand, finishNight, economy, person } = read('game/VillageRules');
 const { clone, isExploring } = read('game/GameState');
 const { generateWave } = read('game/WaveGenerator');
-const { storageCapacity } = read('game/Growth');
 const { replacementOperators } = read('game/VillageJobs');
 const { essenceTargets } = read('game/ShopRules');
-const { expeditionClaimQuote, expeditionDeparturePreview, expeditionTotal, expeditionUnavailableReason } = read('game/Expedition');
+const { expeditionClaimQuote, expeditionDeparturePreview, expeditionUnavailableReason, migrateLegacyExpedition } = read('game/Expedition');
 
 function village(completed = 8) {
     const s = createGame(42);
@@ -75,12 +74,11 @@ test('521 unlocks using this village and previews the actual departure and repla
     applyCommand(s, start);
     const after = economy(s);
     assert.equal(s.people.length, count);
-    assert.deepEqual([after.wood - before.wood, after.food - before.food, after.rations - before.rations],
-        [preview.wood, preview.food, preview.rations]);
+    assert.equal(after.sewing - before.sewing, preview.coins);
     assert(isExploring(s, id));
     assert(!replacementOperators(s, 0).some(p => p.id === id));
     assert(!essenceTargets(s).some(p => p.id === id));
-    assert.throws(() => applyCommand(s, { type: 'JOB', id, job: 'FARM' }), /探索中/);
+    assert.throws(() => applyCommand(s, { type: 'JOB', id, job: 'SEWING' }), /未荣休的成年村民/);
     assert.throws(() => applyCommand(s, start), /已有村民/);
     validateState(s);
 });
@@ -100,7 +98,7 @@ for (const [route, nights] of [['lobby', 3], ['overnight', 5]]) {
             assert.equal(person(s, id).nights, originalAge);
             assert.equal(isExploring(s, id), i < nights);
         }
-        assert.deepEqual(s.expedition.remaining, expeditionTotal(s.expedition));
+        assert.equal(s.expedition.remaining, true);
         assert.equal(new Set(s.expedition.reports.map(report => report.event)).size, nights);
         night(s);
         assert.equal(person(s, id).nights, originalAge - 1);
@@ -127,29 +125,26 @@ test('521 night exit, loss and restarting never progress an active trip', () => 
     assert.equal(fixture.open().state.expedition, undefined);
 });
 
-test('521 partial warehouse claim is atomic across retries and survives reopening', () => {
+test('521 claim is atomic across retries and grants one route item, without coins', () => {
     const { s, id } = village();
     applyCommand(s, { type: 'START_EXPEDITION', id, route: 'lobby' });
     for (let i = 0; i < 3; i++) night(s);
-    const total = expeditionTotal(s.expedition), cap = storageCapacity(s);
-    s.wood = cap; s.food = cap - 3;
-    const fixture = storage(s), game = fixture.open();
-    assert.deepEqual(expeditionClaimQuote(game.state), { food: 3, wood: 0 });
+    const fixture = storage(s), game = fixture.open(), wallet = game.state.coins;
+    assert.equal(expeditionClaimQuote(game.state), 'gate_kit');
     fixture.interrupt(true);
     game.command({ type: 'CLAIM_EXPEDITION' });
     assert(game.saves.pending);
-    assert.deepEqual(game.state.expedition.remaining, total);
+    assert.equal(game.state.expedition.remaining, true);
+    assert.equal(game.villageItems.backpack().items.gate_kit, undefined);
     fixture.interrupt(false);
     game.retry();
     const reloaded = fixture.open();
-    assert.deepEqual(reloaded.state.expedition.remaining, { food: total.food - 3, wood: total.wood });
-    assert.equal(reloaded.state.expedition.noticed, true);
-    assert.equal(reloaded.state.food, cap);
-    assert.throws(() => applyCommand(reloaded.state, { type: 'CLAIM_EXPEDITION' }), /仓储已满/);
-    assert.match(expeditionUnavailableReason(reloaded.state, id), /上一趟/);
-    reloaded.state.food -= total.food; reloaded.state.wood -= total.wood;
+    assert.equal(reloaded.state.expedition, undefined);
+    assert.equal(reloaded.state.coins, wallet);
+    assert.equal(reloaded.villageItems.backpack().items.gate_kit, 1);
     reloaded.command({ type: 'CLAIM_EXPEDITION' });
-    assert.equal(fixture.open().state.expedition, undefined);
+    assert.match(reloaded.error, /暂无/);
+    assert.equal(reloaded.villageItems.backpack().items.gate_kit, 1);
 });
 
 test('521 unread reports survive reload and retries, while a stale acknowledgement cannot consume the next report', () => {
@@ -175,8 +170,25 @@ test('521 unread reports survive reload and retries, while a stale acknowledgeme
     const returned = storage(final).open();
     assert.throws(() => applyCommand(returned.state, first), /已处理/);
     assert.throws(() => applyCommand(returned.state, { type: 'CLAIM_EXPEDITION' }), /先查看探索战报/);
-    const balance = { ...returned.state.expedition.remaining };
+    const remaining = returned.state.expedition.remaining;
     returned.command(acknowledge(returned.state));
     assert.equal(returned.state.expedition.reportPending, undefined);
-    assert.deepEqual(returned.state.expedition.remaining, balance);
+    assert.equal(returned.state.expedition.remaining, remaining);
+});
+
+test('521 legacy return migrates only unclaimed goods and pending narrative', () => {
+    const v22 = { route: 'lobby', personId: '1:6', name: '小满', departedAfter: 8, reports: [
+        { event: 'keyboard', wood: 4, food: 3 },
+        { event: 'reconnect', wood: 6, food: 4 },
+        { event: 'snacks', wood: 7, food: 5 }
+    ], remaining: { wood: 11, food: 9 } };
+    assert.deepEqual(migrateLegacyExpedition(v22, 11), { coins: 15 });
+    const { trip, coins } = migrateLegacyExpedition({ ...v22, reportPending: true }, 11);
+    assert.equal(coins, 15);
+    assert(trip.reportPending && trip.rewardConverted);
+    assert.equal(expeditionClaimQuote({ expedition: trip }), null);
+    assert.deepEqual(trip.reports, v22.reports.map(({ event }) => ({ event })));
+    const corrupt = structuredClone(v22);
+    corrupt.reports[1].event = 'keyboard';
+    assert.throws(() => migrateLegacyExpedition(corrupt, 11), /旧探索战报/);
 });

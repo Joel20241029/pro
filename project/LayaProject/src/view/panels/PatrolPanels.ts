@@ -78,15 +78,15 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel, a
             if (q === current) {
                 ctx.ui.choiceState(card, true, "已任命", false, card.width - 141);
             } else if (canManage) {
-                const appoint = ctx.ui.button(card, "任命队长", card.width - 158, q === recommendation ? 54 : 37, 143, () => {
+                ctx.ui.button(card, "任命队长", card.width - 158, q === recommendation ? 54 : 37, 143, () => {
                     if (ctx.current !== panel || panel.id || actionHintsBlocked(ctx.game)) return;
                     if (stationed) ctx.open({ type: "patrolConfirm", id: q.id, back: panel });
                     else ctx.send({ type: "PATROL_CAPTAIN", id: q.id });
                 }, C.gold, 57);
-                if (hints.appoint) ctx.ui.actionBadge(appoint, "PatrolCaptainActionHint");
+                if (hints.appoint) ctx.ui.cellActionBadge(card, "PatrolCaptainActionHint");
             }
             if (q === recommendation)
-                ctx.ui.image(card, "tag_recommended", card.width - 128, 7, 107, 32).name = "tag_recommended";
+                ctx.ui.image(card, "tag_recommended", card.width - 107 - UI.cellActionDot.clearRight, 7, 107, 32).name = "tag_recommended";
         });
         return;
     }
@@ -112,12 +112,12 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel, a
             ctx.ui.label(card, gun ? "后拉连发" : "松手砸击", 213, 75, 235, 25, C.muted, false, 41);
             if (selected) ctx.ui.label(card, "✓ 已选用", 432, 109, 142, 25, C.green, true, 40);
             else if (canManage) {
-                const use = ctx.ui.button(card, "选用", 432, 106, 142, () => {
+                ctx.ui.button(card, "选用", 432, 106, 142, () => {
                     if (ctx.current !== panel || panel.id || actionHintsBlocked(ctx.game)) return;
                     panel.id = choice;
                     ctx.send({ type: "PATROL_MODE", mode: choice });
                 }, C.gold, 55);
-                if (choice === PATROL_MODE.spin && hints.activateBuff) ctx.ui.actionBadge(use, "PatrolBuffActionHint");
+                if (choice === PATROL_MODE.spin && hints.activateBuff) ctx.ui.cellActionBadge(card, "PatrolBuffActionHint");
             }
         }
         return;
@@ -134,7 +134,7 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel, a
         ctx.ui.label(gains, "旋甩　伤害提升、补员更快", 89, 9, 490, 28, C.ink, true, 52);
         ctx.ui.image(gains, "patrol_rapid_gun", 12, 74, 65, 47);
         ctx.ui.label(gains, `连发　弹仓增加 ${PATROL.rapid.roundsPerLevel} 发`, 89, 74, 490, 28, C.ink, true, 50);
-        ctx.ui.materialCosts(box, s, patrolCost(s), 121, 415, 425, 54);
+        ctx.ui.coinCost(box, s, patrolCost(s), 121, 415, 425, 54);
         if (reason) ctx.ui.label(box, reason, UI.inset, 472, UI.contentWidth, 25, C.red, true, 42).align = "center";
         const confirm = ctx.ui.centerButton(box, "确认升级", reason ? 532 : 484, () => {
             if (ctx.current !== panel || panel.pendingPatrolLevel !== undefined || s.patrol.level !== level) return;
@@ -155,24 +155,24 @@ export function drawPatrolPanel(ctx: PanelContext, s: GameState, panel: Panel, a
     const upgrade = ctx.ui.button(box, "升级", 331, 216, 202, () => ctx.open({ type: "patrolUpgrade", back: panel }), C.gold, 65);
     if (hints.upgrade) ctx.ui.actionBadge(upgrade, "PatrolUpgradeActionHint");
 
-    const captainRow = new Laya.Sprite(); captainRow.pos(UI.inset, 315); box.addChild(captainRow);
+    const captainRow = new Laya.Sprite().size(UI.contentWidth, 98); captainRow.pos(UI.inset, 315); box.addChild(captainRow);
     ctx.art.panel(captainRow, "panel_card", UI.contentWidth, 98);
     if (current) ctx.ui.image(captainRow, ctx.art.portraitId(current), 13, 8, 82);
     const label = ctx.ui.label(captainRow, current ? `队长 · ${coloredName(current)}` : "队长待任命",
         current ? 105 : 23, 21, current ? 310 : 380, 29, C.ink, true, 55);
     label.wordWrap = false; label.overflow = Laya.Text.SHRINK;
     const alternatives = s.people.filter(p => p !== current && isAvailableAdult(s, p));
-    const appoint = ctx.ui.button(captainRow, current ? "换人" : "任命", 427, 17, 150,
+    ctx.ui.button(captainRow, current ? "换人" : "任命", UI.contentWidth - 150 - UI.cellActionDot.clearRight, 17, 150,
         () => ctx.open({ type: "patrolCandidates", back: panel }), C.gold, 62, canManage && alternatives.length > 0);
-    if (hints.appoint) ctx.ui.actionBadge(appoint, "PatrolCaptainActionHint");
+    if (hints.appoint) ctx.ui.cellActionBadge(captainRow, "PatrolCaptainActionHint");
 
-    const active = new Laya.Sprite(); active.pos(UI.inset, 434); box.addChild(active);
-    ctx.art.panel(active, "panel_card", UI.contentWidth, buff ? 250 : 200);
+    const active = new Laya.Sprite().size(UI.contentWidth, buff ? 250 : 200); active.pos(UI.inset, 434); box.addChild(active);
+    ctx.art.panel(active, "panel_card", active.width, active.height);
     modePicture(ctx, active, rapid, 16, 32);
     ctx.ui.label(active, "守夜打法", 221, 15, 350, 25, C.muted, false, 40);
     ctx.ui.label(active, rapid ? rapidName : spinName, 221, 58, 354, 32, C.ink, true, 50);
-    const change = ctx.ui.button(active, day ? "切换打法" : "查看打法", 221, 121, 226, () => ctx.open({ type: "patrolModes", back: panel }), C.gold, 60);
-    if (hints.activateBuff) ctx.ui.actionBadge(change, "PatrolBuffActionHint");
+    ctx.ui.button(active, day ? "切换打法" : "查看打法", 221, 121, 226, () => ctx.open({ type: "patrolModes", back: panel }), C.gold, 60);
+    if (hints.activateBuff) ctx.ui.cellActionBadge(active, "PatrolBuffActionHint");
     if (buff) {
         const effect = ration && wide ? "伤害、范围提升" : ration ? "伤害提升" : "范围提升";
         const applied = s.night?.patrolRation || s.night?.patrolWideImpact;

@@ -1,7 +1,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const read = name => require(`${process.env.DAIDAI_TEST_BUILD}/${name}.js`);
-const { DEFAULT_TACTIC, KING_MERCY_TACTIC, tacticDefinition } = read('config/TacticConfig');
+const { DEFAULT_TACTIC, KING_MERCY, KING_MERCY_TACTIC, tacticDefinition } = read('config/TacticConfig');
 const { BattleSimulation } = read('game/BattleSimulation');
 const { GameSession } = read('game/GameSession');
 const { SaveStore } = read('storage/SaveStore');
@@ -19,17 +19,17 @@ function preparedDay(completed = 50) {
     const s = createGame(173);
     s.completed = s.legacy.bestNight = completed;
     s.day = completed + 1;
-    s.wood = s.food = 200;
+    s.coins = 260;
     s.wave = generateWave(s);
     return s;
 }
 
-function fixture(wood = 81, food = 51, cooldown) {
+function fixture(coins = 81, cooldown) {
     const s = preparedDay();
     applyCommand(s, { type: 'TACTIC_LEARN', id: KING_MERCY_TACTIC });
     if (cooldown) s.tactics.mercyCooldown = { ...cooldown };
+    Object.assign(s, { coins, gate: 37 });
     applyCommand(s, { type: 'NIGHT' });
-    Object.assign(s, { wood, food, gate: 37 });
     const data = new Map();
     let fault = null, failReadBack = false, writes = 0;
     const port = {
@@ -54,12 +54,12 @@ function fixture(wood = 81, food = 51, cooldown) {
     return { game, b, port, writeFault: phase => { fault = phase; }, writes: () => writes };
 }
 
-test('mercy learns on wave fifty, while generic, cancelled and empty-inventory casts spend nothing', () => {
+test('mercy learns on wave fifty, while generic, cancelled and underfunded casts spend nothing', () => {
     const def = tacticDefinition(KING_MERCY_TACTIC);
-    assert.deepEqual([def.name, def.unlockWaves, def.wood, def.food], ['大王的怜悯', 50, 200, 120]);
+    assert.deepEqual([def.name, def.unlockWaves, def.coins], ['大王的怜悯', 50, 260]);
     assert.throws(() => applyCommand(preparedDay(49), { type: 'TACTIC_LEARN', id: def.id }), /还需守住 1 波/);
-    for (const [wood, food, reason] of [[0, 5, '木材不足'], [5, 0, '粮食不足'], [0, 0, '粮食和木材不足']]) {
-        const { game, b, writes } = fixture(wood, food);
+    for (const coins of [0, KING_MERCY.minimumCoins - 1]) {
+        const { game, b, writes } = fixture(coins);
         const before = writes();
         assert(game.canCast(def.id));
         game.bell(def.id);
@@ -69,9 +69,10 @@ test('mercy learns on wave fifty, while generic, cancelled and empty-inventory c
         game.update(.25);
         assert.equal(b.tick, 0);
         game.confirmMercy();
-        assert.match(game.error, new RegExp(reason));
+        assert.match(game.error, /需要至少 20 尔币/);
         game.resume('CHOICE');
         assert.equal(writes(), before);
+        assert.equal(game.state.coins, coins);
         assert.equal(b.usesLeftFor(tacticDefinition(KING_MERCY_TACTIC)), 1);
         assert.equal(b.enemies.length, 2);
         assert.equal(b.gate, 12);
@@ -88,13 +89,13 @@ test('unsuccessful verification never applies combat effects, retry charges once
         assert(game.pauses.has('SAVE_PENDING'));
         assert.equal(b.enemies.length, 2);
         assert.equal(b.gate, 12);
-        assert.deepEqual([game.state.wood, game.state.food], [81, 51]);
+        assert.equal(game.state.coins, 81);
         assert.deepEqual(game.takeCombatFeedback(), []);
         game.confirmMercy();
         game.retry();
         assert.equal(writes(), before + (fault === 'after' ? 1 : 2));
         assert.equal(game.battle, b);
-        assert.deepEqual([game.state.wood, game.state.food], [40, 25]);
+        assert.equal(game.state.coins, 40);
         assert.equal(b.gate, gateCapacity(game.state));
         assert.equal(game.state.gate, b.gate);
         assert.equal(b.pendingCount, queued);
@@ -116,7 +117,7 @@ test('unsuccessful verification never applies combat effects, retry charges once
 
         const restored = new GameSession(new SaveStore(port));
         restored.load();
-        assert.deepEqual([restored.state.wood, restored.state.food], [40, 25]);
+        assert.equal(restored.state.coins, 40);
         assert.equal(restored.battle.gate, b.gate);
         assert.equal(restored.battle.usesLeftFor(tacticDefinition(KING_MERCY_TACTIC)), 0);
         assert(!restored.canCast(KING_MERCY_TACTIC));
@@ -126,10 +127,10 @@ test('unsuccessful verification never applies combat effects, retry charges once
 });
 
 test('six victories charge the first cooldown while unequipped, and the next cast requires seven waves', () => {
-    const { game, b } = fixture(1, 1);
+    const { game, b } = fixture(KING_MERCY.minimumCoins);
     b.base.wave.entries = [];
     game.pause('CHOICE'); game.confirmMercy();
-    assert.deepEqual([game.state.wood, game.state.food], [0, 0]);
+    assert.equal(game.state.coins, 0);
     game.update(.05);
     assert.equal(game.state.completed, 51);
     assert.equal(game.state.tactics.mercyCooldown.wavesLeft, 6);
@@ -150,7 +151,8 @@ test('six victories charge the first cooldown while unequipped, and the next cas
     applyCommand(next, { type: 'TACTIC_EQUIP', id: KING_MERCY_TACTIC });
     applyCommand(next, { type: 'NIGHT' });
     assert(new BattleSimulation(next).canCast(KING_MERCY_TACTIC));
-    const retry = fixture(5, 7, next.tactics.mercyCooldown);
+    const retry = fixture(27, next.tactics.mercyCooldown);
     retry.game.pause('CHOICE'); retry.game.confirmMercy();
     assert.deepEqual(retry.game.state.tactics.mercyCooldown, { casts: 2, wavesLeft: 7 });
+    assert.equal(retry.game.state.coins, 7);
 });

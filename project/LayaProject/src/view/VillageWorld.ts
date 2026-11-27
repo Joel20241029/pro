@@ -1,5 +1,5 @@
 import { CombatPresentation } from "./CombatPresentation";
-import { LoggingFeedback } from "./LoggingFeedback";
+import { SewingVisual } from "./SewingVisual";
 import { EnemyVisuals, enemyImpactLift } from "./EnemyVisuals";
 import { EssenceFeedback, GameSession } from "../game/GameSession";
 import { LIANG_ESSENCE } from "../config/ShopConfig";
@@ -33,7 +33,7 @@ import { WorldInteraction, WorldItem } from "./WorldInteraction";
 import { ProjectileVisuals } from "./ProjectileVisuals";
 import { SummonChargeVisuals } from "./SummonChargeVisuals";
 import { PatrolVisuals } from "./PatrolVisuals";
-import { HERO_COMMITTEE_PROP, PATROL_PROP } from "./config/VillageSceneConfig";
+import { FACTORY_PROP, HERO_COMMITTEE_PROP, PATROL_PROP } from "./config/VillageSceneConfig";
 import { PATROL } from "../config/PatrolConfig";
 import { TimedBlastVisuals } from "./TimedBlastVisuals";
 import { HeroVisuals } from "./HeroVisuals";
@@ -47,7 +47,7 @@ const ESSENCE_CUE = { riseSeconds: .72, arrowSize: 64, riseDistance: 55 } as con
 /** 英雄的白天台词独立于村民。触发间隔按前台表现秒，仅在村内南侧驻足说话，给城门血条留空。 */
 const HERO_SPEECH = {
     first: 1.8, interval: 12, variance: 7, clearOfGateY: 928,
-    lines: ["白天巡村，晚上守门。", "这对瓶子可不能拿去换粮。", "城门挺牢靠，我再转一圈。", "绕完这一圈，就该等天黑了。"]
+    lines: ["白天巡村，晚上守门。", "这对瓶子可不能拿去卖。", "城门挺牢靠，我再转一圈。", "绕完这一圈，就该等天黑了。"]
 } as const;
 /** 右侧巡村的外卖大王独立选词，跟其他气泡错开。 */
 const DELIVERY_SPEECH = {
@@ -55,7 +55,7 @@ const DELIVERY_SPEECH = {
     lines: ["村东头，还有一单。", "门口就好，我不歇脚。", "这单算村里建设费。", "汤没洒，我先走了。"]
 } as const;
 // 守夜及最后击飞期间收起日间生产设施，给淡紫儿留出操作空间；建筑状态和占地仍由原系统维护。
-const DAY_ONLY_PROPS = new Set(["building:house-a", "building:farm", "building:logging", "deco:logs", HERO_COMMITTEE_PROP]);
+const DAY_ONLY_PROPS = new Set(["building:house-a", FACTORY_PROP, HERO_COMMITTEE_PROP]);
 /** 地图、人物、建筑与战斗表现的唯一所有者。视觉时钟不推进 GameSession/业务随机数。 */
 export class VillageWorld {
     readonly scenery = new Laya.Sprite();
@@ -104,7 +104,7 @@ export class VillageWorld {
     private feedback = new CombatPresentation();
     // 结算会同步刷新；同一 Laya 帧随后收到的旧 delta 不得跳过刚出现的接触/红闪。
     private feedbackFrame = -1;
-    private logging = new LoggingFeedback();
+    private sewing: SewingVisual[] = [];
     private projectiles = new ProjectileMotion();
     private projectileVisuals: ProjectileVisuals;
     private rage: TowerRageEffects;
@@ -123,7 +123,7 @@ export class VillageWorld {
     get hasEnemyDeaths() { return this.feedback.deaths.size > 0; }
     constructor(private game: GameSession, private art: SpriteFrames, private ui: UiWidgets, private layout: GameLayout,
         houseClicked: (name: string, visual: BuildingVisuals) => void, personClicked: (id: string) => void, private playDefeat?: () => void,
-        patrolClicked?: () => void, committeeClicked?: (heroId?: string) => void) {
+        patrolClicked?: () => void, committeeClicked?: (heroId?: string) => void, factoryClicked?: () => void) {
         this.world.name = "VillageWorld";
         this.rage = new TowerRageEffects(this.world, art);
         this.shield = new GateShieldEffects(this.world, art);
@@ -137,9 +137,9 @@ export class VillageWorld {
             this.art.applyFrame(node, p.frame, p.size);
             node.pos(p.x, p.y);
             this.world.addChild(node);
-            const upgradeable = p.id !== HERO_COMMITTEE_PROP && (p.id.startsWith("tower:") || p.id.startsWith("building:"));
+            const upgradeable = p.id !== FACTORY_PROP && p.id !== HERO_COMMITTEE_PROP && (p.id.startsWith("tower:") || p.id.startsWith("building:"));
             this.props.push({ id: p.id, y: p.ground ? -1 : p.y, node, ground: p.ground, visual: upgradeable ? new BuildingVisuals(node, art) : undefined });
-            if (p.id === HERO_COMMITTEE_PROP) {
+            if (p.id === HERO_COMMITTEE_PROP || p.id === FACTORY_PROP) {
                 node.visible = false;
                 node.hitArea = new Laya.Rectangle(0, 0, node.width, node.height);
                 clickNodes.push(node);
@@ -204,12 +204,18 @@ export class VillageWorld {
             plane.mouseEnabled = disc.mouseEnabled = false;
             plane.addChild(disc); this.world.addChild(plane); this.qualityRings.push({ plane, disc });
         }
-        this.interaction.bind(clickNodes, this.ui, houseClicked, personClicked, patrolClicked, committeeClicked);
+        this.interaction.bind(clickNodes, this.ui, houseClicked, personClicked, patrolClicked, committeeClicked, factoryClicked);
     }
     /** 高清 HUD 沿用像素塔足底下方的标签位置，与塔的左右镜像无关。 */
     towerAnchor(index: number) {
         const at = this.scene.pads[index];
         return { x: at.x, y: at.y + HUD.tower.top };
+    }
+    /** 已就座村民头顶的世界层坐标，用于已入账批次的飞币。进厂途中或未在场的工人没有可见起点。 */
+    sewingAnchor(id: string): { x: number; y: number } | null {
+        const actor = this.people.find(node => node.visible && node.name === "person:" + id);
+        if (!actor || !this.motion.visiblePeople.some(p => p.id === id) || this.motion.get(id).clip !== "sewing") return null;
+        return { x: actor.x, y: actor.y - (actor.pivotY + 2) * actor.scaleY };
     }
     /** 返回血条下边沿，复用原2D城门上方布局，不依赖上一帧建筑是否已绘制。 */
     gateAnchor() {
@@ -243,7 +249,7 @@ export class VillageWorld {
         this.thoughts = new VillagerThoughts(); this.crying = new NewbornCry(); this.cryIcon.visible = false;
         this.hideSpeech(); this.walkAnimation = new WalkAnimation(this.art);
         this.projectiles = new ProjectileMotion();
-        this.feedback = new CombatPresentation(); this.logging = new LoggingFeedback();
+        this.feedback = new CombatPresentation();
         this.feedbackFrame = -1;
         this.lastBattle = null;
         this.lastBattleTick = 0;
@@ -317,14 +323,15 @@ export class VillageWorld {
     advance(delta: number, frozen: boolean): boolean {
         const s = this.game.state;
         const advancing = !frozen && !this.game.pauses.size;
+        // 清晨结算期间，村民已切回白天路线，继续走完回村路径并触发过门动画。
+        const daylight = s?.phase === "DAY" || s?.phase === "DAWN";
         const visualTime = Math.min(RULE.frameCap, Math.max(0, delta)) * (this.game.patrolAiming ? PATROL.spin.aimSpeedRatio : 1);
         if (advancing) {
             if (s?.phase === "DAY" || s?.phase === "NIGHT") this.villageMotionSeconds += visualTime;
-            const chopping = s?.phase === "DAY" && this.motion.visiblePeople.some(person => person.job === "LOGGING" && this.motion.get(person.id).clip.endsWith("_work"));
-            const gateTraffic = s?.phase === "DAY" ? this.motion.crossingGate(this.layout.gateY)
+            const gateTraffic = daylight ? this.motion.crossingGate(this.layout.gateY)
                 : this.game.battle?.hero?.atGate === true || this.game.battle?.delivery?.atGate === true;
             this.props.forEach(p => p.visual?.advance(visualTime, s?.phase === "NIGHT",
-                p.id === "building:gate" ? gateTraffic : p.id === "building:logging" && chopping));
+                p.id === "building:gate" && gateTraffic));
         }
         const battle = this.game.battle;
         if (battle !== this.lastBattle) {
@@ -335,17 +342,9 @@ export class VillageWorld {
         this.lastBattleTick = battle ? battle.tick : 0;
         if (advancing && this.feedbackFrame !== Laya.timer.currFrame)
             this.feedback.advance(visualTime);
-        if (s && advancing && (s.phase === "DAY" || s.phase === "NIGHT")) {
+        if (s && advancing && (daylight || s.phase === "NIGHT")) {
             this.sceneSeconds += visualDelta;
             if (this.motion.update(visualDelta)) this.motion.sync(s, battle ? battle.base.towers : s.towers, s.phase === "DAY" ? this.essence?.person : undefined);
-            if (this.art.ready("village")) for (const p of this.motion.visiblePeople) {
-                const pose = this.motion.get(p.id), chopping = s.phase === "DAY" && p.job === "LOGGING" && pose.clip.endsWith("_work");
-                const clip = chopping ? this.art.animation(this.art.labor(pose.clip, pose.direction).clip) : null;
-                this.logging.sample(p.id, clip, pose.elapsed, pose.loggingTree);
-            }
-            this.logging.retain(new Set(this.motion.visiblePeople.map(p => p.id)));
-            this.logging.advance(visualDelta);
-            for (const tree of this.props) if (tree.id.startsWith("tree:")) tree.node.rotation = this.logging.rotation(tree.id);
             if (s.phase === "DAY" && !this.residentCuesBlocked) {
                 this.heroVisuals.stroll.advance(visualDelta, this.layout, this.walkNavigation);
                 this.heroTip.advance(visualDelta);
@@ -435,7 +434,7 @@ export class VillageWorld {
         }
         for (const p of this.props) {
             if (DAY_ONLY_PROPS.has(p.id)) p.node.visible = !night;
-            if (p.id === HERO_COMMITTEE_PROP) p.node.mouseEnabled = s.phase === "DAY" && !panelOpen;
+            if (p.id === HERO_COMMITTEE_PROP || p.id === FACTORY_PROP) p.node.mouseEnabled = s.phase === "DAY" && !panelOpen;
             let kind: BuildingLook | null = null, level = 0, damaged = false, facing = 1;
             let flag: TowerFlag | undefined;
             if (p.id === PATROL_PROP) {
@@ -473,14 +472,6 @@ export class VillageWorld {
                 kind = "HOUSE";
                 level = s.houses;
             }
-            else if (p.id === "building:farm") {
-                kind = "FARM";
-                level = s.farm;
-            }
-            else if (p.id === "building:logging") {
-                kind = "LOGGING";
-                level = s.logging;
-            }
             p.visual?.sync(kind, level, this.freshBuildingVillage, damaged, facing);
             if (p.id.startsWith("tower:")) p.visual!.syncPennant(flag, facing);
             if (!panelOpen && !this.game.pauses.size) p.visual?.beginVisibleUpgrade();
@@ -492,7 +483,7 @@ export class VillageWorld {
             }
             const extra = p.visual?.occluder();
             if (extra) {
-                // 农田水车独立参与世界排序，必须跟随建筑切换显隐。
+                // 分离到世界层的建筑部件也要随主体切换显隐。
                 extra.node.visible = p.node.visible;
                 if (extra.node.visible) depth.push(extra);
             }
@@ -507,19 +498,27 @@ export class VillageWorld {
         const gate = this.props.find(p => p.id === "building:gate")!;
         if (!night && this.art.ready("village")) this.motion.visiblePeople.forEach((p, i) => {
             const n = this.people[i], pose = this.motion.get(p.id);
-            n.visible = !pose.insideTower;
+            n.visible = !pose.insideTower && !pose.insideFactory;
             n.name = `person:${p.id}`;
             const model = villagerModel(p), walkingClip = pose.clip.endsWith("_walk");
-            const seated = model === "elder";
-            const facing = walkingClip ? this.art.walk(model, pose.direction) : model === "baby" || seated ? { clip: pose.clip, mirror: false } : this.art.labor(pose.clip, pose.direction);
+            const seated = model === "elder", sewing = pose.clip === "sewing";
+            const facing = walkingClip ? this.art.walk(model, pose.direction) : { clip: pose.clip, mirror: false };
             const scale = this.layout.personScale;
             const size = p.adult ? 56 : p.growth === 0 ? 42 : 48;
-            const displayScale = seated ? 1 : this.art.animation(facing.clip).displayScale ?? 1;
-            const frame = seated ? facing.clip : walkingClip ? this.walkAnimation.frame(pose, facing.clip, size * scale) : this.art.frameId(facing.clip, pose.elapsed, pose.animated);
-            this.art.applyFrame(n, frame, size * displayScale);
+            if (sewing) {
+                this.art.applyFrame(n, "sew_station", size);
+                const machine = this.sewing[i] || (this.sewing[i] = new SewingVisual(n, this.art));
+                machine.draw(model, p.quality, pose.elapsed, i, size);
+                // 岗位的头、手、踏板是分层贴图，点击区域按完整的工位轮廓设置。
+                (n.hitArea as Laya.Rectangle).setTo(size * .19, size * .03, size * .66, size * .93);
+            } else {
+                if (this.sewing[i]) this.sewing[i].parts.visible = false;
+                const frame = seated ? facing.clip : walkingClip ? this.walkAnimation.frame(pose, facing.clip, size * scale) : this.art.frameId(facing.clip, pose.elapsed, pose.animated);
+                this.art.applyFrame(n, frame, size);
+                n.getGraphicBounds(false, n.hitArea as Laya.Rectangle);
+            }
             const rock = MOTION.elderRock;
             n.rotation = seated ? rock.angleDegrees * Math.sin(pose.elapsed * Math.PI * 2 / rock.periodSeconds) : 0;
-            n.getGraphicBounds(false, n.hitArea as Laya.Rectangle);
             n.pos(pose.x, pose.y);
             n.scale((facing.mirror ? -1 : 1) * scale, scale);
             if (p.quality !== "COMMON" && n.visible) {
@@ -545,7 +544,7 @@ export class VillageWorld {
                 heart.pos(n.pivotX, n.pivotY - WEDDING.headOffset - WEDDING.rise * elapsed / WEDDING.heartSeconds);
                 heart.scale((facing.mirror ? -1 : 1) * pulse, pulse);
             }
-            depth.push({ id: n.name, y: pose.y, node: n, personId: p.id });
+            if (n.visible) depth.push({ id: n.name, y: pose.y, node: n, personId: p.id });
         });
         const essence = this.essence;
         this.essenceTip.alpha = this.residentCuesBlocked ? 0 : 1;

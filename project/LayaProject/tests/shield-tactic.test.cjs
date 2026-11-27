@@ -14,7 +14,7 @@ const { FIXED_NIGHT, WAVE } = read('config/DefenseConfig');
 const { waveDifficulty } = read('game/WaveDifficulty');
 const { CombatPresentation } = read('view/CombatPresentation');
 function learned() {
-    const s = createGame(7); s.completed = 20; s.day = 21; s.legacy.bestNight = 20; s.wood = 60; s.food = 30;
+    const s = createGame(7); s.completed = 20; s.day = 21; s.legacy.bestNight = 20; s.coins = 90;
     s.wave = generateWave(s);
     applyCommand(s, { type: 'TACTIC_LEARN', id: SHIELD_TACTIC }); return s;
 }
@@ -22,7 +22,7 @@ function enemy(seq, kind = 'enemy_raider', progress = PATH_LENGTH - 1, speed = 4
     return { seq, kind, appearanceSeed: 87, progress, hp: 100000, speed, slow: 0, slowTicks: 0, walkDistance: 0, born: 0, summoned: 0 };
 }
 function battle(tactic = SHIELD_TACTIC) {
-    const s = learned(); s.food = 100; s.tactics.equipped = tactic;
+    const s = learned(); s.tactics.equipped = tactic;
     applyCommand(s, { type: 'NIGHT' }); const b = new BattleSimulation(s);
     b.base.towers.forEach(t => { t.kind = null; t.operator = null; });
     b.cursor = b.base.wave.entries.length; b.seq = 100;
@@ -34,21 +34,21 @@ function fixture() {
     const reopen = () => { const g = new GameSession(new SaveStore(port)); g.load(); return g; };
     return { game: reopen(), reopen };
 }
-test('shield requires five current wins and one atomic 30 wood / 15 food purchase', () => {
+test('shield requires five current wins and one atomic 45-coin purchase', () => {
     const t = tacticDefinition(SHIELD_TACTIC);
-    assert.deepEqual([t.name,t.unlockWaves,t.wood,t.food,t.ticks * RULE.step,t.effect], ['二楠之盾',5,30,15,12,'GATE_INVULNERABLE']);
+    assert.deepEqual([t.name,t.unlockWaves,t.coins,t.ticks * RULE.step,t.effect], ['二楠之盾',5,45,12,'GATE_INVULNERABLE']);
     assert(!('multiplier' in t));
     assert.throws(() => validateTactics(TACTICS.map(x => x.id === SHIELD_TACTIC ? {...x,multiplier:1} : x)));
     const s = createGame(7); s.day = 5; s.completed = 4; s.legacy.bestNight = 99;
     assert.equal(tacticUnavailableReason(s, SHIELD_TACTIC, 'LEARN'),'还需守住 1 波');
     const old = clone(s); assert.throws(() => applyCommand(s,{type:'TACTIC_LEARN',id:SHIELD_TACTIC})); assert.deepEqual(s,old);
-    s.day = 6; s.completed = 5; s.wood = 29; s.food = 14;
-    assert.equal(tacticUnavailableReason(s,SHIELD_TACTIC,'LEARN'),'还缺 1 木、1 粮');
-    s.wood = 30; s.food = 15; applyCommand(s,{type:'TACTIC_LEARN',id:SHIELD_TACTIC});
-    assert.deepEqual([s.wood,s.food,s.tactics.equipped],[0,0,SHIELD_TACTIC]);
+    s.day = 6; s.completed = 5; s.coins = 44;
+    assert.equal(tacticUnavailableReason(s,SHIELD_TACTIC,'LEARN'),'还缺 1 尔币');
+    s.coins = 45; applyCommand(s,{type:'TACTIC_LEARN',id:SHIELD_TACTIC});
+    assert.deepEqual([s.coins,s.tactics.equipped],[0,SHIELD_TACTIC]);
     assert.throws(() => applyCommand(s,{type:'TACTIC_LEARN',id:SHIELD_TACTIC}));
     applyCommand(s,{type:'TACTIC_EQUIP',id:DEFAULT_TACTIC}); applyCommand(s,{type:'TACTIC_EQUIP',id:SHIELD_TACTIC});
-    assert.deepEqual([s.wood,s.food],[0,0]);
+    assert.equal(s.coins, 0);
 });
 test('all five ordinary enemies and five bosses can be blocked at one HP without healing', () => {
     for (const kind of Object.keys(ENEMIES)) {
@@ -105,14 +105,14 @@ test('shield does not change tower damage, cadence or crowd-control', () => {
     }
 });
 test('pause, reassignment and 3x keep the same shield; reopen restarts saved pre-night state', () => {
-    const f=fixture(),g=f.game; g.state.food=100; g.command({type:'NIGHT'}); const b=g.battle; g.bell();
+    const f=fixture(),g=f.game; g.command({type:'NIGHT'}); const b=g.battle; g.bell();
     g.pause('CHOICE');g.update(.1);assert.equal(b.bellTicks,240);assert(g.reassign(0,g.state.people[2].id));
     g.resume('CHOICE');g.command({type:'SPEED',value:3});g.update(.1);assert.equal(g.battle,b);assert.equal(b.bellTicks,234);
     g.bell();assert.equal(b.bellTicks,234); const reopened=f.reopen();
     assert.equal(reopened.battle.tactic.id,SHIELD_TACTIC);assert.equal(reopened.battle.bellTicks,0);assert.equal(reopened.battle.tick,0);
 });
 test('session settles final block without holding the night open for visual feedback', () => {
-    const f=fixture(),g=f.game;g.state.food=100;g.command({type:'NIGHT'});const b=g.battle;
+    const f=fixture(),g=f.game;g.command({type:'NIGHT'});const b=g.battle;
     b.base.towers.forEach(t=>{t.kind=null;t.operator=null;});b.cursor=b.base.wave.entries.length;b.enemies=[enemy(0)];b.gate=1;g.bell();g.update(.05);
     assert.equal(g.battle,null);assert.equal(g.state.completed,21);assert.equal(g.state.gate,1);assert.equal(g.presentationBattle,b);
     const events=g.takeCombatFeedback();assert.equal(events.length,1);assert(events[0].blocked);assert.deepEqual(g.takeCombatFeedback(),[]);

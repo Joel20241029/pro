@@ -8,7 +8,7 @@ const { GameSession } = require(path.join(compiled, 'game/GameSession.js'));
 const { BattleSimulation } = require(path.join(compiled, 'game/BattleSimulation.js'));
 const { SaveStore, canonical } = require(path.join(compiled, 'storage/SaveStore.js'));
 const { validateState } = require(path.join(compiled, 'storage/StateValidation.js'));
-const { TOWER_BUILD_WOOD } = require(path.join(compiled, 'config/DefenseConfig.js'));
+const { TOWER_BUILD_COINS } = require(path.join(compiled, 'config/DefenseConfig.js'));
 const { RULE } = require(path.join(compiled, 'game/GameConfig.js'));
 class Sprite { pos() {return this;} size() {return this;} addChild(n) {return n;} }
 global.Laya = { Sprite, OpenDataContextView: class {}, Texture2D: class {} };
@@ -38,18 +38,18 @@ test('automatic staffing preserves founders, existing choices, daytime jobs and 
 });
 
 test('new towers fill immediately and changing tower type keeps its chosen operator', () => {
-    const s = createGame(7), original = operators(s); s.wood = TOWER_BUILD_WOOD * 2;
+    const s = createGame(7), original = operators(s); s.coins = TOWER_BUILD_COINS * 2;
     applyCommand(s, { type: 'TOWER', index: 2, kind: 'ARROW' });
     assert.equal(s.towers[2].operator, s.people[1].id); assert.deepEqual(operators(s).slice(0, 2), original.slice(0, 2));
     applyCommand(s, { type: 'TOWER', index: 3, kind: 'ARROW' }); assertCoverage(s);
-    const crew = operators(s); s.wood = RULE.towerConvert;
+    const crew = operators(s); s.coins = 0;
     applyCommand(s, { type: 'TOWER', index: 2, kind: 'STONE' }); assert.deepEqual(operators(s), crew); assertCoverage(s);
 });
 
 test('daytime occupations after a birth do not exclude eligible tower operators', () => {
     const s = createGame(7); applyCommand(s, { type: 'BIRTH', family: s.families[0].id, carer: s.people[1].id });
     s.towers[0].operator = null; autoAssignOperators(s);
-    assert.equal(s.towers[0].operator, s.people[1].id); assert.equal(s.people[1].job, 'FARM'); assertCoverage(s);
+    assert.equal(s.towers[0].operator, s.people[1].id); assert.equal(s.people[1].job, 'SEWING'); assertCoverage(s);
 });
 
 test('only an adult shortage leaves built towers unstaffed and empty building pads stay empty', () => {
@@ -179,7 +179,7 @@ test('tower panel offers replacement but no release action, and explains auto st
     const s = createGame(7), buttons = [], view = {}; let help;
     Object.assign(view, { art: {panel(){}, portraitId(p){return p.id;}}, game: { state: s, battle: null, pauses: new Set(), saves: {pending: false}, dailyRationDate: null },
         modal(title, overview, close, size, text) { help = text; return new Sprite(); },
-        ui: { image() {}, iconValue() {}, actionBadge() {}, label() { return {}; }, centerButton(parent, text) { buttons.push(text); },
+        ui: { image() {}, iconValue() {}, cellActionBadge() {}, actionBadge() {}, label() { return {}; }, centerButton(parent, text) { buttons.push(text); },
             button(parent, text) { buttons.push(text); return { getChildByName: () => ({ getChildByName: () => new Sprite() }) }; } } });
     drawBuildingPanel(view, s, { type: 'tower', index: 0 });
     assert(buttons.includes('选村民')); assert(!buttons.some(text => text.includes('释放'))); assert(help.includes('自动补上可用成年人'));

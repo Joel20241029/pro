@@ -6,7 +6,7 @@ export type PatrolMode = typeof PATROL_MODE[keyof typeof PATROL_MODE];
 export const PATROL = {
     building: "淡紫儿之家", actor: "淡紫儿", role: "淡紫队长", appoint: "任命淡紫队长",
     // 开村配发 1 级空岗；首次升级沿用原巡防升级费用。
-    startLevel: 1, upgrade: { wood: 35, food: 15 },
+    startLevel: 1,
     powerShare: .45, strongBonus: .15,
     first: 3, interval: 7.5, minimum: 4.5, nimbleBonus: .08,
     qualityHaste: { COMMON: 0, ELITE: .05, HERO: .10, LEGENDARY: .15 },

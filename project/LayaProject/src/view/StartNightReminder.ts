@@ -27,7 +27,7 @@ export class StartNightReminder extends AnchoredTip {
             this.remaining = REMINDER.repeatSeconds;
             this.show("准备好了？点这里开始守夜", () => {
                 const node = this.button!;
-                // 气泡仍对准守夜圆钮中轴，指角停在底栏上沿，避开当天产出与口粮。
+                // 气泡仍对准守夜圆钮中轴，指角停在底栏上沿，避开守夜预告。
                 this.bounds.setTo(0, -HUD.footer.start.y, node.width, node.height);
                 return { node, bounds: this.bounds };
             });

@@ -16,12 +16,12 @@ export function drawMercyConfirm(ctx: PanelContext, s: GameState) {
     ctx.art.panel(portrait, "panel_portrait_frame", iconSize, iconSize);
     ctx.ui.image(portrait, tactic.icon, 7, 7, iconSize - 14);
     ctx.ui.label(box, "愿奉旭勇为文明里村的外卖大王？", v.inset, v.questionY + portraitSpace, contentWidth, 28, C.cream, true, 40).align = "center";
-    ctx.ui.label(box, "献出当前一半粮木。\n大王接下急单，清敌并修满城门。", v.inset, v.effectY + portraitSpace, contentWidth, 26, C.cream, false, v.effectH).align = "center";
-    const materials = new Laya.Sprite(), cell = contentWidth / 2, readoutY = (v.costH - v.readoutH) / 2;
+    ctx.ui.label(box, "献出当前一半尔币。\n大王接下急单，清敌并修满城门。", v.inset, v.effectY + portraitSpace, contentWidth, 26, C.cream, false, v.effectH).align = "center";
+    const materials = new Laya.Sprite(), cell = contentWidth, readoutY = (v.costH - v.readoutH) / 2;
     materials.pos(v.inset, v.costY + portraitSpace); box.addChild(materials);
     ctx.art.panel(materials, "panel_card", contentWidth, v.costH);
-    ctx.ui.iconValue(materials, "icon_wood", cost.wood ? `−${cost.wood}` : "0", 0, readoutY, cell, v.readoutH, cost.wood ? C.ink : C.red, 29);
-    ctx.ui.iconValue(materials, "icon_food", cost.food ? `−${cost.food}` : "0", cell, readoutY, cell, v.readoutH, cost.food ? C.ink : C.red, 29);
+    ctx.ui.iconValue(materials, "icon_coin", cost.coins ? `−${cost.coins}` : "0", 0, readoutY, cell, v.readoutH,
+        cost.reason ? C.red : C.ink, 29);
     if (cost.reason) ctx.ui.label(box, cost.reason, v.inset, v.reasonY + portraitSpace, contentWidth, 24, C.red, true, 32).align = "center";
     ctx.ui.button(box, "暂缓", v.cancelX, footerY, v.cancelW, () => ctx.close(), C.muted, UI.action.pairHeight);
     ctx.ui.button(box, "确认奉王", v.confirmX, footerY, v.confirmW,
@@ -45,7 +45,7 @@ export function drawTacticPanel(ctx: PanelContext, s: GameState, p: Panel, avail
         const materials = new Laya.Sprite();
         materials.pos(UI.inset, v.costY + portraitSpace); box.addChild(materials);
         ctx.art.panel(materials, "panel_card", contentWidth, 46);
-        ctx.ui.materialCosts(materials, s, cost, 90, 1, 310, 44);
+        ctx.ui.coinCost(materials, s, cost, 90, 1, 310, 44);
         if (reason) ctx.ui.label(box, reason, UI.inset, v.reasonY + portraitSpace, contentWidth, 24, C.red, false, 30).align = "center";
         ctx.ui.button(box, "取消", v.cancelX, footerY, v.cancelW, () => ctx.open(p.back!, true), C.muted, UI.action.pairHeight);
         const canUnlock = !actionHintsBlocked(ctx.game) && !reason;

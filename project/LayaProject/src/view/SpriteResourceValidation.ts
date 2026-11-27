@@ -1,5 +1,5 @@
 import { ResourceStage } from "../config/ResourceConfig";
-import { RESOURCE_CONTRACT, REQUIRED_WALK_DIRECTIONS, REQUIRED_LABOR_DIRECTIONS, REQUIRED_BUILDING_LAYOUTS, REQUIRED_ENEMY_LAYOUT_VERSION } from "../config/ResourceManifest";
+import { RESOURCE_CONTRACT, REQUIRED_WALK_DIRECTIONS, REQUIRED_BUILDING_LAYOUTS, REQUIRED_ENEMY_LAYOUT_VERSION } from "../config/ResourceManifest";
 import { BuildingDefinition, BuildingNode } from "./BuildingLayout";
 import { ENEMY_LOOKS, EnemyLayout } from "./config/EnemyVisualConfig";
 import { ENEMIES } from "../config/EnemyConfig";
@@ -33,10 +33,6 @@ export function validateSpriteStage(content: {
     if (stage === "village") for (const [identity, directions] of Object.entries(REQUIRED_WALK_DIRECTIONS)) for (const [direction, pose] of Object.entries(directions)) {
         const actual = animations.walkDirections?.[identity]?.[direction];
         if (!actual || actual.clip !== pose.clip || actual.mirror !== pose.mirror) throw new Error("人物方向映射缺失：" + identity + "/" + direction);
-    }
-    if (stage === "village") for (const [action, directions] of Object.entries(REQUIRED_LABOR_DIRECTIONS)) for (const [direction, pose] of Object.entries(directions)) {
-        const actual = animations.laborDirections?.[action]?.[direction];
-        if (!actual || actual.clip !== pose.clip || actual.mirror !== pose.mirror || !clips.some(c => c.id === pose.clip)) throw new Error("劳动方向映射缺失：" + action + "/" + direction);
     }
     for (const clip of clips) {
         const directContact = clip.id.includes("_work_");

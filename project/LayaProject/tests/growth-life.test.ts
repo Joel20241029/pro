@@ -1,7 +1,7 @@
 import { createGame, applyCommand, economy, finishNight } from "../src/game/VillageRules";
 import { clone } from "../src/game/GameState";
 import { RULE } from "../src/game/GameConfig";
-import { enemyPower, gateCapacity, laborSlots, storageCapacity, residentialCost, upgradeCost } from "../src/game/Growth";
+import { enemyPower, gateCapacity, sewingSlots, residentialCost, sewingYield, upgradeCost } from "../src/game/Growth";
 import { maleBirthProbability, nextSex, travelerDue } from "../src/game/Population";
 import { SeededRandom } from "../src/game/SeededRandom";
 import { validateState } from "../src/storage/StateValidation";
@@ -19,21 +19,24 @@ function ok(value: unknown, message = "assertion failed"): asserts value { if (!
 function equal(a: unknown, b: unknown) { ok(JSON.stringify(a) === JSON.stringify(b), `${JSON.stringify(a)} != ${JSON.stringify(b)}`); }
 function test(name: string, run: () => void) { run(); passed++; console.log("PASS", name); }
 
-test("Higher buildings improve yield and add work slots; upgrades charge both resources", () => {
-    const s = createGame(1); s.houses = 4; s.food = s.wood = storageCapacity(s); s.farm = 3; s.logging = 3;
-    const before = economy(s), cost = upgradeCost("FARM", s.farm), food = s.food, wood = s.wood;
-    applyCommand(s, { type: "BUILD", kind: "FARM" }); equal(s.farm, 4); equal([s.food, s.wood], [food - cost.food, wood - cost.wood]); ok(economy(s).food > before.food);
-    equal([laborSlots("FARM", 3), laborSlots("LOGGING", 3)], [6, 4]);
-    equal([laborSlots("FARM", 5), laborSlots("LOGGING", 5)], [7, 5]);
-    equal([laborSlots("FARM", 1000), laborSlots("LOGGING", 1000)], [504, 502]); validateState(s);
-    const snapshot = JSON.stringify(s); s.food = 0; const denied = JSON.stringify(s);
-    try { applyCommand(s, { type: "BUILD", kind: "FARM" }); throw new Error("must reject"); } catch (e) { ok(String(e).includes(`还缺 ${upgradeCost("FARM", s.farm).food - s.food} 粮食`)); }
-    equal(JSON.stringify(s), denied); ok(snapshot !== denied);
+test("Higher factory levels increase output and slots for one coin payment", () => {
+    const s = createGame(1); s.coins = 600; s.factory.level = 2;
+    const before = economy(s), cost = upgradeCost("FACTORY", s.factory.level), coins = s.coins;
+    const p = s.people[0], batch = sewingYield(s, p, "day");
+    applyCommand(s, { type: "BUILD", kind: "FACTORY" });
+    equal([s.factory.level, s.coins], [3, coins - cost.coins]);
+    equal(sewingYield(s, p, "day"), batch + 1); ok(economy(s).sewing > before.sewing);
+    equal([sewingSlots(3), sewingSlots(5), sewingSlots(1000)], [10, 14, RULE.populationCap]); validateState(s);
+    s.coins = 0; const denied = JSON.stringify(s);
+    try { applyCommand(s, { type: "BUILD", kind: "FACTORY" }); throw new Error("must reject"); }
+    catch (e) { ok(String(e).includes(`还缺 ${upgradeCost("FACTORY", s.factory.level).coins} 尔币`)); }
+    equal(JSON.stringify(s), denied);
 });
-test("Housing self-upgrade always fits its current warehouse; gate upgrades preserve existing damage", () => {
+test("Housing quotes scale with level; gate upgrades preserve existing damage", () => {
     const s = createGame(1);
-    for (const level of [1, 2, 50, 10000, 1000000]) { s.houses = level; const c = residentialCost(level); ok(c.wood < storageCapacity(s) && c.food < storageCapacity(s)); }
-    s.houses = 3; s.food = s.wood = 300; s.gate = 110;
+    let prior = 0;
+    for (const level of [1, 2, 50, 100]) { const c = residentialCost(level); ok(c.coins > prior); prior = c.coins; }
+    s.coins = 300; s.gate = 110;
     applyCommand(s, { type: "BUILD", kind: "GATE" }); equal([gateCapacity(s), s.gate], [300, 210]);
     applyCommand(s, { type: "REPAIR" }); equal(s.gate, 270); validateState(s);
 });

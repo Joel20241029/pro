@@ -4,7 +4,7 @@ from pathlib import Path
 from statistics import median
 import json
 from PIL import Image
-from hero_alignment import align_hero_pose
+from hero_alignment import align_hero_pose, stabilize_riding_head, stabilize_walk_head
 
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCTION = ROOT / "source/rendered2d/production/delivery-hero"
@@ -100,6 +100,10 @@ def main():
         for frame, master, name in motions:
             riding = name == "ride"
             aligned = idle if name == "idle" else align_hero_pose(frame, actor(frame, 118 if riding else 108), idle, riding)
+            if name.startswith("walk_"):
+                aligned = stabilize_walk_head(aligned, idle, "delivery", direction, int(name[-1]))
+            elif riding:
+                aligned = stabilize_riding_head(aligned, idle, direction)
             register(assets, root + "_" + name, aligned, FOOT, "characters", master, clip if name.startswith("walk_") else None)
         ids = [root + "_walk_0", root + "_idle", root + "_walk_1", root + "_idle"]
         clips.append({"id": clip, "frameIds": ids, "frameCount": len(ids), "fps": 8,

@@ -13,7 +13,7 @@ const { SaveStore } = read('storage/SaveStore');
 function village() {
     const s = createGame(43);
     s.completed = s.legacy.bestNight = 45; s.day = 46;
-    s.wood = s.food = 200; s.wave = generateWave(s);
+    s.coins = 250; s.wave = generateWave(s);
     s.tactics.extraSlots = [null];
     applyCommand(s, { type: 'TACTIC_LEARN', id: DRAGON_POISON_TACTIC, slot: 1 });
     return s;
@@ -44,14 +44,15 @@ function stepUntil(b, tick) {
 
 test('dragon poison learns at wave 45 with one fee and survives a saved loadout round-trip', () => {
     const s = village(), t = tacticDefinition(DRAGON_POISON_TACTIC);
-    assert.deepEqual([t.name, t.buttonName, t.unlockWaves, t.usesPerNight], ['龙龙主母', '主母', 45, 1]);
-    assert.deepEqual([s.wood, s.food], [0, 100]);
-    const old = createGame(43); old.completed = 44; old.day = 45; old.wood = old.food = 200;
+    assert.deepEqual([t.name, t.buttonName, t.unlockWaves, t.usesPerNight, t.coins], ['龙龙主母', '主母', 45, 1, 230]);
+    assert.equal(s.coins, 20);
+    const old = createGame(43); old.completed = 44; old.day = 45; old.coins = 250;
     assert.throws(() => applyCommand(old, { type: 'TACTIC_LEARN', id: DRAGON_POISON_TACTIC }), /还需守住 1 波/);
     applyCommand(s, { type: 'NIGHT' });
     const values = new Map(), port = { read: k => values.get(k) ?? null, write: (k,v) => values.set(k,v) };
     const store = new SaveStore(port); store.inspect(); store.prepare(s); store.commit();
     const game = new GameSession(new SaveStore(port)); game.load();
+    assert.equal(game.state.coins, 20);
     assert.deepEqual(game.battle.tactics.map(t => t.id), [DEFAULT_TACTIC, DRAGON_POISON_TACTIC]);
     game.bell(DRAGON_POISON_TACTIC);
     game.pause('USER'); game.update(RULE.step);

@@ -22,7 +22,7 @@ function state() {
     s.legacy.bestNight = s.completed = 60;
     s.day = 61;
     s.wave = generateWave(s);
-    s.wood = 190; s.food = 110;
+    s.coins = 200;
     applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC });
     return s;
 }
@@ -81,15 +81,15 @@ test('the summon and its twenty rendered doubles use the same villager chief art
     } finally { global.Laya = saved; }
 });
 
-test('summon reveals at 35 current wins and costs 160 wood and 80 food once', () => {
+test('summon reveals at 35 current wins and costs 180 coins once', () => {
     const s = createGame(2);
-    s.completed = 34; s.legacy.bestNight = 62; s.wood = 160; s.food = 80;
+    s.completed = 34; s.legacy.bestNight = 62; s.coins = 180;
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC }), /还需守住 1 波/);
-    s.completed = 35; s.wood = 159;
-    assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC }), /还缺/);
-    assert.deepEqual([s.wood, s.food], [159, 80]);
-    s.wood = 160; applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC });
-    assert.deepEqual([s.wood, s.food, s.tactics.equipped], [0, 0, SUMMON_TACTIC]);
+    s.completed = 35; s.coins = 179;
+    assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC }), /还缺 1 尔币/);
+    assert.equal(s.coins, 179);
+    s.coins = 180; applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC });
+    assert.deepEqual([s.coins, s.tactics.equipped], [0, SUMMON_TACTIC]);
     assert.throws(() => applyCommand(s, { type: 'TACTIC_LEARN', id: SUMMON_TACTIC }));
     assert.equal(tacticDefinition(SUMMON_TACTIC).usesPerNight, 2);
 });

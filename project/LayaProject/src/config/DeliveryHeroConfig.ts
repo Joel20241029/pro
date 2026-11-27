@@ -5,16 +5,16 @@ const XUYONG = "旭勇";
 /** 本夜采用沿路索敌。已开打的旧夜以原巡路快照重演。 */
 export const DELIVERY_PATROL_HUNT = "ROUTE_HUNT";
 
-/** 第二名英雄在村委会一次招募。粮木费用与门槛让首五夜仍由智卓和原防线承担。 */
+/** 第二名英雄在村委会一次招募。尔币费用与门槛让首五夜仍由智卓和原防线承担。 */
 export const DELIVERY_HERO = {
     actorId: "Hero:delivery",
     name: `大王·${XUYONG}`,
     givenName: XUYONG,
     portrait: "delivery_portrait",
     spritePrefix: "hero_delivery",
-    lore: "旭勇一单一单把粮木送进文明里村，成了村里的先贤。村民没见他歇过脚，只见他停下来找零，便叫他外卖大王。",
+    lore: "旭勇一单一单送外卖，用挣来的尔币把文明里村建了起来。村民没见他歇过脚，只见他停下来找零，便叫他外卖大王。",
     attackName: "外卖加急",
-    recruitment: { waves: 6, wood: 60, food: 40 },
+    recruitment: { waves: 6, coins: 90 },
     // 先骑到路肩。面板显示的是下车后的有效投掷窗口与进门后实际休息时间。
     fightSeconds: 12, restSeconds: 11, transitionSeconds: .36,
     rideSpeed: 130, parkingLead: 105, roadShoulder: 4,

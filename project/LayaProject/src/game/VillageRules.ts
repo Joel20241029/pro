@@ -1,20 +1,20 @@
 import { QUALITY_CHANCE_SCALE, rollVillagerQuality, VILLAGER_QUALITY } from "../config/VillagerQuality";
 import { ADULT_APPEARANCE, RULE, TRAIT_POOL, TOWERS, TowerKind, VILLAGER_NAMES } from "./GameConfig";
 import { PATROL_MODE, PatrolMode } from "../config/PatrolConfig";
-import { STARTER_AMMO, TOWER_BUILD_WOOD } from "../config/DefenseConfig";
+import { STARTER_AMMO, TOWER_BUILD_COINS } from "../config/DefenseConfig";
 import { towerFlag } from "./EnemySeed";
 import { HERO, SLOWER_HERO_SORTIE, SONGLEI } from "../config/HeroConfig";
 import { DELIVERY_HERO, DELIVERY_PATROL_HUNT } from "../config/DeliveryHeroConfig";
 import { deliveryRecruitmentReason } from "./DeliverySortie";
 import { songLeiRecruitmentReason } from "./HeroSortie";
-import { GameState, HeroChoice, ownsTowerAmmo, isElder, isAvailableAdult, isExploring, Job, nightReturnPoint, Person } from "./GameState";
+import { GameState, HeroChoice, ownsTowerAmmo, isElder, isAvailableAdult, Job, nightReturnPoint, Person } from "./GameState";
 import type { ExpeditionRoute } from "../config/ExpeditionConfig";
 import { settleExpedition, startExpedition } from "./Expedition";
 import { SeededRandom } from "./SeededRandom";
 import { generateWave } from "./WaveGenerator";
-import { gateCapacity, gateRepairQuote, laborSlots, repairCost, residentialCost, residentialUpgradeReason, storageCapacity, upgradeCost, upgradeUnavailableReason } from "./Growth";
+import { gateCapacity, gateRepairQuote, sewingSlots, repairCost, residentialCost, residentialUpgradeReason, upgradeCost, upgradeUnavailableReason } from "./Growth";
 import { nextSex } from "./Population";
-import { dailyRationAmount } from "./DailyRation";
+import { dailyGiftAvailable } from "./DailyRation";
 import { person, capacity, canMarry, birthUnavailableReason, economy } from "./VillageQueries";
 import { autoAssignJobs, autoAssignNightDuties, autoAssignOperators, assignOperator } from "./VillageJobs";
 import { requireRule, spend, newId, remember, pruneHistory } from "./VillageStateOps";
@@ -60,7 +60,7 @@ export type Command = {
     reportCount: number;
 } | {
     type: "BUILD";
-    kind: "HOUSE" | "FARM" | "LOGGING" | "GATE";
+    kind: "HOUSE" | "FACTORY" | "GATE";
 } | {
     type: "PATROL_MODE";
     mode: PatrolMode;
@@ -111,7 +111,8 @@ export function applyCommand(s: GameState, c: Command) {
         const trip = s.expedition;
         requireRule((s.phase === "DAY" || s.phase === "DAWN") && !!trip?.reportPending && s.run === c.run &&
             trip.departedAfter === c.departedAfter && trip.reports.length === c.reportCount, "这份探索战报已处理");
-        delete trip!.reportPending;
+        if (trip!.rewardConverted) delete s.expedition;
+        else delete trip!.reportPending;
         return;
     }
     if (c.type === "CLAIM_EXPEDITION" || c.type === "DISMISS_EXPEDITION") {
@@ -119,11 +120,7 @@ export function applyCommand(s: GameState, c: Command) {
         return;
     }
     if (c.type === "DAILY_RATION") {
-        const amount = dailyRationAmount(s, c.date);
-        requireRule(amount !== null, "今天的口粮已领取，或当前需先完成村务");
-        s.food += amount;
-        const back = s.night?.returnPoint;
-        if (back) back.food = Math.min(storageCapacity(s), back.food + amount);
+        requireRule(dailyGiftAvailable(s, c.date), "今天的村礼已领取，或当前需先完成村务");
         s.legacy.lastRationDate = c.date;
         return;
     }
@@ -166,16 +163,14 @@ export function applyCommand(s: GameState, c: Command) {
         case "RECRUIT_DELIVERY": {
             const reason = deliveryRecruitmentReason(s);
             requireRule(reason === null, reason!);
-            spend(s, "wood", DELIVERY_HERO.recruitment.wood);
-            spend(s, "food", DELIVERY_HERO.recruitment.food);
+            spend(s, DELIVERY_HERO.recruitment.coins);
             s.deliveryUnlocked = true;
             break;
         }
         case "RECRUIT_SONGLEI": {
             const reason = songLeiRecruitmentReason(s);
             requireRule(reason === null, reason!);
-            spend(s, "wood", SONGLEI.recruitment.wood);
-            spend(s, "food", SONGLEI.recruitment.food);
+            spend(s, SONGLEI.recruitment.coins);
             s.songLeiUnlocked = true;
             break;
         }
@@ -196,27 +191,17 @@ export function applyCommand(s: GameState, c: Command) {
             s.tactics.extraSlots![c.slot - 1] = null;
             break;
         case "JOB": {
-            requireRule(c.job === "WAITING" || c.job === "FARM" || c.job === "LOGGING", "岗位不存在");
+            requireRule(c.job === "SEWING", "请选择制衣岗位");
             const p = person(s, c.id);
-            requireRule(isAvailableAdult(s, p), isExploring(s, p.id) ? "村民探索中" : "孩子和荣休老人不能安排工作");
-            let replaced: Person | null = null;
-            if (c.job === "FARM" || c.job === "LOGGING") {
-                const max = laborSlots(c.job, c.job === "FARM" ? s.farm : s.logging);
-                const full = s.people.filter(q => q.id !== p.id && q.job === c.job).length >= max;
-                if (c.replace) {
-                    replaced = person(s, c.replace);
-                    requireRule(full && p.job !== c.job && replaced.id !== p.id && isAvailableAdult(s, replaced) && replaced.job === c.job, "请选择该岗位当前的另一位村民");
-                }
-                else
-                    requireRule(!full, "岗位已满，请选择替换对象或升级建筑");
-            }
-            else {
-                requireRule(!c.replace, "此岗位不支持替换工人");
-            }
-            if (replaced) {
+            requireRule(isAvailableAdult(s, p), "只有在村且未荣休的成年村民可以制衣");
+            requireRule(p.job !== "SEWING", "该村民已经在制衣");
+            const full = s.people.filter(q => q.job === "SEWING").length >= sewingSlots(s.factory.level);
+            if (c.replace) {
+                const replaced = person(s, c.replace);
+                requireRule(full && replaced.job === "SEWING", "请选择当前在岗的制衣村民");
                 replaced.job = "WAITING";
-            }
-            p.job = c.job;
+            } else requireRule(!full, "制衣岗位已满，请选择替换对象或升级制衣厂");
+            p.job = "SEWING";
             break;
         }
         case "FAMILY": {
@@ -230,7 +215,7 @@ export function applyCommand(s: GameState, c: Command) {
             requireRule(reason === null, reason!);
             const f = s.families.find(f => f.id === c.family)!;
             const parents = f.partners.map(id => person(s, id));
-            spend(s, "food", RULE.birthCost);
+            spend(s, RULE.birthCost);
             const rng = new SeededRandom(s.rng.family), sex = nextSex(s.people, rng);
             const id = newId(s);
             // 姓名分支使用原快照，主随机流仍按原顺序消费姓名和品质。
@@ -255,23 +240,22 @@ export function applyCommand(s: GameState, c: Command) {
         }
         case "BUILD": {
             if (c.kind === "HOUSE") {
-                const cost = residentialCost(s.houses), reason = residentialUpgradeReason(s);
-                requireRule(!reason, reason!);
-                spend(s, "wood", cost.wood);
-                spend(s, "food", cost.food);
+                const reason = residentialUpgradeReason(s);
+                requireRule(reason === null, reason!);
+                spend(s, residentialCost(s.houses).coins);
                 s.houses++;
-            }
-            else {
-                requireRule(c.kind === "FARM" || c.kind === "LOGGING" || c.kind === "GATE", "未知建设项目");
-                const field = c.kind === "FARM" ? "farm" : c.kind === "LOGGING" ? "logging" : "gateLevel";
-                const cost = upgradeCost(c.kind, s[field]), reason = upgradeUnavailableReason(s, cost);
-                requireRule(!reason, reason!);
-                const oldMax = gateCapacity(s);
-                spend(s, "wood", cost.wood);
-                spend(s, "food", cost.food);
-                s[field]++;
-                if (c.kind === "GATE")
+            } else {
+                requireRule(c.kind === "FACTORY" || c.kind === "GATE", "未知建设项目");
+                const level = c.kind === "FACTORY" ? s.factory.level : s.gateLevel;
+                const cost = upgradeCost(c.kind, level), reason = upgradeUnavailableReason(s, cost);
+                requireRule(reason === null, reason!);
+                spend(s, cost.coins);
+                if (c.kind === "FACTORY") s.factory.level++;
+                else {
+                    const oldMax = gateCapacity(s);
+                    s.gateLevel++;
                     s.gate += gateCapacity(s) - oldMax;
+                }
             }
             break;
         }
@@ -282,9 +266,7 @@ export function applyCommand(s: GameState, c: Command) {
         case "PATROL_UPGRADE": {
             const reason = patrolUpgradeReason(s);
             requireRule(reason === null, reason!);
-            const { wood, food } = patrolCost(s);
-            spend(s, "wood", wood);
-            spend(s, "food", food);
+            spend(s, patrolCost(s).coins);
             s.patrol.level++;
             break;
         }
@@ -299,7 +281,7 @@ export function applyCommand(s: GameState, c: Command) {
         case "REPAIR": {
             const quote = gateRepairQuote(s);
             requireRule(quote.count > 0, "城门完好");
-            spend(s, "wood", c.full ? quote.fullCost : repairCost(s));
+            spend(s, c.full ? quote.fullCost : repairCost(s));
             s.gate = c.full ? quote.maximum : Math.min(quote.maximum, s.gate + quote.perRepair);
             break;
         }
@@ -310,7 +292,7 @@ export function applyCommand(s: GameState, c: Command) {
             requireRule(ownsTowerAmmo(s, c.kind), "请先到商城购买冰弹");
             if (!t.kind) {
                 requireRule(c.kind === STARTER_AMMO[0], "新塔默认使用弓箭");
-                spend(s, "wood", TOWER_BUILD_WOOD);
+                spend(s, TOWER_BUILD_COINS);
                 t.flag = towerFlag(s.run, c.index, s.rng.world);
             }
             t.kind = c.kind;
@@ -322,10 +304,9 @@ export function applyCommand(s: GameState, c: Command) {
             requireRule(ownsTowerAmmo(s, c.kind), "请先解锁弹药");
             const level = s.ammoLevels[c.kind];
             requireRule(level === c.level, "弹药等级已变化");
-            const cost = upgradeCost("TOWER", level), reason = upgradeUnavailableReason(s, cost);
+            const cost = upgradeCost("AMMO", level), reason = upgradeUnavailableReason(s, cost);
             requireRule(!reason, reason!);
-            spend(s, "wood", cost.wood);
-            spend(s, "food", cost.food);
+            spend(s, cost.coins);
             s.ammoLevels[c.kind]++;
             break;
         }
@@ -334,8 +315,7 @@ export function applyCommand(s: GameState, c: Command) {
             requireRule(t && t.kind, "此处尚未建塔");
             const cost = upgradeCost("TOWER", t.level), reason = upgradeUnavailableReason(s, cost);
             requireRule(!reason, reason!);
-            spend(s, "wood", cost.wood);
-            spend(s, "food", cost.food);
+            spend(s, cost.coins);
             t.level++;
             break;
         }
@@ -345,9 +325,9 @@ export function applyCommand(s: GameState, c: Command) {
         case "NIGHT": {
             requireRule(s.wave !== null, "波次未准备好");
             autoAssignNightDuties(s);
-            const e = economy(s);
+            const reward = economy(s);
             s.night = { adults: s.people.filter(p => isAvailableAdult(s, p)).map(p => p.id), elders: s.people.filter(isElder).map(p => p.id),
-                hungry: e.hungry, tactic: s.tactics.equipped, activeHero: s.selectedHero ?? HERO.actorId, extendedHeroSortie: SLOWER_HERO_SORTIE,
+                reward, tactic: s.tactics.equipped, activeHero: s.selectedHero ?? HERO.actorId, extendedHeroSortie: SLOWER_HERO_SORTIE,
                 reinforcedEnemies: true, spreadEnemyFormation: true, returnPoint: nightReturnPoint(s) };
             if (s.rewardDie !== undefined) {
                 s.night.rewardDie = s.rewardDie;
@@ -368,8 +348,6 @@ export function applyCommand(s: GameState, c: Command) {
                 s.night.patrolWideImpact = true;
                 delete s.patrol.radiusReady;
             }
-            s.food = e.endFood;
-            s.wood = e.endWood;
             s.phase = "NIGHT";
             break;
         }

@@ -77,7 +77,7 @@ export class NightControls {
         const hand = battle.handSpeed;
         const active = !battle.outcome && (battle.bellTicks > 0 || hand !== null);
         const stateText = this.game.pauses.size ? "已暂停 · " : this.game.patrolAiming ? "瞄准中 · " : "";
-        this.status.text = `${stateText}场上 ${amount(battle.enemies.length, true)} · 待来 ${amount(battle.pendingCount, true)}${battle.base.night!.hungry ? " · 缺粮" : ""}`;
+        this.status.text = `${stateText}场上 ${amount(battle.enemies.length, true)} · 待来 ${amount(battle.pendingCount, true)}`;
         for (const button of this.buttons) {
             const { tactic, heart, skin, icon, note, ring } = button;
             const ringing = active && battle.tactic.id === tactic.id;

@@ -4,7 +4,7 @@ from pathlib import Path
 from statistics import median
 import json
 from PIL import Image
-from hero_alignment import align_hero_pose
+from hero_alignment import align_hero_pose, stabilize_walk_head
 
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCTION = ROOT / "source/rendered2d/production/songlei"
@@ -83,8 +83,10 @@ def main():
                 ("walk", side[step] if direction == "right" else walk[index + step * 4], "right-walk" if direction == "right" else "walk"),
                 ("attack", attack[index + step * 4], "attack")
             ):
-                register(f"{root}_{motion}_{step}", align_hero_pose(art, actor(art), standing), master,
-                         "characters", FOOT, f"{root}_{motion}")
+                aligned = align_hero_pose(art, actor(art), standing)
+                if motion == "walk":
+                    aligned = stabilize_walk_head(aligned, standing, "songlei", direction, step)
+                register(f"{root}_{motion}_{step}", aligned, master, "characters", FOOT, f"{root}_{motion}")
         for motion, fps, indexes, loop in (
             ("walk", 8, ("walk_0", "idle", "walk_1", "idle"), True),
             ("attack", 4, ("idle", "attack_0", "attack_1", "idle"), False)

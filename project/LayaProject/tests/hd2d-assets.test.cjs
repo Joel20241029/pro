@@ -3,6 +3,18 @@ const recipe=require('../../../res/source/asset_recipe.json'),defs=require('../.
 const motionQuality=require('../../../res/source/rendered2d/production/cartoon-v1/motion-quality.json');
 const source=path.resolve(__dirname,'../../../res');
 const {TOWER_IMPACT,TOWER_IMPACT_SCALE}=require(path.join(process.env.DAIDAI_TEST_BUILD,'view/config/FeedbackConfig.js'));
+const sewingModels=['blue','straw','red','jade','elite_male','elite_female'];
+const sewingLayers=['sew_station',...Array.from({length:8},(_,i)=>'sew_motion_'+i),
+ ...sewingModels.flatMap(model=>['sew_'+model,'sew_'+model+'_smile'])];
+const factoryAssets=new Set([...sewingLayers,'sew_wheel','icon_coin','motion_factory_body']);
+function sourceDigest(files){
+ const {createHash}=require('node:crypto'),result=createHash('sha256');
+ for(const name of [...files].sort()){
+  result.update(name+'\0');
+  result.update(createHash('sha256').update(fs.readFileSync(path.join(source,name))).digest());
+ }
+ return result.digest('hex');
+}
 test('each native enemy prefab owns one bottom-layer contact shadow and exports its actual layout',()=>{
  const exported=require('../../../res/native/enemies.json');
  assert.equal(exported.version,4);
@@ -17,16 +29,36 @@ test('each native enemy prefab owns one bottom-layer contact shadow and exports 
  }
 });
 test('HD replacement contains only selected source images; pixels and native prefab sources are traceable',()=>{
- const ids=new Set();for(const a of recipe.assets){assert(!ids.has(a.id));ids.add(a.id);assert.equal(typeof a.runtime,'boolean');assert(a.sourceSheet.startsWith(a.id.startsWith('cannon_') ? 'source/buildings/stone-cannon/' : 'source/rendered2d/production/'));assert(fs.existsSync(path.join(source,a.sourceSheet)));assert.equal(a.sampling,'Lanczos');assert(a.provenance.sourceHash);assert(a.provenance.outputHash);if(a.category==='building-parts')assert.equal(a.bundle,'buildings');}
- assert.equal(Object.keys(recipe.animations.walkDirections).length,7);
- assert.equal(Object.keys(recipe.animations.laborDirections).length,6);
- for(const [groups, headings] of [[recipe.animations.walkDirections,['DOWN','LEFT','RIGHT','UP']],[recipe.animations.laborDirections,['LEFT','RIGHT']]]){
-  for(const directions of Object.values(groups)){
-   assert.deepEqual(Object.keys(directions).sort(),headings);
-   assert.equal(new Set(Object.values(directions).map(direction=>direction.clip)).size,headings.length);
-   assert(Object.values(directions).every(direction=>direction.mirror===false));
+ const ids=new Set(),factoryFolder='source/rendered2d/production/sewing-factory/';
+ for(const a of recipe.assets){
+  assert(!ids.has(a.id));ids.add(a.id);
+  assert.equal(typeof a.runtime,'boolean');
+  assert(a.sourceSheet.startsWith(a.id.startsWith('cannon_') ? 'source/buildings/stone-cannon/' : 'source/rendered2d/production/'));
+  assert(fs.existsSync(path.join(source,a.sourceSheet)));assert.equal(a.sampling,'Lanczos');
+  if(factoryAssets.has(a.id)){
+   assert.equal(a.sourceSheet,factoryFolder+(a.id==='motion_factory_body'?'':'parts/')+a.id+'.png');
+   assert(a.runtime);
+  }else{
+   assert(a.provenance.sourceHash,a.id);assert(a.provenance.outputHash,a.id);
   }
+  if(a.category==='building-parts')assert.equal(a.bundle,'buildings');
  }
+ const factorySources=recipe.assets.filter(a=>factoryAssets.has(a.id)).map(a=>a.sourceSheet);
+ assert.equal(factorySources.length,factoryAssets.size);
+ // The reviewed station uses a common machine, independent facial layers and a separate factory sign.
+ // Hash file names and contents so swapping expressions or replacing a source layer is observable.
+ const masters=['factory-master.png','masters/factory-sign.png','masters/station.png','masters/smile.png','masters/coin-glyph.png'].map(name=>factoryFolder+name);
+ masters.push(...sewingModels.filter(m=>m!=='blue').map(m=>'source/rendered2d/production/cartoon-v1/frames/portrait_hd_'+m+'_down_idle.png'));
+ assert.equal(sourceDigest(masters),'e085b9074673e60868ff791ba19f09391f084f7a441934f7f7812b2e0af2bb15');
+ assert.equal(sourceDigest(factorySources),'f4289ec420b149b79b0c456b97406a0842fcaf151bea43d799b953c16978d46d');
+ assert.equal(Object.keys(recipe.animations.walkDirections).length,7);
+ assert.deepEqual(recipe.animations.laborDirections,{});
+ for(const directions of Object.values(recipe.animations.walkDirections)){
+  assert.deepEqual(Object.keys(directions).sort(),['DOWN','LEFT','RIGHT','UP']);
+  assert.equal(new Set(Object.values(directions).map(direction=>direction.clip)).size,4);
+  assert(Object.values(directions).every(direction=>direction.mirror===false));
+ }
+ assert(!recipe.animations.animations.some(clip=>/^villager_.*_work_/.test(clip.id)));
  assert(!recipe.assets.some(a=>a.category==='characters'&&/_(up|down)_(left|right)_/.test(a.id)));assert(!recipe.assets.some(a=>a.id.startsWith("emote_")));
  for (const asset of recipe.assets.filter(a=>a.nineSlice)) {
   const {width,height,nineSlice:g}=asset;
@@ -149,6 +181,13 @@ test('villager combat clips and pages stay out of both resource stages',()=>{
 test('resizing preserves normalized feet and stride; panel portraits retain their original resolution',()=>{
  const byId=new Map(recipe.assets.map(a=>[a.id,a]));
  for(const a of recipe.assets){
+  if(factoryAssets.has(a.id)){
+   if(sewingLayers.includes(a.id)){
+    assert.equal(a.width,192);assert.equal(a.height,192);
+    assert.equal(a.pivot.x/a.width,.5);assert.equal(a.pivot.y/a.height,.953);
+   }
+   continue;
+  }
   const original=a.provenance.normalizedCanvas;if(!original)continue;
   assert.equal(a.width/original.width,a.provenance.runtimeScale);
   assert(Math.abs(a.pivot.x/a.width-original.pivot.x/original.width)<1e-12);
@@ -180,12 +219,17 @@ test('enemy textures and attachments retain their sampling budget before the app
 test('compact actor textures preserve normalized pivots, stride and the authored frame sequence',()=>{
  const packed=require('../../../res/atlases/frames.json').frames;
  const clips=new Map(require('../../../res/animations.json').animations.map(clip=>[clip.id,clip]));
- for(const [id,width] of [['hd_blue_down_0',96],['hd_child_down_0',84],['hd_elite_female_work_right_1',116],['hero_zhizhuo_down_idle',112],['hero_delivery_down_idle',112],['portrait_hd_blue_down_idle',320]]){
+ for(const [id,width] of [['hd_blue_down_0',96],['hd_child_down_0',84],['hd_elite_female_right_1',96],['hero_zhizhuo_down_idle',112],['hero_delivery_down_idle',112],['portrait_hd_blue_down_idle',320]]){
   const source=recipe.assets.find(asset=>asset.id===id),frame=packed[id];
   assert.equal(frame.sourceSize.w,width,id);
   assert(width<source.width,id);
   assert(Math.abs(frame.pivot.x/width-source.pivot.x/source.width)<1e-12,id);
   assert(Math.abs(frame.pivot.y/frame.sourceSize.h-source.pivot.y/source.height)<1e-12,id);
+ }
+ for(const id of [...sewingLayers,'sew_wheel']){
+  const authored=recipe.assets.find(a=>a.id===id),frame=packed[id];
+  assert.deepEqual(frame.sourceSize,{w:authored.width,h:authored.height},id);
+  assert.deepEqual(frame.pivot,authored.pivot,id);
  }
  for(const original of recipe.animations.animations.filter(clip=>clip.id.startsWith('villager_')||clip.id.startsWith('hero_zhizhuo_'))){
   const next=clips.get(original.id);

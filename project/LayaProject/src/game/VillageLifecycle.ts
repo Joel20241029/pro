@@ -5,7 +5,7 @@ import { SeededRandom } from "./SeededRandom";
 import { nextSex, travelerDue } from "./Population";
 import { person, capacity } from "./VillageQueries";
 import { autoAssignJobs, autoAssignNightDuties } from "./VillageJobs";
-import { requireRule, newId, pruneHistory } from "./VillageStateOps";
+import { requireRule, newId, pruneHistory, earnCoins } from "./VillageStateOps";
 import { advanceExpedition } from "./Expedition";
 /** 客满的定期来访已按原规则抽人并记入间隔，只把无法接纳的待办换成清晨消息。 */
 export function summarizeFullHouseVisit(s: GameState) {
@@ -25,6 +25,8 @@ export function finishNight(s: GameState, gate: number, operators: (string | nul
         s.summary = `守住 ${s.completed} 夜，传承至第 ${s.stats.generation} 代，迎来 ${s.stats.births} 个孩子，${s.stats.retirees} 位村民荣休。`;
         return;
     }
+    if (s.night.reward) earnCoins(s, s.night.reward.total);
+    s.factory = { level: s.factory.level, batches: 0, earned: 0, elapsedMs: 0 };
     const mercy = s.tactics.mercyCooldown;
     if (mercy && mercy.wavesLeft > 0 && !s.night.mercySpent) mercy.wavesLeft--;
     const world = new SeededRandom(s.rng.world);

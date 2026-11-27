@@ -162,17 +162,16 @@ test('backpack and shop are available before the first night, with only configur
     assert.equal(ITEMS.patrol_ration.name, '靓哥的底线');
     assert.equal(ITEMS.patrol_ration.icon, 'icon_liang_briefs');
     assert.match(PATROL_RATION.lore, /靓哥的红底裤/);
-    assert.deepEqual(ITEMS.gate_kit, { name: '修门工具', description: '用于修补城门', icon: 'icon_build' });
+    assert.deepEqual(ITEMS.gate_kit, { name: '修门工具', description: '使用后修复一次城门耐久', icon: 'icon_build' });
 });
 
 test('patrol ration atomically consumes one bag and boosts only the next night, including reload', () => {
     const f = fixture(), game = f.reopen(), id = PATROL_RATION.id;
     game.newVillage();
     assert.equal(game.state.completed, 0);
-    const { food, wood } = game.state;
+    const { coins } = game.state;
     game.buyItem(id);
-    assert.equal(game.state.food, food - 40);
-    assert.equal(game.state.wood, wood - 20);
+    assert.equal(game.state.coins, coins - PATROL_RATION.coins);
     assert.equal(game.villageItems.backpack().items[id], 1);
     const captain = game.state.patrol.captain;
     game.state.patrol.captain = null;
@@ -204,9 +203,9 @@ test('wide impact and damage supplies persist independently through purchase, re
     const f = fixture(), game = f.reopen(), id = LIANG_INDULGENCE.id;
     game.newVillage();
     game.state.legacy.bestNight = 13;
-    game.state.food = 160; game.state.wood = 80;
+    game.state.coins = 240;
     game.buyItem(id);
-    assert.deepEqual([game.state.food, game.state.wood, game.villageItems.backpack().items[id]], [120, 60, 1]);
+    assert.deepEqual([game.state.coins, game.villageItems.backpack().items[id]], [240 - LIANG_INDULGENCE.coins, 1]);
     game.buyItem(id); game.buyItem(PATROL_RATION.id);
     f.fault.beforeWrite = keys.backpack;
     game.usePatrolItem(id);
@@ -282,15 +281,15 @@ test('house selection survives reopening and both prepared supplies wait through
 
 function unlocked(f) {
     const game = f.reopen(); game.newVillage();
-    const state = { ...game.state, food: 200, wood: 37, legacy: { ...game.state.legacy, bestNight: 13 } };
+    const state = { ...game.state, coins: 195, legacy: { ...game.state.legacy, bestNight: 13 } };
     game.saves.prepare(state); game.saves.commit();
     return f.reopen();
 }
 
-test('shop charges materials once and adds one bottle, then refuses insufficient funds', () => {
+test('shop charges coins once and adds one bottle, then refuses insufficient funds', () => {
     const f = fixture(), game = unlocked(f), { id } = LIANG_ESSENCE;
     game.buyItem(id);
-    assert.equal(game.state.food, 80); assert.equal(game.state.wood, 22);
+    assert.equal(game.state.coins, 80);
     assert.equal(game.takePurchaseFeedback(), true);
     assert.equal(game.takePurchaseFeedback(), false);
     assert.equal(game.villageItems.backpack().items[id], 1);
@@ -298,7 +297,23 @@ test('shop charges materials once and adds one bottle, then refuses insufficient
     assert.match(game.error, /不足/);
     assert.equal(game.takePurchaseFeedback(), false);
     assert.equal(game.villageItems.backpack().items[id], 1);
-    assert.equal(game.state.food, 80);
+    assert.equal(game.state.coins, 80);
+});
+
+test('a repair kit preserves coins, repairs once and rejects full durability without consumption', () => {
+    const { gateRepairQuote } = read('game/Growth');
+    const f = fixture(), game = f.reopen();
+    game.newVillage();
+    game.villageItems.saveItems({ gate_kit: 2 });
+    game.useGateKit();
+    assert.equal(game.villageItems.backpack().items.gate_kit, 2);
+    const quote = gateRepairQuote(game.state), coins = game.state.coins;
+    game.state.gate = quote.maximum - quote.perRepair - 1;
+    game.useGateKit();
+    const reopened = f.reopen();
+    assert.equal(reopened.villageItems.backpack().items.gate_kit, 1);
+    assert.equal(reopened.state.gate, quote.maximum - 1);
+    assert.equal(reopened.state.coins, coins);
 });
 
 test('essence stacks three times for one adult, persists the result and rejects a fourth bottle', () => {
@@ -370,7 +385,7 @@ test('interrupted item operations converge after retry, cold start and an uncert
     delete f.fault.afterWrite;
     game.retry();
     assert.equal(game.takePurchaseFeedback(), true);
-    assert.equal(game.state.food, 80);
+    assert.equal(game.state.coins, 80);
     assert.equal(game.villageItems.backpack().items[id], 1);
 });
 
@@ -382,23 +397,22 @@ test('ice purchase unlocks both towers and a single shared upgrade survives reop
     assert.deepEqual(game.state.towers.map(t => t.kind), ['ARROW','STONE',null,null,null]);
     assert.equal(game.state.completed, 0);
     assert.equal(game.state.iceAmmoUnlocked, undefined);
-    game.state.wood = ICE_AMMO_OFFER.wood - 1;
+    game.state.coins = ICE_AMMO_OFFER.coins - 1;
     game.buyItem(ICE_AMMO_OFFER.id);
     assert.equal(game.state.iceAmmoUnlocked, undefined);
-    game.state.wood = game.state.food = 180;
+    game.state.coins = 180;
     const bagBefore = f.values.get(keys.backpack);
     game.buyItem(ICE_AMMO_OFFER.id);
     assert.equal(game.state.iceAmmoUnlocked, true);
     assert.equal(game.takePurchaseFeedback(), true);
     game.buyItem(ICE_AMMO_OFFER.id);
-    assert.equal(game.state.wood, 180 - ICE_AMMO_OFFER.wood);
+    assert.equal(game.state.coins, 180 - ICE_AMMO_OFFER.coins);
     assert.equal(f.values.get(keys.backpack), bagBefore);
     for (const index of [0,1]) game.command({type:'TOWER', index, kind:'SLOW'});
     const damage = () => game.state.towers.slice(0,2).map(t => towerStats(game.state,t.kind,t.level,game.state.people.find(p => p.id===t.operator)).damage);
-    const original = damage(), cost = upgradeCost('TOWER', 1);
+    const original = damage(), cost = upgradeCost('AMMO', 1);
     for (let attempt=0;attempt<2;attempt++) game.command({type:'UPGRADE_AMMO',kind:'SLOW',level:1});
-    assert.equal(game.state.food,180-cost.food);
-    assert.equal(game.state.wood,180-ICE_AMMO_OFFER.wood-cost.wood);
+    assert.equal(game.state.coins,180 - ICE_AMMO_OFFER.coins - cost.coins);
     assert.deepEqual(game.state.ammoLevels,{ARROW:1,STONE:1,SLOW:2});
     damage().forEach((d,i)=>assert(Math.abs(d-original[i]*1.05)<1e-9));
     const next = f.reopen();
@@ -414,9 +428,9 @@ test('reward die is committed once, scales one night and returns unchanged when 
     for (const [random, roll, multiplier] of [[0, 1, .5], [.5, 4, 2], [.999, 6, 2]]) {
         const f = fixture(), game = f.reopen();
         game.newVillage();
-        const opening = { food: game.state.food, wood: game.state.wood };
+        const opening = game.state.coins;
         game.buyItem(id);
-        assert.deepEqual([game.state.food, game.state.wood], [opening.food - YUEXIU_DICE.food, opening.wood - YUEXIU_DICE.wood]);
+        assert.equal(game.state.coins, opening - YUEXIU_DICE.coins);
         game.villageItems.saveItems({ [id]: 2 });
         const normal = economy(game.state);
         const originalRandom = Math.random;
@@ -438,26 +452,35 @@ test('reward die is committed once, scales one night and returns unchanged when 
         resumed.rollRewardDice();
         assert.equal(resumed.state.rewardDie, roll);
         assert.equal(resumed.villageItems.backpack().items[id], 1);
-        const adjusted = economy(resumed.state), before = [resumed.state.food, resumed.state.wood];
-        assert.deepEqual([adjusted.food, adjusted.wood, adjusted.rations],
-            [Math.floor(normal.food * multiplier), Math.floor(normal.wood * multiplier), normal.rations]);
+        const adjusted = economy(resumed.state), before = resumed.state.coins;
+        assert.equal(adjusted.base, Math.floor(normal.base * multiplier));
+        assert.equal(adjusted.sewing, normal.sewing);
         resumed.command({ type: 'NIGHT' });
         assert.equal(resumed.state.rewardDie, undefined);
         assert.equal(resumed.state.night.rewardDie, roll);
-        assert.deepEqual([resumed.state.food, resumed.state.wood], [adjusted.endFood, adjusted.endWood]);
-        assert.equal(economy(resumed.battle.base).food, adjusted.food);
+        assert.equal(resumed.state.coins, before);
+        assert.equal(economy(resumed.battle.base).total, adjusted.total);
         const replay = f.reopen();
         replay.pause('CHOICE'); replay.abandonNight();
         assert.equal(replay.state.rewardDie, roll);
-        assert.deepEqual([replay.state.food, replay.state.wood], before);
+        assert.equal(replay.state.coins, before);
         replay.command({ type: 'NIGHT' });
         const settled = structuredClone(replay.state);
         finishNight(settled, 145, replay.battle.operators);
         assert.equal(settled.rewardDie, undefined);
         assert.equal(settled.night, null);
+        assert.equal(settled.coins, before + adjusted.total);
         const lost = structuredClone(replay.state);
         finishNight(lost, 0, replay.battle.operators);
         assert.equal(lost.phase, 'GAME_OVER');
         assert.equal(lost.rewardDie, undefined);
     }
+});
+
+test('only the configured share of a large night reward is affected by the die', () => {
+    const { nightRewardWithDice } = read('config/ShopConfig');
+    const base = 180, stake = YUEXIU_DICE.stakeCap;
+    assert.equal(nightRewardWithDice(base, 1), base - stake + Math.floor(stake * YUEXIU_DICE.lowMultiplier));
+    assert.equal(nightRewardWithDice(base, 6), base - stake + stake * YUEXIU_DICE.highMultiplier);
+    assert.equal(nightRewardWithDice(base), base);
 });

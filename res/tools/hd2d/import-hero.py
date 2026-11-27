@@ -5,7 +5,7 @@ import json
 from statistics import median
 
 from PIL import Image
-from hero_alignment import align_hero_pose
+from hero_alignment import align_hero_pose, stabilize_walk_head
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -119,6 +119,8 @@ def main():
             for index, pose in enumerate(group):
                 name = f"{clip}_{index}"
                 aligned = align_hero_pose(pose, actor_frame(pose, scale), idle_frame)
+                if move == "walk":
+                    aligned = stabilize_walk_head(aligned, idle_frame, "zhizhuo", direction, index)
                 assets.append(asset(name, aligned, PIVOT, "characters", master, clip))
                 ids.append(name)
             clips.append({"id": clip, "frameIds": ids, "frameCount": len(ids), "fps": fps,

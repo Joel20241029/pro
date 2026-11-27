@@ -7,16 +7,16 @@ import { PATH_LENGTH } from "../game/BattleRoad";
 /** 单次战技保留原内部冷却。耗尽时本夜以次数为准。 */
 const SINGLE_USE_COOLDOWN = 7;
 /** 额外槽按次序购买；解锁后增加可携带的战技。 */
-export const TACTIC_SLOTS = [{ unlockWaves: 15, wood: 80, food: 40 }, { unlockWaves: 35, wood: 160, food: 80 }] as const;
+export const TACTIC_SLOTS = [{ unlockWaves: 15, coins: 120 }, { unlockWaves: 35, coins: 235 }] as const;
 
 /** 村庄战技与村民天赋分离；目录只登记已实现的效果。
- * 波数是当前村庄成功防守数，木粮为一次学习费用。大王的怜悯另在施放时献纳库存。
+ * 波数是当前村庄成功防守数，尔币为一次学习费用。大王的怜悯另在施放时献纳库存。
  * 持续时间使用固定战斗步，暂停与倍速由原战斗时钟管理；更改效果需重新调平。
  */
 interface TacticBase {
     id: string; name: string; buttonName?: string; icon: string; order: number;
     summary: string; detail?: string; lore: string;
-    unlockWaves: number; wood: number; food: number;
+    unlockWaves: number; coins: number;
     ticks: number;
     /** 常速下的实际秒。怜悯仅按胜利波数冷却。 */
     cooldownSeconds: number;
@@ -83,31 +83,31 @@ export const DRAGON_POISON = {
 } as const;
 /** 怜悯的固定存档标识。献纳按确认时的库存向上取整，冷却为基础波数加累计成功施放次数。 */
 export const KING_MERCY_TACTIC = "KING_MERCY";
-export const KING_MERCY = { offeringPercent: 50, baseCooldownWaves: 5 } as const;
+export const KING_MERCY = { offeringPercent: 50, minimumCoins: 20, baseCooldownWaves: 5 } as const;
 /** 以战斗秒配置沿用固定逻辑步，卡片显示常速下玩家看到的秒数。 */
 const SHIELD_SECONDS = 12, SPLIT_SECONDS = 15, MIND_LOCK_SECONDS = 9;
 const ATTACK_BOOST_SECONDS = RULE.bellTicks * RULE.step / RULE.battleSpeed;
 
 /** 每守住五波开放一项。档位费用随学习进度递增，最高档仍可用初始仓储支付。 */
 const tacticLearning = [
-    { unlockWaves: 0, wood: 0, food: 0 },
-    { unlockWaves: 5, wood: 30, food: 15 },
-    { unlockWaves: 10, wood: 45, food: 20 },
-    { unlockWaves: 15, wood: 60, food: 30 },
-    { unlockWaves: 20, wood: 80, food: 40 },
-    { unlockWaves: 25, wood: 100, food: 50 },
-    { unlockWaves: 30, wood: 130, food: 65 },
-    { unlockWaves: 35, wood: 160, food: 80 },
+    { unlockWaves: 0, coins: 0 },
+    { unlockWaves: 5, coins: 45 },
+    { unlockWaves: 10, coins: 60 },
+    { unlockWaves: 15, coins: 80 },
+    { unlockWaves: 20, coins: 100 },
+    { unlockWaves: 25, coins: 125 },
+    { unlockWaves: 30, coins: 150 },
+    { unlockWaves: 35, coins: 180 },
     // 可一次清掉在场首领，学习安排在目前技能阶梯的最后一档。
-    { unlockWaves: 40, wood: 180, food: 90 },
+    { unlockWaves: 40, coins: 205 },
     // 保持五波阶梯，最高价格仍可用初始仓储支付。
-    { unlockWaves: 45, wood: 200, food: 100 },
-    { unlockWaves: 50, wood: 200, food: 120 }
+    { unlockWaves: 45, coins: 230 },
+    { unlockWaves: 50, coins: 260 }
 ] as const;
 export const TACTICS: readonly TacticDefinition[] = [{
     id: DEFAULT_TACTIC, name: "大王之心", icon: "icon_crowned_heart", order: 0,
     summary: `全塔攻速 +50% · 持续 ${ATTACK_BOOST_SECONDS} 秒`,
-    lore: `先贤${DELIVERY_HERO.givenName}一单一单送来粮木，把文明里村建了起来。后来他连守夜的单都接。城门一响铃，守塔人便连射不停。后人称那声铃为「大王之心」，他本人管这叫催单。`,
+    lore: `先贤${DELIVERY_HERO.givenName}一单一单攒下尔币，把文明里村建了起来。后来他连守夜的单都接。城门一响铃，守塔人便连射不停。后人称那声铃为「大王之心」，他本人管这叫催单。`,
     ...tacticLearning[0],
     effect: "ATTACK_SPEED", ticks: RULE.bellTicks, cooldownSeconds: 18, multiplier: RULE.bellSpeedMultiplier
 }, {
@@ -170,8 +170,8 @@ export const TACTICS: readonly TacticDefinition[] = [{
     effect: "DRAGON_POISON", ticks: DRAGON_POISON.seconds * DRAGON_POISON.intervalTicks, cooldownSeconds: SINGLE_USE_COOLDOWN, usesPerNight: 1
 }, {
     id: KING_MERCY_TACTIC, name: "大王的怜悯", buttonName: "怜悯", icon: "icon_shield", order: 10,
-    summary: "献出一半粮木 · 击败在场敌军，修满城门",
-    lore: `旧祠账册里，${DELIVERY_HERO.givenName}的急单永远分两栏，一栏粮，一栏木。只要村里喊救命，外卖大王便清场、修门，全给送到。至于半仓粮木，账上只写了五个字：夜间配送费。`,
+    summary: "献出半数尔币 · 击败在场敌军，修满城门",
+    lore: `旧祠账册里，${DELIVERY_HERO.givenName}的急单都记在一本账上。只要村里喊救命，外卖大王便清场、修门，全给送到。至于半袋尔币，账上只写了五个字：夜间配送费。`,
     ...tacticLearning[10],
     effect: "KING_MERCY", ticks: 0, cooldownSeconds: 0, usesPerNight: 1
 }];
@@ -190,7 +190,7 @@ export function validateTactics(definitions: readonly TacticDefinition[] = TACTI
             seen.has(t.id) || !(t.effect === "TIMED_BLAST" ? t.icon === TIMED_BLAST.icon :
                 t.effect === "HAND_SPEED" ? t.icon === HAND_SPEED.icon :
                     t.effect === "DRAGON_POISON" ? t.icon === DRAGON_POISON.icon : RESOURCE_CONTRACT.village.frames.includes(t.icon)) ||
-            ![t.order, t.unlockWaves, t.wood, t.food].every(n => Number.isSafeInteger(n) && n >= 0) ||
+            ![t.order, t.unlockWaves, t.coins].every(n => Number.isSafeInteger(n) && n >= 0) ||
             !["ATTACK_SPEED", "ATTACK_DAMAGE", "GATE_INVULNERABLE", "MULTI_TARGET", "SUMMON_CHARGE", "MIND_LOCK", "TIMED_BLAST", "HAND_SPEED", "ZHOU_LOVE", "DRAGON_POISON", "KING_MERCY"].includes(t.effect) ||
             (t.usesPerNight !== undefined && (!Number.isSafeInteger(t.usesPerNight) || t.usesPerNight < 1)) ||
             !Number.isSafeInteger(t.cooldownSeconds) || !Number.isSafeInteger(tacticCooldownTicks(t)) ||
@@ -203,7 +203,7 @@ export function validateTactics(definitions: readonly TacticDefinition[] = TACTI
         seen.add(t.id);
     }
     const initial = definitions.find(t => t.id === DEFAULT_TACTIC);
-    if (!initial || initial.unlockWaves !== 0 || initial.wood !== 0 || initial.food !== 0)
+    if (!initial || initial.unlockWaves !== 0 || initial.coins !== 0)
         throw new Error("初始战技必须免费可用");
 }
 export function tacticDefinition(id: string): TacticDefinition {

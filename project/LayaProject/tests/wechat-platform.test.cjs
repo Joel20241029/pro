@@ -133,7 +133,7 @@ function gameView(session, platform) {
     // This platform lifecycle fixture does not render glyphs; button/icon press coupling
     // is exercised with the real UiWidgets in gameplay-clarity.test.cjs.
     const ui = { image(parent,id,x,y,w,h=w) { return parent.addChild(new Sprite().pos(x,y).size(w,h)); },
-        iconValue(parent,id,value,x,y,w,h){const node=parent.addChild(new Sprite().pos(x,y).size(w,h)); node.text=value; return node;},
+        iconValue(parent,id,value,x,y,w,h){const group=parent.addChild(new Sprite().pos(x,y).size(w,h)); group.text=value; return group.addChild(new Sprite().size(h-6,h-6));},
         actionBadge(button, name) { const dot = (button.getChildByName('buttonFace') || button).addChild(new Sprite()); dot.name = name; return dot; },
         buttonIcon() {}, label: () => ({}), button: fakeButton,
         centerButton: require(path.join(compiled, 'view/UiWidgets.js')).UiWidgets.prototype.centerButton, bindClick() {} };
@@ -162,7 +162,7 @@ test('the terminal patrol impact plays before both the victory and defeat panels
             const battle = { outcome, base, feedback: hitInFinalStep ? [{ type: 'patrol' }] : [] };
             const game = { battle: null, presentationBattle: battle, saves: { pending: false } };
             let refreshes = 0;
-            const view = new NightResultPresentation({}, {}, () => refreshes++);
+            const view = new NightResultPresentation({}, { featureButtons: [] }, () => refreshes++);
             view.observe(game, state, !hitInFinalStep);
             assert(view.playingFinalImpact); assert(view.draw({}));
             view.advance(FEEDBACK.finalImpactSeconds, true);
@@ -197,33 +197,30 @@ test('first committed win retains the summary through collection and reveals onl
     assert.equal(ranking().visible, false); assert.equal(tactics(), undefined);
     assert(itemButtons().every(button => button?.visible && button.mouseEnabled));
     main.onUpdate(); assert.deepEqual(s.messages, [{ bestNight: 1 }]);
-    const stock = [session.state.food,session.state.wood];
+    const stock = session.state.coins;
     view.panels.advance(.24);
     const claim = box().getChildByName('button:收下').action;
     claim(); claim(); view.results.advance(.04);
     assert.equal(box().name, 'panel:守夜成功'); assert(view.results.layer.visible);
-    const food = view.results.tiles[0];
-    assert(food.scaleX < .61);
+    const coin = view.results.tiles[0];
+    assert.equal(coin.name, 'icon_coin');
+    assert(coin.scaleX < .61);
     view.results.advance(.22);
-    assert.equal(food.width * food.scaleX, 315);
+    assert.equal(coin.width * coin.scaleX, 315);
     assert(!view.results.tiles[1]?.visible);
-    const hover = [food.x, food.y, food.scaleX];
+    const hover = [coin.x, coin.y, coin.scaleX];
     view.results.advance(.1);
-    assert.deepEqual([food.x, food.y, food.scaleX], hover);
+    assert.deepEqual([coin.x, coin.y, coin.scaleX], hover);
     view.results.advance(.38);
-    assert(food.scaleX < 1);
+    assert(coin.scaleX < 1);
     assert.equal(box().name, 'panel:守夜成功');
-    view.results.advance(.33);
-    const wood = view.results.tiles[1];
-    assert(!food.visible); assert.equal(wood.width * wood.scaleX, 315);
-    assert.equal(box().name, 'panel:守夜成功');
-    view.results.advance(.64); view.panels.advance(.24);
+    view.results.advance(.15); view.panels.advance(.24);
     assert.equal(box().name, 'panel:功能解锁');
     view.results.advance(1.12);
     assert.equal(ranking().visible, true); assert.equal(tactics(), undefined);
     view.results.advance(.67);
     assert.equal(ranking().visible, true); assert.equal(tactics(), undefined);
-    assert.deepEqual([session.state.food,session.state.wood],stock);
+    assert.equal(session.state.coins,stock);
     assert.equal(s.privacy.length,0);
     session.newVillage(); assert.equal(session.state.completed, 0); assert.equal(view.hud.node.getChildByName('RankingButton'), undefined);
     assert(itemButtons().every(button => button?.visible && button.mouseEnabled));

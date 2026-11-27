@@ -15,7 +15,7 @@ function village(waves) {
     s.completed = s.legacy.bestNight = waves;
     s.day = waves + 1;
     s.wave = generateWave(s);
-    s.wood = s.food = 200;
+    s.coins = 200;
     return s;
 }
 const unlock = (s, slot) => applyCommand(s, { type: 'TACTIC_UNLOCK_SLOT', slot });
@@ -25,12 +25,12 @@ const equip = (s, id, slot) => applyCommand(s, { type: 'TACTIC_EQUIP', id, slot 
 test('slot thresholds, each exact cost, duplicate validation and compatibility with the saved night', () => {
     assert.throws(() => unlock(village(14), 1), /还需守住 1 波/);
     const middle = village(15);
-    middle.food = 39;
-    assert.throws(() => unlock(middle, 1), /还缺 1 粮/);
-    assert.deepEqual([middle.wood, middle.food], [200, 39]);
-    middle.food = 40;
+    middle.coins = 119;
+    assert.throws(() => unlock(middle, 1), /还缺 1 尔币/);
+    assert.equal(middle.coins, 119);
+    middle.coins = 120;
     unlock(middle, 1);
-    assert.deepEqual([middle.wood, middle.food, middle.tactics.extraSlots], [120, 0, [null]]);
+    assert.deepEqual([middle.coins, middle.tactics.extraSlots], [0, [null]]);
     assert.throws(() => unlock(middle, 1), /按顺序/);
     assert.throws(() => unlock(middle, 2), /还需守住 20 波/);
     applyCommand(middle, { type: 'NIGHT' });
@@ -39,11 +39,14 @@ test('slot thresholds, each exact cost, duplicate validation and compatibility w
     const s = village(35);
     assert.throws(() => unlock(s, 2), /按顺序/);
     unlock(s, 1);
-    s.wood = 160; s.food = 80;
+    s.coins = 234;
+    assert.throws(() => unlock(s, 2), /还缺 1 尔币/);
+    assert.equal(s.coins, 234);
+    s.coins = 235;
     unlock(s, 2);
-    assert.deepEqual([s.wood, s.food, s.tactics.extraSlots], [0, 0, [null, null]]);
+    assert.deepEqual([s.coins, s.tactics.extraSlots], [0, [null, null]]);
     assert.throws(() => equip(s, DEFAULT_TACTIC, 2), /已携带/);
-    s.wood = 100; s.food = 100;
+    s.coins = 105;
     learn(s, RAGE_TACTIC, 1);
     learn(s, SHIELD_TACTIC, 2);
     applyCommand(s, { type: 'TACTIC_CLEAR_SLOT', slot: 1 });
@@ -62,6 +65,7 @@ test('slot thresholds, each exact cost, duplicate validation and compatibility w
     store.inspect(); store.prepare(s); store.commit();
     const game = new GameSession(new SaveStore(port));
     game.load();
+    assert.equal(game.state.coins, 0);
     assert.deepEqual(game.battle.tactics.map(t => t.id), [DEFAULT_TACTIC, RAGE_TACTIC, SHIELD_TACTIC]);
     assert(game.battle.tactics.every(t => game.battle.usesLeftFor(t) === null));
     game.newVillage();

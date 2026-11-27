@@ -14,8 +14,7 @@ export type SpendDetails = {
     actionText: string;
     image: string;
     detail?: string;
-    wood?: number;
-    food?: number;
+    coins?: number;
     quantity?: string;
     showBadge?: boolean;
 };
@@ -56,7 +55,7 @@ export type Panel = {
     /** 名册按岗位存放当前查看的滚动位置和排序。 */
     rosterViews?: { scroll?: number; rowOrder?: string[] }[];
     a?: string;
-    job?: "FARM" | "LOGGING";
+    job?: "SEWING";
 };
 /** 绘制模块只访问这些明确服务；current 由 GamePanels 唯一持有，滚动回调沿用同一个 Panel 对象。 */
 export interface PanelContext {
@@ -75,7 +74,7 @@ export interface PanelContext {
     close(): void;
     send(command: Command, keep?: boolean): void;
     confirmSpend(details: SpendDetails, commit: () => void): void;
-    claimExpedition(food: Laya.Sprite, wood: Laya.Sprite): void;
+    claimExpedition(coin: Laya.Sprite): void;
     modal(title: string, subtitle: string, close?: boolean, size?: {
         width: number;
         height: number;

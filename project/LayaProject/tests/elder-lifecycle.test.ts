@@ -45,24 +45,24 @@ test("A new retiree is not aged with an existing elder, even when that elder dep
     const s = separateCaptainVillage(1), old = s.people[0], next = s.people[1]; old.nights = 0; old.elderNights = 1; old.job = "WAITING"; next.nights = 1;
     win(s); equal(s.history[0].id, old.id); ok(isElder(next)); equal(next.elderNights, 3); equal(s.people.length, 5); equal(s.stats.retirees, 1);
 });
-test("Elder ration is included exactly once, honors frugal without a calendar surcharge, and produces no resources", () => {
+test("Only active sewing staff contribute to victory pay, without upkeep", () => {
     const s = createGame(1); s.people.forEach(p => p.job = "WAITING");
     for (const p of s.people.slice(0, 2)) { p.nights = 0; p.elderNights = 3; }
-    s.day = 4; const base = economy(s); equal([base.food, base.wood, base.rations, base.elderRations], [0, 0, 11, 3]);
-    s.day = 10; equal(economy(s).rations, 11); equal(economy(s).elderRations, 3);
-    s.food = 200; equal(economy(s).endFood, 189); s.food = 0; ok(economy(s).hungry); equal(economy(s).endFood, 0);
+    equal(economy(s), { base: 30, sewing: 0, boss: 0, total: 30 });
+    s.people[2].job = "SEWING"; s.coins = 0;
+    equal(economy(s), { base: 30, sewing: 2, boss: 0, total: 32 });
 });
-test("Failed nights and a replay do not decrement elder life or charge food again", () => {
+test("Failed nights and a replay do not decrement elder life or change the wallet", () => {
     const s = separateCaptainVillage(2), p = s.people[0]; p.nights = 0; p.elderNights = 2; p.job = "WAITING";
     applyCommand(s, { type: "NIGHT" }); const before = clone(s); const a = new BattleSimulation(s), b = new BattleSimulation(s);
     a.step(); b.step(); equal([a.tick, a.gate], [b.tick, b.gate]); equal(s, before);
-    finishNight(s, 0, s.towers.map(t => t.operator)); equal(p.elderNights, 2); equal(s.day, before.day); equal(s.food, before.food); equal(s.stats.retirees, 0); validateState(s);
+    finishNight(s, 0, s.towers.map(t => t.operator)); equal(p.elderNights, 2); equal(s.day, before.day); equal(s.coins, before.coins); equal(s.stats.retirees, 0); validateState(s);
 });
 test("Elders are rejected by jobs, childcare, marriage and daytime/nighttime tower entry points", () => {
     const s = createGame(3); applyCommand(s, { type: "BIRTH", family: s.families[0].id });
     const p = s.people[4]; p.nights = 0; p.elderNights = 3; p.job = "WAITING";
     const before = canonical(s);
-    for (const job of ["WAITING", "FARM", "LOGGING"] as const) rejects(() => applyCommand(s, { type: "JOB", id: p.id, job }));
+    for (const job of ["WAITING", "SEWING"] as const) rejects(() => applyCommand(s, { type: "JOB", id: p.id, job }));
     rejects(() => applyCommand(s, { type: "FAMILY", a: p.id, b: s.people[5].id })); rejects(() => assignOperator(s, 0, p.id)); equal(canonical(s), before);
     applyCommand(s, { type: "NIGHT" }); const b = new BattleSimulation(s), op = b.operators[0]; rejects(() => b.reassign(0, p.id)); equal(b.operators[0], op);
 });
@@ -74,7 +74,7 @@ test("Elders still occupy housing and block extra birth/traveler at full capacit
     const s = separateCaptainVillage(1); for (let i = 0; i < 2; i++) { const p = clone(s.people[4]); p.id = `1:${s.nextPerson++}`; p.job = "WAITING"; s.people.push(p); }
     s.people[0].nights = 0; s.people[0].elderNights = 3; s.people[0].job = "WAITING"; equal(s.people.length, capacity(s));
     applyCommand(s, { type: "FAMILY", a: s.people[4].id, b: s.people[5].id }); rejects(() => applyCommand(s, { type: "BIRTH", family: s.families[1].id }));
-    const traveler = clone(s.people[4]); traveler.id = `1:${s.nextPerson++}`; traveler.origin = "TRAVELER";
+    const traveler = clone(s.people[4]); traveler.id = `1:${s.nextPerson++}`; traveler.origin = "TRAVELER"; traveler.job = "WAITING";
     s.phase = "DAWN"; s.wave = null; s.choices = [{ kind: "TRAVELER", person: traveler }]; validateState(s);
     const before = canonical(s); rejects(() => applyCommand(s, { type: "CHOOSE", value: "accept" })); equal(canonical(s), before);
 });
@@ -97,7 +97,7 @@ test("Same-version day/night elder saves restore exactly without startup writes"
         const again = new GameSession(new SaveStore(m)); again.load(); equal(again.state, s); equal(m.writes, 1);
     }
 });
-test("Retirement save failures retry the same transition without repeating age, food or retirement count", () => {
+test("Retirement save failures retry the same transition without repeating age, coins or retirement count", () => {
     for (const failure of ["BEFORE", "AFTER"] as const) {
         const s = createGame(1); s.people[0].nights = 1; win(s); dawn(s); const m = new MemoryStore(), store = new SaveStore(m); store.inspect(); store.prepare(s);
         m.fail = failure; rejects(() => store.commit()); const raw = store.pending!.raw; m.fail = "NONE"; equal(store.commit(), s); equal(m.writes, 1); equal([...m.values.values()][0], raw); equal(s.people[0].elderNights, 3); equal(s.stats.retirees, 1);

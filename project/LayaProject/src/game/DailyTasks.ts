@@ -1,17 +1,17 @@
-import { DAILY_BOTH_WOOD, DAILY_TASKS, DENSE_TASK_GOALS, TASK_GOALS, TaskKind, featureUnlocked } from "../config/DailyTaskConfig";
-import { isDenseWave, TOWER_BUILD_WOOD } from "../config/DefenseConfig";
+import { DAILY_TASKS, DENSE_TASK_GOALS, TASK_GOALS, TaskKind, featureUnlocked } from "../config/DailyTaskConfig";
+import { isDenseWave, TOWER_BUILD_COINS } from "../config/DefenseConfig";
 import { BattleSimulation } from "./BattleSimulation";
 import { PATH_LENGTH, pointAt } from "./BattleRoad";
 import { DailyTaskCombat } from "./DailyTaskCombat";
 import { activeDailyTasks, DailyTask } from "./DailyTaskState";
-import { ENEMIES, RULE } from "./GameConfig";
+import { ENEMIES, RULE, SEWING } from "./GameConfig";
 import { clone, GameState, isAvailableAdult } from "./GameState";
-import { gateCapacity, repairCost, residentialCost, residentialUpgradeReason, upgradeCost, upgradeUnavailableReason, UpgradeCost } from "./Growth";
+import { gateCapacity, repairCost, residentialCost, residentialUpgradeReason, sewingDayCap, sewingYield, upgradeCost, upgradeUnavailableReason, UpgradeCost } from "./Growth";
 import { SeededRandom } from "./SeededRandom";
-import { birthUnavailableReason, canMarry, economy } from "./VillageQueries";
+import { birthUnavailableReason, canMarry } from "./VillageQueries";
 import { applyCommand, Command } from "./VillageRules";
 
-type Candidate = Pick<DailyTask, "kind" | "goal" | "enemy" | "tactic" | "woodGoal"> & { cost?: UpgradeCost };
+type Candidate = Pick<DailyTask, "kind" | "goal" | "enemy" | "tactic"> & { cost?: UpgradeCost };
 /** Keeps preflight bounded on late-game waves. A forecast that reaches the limit cannot qualify a combat task. */
 const FORECAST_SECONDS = 180;
 
@@ -85,28 +85,21 @@ export function prepareDailyTasks(s: GameState, date: string) {
         }
     }
 
-    const e = economy(s), adults = s.people.filter(p => isAvailableAdult(s, p));
-    // Production is booked when the player starts the night, even if the village does not survive.
-    count(2, "food", e.food);
-    count(2, "wood", e.wood);
-    const [woodMin, woodMax] = DAILY_BOTH_WOOD;
-    if (e.wood >= woodMin) count(2, "both", e.food, { woodGoal: woodMin + rng.range(Math.min(e.wood, woodMax) - woodMin + 1) });
-    count(2, "farmers", adults.filter(p => p.job === "FARM").length);
-    count(2, "loggers", adults.filter(p => p.job === "LOGGING").length);
-    one(2, "rations", e.food >= e.rations);
+    const adults = s.people.filter(p => isAvailableAdult(s, p));
+    const sewingBatch = adults.reduce((sum, p) => sum + (p.job === "SEWING" ? sewingYield(s, p, "day") : 0), 0);
+    count(2, "sewCoins", Math.min(sewingDayCap(s) - s.factory.earned, sewingBatch * (SEWING.maxBatches - s.factory.batches)));
 
-    if (s.towers.some(t => !t.kind)) affordable(3, "towerBuild", { wood: TOWER_BUILD_WOOD, food: 0 });
+    if (s.towers.some(t => !t.kind)) affordable(3, "towerBuild", { coins: TOWER_BUILD_COINS });
     const towerLevels = s.towers.filter(t => t.kind).map(t => t.level);
     if (towerLevels.length) affordable(3, "towerUpgrade", upgradeCost("TOWER", Math.min(...towerLevels)));
-    affordable(3, "farmUpgrade", upgradeCost("FARM", s.farm));
-    affordable(3, "loggingUpgrade", upgradeCost("LOGGING", s.logging));
+    affordable(3, "factoryUpgrade", upgradeCost("FACTORY", s.factory.level));
     affordable(3, "gateUpgrade", upgradeCost("GATE", s.gateLevel));
-    if (s.gate < gateCapacity(s)) affordable(3, "repair", { wood: repairCost(s), food: 0 });
+    if (s.gate < gateCapacity(s)) affordable(3, "repair", { coins: repairCost(s) });
     if (residentialUpgradeReason(s) === null) count(4, "houseBuild", 1, { cost: residentialCost(s.houses) });
     const unpaired = adults.filter(p => !s.families.some(f => f.partners.includes(p.id)));
     one(4, "marriage", Number.isSafeInteger(s.nextFamily + 1) && unpaired.some(a => unpaired.some(b => canMarry(s, a, b))));
     if (Number.isSafeInteger(s.nextPerson + 1) && s.families.some(f => birthUnavailableReason(s, f.id) === null))
-        affordable(4, "child", { food: RULE.birthCost, wood: 0 });
+        affordable(4, "child", { coins: RULE.birthCost });
     const chosen: Candidate[] = [];
     // Shuffle the eligible themes, with the normal one-wave objective guaranteed when a win is feasible.
     if (wins) {
@@ -115,18 +108,15 @@ export function prepareDailyTasks(s: GameState, date: string) {
         const index = rng.range(2) === 0 ? 0 : rng.range(side.length);
         chosen.push(side.splice(index, 1)[0]);
     }
-    const materials = { wood: s.wood, food: s.food };
-    const fits = (task: Candidate) => !task.cost || (task.cost.wood <= materials.wood && task.cost.food <= materials.food);
+    let coins = s.coins;
+    const fits = (task: Candidate) => !task.cost || task.cost.coins <= coins;
     const pick = (bucket: Candidate[]) => {
         const choices = bucket.filter(fits);
         if (!choices.length) return;
         const task = choices[rng.range(choices.length)];
         chosen.push(task);
         bucket.splice(bucket.indexOf(task), 1);
-        if (task.cost) {
-            materials.wood -= task.cost.wood;
-            materials.food -= task.cost.food;
-        }
+        if (task.cost) coins -= task.cost.coins;
     };
     // Reserve costs across all drawn tasks, so today's construction and village objectives can use the same starting stock.
     const otherThemes = buckets.filter((bucket, i) => bucket.length > 0 && (!wins || i !== 0));
@@ -136,9 +126,8 @@ export function prepareDailyTasks(s: GameState, date: string) {
     }
     const remaining = ([] as Candidate[]).concat(...buckets);
     while (chosen.length < DAILY_TASKS.limit && remaining.some(fits)) pick(remaining);
-    s.dailyTasks = { date, tasks: chosen.map(({ cost, ...task }) => ({
-        ...task, progress: 0, claimed: false, material: rng.range(2) === 0 ? "food" : "wood",
-        reward: DAILY_TASKS.rewardMin + rng.range(DAILY_TASKS.rewardMax - DAILY_TASKS.rewardMin + 1)
+    s.dailyTasks = { date, tasks: chosen.map(({ cost, ...task }, index) => ({
+        ...task, progress: 0, claimed: false, reward: DAILY_TASKS.rewards[index]
     })) };
 }
 
@@ -149,34 +138,22 @@ function credit(s: GameState, date: string, amount: (task: DailyTask) => number)
 
 export function creditTaskCommand(before: GameState, after: GameState, c: Command, date: string) {
     if (before.phase !== "DAY" || !activeDailyTasks(after, date)) return;
-    const building = { FARM: "farmUpgrade", LOGGING: "loggingUpgrade", GATE: "gateUpgrade",
+    const building = { FACTORY: "factoryUpgrade", GATE: "gateUpgrade",
         HOUSE: "houseBuild" } as const;
     switch (c.type) {
-        case "NIGHT": {
-            const e = economy(before);
-            credit(after, date, task => {
-                switch (task.kind) {
-                    case "food": return e.food;
-                    case "wood": return e.wood;
-                    case "both": return e.food >= task.goal && e.wood >= task.woodGoal! ? task.goal : 0;
-                    case "farmers": return before.people.filter(p => isAvailableAdult(before, p) && p.job === "FARM").length >= task.goal ? task.goal : 0;
-                    case "loggers": return before.people.filter(p => isAvailableAdult(before, p) && p.job === "LOGGING").length >= task.goal ? task.goal : 0;
-                    case "rations": return e.food >= e.rations ? 1 : 0;
-                    default: return 0;
-                }
-            });
-            return;
-        }
         case "BUILD": credit(after, date, t => Number(t.kind === building[c.kind])); return;
         case "REPAIR": credit(after, date, t => Number(t.kind === "repair")); return;
         case "TOWER": credit(after, date, t => Number(t.kind === "towerBuild" && !before.towers[c.index].kind)); return;
         case "UPGRADE": credit(after, date, t => Number(t.kind === "towerUpgrade")); return;
         case "FAMILY": credit(after, date, t => Number(t.kind === "marriage")); return;
         case "BIRTH": credit(after, date, t => Number(t.kind === "child")); return;
-        case "JOB": credit(after, date, t => Number(t.kind === "worker" && !c.replace &&
-            (c.job === "FARM" || c.job === "LOGGING") && before.people.some(p => p.id === c.id && p.job === "WAITING"))); return;
         case "OPERATOR": credit(after, date, t => Number(t.kind === "operator" && !before.towers[c.index].operator)); return;
     }
+}
+
+/** 只有已进入本次保存候选的缝纫收入才能记入目标。 */
+export function creditTaskSewing(s: GameState, date: string, coins: number) {
+    credit(s, date, task => task.kind === "sewCoins" ? coins : 0);
 }
 
 export function creditTaskVictory(s: GameState, date: string, battle: BattleSimulation, combat: DailyTaskCombat) {

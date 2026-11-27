@@ -5,7 +5,6 @@ const compiled = process.env.DAIDAI_TEST_BUILD;
 const { GameSession } = require(path.join(compiled, 'game/GameSession.js'));
 const { SaveStore } = require(path.join(compiled, 'storage/SaveStore.js'));
 const { WechatPlatform } = require(path.join(compiled, 'platform/WechatPlatform.js'));
-const { storageCapacity } = require(path.join(compiled, 'game/Growth.js'));
 const { generateWave } = require(path.join(compiled, 'game/WaveGenerator.js'));
 const { expeditionUnavailableReason, startExpedition } = require(path.join(compiled, 'game/Expedition.js'));
 
@@ -44,7 +43,7 @@ test('trial jumps to wave 30 in its own save and keeps the cloud leaderboard rea
     assert.equal(trial.game.testEntryEnabled, true);
     assert.equal(trial.game.boot.kind, 'new');
     trial.game.newVillage();
-    assert(storageCapacity(trial.game.state) < 500);
+    assert(trial.game.state.coins < 500);
     const people = trial.game.state.people, towers = trial.game.state.towers;
     trial.game.pause('CHOICE');
     trial.game.jumpToTestNight();
@@ -53,10 +52,9 @@ test('trial jumps to wave 30 in its own save and keeps the cloud leaderboard rea
     trial.game.jumpToTestNight();
     const { state, error } = trial.game;
     assert.equal(error, '');
-    assert.deepEqual([state.day, state.completed, state.food, state.wood], [30, 29, 500, 500]);
+    assert.deepEqual([state.day, state.completed, state.coins], [30, 29, 500]);
     assert.deepEqual(state.people, people);
     assert.deepEqual(state.towers, towers);
-    assert(storageCapacity(state) >= 500);
     assert(state.wave.entries.length > 0);
     assert.deepEqual(open().game.state, state);
     for (const [key, value] of normal) assert.equal(values.get(key), value);

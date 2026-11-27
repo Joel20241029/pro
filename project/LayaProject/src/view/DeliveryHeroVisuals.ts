@@ -7,7 +7,7 @@ import type { SpriteFrames } from "./SpriteFrames";
 import { HeroStroll } from "./HeroStroll";
 import type { WorldItem } from "./WorldInteraction";
 
-/** 路线沿右侧空地绕农田，与智卓的南侧停留点错开。显示尺寸仅影响地图表现。 */
+/** 路线沿村内右侧空地，与智卓的南侧停留点错开。显示尺寸仅影响地图表现。 */
 const WALK = [{ x: 501, y: 860 }, { x: 548, y: 875 }, { x: 516, y: 949 }, { x: 498, y: 977 }] as const;
 const LOOK = { width: 127.5, bag: 41, word: 138, scooter: 74, arc: 111, arm: 38, seconds: .68 } as const;
 /** 按四方向投掷帧的手部位置放出外卖，落点仍由模拟决定。 */

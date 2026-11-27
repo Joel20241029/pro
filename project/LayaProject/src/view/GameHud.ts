@@ -8,7 +8,7 @@ import { GameSession } from "../game/GameSession";
 import { capacity, economy, person } from "../game/VillageRules";
 import { GameState } from "../game/GameState";
 import { RULE, TOWERS } from "../game/GameConfig";
-import { gateCapacity, storageCapacity } from "../game/Growth";
+import { gateCapacity } from "../game/Growth";
 import { SpriteFrames } from "./SpriteFrames";
 import { layoutVillage } from "./VillageScene";
 import { GameLayout } from "./GameLayout";
@@ -43,7 +43,7 @@ export class GameHud {
     private buildHints: Laya.Sprite[] = [];
     private hintSeconds = 0;
     private sideScroll = 0;
-    readonly materialIcons: Partial<Record<"food" | "wood", Laya.Sprite>> = {};
+    coinIcon: Laya.Sprite | null = null;
     readonly featureButtons: Laya.Sprite[] = [];
     guideTargets: Partial<Record<StarterTarget, Laya.Sprite>> = {};
     startButton: Laya.Sprite | null = null;
@@ -59,7 +59,7 @@ export class GameHud {
         this.buildHints.length = 0;
         this.startButton = this.tacticBadge = null;
         this.guideTargets = {};
-        delete this.materialIcons.food; delete this.materialIcons.wood;
+        this.coinIcon = null;
         this.featureButtons.length = 0;
         this.node.destroyChildren();
         this.node.graphics.clear();
@@ -72,14 +72,11 @@ export class GameHud {
         const battle = this.game.battle, statusY = layout.mapTop - HUD.statusHeight, bottomY = layout.footerTop;
         const blocked = actionHintsBlocked(this.game);
         const hints = actionHints(s, blocked);
-        // 与人口统一为“现有/容量”；窄栏的千进制数值省略小数，始终单行显示。
-        const [food, wood, storage] = [s.food, s.wood, storageCapacity(s)].map(value => amount(value, true).replace(/\.\d(?=[kmbtq]$)/, ""));
-        [["icon_food", `${food}/${storage}`], ["icon_wood", `${wood}/${storage}`], ["icon_population", `人 ${s.people.length}/${capacity(s)}`]].forEach(([id, value], i) => {
-            const spec = HUD.resource, full = i < 2 && (i === 0 ? s.food : s.wood) >= storageCapacity(s);
-            const icon = this.ui.iconValue(this.node, id, value, spec.x + i * spec.step, layout.resourcesY + spec.textY,
-                spec.width, spec.height, full ? C.timber : C.ink, spec.font);
-            if (i < 2) this.materialIcons[i === 0 ? "food" : "wood"] = icon;
-        });
+        const resource = HUD.resource;
+        this.coinIcon = this.ui.iconValue(this.node, "icon_coin", amount(s.coins, true), 97, layout.resourcesY + resource.textY,
+            226, resource.height, C.ink, resource.font);
+        this.ui.iconValue(this.node, "icon_population", `${s.people.length}/${capacity(s)}`, 397, layout.resourcesY + resource.textY,
+            226, resource.height, C.ink, resource.font);
         this.node.graphics.drawRect(0, statusY, LAYOUT.width, HUD.statusHeight, s.phase === "NIGHT" ? C.nightRibbon : C.dayRibbon);
         const count = s.wave?.entries.length || 0;
         this.nightStatus = this.ui.label(this.node, s.phase === "NIGHT" ? `守夜中 · 已守 ${amount(s.completed)} 波` : `第 ${s.day} 天 · 今夜 ${count} 名来敌 · 已守 ${amount(s.completed)} 波`, 28, statusY, 664, 23, C.cream, true, HUD.statusHeight);
@@ -207,10 +204,8 @@ export class GameHud {
         const footer = HUD.footer;
         if (s.phase === "DAY") {
             const e = economy(s), info = footer.info, wave = footer.wave, start = footer.start;
-            const width = info.width / 3, y = bottomY + info.y;
-            this.ui.iconValue(this.node, "icon_food", `产出 +${amount(e.food, true)}`, info.x, y, width, info.height, C.ink, 22);
-            this.ui.iconValue(this.node, "icon_food", `口粮 −${amount(e.rations, true)}`, info.x + width, y, width, info.height, e.hungry ? C.red : C.timber, 22);
-            this.ui.iconValue(this.node, "icon_wood", `产出 +${amount(e.wood, true)}`, info.x + width * 2, y, width, info.height, C.ink, 22);
+            const y = bottomY + info.y;
+            this.ui.iconValue(this.node, "icon_coin", `守夜奖励 +${amount(e.total, true)}`, info.x, y, info.width, info.height, C.ink, 24);
             // 来敌入口退为信息行文字，仍复用原按钮的点击、音效和按压取消逻辑。
             const preview = this.ui.button(this.node, `来敌 ${amount(count, true)} ›`, wave.x, bottomY + wave.y, wave.width,
                 () => this.panels.open({ type: "nightDetails", back: { type: "start" } }), C.muted, wave.height);
@@ -298,7 +293,7 @@ export class GameHud {
         if (!box || !battle) return;
         const night = battle.base.night;
         if (!night) return;
-        const signature = `${night.rewardDie}|${night.patrolRation}|${night.patrolWideImpact}|${night.hungry}|${battle.wavePoisoned}|${battle.weakenedReinforcements}`;
+        const signature = `${night.rewardDie}|${night.patrolRation}|${night.patrolWideImpact}|${battle.wavePoisoned}|${battle.weakenedReinforcements}`;
         if (signature === this.shownNightEffects) return;
         this.shownNightEffects = signature;
         const effects: { icon: string; name: string; value: string; penalty?: boolean }[] = [];
@@ -308,7 +303,6 @@ export class GameHud {
         }
         if (night.patrolRation) effects.push({ icon: ITEMS.patrol_ration.icon, name: "旋转伤害", value: `+${Math.round((PATROL_RATION.damageMultiplier - 1) * 100)}%` });
         if (night.patrolWideImpact) effects.push({ icon: ITEMS.liang_indulgence.icon, name: "砸地半径", value: `+${Math.round((LIANG_INDULGENCE.radiusMultiplier - 1) * 100)}%` });
-        if (night.hungry) effects.push({ icon: "icon_food", name: "缺粮减攻速", value: "缺粮", penalty: true });
         if (battle.wavePoisoned) effects.push({ icon: DRAGON_POISON.icon, name: "整波来敌中毒", value: "中毒" });
         if (battle.weakenedReinforcements) effects.push({ icon: "icon_heart", name: "后续来敌减血", value: "减血" });
         box.destroyChildren();

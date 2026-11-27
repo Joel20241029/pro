@@ -12,8 +12,8 @@ export const TOWER_AMMO = {
 export const STARTER_AMMO = ["ARROW", "STONE"] as const;
 /** 同一弹种全村共用等级；从 1 级起每级额外提供 5% 的基础伤害，加法累计。 */
 export const AMMO_DAMAGE_PER_LEVEL = .05;
-/** 新建一座石炮塔统一消耗 30 木，沿用初始弓箭塔造价。建造、费用提示和每日任务预算共用此值。 */
-export const TOWER_BUILD_WOOD = 30;
+/** 新建一座石炮塔统一消耗 40 尔币。建造、费用提示和每日任务预算共用此值。 */
+export const TOWER_BUILD_COINS = 40;
 export const TOWERS = {
     ARROW: { damage: 12, interval: .8, range: 175, splash: 0 },
     STONE: { damage: 22, interval: 1.6, range: 165, splash: 70 },

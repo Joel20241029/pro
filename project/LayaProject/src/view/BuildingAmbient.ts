@@ -1,7 +1,6 @@
 import { SpriteFrames } from "./SpriteFrames";
 
 const GATE_DOOR_CLIP = "motion_gate_doors";
-const SAW_CLIP = "motion_logging_saw";
 
 /** Local clips only replace the sprite attached to the moving component. */
 export class BuildingAmbient {
@@ -38,7 +37,7 @@ export class BuildingAmbient {
                 if (this.gateElapsed !== null) this.gateElapsed = working ?
                     Math.min(openTime, this.gateElapsed + delta) : this.gateElapsed + delta;
             } else {
-                node.texture = this.art.get(this.art.frameId(clip, this.time, clip !== SAW_CLIP || working));
+                node.texture = this.art.get(this.art.frameId(clip, this.time));
             }
         }
     }

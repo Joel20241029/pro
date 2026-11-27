@@ -5,7 +5,7 @@ import { C, UI } from "../UiTheme";
 import { actionHintsBlocked, familyActionHints } from "../ActionHints";
 import { ScrollList } from "../ScrollList";
 import { Panel, PanelContext } from "./PanelContext";
-import { amount, coloredName, reasonBesideCost } from "../ViewText";
+import { coloredName, reasonBesideCost } from "../ViewText";
 import { orderPanelRows } from "./PanelListOrder";
 import { replayButtonPress } from "../ButtonFeedback";
 import { cardArt as drawResidentAvatar } from "./PanelCards";
@@ -73,9 +73,10 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: FamilyView, 
         rows.setVirtualRows(candidates.length, step, (index, row) => {
             const q = candidates[index], selected = q === first, width = UI.contentWidth - UI.scrollGutter;
             row.name = `FamilyCandidate:${q.id}`;
+            row.size(width, FAMILY_UI.candidate);
             ctx.art.panel(row, "panel_card", width, FAMILY_UI.candidate);
             drawResidentAvatar(ctx, row, ctx.art.portraitId(q), 13, 13, 124);
-            residentCardText(ctx, row, coloredName(q), 155, 20, width - 176, 49, 31, C.ink, true);
+            residentCardText(ctx, row, coloredName(q), 155, 20, width - 155 - UI.cellActionDot.clearRight, 49, 31, C.ink, true);
             residentCardText(ctx, row, selected ? "已选" : q.traits.map(t => TRAITS[t][0]).join(" · "),
                 155, 79, 199, 45, 24, selected ? C.green : C.muted);
             if (selected) {
@@ -85,7 +86,7 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: FamilyView, 
                 return;
             }
             const available = !blocked && Number.isSafeInteger(s.nextFamily + 1);
-            const button = ctx.ui.button(row, first ? "确认成家" : "选为第一位", width - 181, 77, 165, () => {
+            ctx.ui.button(row, first ? "确认成家" : "选为第一位", width - 181, 77, 165, () => {
                 if (!first) {
                     p.partner = q.id; p.pairingScroll = 0; ctx.refresh();
                 } else {
@@ -94,7 +95,7 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: FamilyView, 
                     ctx.send({ type: "FAMILY", a: first.id, b: q.id });
                 }
             }, C.gold, 51, available);
-            if (available) ctx.ui.actionBadge(button, "MarriagePartnerHint");
+            if (available) ctx.ui.cellActionBadge(row, "MarriagePartnerHint");
         });
         if (!candidates.length) residentCardText(ctx, box, "暂无可成家的村民", UI.inset, top + 40, UI.contentWidth, 60, 29, C.muted).align = "center";
         return;
@@ -109,15 +110,14 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: FamilyView, 
         const stock = new Laya.Sprite(); stock.pos(UI.inset, 198); box.addChild(stock);
         ctx.art.panel(stock, "panel_card", UI.contentWidth, 62);
         ctx.ui.iconValue(stock, "icon_house", `空床 ${capacity(s) - s.people.length}`, 15, 4, 185, 54);
-        ctx.ui.iconValue(stock, "icon_food", `${amount(s.food, true)} / ${RULE.birthCost}`, 204, 4, UI.contentWidth - 219, 54,
-            s.food < RULE.birthCost ? C.red : C.timber, 26);
+        ctx.ui.coinCost(stock, s, { coins: RULE.birthCost }, 301, 4, UI.contentWidth - 319, 54);
     } else if (pair) {
-        const card = new Laya.Sprite(); card.pos(UI.inset, 242); box.addChild(card);
+        const card = new Laya.Sprite(); card.pos(UI.inset, 242).size(UI.contentWidth, 298); box.addChild(card);
         ctx.art.panel(card, "panel_card", UI.contentWidth, 298);
         drawPartners(ctx, card, pair, UI.contentWidth, true);
-        const button = ctx.ui.button(card, "确认成家", (UI.contentWidth - 224) / 2, 222, 224,
+        ctx.ui.button(card, "确认成家", (UI.contentWidth - 224) / 2, 222, 224,
             () => ctx.send({ type: "FAMILY", a: pair[0].id, b: pair[1].id }), C.gold, 60);
-        ctx.ui.actionBadge(button, "MarriageActionHint");
+        ctx.ui.cellActionBadge(card, "MarriageActionHint");
     } else {
         const button = ctx.ui.centerButton(box, "安排村民成家", 238, () => {
             p.pairing = true; ctx.refresh();
@@ -173,14 +173,14 @@ export function drawFamilyPanel(ctx: PanelContext, s: GameState, p: FamilyView, 
 
         const reason = birthUnavailableReason(s, family.id) ?? (Number.isSafeInteger(s.nextPerson + 1) ? null : "人口编号已达安全范围");
         if (!reason && !blocked) {
-            const welcome = ctx.ui.button(card, "迎接孩子", cardWidth - 220, 176, 194, () => {
+            ctx.ui.button(card, "迎接孩子", cardWidth - 220, 176, 194, () => {
                 ctx.confirmSpend({ title: "迎接孩子", actionText: "确认迎接", image: "icon_baby",
-                    detail: `${partners.map(q => q.name).join("与")}迎来一位新成员`, food: RULE.birthCost, showBadge: true },
+                    detail: `${partners.map(q => q.name).join("与")}迎来一位新成员`, coins: RULE.birthCost, showBadge: true },
                     () => ctx.send({ type: "BIRTH", family: family.id }));
             }, C.gold, 55);
-            ctx.ui.actionBadge(welcome, "BirthActionHint");
+            ctx.ui.cellActionBadge(card, "BirthActionHint");
         } else {
-            const status = reason ? reasonBesideCost(reason) ?? "粮食不足" : "暂不可迎接";
+            const status = reason ? reasonBesideCost(reason) ?? "尔币不足" : "暂不可迎接";
             const note = ctx.ui.label(card, status, center + 25, 167, center - 43, 25, C.muted, true, 74);
             note.align = "center"; note.valign = "middle"; note.overflow = Laya.Text.SHRINK;
         }

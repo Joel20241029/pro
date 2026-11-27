@@ -1,4 +1,4 @@
-import { laborSlots } from "../../game/Growth";
+import { sewingSlots } from "../../game/Growth";
 import { replacementOperators } from "../../game/VillageJobs";
 import { PATROL } from "../../config/PatrolConfig";
 import { JOB_NAMES, person, canMarry } from "../../game/VillageRules";
@@ -18,14 +18,14 @@ import { residentCardText, residentListItem, RESIDENT_ROW_HEIGHT } from "./Resid
 
 /** 岗位标签复用名册和详情入口。只在当前面板保存筛选与排序。 */
 const ROSTER_TABS: readonly { title: string; role?: WorkRole; filter?: "idle" | "elder" }[] =
-    [{ title: "全部" }, { title: "耕作", role: "FARM" }, { title: "伐木", role: "LOGGING" },
+    [{ title: "全部" }, { title: "制衣", role: "SEWING" },
         { title: "待安排", filter: "idle" }, { title: "养老", filter: "elder" }];
 const HISTORY_TABS: typeof ROSTER_TABS = [{ title: "最近" }, { title: "珍藏" }];
 const PEOPLE_ROW = { height: RESIDENT_ROW_HEIGHT, gap: 12, actionY: 103, actionH: 52, artRight: 177 } as const;
 
 /** 岗位名册和个人详情按相同的白天岗位容量决定直接安排，或先选出被替换的村民。 */
 export function dayJobChoice(ctx: PanelContext, s: GameState, job: WorkRole, back: Panel) {
-    const full = s.people.filter(q => q.job === job).length >= laborSlots(job, job === "FARM" ? s.farm : s.logging);
+    const full = s.people.filter(q => q.job === job).length >= sewingSlots(s.factory.level);
     return {
         full,
         select(id: string) {
@@ -59,21 +59,21 @@ function drawJobRoster(ctx: PanelContext, box: Laya.Sprite, s: GameState, p: Pan
     const choice = dayJobChoice(ctx, s, job, p);
     choices.forEach((q, i) => {
         const row = new Laya.Sprite(); row.name = `JobCandidate:${q.id}`;
-        row.pos(0, candidateTop + headerHeight + i * step); rows.content.addChild(row);
+        row.pos(0, candidateTop + headerHeight + i * step).size(width, PEOPLE_ROW.height); rows.content.addChild(row);
         ctx.art.panel(row, "panel_card", width, PEOPLE_ROW.height);
         cardArt(ctx, row, ctx.art.portraitId(q), 14, 11, 144);
         residentCardText(ctx, row, coloredName(q), PEOPLE_ROW.artRight, 12, width - 199, 49, 31, C.ink, true);
         residentCardText(ctx, row, `${q.traits.map(t => TRAITS[t][0]).join(" · ")} · 还剩 ${q.nights} 夜`,
             PEOPLE_ROW.artRight, 61, width - 199, 35, 26, C.muted);
-        const button = ctx.ui.button(row, vacancy ? "安排" : "调岗", width - 154, PEOPLE_ROW.actionY, 136,
+        ctx.ui.button(row, vacancy ? "安排" : "调岗", width - 154, PEOPLE_ROW.actionY, 136,
             () => choice.select(q.id), C.gold, 58, !actionHintsBlocked(ctx.game));
-        if (vacancy) ctx.ui.actionBadge(button, "JobVacancyActionHint");
+        if (vacancy) ctx.ui.cellActionBadge(row, "JobVacancyActionHint");
     });
 }
 
 export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel, safeHeight?: number) {
     const day = s.phase === "DAY", blocked = actionHintsBlocked(ctx.game);
-    const jobHints = p.type === "people" ? jobVacancyHints(s, blocked) : { FARM: false, LOGGING: false };
+    const jobHints = p.type === "people" ? jobVacancyHints(s, blocked) : { SEWING: false };
     const fillTower = p.type === "operators" && towerActionHints(s, p.index!, blocked).staff;
     const staffing = ctx.game.battle?.base ?? s, towers = staffing.towers;
     if (p.type === "people" || p.type === "history" || p.type === "partners" || p.type === "operators" || p.type === "workers") {
@@ -84,7 +84,7 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel, safeH
         const filter = p.type === "people" ? ROSTER_TABS[rosterTab]?.filter : undefined;
         if (filter === "idle") list = s.people.filter(q => q.job === "WAITING" && isAvailableAdult(s, q));
         else if (filter === "elder") list = s.people.filter(isElder);
-        let title = "村民名册", sub = `自动安排：天赋优先，先农田后伐木。\n待安排 ${s.people.filter(q => isAvailableAdult(s, q) && q.job === "WAITING").length} 人 · 养老 ${s.people.filter(isElder).length} 人`;
+        let title = "村民名册", sub = `制衣空岗优先安排擅长的村民。\n待安排 ${s.people.filter(q => isAvailableAdult(s, q) && q.job === "WAITING").length} 人 · 养老 ${s.people.filter(isElder).length} 人`;
         if (p.type === "history") {
             list = s.history.slice().reverse();
             if (rosterTab === 1) list = list.filter(q => s.favorites.includes(q.id));
@@ -102,12 +102,12 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel, safeH
             const tower = towers[p.index!];
             role = tower.kind ?? undefined;
             title = "选择驻塔村民";
-            sub = "可选在村未退休的成年人。耕作和伐木照常。\n选中其他塔手会换防，调任队长会自动补任。\n守夜重进会恢复战前安排。";
+            sub = "可选在村未退休的成年人。白天制衣照常。\n选中其他塔手会换防，调任队长会自动补任。\n守夜重进会恢复战前安排。";
         }
         if (p.type === "workers") {
             list = s.people.filter(q => isAvailableAdult(s, q) && q.job === p.job && q.id !== p.id);
             title = "选择替换的工人";
-            sub = `${JOB_NAMES[p.job!]}岗位已满，选一位村民换岗。\n原工人有其他空岗会自动补位。`;
+            sub = `${JOB_NAMES[p.job!]}岗位已满，选一位村民换岗。\n原工人会回到待安排名单。`;
         }
         const suggestions = role && (day || p.type === "operators") ? recommendedPeople(list.filter(q => !isExploring(s, q.id)), role, towers) : [];
         const recommended = (q: Person) => suggestions.includes(q);
@@ -136,7 +136,7 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel, safeH
                 if (role && i !== rosterTab && jobHints[role]) ctx.ui.actionBadge(button, "JobTabActionHint");
             });
         }
-        if (p.type === "people" && (role === "FARM" || role === "LOGGING")) {
+        if (p.type === "people" && role === "SEWING") {
             const vacancy = jobHints[role];
             const next = vacancy && !suggestions.length ? s.people.find(q => q.job === "WAITING" && isAvailableAdult(s, q)) : undefined;
             // 没有特长候选时也能填空岗，保留名册推荐优先。
@@ -176,16 +176,17 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel, safeH
                 residentCardText(ctx, row, "白天", 22, 19, 81, 54, 28, C.ink, true);
                 residentCardText(ctx, row, "夜间", 22, 95, 81, 54, 28, C.ink, true);
                 row.graphics.drawLine(21, rowHeight / 2, width - 21, rowHeight / 2, C.trim, 1);
-                const jobs = (["FARM", "LOGGING"] as const).filter(job => job !== q.job);
+                const jobs = (["SEWING"] as const).filter(job => job !== q.job);
                 const vacantJob = q.job === "WAITING" && jobs.find(job => jobHints[job]);
+                if (!jobs.length) residentCardText(ctx, row, "正在制衣", 115, 19, width - 137, 54, 26, C.muted);
                 jobs.forEach((job, i) => {
                     const choice = dayJobChoice(ctx, s, job, p);
                     const title = choice.full ? `换到${JOB_NAMES[job]}` : JOB_NAMES[job];
-                    const action = ctx.ui.button(row, title, 115 + i * 174, 19, 160, () => {
+                    ctx.ui.button(row, title, 115 + i * 174, 19, 160, () => {
                         if (canAct()) choice.select(q.id);
                     }, C.gold, 54, !blocked);
-                    if (job === vacantJob) ctx.ui.actionBadge(action, "JobPersonActionHint");
                 });
+                if (vacantJob) ctx.ui.cellActionBadge(row, "JobPersonActionHint");
                 const built = towers.map((tower, index) => ({ tower, index })).filter(({ tower }) => tower.kind);
                 if (!built.length) {
                     residentCardText(ctx, row, "暂无已建塔位", 115, 95, width - 137, 54, 26, C.muted);
@@ -224,7 +225,7 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel, safeH
                     ctx.open({ type: "person", id: q.id, back: p });
             }, p.type === "people" ? q.job : undefined);
             if (selecting) ctx.ui.choiceState(entry, p.preview === q.id);
-            if (recommended(q)) ctx.ui.personRibbon(entry, "tag_recommended", true);
+            if (recommended(q)) ctx.ui.personRibbon(entry, "tag_recommended", true, fillTower && stationed < 0);
             if (p.type === "history") {
                 const favorite = s.favorites.includes(q.id);
                 if (favorite) ctx.ui.personRibbon(entry, "tag_favorite", true);
@@ -241,7 +242,7 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel, safeH
                 }
                 if (!day || !isAvailableAdult(s, q)) return;
                 const isOpen = i === expanded, actionWidth = 118;
-                const button = ctx.ui.button(row, isOpen ? "收起" : "安排", buttonRight - actionWidth, (rowHeight - actionH) / 2, actionWidth, () => {
+                ctx.ui.button(row, isOpen ? "收起" : "安排", buttonRight - actionWidth, (rowHeight - actionH) / 2, actionWidth, () => {
                     if (isOpen) delete p.preview;
                     else {
                         p.preview = q.id;
@@ -250,22 +251,22 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel, safeH
                     }
                     ctx.refresh();
                 }, isOpen ? C.muted : C.gold, actionH, !blocked);
-                if (!isOpen && q.job === "WAITING" && (jobHints.FARM || jobHints.LOGGING))
-                    ctx.ui.actionBadge(button, "JobPersonActionHint");
+                if (!isOpen && q.job === "WAITING" && jobHints.SEWING)
+                    ctx.ui.cellActionBadge(entry, "JobPersonActionHint");
                 return;
             }
             if (p.type === "partners" && !p.a) {
                 const ready = !blocked && day && Number.isSafeInteger(s.nextFamily + 1);
-                const button = ctx.ui.button(row, "选为第一位", buttonRight - 169, actionY, 169,
+                ctx.ui.button(row, "选为第一位", buttonRight - 169, actionY, 169,
                     () => ctx.open({ type: "partners", a: q.id, back: p }), C.gold, actionH, ready);
-                if (ready) ctx.ui.actionBadge(button, "MarriagePartnerHint");
+                if (ready) ctx.ui.cellActionBadge(entry, "MarriagePartnerHint");
                 return;
             }
             if (!selecting) return;
             const verb = p.type === "operators" ? "选此人" : p.type === "workers" ? "确认换岗" : "确认成家";
-            const target = p.type === "partners" ? previous?.back : previous;
+            const target = p.type === "partners" || previous?.type === "factoryWorkers" ? previous?.back : previous;
             const ready = !blocked && (p.type !== "partners" || Number.isSafeInteger(s.nextFamily + 1));
-            const button = ctx.ui.button(row, verb, buttonRight - 178, actionY, 178, () => {
+            ctx.ui.button(row, verb, buttonRight - 178, actionY, 178, () => {
                 if (!ready || ctx.current !== p || p.pendingChoice || actionHintsBlocked(ctx.game)) return;
                 if (p.type === "operators") {
                     const index = p.index!, back = target ?? { type: "tower", index };
@@ -286,7 +287,7 @@ export function drawPeoplePanel(ctx: PanelContext, s: GameState, p: Panel, safeH
                 }
             }, C.gold, actionH, ready);
             if (ready && (p.type === "partners" || fillTower && stationed < 0))
-                ctx.ui.actionBadge(button, p.type === "partners" ? "MarriageActionHint" : "TowerFillCandidateHint");
+                ctx.ui.cellActionBadge(entry, p.type === "partners" ? "MarriageActionHint" : "TowerFillCandidateHint");
         });
         return;
     }

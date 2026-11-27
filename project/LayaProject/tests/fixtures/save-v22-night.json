@@ -1,0 +1,517 @@
+{
+  "schemaVersion": 5,
+  "configVersion": 22,
+  "revision": 2,
+  "commitId": "recorded-v22:2",
+  "commitType": "NORMAL",
+  "villageId": "recorded-v22",
+  "payload": {
+    "run": 1,
+    "nextPerson": 7,
+    "nextFamily": 2,
+    "day": 4,
+    "completed": 3,
+    "phase": "NIGHT",
+    "food": 87,
+    "wood": 88,
+    "gate": 200,
+    "houses": 1,
+    "gateLevel": 1,
+    "farm": 1,
+    "logging": 1,
+    "tier": 3,
+    "lastTraveler": null,
+    "people": [
+      {
+        "id": "1:1",
+        "name": "阿禾",
+        "sex": "MALE",
+        "origin": "FOUNDER",
+        "quality": "COMMON",
+        "appearance": "male_a",
+        "traits": [
+          "trait_diligent"
+        ],
+        "generation": 1,
+        "parents": [],
+        "ancestors": [],
+        "adult": true,
+        "nights": 4,
+        "elderNights": 0,
+        "growth": 0,
+        "job": "FARM"
+      },
+      {
+        "id": "1:2",
+        "name": "春杏",
+        "sex": "FEMALE",
+        "origin": "FOUNDER",
+        "quality": "COMMON",
+        "appearance": "female_a",
+        "traits": [
+          "trait_frugal"
+        ],
+        "generation": 1,
+        "parents": [],
+        "ancestors": [],
+        "adult": true,
+        "nights": 6,
+        "elderNights": 0,
+        "growth": 0,
+        "job": "FARM"
+      },
+      {
+        "id": "1:3",
+        "name": "石生",
+        "sex": "MALE",
+        "origin": "FOUNDER",
+        "quality": "COMMON",
+        "appearance": "male_a",
+        "traits": [
+          "trait_strong"
+        ],
+        "generation": 1,
+        "parents": [],
+        "ancestors": [],
+        "adult": true,
+        "nights": 8,
+        "elderNights": 0,
+        "growth": 0,
+        "job": "LOGGING"
+      },
+      {
+        "id": "1:4",
+        "name": "青竹",
+        "sex": "FEMALE",
+        "origin": "FOUNDER",
+        "quality": "COMMON",
+        "appearance": "female_a",
+        "traits": [
+          "trait_nimble"
+        ],
+        "generation": 1,
+        "parents": [],
+        "ancestors": [],
+        "adult": true,
+        "nights": 10,
+        "elderNights": 0,
+        "growth": 0,
+        "job": "WAITING"
+      },
+      {
+        "id": "1:5",
+        "name": "林川",
+        "sex": "MALE",
+        "origin": "FOUNDER",
+        "quality": "COMMON",
+        "appearance": "male_a",
+        "traits": [
+          "trait_woodwise"
+        ],
+        "generation": 1,
+        "parents": [],
+        "ancestors": [],
+        "adult": true,
+        "nights": 12,
+        "elderNights": 0,
+        "growth": 0,
+        "job": "LOGGING"
+      },
+      {
+        "id": "1:6",
+        "name": "小满",
+        "sex": "FEMALE",
+        "origin": "FOUNDER",
+        "quality": "COMMON",
+        "appearance": "female_a",
+        "traits": [
+          "trait_diligent"
+        ],
+        "generation": 1,
+        "parents": [],
+        "ancestors": [],
+        "adult": true,
+        "nights": 12,
+        "elderNights": 0,
+        "growth": 0,
+        "job": "WAITING"
+      }
+    ],
+    "families": [
+      {
+        "id": "1:f1",
+        "partners": [
+          "1:1",
+          "1:2"
+        ],
+        "lastBirth": null
+      }
+    ],
+    "towers": [
+      {
+        "kind": "ARROW",
+        "level": 1,
+        "operator": "1:4"
+      },
+      {
+        "kind": "STONE",
+        "level": 1,
+        "operator": "1:3"
+      },
+      {
+        "kind": null,
+        "level": 0,
+        "operator": null
+      },
+      {
+        "kind": null,
+        "level": 0,
+        "operator": null
+      },
+      {
+        "kind": null,
+        "level": 0,
+        "operator": null
+      }
+    ],
+    "history": [],
+    "favorites": [],
+    "choices": [],
+    "wave": {
+      "budget": 51,
+      "affix": "NONE",
+      "tier": 3,
+      "entries": [
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 620144812,
+          "tick": 0
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 693371585,
+          "tick": 24
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 473649631,
+          "tick": 50
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 546884999,
+          "tick": 76
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 327163118,
+          "tick": 102
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 400406900,
+          "tick": 128
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 180673084,
+          "tick": 154
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 253918993,
+          "tick": 180
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 34181259,
+          "tick": 206
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 107427802,
+          "tick": 230
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 4182682946,
+          "tick": 256
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 4255846124,
+          "tick": 282
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 4036224261,
+          "tick": 308
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 4109385761,
+          "tick": 334
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 3889639671,
+          "tick": 360
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 3962935918,
+          "tick": 386
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1792076506,
+          "tick": 412
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1865314411,
+          "tick": 436
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1645552513,
+          "tick": 462
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1718781629,
+          "tick": 488
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1499093572,
+          "tick": 514
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1572339694,
+          "tick": 540
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1352569910,
+          "tick": 566
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1425815327,
+          "tick": 592
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1206108625,
+          "tick": 618
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1279355180,
+          "tick": 644
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1059616916,
+          "tick": 668
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1132832114,
+          "tick": 694
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 913129259,
+          "tick": 720
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 986354251,
+          "tick": 746
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 766633825,
+          "tick": 772
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 839866372,
+          "tick": 798
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 2571255224,
+          "tick": 824
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 2644564373,
+          "tick": 850
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 2424829443,
+          "tick": 874
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 2498072922,
+          "tick": 900
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 2278338498,
+          "tick": 926
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 2351516512,
+          "tick": 952
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 2131793544,
+          "tick": 978
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 2205027261,
+          "tick": 1004
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1985338743,
+          "tick": 1030
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 2058563822,
+          "tick": 1056
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1838809398,
+          "tick": 1080
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1912109599,
+          "tick": 1106
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1692355305,
+          "tick": 1132
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1765581901,
+          "tick": 1158
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1545843683,
+          "tick": 1184
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 1619127930,
+          "tick": 1210
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 3743172534,
+          "tick": 1236
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 3816477855,
+          "tick": 1262
+        },
+        {
+          "kind": "enemy_raider",
+          "appearanceSeed": 3596717141,
+          "tick": 1288
+        }
+      ],
+      "ordinaryHealthPercent": 70,
+      "rhythm": "NIGHT_V3"
+    },
+    "night": {
+      "adults": [
+        "1:1",
+        "1:2",
+        "1:3",
+        "1:4",
+        "1:5",
+        "1:6"
+      ],
+      "elders": [],
+      "hungry": false,
+      "tactic": "KING_HEART",
+      "activeHero": "Hero:zhizhuo",
+      "extendedHeroSortie": "SLOWER",
+      "reinforcedEnemies": true,
+      "spreadEnemyFormation": true,
+      "returnPoint": {
+        "food": 60,
+        "wood": 60,
+        "gate": 200
+      },
+      "rewardDie": 6,
+      "patrolSquad": true,
+      "patrolMode": "spin",
+      "patrolSpin": true,
+      "patrolRation": true,
+      "patrolWideImpact": true
+    },
+    "ammoLevels": {
+      "ARROW": 1,
+      "STONE": 1,
+      "SLOW": 1
+    },
+    "patrol": {
+      "level": 1,
+      "captain": "1:1"
+    },
+    "tactics": {
+      "learned": [
+        "KING_HEART"
+      ],
+      "equipped": "KING_HEART"
+    },
+    "rng": {
+      "family": 2738958695,
+      "world": 2608391348
+    },
+    "stats": {
+      "births": 0,
+      "retirees": 0,
+      "generation": 1
+    },
+    "legacy": {
+      "births": 0,
+      "retirees": 0,
+      "bestNight": 3,
+      "traits": [
+        "trait_diligent",
+        "trait_frugal",
+        "trait_strong",
+        "trait_nimble",
+        "trait_woodwise"
+      ],
+      "nextRun": 2,
+      "lastRationDate": null
+    },
+    "settings": {
+      "speed": 3,
+      "music": true
+    },
+    "summary": ""
+  },
+  "checksum": "1abe7286"
+}

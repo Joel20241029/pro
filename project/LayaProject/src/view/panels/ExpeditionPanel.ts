@@ -1,5 +1,6 @@
 import { EXPEDITION, EXPEDITION_EVENTS, EXPEDITION_ROUTES, ExpeditionRoute } from "../../config/ExpeditionConfig";
-import { Expedition, ExpeditionReport, expeditionClaimQuote, expeditionDeparturePreview, expeditionNightsLeft, expeditionTotal, expeditionUnavailableReason } from "../../game/Expedition";
+import { Expedition, ExpeditionReport, expeditionClaimQuote, expeditionDeparturePreview, expeditionNightsLeft, expeditionUnavailableReason } from "../../game/Expedition";
+import { ITEMS } from "../../config/ShopConfig";
 import { GameState, isWorkingAdult } from "../../game/GameState";
 import { JOB_NAMES } from "../../game/VillageRules";
 import { actionHintsBlocked } from "../ActionHints";
@@ -10,9 +11,9 @@ import type { Panel, PanelContext } from "./PanelContext";
 import { residentCardText } from "./ResidentCards";
 
 const ROUTES = Object.keys(EXPEDITION_ROUTES) as ExpeditionRoute[];
-const HELP = "每守住一夜，就收到一份探索战报。探索期间暂停村务和寿命，村民回村后可领取奖励。";
+const HELP = "每守住一夜，就收到一份探索战报。探索期间暂停村务和寿命，村民回村后可领取路线道具。";
 /** 路线和派遣人选共用单列滚动区，派遣按钮留在对应村民卡内。 */
-const STYLE = { inset: 42, button: 80, dispatchHeight: 1040, dispatchTop: 157, dispatchRow: 168, rowGap: 14, report: 164, reportGap: 16 } as const;
+const STYLE = { inset: 42, button: 80, dispatchHeight: 1040, dispatchTop: 157, dispatchRow: 168, rowGap: 14, report: 116, reportGap: 16 } as const;
 const signed = (value: number) => value > 0 ? `+${value}` : value < 0 ? `−${-value}` : "0";
 
 function centered(ctx: PanelContext, parent: Laya.Sprite, text: string, y: number, h: number, size: number, color = C.ink, bold = true) {
@@ -32,8 +33,6 @@ function reportCard(ctx: PanelContext, host: Laya.Sprite, report: ExpeditionRepo
         residentCardText(ctx, card, `第 ${night} 夜`, w - 130, 15, 103, 40, 23, C.muted).align = "right";
     const copy = ctx.ui.label(card, event.text, 25, 58, w - 50, 25, C.ink, false, 44);
     copy.overflow = Laya.Text.SHRINK;
-    ctx.ui.iconValue(card, "icon_wood", signed(report.wood), 25, 109, 113, 44, C.ink, 29, "left");
-    ctx.ui.iconValue(card, "icon_food", signed(report.food), 147, 109, 113, 44, C.ink, 29, "left");
 }
 
 function explorer(ctx: PanelContext, box: Laya.Sprite, s: GameState, trip: Expedition, subtitle: string) {
@@ -51,18 +50,18 @@ export function drawExpeditionReportPopup(ctx: PanelContext, s: GameState, trip:
     const box = ctx.modal("521探索战报", "", false, { width: UI.panelWidth, height: buttonY + STYLE.button + UI.action.bottom });
     explorer(ctx, box, s, trip, `第 ${count} 夜 · ${EXPEDITION_ROUTES[trip.route].name}`);
     reportCard(ctx, box, trip.reports[count - 1], STYLE.inset, top, box.width - 2 * STYLE.inset);
-    centered(ctx, box, left ? `再守住 ${left} 夜回村` : "已回村 · 可领取本趟收获", top + STYLE.report + 12, 40, 26, C.muted, false);
-    ctx.ui.centerButton(box, left ? "继续" : "查看收获", buttonY, () => ctx.send({
+    centered(ctx, box, left ? `再守住 ${left} 夜回村` : trip.rewardConverted ? "已回村 · 旧奖励已折算为尔币" : "已回村 · 可领取本趟收获", top + STYLE.report + 12, 40, 26, C.muted, false);
+    ctx.ui.centerButton(box, left || trip.rewardConverted ? "继续" : "查看收获", buttonY, () => ctx.send({
         type: "ACK_EXPEDITION_REPORT", run: s.run, departedAfter: trip.departedAfter, reportCount: count
     }), C.gold, !actionHintsBlocked(ctx.game), box.width - 2 * STYLE.inset, STYLE.button);
 }
 
 export function drawExpeditionReturn(ctx: PanelContext, s: GameState, automatic: boolean) {
-    const trip = s.expedition!, balance = trip.remaining!, quote = expeditionClaimQuote(s);
-    const hasRoom = !!(quote.food || quote.wood), partial = hasRoom && (quote.food !== balance.food || quote.wood !== balance.wood);
+    const trip = s.expedition!, reward = expeditionClaimQuote(s);
+    if (!reward) return;
     const top = automatic ? 354 : 268, width = UI.panelWidth - STYLE.inset * 2;
-    const rewardHeight = partial ? 204 : 166;
-    const buttonY = top + rewardHeight + (hasRoom ? 28 : 76);
+    const rewardHeight = 140;
+    const buttonY = top + rewardHeight + 28;
     const box = ctx.modal(automatic ? "探索归来" : "探索行囊", "", !automatic, {
         width: UI.panelWidth, height: buttonY + STYLE.button + UI.action.bottom
     });
@@ -79,47 +78,21 @@ export function drawExpeditionReturn(ctx: PanelContext, s: GameState, automatic:
         centered(ctx, box, `${trip.name}回村了`, 275, 41, 36);
         centered(ctx, box, `${EXPEDITION_ROUTES[trip.route].name} · ${trip.reports.length} 夜`, 317, 31, 24, C.muted, false);
     }
-    let food: Laya.Sprite, wood: Laya.Sprite;
-    if (partial) {
-        const card = box.addChild(new Laya.Sprite()).pos(STYLE.inset, top).size(width, rewardHeight);
-        ctx.art.panel(card, "panel_card", width, rewardHeight);
-        const total = expeditionTotal(trip), woodX = width - 245, foodX = width - 118, column = 84;
-        wood = ctx.ui.image(card, "icon_wood", woodX + 24, 14, 36);
-        food = ctx.ui.image(card, "icon_food", foodX + 24, 14, 36);
-        const rows = [
-            { name: "本趟收获", wood: String(total.wood), food: String(total.food) },
-            { name: "现在可领", wood: signed(quote.wood), food: signed(quote.food) },
-            { name: "留在行囊", wood: String(balance.wood - quote.wood), food: String(balance.food - quote.food) }
-        ];
-        rows.forEach((row, i) => {
-            const y = 54 + i * 47, color = i === 1 ? C.green : C.ink;
-            card.graphics.drawLine(28, y, width - 28, y, C.paper, 2);
-            residentCardText(ctx, card, row.name, 28, y, width - 270, 47, 27, color, true);
-            residentCardText(ctx, card, row.wood, woodX, y, column, 47, 29, color, true).align = "center";
-            residentCardText(ctx, card, row.food, foodX, y, column, 47, 29, color, true).align = "center";
-        });
-    } else {
-        const gap = 18, cellWidth = (width - gap) / 2;
-        const tile = (material: "wood" | "food", x: number) => {
-            const card = box.addChild(new Laya.Sprite()).pos(x, top).size(cellWidth, rewardHeight);
-            ctx.art.panel(card, "panel_card", cellWidth, rewardHeight);
-            const icon = ctx.ui.image(card, `icon_${material}`, (cellWidth - 76) / 2, 17, 76);
-            centered(ctx, card, hasRoom ? signed(quote[material]) : String(balance[material]), 96, 57, 45);
-            return icon;
-        };
-        wood = tile("wood", STYLE.inset);
-        food = tile("food", STYLE.inset + cellWidth + gap);
-    }
-    if (!hasRoom) centered(ctx, box, "仓储已满", top + rewardHeight + 12, 47, 27, C.muted);
+    const item = ITEMS[reward], card = box.addChild(new Laya.Sprite()).pos(STYLE.inset, top).size(width, rewardHeight);
+    ctx.art.panel(card, "panel_card", width, rewardHeight);
+    const icon = ctx.ui.image(card, item.icon, 32, 20, 100);
+    residentCardText(ctx, card, `${item.name} ×1`, 162, 20, width - 186, 53, 35, C.ink, true);
+    residentCardText(ctx, card, "领取后放入背包", 162, 75, width - 186, 45, 26, C.muted);
     const blocked = actionHintsBlocked(ctx.game);
     if (automatic) ctx.ui.button(box, "稍后领取", STYLE.inset, buttonY, 240,
         () => ctx.send({ type: "DISMISS_EXPEDITION" }), C.muted, STYLE.button, !blocked);
     ctx.ui.button(box, "收下", automatic ? STYLE.inset + 260 : STYLE.inset, buttonY, automatic ? width - 260 : width,
-        () => ctx.claimExpedition(food, wood), C.gold, STYLE.button, hasRoom && !blocked);
+        () => ctx.claimExpedition(icon), C.gold, STYLE.button, !blocked);
 }
 
 export function drawExpeditionPanel(ctx: PanelContext, s: GameState, panel: Panel, available: number) {
     const trip = s.expedition;
+    if (trip?.rewardConverted) { drawExpeditionReportPopup(ctx, s, trip); return; }
     if (trip?.remaining) { drawExpeditionReturn(ctx, s, false); return; }
     const inset = STYLE.inset, width = UI.panelWidth - 2 * inset, step = STYLE.report + STYLE.reportGap;
     if (trip) {
@@ -129,8 +102,8 @@ export function drawExpeditionPanel(ctx: PanelContext, s: GameState, panel: Pane
         explorer(ctx, box, s, trip, `探索中 · ${route.name}`);
         const x = inset + 20, span = width - 40, y = 295;
         box.graphics.drawLine(x, y, x + span, y, C.trim, 5);
-        for (let i = 0; i < route.nights.length; i++) {
-            const done = i < count, at = x + i * span / (route.nights.length - 1);
+        for (let i = 0; i < route.nights; i++) {
+            const done = i < count, at = x + i * span / (route.nights - 1);
             box.graphics.drawCircle(at, y, 16, done ? C.status : C.cream, done ? C.status : C.trim, 3);
             if (done) box.graphics.drawLines(0, 0, [at - 7, y, at - 2, y + 6, at + 8, y - 6], C.cream, 4);
         }
@@ -167,13 +140,11 @@ export function drawExpeditionPanel(ctx: PanelContext, s: GameState, panel: Pane
             face.graphics.drawCircle(75, rowHeight / 2, 56, C.petalCenter);
             ctx.ui.image(face, value === "lobby" ? "icon_backpack" : "icon_night_shield", 25, (rowHeight - 100) / 2, 100);
             residentCardText(ctx, face, option.name, 145, 19, width - 285, 42, 32, C.ink, true);
-            residentCardText(ctx, face, `${option.nights.length} 夜回村`, 145, 65, width - 285, 37, 25, C.muted);
+            residentCardText(ctx, face, `${option.nights} 夜回村`, 145, 65, width - 285, 37, 25, C.muted);
             residentCardText(ctx, face, selected ? "✓ 已选" : "选这条 ›", width - 132, 27, 110, 43, 25,
                 selected ? C.green : C.status, true).align = "right";
-            const range = (material: "wood" | "food") =>
-                option.nights.reduce((sum, night) => [sum[0] + night[material][0], sum[1] + night[material][1]], [0, 0]).join("–");
-            ctx.ui.iconValue(face, "icon_wood", range("wood"), 145, 110, 124, 43, C.ink, 25, "left");
-            ctx.ui.iconValue(face, "icon_food", range("food"), 282, 110, 124, 43, C.ink, 25, "left");
+            const item = ITEMS[option.reward];
+            ctx.ui.iconValue(face, item.icon, `${item.name} ×1`, 145, 110, width - 173, 43, C.ink, 25, "left");
             return;
         }
         const member = candidates[index - ROUTES.length];
@@ -195,16 +166,13 @@ export function drawExpeditionPanel(ctx: PanelContext, s: GameState, panel: Pane
         const preview = expeditionDeparturePreview(s, p.id, route);
         const assignment = preview.replacements.length ? `${preview.replacements.map(v => v.name).join("、")}补岗` : JOB_NAMES[p.job];
         residentCardText(ctx, candidate, assignment, 145, 58, width - 318, 35, 24, C.muted);
-        residentCardText(ctx, candidate, "产出", 145, 112, 50, 36, 23, C.muted);
-        ctx.ui.iconValue(candidate, "icon_wood", signed(preview.wood), 201, 112, 73, 36, C.ink, 24, "left");
-        ctx.ui.iconValue(candidate, "icon_food", signed(preview.food), 285, 112, 73, 36, C.ink, 24, "left");
-        residentCardText(ctx, candidate, "口粮", 377, 112, 50, 36, 23, C.muted);
-        ctx.ui.iconValue(candidate, "icon_food", signed(preview.rations), 433, 112, 90, 36, C.ink, 24, "left");
+        if (preview.coins) ctx.ui.iconValue(candidate, "icon_coin", `守夜缝纫 ${signed(preview.coins)}`,
+            145, 110, width - 174, 38, C.muted, 24, "left");
         ctx.ui.button(candidate, "派出探索", width - 165, 42, 150, () => {
             if (ctx.current !== panel || actionHintsBlocked(ctx.game)) return;
             const destination = EXPEDITION_ROUTES[route];
             ctx.confirmSpend({ title: "确认派出", actionText: "确认派出", image: ctx.art.portraitId(p),
-                detail: `${p.name}将前往「${destination.name}」${destination.nights.length} 夜\n探索期间暂停村务和寿命` },
+                detail: `${p.name}将前往「${destination.name}」${destination.nights} 夜\n探索期间暂停村务和寿命` },
                 () => ctx.send({ type: "START_EXPEDITION", id: p.id, route }));
         }, C.gold, 60, !blocked);
     });

@@ -16,7 +16,7 @@ import { GamePanels } from "./GamePanels";
 import { NightResultPresentation } from "./NightResultPresentation";
 import { StartNightReminder } from "./StartNightReminder";
 import { StarterGuide } from "./StarterGuide";
-import { PATROL_PROP } from "./config/VillageSceneConfig";
+import { FACTORY_PROP, PATROL_PROP } from "./config/VillageSceneConfig";
 import { BACKPACK_LESSON, PATROL_LESSONS, SHOP_LESSON, STARTER_LESSONS } from "./config/StarterGuideConfig";
 import { SIDE_FEATURES } from "./config/TacticUiConfig";
 import { TacticNotices } from "./TacticNotices";
@@ -53,10 +53,12 @@ export class GameView {
         if (!this.overlay.numChildren && this.game.state) this.panels.open({ type: "patrol" });
     }, id => {
         if (!this.overlay.numChildren && this.game.state?.phase === "DAY") this.panels.open({ type: "heroCommittee", id });
+    }, () => {
+        if (!this.overlay.numChildren && this.game.state?.phase === "DAY") this.panels.open({ type: "factory" });
     });
     private panels = new GamePanels(this.game, this.art, this.platform, this.ui, this.overlay, this.layout, () => this.refresh(), this.resources,
         this.tacticNotices, (kind, date, icon) => this.results.claimDaily(this.game, kind, date, icon),
-        (food, wood) => this.results.claimExpedition(this.game, food, wood));
+        (icon) => this.results.claimExpedition(this.game, icon));
     private hud = new GameHud(this.game, this.art, this.ui, this.panels, () => this.refresh());
     private results = new NightResultPresentation(this.ui, this.hud, () => this.refresh());
     private tip: Tip;
@@ -193,6 +195,10 @@ export class GameView {
         if (this.panels.current?.type === "start") this.reminder.reset();
         if (this.game.saves.pending)
             this.tip.visible = false;
+        // 批次到账会同时让村民离开工位，先记录上一帧的头顶坐标。
+        const sewingPayouts = this.game.takeSewingFeedback().map(payout => ({
+            ...payout, anchor: this.village.sewingAnchor(payout.id)
+        }));
         this.hud.clear();
         this.village.drawScenery(s?.phase === "NIGHT" || this.results.playingFinalImpact);
         this.hud.drawHeader(this.layout);
@@ -205,10 +211,27 @@ export class GameView {
         if (!preserveOverlay) this.panels.redraw(() => {
             if (restoringNight) drawNightResourcePanel(this.panels);
             else if (!s) drawBoot(this.panels);
-            else drawSessionPanel(this.panels, s, this.layout.safeBottom - this.layout.safeTop, () => this.results.draw(this.panels));
+            else {
+                const safeHeight = this.layout.safeBottom - this.layout.safeTop;
+                drawSessionPanel(this.panels, s, safeHeight, () => this.results.draw(this.panels, safeHeight));
+            }
         });
         if (s && this.hud.tacticBadge && !this.tacticNotices.unread && !tacticActionReady(s)) this.hud.tacticBadge.visible = false;
         this.updateActors();
+        let bundledCoins = 0;
+        for (const { anchor, coins } of sewingPayouts) {
+            if (anchor) {
+                const start = this.village.world.localToGlobal(new Laya.Point(anchor.x, anchor.y), false, this.root);
+                this.results.showSewingPayout(start, coins);
+            } else bundledCoins += coins;
+        }
+        if (bundledCoins) {
+            const factory = this.village.world.getChildByName(FACTORY_PROP) as Laya.Sprite | undefined;
+            if (factory?.visible) {
+                const start = factory.localToGlobal(new Laya.Point(factory.width / 2, 0), false, this.root);
+                this.results.showSewingPayout(start, bundledCoins);
+            }
+        }
         this.handSpeed.update(this.layout, 0, this.overlay.numChildren > 0, this.results.playingFinalImpact);
     }
     update(delta: number) {
@@ -238,7 +261,8 @@ export class GameView {
         this.patrolGuide.tick(patrolStep, this.layout, visualDelta, patrolTarget);
         const wave = canPrompt && !this.results.active && !this.patrolGuide.node.visible ? this.starterGuide.nextEligible(day!.completed + 1) : null;
         const lesson = wave === null ? undefined : STARTER_LESSONS[wave - 1];
-        const target = lesson && this.hud.guideTargets[lesson.target];
+        const target = lesson?.target === "factory" ? this.village.world.getChildByName(FACTORY_PROP) as Laya.Sprite | undefined
+            : lesson && this.hud.guideTargets[lesson.target];
         this.starterGuide.tick(target?.visible && target.mouseEnabled ? wave : null, this.layout, visualDelta, target);
         let showGuide = canPrompt && !this.results.active && !this.starterGuide.node.visible && !this.patrolGuide.node.visible;
         for (const feature of SIDE_FEATURES) {
@@ -256,7 +280,7 @@ export class GameView {
     private updateActors() {
         if (this.village.render(this.overlay.numChildren > 0, this.anchoredTip.visible)) this.tip.show("大王怜悯你，急单已送达！");
         this.hud.update();
-        // 每日口粮/欢迎回来等自动面板也通过overlay显示，不仅检查主动打开的panels.current。
+        // 每日礼/欢迎回来等自动面板也通过overlay显示，不仅检查主动打开的panels.current。
         if (this.overlay.numChildren) { this.anchoredTip.hide(); this.reminder.hide(); }
         else this.anchoredTip.advance(0);
     }

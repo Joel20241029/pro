@@ -1,5 +1,4 @@
 import { PATROL } from "../../config/PatrolConfig";
-import { ECONOMY } from "../../config/RuleConfig";
 import { VILLAGER_QUALITY } from "../../config/VillagerQuality";
 import { RULE } from "../../game/GameConfig";
 import { GameState, isElder, isExploring, isWorkingAdult } from "../../game/GameState";
@@ -31,7 +30,7 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
     const preferredHeight = DETAIL.top + contentHeight + DETAIL.bottom;
     const height = Math.min(preferredHeight, Math.floor(safeHeight) - DETAIL.screenMargin * 2);
     const help = ancestor ? `珍藏最多 ${RULE.favoriteCap} 位，满了可先取消一位。普通家谱保留最近 ${RULE.historyCap} 位先辈。`
-        : elder ? "养老的人仍占一个住房名额，口粮计入全村。成功守夜推进晚年，寿终后记入家谱。"
+        : elder ? "养老的村民仍占一个住房名额。成功守夜推进晚年，寿终后记入家谱。"
             : !q.adult ? "每成功守夜一次，孩子成长一夜。"
                 : `白天工作与夜间岗位互不占用。夜间可驻塔，或在${PATROL.building}担任${PATROL.role}。`;
     const box = ctx.modal(ancestor ? "先辈详情" : "村民详情", "", true, { width: UI.panelWidth, height }, help);
@@ -76,10 +75,7 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
     if (!worker) {
         heading(status, elder ? "养老" : "成长");
         text(status, elder ? `养老还剩 ${q.elderNights} 夜` : `距成年还需守住 ${RULE.growNights - q.growth} 夜`, 28, 63, 516, 31, 27, C.ink, true);
-        if (elder) {
-            text(status, "基础口粮", 28, 98, 111, 30, 25, C.muted);
-            ctx.ui.iconValue(status, "icon_food", `${q.traits.includes("trait_frugal") ? ECONOMY.frugalRation : RULE.adultRation}/夜`, 146, 95, 130, 36, C.timber, 25, "left");
-        } else text(status, "每次成功守夜自动成长", 28, 98, 510, 30, 25, C.muted);
+        if (!elder) text(status, "每次成功守夜自动成长", 28, 98, 510, 30, 25, C.muted);
         return;
     }
 
@@ -95,16 +91,16 @@ export function drawPersonDetailPanel(ctx: PanelContext, s: GameState, p: Panel,
     const duty = q.id === s.patrol.captain ? PATROL.role : stationed < 0 ? "空闲" : `第 ${stationed + 1} 塔`;
     text(status, JOB_NAMES[q.job], 28, 66, 155, 44, 33, C.ink, true);
     text(status, `夜间 · ${duty}`, 28, 117, 181, 32, 24, C.muted);
-    if (!canAssign) return;
+    if (!canAssign || q.job === "SEWING") return;
     const vacancies = jobVacancyHints(s, actionHintsBlocked(ctx.game));
-    const jobs = (["FARM", "LOGGING"] as const).filter(job => q.job !== job);
+    const jobs = (["SEWING"] as const).filter(job => q.job !== job);
     const vacantJob = q.job === "WAITING" && jobs.find(job => vacancies[job]);
-    jobs.forEach((job, i) => {
+    jobs.forEach(job => {
         const choice = dayJobChoice(ctx, s, job, p), full = choice.full;
         const title = `${full ? "更换" : "安排"}${JOB_NAMES[job]}${full && jobs.length === 1 ? "村民" : ""}`;
-        const button = ctx.ui.button(status, title, jobs.length === 1 ? 315 : 207 + 185 * i, 79,
-            jobs.length === 1 ? 259 : 182, () => choice.select(q.id), C.green, 72);
+        const button = ctx.ui.button(status, title, 315, 79,
+            259, () => choice.select(q.id), C.green, 72);
         if (recommendedPeople(s.people.filter(p => !isExploring(s, p.id)), job, towers).includes(q)) ctx.ui.personRibbon(button, "tag_recommended");
-        if (job === vacantJob) ctx.ui.actionBadge(button, "JobAssignActionHint");
     });
+    if (vacantJob) ctx.ui.cellActionBadge(status, "JobAssignActionHint");
 }

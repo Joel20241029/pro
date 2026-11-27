@@ -20,8 +20,7 @@ function eligible() {
     state.completed = state.legacy.bestNight = SONGLEI.recruitment.waves;
     state.day = state.completed + 1;
     state.wave = generateWave(state);
-    state.wood = SONGLEI.recruitment.wood;
-    state.food = SONGLEI.recruitment.food;
+    state.coins = SONGLEI.recruitment.coins;
     return state;
 }
 
@@ -36,12 +35,12 @@ test('Song Lei unlocks once, validates with old villages, and is the only hero i
     assert.throws(() => applyCommand(old, recruit), /守住/);
     assert.throws(() => applyCommand(old, select), /尚未加入/);
     const s = eligible();
-    s.wood--;
-    assert.throws(() => applyCommand(s, recruit), /粮木不足/);
-    assert.equal(s.food, SONGLEI.recruitment.food);
-    s.wood++;
+    s.coins--;
+    assert.throws(() => applyCommand(s, recruit), /尔币不足/);
+    assert.equal(s.coins, SONGLEI.recruitment.coins - 1);
+    s.coins++;
     applyCommand(s, recruit);
-    assert.deepEqual([s.wood, s.food, s.songLeiUnlocked, s.selectedHero], [0, 0, true, undefined]);
+    assert.deepEqual([s.coins, s.songLeiUnlocked, s.selectedHero], [0, true, undefined]);
     assert.throws(() => applyCommand(s, recruit), /已加入/);
     applyCommand(s, select);
     applyCommand(s, { type: 'NIGHT' });

@@ -5,6 +5,7 @@ const { GameSession } = read('game/GameSession'), { BattleSimulation, PATH_LENGT
 const { createGame, applyCommand, finishNight } = read('game/VillageRules'), { SaveStore } = read('storage/SaveStore');
 const { enemyPoint } = read('game/BattleRoad'), { RULE, PADS } = read('game/GameConfig');
 const { FEEDBACK } = read('view/config/FeedbackConfig');
+const { POPULATION } = read('config/RuleConfig');
 const enemy = (seq = 1, hp = 0) => ({ seq, hp, kind: 'enemy_raider', appearanceSeed: 0, progress: 250, walkDistance: 30, speed: 0, slow: 0, slowTicks: 0, born: 0, summoned: 0 });
 function battle() { const s = createGame(7); applyCommand(s, { type: 'NIGHT' }); return new BattleSimulation(s); }
 function fatal(b, kind = 'ARROW') {
@@ -90,6 +91,8 @@ class Sprite {
 }
 global.Laya = { Sprite, Script: class {}, regClass: () => c => c, timer: { currFrame: 0 } };
 const { EnemyVisuals } = read('view/EnemyVisuals'), { ProjectileVisuals } = read('view/ProjectileVisuals'), { VillageWorld } = read('view/VillageWorld');
+const { VillagerMotion } = read('view/VillagerMotion');
+const { VILLAGE_PROPS } = read('view/config/VillageSceneConfig');
 const project = path.resolve(__dirname, '..');
 const layouts = JSON.parse(fs.readFileSync(path.join(project, 'assets/resources/gameplay/enemies/enemies.bin'))).definitions;
 test('the world keeps a steady 30 Hz render budget across alternating 16 and 17 ms updates', () => {
@@ -104,6 +107,35 @@ test('the world keeps a steady 30 Hz render budget across alternating 16 and 17 
         if (world.advance(delta)) updates++;
     }
     assert.equal(updates, Math.floor(elapsed * 30));
+});
+test('villagers finish returning through the gate while dawn choices stay open', () => {
+    const { g, b } = endingSession(POPULATION.firstTravelerDay - 1), motion = new VillagerMotion(), guard = b.base.towers[0].operator;
+    motion.sync(g.state, b.base.towers);
+    for (let i = 0; i < 800; i++) motion.update(.05);
+    assert(motion.get(guard).insideTower);
+    g.update(.05);
+    assert.equal(g.state.phase, 'DAWN');
+    assert(g.state.choices.length > 0);
+    motion.sync(g.state, g.state.towers);
+    const gateY = VILLAGE_PROPS.find(prop => prop.id === 'wall:0').y;
+    let gateOpened = false, gateOpen = false;
+    const world = Object.assign(Object.create(VillageWorld.prototype), {
+        game: g, motion, props: [{ id: 'building:gate', visual: { advance(_time, _night, open) {
+            gateOpen = open; gateOpened ||= open;
+        } } }],
+        layout: { gateY }, art: { ready: () => false }, feedbackFrame: Laya.timer.currFrame,
+        logging: { retain() {}, advance() {} }, renderDelta: 0, sceneSeconds: 0,
+    });
+    const start = motion.get(guard).walkDistance;
+    g.pause('BACKGROUND');
+    world.advance(.05, false);
+    assert.equal(motion.get(guard).walkDistance, start);
+    g.resume('BACKGROUND');
+    for (let i = 0; i < 800; i++) world.advance(.05, false);
+    assert(gateOpened && !gateOpen);
+    assert(motion.get(guard).y > gateY);
+    assert(motion.get(guard).walkDistance > start);
+    assert.equal(g.state.phase, 'DAWN');
 });
 test('last-kill synchronous render cannot spend the old frame delta before contact reaches the screen', () => {
     for (const delta of [.05, .15, .25]) {

@@ -5,7 +5,7 @@ import { DELIVERY_HERO } from "../../config/DeliveryHeroConfig";
 import { patrolCaptain } from "../../game/PatrolRules";
 import { featureUnlocked } from "../../config/DailyTaskConfig";
 import { tacticDefinition } from "../../config/TacticConfig";
-import { ENEMIES, RULE } from "../../game/GameConfig";
+import { ENEMIES } from "../../game/GameConfig";
 import { GameState } from "../../game/GameState";
 import { gateCapacity } from "../../game/Growth";
 import { economy } from "../../game/VillageRules";
@@ -37,7 +37,7 @@ function drawNightDetails(ctx: PanelContext, s: GameState, p: Panel, available: 
     const counts = new Map<string, number>();
     for (const entry of wave.entries) counts.set(entry.kind, (counts.get(entry.kind) ?? 0) + 1);
     const enemies = Object.entries(ENEMIES).filter(([kind]) => counts.has(kind)).sort(([, a], [, b]) => Number(b.boss) - Number(a.boss));
-    const listTop = 201, rowHeight = 148, balancesHeight = 158, footerGap = 18;
+    const listTop = 201, rowHeight = 148, balancesHeight = balance.boss ? 204 : 158, footerGap = 18;
     const fixed = listTop + balancesHeight + footerGap + UI.action.bottom;
     const height = Math.min(available - UI.action.bottom, fixed + enemies.length * rowHeight);
     const listHeight = height - fixed;
@@ -63,16 +63,16 @@ function drawNightDetails(ctx: PanelContext, s: GameState, p: Panel, available: 
     const balances = new Laya.Sprite(), balancesTop = listTop + listHeight + footerGap;
     balances.pos(UI.inset, balancesTop); box.addChild(balances);
     ctx.art.panel(balances, "panel_card", UI.contentWidth, balancesHeight);
-    for (const [i, [name, food, wood]] of [
-        ["今日产出", `+${amount(balance.food, true)}`, `+${amount(balance.wood, true)}`],
-        ["口粮消耗", `−${amount(balance.rations, true)}`, ""],
-        ["入夜后库存", amount(balance.endFood, true), amount(balance.endWood, true)]
-    ].entries()) {
+    const expected: [string, number][] = [
+        ["守夜基础奖励", balance.base], ["制衣追加", balance.sewing]
+    ];
+    if (balance.boss) expected.push(["首领奖励", balance.boss]);
+    expected.push(["守夜奖励合计", balance.total]);
+    expected.forEach(([name, coins], i) => {
         const y = 12 + i * 45;
-        ctx.ui.label(balances, name, 22, y, 160, 25, C.ink, false, 40);
-        ctx.ui.iconValue(balances, "icon_food", food, 200, y, 160, 40, C.green, 26, "left");
-        if (wood) ctx.ui.iconValue(balances, "icon_wood", wood, 386, y, 188, 40, C.timber, 26, "left");
-    }
+        ctx.ui.label(balances, name, 22, y, 236, 25, C.ink, false, 40);
+        ctx.ui.iconValue(balances, "icon_coin", `+${amount(coins, true)}`, 281, y, 278, 40, C.green, 26, "left");
+    });
 }
 
 export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel, available: number) {
@@ -90,7 +90,6 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel, availab
         return;
     }
     const warnings = [
-        balance.hungry ? `口粮不足 · 塔攻速降至 ${Math.round(RULE.hungerSpeed * 100)}%` : "",
         staffed < built.length ? `还有 ${built.length - staffed} 座塔无人驻守` : ""
     ].filter(Boolean);
     const loading = ctx.resources.states.night, preparing = !ctx.resources.ready("night"), failed = loading.phase === "FAILED";
@@ -117,15 +116,15 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel, availab
 
     const supplies = new Laya.Sprite(); supplies.y = overviewHeight + v.gap; body.content.addChild(supplies);
     ctx.art.panel(supplies, "panel_card", cardWidth, v.supplies);
-    const entries = [s.rewardDie === undefined ? "今日产出" : `骰子产出 ×${nightRewardMultiplier(s.rewardDie)}`, "本夜口粮", "城门耐久"];
-    entries.forEach((name, i) => ctx.ui.label(supplies, name, 22, 10 + 44 * i, 180, 26, C.ink, true, 40));
-    ctx.ui.iconValue(supplies, "icon_wood", `+${amount(balance.wood, true)}`, 265, 10, 144, 40, C.timber, 27, "left");
-    ctx.ui.iconValue(supplies, "icon_food", `+${amount(balance.food, true)}`, 417, 10, 144, 40, C.green, 27, "left");
-    ctx.ui.iconValue(supplies, "icon_food", `−${amount(balance.rations, true)}`, 417, 54, 144, 40, C.timber, 27, "left");
+    const entries = ["守住后可得", s.rewardDie === undefined ? "其中制衣追加" : "骰子影响基础奖励", "城门耐久"];
+    entries.forEach((name, i) => ctx.ui.label(supplies, name, 22, 10 + 44 * i, 205, 26, C.ink, true, 40));
+    ctx.ui.iconValue(supplies, "icon_coin", `+${amount(balance.total, true)}`, 361, 10, 193, 40, C.green, 27);
+    if (s.rewardDie === undefined) ctx.ui.iconValue(supplies, "icon_coin", `+${amount(balance.sewing, true)}`, 361, 54, 193, 40, C.green, 27);
+    else ctx.ui.label(supplies, `×${nightRewardMultiplier(s.rewardDie)}`, 362, 54, 192, 27, C.timber, true, 40).align = "center";
     const gate = ctx.ui.label(supplies, `${amount(s.gate, true)}/${amount(gateCapacity(s), true)}`, 262, 98, 294, 27, C.ink, true, 40);
     gate.align = "right"; gate.wordWrap = false; gate.overflow = Laya.Text.SHRINK;
 
-    const strip = new Laya.Sprite(); strip.y = supplies.y + v.supplies + v.gap; body.content.addChild(strip);
+    const strip = new Laya.Sprite().size(cardWidth, v.tactics); strip.y = supplies.y + v.supplies + v.gap; body.content.addChild(strip);
     ctx.art.panel(strip, "panel_card", cardWidth, v.tactics);
     ctx.ui.label(strip, "出战战技", 22, 8, 420, 25, C.muted, true, 32);
     const selected = equippedTactics(s).filter(id => id !== null).map(tacticDefinition), cell = 134;
@@ -139,8 +138,8 @@ export function drawWavePanel(ctx: PanelContext, s: GameState, p: Panel, availab
     }
     if (featureUnlocked(s.legacy.bestNight, "tactics")) {
         const blocked = actionHintsBlocked(ctx.game);
-        const change = ctx.ui.button(strip, "更换", 445, 41, 116, () => ctx.open({ type: "tactics", back: p }), C.green, 56, day && !blocked);
-        if (day && !blocked && tacticActionReady(s)) ctx.ui.actionBadge(change, "TacticActionHint");
+        ctx.ui.button(strip, "更换", 445, 41, 116, () => ctx.open({ type: "tactics", back: p }), C.green, 56, day && !blocked);
+        if (day && !blocked && tacticActionReady(s)) ctx.ui.cellActionBadge(strip, "TacticActionHint");
     }
     const patrol = new Laya.Sprite(); patrol.y = strip.y + v.tactics + v.gap; body.content.addChild(patrol);
     ctx.art.panel(patrol, "panel_card", cardWidth, v.patrol);

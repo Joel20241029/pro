@@ -10,7 +10,7 @@ const kinds: TowerKind[] = ["ARROW", "STONE", "SLOW"];
 /** 中性操作员排除远见、弓术、精英和村规加成，只检查塔位本身。 */
 function battleAt(index: number, kind: TowerKind) {
     const s = createGame(17);
-    s.people.forEach(p => { p.traits = ["trait_frugal"]; p.quality = "COMMON"; });
+    s.people.forEach(p => { p.traits = ["trait_crafty"]; p.quality = "COMMON"; });
 
     s.towers = PADS.map((_, i) => ({ kind: i === index ? kind : null, level: i === index ? 1 : 0, operator: i === index ? s.people[0].id : null }));
     applyCommand(s, { type: "NIGHT" });

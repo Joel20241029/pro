@@ -18,7 +18,7 @@ test('all four qualities inherit distinct parental talents before drawing outsid
         s.people[0].traits = s.people[1].traits.slice();
         applyCommand(s, { type: 'BIRTH', family: s.families[0].id });
         const child = s.people.at(-1);
-        assert(child.traits.includes('trait_frugal'));
+        assert(child.traits.includes('trait_crafty'));
         assert.equal(new Set(child.traits).size, VILLAGER_QUALITY[child.quality].traitCount);
         assert.equal(child.traits.length, new Set(child.traits).size);
         assert(child.traits.every(t => s.legacy.traits.includes(t)));
@@ -28,7 +28,7 @@ test('all four qualities inherit distinct parental talents before drawing outsid
 });
 
 test('multi-talent data rejects missing, extra, repeated or unknown traits', () => {
-    for (const traits of [[], ['trait_frugal'], ['trait_strong', 'trait_strong'], ['trait_strong', 'unknown'], ['trait_strong', 'trait_nimble', 'trait_frugal']]) {
+    for (const traits of [[], ['trait_crafty'], ['trait_strong', 'trait_strong'], ['trait_strong', 'unknown'], ['trait_strong', 'trait_nimble', 'trait_crafty']]) {
         const s = createGame(1);
         Object.assign(s.people[0], { origin: 'TRAVELER', quality: 'HERO', traits });
         assert.throws(() => validateState(s));
@@ -41,7 +41,7 @@ test('multi-talent data rejects missing, extra, repeated or unknown traits', () 
 test('strong and nimble stack on every ammo without altering range or ice slow', () => {
     const s = createGame(1), person = s.people[0];
     for (const kind of ['ARROW','STONE','SLOW']) {
-        person.traits = ['trait_diligent'];
+        person.traits = ['trait_crafty'];
         const normal = towerStats(s, kind, 1, person);
         person.traits = ['trait_strong','trait_nimble'];
         const both = towerStats(s, kind, 1, person);
